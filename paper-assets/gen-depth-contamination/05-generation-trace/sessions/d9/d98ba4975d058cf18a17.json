@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d98ba4975d058cf18a17",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code model download dryrun",
+  "task_key": "worker_code_model_download_dryrun_20260512T200536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_model_download_dryrun_20260512T200536_result.json",
+    "occurrence": 1,
+    "bytes": 1996,
+    "sha256": "16e07ae17a820186ad77d27202ab8269faf218ef389946354753244ebca58eb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 模型缓存路径\n| 模型 | 路径 |\n|------|------|\n| Pythia-1.4B | `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b` |\n| OLMo-1B-hf | `/root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf` |\n\n### 2. 模型 & Tokenizer 信息\n\n| | Pythia-1.4B | OLMo-1B-hf |\n|---|---|---|\n| 架构 | GPTNeoXForCausalLM | OlmoForCausalLM |\n| 参数量 | ~1.4B (24 layers, hidden=2048) | ~1.2B (16 layers, hidden=2048, tie_word_embeddings) |\n| vocab_size | 50304 | 50304 |\n| tokenizer_class | GPTNeoXTokenizer | GPTNeoXTokenizer |\n| eos_token | `<\\|endoftext\\|>` | `<\\|endoftext\\|>` (id=50279) |\n| pad_token | 无原生 → pipeline fallback 到 eos_token | `<\\|padding\\|>` (id=1) |\n\n### 3. Dry-run 结果（10 docs, depth 0-2）\n两个模型均通过，无报错。\n\n| | Pythia-1.4B | OLMo-1B-hf |\n|---|---|---|\n| AUC(0v1) | 0.50 | 0.50 |\n| AUC(1v2) | 0.50 | 0.50 |\n| JSD(0v1) | 0.813 | 0.716 |\n| JSD(1v2) | 0.670 | 0.740 |\n| K* | 0 | 0 |\n| 总耗时 | ~33s | ~27s |\n\n（AUC=0.5 / feature importance 全零是预期的 — 10 docs 不具统计意义）\n\n### 4. VRAM 使用\n两个模型在 4090D (24GB) 上以 fp16 加载，`device_map=\"auto\"` 使用 90% 预留策略。实际模型占用：\n- Pythia-1.4B fp16: ~2.8GB（safetensors 2.73GB）\n- OLMo-1B fp16: ~2.2GB（safetensors 4.38GB fp32 → 加载为 fp16 约 2.2GB）\n- 推理含 KV cache 峰值估计 < 5GB，4090D 24GB 完全无压力\n\n### 5. 遇到的问题及解决\n- **下载方式**：ModelScope 成功覆盖了 Pythia 和 OLMo（不需要回退 HF 镜像），下载速度 6-25MB/s 波动\n- **Pythia pad_token**：原始 tokenizer 无 pad_token，pipeline 中 `tokenizer.pad_token = tokenizer.eos_token` 的 fallback 正常工作\n- **OLMo pad_token**：自带 `<|padding|>` (id=1)，无需额外处理\n- **无异常错误**：仅有 sklearn 的 feature name warning（不影响结果），`torch_dtype` deprecated warning（cosmetic）\n\ndryrun 临时数据已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-model-download-dryrun.md"
+}

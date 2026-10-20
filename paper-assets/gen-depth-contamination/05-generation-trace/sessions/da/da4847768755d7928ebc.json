@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da4847768755d7928ebc",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops cloud progress check",
+  "task_key": "worker_ops_cloud_progress_check_20260517T223002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cloud_progress_check_20260517T223002_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "75d9ec919e317d5ed78277d61e90dce1d0e0a55c610abb298dc7067b22549ad6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nexp_id     | GPU   | 模型          | 已完成 depth | 当前进度           | 预计完成时间\n-----------|-------|--------------|-------------|-------------------|------------------\nexp_14b_c4 | cuda:0 (31GB/98GB, 87%, 49°C) | Qwen2.5-14B | depth 0,1  | depth 2: 1090/1250 (87%) ~8.4s/it | ~May 18 15:30\nexp_32b_c4 | cuda:1 (65GB/98GB, 90%, 52°C) | Qwen2.5-32B | depth 0    | depth 1:  743/2500 (30%) ~14.9s/it | ~May 20 07:00\n```\n\n**估算依据：**\n- **exp_14b_c4**: batch_size=4 → 1250 batches/depth, ~2h52m/depth。depth 2 剩 ~22min，之后还有 depth 3/4/5 (3 × 2h52m ≈ 8h36m)，预计 ~15:30 完成\n- **exp_32b_c4**: batch_size=2 → 2500 batches/depth, ~10h21m/depth。depth 1 剩 ~7h16m，之后还有 depth 2/3/4/5 (4 × 10h21m ≈ 41h24m)，预计 May 20 早上完成\n\nexp_32b_c4 总耗时远大于 exp_14b_c4（模型更大 + batch_size 更小）。两块卡温度和负载都正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cloud-progress-check.md"
+}

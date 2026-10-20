@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2785a29ebd6b35e08c5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "prep exp 015 readiness",
+  "task_key": "worker_prep_exp-015-readiness_20260515T043726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_exp-015-readiness_20260515T043726_result.json",
+    "occurrence": 1,
+    "bytes": 2766,
+    "sha256": "574d3289c7cdcda1213ca92aa210e5123f8f55174aa64496682e55a2ebb242a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有检查完成。以下是就绪状态报告：\n\n---\n\n## exp-015 Neural Probe 重跑就绪状态报告\n\n### ✅ 就绪项\n\n| 项目 | 状态 |\n|------|------|\n| **脚本** | `scripts/run_exp015_neural_probe.py` v2 存在（May 14 更新，550 行） |\n| **Bootstrap CI** | `bootstrap_auc_ci()` L188，doc-level resampling，默认 1000 次 |\n| **Permutation test** | `permutation_test_auc()` L231，默认 500 次 |\n| **Per-fold VRAM logging** | `torch.cuda.max_memory_allocated()` 在每个 fold 循环内（L282-284） |\n| **OOM batch adaptation** | `extract_embeddings()` 自动减半 batch_size |\n| **内存优化** | Phase 2 提取所有 embedding → free LLM → Phase 3 训练 MLP |\n| **数据 Pythia** | `data_exp001_pythia/` — 6 depth files + features.csv (~37MB) |\n| **数据 OLMo** | `data_exp002_olmo/` — 6 depth files + features.csv (~42MB) |\n| **数据 Qwen-cont** | `data_exp017_qwen_cont/` — 6 depth files + features.csv (~44MB) |\n| **模型缓存** | Qwen2.5-1.5B-Instruct 已缓存（`model.safetensors` 等完整文件在默认路径） |\n| **依赖** | torch=2.10.0+cu128, transformers=4.57.6, sklearn=1.8.0, cuda=True |\n| **GPU** | RTX 4090D 24GB，独占后足够（Qwen-cont 单跑 ~9GB） |\n| **输出路径** | 无冲突（已有的 `exp015_neural_probe_results.json` 是旧 v1 单数据集结果，会被覆盖） |\n\n### ⚠️ 注意项\n\n1. **现有结果文件是 v1 旧版**：`exp015_neural_probe_results.json` 仅含 Qwen-cont 单数据集，无 bootstrap CI / permutation test / VRAM logging。重跑会覆盖。\n2. **脚本默认只跑 Qwen-cont**：`--data_dir` 和 `--label` 默认值只有 Qwen-cont 一个数据集，需要命令行显式指定 3 个。\n3. **GPU 当前被占**：exp-006 正在使用 ~15GB 显存（15183/24564 MiB），需等其完成释放。\n\n### ❌ 缺失项\n\n无。所有必要组件就绪。\n\n### 推荐启动命令\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp/gen-depth-contamination && \\\npython scripts/run_exp015_neural_probe.py \\\n  --data_dir \\\n    /root/autodl-tmp/gen-depth-contamination/data_exp001_pythia \\\n    /root/autodl-tmp/gen-depth-contamination/data_exp002_olmo \\\n    /root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont \\\n  --label Pythia OLMo Qwen-cont \\\n  --output /root/autodl-tmp/gen-depth-contamination/artifacts/exp015_neural_probe_results.json \\\n  --embed_batch_size 16 \\\n  --bootstrap_resamples 1000 \\\n  --permutation_resamples 500\n```\n\n模型会为 3 个数据集依次提取 embedding，然后释放 LLM 显存，再训练 3 个 MLP probe。预计总耗时 30-60 分钟，峰值显存 ~9-10GB（独占 24GB 无压力）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-exp-015-readiness.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ada26185ad28efedeeac",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check exp wiki scorer confound 1b5 health",
+  "task_key": "worker_check_exp_wiki_scorer_confound_1b5_health_20260518T001953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_wiki_scorer_confound_1b5_health_20260518T001953_result.json",
+    "occurrence": 1,
+    "bytes": 811,
+    "sha256": "685414d11d0b3daa78d67c3e8b1b2eed318363d30ff73b62b7d962917b104020"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n| 检查项 | 状态 |\n|--------|------|\n| **GPU (cuda:1)** | 66% utilization, 3789MiB/24564MiB, 53°C, 176W — 正常工作 |\n| **进程** | PID 180543 存活（wrapper bash），实际 Python 进程 PID 180548 |\n| **Log 更新** | `~/runs/.../exp_wiki_scorer_confound_1b5.log` 最后修改 08:20（当前时间），持续写入 |\n| **当前进度** | **Depth 3: 297/313 (95%)** — 已完成 depth 1、2，正在生成 depth 3 |\n| **结果目录** | `results/exp_wiki_scorer_confound_1b5/` 尚为空（生成完成后才写入） |\n\n**结论：正常运行，没有卡住。** 已从上次检查的 depth 1 推进到 depth 3 即将完成。按 ~3.7s/batch 估算，depth 4 和 5 各需 ~19 分钟，整体生成阶段约 40 分钟内完成，之后进入 scoring。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-wiki-scorer-confound-1b5-health.md"
+}

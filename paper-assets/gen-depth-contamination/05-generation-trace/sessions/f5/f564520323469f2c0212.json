@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f564520323469f2c0212",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops check mistral cache and submit pythia",
+  "task_key": "worker_ops_check-mistral-cache-and-submit-pythia_20260518T214848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-mistral-cache-and-submit-pythia_20260518T214848_result.json",
+    "occurrence": 1,
+    "bytes": 1013,
+    "sha256": "9c87c08e6b5349998eed1534a9613c30cccbc24123c87d03882b8b5853f32b61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常运行，正在生成 depth 1。注意模型加载到了 `cuda:0` 而非 `cuda:1`（CUDA_VISIBLE_DEVICES=1 使物理 GPU 1 映射为逻辑 cuda:0，这是正确行为）。\n\n---\n\n**汇报：**\n\n### 1. Mistral-7B 缓存状态\n**未缓存。** 只有空的临时下载目录（`.lock/` 和 `._____temp/`），无 `.safetensors` 模型文件。之前的下载尝试未完成，需要重新下载。\n\n### 2. exp_code_pythia1b4 提交状态\n**已成功提交。**\n- tmux session: `exp_code_pythia1b4`\n- PID: **99944**\n- GPU: cuda:1（CUDA_VISIBLE_DEVICES=1）\n- 当前进度: depth 1 生成中，~3.2s/batch，预计 688 batches\n- 日志: `/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/train.log`\n\n### 3. Pythia-1.4B 模型路径\n`/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79`\n\n（另外注意：服务器上还有一个 `exp_code_llama8b` 实验在 cuda:2 上运行，PID 96340。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-mistral-cache-and-submit-pythia.md"
+}

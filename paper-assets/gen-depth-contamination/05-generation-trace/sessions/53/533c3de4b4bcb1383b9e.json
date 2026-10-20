@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "533c3de4b4bcb1383b9e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp 015 failure",
+  "task_key": "worker_diagnose_exp_015_failure_20260514T025629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_015_failure_20260514T025629_result.json",
+    "occurrence": 1,
+    "bytes": 2232,
+    "sha256": "cb501ef24f9c821fff438c7be7e2d05cc7ddb015f21a756312b334332cc39704"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整诊断如下：\n\n---\n\n## exp-015 诊断结果\n\n### 1. 失败根因：CUDA OOM\n\n```\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 26.00 MiB.\nGPU 0 total: 23.52 GiB\n  Process 55665 (其他实验): 13.36 GiB\n  Process 56371 (exp-015 Qwen模型): 9.09 GiB\n  Free: 20.06 MiB → 需要 26.00 MiB → 失败\n```\n\nexp-015 加载 Qwen2.5-1.5B（`device_map=\"auto\"`, 90% GPU 内存），加上另一个进程占 13.36 GiB，GPU 完全打满。脚本在处理 **Pythia 数据集的第一个 batch** 时 OOM 崩溃。\n\n### 2. 日志包含两次运行\n\n日志中 OOM traceback 后有大量 null bytes（`\\x00`），然后是 Qwen-cont 的成功运行。说明：\n- **第一次运行**：3 个数据集 → Pythia 第一个 batch OOM，脚本无 try/except，直接崩溃。Pythia/OLMo/Qwen-cont 均未完成。\n- **第二次运行**（被追加到同一日志）：仅 Qwen-cont → 成功完成 → SIGHUP 退出\n\n### 3. EXIT_CODE=129 (SIGHUP)\n\n第二次运行实际上**跑完了**并写出了结果，SIGHUP 发生在输出 SUMMARY 之后，不影响数据完整性。可能是 SSH 断连或 tmux 会话被关闭。\n\n### 4. 结果状态\n\n| 数据集 | 状态 | 结果 |\n|--------|------|------|\n| Pythia | OOM 崩溃 | 无 |\n| OLMo | 未执行 | 无 |\n| Qwen-cont | 完成 | K\\*(neural)=3, K\\*(lgbm)=2, acc=0.4335 |\n\nQwen-cont 结果已写入 `artifacts/exp015_neural_probe_results.json`。\n\n### 5. 数据目录：完整\n\n| 目录 | 大小 | 文件 |\n|------|------|------|\n| data_exp001_pythia | 36M | depth_0-5.jsonl + features.csv |\n| data_exp002_olmo | 41M | depth_0-5.jsonl + features.csv |\n| data_exp017_qwen_cont | 43M | depth_0-5.jsonl + features.csv |\n\n### 6. 当前 GPU 状态\n\n- RTX 4090 D, 24564 MiB total\n- 当前占用：3852 MiB（PID 57675, python3）\n- **空闲 ~20.7 GiB** — 足够重跑\n\n### 修复建议\n\n1. **先确认 PID 57675 是什么**，如果可以释放则释放；Qwen 模型需要 ~9 GiB，当前空间足够\n2. **脚本加 per-dataset try/except**，一个数据集失败不影响其他\n3. **重跑 Pythia + OLMo**：当前 GPU 有足够空间\n4. 用 `nohup` 或确保 tmux 会话稳定，避免再次 SIGHUP"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-015-failure.md"
+}

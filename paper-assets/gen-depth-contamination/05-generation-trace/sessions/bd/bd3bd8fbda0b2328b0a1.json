@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd3bd8fbda0b2328b0a1",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "reviewer / loop_23.md",
+  "task_key": "loop_23",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_23.md",
+    "occurrence": 1,
+    "bytes": 3252,
+    "sha256": "cf7ec05118b2809d08863f7c042b85df8832461ec2b5f4b7de1cbefbf5c19923"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: max_wall_time\nupdated: '2026-05-25T06:26:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 cqa1-22115 的 GPU 白名单为 cuda:0-3（4 张卡），当前全部空闲。此前无越界事件，但仍需每次核查\n- gemma27b_filtering 和 code_domain_olmo 在 registry 已恢复为 DONE/success，但 report.md 仍显示 \"failed\"/\"训练失败\"——不要被 report.md 误导，以 registry 为准\n- 论文已提交 EMNLP 2026 ARR（DDL 2026-05-25），当前处于 post-submission 实验阶段。paper 正文 claims 不可再改，后续实验数据供 rebuttal/revision 用\n- pp 单位换算：1pp = 0.01（我两次犯过 10× 错误，报告前必须二次核验）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-22115(root)，工作目录 /root/autodl-tmp/gen-depth-contamination\n- Python：conda base（/root/miniconda3/bin/python）\n- HF cache：/root/autodl-tmp/.hf_cache\n- 模型路径：/root/autodl-tmp/.hf_cache/ 下各模型（Qwen2.5-1.5B-Instruct 为 scorer，OLMo-1B-hf、Pythia-1.4B 等为 generator）\n- 活跃进程：无。4 卡全空闲（0% util, 0 MiB）\n- 无 tmux session / cron 任务在跑\n\n### 3. 📊 当前状态\n刚完成 post-submission 实验批次的独立审计（10 个 DONE 实验），已向 Director 发送 info 报告。所有数据 registry vs 服务器原始文件交叉验证通过，无 CRITICAL/WARNING。\n\nRegistry 状态：\n- RUNNING: 0\n- DONE: ~102（含最近 10 个 post-submission 实验）\n- PREPARING: 36（大部分是 killed 的 sweep 实验残留，非活跃）\n- 无等待中的 Worker 回调或 Director 决策\n\n### 4. 📋 待办\n- 新 worker_done 通知到达 → 按 audit-checklist 审查（数据一致性 + GPU 白名单 + 结论可靠性）\n- Director 转发 Framing 调整提案 → Read negative-framing-review.skill.md → 四维度审查\n- Director 转发章节写作审查请求 → Read paper-quality-lessons.skill.md → 模式 B 对抗审查 + 维度评分\n- report.md 刷新通知 → 核查 gemma27b_filtering / code_domain_olmo 是否已从 \"failed\" 更正\n- 审稿意见到达（ARR review cycle ~4-6 周后）→ Read rebuttal.skill.md → 协助准备数据支撑\n\n### 5. 🎯 战略上下文\n**核心结论链**：K* 是 bounded & domain-dependent。Domain ceiling 阶梯：Wiki=1, C4/Code=2, arXiv=3。Model competence 调制但不超越 ceiling。OLMo 是 competence-limited 例外（全域 K*=1）。Cross-model transfer 80-92% 证明 depth signal 是 text-intrinsic。\n\n**易错点**：\n- Cross-transfer 5-model 矩阵中 \"avg_acc\" 排除了 LLaMA-8B（只算 ~1B 模型），per-model 却列了 LLaMA → 直接算均值会对不上。small→27B 含 LLaMA 是 80.4%，不含是 76.5%\n- LLaMA Wiki 1v2 是 borderline（CI [0.5788, 0.6049] 跨 θ），K*=1 by convention（point estimate < θ）。Mistral Code 1v2 CI lower=0.6024 仅高出 θ 0.24pp。这两个 borderline 可能被审稿人攻击\n- code_domain_olmo 的分析日志仍保留着 int(doc_id) crash traceback（修复后单独重跑了分析，但原始 log 未更新），不要看到 crash log 就以为分析失败\n- Gemma-27B filtering 效果本质是 null result（Δ=0.02pp MMLU）——正确解读是 \"K*=1 时过滤无额外收益\"，不是 \"过滤失败\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23.md"
+}

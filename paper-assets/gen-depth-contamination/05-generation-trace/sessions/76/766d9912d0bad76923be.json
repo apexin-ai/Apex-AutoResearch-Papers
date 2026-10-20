@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "766d9912d0bad76923be",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 015 neural probe",
+  "task_key": "worker_code_exp_015_neural_probe_20260513T184400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_015_neural_probe_20260513T184400_result.json",
+    "occurrence": 1,
+    "bytes": 1192,
+    "sha256": "c238eb2889fcbeb16935492cebc5cfa95a7e30ec162db827d72e233a02399d65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 输出完整，包含 pairwise_auc（邻接+全对）、fold_stats、k_star、classification_accuracy、lgbm_baseline 对比。\n\n**完成情况：**\n\n1. **代码结构** — 已查看 `run_pipeline.py` 的 pairwise AUC 逻辑（5-fold GroupKFold by doc_id, binary LightGBM, AUC > 0.60 阈值定义 K*）\n2. **脚本** — `scripts/run_exp015_neural_probe.py` 已写入服务器\n   - Frozen Qwen2.5-1.5B → last hidden state → avg pool → 1536-dim\n   - MLP (1536→512→256→N_classes)，Adam + early stopping\n   - 5-fold GroupKFold CV，pairwise AUC 用 P(j)/(P(i)+P(j)) 归一化\n   - 自动加载 LightGBM baseline 结果对比\n3. **多数据集支持** — `--data_dir` 和 `--label` 均支持 `nargs=\"+\"`\n4. **dry-run 通过** — `--num_samples 50 --max_depth 2`，8 秒完成，K*=2\n5. **验证** — `--help` 正常，JSON 输出完整，GPU 显存占用正常（与 exp-003 共存）\n\n正式运行 3 数据集的命令（待你确认后执行）：\n```bash\npython scripts/run_exp015_neural_probe.py \\\n    --data_dir data_exp017_qwen_cont data_exp001_pythia data_exp002_olmo \\\n    --label Qwen-cont Pythia OLMo \\\n    --max_depth 5\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-015-neural-probe.md"
+}

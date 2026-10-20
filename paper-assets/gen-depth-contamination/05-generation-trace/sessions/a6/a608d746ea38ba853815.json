@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a608d746ea38ba853815",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp gemma2b depth",
+  "task_key": "worker_analysis_exp_gemma2b_depth_20260520T093926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_gemma2b_depth_20260520T093926_result.json",
+    "occurrence": 1,
+    "bytes": 694,
+    "sha256": "b1f6b5885bff497a49a1ca792ffa0648a178dab5ede6825e0483b6f67571b0a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 和 artifact 均已更新。\n\n```\nCONCLUSION: negative\nK*: 1\nKEY_METRICS:\n  0v1: AUC = 0.9534 ± 0.003\n  1v2: AUC = 0.5981 ± 0.008  ← borderline, 3/5 folds > 0.60\n  2v3: AUC = 0.5342 ± 0.013\n  3v4: AUC = 0.5030 ± 0.003  (chance)\n  4v5: AUC = 0.5026 ± 0.013  (chance)\nSUMMARY: Gemma-2-2B 在 C4 上 K*=1，1v2 AUC=0.5981 刚好低于 0.60 阈值（差 0.0019），属于 borderline negative。未能复现其他 5 个 family 的 K*=2，削弱了 \"C4 ceiling is architecture-independent\" 的 claim——但差距极小，可能需要讨论 threshold sensitivity 或将 Gemma 归为 competence-limited（类似 OLMo 在某些条件下的表现）。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-gemma2b-depth.md"
+}

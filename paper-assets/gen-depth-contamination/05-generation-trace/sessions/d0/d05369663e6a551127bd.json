@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d05369663e6a551127bd",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "audit main body",
+  "task_key": "worker_audit_main_body_20260525T194325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_main_body_20260525T194325_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "1eae4f6320ec3d829c6ea052996b478779996c7c655b7078bf970e3414086248"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成，结果保存至 `artifacts/audit_main_body.md`。\n\n**总结**：审计 82 个数字，71 通过，5 个问题，6 个无法从 registry 验证。\n\n**5 个问题**：\n\n1. **method.tex:31** — \"2v3 cluster at 0.55--0.59\" 下界不准，Pythia/Qwen-base/Qwen-7B 的 2v3 低至 0.544，应改为 ~0.54--0.59\n2. **method.tex:72** — OBD MAE \"0.984\" 在 registry 找不到来源。registry 的 ordinal_mae=1.0163 与 multiclass \"1.016\" 匹配，但字段名是 \"ordinal\"，存在标签混淆\n3. **method.tex:72** — mean AUC 写 0.6095，registry 是 0.6099（差 0.0004）\n4. **discussion.tex:27** — JSD \"0.077\" 归属 arXiv，但 registry 中该值出自 exp_018 LLaMA-8B **C4** 的 0v1 pair，arXiv 实验无 JSD 数据\n5. **discussion.tex:23** — \"CI lower 0.593--0.599\" 三个 marginal case 的精确 CI 下界需对照 Bonferroni CI 表确认\n\n所有交叉引用（同一数字多处出现）均一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-main-body.md"
+}

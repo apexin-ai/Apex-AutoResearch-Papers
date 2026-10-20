@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb91ff55f970710fd888",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper figure kstar theta download",
+  "task_key": "worker_paper_figure_kstar_theta_download_20260515T132144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_kstar_theta_download_20260515T132144_result.json",
+    "occurrence": 1,
+    "bytes": 242,
+    "sha256": "05de445e2aa17eaa67f4be39a36ae4a63be5600faaf36a53b1d3c1ffa7827810"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成，文件大小与远程一致：\n\n| 文件 | 大小 |\n|------|------|\n| `fig_kstar_theta.pdf` | 32,692 B |\n| `fig_kstar_theta.png` | 335,380 B |\n\n本地路径：`docs/paper/figures/fig_kstar_theta.{pdf,png}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-kstar-theta-download.md"
+}

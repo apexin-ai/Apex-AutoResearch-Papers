@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef70ce3985eb26710458",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper check code table consistency",
+  "task_key": "worker_paper_check-code-table-consistency_20260519T034403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_check-code-table-consistency_20260519T034403_result.json",
+    "occurrence": 1,
+    "bytes": 1898,
+    "sha256": "d77187571e551d0d19f5511d5ebbaf42fb9e0ce2b848f5867297c5a9d9f4ce38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits complete. Here's the modification summary:\n\n---\n\n**修正清单：**\n\n| # | 文件 | 行 | 原文 | 修正 |\n|---|------|-----|------|------|\n| 1 | `main.tex` | 40 | `K*=2 for...and code` | `K*=1--2 for code (Python, model-dependent)` |\n| 2 | `main.tex` | 72 | `code domain tested with one model (Qwen2.5-1.5B)` | `two models (Qwen2.5-1.5B, K*=2; Pythia-1.4B, borderline K*=1)` |\n| 3 | `conclusion.tex` | 4 | `K*=2 for code (Python)` | `K*=1--2 for code (Python, two models)` |\n| 4 | `discussion.tex` | 35 | `Python code yields K*=2 (1v2 auc=0.74)` | 分拆为 Qwen K*=2 和 Pythia borderline K*=1，带 CI |\n| 5 | `discussion.tex` | 36 | `Code and C4 share K*=2` | `For Qwen, code and C4 share K*=2`，新增 Pythia 段落 |\n| 6 | `introduction.tex` | 29 | `C4/Code (K*=2) > Wikipedia (K*=1)` | `C4 (K*=2) ≥ Code (K*=1--2) ≥ Wikipedia (K*=1)` |\n| 7 | `experiments_c1.tex` | 141-142 | 仅 Qwen 结果 | 新增 Pythia K*=1 结果及引用 `tab:code_crossmodel_kstar` |\n| 8 | `experiments_c1.tex` | 145-146 | `C4/Code (K*=2) > Wikipedia` | `C4 (K*=2) ≥ Code (K*=1--2) ≥ Wikipedia (K*=1)`，softened universality claim |\n| 9 | `experiments_c1.tex` | 151 | caption 无 ‡ 注 | 新增 `‡Borderline: 1v2 auc=0.598, CI upper=0.603>θ` |\n| 10 | `experiments_c1.tex` | 160 | `Pythia-1.4B & 2 & --- & 3 & 1` | `Pythia-1.4B & 2 & 1‡ & 3 & 1` |\n| 11 | `appendix_extended.tex` | 584+ | 无 cross-model 表 | 新增 2-model cross-model 比较表 (`tab:code_crossmodel_kstar`) |\n| 12 | `artifacts/code_crossmodel_table.tex` | 5 | `five model families` | `five models (four architecture families)` |\n\n**关键叙事调整**：Pythia Code K\\*=1 是 borderline result（1v2 AUC=0.5983，CI upper=0.603 跨 θ=0.60），各处均标注 borderline 而非 hard negative。domain ordering 从 strict `>` 改为 `≥`，\"invariance\" 降级为 \"ordering\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-check-code-table-consistency.md"
+}

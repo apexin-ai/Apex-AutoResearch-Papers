@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "cfdf343019c5f3e696fb",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "audit appendix figures",
+  "task_key": "worker_audit_appendix_figures_20260525T194410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_appendix_figures_20260525T194410.log",
+    "occurrence": 1,
+    "bytes": 1018459,
+    "sha256": "e36e8cbcb480d9a9013747f94588f3a481281eec2860556515d7fe3c707c5bb7"
+  },
+  "statistics": {
+    "messages": 140,
+    "user_turns": 1,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 1,
+      "assistant": 19,
+      "tool_call": 49,
+      "tool_result": 49,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "cfdf343019c5f3e696fb-part-0001.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 109,
+      "chunks": [
+        {
+          "path": "cfdf343019c5f3e696fb-part-0001.json",
+          "message_count": 39
+        },
+        {
+          "path": "cfdf343019c5f3e696fb-part-0002.json",
+          "message_count": 70
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-appendix-figures.md"
+}

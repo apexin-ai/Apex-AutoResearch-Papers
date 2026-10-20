@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d62b0d76a6717e9df1b2",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code gemma27b phase2 readiness",
+  "task_key": "worker_code_gemma27b_phase2_readiness_20260522T141733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma27b_phase2_readiness_20260522T141733_result.json",
+    "occurrence": 1,
+    "bytes": 1259,
+    "sha256": "368d92b8c82ea845892a5de54fdb3509a1c561b831707af936cb45a4db5f8d99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Phase 1 进度\n- **数据目录**: `data/exp_gemma27b_c4/`\n- **已完成**: depth_0（5000条，16:00）、depth_1（5000条，20:32）\n- **当前状态**: GPU 0 占用 53375 MiB / 93% 利用率，正在生成 depth_2\n- **单 depth 耗时**: ~4.5h（depth_0→depth_1）\n- **剩余**: depth_2-5 共 4 个 depth，预计 ~18h → **明天 ~14:30 完成**（比预期 08:00 晚约 6.5h）\n\n### Phase 2 命令模板 — 就绪 ✓\n`/tmp/gemma27b_phase2_cmd.sh` 已存在，内容正确：\n- `CUDA_VISIBLE_DEVICES=3` ✓\n- `--data_dir data/exp_gemma27b_c4` ✓（指向正确的 Phase 1 输出）\n- `--skip_generation` ✓\n- `--model_path` 指向 `Qwen2___5-1___5B-Instruct` ✓\n- 会先 `rm -f features.csv` 再用 Qwen 重新评分 ✓\n- `--num_samples 5000 --max_depth 5 --seed 42` ✓\n\n### Qwen scorer 模型 — 可用 ✓\n`/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B-Instruct/config.json` 存在\n\n### cuda:3 — 空闲 ✓\n`0 MiB, 0%`\n\n### 总结\n| 项目 | 状态 |\n|------|------|\n| Phase 1 进度 | depth 1/5 完成，正跑 depth_2 |\n| Phase 2 命令模板 | 就绪，无需修改 |\n| Qwen 模型 | 可用 |\n| cuda:3 | 空闲 |\n| Phase 2 预计启动 | **~明天 14:30**（非 08:00） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma27b-phase2-readiness.md"
+}

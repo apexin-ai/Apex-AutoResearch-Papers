@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "cd7b2f82f7da437daf32",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops cuda0 gsm8k serial monitor",
+  "task_key": "worker_ops_cuda0_gsm8k_serial_monitor_20260520T220314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda0_gsm8k_serial_monitor_20260520T220314_result.json",
+    "occurrence": 1,
+    "bytes": 2449286,
+    "sha256": "9327b4ff7c33af4876216596dd1e5f677f9bf7dd44f98621a3a3cb594698940b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2449306,
+                "serialized_sha256": "c05363d1214ea929a1cc4ce26e539bef24a99601ac2b91848f54c036aeebddf3",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda0-gsm8k-serial-monitor.md"
+}

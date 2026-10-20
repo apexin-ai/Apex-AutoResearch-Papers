@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d22f1530dcb5dc3a4209",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "audit paper vs data consistency",
+  "task_key": "worker_audit_paper_vs_data_consistency_20260518T050440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper_vs_data_consistency_20260518T050440.log",
+    "occurrence": 1,
+    "bytes": 618341,
+    "sha256": "378ab25e9a92205269fb04d3fc55df0f995a0ac43197b4d4283f8f083068c996"
+  },
+  "statistics": {
+    "messages": 181,
+    "user_turns": 0,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 74,
+      "tool_result": 74,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 181,
+      "chunks": [
+        {
+          "path": "d22f1530dcb5dc3a4209-part-0001.json",
+          "message_count": 177
+        },
+        {
+          "path": "d22f1530dcb5dc3a4209-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-paper-vs-data-consistency.md"
+}

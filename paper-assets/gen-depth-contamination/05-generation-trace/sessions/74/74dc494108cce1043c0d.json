@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74dc494108cce1043c0d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra check exp003 status",
+  "task_key": "worker_infra_check_exp003_status_20260513T064031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_exp003_status_20260513T064031_result.json",
+    "occurrence": 1,
+    "bytes": 913,
+    "sha256": "df7df513064fcb1c97b811317f1b07caf15547500da7113d2f1dd38d116d555c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-003 状态报告\n\n**exp-003 未在运行，且从未成功启动。**\n\n### 原因\n脚本 `scripts/run_exp003_ablation.sh` 需要一个参数 `{1|2|3|4}` 指定配置编号，但 `submit_training_job` 调用时未传入该参数。日志显示脚本被调用了 4 次，每次都打印 Usage 后以 `EXIT_CODE=1` 退出。\n\n### 详细状态\n- **tmux session**: 无（已退出或从未创建）\n- **相关进程**: 无\n- **GPU**: 空闲（0% utilization, 0 MiB memory）\n- **结果文件**: 无 `results_exp003_*` 或 `data_exp003_*` 目录\n- **日志**: `/root/runs/gen-depth-contamination/exp_003_decoding_ablation.log`（716字节），内容为 4 次重复的 usage 提示\n\n### 根因\n提交命令缺少必需的 config 编号参数。需要以 `run_exp003_ablation.sh 1`、`run_exp003_ablation.sh 2` 等方式分别调用，或修改提交逻辑依次运行 4 个配置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-exp003-status.md"
+}

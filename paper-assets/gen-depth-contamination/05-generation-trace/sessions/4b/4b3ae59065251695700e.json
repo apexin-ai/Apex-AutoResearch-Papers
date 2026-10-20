@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b3ae59065251695700e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp013 cross transfer",
+  "task_key": "worker_code_exp013_cross_transfer_20260512T205129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp013_cross_transfer_20260512T205129_result.json",
+    "occurrence": 1,
+    "bytes": 837,
+    "sha256": "3f14c01fc855364715766b0bc4635bf4ed0ab259af96fa623efd4ae9d8aef7c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `scripts/run_cross_transfer.py`（333 行），语法验证通过。\n\n结构：\n- `load_features()` — 读 CSV，自动检测特征列，NaN 列均值填充\n- `compute_pairwise_auc_cross()` — 跨模型 pairwise AUC（100% train → 100% test）\n- `compute_pairwise_auc_self()` — 同模型 GroupKFold(5) pairwise AUC\n- `compute_ordinal_cross/self()` — 多分类 accuracy/MAE\n- `compute_k_star()` — max k where AUC > 0.60\n- LightGBM 参数与 `run_pipeline.py` Step 5 完全一致\n- 终端输出 transfer matrix + 自动判断 depth signal 是 text-intrinsic 还是 model-specific\n\n用法示例：\n```bash\npython scripts/run_cross_transfer.py \\\n  --data_dirs data_exp001_pythia data_exp002_olmo data \\\n  --labels Pythia-1.4B OLMo-1B Qwen-1.5B \\\n  --results_dir results_exp013\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp013-cross-transfer.md"
+}

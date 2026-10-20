@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a23afecc6722391ff6b0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code gemma2b 10k bootstrap ci",
+  "task_key": "worker_code_gemma2b_10k_bootstrap_ci_20260523T000341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma2b_10k_bootstrap_ci_20260523T000341_result.json",
+    "occurrence": 1,
+    "bytes": 1642,
+    "sha256": "beb71d65b1a6254746feef0fb862960b9abd7f246529ea5ffbbf1197d539f026"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 注册遇到格式问题，但结果已保存在服务器上 `/root/autodl-tmp/gen-depth-contamination/artifacts/gemma2b_10k_qwen_bootstrap_ci.json`。\n\n---\n\n## Gemma-2-2B 10K Qwen Cross-Scored Bootstrap CI 结果\n\n| Pair | OOF AUC | Boot std | 95% CI | Bonferroni 99.5% CI (pct) | Bonferroni 99.5% CI (norm) | perm p | θ判定 |\n|------|---------|----------|--------|---------------------------|----------------------------|--------|-------|\n| **0v1** | 0.9533 | 0.0013 | [0.9507, 0.9558] | [0.9496, 0.9568] | [0.9497, 0.9569] | 0.0001 | **PASS** |\n| **1v2** | 0.6099 | 0.0034 | [0.6031, 0.6167] | **[0.5998, 0.6192]** | [0.6003, 0.6196] | 0.0001 | **分裂** |\n| 2v3 | 0.5409 | 0.0037 | [0.5336, 0.5482] | [0.5304, 0.5512] | [0.5305, 0.5513] | 0.0001 | FAIL |\n| 3v4 | 0.5174 | 0.0038 | [0.5098, 0.5249] | [0.5068, 0.5283] | [0.5066, 0.5281] | 0.0001 | FAIL |\n| 4v5 | 0.5158 | 0.0039 | [0.5082, 0.5235] | [0.5046, 0.5268] | [0.5047, 0.5269] | 0.0001 | FAIL |\n\n### 1v2 关键分析\n\n- **95% CI lower = 0.6031 > θ=0.60** → PASS\n- **Bonferroni 99.5% CI (percentile) lower = 0.5998 < θ=0.60** → **FAIL**（差 0.0002）\n- **Bonferroni 99.5% CI (normal) lower = 0.6003 > θ=0.60** → PASS（仅高 0.0003）\n- Permutation p = 0.0001（高度显著，AUC 确实非随机）\n\n**结论**：1v2 在 Bonferroni 校正下的 percentile CI 和 normal CI 给出**矛盾判定**。Percentile 方法 lower = 0.5998 刚好未过 θ（差 0.2pp），normal 方法 lower = 0.6003 刚好过了（高 0.3pp）。这是一个极度 borderline 的结果，如预期。K* = 1（保守取 percentile 方法）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma2b-10k-bootstrap-ci.md"
+}

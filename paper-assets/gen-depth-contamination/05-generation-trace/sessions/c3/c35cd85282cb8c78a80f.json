@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c35cd85282cb8c78a80f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper figure sync heatmap",
+  "task_key": "worker_paper_figure_sync_heatmap_20260523T134938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_sync_heatmap_20260523T134938_result.json",
+    "occurrence": 1,
+    "bytes": 180,
+    "sha256": "b9cbb262ea1ba7f593e33bcff8c70843037318db6443286f03b8a260ad14cf0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。本地文件已更新：30450 bytes，时间戳 May 23 13:50 UTC（对应服务器上 May 23 21:33 UTC+8 的版本，即放大字号后的版本）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-sync-heatmap.md"
+}

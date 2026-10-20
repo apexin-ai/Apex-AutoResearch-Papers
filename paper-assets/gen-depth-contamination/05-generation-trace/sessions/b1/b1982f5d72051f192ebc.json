@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1982f5d72051f192ebc",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "figure kstar theta curve",
+  "task_key": "worker_figure_kstar_theta_curve_20260515T123758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_kstar_theta_curve_20260515T123758_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "52ce604b099e2e77d38b325268af1e8c8422824ecad44e7d2af7ca5288dec020"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已生成：\n- `kstar_theta_curve.pdf` — 19 KB\n- `kstar_theta_curve.png` — 92 KB\n\n### 图中关键观察\n\n根据数据计算，K*(θ) 的阶梯变化如下：\n\n| θ 范围 | Qwen-RW | Pythia | OLMo | Qwen-cont |\n|--------|---------|--------|------|-----------|\n| 0.50–0.53 | 5 | 5 | 5 | 5 |\n| 0.54 | 4 | 5 | 5 | 5 |\n| ~0.51–0.54 | 各模型开始分化 | | | |\n| **θ=0.60** | **2** | **2** | **2** | **2** |\n| 0.70+ | 1 | 1 | 1 | 1 |\n\n- **θ=0.60 时所有 4 个模型 K\\*=2**，说明该阈值下一致可检测到 depth 0→1→2 的污染信号，depth 3+ 不再可区分。这验证了论文采用 θ=0.60 的合理性。\n- 曲线呈阶梯下降，Qwen-RW（rewrite 策略）在较高 θ 时仍保持较大 K\\*，表明 rewrite 污染的深度信号更强。\n- 所有模型在 θ>0.70 时收敛到 K\\*=1（仅能区分 depth 0 vs 1）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-kstar-theta-curve.md"
+}

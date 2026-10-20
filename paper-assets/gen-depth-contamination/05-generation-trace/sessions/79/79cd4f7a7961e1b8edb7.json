@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79cd4f7a7961e1b8edb7",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check exp006 progress",
+  "task_key": "worker_check_exp006_progress_20260514T013847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp006_progress_20260514T013847_result.json",
+    "occurrence": 1,
+    "bytes": 1431,
+    "sha256": "f1e82ad425a611288a0e26e22ec9965470aadc9104bbd1bd9b291be2fa72624f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-006 Graduated Filtering 进度报告\n\n### 状态：运行中\n- **PID 46129** 存活，已运行 **4h36m**\n- 当前训练：`binary-ours_s123`，步数 760/2814 (27%)\n\n### 进度\n| 策略 | 完成 | 总数 |\n|------|------|------|\n| no-filter | 5/5 | ✓ |\n| binary-ours | 1/5 | s123 训练中 |\n| binary-drayson | 0/5 | 待开始 |\n| graduated | 0/25 | 5α × 5 seeds |\n| surprisal | 0/5 | 待开始 |\n| dsir | 0/5 | 待开始 |\n| **总计** | **6/50** | **12%** |\n\n### 已完成结果\n\n| Run | MMLU | HellaSwag (norm) | MMLU Δ | HS Δ |\n|-----|------|-----------------|--------|------|\n| base_model | 0.6018 | 0.6821 | — | — |\n| **no-filter 均值** | **0.5865** | **0.6637** | **-1.53pp** | **-1.84pp** |\n| no-filter_s42 | 0.5883 | 0.6633 | -1.35 | -1.88 |\n| no-filter_s123 | 0.5854 | 0.6636 | -1.64 | -1.85 |\n| no-filter_s456 | 0.5863 | 0.6626 | -1.55 | -1.95 |\n| no-filter_s789 | 0.5867 | 0.6646 | -1.51 | -1.75 |\n| no-filter_s1024 | 0.5856 | 0.6646 | -1.62 | -1.75 |\n| **binary-ours_s42** | **0.5945** | **0.6701** | **-0.73pp** | **-1.20pp** |\n\n### 初步观察\n- **binary-ours 比 no-filter 保留了更多能力**：MMLU 降幅 0.73pp vs 1.53pp，HellaSwag 降幅 1.20pp vs 1.84pp\n- no-filter 跨 seed 方差很小（MMLU σ≈0.001），结果稳定\n\n### ETA\n- 平均 ~44 min/run，剩余 44 runs\n- **预计还需 ~32 小时**，约 **5月15日 17:30** 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp006-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "579aee83110f66f3af86",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops bo s1 gsm8k cuda2",
+  "task_key": "worker_ops_bo_s1_gsm8k_cuda2_20260520T224923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bo_s1_gsm8k_cuda2_20260520T224923_result.json",
+    "occurrence": 1,
+    "bytes": 317,
+    "sha256": "ebad0bceaf89f4df44e028881b40dfa7672409ee7d07d54c5bc86226a8a8ca46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。**binary_ours_seed1 的 GSM8K exact_match (strict-match) = 0.5861** (58.61%)。\n\n完整下游评估结果：\n\n| Benchmark | Score |\n|-----------|-------|\n| PIQA | 0.7524 |\n| TruthfulQA MC2 | 0.4456 |\n| WinoGrande | 0.6425 |\n| ARC-Challenge | 0.5188 |\n| **GSM8K** | **0.5861** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bo-s1-gsm8k-cuda2.md"
+}

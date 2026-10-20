@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ce4470c9b9cb6aedd66",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper discussion degradation",
+  "task_key": "worker_paper_discussion-degradation_20260515T042131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_discussion-degradation_20260515T042131_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "c13bdfe89693e5871fbda73e2ab8a4bb026739edd80338510f8d0d20f05cfa8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个段落已插入 `\\subsection{Limitations}` 之前（原文 line 112）：\n\n1. **Degradation in Context** — 论证 100% 合成数据是 upper bound，真实 5-15% 混合比下退化远小于此；即使极端条件下 binary-ours 仍减少约 50% 退化（-1.53pp → -0.77pp）\n2. **Practical Value Proposition** — 论证 K*-aware filtering 的应用场景是不可避免的合成污染；K*=2 universality 免去逐模型标定；与 DSIR/DoReMi 互补\n\n标注：`% D025: added degradation defense` 注释已加；数字来自中间结果（`% from intermediate results, verify with final`）；引用占位符用 `\\cite{TODO_ai_prevalence}`、`\\cite{xie2023dsir}`、`\\cite{xia2024doremi}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-discussion-degradation.md"
+}

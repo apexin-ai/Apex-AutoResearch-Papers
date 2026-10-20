@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "5b90e92236268aa8ceed",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "exp deberta upperbound",
+  "task_key": "worker_exp_deberta-upperbound_20260519T163003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_deberta-upperbound_20260519T163003.log",
+    "occurrence": 1,
+    "bytes": 1407140,
+    "sha256": "620dc551f914f23413169ce52428c0ce2636f77e3ecbaf9d32c6f94d2300b467"
+  },
+  "statistics": {
+    "messages": 703,
+    "user_turns": 1,
+    "tool_calls": 261,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 172,
+      "tool_call": 261,
+      "tool_result": 261,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 462,
+      "chunks": [
+        {
+          "path": "5b90e92236268aa8ceed-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5b90e92236268aa8ceed-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5b90e92236268aa8ceed-part-0003.json",
+          "message_count": 102
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 241,
+      "chunks": [
+        {
+          "path": "5b90e92236268aa8ceed-part-0003.json",
+          "message_count": 78
+        },
+        {
+          "path": "5b90e92236268aa8ceed-part-0004.json",
+          "message_count": 163
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-deberta-upperbound.md"
+}

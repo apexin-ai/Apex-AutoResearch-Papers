@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b38ff51830efc42274f1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops piqa snapshot correction",
+  "task_key": "worker_ops_piqa_snapshot_correction_20260520T222932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_piqa_snapshot_correction_20260520T222932_result.json",
+    "occurrence": 1,
+    "bytes": 1395,
+    "sha256": "c3899d6bb40874fba2b706fe1bdd21d72fceb51b479bd6de0077d7c2eed1a0c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修正完成。汇总表格如下（PIQA 已改为 acc_norm，其余指标不变）：\n\n| Config | PIQA (acc_norm) | ARC-C (acc_norm) | HellaSwag (acc_norm) | WinoGrande (acc) | TruthfulQA (mc2) | GSM8K (em) |\n|---|---|---|---|---|---|---|\n| base_model | 0.7612 | 0.5486 | null | 0.6456 | 0.4659 | null |\n| binary_ours_seed0 | 0.7465 | 0.5196 | null | 0.6385 | 0.4359 | 0.5861 |\n| binary_ours_seed1 | 0.7497 | 0.5188 | null | 0.6425 | 0.4456 | null |\n| binary_ours_seed2 | 0.7476 | 0.5128 | null | 0.6409 | 0.4378 | 0.5853 |\n| graduated_seed0 | 0.7530 | 0.5128 | null | 0.6488 | 0.4225 | 0.5572 |\n| graduated_seed1 | 0.7503 | 0.5230 | null | 0.6440 | 0.4234 | 0.5618 |\n| graduated_seed2 | 0.7497 | 0.5213 | null | 0.6456 | 0.4275 | 0.5648 |\n| no_filter_seed0 | 0.7541 | 0.5128 | null | 0.6519 | 0.4224 | 0.5610 |\n| no_filter_seed1 | 0.7497 | 0.5213 | null | 0.6456 | 0.4237 | null |\n| no_filter_seed2 | 0.7519 | 0.5239 | null | 0.6480 | 0.4277 | 0.5671 |\n\n**关键变化**：PIQA 从旧 snapshot 的 `acc`（如 base_model=0.7579）修正为 `acc_norm`（base_model=0.7612），差值约 +0.003。\n\n**缺失数据**：HellaSwag 全部为 null（该 benchmark 未包含在这批 eval 中）；base_model 和部分 seed 缺少 GSM8K。\n\n修正后 snapshot 已保存至 `/root/autodl-tmp/gen-depth-contamination/results/data_consistency_snapshot_corrected.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-piqa-snapshot-correction.md"
+}

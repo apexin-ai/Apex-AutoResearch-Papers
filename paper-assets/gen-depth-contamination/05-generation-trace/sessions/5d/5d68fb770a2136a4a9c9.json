@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5d68fb770a2136a4a9c9",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code olmo retrain chain",
+  "task_key": "worker_code_olmo-retrain-chain_20260518T160032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_olmo-retrain-chain_20260518T160032.log",
+    "occurrence": 1,
+    "bytes": 835015,
+    "sha256": "ff1aaf33f46dc27a191711e1b34d86eb31cd3081f6b121407878e01bd83ea3ed"
+  },
+  "statistics": {
+    "messages": 334,
+    "user_turns": 0,
+    "tool_calls": 121,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 84,
+      "tool_call": 121,
+      "tool_result": 121,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 334,
+      "chunks": [
+        {
+          "path": "5d68fb770a2136a4a9c9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5d68fb770a2136a4a9c9-part-0002.json",
+          "message_count": 154
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-olmo-retrain-chain.md"
+}

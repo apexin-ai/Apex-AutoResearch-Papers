@@ -1,0 +1,1531 @@
+{
+  "schema_version": "1.0",
+  "id": "a37cd6fafe385d59e7a7",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "analysis exp deberta code qwen1b5",
+  "task_key": "worker_analysis_exp_deberta_code_qwen1b5_20260520T092537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_deberta_code_qwen1b5_20260520T092537.log",
+    "occurrence": 1,
+    "bytes": 110967,
+    "sha256": "27b94d073b4d7bbcd4b81a5bd9395398d41b6327fd5e6d9189b89182bfa5b76f"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 11,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "7a296e1c-2ca7-49c2-a03f-f1b87fff7164",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779283200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "ec406cf2-0a7a-4e96-b3a1-ed6b842f4ab5",
+                "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to analyze the exp_deberta_code_qwen1b5 experiment results. Let me break down the tasks:\n\n1. SSH to read the experiment log\n2. Check for results JSON files\n3. Extract key metrics\n4. Update the registry\n5. Provide a summary\n\nLet me start by reading the log and checking for results files using SSH.\n\nI need to use the MCP tools. Let me first load the tool schemas.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "d5382c4b-4f33-48dc-aa09-59a1a6f438b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017629AtaGKTxoHS8igLgqQ5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12516,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12516
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me load the necessary tools and start reading the experiment data."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "fdcffb73-f7b8-4248-b93d-e5e542b24ce8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017629AtaGKTxoHS8igLgqQ5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12516,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12516
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q5wJpkNeFReAc16YsqFNxG",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+                "max_results": 4
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "ff3c1e91-df0d-4c83-abfb-cd6ebd42a6c8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017629AtaGKTxoHS8igLgqQ5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12516,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12516
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T09:42:41.532Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Q5wJpkNeFReAc16YsqFNxG",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "e0c3174a-6f07-4d96-89c7-4bd774616811",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__read_registry",
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reading the experiment log, checking for results files, and fetching the current registry state in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "474b1a13-159b-47fa-a346-94704d392a77",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xr1uadkrJW3p7MdXN4YB4s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1592,
+                "cache_read_input_tokens": 24357,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1592
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VPoPMpk5pBddRVw4u48G1M",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "tail -200 /root/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "79ef11e9-5b69-4905-b700-0532e6ae0224",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xr1uadkrJW3p7MdXN4YB4s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1592,
+                "cache_read_input_tokens": 24357,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1592
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T09:42:46.020Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VPoPMpk5pBddRVw4u48G1M",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"15:53:57 [INFO]     Ep 1 step 400/1650 loss=1.6039\\\\n15:54:41 [INFO]     Ep 1 step 600/1650 loss=1.5115\\\\n15:55:25 [INFO]     Ep 1 step 800/1650 loss=1.4560\\\\n15:56:09 [INFO]     Ep 1 step 1000/1650 loss=1.4201\\\\n15:56:52 [INFO]     Ep 1 step 1200/1650 loss=1.3928\\\\n15:57:37 [INFO]     Ep 1 step 1400/1650 loss=1.3722\\\\n15:58:21 [INFO]     Ep 1 step 1600/1650 loss=1.3594\\\\n15:58:32 [INFO]     Ep 1/3 avg_loss=1.3573\\\\n15:59:15 [INFO]     Ep 2 step 200/1650 loss=1.2298\\\\n16:00:00 [INFO]     Ep 2 step 400/1650 loss=1.2255\\\\n16:00:44 [INFO]     Ep 2 step 600/1650 loss=1.2208\\\\n16:01:28 [INFO]     Ep 2 step 800/1650 loss=1.2240\\\\n16:02:12 [INFO]     Ep 2 step 1000/1650 loss=1.2221\\\\n16:02:56 [INFO]     Ep 2 step 1200/1650 loss=1.2205\\\\n16:03:40 [INFO]     Ep 2 step 1400/1650 loss=1.2159\\\\n16:04:24 [INFO]     Ep 2 step 1600/1650 loss=1.2157\\\\n16:04:35 [INFO]     Ep 2/3 avg_loss=1.2152\\\\n16:05:20 [INFO]     Ep 3 step 200/1650 loss=1.1368\\\\n16:06:03 [INFO]     Ep 3 step 400/1650 loss=1.1524\\\\n16:06:48 [INFO]     Ep 3 step 600/1650 loss=1.1623\\\\n16:07:32 [INFO]     Ep 3 step 800/1650 loss=1.1601\\\\n16:08:15 [INFO]     Ep 3 step 1000/1650 loss=1.1587\\\\n16:08:59 [INFO]     Ep 3 step 1200/1650 loss=1.1598\\\\n16:09:43 [INFO]     Ep 3 step 1400/1650 loss=1.1590\\\\n16:10:27 [INFO]     Ep 3 step 1600/1650 loss=1.1564\\\\n16:10:38 [INFO]     Ep 3/3 avg_loss=1.1557\\\\n16:11:06 [INFO]   Fold 2: train=26400, val=6600\\\\n\\\\rLoading weights:   0%|          | 0/198 [00:00<?, ?it/s]\\\\rLoading weights:   2%|▏         | 3/198 [00:00<00:14, 13.75it/s]\\\\rLoading weights: 100%|██████████| 198/198 [00:00<00:00, 889.29it/s]\\\\n[transformers] \\\\u001b[1mDebertaV2ForSequenceClassification LOAD REPORT\\\\u001b[0m from: microsoft/deberta-v3-base\\\\nKey                                     | Status     | \\\\n----------------------------------------+------------+-\\\\nmask_predictions.LayerNorm.weight       | UNEXPECTED | \\\\nmask_predictions.classifier.bias        | UNEXPECTED | \\\\nlm_predictions.lm_head.LayerNorm.weight | UNEXPECTED | \\\\nlm_predictions.lm_head.dense.weight     | UNEXPECTED | \\\\nlm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED | \\\\nlm_predictions.lm_head.bias             | UNEXPECTED | \\\\nmask_predictions.LayerNorm.bias         | UNEXPECTED | \\\\nlm_predictions.lm_head.dense.bias       | UNEXPECTED | \\\\nmask_predictions.classifier.weight      | UNEXPECTED | \\\\nmask_predictions.dense.weight           | UNEXPECTED | \\\\nmask_predictions.dense.bias             | UNEXPECTED | \\\\nclassifier.weight                       | MISSING    | \\\\npooler.dense.bias                       | MISSING    | \\\\nclassifier.bias                         | MISSING    | \\\\npooler.dense.weight                     | MISSING    | \\\\n\\\\nNotes:\\\\n- UNEXPECTED:\\\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\\\n- MISSING:\\\\tthose params were newly initialized because missing from the checkpoint. Consider training on your downstream task.\\\\n16:11:51 [INFO]     Ep 1 step 200/1650 loss=1.7990\\\\n16:12:35 [INFO]     Ep 1 step 400/1650 loss=1.7020\\\\n16:13:20 [INFO]     Ep 1 step 600/1650 loss=1.5812\\\\n16:14:03 [INFO]     Ep 1 step 800/1650 loss=1.5149\\\\n16:14:49 [INFO]     Ep 1 step 1000/1650 loss=1.4669\\\\n16:15:32 [INFO]     Ep 1 step 1200/1650 loss=1.4332\\\\n16:16:16 [INFO]     Ep 1 step 1400/1650 loss=1.4114\\\\n16:17:01 [INFO]     Ep 1 step 1600/1650 loss=1.3923\\\\n16:17:11 [INFO]     Ep 1/3 avg_loss=1.3878\\\\n16:17:56 [INFO]     Ep 2 step 200/1650 loss=1.2347\\\\n16:18:40 [INFO]     Ep 2 step 400/1650 loss=1.2301\\\\n16:19:25 [INFO]     Ep 2 step 600/1650 loss=1.2235\\\\n16:20:09 [INFO]     Ep 2 step 800/1650 loss=1.2192\\\\n16:20:53 [INFO]     Ep 2 step 1000/1650 loss=1.2182\\\\n16:21:37 [INFO]     Ep 2 step 1200/1650 loss=1.2191\\\\n16:22:21 [INFO]     Ep 2 step 1400/1650 loss=1.2191\\\\n16:23:05 [INFO]     Ep 2 step 1600/1650 loss=1.2175\\\\n16:23:16 [INFO]     Ep 2/3 avg_loss=1.2171\\\\n16:24:00 [INFO]     Ep 3 step 200/1650 loss=1.1771\\\\n16:24:45 [INFO]     Ep 3 step 400/1650 loss=1.1663\\\\n16:25:29 [INFO]     Ep 3 step 600/1650 loss=1.1686\\\\n16:26:13 [INFO]     Ep 3 step 800/1650 loss=1.1650\\\\n16:26:57 [INFO]     Ep 3 step 1\\\\n\\\\n... [截断: 输出过长，省略 3223 字符] ...\\\\n\\\\n, ?it/s]\\\\rLoading weights:   2%|▏         | 3/198 [00:00<00:13, 14.54it/s]\\\\rLoading weights: 100%|██████████| 198/198 [00:00<00:00, 942.01it/s]\\\\n[transformers] \\\\u001b[1mDebertaV2ForSequenceClassification LOAD REPORT\\\\u001b[0m from: microsoft/deberta-v3-base\\\\nKey                                     | Status     | \\\\n----------------------------------------+------------+-\\\\nmask_predictions.LayerNorm.weight       | UNEXPECTED | \\\\nmask_predictions.classifier.bias        | UNEXPECTED | \\\\nlm_predictions.lm_head.LayerNorm.weight | UNEXPECTED | \\\\nlm_predictions.lm_head.dense.weight     | UNEXPECTED | \\\\nlm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED | \\\\nlm_predictions.lm_head.bias             | UNEXPECTED | \\\\nmask_predictions.LayerNorm.bias         | UNEXPECTED | \\\\nlm_predictions.lm_head.dense.bias       | UNEXPECTED | \\\\nmask_predictions.classifier.weight      | UNEXPECTED | \\\\nmask_predictions.dense.weight           | UNEXPECTED | \\\\nmask_predictions.dense.bias             | UNEXPECTED | \\\\nclassifier.weight                       | MISSING    | \\\\npooler.dense.bias                       | MISSING    | \\\\nclassifier.bias                         | MISSING    | \\\\npooler.dense.weight                     | MISSING    | \\\\n\\\\nNotes:\\\\n- UNEXPECTED:\\\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\\\n- MISSING:\\\\tthose params were newly initialized because missing from the checkpoint. Consider training on your downstream task.\\\\n16:49:16 [INFO]     Ep 1 step 200/1650 loss=1.7414\\\\n16:50:01 [INFO]     Ep 1 step 400/1650 loss=1.5688\\\\n16:50:46 [INFO]     Ep 1 step 600/1650 loss=1.4816\\\\n16:51:30 [INFO]     Ep 1 step 800/1650 loss=1.4394\\\\n16:52:14 [INFO]     Ep 1 step 1000/1650 loss=1.4041\\\\n16:52:58 [INFO]     Ep 1 step 1200/1650 loss=1.3827\\\\n16:53:42 [INFO]     Ep 1 step 1400/1650 loss=1.3674\\\\n16:54:26 [INFO]     Ep 1 step 1600/1650 loss=1.3508\\\\n16:54:37 [INFO]     Ep 1/3 avg_loss=1.3487\\\\n16:55:22 [INFO]     Ep 2 step 200/1650 loss=1.2276\\\\n16:56:07 [INFO]     Ep 2 step 400/1650 loss=1.2272\\\\n16:56:51 [INFO]     Ep 2 step 600/1650 loss=1.2326\\\\n16:57:36 [INFO]     Ep 2 step 800/1650 loss=1.2256\\\\n16:58:21 [INFO]     Ep 2 step 1000/1650 loss=1.2252\\\\n16:59:04 [INFO]     Ep 2 step 1200/1650 loss=1.2233\\\\n16:59:47 [INFO]     Ep 2 step 1400/1650 loss=1.2179\\\\n17:00:32 [INFO]     Ep 2 step 1600/1650 loss=1.2148\\\\n17:00:43 [INFO]     Ep 2/3 avg_loss=1.2146\\\\n17:01:28 [INFO]     Ep 3 step 200/1650 loss=1.1497\\\\n17:02:12 [INFO]     Ep 3 step 400/1650 loss=1.1444\\\\n17:02:56 [INFO]     Ep 3 step 600/1650 loss=1.1548\\\\n17:03:40 [INFO]     Ep 3 step 800/1650 loss=1.1534\\\\n17:04:25 [INFO]     Ep 3 step 1000/1650 loss=1.1580\\\\n17:05:09 [INFO]     Ep 3 step 1200/1650 loss=1.1578\\\\n17:05:54 [INFO]     Ep 3 step 1400/1650 loss=1.1551\\\\n17:06:38 [INFO]     Ep 3 step 1600/1650 loss=1.1553\\\\n17:06:50 [INFO]     Ep 3/3 avg_loss=1.1558\\\\n17:09:56 [INFO] \\\\nPairwise AUC (code_qwen1b5):\\\\n17:09:56 [INFO]   0v1: 1.0000 [0.9999, 1.0000]\\\\n17:09:56 [INFO]   1v2: 0.8076 [0.8001, 0.8147]\\\\n17:09:56 [INFO]   2v3: 0.5933 [0.5847, 0.6018]\\\\n17:09:56 [INFO]   3v4: 0.5492 [0.5410, 0.5573]\\\\n17:09:56 [INFO]   4v5: 0.5311 [0.5235, 0.5388]\\\\n17:09:56 [INFO]   K* (theta=0.6): 2  Time: 5780s\\\\n17:09:56 [INFO] Saved: /root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\\\\n17:09:56 [INFO] \\\\n================================================================================\\\\nDeBERTa vs OBD-LightGBM\\\\n================================================================================\\\\n17:09:56 [INFO] code_qwen1b5       0v1 DeBERTa=1.0000 [0.9999,1.0000] OBD=0.9388 delta=+0.0612\\\\n17:09:56 [INFO] code_qwen1b5       1v2 DeBERTa=0.8076 [0.8001,0.8147] OBD=0.7382 delta=+0.0694\\\\n17:09:56 [INFO] code_qwen1b5       2v3 DeBERTa=0.5933 [0.5847,0.6018] OBD=0.53 delta=+0.0633\\\\n17:09:56 [INFO] code_qwen1b5       3v4 DeBERTa=0.5492 [0.5410,0.5573] OBD=0.5022 delta=+0.0470\\\\n17:09:56 [INFO] code_qwen1b5       4v5 DeBERTa=0.5311 [0.5235,0.5388] OBD=0.5219 delta=+0.0092\\\\n17:09:56 [INFO]   K*(DeBERTa)=2\\\\n17:09:56 [INFO] All done.\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "e7526912-16df-41c8-92b6-0d7cf99bfb04",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"15:53:57 [INFO]     Ep 1 step 400/1650 loss=1.6039\\\\n15:54:41 [INFO]     Ep 1 step 600/1650 loss=1.5115\\\\n15:55:25 [INFO]     Ep 1 step 800/1650 loss=1.4560\\\\n15:56:09 [INFO]     Ep 1 step 1000/1650 loss=1.4201\\\\n15:56:52 [INFO]     Ep 1 step 1200/1650 loss=1.3928\\\\n15:57:37 [INFO]     Ep 1 step 1400/1650 loss=1.3722\\\\n15:58:21 [INFO]     Ep 1 step 1600/1650 loss=1.3594\\\\n15:58:32 [INFO]     Ep 1/3 avg_loss=1.3573\\\\n15:59:15 [INFO]     Ep 2 step 200/1650 loss=1.2298\\\\n16:00:00 [INFO]     Ep 2 step 400/1650 loss=1.2255\\\\n16:00:44 [INFO]     Ep 2 step 600/1650 loss=1.2208\\\\n16:01:28 [INFO]     Ep 2 step 800/1650 loss=1.2240\\\\n16:02:12 [INFO]     Ep 2 step 1000/1650 loss=1.2221\\\\n16:02:56 [INFO]     Ep 2 step 1200/1650 loss=1.2205\\\\n16:03:40 [INFO]     Ep 2 step 1400/1650 loss=1.2159\\\\n16:04:24 [INFO]     Ep 2 step 1600/1650 loss=1.2157\\\\n16:04:35 [INFO]     Ep 2/3 avg_loss=1.2152\\\\n16:05:20 [INFO]     Ep 3 step 200/1650 loss=1.1368\\\\n16:06:03 [INFO]     Ep 3 step 400/1650 loss=1.1524\\\\n16:06:48 [INFO]     Ep 3 step 600/1650 loss=1.1623\\\\n16:07:32 [INFO]     Ep 3 step 800/1650 loss=1.1601\\\\n16:08:15 [INFO]     Ep 3 step 1000/1650 loss=1.1587\\\\n16:08:59 [INFO]     Ep 3 step 1200/1650 loss=1.1598\\\\n16:09:43 [INFO]     Ep 3 step 1400/1650 loss=1.1590\\\\n16:10:27 [INFO]     Ep 3 step 1600/1650 loss=1.1564\\\\n16:10:38 [INFO]     Ep 3/3 avg_loss=1.1557\\\\n16:11:06 [INFO]   Fold 2: train=26400, val=6600\\\\n\\\\rLoading weights:   0%|          | 0/198 [00:00<?, ?it/s]\\\\rLoading weights:   2%|▏         | 3/198 [00:00<00:14, 13.75it/s]\\\\rLoading weights: 100%|██████████| 198/198 [00:00<00:00, 889.29it/s]\\\\n[transformers] \\\\u001b[1mDebertaV2ForSequenceClassification LOAD REPORT\\\\u001b[0m from: microsoft/deberta-v3-base\\\\nKey                                     | Status     | \\\\n----------------------------------------+------------+-\\\\nmask_predictions.LayerNorm.weight       | UNEXPECTED | \\\\nmask_predictions.classifier.bias        | UNEXPECTED | \\\\nlm_predictions.lm_head.LayerNorm.weight | UNEXPECTED | \\\\nlm_predictions.lm_head.dense.weight     | UNEXPECTED | \\\\nlm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED | \\\\nlm_predictions.lm_head.bias             | UNEXPECTED | \\\\nmask_predictions.LayerNorm.bias         | UNEXPECTED | \\\\nlm_predictions.lm_head.dense.bias       | UNEXPECTED | \\\\nmask_predictions.classifier.weight      | UNEXPECTED | \\\\nmask_predictions.dense.weight           | UNEXPECTED | \\\\nmask_predictions.dense.bias             | UNEXPECTED | \\\\nclassifier.weight                       | MISSING    | \\\\npooler.dense.bias                       | MISSING    | \\\\nclassifier.bias                         | MISSING    | \\\\npooler.dense.weight                     | MISSING    | \\\\n\\\\nNotes:\\\\n- UNEXPECTED:\\\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\\\n- MISSING:\\\\tthose params were newly initialized because missing from the checkpoint. Consider training on your downstream task.\\\\n16:11:51 [INFO]     Ep 1 step 200/1650 loss=1.7990\\\\n16:12:35 [INFO]     Ep 1 step 400/1650 loss=1.7020\\\\n16:13:20 [INFO]     Ep 1 step 600/1650 loss=1.5812\\\\n16:14:03 [INFO]     Ep 1 step 800/1650 loss=1.5149\\\\n16:14:49 [INFO]     Ep 1 step 1000/1650 loss=1.4669\\\\n16:15:32 [INFO]     Ep 1 step 1200/1650 loss=1.4332\\\\n16:16:16 [INFO]     Ep 1 step 1400/1650 loss=1.4114\\\\n16:17:01 [INFO]     Ep 1 step 1600/1650 loss=1.3923\\\\n16:17:11 [INFO]     Ep 1/3 avg_loss=1.3878\\\\n16:17:56 [INFO]     Ep 2 step 200/1650 loss=1.2347\\\\n16:18:40 [INFO]     Ep 2 step 400/1650 loss=1.2301\\\\n16:19:25 [INFO]     Ep 2 step 600/1650 loss=1.2235\\\\n16:20:09 [INFO]     Ep 2 step 800/1650 loss=1.2192\\\\n16:20:53 [INFO]     Ep 2 step 1000/1650 loss=1.2182\\\\n16:21:37 [INFO]     Ep 2 step 1200/1650 loss=1.2191\\\\n16:22:21 [INFO]     Ep 2 step 1400/1650 loss=1.2191\\\\n16:23:05 [INFO]     Ep 2 step 1600/1650 loss=1.2175\\\\n16:23:16 [INFO]     Ep 2/3 avg_loss=1.2171\\\\n16:24:00 [INFO]     Ep 3 step 200/1650 loss=1.1771\\\\n16:24:45 [INFO]     Ep 3 step 400/1650 loss=1.1663\\\\n16:25:29 [INFO]     Ep 3 step 600/1650 loss=1.1686\\\\n16:26:13 [INFO]     Ep 3 step 800/1650 loss=1.1650\\\\n16:26:57 [INFO]     Ep 3 step 1\\\\n\\\\n... [截断: 输出过长，省略 3223 字符] ...\\\\n\\\\n, ?it/s]\\\\rLoading weights:   2%|▏         | 3/198 [00:00<00:13, 14.54it/s]\\\\rLoading weights: 100%|██████████| 198/198 [00:00<00:00, 942.01it/s]\\\\n[transformers] \\\\u001b[1mDebertaV2ForSequenceClassification LOAD REPORT\\\\u001b[0m from: microsoft/deberta-v3-base\\\\nKey                                     | Status     | \\\\n----------------------------------------+------------+-\\\\nmask_predictions.LayerNorm.weight       | UNEXPECTED | \\\\nmask_predictions.classifier.bias        | UNEXPECTED | \\\\nlm_predictions.lm_head.LayerNorm.weight | UNEXPECTED | \\\\nlm_predictions.lm_head.dense.weight     | UNEXPECTED | \\\\nlm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED | \\\\nlm_predictions.lm_head.bias             | UNEXPECTED | \\\\nmask_predictions.LayerNorm.bias         | UNEXPECTED | \\\\nlm_predictions.lm_head.dense.bias       | UNEXPECTED | \\\\nmask_predictions.classifier.weight      | UNEXPECTED | \\\\nmask_predictions.dense.weight           | UNEXPECTED | \\\\nmask_predictions.dense.bias             | UNEXPECTED | \\\\nclassifier.weight                       | MISSING    | \\\\npooler.dense.bias                       | MISSING    | \\\\nclassifier.bias                         | MISSING    | \\\\npooler.dense.weight                     | MISSING    | \\\\n\\\\nNotes:\\\\n- UNEXPECTED:\\\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\\\n- MISSING:\\\\tthose params were newly initialized because missing from the checkpoint. Consider training on your downstream task.\\\\n16:49:16 [INFO]     Ep 1 step 200/1650 loss=1.7414\\\\n16:50:01 [INFO]     Ep 1 step 400/1650 loss=1.5688\\\\n16:50:46 [INFO]     Ep 1 step 600/1650 loss=1.4816\\\\n16:51:30 [INFO]     Ep 1 step 800/1650 loss=1.4394\\\\n16:52:14 [INFO]     Ep 1 step 1000/1650 loss=1.4041\\\\n16:52:58 [INFO]     Ep 1 step 1200/1650 loss=1.3827\\\\n16:53:42 [INFO]     Ep 1 step 1400/1650 loss=1.3674\\\\n16:54:26 [INFO]     Ep 1 step 1600/1650 loss=1.3508\\\\n16:54:37 [INFO]     Ep 1/3 avg_loss=1.3487\\\\n16:55:22 [INFO]     Ep 2 step 200/1650 loss=1.2276\\\\n16:56:07 [INFO]     Ep 2 step 400/1650 loss=1.2272\\\\n16:56:51 [INFO]     Ep 2 step 600/1650 loss=1.2326\\\\n16:57:36 [INFO]     Ep 2 step 800/1650 loss=1.2256\\\\n16:58:21 [INFO]     Ep 2 step 1000/1650 loss=1.2252\\\\n16:59:04 [INFO]     Ep 2 step 1200/1650 loss=1.2233\\\\n16:59:47 [INFO]     Ep 2 step 1400/1650 loss=1.2179\\\\n17:00:32 [INFO]     Ep 2 step 1600/1650 loss=1.2148\\\\n17:00:43 [INFO]     Ep 2/3 avg_loss=1.2146\\\\n17:01:28 [INFO]     Ep 3 step 200/1650 loss=1.1497\\\\n17:02:12 [INFO]     Ep 3 step 400/1650 loss=1.1444\\\\n17:02:56 [INFO]     Ep 3 step 600/1650 loss=1.1548\\\\n17:03:40 [INFO]     Ep 3 step 800/1650 loss=1.1534\\\\n17:04:25 [INFO]     Ep 3 step 1000/1650 loss=1.1580\\\\n17:05:09 [INFO]     Ep 3 step 1200/1650 loss=1.1578\\\\n17:05:54 [INFO]     Ep 3 step 1400/1650 loss=1.1551\\\\n17:06:38 [INFO]     Ep 3 step 1600/1650 loss=1.1553\\\\n17:06:50 [INFO]     Ep 3/3 avg_loss=1.1558\\\\n17:09:56 [INFO] \\\\nPairwise AUC (code_qwen1b5):\\\\n17:09:56 [INFO]   0v1: 1.0000 [0.9999, 1.0000]\\\\n17:09:56 [INFO]   1v2: 0.8076 [0.8001, 0.8147]\\\\n17:09:56 [INFO]   2v3: 0.5933 [0.5847, 0.6018]\\\\n17:09:56 [INFO]   3v4: 0.5492 [0.5410, 0.5573]\\\\n17:09:56 [INFO]   4v5: 0.5311 [0.5235, 0.5388]\\\\n17:09:56 [INFO]   K* (theta=0.6): 2  Time: 5780s\\\\n17:09:56 [INFO] Saved: /root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\\\\n17:09:56 [INFO] \\\\n================================================================================\\\\nDeBERTa vs OBD-LightGBM\\\\n================================================================================\\\\n17:09:56 [INFO] code_qwen1b5       0v1 DeBERTa=1.0000 [0.9999,1.0000] OBD=0.9388 delta=+0.0612\\\\n17:09:56 [INFO] code_qwen1b5       1v2 DeBERTa=0.8076 [0.8001,0.8147] OBD=0.7382 delta=+0.0694\\\\n17:09:56 [INFO] code_qwen1b5       2v3 DeBERTa=0.5933 [0.5847,0.6018] OBD=0.53 delta=+0.0633\\\\n17:09:56 [INFO] code_qwen1b5       3v4 DeBERTa=0.5492 [0.5410,0.5573] OBD=0.5022 delta=+0.0470\\\\n17:09:56 [INFO] code_qwen1b5       4v5 DeBERTa=0.5311 [0.5235,0.5388] OBD=0.5219 delta=+0.0092\\\\n17:09:56 [INFO]   K*(DeBERTa)=2\\\\n17:09:56 [INFO] All done.\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"15:53:57 [INFO]     Ep 1 step 400/1650 loss=1.6039\\n15:54:41 [INFO]     Ep 1 step 600/1650 loss=1.5115\\n15:55:25 [INFO]     Ep 1 step 800/1650 loss=1.4560\\n15:56:09 [INFO]     Ep 1 step 1000/1650 loss=1.4201\\n15:56:52 [INFO]     Ep 1 step 1200/1650 loss=1.3928\\n15:57:37 [INFO]     Ep 1 step 1400/1650 loss=1.3722\\n15:58:21 [INFO]     Ep 1 step 1600/1650 loss=1.3594\\n15:58:32 [INFO]     Ep 1/3 avg_loss=1.3573\\n15:59:15 [INFO]     Ep 2 step 200/1650 loss=1.2298\\n16:00:00 [INFO]     Ep 2 step 400/1650 loss=1.2255\\n16:00:44 [INFO]     Ep 2 step 600/1650 loss=1.2208\\n16:01:28 [INFO]     Ep 2 step 800/1650 loss=1.2240\\n16:02:12 [INFO]     Ep 2 step 1000/1650 loss=1.2221\\n16:02:56 [INFO]     Ep 2 step 1200/1650 loss=1.2205\\n16:03:40 [INFO]     Ep 2 step 1400/1650 loss=1.2159\\n16:04:24 [INFO]     Ep 2 step 1600/1650 loss=1.2157\\n16:04:35 [INFO]     Ep 2/3 avg_loss=1.2152\\n16:05:20 [INFO]     Ep 3 step 200/1650 loss=1.1368\\n16:06:03 [INFO]     Ep 3 step 400/1650 loss=1.1524\\n16:06:48 [INFO]     Ep 3 step 600/1650 loss=1.1623\\n16:07:32 [INFO]     Ep 3 step 800/1650 loss=1.1601\\n16:08:15 [INFO]     Ep 3 step 1000/1650 loss=1.1587\\n16:08:59 [INFO]     Ep 3 step 1200/1650 loss=1.1598\\n16:09:43 [INFO]     Ep 3 step 1400/1650 loss=1.1590\\n16:10:27 [INFO]     Ep 3 step 1600/1650 loss=1.1564\\n16:10:38 [INFO]     Ep 3/3 avg_loss=1.1557\\n16:11:06 [INFO]   Fold 2: train=26400, val=6600\\n\\rLoading weights:   0%|          | 0/198 [00:00<?, ?it/s]\\rLoading weights:   2%|▏         | 3/198 [00:00<00:14, 13.75it/s]\\rLoading weights: 100%|██████████| 198/198 [00:00<00:00, 889.29it/s]\\n[transformers] \\u001b[1mDebertaV2ForSequenceClassification LOAD REPORT\\u001b[0m from: microsoft/deberta-v3-base\\nKey                                     | Status     | \\n----------------------------------------+------------+-\\nmask_predictions.LayerNorm.weight       | UNEXPECTED | \\nmask_predictions.classifier.bias        | UNEXPECTED | \\nlm_predictions.lm_head.LayerNorm.weight | UNEXPECTED | \\nlm_predictions.lm_head.dense.weight     | UNEXPECTED | \\nlm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED | \\nlm_predictions.lm_head.bias             | UNEXPECTED | \\nmask_predictions.LayerNorm.bias         | UNEXPECTED | \\nlm_predictions.lm_head.dense.bias       | UNEXPECTED | \\nmask_predictions.classifier.weight      | UNEXPECTED | \\nmask_predictions.dense.weight           | UNEXPECTED | \\nmask_predictions.dense.bias             | UNEXPECTED | \\nclassifier.weight                       | MISSING    | \\npooler.dense.bias                       | MISSING    | \\nclassifier.bias                         | MISSING    | \\npooler.dense.weight                     | MISSING    | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\n- MISSING:\\tthose params were newly initialized because missing from the checkpoint. Consider training on your downstream task.\\n16:11:51 [INFO]     Ep 1 step 200/1650 loss=1.7990\\n16:12:35 [INFO]     Ep 1 step 400/1650 loss=1.7020\\n16:13:20 [INFO]     Ep 1 step 600/1650 loss=1.5812\\n16:14:03 [INFO]     Ep 1 step 800/1650 loss=1.5149\\n16:14:49 [INFO]     Ep 1 step 1000/1650 loss=1.4669\\n16:15:32 [INFO]     Ep 1 step 1200/1650 loss=1.4332\\n16:16:16 [INFO]     Ep 1 step 1400/1650 loss=1.4114\\n16:17:01 [INFO]     Ep 1 step 1600/1650 loss=1.3923\\n16:17:11 [INFO]     Ep 1/3 avg_loss=1.3878\\n16:17:56 [INFO]     Ep 2 step 200/1650 loss=1.2347\\n16:18:40 [INFO]     Ep 2 step 400/1650 loss=1.2301\\n16:19:25 [INFO]     Ep 2 step 600/1650 loss=1.2235\\n16:20:09 [INFO]     Ep 2 step 800/1650 loss=1.2192\\n16:20:53 [INFO]     Ep 2 step 1000/1650 loss=1.2182\\n16:21:37 [INFO]     Ep 2 step 1200/1650 loss=1.2191\\n16:22:21 [INFO]     Ep 2 step 1400/1650 loss=1.2191\\n16:23:05 [INFO]     Ep 2 step 1600/1650 loss=1.2175\\n16:23:16 [INFO]     Ep 2/3 avg_loss=1.2171\\n16:24:00 [INFO]     Ep 3 step 200/1650 loss=1.1771\\n16:24:45 [INFO]     Ep 3 step 400/1650 loss=1.1663\\n16:25:29 [INFO]     Ep 3 step 600/1650 loss=1.1686\\n16:26:13 [INFO]     Ep 3 step 800/1650 loss=1.1650\\n16:26:57 [INFO]     Ep 3 step 1\\n\\n... [截断: 输出过长，省略 3223 字符] ...\\n\\n, ?it/s]\\rLoading weights:   2%|▏         | 3/198 [00:00<00:13, 14.54it/s]\\rLoading weights: 100%|██████████| 198/198 [00:00<00:00, 942.01it/s]\\n[transformers] \\u001b[1mDebertaV2ForSequenceClassification LOAD REPORT\\u001b[0m from: microsoft/deberta-v3-base\\nKey                                     | Status     | \\n----------------------------------------+------------+-\\nmask_predictions.LayerNorm.weight       | UNEXPECTED | \\nmask_predictions.classifier.bias        | UNEXPECTED | \\nlm_predictions.lm_head.LayerNorm.weight | UNEXPECTED | \\nlm_predictions.lm_head.dense.weight     | UNEXPECTED | \\nlm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED | \\nlm_predictions.lm_head.bias             | UNEXPECTED | \\nmask_predictions.LayerNorm.bias         | UNEXPECTED | \\nlm_predictions.lm_head.dense.bias       | UNEXPECTED | \\nmask_predictions.classifier.weight      | UNEXPECTED | \\nmask_predictions.dense.weight           | UNEXPECTED | \\nmask_predictions.dense.bias             | UNEXPECTED | \\nclassifier.weight                       | MISSING    | \\npooler.dense.bias                       | MISSING    | \\nclassifier.bias                         | MISSING    | \\npooler.dense.weight                     | MISSING    | \\n\\nNotes:\\n- UNEXPECTED:\\tcan be ignored when loading from different task/architecture; not ok if you expect identical arch.\\n- MISSING:\\tthose params were newly initialized because missing from the checkpoint. Consider training on your downstream task.\\n16:49:16 [INFO]     Ep 1 step 200/1650 loss=1.7414\\n16:50:01 [INFO]     Ep 1 step 400/1650 loss=1.5688\\n16:50:46 [INFO]     Ep 1 step 600/1650 loss=1.4816\\n16:51:30 [INFO]     Ep 1 step 800/1650 loss=1.4394\\n16:52:14 [INFO]     Ep 1 step 1000/1650 loss=1.4041\\n16:52:58 [INFO]     Ep 1 step 1200/1650 loss=1.3827\\n16:53:42 [INFO]     Ep 1 step 1400/1650 loss=1.3674\\n16:54:26 [INFO]     Ep 1 step 1600/1650 loss=1.3508\\n16:54:37 [INFO]     Ep 1/3 avg_loss=1.3487\\n16:55:22 [INFO]     Ep 2 step 200/1650 loss=1.2276\\n16:56:07 [INFO]     Ep 2 step 400/1650 loss=1.2272\\n16:56:51 [INFO]     Ep 2 step 600/1650 loss=1.2326\\n16:57:36 [INFO]     Ep 2 step 800/1650 loss=1.2256\\n16:58:21 [INFO]     Ep 2 step 1000/1650 loss=1.2252\\n16:59:04 [INFO]     Ep 2 step 1200/1650 loss=1.2233\\n16:59:47 [INFO]     Ep 2 step 1400/1650 loss=1.2179\\n17:00:32 [INFO]     Ep 2 step 1600/1650 loss=1.2148\\n17:00:43 [INFO]     Ep 2/3 avg_loss=1.2146\\n17:01:28 [INFO]     Ep 3 step 200/1650 loss=1.1497\\n17:02:12 [INFO]     Ep 3 step 400/1650 loss=1.1444\\n17:02:56 [INFO]     Ep 3 step 600/1650 loss=1.1548\\n17:03:40 [INFO]     Ep 3 step 800/1650 loss=1.1534\\n17:04:25 [INFO]     Ep 3 step 1000/1650 loss=1.1580\\n17:05:09 [INFO]     Ep 3 step 1200/1650 loss=1.1578\\n17:05:54 [INFO]     Ep 3 step 1400/1650 loss=1.1551\\n17:06:38 [INFO]     Ep 3 step 1600/1650 loss=1.1553\\n17:06:50 [INFO]     Ep 3/3 avg_loss=1.1558\\n17:09:56 [INFO] \\nPairwise AUC (code_qwen1b5):\\n17:09:56 [INFO]   0v1: 1.0000 [0.9999, 1.0000]\\n17:09:56 [INFO]   1v2: 0.8076 [0.8001, 0.8147]\\n17:09:56 [INFO]   2v3: 0.5933 [0.5847, 0.6018]\\n17:09:56 [INFO]   3v4: 0.5492 [0.5410, 0.5573]\\n17:09:56 [INFO]   4v5: 0.5311 [0.5235, 0.5388]\\n17:09:56 [INFO]   K* (theta=0.6): 2  Time: 5780s\\n17:09:56 [INFO] Saved: /root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\\n17:09:56 [INFO] \\n================================================================================\\nDeBERTa vs OBD-LightGBM\\n================================================================================\\n17:09:56 [INFO] code_qwen1b5       0v1 DeBERTa=1.0000 [0.9999,1.0000] OBD=0.9388 delta=+0.0612\\n17:09:56 [INFO] code_qwen1b5       1v2 DeBERTa=0.8076 [0.8001,0.8147] OBD=0.7382 delta=+0.0694\\n17:09:56 [INFO] code_qwen1b5       2v3 DeBERTa=0.5933 [0.5847,0.6018] OBD=0.53 delta=+0.0633\\n17:09:56 [INFO] code_qwen1b5       3v4 DeBERTa=0.5492 [0.5410,0.5573] OBD=0.5022 delta=+0.0470\\n17:09:56 [INFO] code_qwen1b5       4v5 DeBERTa=0.5311 [0.5235,0.5388] OBD=0.5219 delta=+0.0092\\n17:09:56 [INFO]   K*(DeBERTa)=2\\n17:09:56 [INFO] All done.\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R7ocVdrbc6VmzKvUSbjwfD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "cf0feb7e-3e80-47e4-abd5-586c2fe08355",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xr1uadkrJW3p7MdXN4YB4s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1592,
+                "cache_read_input_tokens": 24357,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1592
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012GFtA5kXBVGTeUZF3Hy4Tr",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "filters": {
+                  "exp_id": "exp_deberta_code_qwen1b5"
+                },
+                "project": "gen-depth-contamination",
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "c31b23f3-a9f3-4f33-8ee7-7a60a6216b3f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xr1uadkrJW3p7MdXN4YB4s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1592,
+                "cache_read_input_tokens": 24357,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1592
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T09:42:46.793Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R7ocVdrbc6VmzKvUSbjwfD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1160\\\\ndrwxr-xr-x 64 root root   4096 May 20 16:26 .\\\\ndrwxr-xr-x 27 root root   4096 May 19 09:09 ..\\\\ndrwxr-xr-x  2 root root     77 May 19 11:46 analysis_pythia_retrain_depth7\\\\ndrwxr-xr-x  2 root root    108 May 18 18:26 c4_power_curve\\\\n-rw-r--r--  1 root root   1392 May 18 15:47 c4_subsample_control.json\\\\ndrwxr-xr-x  2 root root     86 May 20 02:00 cross_scorer_f1\\\\ndrwxr-xr-x  2 root root   4096 May 20 12:02 deberta_cross_transfer\\\\ndrwxr-xr-x  2 root root   4096 May 20 12:30 exp_008_retrain_chain\\\\ndrwxr-xr-x  5 root root     70 May 17 06:23 exp_009_dose_response\\\\ndrwxr-xr-x  2 root root    149 May 16 23:27 exp_018_llama8b\\\\ndrwxr-xr-x  2 root root    149 May 16 16:13 exp_021_length_128\\\\ndrwxr-xr-x  2 root root    149 May 16 18:06 exp_021_length_256\\\\ndrwxr-xr-x  2 root root    149 May 16 21:42 exp_021_length_512\\\\ndrwxr-xr-x  2 root root    149 May 16 22:10 exp_023_wiki\\\\ndrwxr-xr-x  2 root root    149 May 16 23:56 exp_024_arxiv\\\\ndrwxr-xr-x  2 root root    149 May 17 02:59 exp_025_pythia_arxiv\\\\ndrwxr-xr-x 11 root root   4096 May 18 17:20 exp_025_pythia_filtering\\\\ndrwxr-xr-x 17 root root   4096 May 18 19:07 exp_026_arxiv_filtering\\\\ndrwxr-xr-x  2 root root    186 May 18 19:31 exp_027_latex_ablation\\\\ndrwxr-xr-x  2 root root     94 May 19 06:58 exp_028_power_curve\\\\n-rw-r--r--  1 root root  63339 May 19 06:58 exp_028_power_curve.log\\\\ndrwxr-xr-x  2 root root    186 May 18 17:47 exp_14b_c4\\\\ndrwxr-xr-x  2 root root     47 May 19 21:56 exp_7b_cross_transfer\\\\ndrwxr-xr-x  2 root root    149 May 17 21:59 exp_arXiv_llama8b\\\\ndrwxr-xr-x  2 root root    149 May 18 10:56 exp_arXiv_llama8b_crossscorer\\\\ndrwxr-xr-x  2 root root    149 May 18 00:24 exp_arXiv_mistral7b\\\\ndrwxr-xr-x  2 root root    149 May 18 10:53 exp_arXiv_mistral7b_crossscorer\\\\ndrwxr-xr-x  2 root root    149 May 17 19:56 exp_arXiv_olmo\\\\ndrwxr-xr-x  2 root root    149 May 18 10:56 exp_arXiv_qwen1b5_crossscorer\\\\ndrwxr-xr-x  2 root root    149 May 18 00:33 exp_arXiv_qwen7b\\\\ndrwxr-xr-x  2 root root    149 May 18 10:56 exp_arXiv_qwen7b_crossscorer\\\\ndrwxr-xr-x  2 root root    153 May 20 15:17 exp_changepoint_kstar\\\\ndrwxr-xr-x  2 root root    149 May 19 16:11 exp_code_llama8b\\\\ndrwxr-xr-x  2 root root    149 May 19 18:54 exp_code_mistral7b\\\\n-rw-r--r--  1 root root 978768 May 19 18:54 exp_code_mistral7b.log\\\\ndrwxr-xr-x  2 root root    170 May 19 08:22 exp_code_pythia1b4\\\\ndrwxr-xr-x  2 root root    149 May 19 05:21 exp_code_qwen1b5\\\\ndrwxr-xr-x  2 root root    149 May 19 14:49 exp_code_qwen1b5_pythia_scorer\\\\ndrwxr-xr-x  2 root root    149 May 19 20:10 exp_code_qwen7b\\\\ndrwxr-xr-x  2 root root     98 May 20 11:53 exp_deberta_arxiv\\\\ndrwxr-xr-x  2 root root     44 May 20 11:53 exp_deberta_arxiv_qwen1b5\\\\ndrwxr-xr-x  2 root root    179 May 20 12:03 exp_deberta_c4_1b5\\\\ndrwxr-xr-x  2 root root     82 May 20 17:09 exp_deberta_code_qwen1b5\\\\ndrwxr-xr-x  2 root root   4096 May 20 12:03 exp_deberta_upperbound\\\\n-rw-r--r--  1 root root  76008 May 20 05:39 exp_deberta_upperbound.log\\\\ndrwxr-xr-x  2 root root    149 May 20 17:33 exp_gemma2b_depth\\\\ndrwxr-xr-x  2 root root    159 May 20 16:41 exp_multi_source_arxiv\\\\ndrwxr-xr-x  2 root root     95 May 20 15:38 exp_multi_source_detection\\\\ndrwxr-xr-x  2 root root     47 May 20 15:21 exp_multi_source_detection_v2\\\\ndrwxr-xr-x  2 root root    168 May 20 15:58 exp_multi_source_unified_scorer\\\\ndrwxr-xr-x  2 root root     10 May 19 00:08 exp_olmo_retrain_chain\\\\ndrwxr-xr-x  2 root root    119 May 20 12:29 exp_pythia_retrain_depth7\\\\ndrwxr-xr-x  2 root root     88 May 19 06:07 exp_qwen_retrain_chain\\\\ndrwxr-xr-x  2 root root    119 May 20 12:30 exp_qwen_retrain_chain_ext\\\\ndrwxr-xr-x  2 root root    149 May 18 03:28 exp_wiki_llama8b\\\\ndrwxr-xr-x  2 root root    149 May 18 03:48 exp_wiki_mistral7b\\\\ndrwxr-xr-x  2 root root    149 May 17 19:24 exp_wiki_olmo\\\\ndrwxr-xr-x  2 root root    149 May 17 21:07 exp_wiki_olmo_v2\\\\ndrwxr-xr-x  2 root root    149 May 17 19:24 exp_wiki_pythia\\\\ndrwxr-xr-x  2 root root    149 May 17 21:14 exp_wiki_pythia_v2\\\\ndrwxr-xr-x  2 root root    149 May 18 06:21 exp_wiki_qwen7b\\\\ndrwxr-xr-x  2 root root    149 May 18 07:12 exp_wiki_scorer_confound\\\\ndrwxr-xr-x  2 root root    149 May 18 09:18 exp_wiki_scorer_confound_1b5\\\\ndrwxr-xr-x  2 root root     45 May 20 01:10 f1_optimal_threshold\\\\ndrwxr-xr-x  2 root root    174 May 18 21:54 feature_ablation\\\\ndrwxr-xr-x  2 root root    134 May 20 03:04 lofo_importance\\\\ndrwxr-xr-x  2 root root     42 May 18 23:26 mcnemar_obd_vs_baselines\\\\n-rw-r--r--  1 root root  23097 May 20 12:50 monotonicity_check.json\\\\ndrwxr-xr-x  2 root root    149 May 20 14:12 olmo_c4_cont\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "608a3c4d-507f-424b-b6f9-fcb00cc9d4a4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1160\\\\ndrwxr-xr-x 64 root root   4096 May 20 16:26 .\\\\ndrwxr-xr-x 27 root root   4096 May 19 09:09 ..\\\\ndrwxr-xr-x  2 root root     77 May 19 11:46 analysis_pythia_retrain_depth7\\\\ndrwxr-xr-x  2 root root    108 May 18 18:26 c4_power_curve\\\\n-rw-r--r--  1 root root   1392 May 18 15:47 c4_subsample_control.json\\\\ndrwxr-xr-x  2 root root     86 May 20 02:00 cross_scorer_f1\\\\ndrwxr-xr-x  2 root root   4096 May 20 12:02 deberta_cross_transfer\\\\ndrwxr-xr-x  2 root root   4096 May 20 12:30 exp_008_retrain_chain\\\\ndrwxr-xr-x  5 root root     70 May 17 06:23 exp_009_dose_response\\\\ndrwxr-xr-x  2 root root    149 May 16 23:27 exp_018_llama8b\\\\ndrwxr-xr-x  2 root root    149 May 16 16:13 exp_021_length_128\\\\ndrwxr-xr-x  2 root root    149 May 16 18:06 exp_021_length_256\\\\ndrwxr-xr-x  2 root root    149 May 16 21:42 exp_021_length_512\\\\ndrwxr-xr-x  2 root root    149 May 16 22:10 exp_023_wiki\\\\ndrwxr-xr-x  2 root root    149 May 16 23:56 exp_024_arxiv\\\\ndrwxr-xr-x  2 root root    149 May 17 02:59 exp_025_pythia_arxiv\\\\ndrwxr-xr-x 11 root root   4096 May 18 17:20 exp_025_pythia_filtering\\\\ndrwxr-xr-x 17 root root   4096 May 18 19:07 exp_026_arxiv_filtering\\\\ndrwxr-xr-x  2 root root    186 May 18 19:31 exp_027_latex_ablation\\\\ndrwxr-xr-x  2 root root     94 May 19 06:58 exp_028_power_curve\\\\n-rw-r--r--  1 root root  63339 May 19 06:58 exp_028_power_curve.log\\\\ndrwxr-xr-x  2 root root    186 May 18 17:47 exp_14b_c4\\\\ndrwxr-xr-x  2 root root     47 May 19 21:56 exp_7b_cross_transfer\\\\ndrwxr-xr-x  2 root root    149 May 17 21:59 exp_arXiv_llama8b\\\\ndrwxr-xr-x  2 root root    149 May 18 10:56 exp_arXiv_llama8b_crossscorer\\\\ndrwxr-xr-x  2 root root    149 May 18 00:24 exp_arXiv_mistral7b\\\\ndrwxr-xr-x  2 root root    149 May 18 10:53 exp_arXiv_mistral7b_crossscorer\\\\ndrwxr-xr-x  2 root root    149 May 17 19:56 exp_arXiv_olmo\\\\ndrwxr-xr-x  2 root root    149 May 18 10:56 exp_arXiv_qwen1b5_crossscorer\\\\ndrwxr-xr-x  2 root root    149 May 18 00:33 exp_arXiv_qwen7b\\\\ndrwxr-xr-x  2 root root    149 May 18 10:56 exp_arXiv_qwen7b_crossscorer\\\\ndrwxr-xr-x  2 root root    153 May 20 15:17 exp_changepoint_kstar\\\\ndrwxr-xr-x  2 root root    149 May 19 16:11 exp_code_llama8b\\\\ndrwxr-xr-x  2 root root    149 May 19 18:54 exp_code_mistral7b\\\\n-rw-r--r--  1 root root 978768 May 19 18:54 exp_code_mistral7b.log\\\\ndrwxr-xr-x  2 root root    170 May 19 08:22 exp_code_pythia1b4\\\\ndrwxr-xr-x  2 root root    149 May 19 05:21 exp_code_qwen1b5\\\\ndrwxr-xr-x  2 root root    149 May 19 14:49 exp_code_qwen1b5_pythia_scorer\\\\ndrwxr-xr-x  2 root root    149 May 19 20:10 exp_code_qwen7b\\\\ndrwxr-xr-x  2 root root     98 May 20 11:53 exp_deberta_arxiv\\\\ndrwxr-xr-x  2 root root     44 May 20 11:53 exp_deberta_arxiv_qwen1b5\\\\ndrwxr-xr-x  2 root root    179 May 20 12:03 exp_deberta_c4_1b5\\\\ndrwxr-xr-x  2 root root     82 May 20 17:09 exp_deberta_code_qwen1b5\\\\ndrwxr-xr-x  2 root root   4096 May 20 12:03 exp_deberta_upperbound\\\\n-rw-r--r--  1 root root  76008 May 20 05:39 exp_deberta_upperbound.log\\\\ndrwxr-xr-x  2 root root    149 May 20 17:33 exp_gemma2b_depth\\\\ndrwxr-xr-x  2 root root    159 May 20 16:41 exp_multi_source_arxiv\\\\ndrwxr-xr-x  2 root root     95 May 20 15:38 exp_multi_source_detection\\\\ndrwxr-xr-x  2 root root     47 May 20 15:21 exp_multi_source_detection_v2\\\\ndrwxr-xr-x  2 root root    168 May 20 15:58 exp_multi_source_unified_scorer\\\\ndrwxr-xr-x  2 root root     10 May 19 00:08 exp_olmo_retrain_chain\\\\ndrwxr-xr-x  2 root root    119 May 20 12:29 exp_pythia_retrain_depth7\\\\ndrwxr-xr-x  2 root root     88 May 19 06:07 exp_qwen_retrain_chain\\\\ndrwxr-xr-x  2 root root    119 May 20 12:30 exp_qwen_retrain_chain_ext\\\\ndrwxr-xr-x  2 root root    149 May 18 03:28 exp_wiki_llama8b\\\\ndrwxr-xr-x  2 root root    149 May 18 03:48 exp_wiki_mistral7b\\\\ndrwxr-xr-x  2 root root    149 May 17 19:24 exp_wiki_olmo\\\\ndrwxr-xr-x  2 root root    149 May 17 21:07 exp_wiki_olmo_v2\\\\ndrwxr-xr-x  2 root root    149 May 17 19:24 exp_wiki_pythia\\\\ndrwxr-xr-x  2 root root    149 May 17 21:14 exp_wiki_pythia_v2\\\\ndrwxr-xr-x  2 root root    149 May 18 06:21 exp_wiki_qwen7b\\\\ndrwxr-xr-x  2 root root    149 May 18 07:12 exp_wiki_scorer_confound\\\\ndrwxr-xr-x  2 root root    149 May 18 09:18 exp_wiki_scorer_confound_1b5\\\\ndrwxr-xr-x  2 root root     45 May 20 01:10 f1_optimal_threshold\\\\ndrwxr-xr-x  2 root root    174 May 18 21:54 feature_ablation\\\\ndrwxr-xr-x  2 root root    134 May 20 03:04 lofo_importance\\\\ndrwxr-xr-x  2 root root     42 May 18 23:26 mcnemar_obd_vs_baselines\\\\n-rw-r--r--  1 root root  23097 May 20 12:50 monotonicity_check.json\\\\ndrwxr-xr-x  2 root root    149 May 20 14:12 olmo_c4_cont\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 1160\\ndrwxr-xr-x 64 root root   4096 May 20 16:26 .\\ndrwxr-xr-x 27 root root   4096 May 19 09:09 ..\\ndrwxr-xr-x  2 root root     77 May 19 11:46 analysis_pythia_retrain_depth7\\ndrwxr-xr-x  2 root root    108 May 18 18:26 c4_power_curve\\n-rw-r--r--  1 root root   1392 May 18 15:47 c4_subsample_control.json\\ndrwxr-xr-x  2 root root     86 May 20 02:00 cross_scorer_f1\\ndrwxr-xr-x  2 root root   4096 May 20 12:02 deberta_cross_transfer\\ndrwxr-xr-x  2 root root   4096 May 20 12:30 exp_008_retrain_chain\\ndrwxr-xr-x  5 root root     70 May 17 06:23 exp_009_dose_response\\ndrwxr-xr-x  2 root root    149 May 16 23:27 exp_018_llama8b\\ndrwxr-xr-x  2 root root    149 May 16 16:13 exp_021_length_128\\ndrwxr-xr-x  2 root root    149 May 16 18:06 exp_021_length_256\\ndrwxr-xr-x  2 root root    149 May 16 21:42 exp_021_length_512\\ndrwxr-xr-x  2 root root    149 May 16 22:10 exp_023_wiki\\ndrwxr-xr-x  2 root root    149 May 16 23:56 exp_024_arxiv\\ndrwxr-xr-x  2 root root    149 May 17 02:59 exp_025_pythia_arxiv\\ndrwxr-xr-x 11 root root   4096 May 18 17:20 exp_025_pythia_filtering\\ndrwxr-xr-x 17 root root   4096 May 18 19:07 exp_026_arxiv_filtering\\ndrwxr-xr-x  2 root root    186 May 18 19:31 exp_027_latex_ablation\\ndrwxr-xr-x  2 root root     94 May 19 06:58 exp_028_power_curve\\n-rw-r--r--  1 root root  63339 May 19 06:58 exp_028_power_curve.log\\ndrwxr-xr-x  2 root root    186 May 18 17:47 exp_14b_c4\\ndrwxr-xr-x  2 root root     47 May 19 21:56 exp_7b_cross_transfer\\ndrwxr-xr-x  2 root root    149 May 17 21:59 exp_arXiv_llama8b\\ndrwxr-xr-x  2 root root    149 May 18 10:56 exp_arXiv_llama8b_crossscorer\\ndrwxr-xr-x  2 root root    149 May 18 00:24 exp_arXiv_mistral7b\\ndrwxr-xr-x  2 root root    149 May 18 10:53 exp_arXiv_mistral7b_crossscorer\\ndrwxr-xr-x  2 root root    149 May 17 19:56 exp_arXiv_olmo\\ndrwxr-xr-x  2 root root    149 May 18 10:56 exp_arXiv_qwen1b5_crossscorer\\ndrwxr-xr-x  2 root root    149 May 18 00:33 exp_arXiv_qwen7b\\ndrwxr-xr-x  2 root root    149 May 18 10:56 exp_arXiv_qwen7b_crossscorer\\ndrwxr-xr-x  2 root root    153 May 20 15:17 exp_changepoint_kstar\\ndrwxr-xr-x  2 root root    149 May 19 16:11 exp_code_llama8b\\ndrwxr-xr-x  2 root root    149 May 19 18:54 exp_code_mistral7b\\n-rw-r--r--  1 root root 978768 May 19 18:54 exp_code_mistral7b.log\\ndrwxr-xr-x  2 root root    170 May 19 08:22 exp_code_pythia1b4\\ndrwxr-xr-x  2 root root    149 May 19 05:21 exp_code_qwen1b5\\ndrwxr-xr-x  2 root root    149 May 19 14:49 exp_code_qwen1b5_pythia_scorer\\ndrwxr-xr-x  2 root root    149 May 19 20:10 exp_code_qwen7b\\ndrwxr-xr-x  2 root root     98 May 20 11:53 exp_deberta_arxiv\\ndrwxr-xr-x  2 root root     44 May 20 11:53 exp_deberta_arxiv_qwen1b5\\ndrwxr-xr-x  2 root root    179 May 20 12:03 exp_deberta_c4_1b5\\ndrwxr-xr-x  2 root root     82 May 20 17:09 exp_deberta_code_qwen1b5\\ndrwxr-xr-x  2 root root   4096 May 20 12:03 exp_deberta_upperbound\\n-rw-r--r--  1 root root  76008 May 20 05:39 exp_deberta_upperbound.log\\ndrwxr-xr-x  2 root root    149 May 20 17:33 exp_gemma2b_depth\\ndrwxr-xr-x  2 root root    159 May 20 16:41 exp_multi_source_arxiv\\ndrwxr-xr-x  2 root root     95 May 20 15:38 exp_multi_source_detection\\ndrwxr-xr-x  2 root root     47 May 20 15:21 exp_multi_source_detection_v2\\ndrwxr-xr-x  2 root root    168 May 20 15:58 exp_multi_source_unified_scorer\\ndrwxr-xr-x  2 root root     10 May 19 00:08 exp_olmo_retrain_chain\\ndrwxr-xr-x  2 root root    119 May 20 12:29 exp_pythia_retrain_depth7\\ndrwxr-xr-x  2 root root     88 May 19 06:07 exp_qwen_retrain_chain\\ndrwxr-xr-x  2 root root    119 May 20 12:30 exp_qwen_retrain_chain_ext\\ndrwxr-xr-x  2 root root    149 May 18 03:28 exp_wiki_llama8b\\ndrwxr-xr-x  2 root root    149 May 18 03:48 exp_wiki_mistral7b\\ndrwxr-xr-x  2 root root    149 May 17 19:24 exp_wiki_olmo\\ndrwxr-xr-x  2 root root    149 May 17 21:07 exp_wiki_olmo_v2\\ndrwxr-xr-x  2 root root    149 May 17 19:24 exp_wiki_pythia\\ndrwxr-xr-x  2 root root    149 May 17 21:14 exp_wiki_pythia_v2\\ndrwxr-xr-x  2 root root    149 May 18 06:21 exp_wiki_qwen7b\\ndrwxr-xr-x  2 root root    149 May 18 07:12 exp_wiki_scorer_confound\\ndrwxr-xr-x  2 root root    149 May 18 09:18 exp_wiki_scorer_confound_1b5\\ndrwxr-xr-x  2 root root     45 May 20 01:10 f1_optimal_threshold\\ndrwxr-xr-x  2 root root    174 May 18 21:54 feature_ablation\\ndrwxr-xr-x  2 root root    134 May 20 03:04 lofo_importance\\ndrwxr-xr-x  2 root root     42 May 18 23:26 mcnemar_obd_vs_baselines\\n-rw-r--r--  1 root root  23097 May 20 12:50 monotonicity_check.json\\ndrwxr-xr-x  2 root root    149 May 20 14:12 olmo_c4_cont\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T09:42:47.243Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012GFtA5kXBVGTeUZF3Hy4Tr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4267}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "1a14d545-21ca-4e54-9d7e-f5c11d064133",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4267}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4267}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze the results:\n\n1. **Log output** - The experiment completed successfully (EXIT_CODE=0). Key metrics:\n   - Pairwise AUC (code_qwen1b5):\n     - 0v1: 1.0000 [0.9999, 1.0000]\n     - 1v2: 0.8076 [0.8001, 0.8147]\n     - 2v3: 0.5933 [0.5847, 0.6018]\n     - 3v4: 0.5492 [0.5410, 0.5573]\n     - 4v5: 0.5311 [0.5235, 0.5388]\n     - K* (theta=0.6): 2\n   - Comparing against OBD-LightGBM, DeBERTa consistently outperforms across all pairwise comparisons, with the largest improvement in the 0v1 matchup at +0.0612 AUC.\n\nNow I'm looking at the complete results saved to the experiment directory and checking the registry to see if the experiment has been properly logged.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "9680f9cc-1be9-4f90-a284-8e54c045aa89",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PZEeGcnUxsDNUJy9AKYS4p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7070,
+                "cache_read_input_tokens": 25949,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7070
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Log shows the experiment completed successfully. Let me read the JSON results and find the registry entry."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "019ba34b-8ff4-4c1c-900c-d52cb35df9be",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PZEeGcnUxsDNUJy9AKYS4p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7070,
+                "cache_read_input_tokens": 25949,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7070
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PKX4EWPB77J4cvo737YJ8Z",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "c57effbd-4bb3-404d-8651-810d21a2deea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PZEeGcnUxsDNUJy9AKYS4p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7070,
+                "cache_read_input_tokens": 25949,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7070
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T09:42:59.525Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PKX4EWPB77J4cvo737YJ8Z",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"code_qwen1b5\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"microsoft/deberta-v3-base\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"DeBERTa-v3-base fine-tuned 6-class\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 33000,\\\\n  \\\\\\\"epochs\\\\\\\": 3,\\\\n  \\\\\\\"lr\\\\\\\": 2e-05,\\\\n  \\\\\\\"batch_size\\\\\\\": 16,\\\\n  \\\\\\\"max_length\\\\\\\": 512,\\\\n  \\\\\\\"theta\\\\\\\": 0.6,\\\\n  \\\\\\\"kstar\\\\\\\": 2,\\\\n  \\\\\\\"pairwise_auc\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 1.0,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.9999,\\\\n      \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n      \\\\\\\"ci_lower_above_theta\\\\\\\": true,\\\\n      \\\\\\\"boot_mean\\\\\\\": 1.0,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"1v2\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.8076,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.8001,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.8147,\\\\n      \\\\\\\"ci_lower_above_theta\\\\\\\": true,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.8075,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0037\\\\n    },\\\\n    \\\\\\\"2v3\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.5933,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5847,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.6018,\\\\n      \\\\\\\"ci_lower_above_theta\\\\\\\": false,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5933,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0043\\\\n    },\\\\n    \\\\\\\"3v4\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.5492,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.541,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5573,\\\\n      \\\\\\\"ci_lower_above_theta\\\\\\\": false,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5493,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0042\\\\n    },\\\\n    \\\\\\\"4v5\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.5311,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5235,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5388,\\\\n      \\\\\\\"ci_lower_above_theta\\\\\\\": false,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5312,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0039\\\\n    }\\\\n  },\\\\n  \\\\\\\"elapsed_seconds\\\\\\\": 5780.0,\\\\n  \\\\\\\"obd_baseline\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9388,\\\\n    \\\\\\\"1v2\\\\\\\": 0.7382,\\\\n    \\\\\\\"2v3\\\\\\\": 0.53,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5022,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5219\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "dc64c346-6816-4d6e-a1ee-db42e8b0dae8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"code_qwen1b5\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"microsoft/deberta-v3-base\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"DeBERTa-v3-base fine-tuned 6-class\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 33000,\\\\n  \\\\\\\"epochs\\\\\\\": 3,\\\\n  \\\\\\\"lr\\\\\\\": 2e-05,\\\\n  \\\\\\\"batch_size\\\\\\\": 16,\\\\n  \\\\\\\"max_length\\\\\\\": 512,\\\\n  \\\\\\\"theta\\\\\\\": 0.6,\\\\n  \\\\\\\"kstar\\\\\\\": 2,\\\\n  \\\\\\\"pairwise_auc\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 1.0,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.9999,\\\\n      \\\\\\\"ci_upper\\\\\\\": 1.0,\\\\n      \\\\\\\"ci_lower_above_theta\\\\\\\": true,\\\\n      \\\\\\\"boot_mean\\\\\\\": 1.0,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"1v2\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.8076,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.8001,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.8147,\\\\n      \\\\\\\"ci_lower_above_theta\\\\\\\": true,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.8075,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0037\\\\n    },\\\\n    \\\\\\\"2v3\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.5933,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5847,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.6018,\\\\n      \\\\\\\"ci_lower_above_theta\\\\\\\": false,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5933,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0043\\\\n    },\\\\n    \\\\\\\"3v4\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.5492,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.541,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5573,\\\\n      \\\\\\\"ci_lower_above_theta\\\\\\\": false,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5493,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0042\\\\n    },\\\\n    \\\\\\\"4v5\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.5311,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5235,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5388,\\\\n      \\\\\\\"ci_lower_above_theta\\\\\\\": false,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5312,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0039\\\\n    }\\\\n  },\\\\n  \\\\\\\"elapsed_seconds\\\\\\\": 5780.0,\\\\n  \\\\\\\"obd_baseline\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9388,\\\\n    \\\\\\\"1v2\\\\\\\": 0.7382,\\\\n    \\\\\\\"2v3\\\\\\\": 0.53,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5022,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5219\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"code_qwen1b5\\\",\\n  \\\"model\\\": \\\"microsoft/deberta-v3-base\\\",\\n  \\\"method\\\": \\\"DeBERTa-v3-base fine-tuned 6-class\\\",\\n  \\\"n_samples\\\": 33000,\\n  \\\"epochs\\\": 3,\\n  \\\"lr\\\": 2e-05,\\n  \\\"batch_size\\\": 16,\\n  \\\"max_length\\\": 512,\\n  \\\"theta\\\": 0.6,\\n  \\\"kstar\\\": 2,\\n  \\\"pairwise_auc\\\": {\\n    \\\"0v1\\\": {\\n      \\\"auc\\\": 1.0,\\n      \\\"ci_lower\\\": 0.9999,\\n      \\\"ci_upper\\\": 1.0,\\n      \\\"ci_lower_above_theta\\\": true,\\n      \\\"boot_mean\\\": 1.0,\\n      \\\"boot_std\\\": 0.0\\n    },\\n    \\\"1v2\\\": {\\n      \\\"auc\\\": 0.8076,\\n      \\\"ci_lower\\\": 0.8001,\\n      \\\"ci_upper\\\": 0.8147,\\n      \\\"ci_lower_above_theta\\\": true,\\n      \\\"boot_mean\\\": 0.8075,\\n      \\\"boot_std\\\": 0.0037\\n    },\\n    \\\"2v3\\\": {\\n      \\\"auc\\\": 0.5933,\\n      \\\"ci_lower\\\": 0.5847,\\n      \\\"ci_upper\\\": 0.6018,\\n      \\\"ci_lower_above_theta\\\": false,\\n      \\\"boot_mean\\\": 0.5933,\\n      \\\"boot_std\\\": 0.0043\\n    },\\n    \\\"3v4\\\": {\\n      \\\"auc\\\": 0.5492,\\n      \\\"ci_lower\\\": 0.541,\\n      \\\"ci_upper\\\": 0.5573,\\n      \\\"ci_lower_above_theta\\\": false,\\n      \\\"boot_mean\\\": 0.5493,\\n      \\\"boot_std\\\": 0.0042\\n    },\\n    \\\"4v5\\\": {\\n      \\\"auc\\\": 0.5311,\\n      \\\"ci_lower\\\": 0.5235,\\n      \\\"ci_upper\\\": 0.5388,\\n      \\\"ci_lower_above_theta\\\": false,\\n      \\\"boot_mean\\\": 0.5312,\\n      \\\"boot_std\\\": 0.0039\\n    }\\n  },\\n  \\\"elapsed_seconds\\\": 5780.0,\\n  \\\"obd_baseline\\\": {\\n    \\\"0v1\\\": 0.9388,\\n    \\\"1v2\\\": 0.7382,\\n    \\\"2v3\\\": 0.53,\\n    \\\"3v4\\\": 0.5022,\\n    \\\"4v5\\\": 0.5219\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018tj3cbdzxhQqg6Z7b7NSkC",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "gen-depth-contamination",
+                "fields": [
+                  "*"
+                ],
+                "limit": 5,
+                "filters": {
+                  "status": "ANALYZING"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "2ba31082-4c14-45c2-813c-e89653eaa58b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PZEeGcnUxsDNUJy9AKYS4p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7070,
+                "cache_read_input_tokens": 25949,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7070
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T09:43:00.568Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018tj3cbdzxhQqg6Z7b7NSkC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_deberta_code_qwen1b5\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T03:34:21.140Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:20:39.314Z\\\", \\\"hypothesis\\\": \\\"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294849\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T07:33:30.520Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T09:20:38.702Z\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6769}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "a7d309c7-52fd-4c98-858d-fcf993b5e5d4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_deberta_code_qwen1b5\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T03:34:21.140Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:20:39.314Z\\\", \\\"hypothesis\\\": \\\"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294849\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T07:33:30.520Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T09:20:38.702Z\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6769}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_deberta_code_qwen1b5\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:34:21.140Z\", \"updated_at\": \"2026-05-20T09:20:39.314Z\", \"hypothesis\": \"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"294849\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\", \"submitted_at\": \"2026-05-20T07:33:30.520Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T09:20:38.702Z\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6769}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the data. Let me update the registry with the results.\n\nKey findings:\n- K* = 2 (matches OBD K*=2 for Code domain) → hypothesis confirmed (success)\n- Pairwise AUC:\n  - 0v1: 1.0000 [0.9999, 1.0000] — above theta\n  - 1v2: 0.8076 [0.8001, 0.8147] — above theta\n  - 2v3: 0.5933 [0.5847, 0.6018] — below theta (CI lower 0.5847 < 0.6)\n  - 3v4: 0.5492 [0.5410, 0.5573] — below theta\n  - 4v5: 0.5311 [0.5235, 0.5388] — below theta\n\nDeBERTa shows consistent gains over OBD in the early pairs with deltas around +0.05 to +0.07, though both methods converge on the same K* value. Now I'm updating the registry with these metrics.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "60a9ce7d-b879-45aa-9d65-499531ca413b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WAjbNC8QDDwWnkHF7NyYNn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2428,
+                "cache_read_input_tokens": 33019,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2428
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found the registry entry. Now updating it with metrics, conclusion, and DONE status."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "df4a3d33-5867-4d41-beb8-0e464d5b24d7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WAjbNC8QDDwWnkHF7NyYNn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2428,
+                "cache_read_input_tokens": 33019,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2428
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CTiG9CBKhikj97q5dxRVu6",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_deberta_code_qwen1b5",
+                "field": "metrics",
+                "value": {
+                  "K_star": 2,
+                  "theta": 0.6,
+                  "auc_0v1": 1,
+                  "auc_1v2": 0.8076,
+                  "auc_2v3": 0.5933,
+                  "auc_3v4": 0.5492,
+                  "auc_4v5": 0.5311,
+                  "ci_0v1": [
+                    0.9999,
+                    1
+                  ],
+                  "ci_1v2": [
+                    0.8001,
+                    0.8147
+                  ],
+                  "ci_2v3": [
+                    0.5847,
+                    0.6018
+                  ],
+                  "ci_3v4": [
+                    0.541,
+                    0.5573
+                  ],
+                  "ci_4v5": [
+                    0.5235,
+                    0.5388
+                  ],
+                  "obd_auc_0v1": 0.9388,
+                  "obd_auc_1v2": 0.7382,
+                  "obd_auc_2v3": 0.53,
+                  "obd_auc_3v4": 0.5022,
+                  "obd_auc_4v5": 0.5219,
+                  "elapsed_seconds": 5780
+                },
+                "project": "gen-depth-contamination"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "a503cee4-dd00-4a02-95db-b3c8123f3ca6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WAjbNC8QDDwWnkHF7NyYNn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2428,
+                "cache_read_input_tokens": 33019,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2428
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T09:43:12.164Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CTiG9CBKhikj97q5dxRVu6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_deberta_code_qwen1b5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T03:34:21.140Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:43:11.858Z\\\", \\\"hypothesis\\\": \\\"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294849\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T07:33:30.520Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T09:20:38.702Z\\\"}, \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"theta\\\": 0.6, \\\"auc_0v1\\\": 1, \\\"auc_1v2\\\": 0.8076, \\\"auc_2v3\\\": 0.5933, \\\"auc_3v4\\\": 0.5492, \\\"auc_4v5\\\": 0.5311, \\\"ci_0v1\\\": [0.9999, 1], \\\"ci_1v2\\\": [0.8001, 0.8147], \\\"ci_2v3\\\": [0.5847, 0.6018], \\\"ci_3v4\\\": [0.541, 0.5573], \\\"ci_4v5\\\": [0.5235, 0.5388], \\\"obd_auc_0v1\\\": 0.9388, \\\"obd_auc_1v2\\\": 0.7382, \\\"obd_auc_2v3\\\": 0.53, \\\"obd_auc_3v4\\\": 0.5022, \\\"obd_auc_4v5\\\": 0.5219, \\\"elapsed_seconds\\\": 5780}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6979}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "15000722-3b84-4e1f-a143-5e85a3f8bdf3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_deberta_code_qwen1b5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T03:34:21.140Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:43:11.858Z\\\", \\\"hypothesis\\\": \\\"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294849\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T07:33:30.520Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T09:20:38.702Z\\\"}, \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"theta\\\": 0.6, \\\"auc_0v1\\\": 1, \\\"auc_1v2\\\": 0.8076, \\\"auc_2v3\\\": 0.5933, \\\"auc_3v4\\\": 0.5492, \\\"auc_4v5\\\": 0.5311, \\\"ci_0v1\\\": [0.9999, 1], \\\"ci_1v2\\\": [0.8001, 0.8147], \\\"ci_2v3\\\": [0.5847, 0.6018], \\\"ci_3v4\\\": [0.541, 0.5573], \\\"ci_4v5\\\": [0.5235, 0.5388], \\\"obd_auc_0v1\\\": 0.9388, \\\"obd_auc_1v2\\\": 0.7382, \\\"obd_auc_2v3\\\": 0.53, \\\"obd_auc_3v4\\\": 0.5022, \\\"obd_auc_4v5\\\": 0.5219, \\\"elapsed_seconds\\\": 5780}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6979}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_code_qwen1b5\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:34:21.140Z\", \"updated_at\": \"2026-05-20T09:43:11.858Z\", \"hypothesis\": \"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"294849\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\", \"submitted_at\": \"2026-05-20T07:33:30.520Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T09:20:38.702Z\"}, \"metrics\": {\"K_star\": 2, \"theta\": 0.6, \"auc_0v1\": 1, \"auc_1v2\": 0.8076, \"auc_2v3\": 0.5933, \"auc_3v4\": 0.5492, \"auc_4v5\": 0.5311, \"ci_0v1\": [0.9999, 1], \"ci_1v2\": [0.8001, 0.8147], \"ci_2v3\": [0.5847, 0.6018], \"ci_3v4\": [0.541, 0.5573], \"ci_4v5\": [0.5235, 0.5388], \"obd_auc_0v1\": 0.9388, \"obd_auc_1v2\": 0.7382, \"obd_auc_2v3\": 0.53, \"obd_auc_3v4\": 0.5022, \"obd_auc_4v5\": 0.5219, \"elapsed_seconds\": 5780}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6979}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F8qt76YMwAYBC2onfyLujL",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_deberta_code_qwen1b5",
+                "field": "checkpoint_path",
+                "value": "/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json",
+                "project": "gen-depth-contamination"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "242ef447-cae5-46e5-884e-3e480663c2be",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WAjbNC8QDDwWnkHF7NyYNn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2428,
+                "cache_read_input_tokens": 33019,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2428
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T09:43:13.105Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F8qt76YMwAYBC2onfyLujL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_deberta_code_qwen1b5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T03:34:21.140Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:43:12.820Z\\\", \\\"hypothesis\\\": \\\"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294849\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T07:33:30.520Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T09:20:38.702Z\\\"}, \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"theta\\\": 0.6, \\\"auc_0v1\\\": 1, \\\"auc_1v2\\\": 0.8076, \\\"auc_2v3\\\": 0.5933, \\\"auc_3v4\\\": 0.5492, \\\"auc_4v5\\\": 0.5311, \\\"ci_0v1\\\": [0.9999, 1], \\\"ci_1v2\\\": [0.8001, 0.8147], \\\"ci_2v3\\\": [0.5847, 0.6018], \\\"ci_3v4\\\": [0.541, 0.5573], \\\"ci_4v5\\\": [0.5235, 0.5388], \\\"obd_auc_0v1\\\": 0.9388, \\\"obd_auc_1v2\\\": 0.7382, \\\"obd_auc_2v3\\\": 0.53, \\\"obd_auc_3v4\\\": 0.5022, \\\"obd_auc_4v5\\\": 0.5219, \\\"elapsed_seconds\\\": 5780}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.689}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "18e73535-f227-4ec7-9b38-614fc675951f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_deberta_code_qwen1b5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T03:34:21.140Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:43:12.820Z\\\", \\\"hypothesis\\\": \\\"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294849\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T07:33:30.520Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T09:20:38.702Z\\\"}, \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"theta\\\": 0.6, \\\"auc_0v1\\\": 1, \\\"auc_1v2\\\": 0.8076, \\\"auc_2v3\\\": 0.5933, \\\"auc_3v4\\\": 0.5492, \\\"auc_4v5\\\": 0.5311, \\\"ci_0v1\\\": [0.9999, 1], \\\"ci_1v2\\\": [0.8001, 0.8147], \\\"ci_2v3\\\": [0.5847, 0.6018], \\\"ci_3v4\\\": [0.541, 0.5573], \\\"ci_4v5\\\": [0.5235, 0.5388], \\\"obd_auc_0v1\\\": 0.9388, \\\"obd_auc_1v2\\\": 0.7382, \\\"obd_auc_2v3\\\": 0.53, \\\"obd_auc_3v4\\\": 0.5022, \\\"obd_auc_4v5\\\": 0.5219, \\\"elapsed_seconds\\\": 5780}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.689}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_code_qwen1b5\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:34:21.140Z\", \"updated_at\": \"2026-05-20T09:43:12.820Z\", \"hypothesis\": \"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"294849\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\", \"submitted_at\": \"2026-05-20T07:33:30.520Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T09:20:38.702Z\"}, \"metrics\": {\"K_star\": 2, \"theta\": 0.6, \"auc_0v1\": 1, \"auc_1v2\": 0.8076, \"auc_2v3\": 0.5933, \"auc_3v4\": 0.5492, \"auc_4v5\": 0.5311, \"ci_0v1\": [0.9999, 1], \"ci_1v2\": [0.8001, 0.8147], \"ci_2v3\": [0.5847, 0.6018], \"ci_3v4\": [0.541, 0.5573], \"ci_4v5\": [0.5235, 0.5388], \"obd_auc_0v1\": 0.9388, \"obd_auc_1v2\": 0.7382, \"obd_auc_2v3\": 0.53, \"obd_auc_3v4\": 0.5022, \"obd_auc_4v5\": 0.5219, \"elapsed_seconds\": 5780}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.689}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VuLSae2rsJ5qvcbKXAoqji",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_deberta_code_qwen1b5",
+                "field": "log_path",
+                "value": "~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log",
+                "project": "gen-depth-contamination"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "d4f475fd-d44f-44c8-9afe-c59f53c06151",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WAjbNC8QDDwWnkHF7NyYNn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2428,
+                "cache_read_input_tokens": 33019,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2428
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T09:43:14.180Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VuLSae2rsJ5qvcbKXAoqji",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_deberta_code_qwen1b5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T03:34:21.140Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:43:13.721Z\\\", \\\"hypothesis\\\": \\\"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294849\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T07:33:30.520Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T09:20:38.702Z\\\"}, \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"theta\\\": 0.6, \\\"auc_0v1\\\": 1, \\\"auc_1v2\\\": 0.8076, \\\"auc_2v3\\\": 0.5933, \\\"auc_3v4\\\": 0.5492, \\\"auc_4v5\\\": 0.5311, \\\"ci_0v1\\\": [0.9999, 1], \\\"ci_1v2\\\": [0.8001, 0.8147], \\\"ci_2v3\\\": [0.5847, 0.6018], \\\"ci_3v4\\\": [0.541, 0.5573], \\\"ci_4v5\\\": [0.5235, 0.5388], \\\"obd_auc_0v1\\\": 0.9388, \\\"obd_auc_1v2\\\": 0.7382, \\\"obd_auc_2v3\\\": 0.53, \\\"obd_auc_3v4\\\": 0.5022, \\\"obd_auc_4v5\\\": 0.5219, \\\"elapsed_seconds\\\": 5780}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9362}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "f2dba7fd-c29c-4322-b8a0-e41b7ca0d38c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_deberta_code_qwen1b5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T03:34:21.140Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:43:13.721Z\\\", \\\"hypothesis\\\": \\\"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294849\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T07:33:30.520Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T09:20:38.702Z\\\"}, \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"theta\\\": 0.6, \\\"auc_0v1\\\": 1, \\\"auc_1v2\\\": 0.8076, \\\"auc_2v3\\\": 0.5933, \\\"auc_3v4\\\": 0.5492, \\\"auc_4v5\\\": 0.5311, \\\"ci_0v1\\\": [0.9999, 1], \\\"ci_1v2\\\": [0.8001, 0.8147], \\\"ci_2v3\\\": [0.5847, 0.6018], \\\"ci_3v4\\\": [0.541, 0.5573], \\\"ci_4v5\\\": [0.5235, 0.5388], \\\"obd_auc_0v1\\\": 0.9388, \\\"obd_auc_1v2\\\": 0.7382, \\\"obd_auc_2v3\\\": 0.53, \\\"obd_auc_3v4\\\": 0.5022, \\\"obd_auc_4v5\\\": 0.5219, \\\"elapsed_seconds\\\": 5780}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9362}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_code_qwen1b5\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:34:21.140Z\", \"updated_at\": \"2026-05-20T09:43:13.721Z\", \"hypothesis\": \"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"294849\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\", \"submitted_at\": \"2026-05-20T07:33:30.520Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T09:20:38.702Z\"}, \"metrics\": {\"K_star\": 2, \"theta\": 0.6, \"auc_0v1\": 1, \"auc_1v2\": 0.8076, \"auc_2v3\": 0.5933, \"auc_3v4\": 0.5492, \"auc_4v5\": 0.5311, \"ci_0v1\": [0.9999, 1], \"ci_1v2\": [0.8001, 0.8147], \"ci_2v3\": [0.5847, 0.6018], \"ci_3v4\": [0.541, 0.5573], \"ci_4v5\": [0.5235, 0.5388], \"obd_auc_0v1\": 0.9388, \"obd_auc_1v2\": 0.7382, \"obd_auc_2v3\": 0.53, \"obd_auc_3v4\": 0.5022, \"obd_auc_4v5\": 0.5219, \"elapsed_seconds\": 5780}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9362}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now setting conclusion and status."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "acc3e4aa-9cab-4b88-87d1-44602fb45c56",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017zPBVUKbvD8x3SLgmEi2Zt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3663,
+                "cache_read_input_tokens": 35447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3663
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KASfRC5jDdaBTxC3n89S3n",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_deberta_code_qwen1b5",
+                "field": "conclusion",
+                "value": "success",
+                "project": "gen-depth-contamination"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "69449200-1f44-47bd-9677-1f11184c572d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017zPBVUKbvD8x3SLgmEi2Zt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3663,
+                "cache_read_input_tokens": 35447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3663
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T09:43:19.807Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KASfRC5jDdaBTxC3n89S3n",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_deberta_code_qwen1b5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T03:34:21.140Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:43:19.293Z\\\", \\\"hypothesis\\\": \\\"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294849\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T07:33:30.520Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T09:20:38.702Z\\\"}, \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"theta\\\": 0.6, \\\"auc_0v1\\\": 1, \\\"auc_1v2\\\": 0.8076, \\\"auc_2v3\\\": 0.5933, \\\"auc_3v4\\\": 0.5492, \\\"auc_4v5\\\": 0.5311, \\\"ci_0v1\\\": [0.9999, 1], \\\"ci_1v2\\\": [0.8001, 0.8147], \\\"ci_2v3\\\": [0.5847, 0.6018], \\\"ci_3v4\\\": [0.541, 0.5573], \\\"ci_4v5\\\": [0.5235, 0.5388], \\\"obd_auc_0v1\\\": 0.9388, \\\"obd_auc_1v2\\\": 0.7382, \\\"obd_auc_2v3\\\": 0.53, \\\"obd_auc_3v4\\\": 0.5022, \\\"obd_auc_4v5\\\": 0.5219, \\\"elapsed_seconds\\\": 5780}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9692}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "09a8bb70-e10a-488b-9857-53e87715bf53",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_deberta_code_qwen1b5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T03:34:21.140Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:43:19.293Z\\\", \\\"hypothesis\\\": \\\"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294849\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T07:33:30.520Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T09:20:38.702Z\\\"}, \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"theta\\\": 0.6, \\\"auc_0v1\\\": 1, \\\"auc_1v2\\\": 0.8076, \\\"auc_2v3\\\": 0.5933, \\\"auc_3v4\\\": 0.5492, \\\"auc_4v5\\\": 0.5311, \\\"ci_0v1\\\": [0.9999, 1], \\\"ci_1v2\\\": [0.8001, 0.8147], \\\"ci_2v3\\\": [0.5847, 0.6018], \\\"ci_3v4\\\": [0.541, 0.5573], \\\"ci_4v5\\\": [0.5235, 0.5388], \\\"obd_auc_0v1\\\": 0.9388, \\\"obd_auc_1v2\\\": 0.7382, \\\"obd_auc_2v3\\\": 0.53, \\\"obd_auc_3v4\\\": 0.5022, \\\"obd_auc_4v5\\\": 0.5219, \\\"elapsed_seconds\\\": 5780}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9692}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_code_qwen1b5\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:34:21.140Z\", \"updated_at\": \"2026-05-20T09:43:19.293Z\", \"hypothesis\": \"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"294849\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\", \"submitted_at\": \"2026-05-20T07:33:30.520Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T09:20:38.702Z\"}, \"metrics\": {\"K_star\": 2, \"theta\": 0.6, \"auc_0v1\": 1, \"auc_1v2\": 0.8076, \"auc_2v3\": 0.5933, \"auc_3v4\": 0.5492, \"auc_4v5\": 0.5311, \"ci_0v1\": [0.9999, 1], \"ci_1v2\": [0.8001, 0.8147], \"ci_2v3\": [0.5847, 0.6018], \"ci_3v4\": [0.541, 0.5573], \"ci_4v5\": [0.5235, 0.5388], \"obd_auc_0v1\": 0.9388, \"obd_auc_1v2\": 0.7382, \"obd_auc_2v3\": 0.53, \"obd_auc_3v4\": 0.5022, \"obd_auc_4v5\": 0.5219, \"elapsed_seconds\": 5780}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9692}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KZgntxjkvBKnzmsq5mQ37e",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_deberta_code_qwen1b5",
+                "field": "status",
+                "value": "DONE",
+                "project": "gen-depth-contamination"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "b9f4797d-8e04-48c9-af72-74427072de01",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NuW5J4n68MwaDX29R2cRDA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1009,
+                "cache_read_input_tokens": 39110,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1009
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T09:43:24.055Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KZgntxjkvBKnzmsq5mQ37e",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_deberta_code_qwen1b5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T03:34:21.140Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:43:22.944Z\\\", \\\"hypothesis\\\": \\\"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294849\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T07:33:30.520Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 7792.4, \\\"gpu_hours\\\": 2.16}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T09:20:38.702Z\\\"}, \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"theta\\\": 0.6, \\\"auc_0v1\\\": 1, \\\"auc_1v2\\\": 0.8076, \\\"auc_2v3\\\": 0.5933, \\\"auc_3v4\\\": 0.5492, \\\"auc_4v5\\\": 0.5311, \\\"ci_0v1\\\": [0.9999, 1], \\\"ci_1v2\\\": [0.8001, 0.8147], \\\"ci_2v3\\\": [0.5847, 0.6018], \\\"ci_3v4\\\": [0.541, 0.5573], \\\"ci_4v5\\\": [0.5235, 0.5388], \\\"obd_auc_0v1\\\": 0.9388, \\\"obd_auc_1v2\\\": 0.7382, \\\"obd_auc_2v3\\\": 0.53, \\\"obd_auc_3v4\\\": 0.5022, \\\"obd_auc_4v5\\\": 0.5219, \\\"elapsed_seconds\\\": 5780}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T09:43:22.944Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4709}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "c5257e09-fc1d-4bf8-8dc3-f04048b24656",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_deberta_code_qwen1b5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T03:34:21.140Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:43:22.944Z\\\", \\\"hypothesis\\\": \\\"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"294849\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T07:33:30.520Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 7792.4, \\\"gpu_hours\\\": 2.16}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T09:20:38.702Z\\\"}, \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"theta\\\": 0.6, \\\"auc_0v1\\\": 1, \\\"auc_1v2\\\": 0.8076, \\\"auc_2v3\\\": 0.5933, \\\"auc_3v4\\\": 0.5492, \\\"auc_4v5\\\": 0.5311, \\\"ci_0v1\\\": [0.9999, 1], \\\"ci_1v2\\\": [0.8001, 0.8147], \\\"ci_2v3\\\": [0.5847, 0.6018], \\\"ci_3v4\\\": [0.541, 0.5573], \\\"ci_4v5\\\": [0.5235, 0.5388], \\\"obd_auc_0v1\\\": 0.9388, \\\"obd_auc_1v2\\\": 0.7382, \\\"obd_auc_2v3\\\": 0.53, \\\"obd_auc_3v4\\\": 0.5022, \\\"obd_auc_4v5\\\": 0.5219, \\\"elapsed_seconds\\\": 5780}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T09:43:22.944Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4709}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_deberta_code_qwen1b5\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:34:21.140Z\", \"updated_at\": \"2026-05-20T09:43:22.944Z\", \"hypothesis\": \"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"294849\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\", \"submitted_at\": \"2026-05-20T07:33:30.520Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7792.4, \"gpu_hours\": 2.16}, \"reproduce\": {\"finished_at\": \"2026-05-20T09:20:38.702Z\"}, \"metrics\": {\"K_star\": 2, \"theta\": 0.6, \"auc_0v1\": 1, \"auc_1v2\": 0.8076, \"auc_2v3\": 0.5933, \"auc_3v4\": 0.5492, \"auc_4v5\": 0.5311, \"ci_0v1\": [0.9999, 1], \"ci_1v2\": [0.8001, 0.8147], \"ci_2v3\": [0.5847, 0.6018], \"ci_3v4\": [0.541, 0.5573], \"ci_4v5\": [0.5235, 0.5388], \"obd_auc_0v1\": 0.9388, \"obd_auc_1v2\": 0.7382, \"obd_auc_2v3\": 0.53, \"obd_auc_3v4\": 0.5022, \"obd_auc_4v5\": 0.5219, \"elapsed_seconds\": 5780}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T09:43:22.944Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4709}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (success)。\n\n## 分析摘要\n\n**exp_deberta_code_qwen1b5: Hypothesis confirmed (K\\*=2)。** DeBERTa supervised classifier 在 Code domain 上的 K\\*=2，与 OBD-LightGBM 的 K\\*=2 完全一致，证实 domain ceiling 与分类器架构无关。DeBERTa 在所有深度对上 AUC 均高于 OBD（delta +0.05~+0.07），但两者的可区分性边界一致：0v1 和 1v2 显著可区分（AUC CI lower > θ=0.6），2v3 及更深的对均落在 θ 以下。\n\n| Pair | DeBERTa AUC | 95% CI | OBD AUC | Delta |\n|------|------------|--------|---------|-------|\n| 0v1 | 1.0000 | [0.9999, 1.0000] | 0.9388 | +0.061 |\n| 1v2 | 0.8076 | [0.8001, 0.8147] | 0.7382 | +0.069 |\n| 2v3 | 0.5933 | [0.5847, 0.6018] | 0.5300 | +0.063 |\n| 3v4 | 0.5492 | [0.5410, 0.5573] | 0.5022 | +0.047 |\n| 4v5 | 0.5311 | [0.5235, 0.5388] | 0.5219 | +0.009 |"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "uuid": "0944b41d-1b9a-4b60-90ae-8e49b3eca32a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LDWBp3GcsNpytMeUa8v2ec",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1085,
+                "cache_read_input_tokens": 40119,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1085
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (success)。\n\n## 分析摘要\n\n**exp_deberta_code_qwen1b5: Hypothesis confirmed (K\\*=2)。** DeBERTa supervised classifier 在 Code domain 上的 K\\*=2，与 OBD-LightGBM 的 K\\*=2 完全一致，证实 domain ceiling 与分类器架构无关。DeBERTa 在所有深度对上 AUC 均高于 OBD（delta +0.05~+0.07），但两者的可区分性边界一致：0v1 和 1v2 显著可区分（AUC CI lower > θ=0.6），2v3 及更深的对均落在 θ 以下。\n\n| Pair | DeBERTa AUC | 95% CI | OBD AUC | Delta |\n|------|------------|--------|---------|-------|\n| 0v1 | 1.0000 | [0.9999, 1.0000] | 0.9388 | +0.061 |\n| 1v2 | 0.8076 | [0.8001, 0.8147] | 0.7382 | +0.069 |\n| 2v3 | 0.5933 | [0.5847, 0.6018] | 0.5300 | +0.063 |\n| 3v4 | 0.5492 | [0.5410, 0.5573] | 0.5022 | +0.047 |\n| 4v5 | 0.5311 | [0.5235, 0.5388] | 0.5219 | +0.009 |"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 58377,
+            "duration_api_ms": 55634,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "c8d54150-b4c7-43c8-95e3-10d8248b2f44",
+            "total_cost_usd": 0.37133675,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 29363,
+              "cache_read_input_tokens": 209842,
+              "output_tokens": 3245,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 29363,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 456,
+                  "cache_read_input_tokens": 40119,
+                  "cache_creation_input_tokens": 1085,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1085
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1627,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001722,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 3245,
+                "cacheReadInputTokens": 209842,
+                "cacheCreationInputTokens": 29363,
+                "webSearchRequests": 0,
+                "costUSD": 0.36961475,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "b4652a6b-2231-43e6-a11a-30e04000a5d3"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp-deberta-code-qwen1b5.md"
+}

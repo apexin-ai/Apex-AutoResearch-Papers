@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a78e1c8e39c8ccf7fccf",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 026 arxiv filtering",
+  "task_key": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_026_arxiv_filtering_20260518T102036_result.json",
+    "occurrence": 1,
+    "bytes": 1266,
+    "sha256": "ddfb7a79e8d5e47050986718f9389df0c2bbba7ec8fc38d12ba193be0e04906d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中：\n- **GPU 0/1/2**: 各 ~8115 MiB, ~80% 利用率，OOM 问题已解决\n- **GPU 3**: 5741 MiB (exp_027，未受影响)\n- **binary** (275 steps): ~35% 完成，~2.5 it/s\n- **no_filter / graduated** (825 steps): ~10% 完成，~2.5 it/s\n\n训练速度 ~2.5 it/s：\n- binary: 275 steps, 预计 ~2 分钟完成训练 + eval\n- no_filter/graduated: 825 steps, 预计 ~5.5 分钟完成训练 + eval\n- 每个 strategy 5 seeds，总计约 binary ~10 min, no_filter/graduated ~28 min\n\n**汇报：**\n\n| 项目 | 详情 |\n|------|------|\n| 数据路径 | `/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/` (depth_0-5.jsonl, 2200 docs/depth) |\n| 模型 | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B/` (Qwen2.5-1.5B base) |\n| 脚本 | `scripts/exp026_arxiv_filtering.py` + `scripts/run_exp026.sh` |\n| LoRA | rank=4, alpha=8, targets=q_proj+v_proj (544,768 trainable / 1.54B total, 0.04%) |\n| Strategies | no_filter (13200 docs, GPU 0), binary depth 0-1 (4400 docs, GPU 1), graduated α=0.9^d (13200 docs, GPU 2) |\n| Seeds | 42, 123, 456, 789, 1024 |\n| Launcher PID | 31749 |\n| 日志 | `logs/exp_026_arxiv_filtering.log` |\n| 预计完成 | ~30 分钟 |\n| Registry | exp_026_arxiv_filtering → RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-026-arxiv-filtering.md"
+}

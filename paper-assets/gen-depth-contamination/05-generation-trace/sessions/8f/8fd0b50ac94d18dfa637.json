@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fd0b50ac94d18dfa637",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 health check",
+  "task_key": "worker_infra_exp006_health_check_20260513T205932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006_health_check_20260513T205932_result.json",
+    "occurrence": 1,
+    "bytes": 754,
+    "sha256": "d075167db86c5ecb21f95d4726615727608489d9366b2271738d9d821d4114bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-006 状态：已终止\n\n| 检查项 | 结果 |\n|--------|------|\n| **PID 44953** | 已死，进程不存在 |\n| **GPU 利用率** | 0%，显存 0 MiB / 24564 MiB — GPU 完全空闲 |\n| **tmux session** | tmux 命令被 read-only 限制，无法检查 |\n| **残留进程** | 无任何 exp006 相关进程在运行 |\n| **日志末尾** | 脚本在输出 MMLU 各科分数后，因 `bc: command not found` 失败，退出码 127 |\n\n**根因**：`run_exp006.sh` 第 68 行调用了 `bc` 命令（可能用于计算平均分），但服务器上未安装 `bc`，导致脚本异常退出。\n\n**修复**：安装 `bc`（`apt install bc`）或将脚本中的 `bc` 计算改为 `python3 -c` 实现，然后重新启动实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-health-check.md"
+}

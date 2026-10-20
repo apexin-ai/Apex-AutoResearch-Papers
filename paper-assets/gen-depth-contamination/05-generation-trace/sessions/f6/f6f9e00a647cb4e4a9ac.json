@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6f9e00a647cb4e4a9ac",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops qwen7b code restart v4",
+  "task_key": "worker_ops_qwen7b-code-restart-v4_20260519T012853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen7b-code-restart-v4_20260519T012853_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "ad6c9b6901c4f431ce4ec8570fcc646ada672c8c281fee84465ecb7828a0e224"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_code_qwen7b 第 4 次启动成功，已确认 GPU 实际占用。**\n\n### nvidia-smi 确认结果\n\n| GPU | 显存占用 | GPU-Util | 进程 PID |\n|-----|---------|----------|---------|\n| cuda:1 | **15211 MiB / 24564 MiB** | **96%** | **114228** |\n\n### 关键信息\n- **PID**: 114228，python `run_pipeline.py`\n- **状态**: 已跳过 seed data 下载（使用复制的 depth_0.jsonl），正在生成 depth 1（5500 docs，batch_size=4），进度 4/1375 batches\n- **预计单 depth 耗时**: ~2h10m（按 5.72s/batch）\n\n### 之前 3 次失败的根因\n服务器无法访问 `huggingface.co`（返回 000），但 `HF_ENDPOINT` 未设置，导致 `datasets.load_dataset` 下载 C4 数据时 httpx client closed。\n\n### 本次修复\n1. 从 `exp_code_qwen1b5` 复制了相同的 `depth_0.jsonl`（MD5 一致），跳过 HF 下载\n2. 设置了 `HF_ENDPOINT=https://hf-mirror.com` 防止后续 HF 调用失败"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen7b-code-restart-v4.md"
+}

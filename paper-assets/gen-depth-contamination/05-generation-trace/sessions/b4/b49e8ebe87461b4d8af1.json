@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b49e8ebe87461b4d8af1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp wiki mistral7b",
+  "task_key": "worker_analysis_exp_wiki_mistral7b_20260517T195206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_wiki_mistral7b_20260517T195206_result.json",
+    "occurrence": 1,
+    "bytes": 738,
+    "sha256": "a7323ca40164db7d3a277ce781b998a23d3e0306233cb60e4c10e2260bc0e9a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果：Mistral-7B Wikipedia K\\* = 1（success）**\n\n关键发现：\n- depth 0→1 AUC=0.9607（极强可区分），depth 1→2 骤降至 0.5552（chance level），后续 depth 全部 ~0.50\n- JSD 同步印证：0→1 JSD=0.054，之后降至 0.003-0.006\n- 与 C4 (K\\*=1) 完全一致，与 arXiv (K\\*=3) 形成鲜明对比\n- 与其他模型 Wikipedia 结果一致（Pythia/OLMo/LLaMA 均 K\\*=1）\n\n这强化了 domain-dependent K\\* narrative：Wikipedia 和 C4 作为预训练高覆盖域呈现 one-wash，arXiv 作为专业域呈现 domain rescue。Mistral-7B 现有 3 domain 完整数据，可作为论文核心案例。\n\n报告已写入 artifacts，registry 已更新为 DONE(success)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-wiki-mistral7b.md"
+}

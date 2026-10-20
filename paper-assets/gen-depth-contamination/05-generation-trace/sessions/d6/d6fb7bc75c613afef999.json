@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6fb7bc75c613afef999",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research discussion outline",
+  "task_key": "worker_research_discussion_outline_20260513T184428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_discussion_outline_20260513T184428_result.json",
+    "occurrence": 1,
+    "bytes": 602,
+    "sha256": "8ca10ba8716e6b83501b943c68f1d4884a2b779d78a2c378eb4375d5654c756d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "大纲已写入 `artifacts/discussion_outline.md`。\n\n结构：Discussion 7 小节（K* 理论意义 → 实践含义 → generation mode confound → text-intrinsic 分解 → limitations 6 条 → Drayson 对比 → broader impact），Conclusion 3 小节（贡献总结 + actionable takeaway + 5 条 future work）。\n\n6 处 [PENDING] 标记对应 exp-006（graduated filtering downstream）和 exp-015（neural probe）。所有跨模型 claim 限定于 continuation mode，Qwen-rewrite 仅用于 mode analysis。θ=0.60 sensitivity 在 §6.5(c) 作为 limitation 充分讨论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-discussion-outline.md"
+}

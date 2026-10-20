@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db5d1e98ea993aeb158d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check urgent gpu status",
+  "task_key": "worker_check_urgent_gpu_status_20260516T175648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_urgent_gpu_status_20260516T175648_result.json",
+    "occurrence": 1,
+    "bytes": 1584,
+    "sha256": "b47d3de16f4b05e39495728fae7f12bccae74e9d8feaaba6d1fcce5ff5c67eef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 3987/24564 MiB | 49% | **在跑** — exp-022 `qwen_cont256__olmo` (PID 65356) |\n| 1 | 0/24564 MiB | 0% | **空闲** |\n| 2 | 0/24564 MiB | 0% | **空闲** |\n| 3 | 3089/24564 MiB | 41% | **在跑** — exp-022 `qwen_cont256__olmo` (PID 66243) |\n\n---\n\n## exp-024 (arXiv domain) — 已完成\n\n**K\\* = 3**\n\n| 对比 | AUC | JSD |\n|------|-----|-----|\n| 0v1 | 0.9948 ± 0.0008 | 0.2030 |\n| 1v2 | 0.8581 ± 0.0123 | 0.0773 |\n| **2v3** | **0.6436 ± 0.0219** | **0.0198** |\n| 3v4 | 0.5440 ± 0.0164 | 0.0083 |\n| 4v5 | 0.5299 ± 0.0242 | 0.0077 |\n\nTop-3 features: freq_entropy (9880), surp_std (8425), surp_mean (7643)\n\n---\n\n## exp-025 (Pythia arXiv) — 未启动\n\n结果目录 `results/exp_025_pythia_arxiv/` 不存在，无相关进程。`download_arxiv_seed.py` (PID 25732) 仍在运行，可能是前置依赖。\n\n---\n\n## exp-022 (cross-scorer matrix) — 进行中\n\n- **已完成**: 11 组合（有 summary.txt）\n- **当前在跑**: `qwen_cont256__olmo`（cuda:0 + cuda:3 各一个进程，处于 feature extraction 阶段 ~75-85%）\n- **注意**: 两个脚本 (`exp022_cuda0.sh` + `exp022_cross_scorer_matrix.sh`) 同时对同一 combo 写同一目录，可能冲突\n\n---\n\n## 可用卡\n\n**GPU 1 和 GPU 2 完全空闲**，可立即分配新任务。\n\n**风险提示**: exp-022 的两个脚本疑似重复跑同一个 combo (`qwen_cont256__olmo`)，建议检查是否需要 kill 其中一个以避免文件写冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-urgent-gpu-status.md"
+}

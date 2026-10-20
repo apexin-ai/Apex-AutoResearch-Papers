@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70eb76386be825da8c9c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra cqa1 disk cleanup",
+  "task_key": "worker_infra_cqa1_disk_cleanup_20260518T021820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_cqa1_disk_cleanup_20260518T021820_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "bff8808df318a8cf050d0659918bd3c201a8f2de71cc69e80ac17927802cbd47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**结果：磁盘从 97%（假设之前）降到 16%（39G/250G），释放了约 61G。**\n\n保留的内容：\n- Qwen 系列（20G）\n- Qwen2.5-14B-Instruct-AWQ（9.4G）\n- Pythia-1.4B（5.5G + hub 2.8G）\n- 所有正在运行实验的数据和结果\n- 所有 exp_024_arxiv、exp_arXiv_qwen7b 源数据\n\n删除的内容：\n- LLaMA-3.1-8B（30G）\n- Mistral-7B-v0.3（28G）\n- OLMo-1B（4.4G）\n- Dataset 缓存（c4, arxiv-summarization, wikipedia）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cqa1-disk-cleanup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62eba5d2579e859c7e43",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp 009 crash v3",
+  "task_key": "worker_diagnose_exp_009_crash_v3_20260517T000217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_009_crash_v3_20260517T000217_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "f8d0415f6b8d318feb4c70bcb15d2a2e0ea4265eec760c916438962f342ef039"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部正常运行：\n\n- **GPU 0**: exp-008 (494 MiB)\n- **GPU 1**: exp_009_10pct_v3 (6616 MiB) — 已开始 continued pretraining\n- **GPU 2**: exp_009_30pct_v3 (3482 MiB) — 加载训练模型\n- **GPU 3**: exp_009_50pct_v3 (3482 MiB) — 加载训练模型\n\n## 总结\n\n**Crash 原因**：不是网络问题，是 **CUDA OOM**。MMLU 5-shot 评估使用 `batch_size=8`，loglikelihood 计算时 logits 张量 (8×~2000×151936) 超出 24GB 显存。\n\n**修复内容** (`scripts/exp009_dose_response.py`):\n1. `batch_size=8` → `batch_size=\"auto:4\"` — 自动找最大安全 batch size（smoke test 确认找到 64）\n2. 移除 `simple_evaluate` 中重复的 `batch_size=8` 参数\n3. 添加 `max_length=2048` 限制序列长度\n4. 添加 `HF_DATASETS_OFFLINE=1`、`HF_HUB_OFFLINE=1`、`TRANSFORMERS_OFFLINE=1` 防止网络请求\n\n3 个 v3 实验已在 GPU 1/2/3 上运行，预计 ~5h/GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-009-crash-v3.md"
+}

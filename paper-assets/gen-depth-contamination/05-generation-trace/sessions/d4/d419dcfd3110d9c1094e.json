@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d419dcfd3110d9c1094e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper fix w6 structural confound",
+  "task_key": "worker_paper_fix_w6_structural_confound_20260516T032107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_w6_structural_confound_20260516T032107_result.json",
+    "occurrence": 1,
+    "bytes": 868,
+    "sha256": "70f397f815672ca591d6910732b1e5840d4fe404a8bdf7f2c43acb55d36515f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Discussion 第 6.4 节现在包含完整的三层论证：\n\n1. **方向相反**（line 41-42）：depth-0 人类文本更短（~191 tokens），generated 更长（195-256），length asymmetry 让 0v1 更保守而非虚高\n2. **depth 1-5 稳定**（line 44-46）：各模型内 depth 1-5 token 数变化 ≤4 tokens，无单调递减趋势\n3. **OLMo 零截断控制**（line 48-49）：OLMo 全部 256 tokens、<1% EOS 截断，K*=2 仍成立（1v2 AUC=0.615, 2v3=0.550）\n\n配套设施已到位：\n- Appendix 表格 `tab:token_length`（appendix.tex line 145-173）含 5 个模型配置 + 4 个解码策略的逐 depth token 统计和 EOS 截断率\n- Limitations (12) 已交叉引用 `Section~\\ref{sec:length_confound}` 和 `Table~\\ref{tab:token_length}`\n- appendix_extended.tex Extended Limitations 也有 token length 段落呼应"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-w6-structural-confound.md"
+}

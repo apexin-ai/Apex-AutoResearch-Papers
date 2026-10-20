@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec63c9e288fa5a99fc6d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper compile d110 fix",
+  "task_key": "worker_paper_compile_d110_fix_20260523T032715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_d110_fix_20260523T032715_result.json",
+    "occurrence": 1,
+    "bytes": 1256,
+    "sha256": "d5fc138e489026ba8f7d4e702c61a97c09effb7ce6826a03181d62f4c1c24330"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译结果：\n\n| 项目 | 结果 |\n|------|------|\n| 编译状态 | **成功，0 errors** |\n| Warnings | 16（均为 hyperref PDF string token 和 float specifier，无实质问题） |\n| 总页数 | **18 页** |\n| 正文页数 | **10 页**（Appendix A 从第 11 页开始） |\n\n---\n\n**表格验证 (`tab_domain_model_kstar_full.tex`)**：\n\n1. **脚注中的 scorer 名称**：\n   - 第 24 行 `\\textsuperscript{$\\dagger$}` 脚注：提到 \"cross-family scorer (**Pythia-1.4B**)\"  ✅\n   - 但同一脚注也提到 \"**Qwen-1.5B scorer** yields $K^*{=}2$\" — 这是描述 scorer artifact 现象，不是推荐值。Pythia-1.4B 作为 cross-family scorer 出现在脚注中。✅\n\n2. **arXiv K\\*=3 的 `\\textsuperscript` 标记**：\n   - Qwen2.5-7B (第 13 行): `\\textbf{3}\\textsuperscript{$\\|$}` ✅\n   - LLaMA-3.1-8B (第 15 行): `\\textbf{3}\\textsuperscript{$\\|$}` ✅\n   - Mistral-7B (第 16 行): `\\textbf{3}\\textsuperscript{$\\|$}` ✅\n\n三个模型的 arXiv K\\*=3 单元格均带有 `\\textsuperscript{$\\|$}` 标记，对应脚注 `‖` 解释了 scorer-matched 与 cross-scorer bootstrap CI 的关系。\n\n**注意**：正文 10 页超出 EMNLP 2026 的 8 页限制，需要压缩 2 页。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-d110-fix.md"
+}

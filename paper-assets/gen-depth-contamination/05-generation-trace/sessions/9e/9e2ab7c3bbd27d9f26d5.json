@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e2ab7c3bbd27d9f26d5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops pythia14b nucleus rerun",
+  "task_key": "worker_ops_pythia14b_nucleus_rerun_20260521T141021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pythia14b_nucleus_rerun_20260521T141021_result.json",
+    "occurrence": 1,
+    "bytes": 607,
+    "sha256": "f4ea7ca86522cd463e38fc928059b27beaff2c3d941347c38fd3780a8b838536"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 运行正常。当前进度：depth 1 约 4/625 batches, ~3.7s/batch。\n\n**当前状态总结**：\n\n| 项 | 值 |\n|---|---|\n| 实验 | `exp_pythia14b_c4_nuc` |\n| 模型 | Pythia-1.4B (continuation mode) |\n| Sampling | `do_sample=True, top_p=0.95, temperature=1.0` |\n| GPU | cuda:1 (4090D, 空闲) |\n| 当前步骤 | Step 3 depth 1 generation (4/625) |\n| 预估 depth 1 完成 | ~22:53 CST |\n| 预估全 pipeline | ~02:00-02:30 CST (5/22) |\n| Screen session | `pythia14b_nuc` |\n| 日志 | `logs/pythia14b_nuc.log` |\n\n需要我定期轮询还是你之后手动检查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pythia14b-nucleus-rerun.md"
+}

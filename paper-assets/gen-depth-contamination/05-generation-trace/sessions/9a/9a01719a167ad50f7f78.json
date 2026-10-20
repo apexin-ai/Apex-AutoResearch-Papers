@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a01719a167ad50f7f78",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 status and next",
+  "task_key": "worker_infra_exp006-status-and-next_20260515T034411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006-status-and-next_20260515T034411_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "867cddbf1266837090175a16adf98cf59f7ae264b6bd377b3a6a5aba9c40c4ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**STATUS: still_running**\n**PROGRESS: 42/51**\n\n当前正在训练 `surprisal_s123`，训练进度 39% (547/1407 steps, ~1.27 it/s)。\n\n### 剩余 runs (9)\n| # | Run |\n|---|-----|\n| ▶ | surprisal_s123 (进行中) |\n| 2 | surprisal_s456 |\n| 3 | surprisal_s789 |\n| 4 | surprisal_s1024 |\n| 5 | dsir_s42 |\n| 6 | dsir_s123 |\n| 7 | dsir_s456 |\n| 8 | dsir_s789 |\n| 9 | dsir_s1024 |\n\n### 时间估算\n- 每个 run ~45 min（从历史 timestamps 推算）\n- 当前 run 剩余 ~61% → ~27 min\n- 剩余总计: 27 min + 8 × 45 min ≈ **6.5 小时**\n- 预计完成: **~18:15 (今天)**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-status-and-next.md"
+}

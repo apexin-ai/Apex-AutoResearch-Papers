@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b599dbd8711c449eb695",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper fix ing appendix",
+  "task_key": "worker_paper_fix-ing-appendix_20260519T035811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-ing-appendix_20260519T035811_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "cc431c99cbb7d3ea4806efc6c47986f473d610dffd4f9255b4001919824fc22b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "剩余 4 处匹配均不在指定的 16 个位置中（分别在 table caption、figure caption 和正文其他段落），不在修改范围内。\n\n16 处 -ing 分词短语全部改写完成。改写方式：将逗号+分词短语拆分为独立句子，用 \"therefore\"、\"this creates\" 等衔接，未使用 \"This indicates/confirms\" 句式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-ing-appendix.md"
+}

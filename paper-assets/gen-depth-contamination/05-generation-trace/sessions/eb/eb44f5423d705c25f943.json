@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb44f5423d705c25f943",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp arXiv pair submit",
+  "task_key": "worker_code_exp_arXiv_pair_submit_20260517T112129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_arXiv_pair_submit_20260517T112129_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "6c318c6fa70efcc0e28fd7482fa00c493bec061a52663cee1de64fa30167744f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已经有这两个实验的条目（状态 ALLOCATED），且 `submit_training_job` 已自动更新了 spec 中的 command/server/gpu/pid/log_path 等信息。不需要再手动 update_registry。\n\n两个实验已成功提交并在运行：\n\n| 实验 | GPU | PID | 模型 | 状态 |\n|------|-----|-----|------|------|\n| exp_arXiv_olmo | cuda:0 | 26733 | OLMo-1B-hf | RUNNING (4908 MiB) |\n| exp_arXiv_llama8b | cuda:1 | 27469 | Meta-Llama-3.1-8B | RUNNING (3350 MiB, 加载中) |\n\n- OLMo-1B 预计 1-2 小时完成\n- LLaMA-3.1-8B (8B) batch_size 已降到 8，预计 3-4 小时\n- 日志路径：`~/runs/gen-depth-contamination/exp_arXiv_olmo.log` 和 `exp_arXiv_llama8b.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-arxiv-pair-submit.md"
+}

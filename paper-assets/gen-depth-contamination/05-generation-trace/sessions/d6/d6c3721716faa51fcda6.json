@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6c3721716faa51fcda6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops cloud model download retry",
+  "task_key": "worker_ops_cloud_model_download_retry_20260517T170126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cloud_model_download_retry_20260517T170126_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "2bfcd345fe6b618891fd1168605d3ab5d0cde214896853e01aa9a789a8cdb915"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 14B — 完成 ✅\n- 下载方式：modelscope（之前已完成）\n- 8/8 shards, 29.6GB, config/tokenizer/index 齐全\n- 路径：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B`\n\n### 32B — 下载进行中 ⏳\n- 下载方式：modelscope（PID 4571, `/tmp/dl_32b_v2.py`）\n- shards 1-8 已完成，shards 9-15 正在并行下载（7 streams，各 36%-60%）\n- shards 16-17 尚未开始\n- 速度：每流 2-4 MB/s\n- 预计剩余：30-60 分钟\n- 路径：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-32B`\n\n### 磁盘\n- 可用 178GB，14B(28G)+32B(~65G)=93G 足够\n\n**不需要额外操作**，32B 下载进程正常运行中。需要我过一会儿回来检查完成状态吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cloud-model-download-retry.md"
+}

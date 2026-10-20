@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "829a2ba5b7773fe3f030",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis cross transfer completion check",
+  "task_key": "worker_analysis_cross-transfer-completion-check_20260520T003813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross-transfer-completion-check_20260520T003813_result.json",
+    "occurrence": 1,
+    "bytes": 1793,
+    "sha256": "96330acccefcd0bb538b0180230af7d62eef55a43a2189938991614618b32161"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the complete status report:\n\n---\n\n## DeBERTa Cross-Transfer Status\n\n### Processes\nAll 3 PIDs (208306/208307/208308) exited. All 4 GPUs idle (0%, 0 MiB). No tmux sessions.\n\n### GPU Assignments (all completed successfully)\n| GPU | Pairs Run |\n|---|---|\n| GPU1 | pythia↔olmo, pythia↔qwen7b |\n| GPU2 | olmo↔qwen7b, pythia→llama8b, llama8b→pythia |\n| GPU3 | olmo↔llama8b, **pythia↔mistral7b** (wrong pairs) |\n\n### Coverage: 10/12 expected pairs complete\n\n**Missing 2 pairs** (GPU3 ran mistral7b pairs instead):\n- `wiki_qwen7b → wiki_llama8b`\n- `wiki_llama8b → wiki_qwen7b`\n\n**Extra 2 pairs** (bonus, not in expected 4-model set):\n- `wiki_pythia → wiki_mistral7b` (K\\*=2)\n- `wiki_mistral7b → wiki_pythia` (K\\*=2)\n\n### K\\* Indexing: 3 JSONs need +1 correction\n\nNone of the 12 JSONs have the `kstar_indexing` field. 3 are still 0-indexed:\n\n| File | Current K\\* | Corrected K\\* (1-indexed) |\n|---|---|---|\n| `wiki_pythia__to__wiki_olmo` | 0 | **1** |\n| `wiki_olmo__to__wiki_qwen7b` | 1 | **2** |\n| `wiki_olmo__to__wiki_llama8b` | 1 | **2** |\n\nRemaining 7 JSONs already have correct 1-indexed values.\n\n### Cross-Transfer Matrix (corrected K\\*, 1-indexed)\n\n| Train ↓ \\ Test → | pythia | olmo | qwen7b | llama8b |\n|---|---|---|---|---|\n| **pythia** | — | K\\*=1 | K\\*=3 | K\\*=2 |\n| **olmo** | K\\*=1 | — | K\\*=2 | K\\*=2 |\n| **qwen7b** | K\\*=2 | K\\*=1 | — | ❌ missing |\n| **llama8b** | K\\*=2 | K\\*=1 | ❌ missing | — |\n\n### Actions Needed\n1. **Rerun 2 missing pairs** on an available GPU: qwen7b↔llama8b\n2. **Fix 3 JSONs**: apply +1 to kstar and add `\"kstar_indexing\": \"1-indexed\"` to all JSONs\n3. **Registry**: not updated (experiment incomplete at 10/12)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-transfer-completion-check.md"
+}

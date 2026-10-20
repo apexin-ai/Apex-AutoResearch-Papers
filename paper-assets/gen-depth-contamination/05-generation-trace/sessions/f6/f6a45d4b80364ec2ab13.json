@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6a45d4b80364ec2ab13",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper compile d110",
+  "task_key": "worker_paper_compile_d110_20260523T032352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_d110_20260523T032352_result.json",
+    "occurrence": 1,
+    "bytes": 855,
+    "sha256": "f02787fa83d057bba3203b40c52b5fc63df94d4272959c4c0c54b0a947c8910c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译结果：\n\n| 项目 | 结果 |\n|------|------|\n| 编译状态 | **成功**，0 errors |\n| 总页数 | **18 页**（PDF）/ pdftotext 报 19 页（含尾页空白） |\n| 正文页数 | **8 页**（Limitations 在第 8 页，References 从第 9 页起） |\n| Warnings | 3 类（均无害）：`'h' float specifier changed to 'ht'`、`caption hypcap` 忽略、`hyperref` Unicode token |\n\n5 处文本验证全部通过：\n\n1. `main.tex:37` — Abstract: \"three independent architecture families\" ✓\n2. `main.tex:72` — Limitations: \"three model families (with bootstrap CI support)\" ✓\n3. `conclusion.tex:4` — \"three independent architecture families\" ✓\n4. `experiments_c1.tex:126` — \"across three architecture families\" ✓\n5. `discussion.tex:26` — \"across three independent architecture families\" ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-d110.md"
+}

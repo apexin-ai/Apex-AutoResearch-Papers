@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "555ced127f559985d09f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp 009 v3 progress",
+  "task_key": "worker_analysis_exp_009_v3_progress_20260517T081806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_009_v3_progress_20260517T081806_result.json",
+    "occurrence": 1,
+    "bytes": 1251,
+    "sha256": "72809af18b49c7b061af44369fa8ddc323dd55659e924f46de8767c68875eef2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-009 v3 Dose-Response 进度汇报\n\n| Ratio | PID | 状态 | 已完成 | 当前任务 | 预计剩余 |\n|-------|-----|------|--------|----------|----------|\n| **10%** | 4187 | **存活** (1h12m) | **13/15** | seed=4, binary_ours — eval 68% (65949/96336) | **~30 min** |\n| **30%** | 4327 | **存活** (1h12m) | **13/15** | seed=4, binary_ours — eval 46% (43841/96336) | **~35 min** |\n| **50%** | 4404 | **存活** (1h12m) | **12/15** | seed=4, no_filter — eval 35% (33855/96336) | **~55 min** |\n\n### 结果文件统计\n路径: `results/exp_009_dose_response/ratio_XX/`\n\n- **ratio_10**: 13 个 eval.json (seed 0-3 全部完成 + seed4 no_filter)\n- **ratio_30**: 13 个 eval.json (seed 0-3 全部完成 + seed4 no_filter)\n- **ratio_50**: 12 个 eval.json (seed 0-3 全部完成)\n\n### 剩余工作\n- **10%**: binary_ours_seed4 (当前 68%) → graduated_seed4 = 2 cycles\n- **30%**: binary_ours_seed4 (当前 46%) → graduated_seed4 = 2 cycles\n- **50%**: no_filter_seed4 (当前 35%) → binary_ours_seed4 → graduated_seed4 = 3 cycles\n\nSeeds 0-3 全部从之前 run 恢复跳过。每个 cycle 约 20-25 min (train ~3min + eval ~18min)。预计 10%/30% 约 30-35 min 内完成，50% 约 55 min 内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-009-v3-progress.md"
+}

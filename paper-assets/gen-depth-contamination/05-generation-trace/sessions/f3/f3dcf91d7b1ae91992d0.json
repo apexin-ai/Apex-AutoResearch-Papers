@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3dcf91d7b1ae91992d0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 exit cleanup",
+  "task_key": "worker_infra_exp006-exit-cleanup_20260514T213352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006-exit-cleanup_20260514T213352_result.json",
+    "occurrence": 1,
+    "bytes": 502,
+    "sha256": "fc9a4bbd587d3ccc1eb316261ca0428acebd85541c0702ad3d8fa65db8b73ed5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。汇总：\n\n| 项目 | 结果 |\n|------|------|\n| **Exit file** | `/tmp/agent-ml-exit/exp_006_graduated_filtering.exit` 已删除（内容: `124\\|2026-05-14T21:02:47Z`，exit code 124 = timeout） |\n| **Tmux session** | `exp_006_graduated_filtering`（不是 exp006_resume） |\n| **GPU 状态** | 83% 利用率，13717 MiB 显存占用，训练在跑 |\n| **已完成 runs** | 0（`artifacts/exp-006/runs/` 下无 eval_results.json） |\n\ncron 误报问题已解决。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-exit-cleanup.md"
+}

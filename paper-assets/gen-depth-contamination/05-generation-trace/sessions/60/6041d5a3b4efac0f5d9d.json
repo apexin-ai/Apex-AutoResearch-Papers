@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6041d5a3b4efac0f5d9d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper r26 mf1 sf3 arxiv bonferroni",
+  "task_key": "worker_paper_r26_mf1_sf3_arxiv_bonferroni_20260522T082230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r26_mf1_sf3_arxiv_bonferroni_20260522T082230_result.json",
+    "occurrence": 1,
+    "bytes": 1690,
+    "sha256": "5362f452ad2a44cd334f97d1c7875569cb651d1d4bd0c311a598ace897c48a43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 结果汇总\n\n### Part 1: MF-1 — arXiv 2v3 CI\n\n**JSON 验证**（均正确）：\n- Qwen arXiv 2v3: AUC=0.6427, CI=[0.6275, 0.6575], perm_p=0.0001\n- Pythia arXiv 2v3: AUC=0.6544, CI=[0.6401, 0.6688], perm_p=0.0001\n\n**修改**：\n1. `appendix.tex` Table S12 arXiv 2v3 行：`.6436` → `$.6436\\;[.628,\\,.658]$` + 脚注（p<0.001, CI lower > θ）\n2. `experiments_c1.tex` Section 4.6：arXiv 讨论句添加了两个模型的 2v3 CI 和 \"CI lower bounds above θ\" 措辞\n\n### Part 2: SF-3 — Bonferroni 99.5% CI\n\nα_corr = 0.005, z = 2.807\n\n| Config | Boundary | AUC | σ_boot | 99.5% CI | Pass θ |\n|---|---|---|---|---|---|\n| Qwen-rw | 1v2 | .6955 | .0046 | [.683, .708] | ✓ |\n| Pythia-1.4B | 1v2 | .6539 | .0046 | [.641, .667] | ✓ |\n| Qwen-base | 1v2 | .6260 | .0047 | [.613, .639] | ✓ |\n| Qwen-7B | 1v2 | .6168 | .0046 | [.604, .630] | ✓ |\n| **LLaMA-8B** | **1v2** | **.6123** | **.0048** | **[.599, .626]** | **✗** |\n| **Qwen-cont** | **1v2** | **.6112** | **.0049** | **[.598, .625]** | **✗** |\n| OLMo-1B | 0v1 | .9860 | .0009 | [.983, .989] | ✓ |\n| Mistral-7B | 0v1 | .9842 | .0009 | [.982, .987] | ✓ |\n| Pythia-6.9B | 0v1 | .9599 | ~.0015† | [.956, .964] | ✓ |\n| Gemma-2-2B | 0v1 | .9530 | .0018 | [.948, .958] | ✓ |\n\n**2/10 CI lower bound 跌破 θ=0.60**：\n- **Qwen-cont**：CI_lower = 0.5976 < 0.60（符合预期）\n- **LLaMA-8B**：CI_lower = 0.5988 < 0.60（额外发现）\n\nBonferroni 表已添加到 `appendix_extended.tex` Section \"Bonferroni-Corrected Confidence Intervals\"。正文 6/10 计数未修改。\n\n†Pythia-6.9B 无单独 bootstrap JSON，σ_boot 从同类配置估计。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r26-mf1-sf3-arxiv-bonferroni.md"
+}

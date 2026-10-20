@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "704dcf3966727a37dee2",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code new plot scripts",
+  "task_key": "worker_code_new_plot_scripts_20260516T084238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_new_plot_scripts_20260516T084238_result.json",
+    "occurrence": 1,
+    "bytes": 1616,
+    "sha256": "65291f0ee5297316b74b0d5fecd2af09835c7a9ed095206559060ac2935dda9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 产出\n\n| 脚本 | 路径 | 功能 | 数据源 | PDF 大小 |\n|------|------|------|--------|----------|\n| `transfer_heatmap.py` | `scripts/transfer_heatmap.py` | Cross-model transfer AUC 热力图 (4×4 矩阵，对角线高亮) | 嵌入 paper data (exp-013)；自动发现 `*transfer*.json` | 30.6 KB |\n| `plot_auc_decay_ci.py` | `scripts/plot_auc_decay_ci.py` | AUC decay + 95% CI band (fill_between) | `artifacts/exp016_bootstrap_ci.json` + 3 个 `pairwise_auc.json` (per_fold → SE) | 23.0 KB |\n| `plot_filtering_strategies.py` | `scripts/plot_filtering_strategies.py` | Filtering 策略对比柱状图 (5 策略 + error bar) | 嵌入 paper data (exp-006)；自动发现 `*filter*.json` | 25.5 KB |\n\n### 输出文件\n- `artifacts/figures/fig3_transfer_heatmap.pdf` — 4 模型 transfer 矩阵，RdYlGn colormap\n- `artifacts/figures/fig_s1_auc_decay_ci.pdf` — 4 配置 AUC decay 曲线 + CI band（Qwen-base bootstrap + Pythia-greedy/Length-128/Qwen-rw fold-CI）\n- `artifacts/figures/fig_filtering_strategies.pdf` — 5 策略 bar chart，Binary K* filtering 最优\n\n### 数据说明\n- **Transfer (exp-013)** 和 **Filtering (exp-006)** 数据不在磁盘上（可能在旧服务器 westc-26893 或未运行）。脚本使用 paper_framing 中的数值作为嵌入 fallback，同时支持自动发现 JSON 文件——当 exp-022 cross-scorer 或 exp-006 实际运行后，放置对应 JSON 即可替换嵌入数据。\n- **Bootstrap CI** 真实数据可用：exp-016 有完整 bootstrap CI，另 3 个实验通过 per-fold AUC 计算近似 CI。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-new-plot-scripts.md"
+}

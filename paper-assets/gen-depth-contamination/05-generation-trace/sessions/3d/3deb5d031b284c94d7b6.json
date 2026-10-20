@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "3deb5d031b284c94d7b6",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code llama8b 10k results bootstrap",
+  "task_key": "worker_code_llama8b_10k_results_bootstrap_20260522T193740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama8b_10k_results_bootstrap_20260522T193740.log",
+    "occurrence": 1,
+    "bytes": 1063451,
+    "sha256": "e5db49c2d85db28c946c6db5375181dea1828bb45c00ba840c989a8847c44b74"
+  },
+  "statistics": {
+    "messages": 386,
+    "user_turns": 1,
+    "tool_calls": 162,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 162,
+      "tool_result": 162,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 365,
+      "chunks": [
+        {
+          "path": "3deb5d031b284c94d7b6-part-0001.json",
+          "message_count": 179
+        },
+        {
+          "path": "3deb5d031b284c94d7b6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3deb5d031b284c94d7b6-part-0003.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "3deb5d031b284c94d7b6-part-0003.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama8b-10k-results-bootstrap.md"
+}

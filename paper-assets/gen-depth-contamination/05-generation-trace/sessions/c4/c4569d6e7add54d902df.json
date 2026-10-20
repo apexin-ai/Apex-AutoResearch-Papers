@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4569d6e7add54d902df",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp deberta arxiv qwen1b5",
+  "task_key": "worker_analysis_exp_deberta_arxiv_qwen1b5_20260520T034706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_deberta_arxiv_qwen1b5_20260520T034706_result.json",
+    "occurrence": 1,
+    "bytes": 982,
+    "sha256": "2622ff20f2d36bb3737e49fcf1e5f77618fc58f5c2161136c148fff750c0838d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nRESULT:\n- K*: 4 (NOT 3 as hypothesized)\n- conclusion: NEGATIVE — DeBERTa K*=4 ≠ OBD K*=3, representation-independence claim fails for arXiv\n- metrics:\n  - 0v1: AUC=0.9997 [0.9992, 1.0000] (OBD=0.9948, Δ+0.005)\n  - 1v2: AUC=0.9214 [0.9143, 0.9285] (OBD=0.8581, Δ+0.063)\n  - 2v3: AUC=0.7446 [0.7333, 0.7559] (OBD=0.6436, Δ+0.101)\n  - 3v4: AUC=0.6238 [0.6127, 0.6349] (OBD=0.5440, Δ+0.080) ← pivotal pair\n  - 4v5: AUC=0.5771 [0.5659, 0.5882] (OBD=0.5299, Δ+0.047)\n- checkpoint_path: N/A (OOF predictions only, no model saved)\n- log_path: ~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log\n```\n\n关键发现：3v4 pair 是分歧点。DeBERTa 的 CI_lower=0.6127 仅比阈值 0.6 高 0.0127，属于 borderline。建议做 θ 敏感性分析（θ=0.62 即可恢复 K*=3），或将 arXiv 作为 \"approximate representation-independence\" 的 nuance 讨论。详细分析已写入 `artifacts/analysis_exp_deberta_arxiv_qwen1b5.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-deberta-arxiv-qwen1b5.md"
+}

@@ -1,0 +1,619 @@
+{
+  "schema_version": "1.0",
+  "id": "7f334d09f4b5e2f9d675",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "paper discussion degradation",
+  "task_key": "worker_paper_discussion-degradation_20260515T042131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_discussion-degradation_20260515T042131.log",
+    "occurrence": 1,
+    "bytes": 100151,
+    "sha256": "aa846a060a74063a645261fb8869604d911bfde9f6760f0fc85491af370fe55b"
+  },
+  "statistics": {
+    "messages": 12,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 2,
+      "tool_result": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "a03f57e9-9d72-4549-a9db-3bcf4711628e",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "7388a0c4-2f79-4e1a-9c38-a09da9fd80d4",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778836800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "dd87fa0c-f900-410f-8011-34f023136844",
+                "session_id": "a03f57e9-9d72-4549-a9db-3bcf4711628e"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the current discussion.tex file first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a03f57e9-9d72-4549-a9db-3bcf4711628e",
+            "uuid": "09073c5d-3738-43e4-a2fc-e4445b1289c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C9cKtp3zerRZqX9GQADag8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11589,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11589
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JQ3feY6JnnyzXJuYnZL1TA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a03f57e9-9d72-4549-a9db-3bcf4711628e",
+            "uuid": "fac43920-458a-4254-ad1a-03552502d4aa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C9cKtp3zerRZqX9GQADag8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11589,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11589
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T04:21:40.256Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JQ3feY6JnnyzXJuYnZL1TA",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\subsection{Theoretical Implications of $\\Kempirical = 2$}\n5\t\\label{sec:discuss_kstar}\n6\t\n7\tThe Data Processing Inequality guarantees the existence of a finite $\\Ktheory$ beyond which adjacent generations become indistinguishable (Section~\\ref{sec:formulation}).\n8\tOur empirical result---$\\Kempirical = 2$ consistently across all 8 tested configurations (4 model-mode combinations and 4 decoding strategies; Section~\\ref{sec:kstar_boundary}, Figure~\\ref{fig:auc_decay})---establishes that this boundary is not only finite but remarkably shallow at the $\\leq$1.5B parameter scale.\n9\t\n10\tThe shallowness of $\\Kempirical$ is explained by the rate of information loss across generations.\n11\tThe 0v1 boundary is near-trivially separable ($\\auc > 0.99$ across all configurations; Table~\\ref{tab:kstar_ci}), reflecting the large distributional gap between human text and first-generation synthetic text.\n12\tAt the 1v2 boundary, $\\auc$ drops by approximately 30 percentage points ($\\auc$ range: 0.6112--0.7039 across all eight model$\\times$decoding conditions; Table~\\ref{tab:kstar_ci}, Figure~\\ref{fig:auc_decay}; see also Figure~\\ref{fig:s1_auc_decay_ci} in the Appendix), indicating that the majority of the discriminative signal is consumed in the first generation step.\n13\tBy the 2v3 boundary, $\\auc$ falls to 0.5496--0.5917 across all eight model$\\times$decoding conditions (upper bound from nucleus $p{=}0.9$ decoding; Figure~\\ref{fig:auc_decay})---below the operational threshold $\\theta = 0.60$---and deeper pairs converge toward chance.\n14\tRecursive generation thus acts as a severely lossy channel whose information bottleneck is traversed within two steps.\n15\t\n16\tThe feature degradation analysis (Section~\\ref{sec:feature_degradation}) provides mechanistic evidence for this rapid collapse.\n17\tThe most discriminative features---surprisal variance (\\texttt{surp\\_d1\\_std}, \\texttt{surp\\_std}) and its derivatives---all capture the heterogeneity of token-level predictability.\n18\tHuman text exhibits high surprisal variance reflecting diverse syntactic structures and unpredictable discourse patterns.\n19\tThe first generation step smooths this variance substantially, replacing high-surprisal tokens and atypical constructions with more predictable alternatives; the second step reduces the remaining variance to near-floor levels, leaving insufficient statistical fingerprint for reliable adjacent-depth discrimination.\n20\tCrucially, this degradation ordering is consistent across model families (Spearman $\\rho \\geq 0.85$ for all continuation-mode pairs; Table~\\ref{tab:top_features}), suggesting that the two-step information loss is driven primarily by the autoregressive generation mechanism rather than by model-specific biases at this scale.\n21\t\n22\tThis pattern aligns with findings from the model collapse literature.\n23\tShumailov et al.~\\cite{shumailov2024collapse} observed that tail-distribution degradation is most acute in the earliest generations, with minority modes vanishing before the output distribution stabilizes.\n24\tDohmatob et al.~\\cite{dohmatob2024model} derived scaling laws demonstrating that tail probability mass is lost at rates predictable from model and data scale.\n25\tOur $\\Kempirical = 2$ provides a complementary, classifier-based measurement of this phenomenon: the information-theoretic discrimination boundary is reached after just two generation steps.\n26\tAlemohammad et al.~\\cite{alemohammad2024selfconsuming} proved convergence to a fixed point for self-consuming generative models; $\\Kempirical = 2$ indicates that, operationally, the approach to this fixed point is rapid enough that adjacent-generation distinctions collapse within two steps.\n27\t\n28\tImportantly, $\\Kempirical = 2$ is an \\emph{operational} lower bound conditioned on the 15-dimensional hand-crafted feature set; the \\emph{theoretical} boundary $\\Ktheory$ may be strictly higher.\n29\tPreliminary evidence from a neural probing experiment supports this distinction.\n30\tA frozen Qwen2.5-1.5B encoder (1536-dimensional last-layer representations) paired with a lightweight MLP classifier (Table~\\ref{tab:s7_neural_probe}) achieves 2v3 $\\auc = 0.6195$ ($\\text{std} = 0.0094$) on the Qwen-continuation dataset, exceeding the $\\theta = 0.60$ threshold that the same dataset's LightGBM classifier fails to cross ($\\auc = 0.5609$; Section~\\ref{sec:kstar_boundary}).\n31\tThis yields $\\Kempirical^{\\text{neural}} = 3$: the learned representation recovers one additional discriminable boundary that the hand-crafted features miss.\n32\tThe improvement is concentrated at the 2v3 pair ($+$5.86\\,pp over LightGBM); at the already-separable 1v2 boundary the neural probe achieves 0.6983 versus 0.6112, a substantial gain but one that does not alter the boundary determination.\n33\tAt 3v4, the neural probe reaches $\\auc = 0.5930$---below $\\theta$ but closer to the threshold than any hand-crafted configuration---suggesting that a still richer representation might push the boundary further.\n34\tThe lossy-channel narrative remains intact: even with 1536-dimensional frozen representations, the discrimination boundary extends to only three steps, confirming that the information bottleneck of recursive generation is shallow even with substantially richer representations.\n35\tThese results are preliminary: they cover a single model-dataset pair (Qwen-continuation) and lack bootstrap confidence intervals; cross-model validation on Pythia and OLMo is pending.\n36\t\n37\tThe consistency of $\\Kempirical = 2$ across decoding strategies merits emphasis.\n38\tGreedy decoding, nucleus sampling ($p{=}0.9$), $T{=}0.7$, and $T{=}1.2$ all yield $\\Kempirical = 2$ (Figure~\\ref{fig:auc_decay}; Table~\\ref{tab:s2_decoding}), with 1v2 $\\auc$ spanning a narrow range of [0.6866, 0.7039].\n39\tHigher decoding entropy modestly increases signal strength ($\\auc_{1,2}$: 0.69 greedy $\\to$ 0.70 at $T{=}1.2$) but does not shift the boundary.\n40\tThis robustness suggests that, at least at the $\\leq$1.5B scale, $\\Kempirical$ is governed primarily by the information bottleneck of the generation process rather than by surface-level properties of the sampling algorithm.\n41\t\n42\t\\subsection{Implications of Cross-Model Transfer}\n43\t\\label{sec:discuss_transfer}\n44\t\n45\tThe cross-model transfer results (Section~\\ref{sec:transfer}) indicate that depth signals are largely encoded in text-level statistical properties rather than generator-specific artifacts.\n46\tClassifiers trained on Pythia-1.4B and evaluated on OLMo-1B retain 90--92\\% of within-model accuracy, and the broader continuation-mode transfer matrix shows 80--92\\% retention across all model pairs (Table~\\ref{tab:transfer_matrix}; see Table~\\ref{tab:s1_transfer} for the full matrix).\n47\tAt the 0v1 boundary, cross-model $\\auc$ exceeds 0.96 across all tested model pairs, confirming that binary contamination detection is fully transferable across the tested generators.\n48\t\n49\tThe practical implication is direct: a single depth classifier trained on one model's outputs can be deployed to estimate generational depth for texts produced by other models, without model-specific retraining.\n50\tThis transferability extends the utility of depth estimation to open-web settings where the generating model is unknown---precisely the scenario where depth-aware data curation is most needed.\n51\t\n52\tTwo caveats bound this conclusion.\n53\tFirst, the text-intrinsic component dominates, as evidenced by high cross-model transfer retention (80--92\\% across continuation-mode pairs), yet a nontrivial model-specific residual persists.\n54\tThe Pythia$\\leftrightarrow$OLMo pair, which spans different architectures and training corpora, achieves the highest cross-family retention (90--92\\%), consistent with the depth signal being largely architecture-agnostic within continuation mode.\n55\tSecond, Qwen-continuation$\\leftrightarrow$OLMo retention (80--85\\%) is lower than Pythia$\\leftrightarrow$OLMo (90--92\\%), indicating that model family similarity modulates transfer even among continuation-mode configurations.\n56\t\n57\t\\subsection{Feature Importance Across Decoding Strategies}\n58\t\\label{sec:discuss_features}\n59\t\n60\tWhile $\\Kempirical = 2$ is consistent across decoding strategies (4/4 configurations), the feature importance ordering is not equally stable.\n61\tGreedy decoding and $T{=}0.7$ share highly correlated feature rankings (Spearman $\\rho = 0.914$), with top features dominated by vocabulary diversity measures: \\texttt{self\\_bleu}, \\texttt{hapax\\_ratio}, and \\texttt{ttr}.\n62\tIn contrast, greedy versus $T{=}1.2$ yields a lower correlation ($\\rho = 0.53$, $p = 0.041$; suggestive but nonsignificant after Bonferroni correction for 6 pairwise comparisons), with $T{=}1.2$ promoting \\texttt{hapax\\_ratio}, \\texttt{ttr}, and \\texttt{surp\\_skew} to the top ranks.\n63\tNotably, \\texttt{freq\\_entropy} rises from rank~10 under greedy ($\\auc = 0.5139$) to rank~5 under $T{=}1.2$ ($\\auc = 0.5905$), illustrating how high-entropy decoding amplifies frequency-distribution artifacts.\n64\t\n65\tThis dissociation reveals an important distinction: the \\emph{existence} of the depth boundary is robust, but the \\emph{optimal feature subset} for detecting it depends on the sampling strategy.\n66\tHigh-entropy decoding amplifies frequency-distribution artifacts while attenuating vocabulary-diversity signals, shifting which text properties carry the most discriminative power without altering whether adjacent generations can be distinguished.\n67\tFor practitioners, this implies that a general-purpose depth classifier should incorporate features from multiple groups---surprisal moments, vocabulary diversity, and frequency tail statistics---to maintain performance across unknown decoding conditions.\n68\t\n69\tThe cross-model feature ordering (Section~\\ref{sec:feature_degradation}) provides a complementary perspective: among continuation-mode models, single-feature $\\auc$ rankings are highly consistent (Spearman $\\rho \\geq 0.85$), with surprisal-variance features---\\texttt{surp\\_d1\\_std}, \\texttt{surp\\_std}, \\texttt{surp\\_d2\\_std}---dominating across all three families.\n70\tA genuine limitation, however, is that depth-pair-level agreement weakens to $\\tau \\approx 0.37$ at the 1v2 boundary (Section~\\ref{sec:feature_degradation}), indicating that the relative contribution of individual features at the discrimination boundary varies across models even when the aggregate ordering is shared.\n71\t\n72\t\\subsection{Scale Considerations}\n73\t\\label{sec:discuss_scale}\n74\t\n75\tOur experiments establish $\\Kempirical = 2$ at the $\\leq$1.5B parameter scale, providing the first empirical measurement of the generational depth boundary for language models.\n76\tThis result constitutes a \\emph{methodological lower bound}: the framework itself---15-dimensional token-level features, OBD-optimized classification, bootstrap confidence intervals, and permutation testing---is model-scale agnostic by construction.\n77\tAll 15 features are computed from surface-level token statistics (surprisal moments, vocabulary diversity, frequency tail measures) without access to model internals, and the cross-model transfer results (80--92\\% retention across architecturally distinct model families; Section~\\ref{sec:transfer}) already demonstrate that the methodology generalizes across different architectures and training corpora at the tested scale.\n78\t\n79\tScaling to larger models presents two possible outcomes, both of which reinforce rather than diminish the contribution.\n80\tIf $\\Kempirical > 2$ at 7B+ scales---as suggested by scaling laws showing that larger models exhibit slower tail-distribution degradation rates~\\cite{dohmatob2024model, kaplan2020scaling}---then depth contamination becomes \\emph{more} insidious: higher-fidelity generations would produce weaker depth signatures, making fine-grained detection more critical and the systematic framework we introduce more necessary.\n81\tConversely, if $\\Kempirical = 2$ persists at larger scales, our conclusions generalize directly.\n82\tIn either case, the measurement methodology established here---the feature taxonomy, the $\\Kstar$ estimation protocol, and the cross-model validation framework---provides the requisite infrastructure for characterizing depth boundaries at any scale.\n83\tThe model collapse literature supports the expectation that depth-related phenomena are scale-persistent: Shumailov et al.~\\cite{shumailov2024collapse} observed tail-mode collapse across model sizes, and Alemohammad et al.~\\cite{alemohammad2024selfconsuming} proved fixed-point convergence for self-consuming generators without scale-dependent assumptions.\n84\tMoreover, the high cross-model transfer retention across three architecturally distinct families---Pythia (GPT-2 architecture), OLMo (modified Transformer), and Qwen (grouped-query attention)---with 90--92\\% accuracy retention for Pythia$\\leftrightarrow$OLMo (Section~\\ref{sec:transfer}) already provides architecture-agnostic indirect evidence that depth signals are not tied to a specific pretraining paradigm; 7B cross-scale experiments will provide direct scale validation.\n85\t\n86\tWe identify 7B-scale cross-scale validation as the immediate next step.\n87\tThe experimental pipeline---data generation, feature extraction, and classifier evaluation---is fully implemented and directly applicable to larger models; only computational budget constrains this extension.\n88\tCritically, this limitation does not affect the validity of the $\\Kempirical = 2$ result at $\\leq$1.5B, which stands as the first empirical characterization of generational depth boundaries in language model outputs.\n89\t\n90\t\\subsection{LLM Zero-Shot Baseline}\n91\t\\label{sec:discuss_llm}\n92\t\n93\tFrontier LLMs provide a natural baseline for depth estimation.\n94\tOn a 500-sample test set with 5 depth classes (depths 0--4), excluding depth~5 from the 6-class range used in the main feature-based experiments since depths $\\geq 2$ are mutually indistinguishable ($\\Kempirical = 2$), GPT-5.5 achieves 33.2\\% accuracy (MAE = 1.10) and Claude Opus~4.6 achieves 33.1\\% accuracy (MAE = 1.15)---both below the OBD-LightGBM baseline of 38.6\\% (MAE = 1.11; see Table~\\ref{tab:s3_llm_zeroshot} for per-depth confusion matrices).\n95\tSimultaneously, both models achieve approximately 88\\% binary accuracy on the human-vs.-synthetic distinction (GPT-5.5: 87.8\\%, Claude: 88.2\\%).\n96\t\n97\tThis gap between binary detection and depth estimation is informative.\n98\tFrontier LLMs can reliably determine \\emph{whether} a text is machine-generated but cannot estimate \\emph{how many generations of recursive processing} it has undergone.\n99\tDepth estimation requires sensitivity to subtle distributional shifts between adjacent generations---shifts orders of magnitude smaller than the human-vs.-machine gap.\n100\tThe 15-dimensional statistical feature pipeline, despite its simplicity, captures these fine-grained shifts more effectively than frontier LLMs in a zero-shot setting.\n101\tThis motivates the dedicated feature-engineering approach: the task demands specialized statistical sensitivity rather than general language understanding.\n102\t\n103\tPer-depth analysis sharpens this conclusion. Both models achieve high depth-0 recall (GPT-5.5: 0.77, Claude: 0.69), indicating reliable human-text identification, but recall for depths~1--4 collapses to 0.08--0.38, with confusion matrices (Table~\\ref{tab:s3_llm_zeroshot}) showing predictions scattered nearly uniformly across non-human classes. The resulting Spearman correlations between predicted and true depth are weak ($\\rho = 0.38$ for GPT-5.5, $\\rho = 0.42$ for Claude), confirming that frontier LLMs function as binary human-vs.-AI detectors augmented by near-random depth guessing---confidence scores cannot serve as a depth proxy.\n104\t\n105\tThis conclusion extends to statistical detection tools.\n106\tMethods such as DetectGPT~\\cite{mitchell2023detectgpt} and Binoculars~\\cite{hans2024binoculars} optimize a scalar score for the binary human-vs.-AI boundary---the same distinction where our LLM baselines excel (${\\sim}88\\%$ accuracy).\n107\tBut the per-depth recall collapse (0.08--0.38 for depths 1--4) demonstrates that binary detection confidence is orthogonal to generational depth: a high ``AI-generated'' score carries no information about how many generation steps a text has undergone.\n108\tDepth estimation is a fundamentally distinct task requiring multi-dimensional statistical sensitivity that scalar detection scores do not provide.\n109\t\n110\tWe evaluate only zero-shot prompting; few-shot or chain-of-thought strategies may narrow the gap and warrant future investigation.\n111\t\n112\t\\subsection{Limitations}\n113\t\\label{sec:limitations}\n114\t\n115\tWe identify eight limitations that bound the generalizability of our findings.\n116\t\n117\t\\emph{Model scale.}\n118\tAll experiments use models at or below 1.5B parameters (Pythia-1.4B, OLMo-1B, Qwen2.5-1.5B-Instruct).\n119\tLarger models may produce higher-fidelity text with weaker depth signatures, potentially shifting $\\Kempirical$ beyond~2.\n120\t\n121\t\\emph{Prompt-chain versus retrain-chain.}\n122\tOur recursive generation protocol is a prompt-chain: the same fixed model repeatedly generates from the previous output.\n123\tReal-world model collapse involves retrain-chains, where models are retrained on data from earlier generations~\\cite{shumailov2024collapse}.\n124\tRetrain-chains introduce additional degradation through training dynamics, potentially producing different $\\Kstar$ values.\n125\tCrucially, the prompt-chain protocol is \\emph{expected} to provide an upper bound on retrain-chain $\\Kstar$ under the assumption that model quality degrades monotonically in retrain-chains~\\cite{shumailov2024collapse}: our protocol holds model quality constant across generations, whereas in a retrain-chain each generation's model is trained on degraded data and is therefore weaker.\n126\tUnder this monotonic-degradation assumption, the compounding model degradation accelerates feature convergence, implying $\\Kstar^{\\text{retrain}} \\leq \\Kstar^{\\text{prompt}}$.\n127\tOur $\\Kempirical = 2$ is thus a conservative estimate if monotonic degradation holds---under realistic retrain conditions, the discrimination boundary would be shallower still---though the exact quantitative relationship between prompt-chain and retrain-chain $\\Kstar$ remains open (see Section~\\ref{sec:broader_impact}).\n128\t\n129\t\\emph{Language and domain.}\n130\tAll experiments use English text from the C4 corpus.\n131\tDepth dynamics may differ across languages, domains (e.g., code, scientific text), and source corpora with different distributional properties.\n132\t\n133\t\\emph{Decoding coverage.}\n134\tWe test four decoding strategies (greedy, nucleus $p{=}0.9$, $T{=}0.7$, $T{=}1.2$).\n135\tOther strategies---top-$k$ sampling, beam search, contrastive decoding---remain untested and may yield different feature importance patterns or boundary behavior.\n136\t\n137\t\\emph{Threshold sensitivity.}\n138\t$\\Kempirical$ depends on the operational threshold $\\theta$.\n139\t$\\Kempirical \\geq 2$ across $\\theta \\in \\{0.55, 0.60, 0.65\\}$ for all four decoding strategies, rising to $\\Kempirical = 3$ at $\\theta = 0.55$ (all four 2v3 $\\auc$ values exceed 0.55) and returning to $\\Kempirical = 2$ at $\\theta \\in \\{0.60, 0.65\\}$.\n140\tAt $\\theta = 0.70$, three of four decoding configurations collapse to $\\Kempirical = 1$; only the high-temperature setting ($T{=}1.2$) retains $\\Kempirical = 2$, consistent with its elevated 1v2 $\\auc$ (0.7039).\n141\tBeyond decoding parameters, the threshold sensitivity extends to generation mode: at $\\theta{=}0.70$, $\\Kempirical{=}1$ for all four model-mode configurations; at $\\theta{=}0.65$, continuation-mode configurations already drop to $\\Kempirical{=}1$, while rewrite mode retains $\\Kempirical{=}2$.\n142\tThe $\\theta{=}0.65$ determination uses the CI-based criterion consistent with our primary $\\theta{=}0.60$ analysis: $\\Kempirical{=}2$ requires that the bootstrap 95\\% CI lower bound for 1v2 $\\auc$ exceeds $\\theta$.\n143\tPythia-continuation's 1v2 point estimate (0.6539) marginally exceeds 0.65, but its CI lower bound (0.6454) falls below this threshold, yielding $\\Kempirical{=}1$ under the CI-based criterion.\n144\tOur current analysis primarily covers the decoding configuration axis.\n145\tThe boundary is robust within a practical range but not invariant to threshold choice; our conclusions are conditioned on $\\theta = 0.60$.\n146\t\n147\t\\emph{Boundary marginality.}\n148\tThe $\\Kempirical = 2$ determination is statistically significant but numerically marginal at both ends.\n149\tOn the lower side, Qwen-continuation's 1v2 CI lower bound (0.6015) exceeds $\\theta = 0.60$ by only $+$0.15\\,pp.\n150\tOn the upper side, Qwen-rewrite's 2v3 CI upper bound (0.5991) falls below $\\theta$ by only $-$0.09\\,pp.\n151\tThis narrow margin means that small changes in the feature set or classifier could shift the boundary---as the neural probe results confirm, where a richer representation pushes the 2v3 pair above $\\theta$ on the Qwen-continuation dataset (Section~\\ref{sec:discuss_kstar}).\n152\tImportantly, all eight boundary comparisons (four 1v2 and four 2v3) yield permutation $p < 0.01$, confirming that the statistical significance of the distinction is not in doubt---only its proximity to the operational threshold.\n153\t\n154\t\\emph{Operational versus theoretical boundary.}\n155\t$\\Kempirical$ is an operational lower bound that depends on the specific feature set and classifier; $\\Ktheory$ may be strictly greater.\n156\tPreliminary neural probing results (Section~\\ref{sec:discuss_kstar}) provide direct evidence for this gap, yielding $\\Kempirical^{\\text{neural}} = 3$ on the Qwen-continuation dataset and confirming that $\\Ktheory \\geq 3$.\n157\tThis result rests on a single dataset and awaits cross-model validation and bootstrap confidence intervals before a firm revision of the headline $\\Kempirical$ can be claimed.\n158\t\n159\t\\emph{Feature representation.}\n160\tThe 15-dimensional hand-crafted feature set, while interpretable and transferable, is not optimal; the neural probe results (Section~\\ref{sec:discuss_kstar}) confirm that learned representations recover meaningful depth signal beyond what hand-crafted features extract.\n161\tFull characterization of this gap, including cross-model generalization and bootstrap uncertainty quantification, remains future work.\n162\t\n163\t\\paragraph{Graduated Filtering.}\n164\tResults for graduated filtering will be added upon completion of ongoing experiments.\n165\t\n166\t\\subsection{Broader Impact}\n167\t\\label{sec:broader_impact}\n168\t\n169\tThe $\\Kempirical = 2$ boundary has implications beyond the immediate scope of depth classification.\n170\t\n171\t\\paragraph{Synthetic data curation.}\n172\tThe practical consequence of $\\Kempirical = 2$ is a three-tier taxonomy of text quality: human-authored (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\n173\tTexts at depth~$\\geq 2$ are mutually indistinguishable and can be treated as a single category for curation purposes.\n174\tFor practitioners filtering training data, this implies that a single round of synthetic rewriting suffices to make text statistically indistinguishable from text that has undergone multiple rounds of recycling---a form of one-wash laundering that limits the granularity of quality-based filtering.\n175\tThis underscores the urgency of deploying depth-aware curation mechanisms before the first generation step, rather than relying on post-hoc detection.\n176\tGraduated filtering strategies that exploit this trichotomy may outperform binary human/synthetic filters, as the coarse ordinal signal (human / shallow / deep) captures the dominant axis of quality variation.\n177\t\n178\t\\paragraph{$\\Kstar$ as a corpus audit metric.}\n179\tIndependent of filtering applications, $\\Kstar$ provides an actionable corpus quality metric answering a concrete question: what fraction of a training corpus consists of depth-$\\geq 2$ synthetic text?\n180\tSince $\\Kempirical = 2$ implies that texts at depth~$\\geq 2$ are statistically indistinguishable from one another, they should be treated equivalently in data curation.\n181\tThis establishes a directly actionable threshold: texts exceeding $\\Kstar$ generations require no finer-grained depth discrimination and can be assigned to a single ``deep synthetic'' category, simplifying dataset audits even when the efficacy of graduated filtering remains to be established.\n182\t\n183\t\\paragraph{Relation to model collapse.}\n184\tShumailov et al.~\\cite{shumailov2024collapse} and Alemohammad et al.~\\cite{alemohammad2024selfconsuming} study model collapse under \\emph{retrain-chains}, where models are iteratively trained on their own outputs.\n185\tOur prompt-chain protocol measures an adjacent but distinct phenomenon: the degradation of statistical distinguishability under recursive generation by a fixed model.\n186\tThe rapid convergence we observe ($\\Kempirical = 2$) is consistent with the theoretical prediction of convergence to a fixed point.\n187\tThe directional relationship $\\Kstar^{\\text{retrain}} \\leq \\Kstar^{\\text{prompt}}$ is expected under the monotonic-degradation assumption (Section~\\ref{sec:limitations}), but the exact quantitative relationship between prompt-chain $\\Kempirical$ and retrain-chain convergence rates remains open.\n188\tIf prompt-chain depth signals serve as an observable proxy for early-stage model collapse, depth estimation could provide a lightweight diagnostic for data curation pipelines without requiring expensive retraining experiments.\n189\t\n190\t\\paragraph{AI text detection.}\n191\tCurrent AI text detection is predominantly binary: human versus machine.\n192\tOur results suggest that \\emph{depth-aware} detection provides a strictly more informative signal.\n193\tThe near-perfect 0v1 separability ($\\auc > 0.99$) confirms that binary detection is reliable at this scale, but the 1v2 boundary ($\\auc$: 0.61--0.70) reveals that first-generation text retains measurable statistical distance from deeper synthetic text.\n194\tThis additional dimension---how many generations of processing a text has undergone---may prove valuable for provenance tracking and corpus quality assessment, where the binary human/AI label elides important distinctions between lightly and heavily recycled content.\n195\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a03f57e9-9d72-4549-a9db-3bcf4711628e",
+            "uuid": "1ec6207e-dcca-4848-af35-f1c497bedf41",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex",
+                "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\subsection{Theoretical Implications of $\\Kempirical = 2$}\n\\label{sec:discuss_kstar}\n\nThe Data Processing Inequality guarantees the existence of a finite $\\Ktheory$ beyond which adjacent generations become indistinguishable (Section~\\ref{sec:formulation}).\nOur empirical result---$\\Kempirical = 2$ consistently across all 8 tested configurations (4 model-mode combinations and 4 decoding strategies; Section~\\ref{sec:kstar_boundary}, Figure~\\ref{fig:auc_decay})---establishes that this boundary is not only finite but remarkably shallow at the $\\leq$1.5B parameter scale.\n\nThe shallowness of $\\Kempirical$ is explained by the rate of information loss across generations.\nThe 0v1 boundary is near-trivially separable ($\\auc > 0.99$ across all configurations; Table~\\ref{tab:kstar_ci}), reflecting the large distributional gap between human text and first-generation synthetic text.\nAt the 1v2 boundary, $\\auc$ drops by approximately 30 percentage points ($\\auc$ range: 0.6112--0.7039 across all eight model$\\times$decoding conditions; Table~\\ref{tab:kstar_ci}, Figure~\\ref{fig:auc_decay}; see also Figure~\\ref{fig:s1_auc_decay_ci} in the Appendix), indicating that the majority of the discriminative signal is consumed in the first generation step.\nBy the 2v3 boundary, $\\auc$ falls to 0.5496--0.5917 across all eight model$\\times$decoding conditions (upper bound from nucleus $p{=}0.9$ decoding; Figure~\\ref{fig:auc_decay})---below the operational threshold $\\theta = 0.60$---and deeper pairs converge toward chance.\nRecursive generation thus acts as a severely lossy channel whose information bottleneck is traversed within two steps.\n\nThe feature degradation analysis (Section~\\ref{sec:feature_degradation}) provides mechanistic evidence for this rapid collapse.\nThe most discriminative features---surprisal variance (\\texttt{surp\\_d1\\_std}, \\texttt{surp\\_std}) and its derivatives---all capture the heterogeneity of token-level predictability.\nHuman text exhibits high surprisal variance reflecting diverse syntactic structures and unpredictable discourse patterns.\nThe first generation step smooths this variance substantially, replacing high-surprisal tokens and atypical constructions with more predictable alternatives; the second step reduces the remaining variance to near-floor levels, leaving insufficient statistical fingerprint for reliable adjacent-depth discrimination.\nCrucially, this degradation ordering is consistent across model families (Spearman $\\rho \\geq 0.85$ for all continuation-mode pairs; Table~\\ref{tab:top_features}), suggesting that the two-step information loss is driven primarily by the autoregressive generation mechanism rather than by model-specific biases at this scale.\n\nThis pattern aligns with findings from the model collapse literature.\nShumailov et al.~\\cite{shumailov2024collapse} observed that tail-distribution degradation is most acute in the earliest generations, with minority modes vanishing before the output distribution stabilizes.\nDohmatob et al.~\\cite{dohmatob2024model} derived scaling laws demonstrating that tail probability mass is lost at rates predictable from model and data scale.\nOur $\\Kempirical = 2$ provides a complementary, classifier-based measurement of this phenomenon: the information-theoretic discrimination boundary is reached after just two generation steps.\nAlemohammad et al.~\\cite{alemohammad2024selfconsuming} proved convergence to a fixed point for self-consuming generative models; $\\Kempirical = 2$ indicates that, operationally, the approach to this fixed point is rapid enough that adjacent-generation distinctions collapse within two steps.\n\nImportantly, $\\Kempirical = 2$ is an \\emph{operational} lower bound conditioned on the 15-dimensional hand-crafted feature set; the \\emph{theoretical} boundary $\\Ktheory$ may be strictly higher.\nPreliminary evidence from a neural probing experiment supports this distinction.\nA frozen Qwen2.5-1.5B encoder (1536-dimensional last-layer representations) paired with a lightweight MLP classifier (Table~\\ref{tab:s7_neural_probe}) achieves 2v3 $\\auc = 0.6195$ ($\\text{std} = 0.0094$) on the Qwen-continuation dataset, exceeding the $\\theta = 0.60$ threshold that the same dataset's LightGBM classifier fails to cross ($\\auc = 0.5609$; Section~\\ref{sec:kstar_boundary}).\nThis yields $\\Kempirical^{\\text{neural}} = 3$: the learned representation recovers one additional discriminable boundary that the hand-crafted features miss.\nThe improvement is concentrated at the 2v3 pair ($+$5.86\\,pp over LightGBM); at the already-separable 1v2 boundary the neural probe achieves 0.6983 versus 0.6112, a substantial gain but one that does not alter the boundary determination.\nAt 3v4, the neural probe reaches $\\auc = 0.5930$---below $\\theta$ but closer to the threshold than any hand-crafted configuration---suggesting that a still richer representation might push the boundary further.\nThe lossy-channel narrative remains intact: even with 1536-dimensional frozen representations, the discrimination boundary extends to only three steps, confirming that the information bottleneck of recursive generation is shallow even with substantially richer representations.\nThese results are preliminary: they cover a single model-dataset pair (Qwen-continuation) and lack bootstrap confidence intervals; cross-model validation on Pythia and OLMo is pending.\n\nThe consistency of $\\Kempirical = 2$ across decoding strategies merits emphasis.\nGreedy decoding, nucleus sampling ($p{=}0.9$), $T{=}0.7$, and $T{=}1.2$ all yield $\\Kempirical = 2$ (Figure~\\ref{fig:auc_decay}; Table~\\ref{tab:s2_decoding}), with 1v2 $\\auc$ spanning a narrow range of [0.6866, 0.7039].\nHigher decoding entropy modestly increases signal strength ($\\auc_{1,2}$: 0.69 greedy $\\to$ 0.70 at $T{=}1.2$) but does not shift the boundary.\nThis robustness suggests that, at least at the $\\leq$1.5B scale, $\\Kempirical$ is governed primarily by the information bottleneck of the generation process rather than by surface-level properties of the sampling algorithm.\n\n\\subsection{Implications of Cross-Model Transfer}\n\\label{sec:discuss_transfer}\n\nThe cross-model transfer results (Section~\\ref{sec:transfer}) indicate that depth signals are largely encoded in text-level statistical properties rather than generator-specific artifacts.\nClassifiers trained on Pythia-1.4B and evaluated on OLMo-1B retain 90--92\\% of within-model accuracy, and the broader continuation-mode transfer matrix shows 80--92\\% retention across all model pairs (Table~\\ref{tab:transfer_matrix}; see Table~\\ref{tab:s1_transfer} for the full matrix).\nAt the 0v1 boundary, cross-model $\\auc$ exceeds 0.96 across all tested model pairs, confirming that binary contamination detection is fully transferable across the tested generators.\n\nThe practical implication is direct: a single depth classifier trained on one model's outputs can be deployed to estimate generational depth for texts produced by other models, without model-specific retraining.\nThis transferability extends the utility of depth estimation to open-web settings where the generating model is unknown---precisely the scenario where depth-aware data curation is most needed.\n\nTwo caveats bound this conclusion.\nFirst, the text-intrinsic component dominates, as evidenced by high cross-model transfer retention (80--92\\% across continuation-mode pairs), yet a nontrivial model-specific residual persists.\nThe Pythia$\\leftrightarrow$OLMo pair, which spans different architectures and training corpora, achieves the highest cross-family retention (90--92\\%), consistent with the depth signal being largely architecture-agnostic within continuation mode.\nSecond, Qwen-continuation$\\leftrightarrow$OLMo retention (80--85\\%) is lower than Pythia$\\leftrightarrow$OLMo (90--92\\%), indicating that model family similarity modulates transfer even among continuation-mode configurations.\n\n\\subsection{Feature Importance Across Decoding Strategies}\n\\label{sec:discuss_features}\n\nWhile $\\Kempirical = 2$ is consistent across decoding strategies (4/4 configurations), the feature importance ordering is not equally stable.\nGreedy decoding and $T{=}0.7$ share highly correlated feature rankings (Spearman $\\rho = 0.914$), with top features dominated by vocabulary diversity measures: \\texttt{self\\_bleu}, \\texttt{hapax\\_ratio}, and \\texttt{ttr}.\nIn contrast, greedy versus $T{=}1.2$ yields a lower correlation ($\\rho = 0.53$, $p = 0.041$; suggestive but nonsignificant after Bonferroni correction for 6 pairwise comparisons), with $T{=}1.2$ promoting \\texttt{hapax\\_ratio}, \\texttt{ttr}, and \\texttt{surp\\_skew} to the top ranks.\nNotably, \\texttt{freq\\_entropy} rises from rank~10 under greedy ($\\auc = 0.5139$) to rank~5 under $T{=}1.2$ ($\\auc = 0.5905$), illustrating how high-entropy decoding amplifies frequency-distribution artifacts.\n\nThis dissociation reveals an important distinction: the \\emph{existence} of the depth boundary is robust, but the \\emph{optimal feature subset} for detecting it depends on the sampling strategy.\nHigh-entropy decoding amplifies frequency-distribution artifacts while attenuating vocabulary-diversity signals, shifting which text properties carry the most discriminative power without altering whether adjacent generations can be distinguished.\nFor practitioners, this implies that a general-purpose depth classifier should incorporate features from multiple groups---surprisal moments, vocabulary diversity, and frequency tail statistics---to maintain performance across unknown decoding conditions.\n\nThe cross-model feature ordering (Section~\\ref{sec:feature_degradation}) provides a complementary perspective: among continuation-mode models, single-feature $\\auc$ rankings are highly consistent (Spearman $\\rho \\geq 0.85$), with surprisal-variance features---\\texttt{surp\\_d1\\_std}, \\texttt{surp\\_std}, \\texttt{surp\\_d2\\_std}---dominating across all three families.\nA genuine limitation, however, is that depth-pair-level agreement weakens to $\\tau \\approx 0.37$ at the 1v2 boundary (Section~\\ref{sec:feature_degradation}), indicating that the relative contribution of individual features at the discrimination boundary varies across models even when the aggregate ordering is shared.\n\n\\subsection{Scale Considerations}\n\\label{sec:discuss_scale}\n\nOur experiments establish $\\Kempirical = 2$ at the $\\leq$1.5B parameter scale, providing the first empirical measurement of the generational depth boundary for language models.\nThis result constitutes a \\emph{methodological lower bound}: the framework itself---15-dimensional token-level features, OBD-optimized classification, bootstrap confidence intervals, and permutation testing---is model-scale agnostic by construction.\nAll 15 features are computed from surface-level token statistics (surprisal moments, vocabulary diversity, frequency tail measures) without access to model internals, and the cross-model transfer results (80--92\\% retention across architecturally distinct model families; Section~\\ref{sec:transfer}) already demonstrate that the methodology generalizes across different architectures and training corpora at the tested scale.\n\nScaling to larger models presents two possible outcomes, both of which reinforce rather than diminish the contribution.\nIf $\\Kempirical > 2$ at 7B+ scales---as suggested by scaling laws showing that larger models exhibit slower tail-distribution degradation rates~\\cite{dohmatob2024model, kaplan2020scaling}---then depth contamination becomes \\emph{more} insidious: higher-fidelity generations would produce weaker depth signatures, making fine-grained detection more critical and the systematic framework we introduce more necessary.\nConversely, if $\\Kempirical = 2$ persists at larger scales, our conclusions generalize directly.\nIn either case, the measurement methodology established here---the feature taxonomy, the $\\Kstar$ estimation protocol, and the cross-model validation framework---provides the requisite infrastructure for characterizing depth boundaries at any scale.\nThe model collapse literature supports the expectation that depth-related phenomena are scale-persistent: Shumailov et al.~\\cite{shumailov2024collapse} observed tail-mode collapse across model sizes, and Alemohammad et al.~\\cite{alemohammad2024selfconsuming} proved fixed-point convergence for self-consuming generators without scale-dependent assumptions.\nMoreover, the high cross-model transfer retention across three architecturally distinct families---Pythia (GPT-2 architecture), OLMo (modified Transformer), and Qwen (grouped-query attention)---with 90--92\\% accuracy retention for Pythia$\\leftrightarrow$OLMo (Section~\\ref{sec:transfer}) already provides architecture-agnostic indirect evidence that depth signals are not tied to a specific pretraining paradigm; 7B cross-scale experiments will provide direct scale validation.\n\nWe identify 7B-scale cross-scale validation as the immediate next step.\nThe experimental pipeline---data generation, feature extraction, and classifier evaluation---is fully implemented and directly applicable to larger models; only computational budget constrains this extension.\nCritically, this limitation does not affect the validity of the $\\Kempirical = 2$ result at $\\leq$1.5B, which stands as the first empirical characterization of generational depth boundaries in language model outputs.\n\n\\subsection{LLM Zero-Shot Baseline}\n\\label{sec:discuss_llm}\n\nFrontier LLMs provide a natural baseline for depth estimation.\nOn a 500-sample test set with 5 depth classes (depths 0--4), excluding depth~5 from the 6-class range used in the main feature-based experiments since depths $\\geq 2$ are mutually indistinguishable ($\\Kempirical = 2$), GPT-5.5 achieves 33.2\\% accuracy (MAE = 1.10) and Claude Opus~4.6 achieves 33.1\\% accuracy (MAE = 1.15)---both below the OBD-LightGBM baseline of 38.6\\% (MAE = 1.11; see Table~\\ref{tab:s3_llm_zeroshot} for per-depth confusion matrices).\nSimultaneously, both models achieve approximately 88\\% binary accuracy on the human-vs.-synthetic distinction (GPT-5.5: 87.8\\%, Claude: 88.2\\%).\n\nThis gap between binary detection and depth estimation is informative.\nFrontier LLMs can reliably determine \\emph{whether} a text is machine-generated but cannot estimate \\emph{how many generations of recursive processing} it has undergone.\nDepth estimation requires sensitivity to subtle distributional shifts between adjacent generations---shifts orders of magnitude smaller than the human-vs.-machine gap.\nThe 15-dimensional statistical feature pipeline, despite its simplicity, captures these fine-grained shifts more effectively than frontier LLMs in a zero-shot setting.\nThis motivates the dedicated feature-engineering approach: the task demands specialized statistical sensitivity rather than general language understanding.\n\nPer-depth analysis sharpens this conclusion. Both models achieve high depth-0 recall (GPT-5.5: 0.77, Claude: 0.69), indicating reliable human-text identification, but recall for depths~1--4 collapses to 0.08--0.38, with confusion matrices (Table~\\ref{tab:s3_llm_zeroshot}) showing predictions scattered nearly uniformly across non-human classes. The resulting Spearman correlations between predicted and true depth are weak ($\\rho = 0.38$ for GPT-5.5, $\\rho = 0.42$ for Claude), confirming that frontier LLMs function as binary human-vs.-AI detectors augmented by near-random depth guessing---confidence scores cannot serve as a depth proxy.\n\nThis conclusion extends to statistical detection tools.\nMethods such as DetectGPT~\\cite{mitchell2023detectgpt} and Binoculars~\\cite{hans2024binoculars} optimize a scalar score for the binary human-vs.-AI boundary---the same distinction where our LLM baselines excel (${\\sim}88\\%$ accuracy).\nBut the per-depth recall collapse (0.08--0.38 for depths 1--4) demonstrates that binary detection confidence is orthogonal to generational depth: a high ``AI-generated'' score carries no information about how many generation steps a text has undergone.\nDepth estimation is a fundamentally distinct task requiring multi-dimensional statistical sensitivity that scalar detection scores do not provide.\n\nWe evaluate only zero-shot prompting; few-shot or chain-of-thought strategies may narrow the gap and warrant future investigation.\n\n\\subsection{Limitations}\n\\label{sec:limitations}\n\nWe identify eight limitations that bound the generalizability of our findings.\n\n\\emph{Model scale.}\nAll experiments use models at or below 1.5B parameters (Pythia-1.4B, OLMo-1B, Qwen2.5-1.5B-Instruct).\nLarger models may produce higher-fidelity text with weaker depth signatures, potentially shifting $\\Kempirical$ beyond~2.\n\n\\emph{Prompt-chain versus retrain-chain.}\nOur recursive generation protocol is a prompt-chain: the same fixed model repeatedly generates from the previous output.\nReal-world model collapse involves retrain-chains, where models are retrained on data from earlier generations~\\cite{shumailov2024collapse}.\nRetrain-chains introduce additional degradation through training dynamics, potentially producing different $\\Kstar$ values.\nCrucially, the prompt-chain protocol is \\emph{expected} to provide an upper bound on retrain-chain $\\Kstar$ under the assumption that model quality degrades monotonically in retrain-chains~\\cite{shumailov2024collapse}: our protocol holds model quality constant across generations, whereas in a retrain-chain each generation's model is trained on degraded data and is therefore weaker.\nUnder this monotonic-degradation assumption, the compounding model degradation accelerates feature convergence, implying $\\Kstar^{\\text{retrain}} \\leq \\Kstar^{\\text{prompt}}$.\nOur $\\Kempirical = 2$ is thus a conservative estimate if monotonic degradation holds---under realistic retrain conditions, the discrimination boundary would be shallower still---though the exact quantitative relationship between prompt-chain and retrain-chain $\\Kstar$ remains open (see Section~\\ref{sec:broader_impact}).\n\n\\emph{Language and domain.}\nAll experiments use English text from the C4 corpus.\nDepth dynamics may differ across languages, domains (e.g., code, scientific text), and source corpora with different distributional properties.\n\n\\emph{Decoding coverage.}\nWe test four decoding strategies (greedy, nucleus $p{=}0.9$, $T{=}0.7$, $T{=}1.2$).\nOther strategies---top-$k$ sampling, beam search, contrastive decoding---remain untested and may yield different feature importance patterns or boundary behavior.\n\n\\emph{Threshold sensitivity.}\n$\\Kempirical$ depends on the operational threshold $\\theta$.\n$\\Kempirical \\geq 2$ across $\\theta \\in \\{0.55, 0.60, 0.65\\}$ for all four decoding strategies, rising to $\\Kempirical = 3$ at $\\theta = 0.55$ (all four 2v3 $\\auc$ values exceed 0.55) and returning to $\\Kempirical = 2$ at $\\theta \\in \\{0.60, 0.65\\}$.\nAt $\\theta = 0.70$, three of four decoding configurations collapse to $\\Kempirical = 1$; only the high-temperature setting ($T{=}1.2$) retains $\\Kempirical = 2$, consistent with its elevated 1v2 $\\auc$ (0.7039).\nBeyond decoding parameters, the threshold sensitivity extends to generation mode: at $\\theta{=}0.70$, $\\Kempirical{=}1$ for all four model-mode configurations; at $\\theta{=}0.65$, continuation-mode configurations already drop to $\\Kempirical{=}1$, while rewrite mode retains $\\Kempirical{=}2$.\nThe $\\theta{=}0.65$ determination uses the CI-based criterion consistent with our primary $\\theta{=}0.60$ analysis: $\\Kempirical{=}2$ requires that the bootstrap 95\\% CI lower bound for 1v2 $\\auc$ exceeds $\\theta$.\nPythia-continuation's 1v2 point estimate (0.6539) marginally exceeds 0.65, but its CI lower bound (0.6454) falls below this threshold, yielding $\\Kempirical{=}1$ under the CI-based criterion.\nOur current analysis primarily covers the decoding configuration axis.\nThe boundary is robust within a practical range but not invariant to threshold choice; our conclusions are conditioned on $\\theta = 0.60$.\n\n\\emph{Boundary marginality.}\nThe $\\Kempirical = 2$ determination is statistically significant but numerically marginal at both ends.\nOn the lower side, Qwen-continuation's 1v2 CI lower bound (0.6015) exceeds $\\theta = 0.60$ by only $+$0.15\\,pp.\nOn the upper side, Qwen-rewrite's 2v3 CI upper bound (0.5991) falls below $\\theta$ by only $-$0.09\\,pp.\nThis narrow margin means that small changes in the feature set or classifier could shift the boundary---as the neural probe results confirm, where a richer representation pushes the 2v3 pair above $\\theta$ on the Qwen-continuation dataset (Section~\\ref{sec:discuss_kstar}).\nImportantly, all eight boundary comparisons (four 1v2 and four 2v3) yield permutation $p < 0.01$, confirming that the statistical significance of the distinction is not in doubt---only its proximity to the operational threshold.\n\n\\emph{Operational versus theoretical boundary.}\n$\\Kempirical$ is an operational lower bound that depends on the specific feature set and classifier; $\\Ktheory$ may be strictly greater.\nPreliminary neural probing results (Section~\\ref{sec:discuss_kstar}) provide direct evidence for this gap, yielding $\\Kempirical^{\\text{neural}} = 3$ on the Qwen-continuation dataset and confirming that $\\Ktheory \\geq 3$.\nThis result rests on a single dataset and awaits cross-model validation and bootstrap confidence intervals before a firm revision of the headline $\\Kempirical$ can be claimed.\n\n\\emph{Feature representation.}\nThe 15-dimensional hand-crafted feature set, while interpretable and transferable, is not optimal; the neural probe results (Section~\\ref{sec:discuss_kstar}) confirm that learned representations recover meaningful depth signal beyond what hand-crafted features extract.\nFull characterization of this gap, including cross-model generalization and bootstrap uncertainty quantification, remains future work.\n\n\\paragraph{Graduated Filtering.}\nResults for graduated filtering will be added upon completion of ongoing experiments.\n\n\\subsection{Broader Impact}\n\\label{sec:broader_impact}\n\nThe $\\Kempirical = 2$ boundary has implications beyond the immediate scope of depth classification.\n\n\\paragraph{Synthetic data curation.}\nThe practical consequence of $\\Kempirical = 2$ is a three-tier taxonomy of text quality: human-authored (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\nTexts at depth~$\\geq 2$ are mutually indistinguishable and can be treated as a single category for curation purposes.\nFor practitioners filtering training data, this implies that a single round of synthetic rewriting suffices to make text statistically indistinguishable from text that has undergone multiple rounds of recycling---a form of one-wash laundering that limits the granularity of quality-based filtering.\nThis underscores the urgency of deploying depth-aware curation mechanisms before the first generation step, rather than relying on post-hoc detection.\nGraduated filtering strategies that exploit this trichotomy may outperform binary human/synthetic filters, as the coarse ordinal signal (human / shallow / deep) captures the dominant axis of quality variation.\n\n\\paragraph{$\\Kstar$ as a corpus audit metric.}\nIndependent of filtering applications, $\\Kstar$ provides an actionable corpus quality metric answering a concrete question: what fraction of a training corpus consists of depth-$\\geq 2$ synthetic text?\nSince $\\Kempirical = 2$ implies that texts at depth~$\\geq 2$ are statistically indistinguishable from one another, they should be treated equivalently in data curation.\nThis establishes a directly actionable threshold: texts exceeding $\\Kstar$ generations require no finer-grained depth discrimination and can be assigned to a single ``deep synthetic'' category, simplifying dataset audits even when the efficacy of graduated filtering remains to be established.\n\n\\paragraph{Relation to model collapse.}\nShumailov et al.~\\cite{shumailov2024collapse} and Alemohammad et al.~\\cite{alemohammad2024selfconsuming} study model collapse under \\emph{retrain-chains}, where models are iteratively trained on their own outputs.\nOur prompt-chain protocol measures an adjacent but distinct phenomenon: the degradation of statistical distinguishability under recursive generation by a fixed model.\nThe rapid convergence we observe ($\\Kempirical = 2$) is consistent with the theoretical prediction of convergence to a fixed point.\nThe directional relationship $\\Kstar^{\\text{retrain}} \\leq \\Kstar^{\\text{prompt}}$ is expected under the monotonic-degradation assumption (Section~\\ref{sec:limitations}), but the exact quantitative relationship between prompt-chain $\\Kempirical$ and retrain-chain convergence rates remains open.\nIf prompt-chain depth signals serve as an observable proxy for early-stage model collapse, depth estimation could provide a lightweight diagnostic for data curation pipelines without requiring expensive retraining experiments.\n\n\\paragraph{AI text detection.}\nCurrent AI text detection is predominantly binary: human versus machine.\nOur results suggest that \\emph{depth-aware} detection provides a strictly more informative signal.\nThe near-perfect 0v1 separability ($\\auc > 0.99$) confirms that binary detection is reliable at this scale, but the 1v2 boundary ($\\auc$: 0.61--0.70) reveals that first-generation text retains measurable statistical distance from deeper synthetic text.\nThis additional dimension---how many generations of processing a text has undergone---may prove valuable for provenance tracking and corpus quality assessment, where the binary human/AI label elides important distinctions between lightly and heavily recycled content.\n",
+                "numLines": 195,
+                "startLine": 1,
+                "totalLines": 195
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I understand the full structure. I need to add two paragraphs using `\\paragraph{}` before the Limitations subsection (Section 5.5, line 112). The appropriate placement is after the LLM Zero-Shot Baseline discussion (which ends at line 110) and before Limitations.\n\nActually, looking at the structure more carefully, the task says \"在 limitations 之前或之后\". I think before Limitations makes more sense since these are substantive discussion points about degradation, not limitations themselves. I'll add them right before `\\subsection{Limitations}`.\n\n\nNow I'm drafting the two paragraphs that discuss the performance degradation patterns.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a03f57e9-9d72-4549-a9db-3bcf4711628e",
+            "uuid": "4af251a3-b245-4278-b70c-b288b6d23993",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EoJkg4c46GjtyrCt9PYpYP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7254,
+                "cache_read_input_tokens": 23430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7254
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "在 `\\subsection{Limitations}` 之前插入两个 `\\paragraph{}`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a03f57e9-9d72-4549-a9db-3bcf4711628e",
+            "uuid": "5dd712b8-18dc-425b-bc9b-b6060fe0ec59",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EoJkg4c46GjtyrCt9PYpYP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7254,
+                "cache_read_input_tokens": 23430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7254
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B1AkvsoxGm7XDsr9bgLKq9",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex",
+                "old_string": "\\subsection{Limitations}\n\\label{sec:limitations}",
+                "new_string": "% D025: added degradation defense\n\\paragraph{Degradation in Context.}\nIn our continual training experiments (Section~\\ref{sec:filtering}), all strategies degrade the base model's general capabilities, with MMLU accuracy declining from \\textbf{0.6018} (base) to \\textbf{0.5865}--\\textbf{0.5941} across filtering conditions.\nThis degradation must be interpreted in light of the experimental design: our controlled setting trains on \\emph{100\\% synthetic data}, providing an upper-bound characterization of the degradation effect.\nIn realistic mixed-corpus settings, degradation is proportional to the contamination fraction.\nCurrent estimates place AI-generated content at 5--15\\% of web-scale corpora~\\cite{TODO_ai_prevalence}, implying that the effective degradation in production pipelines would be substantially smaller than the upper bound observed here.\nThis interpretation aligns with model collapse theory: Shumailov et al.~\\cite{shumailov2024collapse} showed that degradation severity scales with the fraction of synthetic data in the training mixture, and Dohmatob et al.~\\cite{dohmatob2024model} derived concentration bounds predicting that diluted synthetic fractions produce proportionally attenuated capability loss.\nCritically, even under the extreme 100\\% synthetic condition, $\\Kstar$-aware binary filtering reduces MMLU degradation from \\textbf{$-$1.53\\,pp} (no-filter baseline) to \\textbf{$-$0.77\\,pp} (binary-ours), a roughly 50\\% reduction in capability loss.% from intermediate results, verify with final\nThis demonstrates that depth-aware filtering provides measurable protection even in the worst-case contamination scenario.\n\n% D025: added practical value proposition\n\\paragraph{Practical Value Proposition.}\nThe practical value of $\\Kstar$-aware filtering lies not in enabling training on purely synthetic corpora---where the optimal strategy is simply to avoid such data---but in scenarios where synthetic contamination is unavoidable.\nWeb-scale corpora with an estimated 5--15\\% AI-generated content~\\cite{TODO_ai_prevalence} present precisely this challenge: practitioners cannot feasibly curate away all synthetic text, and the contamination fraction will only grow.\nIn this setting, the universality of $\\Kempirical = 2$ across model families and decoding strategies (Section~\\ref{sec:kstar_boundary}) offers a key practical advantage: a single filtering threshold at the $\\Kstar = 2$ boundary requires no per-model or per-decoding-strategy calibration.\nBinary filtering at this boundary---retaining depth-0 and depth-1 text while discarding depth-$\\geq 2$ text---is simple to implement, effective at mitigating degradation, and universally applicable across the generator configurations we test.\nThis approach is complementary to distribution-matching methods such as DSIR~\\cite{xie2023dsir} and DoReMi~\\cite{xia2024doremi}, which optimize domain weights but do not estimate generational depth; combining depth-aware filtering with distribution matching is a promising direction for future work.\n\n\\subsection{Limitations}\n\\label{sec:limitations}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a03f57e9-9d72-4549-a9db-3bcf4711628e",
+            "uuid": "ea86dc27-4d1f-4144-8d08-db714b8c1425",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EoJkg4c46GjtyrCt9PYpYP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7254,
+                "cache_read_input_tokens": 23430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7254
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T04:22:08.658Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B1AkvsoxGm7XDsr9bgLKq9",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a03f57e9-9d72-4549-a9db-3bcf4711628e",
+            "uuid": "3ec75796-b391-4a34-be82-b2101d149d0b",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex",
+              "oldString": "\\subsection{Limitations}\n\\label{sec:limitations}",
+              "newString": "% D025: added degradation defense\n\\paragraph{Degradation in Context.}\nIn our continual training experiments (Section~\\ref{sec:filtering}), all strategies degrade the base model's general capabilities, with MMLU accuracy declining from \\textbf{0.6018} (base) to \\textbf{0.5865}--\\textbf{0.5941} across filtering conditions.\nThis degradation must be interpreted in light of the experimental design: our controlled setting trains on \\emph{100\\% synthetic data}, providing an upper-bound characterization of the degradation effect.\nIn realistic mixed-corpus settings, degradation is proportional to the contamination fraction.\nCurrent estimates place AI-generated content at 5--15\\% of web-scale corpora~\\cite{TODO_ai_prevalence}, implying that the effective degradation in production pipelines would be substantially smaller than the upper bound observed here.\nThis interpretation aligns with model collapse theory: Shumailov et al.~\\cite{shumailov2024collapse} showed that degradation severity scales with the fraction of synthetic data in the training mixture, and Dohmatob et al.~\\cite{dohmatob2024model} derived concentration bounds predicting that diluted synthetic fractions produce proportionally attenuated capability loss.\nCritically, even under the extreme 100\\% synthetic condition, $\\Kstar$-aware binary filtering reduces MMLU degradation from \\textbf{$-$1.53\\,pp} (no-filter baseline) to \\textbf{$-$0.77\\,pp} (binary-ours), a roughly 50\\% reduction in capability loss.% from intermediate results, verify with final\nThis demonstrates that depth-aware filtering provides measurable protection even in the worst-case contamination scenario.\n\n% D025: added practical value proposition\n\\paragraph{Practical Value Proposition.}\nThe practical value of $\\Kstar$-aware filtering lies not in enabling training on purely synthetic corpora---where the optimal strategy is simply to avoid such data---but in scenarios where synthetic contamination is unavoidable.\nWeb-scale corpora with an estimated 5--15\\% AI-generated content~\\cite{TODO_ai_prevalence} present precisely this challenge: practitioners cannot feasibly curate away all synthetic text, and the contamination fraction will only grow.\nIn this setting, the universality of $\\Kempirical = 2$ across model families and decoding strategies (Section~\\ref{sec:kstar_boundary}) offers a key practical advantage: a single filtering threshold at the $\\Kstar = 2$ boundary requires no per-model or per-decoding-strategy calibration.\nBinary filtering at this boundary---retaining depth-0 and depth-1 text while discarding depth-$\\geq 2$ text---is simple to implement, effective at mitigating degradation, and universally applicable across the generator configurations we test.\nThis approach is complementary to distribution-matching methods such as DSIR~\\cite{xie2023dsir} and DoReMi~\\cite{xia2024doremi}, which optimize domain weights but do not estimate generational depth; combining depth-aware filtering with distribution matching is a promising direction for future work.\n\n\\subsection{Limitations}\n\\label{sec:limitations}",
+              "originalFile": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\subsection{Theoretical Implications of $\\Kempirical = 2$}\n\\label{sec:discuss_kstar}\n\nThe Data Processing Inequality guarantees the existence of a finite $\\Ktheory$ beyond which adjacent generations become indistinguishable (Section~\\ref{sec:formulation}).\nOur empirical result---$\\Kempirical = 2$ consistently across all 8 tested configurations (4 model-mode combinations and 4 decoding strategies; Section~\\ref{sec:kstar_boundary}, Figure~\\ref{fig:auc_decay})---establishes that this boundary is not only finite but remarkably shallow at the $\\leq$1.5B parameter scale.\n\nThe shallowness of $\\Kempirical$ is explained by the rate of information loss across generations.\nThe 0v1 boundary is near-trivially separable ($\\auc > 0.99$ across all configurations; Table~\\ref{tab:kstar_ci}), reflecting the large distributional gap between human text and first-generation synthetic text.\nAt the 1v2 boundary, $\\auc$ drops by approximately 30 percentage points ($\\auc$ range: 0.6112--0.7039 across all eight model$\\times$decoding conditions; Table~\\ref{tab:kstar_ci}, Figure~\\ref{fig:auc_decay}; see also Figure~\\ref{fig:s1_auc_decay_ci} in the Appendix), indicating that the majority of the discriminative signal is consumed in the first generation step.\nBy the 2v3 boundary, $\\auc$ falls to 0.5496--0.5917 across all eight model$\\times$decoding conditions (upper bound from nucleus $p{=}0.9$ decoding; Figure~\\ref{fig:auc_decay})---below the operational threshold $\\theta = 0.60$---and deeper pairs converge toward chance.\nRecursive generation thus acts as a severely lossy channel whose information bottleneck is traversed within two steps.\n\nThe feature degradation analysis (Section~\\ref{sec:feature_degradation}) provides mechanistic evidence for this rapid collapse.\nThe most discriminative features---surprisal variance (\\texttt{surp\\_d1\\_std}, \\texttt{surp\\_std}) and its derivatives---all capture the heterogeneity of token-level predictability.\nHuman text exhibits high surprisal variance reflecting diverse syntactic structures and unpredictable discourse patterns.\nThe first generation step smooths this variance substantially, replacing high-surprisal tokens and atypical constructions with more predictable alternatives; the second step reduces the remaining variance to near-floor levels, leaving insufficient statistical fingerprint for reliable adjacent-depth discrimination.\nCrucially, this degradation ordering is consistent across model families (Spearman $\\rho \\geq 0.85$ for all continuation-mode pairs; Table~\\ref{tab:top_features}), suggesting that the two-step information loss is driven primarily by the autoregressive generation mechanism rather than by model-specific biases at this scale.\n\nThis pattern aligns with findings from the model collapse literature.\nShumailov et al.~\\cite{shumailov2024collapse} observed that tail-distribution degradation is most acute in the earliest generations, with minority modes vanishing before the output distribution stabilizes.\nDohmatob et al.~\\cite{dohmatob2024model} derived scaling laws demonstrating that tail probability mass is lost at rates predictable from model and data scale.\nOur $\\Kempirical = 2$ provides a complementary, classifier-based measurement of this phenomenon: the information-theoretic discrimination boundary is reached after just two generation steps.\nAlemohammad et al.~\\cite{alemohammad2024selfconsuming} proved convergence to a fixed point for self-consuming generative models; $\\Kempirical = 2$ indicates that, operationally, the approach to this fixed point is rapid enough that adjacent-generation distinctions collapse within two steps.\n\nImportantly, $\\Kempirical = 2$ is an \\emph{operational} lower bound conditioned on the 15-dimensional hand-crafted feature set; the \\emph{theoretical} boundary $\\Ktheory$ may be strictly higher.\nPreliminary evidence from a neural probing experiment supports this distinction.\nA frozen Qwen2.5-1.5B encoder (1536-dimensional last-layer representations) paired with a lightweight MLP classifier (Table~\\ref{tab:s7_neural_probe}) achieves 2v3 $\\auc = 0.6195$ ($\\text{std} = 0.0094$) on the Qwen-continuation dataset, exceeding the $\\theta = 0.60$ threshold that the same dataset's LightGBM classifier fails to cross ($\\auc = 0.5609$; Section~\\ref{sec:kstar_boundary}).\nThis yields $\\Kempirical^{\\text{neural}} = 3$: the learned representation recovers one additional discriminable boundary that the hand-crafted features miss.\nThe improvement is concentrated at the 2v3 pair ($+$5.86\\,pp over LightGBM); at the already-separable 1v2 boundary the neural probe achieves 0.6983 versus 0.6112, a substantial gain but one that does not alter the boundary determination.\nAt 3v4, the neural probe reaches $\\auc = 0.5930$---below $\\theta$ but closer to the threshold than any hand-crafted configuration---suggesting that a still richer representation might push the boundary further.\nThe lossy-channel narrative remains intact: even with 1536-dimensional frozen representations, the discrimination boundary extends to only three steps, confirming that the information bottleneck of recursive generation is shallow even with substantially richer representations.\nThese results are preliminary: they cover a single model-dataset pair (Qwen-continuation) and lack bootstrap confidence intervals; cross-model validation on Pythia and OLMo is pending.\n\nThe consistency of $\\Kempirical = 2$ across decoding strategies merits emphasis.\nGreedy decoding, nucleus sampling ($p{=}0.9$), $T{=}0.7$, and $T{=}1.2$ all yield $\\Kempirical = 2$ (Figure~\\ref{fig:auc_decay}; Table~\\ref{tab:s2_decoding}), with 1v2 $\\auc$ spanning a narrow range of [0.6866, 0.7039].\nHigher decoding entropy modestly increases signal strength ($\\auc_{1,2}$: 0.69 greedy $\\to$ 0.70 at $T{=}1.2$) but does not shift the boundary.\nThis robustness suggests that, at least at the $\\leq$1.5B scale, $\\Kempirical$ is governed primarily by the information bottleneck of the generation process rather than by surface-level properties of the sampling algorithm.\n\n\\subsection{Implications of Cross-Model Transfer}\n\\label{sec:discuss_transfer}\n\nThe cross-model transfer results (Section~\\ref{sec:transfer}) indicate that depth signals are largely encoded in text-level statistical properties rather than generator-specific artifacts.\nClassifiers trained on Pythia-1.4B and evaluated on OLMo-1B retain 90--92\\% of within-model accuracy, and the broader continuation-mode transfer matrix shows 80--92\\% retention across all model pairs (Table~\\ref{tab:transfer_matrix}; see Table~\\ref{tab:s1_transfer} for the full matrix).\nAt the 0v1 boundary, cross-model $\\auc$ exceeds 0.96 across all tested model pairs, confirming that binary contamination detection is fully transferable across the tested generators.\n\nThe practical implication is direct: a single depth classifier trained on one model's outputs can be deployed to estimate generational depth for texts produced by other models, without model-specific retraining.\nThis transferability extends the utility of depth estimation to open-web settings where the generating model is unknown---precisely the scenario where depth-aware data curation is most needed.\n\nTwo caveats bound this conclusion.\nFirst, the text-intrinsic component dominates, as evidenced by high cross-model transfer retention (80--92\\% across continuation-mode pairs), yet a nontrivial model-specific residual persists.\nThe Pythia$\\leftrightarrow$OLMo pair, which spans different architectures and training corpora, achieves the highest cross-family retention (90--92\\%), consistent with the depth signal being largely architecture-agnostic within continuation mode.\nSecond, Qwen-continuation$\\leftrightarrow$OLMo retention (80--85\\%) is lower than Pythia$\\leftrightarrow$OLMo (90--92\\%), indicating that model family similarity modulates transfer even among continuation-mode configurations.\n\n\\subsection{Feature Importance Across Decoding Strategies}\n\\label{sec:discuss_features}\n\nWhile $\\Kempirical = 2$ is consistent across decoding strategies (4/4 configurations), the feature importance ordering is not equally stable.\nGreedy decoding and $T{=}0.7$ share highly correlated feature rankings (Spearman $\\rho = 0.914$), with top features dominated by vocabulary diversity measures: \\texttt{self\\_bleu}, \\texttt{hapax\\_ratio}, and \\texttt{ttr}.\nIn contrast, greedy versus $T{=}1.2$ yields a lower correlation ($\\rho = 0.53$, $p = 0.041$; suggestive but nonsignificant after Bonferroni correction for 6 pairwise comparisons), with $T{=}1.2$ promoting \\texttt{hapax\\_ratio}, \\texttt{ttr}, and \\texttt{surp\\_skew} to the top ranks.\nNotably, \\texttt{freq\\_entropy} rises from rank~10 under greedy ($\\auc = 0.5139$) to rank~5 under $T{=}1.2$ ($\\auc = 0.5905$), illustrating how high-entropy decoding amplifies frequency-distribution artifacts.\n\nThis dissociation reveals an important distinction: the \\emph{existence} of the depth boundary is robust, but the \\emph{optimal feature subset} for detecting it depends on the sampling strategy.\nHigh-entropy decoding amplifies frequency-distribution artifacts while attenuating vocabulary-diversity signals, shifting which text properties carry the most discriminative power without altering whether adjacent generations can be distinguished.\nFor practitioners, this implies that a general-purpose depth classifier should incorporate features from multiple groups---surprisal moments, vocabulary diversity, and frequency tail statistics---to maintain performance across unknown decoding conditions.\n\nThe cross-model feature ordering (Section~\\ref{sec:feature_degradation}) provides a complementary perspective: among continuation-mode models, single-feature $\\auc$ rankings are highly consistent (Spearman $\\rho \\geq 0.85$), with surprisal-variance features---\\texttt{surp\\_d1\\_std}, \\texttt{surp\\_std}, \\texttt{surp\\_d2\\_std}---dominating across all three families.\nA genuine limitation, however, is that depth-pair-level agreement weakens to $\\tau \\approx 0.37$ at the 1v2 boundary (Section~\\ref{sec:feature_degradation}), indicating that the relative contribution of individual features at the discrimination boundary varies across models even when the aggregate ordering is shared.\n\n\\subsection{Scale Considerations}\n\\label{sec:discuss_scale}\n\nOur experiments establish $\\Kempirical = 2$ at the $\\leq$1.5B parameter scale, providing the first empirical measurement of the generational depth boundary for language models.\nThis result constitutes a \\emph{methodological lower bound}: the framework itself---15-dimensional token-level features, OBD-optimized classification, bootstrap confidence intervals, and permutation testing---is model-scale agnostic by construction.\nAll 15 features are computed from surface-level token statistics (surprisal moments, vocabulary diversity, frequency tail measures) without access to model internals, and the cross-model transfer results (80--92\\% retention across architecturally distinct model families; Section~\\ref{sec:transfer}) already demonstrate that the methodology generalizes across different architectures and training corpora at the tested scale.\n\nScaling to larger models presents two possible outcomes, both of which reinforce rather than diminish the contribution.\nIf $\\Kempirical > 2$ at 7B+ scales---as suggested by scaling laws showing that larger models exhibit slower tail-distribution degradation rates~\\cite{dohmatob2024model, kaplan2020scaling}---then depth contamination becomes \\emph{more} insidious: higher-fidelity generations would produce weaker depth signatures, making fine-grained detection more critical and the systematic framework we introduce more necessary.\nConversely, if $\\Kempirical = 2$ persists at larger scales, our conclusions generalize directly.\nIn either case, the measurement methodology established here---the feature taxonomy, the $\\Kstar$ estimation protocol, and the cross-model validation framework---provides the requisite infrastructure for characterizing depth boundaries at any scale.\nThe model collapse literature supports the expectation that depth-related phenomena are scale-persistent: Shumailov et al.~\\cite{shumailov2024collapse} observed tail-mode collapse across model sizes, and Alemohammad et al.~\\cite{alemohammad2024selfconsuming} proved fixed-point convergence for self-consuming generators without scale-dependent assumptions.\nMoreover, the high cross-model transfer retention across three architecturally distinct families---Pythia (GPT-2 architecture), OLMo (modified Transformer), and Qwen (grouped-query attention)---with 90--92\\% accuracy retention for Pythia$\\leftrightarrow$OLMo (Section~\\ref{sec:transfer}) already provides architecture-agnostic indirect evidence that depth signals are not tied to a specific pretraining paradigm; 7B cross-scale experiments will provide direct scale validation.\n\nWe identify 7B-scale cross-scale validation as the immediate next step.\nThe experimental pipeline---data generation, feature extraction, and classifier evaluation---is fully implemented and directly applicable to larger models; only computational budget constrains this extension.\nCritically, this limitation does not affect the validity of the $\\Kempirical = 2$ result at $\\leq$1.5B, which stands as the first empirical characterization of generational depth boundaries in language model outputs.\n\n\\subsection{LLM Zero-Shot Baseline}\n\\label{sec:discuss_llm}\n\nFrontier LLMs provide a natural baseline for depth estimation.\nOn a 500-sample test set with 5 depth classes (depths 0--4), excluding depth~5 from the 6-class range used in the main feature-based experiments since depths $\\geq 2$ are mutually indistinguishable ($\\Kempirical = 2$), GPT-5.5 achieves 33.2\\% accuracy (MAE = 1.10) and Claude Opus~4.6 achieves 33.1\\% accuracy (MAE = 1.15)---both below the OBD-LightGBM baseline of 38.6\\% (MAE = 1.11; see Table~\\ref{tab:s3_llm_zeroshot} for per-depth confusion matrices).\nSimultaneously, both models achieve approximately 88\\% binary accuracy on the human-vs.-synthetic distinction (GPT-5.5: 87.8\\%, Claude: 88.2\\%).\n\nThis gap between binary detection and depth estimation is informative.\nFrontier LLMs can reliably determine \\emph{whether} a text is machine-generated but cannot estimate \\emph{how many generations of recursive processing} it has undergone.\nDepth estimation requires sensitivity to subtle distributional shifts between adjacent generations---shifts orders of magnitude smaller than the human-vs.-machine gap.\nThe 15-dimensional statistical feature pipeline, despite its simplicity, captures these fine-grained shifts more effectively than frontier LLMs in a zero-shot setting.\nThis motivates the dedicated feature-engineering approach: the task demands specialized statistical sensitivity rather than general language understanding.\n\nPer-depth analysis sharpens this conclusion. Both models achieve high depth-0 recall (GPT-5.5: 0.77, Claude: 0.69), indicating reliable human-text identification, but recall for depths~1--4 collapses to 0.08--0.38, with confusion matrices (Table~\\ref{tab:s3_llm_zeroshot}) showing predictions scattered nearly uniformly across non-human classes. The resulting Spearman correlations between predicted and true depth are weak ($\\rho = 0.38$ for GPT-5.5, $\\rho = 0.42$ for Claude), confirming that frontier LLMs function as binary human-vs.-AI detectors augmented by near-random depth guessing---confidence scores cannot serve as a depth proxy.\n\nThis conclusion extends to statistical detection tools.\nMethods such as DetectGPT~\\cite{mitchell2023detectgpt} and Binoculars~\\cite{hans2024binoculars} optimize a scalar score for the binary human-vs.-AI boundary---the same distinction where our LLM baselines excel (${\\sim}88\\%$ accuracy).\nBut the per-depth recall collapse (0.08--0.38 for depths 1--4) demonstrates that binary detection confidence is orthogonal to generational depth: a high ``AI-generated'' score carries no information about how many generation steps a text has undergone.\nDepth estimation is a fundamentally distinct task requiring multi-dimensional statistical sensitivity that scalar detection scores do not provide.\n\nWe evaluate only zero-shot prompting; few-shot or chain-of-thought strategies may narrow the gap and warrant future investigation.\n\n\\subsection{Limitations}\n\\label{sec:limitations}\n\nWe identify eight limitations that bound the generalizability of our findings.\n\n\\emph{Model scale.}\nAll experiments use models at or below 1.5B parameters (Pythia-1.4B, OLMo-1B, Qwen2.5-1.5B-Instruct).\nLarger models may produce higher-fidelity text with weaker depth signatures, potentially shifting $\\Kempirical$ beyond~2.\n\n\\emph{Prompt-chain versus retrain-chain.}\nOur recursive generation protocol is a prompt-chain: the same fixed model repeatedly generates from the previous output.\nReal-world model collapse involves retrain-chains, where models are retrained on data from earlier generations~\\cite{shumailov2024collapse}.\nRetrain-chains introduce additional degradation through training dynamics, potentially producing different $\\Kstar$ values.\nCrucially, the prompt-chain protocol is \\emph{expected} to provide an upper bound on retrain-chain $\\Kstar$ under the assumption that model quality degrades monotonically in retrain-chains~\\cite{shumailov2024collapse}: our protocol holds model quality constant across generations, whereas in a retrain-chain each generation's model is trained on degraded data and is therefore weaker.\nUnder this monotonic-degradation assumption, the compounding model degradation accelerates feature convergence, implying $\\Kstar^{\\text{retrain}} \\leq \\Kstar^{\\text{prompt}}$.\nOur $\\Kempirical = 2$ is thus a conservative estimate if monotonic degradation holds---under realistic retrain conditions, the discrimination boundary would be shallower still---though the exact quantitative relationship between prompt-chain and retrain-chain $\\Kstar$ remains open (see Section~\\ref{sec:broader_impact}).\n\n\\emph{Language and domain.}\nAll experiments use English text from the C4 corpus.\nDepth dynamics may differ across languages, domains (e.g., code, scientific text), and source corpora with different distributional properties.\n\n\\emph{Decoding coverage.}\nWe test four decoding strategies (greedy, nucleus $p{=}0.9$, $T{=}0.7$, $T{=}1.2$).\nOther strategies---top-$k$ sampling, beam search, contrastive decoding---remain untested and may yield different feature importance patterns or boundary behavior.\n\n\\emph{Threshold sensitivity.}\n$\\Kempirical$ depends on the operational threshold $\\theta$.\n$\\Kempirical \\geq 2$ across $\\theta \\in \\{0.55, 0.60, 0.65\\}$ for all four decoding strategies, rising to $\\Kempirical = 3$ at $\\theta = 0.55$ (all four 2v3 $\\auc$ values exceed 0.55) and returning to $\\Kempirical = 2$ at $\\theta \\in \\{0.60, 0.65\\}$.\nAt $\\theta = 0.70$, three of four decoding configurations collapse to $\\Kempirical = 1$; only the high-temperature setting ($T{=}1.2$) retains $\\Kempirical = 2$, consistent with its elevated 1v2 $\\auc$ (0.7039).\nBeyond decoding parameters, the threshold sensitivity extends to generation mode: at $\\theta{=}0.70$, $\\Kempirical{=}1$ for all four model-mode configurations; at $\\theta{=}0.65$, continuation-mode configurations already drop to $\\Kempirical{=}1$, while rewrite mode retains $\\Kempirical{=}2$.\nThe $\\theta{=}0.65$ determination uses the CI-based criterion consistent with our primary $\\theta{=}0.60$ analysis: $\\Kempirical{=}2$ requires that the bootstrap 95\\% CI lower bound for 1v2 $\\auc$ exceeds $\\theta$.\nPythia-continuation's 1v2 point estimate (0.6539) marginally exceeds 0.65, but its CI lower bound (0.6454) falls below this threshold, yielding $\\Kempirical{=}1$ under the CI-based criterion.\nOur current analysis primarily covers the decoding configuration axis.\nThe boundary is robust within a practical range but not invariant to threshold choice; our conclusions are conditioned on $\\theta = 0.60$.\n\n\\emph{Boundary marginality.}\nThe $\\Kempirical = 2$ determination is statistically significant but numerically marginal at both ends.\nOn the lower side, Qwen-continuation's 1v2 CI lower bound (0.6015) exceeds $\\theta = 0.60$ by only $+$0.15\\,pp.\nOn the upper side, Qwen-rewrite's 2v3 CI upper bound (0.5991) falls below $\\theta$ by only $-$0.09\\,pp.\nThis narrow margin means that small changes in the feature set or classifier could shift the boundary---as the neural probe results confirm, where a richer representation pushes the 2v3 pair above $\\theta$ on the Qwen-continuation dataset (Section~\\ref{sec:discuss_kstar}).\nImportantly, all eight boundary comparisons (four 1v2 and four 2v3) yield permutation $p < 0.01$, confirming that the statistical significance of the distinction is not in doubt---only its proximity to the operational threshold.\n\n\\emph{Operational versus theoretical boundary.}\n$\\Kempirical$ is an operational lower bound that depends on the specific feature set and classifier; $\\Ktheory$ may be strictly greater.\nPreliminary neural probing results (Section~\\ref{sec:discuss_kstar}) provide direct evidence for this gap, yielding $\\Kempirical^{\\text{neural}} = 3$ on the Qwen-continuation dataset and confirming that $\\Ktheory \\geq 3$.\nThis result rests on a single dataset and awaits cross-model validation and bootstrap confidence intervals before a firm revision of the headline $\\Kempirical$ can be claimed.\n\n\\emph{Feature representation.}\nThe 15-dimensional hand-crafted feature set, while interpretable and transferable, is not optimal; the neural probe results (Section~\\ref{sec:discuss_kstar}) confirm that learned representations recover meaningful depth signal beyond what hand-crafted features extract.\nFull characterization of this gap, including cross-model generalization and bootstrap uncertainty quantification, remains future work.\n\n\\paragraph{Graduated Filtering.}\nResults for graduated filtering will be added upon completion of ongoing experiments.\n\n\\subsection{Broader Impact}\n\\label{sec:broader_impact}\n\nThe $\\Kempirical = 2$ boundary has implications beyond the immediate scope of depth classification.\n\n\\paragraph{Synthetic data curation.}\nThe practical consequence of $\\Kempirical = 2$ is a three-tier taxonomy of text quality: human-authored (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\nTexts at depth~$\\geq 2$ are mutually indistinguishable and can be treated as a single category for curation purposes.\nFor practitioners filtering training data, this implies that a single round of synthetic rewriting suffices to make text statistically indistinguishable from text that has undergone multiple rounds of recycling---a form of one-wash laundering that limits the granularity of quality-based filtering.\nThis underscores the urgency of deploying depth-aware curation mechanisms before the first generation step, rather than relying on post-hoc detection.\nGraduated filtering strategies that exploit this trichotomy may outperform binary human/synthetic filters, as the coarse ordinal signal (human / shallow / deep) captures the dominant axis of quality variation.\n\n\\paragraph{$\\Kstar$ as a corpus audit metric.}\nIndependent of filtering applications, $\\Kstar$ provides an actionable corpus quality metric answering a concrete question: what fraction of a training corpus consists of depth-$\\geq 2$ synthetic text?\nSince $\\Kempirical = 2$ implies that texts at depth~$\\geq 2$ are statistically indistinguishable from one another, they should be treated equivalently in data curation.\nThis establishes a directly actionable threshold: texts exceeding $\\Kstar$ generations require no finer-grained depth discrimination and can be assigned to a single ``deep synthetic'' category, simplifying dataset audits even when the efficacy of graduated filtering remains to be established.\n\n\\paragraph{Relation to model collapse.}\nShumailov et al.~\\cite{shumailov2024collapse} and Alemohammad et al.~\\cite{alemohammad2024selfconsuming} study model collapse under \\emph{retrain-chains}, where models are iteratively trained on their own outputs.\nOur prompt-chain protocol measures an adjacent but distinct phenomenon: the degradation of statistical distinguishability under recursive generation by a fixed model.\nThe rapid convergence we observe ($\\Kempirical = 2$) is consistent with the theoretical prediction of convergence to a fixed point.\nThe directional relationship $\\Kstar^{\\text{retrain}} \\leq \\Kstar^{\\text{prompt}}$ is expected under the monotonic-degradation assumption (Section~\\ref{sec:limitations}), but the exact quantitative relationship between prompt-chain $\\Kempirical$ and retrain-chain convergence rates remains open.\nIf prompt-chain depth signals serve as an observable proxy for early-stage model collapse, depth estimation could provide a lightweight diagnostic for data curation pipelines without requiring expensive retraining experiments.\n\n\\paragraph{AI text detection.}\nCurrent AI text detection is predominantly binary: human versus machine.\nOur results suggest that \\emph{depth-aware} detection provides a strictly more informative signal.\nThe near-perfect 0v1 separability ($\\auc > 0.99$) confirms that binary detection is reliable at this scale, but the 1v2 boundary ($\\auc$: 0.61--0.70) reveals that first-generation text retains measurable statistical distance from deeper synthetic text.\nThis additional dimension---how many generations of processing a text has undergone---may prove valuable for provenance tracking and corpus quality assessment, where the binary human/AI label elides important distinctions between lightly and heavily recycled content.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 109,
+                  "oldLines": 6,
+                  "newStart": 109,
+                  "newLines": 24,
+                  "lines": [
+                    " ",
+                    " We evaluate only zero-shot prompting; few-shot or chain-of-thought strategies may narrow the gap and warrant future investigation.",
+                    " ",
+                    "+% D025: added degradation defense",
+                    "+\\paragraph{Degradation in Context.}",
+                    "+In our continual training experiments (Section~\\ref{sec:filtering}), all strategies degrade the base model's general capabilities, with MMLU accuracy declining from \\textbf{0.6018} (base) to \\textbf{0.5865}--\\textbf{0.5941} across filtering conditions.",
+                    "+This degradation must be interpreted in light of the experimental design: our controlled setting trains on \\emph{100\\% synthetic data}, providing an upper-bound characterization of the degradation effect.",
+                    "+In realistic mixed-corpus settings, degradation is proportional to the contamination fraction.",
+                    "+Current estimates place AI-generated content at 5--15\\% of web-scale corpora~\\cite{TODO_ai_prevalence}, implying that the effective degradation in production pipelines would be substantially smaller than the upper bound observed here.",
+                    "+This interpretation aligns with model collapse theory: Shumailov et al.~\\cite{shumailov2024collapse} showed that degradation severity scales with the fraction of synthetic data in the training mixture, and Dohmatob et al.~\\cite{dohmatob2024model} derived concentration bounds predicting that diluted synthetic fractions produce proportionally attenuated capability loss.",
+                    "+Critically, even under the extreme 100\\% synthetic condition, $\\Kstar$-aware binary filtering reduces MMLU degradation from \\textbf{$-$1.53\\,pp} (no-filter baseline) to \\textbf{$-$0.77\\,pp} (binary-ours), a roughly 50\\% reduction in capability loss.% from intermediate results, verify with final",
+                    "+This demonstrates that depth-aware filtering provides measurable protection even in the worst-case contamination scenario.",
+                    "+",
+                    "+% D025: added practical value proposition",
+                    "+\\paragraph{Practical Value Proposition.}",
+                    "+The practical value of $\\Kstar$-aware filtering lies not in enabling training on purely synthetic corpora---where the optimal strategy is simply to avoid such data---but in scenarios where synthetic contamination is unavoidable.",
+                    "+Web-scale corpora with an estimated 5--15\\% AI-generated content~\\cite{TODO_ai_prevalence} present precisely this challenge: practitioners cannot feasibly curate away all synthetic text, and the contamination fraction will only grow.",
+                    "+In this setting, the universality of $\\Kempirical = 2$ across model families and decoding strategies (Section~\\ref{sec:kstar_boundary}) offers a key practical advantage: a single filtering threshold at the $\\Kstar = 2$ boundary requires no per-model or per-decoding-strategy calibration.",
+                    "+Binary filtering at this boundary---retaining depth-0 and depth-1 text while discarding depth-$\\geq 2$ text---is simple to implement, effective at mitigating degradation, and universally applicable across the generator configurations we test.",
+                    "+This approach is complementary to distribution-matching methods such as DSIR~\\cite{xie2023dsir} and DoReMi~\\cite{xia2024doremi}, which optimize domain weights but do not estimate generational depth; combining depth-aware filtering with distribution matching is a promising direction for future work.",
+                    "+",
+                    " \\subsection{Limitations}",
+                    " \\label{sec:limitations}",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个段落已插入 `\\subsection{Limitations}` 之前（原文 line 112）：\n\n1. **Degradation in Context** — 论证 100% 合成数据是 upper bound，真实 5-15% 混合比下退化远小于此；即使极端条件下 binary-ours 仍减少约 50% 退化（-1.53pp → -0.77pp）\n2. **Practical Value Proposition** — 论证 K*-aware filtering 的应用场景是不可避免的合成污染；K*=2 universality 免去逐模型标定；与 DSIR/DoReMi 互补\n\n标注：`% D025: added degradation defense` 注释已加；数字来自中间结果（`% from intermediate results, verify with final`）；引用占位符用 `\\cite{TODO_ai_prevalence}`、`\\cite{xie2023dsir}`、`\\cite{xia2024doremi}`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a03f57e9-9d72-4549-a9db-3bcf4711628e",
+            "uuid": "145c2d15-b608-4ed7-b6db-2d861261980f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AqvZhvViPpAA4cUyFEEX1j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1144,
+                "cache_read_input_tokens": 30684,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1144
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个段落已插入 `\\subsection{Limitations}` 之前（原文 line 112）：\n\n1. **Degradation in Context** — 论证 100% 合成数据是 upper bound，真实 5-15% 混合比下退化远小于此；即使极端条件下 binary-ours 仍减少约 50% 退化（-1.53pp → -0.77pp）\n2. **Practical Value Proposition** — 论证 K*-aware filtering 的应用场景是不可避免的合成污染；K*=2 universality 免去逐模型标定；与 DSIR/DoReMi 互补\n\n标注：`% D025: added degradation defense` 注释已加；数字来自中间结果（`% from intermediate results, verify with final`）；引用占位符用 `\\cite{TODO_ai_prevalence}`、`\\cite{xie2023dsir}`、`\\cite{xia2024doremi}`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 38930,
+            "duration_api_ms": 39924,
+            "num_turns": 3,
+            "stop_reason": "end_turn",
+            "session_id": "a03f57e9-9d72-4549-a9db-3bcf4711628e",
+            "total_cost_usd": 0.19543925,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 19987,
+              "cache_read_input_tokens": 65955,
+              "output_tokens": 1439,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 19987,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 266,
+                  "cache_read_input_tokens": 30684,
+                  "cache_creation_input_tokens": 1144,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1144
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1458,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001543,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 1439,
+                "cacheReadInputTokens": 65955,
+                "cacheCreationInputTokens": 19987,
+                "webSearchRequests": 0,
+                "costUSD": 0.19389625000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c2be45b6-788f-4c25-a6d2-1d70f89eaf14"
+          },
+          "id": "event-000012"
+        }
+      ],
+      "message_count": 12
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-discussion-degradation.md"
+}

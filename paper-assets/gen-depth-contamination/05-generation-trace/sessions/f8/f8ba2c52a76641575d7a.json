@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8ba2c52a76641575d7a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis theta sensitivity",
+  "task_key": "worker_analysis_theta_sensitivity_20260517T195743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_theta_sensitivity_20260517T195743_result.json",
+    "occurrence": 1,
+    "bytes": 573,
+    "sha256": "37614b8a43ac7f757a1ac2a072dfb83bda0c21a14feffa0bc08e5bee2f9a7df8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。21 个实验的 K* 在 6 个 θ 值下的结果：\n\n**核心结论：**\n- **C4 域 K\\*=2** 在 θ∈[0.575, 0.625] 稳定（10/13 实验），边界 1v2 AUC 在 0.61-0.70 间，margin +0.01 到 +0.10\n- **arXiv 域 K\\*=3** 在 θ∈[0.55, 0.625] 稳定（4/5 实验），边界 2v3 AUC 在 0.622-0.655 间\n- **Retrain-chain K\\*=4** 在全范围 [0.55, 0.70] 完全不变（最小 AUC=0.798）\n- **θ=0.60 是安全区间 [0.575, 0.625] 的中心**，核心发现在此区间内均保持不变\n\n产出已注册：`art_20260517_d4ffdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-theta-sensitivity.md"
+}

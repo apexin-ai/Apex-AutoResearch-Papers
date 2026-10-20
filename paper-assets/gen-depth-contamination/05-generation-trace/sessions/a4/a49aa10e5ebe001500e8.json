@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a49aa10e5ebe001500e8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops verify 32b running",
+  "task_key": "worker_ops_verify_32b_running_20260517T193923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_32b_running_20260517T193923_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "ff049246e8cf5a2068b240c08f30d03a679a2d01cc31ad6d44f6a988b26dfd81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### exp_32b_c4: ✅ 运行中\n- PID 14642, cuda:1, 64777MiB/97887MiB, GPU-Util 90%\n- 刚启动约 1 分钟，正在生成 depth 1 (5/2500 batches), 预估速度 ~13s/it\n- 模型已成功加载 (Qwen2.5-32B)\n\n### exp_14b_c4: ✅ 运行中\n- PID 8591, cuda:0, 31103MiB/97887MiB, GPU-Util 86%\n- depth 1 进度: 1095/1250 batches (88%), 已运行 ~2h30m\n- 预估 depth 1 剩余 ~22 分钟完成，之后还有 depth 2-5\n\n### nvidia-smi\n```\nGPU 0: NVIDIA RTX PRO 6000 Black | 31103MiB / 97887MiB | 86% util | exp_14b_c4\nGPU 1: NVIDIA RTX PRO 6000 Black | 64777MiB / 97887MiB | 90% util | exp_32b_c4\n```\n\n两个实验均正常运行，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-32b-running.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bb42ef8eeebb615c412",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check arxiv deberta json",
+  "task_key": "worker_check_arxiv_deberta_json_20260520T035050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_arxiv_deberta_json_20260520T035050_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "f2ce612f5c2e9deca7c6137233cf40b04301c1b7363d1120b0b79594817e3a7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 文件存在且格式正确。汇报：\n\n- **路径**: `/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_arxiv/arxiv_qwen1b5.json`\n  （注意：实际路径是 `exp_deberta_arxiv/` 下而非 `exp_deberta_arxiv_qwen1b5/`）\n- **状态**: 已存在，脚本自动生成，无需新建\n- **格式检查**:\n  - K* = 4, theta = 0.6\n  - 5 对 pairwise AUC 均含 `auc`, `ci_lower`, `ci_upper`，还额外包含 `ci_lower_above_theta`, `boot_mean`, `boot_std`\n  - 包含 OBD baseline 对比数据\n  - 缺少 `kstar_indexing` 字段（但从 key 命名 `0v1`...`4v5` 可推断是 0-indexed depth pair）\n  - 缺少 `domain` 和 `generator` 字段（但 `experiment` 字段 `arxiv_qwen1b5` 隐含了这些信息）\n\n内容与日志输出完全一致，数据完整可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-arxiv-deberta-json.md"
+}

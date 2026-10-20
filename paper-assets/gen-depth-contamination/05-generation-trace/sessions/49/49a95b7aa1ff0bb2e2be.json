@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49a95b7aa1ff0bb2e2be",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research bibtex lookup",
+  "task_key": "worker_research_bibtex-lookup_20260518T163553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bibtex-lookup_20260518T163553_result.json",
+    "occurrence": 1,
+    "bytes": 1495,
+    "sha256": "63b755f4b9bbcc3456c8c7b5206ec7ef1bb364996f07a06ec85e70274c6998a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/new_bibtex_entries.bib`。以下是结果汇总：\n\n| Placeholder | 实际论文 | Key | 备注 |\n|---|---|---|---|\n| `placeholder_guo2023survey` | Guo et al. \"How Close is ChatGPT to Human Experts?\" (2023) | `guo2023closechatgpt` | **问题**: 找不到 Guo/Bao 合著的 survey。该论文是 dataset/benchmark 论文而非纯 survey。可能需确认是否应改用 Wu et al. (2310.14724) |\n| `placeholder_tang2024science` | Tang et al. \"The Science of Detecting LLM-Generated Text\", CACM 2024 | `tang2024science` | 完全匹配 |\n| `placeholder_krishna2024` | Krishna et al. NeurIPS 2023 (paraphrasing evades detectors) | `krishna2024paraphrasing` | **问题**: `krishna2023paraphrasing` 已在 references.bib 中存在，未找到 Krishna 的 2024 新论文。建议将 tex 中 `placeholder_krishna2024` 直接替换为已有的 `krishna2023paraphrasing` |\n| `placeholder_oren2024` | Oren et al. \"Proving Test Set Contamination in Black Box Language Models\", ICLR 2024 | `oren2024proving` | 完全匹配 |\n| `placeholder_cao2020coral` | Cao, Mirjalili, Raschka. \"Rank Consistent Ordinal Regression\" (CORAL), Pattern Recognition Letters 2020 | `cao2020coral` | 完全匹配 |\n\n需要 Paper Agent 处理的两个问题：\n1. `placeholder_guo2023survey` 描述的\"Guo/Bao survey\"不存在，需确认实际要引的是哪篇\n2. `placeholder_krishna2024` 与已有 `krishna2023paraphrasing` 是同一篇论文，建议合并引用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bibtex-lookup.md"
+}

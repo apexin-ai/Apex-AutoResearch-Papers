@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e09e19d44d1149e9cae5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 status check",
+  "task_key": "worker_infra_exp006-status-check_20260514T213157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006-status-check_20260514T213157_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "7c3616525d940a621cf71d8fa4b1b2c5397e538c7b33ab392d6d8a234c3cd65e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-006 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **tmux session** | `exp_006_graduated_filtering` — 存活 |\n| **GPU** | 83% 利用率，13.7 / 24.6 GB 显存占用 |\n| **已完成 runs** | **33 / 50**（含 base_model） |\n| **总 run 目录** | 35（含 1 个 base_model + 1 个正在训练） |\n| **当前训练** | `graduated_a0.7_s456` — epoch 0.96, 进度 61% (1715/2814), 速度 1.25 it/s |\n| **loss** | ~2.49-2.55，稳定下降中 |\n\n**剩余估算**：当前 run 剩余 ~14 min（1099 steps × 0.8s）。之后还剩 **~17 个 run** 待训练（graduated_a0.7 剩 3 个 seed + graduated_a0.9 × 5 seeds + 可能的其他条件）。按每个 run ~37 min 估算，总剩余约 **10-11 小时**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-status-check.md"
+}

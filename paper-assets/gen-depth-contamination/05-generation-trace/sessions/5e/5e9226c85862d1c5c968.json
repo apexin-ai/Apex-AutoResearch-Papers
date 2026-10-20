@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e9226c85862d1c5c968",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code wiki domain llama",
+  "task_key": "worker_code_wiki_domain_llama_20260524T094623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wiki_domain_llama_20260524T094623_result.json",
+    "occurrence": 1,
+    "bytes": 1250,
+    "sha256": "0d8a7ef789aa56e16267ea624bbecc15cff1674588dc47e69be446d6b62134e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已完整，无需重新运行实验。汇报结果：\n\n## LLaMA-3.1-8B Wikipedia Depth Chain 结果\n\n**K\\* = 1**（AUC > 0.60 的最大深度），与其他模型在 Wiki domain 的结果一致。\n\n### Pairwise AUC（相邻深度）\n\n| 对比 | AUC | 判定 |\n|------|-----|------|\n| depth 0 vs 1 | **0.932** ± 0.006 | 可区分 |\n| depth 1 vs 2 | 0.595 ± 0.008 | 不可区分 |\n| depth 2 vs 3 | 0.539 ± 0.011 | 不可区分 |\n| depth 3 vs 4 | 0.522 ± 0.012 | 不可区分 |\n| depth 4 vs 5 | 0.521 ± 0.013 | 不可区分 |\n\n### Pairwise JSD\n\n| 对比 | JSD |\n|------|-----|\n| 0 vs 1 | 0.0617 |\n| 1 vs 2 | 0.0093 |\n| 2 vs 3 | 0.0054 |\n| 3 vs 4 | 0.0039 |\n| 4 vs 5 | 0.0038 |\n\n### Ordinal Classification（6-class）\n- MAE = 1.30, Accuracy = 33.1%\n\n### Top-5 Feature Importance\n1. freq_entropy (8784)\n2. surp_d1_skew (8168)\n3. surp_mean (8129)\n4. surp_d2_mean (7833)\n5. surp_d1_mean (7816)\n\n**结论**: LLaMA-3.1-8B 在 Wikipedia domain 的 K\\*=1，与之前其他模型（Mistral、OLMo、Qwen、Pythia）的 Wiki 结果完全一致。depth 0→1 有强信号（AUC 0.93），之后迅速饱和至随机水平。LLaMA 现在有 3-domain profile：C4 K\\*=2, arXiv K\\*=3, Wiki K\\*=1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wiki-domain-llama.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ff87d0b2e77d5254f20",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp deberta code qwen1b5",
+  "task_key": "worker_analysis_exp_deberta_code_qwen1b5_20260520T092537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_deberta_code_qwen1b5_20260520T092537_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "bcc5957bc1b27b31b95b2352167788b22cdbe08cc75c8e5e482bd182c1ba7fab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (success)。\n\n## 分析摘要\n\n**exp_deberta_code_qwen1b5: Hypothesis confirmed (K\\*=2)。** DeBERTa supervised classifier 在 Code domain 上的 K\\*=2，与 OBD-LightGBM 的 K\\*=2 完全一致，证实 domain ceiling 与分类器架构无关。DeBERTa 在所有深度对上 AUC 均高于 OBD（delta +0.05~+0.07），但两者的可区分性边界一致：0v1 和 1v2 显著可区分（AUC CI lower > θ=0.6），2v3 及更深的对均落在 θ 以下。\n\n| Pair | DeBERTa AUC | 95% CI | OBD AUC | Delta |\n|------|------------|--------|---------|-------|\n| 0v1 | 1.0000 | [0.9999, 1.0000] | 0.9388 | +0.061 |\n| 1v2 | 0.8076 | [0.8001, 0.8147] | 0.7382 | +0.069 |\n| 2v3 | 0.5933 | [0.5847, 0.6018] | 0.5300 | +0.063 |\n| 3v4 | 0.5492 | [0.5410, 0.5573] | 0.5022 | +0.047 |\n| 4v5 | 0.5311 | [0.5235, 0.5388] | 0.5219 | +0.009 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-deberta-code-qwen1b5.md"
+}

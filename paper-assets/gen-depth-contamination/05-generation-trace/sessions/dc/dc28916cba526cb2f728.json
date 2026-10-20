@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc28916cba526cb2f728",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code fix exp004 mode",
+  "task_key": "worker_code_fix-exp004-mode_20260514T025949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-exp004-mode_20260514T025949_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "531e901da9d8a0c7ecae4bae0fd670531378d753968939db7ce8c2e734d2884c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，6 处变更全部生效，`--help` 语法验证通过。\n\n**改动汇总：**\n\n| 位置 | 改动 |\n|------|------|\n| L184 函数签名 | `generate_depth_chain` 新增 `generation_mode: str = \"continuation\"` 参数 |\n| L204-219 主生成循环 | 原直接使用 `REWRITE_PROMPT` → 改为 `if generation_mode == \"rewrite\"` / `else` continuation 分支 |\n| L245-261 OOM 重试块 | 同上，OOM fallback 路径也加了 mode 判断 |\n| L671-673 argparse | 新增 `--generation_mode` 参数，默认 `continuation`，choices `[rewrite, continuation]` |\n| L686 日志 | 启动时打印 generation mode |\n| L701 函数调用 | `main()` 中传入 `generation_mode=args.generation_mode` |\n\n**Continuation mode 实现**（与 run_pipeline.py 一致）：取上一代文本的前半 token 作为 prefix，直接用 `model.generate()` 续写，不加任何 rewrite 指令。`REWRITE_PROMPT` 保留但仅在 `--generation_mode rewrite` 时使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-exp004-mode.md"
+}

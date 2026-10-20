@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "566bfdbb142c427bc09f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis semantic feature ablation",
+  "task_key": "worker_analysis_semantic_feature_ablation_20260517T151744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_semantic_feature_ablation_20260517T151744_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "967481ff02c67c7954b84dc6c02312a6abf0607d254adf019898fc314cc385c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果已保存到 `artifacts/semantic_ablation_report.json`。\n\n## 结果摘要\n\n| Depth Pair | 15D AUC | 17D AUC | Diff |\n|---|---|---|---|\n| 0v1 | 0.9225 | 0.9232 | +0.0007 |\n| 1v2 | 0.6123 | 0.6099 | -0.0024 |\n| 2v3 | 0.5274 | 0.5239 | -0.0035 |\n| 3v4 | 0.5169 | 0.5201 | +0.0032 |\n| 4v5 | 0.5162 | 0.5120 | -0.0042 |\n\n**K\\* = 2（15D 和 17D 相同，无变化）**\n\n### 特征重要性（17D 模型）\n- `semantic_cosine_sim`: rank 11/17（importance=277.8）\n- `entity_diversity`: rank 17/17（importance=76.8，最末）\n\n### 结论\nK\\* 不变（均为 2）。语义特征不改变 discrimination boundary。两个新增特征排名靠后（平均 rank 14/17），表层统计特征（surprisal stats、freq entropy）主导分类。AUC 差异均在 ±0.005 范围内，属于噪声级别波动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-semantic-feature-ablation.md"
+}

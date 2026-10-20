@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b30524a5cf710bb8129",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "reviewer / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_6.md",
+    "occurrence": 1,
+    "bytes": 4598,
+    "sha256": "0576ce5bcd01ec7e7a61f5fcea6931afd66682e039540b012fe2ba0154527e6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-05-14T12:49:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **cuda:0**（westc-26893 上只分配了 1 张 RTX 4090D）\n- 服务器别名已从 `autodl-4090d` 改为 `westc-26893`，旧别名会 SSH 失败\n- exp-006 正在占用 cuda:0（~15GB VRAM），exp-015/exp-004 必须等 exp-006 完成后才能启动，不能并行\n- 论文文件在**本地** workspace（`projects/gen-depth-contamination/docs/paper/`），训练代码/数据在**远程** `/root/autodl-tmp/gen-depth-contamination/`——两边可能有同名残留，审\"未改\"类结论前必须双边核对\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westc-26893**（root），时区 **UTC+8**\n- 工作目录：`/root/autodl-tmp/gen-depth-contamination`\n- Python：`/root/miniconda3/bin/python`（conda base，不用 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache：`/root/autodl-tmp/.hf_cache`（含 Pythia-1.4B、OLMo-1B-hf、Qwen2.5-1.5B-Instruct、Qwen2.5-7B-Instruct）\n- 磁盘：119G 空余\n- 活跃进程：exp-006 tmux session `exp_006_graduated_filtering`（PID 70982，旧 PID 61363/46129 已失效）\n- 本地论文：`/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/`\n\n### 3. 📊 当前状态\n**我的审查轮次已完成以下 worker：**\n1. `worker_writing_llm-confidence-analysis` — PASS，discussion.tex §5.5 新增 DetectGPT/Binoculars 推论段落，数据与 exp-011 registry 一致\n2. `worker_code_fix-drayson-b-value` — PASS，b=1.5→b=1 三处统一\n3. `worker_edit_universality-softening` — PASS，论文中零个 \"universal/universality\"\n4. `worker_review_paper-consistency-audit` — WARNING，发现 2 个需修复项（limitations 计数 \"seven\"→\"eight\"；intro:50 \"depth≥3\"→\"depth≥2\"）\n5. `worker_review_discussion-coherence` — **CRITICAL**，discussion.tex:181 事实性错误（\"from depth-1 text\"→\"from one another\"），已 post Director\n6. `worker_infra_post-exp006-readiness` — WARNING，ETA 时区错误已纠正（17:30→10:00 UTC）\n\n**RUNNING 实验：**\n- exp_006_graduated_filtering：20/50 runs，ETA ~05-15 10:00 UTC，6 strategies × 5 seeds + base\n\n**待修复（已 post Director，等派单）：**\n- discussion.tex:181 CRITICAL 事实性错误\n- discussion.tex:93 \"depths≥3\"→\"depths≥2\"\n- introduction.tex:50 \"depth≥3\"→\"depth≥2\"\n- discussion.tex:114 \"seven limitations\"→\"eight\"\n- Limitations 段 neural probe 重复 4 次（建议合并）\n\n### 4. 📋 待办（条件触发式）\n- exp-006 完成回调 → 审查：(1) 6 策略间 MMLU/HellaSwag 差异是否显著（paired t-test p<0.05）；(2) graduated vs binary-ours 是否有 ≥1pp 提升；(3) GPU 资源核查（必须是 cuda:0）；(4) 分析脚本 `scripts/exp006_analyze.py` 输出与 registry 交叉验证\n- exp-006 结论 positive → 审查 C3 章节写作（experiments_c3.tex 从占位符填数）\n- exp-006 结论 negative → 审查 fallback story（D013 预案）是否被正确执行\n- exp-015 重跑完成 → 审查：Pythia/OLMo K*_neural 是否也=3（若=2 → self-familiarity 效应，需调整论文 neural probe 章节定位）\n- exp-004 7B 完成 → 审查：K*_7B 是否=2（若>2 → scale defense 段落需重写）\n- discussion.tex 事实性错误修复 worker 完成 → 验证三处 \"≥3\"→\"≥2\" + L181 + limitations 计数\n\n### 5. 🎯 战略上下文\n- **核心结论**：K*_empirical=2，跨 8 条件不变（4 model-mode + 4 decoding），论文定位为 \"consistent boundary\" 非 \"universal\"\n- **2+1 claim 结构**（D012）：C1'(K* characterization) + C3(graduated filtering) + supporting analysis\n- **C3 是单点依赖 exp-006**（D013）：如果 graduated filtering 无效，fallback story 为 \"K*=2 的 negative practical implication——即使 ordinal signal 存在，graduated filtering 未必优于 binary\"\n- **Neural probe K*=3 极度边缘**（2v3 AUC=0.6195，fold 2 仅超 θ 0.52pp），且仅 Qwen-cont 单数据集。论文中引用了 4 次但缺 bootstrap CI——exp-015 重跑是 must-have\n- **最容易判断错的事**：服务器时间是 UTC+8，`ls -lt` 显示的是本地时间。之前已有一次 ETA 被误报 +8h。所有涉及服务器时间戳的计算必须换算\n- **已关闭的风险**：universality 措辞已软化、scale defense 已加、pipeline figure 已生成、Drayson b=1 已统一\n- **仍开放的风险**：discussion.tex:181 CRITICAL 事实性错误（派单中未完成）、C3 全是占位符、neural probe 单数据集\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-copy-3.md"
+}

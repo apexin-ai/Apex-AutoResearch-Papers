@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "f135c7bc0dca460d7009",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "analysis exp003 bootstrap ci",
+  "task_key": "worker_analysis_exp003_bootstrap_ci_20260516T023635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log",
+    "occurrence": 1,
+    "bytes": 736305,
+    "sha256": "71662d6114ffc984c65eda5f53335576c136211f403cd170884d51d90b84e078"
+  },
+  "statistics": {
+    "messages": 686,
+    "user_turns": 0,
+    "tool_calls": 321,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 38,
+      "tool_call": 321,
+      "tool_result": 321,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 686,
+      "chunks": [
+        {
+          "path": "f135c7bc0dca460d7009-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f135c7bc0dca460d7009-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f135c7bc0dca460d7009-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f135c7bc0dca460d7009-part-0004.json",
+          "message_count": 146
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp003-bootstrap-ci.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0edce89ede86315738d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper p0 fixes counts intro",
+  "task_key": "worker_paper_p0-fixes-counts-intro_20260518T002124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p0-fixes-counts-intro_20260518T002124_result.json",
+    "occurrence": 1,
+    "bytes": 1177,
+    "sha256": "a2e0ccc787fff5f3e81463a61d4f070e4a03f587355e7e74a85a25a00be2830c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All modifications complete. Summary of changes:\n\n**Files modified:**\n\n1. **`docs/paper/main.tex`** (Abstract, line 36): \"validated across two architectures (Qwen-1.5B, Pythia-1.4B)\" → \"validated across five models and four architecture families\"\n\n2. **`docs/paper/main.tex`** (Limitations, line 68): \"confirmed with two model families (Qwen-1.5B, Pythia-1.4B)\" → \"confirmed with five models across four architecture families\"\n\n3. **`docs/paper/conclusion.tex`** (line 5): \"confirmed across architectures (Qwen-1.5B, Pythia-1.4B)\" → \"confirmed across five models and four architecture families\"\n\n4. **`docs/paper/introduction.tex`** (contribution b, line 21): Expanded to include all three domains with specific counts: \"arXiv yields K*=3 (five models, four architecture families); Wikipedia yields K*=1 (six models, scorer-controlled), producing a three-level hierarchy governed by domain structural complexity\"\n\n5. **`docs/paper/method.tex`** (line 50): \"six configurations spanning three model families\" → \"eight configurations spanning five architecture families\", added LLaMA-3.1-8B and Mistral-7B to text and to Table 1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-p0-fixes-counts-intro.md"
+}

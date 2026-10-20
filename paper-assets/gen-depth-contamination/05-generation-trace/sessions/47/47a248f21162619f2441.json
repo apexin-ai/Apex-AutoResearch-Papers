@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47a248f21162619f2441",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper w8 w15 refs table1 seed",
+  "task_key": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_w8_w15_refs_table1_seed_20260522T061722_result.json",
+    "occurrence": 1,
+    "bytes": 3409,
+    "sha256": "d9a9e1b3cc8466ce199c91680b5b2b1f0d031df4dfd94576588fc0f0e4671f63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部编辑完成。以下是三部分结果：\n\n---\n\n## Part 1: W8 — 引用添加\n\n**references.bib**: 两条 bib entry 已添加到文件末尾。\n\n**related_work.tex** 引用位置（第 5 行，Model collapse 段落）：\n- `\\citep{fu2025theoretical}` → 加入 tail-distribution degradation 引用列表（与 shumailov, alemohammad, dohmatob 等并列）\n- `\\citep{wang2025unveiling}` → 加入 predictable convergence 引用列表（与 schaeffer, kazdan, gerstgrasser 并列）\n\n上下文：\n```\n...tail-distribution degradation~\\cite{..., fu2025theoretical},\ndiversity contraction~\\cite{...},\nand predictable convergence~\\cite{..., wang2025unveiling}.\n```\n\n---\n\n## Part 2: W15 — Table 脚注\n\n`tab:kstar_ci`（编译后为 Table 2，主 pairwise AUC 表）已在底部脚注区新增一行：\n\n> Full results for all 10 configurations (including Qwen-7B, Qwen-base, Gemma-2-2B, and Pythia-6.9B) are provided in Table~\\ref{tab:kstar_ci_extended}.\n\n注：实际 Table 1 是 `tab:setup`（实验配置表），主结果表 `tab:kstar_ci` 是 Table 2。脚注引用了已有的 appendix 扩展表 `tab:kstar_ci_extended`（即论文注释中的 \"Table S2b\"）。\n\n---\n\n## Part 3: Seed Robustness 结果\n\n3 组实验（seed=123）均已完成。\n\n### 汇总对比\n\n| 配置 | 指标 | seed=42 | seed=123 | Δ | K* 变化 |\n|------|------|---------|----------|---|---------|\n| **Pythia-1.4B Wiki** | 0v1 | 0.975 | 0.9751 | +0.0001 | |\n| | 1v2 | 0.5846 | 0.5766 | −0.008 | |\n| | 2v3 | 0.5445 | 0.5318 | −0.013 | |\n| | 3v4 | 0.5205 | 0.5175 | −0.003 | |\n| | 4v5 | 0.5168 | 0.5270 | +0.010 | |\n| | **K\\*** | **1** | **1** | **same** | |\n| **Qwen-1.5B Wiki** | 0v1 | 0.9961 | 0.9945 | −0.002 | |\n| | 1v2 | 0.6193 | 0.7059 | **+0.087** | |\n| | 2v3 | 0.5498 | 0.6067 | **+0.057** | |\n| | 3v4 | 0.5231 | 0.5531 | +0.030 | |\n| | 4v5 | 0.5141 | 0.5292 | +0.015 | |\n| | **K\\*** | **2** | **3** | **+1** | |\n| **Qwen-1.5B C4** | 0v1 | 0.9971 | 0.9956 | −0.002 | |\n| | 1v2 | 0.6112 | 0.7014 | **+0.090** | |\n| | 2v3 | 0.5609 | 0.5911 | +0.030 | |\n| | 3v4 | 0.5409 | 0.5405 | −0.0004 | |\n| | 4v5 | 0.5141 | 0.5335 | +0.019 | |\n| | **K\\*** | **2** | **2** | **same** | |\n\n### 简短报告\n\n**Seed robustness 总结**：\n\nPythia-1.4B Wiki 和 Qwen-1.5B C4 的 K\\* 在 seed 变化下保持一致（分别为 1 和 2），AUC 波动在 ±1 pp 以内（Pythia）或 boundary pair 以外（C4 的 2v3 仍低于 θ=0.60）。\n\nQwen-1.5B Wiki 出现 K\\* 从 2 升至 3 的不一致：seed=123 的 1v2 AUC 从 0.619 跳至 0.706（+8.7 pp），2v3 从 0.550 升至 0.607（刚过 θ=0.60，且 fold 最低值 0.595 低于 θ）。这表明 Qwen Wiki 配置对数据采样高度敏感，2v3 boundary 处于 marginal 区域。seed=123 的 K\\*=3 不可靠（2v3 CI 下界可能低于 θ）。\n\nQwen-1.5B 两个 domain 的 1v2 AUC 在 seed=123 下均大幅升高（+8.7~9.0 pp），可能反映 seed=123 的数据分割恰好选到了更易区分的样本。这进一步支持论文中 Qwen-continuation 1v2 boundary marginal 的讨论（Limitations 第 4 点）。\n\n**结论**：K\\* 的 qualitative conclusion（C4/Wiki 为低值 1-2）在 seed 变化下基本稳健，但 Qwen Wiki 的具体 K\\* 值（2 vs. 3）取决于 seed，建议在论文 seed robustness 讨论中强调 2v3 boundary 的 marginal 特性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-w8-w15-refs-table1-seed.md"
+}

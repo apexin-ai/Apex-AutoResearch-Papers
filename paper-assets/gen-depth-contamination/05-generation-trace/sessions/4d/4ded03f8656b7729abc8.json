@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ded03f8656b7729abc8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp arXiv qwen7b crossscorer",
+  "task_key": "worker_analysis_exp_arXiv_qwen7b_crossscorer_20260518T030219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_arXiv_qwen7b_crossscorer_20260518T030219_result.json",
+    "occurrence": 1,
+    "bytes": 962,
+    "sha256": "d0a9a17788af18713d5ceca059c416fe75c8a75d8c5cac38d977f03014c13c56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## exp_arXiv_qwen7b_crossscorer 结果\n\n**实验状态**: 成功完成 (EXIT_CODE=0)\n\n**Hypothesis**: 2v3 AUC ≥ 0.60 → K\\*=3 scorer-independent\n**Result**: **Rejected (negative)**\n\n| Pair | Pythia-1.4B (cross) | Qwen-1.5B (orig) | Delta |\n|------|----:|----:|------:|\n| 0v1 | 0.958 | 0.983 | -0.025 |\n| 1v2 | 0.817 | 0.835 | -0.018 |\n| **2v3** | **0.599** | **0.626** | **-0.027** |\n| 3v4 | 0.542 | 0.544 | -0.002 |\n| 4v5 | 0.519 | 0.513 | +0.006 |\n\n**K\\* = 2**（cross-scorer），原 K\\*=3（Qwen scorer）\n\n关键发现：\n- 2v3 AUC=0.5989，差 0.0011 未过 0.60 阈值（3/5 folds 过线，borderline）\n- Qwen family bias 约 0.027 AUC，小但足以翻转阈值判定\n- Depths 0-2 的污染信号 robustly scorer-independent\n- 保守估计 arXiv scorer-independent K\\*=2，真实边界在 [2, 3] 区间\n\n报告已写入 artifacts 并注册，registry 已更新为 DONE/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-arxiv-qwen7b-crossscorer.md"
+}

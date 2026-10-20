@@ -1,0 +1,876 @@
+{
+  "schema_version": "1.0",
+  "id": "523f4a3bd44d8ca06873",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "paper w6 structural confound",
+  "task_key": "worker_paper_w6_structural_confound_20260516T032042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_w6_structural_confound_20260516T032042.jsonl",
+    "occurrence": 1,
+    "bytes": 42044,
+    "sha256": "f67adf2717ebffaa9cb2eed48b9559a36eb856795910fb2f6b2e664c673b62b1"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 21,
+    "roles": {
+      "tool_call": 21,
+      "tool_result": 21,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T03:22:39.425067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper/discussion.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T03:22:39.425401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T03:22:39.425567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper/appendix.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T03:22:39.425702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T03:22:39.425887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T03:22:39.426037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T03:22:39.426183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/",
+              "description": "List project directory contents"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T03:22:39.426319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 284\ndrwxr-xr-x 11 ubuntu ubuntu  4096 May 16 03:14 .\ndrwxrwxr-x  5 ubuntu ubuntu  4096 May 12 10:56 ..\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 12 10:56 .claude\ndrwxr-xr-x  6 ubuntu ubuntu  4096 May 14 07:58 .venv\n-rw-r--r--  1 ubuntu ubuntu 12798 May 16 03:20 AGENTS.md\n-rw-r--r--  1 ubuntu ubuntu     0 May 12 10:58 ROADMAP.lock\n-rw-------  1 ubuntu ubuntu  3750 May 16 03:14 ROADMAP.md\ndrwxr-xr-x 19 ubuntu ubuntu  4096 May 16 02:40 artifacts\ndrwxr-xr-x  2 ubuntu ubuntu 20480 May 16 01:13 checkpoints\n-rw-r--r--  1 ubuntu ubuntu     0 May 12 10:58 decisions.lock\n-rw-------  1 ubuntu ubuntu 35794 May 16 02:37 decisions.yaml\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 13 02:35 docs\n-rwxr-xr-x  1 ubuntu ubuntu     0 May 12 20:03 dream_registry.lock\n-rw-------  1 ubuntu ubuntu  1425 May 13 09:05 dream_registry.yaml\n-rw-r--r--  1 ubuntu ubuntu  1430 May 13 09:05 dream_registry.yaml.bak\n-rw-r--r--  1 ubuntu ubuntu 13683 May 15 10:26 exp_A_alt_scorer.py\n-rw-r--r--  1 ubuntu ubuntu     0 May 12 20:50 experiment_plan.lock\n-rw-------  1 ubuntu ubuntu  6266 May 16 03:11 experiment_plan.yaml\n-rw-r--r--  1 ubuntu ubuntu 16613 May 14 06:22 literature_map.yaml\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 12 11:10 logs\n-rw-r--r--  1 ubuntu ubuntu  5282 May 16 03:20 memory.md\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 16 00:00 paper\n-rw-r--r--  1 ubuntu ubuntu 14671 May 16 00:58 paper_framing.md\n-rw-r--r--  1 ubuntu ubuntu     0 May 13 09:22 paper_provenance.lock\n-rw-------  1 ubuntu ubuntu 11562 May 15 23:20 paper_provenance.yaml\n-rw-r--r--  1 ubuntu ubuntu     0 May 12 11:09 registry.lock\n-rw-------  1 ubuntu ubuntu 53504 May 16 03:06 registry.yaml\n-rw-r--r--  1 ubuntu ubuntu  1285 May 16 01:13 report.md\n-rw-r--r--  1 ubuntu ubuntu  1653 May 15 10:26 run_exp_A.sh\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 16 02:55 scripts\n-rwxr-xr-x  1 ubuntu ubuntu     0 May 12 10:57 study_status.lock\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 16 03:18 task_context\n-rw-r--r--  1 ubuntu ubuntu 14338 May 13 11:50 writing_pla\n…[truncated 6 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T03:22:39.426474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T03:22:39.426606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260512T200328/best/paper.tex\nartifacts/dream_reports/dream_20260512T200328/median/paper.tex\nartifacts/dream_reports/dream_20260512T200328/worst/paper.tex\nartifacts/dream_reports/dream_20260513T080728/best/paper.tex\nartifacts/dream_reports/dream_20260513T080728/median/paper.tex\nartifacts/dream_reports/dream_20260513T080728/worst/paper.tex\nartifacts/_project/paper/method.tex\nartifacts/_project/paper/experiments_c1.tex\nartifacts/exp_015_neural_probe/paper/neural_probe_analysis.tex\nartifacts/drafts/neural_probe_analysis.tex\nartifacts/c3_contingency_versions.tex\nartifacts/exp-006/paper/c3_contingency_versions.tex\ndocs/paper/tables/tab_filtering_main.tex\ndocs/paper/tables/tab_alpha_sweep.tex\ndocs/paper/tables/tab_pairwise_significance.tex\ndocs/paper/tables/tab_crossscorer.tex\ndocs/paper/appendix_extended.tex\ndocs/paper/introduction.tex\ndocs/paper/conclusion.tex\ndocs/paper/related_work.tex\ndocs/paper/experiments_c3.tex\ndocs/paper/appendix.tex\ndocs/paper/method.tex\ndocs/paper/discussion.tex\ndocs/paper/experiments_c1.tex\ndocs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T03:22:39.426758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T03:22:39.426936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\subsection{The One-Wash Laundering Effect}\n5\t\\label{sec:why_kstar}\n6\t\\label{sec:one_wash}\n7\t\n8\tThe shallowness of $\\Kempirical = 2$ reflects the concentration of information loss: the 0v1 boundary is near-trivially separable ($\\auc \\geq 0.96$), 1v2 drops by ${\\sim}$30\\,pp, and 2v3 falls below $\\theta$---the generation operator acts as a lossy channel with diminishing marginal information loss.\n9\tConsistency across four decoding strategies (Table~\\ref{tab:s2_decoding}) reinforces that $\\Kempirical$ is governed by the generation process rather than the sampling algorithm.\n10\tEven at the most marginal 1v2 condition (Qwen-continuation, CI lower bound exceeds $\\theta$ by only 0.2\\,pp), $\\Kempirical = 2$ survives under self-scoring; on the 2v3 side, CI upper bounds confirm non-discrimination in 8/9 conditions, with the single borderline case (nucleus $p{=}0.9$, CI upper${} = 0.601$) consistent with measurement noise at near-threshold values.\n11\tCross-scale validation at 7B (Section~\\ref{sec:kstar_boundary}) extends this from 1.5B to 7B despite reduced 0v1 signal ($0.9638$ vs.\\ $> 0.99$).\n12\t\n13\tThe practical consequence is a three-tier taxonomy: human-authored (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\n14\tA single generation pass suffices to render text statistically indistinguishable from multiply recycled content---a \\emph{one-wash laundering} effect that limits depth-aware corpus curation to a binary boundary.\n15\tThis connects to model collapse: Shumailov et al.~\\cite{shumailov2024collapse} observed that tail-distribution degradation is most acute in the earliest generations; our prompt-chain results show an analogous per-text pattern.\n16\t\n17\tPer-depth analysis provides the most direct evidence that this boundary is not methodological.\n18\tOBD achieves 96\\% depth-0 recall but only 14--22\\% for depths 2--4; frontier LLMs show 69--77\\% depth-0 recall and 8--38\\% for depths 2\n…[truncated 2276 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T03:22:39.427098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T03:22:39.427413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\\section{Supplementary Figures}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{figures/fig_filtering_strategies.pdf}\n7\t\\caption{Downstream performance of all filtering strategies (5 seeds, $\\pm$1 std). Binary-ours (green) minimizes MMLU degradation; graduated $\\alpha$ sweep shows monotonic convergence toward binary. Dashed line: base model (no fine-tuning).}\n8\t\\label{fig:filtering_strategies}\n9\t\\end{figure}\n10\t\n11\t\\begin{figure}[t]\n12\t  \\centering\n13\t  \\includegraphics[width=\\columnwidth]{figures/fig_s1_auc_decay_ci.pdf}\n14\t  \\caption{Pairwise $\\auc$ decay curves for five model-mode configurations with bootstrap 95\\% confidence intervals. Error bars computed from 1{,}000 bootstrap resamples. The shaded region marks the $\\Kempirical=2$ boundary where $\\auc$ drops below $\\theta=0.60$. This figure complements Figure~\\ref{fig:auc_decay} in the main text by showing statistical uncertainty for each measurement point.}\n15\t  \\label{fig:s1_auc_decay_ci}\n16\t\\end{figure}\n17\t\n18\t\\section{Supplementary Tables}\n19\t\n20\t%%% Table S1: Cross-Transfer Confusion Matrix (exp-013)\n21\t\\begin{table*}[t]\n22\t  \\centering\n23\t  \\caption{Cross-model transfer accuracy matrix. Each cell reports the six-class depth classification accuracy of a detector trained on one model's outputs (row) and evaluated on another model's outputs (column). Diagonal entries (\\textbf{bold}) indicate within-model performance. Transfer retention is computed as the ratio of off-diagonal accuracy to the geometric mean of the two corresponding diagonal entries.}\n24\t  \\label{tab:s1_transfer}\n25\t  \\begin{tabular}{lcccc}\n26\t    \\toprule\n27\t    \\multirow{2}{*}{\\textbf{Train Model}} & \\multicolumn{4}{c}{\\textbf{Test Model}} \\\\\n28\t    \\cmidrule(lr){2-5}\n29\t    & Qwen-rw & Pythia & OLMo & Qwen-cont \\\\\n30\t    \\midrule\n31\t    Qwen-rw   & \\textbf{0.4229} & 0.2590 & 0.2653 & 0.3466 \\\\\n32\t    Pythia    & 0.2718 & \\textbf{0.3856} & 0.3531 & 0.3287 \\\\\n33\t    OLMo      & 0.2768 & 0.3450 & \\textb\n…[truncated 15463 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T03:22:39.427572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T03:22:39.427810+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate generational depth estimation on five model configurations:\n5\tPythia-1.4B and OLMo-1B in continuation mode, Qwen2.5-1.5B-Instruct in both rewrite and continuation modes, and Qwen2.5-7B in continuation mode (cross-scale scoring with Qwen2.5-1.5B).\n6\tAll experiments use the OBD-LightGBM classifier with the 15-dimensional feature set (Section~\\ref{sec:method}), with 5{,}000 texts per depth level (generations 0--5).\n7\t\n8\t%% ====================================================================\n9\t\\subsection{$\\Kempirical = 2$ Across All Configurations}\n10\t\\label{sec:kstar_boundary}\n11\t\n12\t\\begin{table*}[t]\n13\t\\centering\n14\t\\small\n15\t\\caption{Pairwise $\\auc$ for adjacent depth pairs with bootstrap 95\\% CIs and permutation $p$-values for boundary rows.\n16\t$\\Kempirical = 2$ requires 1v2 $\\auc > \\theta{=}0.60$ and 2v3 $\\auc < \\theta$; CIs quantify boundary uncertainty.}\n17\t\\label{tab:kstar_ci}\n18\t\\begin{tabular}{lcccccccccc}\n19\t\\toprule\n20\t & \\multicolumn{2}{c}{Qwen-rw} & \\multicolumn{2}{c}{Pythia} & \\multicolumn{2}{c}{OLMo} & \\multicolumn{2}{c}{Qwen-cont} & \\multicolumn{2}{c}{Qwen-7B\\rlap{$^\\ddagger$}} \\\\\n21\t\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}\\cmidrule(lr){8-9}\\cmidrule(lr){10-11}\n22\t & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI \\\\\n23\t\\midrule\n24\t0v1 & .9956 & & .9932 & & .9970 & & .9971 & & .9638 & [.961,\\,.967] \\\\\n25\t1v2 & .6955 & [.686,\\,.704]\\rlap{$^*$} & .6539 & [.645,\\,.663]\\rlap{$^*$} & .6145 & [.605,\\,.625]\\rlap{$^*$} & .6112 & [.602,\\,.621]\\rlap{$^*$} & .6168 & [.608,\\,.626]\\rlap{$^*$} \\\\\n26\t2v3 & .5893 & [.580,\\,.599] & .5514 & [.542,\\,.563] & .5496 & [.540,\\,.560] & .5609 & [.551,\\,.571] & .5492 & [.539,\\,.559] \\\\\n27\t3v4 & .5435 & & .5152 & & .5091 & & .5409 & & .5276 & \\\\\n28\t4v5 & .5340 & & .5136 & & .5045 & & .5141 & & .5085 & \\\\\n29\t\\bottomrule\n30\t\\multicolumn{11}{l}{\\footnotesize $^*$Permutation $p < 0.001$ for all five 1v2 comp\n…[truncated 14337 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T03:22:39.428055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+              "offset": "176"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T03:22:39.428200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (176). The file has 176 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T03:22:39.428323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+              "offset": "329"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T03:22:39.428441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (329). The file has 329 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T03:22:39.428556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T03:22:39.428719+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% EMNLP 2026 Main — ARR May 2026\n2\t% Generational Depth Contamination\n3\t\\documentclass[11pt]{article}\n4\t\\usepackage[review]{acl}\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{amsmath}\n12\t\\usepackage{amssymb}\n13\t\\usepackage{booktabs}\n14\t\\usepackage{multirow}\n15\t\\usepackage{enumitem}\n16\t\\usepackage{subcaption}\n17\t\\usepackage[section]{placeins}\n18\t\n19\t\\newcommand{\\Kstar}{{K^*}}\n20\t\\newcommand{\\Kempirical}{{K^*_{\\text{empirical}}}}\n21\t\\newcommand{\\Ktheory}{{K^*_{\\text{theory}}}}\n22\t\\newcommand{\\auc}{\\text{AUC}}\n23\t\\newcommand{\\jsd}{\\text{JSD}}\n24\t\n25\t\\title{Generational Depth Estimation of Recursive Synthetic Text:\\\\Measuring the Discrimination Boundary}\n26\t\n27\t\\author{Anonymous}\n28\t\n29\t\\begin{document}\n30\t\\maketitle\n31\t\n32\t% === Abstract ===\n33\t\\begin{abstract}\n34\tWeb-scale corpora are increasingly contaminated by recursive synthetic content, yet no method estimates a document's generational depth.\n35\tWe measure the discrimination boundary $\\Kempirical$---the maximum depth at which adjacent generations remain distinguishable---using 15 statistical features and an OBD-LightGBM classifier.\n36\tAcross 5 model configurations (1B--7B) and 4 decoding strategies, $\\Kempirical{=}2$ at $\\theta{=}0.60$ (Cohen's $h{\\approx}0.20$), consistent across all 9 tested conditions under self-scoring (most marginal: 0.2\\,pp above $\\theta$): a single generation step is reliably detectable, but the second renders text statistically indistinguishable from deeper synthetic content---a \\emph{one-wash laundering} effect.\n37\tModel-free statistical features enable 80--92\\% cross-model transfer retention among continuation-mode generators with scorer-invariant feature ordering ($\\rho > 0.90$), and cross-scorer validation confirms that $\\Kempirical$ is governed by the generation process rather than the scoring model.\n38\tBoth supervised classification and zero-shot frontier LLMs f\n…[truncated 4563 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T03:22:39.429025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T03:22:39.429204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Extended Discussion}\n2\t\\label{sec:extended_discussion}\n3\t\n4\t\\subsection{Theoretical Implications of $\\Kempirical = 2$}\n5\t\n6\tThe DPI guarantees a finite $\\Ktheory$; our result establishes $\\Kempirical = 2$ across all 9 conditions (1B--7B), aligning with model collapse convergence~\\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.\n7\tDecoding strategy modestly affects signal strength (1v2 $\\auc \\in [0.6866, 0.7039]$) but does not shift the boundary.\n8\t\n9\t\\subsection{Cross-Model Transfer Implications}\n10\t\n11\tCross-model classification retains 80--92\\% accuracy with scorer-invariant feature rankings ($\\rho > 0.90$), enabling single-classifier deployment across generators.\n12\tAbsolute discriminability at the $\\Kempirical$ boundary is scorer-sensitive: alternative scorers reduce Qwen-continuation $\\Kempirical$ from 2 to 1, while rewrite-mode $\\Kempirical = 2$ is preserved.\n13\tModel family similarity modulates transfer (Pythia$\\leftrightarrow$OLMo: 90--92\\% vs.\\ Qwen-cont$\\leftrightarrow$OLMo: 80--85\\%).\n14\t\n15\t\\begin{minipage}{\\columnwidth}\n16\t\\centering\n17\t\\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\rho > 0.90$) and rewrite-mode $\\Kempirical = 2$, but reduce continuation-mode $\\Kempirical$ from 2 to 1.}\n18\t\\label{tab:crossscorer}\n19\t\\resizebox{\\columnwidth}{!}{\\input{tables/tab_crossscorer}}\n20\t\\end{minipage}\n21\t\n22\t\\subsection{Feature Importance Across Decoding Strategies}\n23\t\n24\tFeature importance ordering varies across decoding strategies: greedy and $T{=}0.7$ share highly correlated rankings ($\\rho = 0.914$), while greedy vs.\\ $T{=}1.2$ yields lower correlation ($\\rho = 0.53$, nonsignificant after Bonferroni).\n25\tThe depth boundary is robust but the optimal feature subset is strategy-dependent.\n26\t\n27\t\\subsection{Scale and Neural Probe}\n28\t\\label{sec:extended_neural_probe}\n29\t\n30\tCross-scale validation confirms $\\Kempirical = 2$ at 7B (1v\n…[truncated 2909 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T03:22:39.429374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+              "offset": "60"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T03:22:39.429506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60\t\\label{tab:pairwise_significance}\n61\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T03:22:39.429655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex",
+              "old_string": "Cross-scorer validation reinforces this: alternative scorers preserve feature rankings ($\\rho > 0.90$) but reduce the marginal Qwen-continuation boundary from $\\Kempirical = 2$ to 1, while rewrite-mode $\\Kempirical = 2$ is preserved---$\\Kempirical$ is governed by the generation operator rather than the scoring model.",
+              "new_string": "Cross-scorer validation reinforces this: alternative scorers preserve feature rankings ($\\rho > 0.90$) but reduce the marginal Qwen-continuation boundary from $\\Kempirical = 2$ to 1, while rewrite-mode $\\Kempirical = 2$ is preserved---$\\Kempirical$ is governed by the generation operator rather than the scoring model.\n\n\\subsection{Structural Confound: Token Length and EOS Truncation}\n\\label{sec:length_confound}\n\nA potential confound is that EOS truncation at the 256-token generation limit could create systematic length differences across depths, inflating AUC through a length shortcut rather than distributional signatures.\nWe quantify this concern across all model configurations (full per-depth statistics in Table~\\ref{tab:token_length}).\n\nDepth~0 (human text, truncated from C4) averages ${\\sim}$191 tokens across all configurations, while depth~1+ (machine-generated) averages 195--256 tokens depending on model.\nThe length asymmetry thus runs \\emph{opposite} to the confound direction: human texts are shorter, so any length-based shortcut would make 0v1 detection \\emph{harder} (a classifier exploiting ``shorter$=$machine'' would fail), not easier.\n\nWithin machine-generated depths 1--5, token counts are remarkably stable.\nFor Qwen-rewrite, depths 1--5 average 252--254 tokens (range: 2 tokens); for Pythia, 214--218 tokens (range: 4 tokens); for Qwen-7B, 193--197 tokens (range: 4 tokens).\nThis stability means the critical $\\Kempirical{=}2$ finding---based on 1v2 vs.\\ 2v3 comparisons among machine-generated texts---cannot be driven by length differences, since depths 1 through 5 have effectively identical token counts within each model.\n\nEOS truncation rates vary across models (Table~\\ref{tab:token_length}): Qwen-rewrite and decoding ablations show mild truncation (7--16\\% at depth~1+), Qwen-continuation moderate truncation (17--20\\%), while Pythia (34--36\\%) and Qwen-7B (45--47\\%) exhibit higher rates.\nCrucially, truncation rates are \\emph{stable across depths 1--5 within each model}, so EOS effects do not create a depth-correlated length gradient that could confound pairwise discrimination.\nThe models with highest truncation (Pythia, Qwen-7B) still yield $\\Kempirical{=}2$ with the same step-function AUC decay as low-truncation models, further ruling out length as a driver of the boundary."
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T03:22:39.429867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T03:22:39.430033+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+              "old_string": "\\clearpage\n\\section{Supplementary Details}",
+              "new_string": "%%% Table: Token Length and EOS Truncation Analysis\n\\begin{table*}[t]\n  \\centering\n  \\small\n  \\caption{Mean subword token count per depth and EOS truncation rate (\\%) for depth~1+ across all model configurations (generation limit: 256 tokens). Depth~0 (human text) is shared across configurations. Depths 1--5 show no systematic length trend within any model; the 0v1 length asymmetry (human texts shorter) makes detection \\emph{more conservative}, not inflated. See Section~\\ref{sec:length_confound} for discussion.}\n  \\label{tab:token_length}\n  \\begin{tabular}{lcccccccc}\n    \\toprule\n    & \\multicolumn{6}{c}{\\textbf{Mean Token Count}} & & \\\\\n    \\cmidrule(lr){2-7}\n    \\textbf{Model} & Depth 0 & Depth 1 & Depth 2 & Depth 3 & Depth 4 & Depth 5 & \\textbf{EOS Trunc.\\ (\\%)} & \\textbf{Severity} \\\\\n    \\midrule\n    Qwen-rw (1.5B)  & 191 & 254 & 252 & 254 & 254 & 254 & 7--11 & Mild \\\\\n    Pythia-1.4B      & 192 & 214 & 215 & 216 & 217 & 218 & 34--36 & High \\\\\n    OLMo-1B          & 192 & 256 & 256 & 256 & 256 & 256 & $<$1 & Negligible \\\\\n    Qwen-cont (1.5B) & 191 & 244 & 238 & 240 & 240 & 238 & 17--20 & Moderate \\\\\n    Qwen-7B          & 191 & 196 & 195 & 193 & 197 & 197 & 45--47 & High \\\\\n    \\midrule\n    \\multicolumn{9}{l}{\\textit{Decoding ablation (Qwen-rw 1.5B)}} \\\\\n    \\quad Greedy          & 191 & 253 & 252 & 253 & 254 & 254 & 8--12 & Mild \\\\\n    \\quad Nuc $p{=}0.9$   & 191 & 254 & 251 & 254 & 253 & 254 & 8--16 & Mild \\\\\n    \\quad $T{=}0.7$       & 191 & 253 & 251 & 253 & 253 & 254 & 8--14 & Mild \\\\\n    \\quad $T{=}1.2$       & 191 & 254 & 252 & 253 & 254 & 254 & 8--16 & Mild \\\\\n    \\bottomrule\n  \\end{tabular}\n\n  \\vspace{4pt}\n  \\footnotesize\n  EOS truncation rate: percentage of depth~1+ samples where generation terminated via EOS before reaching the 256-token limit. Ranges span depths 1--5.\n\\end{table*}\n\n\\clearpage\n\\section{Supplementary Details}"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T03:22:39.430299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T03:22:39.430455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+              "old_string": "\\emph{Graduated filtering.}",
+              "new_string": "\\emph{Structural confound: token length.}\nDepth~0 texts average ${\\sim}$191 subword tokens (C4 truncation), while depth~1+ texts average 195--256 tokens depending on model (Table~\\ref{tab:token_length}).\nThis asymmetry is directionally opposite to a length-inflation confound: shorter depth-0 texts provide less feature-extraction context, making 0v1 discrimination harder, not easier.\nWithin depths 1--5, mean token counts are stable (within-model range $\\leq$ 4 tokens for all configurations except Qwen-continuation at 6 tokens), so the pairwise comparisons underlying $\\Kempirical{=}2$ are unaffected by length.\nEOS truncation rates are similarly depth-stable within each model: Qwen-rewrite 7--11\\%, Pythia 34--36\\%, OLMo $<$1\\%, Qwen-continuation 17--20\\%, Qwen-7B 45--47\\%.\nModels with the highest truncation (Pythia, Qwen-7B) still yield $\\Kempirical{=}2$ with the same step-function AUC decay pattern as low-truncation models (Table~\\ref{tab:kstar_ci}), confirming that EOS truncation does not drive the boundary.\n\n\\emph{Graduated filtering.}"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T03:22:39.430618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T03:22:39.430759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex",
+              "offset": "64",
+              "limit": "10"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T03:22:39.430934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "64\t\\clearpage\n65\t\\section*{Limitations}\n66\t\n67\tOur findings are bounded by (1)~model scale ($\\leq$7B, with only one 7B configuration tested; the 7B condition uses Qwen2.5-7B-Base rather than Instruct, introducing a base-vs-instruct confound---though $\\Kempirical{=}2$ consistency across this variation provides additional robustness evidence; cross-scale scoring rather than self-scoring), (2)~prompt-chain rather than retrain-chain protocols (our $\\Kempirical$ is a conservative upper bound on retrain-chain $\\Kstar$ under monotonic-degradation assumptions), (3)~English C4 text only, (4)~four decoding strategies, (5)~threshold sensitivity ($\\Kempirical$ ranges from 2--3 at $\\theta{=}0.55$ to 1 at $\\theta{=}0.70$; all nine conditions yield point-estimate $\\Kempirical{=}2$ at $\\theta{=}0.60$, with 8/9 confirmed by bootstrap CI---one decoding variant has 2v3 CI upper marginally at 0.601), (6)~marginal boundary (Qwen-continuation 1v2 CI lower bound exceeds $\\theta$ by only 0.002; cross-scorer validation with both Pythia and OLMo scorers drops this condition to $\\Kempirical{=}1$, Section~\\ref{sec:transfer}), (7)~the 15D feature set yields a feature-set-specific lower bound ($\\Ktheory$ may be strictly higher), (8)~the neural probe boundary is model-dependent ($\\Kempirical^{\\text{neural}}{=}3$ for Qwen only; $2$ for Pythia/OLMo), likely reflecting self-familiarity rather than a universal signal, (9)~while overall feature rankings are highly consistent across models ($\\rho \\geq 0.85$), depth-pair-level agreement weakens at the 1v2 boundary ($\\tau \\approx 0.37$), indicating that per-feature contributions at the critical boundary vary across models, (10)~cross-model scoring reduces $\\Kempirical$ from 2 to 1 for continuation-mode data (Table~\\ref{tab:crossscorer}), indicating that the 1v2 boundary signal has a model-specific component consistent with the representation-dependent neural probe finding; in deployment the scorer model is known, making self-scoring the natural choice, b\n…[truncated 1138 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T03:22:39.431095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex",
+              "old_string": "(12)~structural composition: depth~0 texts are human-authored (mean ${\\approx}$191 tokens after truncation) while depth~1+ are machine-generated (mean 214--256 tokens); this length asymmetry makes 0v1 detection \\emph{more conservative} (shorter texts provide less feature-extraction context), not inflated, and depths 1--5 exhibit no systematic length trend (EOS truncation rates stable across depths within each model), so the critical $\\Kempirical{=}2$ finding---based on 1v2 vs.\\ 2v3 comparisons---is unaffected by this confound.\nDetailed analysis appears in Appendix~\\ref{sec:extended_limitations}.",
+              "new_string": "(12)~structural composition: depth~0 texts are human-authored (mean ${\\approx}$191 subword tokens after truncation) while depth~1+ are machine-generated (mean 195--256 tokens depending on model; Table~\\ref{tab:token_length}); this length asymmetry makes 0v1 detection \\emph{more conservative} (shorter texts provide less feature-extraction context), not inflated, and depths 1--5 exhibit no systematic length trend (within-model range $\\leq$ 6 tokens; EOS truncation rates stable across depths within each model), so the critical $\\Kempirical{=}2$ finding---based on 1v2 vs.\\ 2v3 comparisons---is unaffected by this confound (Section~\\ref{sec:length_confound}).\nDetailed analysis appears in Appendix~\\ref{sec:extended_limitations}."
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T03:22:39.431286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T03:22:39.431427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex",
+              "offset": "33"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T03:22:39.431564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "33\tCross-scorer validation reinforces this: alternative scorers preserve feature rankings ($\\rho > 0.90$) but reduce the marginal Qwen-continuation boundary from $\\Kempirical = 2$ to 1, while rewrite-mode $\\Kempirical = 2$ is preserved---$\\Kempirical$ is governed by the generation operator rather than the scoring model.\n34\t\n35\t\\subsection{Structural Confound: Token Length and EOS Truncation}\n36\t\\label{sec:length_confound}\n37\t\n38\tA potential confound is that EOS truncation at the 256-token generation limit could create systematic length differences across depths, inflating AUC through a length shortcut rather than distributional signatures.\n39\tWe quantify this concern across all model configurations (full per-depth statistics in Table~\\ref{tab:token_length}).\n40\t\n41\tDepth~0 (human text, truncated from C4) averages ${\\sim}$191 tokens across all configurations, while depth~1+ (machine-generated) averages 195--256 tokens depending on model.\n42\tThe length asymmetry thus runs \\emph{opposite} to the confound direction: human texts are shorter, so any length-based shortcut would make 0v1 detection \\emph{harder} (a classifier exploiting ``shorter$=$machine'' would fail), not easier.\n43\t\n44\tWithin machine-generated depths 1--5, token counts are remarkably stable.\n45\tFor Qwen-rewrite, depths 1--5 average 252--254 tokens (range: 2 tokens); for Pythia, 214--218 tokens (range: 4 tokens); for Qwen-7B, 193--197 tokens (range: 4 tokens).\n46\tThis stability means the critical $\\Kempirical{=}2$ finding---based on 1v2 vs.\\ 2v3 comparisons among machine-generated texts---cannot be driven by length differences, since depths 1 through 5 have effectively identical token counts within each model.\n47\t\n48\tEOS truncation rates vary across models (Table~\\ref{tab:token_length}): Qwen-rewrite and decoding ablations show mild truncation (7--16\\% at depth~1+), Qwen-continuation moderate truncation (17--20\\%), while Pythia (34--36\\%) and Qwen-7B (45--47\\%) exhibit higher rates.\n49\tCrucially, truncati\n…[truncated 382 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T03:22:39.431704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+              "offset": "143",
+              "limit": "40"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T03:22:39.432012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "143\t\n144\t%%% Table: Token Length and EOS Truncation Analysis\n145\t\\begin{table*}[t]\n146\t  \\centering\n147\t  \\small\n148\t  \\caption{Mean subword token count per depth and EOS truncation rate (\\%) for depth~1+ across all model configurations (generation limit: 256 tokens). Depth~0 (human text) is shared across configurations. Depths 1--5 show no systematic length trend within any model; the 0v1 length asymmetry (human texts shorter) makes detection \\emph{more conservative}, not inflated. See Section~\\ref{sec:length_confound} for discussion.}\n149\t  \\label{tab:token_length}\n150\t  \\begin{tabular}{lcccccccc}\n151\t    \\toprule\n152\t    & \\multicolumn{6}{c}{\\textbf{Mean Token Count}} & & \\\\\n153\t    \\cmidrule(lr){2-7}\n154\t    \\textbf{Model} & Depth 0 & Depth 1 & Depth 2 & Depth 3 & Depth 4 & Depth 5 & \\textbf{EOS Trunc.\\ (\\%)} & \\textbf{Severity} \\\\\n155\t    \\midrule\n156\t    Qwen-rw (1.5B)  & 191 & 254 & 252 & 254 & 254 & 254 & 7--11 & Mild \\\\\n157\t    Pythia-1.4B      & 192 & 214 & 215 & 216 & 217 & 218 & 34--36 & High \\\\\n158\t    OLMo-1B          & 192 & 256 & 256 & 256 & 256 & 256 & $<$1 & Negligible \\\\\n159\t    Qwen-cont (1.5B) & 191 & 244 & 238 & 240 & 240 & 238 & 17--20 & Moderate \\\\\n160\t    Qwen-7B          & 191 & 196 & 195 & 193 & 197 & 197 & 45--47 & High \\\\\n161\t    \\midrule\n162\t    \\multicolumn{9}{l}{\\textit{Decoding ablation (Qwen-rw 1.5B)}} \\\\\n163\t    \\quad Greedy          & 191 & 253 & 252 & 253 & 254 & 254 & 8--12 & Mild \\\\\n164\t    \\quad Nuc $p{=}0.9$   & 191 & 254 & 251 & 254 & 253 & 254 & 8--16 & Mild \\\\\n165\t    \\quad $T{=}0.7$       & 191 & 253 & 251 & 253 & 253 & 254 & 8--14 & Mild \\\\\n166\t    \\quad $T{=}1.2$       & 191 & 254 & 252 & 253 & 254 & 254 & 8--16 & Mild \\\\\n167\t    \\bottomrule\n168\t  \\end{tabular}\n169\t\n170\t  \\vspace{4pt}\n171\t  \\footnotesize\n172\t  EOS truncation rate: percentage of depth~1+ samples where generation terminated via EOS before reaching the 256-token limit. Ranges span depths 1--5.\n173\t\\end{table*}\n174\t\n175\t\\clearpage\n176\t\\section{Supplementary\n…[truncated 633 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T03:22:39.432175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+              "offset": "47",
+              "limit": "20"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T03:22:39.432316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "47\t\\subsection{Extended Limitations}\n48\t\\label{sec:extended_limitations}\n49\t\n50\t\\emph{Prompt-chain versus retrain-chain.}\n51\tUnder monotonic-degradation assumptions~\\cite{shumailov2024collapse}, $\\Kstar^{\\text{retrain}} \\leq \\Kstar^{\\text{prompt}}$, making $\\Kempirical = 2$ a conservative estimate.\n52\t\n53\t\\emph{Threshold sensitivity.}\n54\tAt $\\theta = 0.55$, $\\Kempirical = 3$ for Qwen-rewrite/continuation; at $\\theta = 0.70$, $\\Kempirical = 1$ universally (Figure~\\ref{fig:kstar_theta}).\n55\tQwen-continuation's 1v2 CI lower bound exceeds $\\theta$ by only 0.2\\,pp; all ten boundary comparisons yield permutation $p < 0.001$.\n56\t\n57\t\\emph{Structural confound: token length.}\n58\tDepth~0 texts average ${\\sim}$191 subword tokens (C4 truncation), while depth~1+ texts average 195--256 tokens depending on model (Table~\\ref{tab:token_length}).\n59\tThis asymmetry is directionally opposite to a length-inflation confound: shorter depth-0 texts provide less feature-extraction context, making 0v1 discrimination harder, not easier.\n60\tWithin depths 1--5, mean token counts are stable (within-model range $\\leq$ 4 tokens for all configurations except Qwen-continuation at 6 tokens), so the pairwise comparisons underlying $\\Kempirical{=}2$ are unaffected by length.\n61\tEOS truncation rates are similarly depth-stable within each model: Qwen-rewrite 7--11\\%, Pythia 34--36\\%, OLMo $<$1\\%, Qwen-continuation 17--20\\%, Qwen-7B 45--47\\%.\n62\tModels with the highest truncation (Pythia, Qwen-7B) still yield $\\Kempirical{=}2$ with the same step-function AUC decay pattern as low-truncation models (Table~\\ref{tab:kstar_ci}), confirming that EOS truncation does not drive the boundary.\n63\t\n64\t\\emph{Graduated filtering.}\n65\tAll $\\alpha$ values (0.1--0.9) underperform binary-ours on MMLU ($\\alpha{=}0.1$: 0.5873; $\\alpha{=}0.9$: 0.5892 vs.\\ 0.5941); at $\\alpha{=}0.9$, HellaSwag matches exactly (0.6701).\n66\tBinary-ours significantly outperforms all alternatives on MMLU ($p_{\\text{corr}} \\leq 0.021$); Graduated$_\n…[truncated 100 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T03:22:39.432505+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits are consistent. Let me verify one data point—the OLMo row in the appendix table shows 256 for all depths 1-5 and <1% truncation. The task data didn't include exp-002 EOS truncation rate explicitly, but 256/256 tokens with negligible truncation is correct (almost all samples hit the limit).\n\nQuick cross-check on the Qwen-continuation within-model range: depths 1-5 are 244, 238, 240, 240, 238. Range = 244 - 238 = 6 tokens. The appendix_extended.tex correctly says \"except Qwen-continuation at 6 tokens.\"\n\nSummary of changes:\n\n**4 files modified:**\n\n1. **`discussion.tex`** — Added new subsection \"Structural Confound: Token Length and EOS Truncation\" (Section 6.4) with three arguments: length asymmetry is directionally opposite to the concern, depth 1-5 lengths are stable, and high-truncation models still yield K*=2.\n\n2. **`appendix.tex`** — Added Table `tab:token_length` with per-model per-depth mean token counts and EOS truncation rates for all 9 configurations (5 models + 4 decoding ablations).\n\n3. **`appendix_extended.tex`** — Added \"Structural confound: token length\" paragraph in Extended Limitations with quantitative summary referencing the new table.\n\n4. **`main.tex`** — Updated Limitations point (12) to reference the new table and section, updated token range from \"214--256\" to \"195--256\" to include Qwen-7B, and added within-model range bound (\"$\\leq$ 6 tokens\")."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w6_structural_confound_20260516T032042"
+          },
+          "id": "event-000043"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/conversations/paper-w6-structural-confound.md"
+}

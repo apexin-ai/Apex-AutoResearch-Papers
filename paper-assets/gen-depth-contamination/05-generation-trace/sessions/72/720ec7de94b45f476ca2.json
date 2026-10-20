@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "720ec7de94b45f476ca2",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing consistency audit",
+  "task_key": "worker_writing_consistency-audit_20260514T045042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_consistency-audit_20260514T045042_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "18fefa318cab5dca732588c94324d29dc4f8984885e8e21931411b629a15d6b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查完成，结果已写入 `artifacts/drafts/consistency_audit.md`。\n\n发现 **4 个 Critical、6 个 Warning、5 个 Info** 问题：\n\n**Critical：**\n1. OBD 名称冲突——related_work 写 \"Ordinal Boundary Detection\"，method/conclusion 写 \"Ordinal Binary Decomposition\"\n2. discussion 中 2v3 AUC 上界 0.5917 与 Table 3 最大值 0.5893 不符\n3. 阈值敏感性描述 method 与 discussion 矛盾（θ=0.55 时 K* 是 \"2-3\" 还是 \"3\"，θ=0.65 时是否所有 config 都给 K*=2）\n4. discussion 的 `\\paragraph{Graduated Filtering.}` 只有 TODO 注释，渲染为空标题\n\n**Warning 重点：**\n- Neural probe 对比中 LightGBM AUC 写 0.6114 但 Table 3 是 0.6112\n- appendix bootstrap resamples 写 500 而非主文的 1000\n- appendix 使用裸文本 AUC 和硬编码 Figure~2\n\nNotation、θ 值、模型名称、transfer retention 数值、cite 完整性等方面均验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-consistency-audit.md"
+}

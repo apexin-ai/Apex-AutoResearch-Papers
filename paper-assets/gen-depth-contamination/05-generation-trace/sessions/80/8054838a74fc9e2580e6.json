@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8054838a74fc9e2580e6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code deberta postprocess",
+  "task_key": "worker_code_deberta-postprocess_20260519T174628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_deberta-postprocess_20260519T174628_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "f1775c1e5215c8eff752c413842f949748cb923b725b4bb3d9a674c802cca48d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "监控已启动。脚本和循环都就绪：\n- `scripts/analyze_deberta_results.py` 已部署到服务器，支持从保存的 JSON 加载 DeBERTa 和 LightGBM 结果并输出对比表\n- 每 2 分钟检查 PID 167144 状态\n- 训练完成后自动执行分析脚本\n\n注意：当前训练脚本未保存 raw OOF predictions (`.npz`)，F1@0.50 需要 OOF 数据。分析脚本会在有 OOF 文件时自动计算 F1，否则跳过并用保存的 JSON 指标输出对比表和 K*。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-deberta-postprocess.md"
+}

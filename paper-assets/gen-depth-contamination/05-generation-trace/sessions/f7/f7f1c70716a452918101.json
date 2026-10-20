@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7f1c70716a452918101",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing consistency fix v2",
+  "task_key": "worker_writing_consistency-fix-v2_20260514T050641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_consistency-fix-v2_20260514T050641_result.json",
+    "occurrence": 1,
+    "bytes": 1064,
+    "sha256": "a9b964658a7996311161e0af81581c1cd8be6351743a40c35bccb15401860934"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修改全部完成。汇总：\n\n### #1 OBD 名称\n全文 Grep 无 \"Ordinal Boundary Detection\" 残留。✓\n\n### #2 2v3 AUC 0.5917\n**文件**: `docs/paper/discussion.tex:13`\n**修改**: `0.5496--0.5893` → `0.5496--0.5917 across all eight model$\\times$decoding conditions (upper bound from nucleus $p{=}0.9$ decoding; see Section~\\ref{sec:discuss_kstar})`\n\n### #3 θ-sensitivity\n**文件**: `docs/paper/discussion.tex:110-112`\n**修改**:\n- 行 110：恢复 decoding 轴描述 → `$\\Kempirical = 2$ is robust across $\\theta \\in \\{0.55, 0.60, 0.65\\}$ for all four decoding strategies; at $\\theta = 0.70$, $\\Kempirical = 1$ for all model-mode configurations.`\n- 行 111（新增）：model-mode 轴补充 → `Beyond decoding parameters, the threshold sensitivity extends to generation mode: at $\\theta{=}0.65$, continuation-mode configurations drop to $\\Kempirical{=}1$, while rewrite mode retains $\\Kempirical{=}2$.`\n- 行 112（新增）：`Our current analysis primarily covers the decoding configuration axis.`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-consistency-fix-v2.md"
+}

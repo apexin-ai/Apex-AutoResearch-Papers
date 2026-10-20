@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.0",
+  "id": "6cd28d6b1fd7dac3074e",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "investigate exp012 artifacts",
+  "task_key": "worker_investigate_exp012_artifacts_20260515T225057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_investigate_exp012_artifacts_20260515T225057.jsonl",
+    "occurrence": 1,
+    "bytes": 10028,
+    "sha256": "b58ee1fc93e79424d7df8085558fc4d0ac91bc7df6fb2ece10781979bead14e6"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T22:51:38.613301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_exp012_artifacts_20260515T225057",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T22:51:38.613622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_exp012_artifacts_20260515T225057",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T22:51:38.613806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_exp012_artifacts_20260515T225057",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westc-26893",
+              "command": "find /root/autodl-tmp/gen-depth-contamination/artifacts/ -name \"exp012*\" -exec ls -la {} \\;",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T22:51:38.613958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_exp012_artifacts_20260515T225057",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T22:51:38.614088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_exp012_artifacts_20260515T225057",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westc-26893",
+              "command": "find /root/autodl-tmp/gen-depth-contamination/artifacts/ -name \"exp012*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T22:51:38.614219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/exp012_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp012_per_sample_scores.json\\\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp012_confidence_vs_depth.pdf\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_exp012_artifacts_20260515T225057",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T22:51:38.614360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_exp012_artifacts_20260515T225057",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westc-26893",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/artifacts/exp012_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T22:51:38.614588+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"qwen-rewrite\\\\\\\": {\\\\n    \\\\\\\"spearman\\\\\\\": {\\\\n      \\\\\\\"log_ppl_ref\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.3473,\\\\n        \\\\\\\"p\\\\\\\": 0.060044\\\\n      },\\\\n      \\\\\\\"log_ppl_obs\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.0823,\\\\n        \\\\\\\"p\\\\\\\": 0.665454\\\\n      },\\\\n      \\\\\\\"ppl_ratio\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.0688,\\\\n        \\\\\\\"p\\\\\\\": 0.718002\\\\n      }\\\\n    },\\\\n    \\\\\\\"pairwise_auc\\\\\\\": {\\\\n      \\\\\\\"log_ppl_ref\\\\\\\": {\\\\n        \\\\\\\"0v1\\\\\\\": 0.6,\\\\n        \\\\\\\"1v2\\\\\\\": 1.0,\\\\n        \\\\\\\"2v3\\\\\\\": 0.64,\\\\n        \\\\\\\"3v4\\\\\\\": 0.5,\\\\n        \\\\\\\"4v5\\\\\\\": 0.64\\\\n      },\\\\n      \\\\\\\"log_ppl_obs\\\\\\\": {\\\\n        \\\\\\\"0v1\\\\\\\": 0.52,\\\\n        \\\\\\\"1v2\\\\\\\": 0.68,\\\\n        \\\\\\\"2v3\\\\\\\": 0.52,\\\\n        \\\\\\\"3v4\\\\\\\": 0.52,\\\\n        \\\\\\\"4v5\\\\\\\": 0.52\\\\n      },\\\\n      \\\\\\\"ppl_ratio\\\\\\\": {\\\\n        \\\\\\\"0v1\\\\\\\": 0.56,\\\\n        \\\\\\\"1v2\\\\\\\": 0.6,\\\\n        \\\\\\\"2v3\\\\\\\": 0.6,\\\\n        \\\\\\\"3v4\\\\\\\": 0.52,\\\\n        \\\\\\\"4v5\\\\\\\": 0.56\\\\n      },\\\\n      \\\\\\\"obd_15d\\\\\\\": {\\\\n        \\\\\\\"0v1\\\\\\\": 0.9956,\\\\n        \\\\\\\"1v2\\\\\\\": 0.6957,\\\\n        \\\\\\\"2v3\\\\\\\": 0.5893,\\\\n        \\\\\\\"3v4\\\\\\\": 0.5434,\\\\n        \\\\\\\"4v5\\\\\\\": 0.5343\\\\n      }\\\\n    },\\\\n    \\\\\\\"threshold_accuracy_6class\\\\\\\": {\\\\n      \\\\\\\"log_ppl_ref\\\\\\\": 0.1333,\\\\n      \\\\\\\"log_ppl_obs\\\\\\\": 0.2,\\\\n      \\\\\\\"ppl_ratio\\\\\\\": 0.3,\\\\n      \\\\\\\"random_baseline\\\\\\\": 0.1667\\\\n    }\\\\n  },\\\\n  \\\\\\\"pythia-1.4b\\\\\\\": {\\\\n    \\\\\\\"spearman\\\\\\\": {\\\\n      \\\\\\\"log_ppl_ref\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.0327,\\\\n        \\\\\\\"p\\\\\\\": 0.863794\\\\n      },\\\\n      \\\\\\\"log_ppl_obs\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.3621,\\\\n        \\\\\\\"p\\\\\\\": 0.049241\\\\n      },\\\\n      \\\\\\\"ppl_ratio\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.2356,\\\\n        \\\\\\\"p\\\\\\\": 0.20999\\\\n      }\\\\n    },\\\\n    \\\\\\\"pairwise_auc\\\\\\\": {\\\\n      \\\\\\\"log_ppl_ref\\\\\\\": {\\\\n        \\\\\\\"0v1\\\\\\\": 0.64,\\\\n        \\\\\\\"1v2\\\\\\\": 0.56,\\\\n        \\\\\\\"2v3\\\\\\\": 0.6,\\\\n        \\\\\\\"3v4\\\\\\\": 0.52,\\\\n        \\\\\\\"4v5\\\\\\\": 0.6\\\\n      },\\\\n  \n…[truncated 3581 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_exp012_artifacts_20260515T225057",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T22:51:38.614765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_exp012_artifacts_20260515T225057",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westc-26893",
+              "command": "wc -c /root/autodl-tmp/gen-depth-contamination/artifacts/exp012_per_sample_scores.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T22:51:38.614924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5857 /root/autodl-tmp/gen-depth-contamination/artifacts/exp012_per_sample_scores.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_exp012_artifacts_20260515T225057",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T22:51:38.615050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_exp012_artifacts_20260515T225057",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westc-26893",
+              "command": "head -100 /root/autodl-tmp/gen-depth-contamination/artifacts/exp012_per_sample_scores.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T22:51:38.615239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"qwen-rewrite\\\\\\\": {\\\\\\\"0\\\\\\\": {\\\\\\\"log_ppl_ref\\\\\\\": [2.337890625, 3.025390625, 2.12109375, 3.318359375, 2.986328125], \\\\\\\"log_ppl_bino_obs\\\\\\\": [2.322265625, 2.8125, 2.33984375, 3.455078125, 3.4375], \\\\\\\"log_ppl_bino_perf\\\\\\\": [9.234375, 8.921875, 9.8203125, 9.484375, 8.9140625]}, \\\\\\\"1\\\\\\\": {\\\\\\\"log_ppl_ref\\\\\\\": [2.35546875, 2.392578125, 2.478515625, 2.771484375, 2.474609375], \\\\\\\"log_ppl_bino_obs\\\\\\\": [2.64453125, 2.66796875, 3.0234375, 3.416015625, 3.091796875], \\\\\\\"log_ppl_bino_perf\\\\\\\": [9.0078125, 9.0546875, 9.515625, 9.1484375, 8.890625]}, \\\\\\\"2\\\\\\\": {\\\\\\\"log_ppl_ref\\\\\\\": [2.263671875, 2.01171875, 2.208984375, 2.318359375, 2.314453125], \\\\\\\"log_ppl_bino_obs\\\\\\\": [2.76171875, 2.330078125, 2.91796875, 2.962890625, 3.009765625], \\\\\\\"log_ppl_bino_perf\\\\\\\": [9.1640625, 8.9453125, 9.2890625, 9.109375, 8.828125]}, \\\\\\\"3\\\\\\\": {\\\\\\\"log_ppl_ref\\\\\\\": [2.193359375, 2.341796875, 2.517578125, 1.947265625, 2.52734375], \\\\\\\"log_ppl_bino_obs\\\\\\\": [2.7890625, 2.951171875, 2.876953125, 2.640625, 3.337890625], \\\\\\\"log_ppl_bino_perf\\\\\\\": [9.1953125, 8.828125, 9.1015625, 8.796875, 8.8828125]}, \\\\\\\"4\\\\\\\": {\\\\\\\"log_ppl_ref\\\\\\\": [2.52734375, 2.48046875, 2.265625, 1.51953125, 2.34765625], \\\\\\\"log_ppl_bino_obs\\\\\\\": [2.830078125, 3.15625, 2.8828125, 1.9873046875, 3.08984375], \\\\\\\"log_ppl_bino_perf\\\\\\\": [9.109375, 9.1015625, 9.2421875, 8.84375, 8.90625]}, \\\\\\\"5\\\\\\\": {\\\\\\\"log_ppl_ref\\\\\\\": [2.44921875, 2.2265625, 2.142578125, 1.6357421875, 2.4609375], \\\\\\\"log_ppl_bino_obs\\\\\\\": [2.912109375, 2.93359375, 2.681640625, 2.169921875, 3.130859375], \\\\\\\"log_ppl_bino_perf\\\\\\\": [9.5625, 8.8125, 8.9921875, 8.96875, 8.703125]}}, \\\\\\\"pythia-1.4b\\\\\\\": {\\\\\\\"0\\\\\\\": {\\\\\\\"log_ppl_ref\\\\\\\": [2.353515625, 3.02734375, 2.15234375, 3.318359375, 2.986328125], \\\\\\\"log_ppl_bino_obs\\\\\\\": [2.35546875, 2.775390625, 2.3671875, 3.455078125, 3.4375], \\\\\\\"log_ppl_bino_perf\\\\\\\": [9.25, 8.875, 9.796875, 9.484375, 8.9140625]}, \\\\\\\"1\\\\\\\": {\\\\\\\"log_ppl_ref\\\\\\\": [2.777\n…[truncated 4617 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_exp012_artifacts_20260515T225057",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T22:51:38.615432+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：这是 N=5 的 dry-run 测试数据，不是全量结果。**\n\n依据：\n\n| 指标 | 值 |\n|------|-----|\n| 每个 (model, depth) 组合的样本数 | **5** |\n| 模型数 | 4 (qwen-rewrite, pythia-1.4b, olmo-1b, qwen-cont) |\n| depth 级别 | 6 (0-5) |\n| 总样本量 | 4 × 6 × 5 = **120** |\n\nAUC 值呈 0.04 步进（0.52, 0.56, 0.60, 0.64 …），这是典型的小 N 伪影（5 对中每改变 1 对结果变化 1/25 = 0.04）。threshold_accuracy 也只取 0.0667, 0.1, 0.1333 等值（1/15, 1.5/15, 2/15），印证了 30 个样本的分辨率。\n\n需要用 N=500 重跑才能得到有效结果。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_investigate_exp012_artifacts_20260515T225057"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/investigate-exp012-artifacts.md"
+}

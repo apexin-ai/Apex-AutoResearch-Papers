@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5892aa45a83145954032",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code olmo retrain v3 setup",
+  "task_key": "worker_code_olmo-retrain-v3-setup_20260520T095025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_olmo-retrain-v3-setup_20260520T095025_result.json",
+    "occurrence": 1,
+    "bytes": 1686,
+    "sha256": "2fd9ac5fe8f1ebb37230e1b3216021cc95fb894b1747e9bd2e8584446ec71447"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇报如下：\n\n---\n\n## OLMo-1B Retrain Chain 实验准备完成\n\n### 环境状态\n| 项目 | 状态 |\n|------|------|\n| Python | 3.12.3 (conda base) |\n| PyTorch | 2.8.0+cu128 |\n| transformers | 5.8.1 |\n| peft | 0.19.1 |\n| lightgbm / sklearn | 4.6.0 / 1.8.0 |\n| GPU | 4x RTX 4090D (24GB), cuda:2 空闲 (0 MiB used) |\n\n### 模型和数据\n| 资源 | 路径 | 状态 |\n|------|------|------|\n| OLMo-1B-hf | `/root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf/` | 完整 (4.4GB, model load + generate + LoRA 验证通过) |\n| Qwen2.5-1.5B scorer | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B/` | 存在 |\n| Seed data (depth_0) | `data/olmo_retrain_chain/depth_0.jsonl` | 5000 docs (前次 run 已 copy) |\n\n### 脚本\n- **路径**: `/root/autodl-tmp/gen-depth-contamination/scripts/exp_olmo_retrain_v3.py`\n- 基于 `exp_olmo_retrain_chain.py`，修复了 `torch_dtype` → `dtype` 弃用警告\n- `--help` dry-run 通过\n\n### 运行命令\n```bash\nCUDA_VISIBLE_DEVICES=2 python scripts/exp_olmo_retrain_v3.py --device cuda:0 --max_depth 4\n```\n注意：`CUDA_VISIBLE_DEVICES=2` 使物理 GPU2 映射为 `cuda:0`。\n\n### 关键参数\n- LoRA: rank=16, alpha=32, targets=q/k/v_proj, trainable 3.1M/1180M (0.27%)\n- Training: lr=2e-4, batch=4, grad_accum=4, 1 epoch/generation\n- Decoding: nucleus p=0.95, T=1.0, max_new_tokens=256\n- Depth: 0→4 (4 generations)\n\n### 预计运行时间\n每代包含 LoRA fine-tune (5000 docs, ~15min) + generation (5000 docs, ~20min)，加上 feature extraction (~10min) 和 analysis。总计约 **2.5~3 小时**。\n\n### 阻塞问题\n无。全部验证通过，可以提交训练任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-olmo-retrain-v3-setup.md"
+}

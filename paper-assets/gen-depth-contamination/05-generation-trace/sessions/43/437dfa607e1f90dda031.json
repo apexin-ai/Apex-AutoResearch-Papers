@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "437dfa607e1f90dda031",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops exp026 exit diagnosis v2",
+  "task_key": "worker_ops_exp026-exit-diagnosis-v2_20260518T111833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026-exit-diagnosis-v2_20260518T111833_result.json",
+    "occurrence": 1,
+    "bytes": 779,
+    "sha256": "7bcf79e4c80155814f96d1e4be8197015fc662072f3417553a2f48f40d9923b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_026 诊断结果\n\n**完成状态**: 15/15 runs 全部完成\n\n**退出码**: no_filter=0, binary=0, graduated=0 (全部正常退出)\n\n**GPU 状态**: 3 块 4090D 全部空闲 (0 MiB / 0% utilization)\n\n### 各 Strategy 评估结果 (5 seeds, mean±std)\n\n| Strategy | MMLU | HellaSwag |\n|---|---|---|\n| no_filter | 0.5899±0.0008 | 0.6600±0.0002 |\n| binary | 0.5876±0.0004 | 0.6642±0.0004 |\n| graduated_a09 | 0.5900±0.0011 | 0.6599±0.0003 |\n\n**结论: SUCCESS**\n\n三种 filtering strategy 在 MMLU 和 HellaSwag 上差异极小（MMLU 差距 <0.003, HellaSwag 差距 <0.005），std 也很低，说明结果稳定。binary filtering 在 HellaSwag 上略优 (+0.004)，但 MMLU 略低 (-0.002)；graduated 与 no_filter 几乎无差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-exit-diagnosis-v2.md"
+}

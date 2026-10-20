@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f579a41f9368609274bb",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing notation figures audit",
+  "task_key": "worker_writing_notation-figures-audit_20260514T054927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_notation-figures-audit_20260514T054927_result.json",
+    "occurrence": 1,
+    "bytes": 2198,
+    "sha256": "5015dd62308f6fbb215e9107db7099f2d620065ab983ad2b321c2c8e30791ae8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All fixes applied. Here's the report:\n\n---\n\n## 1. Notation 修复列表\n\n| 位置 | 问题 | 修复 |\n|------|------|------|\n| `main.tex:34` (abstract) | 裸 \"AUC\" ×2（`yield AUC above`, `(0-vs-1) AUC exceeding`） | → `$\\auc$` |\n| `main.tex:34` (abstract) | `$\\Kstar=2$`（15-feature 上下文中应为 empirical） | → `$\\Kempirical=2$` |\n| `appendix.tex:7` (caption) | `$\\Kstar=2$`（指 empirical 结果） | → `$\\Kempirical=2$` |\n\n**无问题项：**\n- `$\\theta$`：全文统一使用 math mode，无裸 θ\n- `≥ ≤ × ±`：无 Unicode 裸字符，全部使用 LaTeX 命令（`\\leq`, `\\geq`, `\\times`, `\\pm`）\n- `$\\auc$` macro：除 abstract 中已修复的两处外，其余全部通过 macro 使用\n- `\\Kstar` / `\\Kempirical` / `\\Ktheory`：正文中使用一致（generic concept 用 `\\Kstar`，empirical result 用 `\\Kempirical`，theoretical bound 用 `\\Ktheory`）\n\n## 2. Caption 状况\n\n所有 caption 均自包含，无未展开缩写。具体评估：\n\n- **Table 1** (`tab:features`): 简短但 table 内有 Group/Feature/Description 列，可接受\n- **Table 3** (`tab:kstar_ci`): 自包含，定义了 threshold 条件\n- **Figure 2** (`fig:auc_decay`): 优秀，完整描述了图中所有视觉元素\n- **Table 4** (`tab:transfer_matrix`): 解释了矩阵结构和 retention 计算方式\n- **Figure 3** (`fig:transfer_heatmap`): 自包含，有定量结论\n- **Table 5** (`tab:top_features`): 解释了 bold 含义，包含 Spearman ρ 数值\n- **Figure S1** (`fig:s1_auc_decay_ci`): 自包含（已修复 `\\Kstar` → `\\Kempirical`）\n\n无需进一步修改。\n\n## 3. Cross-reference 问题\n\n| 位置 | 问题 | 修复 |\n|------|------|------|\n| `discussion.tex:136` | `\\ref{sec:graduated-filtering}` 指向不存在的 label（对应 section 在 main.tex 中已注释） | 移除 `Section~\\ref{...}`，改为纯文本 |\n\n**其余 cross-ref 均完整：** 全部 33 个 `\\ref{...}` 目标（17 个 section、5 个 table、3 个 figure、3 个 equation）都有对应 `\\label{...}` 定义。无硬编码的 \"Figure X\" / \"Table X\" / \"Section X\"（仅注释中有）。无 `??` 输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-notation-figures-audit.md"
+}

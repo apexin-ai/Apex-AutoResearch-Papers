@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9beb0c2a62a78cae146",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp016 bootstrap ci",
+  "task_key": "worker_analysis_exp016_bootstrap_ci_20260516T045403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp016_bootstrap_ci_20260516T045403_result.json",
+    "occurrence": 1,
+    "bytes": 1196,
+    "sha256": "79d4088da00d362f5c9b993b89f13cdc50c9196ad48abba083e52df968eada7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。Registry 已更新，artifact 已注册。\n\n---\n\n## exp-016 Bootstrap CI 结果\n\n### 关键结论：1v2 CI lower = 0.6168 > θ=0.60 → **PASS**\n\n| Pair | AUC | 95% CI | Perm p |\n|------|-----|--------|--------|\n| 0v1 | 0.9870 | [0.9853, 0.9885] | <0.0001 |\n| **1v2** | **0.6260** | **[0.6168, 0.6353]** | **<0.0001** |\n| 2v3 | 0.5496 | [0.5397, 0.5600] | <0.0001 |\n| 3v4 | 0.5293 | [0.5188, 0.5399] | <0.0001 |\n| 4v5 | 0.5181 | [0.5075, 0.5288] | 0.0016 |\n\n方法: GroupKFold(5) OOF + doc-level bootstrap (10K) + label permutation (10K)\n\n### 分析\n\n1. **1v2 CI lower=0.6168 稳健地高于 θ=0.60**，尽管 fold 0 的 1v2=0.5963 < 0.60，aggregate 层面无问题\n2. **所有 5 个 pairs 统计显著** (p ≤ 0.0016)，4v5 的 p=0.0016 最大但仍远低于 0.05\n3. **2v3 CI upper=0.56 < 0.60**，干净地确认 K*=2 边界\n\n### 与 exp-017 (Instruct) 对比\n\n| | Base (exp-016) | Instruct (exp-017) |\n|--|---|---|\n| 1v2 AUC | 0.626 | 0.6114 |\n| 1v2 CI | [0.6168, 0.6353] | [0.6015, 0.6213] |\n\n两个 CI 有重叠 [0.6168, 0.6213]，base 和 instruct 的 1v2 区分度无显著差异。K*=2 不是 instruct-tuning 的副产物。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp016-bootstrap-ci.md"
+}

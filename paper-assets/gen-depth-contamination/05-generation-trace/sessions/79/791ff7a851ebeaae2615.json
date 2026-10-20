@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "791ff7a851ebeaae2615",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code quick gpu check",
+  "task_key": "worker_code_quick_gpu_check_20260522T160901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_quick_gpu_check_20260522T160901_result.json",
+    "occurrence": 1,
+    "bytes": 656,
+    "sha256": "76736c5186ed879263b7bbb96c6908c83b8564542a74de78a614f4a50852267e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n| 实验 | GPU | 显存 | GPU-Util | 当前进度 | 已完成文件 | 预计剩余 |\n|------|-----|------|----------|---------|-----------|---------|\n| **Gemma-2-27B** (cuda:0) | RTX PRO 6000 | 53.9/97.9 GB | 93% | depth 3: 296/625 (47%) | depth_0, 1, 2 | ~1h17m (depth 3), 之后还有 depth 4 |\n| **LLaMA-8B 10K** (cuda:2) | RTX PRO 6000 | 16.5/97.9 GB | 90% | depth 4: 913/1250 (73%) | depth_0, 1, 2, 3 | ~29m (depth 4 完成后应结束) |\n\n两个进程都在正常运行，无报错。LLaMA-8B 10K 预计约半小时内完成全部 depth chain；Gemma-2-27B 还需约 3.5h（depth 3 剩余 + 整个 depth 4）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-quick-gpu-check.md"
+}

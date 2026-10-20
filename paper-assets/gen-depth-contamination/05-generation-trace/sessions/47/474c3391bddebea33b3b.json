@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "474c3391bddebea33b3b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 012 fix binoculars",
+  "task_key": "worker_code_exp_012_fix_binoculars_20260515T125833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_012_fix_binoculars_20260515T125833_result.json",
+    "occurrence": 1,
+    "bytes": 1356,
+    "sha256": "d719b660f73bdea163c1cc2c2ff016f2fe4a51afccdc101b679c329edf88d314"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证和 dry-run 均通过。\n\n---\n\n**修改清单**（文件 `scripts/exp012_ppl_depth_correlation.py`，356→384 行）：\n\n| 行号(修改后) | 改动内容 |\n|---|---|\n| 22 | 依赖列表增加 `allenai/OLMo-1B-0724` |\n| 25 | GPU 时间估算从 2 models → 3 models |\n| 140 | `analyze_condition` 签名增加 `perf_ppl: dict[int, np.ndarray]` 参数 |\n| 143 | `depths_present` 交集增加 `perf_ppl.keys()` |\n| 149-150 | Binoculars ratio 分母从 `all_ref` 改为 `all_perf`（performer PPL） |\n| 241-244 | `--obs_model` 替换为 `--bino_observer`（默认 Pythia-1.4b）+ `--bino_performer`（默认 OLMo-1B-0724） |\n| 269 | dry-run 输出显示 3 个模型 |\n| 270 | GPU 时间系数从 `* 2` 改为 `* 3` |\n| 305-327 | 新增 Binoculars performer 模型加载 + PPL 计算块（独立 tokenizer） |\n| 329-351 | Binoculars observer 模型加载（独立 tokenizer，从 `args.bino_observer` 读取） |\n| 357 | `analyze_condition` 调用增加 `perf_ppls[cond]` 参数 |\n| 372-374 | per-sample 输出 key 改为 `log_ppl_bino_obs` / `log_ppl_bino_perf` |\n\n**Tokenizer 适配**：无需额外适配。`compute_log_perplexity_batch` 本身就接收独立的 `(model, tokenizer)` 对，各模型独立 tokenize 后计算标量 PPL，ratio 在标量层面相除，不存在 shared vocabulary 假设。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-012-fix-binoculars.md"
+}

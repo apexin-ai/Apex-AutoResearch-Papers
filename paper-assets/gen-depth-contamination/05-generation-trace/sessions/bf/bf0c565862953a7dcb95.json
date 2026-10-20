@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf0c565862953a7dcb95",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code download qwen7b",
+  "task_key": "worker_code_download_qwen7b_20260517T132253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_download_qwen7b_20260517T132253_result.json",
+    "occurrence": 1,
+    "bytes": 210,
+    "sha256": "3d718b21a57f7ed500ef718522a9179201bbcd0265277876b23fd92e3f824820"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen2.5-7B 下载完成。\n\n- **路径**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B/`\n- **大小**: 15G（4 个 safetensors 分片）\n- **Vocab size**: 151,643\n- **Tokenizer 验证**: OK"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-download-qwen7b.md"
+}

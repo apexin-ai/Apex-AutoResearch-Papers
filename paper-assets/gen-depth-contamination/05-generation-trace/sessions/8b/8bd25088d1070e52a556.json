@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bd25088d1070e52a556",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "director / loop_11.md",
+  "task_key": "loop_11",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_11.md",
+    "occurrence": 1,
+    "bytes": 4074,
+    "sha256": "589f167ed09a107de541e49a82f1ed1bb6bef2bb52fae9ad04e06c68714a9cd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_messages\nupdated: '2026-05-21T23:17:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：cqa1-22115 的 cuda:0/1/2/3（4×RTX4090D）+ westd-42896 的 GPU（2×Blackwell 98GB）。不得使用其他项目的卡。\n- **Pythia --no_sample confound (M023)**：Pythia 系列实验必须确认 decoding=nucleus (p=0.95)。`--no_sample` = greedy，会膨胀 AUC（0.85 vs 0.60），已导致 v3 误判。非 Pythia 模型不受影响。\n- **Scorer 必须是 Qwen-1.5B**：所有跨模型对比实验的 scorer 必须用 `--scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B`，不能用生成模型自评。\n- **Figure 6 数据源**：只用 `artifacts/bootstrap_ci_4model.json` + 专用脚本 `plot_fig_s1_auc_decay_ci.py`，禁止用 auto-discovery 脚本（会拉入 ~20 个错误 JSON）。\n- **论文页数**：EMNLP 2026 主正文 ≤8 页（当前 7 页），references+appendix 不限。\n\n### 2. 🖥️ 基础设施快照\n- **服务器 1**：cqa1-22115 (connect.cqa1.seetacloud.com)，root，4×RTX4090D\n  - 工作目录：`/root/autodl-tmp/gen-depth-contamination`\n  - Qwen-1.5B scorer：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B`\n  - Pythia-6.9B：`/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-6.9b/snapshots/c0e3eee36dc47af0c49f361c74cfe459c09f7f23`\n- **服务器 2**：westd-42896 (connect.westd.seetacloud.com)，root，2×Blackwell 98GB（空闲）\n- **本地论文目录**：`/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/`\n- **活跃进程**：cuda:0 上 PID 443243（depth_5 自评生成尾声，非关键）；cuda:1/2/3 空闲\n- **Gemini API key**：已存储为 `google_api_key`，PaperBanana 在 `/tmp/pb_venv/bin/paperbanana`\n\n### 3. 📊 当前状态\n- **刚完成**：Pythia-6.9B nucleus 最终结果 K*=1（borderline, 1v2 AUC=0.5955, Δθ=0.0045）。Discussion 新增 decoding confound 段落。Feature importance 修正完成（排序稳定）。Round 24 审稿已提交（apr_20260521T231556_57vz, pending user approval）。\n- **刚派出未回**：Agent 正在修复 2 个 Reviewer critical/遗留问题：(1) appendix 脚注错误声称 \"all other Pythia use greedy\"——需删除或改正；(2) `experiments_c1.tex:69,73` 和 `tab:s1_transfer` 的 \"Pythia↔OLMo 90-92%\" 仍是旧数据需更新。\n- **Registry**：exp_pythia69b_c4_nuc DONE(negative)，exp_pythia69b_c4_depth_chain_v3 DONE(negative, greedy confound)。89 success / 13 negative / 13 failed / 153 total。\n- **等待**：用户审批 Round 24 review mode（continue/fresh）；冯元宁对 Figure 1 matplotlib 版的反馈。\n\n### 4. 📋 待办（条件触发式）\n- Agent 回复 Fix 1+2 完成 → 重新编译 PDF → 如果 Round 24 review 已启动则通知 Reviewer 重新拉取\n- 用户审批 review mode → 审稿流程自动启动\n- 冯元宁反馈 Figure 1 不满意 → 迭代 `scripts/plot_pipeline.py` 或重试 PaperBanana\n- 审稿报告回来 → 按 review-report-action skill 逐条处理\n- cuda:1/2/3 持续空闲 → 实验矩阵核心已满，但可考虑 seed robustness / decoding ablation 等 sanity check\n\n### 5. 🎯 战略上下文\n- **论文 framing**：C1'(K* characterization) + C2'(domain ordering) + C3(practical)。\"4/6 families\" K*≥2（Pythia-1.4B, Qwen-1.5B, LLaMA-8B, Qwen-7B），2 个 competence-limited（Gemma-2-2B, Mistral-7B on C4）。Pythia-6.9B K*=1 是 borderline。\n- **最易判断错的事**：(1) Pythia v3 (greedy) K*=2 的 registry 已标 negative，绝不能引用其结果——只有 nuc 的 K*=1 是可信的；(2) Figure 6 必须用专用脚本，不要碰 auto-discovery 版本；(3) 论文中 \"Pythia↔OLMo 90-92%\" transfer 数据是 OLMo K*=2 时代残留，必须更新。\n- **DDL**：EMNLP 2026 ARR May 25（~3 天）。Round 23 评分 3.5，目标 4.0。关键差距在 θ validation（已用 LOFO 解决）和 generalizability claim 强度。\n- **决策链**：D096(OLMo K*=1) → D095(Pythia-6.9B 必须 Qwen scorer) → D097(保留 Pythia-1.4B 主表值) → D098(LOFO excludes K*=1 families)。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11.md"
+}

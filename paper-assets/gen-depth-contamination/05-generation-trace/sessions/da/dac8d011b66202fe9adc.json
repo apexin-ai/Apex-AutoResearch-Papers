@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dac8d011b66202fe9adc",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "bugfix kstar off by one",
+  "task_key": "worker_bugfix_kstar-off-by-one_20260519T203108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_kstar-off-by-one_20260519T203108_result.json",
+    "occurrence": 1,
+    "bytes": 773,
+    "sha256": "419386881253103fc7417d378223e3f1f87ff7fc1925d00bc4bac82ca889080c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n## 修复汇总\n\n**4 个文件，6 处 K* 计算逻辑**，全部有相同的 off-by-one bug：\n\n| 服务器 | 文件 | 行号 | 修改 |\n|--------|------|------|------|\n| westd-42896 | `run_deberta_c4.py` | L202, L206 | `k_star = -1` → `0`, `k_star = k` → `k + 1` |\n| cqa1-22115 | `run_deberta_upperbound.py` | L159, L161 | `kstar = -1` → `0`, `kstar = k` → `k + 1` |\n| cqa1-22115 | `run_deberta_cross_transfer.py` | L207, L210 | 同上 |\n| cqa1-22115 | `analyze_deberta_results.py` | L118/L121 (`pairwise_auc_bootstrap`), L143/L147 (`lgbm_kstar`) | 同上，两个函数都修复 |\n\n**验证**：用已知数据（1v2 CI_lower=0.6696 > 0.60, 2v3 CI_lower=0.5814 < 0.60），修复后 K\\*=2（旧代码报 K\\*=1）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-kstar-off-by-one.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7d2a0998b5f3011f0ef",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code code domain olmo",
+  "task_key": "worker_code_code_domain_olmo_20260524T091908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_code_domain_olmo_20260524T091908_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "38965aff8d76a00042538aac1878802335c41f213a53cac615c8ab28f88e9873"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动，正在 GPU 1 上运行：\n\n- **PID**: 167297\n- **状态**: Phase 1 — OLMo-1B 正在生成 depth 1（5500 docs, batch_size=16, ~3-4s/batch）\n- **预计**: 5 个 depth × ~344 batches × ~3s ≈ ~85 分钟完成 Phase 1，Phase 2 (Qwen cross-scoring) 另需约 30-40 分钟\n- **日志**: `results/exp_code_olmo.log`\n- **输出**: `data/exp_code_olmo/` (depth chain) + `results/exp_code_olmo/` (analysis)\n\n工作流：\n1. OLMo-1B 生成 depth 0→5 chain (continuation, nucleus p=0.95 T=1.0)\n2. 删除 OLMo self-scored features\n3. Qwen2.5-1.5B-Instruct cross-score → 15D features → OBD AUC + bootstrap CI"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-code-domain-olmo.md"
+}

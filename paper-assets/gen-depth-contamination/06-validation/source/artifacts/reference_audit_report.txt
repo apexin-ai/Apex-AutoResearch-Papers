@@ -1,0 +1,100 @@
+REFERENCE AUDIT REPORT — references.bib
+Date: 2026-05-23
+Method: WebSearch verification of every bib entry against official publication records
+
+TOTAL: 36 entries checked
+ERRORS FOUND: 10 (in 8 entries)
+FIXED: 10
+
+========================================
+FIXED ERRORS
+========================================
+
+1. [zhang2024minkpp] (Min-K%++)
+   - AUTHORS: completely wrong. "Zheng, Jingwei; Gao, Jing; Miao, Chunyan" → "Sun, Jingwei; Yeats, Eric; Ouyang, Yang; Kuo, Martin; Zhang, Jianyi; Yang, Hao Frank; Li, Hai"
+   - VENUE: "Proceedings of EMNLP" year 2024 → "Proceedings of ICLR" year 2025 (Spotlight)
+   - Severity: CRITICAL (authors + venue + year all wrong)
+
+2. [hao2025rewrite] (Learning to Rewrite)
+   - AUTHORS: completely wrong. "Guan, Ran; Lu, Kangjie; Zhang, Shuai" → "Li, Ran; Zhao, Weiliang; Yang, Junfeng; Mao, Chengzhi"
+   - VENUE: "Findings of ACL" → "Proceedings of ACL" (main conference, not Findings)
+   - Severity: CRITICAL (authors + venue both wrong)
+
+3. [alemohammad2024selfconsuming] (Self-Consuming Go MAD)
+   - AUTHORS: 4 of 7 names were wrong, 1 author missing:
+     "Luber, Lorenzo" → "Luzi, Lorenzo"
+     "Babaei, Ahmed Imtiaz" → "Humayun, Ahmed Imtiaz" (different person)
+     "Letizia, Daniel" → "LeJeune, Daniel"
+     "Bastani, Osbert" → "Siahkoohi, Ali"
+     Added missing author: "Babaei, Hossein" (7→8 authors)
+   - Severity: CRITICAL (majority of author names hallucinated)
+
+4. [dohmatob2024model] (A Tale of Tails)
+   - AUTHOR NAME: "Yang, Pin-Yu" → "Yang, Pu" (Pin-Yu Chen is a different researcher at IBM)
+   - Severity: MODERATE
+
+5. [xie2023dsir] (DSIR)
+   - TITLE: "Data Selection with Importance Resampling" → "Data Selection for Language Models via Importance Resampling"
+   - VENUE: "Proceedings of ICML" → "Advances in Neural Information Processing Systems" (NeurIPS 2023)
+   - Severity: HIGH (wrong title + wrong venue)
+
+6. [tirumala2023d4] (D4)
+   - AUTHORS: 2 of 4 names wrong. "Markosyan, Aram; Zettlemoyer, Luke" → "Simig, Daniel; Morcos, Ari"
+   - Severity: HIGH
+
+7. [wang2024semeval] (SemEval-2024 Task 8)
+   - AUTHORS: 5 authors missing from the list. Added: Whitehouse, Chenxi; Aji, Alham Fikri; Habash, Nizar; Gurevych, Iryna; Nakov, Preslav
+   - Severity: MODERATE (incomplete but not fabricated)
+
+8. [schaeffer2025position] (Position: Model Collapse Does Not Mean What You Think)
+   - AUTHOR NAME: "Arulandu, Anirudh" → "Arulandu, Alvan Caleb"
+   - VENUE: "Proceedings of ICML" → arXiv preprint (paper is under review at NeurIPS 2025, not published at ICML)
+   - Changed entry type from @inproceedings to @article
+   - Severity: HIGH (wrong venue + wrong author name)
+
+MINOR FIXES (title accuracy):
+9. [basani2026diveye]: Removed non-official "DivEye:" prefix from title
+10. [zawalski2026codec]: Removed non-official "CoDeC:" prefix from title
+
+========================================
+VERIFIED OK (no issues found)
+========================================
+
+- [drayson2025]: EMNLP 2025, authors OK, title OK
+- [kazdan2025collapse]: ICML 2025, authors OK, title OK
+- [mitchell2023detectgpt]: ICML 2023, authors OK, title OK
+- [basani2026diveye]: TMLR 2026, authors OK (title minor fix applied)
+- [zawalski2026codec]: ICLR 2026, authors OK (title minor fix applied)
+- [shumailov2024collapse]: Nature 631:755-759, 2024, authors OK
+- [xie2023doremi]: NeurIPS 2023, authors OK, title OK
+- [hans2024binoculars]: ICML 2024, authors OK, title OK
+- [alain2017understanding]: ICLR Workshop 2017, authors OK, title OK
+- [belinkov2022probing]: Computational Linguistics 48(1):207-219, 2022, OK
+- [bao2024fast]: ICLR 2024, authors OK, title OK
+- [frank2001ordinal]: ECML 2001, pp.145-156, OK
+- [cheng2025beyond]: WWW 2025, authors OK, title OK
+- [mehta2025beyond]: arXiv 2511.17602, 2025, OK
+- [sun2025aigt]: ACL 2025, authors OK, title OK
+- [spennemann2025quantifying]: arXiv 2504.08755, 2025, OK
+- [dohmatob2025strong]: ICLR 2025, authors OK, title OK
+- [gerstgrasser2024model]: COLM 2024, authors OK, title OK
+- [guo2024curious]: Findings of NAACL 2024, authors OK, title OK
+- [briesch2023selfconsuming]: arXiv 2311.16822, 2023, OK
+- [padmakumar2024writing]: ICLR 2024, authors OK, title OK
+- [krishna2023paraphrasing]: NeurIPS 2023, authors OK, title OK
+- [sadasivan2023detect]: arXiv 2303.11156, 2023, OK
+- [wang2025unveiling]: ACL 2025, pp.12740-12755, authors OK, title OK
+- [fu2025theoretical]: ICLR 2025, authors OK, title OK
+- [verma2024ghostbuster]: NAACL 2024, pp.1702-1717, authors OK, title OK
+- [dugan2024raid]: ACL 2024, pp.12463-12492, authors OK, title OK
+- [liang2023gpt]: Patterns 4(7):100779, 2023, authors OK, title OK
+
+========================================
+PATTERN ANALYSIS
+========================================
+
+The errors strongly suggest AI hallucination during bib generation:
+- 3 entries had completely fabricated author lists (zhang2024minkpp, hao2025rewrite, alemohammad2024selfconsuming)
+- Author names were plausible-sounding but wrong (e.g., "Bastani, Osbert" for "Siahkoohi, Ali")
+- Venues were swapped between similar conferences (EMNLP↔ICLR, ICML↔NeurIPS, Findings↔Main)
+- "Pin-Yu Yang" appears to be a conflation of "Pin-Yu Chen" (IBM researcher) with "Pu Yang"

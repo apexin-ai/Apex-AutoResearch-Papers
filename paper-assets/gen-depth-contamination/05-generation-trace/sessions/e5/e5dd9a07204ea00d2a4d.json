@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5dd9a07204ea00d2a4d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code three model visualization",
+  "task_key": "worker_code_three_model_visualization_20260513T033423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_three_model_visualization_20260513T033423_result.json",
+    "occurrence": 1,
+    "bytes": 839,
+    "sha256": "d45ad5e150c638ad352c997ee0f2e3e4483bd93efaf98b6f2597bbb6ad1edc65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 张图已生成并注册：\n\n| 文件 | 大小 | Artifact ID |\n|------|------|-------------|\n| `auc_heatmap.pdf` | 33K | art_20260513_98dfe7 |\n| `jsd_decay.pdf` | 24K | art_20260513_53a754 |\n| `feature_importance.pdf` | 19K | art_20260513_dbb099 |\n\n图表规格：\n- **AUC Heatmap** — RdYlGn colormap，0.5=chance 浅色/1.0 深色，每 cell 标注 AUC±std，K\\*=2 竖虚线分隔，colorbar 标注 0.60 阈值线\n- **JSD Decay** — log scale Y 轴，3 条曲线（蓝/橙/绿 colorblind-safe），K\\*=2 灰色阴影区域\n- **Feature Importance** — top-10 特征 grouped bar chart，从 3 个实验的 `feature_importance.json` 读取，按平均重要性排序\n\n所有图使用 serif 字体、300 DPI、无标题、淡灰网格线。脚本位于服务器 `scripts/plot_three_model_comparison.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-three-model-visualization.md"
+}

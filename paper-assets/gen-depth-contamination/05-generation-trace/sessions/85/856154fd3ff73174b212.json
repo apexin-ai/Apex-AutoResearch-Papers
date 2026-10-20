@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "856154fd3ff73174b212",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "audit experiments c1 data verify",
+  "task_key": "worker_audit_experiments_c1_data_verify_20260514T004234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234_result.json",
+    "occurrence": 1,
+    "bytes": 1292,
+    "sha256": "88381c2e155e8703cd734110b7f2114aabbfe6bf61d21bd1b0967a9bcd403124"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both fixes are already applied (likely by a concurrent process or linter). The file now shows the correct values:\n- Line 30: `p = 0.002` ✓\n- Line 36: Qwen-cont 0v1 = `0.9971` ✓\n\n## 校验报告\n\n| 检查项 | 结果 |\n|--------|------|\n| **AUC 值** (所有 pairwise AUC, 20 cells) | ✓ 正确 (修正 Qwen-cont 0v1: 0.9972→0.9971) |\n| **K\\* 值** (K\\*=2) | ✓ 正确，与 registry 一致 |\n| **CI 区间** (16 bounds) | ✓ 全部正确 |\n| **p-values** (10 values) | ✓ 正确 (修正 caption p=0.000→p=0.002) |\n| **模型名** | ✓ 无 7B 模型，仅 Pythia-1.4B / OLMo-1B / Qwen2.5-1.5B-Instruct |\n| **Transfer matrix** (16 cells) | ✓ 全部与 exp_013 一致 |\n| **Transfer retention %** | ✓ Pythia↔OLMo 90-92%, Qwen-rw→others 61-63%, Qwen-cont↔Pythia 84-85%, Qwen-cont↔OLMo 80-85% |\n| **Feature 排名** (4 models × top 3) | ✓ 全部与 exp_005 一致 |\n| **Spearman ρ** (3 values) | ✓ 0.95, 0.9143, 0.85 与 exp_005 一致 |\n| **Kendall τ** (5 values) | ✓ 0.733, 0.695, 0.543, 0.467, 0.429 与 exp_005 一致 |\n| **Mean pw AUC** (within/cross) | ✓ 0.6099 / 0.5905 与 exp_013 一致 |\n| **LLM zero-shot** | N/A — 本文件未包含 exp_011 数据 |\n\n**修正 2 处**，其余全部正确。文件已就绪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-experiments-c1-data-verify.md"
+}

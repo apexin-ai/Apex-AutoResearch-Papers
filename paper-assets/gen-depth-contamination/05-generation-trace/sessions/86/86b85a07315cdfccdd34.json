@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86b85a07315cdfccdd34",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "reviewer / loop_13.md",
+  "task_key": "loop_13",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_13.md",
+    "occurrence": 1,
+    "bytes": 3823,
+    "sha256": "b3f915c219343ffd26d22026906180e7d5be47bbd0a7ec60d91967700729c560"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_messages\nupdated: '2026-05-16T14:44:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`gpu_ids=[0,1,2,3]`（4×RTX 4090D 24GB），本项目独占整台机器\n- Mistral-7B K*=1 是**真实结论**（bootstrap CI [0.5835, 0.6032] self-scorer + cross-scorer CI [0.5645, 0.5746]），不是 bug，不要质疑\n- Pythia greedy K*=2 + AUC=0.8838 是 **repetition collapse artifact**（JSD 0v1=0.618，TTR 崩溃），论文不能当正面证据\n- exp-020 日志末尾有 \"Terminated\" 但 t07/t12 结果文件完整——需要 Agent 做 sample count 验证（`wc -l` 各 depth jsonl 确认 5000×6 完整），我已在报告中要求但尚未确认\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`cqa1-22115(root)`，工作目录 `/root/autodl-tmp/gen-depth-contamination`\n- Python：conda base (`/root/miniconda3/bin/python`)，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型缓存：`/root/autodl-tmp/.hf_cache`，需 `HF_DATASETS_OFFLINE=1` + `TRANSFORMERS_OFFLINE=1`\n- 网络：`source /etc/network_turbo` 必须在 pip/git 前执行\n- 活跃进程（截至 handoff）：\n  - exp-018 LLaMA-8B: PID 10403, cuda:0, depth 4 gen ~43%（约 4-5h 完成）\n  - **GPU 1/2/3 全部空闲**——exp-019b/020/021/023 均已完成\n\n### 3. 📊 当前状态\n本轮完成了大量审查：\n\n**刚完成的实验**（本轮确认结果）：\n- exp-019b Mistral cross-scorer: K*=1, 1v2=0.5695 → **text-intrinsic K*=1 确认**\n- exp-020 Pythia 全 4 解码配置: greedy K*=2(collapse), nuc09 K*=2(0.677), t07 K*=2(0.7265), t12 K*=2(0.6172)\n- exp-021 length_512: K*=2, 1v2=0.6073（边缘，2/5 folds < 0.60）\n- exp-023 wiki domain: K*=2, 1v2=0.6193（稳固，cross-domain 验证通过）\n\n**Registry 待更新**：exp-020（4 子配置结果）、exp-021 length_512、exp-023 wiki 的 registry 可能仍为 RUNNING/PREPARING。\n\n**已向 Director 提交的关键报告**：\n1. Framing 深度审查：推荐 \"K* ≤ 2 universally bounded\" 替代 \"K*=2 universal\"（修改版 Option B）\n2. GPU 空闲警告（3/4 GPU idle）\n3. exp-020/021/023 批量结果确认\n\n**等待中**：exp-018 LLaMA-8B 完成（~4-5h）——这是最关键的待定实验\n\n### 4. 📋 待办\n- exp-018 完成 → **最关键判断**：K*=2 → \"7/8 models K*=2, Mistral 唯一例外\"；K*=1 → \"两个 7B+ 模型都 K*=1，K* 可能 scale-dependent\"，paper narrative 完全不同\n- exp-018 完成 → 核实 GPU 分配（cuda:0）、metrics 与日志一致性、bootstrap CI\n- 3 张空闲 GPU → 检查 Agent 是否已调度新实验（exp-022 QUEUED、exp-024 未开始）；如仍空闲则再次 escalate\n- exp-020 t07/t12 数据完整性验证回来 → 确认 sample count 是否正确\n- paper_framing.md 改写 → 等 exp-018 结果后做章节审查（预期 Director 会触发）\n\n### 5. 🎯 战略上下文\n- **核心发现**：K* boundary 存在但不 universal at K*=2。当前 7/7 完成模型中 6 个 K*=2、Mistral K*=1。K* ≤ 2 是 universal bound。\n- **paper_framing.md 已过时**：\"K*=2 在所有 10 个测试条件下保持不变\" 被 Mistral 推翻。已向 Director 提交修改版 Option B framing 建议，等 exp-018 后一次性改写。\n- **exp-023 wiki K*=2 已确认** → cross-domain claim 可用，但仅限 Qwen-1.5B 单模型\n- **最易判断错的事**：\n  1. 不要把 Pythia greedy 0.8838 当正面证据——那是 collapse\n  2. exp-021 length 趋势是非单调的（256>128>512），不要写成 \"longer text = better detection\"\n  3. exp_A_alt_scorer 的 Pythia→Qwen-cont K*=1 与 Mistral K*=1 本质不同：前者是 scorer-dependent（换 Qwen scorer 就恢复 K*=2），后者是 text-intrinsic（换 scorer 仍 K*=1）\n- **DDL**：EMNLP 2026 ARR May 25（距今 9 天），算力充足但 GPU 利用率需要盯紧\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-copy-2.md"
+}

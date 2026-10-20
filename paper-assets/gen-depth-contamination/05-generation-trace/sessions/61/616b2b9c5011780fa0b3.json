@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "616b2b9c5011780fa0b3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analyze exp 012 binary confidence",
+  "task_key": "worker_analyze_exp_012_binary_confidence_20260515T232123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_012_binary_confidence_20260515T232123_result.json",
+    "occurrence": 1,
+    "bytes": 1087,
+    "sha256": "41082255d8d1f1f0e68c92fcd01bc50e1dd5af14ffa8be797b4a484be2f4963c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。汇总：\n\n## exp_012_binary_confidence 结果\n\n**结论：success** — hypothesis 验证通过，binary confidence ≠ depth。\n\n### 关键数据\n\n| Generator | Spearman ρ (best metric) | 6-class Acc | 0v1 AUC (OBD-15D) | 4v5 AUC (OBD-15D) |\n|-----------|-------------------------|-------------|--------------------|--------------------|\n| qwen-rewrite | 0.12 (ratio) | 0.199 | 0.996 | 0.534 |\n| pythia-1.4b | -0.45 (obs) | 0.130 | 0.993 | 0.514 |\n| olmo-1b | -0.46 (obs) | 0.127 | 0.997 | 0.504 |\n| qwen-cont | -0.39 (ref) | 0.183 | 0.997 | 0.514 |\n\nRandom baseline for 6-class: 0.167\n\n### 论文叙事支撑\n\n1. **6-class accuracy ≤ random** — binary confidence 无法分类 depth levels\n2. **Pairwise AUC 急剧衰减** — 0v1 ≈ 0.99（近乎完美区分 human/AI），但 deeper pairs 迅速塌缩到 ~0.50（随机）\n3. 中等 Spearman ρ（pythia/olmo ~0.45）完全由 depth-0 vs depth-1 的巨大 gap 驱动，不代表对 depth 的真正敏感性\n4. 可视化已生成：`exp012_confidence_vs_depth.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-012-binary-confidence.md"
+}

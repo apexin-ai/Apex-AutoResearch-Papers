@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bc1527a49fdd602d5de",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix deberta code postprocess",
+  "task_key": "worker_fix_deberta_code_postprocess_20260520T072450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_deberta_code_postprocess_20260520T072450_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "efb98aca4f8a08a8385166eaa0ec067f487be0c2c5109f0f68cd1ecc8a118ed8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成，汇总：\n\n### Bug 修复 diff\n\n**Fix 1** — `pairwise_auc_ci` line 148：\n```diff\n-            doc2idx.setdefault(int(d), []).append(i)\n+            doc2idx.setdefault(d, []).append(i)\n```\n\n**Fix 2** — `main()` line 214，在 `pairwise_auc_ci` 调用前插入：\n```diff\n+        np.save(RESULTS_DIR / \"oof.npy\", oof)\n         pw, kstar = pairwise_auc_ci(labels, oof, doc_ids)\n```\n\n### 状态\n- **oof.npy**：不存在，需完整重跑 5-fold 训练\n- **cuda:3**：空闲（0% util, 0 MiB）\n- **语法验证**：SYNTAX_OK\n- **旧 tmux session**：已清理\n\n### 推荐重启命令\n\n```bash\nCUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\n```\n\n需要由主 Agent 通过 `submit_training_job` 提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-deberta-code-postprocess.md"
+}

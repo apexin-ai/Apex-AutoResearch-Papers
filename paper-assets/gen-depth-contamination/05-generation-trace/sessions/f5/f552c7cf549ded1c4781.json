@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f552c7cf549ded1c4781",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix exp plan config4 features",
+  "task_key": "worker_fix_exp_plan_config4_features_20260513T232722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp_plan_config4_features_20260513T232722_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "cae4b1aed744a4d9e41f9f91ecce444ab117b136387d2bf0c28e9a6009c33864"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修正完成。\n\n**改动**：`registry.yaml` 第 260-263 行，`config4_t12.top3_features_1v2` 从 `[freq_entropy, hapax_ratio, surp_skew]` 改为 `[hapax_ratio, ttr, surp_skew]`。\n\n注意：任务描述说修改 `experiment_plan.yaml`，但该文件中不含 `config4_t12` 或 `top3_features` 字段。实际数据在 `registry.yaml` 中，已完成修正。其余引用该组合的文件均为日志，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-plan-config4-features.md"
+}

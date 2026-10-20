@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61fa4ff7e9442a582181",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code gemma lofo supplement",
+  "task_key": "worker_code_gemma_lofo_supplement_20260521T014657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma_lofo_supplement_20260521T014657_result.json",
+    "occurrence": 1,
+    "bytes": 2028,
+    "sha256": "426044ade62155c391087dbb2be741369cc0f568b2a5e0fa8b1633fd94529d7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。以下是结果汇总：\n\n---\n\n## LOFO θ Validation 结果\n\n### 代码位置\n- **新建脚本**: `/root/autodl-tmp/gen-depth-contamination/scripts/lofo_theta_validation.py`\n- **输出目录**: `results/lofo_theta_validation/`\n  - `lofo_theta_results.json` — 完整数据\n  - `lofo_theta_table.tex` — LaTeX 表格\n\n### Gemma-2-2B 数据\n数据完整可用，来源：`artifacts/exp_gemma2b_depth_bootstrap_ci.json`\n\n### Per-family K* at θ=0.60\n\n| Family | K* | 1v2 ci_lower | margin |\n|--------|-----|-------------|--------|\n| Qwen-rw | 2 | 0.6859 | +0.086 |\n| Pythia | 2 | 0.6454 | +0.045 |\n| OLMo | 2 | 0.6045 | +0.005 |\n| Qwen-cont | 2 | 0.6015 | +0.002 |\n| Qwen-7B | 2 | 0.6080 | +0.008 |\n| **Gemma-2B** | **1** | **0.5882** | **-0.012** |\n\n### LOFO θ̂ Range 表格\n\n| Left-out | θ_low | θ_high | Width | θ̂(mid) | θ=0.60? |\n|----------|-------|--------|-------|---------|---------|\n| Qwen-rw | 0.5511 | 0.5882 | 0.0371 | 0.5696 | NO |\n| Pythia | 0.5795 | 0.5882 | 0.0087 | 0.5838 | NO |\n| OLMo | 0.5795 | 0.5882 | 0.0087 | 0.5838 | NO |\n| Qwen-cont | 0.5795 | 0.5882 | 0.0087 | 0.5838 | NO |\n| Qwen-7B | 0.5795 | 0.5882 | 0.0087 | 0.5838 | NO |\n| **Gemma-2B** | 0.5795 | 0.6015 | 0.0220 | 0.5905 | **YES** |\n| All 6 | 0.5795 | 0.5882 | 0.0087 | 0.5838 | NO |\n\n### 关键发现\n\n1. **Gemma-2-2B 是 binding constraint**: 其 1v2 ci_lower=0.5882 将全集 K*=2 共识范围上界从 0.6015 压缩到 0.5882，θ=0.60 落在共识范围外。\n\n2. **θ̂ 稳定性**: LOFO θ̂ midpoint 范围 [0.5696, 0.5905]，mean=0.5826 ± 0.0063。所有 6 个 LOFO 子集都产生有效共识范围。\n\n3. **Framing 影响**: θ=0.585 可使全部 6 族（含 Gemma）达成 K*=2 共识。θ=0.60 仅在去掉 Gemma 时成立（5/6 原始模型）。\n\n4. **论文调整建议**: 可以将 Gemma 定位为 borderline case（1v2 ci_lower 仅低于 θ 1.2pp），LOFO θ̂ 的窄波动（±0.63pp）仍然支持 K*=2 作为 robust boundary 的 claim。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma-lofo-supplement.md"
+}

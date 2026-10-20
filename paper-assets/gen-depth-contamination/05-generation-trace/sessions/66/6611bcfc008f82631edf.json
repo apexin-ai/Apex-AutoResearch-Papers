@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6611bcfc008f82631edf",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp changepoint kstar",
+  "task_key": "worker_code_exp_changepoint_kstar_20260520T071251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_changepoint_kstar_20260520T071251_result.json",
+    "occurrence": 1,
+    "bytes": 1177,
+    "sha256": "70f327939557f422ccd97eb5bc59f8473df437e5a900356f334d5640eb39fa67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果总结：\n\n## exp_changepoint_kstar 结果\n\n**37 个实验的 PELT changepoint K* vs θ=0.60 K* 对比：**\n\n| 指标 | 值 |\n|------|-----|\n| Exact agreement | 17/37 (45.9%) |\n| **Within ±1 agreement** | **35/37 (94.6%)** |\n| CP 方向 | 始终 ≤ θ（保守，从不高估） |\n\n**Disagreement 模式非常规律：**\n- 18 个 off-by-1 案例：disputed pair 的 AUC 在 [0.607, 0.654]，均值 0.636。PELT 把这些 borderline pair 归入 near-chance cluster，θ=0.60 判为 detectable\n- 2 个 outlier：7-point retrain chain（所有 AUC > 0.60，无 chance-level 平台），CP 找到内部拐点\n\n**Paper 叙事：** 非参数变点检测验证了 θ=0.60 的合理性。K\\*\\_cp 与 K\\*\\_θ 在 94.6% 实验中一致（±1），且 CP 系统性偏保守，说明 θ=0.60 是合理但略 liberal 的 cutoff，不引入虚假检测。\n\n**其他发现：**\n- Bootstrap (2000 samples) 与 direct PELT 结果完全一致\n- PELT / BinSeg / BottomUp 三种方法在 primary penalty 下结果相同\n- Best PELT penalty = 0.1（agreement 48.6%），但 penalty sensitivity 有限（5-point 序列的固有局限）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-changepoint-kstar.md"
+}

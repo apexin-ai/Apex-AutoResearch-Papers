@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cffd3a29eae924e3d3d1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research literature scan collapse",
+  "task_key": "worker_research_literature_scan_collapse_20260513T004727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature_scan_collapse_20260513T004727_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "10d0572e1abf30cd0769ce93cff21326c2a0674a21d6228a15f03df9d10efa44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存至 `artifacts/literature_scan_2025_2026.md`。核心结论：\n\n**Novelty 安全** — 无人做过 ordinal depth estimation 或量化 discrimination boundary K*。我们的核心贡献无竞争。\n\n**关键发现**：\n- **Drayson et al. (EMNLP 2025) 是真实论文**，不是 Dream 审稿说的幻觉引用。它用 MGT 检测做 importance resampling 防止 collapse——正好是我们 depth estimator 的 binary 版本，应作为最近相关工作 cite\n- **Schaeffer (ICML 2025)** 指出 model collapse 有 8 种不同定义，我们必须精确说明 K* 是 discriminability saturation，不是 test-loss collapse\n- **He et al. (NeurIPS 2025)** 的 generalization→memorization 转变与我们的 feature-space convergence 高度对应\n- **DivEye (TMLR 2026)** 的 surprisal diversity 特征和 **Surplexity** 可作为 full study 新 baseline\n\n**Must-cite 4 篇**: Drayson EMNLP'25, Schaeffer ICML'25, Kazdan ICML'25, He NeurIPS'25。**Should-cite 4 篇**: DivEye, Amin NeurIPS'25, CoDeC ICLR'26, Surplexity。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-scan-collapse.md"
+}

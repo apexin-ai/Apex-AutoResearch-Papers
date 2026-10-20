@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdb9121a9d2c0592338c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "exp pythia retrain depth7 cuda0",
+  "task_key": "worker_exp_pythia-retrain-depth7-cuda0_20260519T014932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_pythia-retrain-depth7-cuda0_20260519T014932_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "ed39b372a07f6a3da1d0a2b92d868bd165b5d366fda368b38313b5f5106a944d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动并验证成功。总结：\n\n- **实验 ID**: `exp_pythia_retrain_depth7`\n- **GPU**: cuda:0 (RTX 4090 D)，PID 115855，5442MiB 显存，81% 利用率\n- **当前状态**: 正在 fine-tune depth_4 数据（depth 0-4 已有数据自动跳过）\n- **LoRA targets**: `query_key_value`（Pythia GPT-NeoX 架构自动检测）\n- **流程**: depth 4 → fine-tune → generate depth 5 → ... → depth 7 → feature extraction (Qwen2.5-1.5B scorer) → 5-fold GroupKFold AUC analysis\n- **日志**: `/root/autodl-tmp/gen-depth-contamination/logs/exp_pythia_retrain_depth7.log`\n- **Registry**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-pythia-retrain-depth7-cuda0.md"
+}

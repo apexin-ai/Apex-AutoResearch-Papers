@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "69ab62895f426746aa74",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "paper w1 fill appendix tables",
+  "task_key": "worker_paper_w1_fill_appendix_tables_20260522T055736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_w1_fill_appendix_tables_20260522T055736.log",
+    "occurrence": 1,
+    "bytes": 1228968,
+    "sha256": "1c0cbe6b6a778aaf20dccc6a2f457ce48baf6e0bc96050fac0d1d51a11b26033"
+  },
+  "statistics": {
+    "messages": 485,
+    "user_turns": 1,
+    "tool_calls": 182,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 111,
+      "tool_call": 182,
+      "tool_result": 182,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 347,
+      "chunks": [
+        {
+          "path": "69ab62895f426746aa74-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "69ab62895f426746aa74-part-0002.json",
+          "message_count": 167
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 138,
+      "chunks": [
+        {
+          "path": "69ab62895f426746aa74-part-0002.json",
+          "message_count": 13
+        },
+        {
+          "path": "69ab62895f426746aa74-part-0003.json",
+          "message_count": 125
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-w1-fill-appendix-tables.md"
+}

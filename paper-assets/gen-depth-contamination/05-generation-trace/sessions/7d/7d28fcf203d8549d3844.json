@@ -1,0 +1,1250 @@
+{
+  "schema_version": "1.0",
+  "id": "7d28fcf203d8549d3844",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "analysis exp 009 50pct harvest",
+  "task_key": "worker_analysis_exp_009_50pct_harvest_20260517T101851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_009_50pct_harvest_20260517T101851.log",
+    "occurrence": 1,
+    "bytes": 72009,
+    "sha256": "4ef6476df1f7c52aa6db8f54e33f7629181b262ffa82b183ba49d8ad2641d2d2"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "13801c1f-1b58-4f30-9608-03e4dddfd904",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779030600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "84eed397-67ee-49d8-a6a3-6a9e78a973f3",
+                "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking the results on the server.",
+              "signature": "Eu4BClkIDRgCKkB+uhGXaZQDv4ry4EtEtxgoCTIjpTLVAgxfUbQEvrJ9uro39s/5b+zlmZBb5AlwH0YAtU27CLpbu/HSHYhOwc2wMg9jbGF1ZGUtb3B1cy00LTY4ABIMD4uwDnKOcf2cCu/VGgz6yaZW6OwaWc9DoM0iMBWm7sO0zKKbtQfgS/1j7Exp6FLu4F60Z4uGIWOXD8xU/VkJIMt88QlS9RL+dgCTHipDqPWdj8RqfAxIp8sKRhApMZwJffkzyHcGqCa05ZnPKG1GngjfkqnWw+bC0HOV+W13Sc7kuvMQvFz3DBdLhqbW1QhnYBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "06d8eac5-87db-4388-9da7-51f752ee62a9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ak9BmEBbxncF1sTWVv4kGW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12896,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12896
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WqtQWHU6FmgMLgRN7tS3DC",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "a3ca4c43-31a1-47b5-a1ad-87e9689e0e03",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ak9BmEBbxncF1sTWVv4kGW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12896,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12896
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T10:19:04.503Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01WqtQWHU6FmgMLgRN7tS3DC",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "978d8cad-99d8-453a-a674-eec5bb614009",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking the files in the ratio_50 directory.",
+              "signature": "EvgBClkIDRgCKkCSJdtCv7YzAfbfW+9AWcucLixT0bKX5to0NOeVf202Bxbtw0i7b3I/Jgt1rYEE6OnJSlY989VpiczY1u5e7LZeMg9jbGF1ZGUtb3B1cy00LTY4ABIMbUF+Zl5BdV1Q6oELGgyJNqLOLMIF2NIAknwiMESuxmC8Cj2t0w0bOaZx8BJNAVjZjYNg0CaQ5m9Iul7Eg7rLif6tIpTpKH//A0PZpypNvpxgCKiEErbzT25X+mtyl4lKblmBW9vykSphd7IiCccjx+aN2KqFKwzn1Wt3/UHI40McS7b2b70E1dtkySNZ8XreJrWYwXxIsBQziJAYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "73300d9b-68dd-4d5e-b066-ceb0c538aa08",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013LxN5jH1TaapFtyUsUmzGC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 372,
+                "cache_read_input_tokens": 24737,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 372
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U7iGvTZXZ4kUXP1QoaxuL9",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/ && echo \"---FILE COUNT---\" && ls /root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/ | wc -l",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "7d009c63-b05c-42b5-a8b9-6f73f90bc3cc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013LxN5jH1TaapFtyUsUmzGC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 372,
+                "cache_read_input_tokens": 24737,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 372
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T10:19:10.348Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U7iGvTZXZ4kUXP1QoaxuL9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 248\\\\ndrwxr-xr-x 2 root root  4096 May 17 17:23 .\\\\ndrwxr-xr-x 5 root root    70 May 17 06:23 ..\\\\n-rw-r--r-- 1 root root 14266 May 17 09:09 binary_ours_seed0_eval.json\\\\n-rw-r--r-- 1 root root 14268 May 17 10:34 binary_ours_seed1_eval.json\\\\n-rw-r--r-- 1 root root 14294 May 17 11:58 binary_ours_seed2_eval.json\\\\n-rw-r--r-- 1 root root 14280 May 17 15:32 binary_ours_seed3_eval.json\\\\n-rw-r--r-- 1 root root 14273 May 17 16:54 binary_ours_seed4_eval.json\\\\n-rw-r--r-- 1 root root 14283 May 17 09:39 graduated_seed0_eval.json\\\\n-rw-r--r-- 1 root root 14277 May 17 11:05 graduated_seed1_eval.json\\\\n-rw-r--r-- 1 root root 14296 May 17 12:27 graduated_seed2_eval.json\\\\n-rw-r--r-- 1 root root 14286 May 17 16:01 graduated_seed3_eval.json\\\\n-rw-r--r-- 1 root root 14278 May 17 17:23 graduated_seed4_eval.json\\\\n-rw-r--r-- 1 root root 14293 May 17 08:41 no_filter_seed0_eval.json\\\\n-rw-r--r-- 1 root root 14270 May 17 10:07 no_filter_seed1_eval.json\\\\n-rw-r--r-- 1 root root 14280 May 17 11:31 no_filter_seed2_eval.json\\\\n-rw-r--r-- 1 root root 14300 May 17 12:54 no_filter_seed3_eval.json\\\\n-rw-r--r-- 1 root root 14299 May 17 16:28 no_filter_seed4_eval.json\\\\n-rw-r--r-- 1 root root  1988 May 17 17:23 statistical_analysis.json\\\\n---FILE COUNT---\\\\n16\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "b6efa04e-7046-4c08-a32c-496f2ddf3bb2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 248\\\\ndrwxr-xr-x 2 root root  4096 May 17 17:23 .\\\\ndrwxr-xr-x 5 root root    70 May 17 06:23 ..\\\\n-rw-r--r-- 1 root root 14266 May 17 09:09 binary_ours_seed0_eval.json\\\\n-rw-r--r-- 1 root root 14268 May 17 10:34 binary_ours_seed1_eval.json\\\\n-rw-r--r-- 1 root root 14294 May 17 11:58 binary_ours_seed2_eval.json\\\\n-rw-r--r-- 1 root root 14280 May 17 15:32 binary_ours_seed3_eval.json\\\\n-rw-r--r-- 1 root root 14273 May 17 16:54 binary_ours_seed4_eval.json\\\\n-rw-r--r-- 1 root root 14283 May 17 09:39 graduated_seed0_eval.json\\\\n-rw-r--r-- 1 root root 14277 May 17 11:05 graduated_seed1_eval.json\\\\n-rw-r--r-- 1 root root 14296 May 17 12:27 graduated_seed2_eval.json\\\\n-rw-r--r-- 1 root root 14286 May 17 16:01 graduated_seed3_eval.json\\\\n-rw-r--r-- 1 root root 14278 May 17 17:23 graduated_seed4_eval.json\\\\n-rw-r--r-- 1 root root 14293 May 17 08:41 no_filter_seed0_eval.json\\\\n-rw-r--r-- 1 root root 14270 May 17 10:07 no_filter_seed1_eval.json\\\\n-rw-r--r-- 1 root root 14280 May 17 11:31 no_filter_seed2_eval.json\\\\n-rw-r--r-- 1 root root 14300 May 17 12:54 no_filter_seed3_eval.json\\\\n-rw-r--r-- 1 root root 14299 May 17 16:28 no_filter_seed4_eval.json\\\\n-rw-r--r-- 1 root root  1988 May 17 17:23 statistical_analysis.json\\\\n---FILE COUNT---\\\\n16\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 248\\ndrwxr-xr-x 2 root root  4096 May 17 17:23 .\\ndrwxr-xr-x 5 root root    70 May 17 06:23 ..\\n-rw-r--r-- 1 root root 14266 May 17 09:09 binary_ours_seed0_eval.json\\n-rw-r--r-- 1 root root 14268 May 17 10:34 binary_ours_seed1_eval.json\\n-rw-r--r-- 1 root root 14294 May 17 11:58 binary_ours_seed2_eval.json\\n-rw-r--r-- 1 root root 14280 May 17 15:32 binary_ours_seed3_eval.json\\n-rw-r--r-- 1 root root 14273 May 17 16:54 binary_ours_seed4_eval.json\\n-rw-r--r-- 1 root root 14283 May 17 09:39 graduated_seed0_eval.json\\n-rw-r--r-- 1 root root 14277 May 17 11:05 graduated_seed1_eval.json\\n-rw-r--r-- 1 root root 14296 May 17 12:27 graduated_seed2_eval.json\\n-rw-r--r-- 1 root root 14286 May 17 16:01 graduated_seed3_eval.json\\n-rw-r--r-- 1 root root 14278 May 17 17:23 graduated_seed4_eval.json\\n-rw-r--r-- 1 root root 14293 May 17 08:41 no_filter_seed0_eval.json\\n-rw-r--r-- 1 root root 14270 May 17 10:07 no_filter_seed1_eval.json\\n-rw-r--r-- 1 root root 14280 May 17 11:31 no_filter_seed2_eval.json\\n-rw-r--r-- 1 root root 14300 May 17 12:54 no_filter_seed3_eval.json\\n-rw-r--r-- 1 root root 14299 May 17 16:28 no_filter_seed4_eval.json\\n-rw-r--r-- 1 root root  1988 May 17 17:23 statistical_analysis.json\\n---FILE COUNT---\\n16\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "15 个 eval JSON + 1 个已有的 statistical_analysis.json，全部到齐（含 graduated_seed4）。检查 JSON 结构。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "177b06a9-4fa4-4e09-9e07-9318b85bf90b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XY7tLBybbF9B1XE7F8Wzxd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 934,
+                "cache_read_input_tokens": 25109,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 934
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YaUzFLHDBwnHzzrpmr23v8",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/no_filter_seed0_eval.json | python3 -c \"import json,sys; d=json.load(sys.stdin); print(json.dumps(list(d.keys()))); [print(f'  {k}: {list(v.keys()) if isinstance(v,dict) else type(v).__name__}') for k,v in d.items()]\" 2>/dev/null || cat /root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/no_filter_seed0_eval.json | head -50",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "496e75ac-b445-4eb8-9084-6129a21aacf1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XY7tLBybbF9B1XE7F8Wzxd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 934,
+                "cache_read_input_tokens": 25109,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 934
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T10:19:17.906Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YaUzFLHDBwnHzzrpmr23v8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\\\\"scores\\\\\\\", \\\\\\\"full\\\\\\\"]\\\\n  scores: ['mmlu', 'hellaswag']\\\\n  full: ['mmlu_abstract_algebra', 'mmlu_anatomy', 'mmlu_astronomy', 'mmlu_college_biology', 'mmlu_college_chemistry', 'mmlu_college_computer_science', 'mmlu_college_mathematics', 'mmlu_college_physics', 'mmlu_computer_security', 'mmlu_conceptual_physics', 'mmlu_electrical_engineering', 'mmlu_elementary_mathematics', 'mmlu_high_school_biology', 'mmlu_high_school_chemistry', 'mmlu_high_school_computer_science', 'mmlu_high_school_mathematics', 'mmlu_high_school_physics', 'mmlu_high_school_statistics', 'mmlu_machine_learning', 'mmlu_business_ethics', 'mmlu_clinical_knowledge', 'mmlu_college_medicine', 'mmlu_global_facts', 'mmlu_human_aging', 'mmlu_management', 'mmlu_marketing', 'mmlu_medical_genetics', 'mmlu_miscellaneous', 'mmlu_nutrition', 'mmlu_professional_accounting', 'mmlu_professional_medicine', 'mmlu_virology', 'mmlu_econometrics', 'mmlu_high_school_geography', 'mmlu_high_school_government_and_politics', 'mmlu_high_school_macroeconomics', 'mmlu_high_school_microeconomics', 'mmlu_high_school_psychology', 'mmlu_human_sexuality', 'mmlu_professional_psychology', 'mmlu_public_relations', 'mmlu_security_studies', 'mmlu_sociology', 'mmlu_us_foreign_policy', 'mmlu_formal_logic', 'mmlu_high_school_european_history', 'mmlu_high_school_us_history', 'mmlu_high_school_world_history', 'mmlu_international_law', 'mmlu_jurisprudence', 'mmlu_logical_fallacies', 'mmlu_moral_disputes', 'mmlu_moral_scenarios', 'mmlu_philosophy', 'mmlu_prehistory', 'mmlu_professional_law', 'mmlu_world_religions', 'hellaswag', 'mmlu_stem', 'mmlu_other', 'mmlu_social_sciences', 'mmlu_humanities', 'mmlu']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "ea2790f2-da6e-4a4d-9904-902728546c3f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\\\\"scores\\\\\\\", \\\\\\\"full\\\\\\\"]\\\\n  scores: ['mmlu', 'hellaswag']\\\\n  full: ['mmlu_abstract_algebra', 'mmlu_anatomy', 'mmlu_astronomy', 'mmlu_college_biology', 'mmlu_college_chemistry', 'mmlu_college_computer_science', 'mmlu_college_mathematics', 'mmlu_college_physics', 'mmlu_computer_security', 'mmlu_conceptual_physics', 'mmlu_electrical_engineering', 'mmlu_elementary_mathematics', 'mmlu_high_school_biology', 'mmlu_high_school_chemistry', 'mmlu_high_school_computer_science', 'mmlu_high_school_mathematics', 'mmlu_high_school_physics', 'mmlu_high_school_statistics', 'mmlu_machine_learning', 'mmlu_business_ethics', 'mmlu_clinical_knowledge', 'mmlu_college_medicine', 'mmlu_global_facts', 'mmlu_human_aging', 'mmlu_management', 'mmlu_marketing', 'mmlu_medical_genetics', 'mmlu_miscellaneous', 'mmlu_nutrition', 'mmlu_professional_accounting', 'mmlu_professional_medicine', 'mmlu_virology', 'mmlu_econometrics', 'mmlu_high_school_geography', 'mmlu_high_school_government_and_politics', 'mmlu_high_school_macroeconomics', 'mmlu_high_school_microeconomics', 'mmlu_high_school_psychology', 'mmlu_human_sexuality', 'mmlu_professional_psychology', 'mmlu_public_relations', 'mmlu_security_studies', 'mmlu_sociology', 'mmlu_us_foreign_policy', 'mmlu_formal_logic', 'mmlu_high_school_european_history', 'mmlu_high_school_us_history', 'mmlu_high_school_world_history', 'mmlu_international_law', 'mmlu_jurisprudence', 'mmlu_logical_fallacies', 'mmlu_moral_disputes', 'mmlu_moral_scenarios', 'mmlu_philosophy', 'mmlu_prehistory', 'mmlu_professional_law', 'mmlu_world_religions', 'hellaswag', 'mmlu_stem', 'mmlu_other', 'mmlu_social_sciences', 'mmlu_humanities', 'mmlu']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\\"scores\\\", \\\"full\\\"]\\n  scores: ['mmlu', 'hellaswag']\\n  full: ['mmlu_abstract_algebra', 'mmlu_anatomy', 'mmlu_astronomy', 'mmlu_college_biology', 'mmlu_college_chemistry', 'mmlu_college_computer_science', 'mmlu_college_mathematics', 'mmlu_college_physics', 'mmlu_computer_security', 'mmlu_conceptual_physics', 'mmlu_electrical_engineering', 'mmlu_elementary_mathematics', 'mmlu_high_school_biology', 'mmlu_high_school_chemistry', 'mmlu_high_school_computer_science', 'mmlu_high_school_mathematics', 'mmlu_high_school_physics', 'mmlu_high_school_statistics', 'mmlu_machine_learning', 'mmlu_business_ethics', 'mmlu_clinical_knowledge', 'mmlu_college_medicine', 'mmlu_global_facts', 'mmlu_human_aging', 'mmlu_management', 'mmlu_marketing', 'mmlu_medical_genetics', 'mmlu_miscellaneous', 'mmlu_nutrition', 'mmlu_professional_accounting', 'mmlu_professional_medicine', 'mmlu_virology', 'mmlu_econometrics', 'mmlu_high_school_geography', 'mmlu_high_school_government_and_politics', 'mmlu_high_school_macroeconomics', 'mmlu_high_school_microeconomics', 'mmlu_high_school_psychology', 'mmlu_human_sexuality', 'mmlu_professional_psychology', 'mmlu_public_relations', 'mmlu_security_studies', 'mmlu_sociology', 'mmlu_us_foreign_policy', 'mmlu_formal_logic', 'mmlu_high_school_european_history', 'mmlu_high_school_us_history', 'mmlu_high_school_world_history', 'mmlu_international_law', 'mmlu_jurisprudence', 'mmlu_logical_fallacies', 'mmlu_moral_disputes', 'mmlu_moral_scenarios', 'mmlu_philosophy', 'mmlu_prehistory', 'mmlu_professional_law', 'mmlu_world_religions', 'hellaswag', 'mmlu_stem', 'mmlu_other', 'mmlu_social_sciences', 'mmlu_humanities', 'mmlu']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J7cTAQoEgAL7ifPrvpv83U",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/no_filter_seed0_eval.json') as f:\n    d = json.load(f)\nprint('scores keys:', list(d['scores'].keys()))\nprint('mmlu:', d['scores']['mmlu'])\nprint('hellaswag:', d['scores']['hellaswag'])\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "9c848bab-b12a-47c7-ba6d-6fa67c1ad2a6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wqx1m6pdV5yjN4VrPSZJh4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1013,
+                "cache_read_input_tokens": 26043,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1013
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T10:19:22.124Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J7cTAQoEgAL7ifPrvpv83U",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"scores keys: ['mmlu', 'hellaswag']\\\\nmmlu: 0.6063951004130466\\\\nhellaswag: 0.6679944234216292\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "96f42208-2778-46f8-be7a-5c31ef861195",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"scores keys: ['mmlu', 'hellaswag']\\\\nmmlu: 0.6063951004130466\\\\nhellaswag: 0.6679944234216292\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"scores keys: ['mmlu', 'hellaswag']\\nmmlu: 0.6063951004130466\\nhellaswag: 0.6679944234216292\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结构明确：`d['scores']['mmlu']` 和 `d['scores']['hellaswag']`。现在运行完整分析脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "76c36d7b-eb24-4f40-ba9d-c1e1176a3d05",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Smukuk7yvyA6LQSh9Te54n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 330,
+                "cache_read_input_tokens": 27056,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 330
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VZ9WyjBYxEUsog4mkdvs2w",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "python3 << 'EOF'\nimport json, os, glob, numpy as np\nfrom scipy import stats\n\nbase = \"/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50\"\nfiles = sorted(glob.glob(os.path.join(base, \"*_eval.json\")))\nprint(f\"Total eval files: {len(files)}\")\n\ndata = {\"no_filter\": {}, \"binary_ours\": {}, \"graduated\": {}}\nraw_rows = []\n\nfor f in files:\n    fname = os.path.basename(f)\n    parts = fname.replace(\"_eval.json\", \"\").rsplit(\"_seed\", 1)\n    strategy = parts[0]\n    seed = int(parts[1])\n    with open(f) as fp:\n        d = json.load(fp)\n    mmlu = d[\"scores\"][\"mmlu\"]\n    hellaswag = d[\"scores\"][\"hellaswag\"]\n    data[strategy][seed] = {\"mmlu\": mmlu, \"hellaswag\": hellaswag}\n    raw_rows.append({\"strategy\": strategy, \"seed\": seed, \"mmlu\": mmlu, \"hellaswag\": hellaswag})\n\n# Sort raw rows\nraw_rows.sort(key=lambda x: (x[\"strategy\"], x[\"seed\"]))\n\n# Print raw data\nprint(\"\\n=== Table 3: Raw Data ===\")\nprint(f\"{'Strategy':<15} {'Seed':<5} {'MMLU':<10} {'HellaSwag':<10}\")\nfor r in raw_rows:\n    print(f\"{r['strategy']:<15} {r['seed']:<5} {r['mmlu']:.4f}     {r['hellaswag']:.4f}\")\n\n# Mean ± std\nprint(\"\\n=== Table 1: 50% Mean±Std ===\")\nprint(f\"{'Strategy':<15} {'MMLU mean±std':<20} {'HellaSwag mean±std':<20}\")\nsummary = {}\nfor strat in [\"no_filter\", \"binary_ours\", \"graduated\"]:\n    seeds_sorted = sorted(data[strat].keys())\n    mmlu_arr = np.array([data[strat][s][\"mmlu\"] for s in seeds_sorted])\n    hella_arr = np.array([data[strat][s][\"hellaswag\"] for s in seeds_sorted])\n    summary[strat] = {\n        \"mmlu_mean\": float(np.mean(mmlu_arr)), \"mmlu_std\": float(np.std(mmlu_arr, ddof=1)),\n        \"hellaswag_mean\": float(np.mean(hella_arr)), \"hellaswag_std\": float(np.std(hella_arr, ddof=1)),\n        \"mmlu_values\": mmlu_arr.tolist(), \"hellaswag_values\": hella_arr.tolist()\n    }\n    print(f\"{strat:<15} {np.mean(mmlu_arr):.4f}±{np.std(mmlu_arr,ddof=1):.4f}    {np.mean(hella_arr):.4f}±{np.std(hella_arr,ddof=1):.4f}\")\n\n# Paired t-tests\nprint(\"\\n=== Table 2: 50% Paired t-test ===\")\nprint(f\"{'Comparison':<30} {'ΔMMLU':<10} {'p(MMLU)':<10} {'ΔHellaSwag':<12} {'p(HellaSwag)':<12}\")\n\ncomparisons = [\n    (\"binary_ours vs no_filter\", \"binary_ours\", \"no_filter\"),\n    (\"graduated vs no_filter\", \"graduated\", \"no_filter\"),\n    (\"graduated vs binary_ours\", \"graduated\", \"binary_ours\"),\n]\n\nttest_results = []\nfor label, a, b in comparisons:\n    mmlu_a = np.array(summary[a][\"mmlu_values\"])\n    mmlu_b = np.array(summary[b][\"mmlu_values\"])\n    hella_a = np.array(summary[a][\"hellaswag_values\"])\n    hella_b = np.array(summary[b][\"hellaswag_values\"])\n    \n    t_mmlu, p_mmlu = stats.ttest_rel(mmlu_a, mmlu_b)\n    t_hella, p_hella = stats.ttest_rel(hella_a, hella_b)\n    delta_mmlu = float(np.mean(mmlu_a - mmlu_b))\n    delta_hella = float(np.mean(hella_a - hella_b))\n    \n    print(f\"{label:<30} {delta_mmlu:+.4f}    {p_mmlu:.4f}     {delta_hella:+.4f}      {p_hella:.4f}\")\n    ttest_results.append({\n        \"comparison\": label,\n        \"delta_mmlu\": delta_mmlu, \"p_mmlu\": float(p_mmlu), \"t_mmlu\": float(t_mmlu),\n        \"delta_hellaswag\": delta_hella, \"p_hellaswag\": float(p_hella), \"t_hellaswag\": float(t_hella)\n    })\n\n# Save final JSON\noutput = {\n    \"experiment\": \"exp-009 v3 ratio_50\",\n    \"n_seeds\": 5,\n    \"n_strategies\": 3,\n    \"strategies\": [\"no_filter\", \"binary_ours\", \"graduated\"],\n    \"summary\": summary,\n    \"paired_ttests\": ttest_results,\n    \"raw_data\": raw_rows\n}\n\nout_path = \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_ratio_50_final.json\"\nos.makedirs(os.path.dirname(out_path), exist_ok=True)\nwith open(out_path, \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nSaved to: {out_path}\")\nEOF",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "5a03547a-ba56-458f-86c5-07ff0de6c517",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Smukuk7yvyA6LQSh9Te54n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 330,
+                "cache_read_input_tokens": 27056,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 330
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T10:19:44.535Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VZ9WyjBYxEUsog4mkdvs2w",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 << \\\\\\\\'EOF\\\\\\\\'\\\\\\\\nimport json, os, glob, numpy as np\\\\\\\\nfrom scipy import stats\\\\\\\\n\\\\\\\\nbase = \\\\\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50\\\\\\\"\\\\\\\\nfiles = sorted(glob.glob(os.path.join(base, \\\\\\\"*_eval.json\\\\\\\")))\\\\\\\\nprint(f\\\\\\\"Total eval files: {len(files)}\\\\\\\")\\\\\\\\n\\\\\\\\ndata = {\\\\\\\"no_filter\\\\\\\": {}, \\\\\\\"binary_ours\\\\\\\": {}, \\\\\\\"graduated\\\\\\\": {}}\\\\\\\\nraw_rows = []\\\\\\\\n\\\\\\\\nfor f in files:\\\\\\\\n    fname = os.path.basename(f)\\\\\\\\n    parts = fname.replace(\\\\\\\"_eval.json\\\\\\\", \\\\\\\"\\\\\\\").rsplit(\\\\\\\"_seed\\\\\\\", 1)\\\\\\\\n    strategy = parts[0]\\\\\\\\n    seed = int(parts[1])\\\\\\\\n    with open(f) as fp:\\\\\\\\n        d = json.load(fp)\\\\\\\\n    mmlu = d[\\\\\\\"scores\\\\\\\"][\\\\\\\"mmlu\\\\\\\"]\\\\\\\\n    hellaswag = d[\\\\\\\"scores\\\\\\\"][\\\\\\\"hellaswag\\\\\\\"]\\\\\\\\n    data[strategy][seed] = {\\\\\\\"mmlu\\\\\\\": mmlu, \\\\\\\"hellaswag\\\\\\\": hellaswag}\\\\\\\\n    raw_rows.append({\\\\\\\"strategy\\\\\\\": strategy, \\\\\\\"seed\\\\\\\": seed, \\\\\\\"mmlu\\\\\\\": mmlu, \\\\\\\"hellaswag\\\\\\\": hellaswag})\\\\\\\\n\\\\\\\\n# Sort raw rows\\\\\\\\nraw_rows.sort(key=lambda x: (x[\\\\\\\"strategy\\\\\\\"], x[\\\\\\\"seed\\\\\\\"]))\\\\\\\\n\\\\\\\\n# Print raw data\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n=== Table 3: Raw Data ===\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Strategy\\\\\\\\':<15} {\\\\\\\\'Seed\\\\\\\\':<5} {\\\\\\\\'MMLU\\\\\\\\':<10} {\\\\\\\\'HellaSwag\\\\\\\\':<10}\\\\\\\")\\\\\\\\nfor r in raw_rows:\\\\\\\\n    print(f\\\\\\\"{r[\\\\\\\\'strategy\\\\\\\\']:<15} {r[\\\\\\\\'seed\\\\\\\\']:<5} {r[\\\\\\\\'mmlu\\\\\\\\']:.4f}     {r[\\\\\\\\'hellaswag\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\n\\\\\\\\n# Mean ± std\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n=== Table 1: 50% Mean±Std ===\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Strategy\\\\\\\\':<15} {\\\\\\\\'MMLU mean±std\\\\\\\\':<20} {\\\\\\\\'HellaSwag mean±std\\\\\\\\':<20}\\\\\\\")\\\\\\\\nsummary = {}\\\\\\\\nfor strat in [\\\\\\\"no_filter\\\\\\\", \\\\\\\"binary_ours\\\\\\\", \\\\\\\"graduated\\\\\\\"]:\\\\\\\\n    seeds_sorted = sorted(data[strat].keys())\\\\\\\\n    mmlu_arr = np.array([data[strat][s][\\\\\\\"mmlu\\\\\\\"] for s in seeds_sorted])\\\\\\\\n    hella_arr = np.array([data[strat][s][\\\\\\\"hellaswag\\\\\\\"] for s in seeds_sorted])\\\\\\\\n    summary[strat] = {\\\\\\\\n        \\\\\\\"mmlu_mean\\\\\\\": float(np.mean(mmlu_arr)), \\\\\\\"mmlu_std\\\\\\\": float(np.std(mmlu_arr, ddof=1)),\\\\\\\\n        \\\\\\\"hellaswag_mean\\\\\\\": float(np.mean(hella_arr)), \\\\\\\"hellaswag_std\\\\\\\": float(np.std(hella_arr, ddof=1)),\\\\\\\\n        \\\\\\\"mmlu_values\\\\\\\": mmlu_arr.tolist(), \\\\\\\"hellaswag_values\\\\\\\": hella_arr.tolist()\\\\\\\\n    }\\\\\\\\n    print(f\\\\\\\"{strat:<15} {np.mean(mmlu_arr):.4f}±{np.std(mmlu_arr,ddof=1):.4f}    {np.mean(hella_arr):.4f}±{np.std(hella_arr,ddof=1):.4f}\\\\\\\")\\\\\\\\n\\\\\\\\n# Paired t-tests\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n=== Table 2: 50% Paired t-test ===\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Comparison\\\\\\\\':<30} {\\\\\\\\'ΔMMLU\\\\\\\\':<10} {\\\\\\\\'p(MMLU)\\\\\\\\':<10} {\\\\\\\\'ΔHellaSwag\\\\\\\\':<12} {\\\\\\\\'p(HellaSwag)\\\\\\\\':<12}\\\\\\\")\\\\\\\\n\\\\\\\\ncomparisons = [\\\\\\\\n    (\\\\\\\"binary_ours vs no_filter\\\\\\\", \\\\\\\"binary_ours\\\\\\\", \\\\\\\"no_filter\\\\\\\"),\\\\\\\\n    (\\\\\\\"graduated vs no_filter\\\\\\\", \\\\\\\"graduated\\\\\\\", \\\\\\\"no_filter\\\\\\\"),\\\\\\\\n    (\\\\\\\"graduated vs binary_ours\\\\\\\", \\\\\\\"graduated\\\\\\\", \\\\\\\"binary_ours\\\\\\\"),\\\\\\\\n]\\\\\\\\n\\\\\\\\nttest_results = []\\\\\\\\nfor label, a, b in comparisons:\\\\\\\\n    mmlu_a = np.array(summary[a][\\\\\\\"mmlu_values\\\\\\\"])\\\\\\\\n    mmlu_b = np.array(summary[b][\\\\\\\"mmlu_values\\\\\\\"])\\\\\\\\n    hella_a = np.array(summary[a][\\\\\\\"hellaswag_values\\\\\\\"])\\\\\\\\n    hella_b = np.array(summary[b][\\\\\\\"hellaswag_values\\\\\\\"])\\\\\\\\n    \\\\\\\\n    t_mmlu, p_mmlu = stats.ttest_rel(mmlu_a, mmlu_b)\\\\\\\\n    t_hella, p_hella = stats.ttest_rel(hella_a, hella_b)\\\\\\\\n    delta_mmlu = float(np.mean(mmlu_a - mmlu_b))\\\\\\\\n    delta_hella = float(np.mean(hella_a - hella_b))\\\\\\\\n    \\\\\\\\n    print(f\\\\\\\"{label:<30} {delta_mmlu:+.4f}    {p_mmlu:.4f}     {delta_hella:+.4f}      {p_hella:.4f}\\\\\\\")\\\\\\\\n    ttest_results.append({\\\\\\\\n        \\\\\\\"comparison\\\\\\\": label,\\\\\\\\n        \\\\\\\"delta_mmlu\\\\\\\": delta_mmlu, \\\\\\\"p_mmlu\\\\\\\": float(p_mmlu), \\\\\\\"t_mmlu\\\\\\\": float(t_mmlu),\\\\\\\\n        \\\\\\\"delta_hellaswag\\\\\\\": delta_hella, \\\\\\\"p_hellaswag\\\\\\\": float(p_hella), \\\\\\\"t_hellaswag\\\\\\\": float(t_hella)\\\\\\\\n    })\\\\\\\\n\\\\\\\\n# Save final JSON\\\\\\\\noutput = {\\\\\\\\n    \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-009 v3 ratio_50\\\\\\\",\\\\\\\\n    \\\\\\\"n_seeds\\\\\\\": 5,\\\\\\\\n    \\\\\\\"n_strategies\\\\\\\": 3,\\\\\\\\n    \\\\\\\"strategies\\\\\\\": [\\\\\\\"no_filter\\\\\\\", \\\\\\\"binary_ours\\\\\\\", \\\\\\\"graduated\\\\\\\"],\\\\\\\\n    \\\\\\\"summary\\\\\\\": summary,\\\\\\\\n    \\\\\\\"paired_ttests\\\\\\\": ttest_results,\\\\\\\\n    \\\\\\\"raw_data\\\\\\\": raw_rows\\\\\\\\n}\\\\\\\\n\\\\\\\\nout_path = \\\\\\\"/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_ratio_50_final.json\\\\\\\"\\\\\\\\nos.makedirs(os.path.dirname(out_path), exist_ok=True)\\\\\\\\nwith open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\\\\\n    json.dump(output, f, indent=2)\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nSaved to: {out_path}\\\\\\\")\\\\\\\\nEOF'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<stdin>\\\\\\\", line 1, in <module>\\\\nModuleNotFoundError: No module named 'numpy'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "8101554d-5b6e-4204-88b5-d135f7e15159",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 << \\\\\\\\'EOF\\\\\\\\'\\\\\\\\nimport json, os, glob, numpy as np\\\\\\\\nfrom scipy import stats\\\\\\\\n\\\\\\\\nbase = \\\\\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50\\\\\\\"\\\\\\\\nfiles = sorted(glob.glob(os.path.join(base, \\\\\\\"*_eval.json\\\\\\\")))\\\\\\\\nprint(f\\\\\\\"Total eval files: {len(files)}\\\\\\\")\\\\\\\\n\\\\\\\\ndata = {\\\\\\\"no_filter\\\\\\\": {}, \\\\\\\"binary_ours\\\\\\\": {}, \\\\\\\"graduated\\\\\\\": {}}\\\\\\\\nraw_rows = []\\\\\\\\n\\\\\\\\nfor f in files:\\\\\\\\n    fname = os.path.basename(f)\\\\\\\\n    parts = fname.replace(\\\\\\\"_eval.json\\\\\\\", \\\\\\\"\\\\\\\").rsplit(\\\\\\\"_seed\\\\\\\", 1)\\\\\\\\n    strategy = parts[0]\\\\\\\\n    seed = int(parts[1])\\\\\\\\n    with open(f) as fp:\\\\\\\\n        d = json.load(fp)\\\\\\\\n    mmlu = d[\\\\\\\"scores\\\\\\\"][\\\\\\\"mmlu\\\\\\\"]\\\\\\\\n    hellaswag = d[\\\\\\\"scores\\\\\\\"][\\\\\\\"hellaswag\\\\\\\"]\\\\\\\\n    data[strategy][seed] = {\\\\\\\"mmlu\\\\\\\": mmlu, \\\\\\\"hellaswag\\\\\\\": hellaswag}\\\\\\\\n    raw_rows.append({\\\\\\\"strategy\\\\\\\": strategy, \\\\\\\"seed\\\\\\\": seed, \\\\\\\"mmlu\\\\\\\": mmlu, \\\\\\\"hellaswag\\\\\\\": hellaswag})\\\\\\\\n\\\\\\\\n# Sort raw rows\\\\\\\\nraw_rows.sort(key=lambda x: (x[\\\\\\\"strategy\\\\\\\"], x[\\\\\\\"seed\\\\\\\"]))\\\\\\\\n\\\\\\\\n# Print raw data\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n=== Table 3: Raw Data ===\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Strategy\\\\\\\\':<15} {\\\\\\\\'Seed\\\\\\\\':<5} {\\\\\\\\'MMLU\\\\\\\\':<10} {\\\\\\\\'HellaSwag\\\\\\\\':<10}\\\\\\\")\\\\\\\\nfor r in raw_rows:\\\\\\\\n    print(f\\\\\\\"{r[\\\\\\\\'strategy\\\\\\\\']:<15} {r[\\\\\\\\'seed\\\\\\\\']:<5} {r[\\\\\\\\'mmlu\\\\\\\\']:.4f}     {r[\\\\\\\\'hellaswag\\\\\\\\']:.4f}\\\\\\\")\\\\\\\\n\\\\\\\\n# Mean ± std\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n=== Table 1: 50% Mean±Std ===\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Strategy\\\\\\\\':<15} {\\\\\\\\'MMLU mean±std\\\\\\\\':<20} {\\\\\\\\'HellaSwag mean±std\\\\\\\\':<20}\\\\\\\")\\\\\\\\nsummary = {}\\\\\\\\nfor strat in [\\\\\\\"no_filter\\\\\\\", \\\\\\\"binary_ours\\\\\\\", \\\\\\\"graduated\\\\\\\"]:\\\\\\\\n    seeds_sorted = sorted(data[strat].keys())\\\\\\\\n    mmlu_arr = np.array([data[strat][s][\\\\\\\"mmlu\\\\\\\"] for s in seeds_sorted])\\\\\\\\n    hella_arr = np.array([data[strat][s][\\\\\\\"hellaswag\\\\\\\"] for s in seeds_sorted])\\\\\\\\n    summary[strat] = {\\\\\\\\n        \\\\\\\"mmlu_mean\\\\\\\": float(np.mean(mmlu_arr)), \\\\\\\"mmlu_std\\\\\\\": float(np.std(mmlu_arr, ddof=1)),\\\\\\\\n        \\\\\\\"hellaswag_mean\\\\\\\": float(np.mean(hella_arr)), \\\\\\\"hellaswag_std\\\\\\\": float(np.std(hella_arr, ddof=1)),\\\\\\\\n        \\\\\\\"mmlu_values\\\\\\\": mmlu_arr.tolist(), \\\\\\\"hellaswag_values\\\\\\\": hella_arr.tolist()\\\\\\\\n    }\\\\\\\\n    print(f\\\\\\\"{strat:<15} {np.mean(mmlu_arr):.4f}±{np.std(mmlu_arr,ddof=1):.4f}    {np.mean(hella_arr):.4f}±{np.std(hella_arr,ddof=1):.4f}\\\\\\\")\\\\\\\\n\\\\\\\\n# Paired t-tests\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\n=== Table 2: 50% Paired t-test ===\\\\\\\")\\\\\\\\nprint(f\\\\\\\"{\\\\\\\\'Comparison\\\\\\\\':<30} {\\\\\\\\'ΔMMLU\\\\\\\\':<10} {\\\\\\\\'p(MMLU)\\\\\\\\':<10} {\\\\\\\\'ΔHellaSwag\\\\\\\\':<12} {\\\\\\\\'p(HellaSwag)\\\\\\\\':<12}\\\\\\\")\\\\\\\\n\\\\\\\\ncomparisons = [\\\\\\\\n    (\\\\\\\"binary_ours vs no_filter\\\\\\\", \\\\\\\"binary_ours\\\\\\\", \\\\\\\"no_filter\\\\\\\"),\\\\\\\\n    (\\\\\\\"graduated vs no_filter\\\\\\\", \\\\\\\"graduated\\\\\\\", \\\\\\\"no_filter\\\\\\\"),\\\\\\\\n    (\\\\\\\"graduated vs binary_ours\\\\\\\", \\\\\\\"graduated\\\\\\\", \\\\\\\"binary_ours\\\\\\\"),\\\\\\\\n]\\\\\\\\n\\\\\\\\nttest_results = []\\\\\\\\nfor label, a, b in comparisons:\\\\\\\\n    mmlu_a = np.array(summary[a][\\\\\\\"mmlu_values\\\\\\\"])\\\\\\\\n    mmlu_b = np.array(summary[b][\\\\\\\"mmlu_values\\\\\\\"])\\\\\\\\n    hella_a = np.array(summary[a][\\\\\\\"hellaswag_values\\\\\\\"])\\\\\\\\n    hella_b = np.array(summary[b][\\\\\\\"hellaswag_values\\\\\\\"])\\\\\\\\n    \\\\\\\\n    t_mmlu, p_mmlu = stats.ttest_rel(mmlu_a, mmlu_b)\\\\\\\\n    t_hella, p_hella = stats.ttest_rel(hella_a, hella_b)\\\\\\\\n    delta_mmlu = float(np.mean(mmlu_a - mmlu_b))\\\\\\\\n    delta_hella = float(np.mean(hella_a - hella_b))\\\\\\\\n    \\\\\\\\n    print(f\\\\\\\"{label:<30} {delta_mmlu:+.4f}    {p_mmlu:.4f}     {delta_hella:+.4f}      {p_hella:.4f}\\\\\\\")\\\\\\\\n    ttest_results.append({\\\\\\\\n        \\\\\\\"comparison\\\\\\\": label,\\\\\\\\n        \\\\\\\"delta_mmlu\\\\\\\": delta_mmlu, \\\\\\\"p_mmlu\\\\\\\": float(p_mmlu), \\\\\\\"t_mmlu\\\\\\\": float(t_mmlu),\\\\\\\\n        \\\\\\\"delta_hellaswag\\\\\\\": delta_hella, \\\\\\\"p_hellaswag\\\\\\\": float(p_hella), \\\\\\\"t_hellaswag\\\\\\\": float(t_hella)\\\\\\\\n    })\\\\\\\\n\\\\\\\\n# Save final JSON\\\\\\\\noutput = {\\\\\\\\n    \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-009 v3 ratio_50\\\\\\\",\\\\\\\\n    \\\\\\\"n_seeds\\\\\\\": 5,\\\\\\\\n    \\\\\\\"n_strategies\\\\\\\": 3,\\\\\\\\n    \\\\\\\"strategies\\\\\\\": [\\\\\\\"no_filter\\\\\\\", \\\\\\\"binary_ours\\\\\\\", \\\\\\\"graduated\\\\\\\"],\\\\\\\\n    \\\\\\\"summary\\\\\\\": summary,\\\\\\\\n    \\\\\\\"paired_ttests\\\\\\\": ttest_results,\\\\\\\\n    \\\\\\\"raw_data\\\\\\\": raw_rows\\\\\\\\n}\\\\\\\\n\\\\\\\\nout_path = \\\\\\\"/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_ratio_50_final.json\\\\\\\"\\\\\\\\nos.makedirs(os.path.dirname(out_path), exist_ok=True)\\\\\\\\nwith open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\\\\\n    json.dump(output, f, indent=2)\\\\\\\\nprint(f\\\\\\\"\\\\\\\\\\\\\\\\nSaved to: {out_path}\\\\\\\")\\\\\\\\nEOF'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<stdin>\\\\\\\", line 1, in <module>\\\\nModuleNotFoundError: No module named 'numpy'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 << \\\\'EOF\\\\'\\\\nimport json, os, glob, numpy as np\\\\nfrom scipy import stats\\\\n\\\\nbase = \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50\\\"\\\\nfiles = sorted(glob.glob(os.path.join(base, \\\"*_eval.json\\\")))\\\\nprint(f\\\"Total eval files: {len(files)}\\\")\\\\n\\\\ndata = {\\\"no_filter\\\": {}, \\\"binary_ours\\\": {}, \\\"graduated\\\": {}}\\\\nraw_rows = []\\\\n\\\\nfor f in files:\\\\n    fname = os.path.basename(f)\\\\n    parts = fname.replace(\\\"_eval.json\\\", \\\"\\\").rsplit(\\\"_seed\\\", 1)\\\\n    strategy = parts[0]\\\\n    seed = int(parts[1])\\\\n    with open(f) as fp:\\\\n        d = json.load(fp)\\\\n    mmlu = d[\\\"scores\\\"][\\\"mmlu\\\"]\\\\n    hellaswag = d[\\\"scores\\\"][\\\"hellaswag\\\"]\\\\n    data[strategy][seed] = {\\\"mmlu\\\": mmlu, \\\"hellaswag\\\": hellaswag}\\\\n    raw_rows.append({\\\"strategy\\\": strategy, \\\"seed\\\": seed, \\\"mmlu\\\": mmlu, \\\"hellaswag\\\": hellaswag})\\\\n\\\\n# Sort raw rows\\\\nraw_rows.sort(key=lambda x: (x[\\\"strategy\\\"], x[\\\"seed\\\"]))\\\\n\\\\n# Print raw data\\\\nprint(\\\"\\\\\\\\n=== Table 3: Raw Data ===\\\")\\\\nprint(f\\\"{\\\\'Strategy\\\\':<15} {\\\\'Seed\\\\':<5} {\\\\'MMLU\\\\':<10} {\\\\'HellaSwag\\\\':<10}\\\")\\\\nfor r in raw_rows:\\\\n    print(f\\\"{r[\\\\'strategy\\\\']:<15} {r[\\\\'seed\\\\']:<5} {r[\\\\'mmlu\\\\']:.4f}     {r[\\\\'hellaswag\\\\']:.4f}\\\")\\\\n\\\\n# Mean ± std\\\\nprint(\\\"\\\\\\\\n=== Table 1: 50% Mean±Std ===\\\")\\\\nprint(f\\\"{\\\\'Strategy\\\\':<15} {\\\\'MMLU mean±std\\\\':<20} {\\\\'HellaSwag mean±std\\\\':<20}\\\")\\\\nsummary = {}\\\\nfor strat in [\\\"no_filter\\\", \\\"binary_ours\\\", \\\"graduated\\\"]:\\\\n    seeds_sorted = sorted(data[strat].keys())\\\\n    mmlu_arr = np.array([data[strat][s][\\\"mmlu\\\"] for s in seeds_sorted])\\\\n    hella_arr = np.array([data[strat][s][\\\"hellaswag\\\"] for s in seeds_sorted])\\\\n    summary[strat] = {\\\\n        \\\"mmlu_mean\\\": float(np.mean(mmlu_arr)), \\\"mmlu_std\\\": float(np.std(mmlu_arr, ddof=1)),\\\\n        \\\"hellaswag_mean\\\": float(np.mean(hella_arr)), \\\"hellaswag_std\\\": float(np.std(hella_arr, ddof=1)),\\\\n        \\\"mmlu_values\\\": mmlu_arr.tolist(), \\\"hellaswag_values\\\": hella_arr.tolist()\\\\n    }\\\\n    print(f\\\"{strat:<15} {np.mean(mmlu_arr):.4f}±{np.std(mmlu_arr,ddof=1):.4f}    {np.mean(hella_arr):.4f}±{np.std(hella_arr,ddof=1):.4f}\\\")\\\\n\\\\n# Paired t-tests\\\\nprint(\\\"\\\\\\\\n=== Table 2: 50% Paired t-test ===\\\")\\\\nprint(f\\\"{\\\\'Comparison\\\\':<30} {\\\\'ΔMMLU\\\\':<10} {\\\\'p(MMLU)\\\\':<10} {\\\\'ΔHellaSwag\\\\':<12} {\\\\'p(HellaSwag)\\\\':<12}\\\")\\\\n\\\\ncomparisons = [\\\\n    (\\\"binary_ours vs no_filter\\\", \\\"binary_ours\\\", \\\"no_filter\\\"),\\\\n    (\\\"graduated vs no_filter\\\", \\\"graduated\\\", \\\"no_filter\\\"),\\\\n    (\\\"graduated vs binary_ours\\\", \\\"graduated\\\", \\\"binary_ours\\\"),\\\\n]\\\\n\\\\nttest_results = []\\\\nfor label, a, b in comparisons:\\\\n    mmlu_a = np.array(summary[a][\\\"mmlu_values\\\"])\\\\n    mmlu_b = np.array(summary[b][\\\"mmlu_values\\\"])\\\\n    hella_a = np.array(summary[a][\\\"hellaswag_values\\\"])\\\\n    hella_b = np.array(summary[b][\\\"hellaswag_values\\\"])\\\\n    \\\\n    t_mmlu, p_mmlu = stats.ttest_rel(mmlu_a, mmlu_b)\\\\n    t_hella, p_hella = stats.ttest_rel(hella_a, hella_b)\\\\n    delta_mmlu = float(np.mean(mmlu_a - mmlu_b))\\\\n    delta_hella = float(np.mean(hella_a - hella_b))\\\\n    \\\\n    print(f\\\"{label:<30} {delta_mmlu:+.4f}    {p_mmlu:.4f}     {delta_hella:+.4f}      {p_hella:.4f}\\\")\\\\n    ttest_results.append({\\\\n        \\\"comparison\\\": label,\\\\n        \\\"delta_mmlu\\\": delta_mmlu, \\\"p_mmlu\\\": float(p_mmlu), \\\"t_mmlu\\\": float(t_mmlu),\\\\n        \\\"delta_hellaswag\\\": delta_hella, \\\"p_hellaswag\\\": float(p_hella), \\\"t_hellaswag\\\": float(t_hella)\\\\n    })\\\\n\\\\n# Save final JSON\\\\noutput = {\\\\n    \\\"experiment\\\": \\\"exp-009 v3 ratio_50\\\",\\\\n    \\\"n_seeds\\\": 5,\\\\n    \\\"n_strategies\\\": 3,\\\\n    \\\"strategies\\\": [\\\"no_filter\\\", \\\"binary_ours\\\", \\\"graduated\\\"],\\\\n    \\\"summary\\\": summary,\\\\n    \\\"paired_ttests\\\": ttest_results,\\\\n    \\\"raw_data\\\": raw_rows\\\\n}\\\\n\\\\nout_path = \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_ratio_50_final.json\\\"\\\\nos.makedirs(os.path.dirname(out_path), exist_ok=True)\\\\nwith open(out_path, \\\"w\\\") as f:\\\\n    json.dump(output, f, indent=2)\\\\nprint(f\\\"\\\\\\\\nSaved to: {out_path}\\\")\\\\nEOF'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"<stdin>\\\", line 1, in <module>\\nModuleNotFoundError: No module named 'numpy'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.68}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "numpy 未安装，先装依赖再运行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "795ebb91-9e50-4f3a-83dc-ab2f4e5a49fe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RvrsEvCnsosYroK6u7wws2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3893,
+                "cache_read_input_tokens": 27386,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3893
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FoucWt1TF9oapeQxQhAZFH",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "pip install numpy scipy -q && echo \"DONE\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "8b11289d-55ed-47ea-8cf8-c637c5087772",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RvrsEvCnsosYroK6u7wws2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3893,
+                "cache_read_input_tokens": 27386,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3893
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T10:19:49.207Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FoucWt1TF9oapeQxQhAZFH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'pip install numpy scipy -q && echo \\\\\\\"DONE\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: pip: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "a19d82c4-79d1-4dc3-a458-cfc4617245b7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'pip install numpy scipy -q && echo \\\\\\\"DONE\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: pip: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'pip install numpy scipy -q && echo \\\"DONE\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: pip: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.88}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N1v8kgHxvTCwqrsS9Hte6Z",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "which python3 && python3 -m pip install numpy scipy -q 2>&1 | tail -3 && echo \"DONE\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "0e385a83-02e6-43a6-9059-716841c38611",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HffguMSkdz4PMGn6P1BVim",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 31279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T10:19:53.133Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N1v8kgHxvTCwqrsS9Hte6Z",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/bin/python3\\\\n/usr/bin/python3: No module named pip\\\\nDONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "40c8d631-e522-4d90-8d35-a90811f0e5da",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/bin/python3\\\\n/usr/bin/python3: No module named pip\\\\nDONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/usr/bin/python3\\n/usr/bin/python3: No module named pip\\nDONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WgvDQoR9ytiboRBq7yJYSb",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "apt-get install -y python3-pip -qq 2>&1 | tail -2 && pip3 install numpy scipy -q 2>&1 | tail -3 && echo \"DONE\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "fd2d2ad3-f0a7-41f6-910b-f02b19cbd179",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BAropn6WQDmFvbw25f8xSD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 337,
+                "cache_read_input_tokens": 31537,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 337
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T10:20:16.126Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WgvDQoR9ytiboRBq7yJYSb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Setting up python3-dev (3.10.6-1~22.04.1) ...\\\\r\\\\nProcessing triggers for libc-bin (2.35-0ubuntu3.8) ...\\\\r\\\\nDEPRECATION: The HTML index page being used (http://mirrors.aliyun.com/pypi/simple/numpy/) is not a proper HTML 5 document. This is in violation of PEP 503 which requires these pages to be well-formed HTML 5 documents. Please reach out to the owners of this index page, and ask them to update this index page to a valid HTML 5 document. pip 22.2 will enforce this behaviour change. Discussion can be found at https://github.com/pypa/pip/issues/10825\\\\nDEPRECATION: The HTML index page being used (http://mirrors.aliyun.com/pypi/simple/scipy/) is not a proper HTML 5 document. This is in violation of PEP 503 which requires these pages to be well-formed HTML 5 documents. Please reach out to the owners of this index page, and ask them to update this index page to a valid HTML 5 document. pip 22.2 will enforce this behaviour change. Discussion can be found at https://github.com/pypa/pip/issues/10825\\\\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\\\nDONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 19.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "520a69fe-2b05-4511-b8e6-121f0e450a6f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Setting up python3-dev (3.10.6-1~22.04.1) ...\\\\r\\\\nProcessing triggers for libc-bin (2.35-0ubuntu3.8) ...\\\\r\\\\nDEPRECATION: The HTML index page being used (http://mirrors.aliyun.com/pypi/simple/numpy/) is not a proper HTML 5 document. This is in violation of PEP 503 which requires these pages to be well-formed HTML 5 documents. Please reach out to the owners of this index page, and ask them to update this index page to a valid HTML 5 document. pip 22.2 will enforce this behaviour change. Discussion can be found at https://github.com/pypa/pip/issues/10825\\\\nDEPRECATION: The HTML index page being used (http://mirrors.aliyun.com/pypi/simple/scipy/) is not a proper HTML 5 document. This is in violation of PEP 503 which requires these pages to be well-formed HTML 5 documents. Please reach out to the owners of this index page, and ask them to update this index page to a valid HTML 5 document. pip 22.2 will enforce this behaviour change. Discussion can be found at https://github.com/pypa/pip/issues/10825\\\\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\\\nDONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 19.63}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Setting up python3-dev (3.10.6-1~22.04.1) ...\\r\\nProcessing triggers for libc-bin (2.35-0ubuntu3.8) ...\\r\\nDEPRECATION: The HTML index page being used (http://mirrors.aliyun.com/pypi/simple/numpy/) is not a proper HTML 5 document. This is in violation of PEP 503 which requires these pages to be well-formed HTML 5 documents. Please reach out to the owners of this index page, and ask them to update this index page to a valid HTML 5 document. pip 22.2 will enforce this behaviour change. Discussion can be found at https://github.com/pypa/pip/issues/10825\\nDEPRECATION: The HTML index page being used (http://mirrors.aliyun.com/pypi/simple/scipy/) is not a proper HTML 5 document. This is in violation of PEP 503 which requires these pages to be well-formed HTML 5 documents. Please reach out to the owners of this index page, and ask them to update this index page to a valid HTML 5 document. pip 22.2 will enforce this behaviour change. Discussion can be found at https://github.com/pypa/pip/issues/10825\\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\nDONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 19.63}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "依赖就绪，运行分析脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "f6940d57-1d87-45f6-8337-65adc9154f1a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CMf7badnv5i4nuuHEp4eo6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 593,
+                "cache_read_input_tokens": 31874,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 593
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XwTv52hqZEJwh1egnymT5n",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "python3 /dev/stdin << 'PYEOF'\nimport json, os, glob, numpy as np\nfrom scipy import stats\n\nbase = \"/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50\"\nfiles = sorted(glob.glob(os.path.join(base, \"*_eval.json\")))\nprint(f\"Total eval files: {len(files)}\")\n\ndata = {\"no_filter\": {}, \"binary_ours\": {}, \"graduated\": {}}\nraw_rows = []\n\nfor f in files:\n    fname = os.path.basename(f)\n    parts = fname.replace(\"_eval.json\", \"\").rsplit(\"_seed\", 1)\n    strategy = parts[0]\n    seed = int(parts[1])\n    with open(f) as fp:\n        d = json.load(fp)\n    mmlu = d[\"scores\"][\"mmlu\"]\n    hellaswag = d[\"scores\"][\"hellaswag\"]\n    data[strategy][seed] = {\"mmlu\": mmlu, \"hellaswag\": hellaswag}\n    raw_rows.append({\"strategy\": strategy, \"seed\": seed, \"mmlu\": mmlu, \"hellaswag\": hellaswag})\n\nraw_rows.sort(key=lambda x: (x[\"strategy\"], x[\"seed\"]))\n\nprint(\"\\n=== Table 3: Raw Data ===\")\nprint(f\"{'Strategy':<15} {'Seed':<5} {'MMLU':<10} {'HellaSwag':<10}\")\nfor r in raw_rows:\n    print(f\"{r['strategy']:<15} {r['seed']:<5} {r['mmlu']:.4f}     {r['hellaswag']:.4f}\")\n\nprint(\"\\n=== Table 1: 50% Mean+/-Std ===\")\nprint(f\"{'Strategy':<15} {'MMLU':<20} {'HellaSwag':<20}\")\nsummary = {}\nfor strat in [\"no_filter\", \"binary_ours\", \"graduated\"]:\n    seeds_sorted = sorted(data[strat].keys())\n    mmlu_arr = np.array([data[strat][s][\"mmlu\"] for s in seeds_sorted])\n    hella_arr = np.array([data[strat][s][\"hellaswag\"] for s in seeds_sorted])\n    summary[strat] = {\n        \"mmlu_mean\": float(np.mean(mmlu_arr)), \"mmlu_std\": float(np.std(mmlu_arr, ddof=1)),\n        \"hellaswag_mean\": float(np.mean(hella_arr)), \"hellaswag_std\": float(np.std(hella_arr, ddof=1)),\n        \"mmlu_values\": mmlu_arr.tolist(), \"hellaswag_values\": hella_arr.tolist()\n    }\n    print(f\"{strat:<15} {np.mean(mmlu_arr):.4f}+/-{np.std(mmlu_arr,ddof=1):.4f}   {np.mean(hella_arr):.4f}+/-{np.std(hella_arr,ddof=1):.4f}\")\n\nprint(\"\\n=== Table 2: 50% Paired t-test ===\")\nprint(f\"{'Comparison':<30} {'dMMLU':<10} {'p(MMLU)':<10} {'dHella':<10} {'p(Hella)':<10}\")\n\ncomparisons = [\n    (\"binary_ours vs no_filter\", \"binary_ours\", \"no_filter\"),\n    (\"graduated vs no_filter\", \"graduated\", \"no_filter\"),\n    (\"graduated vs binary_ours\", \"graduated\", \"binary_ours\"),\n]\n\nttest_results = []\nfor label, a, b in comparisons:\n    mmlu_a = np.array(summary[a][\"mmlu_values\"])\n    mmlu_b = np.array(summary[b][\"mmlu_values\"])\n    hella_a = np.array(summary[a][\"hellaswag_values\"])\n    hella_b = np.array(summary[b][\"hellaswag_values\"])\n    t_mmlu, p_mmlu = stats.ttest_rel(mmlu_a, mmlu_b)\n    t_hella, p_hella = stats.ttest_rel(hella_a, hella_b)\n    delta_mmlu = float(np.mean(mmlu_a - mmlu_b))\n    delta_hella = float(np.mean(hella_a - hella_b))\n    print(f\"{label:<30} {delta_mmlu:+.4f}    {p_mmlu:.6f}   {delta_hella:+.4f}    {p_hella:.6f}\")\n    ttest_results.append({\n        \"comparison\": label,\n        \"delta_mmlu\": delta_mmlu, \"p_mmlu\": float(p_mmlu), \"t_mmlu\": float(t_mmlu),\n        \"delta_hellaswag\": delta_hella, \"p_hellaswag\": float(p_hella), \"t_hellaswag\": float(t_hella)\n    })\n\noutput = {\n    \"experiment\": \"exp-009 v3 ratio_50\",\n    \"n_seeds\": 5,\n    \"n_strategies\": 3,\n    \"strategies\": [\"no_filter\", \"binary_ours\", \"graduated\"],\n    \"summary\": summary,\n    \"paired_ttests\": ttest_results,\n    \"raw_data\": raw_rows\n}\n\nout_path = \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_ratio_50_final.json\"\nos.makedirs(os.path.dirname(out_path), exist_ok=True)\nwith open(out_path, \"w\") as f:\n    json.dump(output, f, indent=2)\nprint(f\"\\nSaved to: {out_path}\")\nPYEOF",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "e229bebe-aea6-4769-9bc0-a88aac201c9d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CMf7badnv5i4nuuHEp4eo6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 593,
+                "cache_read_input_tokens": 31874,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 593
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T10:20:33.185Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XwTv52hqZEJwh1egnymT5n",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total eval files: 15\\\\n\\\\n=== Table 3: Raw Data ===\\\\nStrategy        Seed  MMLU       HellaSwag \\\\nbinary_ours     0     0.6092     0.6733\\\\nbinary_ours     1     0.6076     0.6729\\\\nbinary_ours     2     0.6085     0.6725\\\\nbinary_ours     3     0.6104     0.6737\\\\nbinary_ours     4     0.6083     0.6732\\\\ngraduated       0     0.6068     0.6680\\\\ngraduated       1     0.6070     0.6680\\\\ngraduated       2     0.6068     0.6679\\\\ngraduated       3     0.6053     0.6676\\\\ngraduated       4     0.6051     0.6679\\\\nno_filter       0     0.6064     0.6680\\\\nno_filter       1     0.6082     0.6681\\\\nno_filter       2     0.6045     0.6678\\\\nno_filter       3     0.6067     0.6688\\\\nno_filter       4     0.6058     0.6673\\\\n\\\\n=== Table 1: 50% Mean+/-Std ===\\\\nStrategy        MMLU                 HellaSwag           \\\\nno_filter       0.6063+/-0.0013   0.6680+/-0.0005\\\\nbinary_ours     0.6088+/-0.0011   0.6731+/-0.0004\\\\ngraduated       0.6062+/-0.0009   0.6679+/-0.0002\\\\n\\\\n=== Table 2: 50% Paired t-test ===\\\\nComparison                     dMMLU      p(MMLU)    dHella     p(Hella)  \\\\nbinary_ours vs no_filter       +0.0025    0.037665   +0.0051    0.000020\\\\ngraduated vs no_filter         -0.0001    0.890457   -0.0001    0.705587\\\\ngraduated vs binary_ours       -0.0026    0.025732   -0.0052    0.000032\\\\n\\\\nSaved to: /root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_ratio_50_final.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "48ce524d-c3cb-4df0-930d-2d8381794020",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total eval files: 15\\\\n\\\\n=== Table 3: Raw Data ===\\\\nStrategy        Seed  MMLU       HellaSwag \\\\nbinary_ours     0     0.6092     0.6733\\\\nbinary_ours     1     0.6076     0.6729\\\\nbinary_ours     2     0.6085     0.6725\\\\nbinary_ours     3     0.6104     0.6737\\\\nbinary_ours     4     0.6083     0.6732\\\\ngraduated       0     0.6068     0.6680\\\\ngraduated       1     0.6070     0.6680\\\\ngraduated       2     0.6068     0.6679\\\\ngraduated       3     0.6053     0.6676\\\\ngraduated       4     0.6051     0.6679\\\\nno_filter       0     0.6064     0.6680\\\\nno_filter       1     0.6082     0.6681\\\\nno_filter       2     0.6045     0.6678\\\\nno_filter       3     0.6067     0.6688\\\\nno_filter       4     0.6058     0.6673\\\\n\\\\n=== Table 1: 50% Mean+/-Std ===\\\\nStrategy        MMLU                 HellaSwag           \\\\nno_filter       0.6063+/-0.0013   0.6680+/-0.0005\\\\nbinary_ours     0.6088+/-0.0011   0.6731+/-0.0004\\\\ngraduated       0.6062+/-0.0009   0.6679+/-0.0002\\\\n\\\\n=== Table 2: 50% Paired t-test ===\\\\nComparison                     dMMLU      p(MMLU)    dHella     p(Hella)  \\\\nbinary_ours vs no_filter       +0.0025    0.037665   +0.0051    0.000020\\\\ngraduated vs no_filter         -0.0001    0.890457   -0.0001    0.705587\\\\ngraduated vs binary_ours       -0.0026    0.025732   -0.0052    0.000032\\\\n\\\\nSaved to: /root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_ratio_50_final.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Total eval files: 15\\n\\n=== Table 3: Raw Data ===\\nStrategy        Seed  MMLU       HellaSwag \\nbinary_ours     0     0.6092     0.6733\\nbinary_ours     1     0.6076     0.6729\\nbinary_ours     2     0.6085     0.6725\\nbinary_ours     3     0.6104     0.6737\\nbinary_ours     4     0.6083     0.6732\\ngraduated       0     0.6068     0.6680\\ngraduated       1     0.6070     0.6680\\ngraduated       2     0.6068     0.6679\\ngraduated       3     0.6053     0.6676\\ngraduated       4     0.6051     0.6679\\nno_filter       0     0.6064     0.6680\\nno_filter       1     0.6082     0.6681\\nno_filter       2     0.6045     0.6678\\nno_filter       3     0.6067     0.6688\\nno_filter       4     0.6058     0.6673\\n\\n=== Table 1: 50% Mean+/-Std ===\\nStrategy        MMLU                 HellaSwag           \\nno_filter       0.6063+/-0.0013   0.6680+/-0.0005\\nbinary_ours     0.6088+/-0.0011   0.6731+/-0.0004\\ngraduated       0.6062+/-0.0009   0.6679+/-0.0002\\n\\n=== Table 2: 50% Paired t-test ===\\nComparison                     dMMLU      p(MMLU)    dHella     p(Hella)  \\nbinary_ours vs no_filter       +0.0025    0.037665   +0.0051    0.000020\\ngraduated vs no_filter         -0.0001    0.890457   -0.0001    0.705587\\ngraduated vs binary_ours       -0.0026    0.025732   -0.0052    0.000032\\n\\nSaved to: /root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_ratio_50_final.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果如下：\n\n---\n\n## exp-009 v3 ratio_50 完整结果\n\n**状态**: 15/15 文件全部到齐（含 graduated_seed4，17:23 完成）\n\n### Table 1: Mean±Std\n\n| Strategy | MMLU | HellaSwag |\n|----------|------|-----------|\n| no_filter | 0.6063±0.0013 | 0.6680±0.0005 |\n| binary_ours | 0.6088±0.0011 | 0.6731±0.0004 |\n| graduated | 0.6062±0.0009 | 0.6679±0.0002 |\n\n### Table 2: Paired t-test\n\n| Comparison | ΔMMLU | p(MMLU) | ΔHellaSwag | p(HellaSwag) |\n|---|---|---|---|---|\n| binary_ours vs no_filter | +0.0025 | 0.0377* | +0.0051 | 0.00002*** |\n| graduated vs no_filter | -0.0001 | 0.890 | -0.0001 | 0.706 |\n| graduated vs binary_ours | -0.0026 | 0.0257* | -0.0052 | 0.00003*** |\n\n### Table 3: Raw Data\n\n| Strategy | Seed | MMLU | HellaSwag |\n|---|---|---|---|\n| binary_ours | 0 | 0.6092 | 0.6733 |\n| binary_ours | 1 | 0.6076 | 0.6729 |\n| binary_ours | 2 | 0.6085 | 0.6725 |\n| binary_ours | 3 | 0.6104 | 0.6737 |\n| binary_ours | 4 | 0.6083 | 0.6732 |\n| graduated | 0 | 0.6068 | 0.6680 |\n| graduated | 1 | 0.6070 | 0.6680 |\n| graduated | 2 | 0.6068 | 0.6679 |\n| graduated | 3 | 0.6053 | 0.6676 |\n| graduated | 4 | 0.6051 | 0.6679 |\n| no_filter | 0 | 0.6064 | 0.6680 |\n| no_filter | 1 | 0.6082 | 0.6681 |\n| no_filter | 2 | 0.6045 | 0.6678 |\n| no_filter | 3 | 0.6067 | 0.6688 |\n| no_filter | 4 | 0.6058 | 0.6673 |\n\n### 关键发现\n\n- **binary_ours 显著优于 no_filter**: MMLU +0.25pp (p=0.038), HellaSwag +0.51pp (p<0.001)\n- **graduated ≈ no_filter**: 两个指标差异均无统计显著性 (p>0.7)\n- **binary_ours 显著优于 graduated**: 效果差异与 binary_ours vs no_filter 对称\n\n结论：在 50% 污染比例下，binary_ours 策略有效保护了模型性能，而 graduated 策略未展现优势（表现等同于不过滤）。\n\n已保存至: `/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_ratio_50_final.json`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "uuid": "68fab23e-51b4-4461-bcd1-0bea4bd6be2a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B1BNXXkpfnhohVeZYxxS26",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2262,
+                "cache_read_input_tokens": 32467,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2262
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果如下：\n\n---\n\n## exp-009 v3 ratio_50 完整结果\n\n**状态**: 15/15 文件全部到齐（含 graduated_seed4，17:23 完成）\n\n### Table 1: Mean±Std\n\n| Strategy | MMLU | HellaSwag |\n|----------|------|-----------|\n| no_filter | 0.6063±0.0013 | 0.6680±0.0005 |\n| binary_ours | 0.6088±0.0011 | 0.6731±0.0004 |\n| graduated | 0.6062±0.0009 | 0.6679±0.0002 |\n\n### Table 2: Paired t-test\n\n| Comparison | ΔMMLU | p(MMLU) | ΔHellaSwag | p(HellaSwag) |\n|---|---|---|---|---|\n| binary_ours vs no_filter | +0.0025 | 0.0377* | +0.0051 | 0.00002*** |\n| graduated vs no_filter | -0.0001 | 0.890 | -0.0001 | 0.706 |\n| graduated vs binary_ours | -0.0026 | 0.0257* | -0.0052 | 0.00003*** |\n\n### Table 3: Raw Data\n\n| Strategy | Seed | MMLU | HellaSwag |\n|---|---|---|---|\n| binary_ours | 0 | 0.6092 | 0.6733 |\n| binary_ours | 1 | 0.6076 | 0.6729 |\n| binary_ours | 2 | 0.6085 | 0.6725 |\n| binary_ours | 3 | 0.6104 | 0.6737 |\n| binary_ours | 4 | 0.6083 | 0.6732 |\n| graduated | 0 | 0.6068 | 0.6680 |\n| graduated | 1 | 0.6070 | 0.6680 |\n| graduated | 2 | 0.6068 | 0.6679 |\n| graduated | 3 | 0.6053 | 0.6676 |\n| graduated | 4 | 0.6051 | 0.6679 |\n| no_filter | 0 | 0.6064 | 0.6680 |\n| no_filter | 1 | 0.6082 | 0.6681 |\n| no_filter | 2 | 0.6045 | 0.6678 |\n| no_filter | 3 | 0.6067 | 0.6688 |\n| no_filter | 4 | 0.6058 | 0.6673 |\n\n### 关键发现\n\n- **binary_ours 显著优于 no_filter**: MMLU +0.25pp (p=0.038), HellaSwag +0.51pp (p<0.001)\n- **graduated ≈ no_filter**: 两个指标差异均无统计显著性 (p>0.7)\n- **binary_ours 显著优于 graduated**: 效果差异与 binary_ours vs no_filter 对称\n\n结论：在 50% 污染比例下，binary_ours 策略有效保护了模型性能，而 graduated 策略未展现优势（表现等同于不过滤）。\n\n已保存至: `/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_ratio_50_final.json`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 106322,
+            "duration_api_ms": 83603,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "2009a6f9-32e4-4b88-83e5-f93500221095",
+            "total_cost_usd": 0.41553850000000003,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 22888,
+              "cache_read_input_tokens": 269329,
+              "output_tokens": 5446,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22888,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 948,
+                  "cache_read_input_tokens": 32467,
+                  "cache_creation_input_tokens": 2262,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2262
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1494,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016040000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 5446,
+                "cacheReadInputTokens": 269329,
+                "cacheCreationInputTokens": 22888,
+                "webSearchRequests": 0,
+                "costUSD": 0.4139345,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f81593d0-d0d1-48a9-8c61-2608f9e61abc"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp-009-50pct-harvest.md"
+}

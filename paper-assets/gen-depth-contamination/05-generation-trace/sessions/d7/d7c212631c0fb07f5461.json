@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7c212631c0fb07f5461",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops regen feature importance figure",
+  "task_key": "worker_ops_regen_feature_importance_figure_20260521T111854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_regen_feature_importance_figure_20260521T111854_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "e7d750c85e6399bedbf2e339852c7caeeec43b40ce00b130b04bc67554d9ffd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n- `feature_importance.pdf` (32 KB) 和 `feature_importance.png` (170 KB) 已生成到 `docs/paper/figures/`\n- 两个 panel：左 Gen-0 vs Gen-1 (AUC=0.922)，右 Gen-1 vs Gen-2 (AUC=0.610)\n- 15 个 features 按 ΔAUC 降序排列，含 error bars\n- 0v1 top-3: Δ¹ Surprisal σ (0.209), Surprisal σ (0.095), Freq. Entropy (0.064)\n- 1v2 top-3: Surprisal σ (0.058), Δ² Surprisal σ (0.022), Freq. Entropy (0.017)\n- 1v2 panel 中负 importance 的 features 以红色标注（Surprisal Skew, Surprisal Kurt., Δ¹ Surprisal Skew）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-regen-feature-importance-figure.md"
+}

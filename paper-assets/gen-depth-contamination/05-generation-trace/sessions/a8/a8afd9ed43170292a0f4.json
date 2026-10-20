@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8afd9ed43170292a0f4",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check all gpu progress 1446",
+  "task_key": "worker_check_all_gpu_progress_1446_20260516T144801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_all_gpu_progress_1446_20260516T144801_result.json",
+    "occurrence": 1,
+    "bytes": 1382,
+    "sha256": "bb2bd7fddfe218398676fe82c758df7822ec790201d261380d55950f8e8b73af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇总\n\n| 实验 | GPU | 状态 | 进度 | 说明 |\n|------|-----|------|------|------|\n| **exp-018** Llama 8B depth | cuda:0 | 🟢 运行中 | ~88% | depth 5 生成中: 1044/1250 batches, ~6s/it |\n| **exp-023** Wiki domain | cuda:1 | ✅ 完成 | 100% | EXIT_CODE=0, K*=2 |\n| **exp-024** arXiv domain | cuda:2 | ❌ 失败 | 启动即崩 | `HF_HUB_OFFLINE` 导致无法加载 C4 数据集 |\n| **exp-021** Length ablation | cuda:3 | ✅ 完成 | 100% | EXIT_CODE=0, 512 token 配置完成, K*=2 |\n\n### exp-018 详情\n- 已运行 9h47m，depth 0-4 数据已生成完毕（每个 depth 约 2 小时）\n- 当前：**depth 5 生成阶段，1044/1250 batches (83%)**，~6s/batch\n- 剩余生成：206 batches × 6s ≈ **20 分钟**完成 depth 5 生成\n- 生成完后还需跑特征提取 + 分析，预计再 **30-60 分钟**\n- GPU 利用率 96%，显存 16GB/24GB，**正常推进，未卡住**\n\n### exp-024 失败原因\n脚本启动时 `HF_HUB_OFFLINE=1` 环境变量生效，`load_dataset(\"allenai/c4\")` 无法联网下载数据。需要 `unset HF_HUB_OFFLINE` 或确保 C4 数据已缓存到本地后重跑。\n\n### 已完成实验结果速览\n- **exp-023** (Wiki domain): K*=2, top feature=freq_entropy, ordinal accuracy=37.7%\n- **exp-021** (512 token): K*=2, top feature=freq_entropy, ordinal accuracy=37.5%, JSD(d0→d1)=0.267"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-gpu-progress-1446.md"
+}

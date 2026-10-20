@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61d8f521b0ea19fd6733",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp multi source detection",
+  "task_key": "worker_code_exp_multi_source_detection_20260520T065243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_multi_source_detection_20260520T065243_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "5a2c3f4658e33267604505ad7f652463366ce40a69da9c85f21d8c4e990b8405"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**Mixed-source K\\* = 2**，与所有单源 K\\*=2 完全一致。\n\n| Pair | No Label AUC | No Label 95% CI | With Label AUC | With Label 95% CI |\n|------|-------------|-----------------|----------------|-------------------|\n| 0v1 | 0.9929 | [0.9915, 0.9942] | 0.9948 | [0.9937, 0.9958] |\n| 1v2 | **0.7007** | **[0.6874, 0.7142]** | **0.7015** | **[0.6880, 0.7149]** |\n| 2v3 | 0.5128 | [0.4988, 0.5268] | 0.5174 | [0.5033, 0.5316] |\n| 3v4 | 0.4958 | [0.4816, 0.5100] | 0.4950 | [0.4808, 0.5093] |\n| 4v5 | 0.5049 | [0.4908, 0.5189] | 0.5018 | [0.4877, 0.5157] |\n\n关键发现：\n\n1. **K\\* 不受多源混合影响**：mixed-source K\\*=2，与 Qwen/Pythia/OLMo 单源 K\\*=2 完全相同\n2. **Generator label 几乎无用**：加 generator_id 作为第 16 维特征后，AUC 变化 < 0.005，K\\* 不变\n3. **Depth 2+ 均为 chance level**：2v3 及之后的 pairwise AUC 均在 0.49-0.52 范围，CI 跨 0.50\n\n数据来源：Qwen-1.5B (`data_exp016_qwen_base`)、Pythia-1.4B (`data_exp020_pythia_greedy`)、OLMo-1B (`data/olmo_c4_cont`)，各 1000 docs，合计 3000 docs × 6 depths = 18000 rows。Registry 已更新为 DONE(success)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-multi-source-detection.md"
+}

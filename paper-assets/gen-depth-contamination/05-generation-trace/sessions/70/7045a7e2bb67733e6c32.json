@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7045a7e2bb67733e6c32",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops feat importance olmo1b",
+  "task_key": "worker_ops_feat_importance_olmo1b_20260521T073604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_feat_importance_olmo1b_20260521T073604_result.json",
+    "occurrence": 1,
+    "bytes": 739,
+    "sha256": "efff44dd3f3455333856b1acfd7069ea831e50a123205a00269415c3a8122ebd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n```\nMODEL: OLMo-1B\nDOMAIN: C4 (olmo_c4_cont)\n0v1_BASELINE_AUC: 0.9987\n0v1_TOP3: surp_d1_std (0.0823), surp_mean (0.0094), surp_kurt (0.0052)\n1v2_BASELINE_AUC: 0.5070\n1v2_TOP3: surp_mean (0.0040), surp_d2_mean (0.0031), surp_d1_skew (0.0023)\n2v3_BASELINE_AUC: 0.5058\n2v3_TOP3: surp_d2_std (0.0071), surp_kurt (0.0036), ttr (0.0030)\n```\n\nOLMo-1B 的 K\\*=1 边界非常清晰：0v1 AUC 高达 0.9987（surp_d1_std 主导），1v2 和 2v3 均接近随机（~0.50），说明 depth ≥ 1 后特征几乎无法区分不同代数。产出文件：\n- `results/feature_importance_olmo/importance_results.json`\n- `artifacts/feature_importance_olmo_1b.pdf`\n- `artifacts/feature_importance_olmo_1b.tex`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-feat-importance-olmo1b.md"
+}

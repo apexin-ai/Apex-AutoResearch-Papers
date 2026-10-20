@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec126a8c86217e5b4708",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops check 3 experiments",
+  "task_key": "worker_ops_check_3_experiments_20260520T113109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_3_experiments_20260520T113109_result.json",
+    "occurrence": 1,
+    "bytes": 2625,
+    "sha256": "3c5696b42a31ca2d335431ce090f94759e4ebf3cc283d864afedec733d8b2d4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n### 1. exp_olmo_retrain_v3 (cuda:2) — RUNNING\n- **进程**: PID 310312, 已运行 43 min, GPU 2 利用率 78%, 显存 3083 MiB\n- **当前阶段**: Generation 1→2 的 generation phase, 进度 96% (599/625)\n- **已完成**: Gen 0→1 (耗时 ~23 min)\n- **剩余**: Gen 1→2 生成即将完成 → Gen 2→3 → Gen 3→4 → scoring\n- **预估剩余时间**: ~50-70 min (还有 2 个完整 generation cycle + scoring)\n- **K\\* 结果**: 待完成\n\n### 2. exp_wiki_multi_source (cuda:0) — FINISHED ✓\n- **耗时**: 3498.6s (~58 min)\n- **K\\* = 1** (所有设置一致)\n\n| 设置 | 0v1 AUC | 1v2 AUC | 2v3 AUC | K* |\n|------|---------|---------|---------|-----|\n| Vocab-only no_label | 0.7616 | 0.5434 | 0.5170 | 1 |\n| Vocab-only with_label | 0.7779 | 0.5520 | 0.5248 | 1 |\n| Unified no_label | 0.9603 | 0.5685 | 0.5190 | 1 |\n| Unified with_label | **0.9685** | 0.5790 | 0.5299 | **1** |\n\n- **关键发现**: Wiki multi-source K\\*=1，低于 Wiki single-source K\\*=2 (exp_023)。与 C4 K\\*=2, arXiv K\\*=3 相比，Wiki 在 multi-source 设置下 domain ceiling 最低。0v1 AUC 极高 (0.97)，但 1v2 迅速衰减到 ~0.58，说明 multi-source 混合后 depth ≥2 的信号几乎消失。\n\n### 3. exp_code_multi_source (cuda:1) — FINISHED ✓\n- **耗时**: 2024.9s (~34 min)\n- **K\\* = 2** (所有设置一致)\n\n| 设置 | 0v1 AUC | 1v2 AUC | 2v3 AUC | K* |\n|------|---------|---------|---------|-----|\n| Vocab-only no_label | 0.7891 | 0.6353 | 0.5121 | 2 |\n| Vocab-only with_label | 0.7900 | 0.6440 | 0.5118 | 2 |\n| Unified no_label | 0.9123 | 0.6702 | 0.5013 | 2 |\n| Unified with_label | **0.9123** | **0.6803** | 0.5055 | **2** |\n\n- **关键发现**: Code multi-source K\\*=2，与 single-source (Qwen7B=2, LLaMA8B=2, Mistral7B=2) 完全一致。Code domain ceiling 稳定在 K\\*=2。\n\n### GPU 总览\n\n| GPU | 利用率 | 显存 | 任务 |\n|-----|--------|------|------|\n| 0 | 0% | 0 MiB | 空闲 (wiki_multi 已完成) |\n| 1 | 0% | 0 MiB | 空闲 (code_multi 已完成) |\n| 2 | 78% | 3083 MiB | olmo_retrain_v3 运行中 |\n| 3 | 0% | 3417 MiB | run_naturalistic_validation.py (11 min, 非你指定的实验) |\n\n### 对你关键问题的回答\n\n1. **OLMo retrain K\\***: 还在跑，Gen 1→2 generation 96%，预计 ~1h 后出结果\n2. **Wiki multi-source domain ceiling**: K\\*=1，**没有**保持 domain ceiling，反而比 single-source (K\\*=2) 更低。Multi-source 混合显著压缩了 Wiki 的可检测深度\n3. **Code multi-source K\\*=2**: 完美保持了 code domain ceiling K\\*=2，与 single-source 一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-3-experiments.md"
+}

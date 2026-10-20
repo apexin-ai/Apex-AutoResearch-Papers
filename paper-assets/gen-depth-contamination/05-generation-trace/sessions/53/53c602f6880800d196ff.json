@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53c602f6880800d196ff",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix exp020 duplicate procs",
+  "task_key": "worker_fix_exp020_duplicate_procs_20260516T113129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp020_duplicate_procs_20260516T113129_result.json",
+    "occurrence": 1,
+    "bytes": 1008,
+    "sha256": "5cdbdac5db7a224623b690488855c81b10a7303e94da80f5f38a656fae602505"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n### 结果\n\n1. **Kill 的进程**: PID 27742 和 28604 已成功终止。PID 27042 继续运行。\n\n2. **数据完整性**: **正常。** 所有 6 个 depth 文件 (depth_0 ~ depth_5) 各 5000 行，符合 `--num_samples 5000` 预期。数据生成阶段已全部完成。\n\n3. **nuc09 当前进度**: 数据生成已完成（6 个 depth 全部 5000 行）。`results_exp020_pythia_nuc09/` 目录为空，说明 PID 27042 正在执行后续的 evaluation/results 阶段。\n\n4. **重复启动原因**: 脚本 `exp020_pythia_decoding.sh` 本身是串行的（4 个 config 顺序执行），不会并行启动。从进程参数看：\n   - PID 27742 用的 `--model_path EleutherAI/pythia-1.4b`（HF hub ID，非本地路径）\n   - PID 27042 和 28604 用的本地 snapshot 路径\n   \n   说明有人手动执行了至少 2 次额外启动（可能是脚本失败后重跑、或误操作多次 `nohup` 同一命令）。不是脚本 bug，是人为重复触发。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp020-duplicate-procs.md"
+}

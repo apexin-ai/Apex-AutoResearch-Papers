@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d32273ae52db4b7651c6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 008 retrain chain v2",
+  "task_key": "worker_code_exp_008_retrain_chain_v2_20260516T215641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_008_retrain_chain_v2_20260516T215641_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "dcf11a2bdfd68afca68ce7cff43c21fa6fb904140085019609052b2d17b26767"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中，~14 it/s，已经过了之前崩溃的点。\n\n**诊断结果**: `TextDataset.__getitem__` 同时返回了变长的 `input_ids` 和 `labels`，但 `DataCollatorForLanguageModeling` 只 pad `input_ids`，导致 `labels` 长度不一致无法转为 tensor。\n\n**修复**: 移除 `__getitem__` 中的 `\"labels\": ids.clone()` — collator 会自动从 padded `input_ids` 生成 labels 并对 pad 位置设 -100。\n\n**状态**: `exp_008_retrain_chain_v2` 已在 cuda:0 上运行，Generation 0→1 fine-tuning 进行中（1250 steps，~14 it/s，预计 ~1.5 min 完成第一代训练）。日志位于 `~/runs/gen-depth-contamination/exp_008_retrain_chain_v2.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-008-retrain-chain-v2.md"
+}

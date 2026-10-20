@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bb63e904fa77f90fba6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 final check",
+  "task_key": "worker_infra_exp006-final-check_20260515T042918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006-final-check_20260515T042918_result.json",
+    "occurrence": 1,
+    "bytes": 986,
+    "sha256": "c8096a506a61d3753971204446a0ecbe03ccdb393783dc5d3666244968394deb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nSTATUS: still_running\nPROGRESS: 44/51\nGPU_STATUS: busy (79%, 18353/24564 MiB)\nTMUX: active (exp_006_graduated_filtering)\n\nCURRENT RUN: surprisal_s789 — eval 98% complete\n\nCOMPLETED (44):\n  base_model              1/1\n  no-filter               5/5  (s42 s123 s456 s789 s1024)\n  binary-ours             5/5  (s42 s123 s456 s789 s1024)\n  binary-drayson          5/5  (s42 s123 s456 s789 s1024)\n  graduated_a0.1          5/5  (s42 s123 s456 s789 s1024)\n  graduated_a0.3          5/5  (s42 s123 s456 s789 s1024)\n  graduated_a0.5          5/5  (s42 s123 s456 s789 s1024)\n  graduated_a0.7          5/5  (s42 s123 s456 s789 s1024)\n  graduated_a0.9          5/5  (s42 s123 s456 s789 s1024)\n  surprisal               3/5  (s42 s123 s456 — s789 in progress)\n\nREMAINING (7):\n  surprisal_s789    ← eval ~98%, finishing soon\n  surprisal_s1024\n  dsir × 5 seeds    (s42 s123 s456 s789 s1024)\n\nEST. TIME: ~25 min/run × 7 remaining ≈ 2.5-3 hours\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-final-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c72a96fa91401683c71",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper compile final mistral",
+  "task_key": "worker_paper_compile_final_mistral_20260523T015724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_final_mistral_20260523T015724_result.json",
+    "occurrence": 1,
+    "bytes": 629,
+    "sha256": "7e7c8522b4e6d7f93dc6e4d722eef316d2414f1f17f2e872b4cf637fc29fb57d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译结果：\n\n| 项目 | 结果 |\n|------|------|\n| 编译状态 | 成功（0 errors） |\n| 总页数 | 18 页 |\n| 正文页数 | 8 页（References 从第 9 页开始） |\n\nWarnings（忽略 underfull/overfull 后）：\n- `'h' float specifier changed to 'ht'` — 2 处浮动体位置被 LaTeX 自动调整\n- `hyperref: Token not allowed in a PDF string` — PDF 书签中有不支持的 Unicode/数学符号\n- `caption: hypcap=true will be ignored` — 某个 caption 的超链接锚点选项被忽略\n\n均为无害警告，不影响输出质量。正文 8 页符合 EMNLP 2026 的 8 页限制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-final-mistral.md"
+}

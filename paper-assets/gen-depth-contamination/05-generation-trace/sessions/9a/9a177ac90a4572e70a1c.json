@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a177ac90a4572e70a1c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check cuda0 cuda2 progress",
+  "task_key": "worker_check_cuda0_cuda2_progress_20260520T035058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_cuda0_cuda2_progress_20260520T035058_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "12290f64e25f115e4f8716ec9e3d954878dd9c30a569d47b951262dec84de27e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ncuda:0 (cross-transfer v2): 运行中 | Fold 4/5, Epoch 1, Step 600/1500 | 预计 ~12:20 完成\ncuda:2 (Code DeBERTa):      已崩溃 (11:39) | HF Hub 网络错误 (httpx client closed) | 需重启\nGPU utilization: cuda:0 98% (19.2/24GB), cuda:1 0%, cuda:2 0%, cuda:3 0%\n```\n\n**cuda:2 崩溃详情**: `run_deberta_code.py` 在 Fold 初始化阶段调用 `from_pretrained(\"microsoft/deberta-v3-base\")` 时，HuggingFace Hub 的 httpx 客户端连接被关闭，导致模型下载失败。典型的 AutoDL 网络问题，重启前需确保 `source /etc/network_turbo` 并设置 SSL 证书环境变量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cuda0-cuda2-progress.md"
+}

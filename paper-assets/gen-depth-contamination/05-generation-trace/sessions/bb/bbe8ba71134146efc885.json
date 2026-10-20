@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "bbe8ba71134146efc885",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "paper reference audit full",
+  "task_key": "worker_paper_reference_audit_full_20260523T070604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference_audit_full_20260523T070604.log",
+    "occurrence": 1,
+    "bytes": 592556,
+    "sha256": "6009b56b41f96bb1de0b1be894b33d86d8cdc673419aaa3ad87101b00471d40d"
+  },
+  "statistics": {
+    "messages": 151,
+    "user_turns": 0,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 25,
+      "tool_call": 61,
+      "tool_result": 61,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 151,
+      "chunks": [
+        {
+          "path": "bbe8ba71134146efc885-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "bbe8ba71134146efc885-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-reference-audit-full.md"
+}

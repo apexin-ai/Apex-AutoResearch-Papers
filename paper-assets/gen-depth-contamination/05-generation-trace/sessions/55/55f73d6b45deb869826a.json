@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55f73d6b45deb869826a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp gemma27b c4 setup",
+  "task_key": "worker_code_exp_gemma27b_c4_setup_20260522T075802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_gemma27b_c4_setup_20260522T075802_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "3110bf09f07052820b2eeea4c1df21183385b6b801bc75087356faa49b4baf59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Generation is running successfully with bf16. Progress: 5/625 batches at ~14.3s/batch for depth 1. That's ~2.5 hours per depth, ~12.5 hours total for all 5 depths (generation only).\n\nSummary:\n- **Model**: Gemma-2-27B loaded in bf16, no NaN errors\n- **Generation**: depth 1 in progress, ~14.3s/batch, ~2.5h per depth\n- **Estimated total**: ~12-15h for Phase 1 (generation + self-scoring) + ~1h for Phase 2 (Qwen cross-scoring)\n- **Server**: cqa1-22115, cuda:0, tmux session `exp_gemma27b_c4`\n- **PID**: 26893\n- **Registry**: `seed_gemma27b_c4_s42` → RUNNING\n- **Fix applied**: Added `--dtype bf16` flag to `run_pipeline.py` to handle Gemma-2's logit softcapping (fp16 causes NaN overflow)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-gemma27b-c4-setup.md"
+}

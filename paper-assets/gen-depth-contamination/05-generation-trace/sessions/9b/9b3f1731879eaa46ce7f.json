@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b3f1731879eaa46ce7f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code deberta cross transfer prep",
+  "task_key": "worker_code_deberta-cross-transfer-prep_20260519T174654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_deberta-cross-transfer-prep_20260519T174654_result.json",
+    "occurrence": 1,
+    "bytes": 1345,
+    "sha256": "a33e5d72f9981154aac053578f4a525428f53a42542ea351efee5aae364d40b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过，脚本就绪。\n\n## 报告\n\n### 1. 可用 generator model 数据\n\n| Model | 路径 | 样本量 |\n|-------|------|--------|\n| wiki_pythia | `data/exp_wiki_pythia/` | 6 depths × 5000 = 30,000 |\n| wiki_olmo | `data/exp_wiki_olmo/` | 6 depths × 5000 = 30,000 |\n| wiki_qwen7b | `data/exp_wiki_qwen7b/` | 6 depths × 5000 = 30,000 |\n| wiki_llama8b | `data/exp_wiki_llama8b/` | 6 depths × 5000 = 30,000 |\n| wiki_mistral7b | `data/exp_wiki_mistral7b/` | 6 depths × 5000 = 30,000 |\n\n数据格式：`depth_{0..5}.jsonl`，每行 `{\"text\": \"...\", \"doc_id\": N}`。\n\n### 2. 脚本与运行命令\n\n**脚本**：`/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_cross_transfer.py`\n\n```bash\n# 单对\npython scripts/run_deberta_cross_transfer.py \\\n    --train_model wiki_pythia --test_model wiki_qwen7b --gpu 2\n\n# 全 N×N matrix (5×4=20 对)\npython scripts/run_deberta_cross_transfer.py --all_pairs --gpu 2\n```\n\n**设计**：在 train_model 数据上 5-fold GroupKFold 训练 5 个 DeBERTa 模型，ensemble 预测 test_model 全量数据，输出每个 depth pair 的 AUC (bootstrap CI) + F1@0.50 + K*。\n\n### 3. 预估运行时间 (RTX 4090D)\n\n- 单对 ≈ 20~30 min（5 fold × 3 epoch × ~24k 训练样本 + 5 次 30k 推理）\n- 全 matrix 20 对 ≈ **7~10 小时**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-deberta-cross-transfer-prep.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f6c87404aff548ae8017",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "paper fix ing appendix",
+  "task_key": "worker_paper_fix-ing-appendix_20260519T035811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-ing-appendix_20260519T035811.log",
+    "occurrence": 1,
+    "bytes": 882204,
+    "sha256": "38a2a686c9e5fcca76b9c4d92296f14eddab8de768ee5c26cc0533651a76772f"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 17,
+      "tool_result": 17,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 43,
+      "chunks": [
+        {
+          "path": "f6c87404aff548ae8017-part-0001.json",
+          "message_count": 28
+        },
+        {
+          "path": "f6c87404aff548ae8017-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-fix-ing-appendix.md"
+}

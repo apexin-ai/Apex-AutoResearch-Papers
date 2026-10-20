@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f11e73b815cb86af7f18",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper citation fix critical1",
+  "task_key": "worker_paper_citation-fix-critical1_20260515T042544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_citation-fix-critical1_20260515T042544_result.json",
+    "occurrence": 1,
+    "bytes": 1408,
+    "sha256": "21667f2643f32854067d49f52c4434f340bf1774667ed1782edd003f0a7186a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All TODO citations replaced. Summary:\n\n### Bib entries added (`references.bib`)\n\n1. **`sun2025aigt`** — Sun et al., \"Are We in the AI-Generated Text World Already? Quantifying and Monitoring AIGT on Social Media,\" ACL 2025. Measured AI-generated text prevalence across Medium (→37%), Quora (→39%), Reddit (→2.5%).\n\n2. **`spennemann2025quantifying`** — Spennemann, \"Delving into: the Quantification of AI-Generated Content on the Internet,\" arXiv 2025. Estimated ≥30% of active web pages contain AI-generated text.\n\n### Replacements made\n\n| File | Line | Old | New |\n|------|------|-----|-----|\n| `introduction.tex` | 6 | `\\cite{TODO_ai_prevalence_1, TODO_ai_prevalence_2}` | `\\cite{sun2025aigt, spennemann2025quantifying}` |\n| `discussion.tex` | 173 | `\\cite{TODO_ai_prevalence}` | `\\cite{sun2025aigt, spennemann2025quantifying}` |\n| `discussion.tex` | 180 | `\\cite{TODO_ai_prevalence}` | `\\cite{sun2025aigt, spennemann2025quantifying}` |\n\n**Note:** `main.tex` abstract mentions \"5-15%\" but has no `\\cite{}` — standard practice for abstracts. No TODO was present there.\n\n**Caveat:** Both papers report higher figures than 5-15% (Spennemann: 30-40%; Sun et al.: up to 39% on some platforms, 2.5% on Reddit). The \"5-15%\" figure in the text is a conservative estimate. You may want to revise it upward or add a qualifier like \"and likely growing.\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-citation-fix-critical1.md"
+}

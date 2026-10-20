@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57fc646b1b39fccc350a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing c3 contingency",
+  "task_key": "worker_writing_c3-contingency_20260514T075812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_c3-contingency_20260514T075812_result.json",
+    "occurrence": 1,
+    "bytes": 760,
+    "sha256": "4f675be78b07cd33bd92c8a52b9d4a01ecf6f82cfa25cb23d0c5f543de972bce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/c3_contingency_versions.tex` 并注册。结构：\n\n- **Version A**（graduated 显著优于 binary）：conclusion 段强调 depth-1 保留机制和三级分类实用价值；discussion 段分析 optimal α 中间值的含义、跨 benchmark 一致性、cross-seed 方差优势。\n- **Version B**（差异不显著）：conclusion 段重新定位为 \"principled alternative with comparable performance\"，强调连续 α 参数的灵活性；discussion 段给出三个解释（LoRA regularization、小数据集、benchmark 敏感度不足），明确 taxonomy 贡献独立于下游应用结果，指出 future work 方向。\n\n两版均使用 `XX.X ± X.X` 占位符，exp-006 结果出来后直接填数字即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-c3-contingency.md"
+}

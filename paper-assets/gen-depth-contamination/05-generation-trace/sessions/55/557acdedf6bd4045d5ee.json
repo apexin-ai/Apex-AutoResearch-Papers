@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "557acdedf6bd4045d5ee",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops olmo scorer confound investigation",
+  "task_key": "worker_ops_olmo_scorer_confound_investigation_20260520T125618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_olmo_scorer_confound_investigation_20260520T125618_result.json",
+    "occurrence": 1,
+    "bytes": 3291,
+    "sha256": "f9095c9282d07a35c00cab30e9b2e497944af2ec63a6f444b1d6e95e0a4176eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。以下是完整汇总。\n\n---\n\n## 调查报告：OLMo C4 scorer confound\n\n### 1. exp-002 的 scorer 配置\n\n没有 `exp_002_olmo_depth` 目录。论文中 OLMo C4 数据对应 `data/olmo_c4_cont/` 和 `results/olmo_c4_cont/`。\n\n`olmo_c4_bootstrap_ci.py` 明确标注 **`scorer=OLMo-1B (self-scored)`**。`run_pipeline.py` 支持 `--scorer_path` 参数（默认 None = self-scoring），但没有日志记录原始调用参数。\n\n### 2. 论文数字 vs 实际数据 — 严重不一致\n\n**论文主表 (Table 2 / S4) OLMo 列：**\n| Pair | AUC | 95% CI |\n|------|-----|--------|\n| 0v1 | 0.9970 | — |\n| 1v2 | **0.6145** | [0.605, 0.625] |\n| 2v3 | 0.5496 | [0.540, 0.560] |\n| K* = **2** | | |\n\n**实际存在的所有 OLMo 结果（全部今天 2026-05-20 生成）：**\n\n| Source | Scorer | 0v1 | 1v2 | K* |\n|--------|--------|-----|-----|-----|\n| `olmo_c4_cont/pairwise_auc.json` | OLMo-1B (self) | 0.9986 | **0.507** | 1 |\n| `exp_7b_scorer/olmo_c4__qwen1.5b` | Qwen-1.5B | 0.9819 | **0.4977** | 1 |\n| `exp_7b_scorer/olmo_c4__qwen7b` | Qwen-7B | 0.9833 | **0.4965** | 1 |\n\n**三种 scorer 一致给出 1v2 AUC ≈ 0.50（随机水平），K*=1。** 差距不是 11.7pp 而是 ~12pp，且没有任何现存数据支持论文的 0.6145。\n\n### 3. 根因：数据今天被完整重生成，旧数据已丢失\n\n所有 `data/olmo_c4_cont/` 文件均为今天新建：\n- `depth_0.jsonl`: Born 12:43\n- `depth_5.jsonl`: Born 13:48\n- `features.csv`: Born 14:11\n- `pairwise_auc.json`: Born 14:11\n\n**论文中的 0.6145 来自一次更早的 pipeline 运行，其数据已被覆盖，没有任何备份或 artifact 保留。** 也没有 `olmo_c4_bootstrap_ci_10k.json` artifact 文件（脚本存在但 artifact 不存在）。\n\n### 4. 验证：底层文本一致，不是 scorer 的问题\n\n通过比较 `freq_kurtosis` 和 `freq_entropy`（白空格分词，scorer-agnostic）：三个 features.csv 中这些值**完全相同**，证明底层文本数据一致。`ttr`/`hapax` 的差异是因为它们使用 scorer 的 BPE tokenizer 计算。\n\n所以这**不是 scorer confound** — 是**数据版本 confound**。当前 OLMo 生成的文本在 depth 1 和 2 之间没有可区分的信号，无论用什么 scorer。\n\n### 5. 对 headline claim 的影响\n\n论文当前声称：**\"7/8 yield K\\*=2\"**（只有 Mistral-7B 例外）。\n\n如果 OLMo 从 K\\*=2 降为 K\\*=1：\n- 变为 **6/8 yield K\\*=2**（OLMo + Mistral 为例外）\n- 论文 Table S13 (Scorer Sensitivity) 中 `OLMo-1B / Self / K*=2` 也不成立\n- \"K\\*≤2 across all configurations\" 结论不变（K\\*=1 < 2），但 \"7/8 at K\\*=2\" 的 universality claim 被削弱\n\n### 6. 建议行动\n\n1. **找回原始数据**：检查 AutoDL 实例是否有快照/回收站；检查其他机器或 WandB 是否记录了原始运行\n2. **如果无法找回**：用固定种子重跑 OLMo pipeline，对比多次运行的 1v2 AUC 稳定性\n3. **确认 scorer 配置**：原始运行是否用了 `--scorer_path Qwen`？如果用 Qwen scorer 且得到 0.6145 但今天 Qwen scorer 只给 0.50，说明是文本本身的差异\n4. **论文修正**：如果 OLMo K\\*=2 不可复现，需要将论文改为 \"6/8 yield K\\*=2\" 或移除 OLMo 列"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-olmo-scorer-confound-investigation.md"
+}

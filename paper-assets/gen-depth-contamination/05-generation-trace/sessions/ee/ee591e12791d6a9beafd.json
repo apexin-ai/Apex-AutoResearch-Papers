@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "ee591e12791d6a9beafd",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code exp 027 latex ablation",
+  "task_key": "worker_code_exp_027_latex_ablation_20260518T102052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_027_latex_ablation_20260518T102052.log",
+    "occurrence": 1,
+    "bytes": 808479,
+    "sha256": "21b24a1a0bdddc02aab8b40ceccf5ee828c164c8bd54319cd58c0286538416bf"
+  },
+  "statistics": {
+    "messages": 410,
+    "user_turns": 0,
+    "tool_calls": 166,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 166,
+      "tool_result": 166,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 410,
+      "chunks": [
+        {
+          "path": "ee591e12791d6a9beafd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ee591e12791d6a9beafd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ee591e12791d6a9beafd-part-0003.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-027-latex-ablation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ffbe45acd91eed24330",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "investigate exp012 artifacts",
+  "task_key": "worker_investigate_exp012_artifacts_20260515T225057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_exp012_artifacts_20260515T225057_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "c611ed8c45812679d0d759c2793a620e6c75b48ecf694946ea6ae1f6945280a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：这是 N=5 的 dry-run 测试数据，不是全量结果。**\n\n依据：\n\n| 指标 | 值 |\n|------|-----|\n| 每个 (model, depth) 组合的样本数 | **5** |\n| 模型数 | 4 (qwen-rewrite, pythia-1.4b, olmo-1b, qwen-cont) |\n| depth 级别 | 6 (0-5) |\n| 总样本量 | 4 × 6 × 5 = **120** |\n\nAUC 值呈 0.04 步进（0.52, 0.56, 0.60, 0.64 …），这是典型的小 N 伪影（5 对中每改变 1 对结果变化 1/25 = 0.04）。threshold_accuracy 也只取 0.0667, 0.1, 0.1333 等值（1/15, 1.5/15, 2/15），印证了 30 个样本的分辨率。\n\n需要用 N=500 重跑才能得到有效结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-exp012-artifacts.md"
+}

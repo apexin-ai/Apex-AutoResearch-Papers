@@ -1,0 +1,605 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a8128143e1651a7a7a07",
+  "rounds": [
+    {
+      "number": 59,
+      "messages": [
+        {
+          "source_line": 2341,
+          "timestamp": "2026-05-25T21:18:10.014993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper"
+            }
+          },
+          "id": "event-002341"
+        },
+        {
+          "source_line": 2342,
+          "timestamp": "2026-05-25T21:18:10.065650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_pairwise_significance.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_filtering_main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_alpha_sweep.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-002342"
+        },
+        {
+          "source_line": 2343,
+          "timestamp": "2026-05-25T21:18:14.832106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex"
+            }
+          },
+          "id": "event-002343"
+        },
+        {
+          "source_line": 2344,
+          "timestamp": "2026-05-25T21:18:15.284191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\begin{figure*}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\textwidth]{figures/pipeline.pdf}\n7\t\\caption{Generational depth estimation pipeline. Seed documents are recursively passed through a generation operator $G_\\delta$ to produce a depth chain. Corpus-level statistical features are fed to the OBD-LightGBM classifier for depth prediction. (Simplified notation; see Eq.~\\ref{eq:kstar} for the formal $\\Kempirical$ definition.)}\n8\t\\label{fig:pipeline}\n9\t\\end{figure*}\n10\t\n11\t\\subsection{Problem Formulation}\n12\t\\label{sec:formulation}\n13\t\n14\tA generation operator $G_\\delta$ (LLM + decoding strategy $\\delta$) produces successive generations $X \\to Y_1 \\to \\cdots \\to Y_K$, where $Y_k = G_\\delta(Y_{k-1})$ and $Y_0 \\triangleq X$ (Figure~\\ref{fig:pipeline}).\n15\tThis sequence forms a Markov chain.\n16\tBy the Data Processing Inequality, $I(X; Y_1) \\geq I(X; Y_2) \\geq \\cdots \\geq 0$: mutual information with the seed text degrades monotonically.\n17\tTogether with Markov chain convergence, this motivates the existence of a finite discrimination boundary where $\\auc_{k-1,k}$ falls below a decision threshold, though AUC and mutual information are not formally equivalent; the actual saturation depth must therefore be measured empirically.\n18\tPairwise AUC generally decreases with depth but may exhibit noise-level reversals (e.g., Pythia-1.4B 3v4 $\\auc = 0.505$ vs.\\ 4v5 $= 0.508$, a difference within bootstrap CI; Table~\\ref{tab:kstar_ci_extended}), reinforcing that $\\Kempirical$ is a measured quantity rather than a theoretical prediction.\n19\t\n20\tWe define the operational lower bound:\n21\t{\\small\n22\t\\begin{equation}\n23\t  \\Kempirical = \\max\\bigl\\{k \\!\\geq\\! 1 : \\auc_{j-1,j} > \\theta,\\;\\forall\\, 1 \\!\\leq\\! j \\!\\leq\\! k\\bigr\\},\n24\t  \\label{eq:kstar}\n25\t\\end{equation}\n26\t}\n27\twhich requires all pairs up to depth $k$ to exceed the threshold (the $\\forall j$ constraint is naturally satisfied because $\\auc_{k-1,k}$ decreases monotonically above $\\thet\n…[truncated 6051 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-002344"
+        },
+        {
+          "source_line": 2345,
+          "timestamp": "2026-05-25T21:18:15.284707+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex"
+            }
+          },
+          "id": "event-002345"
+        },
+        {
+          "source_line": 2346,
+          "timestamp": "2026-05-25T21:18:15.786819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate on ten configurations spanning six families: Pythia-1.4B/6.9B, OLMo-1B, Qwen2.5-1.5B-Instruct (rewrite/continuation), Qwen2.5-1.5B (base), Qwen2.5-7B, LLaMA-3.1-8B, Mistral-7B, and Gemma-2-2B.\n5\tUnless noted, all experiments use the OBD-LightGBM classifier with 15 features (Section~\\ref{sec:method}), 5{,}000 C4 texts per depth level (depths 0--5).\n6\t\n7\t%% ====================================================================\n8\t\\subsection{The Discrimination Boundary}\n9\t\\label{sec:kstar_boundary}\n10\t\n11\t\\begin{figure}[t]\n12\t\\centering\n13\t\\includegraphics[width=\\columnwidth]{figures/fig2_auc_decay.pdf}\n14\t\\caption{Pairwise $\\auc$ decay across adjacent depth pairs (0v1, 1v2, \\ldots, 4v5) for model-mode configurations (solid) and decoding strategies (dashed); shaded bands show bootstrap 95\\% CIs. Horizontal dashed line: $\\theta = 0.60$.}\n15\t\\label{fig:auc_decay}\n16\t\\end{figure}\n17\t\n18\t\\begin{table*}[t]\n19\t\\centering\n20\t\\small\n21\t\\caption{Pairwise $\\auc$ for adjacent depth pairs with bootstrap 95\\% CIs and permutation $p$-values for boundary rows.\n22\t$\\Kempirical = 2$ requires 1v2 $\\auc > \\theta{=}0.60$ and 2v3 $\\auc < \\theta$; CIs quantify boundary uncertainty.\n23\tExtended results (all models) in Table~\\ref{tab:kstar_ci_extended}.}\n24\t\\label{tab:kstar_ci}\n25\t\\resizebox{\\textwidth}{!}{%\n26\t\\begin{tabular}{lcccccccccc}\n27\t\\toprule\n28\t & \\multicolumn{2}{c}{Qwen-rw} & \\multicolumn{2}{c}{Pythia} & \\multicolumn{2}{c}{OLMo} & \\multicolumn{2}{c}{Qwen-cont} & \\multicolumn{2}{c}{Qwen-7B\\rlap{$^\\ddagger$}} \\\\\n29\t\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}\\cmidrule(lr){8-9}\\cmidrule(lr){10-11}\n30\t & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI \\\\\n31\t\\midrule\n32\t0v1 & .9956 & & .9722 & & .9861 & & .9971 & & .9644 & [.961,\\,.967] \\\\\n33\t1v2 & .6955 & [.686,\\,.704]\\rlap{$^*$} & .6074 & [.598,\\,.617]\\rlap{$^*$} & .5001 & [.496,\\,.519] & .6112 & [.602,\\,.621]\\rlap{$\n…[truncated 15516 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-002346"
+        },
+        {
+          "source_line": 2347,
+          "timestamp": "2026-05-25T21:18:15.837448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex"
+            }
+          },
+          "id": "event-002347"
+        },
+        {
+          "source_line": 2348,
+          "timestamp": "2026-05-25T21:18:15.888597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Consistency Check: $\\Kstar$-Guided Filtering}\n2\t\\label{sec:filtering}\n3\t\n4\t$\\Kempirical = 2$ predicts that binary curation should suffice; we validate this under extreme contamination (${\\sim}$83\\% synthetic), not as an independent contribution (at realistic rates $\\leq$50\\%, differences $<$0.3\\,pp; Appendix~\\ref{sec:dose_response}).\n5\tWe compare six strategies on 30{,}000 documents (depths 0--5): (i)~\\textbf{no-filter}, (ii)~\\textbf{binary-ours} (15D LightGBM), (iii)~\\textbf{binary-Drayson}~\\citep{drayson2025}, (iv)~\\textbf{graduated} ($w = \\exp(-\\alpha \\hat{d})$, $\\alpha \\in \\{0.1,\\ldots,0.9\\}$), (v)~\\textbf{surprisal}, and (vi)~\\textbf{DSIR}~\\citep{xie2023dsir}, fine-tuning Qwen2.5-1.5B-Instruct via LoRA (rank~8) for 3 epochs across 5 seeds~\\cite{shumailov2024collapse, dohmatob2024model}.\n6\t\n7\t\\begin{table}[t]\n8\t\\centering\n9\t\\small\n10\t\\caption{Downstream task performance (MMLU, HellaSwag) under six data-filtering strategies. Binary-ours uses the 15D LightGBM depth classifier; Graduated applies exponentially decaying weights $w = \\exp(-\\alpha \\hat{d})$. Mean $\\pm$ std over 5 seeds. Full $\\alpha$ sweep in Figure~\\ref{fig:filtering_strategies}.}\n11\t\\label{tab:tab_filtering_main}\n12\t\\resizebox{\\columnwidth}{!}{\\input{tables/tab_filtering_main}}\n13\t\\end{table}\n14\t\n15\tBinary-ours reduces the MMLU gap from $-$1.53\\,pp (no-filter) to $-$0.77\\,pp (${\\sim}$50\\% reduction; $p_{\\text{corr}} < 0.05$ vs.\\ all alternatives; Table~\\ref{tab:tab_filtering_main}, \\ref{tab:pairwise_significance}).\n16\tThe ordering is interpretable through $\\Kempirical$: binary filtering exploits the strongest boundary (0v1), while graduated strategies assign weights based on near-random classifier outputs for depths $\\geq 2$, injecting noise rather than useful signal.\n17\tGraduated filtering converges toward binary: at $\\alpha{=}0.9$, it matches binary-ours on HellaSwag ($p_{\\text{corr}} = 1.00$) but remains worse on MMLU ($p_{\\text{corr}} = 0.011$); DSIR is indistinguishable from no-filter\n…[truncated 290 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002348"
+        },
+        {
+          "source_line": 2349,
+          "timestamp": "2026-05-25T21:18:32.598999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-002349"
+        },
+        {
+          "source_line": 2350,
+          "timestamp": "2026-05-25T21:18:33.001444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\\setlength{\\floatsep}{6pt plus 2pt minus 2pt}\n3\t\\setlength{\\textfloatsep}{8pt plus 2pt minus 2pt}\n4\t\\setlength{\\intextsep}{6pt plus 2pt minus 2pt}\n5\t\\setlength{\\abovecaptionskip}{4pt}\n6\t\\setlength{\\belowcaptionskip}{2pt}\n7\t\\section{Supplementary Materials}\n8\t\\label{sec:appendix}\n9\t\n10\tThis appendix provides supplementary figures, detailed experimental tables, dataset statistics, and complete feature descriptions referenced in the main text.\n11\t\n12\t\\paragraph{Feature ranking and cross-model consistency.}\n13\tTable~\\ref{tab:top_features} reports per-model single-feature AUC rankings.\n14\tSurprisal derivative features (\\texttt{surp\\_d1\\_std}, \\texttt{surp\\_d2\\_std}) consistently rank among the top three across all continuation-mode models (Pythia, OLMo, Qwen-cont), with pairwise Spearman $\\rho \\geq 0.85$.\n15\tThe rewrite-mode model (Qwen-rw) diverges by placing \\texttt{freq\\_entropy} first; this reflects a distributional shift that is lexical rather than surprisal-driven.\n16\tThis scorer-invariant ranking supports the use of a fixed 15-dimensional feature set across generators without per-model feature selection.\n17\t\n18\t%%% Feature ranking table (moved from main text)\n19\t\\begin{table}[!htbp]\n20\t\\centering\n21\t\\small\n22\t\\caption{Top-3 features by single-feature $\\auc$ ranking. Bold: shared across all continuation-mode models. Spearman $\\rho$ (continuation pairs): Pythia--OLMo 0.95, Pythia--Qwen-cont 0.91, OLMo--Qwen-cont 0.85.}\n23\t\\label{tab:top_features}\n24\t\\resizebox{\\columnwidth}{!}{%\n25\t\\begin{tabular}{cllll}\n26\t\\toprule\n27\tRank & Pythia & OLMo & Qwen-rw & Qwen-cont \\\\\n28\t\\midrule\n29\t1 & \\textbf{\\texttt{surp\\_d1\\_std}} & \\textbf{\\texttt{surp\\_std}} & \\texttt{freq\\_entropy} & \\textbf{\\texttt{surp\\_d1\\_std}} \\\\\n30\t2 & \\textbf{\\texttt{surp\\_d2\\_std}} & \\textbf{\\texttt{surp\\_d1\\_std}} & \\textbf{\\texttt{surp\\_std}} & \\textbf{\\texttt{surp\\_std}} \\\\\n31\t3 & \\textbf{\\texttt{surp\\_std}} & \\textbf{\\texttt{surp\\_d2\\_std}} & \\textbf{\\texttt{surp\\_d1\\_std}} & \\textbf{\\te\n…[truncated 23638 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-002350"
+        },
+        {
+          "source_line": 2351,
+          "timestamp": "2026-05-25T21:18:33.002181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex"
+            }
+          },
+          "id": "event-002351"
+        },
+        {
+          "source_line": 2352,
+          "timestamp": "2026-05-25T21:18:33.254697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Extended Discussion}\n2\t\\label{sec:extended_discussion}\n3\t\n4\t\\subsection{Theoretical Implications of $\\Kempirical = 2$}\n5\t\n6\tThe DPI guarantees a finite $\\Ktheory$; for general web text, $\\Kempirical \\leq 2$ across all 10 configurations (1B--8B, 6 families), while structured domains (arXiv) yield $\\Kempirical{=}3$, aligning with model collapse convergence~\\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.\n7\tDecoding strategy modestly affects signal strength (1v2 $\\auc \\in [0.6862, 0.7037]$) but does not shift the boundary.\n8\t\n9\t\\subsection{Cross-Model Transfer Implications}\n10\t\n11\tCross-model classification retains 80--92\\% accuracy with scorer-invariant feature rankings ($\\rho > 0.90$), which enables single-classifier deployment across generators.\n12\tAbsolute discriminability at the $\\Kempirical$ boundary is scorer-sensitive: alternative scorers reduce Qwen-continuation $\\Kempirical$ from 2 to 1, while rewrite-mode $\\Kempirical = 2$ is preserved.\n13\tModel family similarity modulates transfer (Pythia$\\leftrightarrow$OLMo: 89--92\\% vs.\\ Qwen-cont$\\leftrightarrow$OLMo: 80--85\\%).\n14\t\n15\t\\begin{table}[h]\n16\t\\centering\n17\t\\caption{Cross-scorer validation. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\rho > 0.90$) and rewrite-mode $\\Kempirical = 2$, but reduce continuation-mode $\\Kempirical$ from 2 to 1. OLMo arXiv cross-scorer confirms $\\Kempirical{=}1$ ($p{=}0.510$, n.s.).}\n18\t\\label{tab:crossscorer}\n19\t\\resizebox{\\columnwidth}{!}{\\input{tables/tab_crossscorer}}\n20\t\\end{table}\n21\t\n22\t\\begin{table}[h]\n23\t\\centering\n24\t\\small\n25\t\\caption{Three-way ANOVA (Generator $\\times$ Scorer $\\times$ Depth-Pair) on per-fold pairwise $\\auc$ values. DV = per-fold AUC; $N{=}300$ (12 cells $\\times$ 5 folds $\\times$ 5 depth-pairs). Scorer is statistically significant but explains modest variance ($\\eta^2_p{=}.192$) relative to Depth-Pair ($\\eta^2_p{=}.998$), which supports near-scorer-independence of depth discrimination.}\n26\n…[truncated 24362 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 252
+          },
+          "id": "event-002352"
+        },
+        {
+          "source_line": 2353,
+          "timestamp": "2026-05-25T21:18:43.640831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-002353"
+        },
+        {
+          "source_line": 2354,
+          "timestamp": "2026-05-25T21:18:43.641196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\\label{sec:why_kstar}\n4\t\\label{sec:one_wash}\n5\t\\label{sec:negative_graduated}\n6\t\\label{sec:repr_dependence}\n7\t\\label{sec:boundary_cases}\n8\t\\label{sec:length_confound}\n9\t\n10\t\\paragraph{One-wash laundering (web text).}\n11\tFor general web text, $\\Kempirical{=}2$ reflects concentrated information loss: 0v1 is near-trivially separable ($\\auc \\geq 0.92$), 1v2 drops by ${\\sim}$30\\,pp, and 2v3 falls below $\\theta$.\n12\tOBD achieves 94\\% depth-0 recall but only 15--23\\% for depths $\\geq$2; frontier LLMs show 8--38\\% ($p > 0.05$ vs.\\ OBD; Table~\\ref{tab:s3_llm_zeroshot}; per-depth breakdown in Table~\\ref{tab:s3c_perdepth}), which supports a data-intrinsic interpretation.\n13\tUnlike model collapse~\\cite{shumailov2024collapse}, one-wash laundering describes erasure of statistical fingerprints; quality may degrade further after features become indistinguishable.\n14\t\n15\t\\begin{figure}[t]\n16\t\\centering\n17\t\\includegraphics[width=\\columnwidth]{figures/fig_filtering_strategies.pdf}\n18\t\\caption{MMLU accuracy under six filtering strategies (5 seeds, $\\pm$1 std). Binary $\\Kstar$ filtering (red) minimizes degradation; graduated weighting converges toward binary as $\\alpha$ increases. Dashed line: no-filter baseline.}\n19\t\\label{fig:filtering_strategies}\n20\t\\end{figure}\n21\t\n22\t\\paragraph{Boundary cases and representation dependence.}\n23\tUnder Bonferroni correction (Table~\\ref{tab:bonferroni_ci}), three of six $\\Kempirical{=}2$ cases become marginal (CI lower 0.593--0.599), though $\\Kempirical \\leq 2$ holds across $\\theta \\in [0.59, 0.61]$ (Figure~\\ref{fig:kstar_theta}).\n24\t$\\Kempirical$ is representation-dependent: neural probes yield $\\Kempirical^{\\text{neural}} \\in \\{1,2,3\\}$ (Table~\\ref{tab:neural_probe_crossmodel}); a DeBERTa probe extends to $\\Kempirical{=}4$ on arXiv (Table~\\ref{tab:deberta_vs_obd}).\n25\t\n26\t\\paragraph{Domain dependence and scope.}\n27\tarXiv yields $\\Kempirical{=}3$ across four families (Figure~\\ref{fig:jsd_decay}), drive\n…[truncated 268 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-002354"
+        },
+        {
+          "source_line": 2355,
+          "timestamp": "2026-05-25T21:18:43.791961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-002355"
+        },
+        {
+          "source_line": 2356,
+          "timestamp": "2026-05-25T21:18:43.842541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWeb-scale text corpora are increasingly contaminated by synthetic content that has itself been generated from earlier synthetic content.\n5\tEstimates suggest that a substantial fraction of online text is machine-generated~\\cite{sun2025aigt, spennemann2025quantifying}, and this share continues to rise.\n6\tWhen models train on the outputs of earlier models, the resulting multi-generational synthetic text degrades with each iteration: tail modes vanish, lexical diversity contracts, and surprisal distributions flatten~\\cite{shumailov2024collapse, dohmatob2024model}.\n7\tThis degradation arises in both \\emph{retrain-chains} (iteratively training on model outputs) and \\emph{prompt-chains} (recursively generating from previous outputs without retraining); we study the latter, which isolates generation-level information loss from training dynamics (Appendix~\\ref{sec:extended_limitations}).\n8\tYet the dominant paradigm treats all machine-generated text identically, discarding the generational depth dimension.\n9\t\n10\tThis gap cuts across four lines of work: binary detectors~\\cite{basani2026diveye, zhang2024minkpp} produce no depth estimate (Section~\\ref{sec:binary_confidence}); membership inference~\\cite{zawalski2026codec} addresses a different question; the model collapse literature~\\cite{shumailov2024collapse, alemohammad2024selfconsuming, schaeffer2025position} provides no per-text tool; and data selection methods~\\cite{xie2023dsir, tirumala2023d4, drayson2025} ignore recursive depth.\n11\tNo existing method estimates how many rounds of recursive generation a text has undergone.\n12\t\n13\tThe Data Processing Inequality guarantees that information degrades monotonically across generations, motivating a finite discrimination boundary $\\Kstar$.\n14\tWe empirically measure a lower bound $\\Kempirical$ on the discrimination boundary (the maximum depth at which a classifier reliably distinguishes adjacent generations) using 15 statistic\n…[truncated 1659 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-002356"
+        },
+        {
+          "source_line": 2357,
+          "timestamp": "2026-05-25T21:18:50.025462+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL Rolling Review review form 2025 2026 soundness excitement overall assessment scoring dimensions"
+            }
+          },
+          "id": "event-002357"
+        },
+        {
+          "source_line": 2358,
+          "timestamp": "2026-05-25T21:18:57.912066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL Rolling Review review form 2025 2026 soundness excitement overall assessment scoring dimensions\"\n\nLinks: [{\"title\":\"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewform\"},{\"title\":\"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/acguidelines\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"aclrollingreview/reviewerguidelines.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/reviewerguidelines.md\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"},{\"title\":\"ACL 2025 Statistics - Paper Copilot\",\"url\":\"https://papercopilot.com/statistics/acl-statistics/acl-2025-statistics/\"},{\"title\":\"ACL 2026 on X: \\\"Checkout the blog post on the soundness/excitement scores https://t.co/AKSO9DjiYP . It clarifies the reasoning behind the separation of overall scores and how it might make the reviewer recommendation more robust. #ACL2023Toronto #ACL2023NLP #NLProc\\\" / X\",\"url\":\"https://x.com/aclmeeting/status/1637827267173953540\"}]\n\nBased on the search results, here's information about the ACL Rolling Review (ARR) review form for 2025-2026:\n\n## Scoring Dimensions\n\nStarting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation.\n\n### Soundness\nSoundness assesses whether the paper is sufficiently sound and thorough, clearly states scie\n…[truncated 1135 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "WebSearch",
+            "elapsed_ms": 7886
+          },
+          "id": "event-002358"
+        },
+        {
+          "source_line": 2359,
+          "timestamp": "2026-05-25T21:19:02.027573+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002359"
+        },
+        {
+          "source_line": 2360,
+          "timestamp": "2026-05-25T21:19:02.128494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-002360"
+        },
+        {
+          "source_line": 2361,
+          "timestamp": "2026-05-25T21:19:09.358003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewform",
+              "prompt": "Extract the complete review form scoring dimensions, their scale (1-5 or otherwise), and the description of each score level. I need the exact scoring criteria for: soundness, excitement, overall assessment, confidence, and any other dimensions. List every score option with its label."
+            }
+          },
+          "id": "event-002361"
+        },
+        {
+          "source_line": 2362,
+          "timestamp": "2026-05-25T21:19:19.542286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review Form - Scoring Dimensions\n\n## Reviewer Confidence\nScale: 1-5\n\n- **5**: \"Positive that my evaluation is correct. I read the paper very carefully and am familiar with related work.\"\n- **4**: \"Quite sure. I tried to check the important points carefully.\"\n- **3**: \"Pretty sure, but there's a chance I missed something.\"\n- **2**: \"Willing to defend my evaluation, but it is fairly likely that I missed some details.\"\n- **1**: \"Not my area, or paper is very hard to understand.\"\n\n## Soundness\nScale: 1-5 (with half-point options: 4.5, 3.5, 2.5, 1.5)\n\n- **5**: \"Excellent: This study is one of the most thorough I have seen, given its type.\"\n- **4**: \"Strong: This study provides sufficient support for all of its claims.\"\n- **3**: \"Acceptable: This study provides sufficient support for its main claims.\"\n- **2**: \"Poor: Some of the main claims are not sufficiently supported.\"\n- **1**: \"Major Issues: This study is not yet sufficiently thorough to warrant publication.\"\n\n## Excitement\nScale: 1-5 (with half-point options: 4.5, 3.5, 2.5, 1.5)\n\n- **5**: \"Highly Exciting: I would recommend this paper to others.\"\n- **4**: \"Exciting: I would mention this paper to others.\"\n- **3**: \"Interesting: I might mention some points of this paper to others.\"\n- **2**: \"Potentially Interesting: this paper does not resonate with me.\"\n- **1**: \"Not Exciting: this paper does not resonate with me.\"\n\n## Overall Assessment\nScale: 1-5 (with half-point options)\n\n- **5**: Consider for Award (top 2.5% papers)\n- **4.5**: Borderline Award\n- **4**: Conference acceptance recommendation\n- **3.5**: Borderline Conference\n- **3**: Findings of the ACL acceptance\n- **2.5**: Borderline Findings\n- **2**: Resubmit next cycle\n- **1.5**: Resubmit after next cycle\n- **1**: Do not resubmit\n\n## Reproducibility\nScale: 1-5\n\n- **5**: Results easily reproducible\n- **4**: Mostly reproducible with minor variations\n- **3**: Reproducible with difficulty\n- **2**: Very difficult to reproduce\n- **1**: Cannot reproduce re\n…[truncated 459 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "WebFetch",
+            "elapsed_ms": 10184
+          },
+          "id": "event-002362"
+        },
+        {
+          "source_line": 2363,
+          "timestamp": "2026-05-25T21:22:22.521166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewerguidelines",
+              "prompt": "Extract the key reviewer guidelines: what should reviewers focus on, what are the expectations for soundness and excitement scores, and any specific instructions about how to evaluate papers. Include any guidance about how soundness scores must be justified."
+            }
+          },
+          "id": "event-002363"
+        },
+        {
+          "source_line": 2364,
+          "timestamp": "2026-05-25T21:22:28.958123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Key ARR Reviewer Guidelines\n\n## Core Focus Areas\n\nReviewers should concentrate on four main tasks:\n\n1. **Allocate adequate time** for both reviewing and discussion periods\n2. **Check assignments** for expertise fit and conflicts of interest\n3. **Write substantive reviews** with specific feedback\n4. **Engage with author responses** and update assessments accordingly\n\n## Soundness and Excitement Scores\n\nThe guidance emphasizes critical distinctions between score types:\n\n**Soundness scores** must be rigorously justified. As stated: \"The soundness scores must be justified by the text of the review. If you give a low soundness score without finding any major faults, this means that your review is not a faithful explanation of your recommendation, and you need to revise it.\"\n\n**Excitement scores** operate independently from soundness, reflecting personal interest rather than technical quality. A paper can be technically sound yet personally unexciting, or vice versa.\n\n**Overall assessment** combines soundness, excitement, novelty, and potential impact—the composite recommendation for venue placement.\n\n## Writing Strong Reviews\n\nKey expectations include:\n\n- **Be specific** with concrete examples rather than vague criticisms\n- **Avoid common reviewer biases** (listing 17 problematic heuristics like dismissing \"surprising\" results or demanding unnecessary experiments)\n- **Maintain professional tone**, treating authors with respect and constructive intent\n- **Read papers twice**: initial skim to adjust expectations, then in-depth evaluation\n\nThe guidelines stress that low scores require transparent justification to avoid unconscious bias influencing recommendations."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "WebFetch",
+            "elapsed_ms": 6436
+          },
+          "id": "event-002364"
+        },
+        {
+          "source_line": 2365,
+          "timestamp": "2026-05-25T21:24:34.969067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 审稿报告\n\n**论文**: Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary\n**Venue**: EMNLP 2026 (ARR May 2026)\n**审查侧重**: 方法严谨性 + 实验设计 + 统计有效性\n\n---\n\n## Summary\n\n本文提出\"生成深度估计\"这一新问题：衡量文本经历了多少轮递归 LLM 生成。定义 K*_empirical 为相邻代际仍可区分的最大深度（AUC > θ=0.60），使用 15 维统计特征 + OBD-LightGBM 分类器。核心发现：对一般网络文本 K*_empirical ≤ 2（10 个模型配置、6 个架构族），arXiv 结构化文本 K*_empirical = 3。跨模型迁移保持 80-92% 准确率（continuation mode）。在 ~83% 污染下，K*_empirical 正确预测二元过滤优于渐进式策略。\n\n---\n\n## 总体评分\n\n**Overall**: 3.5 — Borderline Conference\n**一句话总结**: 问题定义新颖、实验覆盖面广、统计实践较规范，但核心发现 K*=2 的统计显著性在 Bonferroni 校正下仅半数成立，Qwen 过度代表和 claim 范围过大拉低了可信度。\n\n## 官方维度打分（来自 ACL ARR review form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 方法论总体合理，统计控制（permutation + Bonferroni + GroupKFold）规范；但 DPI→AUC 推理链有逻辑缺口，6 个 K*=2 配置中 3 个在 Bonferroni 校正下 marginal，核心 claim 的统计基础有脆弱性 |\n| Excitement | 3.5/5 | \"生成深度\"是一个全新的研究维度，\"one-wash laundering\" 发现对 model collapse 和数据治理领域有实际意义；但 K*≤2 本质上是个 negative result——说明深度估计在二元检测之上提供的增量有限 |\n| Reproducibility | 4/5 | 超参数完整报告（Table S6），特征定义齐全（Table S5），匿名代码/数据链接已提供，数据集构造描述充分 |\n| Confidence | 4/5 | 仔细阅读全文及全部附录，熟悉 machine-generated text detection 和 model collapse 相关工作 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] K*_empirical=2 的统计显著性在 Bonferroni 校正下仅半数成立\n\n- 具体位置：Section 4.1, Table 2, Appendix B.10 (Table 27)\n- 问题：论文声称\"K*_empirical=2 for 6/10 configurations\"（Abstract, Section 4.1），但 Table 27 (Bonferroni-corrected 99.5% CI) 显示 6 个 K*=2 配置中仅 3 个（Qwen-rw, Qwen-base, Qwen-7B）的 CI 下界超过 θ=0.60。Pythia-1.4B (0.593), Qwen-cont (0.598), LLaMA-8B (0.599) 三个配置的 CI 下界均低于 θ。这意味着在多重比较校正后，\"K*=2\"对这三个配置而言统计不显著。\n- 为什么影响接收：这是论文的核心 claim。如果仅 3/6 配置统计显著，且这 3 个全是 Qwen 变体，那 \"K*≤2 universally\" 的泛化性大幅削弱。论文在 Section 4.1 确实提及了这一点，但措辞是\"marginal\"而非直接承认不显著，且 Abstract/Introduction 的表述未反映这一限制。\n- 建议修改方向：(1) Abstract 和 Introduction 中将 \"6/10\" 改为按 family 去重的表述（如\"3 of 6 independent families achieve K*=2, with 3 additional Qwen-family variants\"）；(2) 明确区分\"statistically significant K*=2\"（3 configs）和\"point-estimate K*=2\"（6 configs）；(3) 考虑以 per-family 分析作为主要结论而非 per-configuration 计数。\n\n**N2** [critical] Qwen 过度代表导致 headline 数字膨胀\n\n- 具体位置：Table 1 (Section 3.3), Table 2 (Section 4.1), Abstract\n- 问题：10 个配置中 Qwen 占 4 个（Qwen-rw, Qwen-cont, Qwen-base, Qwen-7B），其他 5 个 family 各仅 1-2 个配置。6 个 K*=2 配置中 4 个是 Qwen 变体。按 family 去重：仅 3 个独立 family（Qwen, Pythia, LLaMA）在至少一个配置中达到 K*=2，而 Pythia 和 LLaMA 的 K*=2 在 Bonferroni 校正下均为 marginal。实际上只有 Qwen family 稳健地达到 K*=2。\n- 为什么影响接收：如果核心结论主要由一个 model family 驱动，泛化性主张不成立。Reviewer 和 reader 读到 \"6/10 configurations, 6 architecture families\" 时会认为这是跨 family 的 robust 结论，但实际不是。\n- 建议修改方向：(1) 主表和 Abstract 应以 per-family 结果为主体（如：\"K*=2 robustly holds for the Qwen family; Pythia and LLaMA reach K*=2 but with marginal significance; OLMo, Gemma, Mistral yield K*=1\"）；(2) 分析 Qwen 为何 consistently 产生更高 AUC——是 Qwen 的生成文本确实保留更多世代信号，还是存在 Qwen-specific artifact（Section 4.4 neural probe 已暗示后者的可能）。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] DPI→AUC 单调递减的推理链有逻辑缺口\n\n- 具体位置：Section 3.1 (method.tex lines 16-18, 30)\n- 问题：论文用 DPI 论证 I(X; Y_1) ≥ I(X; Y_2) ≥ ...（seed 与各代的 MI 单调递减），然后以此 \"motivate\" AUC_{k-1,k} 随 k 递减的经验观察。但 DPI 关于 I(X; Y_k) 的单调性并不蕴含 I(Y_{k-1}; Y_k)（相邻代际的 MI）的单调性。论文衡量的是相邻代际的可区分性 AUC_{k-1,k}，这与 I(X; Y_k) 是不同的量。对齐次 Markov chain，I(Y_{k-1}; Y_k) 的行为取决于 mixing rate / convergence，非 DPI 直接推导。\n- 建议：明确说明 DPI 只保证 seed-to-generation MI 的单调性，而非 adjacent-pair discriminability。可引用 Markov chain mixing time 文献补充理论动机。当前 \"The DPI motivates the empirical observation\" 的措辞模糊了理论保证与经验观察的边界。\n\n**W2** [warning] θ=0.60 阈值的后验性问题\n\n- 具体位置：Section 3.1 (method.tex lines 34-40), Figure 3\n- 问题：θ=0.60 的选择基于 1v2 AUC cluster (0.607-0.696) 与 2v3 cluster (~0.54-0.59) 之间的 gap。这本质上是 post-hoc 的——先观察了 AUC 分布，再选择 θ 落在 gap 中。论文提供了两个独立 justification：(1) permutation null 95th percentile < 0.55, (2) sensitivity surface (Figure 3)。这些有帮助，但更理想的做法是基于 permutation null distribution 直接推导 θ（如取 null 的 99th percentile 作为 θ），或在独立 hold-out 配置上验证 θ。\n- 建议：(1) 承认 θ 的选择有 post-hoc 成分；(2) 报告基于 permutation null 直接推导的 θ 值（如 99th percentile of null），并与 θ=0.60 比较；(3) 或者在 held-out 配置（如 LLaMA, Mistral）上验证 θ=0.60 的有效性。\n\n**W3** [warning] Cross-model transfer claim 范围过大\n\n- 具体位置：Abstract (\"depth estimation on corpora from unknown generators requires no retraining\"), Section 4.2\n- 问题：Abstract 声称 \"depth estimation on corpora from unknown generators requires no retraining\"，但 (a) 迁移实验仅覆盖 continuation mode，rewrite mode 迁移仅 61-63%；(b) 迁移在 K*=1 的模型（OLMo, Gemma, Mistral）上无意义——因为这些模型本身只有 0v1 信号；(c) 有效的迁移仅在 Pythia↔OLMo↔Qwen-cont 三者之间验证。Abstract 的 claim 远超实际验证范围。\n- 建议：Abstract 中限定为 \"across continuation-mode generators with K*≥2\"，避免暗示 universal applicability。\n\n**W4** [warning] OBD vs. ordinal logistic regression 对比的公平性\n\n- 具体位置：Section 3.2 (method.tex line 72)\n- 问题：论文报告 OBD pairwise AUC 均值 0.6099 vs. ordinal logistic regression 0.4883。AUC < 0.50 意味着 ordinal regression 在部分 depth pair 上系统性反向预测，这暗示模型拟合可能有问题（如特征标准化、超参数选择）。论文解释为 \"collapsing predictions toward central depths\"，但 collapsing 应产生 AUC ≈ 0.50（随机水平），而非 < 0.50。均值 0.4883 < 0.50 需要更详细的解释——是哪些 depth pair 反转了？是否调参过？\n- 建议：报告 ordinal regression 各 depth pair 的 AUC 分解，解释 <0.50 的具体原因，并说明是否对 ordinal regression 做了合理的超参数调优以确保对比公平。\n\n**W5** [warning] Filtering 实验的实际意义有限\n\n- 具体位置：Section 5, Appendix B.8 (Table 25)\n- 问题：主实验在 ~83% 污染下进行，binary-ours 将 MMLU 降幅从 -1.53pp 减至 -0.77pp。但 Appendix B.8 显示在现实污染比例 (≤50%) 下，所有策略差异 <0.3pp，且所有策略下 MMLU 均高于 base model（无降幅可恢复）。这意味着 K*-guided filtering 仅在极端场景下有实际效果。论文将此定位为\"consistency check\"，但 Abstract 和 contributions 中的表述重量级很高，可能误导读者认为这是一个 practical contribution。\n- 建议：(1) Abstract 中更明确地限定 filtering 结论的适用范围；(2) 在 Section 5 开头直接说明 ≤50% 下效果消失，而非放在附录。\n\n**W6** [warning] Bootstrap CI 方法不一致\n\n- 具体位置：Table 27 (Appendix B.10) vs. Table 28 (Appendix B.11)\n- 问题：Table 27 使用 normal-approximation bootstrap CI（AUC ± 2.807 × σ_boot），Table 28 脚注提到 \"percentile\" CI。对于 AUC 接近边界（0.50-0.60 区间）的情形，bootstrap 分布可能偏斜，normal approximation 可能不准确。论文未统一说明全文使用的 CI 计算方法。\n- 建议：明确全文 CI 方法（建议统一用 percentile bootstrap），并对 boundary pair AUC 检查 bootstrap 分布的偏斜程度。\n\n---\n\n## 小问题（不影响接收）\n\n- **M1**: Eq.1 定义 K*_empirical = max{k ≥ 1 : ...}，当集合为空时（即 AUC_{0,1} < θ）定义未明确。虽然实验中所有 0v1 AUC > 0.92 故不会触发，但形式定义应处理此边界情况（如约定 K*_empirical = 0）。\n- **M2**: \"One-wash laundering\" 术语隐含故意洗白的含义，但论文描述的是自然发生的信息丢失现象。可考虑在首次使用时解释此术语为隐喻而非字面含义。\n- **M3**: Table 2 中 OLMo 的 1v2 AUC (0.5001) 和 2v3 AUC (0.4973) 以及 3v4 AUC (0.5034) 呈非单调——脚注 § 已标注。这个案例本身就说明 DPI→AUC 单调的论证不成立（回应 W1）。\n- **M4**: 论文提到 Pythia-6.9B 的 4v5 AUC 为 \"---\" (Table S2b)，标注 \"K*=1; 4v5 not required for boundary determination\"。但其 1v2 AUC = 0.5955 低于 θ=0.60，所以确实是 K*=1，不影响结论。只是标注不够直观。\n- **M5**: Abstract 中 \"structured academic text (arXiv) reaches K*_empirical=3 across four independent architecture families\" 应注明 OLMo 是例外（K*=1 across all domains）。否则读者可能以为全部 5 个测试 family 都是 K*=3。\n\n---\n\n## Questions for Authors\n\n1. 3 个 Bonferroni-marginal 的 K*=2 配置（Pythia-1.4B, Qwen-cont, LLaMA-8B）的 CI 下界分别为 0.593, 0.598, 0.599。如果采用 0.60 作为 CI 下界的判定标准（而非点估计），论文的核心结论会如何修改？\n2. Qwen family 在 K*=2 中的 dominant 表现是否可能源于 Qwen 架构/训练数据的特殊性而非普遍现象？Neural probe (Section 4.4) 中 Qwen 达到 K*_neural=3 而 Pythia 仅 K*_neural=2，是否暗示 Qwen 生成文本有特殊的 \"self-familiarity\" 信号？\n3. Ordinal logistic regression 的 pairwise AUC 均值 0.4883 低于随机水平(0.50)，能否提供各 depth pair 的分解？是否对 ordinal regression 做了超参数搜索？\n4. Cross-model transfer (Section 4.2) 仅覆盖 continuation mode。对于实际部署场景（互联网文本可能由 instruction-tuned 模型的 rewrite mode 生成），迁移失败（61-63%）是否限制了整个方法的实用性？\n\n---\n\n## 主要优势\n\n- **S1**: 问题定义新颖且重要——\"生成深度\"是一个此前未被研究的维度，对 model collapse、数据治理和 synthetic text detection 领域有明确意义。\n- **S2**: 实验覆盖面广——10 个模型配置、6 个架构族、4 个域、4 个解码策略，附带充分的消融实验（长度、seed、scorer、样本量）。\n- **S3**: 统计实践规范——permutation test + Bonferroni 校正、bootstrap CI、GroupKFold 防泄漏、self-BLEU 折内计算，多处主动标注 marginal cases。\n- **S4**: DeBERTa 上界实验（Appendix B.14）提供了有用的对比：15D 特征给出 lower bound，表征模型可将 K* 推至 4（arXiv），量化了 generator-agnostic 特征的代价。\n- **S5**: 对 retrain-chain vs. prompt-chain 的区分（Appendix B.7）澄清了本工作的定位：prompt-chain K* 度量的是文本固有的信息退化，不含训练循环效应。\n- **S6**: 可复现性好——超参数、特征定义、数据集构造、代码链接均已提供。",
+              "reviewer_id": "1",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-002365"
+        },
+        {
+          "source_line": 2366,
+          "timestamp": "2026-05-25T21:24:38.640360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3671
+          },
+          "id": "event-002366"
+        },
+        {
+          "source_line": 2367,
+          "timestamp": "2026-05-25T21:24:48.341091+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿报告已提交给 Review Director。\n\n总结：\n\n- **Overall 3.5 (Borderline Conference)**，Soundness 3.5，Excitement 3.5\n- **2 个 Must-Fix**：(1) K\\*=2 的 Bonferroni 显著性仅半数成立（3/6 配置 marginal），核心 claim 统计基础脆弱；(2) Qwen 占 K\\*=2 配置的 4/6，按 family 去重后结论大幅弱化\n- **6 个 Should-Fix**：DPI→AUC 推理缺口、θ 后验性、transfer claim 过宽、OBD vs ordinal regression 对比公平性、filtering 实际意义有限、bootstrap CI 方法不一致\n- **主要优势**：问题定义新颖、实验覆盖全面、统计实践规范、可复现性好"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1"
+          },
+          "id": "event-002367"
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "messages": [
+        {
+          "source_line": 2368,
+          "timestamp": "2026-05-25T21:33:17.006596+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## 交叉分享：请逐条回应 Reviewer 2 的审稿意见\n\n以下是 Reviewer 2 的完整审稿原文。请逐条回应：[AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n特别关注两人评分差异（你 3.5 vs R2 3.0）的根源——R2 的核心降分理由是\"贡献悖论\"（K*≤2 使 depth estimation 退化为 binary detection），你是否认同这一判断？\n\n---\n\n## Reviewer 2 审稿报告（Round 1 — 新颖性/贡献/相关工作/写作质量）\n\n---\n\n### Paper Summary\n\n本文定义了\"generational depth estimation\"问题：给定一篇文本，估计其经历了多少轮递归合成生成。作者提出 K*_empirical 作为\"discrimination boundary\"的下界——即分类器能可靠区分相邻深度的最大深度。通过 15 维统计特征 + OBD-LightGBM 分类器，在 10 种模型配置（6 个架构族，1B-8B）、4 个领域、4 种解码策略上实验。核心发现：web text 上 K*≤2（\"one-wash laundering\"现象），arXiv 上 K*=3，跨模型迁移保留 80-92% 准确率。在极端污染场景（~83% synthetic）下，K*=2 正确预测了 binary filtering 是最优策略。\n\n---\n\n### 总体评分\n\n**Overall**: 3.0（Findings）\n**一句话总结**: 问题定义有一定新意，实验覆盖全面，但核心发现 K*≤2 构成\"贡献悖论\"——depth estimation 框架的实际效用被还原为 binary detection，novelty 和 practical impact 不足以支撑 Main Conference。\n\n---\n\n### 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 方法论合理，统计检验严谨（Bonferroni、bootstrap CI、permutation test），但 DPI 与 AUC 的关联是非正式的，θ=0.60 的选取有一定任意性 |\n| Excitement | 3/5 | 问题时效性强，one-wash laundering 概念有趣，但 K*≤2 限制了框架的实际影响力，结论与 binary detection 高度重合 |\n| Overall Assessment | 3.0/5 | Findings 水准：实证工作扎实但贡献显著性不足 |\n| Confidence | 4/5 | model collapse 和 text detection 在我的专长范围内 |\n| Reproducibility | 4/5 | 提供匿名代码/数据链接，超参数和实验设置在 appendix 中详述 |\n\n---\n\n### Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 贡献悖论：K*≤2 使 depth estimation 框架退化为 binary detection\n\n- 具体位置：Section 1（contributions），Section 5（filtering），Section 7（conclusion）\n- 问题：论文的核心 framing 是\"generational depth estimation\"这一新问题，但主要实验发现 K*≤2（web text）意味着深度估计在实践中等价于二分类（human vs. machine）或最多三分类（depth 0/1/≥2）。Section 5 的 filtering 实验进一步证实 binary filtering 是最优策略，graduated weighting 没有额外收益——这与现有 binary detector（DivEye、Binoculars、Min-K++等）的实际功能完全一致。论文试图将 K*=2 本身作为贡献（\"knowing the boundary matters\"），但未充分论证：(a) 知道 K*=2 相比直接使用 binary detector 在实践中有何额外价值？(b) K*=2 这一结论对 data curation pipeline 的设计产生了哪些 binary detection 无法给出的指导？\n- 为什么影响接收：如果 depth estimation 框架的实际产出等价于已有工作，novelty 和 practical contribution 将大打折扣。审稿人会质疑：为什么需要一个新框架来得出\"用 binary 就够了\"这一结论？\n- 建议修改方向：(1) 在 Introduction 和 Discussion 中更坦诚地讨论这一悖论，明确区分 framework 的理论价值（characterization of information loss dynamics）和实践价值；(2) 更深入地讨论 K*>2 的场景（arXiv K*=3，neural probe K*=3-4，retrain-chain K*≥4），将这些作为框架价值的正面证据而非脚注；(3) 讨论在什么条件下（更强的特征、更大的模型、structured domains）depth estimation 可能变得 non-trivially useful。\n\n**N2** [critical] 4/10 配置 K*=1 削弱了\"K*≤2 universally holds\"的主张\n\n- 具体位置：Section 4.1（第45-47行，LaTeX experiments_c1.tex），Table 2（主文），Table 10（appendix）\n- 问题：论文的核心声明是\"K*≤2 holds universally for web text\"（Abstract, Conclusion），但 4/10 配置（OLMo 全部配置、Gemma-2-2B、Mistral-7B、Pythia-6.9B 的部分配置）给出 K*=1，意味着这些模型甚至无法区分 depth 1 和 depth 2。论文将 OLMo K*=1 归因为该模型的特性（\"sole exception\"），但当 40% 的配置给出 K*=1 时，这不再是\"exception\"。论文对 K*=1 出现的原因缺乏系统性分析：是模型容量、训练数据、架构差异、还是 15D 特征集的局限？\n- 为什么影响接收：如果 K*=1 和 K*=2 的分布接近 50/50，那么 K*=2 的\"universal\"声明需要更多 qualification。此外，K*=1 意味着连 binary depth distinction（depth 1 vs 2）都做不到，进一步削弱了 depth estimation 框架的适用性。\n- 建议修改方向：(1) 明确报告 K*=1 和 K*=2 的比例，避免\"universally K*≤2\"的 overclaiming；(2) 增加对 K*=1 模型的特征分析（例如 OLMo 和 Pythia-6.9B 的 surprisal distribution 是否确实没有 depth-dependent shift）；(3) 讨论 K*=1 是特征集的局限（lower bound 太 loose）还是真实的信息论极限。\n\n---\n\n### Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Text watermarking 作为 provenance tracking 替代方案的讨论严重不足\n\n- 具体位置：Section 2（related_work.tex 第18-19行）\n- 问题：Text watermarking（Kirchenbauer et al., 2023）是 generational provenance tracking 的直接竞争范式——如果生成器嵌入水印，则可以精确追踪生成深度，K*理论上可以无限延伸。论文仅用一句话提及 watermarking（\"our work addresses the complementary post-hoc scenario where the generator is not controlled\"），但没有讨论：(a) 在什么场景下 post-hoc 方法优于 proactive watermarking？(b) 随着 watermarking 技术普及，post-hoc depth estimation 的长期价值如何？(c) 是否有混合方案（部分水印 + post-hoc 检测）的可能性？\n- 建议：在 Related Work 中增加 1-2 句讨论 watermarking 与 post-hoc detection 的互补性和各自适用条件。\n\n**W2** [warning] θ=0.60 的阈值选取存在 circularity 风险\n\n- 具体位置：Section 3.1（method.tex 第34-40行），Figure 3\n- 问题：θ=0.60 的主要 justification 是\"sits between the 1v2 AUC cluster (0.607-0.696) and the 2v3 cluster (0.55-0.59)\"。但这意味着阈值是在观察到 AUC 分布后选择的，使其恰好将 K* 定在 2。这构成了一种弱 circularity：先看数据分布，再选阈值，再报告该阈值下的结论。虽然 Figure 3 的 sensitivity analysis 缓解了这一问题（K*=2 在 θ∈[0.59, 0.60] 范围内稳定），但 1pp 的稳定窗口并不宽裕。在 θ=0.61 时，Pythia-1.4B 已 drop 到 K*=1。\n- 建议：(1) 承认 θ 是 post-hoc 选取的，或者提供 θ 的先验 justification（如基于随机分类器的 null distribution）；(2) 报告在多个 θ 值下的主要结论，而非仅在 θ=0.60 下。\n\n**W3** [warning] Retrain-chain K*≥4 的声明缺乏方法论支撑\n\n- 具体位置：Section 6（discussion.tex 第28行）\n- 问题：\"Retrain-chain experiments yield K*≥4\" 在正文中仅一句话提及，但没有描述实验方法、使用的模型、训练过程或统计检验。如果 retrain-chain 确实能达到 K*≥4，这将是本文框架最有价值的应用场景之一——它表明 depth estimation 在 retrain 设定下是 non-trivial 的。但目前这一声明是未经充分支撑的。\n- 建议：(1) 在 appendix 中补充 retrain-chain 实验的完整方法和结果；(2) 或者删除这一声明，避免 unsupported claim。\n\n**W4** [warning] 论文叙事密度过高，insight 深度不足\n\n- 具体位置：整个 Section 4-5\n- 问题：正文 8 页内塞入了 10 个模型配置、4 个领域、4 种解码策略、cross-model transfer、cross-scorer validation、neural probe、binary detector comparison、filtering experiment 等大量实验，每个实验的讨论空间极为有限。许多关键发现被压缩到 1-2 句话后立即指向 appendix table。例如 Section 4.3（Feature Ordering，7 行文字）和 Section 4.6（Binary Detector，4 行文字）。这导致论文读起来更像实验结果清单而非有深度的分析。\n- 建议：考虑删减部分边缘实验（如 binary detector confidence 可移到 appendix），腾出空间对核心发现进行更深入的分析和讨论。\n\n---\n\n### 小问题（不影响接收）\n\n- Introduction 第7行（introduction.tex line 7）一句话中有三层括号嵌套（retrain-chains 定义、prompt-chains 定义、appendix 引用），可读性差。建议拆成两句。\n- Section 4.5 中 \"Jensen--Shannon divergence\" 使用 en-dash 连接双人名，虽然 LaTeX 排版上可接受，但在 NLP 社区更常见的写法是 \"Jensen-Shannon\"（hyphen）。\n- Abstract word count: ~144 words，符合 200 words 限制。\n- Limitations 部分：3 个点，简洁恰当，符合规范。\n- 未发现正文行文中使用破折号（em-dash）的违规情况。所有 `---` 均出现在表格中作为缺失值标记。\n- 匿名规则：作者标为 \"Anonymous\"，符合 double-blind 要求。\n- 页数限制：正文（Section 1-7）在 8 页以内，Limitations 在第 9 页，符合 EMNLP 2026 格式要求。\n\n---\n\n### 主要优势\n\n1. **问题定义有开拓性**：将 generational depth estimation 从模糊的直觉转化为可操作的度量（K*_empirical），为 model collapse 和 data contamination 研究提供了量化工具。DPI → discrimination boundary 的理论动机是自然的。\n\n2. **实验覆盖面广且方法论严谨**：10 个模型配置、6 个架构族、4 个领域、4 种解码策略，辅以 Bonferroni 校正、bootstrap CI、permutation test、ANOVA，统计测试达到了高标准。Appendix 提供了充分的复现细节。\n\n3. **\"One-wash laundering\"概念有传播价值**：将 K*=2 的发现包装为\"一次清洗即不可追溯\"的概念，对数据治理实践有直接的 messaging value——它告诉社区：一旦合成文本被再次用于生成，后续深度信息就丢失了。\n\n4. **跨模型迁移（80-92%）是实用贡献**：15D generator-agnostic 特征集在 continuation mode 下的高迁移率（scorer-invariant feature ranking ρ>0.90）使得无需知道生成模型即可部署，这对实际数据审计有价值。\n\n5. **K*-guided filtering 提供了 end-to-end 验证**：Section 5 的 filtering 实验将 K* 从描述性度量提升为有预测力的指标，展示了框架与下游任务的连接。\n\n---\n\n### 针对 Director 指定审查维度的总结判断\n\n1. **新颖性与贡献**：中等。问题定义有新意，但 K*≤2 导致框架退化为 binary detection（贡献悖论）。One-wash laundering 是一个有价值的 empirical characterization，但不构成方法论突破。与 binary detection 的增量贡献需要更清晰的论证。\n\n2. **相关工作**：基本完整，model collapse 和 detection 文献覆盖良好，但 watermarking 讨论过于薄弱。未发现 2025-2026 重大遗漏。\n\n3. **写作质量**：整体清晰，叙事逻辑通顺，术语引入恰当。主要问题是信息密度过高导致 insight 深度不足。无破折号违规，abstract 字数合规，limitations 格式正确。\n\n4. **整体定位**：更适合 Findings。论文的 ambition（depth estimation framework）与 conclusion（binary suffices）之间的张力是最大障碍。如果能更好地 frame K*>2 场景（arXiv、retrain-chain、neural probe）的价值，并深入讨论贡献悖论，有望提升到 Borderline Conference（3.5）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-002368"
+        },
+        {
+          "source_line": 2369,
+          "timestamp": "2026-05-25T21:35:25.432737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 1 对 Reviewer 2 审稿意见的交叉回应\n\n---\n\n### 评分差异分析（R1: 3.5 vs R2: 3.0）\n\n核心分歧在于如何评估\"贡献悖论\"的杀伤力。R2 认为 K*≤2 使 depth estimation 退化为 binary detection，因此框架的 novelty 和 practical contribution 不足以支撑 Main Conference。我的判断是：K*≤2 作为 empirical characterization 本身有独立价值（它解释了 WHY binary suffices，而非仅仅重复 binary suffices 这一结论），且框架在 K*>2 场景（arXiv K*=3, retrain-chain K*≥4）中展示了 non-trivial 的扩展潜力。但我同意 R2 的核心批评有相当的合理性——论文确实未充分论证 depth framework 相比 binary detection 的增量实践价值。详见下方 N1 回应。\n\n---\n\n### Must-Fix 问题回应\n\n**[REBUT] R2-N1: 贡献悖论（K*≤2 使 framework 退化为 binary detection）**\n\nR2 的论点有道理但过于绝对。我的反驳基于三点：\n\n(1) **K*=2 是一个 characterization result，不等于 \"binary detection\"。** 论文的贡献不是\"提供一个新 detector\"，而是回答\"递归合成文本的统计可区分性在哪一代消失\"。这一问题此前无人定量回答。K*≤2 告诉我们信息损失集中在 0v1 边界——这解释了为什么 graduated strategies 不 work（Section 5, Table 5: graduated 在 depth≥2 上基于近随机分类器输出赋权，注入噪声而非信号）。现有 binary detector（DivEye, Binoculars）不提供这一解释，它们只输出 binary label。\n\n(2) **K*>2 场景证明框架有超越 binary 的适用性。** arXiv K*=3（Table 4, 4 个独立 family），neural probe K*_neural=3-4（Table 3），DeBERTa K*=4 on arXiv（Table in Appendix B.14），retrain-chain K*≥4（Appendix B.7）。这些场景下 depth estimation IS non-trivially useful。R2 建议将这些作为\"框架价值的正面证据而非脚注\"——我同意此建议，但不同意这些已有结果不足以支撑框架价值的判断。\n\n(3) **但 R2 的核心批评仍然成立：论文的 framing 确有张力。** Title 和 Abstract 强调 \"depth estimation\"，但 web text 的 actionable conclusion 确实是 \"use binary\"。论文需要更好地 frame：框架的理论贡献（characterization of information loss）vs. 实践贡献（对特定场景如 structured text 和 retrain-chain 的 non-binary depth estimation）。\n\n**结论**：R2-N1 是 valid 的 framing 问题，但不构成 reject 理由。合理的修改路径如 R2 所建议的(1)(2)(3)即可解决。这一张力不应将评分从 3.5 拉到 3.0——characterization results 在 NLP venues 有接收先例（如 model collapse 系列论文本身也是 characterization，Shumailov et al. 2024 被 Nature 接收）。\n\n---\n\n**[AGREE] R2-N2: 4/10 K*=1 削弱 \"universally K*≤2\" 主张**\n\n同意，但需要补充几点 nuance：\n\n(a) \"K*≤2 universally\" 这一表述在技术上是正确的——K*=1 ⊂ K*≤2。论文的 claim 是上界，不是等式。所有 10 个配置确实都满足 K*≤2。\n\n(b) 但 R2 的深层 concern 有道理：当 40% 配置 K*=1 时，\"depth estimation\" 这个词对这些模型而言毫无操作意义——甚至连 depth 1 vs 2 都区分不了。这确实削弱了框架的适用性主张。\n\n(c) 这与我自己的 N1/N2 相呼应——我指出的问题是 K*=2 配置中 Qwen 过度代表（4/6 K*=2 是 Qwen），以及 Bonferroni 校正下仅 3/6 显著。R2 从另一个角度（K*=1 的比例）得出类似结论：核心发现的 generalizability 不如论文所宣称的那么强。\n\n(d) R2 建议\"增加对 K*=1 模型的特征分析\"——这非常有价值。论文在 Section 4.5 (Cross-Domain) 对 OLMo 的 cross-scorer 验证（p=0.510, n.s.）表明 K*=1 对 OLMo 是 robust 的，但没有分析 WHY OLMo 生成的文本在 depth 1 vs 2 上就失去了可区分性。是 OLMo 的生成质量太低（collapse 太快）还是太高（统计特征太接近人类文本）？论文应该探讨。\n\n---\n\n### Should-Fix 问题回应\n\n**[AGREE] R2-W1: Watermarking 讨论不足**\n\n同意。Watermarking 是 generational provenance tracking 的直接对标方案。论文仅用一句\"complementary post-hoc scenario\"带过，这不够。至少应讨论：(a) post-hoc 方法的核心优势是不需要控制生成器，适用于已有的 uncontrolled synthetic text；(b) watermarking 在多轮递归生成下的鲁棒性也是 open question（recursive paraphrasing 可能 wash out watermarks，与 one-wash laundering 形成有趣的对比）。补充 1-2 句即可，不需要大篇幅。\n\n**[AGREE] R2-W2: θ=0.60 的 circularity**\n\n完全同意，与我自己的 W2 一致。θ 的选取确实是 post-hoc 的。R2 和我都认为 Figure 3 的 sensitivity analysis 部分缓解了这一问题，但 1pp 的稳定窗口（θ∈[0.59, 0.60]）并不宽裕。论文应承认 θ 的 post-hoc 性质，并报告基于 permutation null 的 principled threshold。\n\n**[REBUT] R2-W3: Retrain-chain K*≥4 声明缺乏方法论支撑**\n\n部分反驳。R2 说\"没有描述实验方法、使用的模型、训练过程\"，但 Appendix B.7（appendix_extended.tex lines 71-73）明确写道：\n\n> \"Retrain-chain validation (Pythia-1.4B LoRA, 5 generations) yields K*≥4 (1v2 AUC = 0.9484, 2v3 = 0.8888, 3v4 = 0.7982)\"\n\n这提供了：模型（Pythia-1.4B）、方法（LoRA fine-tuning）、代数（5 generations）、具体 AUC 数值（3 个 boundary pair）。虽然不够详尽（缺少 LoRA 超参数、训练数据量、CI 等），但不是\"未经支撑的 claim\"。R2 的\"或者删除这一声明\"建议过于极端——这是论文框架 beyond-binary 价值的关键证据。建议补充 LoRA 训练细节和 bootstrap CI，但无需删除。\n\n**[AGREE] R2-W4: 叙事密度过高，insight 深度不足**\n\n部分同意。Section 4 确实塞了太多实验，每个实验 1-2 句讨论就跳到下一个。特别是 Section 4.3（Feature Ordering，仅 7 行）和 Section 4.6（Binary Detector Confidence，4 行）。但我对修改建议有不同看法：R2 建议\"删减边缘实验\"，我更倾向于\"重组结构\"——将 binary detector confidence 和 feature ordering 移到 appendix，腾出空间深入讨论 core findings（K*=2 的 boundary dynamics、K*=1 vs K*=2 的模型差异、arXiv K*=3 的 implications）。实验的广度是 strength，不应砍掉，但应重新分配讨论篇幅。\n\n---\n\n### 小问题回应\n\n- **Introduction 括号嵌套**：[AGREE] 三层括号确实影响可读性。\n- **Jensen--Shannon vs Jensen-Shannon**：[REBUT] 微小排版偏好，en-dash 连双人名在数学/物理文献中是标准用法，NLP 社区两种写法均被接受，不构成问题。\n- **Abstract word count**：R2 统计约 144 words，但我重新核对 LaTeX 源文件（main.tex lines 36-42），实际 abstract 约 180-190 words（R2 可能统计有误——abstract 包含多个长句和技术术语）。无论如何，符合 200 words 限制。\n\n---\n\n### 对贡献悖论的最终判断\n\nR2 的\"贡献悖论\"是本轮审稿中最重要的争议点。我的最终立场：\n\n**R2 的诊断是准确的**——K*≤2 确实在 web text 上将 depth estimation 的实际效用拉近到 binary detection。这是论文必须正面回应的核心质疑。\n\n**但 R2 的处方（降至 Findings）可能过重**——理由如下：\n1. Characterization results 本身有独立价值。K*≤2 不是在 reinvent binary detection，而是在量化 WHY binary suffices——这是一个新的 empirical finding，不是已有结论的重复。\n2. 框架在 K*>2 场景中有 non-trivial 的应用（arXiv, retrain-chain, neural probe）。\n3. 实验的广度和统计严谨性在同类工作中属于上游水平。\n\n**综合评判**：如果论文能按 R2-N1 的建议(1)(2)(3)修改 framing（更坦诚地讨论悖论、强化 K*>2 场景的论述、明确区分理论与实践贡献），加上我 N1/N2 要求的 per-family 分析和 Bonferroni marginal 的更诚实表述，整体质量可以达到 Borderline Conference（3.5）。当前状态下，我维持 3.5 但理解 R2 给 3.0 的逻辑。\n\n**建议 Director**：R1 和 R2 在 Soundness 上一致（3.5），分歧主要在 Excitement/Overall。核心争议是\"characterization result 的贡献是否够 Main Conference\"——这更适合由 AC 在 meta-review 中基于 venue 的接收标准最终裁定。",
+              "reviewer_id": "1",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-002369"
+        },
+        {
+          "source_line": 2370,
+          "timestamp": "2026-05-25T21:35:29.001142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3568
+          },
+          "id": "event-002370"
+        },
+        {
+          "source_line": 2371,
+          "timestamp": "2026-05-25T21:35:36.534156+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉回应已提交给 Review Director。\n\n核心结论：R2 的\"贡献悖论\"诊断准确（K*≤2 确实将 depth estimation 拉近 binary detection），但我认为 characterization result 本身有独立价值，且 K*>2 场景（arXiv/retrain-chain/neural probe）证明框架有 beyond-binary 的扩展潜力，降至 Findings 过重。两位 Reviewer 在 Soundness 上一致（3.5），分歧集中在 Excitement/Overall，建议 Director 关注\"characterization result 是否够 Main Conference\"这一判断。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_1"
+          },
+          "id": "event-002371"
+        }
+      ]
+    }
+  ]
+}

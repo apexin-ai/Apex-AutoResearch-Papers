@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "id": "47b958c1d233eaafc8ab",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "cleanup exp D mcnemar",
+  "task_key": "worker_cleanup_exp_D_mcnemar_20260515T151153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_cleanup_exp_D_mcnemar_20260515T151153.jsonl",
+    "occurrence": 1,
+    "bytes": 4849,
+    "sha256": "ca84101665a63d295441f3884e4eed7a22dbbf8505b67d62b394f0258a0a02e6"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T15:12:22.382422+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cleanup_exp_D_mcnemar_20260515T151153",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T15:12:22.382839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_cleanup_exp_D_mcnemar_20260515T151153",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T15:12:22.383047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cleanup_exp_D_mcnemar_20260515T151153",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westc-26893",
+              "command": "ls -la /root/autodl-tmp/gen-depth-contamination/artifacts/ | grep -iE \"mcnemar|exp_D\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T15:12:22.383206+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cleanup_exp_D_mcnemar_20260515T151153",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T15:12:22.383339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cleanup_exp_D_mcnemar_20260515T151153",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westc-26893",
+              "command": "ls -la /root/autodl-tmp/gen-depth-contamination/artifacts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T15:12:22.383490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1180\\\\ndrwxr-xr-x  4 root root   4096 May 15 20:38 .\\\\ndrwxr-xr-x 33 root root   4096 May 15 20:46 ..\\\\n-rw-r--r--  1 root root   5246 May 13 14:48 bootstrap_ci_4model.json\\\\n-rw-r--r--  1 root root   3935 May 13 11:41 bootstrap_ci_results.json\\\\n-rw-r--r--  1 root root    806 May 13 14:50 cross_transfer_matrix.csv\\\\n-rw-r--r--  1 root root   5845 May 13 14:50 cross_transfer_matrix.json\\\\n-rw-r--r--  1 root root   4658 May 14 04:24 exp003_analysis.json\\\\n-rw-r--r--  1 root root  21620 May 14 05:01 exp003_decoding_ablation.pdf\\\\n-rw-r--r--  1 root root  53573 May 14 05:01 exp003_decoding_ablation.png\\\\n-rw-r--r--  1 root root    628 May 14 05:01 exp003_decoding_ablation.tex\\\\n-rw-r--r--  1 root root   1825 May 13 19:31 exp011_analysis.json\\\\n-rw-r--r--  1 root root  58428 May 13 19:30 exp011_results_claude_opus_4_6.jsonl\\\\n-rw-r--r--  1 root root  54379 May 13 19:03 exp011_results_gpt_5_5.jsonl\\\\n-rw-r--r--  1 root root 495538 May 13 17:02 exp011_samples.jsonl\\\\n-rw-r--r--  1 root root   1176 May 14 02:52 exp015_dryrun.json\\\\n-rw-r--r--  1 root root  11947 May 15 17:29 exp015_neural_probe_results.json\\\\ndrwxr-xr-x  6 root root    133 May 15 18:59 exp_A\\\\n-rw-r--r--  1 root root   2242 May 15 18:28 exp_B_14d_ablation.json\\\\n-rw-r--r--  1 root root   3558 May 15 18:37 exp_C_permutation_10k.json\\\\n-rw-r--r--  1 root root    788 May 15 19:26 exp_D_mcnemar.json\\\\n-rw-r--r--  1 root root   1575 May 15 19:39 exp_D_mcnemar_comprehensive.json\\\\n-rw-r--r--  1 root root   1437 May 15 19:45 exp_D_mcnemar_final.json\\\\n-rw-r--r--  1 root root   1337 May 15 19:36 exp_D_mcnemar_fixed.json\\\\n-rw-r--r--  1 root root    648 May 15 18:28 exp_D_obd_n500.json\\\\n-rw-r--r--  1 root root    789 May 15 18:47 exp_D_obd_n500_v2.json\\\\n-rw-r--r--  1 root root  39807 May 15 22:21 exp_E_paired_stats.json\\\\ndrwxr-xr-x  2 root root     96 May 13 11:35 figures\\\\n-rw-r--r--  1 root root  32692 May 15 21:18 kstar_theta_curve.pdf\\\\n-rw-r--r--\n…[truncated 240 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cleanup_exp_D_mcnemar_20260515T151153",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T15:12:22.383682+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "相关文件如下：\n\n**exp_D_mcnemar 系列：**\n- `exp_D_mcnemar.json` (788B, 5/15 19:26) — 初始版本\n- `exp_D_mcnemar_comprehensive.json` (1575B, 5/15 19:39) — 中间版本\n- `exp_D_mcnemar_final.json` (1437B, 5/15 19:45) — **final 版本，保留**\n- `exp_D_mcnemar_fixed.json` (1337B, 5/15 19:36) — 中间修复版本\n\n**exp_D_obd 系列：**\n- `exp_D_obd_n500.json` (648B, 5/15 18:28) — 旧版本\n- `exp_D_obd_n500_v2.json` (789B, 5/15 18:47) — **registry checkpoint，保留**\n\n**待删除清单（3 个文件）：**\n1. `exp_D_mcnemar.json`\n2. `exp_D_mcnemar_comprehensive.json`\n3. `exp_D_mcnemar_fixed.json`\n4. `exp_D_obd_n500.json`\n\n**保留（2 个文件）：**\n1. `exp_D_mcnemar_final.json`\n2. `exp_D_obd_n500_v2.json`\n\n确认删除这 4 个冗余文件？"
+            }
+          ],
+          "metadata": {
+            "session": "worker_cleanup_exp_D_mcnemar_20260515T151153"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/cleanup-exp-d-mcnemar.md"
+}

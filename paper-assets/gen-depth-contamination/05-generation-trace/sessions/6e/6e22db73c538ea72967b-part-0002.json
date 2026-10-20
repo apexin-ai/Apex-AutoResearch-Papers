@@ -1,0 +1,985 @@
+{
+  "schema_version": "1.0",
+  "session_id": "6e22db73c538ea72967b",
+  "rounds": [
+    {
+      "number": 3,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a35862df0b3058936",
+                "tool_use_id": "toolu_01QaFHjJ7DLBAb91Xwb2uD4s",
+                "description": "Query remaining registry gaps",
+                "usage": {
+                  "total_tokens": 23498,
+                  "tool_uses": 12,
+                  "duration_ms": 57045
+                },
+                "last_tool_name": "mcp__agent-ml-research__read_registry",
+                "uuid": "a76b811f-7828-48b6-bfb5-9a8f1d765855",
+                "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a"
+              }
+            }
+          ],
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GddGKQGTmV3zxMSH2BdYMv",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "gen-depth-contamination",
+                "fields": [
+                  "exp_id",
+                  "status",
+                  "metrics",
+                  "conclusion",
+                  "hypothesis"
+                ],
+                "limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QaFHjJ7DLBAb91Xwb2uD4s",
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "59ec13e4-38d2-4b64-83e8-e195e9073a1f",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01AoPp9wud9fScq5LHKdhdsL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 226,
+                "cache_read_input_tokens": 22702,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 226,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-25T19:55:46.527Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GddGKQGTmV3zxMSH2BdYMv",
+              "type": "tool_result",
+              "content": "Error: result (119,596 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/d0900953-8129-4d2a-95a5-2cd8b707bc5a/tool-results/mcp-agent-ml-research-read_registry-1779738946525.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/d0900953-8129-4d2a-95a5-2cd8b707bc5a/tool-results/mcp-agent-ml-research-read_registry-1779738946525.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/d0900953-8129-4d2a-95a5-2cd8b707bc5a/tool-results/mcp-agent-ml-research-read_registry-1779738946525.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QaFHjJ7DLBAb91Xwb2uD4s",
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "4d0e1147-0d4c-4365-96fd-f14f4bd30046"
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a35862df0b3058936",
+                "tool_use_id": "toolu_01QaFHjJ7DLBAb91Xwb2uD4s",
+                "description": "Running List all experiment IDs from full registry pull",
+                "usage": {
+                  "total_tokens": 24220,
+                  "tool_uses": 13,
+                  "duration_ms": 62267
+                },
+                "last_tool_name": "Bash",
+                "uuid": "999bb5b8-ca97-4556-b3fd-d86571f037c9",
+                "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a"
+              }
+            }
+          ],
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011Ek8xZLE2k2BzxS6DdLXvu",
+              "name": "Bash",
+              "input": {
+                "command": "REGISTRY_FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/d0900953-8129-4d2a-95a5-2cd8b707bc5a/tool-results/mcp-agent-ml-research-read_registry-1779738946525.txt\"\n\npython3 -c \"\nimport json\n\nwith open('$REGISTRY_FILE') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\nprint(f'Total experiments returned: {len(experiments)}')\nprint()\n# List all keys\nfor k in sorted(experiments.keys()):\n    print(k)\n\"",
+                "description": "List all experiment IDs from full registry pull"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QaFHjJ7DLBAb91Xwb2uD4s",
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "7ffca64d-6b65-495e-aefe-dc5f627e982a",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01XpP3LUx8fuTkYdLBZumcxF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 649,
+                "cache_read_input_tokens": 22928,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 649,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-25T19:55:50.775Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011Ek8xZLE2k2BzxS6DdLXvu",
+              "type": "tool_result",
+              "content": "Total experiments returned: 176\n\n7b-cross-transfer\narxiv_multi_source\ncode_domain_mistral\ncode_domain_olmo\ncode_domain_qwen7b\ndeberta_filter_deberta_binary\ndeberta_filter_deberta_graduated\ndeberta_filter_no_filter\ndeberta_filter_obd_binary\ndeberta_filtering_predict\nexp-008-retrain-chain\nexp-014\nexp_001_pythia_depth\nexp_002_olmo_depth\nexp_003_decoding_ablation\nexp_004_7b_crossscale\nexp_005_degradation\nexp_006_graduated_filtering\nexp_007_bootstrap_ci\nexp_008_retrain_chain\nexp_008_retrain_chain_v2\nexp_009_dose_10pct\nexp_009_dose_10pct_v2\nexp_009_dose_10pct_v3\nexp_009_dose_30pct\nexp_009_dose_30pct_v2\nexp_009_dose_30pct_v3\nexp_009_dose_50pct\nexp_009_dose_50pct_v2\nexp_009_dose_50pct_v3\nexp_009_dose_response\nexp_010_ordinal_baseline\nexp_011_llm_zeroshot\nexp_012_binary_confidence\nexp_013_cross_transfer\nexp_014_independent_metrics\nexp_014_naturalistic\nexp_014_naturalistic_v2\nexp_015_neural_probe\nexp_016_base_vs_instruct\nexp_017_qwen_continuation\nexp_018_llama8b_depth\nexp_019_mistral7b_depth\nexp_019b_mistral_cross_scorer\nexp_020_pythia_decoding\nexp_021_length_ablation\nexp_022_cross_scorer_matrix\nexp_023_domain_ablation\nexp_024_arxiv_domain\nexp_025_pythia_arxiv\nexp_025_pythia_filtering\nexp_026_arxiv_filtering\nexp_026_feature_stability\nexp_026_feature_stability_v2\nexp_027\nexp_027_latex_ablation\nexp_027_retrain_bootstrap\nexp_028_power_curve\nexp_028_subsampling_power\nexp_14b_c4\nexp_32b_c4\nexp_32b_c4_6class\nexp_7b_scorer_ablation\nexp_7b_scorer_arxiv\nexp_A_alt_scorer\nexp_B_14d_ablation\nexp_C_permutation_10k\nexp_D_obd_n500\nexp_E_paired_stats\nexp_arXiv_llama8b\nexp_arXiv_llama8b_crossscorer\nexp_arXiv_mistral7b\nexp_arXiv_mistral7b_crossscorer\nexp_arXiv_olmo\nexp_arXiv_qwen1b5_crossscorer\nexp_arXiv_qwen7b\nexp_arXiv_qwen7b_crossscorer\nexp_bootstrap_10k\nexp_changepoint_kstar\nexp_code_llama8b\nexp_code_mistral7b\nexp_code_multi_source\nexp_code_pythia1b4\nexp_code_qwen1b5\nexp_code_qwen1b5_pythia_scorer\nexp_code_qwen7b\nexp_contamination_rate_sweep\nexp_cross_transfer_llama8b_to_qwen7b\nexp_cross_transfer_llama8b_to_qwen7b_v2\nexp_cross_transfer_qwen7b_to_llama8b\nexp_deberta_arxiv_qwen1b5\nexp_deberta_c4\nexp_deberta_c4_1b5\nexp_deberta_c4_1b5_pythia\nexp_deberta_c4_1b5_qwen_cont\nexp_deberta_code_qwen1b5\nexp_deberta_cross_transfer_gpu1\nexp_deberta_cross_transfer_gpu2\nexp_deberta_cross_transfer_gpu3\nexp_deberta_cross_transfer_wiki\nexp_deberta_filtering_comparison\nexp_deberta_upperbound\nexp_expanded_downstream_eval\nexp_gemma27b_c4\nexp_gemma2b_10k\nexp_gemma2b_depth\nexp_kstar_theta\nexp_llama8b_10k\nexp_multi_source_arxiv\nexp_multi_source_detection\nexp_olmo1b_10k\nexp_olmo1b_c4_rerun\nexp_olmo_retrain_chain\nexp_olmo_retrain_v2\nexp_olmo_retrain_v3\nexp_pythia14b_10k\nexp_pythia14b_c4_10k\nexp_pythia14b_c4_rerun\nexp_pythia69b_c4_depth_chain\nexp_pythia69b_c4_depth_chain_v2\nexp_pythia69b_c4_depth_chain_v3\nexp_pythia69b_c4_nuc\nexp_pythia_retrain_depth7\nexp_qwen_cont_10k\nexp_qwen_retrain_chain\nexp_qwen_retrain_depth7\nexp_wiki_llama8b\nexp_wiki_mistral7b\nexp_wiki_multi_source\nexp_wiki_olmo\nexp_wiki_olmo_v2\nexp_wiki_pythia\nexp_wiki_pythia_v2\nexp_wiki_qwen7b\nexp_wiki_scorer_confound\nexp_wiki_scorer_confound_1b5\ngemma27b_cross_transfer\ngemma27b_filtering\ngsm8k-serial-rerun\ngsm8k_patch_bo_s0\ngsm8k_patch_grad_s0\ngsm8k_patch_nf_s0\nmvp_pilot_sat_v1\nolmo_arxiv_cross_scorer\nolmo_c4_cross_scorer\nruntime_benchmark\nseed2_binary_ours\nseed2_graduated\nseed2_no_filter\nseed_gemma27b_c4_s42\nseed_pythia14b_wiki_s123\nseed_qwen15b_c4_s123\nseed_qwen15b_wiki_s123\nsweep_eval_r10_bin\nsweep_eval_r10_binary\nsweep_eval_r10_grad\nsweep_eval_r10_graduated\nsweep_eval_r10_nf\nsweep_eval_r10_nf_v2\nsweep_eval_r10_nofilter\nsweep_eval_r30_nf\nsweep_eval_r30_nofilter\nsweep_r100_binary\nsweep_r100_graduated\nsweep_r100_nf\nsweep_r10_binary\nsweep_r10_graduated\nsweep_r10_nofilter\nsweep_r30_binary\nsweep_r30_graduated\nsweep_r30_nofilter\nsweep_r50_binary\nsweep_r50_graduated\nsweep_r50_nf\nwiki_domain_llama\nwiki_domain_mistral",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QaFHjJ7DLBAb91Xwb2uD4s",
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "4b24d84f-b5dd-4cb1-bac3-8b72669a99bd"
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a35862df0b3058936",
+                "tool_use_id": "toolu_01QaFHjJ7DLBAb91Xwb2uD4s",
+                "description": "Running Extract full data for all 10 target experiments",
+                "usage": {
+                  "total_tokens": 26267,
+                  "tool_uses": 14,
+                  "duration_ms": 69488
+                },
+                "last_tool_name": "Bash",
+                "uuid": "6f8032e4-ce8a-4748-bc3f-d8acbdb56d24",
+                "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a"
+              }
+            }
+          ],
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CgRVgzEJBgmBCCt1tayxUm",
+              "name": "Bash",
+              "input": {
+                "command": "REGISTRY_FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/d0900953-8129-4d2a-95a5-2cd8b707bc5a/tool-results/mcp-agent-ml-research-read_registry-1779738946525.txt\"\n\npython3 -c \"\nimport json\n\nwith open('$REGISTRY_FILE') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\ntargets = [\n    'exp_A_alt_scorer',\n    'exp_025_pythia_arxiv',\n    'exp_019b_mistral_cross_scorer',\n    'exp_pythia69b_c4_depth_chain_v3',\n    'exp_pythia69b_c4_nuc',\n    'exp_013_cross_transfer',\n    'gemma27b_cross_transfer',\n    'exp_wiki_olmo_v2',\n    'exp_wiki_pythia_v2',\n    'exp_gemma2b_10k',\n]\n\nfor t in targets:\n    if t in experiments:\n        print(f'=== {t} ===')\n        print(json.dumps(experiments[t], indent=2))\n        print()\n    else:\n        print(f'=== NOT FOUND: {t} ===')\n        print()\n\" 2>&1",
+                "description": "Extract full data for all 10 target experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_01QaFHjJ7DLBAb91Xwb2uD4s",
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "2aa9c230-449f-4180-b1df-b1cca31b8ff5",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01PzTE76a11DmsZvyvhmmhMe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2045,
+                "cache_read_input_tokens": 23577,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2045,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-25T19:55:58.013Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CgRVgzEJBgmBCCt1tayxUm",
+              "type": "tool_result",
+              "content": "=== exp_A_alt_scorer ===\n{\n  \"status\": \"DONE\",\n  \"hypothesis\": \"\\u66ff\\u4ee3 scorer (Pythia-1.4B, OLMo-1B) \\u8ba1\\u7b97 surprisal features \\u65f6\\uff0cK*=2 \\u662f\\u5426\\u4ecd\\u6210\\u7acb\\uff1f\\u9a8c\\u8bc1 K* \\u4e0d\\u4f9d\\u8d56 scorer-generator \\u5339\\u914d\\uff08FR-2 Critical\\uff09\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"pythia_qwen_rw\": {\n      \"k_star\": 2,\n      \"auc_0v1\": 0.9923,\n      \"auc_1v2\": 0.7012,\n      \"auc_2v3\": 0.587,\n      \"mae\": 1.006,\n      \"accuracy\": 0.417,\n      \"spearman_rho_vs_baseline\": 0.906\n    },\n    \"pythia_qwen_cont\": {\n      \"k_star\": 1,\n      \"auc_0v1\": 0.99,\n      \"auc_1v2\": 0.5923,\n      \"auc_2v3\": null,\n      \"mae\": 1.216,\n      \"accuracy\": 0.371,\n      \"spearman_rho_vs_baseline\": 0.942\n    },\n    \"olmo_qwen_rw\": {\n      \"k_star\": 2,\n      \"auc_0v1\": 0.9918,\n      \"auc_1v2\": 0.6947,\n      \"auc_2v3\": null,\n      \"mae\": 1.016,\n      \"accuracy\": 0.413,\n      \"spearman_rho_vs_baseline\": 0.92\n    },\n    \"olmo_qwen_cont\": {\n      \"k_star\": 1,\n      \"auc_0v1\": 0.989,\n      \"auc_1v2\": 0.5858,\n      \"auc_2v3\": null,\n      \"mae\": 1.229,\n      \"accuracy\": 0.368,\n      \"spearman_rho_vs_baseline\": 0.902\n    },\n    \"key_finding\": \"K* splits by generator data, not scorer: Qwen-RW\\u2192K*=2, Qwen-cont\\u2192K*=1 (cross-scorer). Feature importance \\u03c1\\u22650.90 across all 4 conditions confirms scorer independence of feature ranking.\"\n  }\n}\n\n=== exp_025_pythia_arxiv ===\n{\n  \"status\": \"DONE\",\n  \"hypothesis\": \"Domain \\u00d7 model interaction: Pythia-1.4B on arXiv data \\u7684 K* \\u662f\\u5426\\u4e0e exp-024 (Qwen on arXiv, K*=?) \\u4e00\\u81f4\\uff1f\\u9a8c\\u8bc1 arXiv domain effect \\u8de8\\u6a21\\u578b\\u4e00\\u81f4\\u6027\\uff0c\\u6392\\u9664 Qwen-specific artifact\\u3002Pythia-1.4B continuation, nucleus p=0.95 T=1.0, 2200 docs, depth 0-5, scorer=Qwen2.5-1.5B base\\u3002\",\n  \"metrics\": {\n    \"k_star\": 3,\n    \"pairwise_auc\": {\n      \"0v1\": 0.9877,\n      \"1v2\": 0.8047,\n      \"2v3\": 0.6545,\n      \"3v4\": 0.5507,\n      \"4v5\": 0.5287\n    },\n    \"pairwise_jsd\": {\n      \"0v1\": 0.171338,\n      \"1v2\": 0.057344,\n      \"2v3\": 0.019524,\n      \"3v4\": 0.009917,\n      \"4v5\": 0.008846\n    },\n    \"bootstrap_ci\": {\n      \"0v1\": {\n        \"auc\": 0.9876,\n        \"ci_lower\": 0.9851,\n        \"ci_upper\": 0.99,\n        \"perm_p\": 0.0001\n      },\n      \"1v2\": {\n        \"auc\": 0.8047,\n        \"ci_lower\": 0.7934,\n        \"ci_upper\": 0.8162,\n        \"perm_p\": 0.0001\n      },\n      \"2v3\": {\n        \"auc\": 0.6544,\n        \"ci_lower\": 0.6401,\n        \"ci_upper\": 0.6688,\n        \"perm_p\": 0.0001\n      },\n      \"3v4\": {\n        \"auc\": 0.55,\n        \"ci_lower\": 0.534,\n        \"ci_upper\": 0.5657,\n        \"perm_p\": 0.0001\n      },\n      \"4v5\": {\n        \"auc\": 0.5284,\n        \"ci_lower\": 0.5122,\n        \"ci_upper\": 0.5443,\n        \"perm_p\": 0.001\n      }\n    },\n    \"bootstrap_resamples\": 10000,\n    \"permutation_resamples\": 10000,\n    \"n_samples\": 2200,\n    \"top_features\": [\n      \"freq_entropy\",\n      \"surp_std\",\n      \"surp_mean\",\n      \"surp_d1_skew\",\n      \"surp_d1_mean\"\n    ],\n    \"ordinal\": {\n      \"MAE\": 0.8518,\n      \"Accuracy\": 0.4545\n    },\n    \"key_finding\": \"Pythia-1.4B on arXiv yields K*=3, identical to exp-024 (Qwen on arXiv). 2v3 CI lower=0.6401 > \\u03b8=0.60. Domain saturation depth is model-invariant for arXiv.\"\n  },\n  \"conclusion\": \"success\"\n}\n\n=== exp_019b_mistral_cross_scorer ===\n{\n  \"status\": \"DONE\",\n  \"hypothesis\": \"\\u6392\\u9664 self-scorer \\u56e0\\u7d20\\uff1aMistral-7B depth chain \\u7528 Qwen2.5-1.5B-base \\u8bc4\\u5206\\u540e K* \\u662f\\u5426=2\\uff1f\\u5982\\u679c K*=2 \\u5219 exp-019 \\u7684 K*=1 \\u662f self-scorer artifact\\uff1b\\u5982\\u679c K*=1 \\u5219\\u662f Mistral \\u751f\\u6210\\u6587\\u672c\\u7684\\u56fa\\u6709\\u7279\\u6027\\u3002\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"k_star\": 1,\n    \"pairwise_auc\": {\n      \"0v1\": 0.9209,\n      \"1v2\": 0.5695,\n      \"2v3\": 0.5335,\n      \"3v4\": 0.514,\n      \"4v5\": 0.5184\n    },\n    \"bootstrap_ci\": {\n      \"0v1\": {\n        \"mean\": 0.9209,\n        \"ci_lower\": 0.9189,\n        \"ci_upper\": 0.9229,\n        \"pass_060\": true\n      },\n      \"1v2\": {\n        \"mean\": 0.5696,\n        \"ci_lower\": 0.5645,\n        \"ci_upper\": 0.5746,\n        \"pass_060\": false\n      },\n      \"2v3\": {\n        \"mean\": 0.5335,\n        \"ci_lower\": 0.5283,\n        \"ci_upper\": 0.5382,\n        \"pass_060\": false\n      },\n      \"3v4\": {\n        \"mean\": 0.514,\n        \"ci_lower\": 0.5063,\n        \"ci_upper\": 0.5213,\n        \"pass_060\": false\n      },\n      \"4v5\": {\n        \"mean\": 0.5183,\n        \"ci_lower\": 0.5128,\n        \"ci_upper\": 0.5244,\n        \"pass_060\": false\n      }\n    },\n    \"jsd\": {\n      \"0v1\": 0.08355,\n      \"1v2\": 0.007642,\n      \"2v3\": 0.004752,\n      \"3v4\": 0.004255,\n      \"4v5\": 0.003758\n    },\n    \"ordinal_mae\": 1.3737,\n    \"ordinal_accuracy\": 0.3179,\n    \"top3_features\": [\n      \"freq_entropy\",\n      \"surp_d1_skew\",\n      \"surp_d1_mean\"\n    ],\n    \"key_finding\": \"Cross-scorer (Qwen-1.5B scoring Mistral text) confirms K*=1. 1v2 AUC=0.5695 (self-scorer was 0.5935) \\u2014 cross-scorer LOWER, not higher. Mistral K*=1 is genuine (inherent to Mistral generations), NOT a self-scorer artifact.\"\n  }\n}\n\n=== exp_pythia69b_c4_depth_chain_v3 ===\n{\n  \"status\": \"DONE\",\n  \"hypothesis\": \"Pythia-6.9B \\u5728 C4 \\u4e0a\\u7684 K*=2\\uff0c\\u4e0e\\u5176\\u4ed6 \\u22657B \\u6a21\\u578b\\u4e00\\u81f4\\uff0c\\u9a8c\\u8bc1 K*=2 \\u4e0d\\u4f9d\\u8d56 Qwen \\u5bb6\\u65cf\\u3002\\u4f7f\\u7528 Qwen-1.5B scorer\\uff08D095\\uff09\\u3002\",\n  \"conclusion\": \"negative\",\n  \"metrics\": {\n    \"0v1_auc\": 0.9941,\n    \"1v2_auc\": 0.8542,\n    \"2v3_auc\": 0.5373,\n    \"3v4_auc\": 0.5339,\n    \"4v5_auc\": 0.5211,\n    \"kstar_at_060\": 2,\n    \"0v1_jsd\": 0.53459,\n    \"1v2_jsd\": 0.06438,\n    \"2v3_jsd\": 0.00502,\n    \"empty_texts_total\": 144,\n    \"features_rows\": 30000\n  }\n}\n\n=== exp_pythia69b_c4_nuc ===\n{\n  \"status\": \"DONE\",\n  \"hypothesis\": \"Pythia-6.9B \\u5728 C4 \\u4e0a\\u4f7f\\u7528 nucleus sampling\\uff08\\u975e greedy\\uff09\\u7684 K*=2\\uff0c\\u4e0e\\u5176\\u4ed6 continuation \\u6a21\\u578b\\u7684 decoding \\u7b56\\u7565\\u5bf9\\u9f50\\uff0c\\u6d88\\u9664 greedy \\u9ad8\\u4f30 confound\\u3002\\u751f\\u6210\\u9636\\u6bb5\\u81ea\\u8bc4\\uff0c\\u5b8c\\u6210\\u540e\\u7528 Qwen-1.5B scorer \\u91cd\\u8dd1 features+OBD\\uff08\\u65b9\\u6848 2\\uff09\\u3002\",\n  \"conclusion\": \"negative\",\n  \"metrics\": {\n    \"K_star\": 1,\n    \"pairwise_auc\": {\n      \"0v1\": 0.9599,\n      \"1v2\": 0.5955,\n      \"2v3\": 0.5298,\n      \"3v4\": 0.5135\n    },\n    \"scorer\": \"Qwen-1.5B\",\n    \"theta\": 0.6,\n    \"note\": \"1v2 AUC borderline (0.0045 below threshold)\"\n  }\n}\n\n=== exp_013_cross_transfer ===\n{\n  \"status\": \"DONE\",\n  \"hypothesis\": \"Depth signal \\u662f\\u6587\\u672c\\u56fa\\u6709\\u5c5e\\u6027\\u8fd8\\u662f model self-familiarity artifact\\uff1f4\\u00d74 cross-model transfer matrix \\u6d4b\\u8bd5\\u5206\\u7c7b\\u5668\\u8de8\\u6a21\\u578b\\u6cdb\\u5316\\u80fd\\u529b\",\n  \"metrics\": {\n    \"accuracy_matrix\": {\n      \"Qwen_rw\\u2192Qwen_rw\": 0.4229,\n      \"Qwen_rw\\u2192Pythia\": 0.259,\n      \"Qwen_rw\\u2192OLMo\": 0.2653,\n      \"Qwen_rw\\u2192Qwen_cont\": 0.3466,\n      \"Pythia\\u2192Qwen_rw\": 0.2718,\n      \"Pythia\\u2192Pythia\": 0.3856,\n      \"Pythia\\u2192OLMo\": 0.3531,\n      \"Pythia\\u2192Qwen_cont\": 0.3287,\n      \"OLMo\\u2192Qwen_rw\": 0.2768,\n      \"OLMo\\u2192Pythia\": 0.345,\n      \"OLMo\\u2192OLMo\": 0.3822,\n      \"OLMo\\u2192Qwen_cont\": 0.3244,\n      \"Qwen_cont\\u2192Qwen_rw\": 0.344,\n      \"Qwen_cont\\u2192Pythia\": 0.3284,\n      \"Qwen_cont\\u2192OLMo\": 0.3112,\n      \"Qwen_cont\\u2192Qwen_cont\": 0.3875\n    },\n    \"transfer_retention_accuracy\": {\n      \"Pythia\\u2194OLMo\": \"91-92%\",\n      \"Qwen_rw\\u2192Pythia/OLMo\": \"61-63%\",\n      \"Qwen_cont\\u2194Pythia\": \"83-85%\",\n      \"Qwen_cont\\u2194OLMo\": \"80-85%\"\n    },\n    \"transfer_retention_tau\": {\n      \"Pythia\\u2194OLMo\": \"85-86%\",\n      \"Qwen_rw\\u2192Pythia/OLMo\": \"45-50%\",\n      \"Qwen_cont\\u2194others\": \"68-83%\"\n    },\n    \"mean_pw_auc_matrix\": {\n      \"within_avg\": 0.6099,\n      \"cross_avg\": 0.5905,\n      \"0v1_cross_all_above\": 0.96\n    },\n    \"key_finding\": \"depth signal \\u2248 70-85% text-intrinsic + 15-30% model self-familiarity. Binary contamination detection (0v1) highly transferable (>0.96 AUC). Fine-grained depth transfer depends on model family similarity. Qwen-rewrite overfits style features; Qwen-cont transfers much better.\"\n  },\n  \"conclusion\": \"success\"\n}\n\n=== gemma27b_cross_transfer ===\n{\n  \"status\": \"DONE\",\n  \"hypothesis\": \"Cross-model transfer retention across 18x scale gap (27B to 1.5B) will maintain 80%+ retention, confirming depth signal is text-intrinsic and scale-invariant. OBD classifiers trained on 27B-generated text should generalize to smaller model outputs without retraining.\",\n  \"metrics\": {\n    \"transfer_matrix_accuracy\": {\n      \"Gemma27B\\u2192Gemma27B\": 0.3106,\n      \"Gemma27B\\u2192LLaMA8B\": 0.3218,\n      \"Gemma27B\\u2192Qwen1.5B\": 0.3331,\n      \"Gemma27B\\u2192Pythia\": 0.3214,\n      \"Gemma27B\\u2192OLMo\": 0.2892,\n      \"LLaMA8B\\u2192Gemma27B\": 0.3048,\n      \"Qwen1.5B\\u2192Gemma27B\": 0.2693,\n      \"Pythia\\u2192Gemma27B\": 0.286,\n      \"OLMo\\u2192Gemma27B\": 0.2457\n    },\n    \"transfer_matrix_mean_auc\": {\n      \"Gemma27B\\u2192Gemma27B\": 0.6019,\n      \"Gemma27B\\u2192LLaMA8B\": 0.6147,\n      \"Gemma27B\\u2192Qwen1.5B\": 0.6274,\n      \"Gemma27B\\u2192Pythia\": 0.6166,\n      \"Gemma27B\\u2192OLMo\": 0.5934,\n      \"LLaMA8B\\u2192Gemma27B\": 0.6037,\n      \"Qwen1.5B\\u2192Gemma27B\": 0.5949,\n      \"Pythia\\u2192Gemma27B\": 0.5973,\n      \"OLMo\\u2192Gemma27B\": 0.5455\n    },\n    \"retention_27b_to_small\": {\n      \"avg_acc\": \"101.3%\",\n      \"LLaMA8B\": \"103.6%\",\n      \"Qwen1.5B\": \"107.2%\",\n      \"Pythia\": \"103.5%\",\n      \"OLMo\": \"93.1%\"\n    },\n    \"retention_small_to_27b\": {\n      \"avg_acc\": \"76.5%\",\n      \"LLaMA8B\": \"92.1%\",\n      \"Qwen1.5B\": \"71.3%\",\n      \"Pythia\": \"80.9%\",\n      \"OLMo\": \"77.3%\"\n    },\n    \"retention_1.5b_inter_model\": \"88.9%\",\n    \"result_path\": \"results/gemma27b_cross_transfer/cross_transfer_gemma27b_matrix.json\",\n    \"key_finding\": \"27B\\u2192small retention 101.3% (>100%!): classifier trained on 27B data works BETTER on smaller models. 27B learns universal depth features. Small\\u219227B only 76.5% due to weaker depth signal in 27B text. Strong asymmetry confirms depth signal is text-intrinsic but scale-modulated.\"\n  },\n  \"conclusion\": \"success\"\n}\n\n=== exp_wiki_olmo_v2 ===\n{\n  \"status\": \"DONE\",\n  \"hypothesis\": \"Cross-model Wikipedia K* validation (v2 fix): OLMo-1B continuation on Wikipedia \\u7684 K* \\u662f\\u5426 = 2\\uff1f\\u4f7f\\u7528\\u72ec\\u7acb data_dir \\u907f\\u514d v1 \\u7684 data reuse bug\\uff0c\\u8ba9 pipeline \\u7528 OLMo \\u91cd\\u65b0\\u751f\\u6210 depth 1-5\\u30025000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\",\n  \"conclusion\": \"negative\",\n  \"metrics\": {\n    \"K_star\": 1,\n    \"auc_0v1\": 0.9932,\n    \"auc_1v2\": 0.4986,\n    \"auc_2v3\": 0.5012,\n    \"auc_3v4\": 0.5057,\n    \"auc_4v5\": 0.5009,\n    \"jsd_0v1\": 0.1688,\n    \"ordinal_acc\": 0.3227\n  }\n}\n\n=== exp_wiki_pythia_v2 ===\n{\n  \"status\": \"DONE\",\n  \"hypothesis\": \"Cross-model Wikipedia K* validation (v2 fix): Pythia-1.4B continuation on Wikipedia \\u7684 K* \\u662f\\u5426 = 2\\uff1f\\u4f7f\\u7528\\u72ec\\u7acb data_dir \\u907f\\u514d v1 \\u7684 data reuse bug\\uff0c\\u8ba9 pipeline \\u7528 Pythia \\u91cd\\u65b0\\u751f\\u6210 depth 1-5\\u30025000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\",\n  \"conclusion\": \"negative\",\n  \"metrics\": {\n    \"K_star\": 1,\n    \"auc_0v1\": 0.975,\n    \"auc_1v2\": 0.5846,\n    \"auc_2v3\": 0.5445,\n    \"auc_3v4\": 0.5205,\n    \"auc_4v5\": 0.5168,\n    \"jsd_0v1\": 0.080065,\n    \"jsd_1v2\": 0.007773,\n    \"ordinal_acc\": 0.3503\n  }\n}\n\n=== exp_gemma2b_10k ===\n{\n  \"status\": \"DONE\",\n  \"hypothesis\": \"Gemma-2-2B 10K sample-size robustness: 5K borderline K*=1 (1v2 AUC=0.5981, just below \\u03b8=0.60) should remain K*=1 at 10K, confirming between-sample stability for borderline verdicts. Adds a K*=1 datapoint to the 10K robustness table (currently only K*=2 configs).\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"K_star_self\": 2,\n    \"K_star_qwen\": 2,\n    \"scorer\": \"Qwen2.5-1.5B-Instruct (cross-scored)\",\n    \"pairwise_auc_self\": {\n      \"0v1\": 0.9817,\n      \"1v2\": 0.643,\n      \"2v3\": 0.555,\n      \"3v4\": 0.5173,\n      \"4v5\": 0.5101\n    },\n    \"pairwise_auc_qwen\": {\n      \"0v1\": 0.9533,\n      \"1v2\": 0.6099,\n      \"2v3\": 0.5409,\n      \"3v4\": 0.5174,\n      \"4v5\": 0.5158\n    },\n    \"bootstrap_ci_1v2\": {\n      \"auc_oof\": 0.6099,\n      \"boot_std\": 0.0034,\n      \"ci_95\": [\n        0.6031,\n        0.6167\n      ],\n      \"ci_995_bonferroni_pct\": [\n        0.5998,\n        0.6192\n      ],\n      \"ci_995_bonferroni_norm\": [\n        0.6003,\n        0.6196\n      ],\n      \"perm_p\": 0.0001,\n      \"bonferroni_pass_pct\": false,\n      \"bonferroni_pass_norm\": true\n    },\n    \"note\": \"5K K*=1 (1v2=0.5981), 10K Qwen cross-scored K*=2 (1v2=0.6099). Bonferroni split: percentile FAIL (0.5998), normal PASS (0.6003). Extremely borderline.\"\n  }\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_01QaFHjJ7DLBAb91Xwb2uD4s",
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "294215e0-ca14-4d59-9463-8e2c19f5c6e5"
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a35862df0b3058936",
+                "tool_use_id": "toolu_01QaFHjJ7DLBAb91Xwb2uD4s",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Query remaining registry gaps",
+                "usage": {
+                  "total_tokens": 33161,
+                  "tool_uses": 14,
+                  "duration_ms": 128721
+                },
+                "uuid": "74abadc2-8fb6-4dcb-8aca-b06363f2b1b8",
+                "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a"
+              }
+            }
+          ],
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-25T19:56:57.152Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QaFHjJ7DLBAb91Xwb2uD4s",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "All 10 experiments found. Here are the complete results:\n\n---\n\n## exp_A_alt_scorer — Cross-scorer results for Qwen-RW and Qwen-cont\n\n**Status:** DONE | **Conclusion:** success\n\nTests whether K* holds with alternative scorers (Pythia-1.4B, OLMo-1B) instead of the default scorer.\n\n| Condition | K* | AUC 0v1 | AUC 1v2 | AUC 2v3 | MAE | Accuracy | Spearman ρ vs baseline |\n|-----------|-----|---------|---------|---------|-----|----------|------------------------|\n| Pythia scorer + Qwen-RW | 2 | 0.9923 | 0.7012 | 0.5870 | 1.006 | 0.417 | 0.906 |\n| Pythia scorer + Qwen-cont | 1 | 0.9900 | 0.5923 | — | 1.216 | 0.371 | 0.942 |\n| OLMo scorer + Qwen-RW | 2 | 0.9918 | 0.6947 | — | 1.016 | 0.413 | 0.920 |\n| OLMo scorer + Qwen-cont | 1 | 0.9890 | 0.5858 | — | 1.229 | 0.368 | 0.902 |\n\n**Key finding:** K* splits by generator data, not scorer: Qwen-RW → K*=2, Qwen-cont → K*=1 (cross-scorer). Feature importance ρ ≥ 0.90 across all 4 conditions confirms scorer independence of feature ranking.\n\n---\n\n## exp_025_pythia_arxiv — Pythia arXiv results\n\n**Status:** DONE | **Conclusion:** success | n=2200, scorer=Qwen2.5-1.5B base\n\n| Pair | AUC | JSD | CI lower | CI upper | perm_p |\n|------|-----|-----|----------|----------|--------|\n| 0v1 | 0.9877 | 0.1713 | 0.9851 | 0.9900 | 0.0001 |\n| 1v2 | 0.8047 | 0.0573 | 0.7934 | 0.8162 | 0.0001 |\n| 2v3 | 0.6545 | 0.0195 | 0.6401 | 0.6688 | 0.0001 |\n| 3v4 | 0.5507 | 0.0099 | 0.5340 | 0.5657 | 0.0001 |\n| 4v5 | 0.5287 | 0.0088 | 0.5122 | 0.5443 | 0.001 |\n\n**K* = 3** | Ordinal MAE = 0.8518 | Ordinal Accuracy = 0.4545 | Bootstrap resamples = 10,000\n\nTop features: `freq_entropy`, `surp_std`, `surp_mean`, `surp_d1_skew`, `surp_d1_mean`\n\n**Key finding:** Pythia-1.4B on arXiv yields K*=3, identical to exp-024 (Qwen on arXiv). 2v3 CI lower=0.6401 > θ=0.60. Domain saturation depth is model-invariant for arXiv.\n\n---\n\n## exp_019b_mistral_cross_scorer — Mistral cross-scorer C4\n\n**Status:** DONE | **Conclusion:** success\n\nCross-scorer test: Qwen2.5-1.5B-base scoring Mistral-7B depth chain text on C4.\n\n| Pair | AUC | JSD | CI lower | CI upper | pass θ=0.60 |\n|------|-----|-----|----------|----------|-------------|\n| 0v1 | 0.9209 | 0.08355 | 0.9189 | 0.9229 | true |\n| 1v2 | 0.5695 | 0.00764 | 0.5645 | 0.5746 | false |\n| 2v3 | 0.5335 | 0.00475 | 0.5283 | 0.5382 | false |\n| 3v4 | 0.5140 | 0.00426 | 0.5063 | 0.5213 | false |\n| 4v5 | 0.5184 | 0.00376 | 0.5128 | 0.5244 | false |\n\n**K* = 1** | Ordinal MAE = 1.3737 | Ordinal Accuracy = 0.3179\n\nTop 3 features: `freq_entropy`, `surp_d1_skew`, `surp_d1_mean`\n\n**Key finding:** Cross-scorer confirms K*=1. 1v2 AUC=0.5695 (self-scorer was 0.5935) — cross-scorer is lower, not higher. Mistral K*=1 is genuine (inherent to Mistral generations), NOT a self-scorer artifact.\n\n---\n\n## exp_pythia69b_c4_depth_chain_v3 — Pythia 6.9B v3\n\n**Status:** DONE | **Conclusion:** negative (labeled negative but K*=2 was achieved)\n\nScorer = Qwen-1.5B (D095), features_rows = 30,000, empty_texts_total = 144.\n\n| Pair | AUC | JSD |\n|------|-----|-----|\n| 0v1 | 0.9941 | 0.53459 |\n| 1v2 | 0.8542 | 0.06438 |\n| 2v3 | 0.5373 | 0.00502 |\n| 3v4 | 0.5339 | — |\n| 4v5 | 0.5211 | — |\n\n**K* = 2** (at θ=0.60)\n\nNote: conclusion labeled \"negative\" — the hypothesis was that K*=2 would confirm ≥7B model pattern; result achieved K*=2, so the \"negative\" label likely reflects a confound concern (144 empty texts) rather than K* failure.\n\n---\n\n## exp_pythia69b_c4_nuc — Pythia 6.9B nucleus sampling\n\n**Status:** DONE | **Conclusion:** negative\n\nNucleus sampling (non-greedy) test for Pythia-6.9B on C4. Scorer = Qwen-1.5B.\n\n| Pair | AUC |\n|------|-----|\n| 0v1 | 0.9599 |\n| 1v2 | 0.5955 |\n| 2v3 | 0.5298 |\n| 3v4 | 0.5135 |\n\n**K* = 1** | 1v2 AUC = 0.5955, which is 0.0045 below θ=0.60 — borderline miss.\n\n---\n\n## exp_013_cross_transfer — Transfer matrix results\n\n**Status:** DONE | **Conclusion:** success\n\n4×4 cross-model transfer matrix (Qwen-RW, Pythia, OLMo, Qwen-cont), C4 domain.\n\n**Accuracy matrix:**\n\n| Train → Test | Qwen-RW | Pythia | OLMo | Qwen-cont |\n|---|---|---|---|---|\n| Qwen-RW | 0.4229 | 0.2590 | 0.2653 | 0.3466 |\n| Pythia | 0.2718 | 0.3856 | 0.3531 | 0.3287 |\n| OLMo | 0.2768 | 0.3450 | 0.3822 | 0.3244 |\n| Qwen-cont | 0.3440 | 0.3284 | 0.3112 | 0.3875 |\n\n**Transfer retention (accuracy):**\n- Pythia ↔ OLMo: 91–92%\n- Qwen-cont ↔ Pythia: 83–85%\n- Qwen-cont ↔ OLMo: 80–85%\n- Qwen-RW → Pythia/OLMo: 61–63%\n\n**Transfer retention (Kendall τ):**\n- Pythia ↔ OLMo: 85–86%\n- Qwen-cont ↔ others: 68–83%\n- Qwen-RW → Pythia/OLMo: 45–50%\n\n**Mean pairwise AUC:** within-model avg = 0.6099, cross-model avg = 0.5905; 0v1 AUC cross-model all > 0.96.\n\n**Key finding:** Depth signal ≈ 70–85% text-intrinsic + 15–30% model self-familiarity. Binary contamination detection (0v1) highly transferable (>0.96 AUC cross-model). Qwen-rewrite overfits style features; Qwen-cont transfers much better.\n\n---\n\n## gemma27b_cross_transfer — Gemma-27B transfer\n\n**Status:** DONE | **Conclusion:** success\n\n5×5 transfer matrix, 18× scale gap (27B to 1.5B), 5000 docs per pair.\n\n**Mean AUC matrix (27B as train source):**\n\n| Train → Test | AUC |\n|---|---|\n| Gemma27B → Gemma27B | 0.6019 |\n| Gemma27B → LLaMA8B | 0.6147 |\n| Gemma27B → Qwen1.5B | 0.6274 |\n| Gemma27B → Pythia | 0.6166 |\n| Gemma27B → OLMo | 0.5934 |\n| LLaMA8B → Gemma27B | 0.6037 |\n| Qwen1.5B → Gemma27B | 0.5949 |\n| Pythia → Gemma27B | 0.5973 |\n| OLMo → Gemma27B | 0.5455 |\n\n**Accuracy matrix (same ordering):** 0.3106 / 0.3218 / 0.3331 / 0.3214 / 0.2892 / 0.3048 / 0.2693 / 0.2860 / 0.2457\n\n**Retention rates (27B → small):** avg 101.3% | LLaMA8B 103.6% | Qwen1.5B 107.2% | Pythia 103.5% | OLMo 93.1%\n\n**Retention rates (small → 27B):** avg 76.5% | LLaMA8B 92.1% | Qwen1.5B 71.3% | Pythia 80.9% | OLMo 77.3%\n\n**Inter-model retention (Qwen1.5B):** 88.9%\n\n**Key finding:** 27B→small retention >100% — classifier trained on 27B data works better on smaller models. Small→27B only 76.5% due to weaker depth signal in 27B text. Strong asymmetry confirms depth signal is text-intrinsic but scale-modulated.\n\n---\n\n## exp_wiki_olmo_v2 — OLMo Wiki (v2 bug fix)\n\n**Status:** DONE | **Conclusion:** negative\n\nOLMo-1B continuation on Wikipedia, 5000 docs, depth 0–5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. v2 fixes data reuse bug from v1.\n\n| Pair | AUC | JSD |\n|------|-----|-----|\n| 0v1 | 0.9932 | 0.1688 |\n| 1v2 | 0.4986 | — |\n| 2v3 | 0.5012 | — |\n| 3v4 | 0.5057 | — |\n| 4v5 | 0.5009 | — |\n\n**K* = 1** | Ordinal accuracy = 0.3227\n\nStriking: 1v2 AUC = 0.4986 (below chance). Depth signal collapses entirely after depth 1 for OLMo on Wikipedia.\n\n---\n\n## exp_wiki_pythia_v2 — Pythia Wiki (v2 bug fix)\n\n**Status:** DONE | **Conclusion:** negative\n\nPythia-1.4B continuation on Wikipedia, 5000 docs, depth 0–5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. v2 fixes data reuse bug from v1.\n\n| Pair | AUC | JSD |\n|------|-----|-----|\n| 0v1 | 0.9750 | 0.08007 |\n| 1v2 | 0.5846 | 0.00777 |\n| 2v3 | 0.5445 | — |\n| 3v4 | 0.5205 | — |\n| 4v5 | 0.5168 | — |\n\n**K* = 1** | Ordinal accuracy = 0.3503\n\n1v2 AUC = 0.5846, below θ=0.60. Wikipedia domain yields K*=1 for both OLMo and Pythia.\n\n---\n\n## exp_gemma2b_10k — Gemma-2B 10K\n\n**Status:** DONE | **Conclusion:** success\n\nSample-size robustness test: 5K was borderline K*=1 (1v2=0.5981); 10K result with cross-scorer (Qwen2.5-1.5B-Instruct).\n\n| Pair | AUC (self) | AUC (Qwen cross) |\n|------|-----------|-----------------|\n| 0v1 | 0.9817 | 0.9533 |\n| 1v2 | 0.6430 | 0.6099 |\n| 2v3 | 0.5550 | 0.5409 |\n| 3v4 | 0.5173 | 0.5174 |\n| 4v5 | 0.5101 | 0.5158 |\n\n**K* (self) = 2 | K* (Qwen cross) = 2**\n\n**Bootstrap CI for 1v2 (Qwen cross-scorer, n=10K):**\n- AUC OOF = 0.6099 | boot std = 0.0034\n- 95% CI: [0.6031, 0.6167]\n- 99.5% Bonferroni percentile CI: [0.5998, 0.6192] — **FAIL** (lower bound < θ=0.60)\n- 99.5% Bonferroni normal CI: [0.6003, 0.6196] — **PASS**\n- perm_p = 0.0001\n\n**Note:** Extremely borderline. 5K gave K*=1 (1v2=0.5981), 10K gives K*=2 (1v2=0.6099). Bonferroni split between percentile and normal methods."
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: a35862df0b3058936 (use SendMessage with to: 'a35862df0b3058936' to continue this agent)\n<usage>total_tokens: 36470\ntool_uses: 14\nduration_ms: 128725</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "897271c3-b2ec-4f30-b637-a13ba8a0ecbe",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "Query the gen-depth-contamination project registry for these specific experiments. Use mcp__agent-ml-research__read_registry with project=\"gen-depth-contamination\", fields=[\"*\"], and pull in batches to find:\n\n1. exp_A_alt_scorer — cross-scorer results for Qwen-RW and Qwen-cont\n2. exp_025_pythia_arxiv — Pythia arXiv results  \n3. exp_019b_mistral_cross_scorer — Mistral cross-scorer C4\n4. exp_pythia69b_c4_depth_chain_v3 — Pythia 6.9B v3\n5. exp_pythia69b_c4_nuc — Pythia 6.9B nucleus\n6. exp_013_cross_transfer — transfer matrix results\n7. gemma27b_cross_transfer — Gemma-27B transfer\n8. exp_wiki_olmo_v2 — OLMo Wiki\n9. exp_wiki_pythia_v2 — Pythia Wiki\n10. exp_gemma2b_10k — Gemma-2B 10K\n\nReport ALL metrics (especially pairwise AUC, K*, transfer retention rates, bootstrap CIs).",
+              "agentId": "a35862df0b3058936",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "All 10 experiments found. Here are the complete results:\n\n---\n\n## exp_A_alt_scorer — Cross-scorer results for Qwen-RW and Qwen-cont\n\n**Status:** DONE | **Conclusion:** success\n\nTests whether K* holds with alternative scorers (Pythia-1.4B, OLMo-1B) instead of the default scorer.\n\n| Condition | K* | AUC 0v1 | AUC 1v2 | AUC 2v3 | MAE | Accuracy | Spearman ρ vs baseline |\n|-----------|-----|---------|---------|---------|-----|----------|------------------------|\n| Pythia scorer + Qwen-RW | 2 | 0.9923 | 0.7012 | 0.5870 | 1.006 | 0.417 | 0.906 |\n| Pythia scorer + Qwen-cont | 1 | 0.9900 | 0.5923 | — | 1.216 | 0.371 | 0.942 |\n| OLMo scorer + Qwen-RW | 2 | 0.9918 | 0.6947 | — | 1.016 | 0.413 | 0.920 |\n| OLMo scorer + Qwen-cont | 1 | 0.9890 | 0.5858 | — | 1.229 | 0.368 | 0.902 |\n\n**Key finding:** K* splits by generator data, not scorer: Qwen-RW → K*=2, Qwen-cont → K*=1 (cross-scorer). Feature importance ρ ≥ 0.90 across all 4 conditions confirms scorer independence of feature ranking.\n\n---\n\n## exp_025_pythia_arxiv — Pythia arXiv results\n\n**Status:** DONE | **Conclusion:** success | n=2200, scorer=Qwen2.5-1.5B base\n\n| Pair | AUC | JSD | CI lower | CI upper | perm_p |\n|------|-----|-----|----------|----------|--------|\n| 0v1 | 0.9877 | 0.1713 | 0.9851 | 0.9900 | 0.0001 |\n| 1v2 | 0.8047 | 0.0573 | 0.7934 | 0.8162 | 0.0001 |\n| 2v3 | 0.6545 | 0.0195 | 0.6401 | 0.6688 | 0.0001 |\n| 3v4 | 0.5507 | 0.0099 | 0.5340 | 0.5657 | 0.0001 |\n| 4v5 | 0.5287 | 0.0088 | 0.5122 | 0.5443 | 0.001 |\n\n**K* = 3** | Ordinal MAE = 0.8518 | Ordinal Accuracy = 0.4545 | Bootstrap resamples = 10,000\n\nTop features: `freq_entropy`, `surp_std`, `surp_mean`, `surp_d1_skew`, `surp_d1_mean`\n\n**Key finding:** Pythia-1.4B on arXiv yields K*=3, identical to exp-024 (Qwen on arXiv). 2v3 CI lower=0.6401 > θ=0.60. Domain saturation depth is model-invariant for arXiv.\n\n---\n\n## exp_019b_mistral_cross_scorer — Mistral cross-scorer C4\n\n**Status:** DONE | **Conclusion:** success\n\nCross-scorer test: Qwen2.5-1.5B-base scoring Mistral-7B depth chain text on C4.\n\n| Pair | AUC | JSD | CI lower | CI upper | pass θ=0.60 |\n|------|-----|-----|----------|----------|-------------|\n| 0v1 | 0.9209 | 0.08355 | 0.9189 | 0.9229 | true |\n| 1v2 | 0.5695 | 0.00764 | 0.5645 | 0.5746 | false |\n| 2v3 | 0.5335 | 0.00475 | 0.5283 | 0.5382 | false |\n| 3v4 | 0.5140 | 0.00426 | 0.5063 | 0.5213 | false |\n| 4v5 | 0.5184 | 0.00376 | 0.5128 | 0.5244 | false |\n\n**K* = 1** | Ordinal MAE = 1.3737 | Ordinal Accuracy = 0.3179\n\nTop 3 features: `freq_entropy`, `surp_d1_skew`, `surp_d1_mean`\n\n**Key finding:** Cross-scorer confirms K*=1. 1v2 AUC=0.5695 (self-scorer was 0.5935) — cross-scorer is lower, not higher. Mistral K*=1 is genuine (inherent to Mistral generations), NOT a self-scorer artifact.\n\n---\n\n## exp_pythia69b_c4_depth_chain_v3 — Pythia 6.9B v3\n\n**Status:** DONE | **Conclusion:** negative (labeled negative but K*=2 was achieved)\n\nScorer = Qwen-1.5B (D095), features_rows = 30,000, empty_texts_total = 144.\n\n| Pair | AUC | JSD |\n|------|-----|-----|\n| 0v1 | 0.9941 | 0.53459 |\n| 1v2 | 0.8542 | 0.06438 |\n| 2v3 | 0.5373 | 0.00502 |\n| 3v4 | 0.5339 | — |\n| 4v5 | 0.5211 | — |\n\n**K* = 2** (at θ=0.60)\n\nNote: conclusion labeled \"negative\" — the hypothesis was that K*=2 would confirm ≥7B model pattern; result achieved K*=2, so the \"negative\" label likely reflects a confound concern (144 empty texts) rather than K* failure.\n\n---\n\n## exp_pythia69b_c4_nuc — Pythia 6.9B nucleus sampling\n\n**Status:** DONE | **Conclusion:** negative\n\nNucleus sampling (non-greedy) test for Pythia-6.9B on C4. Scorer = Qwen-1.5B.\n\n| Pair | AUC |\n|------|-----|\n| 0v1 | 0.9599 |\n| 1v2 | 0.5955 |\n| 2v3 | 0.5298 |\n| 3v4 | 0.5135 |\n\n**K* = 1** | 1v2 AUC = 0.5955, which is 0.0045 below θ=0.60 — borderline miss.\n\n---\n\n## exp_013_cross_transfer — Transfer matrix results\n\n**Status:** DONE | **Conclusion:** success\n\n4×4 cross-model transfer matrix (Qwen-RW, Pythia, OLMo, Qwen-cont), C4 domain.\n\n**Accuracy matrix:**\n\n| Train → Test | Qwen-RW | Pythia | OLMo | Qwen-cont |\n|---|---|---|---|---|\n| Qwen-RW | 0.4229 | 0.2590 | 0.2653 | 0.3466 |\n| Pythia | 0.2718 | 0.3856 | 0.3531 | 0.3287 |\n| OLMo | 0.2768 | 0.3450 | 0.3822 | 0.3244 |\n| Qwen-cont | 0.3440 | 0.3284 | 0.3112 | 0.3875 |\n\n**Transfer retention (accuracy):**\n- Pythia ↔ OLMo: 91–92%\n- Qwen-cont ↔ Pythia: 83–85%\n- Qwen-cont ↔ OLMo: 80–85%\n- Qwen-RW → Pythia/OLMo: 61–63%\n\n**Transfer retention (Kendall τ):**\n- Pythia ↔ OLMo: 85–86%\n- Qwen-cont ↔ others: 68–83%\n- Qwen-RW → Pythia/OLMo: 45–50%\n\n**Mean pairwise AUC:** within-model avg = 0.6099, cross-model avg = 0.5905; 0v1 AUC cross-model all > 0.96.\n\n**Key finding:** Depth signal ≈ 70–85% text-intrinsic + 15–30% model self-familiarity. Binary contamination detection (0v1) highly transferable (>0.96 AUC cross-model). Qwen-rewrite overfits style features; Qwen-cont transfers much better.\n\n---\n\n## gemma27b_cross_transfer — Gemma-27B transfer\n\n**Status:** DONE | **Conclusion:** success\n\n5×5 transfer matrix, 18× scale gap (27B to 1.5B), 5000 docs per pair.\n\n**Mean AUC matrix (27B as train source):**\n\n| Train → Test | AUC |\n|---|---|\n| Gemma27B → Gemma27B | 0.6019 |\n| Gemma27B → LLaMA8B | 0.6147 |\n| Gemma27B → Qwen1.5B | 0.6274 |\n| Gemma27B → Pythia | 0.6166 |\n| Gemma27B → OLMo | 0.5934 |\n| LLaMA8B → Gemma27B | 0.6037 |\n| Qwen1.5B → Gemma27B | 0.5949 |\n| Pythia → Gemma27B | 0.5973 |\n| OLMo → Gemma27B | 0.5455 |\n\n**Accuracy matrix (same ordering):** 0.3106 / 0.3218 / 0.3331 / 0.3214 / 0.2892 / 0.3048 / 0.2693 / 0.2860 / 0.2457\n\n**Retention rates (27B → small):** avg 101.3% | LLaMA8B 103.6% | Qwen1.5B 107.2% | Pythia 103.5% | OLMo 93.1%\n\n**Retention rates (small → 27B):** avg 76.5% | LLaMA8B 92.1% | Qwen1.5B 71.3% | Pythia 80.9% | OLMo 77.3%\n\n**Inter-model retention (Qwen1.5B):** 88.9%\n\n**Key finding:** 27B→small retention >100% — classifier trained on 27B data works better on smaller models. Small→27B only 76.5% due to weaker depth signal in 27B text. Strong asymmetry confirms depth signal is text-intrinsic but scale-modulated.\n\n---\n\n## exp_wiki_olmo_v2 — OLMo Wiki (v2 bug fix)\n\n**Status:** DONE | **Conclusion:** negative\n\nOLMo-1B continuation on Wikipedia, 5000 docs, depth 0–5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. v2 fixes data reuse bug from v1.\n\n| Pair | AUC | JSD |\n|------|-----|-----|\n| 0v1 | 0.9932 | 0.1688 |\n| 1v2 | 0.4986 | — |\n| 2v3 | 0.5012 | — |\n| 3v4 | 0.5057 | — |\n| 4v5 | 0.5009 | — |\n\n**K* = 1** | Ordinal accuracy = 0.3227\n\nStriking: 1v2 AUC = 0.4986 (below chance). Depth signal collapses entirely after depth 1 for OLMo on Wikipedia.\n\n---\n\n## exp_wiki_pythia_v2 — Pythia Wiki (v2 bug fix)\n\n**Status:** DONE | **Conclusion:** negative\n\nPythia-1.4B continuation on Wikipedia, 5000 docs, depth 0–5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. v2 fixes data reuse bug from v1.\n\n| Pair | AUC | JSD |\n|------|-----|-----|\n| 0v1 | 0.9750 | 0.08007 |\n| 1v2 | 0.5846 | 0.00777 |\n| 2v3 | 0.5445 | — |\n| 3v4 | 0.5205 | — |\n| 4v5 | 0.5168 | — |\n\n**K* = 1** | Ordinal accuracy = 0.3503\n\n1v2 AUC = 0.5846, below θ=0.60. Wikipedia domain yields K*=1 for both OLMo and Pythia.\n\n---\n\n## exp_gemma2b_10k — Gemma-2B 10K\n\n**Status:** DONE | **Conclusion:** success\n\nSample-size robustness test: 5K was borderline K*=1 (1v2=0.5981); 10K result with cross-scorer (Qwen2.5-1.5B-Instruct).\n\n| Pair | AUC (self) | AUC (Qwen cross) |\n|------|-----------|-----------------|\n| 0v1 | 0.9817 | 0.9533 |\n| 1v2 | 0.6430 | 0.6099 |\n| 2v3 | 0.5550 | 0.5409 |\n| 3v4 | 0.5173 | 0.5174 |\n| 4v5 | 0.5101 | 0.5158 |\n\n**K* (self) = 2 | K* (Qwen cross) = 2**\n\n**Bootstrap CI for 1v2 (Qwen cross-scorer, n=10K):**\n- AUC OOF = 0.6099 | boot std = 0.0034\n- 95% CI: [0.6031, 0.6167]\n- 99.5% Bonferroni percentile CI: [0.5998, 0.6192] — **FAIL** (lower bound < θ=0.60)\n- 99.5% Bonferroni normal CI: [0.6003, 0.6196] — **PASS**\n- perm_p = 0.0001\n\n**Note:** Extremely borderline. 5K gave K*=1 (1v2=0.5981), 10K gives K*=2 (1v2=0.6099). Bonferroni split between percentile and normal methods."
+                }
+              ],
+              "totalDurationMs": 128725,
+              "totalTokens": 36470,
+              "totalToolUseCount": 14,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6893,
+                "cache_read_input_tokens": 25622,
+                "output_tokens": 3954,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6893
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3954,
+                    "cache_read_input_tokens": 25622,
+                    "cache_creation_input_tokens": 6893,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6893,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 0,
+                "searchCount": 0,
+                "bashCount": 10,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 4
+              }
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have comprehensive data. Let me compile the full audit report. Let me organize everything systematically.\n\nKey findings from additional queries:\n\n1. **exp_A_alt_scorer** confirms crossscorer table values:\n   - Pythia→Qwen-RW: 1v2=0.7012 ✓\n   - OLMo→Qwen-RW: 1v2=0.6947, 0v1=0.9918 ✓\n   - Pythia→Qwen-cont: 1v2=0.5923 ✓  \n   - OLMo→Qwen-cont: 1v2=0.5858 ✓\n   All crossscorer table values verified ✓\n\n2. **exp_025_pythia_arxiv** confirms Pythia arXiv 2v3=0.6545 ✓ (matches tab_domain_model_kstar_full)\n\n3. **exp_019b_mistral_cross_scorer** shows Mistral C4 Qwen-scored 1v2=0.5695, NOT 0.570 as in paper. Off by 0.0005. Very minor.\n\n4. Checking Pythia-6.9B v3 values now.  The greedy decoding gives K*=2 with 1v2=0.8542 but has 144 empty texts that got labeled negative, while nucleus sampling shows K*=1 with 1v2=0.5955. The paper claims K*=1 for Pythia-6.9B, which matches the nucleus result—the greedy approach likely had quality issues that made it unreliable.\n\n5. For the transfer matrix in exp_013, I'm checking Pythia↔OLMo retention rates. The agent reports 91-92% accuracy retention for Pythia→OLMo, but the paper states 89-92%, so I need to verify which calculation the paper actually used.\n\nLooking at the numbers: Pythia→OLMo is 91.6% (0.3531/0.3856) and OLMo→Pythia is 90.3% (0.3450/0.3822), giving a range of 90.3-91.6%, which doesn't quite match the paper's 89-92% claim—there's a minor discrepancy here, though the paper's figure caption mentions 80-92%. as a minor discrepancy. Now I'm checking the other model transfers: Gemma-27B matches at 101.3% average and 76.5% reverse, OLMo Wiki's value rounds correctly from 0.9932 to 0.993, and Pythia Wiki shows K*=1 with a 1v2 score that isn't in the main domain table but that's fine. For Gemma-2B at 10K steps, the paper mentions the C4 variant.\n\nThe bootstrap metrics around 92.7% modal-K* consistency can't be directly verified from the data I have, but the progression makes sense—5K gives K*=1 while 10K shifts to K*=2. I'm also double-checking Mistral C4 in the domain table, where the reported value of 0.570 appears to be a rounded version of 0.5695 from the experiment data.\n\nNow I need to verify the \">0.99 at ≤1.5B\" claim by looking at the 0v1 values for models at or below 1.5B parameters.\n\nLooking at the data, only 2 out of 6 models in that size range actually exceed 0.99—the rest fall short. This contradicts the claim pretty clearly, which is a major problem.\n\nActually, wait—let me reconsider what they're saying. The comparison might be more specific: they're contrasting Qwen-7B and LLaMA-8B's scores against their smaller counterparts, not claiming all ≤1.5B models exceed 0.99. The Qwen variants at ≤1.5B do hit that threshold, so maybe the statement is narrower than I initially read it.\n\nEither way, the phrasing is ambiguous enough that I should flag it as potentially misleading. Now I'm moving on to compile the full audit report by tallying all the numeric values I've checked across the tables.\n\nLooking at the breakdown: the main tables contain around 300 numeric cells total, plus roughly 40 text-based claims with numbers, bringing the overall audit scope to about 343 values. Going through the issues I've identified, the most significant one is the claim about models at 1.5B or below all exceeding 0.99 accuracy—that's clearly inaccurate since several models like Pythia, OLMo, Qwen-base, and Gemma-2B fall short of that threshold.\n\nBeyond that, there are some inconsistencies worth noting: the Wiki Qwen-1.5B K* value shifts between tables depending on the convention used, and the arXiv Qwen-1.5B 2v3 AUC differs slightly across tables by about 0.001. A couple of minor discrepancies also show up between the paper's reported values and the experiment registry for Qwen-7B across different comparison pairs, though these fall within confidence intervals. with source used, but should document. For issues #4 and #5, though, I'm realizing the registry data might be pulling the point estimate from a different methodology than what the paper reports—the bootstrap AUC versus OOF bootstrap estimate. That's a methodological choice rather than an error, but the discrepancy is worth noting. Let me be more rigorous about what actually constitutes a problem versus acceptable variation. The genuine issues that need attention are the misleading claim about the \">0.99 at ≤1.5B\" threshold, the internal inconsistency with Qwen's K* value jumping between 1 and 2 across tables, and the arXiv Qwen discrepancy where 2v3 shows both 0.6427 and 0.644.\n\nEverything else falls into minor rounding or methodology differences that carry low risk, while the vast majority of what I've checked is actually correct. Now I need to systematically count how many cells I've verified across the tables to get a precise picture of my coverage.\n\nLooking at the K* confidence interval table, I've checked around 47 numeric values between the AUC entries and their confidence bounds. The neural probe table has 9 values, the domain K* table has roughly 59 actual numeric cells when accounting for the dashes, the domain model K* table has 18 values, and the full version with AUC adds another 23. That gives me a solid verification footprint across all the major tables before I write up the report. Generating the markdown report...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "f58d0efc-1829-429d-ac0e-e7d1e9b14ed9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YC735HYQU5qYraVBsComeE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 28826,
+                "cache_read_input_tokens": 59438,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 28826
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data needed. Let me compile the comprehensive audit report."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "f1ff8a41-577b-45fa-a3aa-0c876073fa06",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YC735HYQU5qYraVBsComeE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 28826,
+                "cache_read_input_tokens": 59438,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 28826
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F48N1Yv25haWFvpNyUudiB",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/audit_experiments_tables.md",
+                "content": "# 实验章节+表格数字审计\n\n## 统计\n- 审计数字总数：~340\n- 通过：~330\n- 问题：10（3 个需要修正，7 个轻微/rounding）\n\n---\n\n## 表格逐单元格审计\n\n### tab_kstar_ci (experiments_c1.tex lines 26-43)\n\nMain 5-model pairwise AUC table with bootstrap 95% CIs.\n\n| 行(模型) | 列(指标) | 论文值 | registry值 | exp_id | 匹配? |\n|----------|---------|--------|-----------|--------|-------|\n| Qwen-rw | 0v1 AUC | .9956 | 0.9956 | exp_007_bootstrap_ci | ✓ |\n| Qwen-rw | 1v2 AUC | .6955 | 0.6955 (bootstrap) / 0.6957 (primary) | exp_007 / mvp_pilot_sat_v1 | ✓ (uses bootstrap) |\n| Qwen-rw | 1v2 CI | [.686,.704] | [0.6859, 0.7041] | exp_007 | ✓ (3dp rounding) |\n| Qwen-rw | 2v3 AUC | .5893 | 0.5893 | exp_007 / mvp_pilot_sat_v1 | ✓ |\n| Qwen-rw | 2v3 CI | [.580,.599] | [0.5795, 0.5991] | exp_007 | ✓ (3dp rounding) |\n| Qwen-rw | 3v4 AUC | .5435 | 0.5435 (bootstrap) / 0.5434 (primary) | exp_007 / mvp_pilot_sat_v1 | ✓ |\n| Qwen-rw | 4v5 AUC | .5340 | 0.5340 (bootstrap) / 0.5343 (primary) | exp_007 / mvp_pilot_sat_v1 | ✓ |\n| Pythia | 0v1 AUC | .9722 | 0.9722 | exp_001_pythia_depth | ✓ |\n| Pythia | 1v2 AUC | .6074 | 0.6074 | exp_001 | ✓ |\n| Pythia | 1v2 CI | [.598,.617] | [0.5975, 0.6172] | exp_001 | ✓ (3dp rounding) |\n| Pythia | 2v3 AUC | .5440 | 0.5440 | exp_001 | ✓ |\n| Pythia | 2v3 CI | [.534,.554] | — | — | UNVERIFIED (CI source not found in batch 1 queries) |\n| Pythia | 3v4 AUC | .5051 | 0.5051 | exp_001 | ✓ |\n| Pythia | 4v5 AUC | .5079 | 0.5079 | exp_001 | ✓ |\n| OLMo | 0v1 AUC | .9860 | 0.9861 | exp_002_olmo_depth | ⚠️ MINOR (Δ=0.0001) |\n| OLMo | 1v2 AUC | .5001 | 0.5001 | exp_002 (Qwen cross-scored) | ✓ |\n| OLMo | 1v2 CI | [.496,.519] | — | — | UNVERIFIED (not in queried bootstrap data) |\n| OLMo | 2v3 AUC | .4973 | 0.4972 | exp_002 | ⚠️ MINOR (Δ=0.0001) |\n| OLMo | 3v4 AUC | .5034 | 0.5034 | exp_002 | ✓ |\n| OLMo | 4v5 AUC | .4971 | 0.4971 | exp_002 | ✓ |\n| Qwen-cont | 0v1 AUC | .9971 | 0.9971 (bootstrap) / 0.9972 (primary) | exp_007 / exp_017 | ✓ (uses bootstrap) |\n| Qwen-cont | 1v2 AUC | .6112 | 0.6112 (bootstrap) / 0.6114 (primary) | exp_007 / exp_017 | ✓ (uses bootstrap) |\n| Qwen-cont | 1v2 CI | [.602,.621] | [0.6015, 0.6213] | exp_007 | ✓ (3dp rounding) |\n| Qwen-cont | 2v3 AUC | .5609 | 0.5609 | exp_007 / exp_017 | ✓ |\n| Qwen-cont | 2v3 CI | [.551,.571] | [0.5511, 0.5712] | exp_007 | ✓ (3dp rounding) |\n| Qwen-cont | 3v4 AUC | .5409 | 0.5409 (bootstrap) / 0.5408 (primary) | exp_007 / exp_017 | ✓ |\n| Qwen-cont | 4v5 AUC | .5141 | 0.5141 (bootstrap) / 0.5139 (primary) | exp_007 / exp_017 | ✓ |\n| Qwen-7B | 0v1 AUC | .9644 | 0.9644 | exp_004_7b_crossscale | ✓ |\n| Qwen-7B | 0v1 CI | [.961,.967] | [0.9607, 0.9665] | exp_004 | ✓ (3dp rounding) |\n| Qwen-7B | 1v2 AUC | .6178 | 0.6178 | exp_004 | ✓ |\n| Qwen-7B | 1v2 CI | [.608,.626] | [0.6079, 0.6261] | exp_004 | ✓ (3dp rounding) |\n| Qwen-7B | 2v3 AUC | .5492 | 0.5460 | exp_004 | ⚠️ MINOR (Δ=0.0032; within CI; may be OOF vs raw) |\n| Qwen-7B | 2v3 CI | [.539,.559] | [0.5388, 0.5594] | exp_004 | ✓ (3dp rounding) |\n| Qwen-7B | 3v4 AUC | .5276 | 0.5225 | exp_004 | ⚠️ MINOR (Δ=0.0051; within CI; may be OOF vs raw) |\n| Qwen-7B | 4v5 AUC | .5085 | 0.5091 | exp_004 | ⚠️ MINOR (Δ=0.0006) |\n\n**Footnote verification:**\n- \"Permutation p < 0.001 for all starred boundary comparisons\": exp_004 perm_p all =0.0001, exp_001 perm_p=0.0001, exp_007 perm_p=0.002. ✓\n- \"OLMo 2v3 (0.497) < 3v4 (0.503): non-monotonic reversal Δ=0.006\": 0.4972 vs 0.5034, Δ=0.0062≈0.006. ✓\n\n---\n\n### tab_neural_probe_crossmodel (experiments_c1.tex lines 114-124)\n\n| 行(模型) | 列(指标) | 论文值 | registry值 | exp_id | 匹配? |\n|----------|---------|--------|-----------|--------|-------|\n| Qwen-1.5B | 2v3 AUC | 0.6159 | 0.616 | exp_015_neural_probe | ✓ (4dp vs 3dp) |\n| Qwen-1.5B | 95% CI | [0.610, 0.622] | — | exp_015 | UNVERIFIED (CI detail not in registry summary) |\n| Qwen-1.5B | K*_neural | 3 | 3 | exp_015 | ✓ |\n| Pythia-1.4B | 2v3 AUC | 0.5963 | 0.596 | exp_015 | ✓ |\n| Pythia-1.4B | 95% CI | [0.589, 0.603] | — | exp_015 | UNVERIFIED |\n| Pythia-1.4B | K*_neural | 2 | 2 | exp_015 | ✓ |\n| OLMo-1B | 2v3 AUC | 0.5056 | 0.5056 | exp_015 | ✓ |\n| OLMo-1B | 95% CI | [0.497, 0.516] | — | exp_015 | UNVERIFIED |\n| OLMo-1B | K*_neural | 1 | 1 | exp_015 | ✓ |\n| OLMo-1B (footnote) | 1v2 AUC | 0.5054 | 0.5054 | exp_015 | ✓ |\n\n---\n\n### tab_domain_model_kstar (standalone table)\n\nK* per domain per model (scorer: Qwen2.5-1.5B).\n\n| 行(模型) | 列(domain) | 论文K* | registry K* | exp_id | 匹配? |\n|----------|-----------|--------|------------|--------|-------|\n| Qwen-1.5B | C4 | **2** | 2 | exp_016_base_vs_instruct | ✓ |\n| Qwen-1.5B | arXiv | **3** | 3 | exp_024_arxiv_domain | ✓ |\n| Qwen-1.5B | Wiki | **1**† | 2 (raw) / 1 (controlled) | exp_023 / exp_wiki_scorer_confound_1b5 | ✓ (controlled value) |\n| Qwen-7B | C4 | **2** | 2 | exp_004_7b_crossscale | ✓ |\n| Qwen-7B | arXiv | **3** | 3 | exp_arXiv_qwen7b | ✓ |\n| Qwen-7B | Wiki | **1**† | 2 (raw) / 1 (controlled) | exp_wiki_qwen7b / exp_wiki_scorer_confound | ✓ (controlled value) |\n| Pythia-1.4B | C4 | **2** | 2 | exp_001_pythia_depth | ✓ |\n| Pythia-1.4B | arXiv | **3** | 3 | exp_025_pythia_arxiv | ✓ |\n| Pythia-1.4B | Wiki | **1** | 1 | exp_wiki_pythia_v2 | ✓ |\n| LLaMA-8B | C4 | **2** | 2 | exp_018_llama8b_depth | ✓ |\n| LLaMA-8B | arXiv | **3** | 3 | exp_arXiv_llama8b | ✓ |\n| LLaMA-8B | Wiki | **1** | 1 | wiki_domain_llama | ✓ |\n| Mistral-7B | C4 | 1 | 1 | exp_019b_mistral_cross_scorer | ✓ |\n| Mistral-7B | arXiv | **3** | 3 | exp_arXiv_mistral7b | ✓ |\n| Mistral-7B | Wiki | **1** | 1 | wiki_domain_mistral | ✓ |\n| OLMo-1B | C4 | 1 | 1 | exp_002_olmo_depth | ✓ |\n| OLMo-1B | arXiv | 1* | 1 | olmo_arxiv_cross_scorer | ✓ |\n| OLMo-1B | Wiki | **1** | 1 | exp_wiki_olmo_v2 | ✓ |\n\n**Footnotes verified:**\n- \"Mistral AUC(1v2)=0.570<θ\": exp_019b Qwen-scored 1v2=0.5695→.570 ✓\n- \"OLMo capacity failure on arXiv\": olmo_arxiv p_perm=0.51, n.s. ✓\n\n---\n\n### tab_domain_model_kstar_full (standalone table)\n\nFull AUC values at K* boundary.\n\n| 行(模型) | Domain | 列 | 论文值 | registry值 | exp_id | 匹配? |\n|----------|--------|-----|--------|-----------|--------|-------|\n| Qwen-1.5B | C4 | K* | **2** | 2 | exp_016 | ✓ |\n| Qwen-1.5B | C4 | AUC(1v2) | 0.6262 | 0.6262 | exp_016 | ✓ |\n| Qwen-1.5B | arXiv | K* | **3** | 3 | exp_024 | ✓ |\n| Qwen-1.5B | arXiv | AUC(2v3) | 0.6427 | 0.6427 | exp_024 | ✓ |\n| Qwen-7B | C4 | K* | **2** | 2 | exp_004 | ✓ |\n| Qwen-7B | C4 | AUC(1v2) | 0.6178 | 0.6178 | exp_004 | ✓ |\n| Qwen-7B | arXiv | K* | **3** | 3 | exp_arXiv_qwen7b | ✓ |\n| Qwen-7B | arXiv | AUC(2v3) | 0.6255 | 0.626 | exp_arXiv_qwen7b | ⚠️ MINOR (0.6255 vs 0.626, registry 3dp) |\n| Qwen-7B | Wiki | 0v1 AUC | 0.967 | 0.9673 | exp_wiki_qwen7b | ✓ (3dp rounding) |\n| Pythia-1.4B | C4 | K* | **2** | 2 | exp_001 | ✓ |\n| Pythia-1.4B | C4 | AUC(1v2) | 0.6074 | 0.6074 | exp_001 | ✓ |\n| Pythia-1.4B | arXiv | K* | **3** | 3 | exp_025_pythia_arxiv | ✓ |\n| Pythia-1.4B | arXiv | AUC(2v3) | 0.6545 | 0.6545 | exp_025_pythia_arxiv | ✓ |\n| Pythia-1.4B | Wiki | 0v1 AUC | 0.975 | 0.9750 | exp_wiki_pythia_v2 | ✓ |\n| LLaMA-8B | C4 | K* | **2** | 2 | exp_018 | ✓ |\n| LLaMA-8B | C4 | AUC(1v2) | 0.6123 | 0.6123 | exp_018 | ✓ |\n| LLaMA-8B | arXiv | K* | **3** | 3 | exp_arXiv_llama8b | ✓ |\n| LLaMA-8B | arXiv | AUC(2v3) | 0.6215 | 0.6215 | exp_arXiv_llama8b | ✓ |\n| LLaMA-8B | Wiki | 0v1 AUC | 0.932 | 0.9321→0.932 | wiki_domain_llama | ✓ |\n| Mistral-7B | C4 | K* | 1 | 1 | exp_019b | ✓ |\n| Mistral-7B | C4 | AUC(1v2) | 0.570 | 0.5695→.570 | exp_019b_mistral_cross_scorer | ✓ (3dp rounding) |\n| Mistral-7B | arXiv | K* | **3** | 3 | exp_arXiv_mistral7b | ✓ |\n| Mistral-7B | arXiv | AUC(2v3) | 0.6275 | 0.6275 | exp_arXiv_mistral7b | ✓ |\n| Mistral-7B | Wiki | 0v1 AUC | 0.961 | 0.9607→.961 | exp_wiki_mistral7b | ✓ |\n| OLMo-1B | C4 | K* | 1 | 1 | exp_002 | ✓ |\n| OLMo-1B | C4 | AUC(1v2) | 0.500 | 0.5001→.500 | exp_002 | ✓ |\n| OLMo-1B | Wiki | 0v1 AUC | 0.993 | 0.9932→.993 | exp_wiki_olmo_v2 | ✓ |\n\n---\n\n### tab_domain_kstar (in-text table, experiments_c1.tex lines 150-175)\n\nCross-domain K* comparison table.\n\n| 行(Domain+Model) | 列(指标) | 论文值 | registry值 | exp_id | 匹配? |\n|------------------|---------|--------|-----------|--------|-------|\n| arXiv Qwen-1.5B | 1v2 | .858 | 0.858 | exp_024 | ✓ |\n| arXiv Qwen-1.5B | 2v3 | .644 | 0.6427 | exp_024 | ❌ ISSUE (see below) |\n| arXiv Qwen-1.5B | Bonf CI | [.629,.659] | [0.6275, 0.6575] | exp_024 | ⚠️ (doesn't match exactly; different CI computation?) |\n| arXiv Qwen-1.5B | K* | 3 | 3 | exp_024 | ✓ |\n| arXiv Pythia | 1v2 | .805 | 0.8047 | exp_025_pythia_arxiv | ✓ (3dp rounding) |\n| arXiv Pythia | 2v3 | .648 | 0.6545 | exp_025 / arxiv_multi_source(0.6484) | ⚠️ MINOR (see note) |\n| arXiv Pythia | Bonf CI | [.634,.662] | [0.634, 0.663] | arxiv_multi_source | ⚠️ (upper 0.662 vs 0.663, off 0.001) |\n| arXiv Pythia | K* | 3 | 3 | exp_025 | ✓ |\n| arXiv LLaMA-8B | 1v2 | .845 | 0.8447 | exp_arXiv_llama8b | ✓ (3dp rounding) |\n| arXiv LLaMA-8B | 2v3 | .622 | 0.6215 | exp_arXiv_llama8b | ✓ (3dp rounding) |\n| arXiv LLaMA-8B | Bonf CI | [.605,.635] | CI from Pythia cross-scorer | exp_arXiv_llama8b_crossscorer | ✓ (per footnote) |\n| arXiv LLaMA-8B | K* | 3 | 3 | exp_arXiv_llama8b | ✓ |\n| arXiv Mistral | 1v2 | .820 | 0.8201 | exp_arXiv_mistral7b | ✓ (3dp rounding) |\n| arXiv Mistral | 2v3 | .628 | 0.6275 | exp_arXiv_mistral7b | ✓ (3dp rounding) |\n| arXiv Mistral | K* | 3 | 3 | exp_arXiv_mistral7b | ✓ |\n| arXiv OLMo | 1v2 | .500 | 0.4996 | olmo_arxiv_cross_scorer | ✓ |\n| arXiv OLMo | 2v3 | .497 | 0.4971 | olmo_arxiv_cross_scorer | ✓ |\n| arXiv OLMo | Bonf CI | [.483,.517] | [0.4828, 0.5166] | olmo_arxiv_cross_scorer | ✓ (3dp rounding) |\n| arXiv OLMo | K* | 1 | 1 | olmo_arxiv_cross_scorer | ✓ |\n| C4 Qwen-1.5B | 1v2 | .626 | 0.6262 | exp_016 | ✓ |\n| C4 Qwen-1.5B | 2v3 | .550 | 0.5496 | exp_016 | ✓ (3dp rounding) |\n| C4 Qwen-1.5B | K* | 2 | 2 | exp_016 | ✓ |\n| C4 Mistral | 1v2 | .570 | 0.5695 | exp_019b | ✓ (3dp rounding) |\n| C4 Mistral | 2v3 | .534 | — | — | UNVERIFIED (cross-scored 2v3 not separately queried) |\n| C4 Mistral | K* | 1 | 1 | exp_019b | ✓ |\n| Code Qwen-1.5B | 1v2 | .738 | 0.7382 | exp_code_qwen1b5 | ✓ |\n| Code Qwen-1.5B | 2v3 | .530 | 0.53 | exp_code_qwen1b5 | ✓ |\n| Code Qwen-1.5B | K* | 2 | 2 | exp_code_qwen1b5 | ✓ |\n| Code Qwen-7B | 1v2 | .727 | 0.7273/0.7276 | exp_code_qwen7b / code_domain_qwen7b | ✓ |\n| Code Qwen-7B | 2v3 | .537 | 0.5368/0.5367 | exp_code_qwen7b / code_domain_qwen7b | ✓ |\n| Code Qwen-7B | Bonf CI | [.715,.739] | [0.7153, 0.7389] | code_domain_qwen7b | ✓ |\n| Code Qwen-7B | K* | 2 | 2 | code_domain_qwen7b | ✓ |\n| Code LLaMA-8B | 1v2 | .739 | 0.7394 | exp_code_llama8b | ✓ |\n| Code LLaMA-8B | 2v3 | .511 | 0.5112 | exp_code_llama8b | ✓ |\n| Code LLaMA-8B | K* | 2 | 2 | exp_code_llama8b | ✓ |\n| Code Mistral | 1v2 | .615 | 0.615/0.6152 | code_domain_mistral / exp_code_mistral7b | ✓ |\n| Code Mistral | 2v3 | .529 | 0.5292/0.5293 | code_domain_mistral / exp_code_mistral7b | ✓ |\n| Code Mistral | Bonf CI | [.602,.628] | [0.6024, 0.6281] | code_domain_mistral | ✓ |\n| Code Mistral | K* | 2 | 2 | code_domain_mistral | ✓ |\n| Code OLMo | 1v2 | .557 | 0.5567 | code_domain_olmo | ✓ |\n| Code OLMo | 2v3 | .500 | 0.5 | code_domain_olmo | ✓ |\n| Code OLMo | K* | 1 | 1 | code_domain_olmo | ✓ |\n| Wiki Qwen-1.5B | 1v2 | .619 | 0.6193 | exp_023_domain_ablation | ✓ |\n| Wiki Qwen-1.5B | 2v3 | .550 | 0.5498 | exp_023 | ✓ |\n| Wiki Qwen-1.5B | K* | 2 | 2 | exp_023 | ⚠️ SEE ISSUE #2 |\n| Wiki LLaMA-8B | 1v2 | .592 | 0.5919 | wiki_domain_llama | ✓ |\n| Wiki LLaMA-8B | 2v3 | .538 | 0.5379 | wiki_domain_llama | ✓ |\n| Wiki LLaMA-8B | Bonf CI | [.579,.605] | [0.5788, 0.6049] | wiki_domain_llama | ✓ |\n| Wiki LLaMA-8B | K* | 1 | 1 | wiki_domain_llama | ✓ |\n| Wiki Mistral | 1v2 | .558 | 0.5576 | wiki_domain_mistral | ✓ |\n| Wiki Mistral | 2v3 | .519 | 0.5193 | wiki_domain_mistral | ✓ |\n| Wiki Mistral | Bonf CI | [.543,.572] | [0.5434, 0.5716] | wiki_domain_mistral | ✓ |\n| Wiki Mistral | K* | 1 | 1 | wiki_domain_mistral | ✓ |\n\n**Note on arXiv Pythia 2v3**: tab_domain_kstar says .648, tab_domain_model_kstar_full says 0.6545, exp_025_pythia_arxiv registry says 0.6545, arxiv_multi_source says 0.6484. The .648 value matches arxiv_multi_source (0.6484→.648) NOT exp_025 (0.6545). Two tables use different source experiments for same cell. See ISSUE #4.\n\n---\n\n### tab_filtering_main (standalone table)\n\n| 行(Strategy) | 列(MMLU) | 论文值 | registry值 | exp_id | 匹配? |\n|-------------|---------|--------|-----------|--------|-------|\n| Base model | MMLU | 0.6018 | 0.6018 | exp_006 | ✓ |\n| Base model | HellaSwag | 0.6821 | 0.6821 | exp_006 | ✓ |\n| Binary-ours | MMLU | 0.5941±0.0008 | 0.5941±0.0008 | exp_006 | ✓ |\n| Binary-ours | HellaSwag | 0.6701±0.0006 | 0.6701±0.0006 | exp_006 | ✓ |\n| Binary-Drayson | MMLU | 0.5913±0.0009 | 0.5913±0.0009 | exp_006 | ✓ |\n| Binary-Drayson | HellaSwag | 0.6691±0.0004 | 0.6691±0.0004 | exp_006 | ✓ |\n| Surprisal | MMLU | 0.5894±0.0009 | 0.5894±0.0009 | exp_006 | ✓ |\n| Surprisal | HellaSwag | 0.6641±0.0006 | 0.6641±0.0006 | exp_006 | ✓ |\n| Graduated α=0.9 | MMLU | 0.5892±0.0008 | 0.5892±0.0008 | exp_006 | ✓ |\n| Graduated α=0.9 | HellaSwag | 0.6701±0.0007 | 0.6701±0.0007 | exp_006 | ✓ |\n| DSIR | MMLU | 0.5869±0.0003 | 0.5869±0.0003 | exp_006 | ✓ |\n| DSIR | HellaSwag | 0.6631±0.0007 | 0.6631±0.0007 | exp_006 | ✓ |\n| No filter | MMLU | 0.5865±0.0010 | 0.5865±0.0010 | exp_006 | ✓ |\n| No filter | HellaSwag | 0.6638±0.0008 | 0.6638±0.0008 | exp_006 | ✓ |\n\n**全部精确匹配 ✓**\n\n---\n\n### tab_alpha_sweep (standalone table)\n\n| α | MMLU (论文) | MMLU (registry) | HellaSwag (论文) | HellaSwag (registry) | 匹配? |\n|---|-----------|----------------|-----------------|---------------------|-------|\n| 0.1 | 0.5873±0.0019 | 0.5873±0.0019 | 0.6640±0.0009 | 0.6640±0.0009 | ✓ |\n| 0.3 | 0.5877±0.0013 | 0.5877±0.0013 | 0.6669±0.0005 | 0.6669±0.0005 | ✓ |\n| 0.5 | 0.5880±0.0013 | 0.5880±0.0013 | 0.6687±0.0008 | 0.6687±0.0008 | ✓ |\n| 0.7 | 0.5892±0.0014 | 0.5892±0.0014 | 0.6695±0.0004 | 0.6695±0.0004 | ✓ |\n| 0.9 | 0.5892±0.0008 | 0.5892±0.0008 | 0.6701±0.0007 | 0.6701±0.0007 | ✓ |\n\n**全部精确匹配 ✓**\n\n---\n\n### tab_pairwise_significance (standalone table)\n\nAll 15 pairs × 2 benchmarks = 30 comparisons. Cross-checked Δ values against tab_filtering_main means (using seed-level precision, Δ values may differ by ≤0.01pp from table-level rounding).\n\n| Row | Column | MMLU Δ (paper) | MMLU Δ (calculated) | MMLU p | HellaSwag Δ (paper) | HellaSwag Δ (calc) | HellaSwag p | 匹配? |\n|-----|--------|---------|-----------|---------|---------|-----------|---------|-------|\n| binary-ours | no-filter | +0.77 | +0.76 (from means) | .002 | +0.64 | +0.63 | .004 | ✓ (seed-level rounding) |\n| binary-ours | DSIR | +0.72 | +0.72 | <.001 | +0.71 | +0.70 | <.001 | ✓ |\n| binary-ours | surprisal | +0.47 | +0.47 | .021 | +0.61 | +0.60 | .002 | ✓ |\n| binary-ours | graduated₀.₉ | +0.50 | +0.49 | .011 | 0.00 | 0.00 | 1.00 | ✓ |\n| binary-ours | binary-Drayson | +0.28 | +0.28 | <.001 | +0.11 | +0.10 | .131 | ✓ |\n| binary-Drayson | no-filter | +0.49 | +0.48 | .019 | +0.53 | +0.53 | .004 | ✓ |\n| binary-Drayson | DSIR | +0.44 | +0.44 | .003 | +0.60 | +0.60 | .003 | ✓ |\n| binary-Drayson | surprisal | +0.19 | +0.19 | .202 | +0.50 | +0.50 | .004 | ✓ |\n| binary-Drayson | graduated₀.₉ | +0.22 | +0.21 | .161 | -0.11 | -0.10 | .237 | ✓ |\n| graduated₀.₉ | no-filter | +0.27 | +0.27 | .052 | +0.64 | +0.63 | .004 | ✓ |\n| graduated₀.₉ | DSIR | +0.23 | +0.23 | .052 | +0.71 | +0.70 | <.001 | ✓ |\n| graduated₀.₉ | surprisal | -0.02 | -0.02 | .694 | +0.61 | +0.60 | .002 | ✓ |\n| surprisal | no-filter | +0.29 | +0.29 | .025 | +0.03 | +0.03 | .694 | ✓ |\n| surprisal | DSIR | +0.25 | +0.25 | .052 | +0.10 | +0.10 | .190 | ✓ |\n| DSIR | no-filter | +0.04 | +0.04 | .952 | -0.07 | -0.07 | .947 | ✓ |\n\n**Footnote check:**\n- \"MMLU: 8/15 pairs significant\": counted 8 ✓\n- \"HellaSwag: 9/15 pairs significant\": counted 9 ✓\n\n**全部一致 ✓** (Δ differences of 0.01pp are from seed-level vs mean-level computation)\n\n---\n\n### tab_crossscorer (standalone table)\n\n| Scorer | Gen Data | K* (paper) | K* (registry) | AUC(0v1) paper | AUC(0v1) registry | AUC(1v2) paper | AUC(1v2) registry | ρ paper | ρ registry | exp_id | 匹配? |\n|--------|----------|-----------|--------------|---------------|-------------------|---------------|-------------------|---------|-----------|--------|-------|\n| Qwen (self) | Qwen-RW | 2 | 2 | --- | --- | 0.6955 | 0.6955 | --- | --- | exp_007 | ✓ |\n| Pythia-1.4B | Qwen-RW | 2 | 2 | 0.9923 | 0.9923 | 0.7012 | 0.7012 | 0.906 | 0.906 | exp_A_alt_scorer | ✓ |\n| OLMo-1B | Qwen-RW | 2 | 2 | 0.9918 | 0.9918 | 0.6947 | 0.6947 | 0.920 | 0.920 | exp_A_alt_scorer | ✓ |\n| Qwen (self) | Qwen-cont | 2 | 2 | --- | --- | 0.6112 | 0.6112 | --- | --- | exp_007 | ✓ |\n| Pythia-1.4B | Qwen-cont | 1† | 1 | 0.9900 | 0.9900 | 0.5923 | 0.5923 | 0.942 | 0.942 | exp_A_alt_scorer | ✓ |\n| OLMo-1B | Qwen-cont | 1† | 1 | 0.9890 | 0.9890 | 0.5858 | 0.5858 | 0.902 | 0.902 | exp_A_alt_scorer | ✓ |\n| Qwen-1.5B | Qwen-7B | 2 | 2 | 0.9644 | 0.9644 | 0.6178 | 0.6178 | --- | --- | exp_004 | ✓ |\n| Cross-scorer | OLMo-arXiv | 1 | 1 | 0.999 | 0.9994 | 0.500 n.s. | 0.4996 | --- | --- | olmo_arxiv_cross_scorer | ✓ (3dp) |\n| Cross-scorer | OLMo-Code | 1 | 1 | 0.9996 | 0.9996 | 0.557 n.s. | 0.5567 | --- | --- | code_domain_olmo | ✓ (3dp) |\n\n**全部匹配 ✓**\n\n---\n\n## 正文数字清单\n\n### experiments_c1.tex\n\n| # | 数字 | 文件:行号 | 上下文 | 来源 | 匹配? |\n|---|------|----------|--------|------|-------|\n| 1 | 6/10 yield K*=2 | :45 | K*=2 count | Qwen-rw,Pythia,Qwen-cont,Qwen-base,Qwen-7B,LLaMA = 6 | ✓ |\n| 2 | 1v2 AUC: 0.607--0.696 | :45 | K*=2 range | Pythia 0.6074 → LLaMA 0.6123 → Qwen-cont 0.6112 → Qwen-7B 0.6178 → Qwen-base 0.6262 → Qwen-rw 0.6955 | ✓ |\n| 3 | 4/10 yield K*=1 | :45 | K*=1 count | OLMo, Mistral, Gemma-2B, Pythia-6.9B = 4 | ✓ |\n| 4 | 1v2 AUC: 0.500--0.598 | :45 | K*=1 range | OLMo 0.500 to Gemma-2B 0.5981≈0.598 | ✓ |\n| 5 | 4 of 6 Qwen configs | :47 | Qwen K*=2 count | Qwen-rw, Qwen-cont, Qwen-7B, Qwen-base = 4/6 | ✓ |\n| 6 | Bonferroni CI lower 0.593--0.599 | :48 | Marginal cases | Pythia Bonf lower=0.5934≈0.593; others ~0.597-0.599 | ✓ (consistent) |\n| 7 | 0v1 AUC = 0.9224 (LLaMA) | :49 | LLaMA-8B 0v1 | exp_018: 0.9225 | ⚠️ MINOR (Δ=0.0001) |\n| 8 | 1v2 AUC = 0.6123 [0.603, 0.622] (LLaMA) | :49 | LLaMA-8B 1v2 + CI | exp_018: 0.6123, CI [0.6028,0.6216]→[.603,.622] | ✓ |\n| 9 | Δ = 8.4pp (generation mode) | :51 | Qwen-rw vs Qwen-cont | 0.6955-0.6112=0.0843≈8.4pp | ✓ |\n| 10 | Δ = 1.9pp (continuation models) | :51 | Spread among K*=2 cont models | max-min = 0.6262-0.6074=0.0188≈1.9pp | ✓ |\n| 11 | 8/10 identical K* in bootstrap | :52 | Bootstrap stability | UNVERIFIED (detailed bootstrap data not queried) | — |\n| 12 | 92.7% and 94.3% modal-K* consistency | :53 | Gemma-2B, LLaMA-Wiki | UNVERIFIED (bootstrap detail) | — |\n| 13 | > 0.99 at ≤1.5B | :56 | 0v1 comparison | ❌ ISSUE #1: Only Qwen variants (0.9956, 0.9972) are >0.99; Pythia=0.9722, OLMo=0.9861, Qwen-base=0.9870, Gemma=0.9534 are NOT | |\n| 14 | Qwen-7B 1v2=0.6178 [0.608,0.626] | :56 | Scale invariance | exp_004: 0.6178, CI [0.6079,0.6261] | ✓ |\n| 15 | LLaMA-8B 1v2=0.6123 | :56 | Scale invariance | exp_018: 0.6123 | ✓ |\n| 16 | 0.9644 and 0.9224 | :56 | 0v1 for 7B+ models | exp_004: 0.9644 ✓; exp_018: 0.9225 (paper 0.9224) | ⚠️ (0.0001) |\n| 17 | 1v2 AUC=0.626 (base-vs-instruct) | :57 | Base model K* | exp_016: 0.6262→0.626 | ✓ |\n| 18 | Pythia↔OLMo 89--92% retention | :81 | Transfer matrix | exp_013: calculated 90.3%-91.6% | ⚠️ MINOR (89% not reproduced; closest is 90.3%) |\n| 19 | Gemma-27B >100% (101.3% avg; reverse: 76.5%) | :82 | Cross-scale transfer | gemma27b_cross_transfer: 101.3% avg ✓, 76.5% reverse ✓ | ✓ |\n| 20 | Qwen-RW transfer 61--63% to Pythia/OLMo | :83 | Rewrite transfer | exp_013: Qwen-RW→Pythia 0.259/0.4229=61.3%, →OLMo 0.265/0.4229=62.7% | ✓ |\n| 21 | 82% within Qwen | :83 | RW→cont retention | exp_013: 0.3466/0.4229=82.0% | ✓ |\n| 22 | ρ > 0.90 (cross-scorer features) | :86 | Feature ranking | exp_A_alt_scorer: Pythia ρ=0.906, OLMo ρ=0.920 | ✓ |\n| 23 | 1v2 AUC=0.696 (Qwen-RW) | :88 | Cross-scorer context | 0.6955→0.696 at 3dp | ✓ |\n| 24 | 1v2 AUC=0.611, 0.011 above θ | :88 | Qwen-cont marginal | 0.6112→0.611; 0.611-0.60=0.011 | ✓ |\n| 25 | Pythia: 0.5923; OLMo: 0.5858 | :88 | Cross-scorer drops | exp_A_alt_scorer exact match | ✓ |\n| 26 | η²_p=.192, η²_p=.170 | :89 | ANOVA effect sizes | UNVERIFIED (ANOVA results not in queried registry) | — |\n| 27 | ρ ≥ 0.85 (feature rankings) | :96 | Continuation model features | UNVERIFIED (feature analysis not queried in detail) | — |\n| 28 | 1v2 AUC=0.6955 vs 0.6112, Δ=+8.4pp | :99 | Rewrite vs continuation | 0.6955-0.6112=0.0843≈8.4pp | ✓ |\n| 29 | K*_neural=3, 2v3=0.6159 (Qwen) | :105 | Neural probe | exp_015: k*=3, 2v3=0.616≈0.6159 | ✓ |\n| 30 | K*_neural=2, 2v3=0.5963 (Pythia) | :105 | Neural probe | exp_015: k*=2, 2v3=0.596≈0.5963 | ✓ |\n| 31 | K*_neural=1, 1v2=0.5054 (OLMo) | :105 | Neural probe | exp_015: k*=1, 1v2=0.5054 | ✓ |\n| 32 | Wiki K*=2 Qwen (1v2=0.619) | :132 | Cross-domain | exp_023: 0.6193→0.619 | ✓ |\n| 33 | Wiki K*=1 LLaMA/Mistral (0.592, 0.558) | :132 | Cross-domain | wiki_domain_llama 0.5919→.592 ✓; wiki_domain_mistral 0.5576→.558 ✓ | ✓ |\n| 34 | arXiv 2v3 = 0.644, 0.648, 0.622, 0.628 | :133 | Four K*=3 models | See in-text table audit above | ⚠️ (Qwen .644 vs registry .6427) |\n| 35 | arXiv Bonf CIs | :133 | [.629,.659], [.634,.662], [.605,.635] | See in-text table audit | ✓ (minor rounding) |\n| 36 | p=0.510 (OLMo all domains) | :134 | OLMo cross-scorer n.s. | olmo_arxiv_cross_scorer p_perm=0.51 | ✓ |\n| 37 | Mistral staircase Wiki=1, C4=1, Code=2, arXiv=3 | :134 | Domain staircase | All registry K* values match | ✓ |\n| 38 | 1v2 JSD=0.077 (arXiv) vs ~0.01 (C4) | :135 | JSD comparison | arXiv 1v2 JSD ~0.06-0.08; C4 ~0.005-0.016 | ✓ (approximate) |\n| 39 | All 5 Code models K*≤2 | :143 | Code domain | All verified ≤2 | ✓ |\n| 40 | ±9pp AUC variation across seeds | :181 | Seed robustness | UNVERIFIED | — |\n| 41 | K*_binary ≤1, |ρ|=0.06--0.46 | :187 | Binary detectors | UNVERIFIED (exp_012 not queried) | — |\n\n### experiments_c3.tex\n\n| # | 数字 | 文件:行号 | 上下文 | 来源 | 匹配? |\n|---|------|----------|--------|------|-------|\n| 42 | ~83% synthetic | :4 | Contamination ratio | 5/6 depths = 83.3% | ✓ |\n| 43 | 30,000 documents | :5 | Dataset size | 6 depths × 5,000 = 30,000 | ✓ |\n| 44 | −1.53pp MMLU gap (no-filter) | :15 | base-nofilter | 0.6018-0.5865=0.0153=1.53pp | ✓ |\n| 45 | −0.77pp (binary-ours) | :15 | base-binary gap | 0.6018-0.5941=0.0077=0.77pp | ✓ |\n| 46 | ~50% reduction | :15 | Gap reduction | 0.77/1.53=50.3%≈50% | ✓ |\n| 47 | p_corr<0.05 vs all alternatives | :15 | Significance | All pairwise p_corr < 0.05 for binary-ours row | ✓ |\n| 48 | α=0.9 matches HellaSwag (p=1.00) | :17 | Graduated convergence | tab_pairwise: p=1.00 ✓ |\n| 49 | α=0.9 worse MMLU (p=0.011) | :17 | Graduated MMLU | tab_pairwise: p=.011 ✓ |\n| 50 | DSIR ≈ no-filter | :17 | DSIR performance | tab_pairwise: p=.952/.947, both n.s. | ✓ |\n| 51 | <0.3pp at ≤50% contamination | :18 | Realistic ratios | UNVERIFIED (exp_009 not queried) | — |\n\n---\n\n## 问题列表\n\n| # | 问题类型 | 位置 | 描述 | 严重性 | 修复方案 |\n|---|---------|------|------|--------|---------|\n| 1 | **INACCURATE CLAIM** | experiments_c1.tex:56 | Text says \"> 0.99 at ≤1.5B\" for 0v1 AUC, but only Qwen-rw (0.9956) and Qwen-cont (0.9972) exceed 0.99. Pythia-1.4B=0.9722, OLMo-1B=0.9861, Qwen-base=0.9870, Gemma-2B=0.9534 all < 0.99. | **HIGH** | Change to \"> 0.99 for Qwen-1.5B\" or \"> 0.97 at ≤1.5B\" or specify which models. |\n| 2 | **INTERNAL INCONSISTENCY** | tab_domain_model_kstar vs tab_domain_kstar | Wiki Qwen-1.5B: tab_domain_model_kstar reports K*=**1**† (controlled/cross-scorer), tab_domain_kstar (in-text table) reports K*=**2** (raw/self-scorer). Both tables use footnote † but report different values for the same model+domain. | **MEDIUM** | Unify: either both report controlled K*=1 or add explicit footnote to in-text table explaining raw vs controlled. Currently confusing for readers. |\n| 3 | **INTERNAL INCONSISTENCY** | tab_domain_model_kstar_full vs tab_domain_kstar | arXiv Qwen-1.5B 2v3 AUC: full table says 0.6427, in-text table says .644. Δ=0.0013. | **LOW** | Likely different source experiments (exp_024 vs pooled). Unify to one consistent value (0.643 or 0.644). |\n| 4 | **CROSS-TABLE SOURCE MISMATCH** | tab_domain_model_kstar_full vs tab_domain_kstar | Pythia arXiv 2v3: full table says 0.6545 (from exp_025_pythia_arxiv, self-scored), in-text table says .648 (from arxiv_multi_source Pythia 0.6484, pooled). Different experiments → different values. | **LOW** | Use consistent source. If self-scored: 0.6545→.655; if pooled: 0.6484→.648. Currently tables contradict on this cell. |\n| 5 | **REGISTRY MISMATCH** | tab_kstar_ci Qwen-7B | 2v3 AUC: paper .5492 vs exp_004 registry 0.5460 (Δ=0.0032). 3v4 AUC: paper .5276 vs registry 0.5225 (Δ=0.0051). Both within CIs but differ from registry point estimates. | **LOW** | Likely OOF bootstrap mean vs raw AUC. Document which computation is used; values are within CI bounds. |\n| 6 | **MINOR PRECISION** | experiments_c1.tex:49,56 | LLaMA-8B 0v1 written as 0.9224 twice; registry is 0.9225. Δ=0.0001. | **TRIVIAL** | Change to 0.9225 or verify source computation. |\n| 7 | **MINOR PRECISION** | tab_kstar_ci OLMo 0v1 | Paper .9860 vs registry 0.9861. Δ=0.0001. | **TRIVIAL** | Negligible; within rounding. |\n| 8 | **MINOR TEXT** | experiments_c1.tex:81 | \"Pythia↔OLMo retains 89--92%\" — calculated from exp_013 accuracy matrix as 90.3--91.6%. Lower bound 89% not reproduced. | **LOW** | Change to \"90--92%\" or verify if a different retention metric (F1, Kendall τ) yields 89%. |\n| 9 | **MINOR PRECISION** | tab_domain_kstar arXiv Pythia Bonf CI | Upper bound: paper .662 vs registry 0.663. Δ=0.001. | **TRIVIAL** | Negligible rounding. |\n| 10 | **UNVERIFIABLE** | Various | Several claims could not be verified from queried registry data: bootstrap K* consistency percentages (92.7%, 94.3%), ANOVA η² values, feature ρ≥0.85, seed ±9pp, binary detector ρ range, dose-response <0.3pp. These may be correct but weren't in the specific experiments queried. | **INFO** | Consider adding these values to experiment registry metrics for full traceability. |\n\n---\n\n## 审计总结\n\n**表格准确性**: tab_filtering_main, tab_alpha_sweep, tab_crossscorer 所有数字精确匹配 registry。tab_pairwise_significance 全部一致。tab_kstar_ci 和 tab_domain_kstar 绝大部分正确，有少量 rounding 差异。tab_domain_model_kstar K* 值全部正确。\n\n**需要修正的问题**:\n1. ❌ **experiments_c1.tex:56** — \"> 0.99 at ≤1.5B\" 不准确，只有 Qwen 两个配置 >0.99\n2. ⚠️ **Wiki Qwen K*** — 两个表格报告不同 K* 值 (1 vs 2)，需统一\n3. ⚠️ **arXiv Pythia/Qwen 2v3** — 两个表格使用不同 source experiment，数值有微小差异\n\n**整体评估**: ~97% 的数字完全匹配或在合理 rounding 范围内。3 个需要修正的问题中，只有 #1 (\">0.99\") 属于 substantive claim error，其余为 presentation 层面的一致性问题。\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "14f666b7-5919-4862-b212-41373182ff54",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YC735HYQU5qYraVBsComeE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 28826,
+                "cache_read_input_tokens": 59438,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 28826
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-25T20:01:58.425Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F48N1Yv25haWFvpNyUudiB",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/audit_experiments_tables.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "e5f62dee-8600-4dcc-a3b7-40edcbb10e10",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/audit_experiments_tables.md",
+              "content": "# 实验章节+表格数字审计\n\n## 统计\n- 审计数字总数：~340\n- 通过：~330\n- 问题：10（3 个需要修正，7 个轻微/rounding）\n\n---\n\n## 表格逐单元格审计\n\n### tab_kstar_ci (experiments_c1.tex lines 26-43)\n\nMain 5-model pairwise AUC table with bootstrap 95% CIs.\n\n| 行(模型) | 列(指标) | 论文值 | registry值 | exp_id | 匹配? |\n|----------|---------|--------|-----------|--------|-------|\n| Qwen-rw | 0v1 AUC | .9956 | 0.9956 | exp_007_bootstrap_ci | ✓ |\n| Qwen-rw | 1v2 AUC | .6955 | 0.6955 (bootstrap) / 0.6957 (primary) | exp_007 / mvp_pilot_sat_v1 | ✓ (uses bootstrap) |\n| Qwen-rw | 1v2 CI | [.686,.704] | [0.6859, 0.7041] | exp_007 | ✓ (3dp rounding) |\n| Qwen-rw | 2v3 AUC | .5893 | 0.5893 | exp_007 / mvp_pilot_sat_v1 | ✓ |\n| Qwen-rw | 2v3 CI | [.580,.599] | [0.5795, 0.5991] | exp_007 | ✓ (3dp rounding) |\n| Qwen-rw | 3v4 AUC | .5435 | 0.5435 (bootstrap) / 0.5434 (primary) | exp_007 / mvp_pilot_sat_v1 | ✓ |\n| Qwen-rw | 4v5 AUC | .5340 | 0.5340 (bootstrap) / 0.5343 (primary) | exp_007 / mvp_pilot_sat_v1 | ✓ |\n| Pythia | 0v1 AUC | .9722 | 0.9722 | exp_001_pythia_depth | ✓ |\n| Pythia | 1v2 AUC | .6074 | 0.6074 | exp_001 | ✓ |\n| Pythia | 1v2 CI | [.598,.617] | [0.5975, 0.6172] | exp_001 | ✓ (3dp rounding) |\n| Pythia | 2v3 AUC | .5440 | 0.5440 | exp_001 | ✓ |\n| Pythia | 2v3 CI | [.534,.554] | — | — | UNVERIFIED (CI source not found in batch 1 queries) |\n| Pythia | 3v4 AUC | .5051 | 0.5051 | exp_001 | ✓ |\n| Pythia | 4v5 AUC | .5079 | 0.5079 | exp_001 | ✓ |\n| OLMo | 0v1 AUC | .9860 | 0.9861 | exp_002_olmo_depth | ⚠️ MINOR (Δ=0.0001) |\n| OLMo | 1v2 AUC | .5001 | 0.5001 | exp_002 (Qwen cross-scored) | ✓ |\n| OLMo | 1v2 CI | [.496,.519] | — | — | UNVERIFIED (not in queried bootstrap data) |\n| OLMo | 2v3 AUC | .4973 | 0.4972 | exp_002 | ⚠️ MINOR (Δ=0.0001) |\n| OLMo | 3v4 AUC | .5034 | 0.5034 | exp_002 | ✓ |\n| OLMo | 4v5 AUC | .4971 | 0.4971 | exp_002 | ✓ |\n| Qwen-cont | 0v1 AUC | .9971 | 0.9971 (bootstrap) / 0.9972 (primary) | exp_007 / exp_017 | ✓ (uses bootstrap) |\n| Qwen-cont | 1v2 AUC | .6112 | 0.6112 (bootstrap) / 0.6114 (primary) | exp_007 / exp_017 | ✓ (uses bootstrap) |\n| Qwen-cont | 1v2 CI | [.602,.621] | [0.6015, 0.6213] | exp_007 | ✓ (3dp rounding) |\n| Qwen-cont | 2v3 AUC | .5609 | 0.5609 | exp_007 / exp_017 | ✓ |\n| Qwen-cont | 2v3 CI | [.551,.571] | [0.5511, 0.5712] | exp_007 | ✓ (3dp rounding) |\n| Qwen-cont | 3v4 AUC | .5409 | 0.5409 (bootstrap) / 0.5408 (primary) | exp_007 / exp_017 | ✓ |\n| Qwen-cont | 4v5 AUC | .5141 | 0.5141 (bootstrap) / 0.5139 (primary) | exp_007 / exp_017 | ✓ |\n| Qwen-7B | 0v1 AUC | .9644 | 0.9644 | exp_004_7b_crossscale | ✓ |\n| Qwen-7B | 0v1 CI | [.961,.967] | [0.9607, 0.9665] | exp_004 | ✓ (3dp rounding) |\n| Qwen-7B | 1v2 AUC | .6178 | 0.6178 | exp_004 | ✓ |\n| Qwen-7B | 1v2 CI | [.608,.626] | [0.6079, 0.6261] | exp_004 | ✓ (3dp rounding) |\n| Qwen-7B | 2v3 AUC | .5492 | 0.5460 | exp_004 | ⚠️ MINOR (Δ=0.0032; within CI; may be OOF vs raw) |\n| Qwen-7B | 2v3 CI | [.539,.559] | [0.5388, 0.5594] | exp_004 | ✓ (3dp rounding) |\n| Qwen-7B | 3v4 AUC | .5276 | 0.5225 | exp_004 | ⚠️ MINOR (Δ=0.0051; within CI; may be OOF vs raw) |\n| Qwen-7B | 4v5 AUC | .5085 | 0.5091 | exp_004 | ⚠️ MINOR (Δ=0.0006) |\n\n**Footnote verification:**\n- \"Permutation p < 0.001 for all starred boundary comparisons\": exp_004 perm_p all =0.0001, exp_001 perm_p=0.0001, exp_007 perm_p=0.002. ✓\n- \"OLMo 2v3 (0.497) < 3v4 (0.503): non-monotonic reversal Δ=0.006\": 0.4972 vs 0.5034, Δ=0.0062≈0.006. ✓\n\n---\n\n### tab_neural_probe_crossmodel (experiments_c1.tex lines 114-124)\n\n| 行(模型) | 列(指标) | 论文值 | registry值 | exp_id | 匹配? |\n|----------|---------|--------|-----------|--------|-------|\n| Qwen-1.5B | 2v3 AUC | 0.6159 | 0.616 | exp_015_neural_probe | ✓ (4dp vs 3dp) |\n| Qwen-1.5B | 95% CI | [0.610, 0.622] | — | exp_015 | UNVERIFIED (CI detail not in registry summary) |\n| Qwen-1.5B | K*_neural | 3 | 3 | exp_015 | ✓ |\n| Pythia-1.4B | 2v3 AUC | 0.5963 | 0.596 | exp_015 | ✓ |\n| Pythia-1.4B | 95% CI | [0.589, 0.603] | — | exp_015 | UNVERIFIED |\n| Pythia-1.4B | K*_neural | 2 | 2 | exp_015 | ✓ |\n| OLMo-1B | 2v3 AUC | 0.5056 | 0.5056 | exp_015 | ✓ |\n| OLMo-1B | 95% CI | [0.497, 0.516] | — | exp_015 | UNVERIFIED |\n| OLMo-1B | K*_neural | 1 | 1 | exp_015 | ✓ |\n| OLMo-1B (footnote) | 1v2 AUC | 0.5054 | 0.5054 | exp_015 | ✓ |\n\n---\n\n### tab_domain_model_kstar (standalone table)\n\nK* per domain per model (scorer: Qwen2.5-1.5B).\n\n| 行(模型) | 列(domain) | 论文K* | registry K* | exp_id | 匹配? |\n|----------|-----------|--------|------------|--------|-------|\n| Qwen-1.5B | C4 | **2** | 2 | exp_016_base_vs_instruct | ✓ |\n| Qwen-1.5B | arXiv | **3** | 3 | exp_024_arxiv_domain | ✓ |\n| Qwen-1.5B | Wiki | **1**† | 2 (raw) / 1 (controlled) | exp_023 / exp_wiki_scorer_confound_1b5 | ✓ (controlled value) |\n| Qwen-7B | C4 | **2** | 2 | exp_004_7b_crossscale | ✓ |\n| Qwen-7B | arXiv | **3** | 3 | exp_arXiv_qwen7b | ✓ |\n| Qwen-7B | Wiki | **1**† | 2 (raw) / 1 (controlled) | exp_wiki_qwen7b / exp_wiki_scorer_confound | ✓ (controlled value) |\n| Pythia-1.4B | C4 | **2** | 2 | exp_001_pythia_depth | ✓ |\n| Pythia-1.4B | arXiv | **3** | 3 | exp_025_pythia_arxiv | ✓ |\n| Pythia-1.4B | Wiki | **1** | 1 | exp_wiki_pythia_v2 | ✓ |\n| LLaMA-8B | C4 | **2** | 2 | exp_018_llama8b_depth | ✓ |\n| LLaMA-8B | arXiv | **3** | 3 | exp_arXiv_llama8b | ✓ |\n| LLaMA-8B | Wiki | **1** | 1 | wiki_domain_llama | ✓ |\n| Mistral-7B | C4 | 1 | 1 | exp_019b_mistral_cross_scorer | ✓ |\n| Mistral-7B | arXiv | **3** | 3 | exp_arXiv_mistral7b | ✓ |\n| Mistral-7B | Wiki | **1** | 1 | wiki_domain_mistral | ✓ |\n| OLMo-1B | C4 | 1 | 1 | exp_002_olmo_depth | ✓ |\n| OLMo-1B | arXiv | 1* | 1 | olmo_arxiv_cross_scorer | ✓ |\n| OLMo-1B | Wiki | **1** | 1 | exp_wiki_olmo_v2 | ✓ |\n\n**Footnotes verified:**\n- \"Mistral AUC(1v2)=0.570<θ\": exp_019b Qwen-scored 1v2=0.5695→.570 ✓\n- \"OLMo capacity failure on arXiv\": olmo_arxiv p_perm=0.51, n.s. ✓\n\n---\n\n### tab_domain_model_kstar_full (standalone table)\n\nFull AUC values at K* boundary.\n\n| 行(模型) | Domain | 列 | 论文值 | registry值 | exp_id | 匹配? |\n|----------|--------|-----|--------|-----------|--------|-------|\n| Qwen-1.5B | C4 | K* | **2** | 2 | exp_016 | ✓ |\n| Qwen-1.5B | C4 | AUC(1v2) | 0.6262 | 0.6262 | exp_016 | ✓ |\n| Qwen-1.5B | arXiv | K* | **3** | 3 | exp_024 | ✓ |\n| Qwen-1.5B | arXiv | AUC(2v3) | 0.6427 | 0.6427 | exp_024 | ✓ |\n| Qwen-7B | C4 | K* | **2** | 2 | exp_004 | ✓ |\n| Qwen-7B | C4 | AUC(1v2) | 0.6178 | 0.6178 | exp_004 | ✓ |\n| Qwen-7B | arXiv | K* | **3** | 3 | exp_arXiv_qwen7b | ✓ |\n| Qwen-7B | arXiv | AUC(2v3) | 0.6255 | 0.626 | exp_arXiv_qwen7b | ⚠️ MINOR (0.6255 vs 0.626, registry 3dp) |\n| Qwen-7B | Wiki | 0v1 AUC | 0.967 | 0.9673 | exp_wiki_qwen7b | ✓ (3dp rounding) |\n| Pythia-1.4B | C4 | K* | **2** | 2 | exp_001 | ✓ |\n| Pythia-1.4B | C4 | AUC(1v2) | 0.6074 | 0.6074 | exp_001 | ✓ |\n| Pythia-1.4B | arXiv | K* | **3** | 3 | exp_025_pythia_arxiv | ✓ |\n| Pythia-1.4B | arXiv | AUC(2v3) | 0.6545 | 0.6545 | exp_025_pythia_arxiv | ✓ |\n| Pythia-1.4B | Wiki | 0v1 AUC | 0.975 | 0.9750 | exp_wiki_pythia_v2 | ✓ |\n| LLaMA-8B | C4 | K* | **2** | 2 | exp_018 | ✓ |\n| LLaMA-8B | C4 | AUC(1v2) | 0.6123 | 0.6123 | exp_018 | ✓ |\n| LLaMA-8B | arXiv | K* | **3** | 3 | exp_arXiv_llama8b | ✓ |\n| LLaMA-8B | arXiv | AUC(2v3) | 0.6215 | 0.6215 | exp_arXiv_llama8b | ✓ |\n| LLaMA-8B | Wiki | 0v1 AUC | 0.932 | 0.9321→0.932 | wiki_domain_llama | ✓ |\n| Mistral-7B | C4 | K* | 1 | 1 | exp_019b | ✓ |\n| Mistral-7B | C4 | AUC(1v2) | 0.570 | 0.5695→.570 | exp_019b_mistral_cross_scorer | ✓ (3dp rounding) |\n| Mistral-7B | arXiv | K* | **3** | 3 | exp_arXiv_mistral7b | ✓ |\n| Mistral-7B | arXiv | AUC(2v3) | 0.6275 | 0.6275 | exp_arXiv_mistral7b | ✓ |\n| Mistral-7B | Wiki | 0v1 AUC | 0.961 | 0.9607→.961 | exp_wiki_mistral7b | ✓ |\n| OLMo-1B | C4 | K* | 1 | 1 | exp_002 | ✓ |\n| OLMo-1B | C4 | AUC(1v2) | 0.500 | 0.5001→.500 | exp_002 | ✓ |\n| OLMo-1B | Wiki | 0v1 AUC | 0.993 | 0.9932→.993 | exp_wiki_olmo_v2 | ✓ |\n\n---\n\n### tab_domain_kstar (in-text table, experiments_c1.tex lines 150-175)\n\nCross-domain K* comparison table.\n\n| 行(Domain+Model) | 列(指标) | 论文值 | registry值 | exp_id | 匹配? |\n|------------------|---------|--------|-----------|--------|-------|\n| arXiv Qwen-1.5B | 1v2 | .858 | 0.858 | exp_024 | ✓ |\n| arXiv Qwen-1.5B | 2v3 | .644 | 0.6427 | exp_024 | ❌ ISSUE (see below) |\n| arXiv Qwen-1.5B | Bonf CI | [.629,.659] | [0.6275, 0.6575] | exp_024 | ⚠️ (doesn't match exactly; different CI computation?) |\n| arXiv Qwen-1.5B | K* | 3 | 3 | exp_024 | ✓ |\n| arXiv Pythia | 1v2 | .805 | 0.8047 | exp_025_pythia_arxiv | ✓ (3dp rounding) |\n| arXiv Pythia | 2v3 | .648 | 0.6545 | exp_025 / arxiv_multi_source(0.6484) | ⚠️ MINOR (see note) |\n| arXiv Pythia | Bonf CI | [.634,.662] | [0.634, 0.663] | arxiv_multi_source | ⚠️ (upper 0.662 vs 0.663, off 0.001) |\n| arXiv Pythia | K* | 3 | 3 | exp_025 | ✓ |\n| arXiv LLaMA-8B | 1v2 | .845 | 0.8447 | exp_arXiv_llama8b | ✓ (3dp rounding) |\n| arXiv LLaMA-8B | 2v3 | .622 | 0.6215 | exp_arXiv_llama8b | ✓ (3dp rounding) |\n| arXiv LLaMA-8B | Bonf CI | [.605,.635] | CI from Pythia cross-scorer | exp_arXiv_llama8b_crossscorer | ✓ (per footnote) |\n| arXiv LLaMA-8B | K* | 3 | 3 | exp_arXiv_llama8b | ✓ |\n| arXiv Mistral | 1v2 | .820 | 0.8201 | exp_arXiv_mistral7b | ✓ (3dp rounding) |\n| arXiv Mistral | 2v3 | .628 | 0.6275 | exp_arXiv_mistral7b | ✓ (3dp rounding) |\n| arXiv Mistral | K* | 3 | 3 | exp_arXiv_mistral7b | ✓ |\n| arXiv OLMo | 1v2 | .500 | 0.4996 | olmo_arxiv_cross_scorer | ✓ |\n| arXiv OLMo | 2v3 | .497 | 0.4971 | olmo_arxiv_cross_scorer | ✓ |\n| arXiv OLMo | Bonf CI | [.483,.517] | [0.4828, 0.5166] | olmo_arxiv_cross_scorer | ✓ (3dp rounding) |\n| arXiv OLMo | K* | 1 | 1 | olmo_arxiv_cross_scorer | ✓ |\n| C4 Qwen-1.5B | 1v2 | .626 | 0.6262 | exp_016 | ✓ |\n| C4 Qwen-1.5B | 2v3 | .550 | 0.5496 | exp_016 | ✓ (3dp rounding) |\n| C4 Qwen-1.5B | K* | 2 | 2 | exp_016 | ✓ |\n| C4 Mistral | 1v2 | .570 | 0.5695 | exp_019b | ✓ (3dp rounding) |\n| C4 Mistral | 2v3 | .534 | — | — | UNVERIFIED (cross-scored 2v3 not separately queried) |\n| C4 Mistral | K* | 1 | 1 | exp_019b | ✓ |\n| Code Qwen-1.5B | 1v2 | .738 | 0.7382 | exp_code_qwen1b5 | ✓ |\n| Code Qwen-1.5B | 2v3 | .530 | 0.53 | exp_code_qwen1b5 | ✓ |\n| Code Qwen-1.5B | K* | 2 | 2 | exp_code_qwen1b5 | ✓ |\n| Code Qwen-7B | 1v2 | .727 | 0.7273/0.7276 | exp_code_qwen7b / code_domain_qwen7b | ✓ |\n| Code Qwen-7B | 2v3 | .537 | 0.5368/0.5367 | exp_code_qwen7b / code_domain_qwen7b | ✓ |\n| Code Qwen-7B | Bonf CI | [.715,.739] | [0.7153, 0.7389] | code_domain_qwen7b | ✓ |\n| Code Qwen-7B | K* | 2 | 2 | code_domain_qwen7b | ✓ |\n| Code LLaMA-8B | 1v2 | .739 | 0.7394 | exp_code_llama8b | ✓ |\n| Code LLaMA-8B | 2v3 | .511 | 0.5112 | exp_code_llama8b | ✓ |\n| Code LLaMA-8B | K* | 2 | 2 | exp_code_llama8b | ✓ |\n| Code Mistral | 1v2 | .615 | 0.615/0.6152 | code_domain_mistral / exp_code_mistral7b | ✓ |\n| Code Mistral | 2v3 | .529 | 0.5292/0.5293 | code_domain_mistral / exp_code_mistral7b | ✓ |\n| Code Mistral | Bonf CI | [.602,.628] | [0.6024, 0.6281] | code_domain_mistral | ✓ |\n| Code Mistral | K* | 2 | 2 | code_domain_mistral | ✓ |\n| Code OLMo | 1v2 | .557 | 0.5567 | code_domain_olmo | ✓ |\n| Code OLMo | 2v3 | .500 | 0.5 | code_domain_olmo | ✓ |\n| Code OLMo | K* | 1 | 1 | code_domain_olmo | ✓ |\n| Wiki Qwen-1.5B | 1v2 | .619 | 0.6193 | exp_023_domain_ablation | ✓ |\n| Wiki Qwen-1.5B | 2v3 | .550 | 0.5498 | exp_023 | ✓ |\n| Wiki Qwen-1.5B | K* | 2 | 2 | exp_023 | ⚠️ SEE ISSUE #2 |\n| Wiki LLaMA-8B | 1v2 | .592 | 0.5919 | wiki_domain_llama | ✓ |\n| Wiki LLaMA-8B | 2v3 | .538 | 0.5379 | wiki_domain_llama | ✓ |\n| Wiki LLaMA-8B | Bonf CI | [.579,.605] | [0.5788, 0.6049] | wiki_domain_llama | ✓ |\n| Wiki LLaMA-8B | K* | 1 | 1 | wiki_domain_llama | ✓ |\n| Wiki Mistral | 1v2 | .558 | 0.5576 | wiki_domain_mistral | ✓ |\n| Wiki Mistral | 2v3 | .519 | 0.5193 | wiki_domain_mistral | ✓ |\n| Wiki Mistral | Bonf CI | [.543,.572] | [0.5434, 0.5716] | wiki_domain_mistral | ✓ |\n| Wiki Mistral | K* | 1 | 1 | wiki_domain_mistral | ✓ |\n\n**Note on arXiv Pythia 2v3**: tab_domain_kstar says .648, tab_domain_model_kstar_full says 0.6545, exp_025_pythia_arxiv registry says 0.6545, arxiv_multi_source says 0.6484. The .648 value matches arxiv_multi_source (0.6484→.648) NOT exp_025 (0.6545). Two tables use different source experiments for same cell. See ISSUE #4.\n\n---\n\n### tab_filtering_main (standalone table)\n\n| 行(Strategy) | 列(MMLU) | 论文值 | registry值 | exp_id | 匹配? |\n|-------------|---------|--------|-----------|--------|-------|\n| Base model | MMLU | 0.6018 | 0.6018 | exp_006 | ✓ |\n| Base model | HellaSwag | 0.6821 | 0.6821 | exp_006 | ✓ |\n| Binary-ours | MMLU | 0.5941±0.0008 | 0.5941±0.0008 | exp_006 | ✓ |\n| Binary-ours | HellaSwag | 0.6701±0.0006 | 0.6701±0.0006 | exp_006 | ✓ |\n| Binary-Drayson | MMLU | 0.5913±0.0009 | 0.5913±0.0009 | exp_006 | ✓ |\n| Binary-Drayson | HellaSwag | 0.6691±0.0004 | 0.6691±0.0004 | exp_006 | ✓ |\n| Surprisal | MMLU | 0.5894±0.0009 | 0.5894±0.0009 | exp_006 | ✓ |\n| Surprisal | HellaSwag | 0.6641±0.0006 | 0.6641±0.0006 | exp_006 | ✓ |\n| Graduated α=0.9 | MMLU | 0.5892±0.0008 | 0.5892±0.0008 | exp_006 | ✓ |\n| Graduated α=0.9 | HellaSwag | 0.6701±0.0007 | 0.6701±0.0007 | exp_006 | ✓ |\n| DSIR | MMLU | 0.5869±0.0003 | 0.5869±0.0003 | exp_006 | ✓ |\n| DSIR | HellaSwag | 0.6631±0.0007 | 0.6631±0.0007 | exp_006 | ✓ |\n| No filter | MMLU | 0.5865±0.0010 | 0.5865±0.0010 | exp_006 | ✓ |\n| No filter | HellaSwag | 0.6638±0.0008 | 0.6638±0.0008 | exp_006 | ✓ |\n\n**全部精确匹配 ✓**\n\n---\n\n### tab_alpha_sweep (standalone table)\n\n| α | MMLU (论文) | MMLU (registry) | HellaSwag (论文) | HellaSwag (registry) | 匹配? |\n|---|-----------|----------------|-----------------|---------------------|-------|\n| 0.1 | 0.5873±0.0019 | 0.5873±0.0019 | 0.6640±0.0009 | 0.6640±0.0009 | ✓ |\n| 0.3 | 0.5877±0.0013 | 0.5877±0.0013 | 0.6669±0.0005 | 0.6669±0.0005 | ✓ |\n| 0.5 | 0.5880±0.0013 | 0.5880±0.0013 | 0.6687±0.0008 | 0.6687±0.0008 | ✓ |\n| 0.7 | 0.5892±0.0014 | 0.5892±0.0014 | 0.6695±0.0004 | 0.6695±0.0004 | ✓ |\n| 0.9 | 0.5892±0.0008 | 0.5892±0.0008 | 0.6701±0.0007 | 0.6701±0.0007 | ✓ |\n\n**全部精确匹配 ✓**\n\n---\n\n### tab_pairwise_significance (standalone table)\n\nAll 15 pairs × 2 benchmarks = 30 comparisons. Cross-checked Δ values against tab_filtering_main means (using seed-level precision, Δ values may differ by ≤0.01pp from table-level rounding).\n\n| Row | Column | MMLU Δ (paper) | MMLU Δ (calculated) | MMLU p | HellaSwag Δ (paper) | HellaSwag Δ (calc) | HellaSwag p | 匹配? |\n|-----|--------|---------|-----------|---------|---------|-----------|---------|-------|\n| binary-ours | no-filter | +0.77 | +0.76 (from means) | .002 | +0.64 | +0.63 | .004 | ✓ (seed-level rounding) |\n| binary-ours | DSIR | +0.72 | +0.72 | <.001 | +0.71 | +0.70 | <.001 | ✓ |\n| binary-ours | surprisal | +0.47 | +0.47 | .021 | +0.61 | +0.60 | .002 | ✓ |\n| binary-ours | graduated₀.₉ | +0.50 | +0.49 | .011 | 0.00 | 0.00 | 1.00 | ✓ |\n| binary-ours | binary-Drayson | +0.28 | +0.28 | <.001 | +0.11 | +0.10 | .131 | ✓ |\n| binary-Drayson | no-filter | +0.49 | +0.48 | .019 | +0.53 | +0.53 | .004 | ✓ |\n| binary-Drayson | DSIR | +0.44 | +0.44 | .003 | +0.60 | +0.60 | .003 | ✓ |\n| binary-Drayson | surprisal | +0.19 | +0.19 | .202 | +0.50 | +0.50 | .004 | ✓ |\n| binary-Drayson | graduated₀.₉ | +0.22 | +0.21 | .161 | -0.11 | -0.10 | .237 | ✓ |\n| graduated₀.₉ | no-filter | +0.27 | +0.27 | .052 | +0.64 | +0.63 | .004 | ✓ |\n| graduated₀.₉ | DSIR | +0.23 | +0.23 | .052 | +0.71 | +0.70 | <.001 | ✓ |\n| graduated₀.₉ | surprisal | -0.02 | -0.02 | .694 | +0.61 | +0.60 | .002 | ✓ |\n| surprisal | no-filter | +0.29 | +0.29 | .025 | +0.03 | +0.03 | .694 | ✓ |\n| surprisal | DSIR | +0.25 | +0.25 | .052 | +0.10 | +0.10 | .190 | ✓ |\n| DSIR | no-filter | +0.04 | +0.04 | .952 | -0.07 | -0.07 | .947 | ✓ |\n\n**Footnote check:**\n- \"MMLU: 8/15 pairs significant\": counted 8 ✓\n- \"HellaSwag: 9/15 pairs significant\": counted 9 ✓\n\n**全部一致 ✓** (Δ differences of 0.01pp are from seed-level vs mean-level computation)\n\n---\n\n### tab_crossscorer (standalone table)\n\n| Scorer | Gen Data | K* (paper) | K* (registry) | AUC(0v1) paper | AUC(0v1) registry | AUC(1v2) paper | AUC(1v2) registry | ρ paper | ρ registry | exp_id | 匹配? |\n|--------|----------|-----------|--------------|---------------|-------------------|---------------|-------------------|---------|-----------|--------|-------|\n| Qwen (self) | Qwen-RW | 2 | 2 | --- | --- | 0.6955 | 0.6955 | --- | --- | exp_007 | ✓ |\n| Pythia-1.4B | Qwen-RW | 2 | 2 | 0.9923 | 0.9923 | 0.7012 | 0.7012 | 0.906 | 0.906 | exp_A_alt_scorer | ✓ |\n| OLMo-1B | Qwen-RW | 2 | 2 | 0.9918 | 0.9918 | 0.6947 | 0.6947 | 0.920 | 0.920 | exp_A_alt_scorer | ✓ |\n| Qwen (self) | Qwen-cont | 2 | 2 | --- | --- | 0.6112 | 0.6112 | --- | --- | exp_007 | ✓ |\n| Pythia-1.4B | Qwen-cont | 1† | 1 | 0.9900 | 0.9900 | 0.5923 | 0.5923 | 0.942 | 0.942 | exp_A_alt_scorer | ✓ |\n| OLMo-1B | Qwen-cont | 1† | 1 | 0.9890 | 0.9890 | 0.5858 | 0.5858 | 0.902 | 0.902 | exp_A_alt_scorer | ✓ |\n| Qwen-1.5B | Qwen-7B | 2 | 2 | 0.9644 | 0.9644 | 0.6178 | 0.6178 | --- | --- | exp_004 | ✓ |\n| Cross-scorer | OLMo-arXiv | 1 | 1 | 0.999 | 0.9994 | 0.500 n.s. | 0.4996 | --- | --- | olmo_arxiv_cross_scorer | ✓ (3dp) |\n| Cross-scorer | OLMo-Code | 1 | 1 | 0.9996 | 0.9996 | 0.557 n.s. | 0.5567 | --- | --- | code_domain_olmo | ✓ (3dp) |\n\n**全部匹配 ✓**\n\n---\n\n## 正文数字清单\n\n### experiments_c1.tex\n\n| # | 数字 | 文件:行号 | 上下文 | 来源 | 匹配? |\n|---|------|----------|--------|------|-------|\n| 1 | 6/10 yield K*=2 | :45 | K*=2 count | Qwen-rw,Pythia,Qwen-cont,Qwen-base,Qwen-7B,LLaMA = 6 | ✓ |\n| 2 | 1v2 AUC: 0.607--0.696 | :45 | K*=2 range | Pythia 0.6074 → LLaMA 0.6123 → Qwen-cont 0.6112 → Qwen-7B 0.6178 → Qwen-base 0.6262 → Qwen-rw 0.6955 | ✓ |\n| 3 | 4/10 yield K*=1 | :45 | K*=1 count | OLMo, Mistral, Gemma-2B, Pythia-6.9B = 4 | ✓ |\n| 4 | 1v2 AUC: 0.500--0.598 | :45 | K*=1 range | OLMo 0.500 to Gemma-2B 0.5981≈0.598 | ✓ |\n| 5 | 4 of 6 Qwen configs | :47 | Qwen K*=2 count | Qwen-rw, Qwen-cont, Qwen-7B, Qwen-base = 4/6 | ✓ |\n| 6 | Bonferroni CI lower 0.593--0.599 | :48 | Marginal cases | Pythia Bonf lower=0.5934≈0.593; others ~0.597-0.599 | ✓ (consistent) |\n| 7 | 0v1 AUC = 0.9224 (LLaMA) | :49 | LLaMA-8B 0v1 | exp_018: 0.9225 | ⚠️ MINOR (Δ=0.0001) |\n| 8 | 1v2 AUC = 0.6123 [0.603, 0.622] (LLaMA) | :49 | LLaMA-8B 1v2 + CI | exp_018: 0.6123, CI [0.6028,0.6216]→[.603,.622] | ✓ |\n| 9 | Δ = 8.4pp (generation mode) | :51 | Qwen-rw vs Qwen-cont | 0.6955-0.6112=0.0843≈8.4pp | ✓ |\n| 10 | Δ = 1.9pp (continuation models) | :51 | Spread among K*=2 cont models | max-min = 0.6262-0.6074=0.0188≈1.9pp | ✓ |\n| 11 | 8/10 identical K* in bootstrap | :52 | Bootstrap stability | UNVERIFIED (detailed bootstrap data not queried) | — |\n| 12 | 92.7% and 94.3% modal-K* consistency | :53 | Gemma-2B, LLaMA-Wiki | UNVERIFIED (bootstrap detail) | — |\n| 13 | > 0.99 at ≤1.5B | :56 | 0v1 comparison | ❌ ISSUE #1: Only Qwen variants (0.9956, 0.9972) are >0.99; Pythia=0.9722, OLMo=0.9861, Qwen-base=0.9870, Gemma=0.9534 are NOT | |\n| 14 | Qwen-7B 1v2=0.6178 [0.608,0.626] | :56 | Scale invariance | exp_004: 0.6178, CI [0.6079,0.6261] | ✓ |\n| 15 | LLaMA-8B 1v2=0.6123 | :56 | Scale invariance | exp_018: 0.6123 | ✓ |\n| 16 | 0.9644 and 0.9224 | :56 | 0v1 for 7B+ models | exp_004: 0.9644 ✓; exp_018: 0.9225 (paper 0.9224) | ⚠️ (0.0001) |\n| 17 | 1v2 AUC=0.626 (base-vs-instruct) | :57 | Base model K* | exp_016: 0.6262→0.626 | ✓ |\n| 18 | Pythia↔OLMo 89--92% retention | :81 | Transfer matrix | exp_013: calculated 90.3%-91.6% | ⚠️ MINOR (89% not reproduced; closest is 90.3%) |\n| 19 | Gemma-27B >100% (101.3% avg; reverse: 76.5%) | :82 | Cross-scale transfer | gemma27b_cross_transfer: 101.3% avg ✓, 76.5% reverse ✓ | ✓ |\n| 20 | Qwen-RW transfer 61--63% to Pythia/OLMo | :83 | Rewrite transfer | exp_013: Qwen-RW→Pythia 0.259/0.4229=61.3%, →OLMo 0.265/0.4229=62.7% | ✓ |\n| 21 | 82% within Qwen | :83 | RW→cont retention | exp_013: 0.3466/0.4229=82.0% | ✓ |\n| 22 | ρ > 0.90 (cross-scorer features) | :86 | Feature ranking | exp_A_alt_scorer: Pythia ρ=0.906, OLMo ρ=0.920 | ✓ |\n| 23 | 1v2 AUC=0.696 (Qwen-RW) | :88 | Cross-scorer context | 0.6955→0.696 at 3dp | ✓ |\n| 24 | 1v2 AUC=0.611, 0.011 above θ | :88 | Qwen-cont marginal | 0.6112→0.611; 0.611-0.60=0.011 | ✓ |\n| 25 | Pythia: 0.5923; OLMo: 0.5858 | :88 | Cross-scorer drops | exp_A_alt_scorer exact match | ✓ |\n| 26 | η²_p=.192, η²_p=.170 | :89 | ANOVA effect sizes | UNVERIFIED (ANOVA results not in queried registry) | — |\n| 27 | ρ ≥ 0.85 (feature rankings) | :96 | Continuation model features | UNVERIFIED (feature analysis not queried in detail) | — |\n| 28 | 1v2 AUC=0.6955 vs 0.6112, Δ=+8.4pp | :99 | Rewrite vs continuation | 0.6955-0.6112=0.0843≈8.4pp | ✓ |\n| 29 | K*_neural=3, 2v3=0.6159 (Qwen) | :105 | Neural probe | exp_015: k*=3, 2v3=0.616≈0.6159 | ✓ |\n| 30 | K*_neural=2, 2v3=0.5963 (Pythia) | :105 | Neural probe | exp_015: k*=2, 2v3=0.596≈0.5963 | ✓ |\n| 31 | K*_neural=1, 1v2=0.5054 (OLMo) | :105 | Neural probe | exp_015: k*=1, 1v2=0.5054 | ✓ |\n| 32 | Wiki K*=2 Qwen (1v2=0.619) | :132 | Cross-domain | exp_023: 0.6193→0.619 | ✓ |\n| 33 | Wiki K*=1 LLaMA/Mistral (0.592, 0.558) | :132 | Cross-domain | wiki_domain_llama 0.5919→.592 ✓; wiki_domain_mistral 0.5576→.558 ✓ | ✓ |\n| 34 | arXiv 2v3 = 0.644, 0.648, 0.622, 0.628 | :133 | Four K*=3 models | See in-text table audit above | ⚠️ (Qwen .644 vs registry .6427) |\n| 35 | arXiv Bonf CIs | :133 | [.629,.659], [.634,.662], [.605,.635] | See in-text table audit | ✓ (minor rounding) |\n| 36 | p=0.510 (OLMo all domains) | :134 | OLMo cross-scorer n.s. | olmo_arxiv_cross_scorer p_perm=0.51 | ✓ |\n| 37 | Mistral staircase Wiki=1, C4=1, Code=2, arXiv=3 | :134 | Domain staircase | All registry K* values match | ✓ |\n| 38 | 1v2 JSD=0.077 (arXiv) vs ~0.01 (C4) | :135 | JSD comparison | arXiv 1v2 JSD ~0.06-0.08; C4 ~0.005-0.016 | ✓ (approximate) |\n| 39 | All 5 Code models K*≤2 | :143 | Code domain | All verified ≤2 | ✓ |\n| 40 | ±9pp AUC variation across seeds | :181 | Seed robustness | UNVERIFIED | — |\n| 41 | K*_binary ≤1, |ρ|=0.06--0.46 | :187 | Binary detectors | UNVERIFIED (exp_012 not queried) | — |\n\n### experiments_c3.tex\n\n| # | 数字 | 文件:行号 | 上下文 | 来源 | 匹配? |\n|---|------|----------|--------|------|-------|\n| 42 | ~83% synthetic | :4 | Contamination ratio | 5/6 depths = 83.3% | ✓ |\n| 43 | 30,000 documents | :5 | Dataset size | 6 depths × 5,000 = 30,000 | ✓ |\n| 44 | −1.53pp MMLU gap (no-filter) | :15 | base-nofilter | 0.6018-0.5865=0.0153=1.53pp | ✓ |\n| 45 | −0.77pp (binary-ours) | :15 | base-binary gap | 0.6018-0.5941=0.0077=0.77pp | ✓ |\n| 46 | ~50% reduction | :15 | Gap reduction | 0.77/1.53=50.3%≈50% | ✓ |\n| 47 | p_corr<0.05 vs all alternatives | :15 | Significance | All pairwise p_corr < 0.05 for binary-ours row | ✓ |\n| 48 | α=0.9 matches HellaSwag (p=1.00) | :17 | Graduated convergence | tab_pairwise: p=1.00 ✓ |\n| 49 | α=0.9 worse MMLU (p=0.011) | :17 | Graduated MMLU | tab_pairwise: p=.011 ✓ |\n| 50 | DSIR ≈ no-filter | :17 | DSIR performance | tab_pairwise: p=.952/.947, both n.s. | ✓ |\n| 51 | <0.3pp at ≤50% contamination | :18 | Realistic ratios | UNVERIFIED (exp_009 not queried) | — |\n\n---\n\n## 问题列表\n\n| # | 问题类型 | 位置 | 描述 | 严重性 | 修复方案 |\n|---|---------|------|------|--------|---------|\n| 1 | **INACCURATE CLAIM** | experiments_c1.tex:56 | Text says \"> 0.99 at ≤1.5B\" for 0v1 AUC, but only Qwen-rw (0.9956) and Qwen-cont (0.9972) exceed 0.99. Pythia-1.4B=0.9722, OLMo-1B=0.9861, Qwen-base=0.9870, Gemma-2B=0.9534 all < 0.99. | **HIGH** | Change to \"> 0.99 for Qwen-1.5B\" or \"> 0.97 at ≤1.5B\" or specify which models. |\n| 2 | **INTERNAL INCONSISTENCY** | tab_domain_model_kstar vs tab_domain_kstar | Wiki Qwen-1.5B: tab_domain_model_kstar reports K*=**1**† (controlled/cross-scorer), tab_domain_kstar (in-text table) reports K*=**2** (raw/self-scorer). Both tables use footnote † but report different values for the same model+domain. | **MEDIUM** | Unify: either both report controlled K*=1 or add explicit footnote to in-text table explaining raw vs controlled. Currently confusing for readers. |\n| 3 | **INTERNAL INCONSISTENCY** | tab_domain_model_kstar_full vs tab_domain_kstar | arXiv Qwen-1.5B 2v3 AUC: full table says 0.6427, in-text table says .644. Δ=0.0013. | **LOW** | Likely different source experiments (exp_024 vs pooled). Unify to one consistent value (0.643 or 0.644). |\n| 4 | **CROSS-TABLE SOURCE MISMATCH** | tab_domain_model_kstar_full vs tab_domain_kstar | Pythia arXiv 2v3: full table says 0.6545 (from exp_025_pythia_arxiv, self-scored), in-text table says .648 (from arxiv_multi_source Pythia 0.6484, pooled). Different experiments → different values. | **LOW** | Use consistent source. If self-scored: 0.6545→.655; if pooled: 0.6484→.648. Currently tables contradict on this cell. |\n| 5 | **REGISTRY MISMATCH** | tab_kstar_ci Qwen-7B | 2v3 AUC: paper .5492 vs exp_004 registry 0.5460 (Δ=0.0032). 3v4 AUC: paper .5276 vs registry 0.5225 (Δ=0.0051). Both within CIs but differ from registry point estimates. | **LOW** | Likely OOF bootstrap mean vs raw AUC. Document which computation is used; values are within CI bounds. |\n| 6 | **MINOR PRECISION** | experiments_c1.tex:49,56 | LLaMA-8B 0v1 written as 0.9224 twice; registry is 0.9225. Δ=0.0001. | **TRIVIAL** | Change to 0.9225 or verify source computation. |\n| 7 | **MINOR PRECISION** | tab_kstar_ci OLMo 0v1 | Paper .9860 vs registry 0.9861. Δ=0.0001. | **TRIVIAL** | Negligible; within rounding. |\n| 8 | **MINOR TEXT** | experiments_c1.tex:81 | \"Pythia↔OLMo retains 89--92%\" — calculated from exp_013 accuracy matrix as 90.3--91.6%. Lower bound 89% not reproduced. | **LOW** | Change to \"90--92%\" or verify if a different retention metric (F1, Kendall τ) yields 89%. |\n| 9 | **MINOR PRECISION** | tab_domain_kstar arXiv Pythia Bonf CI | Upper bound: paper .662 vs registry 0.663. Δ=0.001. | **TRIVIAL** | Negligible rounding. |\n| 10 | **UNVERIFIABLE** | Various | Several claims could not be verified from queried registry data: bootstrap K* consistency percentages (92.7%, 94.3%), ANOVA η² values, feature ρ≥0.85, seed ±9pp, binary detector ρ range, dose-response <0.3pp. These may be correct but weren't in the specific experiments queried. | **INFO** | Consider adding these values to experiment registry metrics for full traceability. |\n\n---\n\n## 审计总结\n\n**表格准确性**: tab_filtering_main, tab_alpha_sweep, tab_crossscorer 所有数字精确匹配 registry。tab_pairwise_significance 全部一致。tab_kstar_ci 和 tab_domain_kstar 绝大部分正确，有少量 rounding 差异。tab_domain_model_kstar K* 值全部正确。\n\n**需要修正的问题**:\n1. ❌ **experiments_c1.tex:56** — \"> 0.99 at ≤1.5B\" 不准确，只有 Qwen 两个配置 >0.99\n2. ⚠️ **Wiki Qwen K*** — 两个表格报告不同 K* 值 (1 vs 2)，需统一\n3. ⚠️ **arXiv Pythia/Qwen 2v3** — 两个表格使用不同 source experiment，数值有微小差异\n\n**整体评估**: ~97% 的数字完全匹配或在合理 rounding 范围内。3 个需要修正的问题中，只有 #1 (\">0.99\") 属于 substantive claim error，其余为 presentation 层面的一致性问题。\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "63a5cdd4-58de-465c-a002-47364151fd16",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X1BaGkYyQ1aSZwDLuu1ZN8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18862,
+                "cache_read_input_tokens": 88264,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 18862
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HgTh9j1C1YWab7iAZcg4DT",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "project": "gen-depth-contamination",
+                "artifact_id": "audit_experiments_tables",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/audit_experiments_tables.md",
+                "description": "Audit of all numbers in experiments sections (experiments_c1.tex, experiments_c3.tex) and 6 tables (tab_domain_model_kstar, tab_domain_model_kstar_full, tab_pairwise_significance, tab_filtering_main, tab_alpha_sweep, tab_crossscorer) plus 2 inline tables (tab_kstar_ci, tab_domain_kstar). ~340 numbers verified against experiment registry.",
+                "artifact_type": "report"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "fc658346-5949-4533-b3db-eddfe808f7dc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X1BaGkYyQ1aSZwDLuu1ZN8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18862,
+                "cache_read_input_tokens": 88264,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 18862
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": "2026-05-25T20:02:13.699Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 2 validation errors for register_artifactArguments\nname\n  Field required [type=missing, input_value={'project': 'gen-depth-co...rtifact_type': 'report'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\ntype\n  Field required [type=missing, input_value={'project': 'gen-depth-co...rtifact_type': 'report'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing",
+              "is_error": true,
+              "tool_use_id": "toolu_01HgTh9j1C1YWab7iAZcg4DT"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "1b73966b-057b-4346-a012-5ef594e4b4fa",
+            "tool_use_result": "Error: Error executing tool register_artifact: 2 validation errors for register_artifactArguments\nname\n  Field required [type=missing, input_value={'project': 'gen-depth-co...rtifact_type': 'report'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\ntype\n  Field required [type=missing, input_value={'project': 'gen-depth-co...rtifact_type': 'report'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ULBWa1oLCRW1EqAHGKPFa6",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "81493c2f-eee1-4cdf-b1f8-0d3205727ce8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CVnyUoVrf3HZ6Wq1mRrXCX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 460,
+                "cache_read_input_tokens": 107126,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 460
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": "2026-05-25T20:02:17.552Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01ULBWa1oLCRW1EqAHGKPFa6",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "98a49248-f9e2-4e18-bce0-42c8f1ad7106",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D5rcGzjWCU5wdC7KsERZAF",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "audit_experiments_tables",
+                "type": "report",
+                "description": "Audit of all numbers in experiments sections (experiments_c1.tex, experiments_c3.tex) and 6 tables (tab_domain_model_kstar, tab_domain_model_kstar_full, tab_pairwise_significance, tab_filtering_main, tab_alpha_sweep, tab_crossscorer) plus 2 inline tables (tab_kstar_ci, tab_domain_kstar). ~340 numbers verified against experiment registry.",
+                "project": "gen-depth-contamination",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/audit_experiments_tables.md",
+                "tags": [
+                  "audit",
+                  "paper",
+                  "numbers"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "7e2f4bf2-aac5-4bb1-bb47-4732540fb0a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tm3yV6ZHKThSBmJCc15ffr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 712,
+                "cache_read_input_tokens": 107586,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 712
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": "2026-05-25T20:02:24.509Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D5rcGzjWCU5wdC7KsERZAF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_f94522\\\", \\\"name\\\": \\\"audit_experiments_tables\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Audit of all numbers in experiments sections (experiments_c1.tex, experiments_c3.tex) and 6 tables (tab_domain_model_kstar, tab_domain_model_kstar_full, tab_pairwise_significance, tab_filtering_main, tab_alpha_sweep, tab_crossscorer) plus 2 inline tables (tab_kstar_ci, tab_domain_kstar). ~340 numbers verified against experiment registry.\\\", \\\"path\\\": \\\"projects/gen-depth-contamination/artifacts/_project/report/audit_experiments_tables.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-25T20:02:24.169055+00:00\\\", \\\"tags\\\": [\\\"audit\\\", \\\"paper\\\", \\\"numbers\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "e185097e-69a4-48db-b4ba-64f52753d66b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_f94522\\\", \\\"name\\\": \\\"audit_experiments_tables\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Audit of all numbers in experiments sections (experiments_c1.tex, experiments_c3.tex) and 6 tables (tab_domain_model_kstar, tab_domain_model_kstar_full, tab_pairwise_significance, tab_filtering_main, tab_alpha_sweep, tab_crossscorer) plus 2 inline tables (tab_kstar_ci, tab_domain_kstar). ~340 numbers verified against experiment registry.\\\", \\\"path\\\": \\\"projects/gen-depth-contamination/artifacts/_project/report/audit_experiments_tables.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-25T20:02:24.169055+00:00\\\", \\\"tags\\\": [\\\"audit\\\", \\\"paper\\\", \\\"numbers\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_f94522\", \"name\": \"audit_experiments_tables\", \"type\": \"report\", \"description\": \"Audit of all numbers in experiments sections (experiments_c1.tex, experiments_c3.tex) and 6 tables (tab_domain_model_kstar, tab_domain_model_kstar_full, tab_pairwise_significance, tab_filtering_main, tab_alpha_sweep, tab_crossscorer) plus 2 inline tables (tab_kstar_ci, tab_domain_kstar). ~340 numbers verified against experiment registry.\", \"path\": \"projects/gen-depth-contamination/artifacts/_project/report/audit_experiments_tables.md\", \"url\": null, \"project\": \"gen-depth-contamination\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-25T20:02:24.169055+00:00\", \"tags\": [\"audit\", \"paper\", \"numbers\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。~340 个数字已验证，报告保存在 `artifacts/audit_experiments_tables.md`。\n\n**核心发现：**\n\n1. **❌ 需修正** — `experiments_c1.tex:56` 声称 \"> 0.99 at ≤1.5B\" 不准确。仅 Qwen-rw (0.9956) 和 Qwen-cont (0.9972) 超过 0.99；Pythia=0.9722、OLMo=0.9861、Qwen-base=0.9870、Gemma=0.9534 均不满足。建议改为 \"> 0.99 for Qwen-1.5B\" 或 \"> 0.97\"。\n\n2. **⚠️ 表间不一致** — Wiki Qwen-1.5B 的 K\\* 在 `tab_domain_model_kstar` 中报 1（controlled），在 `tab_domain_kstar`（正文内表格）中报 2（raw）。同一模型+domain 出现两个不同 K\\* 值，reviewer 会注意到。\n\n3. **⚠️ 表间不一致** — arXiv Qwen-1.5B 2v3 AUC 在 full table 中为 0.6427，在 in-text table 中为 .644；arXiv Pythia 2v3 在 full table 为 0.6545，in-text 为 .648。两个表使用了不同 source experiment。\n\n**整体评估**: tab_filtering_main、tab_alpha_sweep、tab_crossscorer、tab_pairwise_significance 全部精确匹配。~97% 的数字完全正确或在合理 rounding 范围内。3 个需修正的问题中仅 #1 属于 substantive claim error。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "uuid": "b40caf27-0963-41b8-b601-47de91dc404f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019FDv36BKaYRiXPsnqZp5r6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 650,
+                "cache_read_input_tokens": 108298,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 650
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。~340 个数字已验证，报告保存在 `artifacts/audit_experiments_tables.md`。\n\n**核心发现：**\n\n1. **❌ 需修正** — `experiments_c1.tex:56` 声称 \"> 0.99 at ≤1.5B\" 不准确。仅 Qwen-rw (0.9956) 和 Qwen-cont (0.9972) 超过 0.99；Pythia=0.9722、OLMo=0.9861、Qwen-base=0.9870、Gemma=0.9534 均不满足。建议改为 \"> 0.99 for Qwen-1.5B\" 或 \"> 0.97\"。\n\n2. **⚠️ 表间不一致** — Wiki Qwen-1.5B 的 K\\* 在 `tab_domain_model_kstar` 中报 1（controlled），在 `tab_domain_kstar`（正文内表格）中报 2（raw）。同一模型+domain 出现两个不同 K\\* 值，reviewer 会注意到。\n\n3. **⚠️ 表间不一致** — arXiv Qwen-1.5B 2v3 AUC 在 full table 中为 0.6427，在 in-text table 中为 .644；arXiv Pythia 2v3 在 full table 为 0.6545，in-text 为 .648。两个表使用了不同 source experiment。\n\n**整体评估**: tab_filtering_main、tab_alpha_sweep、tab_crossscorer、tab_pairwise_significance 全部精确匹配。~97% 的数字完全正确或在合理 rounding 范围内。3 个需修正的问题中仅 #1 属于 substantive claim error。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1126508,
+            "duration_api_ms": 1222353,
+            "num_turns": 33,
+            "stop_reason": "end_turn",
+            "session_id": "d0900953-8129-4d2a-95a5-2cd8b707bc5a",
+            "total_cost_usd": 3.446644450000001,
+            "usage": {
+              "input_tokens": 21,
+              "cache_creation_input_tokens": 97107,
+              "cache_read_input_tokens": 760688,
+              "output_tokens": 49348,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 97107,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 506,
+                  "cache_read_input_tokens": 108298,
+                  "cache_creation_input_tokens": 650,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 650
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2108,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002183,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 21,
+                "outputTokens": 49348,
+                "cacheReadInputTokens": 760688,
+                "cacheCreationInputTokens": 97107,
+                "webSearchRequests": 0,
+                "costUSD": 2.2210677500000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              },
+              "claude-sonnet-4-6": {
+                "inputTokens": 43,
+                "outputTokens": 23257,
+                "cacheReadInputTokens": 863124,
+                "cacheCreationInputTokens": 164126,
+                "webSearchRequests": 0,
+                "costUSD": 1.2233937,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f99c0606-2259-4cb9-b87a-93b352f15317"
+          },
+          "id": "event-000204"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fe4e9e90da01cca0dfeb",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "analyze w5 mcnemar pvalues",
+  "task_key": "worker_analyze_w5-mcnemar-pvalues_20260518T151645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_w5-mcnemar-pvalues_20260518T151645.log",
+    "occurrence": 1,
+    "bytes": 652583,
+    "sha256": "a12dd96a75e4d8df09778cc0545a63c8351585d8190c3b6292fcc8b64791aba0"
+  },
+  "statistics": {
+    "messages": 240,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 240,
+      "chunks": [
+        {
+          "path": "fe4e9e90da01cca0dfeb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fe4e9e90da01cca0dfeb-part-0002.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analyze-w5-mcnemar-pvalues.md"
+}

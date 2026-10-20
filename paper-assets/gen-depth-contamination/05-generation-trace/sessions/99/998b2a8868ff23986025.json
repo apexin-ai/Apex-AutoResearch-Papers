@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "998b2a8868ff23986025",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "reviewer / loop_17.md",
+  "task_key": "loop_17",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_17.md",
+    "occurrence": 1,
+    "bytes": 3795,
+    "sha256": "8b2308c00c4292181c106d1e944687ac7b63a6094ea7f26d1b0c747866c626f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: max_wall_time\nupdated: '2026-05-19T09:15:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- cqa1-22115 全名必须带端口号，ssh_read_only 用 \"cqa1\" 会失败\n- ssh_read_only 不支持 shell metacharacters（`&&`, `|`, `>`, `$()`）和 `git` 命令\n- exp_code_llama8b registry 仍为 conclusion=failed，metrics 缺失——已连续 3 次审查报告要求 Agent 修正，下一轮若仍未改应升级为 critical\n- code_crossmodel_table.tex（两个副本）LLaMA-8B 列仍为 TBD，同样连续未修\n- pp 单位换算：1pp = 0.01，历史上两次犯 10× 错误（见 memory feedback_pp_unit_conversion.md），报告前必须二次核验\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-22115** (root): `/root/autodl-tmp/gen-depth-contamination`\n  - 4× 4090D (24GB each)\n  - cuda:0 空闲, cuda:1 exp_code_qwen7b, cuda:2 空闲, cuda:3 exp_code_mistral7b\n  - 模型缓存: `/root/autodl-tmp/.hf_cache/` (Qwen2.5-1.5B, LLaMA-3.1-8B, Mistral-7B, Pythia-1.4B, Qwen2.5-7B; 无 base Qwen2.5-14B)\n  - 磁盘剩余 ~150GB\n- **westd-42896** (root): 同项目路径, cuda:1 跑 exp_32b_c4\n- 本地 workspace: `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/`\n- registry / ROADMAP / paper_framing.md / decisions.yaml 均在本地 workspace\n- 论文: `docs/paper/` (28 页, 正文 ≤8 页, 编译通过)\n\n### 3. 📊 当前状态\n**刚完成**：\n- exp_code_qwen1b5_pythia_scorer 审查 PASS (K*=2 cross-scorer confirmed, D079)\n- exp_code_llama8b 失败审查 + diagnostic worker 审查 (K*=2 confirmed, D080)\n- ROADMAP 审查：Pythia AUC 0.5765→0.5983 修正已确认\n\n**RUNNING 实验**：\n| exp_id | server | gpu | ETA |\n|--------|--------|-----|-----|\n| exp_code_mistral7b | cqa1 | cuda:3 | ~May 19 11:00 UTC |\n| exp_code_qwen7b | cqa1 | cuda:1 | ~May 19 18:00 UTC |\n| exp_32b_c4 | westd | cuda:1 | ~May 20-21 |\n\n**Dream simulation** dream_20260519T090934 正在 imagining 阶段（full review mode）\n\n**等待中**: Mistral/Qwen-7B Code 完成的 cron 回调\n\n### 4. 📋 待办\n- exp_code_mistral7b cron 回调 → 审查结果，核对 registry metrics vs remote summary.txt，验证 K* 值\n- exp_code_qwen7b cron 回调 → 同上；5/5 Code 模型完成后审查最终 code_crossmodel_table.tex 是否完整\n- dream_20260519T090934 完成 → 审查 dream review 结论，检查 claim-evidence 匹配度\n- exp_32b_c4 完成 → 审查 32B scale C4 K*（预期 K*=2），验证 GPU 合规 westd cuda:1\n- 若 Agent 仍未修正 exp_code_llama8b registry（conclusion=failed→success + metrics）→ 升级为 critical\n- 若 code_crossmodel_table.tex 仍为 TBD → 在 Round 11 内审前升级为 critical\n\n### 5. 🎯 战略上下文\n- **核心框架**: Plan C \"domain ceiling + model competence\" (D076)。Domain hierarchy: Wiki=1, C4=Code=2, arXiv=3。K* 由域复杂度设上界，模型能力决定能否触及上界\n- **决策链**: D072(Code域启动) → D073(OLMo放弃) → D074(4域矩阵) → D075(Pythia K*=1暂不改framing) → D076(Plan C) → D077/D078(Retrain K*=7双家族) → D079(Cross-scorer Code K*=2) → D080(LLaMA Code K*=2)\n- **DDL**: EMNLP 2026 May 25，6 天\n- **易错点**:\n  1. Pythia Code 1v2 AUC=0.5983 极其 borderline（仅 -0.17pp below θ=0.60，3/5 折 > 0.60）。论文中 \"competence-limited\" 叙事要谨慎，不能说 \"clearly below\"\n  2. arXiv cross-scorer: Qwen-7B scorer 下 K* 从 3 降到 2（exp_arXiv_qwen7b_crossscorer, 2v3 AUC=0.5989），同家族 bias ~0.027。其他 arXiv cross-scorer K*=3 稳定。论文需小心措辞\n  3. read_registry 的 exp_id filter 经常返回空（可能是 API 的 key vs field 问题），用 status filter + limit 更可靠\n  4. Worker 声称 \"已更新\" 但实际未执行的情况已发生 2 次（registry + LaTeX），务必独立验证\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-copy-2.md"
+}

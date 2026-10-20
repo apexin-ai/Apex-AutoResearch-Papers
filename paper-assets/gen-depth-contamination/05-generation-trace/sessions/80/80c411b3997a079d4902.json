@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80c411b3997a079d4902",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops selfbleu ablation pythia nuc09",
+  "task_key": "worker_ops_selfbleu_ablation_pythia_nuc09_20260521T123414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_selfbleu_ablation_pythia_nuc09_20260521T123414_result.json",
+    "occurrence": 1,
+    "bytes": 3098,
+    "sha256": "992a1fdf83fddee5d9cb77b0df6bc520348d3adcc16adddc7c76d2e617952646"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报结果：\n\n---\n\n## 修复\n\n- **Before**: Pythia 行指向 `data_exp020_pythia_greedy/features.csv`（greedy 数据，旧 1v2 AUC=.8840）\n- **After**: 改为 `data_exp020_pythia_nuc09/features.csv`（nucleus p=0.9 数据）\n\n## 全部结果（4 模型 × 15D/14D）\n\n### Qwen-base (K\\*_15D=2, K\\*_14D=2)\n\n| Pair | AUC_15D | CI_15D | AUC_14D | CI_14D | Delta |\n|------|---------|--------|---------|--------|-------|\n| 0v1 | .9874 | [.9858, .9889] | .9874 | [.9858, .9889] | −.0000 |\n| **1v2** | **.6288** | [.6197, .6379] | **.6258** | [.6163, .6350] | −.0031 |\n| 2v3 | .5548 | [.5449, .5647] | .5517 | [.5415, .5618] | −.0031 |\n| 3v4 | .5269 | [.5165, .5374] | .5207 | [.5102, .5313] | −.0062 |\n| 4v5 | .5195 | [.5093, .5302] | .5210 | [.5106, .5316] | +.0015 |\n\n### Pythia-1.4B (K\\*_15D=2, K\\*_14D=2) — 修复后\n\n| Pair | AUC_15D | CI_15D | AUC_14D | CI_14D | Delta |\n|------|---------|--------|---------|--------|-------|\n| 0v1 | .9947 | [.9937, .9956] | .9945 | [.9934, .9955] | −.0002 |\n| **1v2** | **.6754** | [.6665, .6842] | **.6751** | [.6662, .6838] | −.0003 |\n| 2v3 | .5593 | [.5491, .5693] | .5559 | [.5457, .5664] | −.0034 |\n| 3v4 | .5235 | [.5130, .5341] | .5134 | [.5027, .5240] | −.0101 |\n| 4v5 | .5009 | [.4894, .5122] | .5020 | [.4907, .5134] | +.0010 |\n\n### LLaMA-8B (K\\*_15D=2, K\\*_14D=2)\n\n| Pair | AUC_15D | CI_15D | AUC_14D | CI_14D | Delta |\n|------|---------|--------|---------|--------|-------|\n| 0v1 | .9229 | [.9180, .9277] | .9222 | [.9171, .9270] | −.0007 |\n| **1v2** | **.6075** | [.5979, .6171] | **.6074** | [.5978, .6170] | −.0001 |\n| 2v3 | .5273 | [.5169, .5380] | .5282 | [.5178, .5385] | +.0008 |\n| 3v4 | .5284 | [.5178, .5392] | .5247 | [.5141, .5353] | −.0037 |\n| 4v5 | .5158 | [.5048, .5266] | .5082 | [.4971, .5191] | −.0075 |\n\n### Mistral-7B (K\\*_15D=1, K\\*_14D=1)\n\n| Pair | AUC_15D | CI_15D | AUC_14D | CI_14D | Delta |\n|------|---------|--------|---------|--------|-------|\n| 0v1 | .9844 | [.9826, .9861] | .9842 | [.9824, .9859] | −.0002 |\n| **1v2** | **.5902** | [.5801, .6001] | **.5903** | [.5803, .6003] | +.0002 |\n| 2v3 | .5365 | [.5256, .5473] | .5337 | [.5228, .5446] | −.0028 |\n| 3v4 | .5252 | [.5147, .5356] | .5273 | [.5164, .5381] | +.0021 |\n| 4v5 | .5272 | [.5162, .5384] | .5252 | [.5142, .5358] | −.0020 |\n\n## K\\* 汇总\n\n| Model | K\\*_15D | K\\*_14D | 变化 |\n|-------|---------|---------|------|\n| Qwen-base | 2 | 2 | 不变 |\n| **Pythia-1.4B** | **2** | **2** | **不变** |\n| LLaMA-8B | 2 | 2 | 不变 |\n| Mistral-7B | 1 | 1 | 不变 |\n\n## 结论\n\n1. **Pythia-1.4B 修复前后对比**：旧 greedy 数据 1v2 AUC=.8840 → 新 nucleus 数据 1v2 AUC=.6754，差异显著。greedy 数据大幅高估了区分度。\n2. **Ablation 结论不变**：所有 4 个模型移除 self_bleu 后 K\\* 均不变（15D delta 全部在 ±.01 以内），self_bleu 对 K\\* 判定无实质影响。\n3. 结果已保存至 `artifacts/exp_14d_ablation_detail.json` 和 `artifacts/exp_14d_ablation_detail.csv`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-selfbleu-ablation-pythia-nuc09.md"
+}

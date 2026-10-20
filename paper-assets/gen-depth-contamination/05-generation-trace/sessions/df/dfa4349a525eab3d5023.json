@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfa4349a525eab3d5023",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code pythia 10k qwen phase2",
+  "task_key": "worker_code_pythia_10k_qwen_phase2_20260522T223905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pythia_10k_qwen_phase2_20260522T223905_result.json",
+    "occurrence": 1,
+    "bytes": 1115,
+    "sha256": "086f5d0d73d5142439e28da6877d9874ffa2613d6e09310b06bc95576bb00ca3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Pythia 10K Qwen Cross-Scoring Phase 2 已经完成。** 日志确认：\n\n- Phase 1（generation + self-features）完成后，Phase 2 于 21:35 启动\n- 使用 Qwen2.5-1.5B-Instruct 作为 scorer（`/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B-Instruct`）\n- 跳过生成（`Skipping generation (steps 2-3)`），仅做 feature extraction + evaluation\n- 于 22:12 完成\n\n## Pythia 10K Qwen-Scored 结果\n\n| Pair | AUC (mean) | Folds |\n|------|-----------|-------|\n| 0v1 | **0.9712** ± 0.0028 | [0.9753, 0.9691, 0.9700, 0.9678, 0.9737] |\n| 1v2 | **0.6175** ± 0.0036 | [0.6140, 0.6216, 0.6198, 0.6125, 0.6195] |\n| 2v3 | 0.5364 ± 0.0094 | [0.5541, 0.5331, 0.5285, 0.5371, 0.5291] |\n| 3v4 | 0.5134 ± 0.0066 | |\n| 4v5 | 0.5088 ± 0.0094 | |\n\n**K\\* = 2**（θ=0.60，1v2=0.6175 > 0.60，2v3=0.5364 < 0.60）\n\n## 与 5K Qwen-Scored 对比\n\n| | 5K | 10K |\n|--|-----|------|\n| 1v2 AUC | 0.6074 | 0.6175 |\n| K\\* | 2 | 2 |\n\n**一致。** 10K 的 1v2 AUC（0.6175）略高于 5K（0.6074），K\\* 判定均为 2，与 D107 scorer 统一决策一致。无需重新运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pythia-10k-qwen-phase2.md"
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "7a97101786daf8be34c7",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops bo s1 gsm8k cuda2",
+  "task_key": "worker_ops_bo_s1_gsm8k_cuda2_20260520T224923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bo_s1_gsm8k_cuda2_20260520T224923.log",
+    "occurrence": 1,
+    "bytes": 2047677,
+    "sha256": "98da1146b79b123af97d37ff94cf94365aa092f2910d7fe3360b6f0f9c409338"
+  },
+  "statistics": {
+    "messages": 781,
+    "user_turns": 2,
+    "tool_calls": 320,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 129,
+      "tool_call": 320,
+      "tool_result": 320,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 121,
+      "chunks": [
+        {
+          "path": "7a97101786daf8be34c7-part-0001.json",
+          "message_count": 98
+        },
+        {
+          "path": "7a97101786daf8be34c7-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 625,
+      "chunks": [
+        {
+          "path": "7a97101786daf8be34c7-part-0002.json",
+          "message_count": 54
+        },
+        {
+          "path": "7a97101786daf8be34c7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7a97101786daf8be34c7-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "7a97101786daf8be34c7-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "7a97101786daf8be34c7-part-0006.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 35,
+      "chunks": [
+        {
+          "path": "7a97101786daf8be34c7-part-0006.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-bo-s1-gsm8k-cuda2.md"
+}

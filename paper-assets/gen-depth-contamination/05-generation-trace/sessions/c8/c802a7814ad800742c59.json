@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c802a7814ad800742c59",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper r26 fig5 hatch",
+  "task_key": "worker_paper_r26_fig5_hatch_20260522T084215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r26_fig5_hatch_20260522T084215_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "80534f7e54e89dbf461120f5e4d0cf913a51f5c7f8fccd8fd8e2a202b57a6a41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### Hatch pattern 分配\n\n| Category | Hatch | 示例 bar |\n|----------|-------|---------|\n| baseline | 无 (实色) | No filter, DSIR |\n| alternative | `//` (斜线) | Surprisal selection, Graduated weighting |\n| ours | `xx` (交叉) | Binary K* filtering |\n\n### 脚本修改 diff\n\n3 处改动：\n\n1. **新增 `category_hatches` 字典** — 在 `colors` 列表后，定义每个 category 对应的 hatch pattern\n2. **bar 创建后应用 hatch** — `edgecolor` 从 `\"white\"` 改为 `\"#555555\"`（使 hatch 线条可见），并逐 bar 设置 `set_hatch()`\n3. **图例同步更新** — legend Patch 加上对应 hatch 和新 edgecolor\n\n新图已覆盖 `artifacts/figures/` 和 `docs/paper/figures/` 中的 PDF/PNG。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r26-fig5-hatch.md"
+}

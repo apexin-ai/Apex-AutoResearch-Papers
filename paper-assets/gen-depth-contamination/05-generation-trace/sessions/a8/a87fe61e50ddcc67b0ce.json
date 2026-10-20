@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a87fe61e50ddcc67b0ce",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp wiki olmo v2",
+  "task_key": "worker_analysis_exp_wiki_olmo_v2_20260517T131106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_wiki_olmo_v2_20260517T131106_result.json",
+    "occurrence": 1,
+    "bytes": 1245,
+    "sha256": "e9e66c5c1632412e7c754bb0e24d379a11baee70927b9f505fe6896de0e9235f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常完成。结果非常清晰：\n\n## 实验结果\n\n| Depth Pair | AUC | 判定 |\n|---|---|---|\n| 0 vs 1 | **0.9932** ± 0.0013 | 可区分 |\n| 1 vs 2 | 0.4986 ± 0.0082 | 不可区分 (≈随机) |\n| 2 vs 3 | 0.5012 ± 0.0134 | 不可区分 |\n| 3 vs 4 | 0.5057 ± 0.0051 | 不可区分 |\n| 4 vs 5 | 0.5009 ± 0.0113 | 不可区分 |\n\nJSD 同样印证：0v1 的 JSD=0.1688 远高于后续 pairs（均 ≈0.003）。\n\n## Conclusion\n\n- **K* = 1**（第一个 AUC < 0.6 的 pair 是 1v2，K* = min depth of that pair = 1）\n- **Conclusion: negative**\n\nK* = 1 而非预期的 K* = 2。这意味着 OLMo-1B 在 Wikipedia domain 上，仅经过一次 continuation 就已经达到 saturation（depth 1 之后的文本与更高 depth 不可区分）。这与 Qwen2.5-1.5B 在 Wikipedia 上 K*=2 的结论不一致，表明 K* 可能是 model-dependent 的（OLMo-1B 的 continuation 能力较弱，一次生成就丢失了足够多的 human signal 使后续 depths 无差异）。\n\n补充指标：\n- Ordinal 6-class accuracy = 0.3227（接近随机 1/6 ≈ 0.167，但高于随机说明 depth 0 仍可分离）\n- Top features: `surp_mean`, `surp_d1_skew`, `surp_d1_mean` — surprisal 类特征主导区分"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-wiki-olmo-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6db9b9b4c3bb0b827e29",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "experiment exp wiki multi source",
+  "task_key": "worker_experiment_exp_wiki_multi_source_20260520T102709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_exp_wiki_multi_source_20260520T102709_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "b18f62b0430e59b750f1d35c82ba2f6b4482c93409d1df326fea05a66f574c04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进展良好。with_label 已到 2v3。继续等剩余结果出来，之后进入 unified scorer 阶段（GPU 会开始占用）。\n\n实验正在稳定运行中。当前进度汇总：\n\n**Vocab-only (6D text features)**:\n- no_label: 0v1=0.7616, 1v2=0.5434, 2v3=0.5170, 3v4=0.5017, 4v5=0.5084 → **K*=1**\n- with_label: 0v1=0.7779, 1v2=0.5520, 2v3=0.5248 → K*=1（进行中）\n\n接下来还需等 with_label 剩余 2 对 + 整个 unified scorer 阶段（模型加载 + rescoring 2个 generator × 6 depths × 5000 texts + 10 个 pairwise bootstrap）。\n\nPID=308488，在 cqa1-22115 cuda:0 上运行。log 路径：`/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source.log`。registry 状态已更新为 RUNNING。\n\n实验已成功提交并稳定运行，预计总运行时间约 15-20 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-exp-wiki-multi-source.md"
+}

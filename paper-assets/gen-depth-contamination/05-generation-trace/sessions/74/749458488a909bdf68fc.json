@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "749458488a909bdf68fc",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp wiki scorer confound prep",
+  "task_key": "worker_code_exp_wiki_scorer_confound_prep_20260517T223543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_wiki_scorer_confound_prep_20260517T223543_result.json",
+    "occurrence": 1,
+    "bytes": 1947,
+    "sha256": "77bbdc890e1d5dd39894254382b20fabd4bbbddf9593e5f14859026c4f890d3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息齐全。方案如下：\n\n## 分析\n\n**Pipeline 行为**：\n- `--model_path` = Qwen-7B → 加载后跳过 Step 2 (depth_0 已存在) 和 Step 3 (depth_1-5 已存在且 model_name 匹配)\n- `--scorer_path` = Pythia-1.4B → Step 4 卸载 Qwen-7B，加载 Pythia-1.4B 计算 surprisal features\n- Step 5 用新 features 训练 LightGBM 并报告 AUC/K*\n\n**数据隔离**：用 symlink 把已有 depth 文件链接到新 data_dir，避免覆盖原 features.csv。\n\n## 执行命令\n\n```bash\nbash -c \"cd /root/autodl-tmp/gen-depth-contamination && \\\nmkdir -p data/exp_wiki_scorer_confound && \\\nfor d in 0 1 2 3 4 5; do \\\n  ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\${d}.jsonl \\\n         data/exp_wiki_scorer_confound/depth_\\${d}.jsonl; \\\ndone && \\\nmkdir -p results/exp_wiki_scorer_confound && \\\nHF_HOME=/root/autodl-tmp/.hf_cache \\\nTRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache \\\n/root/miniconda3/bin/python scripts/run_pipeline.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B \\\n  --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 \\\n  --data_dir data/exp_wiki_scorer_confound \\\n  --results_dir results/exp_wiki_scorer_confound \\\n  --num_samples 5000 \\\n  --max_depth 5 \\\n  --batch_size 16 \\\n  --generation_mode rewrite\"\n```\n\n**执行流程**：\n1. 创建 `data/exp_wiki_scorer_confound/`，symlink 6 个 depth 文件\n2. 加载 Qwen-7B，跳过生成（model_name 匹配已有文件）\n3. 卸载 Qwen-7B，加载 Pythia-1.4B 作为 scorer\n4. 用 Pythia-1.4B 计算 15D surprisal features → `data/exp_wiki_scorer_confound/features.csv`\n5. LightGBM pairwise AUC + K* → `results/exp_wiki_scorer_confound/`\n\n**代价**：需加载 Qwen-7B 一次（~14GB VRAM），仅用于通过 model_name 检查后立即释放。无需修改代码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-wiki-scorer-confound-prep.md"
+}

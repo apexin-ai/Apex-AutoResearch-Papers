@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2a883ec891400e41b7d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper w17 figure visual fixes",
+  "task_key": "worker_paper_w17_figure_visual_fixes_20260522T061736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_w17_figure_visual_fixes_20260522T061736_result.json",
+    "occurrence": 1,
+    "bytes": 788,
+    "sha256": "7ec0c2f84c8f6bbfb2f93b8a7bfd6fd2b3ae66a3b28b5761411262f4f6076e28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n### 修复 1: Figure 4 热图配色（`scripts/transfer_heatmap_v2.py`）\n- `CORRECT_COLOR`: `#8FCA8F`（绿）→ `#92C5DE`（蓝）\n- `INCORRECT_COLOR`: `#E8908A`（红）→ `#F4A582`（橙）\n- 输出：`docs/paper/figures/fig3_transfer_heatmap.pdf`\n\n### 修复 2: Figure 3 x 轴标签字体（`scripts/draw_kstar_theta.py`）\n- Panel (a): `set_xticklabels(PAIR_KEYS)` → `set_xticklabels(PAIR_KEYS, fontsize=12)` (+2pt)\n- Panel (b): 新增 `tick_params(axis='x', labelsize=12)` (+2pt)\n- 输出：`docs/paper/figures/fig_kstar_theta.pdf`\n\n### 修复 3: Figure 5 x 轴标签字体（`scripts/plot_filtering_strategies.py`）\n- `fontsize=9.5` → `fontsize=11.5` (+2pt)\n- 输出：`docs/paper/figures/fig_filtering_strategies.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-w17-figure-visual-fixes.md"
+}

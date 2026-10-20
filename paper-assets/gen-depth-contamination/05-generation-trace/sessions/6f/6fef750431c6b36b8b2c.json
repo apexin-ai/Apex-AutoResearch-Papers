@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fef750431c6b36b8b2c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check pythia69b nuc progress",
+  "task_key": "worker_check_pythia69b_nuc_progress_20260521T195411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_pythia69b_nuc_progress_20260521T195411_result.json",
+    "occurrence": 1,
+    "bytes": 855,
+    "sha256": "8d5cb9dd2e28ca18d800398d80a197cdde049087361c5e79027fdd4c39c42d4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | **存活** — PID 443243，已运行 **5h14m**，执行 `run_pipeline.py --generation_mode continuation` |\n| **生成进度** | depth_0 ✅ (5000), depth_1 ✅ (5000), depth_2 ✅ (5000), depth_3 ❌, depth_4 ❌ |\n| **features.csv** | **未生成**（生成阶段未完成，特征提取还没开始） |\n| **results/** | 空目录，分类结果未产出 |\n| **GPU** | GPU 0: RTX 4090D, 96% 利用率, 14.5/24GB 显存; GPU 1-3: 空闲 |\n\n### 进度与时间估算\n\n- 已完成 3/5 个 depth（depth 0-2），每个 depth 约 **1h45m**\n- 当前应在生成 depth_3，正常情况下再需 ~**1h45m** 完成 depth_3，~**3h30m** 完成 depth_3 + depth_4\n- 生成完成后还需跑特征提取 + 分类，预计额外 **30-60min**\n- **总预估剩余：~4-4.5h**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-pythia69b-nuc-progress.md"
+}

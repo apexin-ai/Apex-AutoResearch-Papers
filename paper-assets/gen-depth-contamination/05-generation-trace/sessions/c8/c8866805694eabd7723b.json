@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8866805694eabd7723b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix paper engineering batch",
+  "task_key": "worker_fix_paper_engineering_batch_20260513T233530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_paper_engineering_batch_20260513T233530_result.json",
+    "occurrence": 1,
+    "bytes": 1095,
+    "sha256": "84c40f586a5b0d4270a855de23739d43bb7c33f0ee412f3e502d8433ce1ac7e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译干净，无 multiply-defined label、无 undefined reference 警告。\n\n---\n\n**修改清单：**\n\n| # | 文件 | 行号 | 改动 |\n|---|------|------|------|\n| 1 | `docs/paper/figures/fig2_auc_decay.pdf` | — | 用 `artifacts/summary_auc_decay/fig_summary_auc_decay.pdf` 覆盖 |\n| 2 | `docs/paper/main.tex` | 52-53 | 取消注释 `\\input{conclusion}`，新增 `\\input{discussion}` 在其前 |\n| 3 | `docs/paper/method.tex` | 46 | `five groups` → `four groups` |\n| 4 | `docs/paper/method.tex` | 167 | `\\label{sec:generation_mode}` → `\\label{sec:generation_mode_method}`（消除重复 label） |\n| 5 | `docs/paper/experiments_c1.tex` | 183 | `The reverse direction performs comparably poorly.` → `The reverse direction transfers asymmetrically: Pythia/OLMo${\\to}$Qwen-rw retains 70--72\\% of within-model accuracy, higher than the forward 61--63\\% but still far below continuation-mode transfer rates (80--92\\%).` |\n\n**编译结果：** `latexmk -pdf main.tex` 成功生成 14 页 PDF，无 multiply-defined label / undefined reference 警告。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-paper-engineering-batch.md"
+}

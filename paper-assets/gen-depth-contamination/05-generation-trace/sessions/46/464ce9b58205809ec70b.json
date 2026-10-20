@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "464ce9b58205809ec70b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "bugfix cross transfer json kstar fix",
+  "task_key": "worker_bugfix_cross-transfer-json-kstar-fix_20260520T004449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_cross-transfer-json-kstar-fix_20260520T004449_result.json",
+    "occurrence": 1,
+    "bytes": 937,
+    "sha256": "4462b74499890e0e33444346c81107c0e0da5f146c95fa1725167a2018cd5977"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**修复已经生效。** 所有 12 个 JSON 当前状态：\n\n| 文件 | kstar | kstar_indexing |\n|------|-------|---------------|\n| wiki_llama8b__to__wiki_olmo | 1 | 1-indexed |\n| wiki_llama8b__to__wiki_pythia | 2 | 1-indexed |\n| wiki_mistral7b__to__wiki_pythia | 2 | 1-indexed |\n| **wiki_olmo__to__wiki_llama8b** | **2** ✓ | 1-indexed |\n| wiki_olmo__to__wiki_pythia | 1 | 1-indexed |\n| **wiki_olmo__to__wiki_qwen7b** | **2** ✓ | 1-indexed |\n| wiki_pythia__to__wiki_llama8b | 2 | 1-indexed |\n| wiki_pythia__to__wiki_mistral7b | 2 | 1-indexed |\n| **wiki_pythia__to__wiki_olmo** | **1** ✓ | 1-indexed |\n| wiki_pythia__to__wiki_qwen7b | 3 | 1-indexed |\n| wiki_qwen7b__to__wiki_olmo | 1 | 1-indexed |\n| wiki_qwen7b__to__wiki_pythia | 2 | 1-indexed |\n\n3 个目标文件 kstar 值均已是修正后的目标值，全部 12 个 JSON 都已有 `kstar_indexing: \"1-indexed\"` 字段。无需再次修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-cross-transfer-json-kstar-fix.md"
+}

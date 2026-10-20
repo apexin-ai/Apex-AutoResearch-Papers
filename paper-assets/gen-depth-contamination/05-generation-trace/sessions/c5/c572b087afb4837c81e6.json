@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c572b087afb4837c81e6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing ecological validity",
+  "task_key": "worker_writing_ecological-validity_20260514T084325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_ecological-validity_20260514T084325_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "979d067a785ce6a3cdd284a59f9e97cbaa9ef86e41d9329634e0c3c74d162294"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两段已插入：\n\n- **(a) Prompt-chain as K\\* upper bound**：插入在 Limitations 的 \"Prompt-chain versus retrain-chain\" 段落末尾（~line 116-118），论证 prompt-chain 保持模型质量恒定而 retrain-chain 模型逐代退化 → K\\*_retrain ≤ K\\*_prompt → 我们的 K\\*=2 是 conservative estimate。\n- **(b) K\\* as corpus audit metric**：插入在 Broader Impact 的 \"Synthetic data curation\" 之后、\"Relation to model collapse\" 之前，作为独立 `\\paragraph`，论证 K\\* 作为 audit metric 的独立实用价值——depth≥K\\* 的文本应等同对待，提供 actionable threshold。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-ecological-validity.md"
+}

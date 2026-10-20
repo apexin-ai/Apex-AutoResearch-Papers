@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "99709d6b041fb1898068",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "experiment exp 7b scorer ablation",
+  "task_key": "worker_experiment_exp_7b_scorer_ablation_20260520T112713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_exp_7b_scorer_ablation_20260520T112713.log",
+    "occurrence": 1,
+    "bytes": 663961,
+    "sha256": "bd175380776e3a272952b48348540783d9cca7dfbf7dc6ec3ef47feed984e327"
+  },
+  "statistics": {
+    "messages": 177,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 71,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 177,
+      "chunks": [
+        {
+          "path": "99709d6b041fb1898068-part-0001.json",
+          "message_count": 154
+        },
+        {
+          "path": "99709d6b041fb1898068-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-exp-7b-scorer-ablation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7e6d34d626c001ba47b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops feat importance pythia14b",
+  "task_key": "worker_ops_feat_importance_pythia14b_20260521T071330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_feat_importance_pythia14b_20260521T071330_result.json",
+    "occurrence": 1,
+    "bytes": 829,
+    "sha256": "64bd29f77cd0d9f9347c313049a1ac23e959517259763e14eaf315c77b41b244"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果：\n\n```\nMODEL: Pythia-1.4B (wiki domain)\n0v1_BASELINE_AUC: 0.9754\n0v1_TOP3: surp_d1_std (0.1282), surp_mean (0.1224), freq_entropy (0.0852)\n1v2_BASELINE_AUC: 0.5868\n1v2_TOP3: freq_entropy (0.0558), surp_std (0.0136), self_bleu (0.0101)\n2v3_BASELINE_AUC: 0.5455\n```\n\n输出文件：\n- JSON: `results/feature_importance_pythia/importance_results.json`\n- Barplot: `artifacts/feature_importance_pythia_1.4b.pdf`\n- LaTeX table: `artifacts/feature_importance_pythia_1.4b.tex`\n\n与 LLaMA-8B 对比：Pythia 的 0v1 AUC 更高（0.975 vs 0.922），但 1v2 boundary 更难区分（0.587 vs 0.610）。两者 1v2 的 top feature 都是 freq_entropy，但 Pythia 的 surp_d1_std 在 0v1 中是最重要特征（LLaMA-8B 同样），而 surp_mean 在 Pythia 中贡献更大（25.8%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-feat-importance-pythia14b.md"
+}

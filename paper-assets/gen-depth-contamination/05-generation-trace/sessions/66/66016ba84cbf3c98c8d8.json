@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66016ba84cbf3c98c8d8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check exp 14b c4 status",
+  "task_key": "worker_check_exp_14b_c4_status_20260518T002004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_14b_c4_status_20260518T002004_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "dbf2823e5e2f9fad4debda7e9ed8e325915e151cd497898b9d7a7363a18c99a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_14b_c4 状态：仍在运行\n\n**当前阶段**: Generation depth 3, 632/1250 batches (50.6%)\n\n**GPU**: cuda:0, 86% utilization, 31GB/98GB VRAM, PID 8591 活跃\n\n**进度估算** (每 batch ~8.3s, 每 depth ~2h53m):\n\n| 阶段 | 状态 | 预计完成 (UTC) |\n|------|------|---------------|\n| Depth 1 | 完成 | ~04:02 |\n| Depth 2 | 完成 | ~06:55 |\n| Depth 3 | 632/1250 (51%) | ~09:48 |\n| Depth 4 | 未开始 | ~12:41 |\n| Depth 5 | 未开始 | ~15:34 |\n| Scoring | 未开始 | ~16:30-17:30 |\n\n**预计完成时间**: ~16:30-17:30 UTC (May 18)，比原估计的 15:30 晚约 1-2 小时。Generation 阶段本身约 15:34 完成，scoring 还需额外 1-2 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-14b-c4-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b80cebb2deec87be3b60",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ssh prep exp003 ablation",
+  "task_key": "worker_ssh_prep_exp003_ablation_20260513T023927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prep_exp003_ablation_20260513T023927_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "09f356f2c9a85ee64d718355294240087bafa66ea7b0961dd0d83a6288b973c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已修复。验证总结：\n\n| 检查项 | 状态 |\n|--------|------|\n| 4 个 decoding config (greedy, p=0.9/T=1.0, p=0.95/T=0.7, p=0.95/T=1.2) | ✅ |\n| 调用 run_pipeline.py + Qwen 模型 | ✅ |\n| 模型路径指向实际 config.json 所在目录 | ✅ 已修复 |\n| 输出到不同目录 | ✅ data_exp003_greedy / nuc09 / t07 / t12 |\n| generation_mode=rewrite | ✅ 默认值 |\n| 环境变量自包含 (network_turbo, HF_HOME, SSL) | ✅ |\n| 磁盘空间 | ✅ 138GB 可用 |\n\n## 提交命令\n\n`submit_training_job` 的 `command` 字段：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && for i in 1 2 3 4; do echo \"=== Running config $i ===\" && bash scripts/run_exp003_ablation.sh $i; done\n```\n\n参数：\n- `server`: `autodl-4090d`\n- `account`: `root`\n- `command`: 如上\n- `timeout`: `108000` (30h)\n- `experiment_name`: `exp-003-decoding-ablation`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prep-exp003-ablation.md"
+}

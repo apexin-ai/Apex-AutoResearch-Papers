@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1c4872b9e7355bf036b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis arxiv multi source bootstrap",
+  "task_key": "worker_analysis_arxiv_multi_source_bootstrap_20260524T101433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_arxiv_multi_source_bootstrap_20260524T101433_result.json",
+    "occurrence": 1,
+    "bytes": 1837,
+    "sha256": "e583239e263df4c7d556b5d6b44c2fca1b83b642820362fa27d8cd398a315a81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Bootstrap CI Results\n\n| Config | Pair | AUC | CI_lower | CI_upper | p-value | bonf_p |\n|--------|------|-----|----------|----------|---------|--------|\n| **Qwen2.5-1.5B** | 0v1 | 0.9938 | 0.9917 | 0.9957 | 0.0001 | 0.0005 |\n| | 1v2 | 0.8578 | 0.8479 | 0.8677 | 0.0001 | 0.0005 |\n| | **2v3** | **0.6437** | **0.6290** | **0.6587** | **0.0001** | **0.0005** |\n| | 3v4 | 0.5501 | 0.5338 | 0.5660 | 0.0001 | 0.0005 |\n| | 4v5 | 0.5302 | 0.5139 | 0.5463 | 0.0007 | 0.0035 |\n| **Pythia-1.4B** | 0v1 | 0.9873 | 0.9847 | 0.9897 | 0.0001 | 0.0005 |\n| | 1v2 | 0.8024 | 0.7907 | 0.8139 | 0.0001 | 0.0005 |\n| | **2v3** | **0.6484** | **0.6338** | **0.6626** | **0.0001** | **0.0005** |\n| | 3v4 | 0.5522 | 0.5366 | 0.5679 | 0.0001 | 0.0005 |\n| | 4v5 | 0.5404 | 0.5242 | 0.5568 | 0.0001 | 0.0005 |\n| **Pooled (Q+P)** | 0v1 | 0.9972 | 0.9965 | 0.9979 | 0.0001 | 0.0005 |\n| | 1v2 | 0.8387 | 0.8312 | 0.8462 | 0.0001 | 0.0005 |\n| | **2v3** | **0.6565** | **0.6466** | **0.6666** | **0.0001** | **0.0005** |\n| | 3v4 | 0.5477 | 0.5367 | 0.5585 | 0.0001 | 0.0005 |\n| | 4v5 | 0.5476 | 0.5366 | 0.5586 | 0.0001 | 0.0005 |\n\n## K\\*=3 验证\n\n| Config | 2v3 AUC | CI_lower | > θ=0.60? | Status |\n|--------|---------|----------|-----------|--------|\n| Qwen2.5-1.5B | 0.6437 | 0.6290 | **YES** | **CONFIRMED** |\n| Pythia-1.4B | 0.6484 | 0.6338 | **YES** | **CONFIRMED** |\n| Pooled | 0.6565 | 0.6466 | **YES** | **CONFIRMED** |\n\n**K\\*=3 统计显著性全面确认：**\n- 所有 3 个配置的 2v3 CI lower bound 均 > 0.60（最低 0.6290，超出阈值 0.029）\n- 所有 pair 的 permutation test p < 0.001（Bonferroni 校正后仍 < 0.005）\n- 方法：10K doc-level bootstrap + 10K label permutation + Bonferroni correction (α/5)\n\n结果保存于 `results/arxiv_multi_source_bootstrap/bootstrap_ci.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-arxiv-multi-source-bootstrap.md"
+}

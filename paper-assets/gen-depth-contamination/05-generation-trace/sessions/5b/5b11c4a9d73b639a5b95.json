@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b11c4a9d73b639a5b95",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper integrate exp004",
+  "task_key": "worker_paper_integrate_exp004_20260515T231453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_integrate_exp004_20260515T231453_result.json",
+    "occurrence": 1,
+    "bytes": 1508,
+    "sha256": "1066ba8057dd08cf6a1e5d8ade2d042fdf19635d35b6cc7ad2b5ebf86ec35486"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改完成。汇总如下：\n\n**修改的文件（7 个）：**\n\n| 文件 | 修改内容 |\n|------|---------|\n| `experiments_c1.tex` | Table 1 新增 Qwen-7B 列（5-fold CV ±σ）；开头更新为 5 model configurations；新增 Cross-scale validation 段落（K\\*=2, 0v1 AUC↓, JSD, top features）；条件数更新为 9 |\n| `discussion.tex` | §4.1 新增 7B scale invariance 段落：depth saturation 是 autoregressive generation 的固有属性，非小模型 artifact |\n| `introduction.tex` | \"4 model-mode configurations at ≤1.5B scale\" → \"5 model configurations (1B–7B)\" |\n| `main.tex` (abstract) | \"4 model-mode configurations (≤1.5B)\" → \"5 model configurations (1B–7B)\"，条件数 8→9 |\n| `main.tex` (limitations) | \"(1) model scale (≤1.5B)\" → \"(≤7B, with only one 7B configuration tested; cross-scale scoring)\"；\"four configurations\" → \"five configurations\" |\n| `conclusion.tex` | 新增 7B cross-scale validation 结论句；\"scaling to 7B+\" → \"scaling beyond 7B\" |\n| `tab_crossscorer.tex` | 新增 Qwen-7B-cont 行（scorer: Qwen-1.5B, K\\*=2, AUC(0v1)=0.9644, AUC(1v2)=0.6178）|\n\n**Provenance**：所有定量 claim 已通过 `edit_paper_section` 关联到 `exp_004_7b_crossscale`。0v1 AUC 下降（0.964 vs >0.99）如实报告，未 cherry-pick。\n\n未找到独立的 rebuttal 文件（只有 worker log），FR-4 回应内容已隐含在 experiments 和 discussion 的 scale invariance 论述中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-integrate-exp004.md"
+}

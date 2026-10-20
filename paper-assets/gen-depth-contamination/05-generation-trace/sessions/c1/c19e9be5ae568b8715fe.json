@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c19e9be5ae568b8715fe",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops 32b cleanup verify",
+  "task_key": "worker_ops_32b-cleanup-verify_20260518T070310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_32b-cleanup-verify_20260518T070310_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "02470e84cf9d2af62ec5a4a7133c107a2f75801ea66aa32a806bd54e8576ffff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程仍在运行，不需要清理。**\n\n```\n进程状态: 仍在运行 (PID 14642, CPU 100%, 已运行 ~685 分钟)\n  命令: run_pipeline.py --max_depth 5 --num_samples 5000 --batch_size 2\n  启动时间: 03:38 (今天)\n\ndepth_2 清理: 无需清理 — depth_2 文件尚不存在，进程正在生成中\ndepth_0: 5000 行 ✅\ndepth_1: 5000 行 ✅\nseed: 1 行 (seed_docs.jsonl, 515MB)\n\ndata 目录完整列表:\n  -rw-r--r-- 4.7M May 18 00:32 depth_0.jsonl\n  -rw-r--r-- 4.9M May 18 13:17 depth_1.jsonl\n  -rw-r--r-- 515M May 18 01:25 seed_docs.jsonl\n\nresults 目录: 空\ntmux: 仅 exp_14b_c4 session\n```\n\n进程还活着，正在跑 depth_2（或更深）。是否需要 kill 它，还是让它继续跑完？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-32b-cleanup-verify.md"
+}

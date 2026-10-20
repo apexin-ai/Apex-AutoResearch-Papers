@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9618dbb259237c40e032",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops verify analysis script and paths",
+  "task_key": "worker_ops_verify-analysis-script-and-paths_20260519T040516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-analysis-script-and-paths_20260519T040516_result.json",
+    "occurrence": 1,
+    "bytes": 1021,
+    "sha256": "c9909057b0fdd5daec05e7180bbd88fd546245ec35d5b3f99a131f392def4f09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，脚本就绪。\n\n**检查结果**：\n\n| 检查项 | 状态 |\n|--------|------|\n| EXPERIMENTS 5 个条目及路径 | 全部正确 |\n| 模型名 \"Llama-3.1-8B\" | Meta 3.1 官方命名，无需改为 \"LLaMA\" |\n| 数据文件名 pairwise_auc.json | 与脚本一致 |\n| JSON 结构 (`per_fold` → pair → 5-fold list) | 与脚本解析逻辑匹配 |\n| Caption \"CodeSearchNet Python subset\" | 正确，非 TheStack v2 |\n| 缺失实验 graceful handling | `[WARN]` + \"TBD\" 占位，不报错 |\n\n**目录数据状态**：\n- `exp_code_qwen1b5` — 有数据，K\\*=2\n- `exp_code_pythia1b4` — 有数据，K\\*=1\n- `exp_code_qwen7b` — 空目录（实验未完成）\n- `exp_code_llama8b` — 空目录（实验未完成）\n- `exp_code_mistral7b` — 空目录（实验未完成）\n\n**Dry-run**：成功。LaTeX 表格和 JSON 已输出到 `artifacts/`。exp_code_llama8b 完成后产生 `pairwise_auc.json`，重跑脚本即可自动填充，零延迟。无需修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-analysis-script-and-paths.md"
+}

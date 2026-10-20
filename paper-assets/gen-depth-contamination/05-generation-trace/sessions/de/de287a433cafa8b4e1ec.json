@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de287a433cafa8b4e1ec",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis retrain chain v2 bootstrap",
+  "task_key": "worker_analysis_retrain_chain_v2_bootstrap_20260518T045534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_retrain_chain_v2_bootstrap_20260518T045534_result.json",
+    "occurrence": 1,
+    "bytes": 593,
+    "sha256": "6ce74fb277eb2b0b8ed1e37f1c839aaa5b73bcbb8db39b4506a6b480be883ac0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written. Results summary:\n\n| Pair | AUC (OOF) | 95% CI | p-value |\n|------|-----------|--------|---------|\n| 0v1 | 0.9842 | [0.9823, 0.9860] | < 0.001 |\n| 1v2 | 0.9471 | [0.9432, 0.9509] | < 0.001 |\n| 2v3 | 0.8888 | [0.8832, 0.8943] | < 0.001 |\n| 3v4 | 0.7994 | [0.7920, 0.8067] | < 0.001 |\n\n**K\\* = 4** (all pairs pass CI lower > 0.60). All permutation tests reject H0: AUC=0.5 at p < 0.001. CIs are tight (widths 0.004-0.015) with monotonic AUC decay across depths.\n\nJSON results also saved on server at `results/exp_008_retrain_chain/bootstrap_ci_v2.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-retrain-chain-v2-bootstrap.md"
+}

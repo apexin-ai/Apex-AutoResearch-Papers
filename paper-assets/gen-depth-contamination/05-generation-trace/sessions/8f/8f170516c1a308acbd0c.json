@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f170516c1a308acbd0c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp003 figure table",
+  "task_key": "worker_code_exp003_figure_table_20260513T210000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp003_figure_table_20260513T210000_result.json",
+    "occurrence": 1,
+    "bytes": 1095,
+    "sha256": "0d85d3e5b76f44b9f4c3e520fa7eeabec968c26b31da1558e8d57179f9fe012c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。三个产物已生成：\n\n| 文件 | 大小 |\n|------|------|\n| `artifacts/exp003_decoding_ablation.pdf` | 22K |\n| `artifacts/exp003_decoding_ablation.png` | 53K |\n| `artifacts/exp003_decoding_ablation.tex` | 628B |\n\nSummary table 输出：\n\n```\nConfig                 Decoding                1v2 AUC  K*(θ=.60) Top-3 Features\n--------------------------------------------------------------------------------\nConfig1-Greedy         greedy                   0.6893          2 self_bleu, hapax_ratio, ttr\nConfig2-Nuc09          nucleus p=0.9, T=1.0     0.6866          2 hapax_ratio, ttr, surp_skew\nConfig3-T07            nucleus p=0.95, T=0.7    0.6887          2 hapax_ratio, ttr, low_freq_ratio\nConfig4-T12            nucleus p=0.95, T=1.2    0.7039          2 hapax_ratio, ttr, surp_skew\n```\n\n脚本从 `artifacts/exp003_analysis.json` 读取完整数据，也有硬编码 fallback。样式：serif 字体、无网格线、colorblind-safe 4 色 Tableau palette、深色边框浅色填充、θ=0.60 和 chance 虚线标注、单栏宽 3.5×2.5 inch。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp003-figure-table.md"
+}

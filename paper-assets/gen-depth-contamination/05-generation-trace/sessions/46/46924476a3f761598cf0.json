@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46924476a3f761598cf0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper d060 wiki narrative update",
+  "task_key": "worker_paper_d060-wiki-narrative-update_20260518T003048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d060-wiki-narrative-update_20260518T003048_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "bcc923098ad089521a6849416d2207a5e885a553f17412beddabf94301d94aa4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有更新完成。总结：\n\n**paper_framing.md 改动：**\n1. Core Claims 子弹点：新增 \"Wikipedia K*=1 (scorer-controlled)\" 和 \"Domain 是 K* 的唯一主导因素\" 两条；第一条加了三级域阶梯表述；One-wash 扩展覆盖 Wikipedia\n2. Story Spine \"Our framing\"：从 \"2/2 models, 少数 K*=1\" 改为三级域阶梯（Wiki=1, C4=2, arXiv=3，含 5/5 models），加 \"domain 是唯一主导因素\" 语句\n3. Headline result template：改为三级域阶梯叙事，arXiv 更新至 \"5 models, 4 families\"\n4. Reviewer Concern #4：从 \"只有 2 个模型\" 更新为 5 模型 4 架构族\n5. Reviewer Concern #7：追加 D060 证据——Qwen same-family scorer confound 在 Wikipedia 上的具体表现和控制方法\n\n**tex 文件：**\n- `experiments_c1.tex`、`discussion.tex`、`introduction.tex`、`appendix_extended.tex` 已正确反映 D060 发现，无需修改\n- `tab_domain_model_kstar_full.tex`：dagger 脚注从模糊描述改为具体数据（Qwen-1.5B→K*=2, Pythia→K*=1, Δ=-2.4pp）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d060-wiki-narrative-update.md"
+}

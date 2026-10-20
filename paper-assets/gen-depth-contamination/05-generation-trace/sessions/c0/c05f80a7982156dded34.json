@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c05f80a7982156dded34",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check exp016 status",
+  "task_key": "worker_check_exp016_status_20260516T030638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp016_status_20260516T030638_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "422ba0f4c2913e74655abc6add99eebf96dbf067d5ee41259cb2538821b844db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-016 进度报告\n\n**当前阶段：数据生成 — depth 4/5（共 6 个 depth: 0-5）**\n\n| 项目 | 状态 |\n|------|------|\n| 模型 | Qwen2.5-1.5B |\n| 配置 | 5000 samples/depth, max_depth=5 |\n| depth 0-3 | 已完成（文件已写入） |\n| depth 4 | **155/313 batches (50%)**, ~6.2s/batch |\n| depth 5 | 未开始 |\n| feature extraction | 未开始 |\n| classification | 未开始 |\n| results 目录 | 空 |\n\n**进度估算：**\n- 数据生成整体：4.5/6 depths = **~75%**\n- depth 4 剩余：~16 min\n- depth 5：~33 min\n- 数据生成剩余：**~49 min**\n- 后续阶段（特征提取+分类）：估计 15-30 min\n- **预计完成时间：~12:15-12:30**\n\n**异常：** 偶发 padding_side warning（非致命，不影响结果）。无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp016-status.md"
+}

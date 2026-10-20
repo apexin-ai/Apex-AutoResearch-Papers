@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dee368ce3f781b31fa83",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "exp deberta cross transfer run",
+  "task_key": "worker_exp_deberta-cross-transfer-run_20260519T201151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_deberta-cross-transfer-run_20260519T201151_result.json",
+    "occurrence": 1,
+    "bytes": 1202,
+    "sha256": "6d9f694b899868bf97d27adee289c2c2cce075c37c00b360e1da7f13bd198137"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认成功。汇总：\n\n**启动状态**\n\n| GPU | 利用率 | 显存 | Wrapper PID | Python PID | 当前任务 (第1对) |\n|-----|--------|------|-------------|------------|-----------------|\n| cuda:1 | 97% | 18991/24564 MiB | **208306** | 208325 | wiki_pythia→wiki_olmo |\n| cuda:2 | 97% | 19809/24564 MiB | **208307** | 208328 | wiki_olmo→wiki_qwen7b |\n| cuda:3 | 99% | 19809/24564 MiB | **208308** | 208329 | wiki_olmo→wiki_llama8b |\n\n**分配的 pair 列表**\n- **GPU 1** (208306): pythia→olmo, olmo→pythia, pythia→qwen7b, qwen7b→pythia\n- **GPU 2** (208307): olmo→qwen7b, qwen7b→olmo, pythia→llama8b, llama8b→pythia\n- **GPU 3** (208308): olmo→llama8b, llama8b→olmo, pythia→mistral7b, mistral7b→pythia\n\n**监控用 PID**: wrapper 进程 208306, 208307, 208308（会依次跑各自的 4 个 pair，python PID 每个 pair 会变）。\n\n**日志**: `results/deberta_cross_transfer/gpu{1,2,3}.log`\n\n**修复**: 脚本因 transformers 新版 adapter_config 联网检查而崩溃，通过设置 `HF_HUB_OFFLINE=1` 解决。\n\n**预估**: 每 pair ~25min × 4 pairs = ~100min/GPU，约 04:19 开始，预计 ~06:00 CST 全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-deberta-cross-transfer-run.md"
+}

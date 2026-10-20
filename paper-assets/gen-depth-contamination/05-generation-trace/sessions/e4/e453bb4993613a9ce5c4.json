@@ -1,0 +1,1180 @@
+{
+  "schema_version": "1.0",
+  "id": "e453bb4993613a9ce5c4",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "paper verify bertrand bib",
+  "task_key": "worker_paper_verify-bertrand-bib_20260519T032342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_verify-bertrand-bib_20260519T032342.log",
+    "occurrence": 1,
+    "bytes": 79812,
+    "sha256": "34c59eb2ef32412032f621b7eaff25de69e764a37b2b907235ff9a7ac1a2f747"
+  },
+  "statistics": {
+    "messages": 24,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "668d2dfb-e724-46c6-aa9c-692496066d02",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779172800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "de8f58be-fc37-4024-827b-fc541e623c9f",
+                "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the bib file first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "7574994e-192f-4864-aaac-ecdf8b07fd2e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GL84spbUGU6CUpS4icDGF3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12627,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12627
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016vcxR2GQdwHBNELpD3Aw7M",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "43a3bcbc-2187-4e97-a791-440f72369829",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GL84spbUGU6CUpS4icDGF3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12627,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12627
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T03:23:56.297Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016vcxR2GQdwHBNELpD3Aw7M",
+              "type": "tool_result",
+              "content": "1\t% === References for gen-depth-contamination ===\n2\t% Source: literature_map.yaml — verified 2026-05-15\n3\t\n4\t% === Must-Cite ===\n5\t\n6\t@inproceedings{drayson2025,\n7\t  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n8\t  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n9\t  booktitle={Proceedings of EMNLP},\n10\t  year={2025},\n11\t  url={https://arxiv.org/abs/2502.15654}\n12\t}\n13\t\n14\t@inproceedings{schaeffer2025position,\n15\t  title={Position: Model Collapse Does Not Mean What You Think},\n16\t  author={Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Anirudh and Koyejo, Sanmi},\n17\t  booktitle={Proceedings of ICML},\n18\t  year={2025},\n19\t  url={https://arxiv.org/abs/2503.03150}\n20\t}\n21\t\n22\t@inproceedings{kazdan2025collapse,\n23\t  title={Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World},\n24\t  author={Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David and Koyejo, Sanmi},\n25\t  booktitle={Proceedings of ICML},\n26\t  year={2025},\n27\t  url={https://arxiv.org/abs/2410.16713}\n28\t}\n29\t\n30\t@inproceedings{mitchell2023detectgpt,\n31\t  title={{DetectGPT}: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n32\t  author={Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n33\t  booktitle={Proceedings of ICML},\n34\t  year={2023}\n35\t}\n36\t\n37\t% === Should-Cite ===\n38\t\n39\t@article{basani2026diveye,\n40\t  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},\n41\t  author={Basani, Advik Raj and Chen, Pin-Yu},\n42\t  journal={Transactions on Machine Learning Research},\n43\t  issn={2835-8856},\n44\t  year={2026},\n45\t  url={https://arxiv.org/abs/2509.18880}\n46\t}\n47\t\n48\t@inproceedings{zawalski2026codec,\n49\t  title={{CoDeC}: Detecting Data Contamination in {LLM}s via In-Context Learning},\n50\t  author={Zawalski, Micha{\\l} and Boubdir, Meriem and Ba{\\l}azy, Klaudia and Nushi, Besmira and Ribalta, Pablo},\n51\t  booktitle={Proceedings of ICLR},\n52\t  year={2026},\n53\t  url={https://arxiv.org/abs/2510.27055}\n54\t}\n55\t\n56\t@inproceedings{zhang2024minkpp,\n57\t  title={Min-{K}\\%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models},\n58\t  author={Zhang, Jingyang and Zheng, Jingwei and Gao, Jing and Miao, Chunyan},\n59\t  booktitle={Proceedings of EMNLP},\n60\t  year={2024}\n61\t}\n62\t\n63\t@article{shumailov2024collapse,\n64\t  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n65\t  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n66\t  journal={Nature},\n67\t  volume={631},\n68\t  pages={755--759},\n69\t  year={2024}\n70\t}\n71\t\n72\t@inproceedings{alemohammad2024selfconsuming,\n73\t  title={Self-Consuming Generative Models Go {MAD}},\n74\t  author={Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G.},\n75\t  booktitle={Proceedings of ICLR},\n76\t  year={2024}\n77\t}\n78\t\n79\t@inproceedings{bertrand2024stability,\n80\t  title={On the Stability of Iterative Retraining of Generative Models on their Own Data},\n81\t  author={Bertrand, Quentin and Bose, Avishek Joey and Duplessis, Alexandre and Jiralerspong, Marco and Gidel, Gauthier},\n82\t  booktitle={Proceedings of ICLR},\n83\t  year={2024},\n84\t  url={https://arxiv.org/abs/2310.00429}\n85\t}\n86\t\n87\t@inproceedings{dohmatob2024model,\n88\t  title={A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n89\t  author={Dohmatob, Elvis and Feng, Yunzhen and Yang, Pin-Yu and Charton, Francois and Kempe, Julia},\n90\t  booktitle={Proceedings of ICML},\n91\t  year={2024}\n92\t}\n93\t\n94\t@inproceedings{xie2023dsir,\n95\t  title={Data Selection for Language Models via Importance Resampling},\n96\t  author={Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n97\t  booktitle={Advances in Neural Information Processing Systems},\n98\t  year={2023}\n99\t}\n100\t\n101\t@inproceedings{tirumala2023d4,\n102\t  title={{D4}: Improving {LLM} Pretraining via Document De-Duplication and Diversification},\n103\t  author={Tirumala, Kushal and Markosyan, Aram and Zettlemoyer, Luke and Aghajanyan, Armen},\n104\t  booktitle={Advances in Neural Information Processing Systems},\n105\t  year={2023}\n106\t}\n107\t\n108\t@inproceedings{xie2023doremi,\n109\t  title={{DoReMi}: Optimizing Data Mixtures Speeds Up Language Model Pretraining},\n110\t  author={Xie, Sang Michael and Pham, Hieu and Dong, Xuanyi and Du, Nan and Liu, Hanxiao and Lu, Yifeng and Liang, Percy and Le, Quoc V. and Ma, Tengyu and Yu, Adams Wei},\n111\t  booktitle={Advances in Neural Information Processing Systems},\n112\t  year={2023}\n113\t}\n114\t\n115\t@inproceedings{hans2024binoculars,\n116\t  title={Spotting {LLMs} With Binoculars},\n117\t  author={Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n118\t  booktitle={Proceedings of ICML},\n119\t  year={2024}\n120\t}\n121\t\n122\t% === Probing Classifiers ===\n123\t\n124\t@inproceedings{alain2017understanding,\n125\t  title={Understanding Intermediate Layers Using Linear Classifier Probes},\n126\t  author={Alain, Guillaume and Bengio, Yoshua},\n127\t  booktitle={ICLR Workshop},\n128\t  year={2017}\n129\t}\n130\t\n131\t@article{belinkov2022probing,\n132\t  title={Probing Classifiers: Promises, Shortcomings, and Advances},\n133\t  author={Belinkov, Yonatan},\n134\t  journal={Computational Linguistics},\n135\t  volume={48},\n136\t  number={1},\n137\t  pages={207--219},\n138\t  year={2022}\n139\t}\n140\t\n141\t% === Model Collapse Avoidability ===\n142\t\n143\t@inproceedings{bao2024fast,\n144\t  title={{Fast-DetectGPT}: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature},\n145\t  author={Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n146\t  booktitle={Proceedings of ICLR},\n147\t  year={2024},\n148\t  url={https://arxiv.org/abs/2310.05130}\n149\t}\n150\t\n151\t@inproceedings{frank2001ordinal,\n152\t  title={A Simple Approach to Ordinal Classification},\n153\t  author={Frank, Eibe and Hall, Mark},\n154\t  booktitle={Proceedings of ECML},\n155\t  pages={145--156},\n156\t  year={2001}\n157\t}\n158\t\n159\t% === Beyond-Binary Detection ===\n160\t\n161\t@inproceedings{cheng2025beyond,\n162\t  title={Beyond Binary: Towards Fine-Grained {LLM}-Generated Text Detection via Role Recognition and Involvement Measurement},\n163\t  author={Cheng, Zihao and Zhou, Li and Jiang, Feng and Wang, Benyou and Li, Haizhou},\n164\t  booktitle={Proceedings of the ACM Web Conference (WWW)},\n165\t  year={2025},\n166\t  url={https://arxiv.org/abs/2410.14259}\n167\t}\n168\t\n169\t@article{mehta2025beyond,\n170\t  title={Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models},\n171\t  author={Mehta, Sushant},\n172\t  journal={arXiv preprint arXiv:2511.17602},\n173\t  year={2025},\n174\t  url={https://arxiv.org/abs/2511.17602}\n175\t}\n176\t\n177\t% === AI-Generated Content Prevalence ===\n178\t\n179\t@inproceedings{sun2025aigt,\n180\t  title={Are We in the {AI}-Generated Text World Already? Quantifying and Monitoring {AIGT} on Social Media},\n181\t  author={Sun, Zhen and Zhang, Zongmin and Shen, Xinyue and Zhang, Ziyi and Liu, Yule and Backes, Michael and Zhang, Yang and He, Xinlei},\n182\t  booktitle={Proceedings of ACL},\n183\t  year={2025},\n184\t  url={https://arxiv.org/abs/2412.18148}\n185\t}\n186\t\n187\t@article{spennemann2025quantifying,\n188\t  title={Delving into: the Quantification of {AI}-Generated Content on the Internet (Synthetic Data)},\n189\t  author={Spennemann, Dirk H. R.},\n190\t  journal={arXiv preprint arXiv:2504.08755},\n191\t  year={2025},\n192\t  url={https://arxiv.org/abs/2504.08755}\n193\t}\n194\t\n195\t% === New entries (added 2026-05-16, Round 4 reviewer) ===\n196\t\n197\t@inproceedings{dohmatob2025strong,\n198\t  title={Strong Model Collapse},\n199\t  author={Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n200\t  booktitle={Proceedings of ICLR},\n201\t  year={2025},\n202\t  url={https://arxiv.org/abs/2410.04840}\n203\t}\n204\t\n205\t@inproceedings{wang2024semeval,\n206\t  title={{SemEval}-2024 Task 8: Multidomain, Multimodel and Multilingual Machine-Generated Text Detection},\n207\t  author={Wang, Yuxia and Mansurov, Jonibek and Ivanov, Petar and Su, Jinyan and Shelmanov, Artem and Tsvigun, Akim and Afzal, Osama Mohammed and Mahmoud, Tarek and Puccetti, Giovanni and Arnold, Thomas},\n208\t  booktitle={Proceedings of SemEval},\n209\t  year={2024},\n210\t  url={https://arxiv.org/abs/2404.14183}\n211\t}\n212\t\n213\t@inproceedings{gerstgrasser2024model,\n214\t  title={Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data},\n215\t  author={Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n216\t  booktitle={Proceedings of COLM},\n217\t  year={2024},\n218\t  url={https://arxiv.org/abs/2404.01413}\n219\t}\n220\t\n221\t@inproceedings{guo2024curious,\n222\t  title={The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text},\n223\t  author={Guo, Yanzhu and Shang, Guokan and Vazirgiannis, Michalis and Clavel, Chloe},\n224\t  booktitle={Findings of NAACL},\n225\t  year={2024},\n226\t  url={https://arxiv.org/abs/2311.09807}\n227\t}\n228\t\n229\t@article{briesch2023selfconsuming,\n230\t  title={Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop},\n231\t  author={Briesch, Martin and Sobania, Dominik and Rothlauf, Franz},\n232\t  journal={arXiv preprint arXiv:2311.16822},\n233\t  year={2023},\n234\t  url={https://arxiv.org/abs/2311.16822}\n235\t}\n236\t\n237\t@inproceedings{padmakumar2024writing,\n238\t  title={Does Writing with Language Models Reduce Content Diversity?},\n239\t  author={Padmakumar, Vishakh and He, He},\n240\t  booktitle={Proceedings of ICLR},\n241\t  year={2024},\n242\t  url={https://arxiv.org/abs/2309.05196}\n243\t}\n244\t\n245\t% === New entries (added 2026-05-15, FR-10) ===\n246\t\n247\t@inproceedings{krishna2023paraphrasing,\n248\t  title={Paraphrasing Evades Detectors of {AI}-Generated Text, but Retrieval is an Effective Defense},\n249\t  author={Krishna, Kalpesh and Song, Yixiao and Karpinska, Marzena and Wieting, John and Iyyer, Mohit},\n250\t  booktitle={Advances in Neural Information Processing Systems},\n251\t  year={2023}\n252\t}\n253\t\n254\t@article{sadasivan2023detect,\n255\t  title={Can {AI}-Generated Text be Reliably Detected?},\n256\t  author={Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n257\t  journal={arXiv preprint arXiv:2303.11156},\n258\t  year={2023},\n259\t  url={https://arxiv.org/abs/2303.11156}\n260\t}\n261\t\n262\t@inproceedings{hao2025rewrite,\n263\t  title={Learning to Rewrite: Generalized {LLM}-Generated Text Detection},\n264\t  author={Hao, Wei and Guan, Ran and Lu, Kangjie and Zhang, Shuai},\n265\t  booktitle={Findings of ACL},\n266\t  year={2025}\n267\t}\n268\t\n269\t@inproceedings{shi2025collapse,\n270\t  title={A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective},\n271\t  author={Shi, Lianghe and Wu, Meng and Zhang, Huijie and Zhang, Zekai and Tao, Molei and Qu, Qing},\n272\t  booktitle={Advances in Neural Information Processing Systems},\n273\t  year={2025}\n274\t}\n275\t\n276\t@article{gambetta2024surplexity,\n277\t  title={Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative {AI}},\n278\t  author={Gambetta, Daniele and Gezici, Gizem and Giannotti, Fosca and Pedreschi, Dino and Knott, Alistair and Pappalardo, Luca},\n279\t  journal={arXiv preprint arXiv:2410.12341},\n280\t  year={2024}\n281\t}\n282\t\n283\t@inproceedings{amin2025escaping,\n284\t  title={Escaping Collapse: The Strength of Weak Data for Large Language Model Training},\n285\t  author={Amin, Kareem and Babakniya, Sara and Bie, Alex and Kong, Weiwei and Syed, Umar and Vassilvitskii, Sergei},\n286\t  booktitle={Advances in Neural Information Processing Systems},\n287\t  year={2025}\n288\t}\n289\t\n290\t@inproceedings{kirchenbauer2023watermark,\n291\t  title     = {A Watermark for Large Language Models},\n292\t  author    = {Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n293\t  booktitle = {Proceedings of the 40th International Conference on Machine Learning},\n294\t  pages     = {17061--17084},\n295\t  year      = {2023},\n296\t  volume    = {202},\n297\t  series    = {Proceedings of Machine Learning Research},\n298\t  publisher = {PMLR}\n299\t}\n300\t\n301\t@inproceedings{penedo2024fineweb,\n302\t  title     = {The {FineWeb} Datasets: Decanting the Web for the Finest Text Data at Scale},\n303\t  author    = {Penedo, Guilherme and Kydl{\\'{\\i}}{\\v{c}}ek, Hynek and Ben Allal, Loubna and Lozhkov, Anton and Mitchell, Margaret and Raffel, Colin and Von Werra, Leandro and Wolf, Thomas},\n304\t  booktitle = {Advances in Neural Information Processing Systems},\n305\t  volume    = {37},\n306\t  pages     = {30811--30849},\n307\t  year      = {2024}\n308\t}\n309\t\n310\t@inproceedings{gehrmann2019gltr,\n311\t  title     = {{GLTR}: Statistical Detection and Visualization of Generated Text},\n312\t  author    = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander},\n313\t  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics: System Demonstrations},\n314\t  pages     = {111--116},\n315\t  year      = {2019},\n316\t  address   = {Florence, Italy},\n317\t  publisher = {Association for Computational Linguistics},\n318\t  doi       = {10.18653/v1/P19-3019}\n319\t}\n320\t\n321\t@inproceedings{ke2017lightgbm,\n322\t  title     = {{LightGBM}: A Highly Efficient Gradient Boosting Decision Tree},\n323\t  author    = {Ke, Guolin and Meng, Qi and Finley, Thomas and Wang, Taifeng and Chen, Wei and Ma, Weidong and Ye, Qiwei and Liu, Tie-Yan},\n324\t  booktitle = {Advances in Neural Information Processing Systems},\n325\t  volume    = {30},\n326\t  year      = {2017}\n327\t}\n328\t\n329\t@article{wu2023survey,\n330\t  title     = {A Survey on {LLM}-generated Text Detection: Necessity, Methods, and Future Directions},\n331\t  author    = {Wu, Junchao and Yang, Shu and Zhan, Runzhe and Yuan, Yulin and Wong, Derek F. and Chao, Lidia S.},\n332\t  journal   = {arXiv preprint arXiv:2310.14724},\n333\t  year      = {2023}\n334\t}\n335\t\n336\t@article{tang2024science,\n337\t  title     = {The Science of Detecting {LLM}-Generated Text},\n338\t  author    = {Tang, Ruixiang and Chuang, Yu-Neng and Hu, Xia},\n339\t  journal   = {Communications of the ACM},\n340\t  volume    = {67},\n341\t  number    = {4},\n342\t  pages     = {50--59},\n343\t  year      = {2024},\n344\t  doi       = {10.1145/3624725}\n345\t}\n346\t\n347\t@inproceedings{oren2024proving,\n348\t  title     = {Proving Test Set Contamination in Black Box Language Models},\n349\t  author    = {Oren, Yonatan and Meister, Nicole and Chatterji, Niladri S. and Ladhak, Faisal and Hashimoto, Tatsunori B.},\n350\t  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations},\n351\t  year      = {2024}\n352\t}\n353\t\n354\t@article{cao2020coral,\n355\t  title     = {Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation},\n356\t  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n357\t  journal   = {Pattern Recognition Letters},\n358\t  volume    = {140},\n359\t  pages     = {325--331},\n360\t  year      = {2020},\n361\t  doi       = {10.1016/j.patrec.2020.11.008}\n362\t}\n363\t\n364\t@article{husain2019codesearchnet,\n365\t  title     = {{CodeSearchNet} Challenge: Evaluating the State of Semantic Code Search},\n366\t  author    = {Husain, Hamel and Wu, Ho-Hsiang and Gazit, Tiferet and Allamanis, Miltiadis and Brockschmidt, Marc},\n367\t  journal   = {arXiv preprint arXiv:1909.09436},\n368\t  year      = {2019},\n369\t  url       = {https://arxiv.org/abs/1909.09436}\n370\t}\n371\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "e28752c1-6764-42cd-87f5-f9a5ffaf7c3f",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib",
+                "content": "% === References for gen-depth-contamination ===\n% Source: literature_map.yaml — verified 2026-05-15\n\n% === Must-Cite ===\n\n@inproceedings{drayson2025,\n  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n  booktitle={Proceedings of EMNLP},\n  year={2025},\n  url={https://arxiv.org/abs/2502.15654}\n}\n\n@inproceedings{schaeffer2025position,\n  title={Position: Model Collapse Does Not Mean What You Think},\n  author={Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Anirudh and Koyejo, Sanmi},\n  booktitle={Proceedings of ICML},\n  year={2025},\n  url={https://arxiv.org/abs/2503.03150}\n}\n\n@inproceedings{kazdan2025collapse,\n  title={Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World},\n  author={Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David and Koyejo, Sanmi},\n  booktitle={Proceedings of ICML},\n  year={2025},\n  url={https://arxiv.org/abs/2410.16713}\n}\n\n@inproceedings{mitchell2023detectgpt,\n  title={{DetectGPT}: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n  author={Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n  booktitle={Proceedings of ICML},\n  year={2023}\n}\n\n% === Should-Cite ===\n\n@article{basani2026diveye,\n  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},\n  author={Basani, Advik Raj and Chen, Pin-Yu},\n  journal={Transactions on Machine Learning Research},\n  issn={2835-8856},\n  year={2026},\n  url={https://arxiv.org/abs/2509.18880}\n}\n\n@inproceedings{zawalski2026codec,\n  title={{CoDeC}: Detecting Data Contamination in {LLM}s via In-Context Learning},\n  author={Zawalski, Micha{\\l} and Boubdir, Meriem and Ba{\\l}azy, Klaudia and Nushi, Besmira and Ribalta, Pablo},\n  booktitle={Proceedings of ICLR},\n  year={2026},\n  url={https://arxiv.org/abs/2510.27055}\n}\n\n@inproceedings{zhang2024minkpp,\n  title={Min-{K}\\%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models},\n  author={Zhang, Jingyang and Zheng, Jingwei and Gao, Jing and Miao, Chunyan},\n  booktitle={Proceedings of EMNLP},\n  year={2024}\n}\n\n@article{shumailov2024collapse,\n  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n  journal={Nature},\n  volume={631},\n  pages={755--759},\n  year={2024}\n}\n\n@inproceedings{alemohammad2024selfconsuming,\n  title={Self-Consuming Generative Models Go {MAD}},\n  author={Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G.},\n  booktitle={Proceedings of ICLR},\n  year={2024}\n}\n\n@inproceedings{bertrand2024stability,\n  title={On the Stability of Iterative Retraining of Generative Models on their Own Data},\n  author={Bertrand, Quentin and Bose, Avishek Joey and Duplessis, Alexandre and Jiralerspong, Marco and Gidel, Gauthier},\n  booktitle={Proceedings of ICLR},\n  year={2024},\n  url={https://arxiv.org/abs/2310.00429}\n}\n\n@inproceedings{dohmatob2024model,\n  title={A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n  author={Dohmatob, Elvis and Feng, Yunzhen and Yang, Pin-Yu and Charton, Francois and Kempe, Julia},\n  booktitle={Proceedings of ICML},\n  year={2024}\n}\n\n@inproceedings{xie2023dsir,\n  title={Data Selection for Language Models via Importance Resampling},\n  author={Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n@inproceedings{tirumala2023d4,\n  title={{D4}: Improving {LLM} Pretraining via Document De-Duplication and Diversification},\n  author={Tirumala, Kushal and Markosyan, Aram and Zettlemoyer, Luke and Aghajanyan, Armen},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n@inproceedings{xie2023doremi,\n  title={{DoReMi}: Optimizing Data Mixtures Speeds Up Language Model Pretraining},\n  author={Xie, Sang Michael and Pham, Hieu and Dong, Xuanyi and Du, Nan and Liu, Hanxiao and Lu, Yifeng and Liang, Percy and Le, Quoc V. and Ma, Tengyu and Yu, Adams Wei},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n@inproceedings{hans2024binoculars,\n  title={Spotting {LLMs} With Binoculars},\n  author={Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n  booktitle={Proceedings of ICML},\n  year={2024}\n}\n\n% === Probing Classifiers ===\n\n@inproceedings{alain2017understanding,\n  title={Understanding Intermediate Layers Using Linear Classifier Probes},\n  author={Alain, Guillaume and Bengio, Yoshua},\n  booktitle={ICLR Workshop},\n  year={2017}\n}\n\n@article{belinkov2022probing,\n  title={Probing Classifiers: Promises, Shortcomings, and Advances},\n  author={Belinkov, Yonatan},\n  journal={Computational Linguistics},\n  volume={48},\n  number={1},\n  pages={207--219},\n  year={2022}\n}\n\n% === Model Collapse Avoidability ===\n\n@inproceedings{bao2024fast,\n  title={{Fast-DetectGPT}: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature},\n  author={Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n  booktitle={Proceedings of ICLR},\n  year={2024},\n  url={https://arxiv.org/abs/2310.05130}\n}\n\n@inproceedings{frank2001ordinal,\n  title={A Simple Approach to Ordinal Classification},\n  author={Frank, Eibe and Hall, Mark},\n  booktitle={Proceedings of ECML},\n  pages={145--156},\n  year={2001}\n}\n\n% === Beyond-Binary Detection ===\n\n@inproceedings{cheng2025beyond,\n  title={Beyond Binary: Towards Fine-Grained {LLM}-Generated Text Detection via Role Recognition and Involvement Measurement},\n  author={Cheng, Zihao and Zhou, Li and Jiang, Feng and Wang, Benyou and Li, Haizhou},\n  booktitle={Proceedings of the ACM Web Conference (WWW)},\n  year={2025},\n  url={https://arxiv.org/abs/2410.14259}\n}\n\n@article{mehta2025beyond,\n  title={Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models},\n  author={Mehta, Sushant},\n  journal={arXiv preprint arXiv:2511.17602},\n  year={2025},\n  url={https://arxiv.org/abs/2511.17602}\n}\n\n% === AI-Generated Content Prevalence ===\n\n@inproceedings{sun2025aigt,\n  title={Are We in the {AI}-Generated Text World Already? Quantifying and Monitoring {AIGT} on Social Media},\n  author={Sun, Zhen and Zhang, Zongmin and Shen, Xinyue and Zhang, Ziyi and Liu, Yule and Backes, Michael and Zhang, Yang and He, Xinlei},\n  booktitle={Proceedings of ACL},\n  year={2025},\n  url={https://arxiv.org/abs/2412.18148}\n}\n\n@article{spennemann2025quantifying,\n  title={Delving into: the Quantification of {AI}-Generated Content on the Internet (Synthetic Data)},\n  author={Spennemann, Dirk H. R.},\n  journal={arXiv preprint arXiv:2504.08755},\n  year={2025},\n  url={https://arxiv.org/abs/2504.08755}\n}\n\n% === New entries (added 2026-05-16, Round 4 reviewer) ===\n\n@inproceedings{dohmatob2025strong,\n  title={Strong Model Collapse},\n  author={Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n  booktitle={Proceedings of ICLR},\n  year={2025},\n  url={https://arxiv.org/abs/2410.04840}\n}\n\n@inproceedings{wang2024semeval,\n  title={{SemEval}-2024 Task 8: Multidomain, Multimodel and Multilingual Machine-Generated Text Detection},\n  author={Wang, Yuxia and Mansurov, Jonibek and Ivanov, Petar and Su, Jinyan and Shelmanov, Artem and Tsvigun, Akim and Afzal, Osama Mohammed and Mahmoud, Tarek and Puccetti, Giovanni and Arnold, Thomas},\n  booktitle={Proceedings of SemEval},\n  year={2024},\n  url={https://arxiv.org/abs/2404.14183}\n}\n\n@inproceedings{gerstgrasser2024model,\n  title={Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data},\n  author={Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n  booktitle={Proceedings of COLM},\n  year={2024},\n  url={https://arxiv.org/abs/2404.01413}\n}\n\n@inproceedings{guo2024curious,\n  title={The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text},\n  author={Guo, Yanzhu and Shang, Guokan and Vazirgiannis, Michalis and Clavel, Chloe},\n  booktitle={Findings of NAACL},\n  year={2024},\n  url={https://arxiv.org/abs/2311.09807}\n}\n\n@article{briesch2023selfconsuming,\n  title={Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop},\n  author={Briesch, Martin and Sobania, Dominik and Rothlauf, Franz},\n  journal={arXiv preprint arXiv:2311.16822},\n  year={2023},\n  url={https://arxiv.org/abs/2311.16822}\n}\n\n@inproceedings{padmakumar2024writing,\n  title={Does Writing with Language Models Reduce Content Diversity?},\n  author={Padmakumar, Vishakh and He, He},\n  booktitle={Proceedings of ICLR},\n  year={2024},\n  url={https://arxiv.org/abs/2309.05196}\n}\n\n% === New entries (added 2026-05-15, FR-10) ===\n\n@inproceedings{krishna2023paraphrasing,\n  title={Paraphrasing Evades Detectors of {AI}-Generated Text, but Retrieval is an Effective Defense},\n  author={Krishna, Kalpesh and Song, Yixiao and Karpinska, Marzena and Wieting, John and Iyyer, Mohit},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n@article{sadasivan2023detect,\n  title={Can {AI}-Generated Text be Reliably Detected?},\n  author={Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n  journal={arXiv preprint arXiv:2303.11156},\n  year={2023},\n  url={https://arxiv.org/abs/2303.11156}\n}\n\n@inproceedings{hao2025rewrite,\n  title={Learning to Rewrite: Generalized {LLM}-Generated Text Detection},\n  author={Hao, Wei and Guan, Ran and Lu, Kangjie and Zhang, Shuai},\n  booktitle={Findings of ACL},\n  year={2025}\n}\n\n@inproceedings{shi2025collapse,\n  title={A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective},\n  author={Shi, Lianghe and Wu, Meng and Zhang, Huijie and Zhang, Zekai and Tao, Molei and Qu, Qing},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2025}\n}\n\n@article{gambetta2024surplexity,\n  title={Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative {AI}},\n  author={Gambetta, Daniele and Gezici, Gizem and Giannotti, Fosca and Pedreschi, Dino and Knott, Alistair and Pappalardo, Luca},\n  journal={arXiv preprint arXiv:2410.12341},\n  year={2024}\n}\n\n@inproceedings{amin2025escaping,\n  title={Escaping Collapse: The Strength of Weak Data for Large Language Model Training},\n  author={Amin, Kareem and Babakniya, Sara and Bie, Alex and Kong, Weiwei and Syed, Umar and Vassilvitskii, Sergei},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2025}\n}\n\n@inproceedings{kirchenbauer2023watermark,\n  title     = {A Watermark for Large Language Models},\n  author    = {Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n  booktitle = {Proceedings of the 40th International Conference on Machine Learning},\n  pages     = {17061--17084},\n  year      = {2023},\n  volume    = {202},\n  series    = {Proceedings of Machine Learning Research},\n  publisher = {PMLR}\n}\n\n@inproceedings{penedo2024fineweb,\n  title     = {The {FineWeb} Datasets: Decanting the Web for the Finest Text Data at Scale},\n  author    = {Penedo, Guilherme and Kydl{\\'{\\i}}{\\v{c}}ek, Hynek and Ben Allal, Loubna and Lozhkov, Anton and Mitchell, Margaret and Raffel, Colin and Von Werra, Leandro and Wolf, Thomas},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {37},\n  pages     = {30811--30849},\n  year      = {2024}\n}\n\n@inproceedings{gehrmann2019gltr,\n  title     = {{GLTR}: Statistical Detection and Visualization of Generated Text},\n  author    = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander},\n  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics: System Demonstrations},\n  pages     = {111--116},\n  year      = {2019},\n  address   = {Florence, Italy},\n  publisher = {Association for Computational Linguistics},\n  doi       = {10.18653/v1/P19-3019}\n}\n\n@inproceedings{ke2017lightgbm,\n  title     = {{LightGBM}: A Highly Efficient Gradient Boosting Decision Tree},\n  author    = {Ke, Guolin and Meng, Qi and Finley, Thomas and Wang, Taifeng and Chen, Wei and Ma, Weidong and Ye, Qiwei and Liu, Tie-Yan},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {30},\n  year      = {2017}\n}\n\n@article{wu2023survey,\n  title     = {A Survey on {LLM}-generated Text Detection: Necessity, Methods, and Future Directions},\n  author    = {Wu, Junchao and Yang, Shu and Zhan, Runzhe and Yuan, Yulin and Wong, Derek F. and Chao, Lidia S.},\n  journal   = {arXiv preprint arXiv:2310.14724},\n  year      = {2023}\n}\n\n@article{tang2024science,\n  title     = {The Science of Detecting {LLM}-Generated Text},\n  author    = {Tang, Ruixiang and Chuang, Yu-Neng and Hu, Xia},\n  journal   = {Communications of the ACM},\n  volume    = {67},\n  number    = {4},\n  pages     = {50--59},\n  year      = {2024},\n  doi       = {10.1145/3624725}\n}\n\n@inproceedings{oren2024proving,\n  title     = {Proving Test Set Contamination in Black Box Language Models},\n  author    = {Oren, Yonatan and Meister, Nicole and Chatterji, Niladri S. and Ladhak, Faisal and Hashimoto, Tatsunori B.},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations},\n  year      = {2024}\n}\n\n@article{cao2020coral,\n  title     = {Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation},\n  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n  journal   = {Pattern Recognition Letters},\n  volume    = {140},\n  pages     = {325--331},\n  year      = {2020},\n  doi       = {10.1016/j.patrec.2020.11.008}\n}\n\n@article{husain2019codesearchnet,\n  title     = {{CodeSearchNet} Challenge: Evaluating the State of Semantic Code Search},\n  author    = {Husain, Hamel and Wu, Ho-Hsiang and Gazit, Tiferet and Allamanis, Miltiadis and Brockschmidt, Marc},\n  journal   = {arXiv preprint arXiv:1909.09436},\n  year      = {2019},\n  url       = {https://arxiv.org/abs/1909.09436}\n}\n",
+                "numLines": 371,
+                "startLine": 1,
+                "totalLines": 371
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BtGubKfE4pAmHpYCp9d3ps",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/model_collapse_literature_notes.md",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "3ee4e7ee-56c8-4810-ae51-e99b3c782635",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GL84spbUGU6CUpS4icDGF3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12627,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12627
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T03:23:56.492Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BtGubKfE4pAmHpYCp9d3ps",
+              "type": "tool_result",
+              "content": "artifacts/_project/report/model_collapse_literature_notes.md\nartifacts/model_collapse_literature_notes.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "5df55331-f014-405f-a4af-fb5440efe65d",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/_project/report/model_collapse_literature_notes.md",
+                "artifacts/model_collapse_literature_notes.md"
+              ],
+              "durationMs": 24,
+              "numFiles": 2,
+              "truncated": false
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Found the `bertrand2024stability` entry at lines 79-85. Let me now:\n1. Search for the paper to verify details\n2. Read the literature notes to check for Gerstgrasser et al.\n\nI already see `gerstgrasser2024model` at line 213-219, so that's already in the bib. Let me verify Bertrand et al. via web search.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "c04e0757-12ff-411c-a2d1-d43d229536aa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T3R6RzuQ8kpfrFqfs97sMk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6462,
+                "cache_read_input_tokens": 24468,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6462
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`bertrand2024stability` 在第 79-85 行。`gerstgrasser2024model` 已存在（第 213-219 行），无需补充。\n\n验证 Bertrand et al. 的准确性。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "de343fff-310a-4bde-b4bf-105223e71168",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T3R6RzuQ8kpfrFqfs97sMk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6462,
+                "cache_read_input_tokens": 24468,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6462
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UiDNZ5zwXwiVcgVHXQws7T",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "4f69f91d-ad08-4031-a8dc-030d20bb025c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T3R6RzuQ8kpfrFqfs97sMk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6462,
+                "cache_read_input_tokens": 24468,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6462
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T03:24:02.418Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01UiDNZ5zwXwiVcgVHXQws7T",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "d0a47ff8-877f-4017-9259-ac969392b317",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KtCyBY1fTCSoLYzB6YGwhH",
+              "name": "WebSearch",
+              "input": {
+                "query": "Bertrand Bose Duplessis Jiralerspong Gidel \"On the Stability of Iterative Retraining\" ICLR 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "245dc48b-16c2-4e77-b811-5eaa12007284",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K9ynM2Tpgb8QyWJAcy8W8Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 769,
+                "cache_read_input_tokens": 30930,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 769
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T03:24:12.179Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KtCyBY1fTCSoLYzB6YGwhH",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Bertrand Bose Duplessis Jiralerspong Gidel \"On the Stability of Iterative Retraining\" ICLR 2024\"\n\nLinks: [{\"title\":\"Could we see the collapse of generative AI? | Inria\",\"url\":\"https://www.inria.fr/en/collapse-ia-generatives\"},{\"title\":\"Published as a conference paper at ICLR 2024\",\"url\":\"https://openreview.net/pdf?id=JORAfH2xFd\"},{\"title\":\"dblp: On the Stability of Iterative Retraining of Generative Models on their own Data.\",\"url\":\"https://dblp.org/rec/conf/iclr/BertrandBDJG24.html\"},{\"title\":\"Self-Consuming AI Resources\",\"url\":\"https://dsp.rice.edu/ai-loops/\"},{\"title\":\"[2310.00429v3] On the Stability of Iterative Retraining of Generative Models on their own Data\",\"url\":\"https://arxiv.org/abs/2310.00429v3\"},{\"title\":\"[2310.00429v5] On the Stability of Iterative Retraining of Generative Models on their own Data\",\"url\":\"https://arxiv.org/abs/2310.00429v5\"},{\"title\":\"ON THE STABILITY OF ITERATIVE RETRAINING ...\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/339cab2a98edcba2d4ac42e5f8b64218-Paper-Conference.pdf\"},{\"title\":\"[2310.00429] On the Stability of Iterative Retraining of Generative Models on their own Data\",\"url\":\"https://arxiv.org/abs/2310.00429\"},{\"title\":\"On the Stability of Iterative Retraining of Generative Models on their own Data\",\"url\":\"https://iclr.cc/media/iclr-2024/Slides/18942.pdf\"}]\n\nI found the paper you're looking for! Here are the key details:\n\nAt the 2024 edition of ICLR, Quentin Bertrand, Joey Bose, Alexandre Duplessis, Marco Jiralerspong and Gauthier Gidel presented a paper entitled \"On the stability of iterative retraining of generative models on their own data\".\n\n**Paper Overview:**\nThe paper addresses how deep generative models perform when trained on synthetic content. Due to these models' widespread availability and striking performance, the web will increasingly be populated with synthetic content, meaning future iterations of generative models will be trained on both clean and artificially generated data from past models.\n\n**Key Findings:**\nIterative retraining of the model exclusively on its own generated data results in image degradation, while retraining on a mixture of half-real and half-synthetic data results in similar quality to retraining on real data.\n\n**Availability:**\nThe paper is published in the ICLR 2024 proceedings and is available on arXiv (paper ID: 2310.00429) as well as through OpenReview and the official ICLR proceedings.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "fd2e9f20-b608-471c-b369-cb68aee6c583",
+            "tool_use_result": {
+              "query": "Bertrand Bose Duplessis Jiralerspong Gidel \"On the Stability of Iterative Retraining\" ICLR 2024",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01QjqTob3qP1DkjvDarTzuXb",
+                  "content": [
+                    {
+                      "title": "Could we see the collapse of generative AI? | Inria",
+                      "url": "https://www.inria.fr/en/collapse-ia-generatives"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2024",
+                      "url": "https://openreview.net/pdf?id=JORAfH2xFd"
+                    },
+                    {
+                      "title": "dblp: On the Stability of Iterative Retraining of Generative Models on their own Data.",
+                      "url": "https://dblp.org/rec/conf/iclr/BertrandBDJG24.html"
+                    },
+                    {
+                      "title": "Self-Consuming AI Resources",
+                      "url": "https://dsp.rice.edu/ai-loops/"
+                    },
+                    {
+                      "title": "[2310.00429v3] On the Stability of Iterative Retraining of Generative Models on their own Data",
+                      "url": "https://arxiv.org/abs/2310.00429v3"
+                    },
+                    {
+                      "title": "[2310.00429v5] On the Stability of Iterative Retraining of Generative Models on their own Data",
+                      "url": "https://arxiv.org/abs/2310.00429v5"
+                    },
+                    {
+                      "title": "ON THE STABILITY OF ITERATIVE RETRAINING ...",
+                      "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/339cab2a98edcba2d4ac42e5f8b64218-Paper-Conference.pdf"
+                    },
+                    {
+                      "title": "[2310.00429] On the Stability of Iterative Retraining of Generative Models on their own Data",
+                      "url": "https://arxiv.org/abs/2310.00429"
+                    },
+                    {
+                      "title": "On the Stability of Iterative Retraining of Generative Models on their own Data",
+                      "url": "https://iclr.cc/media/iclr-2024/Slides/18942.pdf"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for! Here are the key details:\n\nAt the 2024 edition of ICLR, Quentin Bertrand, Joey Bose, Alexandre Duplessis, Marco Jiralerspong and Gauthier Gidel presented a paper entitled \"On the stability of iterative retraining of generative models on their own data\".\n\n**Paper Overview:**\nThe paper addresses how deep generative models perform when trained on synthetic content. Due to these models' widespread availability and striking performance, the web will increasingly be populated with synthetic content, meaning future iterations of generative models will be trained on both clean and artificially generated data from past models.\n\n**Key Findings:**\nIterative retraining of the model exclusively on its own generated data results in image degradation, while retraining on a mixture of half-real and half-synthetic data results in similar quality to retraining on real data.\n\n**Availability:**\nThe paper is published in the ICLR 2024 proceedings and is available on arXiv (paper ID: 2310.00429) as well as through OpenReview and the official ICLR proceedings."
+              ],
+              "durationSeconds": 6.530139043999999
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the details more carefully. The bib entry says:\n\n```\n@inproceedings{bertrand2024stability,\n  title={On the Stability of Iterative Retraining of Generative Models on their Own Data},\n  author={Bertrand, Quentin and Bose, Avishek Joey and Duplessis, Alexandre and Jiralerspong, Marco and Gidel, Gauthier},\n  booktitle={Proceedings of ICLR},\n  year={2024},\n  url={https://arxiv.org/abs/2310.00429}\n}\n```\n\nFrom web search, I'm seeing some capitalization variations across versions. The ICLR proceedings PDF uses all caps for the title in conference style, while the arXiv version uses title case with lowercase \"own\". Our bib currently has \"Own\" capitalized, which doesn't match either the official arXiv or ICLR versions exactly.\n\nChecking against DBLP confirms the correct version should have lowercase \"own\". I'm also noting the authors from the web search: Quentin Bertrand, Joey Bose, Alexandre Duplessis, Marco Jiralerspong, and Gauthier Gidel.\n\nNow I'm verifying the author names in our bibliography entry — it shows \"Avishek Joey Bose\" which matches the arXiv listing, so that's correct despite the web search abbreviating it. The paper was published at ICLR 2024, and I'm checking whether it was designated as a Spotlight presentation by looking at the OpenReview link.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "1f5e0336-2a98-4e10-82a5-afaf24c24537",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GTJ8DxQxWZMAvC2A11N4gr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1647,
+                "cache_read_input_tokens": 30930,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1647
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "标题大小写有细微差异。让我进一步确认是否为 Spotlight 以及精确标题。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "dbeee29c-7d9c-4009-b2bc-9e5406a55225",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GTJ8DxQxWZMAvC2A11N4gr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1647,
+                "cache_read_input_tokens": 30930,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1647
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WVox6fcSmMK1v6VeEXbEq4",
+              "name": "WebSearch",
+              "input": {
+                "query": "Bertrand \"Stability of Iterative Retraining\" ICLR 2024 spotlight openreview"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "b9c1ff13-63b5-42c9-9534-3b6f5ad5f467",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GTJ8DxQxWZMAvC2A11N4gr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1647,
+                "cache_read_input_tokens": 30930,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1647
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T03:24:33.813Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WVox6fcSmMK1v6VeEXbEq4",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Bertrand \"Stability of Iterative Retraining\" ICLR 2024 spotlight openreview\"\n\nLinks: [{\"title\":\"Quentin BERTRAND - Home\",\"url\":\"https://qb3.github.io/\"},{\"title\":\"On the Stability of Iterative Retraining of Generative Models ...\",\"url\":\"https://arxiv.org/pdf/2310.00429\"},{\"title\":\"QB3 (Quentin Bertrand) · GitHub\",\"url\":\"https://github.com/qb3\"},{\"title\":\"Published as a conference paper at ICLR 2024\",\"url\":\"https://openreview.net/pdf?id=JORAfH2xFd\"},{\"title\":\"Quentin BERTRAND - Research\",\"url\":\"https://qb3.github.io/research.html\"},{\"title\":\"dblp: On the Stability of Iterative Retraining of Generative Models on their own Data.\",\"url\":\"https://dblp.org/rec/conf/iclr/BertrandBDJG24.html\"},{\"title\":\"GitHub - QB3/gen_models_dont_go_mad: Code to reproduce the experiments of the ICLR 2024 (spotlight) paper \\\"On the Stability of Iterative Retraining of Generative Models on their Own Data\\\" https://arxiv.org/abs/2310.00429\",\"url\":\"https://github.com/QB3/gen_models_dont_go_mad\"},{\"title\":\"ON THE STABILITY OF ITERATIVE RETRAINING ...\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/339cab2a98edcba2d4ac42e5f8b64218-Paper-Conference.pdf\"},{\"title\":\"On the Stability of Iterative Retraining of Generative Models on their own Data | OpenReview\",\"url\":\"https://openreview.net/forum?id=JORAfH2xFd\"},{\"title\":\"On the Stability of Iterative Retraining of Generative Models on their own Data\",\"url\":\"https://iclr.cc/media/iclr-2024/Slides/18942.pdf\"}]\n\nBased on the search results, I found the paper you were looking for:\n\n**Paper Title:** \"On the Stability of Iterative Retraining of Generative Models on their own Data\"\n\n**Authors:** Quentin Bertrand (Université de Montréal and Mila), Avishek (Joey) Bose (McGill and Mila), Alexandre Duplessis (ENS, PSL), Marco Jiralerspong (Université de Montréal and Mila), and Gauthier Gidel (Université de Montréal and Mila)\n\n**Venue:** ICLR 2024 with a spotlight\n\n**OpenReview Link:** The paper is available at https://openreview.net/forum?id=JORAfH2xFd\n\n**Summary:** The paper develops a framework to rigorously study the impact of training generative models on mixed datasets—from classical training on real data to self-consuming generative models trained on purely synthetic data. The authors prove the stability of iterative training under the condition that the initial generative models approximate the data distribution well enough.\n\nYou can also find the code for reproducing the experiments at https://github.com/QB3/gen_models_dont_go_mad\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "b31b9fa7-d740-4ee8-a3e6-6ea3f87211bf",
+            "tool_use_result": {
+              "query": "Bertrand \"Stability of Iterative Retraining\" ICLR 2024 spotlight openreview",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01SpJWzXUUCtpJFVWuMVbb21",
+                  "content": [
+                    {
+                      "title": "Quentin BERTRAND - Home",
+                      "url": "https://qb3.github.io/"
+                    },
+                    {
+                      "title": "On the Stability of Iterative Retraining of Generative Models ...",
+                      "url": "https://arxiv.org/pdf/2310.00429"
+                    },
+                    {
+                      "title": "QB3 (Quentin Bertrand) · GitHub",
+                      "url": "https://github.com/qb3"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2024",
+                      "url": "https://openreview.net/pdf?id=JORAfH2xFd"
+                    },
+                    {
+                      "title": "Quentin BERTRAND - Research",
+                      "url": "https://qb3.github.io/research.html"
+                    },
+                    {
+                      "title": "dblp: On the Stability of Iterative Retraining of Generative Models on their own Data.",
+                      "url": "https://dblp.org/rec/conf/iclr/BertrandBDJG24.html"
+                    },
+                    {
+                      "title": "GitHub - QB3/gen_models_dont_go_mad: Code to reproduce the experiments of the ICLR 2024 (spotlight) paper \"On the Stability of Iterative Retraining of Generative Models on their Own Data\" https://arxiv.org/abs/2310.00429",
+                      "url": "https://github.com/QB3/gen_models_dont_go_mad"
+                    },
+                    {
+                      "title": "ON THE STABILITY OF ITERATIVE RETRAINING ...",
+                      "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/339cab2a98edcba2d4ac42e5f8b64218-Paper-Conference.pdf"
+                    },
+                    {
+                      "title": "On the Stability of Iterative Retraining of Generative Models on their own Data | OpenReview",
+                      "url": "https://openreview.net/forum?id=JORAfH2xFd"
+                    },
+                    {
+                      "title": "On the Stability of Iterative Retraining of Generative Models on their own Data",
+                      "url": "https://iclr.cc/media/iclr-2024/Slides/18942.pdf"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the paper you were looking for:\n\n**Paper Title:** \"On the Stability of Iterative Retraining of Generative Models on their own Data\"\n\n**Authors:** Quentin Bertrand (Université de Montréal and Mila), Avishek (Joey) Bose (McGill and Mila), Alexandre Duplessis (ENS, PSL), Marco Jiralerspong (Université de Montréal and Mila), and Gauthier Gidel (Université de Montréal and Mila)\n\n**Venue:** ICLR 2024 with a spotlight\n\n**OpenReview Link:** The paper is available at https://openreview.net/forum?id=JORAfH2xFd\n\n**Summary:** The paper develops a framework to rigorously study the impact of training generative models on mixed datasets—from classical training on real data to self-consuming generative models trained on purely synthetic data. The authors prove the stability of iterative training under the condition that the initial generative models approximate the data distribution well enough.\n\nYou can also find the code for reproducing the experiments at https://github.com/QB3/gen_models_dont_go_mad"
+              ],
+              "durationSeconds": 5.738865734999999
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the information I need:\n\n1. **Title**: The official title uses lowercase \"own\": \"On the Stability of Iterative Retraining of Generative Models on their own Data\". But looking at the GitHub repo, it says \"On the Stability of Iterative Retraining of Generative Models on their Own Data\" (capital O). The arXiv and OpenReview versions seem to use lowercase \"own\". Let me look at the DBLP entry which is authoritative for bibliographic records.\n\nThe dblp title: \"On the Stability of Iterative Retraining of Generative Models on their own Data.\" — lowercase \"own\".\n\n\nThe GitHub description capitalizes it, but both arXiv and OpenReview use lowercase \"own\", so I should update the BibTeX entry to match that standard version. I need to match the exact capitalization from the arXiv version, which has \"own\" in lowercase since it's a modifier in title case, while \"Data\" stays capitalized. Let me update the BibTeX entry to reflect the original title accurately.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "76faf62a-a8d4-4c9a-a726-5e46364de8c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015oHwhLYxHFz5kNMJssfGug",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1664,
+                "cache_read_input_tokens": 32577,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1664
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n- **标题**：bib 中 \"their Own Data\" 应为 \"their own Data\"（arXiv/OpenReview 均为小写 \"own\"）\n- **作者**：正确\n- **会议**：ICLR 2024 Spotlight，确认\n- **arXiv ID**：2310.00429，正确\n- **Gerstgrasser et al.**：已在 bib 中（第 213 行），无需补充\n\n修正标题大小写："
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "d33f60eb-5913-4776-b7d9-f334d3730439",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015oHwhLYxHFz5kNMJssfGug",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1664,
+                "cache_read_input_tokens": 32577,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1664
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MJgESqwijZSGX48mAzRaQa",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib",
+                "old_string": "  title={On the Stability of Iterative Retraining of Generative Models on their Own Data},",
+                "new_string": "  title={On the Stability of Iterative Retraining of Generative Models on their own Data},"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "6edb5376-9374-46eb-b107-84908913bcec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015oHwhLYxHFz5kNMJssfGug",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1664,
+                "cache_read_input_tokens": 32577,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1664
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T03:24:54.765Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MJgESqwijZSGX48mAzRaQa",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "4e30aa3c-8a5c-48fd-97e8-de87535f15bf",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib",
+              "oldString": "  title={On the Stability of Iterative Retraining of Generative Models on their Own Data},",
+              "newString": "  title={On the Stability of Iterative Retraining of Generative Models on their own Data},",
+              "originalFile": "% === References for gen-depth-contamination ===\n% Source: literature_map.yaml — verified 2026-05-15\n\n% === Must-Cite ===\n\n@inproceedings{drayson2025,\n  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n  booktitle={Proceedings of EMNLP},\n  year={2025},\n  url={https://arxiv.org/abs/2502.15654}\n}\n\n@inproceedings{schaeffer2025position,\n  title={Position: Model Collapse Does Not Mean What You Think},\n  author={Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Anirudh and Koyejo, Sanmi},\n  booktitle={Proceedings of ICML},\n  year={2025},\n  url={https://arxiv.org/abs/2503.03150}\n}\n\n@inproceedings{kazdan2025collapse,\n  title={Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World},\n  author={Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David and Koyejo, Sanmi},\n  booktitle={Proceedings of ICML},\n  year={2025},\n  url={https://arxiv.org/abs/2410.16713}\n}\n\n@inproceedings{mitchell2023detectgpt,\n  title={{DetectGPT}: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n  author={Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n  booktitle={Proceedings of ICML},\n  year={2023}\n}\n\n% === Should-Cite ===\n\n@article{basani2026diveye,\n  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},\n  author={Basani, Advik Raj and Chen, Pin-Yu},\n  journal={Transactions on Machine Learning Research},\n  issn={2835-8856},\n  year={2026},\n  url={https://arxiv.org/abs/2509.18880}\n}\n\n@inproceedings{zawalski2026codec,\n  title={{CoDeC}: Detecting Data Contamination in {LLM}s via In-Context Learning},\n  author={Zawalski, Micha{\\l} and Boubdir, Meriem and Ba{\\l}azy, Klaudia and Nushi, Besmira and Ribalta, Pablo},\n  booktitle={Proceedings of ICLR},\n  year={2026},\n  url={https://arxiv.org/abs/2510.27055}\n}\n\n@inproceedings{zhang2024minkpp,\n  title={Min-{K}\\%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models},\n  author={Zhang, Jingyang and Zheng, Jingwei and Gao, Jing and Miao, Chunyan},\n  booktitle={Proceedings of EMNLP},\n  year={2024}\n}\n\n@article{shumailov2024collapse,\n  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n  journal={Nature},\n  volume={631},\n  pages={755--759},\n  year={2024}\n}\n\n@inproceedings{alemohammad2024selfconsuming,\n  title={Self-Consuming Generative Models Go {MAD}},\n  author={Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G.},\n  booktitle={Proceedings of ICLR},\n  year={2024}\n}\n\n@inproceedings{bertrand2024stability,\n  title={On the Stability of Iterative Retraining of Generative Models on their Own Data},\n  author={Bertrand, Quentin and Bose, Avishek Joey and Duplessis, Alexandre and Jiralerspong, Marco and Gidel, Gauthier},\n  booktitle={Proceedings of ICLR},\n  year={2024},\n  url={https://arxiv.org/abs/2310.00429}\n}\n\n@inproceedings{dohmatob2024model,\n  title={A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n  author={Dohmatob, Elvis and Feng, Yunzhen and Yang, Pin-Yu and Charton, Francois and Kempe, Julia},\n  booktitle={Proceedings of ICML},\n  year={2024}\n}\n\n@inproceedings{xie2023dsir,\n  title={Data Selection for Language Models via Importance Resampling},\n  author={Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n@inproceedings{tirumala2023d4,\n  title={{D4}: Improving {LLM} Pretraining via Document De-Duplication and Diversification},\n  author={Tirumala, Kushal and Markosyan, Aram and Zettlemoyer, Luke and Aghajanyan, Armen},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n@inproceedings{xie2023doremi,\n  title={{DoReMi}: Optimizing Data Mixtures Speeds Up Language Model Pretraining},\n  author={Xie, Sang Michael and Pham, Hieu and Dong, Xuanyi and Du, Nan and Liu, Hanxiao and Lu, Yifeng and Liang, Percy and Le, Quoc V. and Ma, Tengyu and Yu, Adams Wei},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n@inproceedings{hans2024binoculars,\n  title={Spotting {LLMs} With Binoculars},\n  author={Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n  booktitle={Proceedings of ICML},\n  year={2024}\n}\n\n% === Probing Classifiers ===\n\n@inproceedings{alain2017understanding,\n  title={Understanding Intermediate Layers Using Linear Classifier Probes},\n  author={Alain, Guillaume and Bengio, Yoshua},\n  booktitle={ICLR Workshop},\n  year={2017}\n}\n\n@article{belinkov2022probing,\n  title={Probing Classifiers: Promises, Shortcomings, and Advances},\n  author={Belinkov, Yonatan},\n  journal={Computational Linguistics},\n  volume={48},\n  number={1},\n  pages={207--219},\n  year={2022}\n}\n\n% === Model Collapse Avoidability ===\n\n@inproceedings{bao2024fast,\n  title={{Fast-DetectGPT}: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature},\n  author={Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n  booktitle={Proceedings of ICLR},\n  year={2024},\n  url={https://arxiv.org/abs/2310.05130}\n}\n\n@inproceedings{frank2001ordinal,\n  title={A Simple Approach to Ordinal Classification},\n  author={Frank, Eibe and Hall, Mark},\n  booktitle={Proceedings of ECML},\n  pages={145--156},\n  year={2001}\n}\n\n% === Beyond-Binary Detection ===\n\n@inproceedings{cheng2025beyond,\n  title={Beyond Binary: Towards Fine-Grained {LLM}-Generated Text Detection via Role Recognition and Involvement Measurement},\n  author={Cheng, Zihao and Zhou, Li and Jiang, Feng and Wang, Benyou and Li, Haizhou},\n  booktitle={Proceedings of the ACM Web Conference (WWW)},\n  year={2025},\n  url={https://arxiv.org/abs/2410.14259}\n}\n\n@article{mehta2025beyond,\n  title={Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models},\n  author={Mehta, Sushant},\n  journal={arXiv preprint arXiv:2511.17602},\n  year={2025},\n  url={https://arxiv.org/abs/2511.17602}\n}\n\n% === AI-Generated Content Prevalence ===\n\n@inproceedings{sun2025aigt,\n  title={Are We in the {AI}-Generated Text World Already? Quantifying and Monitoring {AIGT} on Social Media},\n  author={Sun, Zhen and Zhang, Zongmin and Shen, Xinyue and Zhang, Ziyi and Liu, Yule and Backes, Michael and Zhang, Yang and He, Xinlei},\n  booktitle={Proceedings of ACL},\n  year={2025},\n  url={https://arxiv.org/abs/2412.18148}\n}\n\n@article{spennemann2025quantifying,\n  title={Delving into: the Quantification of {AI}-Generated Content on the Internet (Synthetic Data)},\n  author={Spennemann, Dirk H. R.},\n  journal={arXiv preprint arXiv:2504.08755},\n  year={2025},\n  url={https://arxiv.org/abs/2504.08755}\n}\n\n% === New entries (added 2026-05-16, Round 4 reviewer) ===\n\n@inproceedings{dohmatob2025strong,\n  title={Strong Model Collapse},\n  author={Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n  booktitle={Proceedings of ICLR},\n  year={2025},\n  url={https://arxiv.org/abs/2410.04840}\n}\n\n@inproceedings{wang2024semeval,\n  title={{SemEval}-2024 Task 8: Multidomain, Multimodel and Multilingual Machine-Generated Text Detection},\n  author={Wang, Yuxia and Mansurov, Jonibek and Ivanov, Petar and Su, Jinyan and Shelmanov, Artem and Tsvigun, Akim and Afzal, Osama Mohammed and Mahmoud, Tarek and Puccetti, Giovanni and Arnold, Thomas},\n  booktitle={Proceedings of SemEval},\n  year={2024},\n  url={https://arxiv.org/abs/2404.14183}\n}\n\n@inproceedings{gerstgrasser2024model,\n  title={Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data},\n  author={Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n  booktitle={Proceedings of COLM},\n  year={2024},\n  url={https://arxiv.org/abs/2404.01413}\n}\n\n@inproceedings{guo2024curious,\n  title={The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text},\n  author={Guo, Yanzhu and Shang, Guokan and Vazirgiannis, Michalis and Clavel, Chloe},\n  booktitle={Findings of NAACL},\n  year={2024},\n  url={https://arxiv.org/abs/2311.09807}\n}\n\n@article{briesch2023selfconsuming,\n  title={Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop},\n  author={Briesch, Martin and Sobania, Dominik and Rothlauf, Franz},\n  journal={arXiv preprint arXiv:2311.16822},\n  year={2023},\n  url={https://arxiv.org/abs/2311.16822}\n}\n\n@inproceedings{padmakumar2024writing,\n  title={Does Writing with Language Models Reduce Content Diversity?},\n  author={Padmakumar, Vishakh and He, He},\n  booktitle={Proceedings of ICLR},\n  year={2024},\n  url={https://arxiv.org/abs/2309.05196}\n}\n\n% === New entries (added 2026-05-15, FR-10) ===\n\n@inproceedings{krishna2023paraphrasing,\n  title={Paraphrasing Evades Detectors of {AI}-Generated Text, but Retrieval is an Effective Defense},\n  author={Krishna, Kalpesh and Song, Yixiao and Karpinska, Marzena and Wieting, John and Iyyer, Mohit},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n@article{sadasivan2023detect,\n  title={Can {AI}-Generated Text be Reliably Detected?},\n  author={Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n  journal={arXiv preprint arXiv:2303.11156},\n  year={2023},\n  url={https://arxiv.org/abs/2303.11156}\n}\n\n@inproceedings{hao2025rewrite,\n  title={Learning to Rewrite: Generalized {LLM}-Generated Text Detection},\n  author={Hao, Wei and Guan, Ran and Lu, Kangjie and Zhang, Shuai},\n  booktitle={Findings of ACL},\n  year={2025}\n}\n\n@inproceedings{shi2025collapse,\n  title={A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective},\n  author={Shi, Lianghe and Wu, Meng and Zhang, Huijie and Zhang, Zekai and Tao, Molei and Qu, Qing},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2025}\n}\n\n@article{gambetta2024surplexity,\n  title={Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative {AI}},\n  author={Gambetta, Daniele and Gezici, Gizem and Giannotti, Fosca and Pedreschi, Dino and Knott, Alistair and Pappalardo, Luca},\n  journal={arXiv preprint arXiv:2410.12341},\n  year={2024}\n}\n\n@inproceedings{amin2025escaping,\n  title={Escaping Collapse: The Strength of Weak Data for Large Language Model Training},\n  author={Amin, Kareem and Babakniya, Sara and Bie, Alex and Kong, Weiwei and Syed, Umar and Vassilvitskii, Sergei},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2025}\n}\n\n@inproceedings{kirchenbauer2023watermark,\n  title     = {A Watermark for Large Language Models},\n  author    = {Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n  booktitle = {Proceedings of the 40th International Conference on Machine Learning},\n  pages     = {17061--17084},\n  year      = {2023},\n  volume    = {202},\n  series    = {Proceedings of Machine Learning Research},\n  publisher = {PMLR}\n}\n\n@inproceedings{penedo2024fineweb,\n  title     = {The {FineWeb} Datasets: Decanting the Web for the Finest Text Data at Scale},\n  author    = {Penedo, Guilherme and Kydl{\\'{\\i}}{\\v{c}}ek, Hynek and Ben Allal, Loubna and Lozhkov, Anton and Mitchell, Margaret and Raffel, Colin and Von Werra, Leandro and Wolf, Thomas},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {37},\n  pages     = {30811--30849},\n  year      = {2024}\n}\n\n@inproceedings{gehrmann2019gltr,\n  title     = {{GLTR}: Statistical Detection and Visualization of Generated Text},\n  author    = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander},\n  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics: System Demonstrations},\n  pages     = {111--116},\n  year      = {2019},\n  address   = {Florence, Italy},\n  publisher = {Association for Computational Linguistics},\n  doi       = {10.18653/v1/P19-3019}\n}\n\n@inproceedings{ke2017lightgbm,\n  title     = {{LightGBM}: A Highly Efficient Gradient Boosting Decision Tree},\n  author    = {Ke, Guolin and Meng, Qi and Finley, Thomas and Wang, Taifeng and Chen, Wei and Ma, Weidong and Ye, Qiwei and Liu, Tie-Yan},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {30},\n  year      = {2017}\n}\n\n@article{wu2023survey,\n  title     = {A Survey on {LLM}-generated Text Detection: Necessity, Methods, and Future Directions},\n  author    = {Wu, Junchao and Yang, Shu and Zhan, Runzhe and Yuan, Yulin and Wong, Derek F. and Chao, Lidia S.},\n  journal   = {arXiv preprint arXiv:2310.14724},\n  year      = {2023}\n}\n\n@article{tang2024science,\n  title     = {The Science of Detecting {LLM}-Generated Text},\n  author    = {Tang, Ruixiang and Chuang, Yu-Neng and Hu, Xia},\n  journal   = {Communications of the ACM},\n  volume    = {67},\n  number    = {4},\n  pages     = {50--59},\n  year      = {2024},\n  doi       = {10.1145/3624725}\n}\n\n@inproceedings{oren2024proving,\n  title     = {Proving Test Set Contamination in Black Box Language Models},\n  author    = {Oren, Yonatan and Meister, Nicole and Chatterji, Niladri S. and Ladhak, Faisal and Hashimoto, Tatsunori B.},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations},\n  year      = {2024}\n}\n\n@article{cao2020coral,\n  title     = {Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation},\n  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n  journal   = {Pattern Recognition Letters},\n  volume    = {140},\n  pages     = {325--331},\n  year      = {2020},\n  doi       = {10.1016/j.patrec.2020.11.008}\n}\n\n@article{husain2019codesearchnet,\n  title     = {{CodeSearchNet} Challenge: Evaluating the State of Semantic Code Search},\n  author    = {Husain, Hamel and Wu, Ho-Hsiang and Gazit, Tiferet and Allamanis, Miltiadis and Brockschmidt, Marc},\n  journal   = {arXiv preprint arXiv:1909.09436},\n  year      = {2019},\n  url       = {https://arxiv.org/abs/1909.09436}\n}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 77,
+                  "oldLines": 7,
+                  "newStart": 77,
+                  "newLines": 7,
+                  "lines": [
+                    " }",
+                    " ",
+                    " @inproceedings{bertrand2024stability,",
+                    "-  title={On the Stability of Iterative Retraining of Generative Models on their Own Data},",
+                    "+  title={On the Stability of Iterative Retraining of Generative Models on their own Data},",
+                    "   author={Bertrand, Quentin and Bose, Avishek Joey and Duplessis, Alexandre and Jiralerspong, Marco and Gidel, Gauthier},",
+                    "   booktitle={Proceedings of ICLR},",
+                    "   year={2024},"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成验证和修正：\n\n- **标题**：`Own` → `own`（与 arXiv/OpenReview 官方一致）\n- **作者列表**：完整且拼写正确（Bertrand, Bose, Duplessis, Jiralerspong, Gidel）\n- **会议/年份**：ICLR 2024 Spotlight，确认无误\n- **arXiv ID**：2310.00429，正确\n- **Gerstgrasser et al.**：`gerstgrasser2024model` 已存在于 bib 第 213-219 行，无需补充\n\nSources:\n- [OpenReview](https://openreview.net/forum?id=JORAfH2xFd)\n- [arXiv](https://arxiv.org/abs/2310.00429)\n- [GitHub repo (confirms Spotlight)](https://github.com/QB3/gen_models_dont_go_mad)\n- [DBLP](https://dblp.org/rec/conf/iclr/BertrandBDJG24.html)"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "uuid": "d6e9314f-1d13-4b5e-b0aa-571b4216de3f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QtuMcRT11bVuWa6z7fsuwK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1288,
+                "cache_read_input_tokens": 34241,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1288
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成验证和修正：\n\n- **标题**：`Own` → `own`（与 arXiv/OpenReview 官方一致）\n- **作者列表**：完整且拼写正确（Bertrand, Bose, Duplessis, Jiralerspong, Gidel）\n- **会议/年份**：ICLR 2024 Spotlight，确认无误\n- **arXiv ID**：2310.00429，正确\n- **Gerstgrasser et al.**：`gerstgrasser2024model` 已存在于 bib 第 213-219 行，无需补充\n\nSources:\n- [OpenReview](https://openreview.net/forum?id=JORAfH2xFd)\n- [arXiv](https://arxiv.org/abs/2310.00429)\n- [GitHub repo (confirms Spotlight)](https://github.com/QB3/gen_models_dont_go_mad)\n- [DBLP](https://dblp.org/rec/conf/iclr/BertrandBDJG24.html)"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 68045,
+            "duration_api_ms": 69682,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "ac54ad0d-c4ec-4375-93c3-d4ebd46979b4",
+            "total_cost_usd": 0.35203575000000004,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 24457,
+              "cache_read_input_tokens": 164987,
+              "output_tokens": 2737,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 24457,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 285,
+                  "cache_read_input_tokens": 34241,
+                  "cache_creation_input_tokens": 1288,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1288
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 23986,
+                "outputTokens": 845,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 2,
+                "costUSD": 0.048211000000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 2737,
+                "cacheReadInputTokens": 164987,
+                "cacheCreationInputTokens": 24457,
+                "webSearchRequests": 0,
+                "costUSD": 0.30382475000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "15fe45cf-7d1d-4268-8d46-9bf15a160675"
+          },
+          "id": "event-000024"
+        }
+      ],
+      "message_count": 24
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-verify-bertrand-bib.md"
+}

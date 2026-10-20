@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea6ebeb0e862dc70f944",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "submit exp 023 wiki restart",
+  "task_key": "worker_submit_exp_023_wiki_restart_20260516T150421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_023_wiki_restart_20260516T150421_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "6743db4a0cdbb47761548383a0e5287d8038a0527c8e17ceb3b464cc999d6c1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-023 已经完整跑完，不需要重启。**\n\n状态：\n- 所有 6 个 depth（0-5）× 5000 docs = 30000 行，全部生成完毕\n- 分析结果已产出：`results/exp_023_wiki/` 下有 summary.txt、pairwise_auc.json、jsd.json、ordinal_results.json、feature_importance.json\n- **K\\* = 2**，与 C4 domain 结果一致，跨域稳定性验证通过\n\n之前 PID 39530 crash 时实验其实已经完成（或在 crash 前跑完了）。无需重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-023-wiki-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed3df4d2ca973f755131",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "bugfix cqa1 kstar script fix",
+  "task_key": "worker_bugfix_cqa1-kstar-script-fix_20260519T220505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_cqa1-kstar-script-fix_20260519T220505_result.json",
+    "occurrence": 1,
+    "bytes": 1216,
+    "sha256": "7de1602dc731d9715cafbddf8ebf7ccd614d3cedd55ed6c15f197d99515aa9e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认完毕。\n\n## 结果汇总\n\n### 1. 脚本 K\\* 计算：无需修复\n4 个文件**已经是 1-indexed**，全部使用 `kstar = 0` 初始值 + `kstar = k + 1` 赋值 + `else: break`：\n- `run_deberta_upperbound.py` (L159-162)\n- `run_deberta_cross_transfer.py` (L207-212)\n- `analyze_deberta_results.py` (L118-123, lgbm_kstar L143-149)\n- `run_deberta_c4_1b5.py` (L166-170)\n\n### 2. JSON kstar 值全部正确\n\n| config | kstar | 验证 |\n|--------|-------|------|\n| wiki_pythia | **3** | 2v3 ci_lower=0.6059 > 0.60 ✓, 3v4 ci_lower=0.5659 < 0.60 ✓ |\n| wiki_olmo | **1** | 0v1 ci_lower=0.9999 > 0.60 ✓, 1v2 ci_lower=0.5081 < 0.60 ✓ |\n| wiki_qwen7b | **3** | 2v3 ci_lower=0.6223 > 0.60 ✓ |\n| wiki_llama8b | **3** | 2v3 ci_lower=0.6258 > 0.60 ✓ |\n| wiki_mistral7b | **3** | 2v3 ci_lower=0.6150 > 0.60 ✓ |\n\n所有 JSON 都带 `\"kstar_indexing\": \"1-indexed\"` 标记。\n\n### 3. exp_wiki_olmo 独立性确认\nOBD baseline 数据完全不同（olmo 0v1=0.9933, 1v2=0.4983 vs pythia 0v1=0.9961, 1v2=0.6193），不是复制品。\n\n**结论：这 4 个脚本的 off-by-one bug 已在之前被修复，JSON 结果与预期完全一致，无需任何操作。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-cqa1-kstar-script-fix.md"
+}

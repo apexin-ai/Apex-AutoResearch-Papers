@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f797293c4d93aa927970",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra deberta wiki cron resolve",
+  "task_key": "worker_infra_deberta-wiki-cron-resolve_20260519T215745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_deberta-wiki-cron-resolve_20260519T215745_result.json",
+    "occurrence": 1,
+    "bytes": 1146,
+    "sha256": "34330d8b3997a0c2b6cfc446719d2eefed785b76ed78c96ae8ec0da300c1dcf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 结果报告\n\n**结论：success** — 5/5 wiki config 全部完成，无报错，日志末行 \"All done.\"\n\n### K* 结果（θ=0.6）\n\n| Config | K*(DeBERTa) | K*(OBD) | 1v2 AUC(DeBERTa) | 1v2 AUC(OBD) | delta |\n|--------|-------------|---------|-------------------|---------------|-------|\n| wiki_pythia | 2 | — | 0.7250 | 0.6193 | +0.1057 |\n| wiki_olmo | **0** | — | 0.5183 | 0.6193 | **-0.1010** |\n| wiki_qwen7b | 2 | — | 0.7619 | 0.6108 | +0.1511 |\n| wiki_llama8b | 2 | — | 0.7452 | 0.5954 | +0.1498 |\n| wiki_mistral7b | 2 | — | 0.7483 | 0.5552 | +0.1931 |\n\n### 关键发现\n\n- 4/5 config DeBERTa K\\*=2，与 OBD-LightGBM 一致，支持假设：**饱和边界 K\\*=2 是生成过程的内在属性**，而非特征天花板。\n- **wiki_olmo 异常**：DeBERTa K\\*=0（1v2 AUC 仅 0.518，近随机），反而**低于** OBD baseline。OLMo 的 depth-1 vs depth-2 对 DeBERTa 几乎不可区分，值得进一步分析。\n- DeBERTa 在其他 4 个 config 的 1v2 AUC 比 OBD 高 0.10-0.19，确认了神经表征的优势，但未改变 K\\* 边界。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-deberta-wiki-cron-resolve.md"
+}

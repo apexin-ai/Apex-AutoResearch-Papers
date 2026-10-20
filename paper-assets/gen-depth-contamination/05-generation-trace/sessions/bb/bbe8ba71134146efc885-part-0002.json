@@ -1,0 +1,237 @@
+{
+  "schema_version": "1.0",
+  "session_id": "bbe8ba71134146efc885",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-23T07:13:41.123Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NJJR3j4fwqpbJRiF4CcZvo",
+              "type": "tool_result",
+              "content": "14b_scorer_contingency\n_project\nanalysis_exp_deberta_arxiv_qwen1b5.md\nanalyze_pythia_retrain_depth7.py\narXiv_crossscorer_summary\narr_responsible_nlp_checklist_draft.md\narr_submission_checklist.md\nbootstrap_audit_report.md\nbootstrap_ci_4model.json\nborderline_analysis\nborderline_bootstrap_ci.json\nc3_contingency_versions.tex\nc3_fallback_outline.md\nc4_power_curve\ncase_study_qualitative.tex\ncitations_round2\ncode_crossmodel_table.tex\ncode_scenario_prep.md\ncompile_consistency_fixes_report.txt\ncompile_final_3tasks_report.txt\ncompile_final_narrative_report.txt\ncompute_f1_threshold.py\ndiag_exp_code_qwen7b.md\ndiscussion_outline.md\ndomain_lexical_stats\ndrafts\ndream_reports\ndream_simulation_readiness.md\nexp-004\nexp-005\nexp-006\nexp-013\nexp-014\nexp-019\nexp-024\nexp-D\nexp005_4model_tau_matrix.json\nexp006_analyze.py\nexp006_continued_pretraining.py\nexp006_evaluate.py\nexp006_filtering_strategies.py\nexp007_olmo_bootstrap_ci_rerun.md\nexp008_retrain_chain.py\nexp012_binary_confidence.py\nexp012_ppl_depth_correlation.py\nexp013\nexp013_cross_transfer_correct_pythia.md\nexp013_cross_transfer_olmo_rerun.md\nexp015_neural_probe_olmo_rerun.md\nexp016_bootstrap_ci.json\nexp025_bootstrap_ci.json\nexp026_feature_stability.json\nexp_003_decoding_ablation\nexp_006_graduated_filtering\nexp_007_bootstrap_ci\nexp_008_retrain_chain_v2\nexp_015_neural_probe\nexp_016_base_vs_instruct\nexp_019_mistral7b_depth\nexp_019b_mistral_cross_scorer\nexp_020_pythia_decoding\nexp_022_cross_scorer_matrix\nexp_023_wiki_domain\nexp_024_arxiv_domain\nexp_025_pythia_arxiv\nexp_026\nexp_026_arxiv_filtering\nexp_026_feature_stability\nexp_026_ttest\nexp_027\nexp_027_bootstrap_ci\nexp_027_latex_ablation\nexp_028_power_curve\nexp_14b_c4\nexp_14b_c4_bootstrap_ci\nexp_32b_c4\nexp_B_14d_ablation.json\nexp_C_permutation_10k.json\nexp_D_obd_n500.json\nexp_arXiv_llama8b_crossscorer\nexp_arXiv_mistral7b_crossscorer\nexp_arXiv_qwen1b5_crossscorer\nexp_arXiv_qwen7b\nexp_arXiv_qwen7b_analysis.md\nexp_arXiv_qwen7b_crossscorer\nexp_bootstrap_10k\nexp_changepoint_kstar\nexp_code_mistral7b_diagnosis.md\nexp_code_qwen1b5\nexp_code_qwen7b\nexp_contamination_rate_sweep\nexp_deberta_c4_1b5\nexp_expanded_downstream_eval\nexp_expanded_downstream_eval.py\nexp_expanded_downstream_eval_v2.py\nexp_gemma2b_depth\nexp_gemma2b_depth_results.json\nexp_llama8b_10k\nexp_multi_source_arxiv\nexp_multi_source_detection\nexp_olmo1b_c4_rerun\nexp_olmo_retrain_chain\nexp_olmo_retrain_chain.py\nexp_pythia69b_c4_nuc\nexp_qwen_retrain_chain\nexp_qwen_retrain_chain_ext.py\nexp_qwen_retrain_depth7\nexp_qwen_retrain_ext\nexp_wiki_llama8b\nexp_wiki_mistral7b\nexp_wiki_qwen7b\nexp_wiki_scorer_confound\nexp_wiki_scorer_confound_1b5\nfeature_ablation\nfeature_importance_correct_data.md\nfeature_importance_tex_audit.md\nfig2_auc_decay.pdf\nfig2_auc_decay.png\nfig3_transfer_heatmap.pdf\nfig3_transfer_heatmap.png\nfigure1_pipeline\nfigures\ngen_pipeline_figure.py\ngen_retrain_decay_v3.py\ngen_theta_sensitivity.py\ngpu_diagnosis_20260519.md\ngpu_optimization_report.txt\nliterature_positioning_notes.md\nliterature_scan_2025_2026.md\nlofo_olmo_recalc.md\nmain.pdf\nmain_20260522_disc_concl.pdf\nmain_20260522_fig3_095.pdf\nmain_20260522_fig4_single.pdf\nmain_20260522_figure3_fix.pdf\nmain_20260522_latest.pdf\nmain_20260522_lim3pt.pdf\nmain_20260522_limitations.pdf\nmain_20260522_no_clearpage.pdf\nmain_20260522_text_expand.pdf\nmanifest.yaml\nmcnemar_pvalues\nmodel_collapse_literature_notes.md\nneural_probe_olmo_k1_fix.md\nnew_bibtex_entries.bib\nnumerical_audit_m2_m5.json\nolmo_feature_importance_analysis.md\nolmo_figure_regen_report.md\nolmo_k1_cascade_changes.md\nolmo_selfbleu_ablation.md\npage_count_emergency.txt\npaper_audit\npaper_consistency_audit.md\npaper_patch_audit.md\nproofread_report.md\npythia69b_discussion_changes.md\npythia69b_nuc_final_report.md\nrebuttal\nregistry_audit_dream_prep.md\nreport_diagnose_7b_scorer_arxiv.md\nretrain_chain_paper_notes.md\nretrain_crossmodel_decay.pdf\nretrain_crossmodel_decay.png\nretrain_decay_curve.png\nretrain_decay_curve_v2.png\nretrain_decay_curve_v3.pdf\nretrain_decay_curve_v3.png\nreview_issues.yaml\nreview_reports\nreview_round_24\nreview_round_25\nreview_round_26\nreview_round_27\nreview_round_28\nround22_raw_data_extraction.md\nrun_7b_scorer_ablation.py\nrun_7b_scorer_arxiv.py\nrun_bootstrap_10k.py\nrun_deberta_c4.py\nrun_exp004_qwen7b_depth.py\nrun_exp006.sh\nrun_naturalistic_validation.py\nscripts\nsummary_auc_decay\ntable8_ordinal_accuracy_v2.md\ntheta_crossval\ntheta_sensitivity_analysis.md\ntheta_sensitivity_table.csv\ntheta_sensitivity_table.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6bf29083-60d1-4ad9-b8a9-1f9778f995fa",
+            "uuid": "30718920-20ed-4223-91a6-5f58a64ed6ea",
+            "tool_use_result": {
+              "stdout": "14b_scorer_contingency\n_project\nanalysis_exp_deberta_arxiv_qwen1b5.md\nanalyze_pythia_retrain_depth7.py\narXiv_crossscorer_summary\narr_responsible_nlp_checklist_draft.md\narr_submission_checklist.md\nbootstrap_audit_report.md\nbootstrap_ci_4model.json\nborderline_analysis\nborderline_bootstrap_ci.json\nc3_contingency_versions.tex\nc3_fallback_outline.md\nc4_power_curve\ncase_study_qualitative.tex\ncitations_round2\ncode_crossmodel_table.tex\ncode_scenario_prep.md\ncompile_consistency_fixes_report.txt\ncompile_final_3tasks_report.txt\ncompile_final_narrative_report.txt\ncompute_f1_threshold.py\ndiag_exp_code_qwen7b.md\ndiscussion_outline.md\ndomain_lexical_stats\ndrafts\ndream_reports\ndream_simulation_readiness.md\nexp-004\nexp-005\nexp-006\nexp-013\nexp-014\nexp-019\nexp-024\nexp-D\nexp005_4model_tau_matrix.json\nexp006_analyze.py\nexp006_continued_pretraining.py\nexp006_evaluate.py\nexp006_filtering_strategies.py\nexp007_olmo_bootstrap_ci_rerun.md\nexp008_retrain_chain.py\nexp012_binary_confidence.py\nexp012_ppl_depth_correlation.py\nexp013\nexp013_cross_transfer_correct_pythia.md\nexp013_cross_transfer_olmo_rerun.md\nexp015_neural_probe_olmo_rerun.md\nexp016_bootstrap_ci.json\nexp025_bootstrap_ci.json\nexp026_feature_stability.json\nexp_003_decoding_ablation\nexp_006_graduated_filtering\nexp_007_bootstrap_ci\nexp_008_retrain_chain_v2\nexp_015_neural_probe\nexp_016_base_vs_instruct\nexp_019_mistral7b_depth\nexp_019b_mistral_cross_scorer\nexp_020_pythia_decoding\nexp_022_cross_scorer_matrix\nexp_023_wiki_domain\nexp_024_arxiv_domain\nexp_025_pythia_arxiv\nexp_026\nexp_026_arxiv_filtering\nexp_026_feature_stability\nexp_026_ttest\nexp_027\nexp_027_bootstrap_ci\nexp_027_latex_ablation\nexp_028_power_curve\nexp_14b_c4\nexp_14b_c4_bootstrap_ci\nexp_32b_c4\nexp_B_14d_ablation.json\nexp_C_permutation_10k.json\nexp_D_obd_n500.json\nexp_arXiv_llama8b_crossscorer\nexp_arXiv_mistral7b_crossscorer\nexp_arXiv_qwen1b5_crossscorer\nexp_arXiv_qwen7b\nexp_arXiv_qwen7b_analysis.md\nexp_arXiv_qwen7b_crossscorer\nexp_bootstrap_10k\nexp_changepoint_kstar\nexp_code_mistral7b_diagnosis.md\nexp_code_qwen1b5\nexp_code_qwen7b\nexp_contamination_rate_sweep\nexp_deberta_c4_1b5\nexp_expanded_downstream_eval\nexp_expanded_downstream_eval.py\nexp_expanded_downstream_eval_v2.py\nexp_gemma2b_depth\nexp_gemma2b_depth_results.json\nexp_llama8b_10k\nexp_multi_source_arxiv\nexp_multi_source_detection\nexp_olmo1b_c4_rerun\nexp_olmo_retrain_chain\nexp_olmo_retrain_chain.py\nexp_pythia69b_c4_nuc\nexp_qwen_retrain_chain\nexp_qwen_retrain_chain_ext.py\nexp_qwen_retrain_depth7\nexp_qwen_retrain_ext\nexp_wiki_llama8b\nexp_wiki_mistral7b\nexp_wiki_qwen7b\nexp_wiki_scorer_confound\nexp_wiki_scorer_confound_1b5\nfeature_ablation\nfeature_importance_correct_data.md\nfeature_importance_tex_audit.md\nfig2_auc_decay.pdf\nfig2_auc_decay.png\nfig3_transfer_heatmap.pdf\nfig3_transfer_heatmap.png\nfigure1_pipeline\nfigures\ngen_pipeline_figure.py\ngen_retrain_decay_v3.py\ngen_theta_sensitivity.py\ngpu_diagnosis_20260519.md\ngpu_optimization_report.txt\nliterature_positioning_notes.md\nliterature_scan_2025_2026.md\nlofo_olmo_recalc.md\nmain.pdf\nmain_20260522_disc_concl.pdf\nmain_20260522_fig3_095.pdf\nmain_20260522_fig4_single.pdf\nmain_20260522_figure3_fix.pdf\nmain_20260522_latest.pdf\nmain_20260522_lim3pt.pdf\nmain_20260522_limitations.pdf\nmain_20260522_no_clearpage.pdf\nmain_20260522_text_expand.pdf\nmanifest.yaml\nmcnemar_pvalues\nmodel_collapse_literature_notes.md\nneural_probe_olmo_k1_fix.md\nnew_bibtex_entries.bib\nnumerical_audit_m2_m5.json\nolmo_feature_importance_analysis.md\nolmo_figure_regen_report.md\nolmo_k1_cascade_changes.md\nolmo_selfbleu_ablation.md\npage_count_emergency.txt\npaper_audit\npaper_consistency_audit.md\npaper_patch_audit.md\nproofread_report.md\npythia69b_discussion_changes.md\npythia69b_nuc_final_report.md\nrebuttal\nregistry_audit_dream_prep.md\nreport_diagnose_7b_scorer_arxiv.md\nretrain_chain_paper_notes.md\nretrain_crossmodel_decay.pdf\nretrain_crossmodel_decay.png\nretrain_decay_curve.png\nretrain_decay_curve_v2.png\nretrain_decay_curve_v3.pdf\nretrain_decay_curve_v3.png\nreview_issues.yaml\nreview_reports\nreview_round_24\nreview_round_25\nreview_round_26\nreview_round_27\nreview_round_28\nround22_raw_data_extraction.md\nrun_7b_scorer_ablation.py\nrun_7b_scorer_arxiv.py\nrun_bootstrap_10k.py\nrun_deberta_c4.py\nrun_exp004_qwen7b_depth.py\nrun_exp006.sh\nrun_naturalistic_validation.py\nscripts\nsummary_auc_decay\ntable8_ordinal_accuracy_v2.md\ntheta_crossval\ntheta_sensitivity_analysis.md\ntheta_sensitivity_table.csv\ntheta_sensitivity_table.tex",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016AHg5xLo6VybWRd6YZHreT",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/reference_audit_report.txt",
+                "content": "REFERENCE AUDIT REPORT — references.bib\nDate: 2026-05-23\nMethod: WebSearch verification of every bib entry against official publication records\n\nTOTAL: 36 entries checked\nERRORS FOUND: 10 (in 8 entries)\nFIXED: 10\n\n========================================\nFIXED ERRORS\n========================================\n\n1. [zhang2024minkpp] (Min-K%++)\n   - AUTHORS: completely wrong. \"Zheng, Jingwei; Gao, Jing; Miao, Chunyan\" → \"Sun, Jingwei; Yeats, Eric; Ouyang, Yang; Kuo, Martin; Zhang, Jianyi; Yang, Hao Frank; Li, Hai\"\n   - VENUE: \"Proceedings of EMNLP\" year 2024 → \"Proceedings of ICLR\" year 2025 (Spotlight)\n   - Severity: CRITICAL (authors + venue + year all wrong)\n\n2. [hao2025rewrite] (Learning to Rewrite)\n   - AUTHORS: completely wrong. \"Guan, Ran; Lu, Kangjie; Zhang, Shuai\" → \"Li, Ran; Zhao, Weiliang; Yang, Junfeng; Mao, Chengzhi\"\n   - VENUE: \"Findings of ACL\" → \"Proceedings of ACL\" (main conference, not Findings)\n   - Severity: CRITICAL (authors + venue both wrong)\n\n3. [alemohammad2024selfconsuming] (Self-Consuming Go MAD)\n   - AUTHORS: 4 of 7 names were wrong, 1 author missing:\n     \"Luber, Lorenzo\" → \"Luzi, Lorenzo\"\n     \"Babaei, Ahmed Imtiaz\" → \"Humayun, Ahmed Imtiaz\" (different person)\n     \"Letizia, Daniel\" → \"LeJeune, Daniel\"\n     \"Bastani, Osbert\" → \"Siahkoohi, Ali\"\n     Added missing author: \"Babaei, Hossein\" (7→8 authors)\n   - Severity: CRITICAL (majority of author names hallucinated)\n\n4. [dohmatob2024model] (A Tale of Tails)\n   - AUTHOR NAME: \"Yang, Pin-Yu\" → \"Yang, Pu\" (Pin-Yu Chen is a different researcher at IBM)\n   - Severity: MODERATE\n\n5. [xie2023dsir] (DSIR)\n   - TITLE: \"Data Selection with Importance Resampling\" → \"Data Selection for Language Models via Importance Resampling\"\n   - VENUE: \"Proceedings of ICML\" → \"Advances in Neural Information Processing Systems\" (NeurIPS 2023)\n   - Severity: HIGH (wrong title + wrong venue)\n\n6. [tirumala2023d4] (D4)\n   - AUTHORS: 2 of 4 names wrong. \"Markosyan, Aram; Zettlemoyer, Luke\" → \"Simig, Daniel; Morcos, Ari\"\n   - Severity: HIGH\n\n7. [wang2024semeval] (SemEval-2024 Task 8)\n   - AUTHORS: 5 authors missing from the list. Added: Whitehouse, Chenxi; Aji, Alham Fikri; Habash, Nizar; Gurevych, Iryna; Nakov, Preslav\n   - Severity: MODERATE (incomplete but not fabricated)\n\n8. [schaeffer2025position] (Position: Model Collapse Does Not Mean What You Think)\n   - AUTHOR NAME: \"Arulandu, Anirudh\" → \"Arulandu, Alvan Caleb\"\n   - VENUE: \"Proceedings of ICML\" → arXiv preprint (paper is under review at NeurIPS 2025, not published at ICML)\n   - Changed entry type from @inproceedings to @article\n   - Severity: HIGH (wrong venue + wrong author name)\n\nMINOR FIXES (title accuracy):\n9. [basani2026diveye]: Removed non-official \"DivEye:\" prefix from title\n10. [zawalski2026codec]: Removed non-official \"CoDeC:\" prefix from title\n\n========================================\nVERIFIED OK (no issues found)\n========================================\n\n- [drayson2025]: EMNLP 2025, authors OK, title OK\n- [kazdan2025collapse]: ICML 2025, authors OK, title OK\n- [mitchell2023detectgpt]: ICML 2023, authors OK, title OK\n- [basani2026diveye]: TMLR 2026, authors OK (title minor fix applied)\n- [zawalski2026codec]: ICLR 2026, authors OK (title minor fix applied)\n- [shumailov2024collapse]: Nature 631:755-759, 2024, authors OK\n- [xie2023doremi]: NeurIPS 2023, authors OK, title OK\n- [hans2024binoculars]: ICML 2024, authors OK, title OK\n- [alain2017understanding]: ICLR Workshop 2017, authors OK, title OK\n- [belinkov2022probing]: Computational Linguistics 48(1):207-219, 2022, OK\n- [bao2024fast]: ICLR 2024, authors OK, title OK\n- [frank2001ordinal]: ECML 2001, pp.145-156, OK\n- [cheng2025beyond]: WWW 2025, authors OK, title OK\n- [mehta2025beyond]: arXiv 2511.17602, 2025, OK\n- [sun2025aigt]: ACL 2025, authors OK, title OK\n- [spennemann2025quantifying]: arXiv 2504.08755, 2025, OK\n- [dohmatob2025strong]: ICLR 2025, authors OK, title OK\n- [gerstgrasser2024model]: COLM 2024, authors OK, title OK\n- [guo2024curious]: Findings of NAACL 2024, authors OK, title OK\n- [briesch2023selfconsuming]: arXiv 2311.16822, 2023, OK\n- [padmakumar2024writing]: ICLR 2024, authors OK, title OK\n- [krishna2023paraphrasing]: NeurIPS 2023, authors OK, title OK\n- [sadasivan2023detect]: arXiv 2303.11156, 2023, OK\n- [wang2025unveiling]: ACL 2025, pp.12740-12755, authors OK, title OK\n- [fu2025theoretical]: ICLR 2025, authors OK, title OK\n- [verma2024ghostbuster]: NAACL 2024, pp.1702-1717, authors OK, title OK\n- [dugan2024raid]: ACL 2024, pp.12463-12492, authors OK, title OK\n- [liang2023gpt]: Patterns 4(7):100779, 2023, authors OK, title OK\n\n========================================\nPATTERN ANALYSIS\n========================================\n\nThe errors strongly suggest AI hallucination during bib generation:\n- 3 entries had completely fabricated author lists (zhang2024minkpp, hao2025rewrite, alemohammad2024selfconsuming)\n- Author names were plausible-sounding but wrong (e.g., \"Bastani, Osbert\" for \"Siahkoohi, Ali\")\n- Venues were swapped between similar conferences (EMNLP↔ICLR, ICML↔NeurIPS, Findings↔Main)\n- \"Pin-Yu Yang\" appears to be a conflation of \"Pin-Yu Chen\" (IBM researcher) with \"Pu Yang\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6bf29083-60d1-4ad9-b8a9-1f9778f995fa",
+            "uuid": "c7e0c032-7600-4de5-82e6-db1e2e4b5cb9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VLD7Lfjt75oDcgThBjQva2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1965,
+                "cache_read_input_tokens": 93610,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1965
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-23T07:14:25.783Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016AHg5xLo6VybWRd6YZHreT",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/reference_audit_report.txt"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6bf29083-60d1-4ad9-b8a9-1f9778f995fa",
+            "uuid": "6ac23a23-c529-4ffb-be24-80051f51f0dc",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/reference_audit_report.txt",
+              "content": "REFERENCE AUDIT REPORT — references.bib\nDate: 2026-05-23\nMethod: WebSearch verification of every bib entry against official publication records\n\nTOTAL: 36 entries checked\nERRORS FOUND: 10 (in 8 entries)\nFIXED: 10\n\n========================================\nFIXED ERRORS\n========================================\n\n1. [zhang2024minkpp] (Min-K%++)\n   - AUTHORS: completely wrong. \"Zheng, Jingwei; Gao, Jing; Miao, Chunyan\" → \"Sun, Jingwei; Yeats, Eric; Ouyang, Yang; Kuo, Martin; Zhang, Jianyi; Yang, Hao Frank; Li, Hai\"\n   - VENUE: \"Proceedings of EMNLP\" year 2024 → \"Proceedings of ICLR\" year 2025 (Spotlight)\n   - Severity: CRITICAL (authors + venue + year all wrong)\n\n2. [hao2025rewrite] (Learning to Rewrite)\n   - AUTHORS: completely wrong. \"Guan, Ran; Lu, Kangjie; Zhang, Shuai\" → \"Li, Ran; Zhao, Weiliang; Yang, Junfeng; Mao, Chengzhi\"\n   - VENUE: \"Findings of ACL\" → \"Proceedings of ACL\" (main conference, not Findings)\n   - Severity: CRITICAL (authors + venue both wrong)\n\n3. [alemohammad2024selfconsuming] (Self-Consuming Go MAD)\n   - AUTHORS: 4 of 7 names were wrong, 1 author missing:\n     \"Luber, Lorenzo\" → \"Luzi, Lorenzo\"\n     \"Babaei, Ahmed Imtiaz\" → \"Humayun, Ahmed Imtiaz\" (different person)\n     \"Letizia, Daniel\" → \"LeJeune, Daniel\"\n     \"Bastani, Osbert\" → \"Siahkoohi, Ali\"\n     Added missing author: \"Babaei, Hossein\" (7→8 authors)\n   - Severity: CRITICAL (majority of author names hallucinated)\n\n4. [dohmatob2024model] (A Tale of Tails)\n   - AUTHOR NAME: \"Yang, Pin-Yu\" → \"Yang, Pu\" (Pin-Yu Chen is a different researcher at IBM)\n   - Severity: MODERATE\n\n5. [xie2023dsir] (DSIR)\n   - TITLE: \"Data Selection with Importance Resampling\" → \"Data Selection for Language Models via Importance Resampling\"\n   - VENUE: \"Proceedings of ICML\" → \"Advances in Neural Information Processing Systems\" (NeurIPS 2023)\n   - Severity: HIGH (wrong title + wrong venue)\n\n6. [tirumala2023d4] (D4)\n   - AUTHORS: 2 of 4 names wrong. \"Markosyan, Aram; Zettlemoyer, Luke\" → \"Simig, Daniel; Morcos, Ari\"\n   - Severity: HIGH\n\n7. [wang2024semeval] (SemEval-2024 Task 8)\n   - AUTHORS: 5 authors missing from the list. Added: Whitehouse, Chenxi; Aji, Alham Fikri; Habash, Nizar; Gurevych, Iryna; Nakov, Preslav\n   - Severity: MODERATE (incomplete but not fabricated)\n\n8. [schaeffer2025position] (Position: Model Collapse Does Not Mean What You Think)\n   - AUTHOR NAME: \"Arulandu, Anirudh\" → \"Arulandu, Alvan Caleb\"\n   - VENUE: \"Proceedings of ICML\" → arXiv preprint (paper is under review at NeurIPS 2025, not published at ICML)\n   - Changed entry type from @inproceedings to @article\n   - Severity: HIGH (wrong venue + wrong author name)\n\nMINOR FIXES (title accuracy):\n9. [basani2026diveye]: Removed non-official \"DivEye:\" prefix from title\n10. [zawalski2026codec]: Removed non-official \"CoDeC:\" prefix from title\n\n========================================\nVERIFIED OK (no issues found)\n========================================\n\n- [drayson2025]: EMNLP 2025, authors OK, title OK\n- [kazdan2025collapse]: ICML 2025, authors OK, title OK\n- [mitchell2023detectgpt]: ICML 2023, authors OK, title OK\n- [basani2026diveye]: TMLR 2026, authors OK (title minor fix applied)\n- [zawalski2026codec]: ICLR 2026, authors OK (title minor fix applied)\n- [shumailov2024collapse]: Nature 631:755-759, 2024, authors OK\n- [xie2023doremi]: NeurIPS 2023, authors OK, title OK\n- [hans2024binoculars]: ICML 2024, authors OK, title OK\n- [alain2017understanding]: ICLR Workshop 2017, authors OK, title OK\n- [belinkov2022probing]: Computational Linguistics 48(1):207-219, 2022, OK\n- [bao2024fast]: ICLR 2024, authors OK, title OK\n- [frank2001ordinal]: ECML 2001, pp.145-156, OK\n- [cheng2025beyond]: WWW 2025, authors OK, title OK\n- [mehta2025beyond]: arXiv 2511.17602, 2025, OK\n- [sun2025aigt]: ACL 2025, authors OK, title OK\n- [spennemann2025quantifying]: arXiv 2504.08755, 2025, OK\n- [dohmatob2025strong]: ICLR 2025, authors OK, title OK\n- [gerstgrasser2024model]: COLM 2024, authors OK, title OK\n- [guo2024curious]: Findings of NAACL 2024, authors OK, title OK\n- [briesch2023selfconsuming]: arXiv 2311.16822, 2023, OK\n- [padmakumar2024writing]: ICLR 2024, authors OK, title OK\n- [krishna2023paraphrasing]: NeurIPS 2023, authors OK, title OK\n- [sadasivan2023detect]: arXiv 2303.11156, 2023, OK\n- [wang2025unveiling]: ACL 2025, pp.12740-12755, authors OK, title OK\n- [fu2025theoretical]: ICLR 2025, authors OK, title OK\n- [verma2024ghostbuster]: NAACL 2024, pp.1702-1717, authors OK, title OK\n- [dugan2024raid]: ACL 2024, pp.12463-12492, authors OK, title OK\n- [liang2023gpt]: Patterns 4(7):100779, 2023, authors OK, title OK\n\n========================================\nPATTERN ANALYSIS\n========================================\n\nThe errors strongly suggest AI hallucination during bib generation:\n- 3 entries had completely fabricated author lists (zhang2024minkpp, hao2025rewrite, alemohammad2024selfconsuming)\n- Author names were plausible-sounding but wrong (e.g., \"Bastani, Osbert\" for \"Siahkoohi, Ali\")\n- Venues were swapped between similar conferences (EMNLP↔ICLR, ICML↔NeurIPS, Findings↔Main)\n- \"Pin-Yu Yang\" appears to be a conflation of \"Pin-Yu Chen\" (IBM researcher) with \"Pu Yang\"\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。36 条 bib entry 全部核查，发现 **8 个条目共 10 处错误**，全部已修正。\n\n### 严重错误（作者完全编造）\n- **zhang2024minkpp**: 作者、venue (EMNLP→ICLR)、年份 (2024→2025) 全错\n- **hao2025rewrite**: 作者全错，venue 从 Findings 改为 Main\n- **alemohammad2024selfconsuming**: 8 个作者中 4 个名字是编造的，还漏了 1 个\n\n### 高严重度\n- **xie2023dsir**: 标题缺 \"for Language Models\"，venue ICML→NeurIPS\n- **tirumala2023d4**: 4 个作者中 2 个是错的 (Markosyan/Zettlemoyer → Simig/Morcos)\n- **schaeffer2025position**: venue ICML→arXiv (NeurIPS 2025 under review)，作者名 Anirudh→Alvan Caleb\n\n### 中等严重度\n- **dohmatob2024model**: \"Pin-Yu Yang\"→\"Pu Yang\"\n- **wang2024semeval**: 漏了 5 个作者\n\n报告已写入 `artifacts/reference_audit_report.txt`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6bf29083-60d1-4ad9-b8a9-1f9778f995fa",
+            "uuid": "094b84c5-6d14-417c-946f-8a6edd4fc558",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019UZydUiXwLvC4PqLwFoBDj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2085,
+                "cache_read_input_tokens": 95575,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2085
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。36 条 bib entry 全部核查，发现 **8 个条目共 10 处错误**，全部已修正。\n\n### 严重错误（作者完全编造）\n- **zhang2024minkpp**: 作者、venue (EMNLP→ICLR)、年份 (2024→2025) 全错\n- **hao2025rewrite**: 作者全错，venue 从 Findings 改为 Main\n- **alemohammad2024selfconsuming**: 8 个作者中 4 个名字是编造的，还漏了 1 个\n\n### 高严重度\n- **xie2023dsir**: 标题缺 \"for Language Models\"，venue ICML→NeurIPS\n- **tirumala2023d4**: 4 个作者中 2 个是错的 (Markosyan/Zettlemoyer → Simig/Morcos)\n- **schaeffer2025position**: venue ICML→arXiv (NeurIPS 2025 under review)，作者名 Anirudh→Alvan Caleb\n\n### 中等严重度\n- **dohmatob2024model**: \"Pin-Yu Yang\"→\"Pu Yang\"\n- **wang2024semeval**: 漏了 5 个作者\n\n报告已写入 `artifacts/reference_audit_report.txt`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 503413,
+            "duration_api_ms": 737493,
+            "num_turns": 62,
+            "stop_reason": "end_turn",
+            "session_id": "6bf29083-60d1-4ad9-b8a9-1f9778f995fa",
+            "total_cost_usd": 2.8192695,
+            "usage": {
+              "input_tokens": 4701,
+              "cache_creation_input_tokens": 125054,
+              "cache_read_input_tokens": 817650,
+              "output_tokens": 22098,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 125054,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 369,
+                  "cache_read_input_tokens": 95575,
+                  "cache_creation_input_tokens": 2085,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2085
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 505852,
+                "outputTokens": 17410,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 46,
+                "costUSD": 1.052902,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 4701,
+                "outputTokens": 22098,
+                "cacheReadInputTokens": 817650,
+                "cacheCreationInputTokens": 125054,
+                "webSearchRequests": 0,
+                "costUSD": 1.7663675,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "48ae98f2-dacc-4f7e-8f09-9a4749ed03f9"
+          },
+          "id": "event-000151"
+        }
+      ]
+    }
+  ]
+}

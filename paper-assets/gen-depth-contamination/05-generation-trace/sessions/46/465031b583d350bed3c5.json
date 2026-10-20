@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "465031b583d350bed3c5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper r26 sf2 m8 references",
+  "task_key": "worker_paper_r26_sf2_m8_references_20260522T082246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r26_sf2_m8_references_20260522T082246_result.json",
+    "occurrence": 1,
+    "bytes": 2645,
+    "sha256": "2d33d5431579809b66b27765436650a521cf6e7d877fde7667c7d605d136436b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改已完成，验证通过。\n\n---\n\n## SF-2 结果\n\n**references.bib** 追加两条：\n\n```bibtex\n@article{geng2026markovian,\n  title={Markovian Generation Chains in Large Language Models},\n  author={Geng, Mingmeng and Mohamed, Amr and Shang, Guokan and Vazirgiannis, Michalis and Poibeau, Thierry},\n  journal={arXiv preprint arXiv:2603.11228},\n  year={2026},\n  url={https://arxiv.org/abs/2603.11228}\n}\n\n@article{shahriar2025erosion,\n  title={The Erosion of {LLM} Signatures: Can We Still Distinguish Human and {LLM}-Generated Scientific Ideas After Iterative Paraphrasing?},\n  author={Shahriar, Sadat and Ayoobi, Navid and Mukherjee, Arjun},\n  journal={arXiv preprint arXiv:2512.05311},\n  year={2025},\n  url={https://arxiv.org/abs/2512.05311}\n}\n```\n\n**related_work.tex** 插入位置：\n\n1. **Geng** → `\\paragraph{Model collapse and recursive degradation.}` 段，`wang2025unveiling}.` 之后、`Suresh et al.` 之前：\n   > Geng et al.~\\cite{geng2026markovian} study the Markov chain convergence behavior of successive generation; our work complements this by quantifying the empirical discrimination boundary.\n\n2. **Shahriar** → `\\paragraph{Beyond binary detection.}` 段，`cross-mode transfer` 之后、`CoDeC` 之前，作为分号链的一环：\n   > ...Shahriar et al.~\\cite{shahriar2025erosion} measure detection accuracy erosion (${\\sim}25.4\\%$) across generation depths; CoDeC...\n   \n   末句扩展为：\n   > None estimates recursive generation depth; we instead characterize the precise depth at which discrimination becomes impossible.\n\n---\n\n## m8 结果\n\n**Preprint 格式审计**（5 条 `@article` 含 arXiv）：\n\n| 条目 | 格式 | 状态 |\n|------|------|------|\n| `briesch2023selfconsuming` | `journal = {arXiv preprint arXiv:2311.16822}` | ✓ 一致 |\n| `sadasivan2023detect` | `journal = {arXiv preprint arXiv:2303.11156}` | ✓ 一致 |\n| `mehta2025beyond` | `journal = {arXiv preprint arXiv:2511.17602}` | ✓ 一致 |\n| `spennemann2025quantifying` | `journal = {arXiv preprint arXiv:2504.08755}` | ✓ 一致 |\n| `suresh2024rate` | `journal = {arXiv preprint arXiv:2412.17646}` | ✓ 一致 |\n\n所有 preprint 均使用 `@article` + `journal = {arXiv preprint arXiv:XXXX.XXXXX}` 格式，**无不一致项**。新增两条也遵循此格式。\n\n**修复的问题**：\n- `suresh2024rate`：缺失 `url` 字段 → 已补充 `url={https://arxiv.org/abs/2412.17646}`\n\n**已发表但仍标为 preprint？**：未发现。`sadasivan2023detect` 曾提交 OpenReview 但未确认被某会议正式接收，保持 preprint 状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r26-sf2-m8-references.md"
+}

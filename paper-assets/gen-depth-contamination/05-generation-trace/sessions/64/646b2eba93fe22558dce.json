@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "646b2eba93fe22558dce",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops collect d093 results",
+  "task_key": "worker_ops_collect_d093_results_20260520T192405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_d093_results_20260520T192405_result.json",
+    "occurrence": 1,
+    "bytes": 2825,
+    "sha256": "7f8cae227dd7c1c2bc12d82ad90249de97604849995346f81a5053b046b80c1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the complete report.\n\n---\n\n## 实验 1: exp_expanded_downstream_eval\n\n### 完成度矩阵\n\n```\nseed0: no_filter ✅  binary_ours ✅  graduated ✅\nseed1: no_filter ✅  binary_ours ✅  graduated ⏳ (eval running, ~66% piqa)\nseed2: no_filter ⏳  binary_ours ⏳  graduated ⏳ (未开始)\n```\n\n`exp_expanded_downstream_eval.py --num_seeds 3` 仍在 GPU 0 上运行，graduated_seed1 eval 进行中，seed2 全部待跑。\n\n### 原始分数（所有 benchmark 使用 acc_norm 或 acc 视具体 benchmark）\n\n| Model | PIQA | TruthfulQA_mc2 | WinoGrande | ARC-C (norm) |\n|---|---|---|---|---|\n| **Base** | 0.7579 | 0.4659 | 0.6456 | 0.5486 |\n| no_filter seed0 | 0.7519 | 0.4224 | 0.6519 | 0.5128 |\n| no_filter seed1 | 0.7508 | 0.4237 | 0.6456 | 0.5213 |\n| binary_ours seed0 | 0.7530 | 0.4359 | 0.6385 | 0.5196 |\n| binary_ours seed1 | 0.7524 | 0.4456 | 0.6425 | 0.5188 |\n| graduated seed0 | 0.7514 | 0.4225 | 0.6488 | 0.5128 |\n\nGSM8K 全部为 null（已确认跳过）。\n\n### Mean ± Std 汇总（仅含已完成 seed）\n\n| Benchmark | Base | no_filter (n=2) | binary_ours (n=2) | graduated (n=1) | binary-nf Δ |\n|---|---|---|---|---|---|\n| PIQA | 0.7579 | 0.7514±0.0008 | 0.7527±0.0004 | 0.7514 | +0.0013 |\n| TruthfulQA | 0.4659 | 0.4230±0.0009 | 0.4408±0.0069 | 0.4225 | +0.0178 |\n| WinoGrande | 0.6456 | 0.6488±0.0045 | 0.6405±0.0028 | 0.6488 | -0.0083 |\n| ARC-C | 0.5486 | 0.5171±0.0060 | 0.5192±0.0006 | 0.5128 | +0.0021 |\n\n注：graduated 仅 1 个 seed，无法算 std。binary-nf Δ = binary_ours mean - no_filter mean。\n\n---\n\n## 实验 2: exp_deberta_filtering_comparison\n\n### 完成度\n\n```\nno_filter:        train ✅  eval ✅  (EXIT_CODE=0, 19:25 UTC)\nobd_binary:       train ✅  eval ✅  (EXIT_CODE=0, 03:24 UTC)\ndeberta_binary:   train ✅  eval ✅  (EXIT_CODE=0, 03:24 UTC)\ndeberta_graduated: ❌ 目录不存在，未提交\n```\n\n### 结果\n\n| Benchmark | no_filter | obd_binary | deberta_binary | obd-nf Δ | deb-nf Δ |\n|---|---|---|---|---|---|\n| MMLU | 0.5895 | 0.5880 | 0.5870 | -0.0015 | -0.0025 |\n| HellaSwag (norm) | 0.6591 | 0.6599 | 0.6593 | +0.0008 | +0.0002 |\n| ARC-C (norm) | 0.4352 | 0.4522 | 0.4471 | **+0.0170** | +0.0119 |\n\nMMLU 子类别：\n\n| Category | no_filter | obd_binary | deberta_binary |\n|---|---|---|---|\n| STEM | 0.5230 | 0.5249 | 0.5224 |\n| Humanities | 0.5248 | 0.5248 | 0.5233 |\n| Social Sciences | 0.6974 | 0.6929 | 0.6922 |\n| Other | 0.6482 | 0.6440 | 0.6447 |\n\n---\n\n### 服务器状态\n\n- GPU 0 (19.5G/24.6G, 100%): exp_expanded_downstream_eval 仍在运行\n- GPU 1 (10.7G, 92%): sweep_r10_nofilter 在跑\n- GPU 2-3 (10.7G each, 65-83%): torch compile_worker 进程活跃（可能是另一个实验）\n- deberta_graduated 需要单独提交"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-d093-results.md"
+}

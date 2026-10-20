@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d2bdb46acf2e67bc3fd",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "rerun exp015 neural probe olmo",
+  "task_key": "worker_rerun_exp015_neural_probe_olmo_20260521T155925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_rerun_exp015_neural_probe_olmo_20260521T155925_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "88ed7c39b139577064da83f71229b2ff0c4f5cf74ebf370e74dcb1840f43eca2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果摘要：\n\n**K\\*(neural probe) = 1**，与 LightGBM rerun 的 K\\*=1 完全一致。\n\n| Pair | Neural Probe AUC | 95% CI | p-value |\n|------|----------------:|--------|---------|\n| 0v1  | **0.9773** | [0.975, 0.980] | <0.002 |\n| 1v2  | 0.5054 | [0.495, 0.515] | 0.176 |\n| 2v3  | 0.5056 | [0.497, 0.516] | 0.142 |\n| 3v4  | 0.5032 | [0.494, 0.513] | 0.262 |\n| 4v5  | 0.4999 | [0.491, 0.507] | 0.514 |\n\n**结论**：K\\*=1 是 model-intrinsic 的。OLMo-1B 的 2048-dim hidden states 也无法区分 gen-1 和 gen-2+ 文本——所有 1v2~4v5 的 AUC 都在随机水平，CI 全部包含 0.50，permutation test 均不显著。这不是 15D feature 的局限，而是模型内部表征本身就不包含区分信号。\n\n结果已保存至：\n- 服务器: `results/exp015_olmo_rerun/neural_probe_results.json`\n- 本地 artifact: `artifacts/exp015_neural_probe_olmo_rerun.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/rerun-exp015-neural-probe-olmo.md"
+}

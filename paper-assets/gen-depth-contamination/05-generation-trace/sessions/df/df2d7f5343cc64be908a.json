@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df2d7f5343cc64be908a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research literature integration",
+  "task_key": "worker_research_literature-integration_20260513T021515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-integration_20260513T021515_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "8b12a746bf25d42c57aab613753882b82c67a951e62beaf9cea42188cb70eae2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出两个文件：\n\n**1. `literature_map.yaml`** — 4 篇论文已扩充 `methodology`、`key_findings`、`positioning_notes` 字段。\n\n**2. `artifacts/literature_positioning_notes.md`** — 包含：\n- 每篇论文的方法/发现/局限性摘要\n- 与我们工作的精确 positioning（overlaps / differences / how to cite）\n- 4 段可直接复用的 Related Work 段落草稿\n- Cross-paper synthesis table 和 Introduction/Related Work 的叙事结构建议\n\n核心 positioning 总结：\n\n| 论文 | 我们的定位 |\n|------|-----------|\n| **Drayson** | 他们做 binary detection + SIR；我们推广到 ordinal depth，K* 界定 binary 何时够用 |\n| **Schaeffer** | K* 属于 Family B（distribution deformation, D4+D6），不是 Family A（population risk） |\n| **Kazdan** | 我们的 prompt-chain = replace regime（最严苛），K*=2 是 conservative lower bound |\n| **He** | 他们的 entropy decline ↔ 我们的 JSD 单调递减，跨模态验证同一 convergence 现象 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-integration.md"
+}

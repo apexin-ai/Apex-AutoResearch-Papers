@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdd813882d4c6e13f886",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp 011 check results",
+  "task_key": "worker_analysis_exp_011_check_results_20260513T105213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_011_check_results_20260513T105213_result.json",
+    "occurrence": 1,
+    "bytes": 1064,
+    "sha256": "ee228c9bd644d25b53acaa6d42685b68f668115a53c878ff4d21ff0a11d03806"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-011 检查结果\n\n### GPT-5.5: 仍在运行中 (409/500)\n\n- PID 35756 存活，`--resume` 模式从第 41 条续跑\n- 结果文件 409 行，无 ERROR 条目，无解析失败 (predicted_depth=-1)\n- 按当前速度 (~5-7s/it) 估计还需 ~8-10 分钟完成剩余 91 条\n- 共有 3 次启动 (v1→18条, v2→41条, v3 从 41 续跑中)，前两次应该是 SSH 超时中断\n\n### Claude Opus 4.6: 从未启动\n\n- 无 `exp011_results_claude_opus_4_6.jsonl` 文件\n- 无相关进程\n- 无相关日志\n- 上一个 Worker 只启动了 GPT-5.5，没有启动 Claude\n\n### 分析: 未运行\n\n- 缺少 Claude 结果，无法运行 `exp011_analyze.py`\n\n### 建议\n\n1. **等 GPT-5.5 跑完** (~10 min)，然后验证 500 条\n2. **启动 Claude Opus 4.6 运行**：`nohup python3 scripts/exp011_llm_zeroshot.py --model claude-opus-4-6 > /tmp/exp011_claude.log 2>&1 &`（需要 OPENROUTER_API_KEY）\n3. 两个模型都完成后运行 `python3 scripts/exp011_analyze.py`\n\n是否需要我现在启动 Claude Opus 4.6 的运行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-011-check-results.md"
+}

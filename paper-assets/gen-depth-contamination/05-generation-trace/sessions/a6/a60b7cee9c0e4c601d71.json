@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a60b7cee9c0e4c601d71",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper fix fig4 colorbar",
+  "task_key": "worker_paper_fix-fig4-colorbar_20260519T160942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-fig4-colorbar_20260519T160942_result.json",
+    "occurrence": 1,
+    "bytes": 435,
+    "sha256": "63e9360fa847cadfec5b8b84d561194bae5e3dab6d27045899a12b2c5d912b4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**修改内容：**\n- **脚本**: `scripts/transfer_heatmap.py` — 重写为两面板布局：(a) Ordinal Accuracy + (b) Transfer Retention，colorbar 标签为 \"Retention (%)\"。原单面板 AUC 版本备份为 `.bak`\n- **图表文件**: `fig3_transfer_heatmap.pdf` / `.png` — 已替换至 `artifacts/figures/` 和 `docs/paper/figures/`\n- **编译**: `latexmk -pdf main.tex` 成功，20页无报错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-fig4-colorbar.md"
+}

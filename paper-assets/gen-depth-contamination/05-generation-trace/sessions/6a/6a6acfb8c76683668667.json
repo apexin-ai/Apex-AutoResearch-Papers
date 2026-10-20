@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a6acfb8c76683668667",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code check llama8b 10k done",
+  "task_key": "worker_code_check_llama8b_10k_done_20260522T191635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_llama8b_10k_done_20260522T191635_result.json",
+    "occurrence": 1,
+    "bytes": 1183,
+    "sha256": "1911606984477a3c6f68c15262ebd117fbf2709902cf06a93c941e9e8a1cab2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks complete. Here's the final summary:\n\n---\n\n## exp_llama8b_10k Bootstrap CI Results\n\n| Metric | Value |\n|--------|-------|\n| OOF AUC (GroupKFold-5) | 0.5880 |\n| 95% CI | [0.5809, 0.5950] |\n| 99.5% Bonferroni CI | [0.5776, 0.5978] |\n| Bonferroni pass (CI lower > 0.60) | **False** |\n| Permutation p-value | 0.0001 |\n| Bootstrap iterations | 10,000 |\n| Permutation iterations | 10,000 |\n\n## 10K vs 5K Comparison\n\n| Metric | 5K | 10K | Delta |\n|--------|-----|-----|-------|\n| K* | 2 | 2 | same |\n| 1v2 AUC (pipeline) | 0.6123 | 0.6316 | +0.0193 |\n| 1v2 OOF AUC (bootstrap) | — | 0.5880 | — |\n| CI lower (95%) | 0.6028 | 0.5809 | -0.0219 |\n| Bonferroni pass | — | False | — |\n\n**关键发现**: 尽管 pipeline 的 pairwise AUC 从 5K 的 0.6123 提升到 10K 的 0.6316，但 GroupKFold OOF AUC 仅 0.5880，低于 0.60 阈值。Bonferroni 99.5% CI lower bound = 0.5776，未能越过 θ=0.60 门槛。permutation p=0.0001 表明 AUC 显著高于随机，但效应量不足以通过 Bonferroni 校正后的阈值。pipeline AUC 和 OOF AUC 之间的差距（0.6316 vs 0.5880）提示可能存在过拟合或特征泄漏问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-llama8b-10k-done.md"
+}

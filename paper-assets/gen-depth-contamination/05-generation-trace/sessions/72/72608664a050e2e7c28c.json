@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72608664a050e2e7c28c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper summary figure",
+  "task_key": "worker_paper_summary_figure_20260513T221651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_summary_figure_20260513T221651_result.json",
+    "occurrence": 1,
+    "bytes": 414,
+    "sha256": "0e6a0853759b7bfd48e735b169be64a7f3ed64a915bf37fe3861c8b4e16d8245"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。PDF (31.8 KB) 和 PNG (235.3 KB) 已生成至 `artifacts/summary_auc_decay/`，artifact 已注册 (`art_20260513_6878d6`)。\n\n图表包含 8 条 decay curves（4 model-mode 实线 + 4 decoding 虚线），K* boundary 黄色阴影带在 1v2 处清晰标注，θ=0.60 和 chance 参考线齐全。所有曲线在 0v1→1v2 处急剧下降，符合 K*=2 universal boundary 的核心叙事。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-summary-figure.md"
+}

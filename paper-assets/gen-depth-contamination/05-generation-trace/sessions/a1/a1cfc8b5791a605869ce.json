@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1cfc8b5791a605869ce",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code generation mode cli",
+  "task_key": "worker_code_generation_mode_cli_20260512T202016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_generation_mode_cli_20260512T202016_result.json",
+    "occurrence": 1,
+    "bytes": 1675,
+    "sha256": "800b3a2e280aa8e19485a3c17797f8204d3e8621e28908ddd2fd0518b5503ba4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报如下：\n\n---\n\n### 1. 代码 diff 概要\n\n5 处修改，本地 + 远程完全一致：\n\n| 位置 | 修改 |\n|------|------|\n| L136 | `generate_depth_chain` 签名增加 `generation_mode: str = \"rewrite\"` |\n| L154-200 | 函数内部按 `generation_mode` 分支：`rewrite` 走原有 batch prompt 逻辑，`continuation` 逐条截断前 50% tokens 后续写 |\n| L617-619 | argparse 添加 `--generation_mode` 参数（choices: rewrite/continuation） |\n| L631 | 日志输出 generation mode |\n| L659 | `main()` 调用处传递 `generation_mode=args.generation_mode` |\n\n### 2. Continuation 模式 dry-run — 通过\n\nPythia-1.4B, 10 samples, max_depth=2, ~56 秒完成。\n\n**样本对比 (doc_id=1)：**\n- **depth 0 (原文)**: \"messaging system designed as a plugin-based system. Doubtless the kopete people would disagree with me here...\"\n- **depth 1 (续写)**: \"aim can easily be extended to work in a GNOME enviroment. I also don't think Kopete actually has much of an API...\"（从原文 50% token 位置开始续写，主题连贯，风格符合 base model 特征）\n- **depth 2 (续写 depth 1 的续写)**: \"I can use it only for IM but I have a hard time getting it to work for IRC...\"\n\n### 3. Rewrite 模式回归测试 — 通过\n\nQwen2.5-1.5B-Instruct, 10 samples, max_depth=1, 正常生成 rewrite 文本。\n\n### 4. 遇到的问题\n\n- Qwen 模型路径实际为 `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct/`（ModelScope 下载的嵌套目录结构），脚本默认路径 `Qwen/Qwen2.5-1.5B-Instruct` 无法识别。后续正式运行时需注意路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-generation-mode-cli.md"
+}

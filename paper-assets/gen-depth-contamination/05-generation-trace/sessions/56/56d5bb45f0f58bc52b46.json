@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "56d5bb45f0f58bc52b46",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "monitor unified scorer completion",
+  "task_key": "worker_monitor_unified_scorer_completion_20260520T073834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_unified_scorer_completion_20260520T073834.log",
+    "occurrence": 1,
+    "bytes": 891233,
+    "sha256": "76ecd1733a906fec54380796d273900f9fcd347486968bdd7aef610d599e9155"
+  },
+  "statistics": {
+    "messages": 620,
+    "user_turns": 0,
+    "tool_calls": 280,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 280,
+      "tool_result": 280,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 620,
+      "chunks": [
+        {
+          "path": "56d5bb45f0f58bc52b46-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "56d5bb45f0f58bc52b46-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "56d5bb45f0f58bc52b46-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "56d5bb45f0f58bc52b46-part-0004.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/monitor-unified-scorer-completion.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6501c75608408b6210a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ssh audit investigate h5 h6 h4",
+  "task_key": "worker_ssh_audit_investigate_h5_h6_h4_20260525T201301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_audit_investigate_h5_h6_h4_20260525T201301_result.json",
+    "occurrence": 1,
+    "bytes": 1109,
+    "sha256": "785718a56a6b5be81bcc5c544444084e6e78233b529acf8dc47095a99801fedb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成，结果：\n\n**H5 (OBD accuracy 38.6% vs recall sum 38.0%)**：accuracy=0.386 来自 exp_011 分析脚本，数据可靠。但 Tab s3c 的 per-depth recall (96+39+14+19+22=190) 缺 3 个正确预测，sum 只有 38.0%。**表中至少一个 recall 数字有误**，需重跑 `exp011_analyze.py` 提取正确的 per-class counts。\n\n**H6 (MAE 0.984)**：**0.984 作为 MAE 不存在于任何实验产出中。** 全局搜索 60+ 处命中全是 AUC 值。1.016 匹配 mvp_pilot 的 ordinal_mae=1.0163，但 0.984 无来源。且 pipeline 代码本身用的是 multiclass LightGBM，论文却声称 \"OBD vs multiclass LightGBM\" 比较——逻辑上也有问题。建议删除该具体数字或重新设计比较。\n\n**H4 (arXiv JSD 0.077)**：**论文正确。** arXiv exp_024 的 1v2 JSD = 0.077297，C4 exp_018 的 1v2 JSD = 0.012。Registry 中 exp_018 的 `0v1: 0.077` 是巧合（C4 的 0v1 pair 碰巧 ≈ arXiv 的 1v2 pair），无需修改。建议在 registry exp_024 条目补充 JSD 值避免混淆。\n\n报告已写入 `artifacts/audit_ssh_investigation.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-audit-investigate-h5-h6-h4.md"
+}

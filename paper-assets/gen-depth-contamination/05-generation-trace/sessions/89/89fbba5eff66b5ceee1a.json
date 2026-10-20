@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89fbba5eff66b5ceee1a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code prep code analysis script",
+  "task_key": "worker_code_prep-code-analysis-script_20260519T025101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-code-analysis-script_20260519T025101_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "4120e8b86d94c46b2bd9f3a073df001f5f778b4f6ef3f2b22ce896c6d73a9449"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 验证通过：\n\n- **Qwen2.5-1.5B**: K\\*=2, 0v1 AUC=0.9388 ✓\n- 其他三个模型的实验目录为空，脚本正确输出 `[WARN]` 并在表格中填 TBD ✓\n- 1v2 的 AUC (0.7382) 被正确 underline（K\\* boundary）✓\n- LaTeX 表格和 JSON 已写入 `artifacts/` 目录\n\n脚本位置：`/root/autodl-tmp/gen-depth-contamination/scripts/analyze_code_crossmodel.py`\n\n功能：\n1. 读取 4 个模型的 `results/exp_code_*/pairwise_auc.json`\n2. 计算 5-fold CV 的 95% CI（mean ± 1.96 * std / sqrt(5)）\n3. 确定 K\\*（max k where AUC > 0.60）\n4. 输出 LaTeX 表格到 `artifacts/code_crossmodel_table.tex`，JSON 到 `artifacts/code_crossmodel_results.json`\n5. 缺失实验 gracefully skip，表格填 TBD\n\n实验完成后重新运行 `python3 scripts/analyze_code_crossmodel.py` 即可更新表格。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-code-analysis-script.md"
+}

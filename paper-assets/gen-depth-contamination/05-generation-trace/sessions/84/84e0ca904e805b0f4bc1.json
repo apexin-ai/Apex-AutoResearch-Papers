@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84e0ca904e805b0f4bc1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra verify exp003 resubmit",
+  "task_key": "worker_infra_verify_exp003_resubmit_20260513T064705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify_exp003_resubmit_20260513T064705_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "a9cfa2bccdcf675f411a78bece78dd23b8c83dc6422ebefec30a5268ad2edab7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-003 正在正常运行，无需修复。**\n\n状态报告：\n\n1. **状态**：运行中\n2. **tmux session**：`exp_003_decoding_ablation` 存在，PID 29459\n3. **当前任务**：ablation config 1 (greedy decoding)，正在执行 `run_exp003_ablation.sh 1`\n4. **进度**：depth 1 生成中，28/313 batches (~9%)，seed data (depth 0) 已完成 5000 samples\n5. **主 Python 进程**：PID 29472，CPU 91.4%，参数 `--no_sample`（greedy），`--num_samples 5000 --max_depth 5`\n6. **GPU**：45% 利用率，3919 MiB 显存占用\n7. **启动时间**：14:43（约 4 分钟前）\n\n日志显示命令正确展开为 4 个顺序 ablation（`sh 1 && sh 2 && sh 3 && sh 4`），当前正在跑第一个。按 ~6s/batch 估算，depth 1 还需约 29 分钟，整个 config 1（5 个 depth）约 2.5 小时，全部 4 个 config 约 10 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-exp003-resubmit.md"
+}

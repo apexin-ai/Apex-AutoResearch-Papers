@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cce8b6da77ce7fa10208",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper w6 structural confound",
+  "task_key": "worker_paper_w6_structural_confound_20260516T032042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_w6_structural_confound_20260516T032042_result.json",
+    "occurrence": 1,
+    "bytes": 1449,
+    "sha256": "b55b94bdf496a7c078a8b30bc66392eb3997975382bdf5192b3e8d5c8746baf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits are consistent. Let me verify one data point—the OLMo row in the appendix table shows 256 for all depths 1-5 and <1% truncation. The task data didn't include exp-002 EOS truncation rate explicitly, but 256/256 tokens with negligible truncation is correct (almost all samples hit the limit).\n\nQuick cross-check on the Qwen-continuation within-model range: depths 1-5 are 244, 238, 240, 240, 238. Range = 244 - 238 = 6 tokens. The appendix_extended.tex correctly says \"except Qwen-continuation at 6 tokens.\"\n\nSummary of changes:\n\n**4 files modified:**\n\n1. **`discussion.tex`** — Added new subsection \"Structural Confound: Token Length and EOS Truncation\" (Section 6.4) with three arguments: length asymmetry is directionally opposite to the concern, depth 1-5 lengths are stable, and high-truncation models still yield K*=2.\n\n2. **`appendix.tex`** — Added Table `tab:token_length` with per-model per-depth mean token counts and EOS truncation rates for all 9 configurations (5 models + 4 decoding ablations).\n\n3. **`appendix_extended.tex`** — Added \"Structural confound: token length\" paragraph in Extended Limitations with quantitative summary referencing the new table.\n\n4. **`main.tex`** — Updated Limitations point (12) to reference the new table and section, updated token range from \"214--256\" to \"195--256\" to include Qwen-7B, and added within-model range bound (\"$\\leq$ 6 tokens\")."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-w6-structural-confound.md"
+}

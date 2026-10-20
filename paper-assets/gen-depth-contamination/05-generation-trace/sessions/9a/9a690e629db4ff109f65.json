@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a690e629db4ff109f65",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 026 feature stability v2",
+  "task_key": "worker_code_exp_026_feature_stability_v2_20260517T080737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_026_feature_stability_v2_20260517T080737_result.json",
+    "occurrence": 1,
+    "bytes": 1081,
+    "sha256": "cd9ed495c4086d3bcdd66121ece223c11d0093c72344664898b745de25934aa2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n```\nsubset_size | num_tested | num_K*=2 | min_1v2_AUC | mean_1v2_AUC\n15          | 1          | 1        | 0.6262      | 0.6262\n10          | 5          | 5        | 0.6153      | 0.6191\n8           | 5          | 5        | 0.6056      | 0.6159\n5           | 5          | 2        | 0.5856      | 0.5998\n3 (top-3)   | 1          | 0        | 0.5871      | 0.5871\n```\n\n关键发现：**Feature selection 在 K\\*=2 边界处确实 matters。**\n\n- **8D+ 子集 robust**：10D 和 8D 所有 5 次随机采样都 pass θ=0.60（min=0.6056）\n- **5D 子集 fragile**：仅 2/5 pass θ，3 次掉到 0.585-0.594，mean=0.5998 刚好在边界\n- **Top-3 特征 fail**：surp_d1_std + surp_std + surp_d2_std 只拿到 0.5871，不足以支撑 K\\*=2\n\n与 v1（retrain-chain, K\\*=4）形成鲜明对比：v1 所有子集 trivially pass（min=0.8314）。数据源换对后，这个实验提供了论文需要的关键证据——在 K\\* 边界处需要 ≥8D 特征才能稳健维持判别力。\n\nRegistry 和 artifact 均已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-026-feature-stability-v2.md"
+}

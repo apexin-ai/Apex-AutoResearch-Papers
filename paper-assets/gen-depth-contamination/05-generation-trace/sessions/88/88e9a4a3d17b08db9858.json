@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88e9a4a3d17b08db9858",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "data exp 024 arxiv prep",
+  "task_key": "worker_data_exp_024_arxiv_prep_20260516T082003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_exp_024_arxiv_prep_20260516T082003_result.json",
+    "occurrence": 1,
+    "bytes": 1653,
+    "sha256": "a8997c60a51d4f0f9047866cf2ec1e753c1770b0fd90c43e9a629a39d6256b65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. arXiv 数据集来源和下载方式\n- **来源**: arXiv API (`export.arxiv.org`)，categories: cs.CL, cs.LG, cs.AI, cs.CV, stat.ML\n- **方式**: 直接调用 arXiv Atom API，batch=200，按 submittedDate descending 排序\n- HF `ccdv/arxiv-summarization` 因 `trust_remote_code` 已废弃 + AutoDL 网络慢放弃；arXiv API 直连可靠\n\n### 2. Seed data 验证\n- **路径**: `data/exp_024_arxiv/depth_0.jsonl`\n- **行数**: 5000\n- **字段**: `{\"text\": \"...\", \"doc_id\": N}` — 与 C4/Wiki 完全一致\n- **文本长度**: min=99, max=67,090, mean=1,631 chars\n- 文本为英文学术摘要，含 LaTeX 标记 (`@xmath0` 等)\n\n### 3. 格式一致性\n```\nC4 fields:    ['doc_id', 'text'] ✓\nWiki fields:  ['doc_id', 'text'] ✓\narXiv fields: ['doc_id', 'text'] ✓\n```\n\n### 4. exp-024 脚本\n- **路径**: `scripts/exp024_arxiv_domain.sh`\n- Qwen2.5-1.5B base, continuation mode, 5K docs, depth 0-5, max_new_tokens=256\n- `HF_DATASETS_OFFLINE=1` + `TRANSFORMERS_OFFLINE=1` 阻断运行时网络\n- `CUDA_VISIBLE_DEVICES=3`，输出到 `results/exp_024_arxiv/`\n\n### 5. Dry-run 验证\n- `bash -n` 语法检查: ✓\n- seed data 5000 行: ✓\n- 模型文件 `Qwen2.5-1.5B` 存在: ✓\n\n### 6. 注意事项\n- 部分 abstract 包含 LaTeX artifact（`@xmath0` 等），属于 arXiv 文本特征，不影响实验\n- max 文本长度 67K chars，个别条目可能是完整论文而非纯 abstract（arXiv API 的 summary 字段偶尔返回长文本），pipeline 会按 max_new_tokens=256 截断，不影响结果\n- GPU 空出后直接 `bash scripts/exp024_arxiv_domain.sh` 即可启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-exp-024-arxiv-prep.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "aebb60596b4eae22259e",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops exp expanded downstream eval",
+  "task_key": "worker_ops_exp_expanded_downstream_eval_20260520T170352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp_expanded_downstream_eval_20260520T170352.log",
+    "occurrence": 1,
+    "bytes": 791286,
+    "sha256": "e5e43000be6a58d9193866aaa8483caf2a6f5e40e4e0d9d7daf136a973644267"
+  },
+  "statistics": {
+    "messages": 210,
+    "user_turns": 1,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 14,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 76,
+      "tool_result": 76,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 24,
+      "chunks": [
+        {
+          "path": "aebb60596b4eae22259e-part-0001.json",
+          "message_count": 24
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 186,
+      "chunks": [
+        {
+          "path": "aebb60596b4eae22259e-part-0001.json",
+          "message_count": 119
+        },
+        {
+          "path": "aebb60596b4eae22259e-part-0002.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-exp-expanded-downstream-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abb2027969e27555fd79",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis anova crossscorer",
+  "task_key": "worker_analysis_anova_crossscorer_20260518T022405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_anova_crossscorer_20260518T022405_result.json",
+    "occurrence": 1,
+    "bytes": 1062,
+    "sha256": "36390793fbbe57fac5a76cf37fb11339a0855893aa89fa5bc96db428bff6eb8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results written. Summary:\n\n| Source | df | F | p | η²_p |\n|---|---|---|---|---|\n| **DepthPair** | 4 | 24736.10 | 1.4e-312 | **.998** |\n| **Generator** | 2 | 926.78 | 1.3e-113 | **.885** |\n| Generator:DepthPair | 8 | 993.69 | 3.0e-179 | .971 |\n| **Scorer** | 3 | 19.02 | 4.2e-11 | **.192** |\n| Generator:Scorer | 6 | 8.16 | 4.8e-08 | .170 |\n| Generator:Scorer:DepthPair | 24 | 1.97 | 5.8e-03 | .164 |\n| Scorer:DepthPair | 12 | 2.45 | 5.0e-03 | .109 |\n| Residual | 240 | | | |\n\n**Validation:**\n- DepthPair has the largest effect (η²_p = .998) — confirmed.\n- Scorer is statistically significant (p < .05) — contradicts the expected non-significance. However, its effect size (η²_p = .192) is negligible compared to DepthPair (.998) and Generator (.885). This is likely a power artifact from N=300 detecting a real but practically trivial scorer difference. Added a warning in the JSON.\n\n**Note:** Only 12 cells found (3 generators × 4 scorers), not 16. The 4th generator was not available in the exp-022 results directory."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-anova-crossscorer.md"
+}

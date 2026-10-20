@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2a1d041ce263e9d68c5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp026 latex table",
+  "task_key": "worker_code_exp026-latex-table_20260518T135704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp026-latex-table_20260518T135704_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "c7903ecfcbad12c1d010b549b1348196b7172923c2d8d1cb544c128afc0a2cf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已存在且数据完全正确。我从服务器验证了全部 15 个 eval_results.json，所有 per-seed 分数与现有表格一致：\n\n**验证结果：**\n- 3 strategies × 5 seeds × 2 metrics = 30 个数值全部匹配\n- Summary table: mean±std、bold best、paired t-test p-values 均正确\n- Per-seed table: 所有原始分数四舍五入到 4 位小数无误\n\n文件路径：`artifacts/exp_026_arxiv_filtering/latex_table.tex`，包含两张表（summary + per-seed breakdown），无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp026-latex-table.md"
+}

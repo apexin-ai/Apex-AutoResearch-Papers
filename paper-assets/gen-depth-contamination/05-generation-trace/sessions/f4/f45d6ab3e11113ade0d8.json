@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f45d6ab3e11113ade0d8",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "paper r26 mf1 sf3 arxiv bonferroni",
+  "task_key": "worker_paper_r26_mf1_sf3_arxiv_bonferroni_20260522T082230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r26_mf1_sf3_arxiv_bonferroni_20260522T082230.log",
+    "occurrence": 1,
+    "bytes": 706399,
+    "sha256": "d82ddf982eab17d7a5175d4ba1cc5b0620081e7c0b1803116a48fdcf783e6819"
+  },
+  "statistics": {
+    "messages": 177,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 43,
+      "tool_call": 65,
+      "tool_result": 65,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 177,
+      "chunks": [
+        {
+          "path": "f45d6ab3e11113ade0d8-part-0001.json",
+          "message_count": 123
+        },
+        {
+          "path": "f45d6ab3e11113ade0d8-part-0002.json",
+          "message_count": 54
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-r26-mf1-sf3-arxiv-bonferroni.md"
+}

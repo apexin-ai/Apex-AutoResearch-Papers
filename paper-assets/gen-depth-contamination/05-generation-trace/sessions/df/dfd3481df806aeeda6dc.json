@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfd3481df806aeeda6dc",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code cuda1 short task",
+  "task_key": "worker_code_cuda1_short_task_20260522T185608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cuda1_short_task_20260522T185608_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "af40a3bf8058e57c27f4699fa6ac1220ff8bc00003eab0bc692d4295f323ed5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已在 cuda:1 上运行：\n\n- **任务**: exp_llama8b_10k Phase 2（Qwen-1.5B scorer 特征提取 + LightGBM 分析）\n- **PID**: 57917\n- **GPU**: cuda:1，已占用 9GB VRAM\n- **进度**: depth 0 的 surprisal 提取进行中，~6.3 it/s，625 batches/depth\n- **预估时长**: 每个 depth ~100s surprisal + vocab/tail features，6 depths ≈ **~12-15min**，加上 Step 5 分析 ≈ **总计 ~15min**，在 20min 窗口内\n\n跑完后 `results/exp_llama8b_10k/` 会有 `pairwise_auc.json`, `jsd.json`, `ordinal_results.json`, `feature_importance.json`, `summary.txt`，以及 `data/exp_llama8b_10k/features.csv`。后续 bootstrap CI 可以直接用这些数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cuda1-short-task.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e517175272e6cd574aea",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp004 completion",
+  "task_key": "worker_diagnose_exp004_completion_20260515T220706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp004_completion_20260515T220706_result.json",
+    "occurrence": 1,
+    "bytes": 1436,
+    "sha256": "53cebf1ac48bd3506f1b848f26a6c422c05c26dc7fafdf3a52e8e97c2d142393"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论: FAILED（部分完成）\n\n## 错误原因\n数据生成完成后，加载 scorer model (`Qwen2.5-1.5B-Instruct`) 时崩溃：\n\n```\nValueError: Unrecognized model in /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct.\nShould have a `model_type` key in its config.json\n```\n\n**根因**: ModelScope 下载的缓存路径结构与 HuggingFace `from_pretrained` 不兼容。脚本传入的路径是 ModelScope 缓存根目录：\n```\n/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct\n```\n该目录下没有 `config.json`，实际模型文件在嵌套路径：\n```\n/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2___5-1___5B-Instruct/\n```\n\n## 数据完整性\n- depth_0: 5000 lines, 4.4M\n- depth_1: 5000 lines, 4.4M\n- depth_2: 5000 lines, 4.4M\n- depth_3: 5000 lines, 4.4M\n- depth_4: 5000 lines, 4.5M\n- depth_5: 5000 lines, 4.5M\n- features.csv: **MISSING**\n\n## 分类结果\n- `results_exp004_qwen7b/`: 空目录\n- pairwise AUC / K* / accuracy: **未生成**\n- `exp004_analyze.py` 也未执行（依赖 features.csv）\n\n## GPU 状态\n已释放，无进程占用。\n\n## 修复方案\n修改 `--scorer_path` 为正确路径：\n```\n/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct\n```\n（这是指向实际模型目录的 symlink）\n\n然后需要重跑 feature extraction + classification 步骤（数据生成无需重跑）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp004-completion.md"
+}

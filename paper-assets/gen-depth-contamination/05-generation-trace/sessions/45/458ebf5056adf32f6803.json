@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "458ebf5056adf32f6803",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis 14d ablation bootstrap v2",
+  "task_key": "worker_analysis_14d_ablation_bootstrap_v2_20260517T125200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_14d_ablation_bootstrap_v2_20260517T125200_result.json",
+    "occurrence": 1,
+    "bytes": 1318,
+    "sha256": "6350fe98b218f97e1f45461626cb01004cb6768ba130476b78f74146613c5c8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成（耗时 1173s ≈ 19.5 min）。以下是完整汇总：\n\n## 14D vs 15D Feature Ablation 结果（去除 self_bleu）\n\n| Model | K\\*\\_15D | K\\*\\_14D | K\\* 变化? | 1v2 AUC\\_15D [CI] | 1v2 AUC\\_14D [CI] | Delta |\n|-------|---------|---------|-----------|-------------------|-------------------|-------|\n| Qwen-base | 2 | 2 | **不变** | 0.6288 [0.6197, 0.6379] | 0.6258 [0.6163, 0.6350] | -0.0031 |\n| Pythia | 2 | 2 | **不变** | 0.8840 [0.8775, 0.8904] | 0.8830 [0.8764, 0.8894] | -0.0010 |\n| LLaMA-8B | 2 | 2 | **不变** | 0.6075 [0.5979, 0.6171] | 0.6074 [0.5978, 0.6170] | -0.0001 |\n| Mistral-7B | 1 | 1 | **不变** | 0.5902 [0.5801, 0.6001] | 0.5903 [0.5803, 0.6003] | +0.0002 |\n\n## 结论\n\n**去除 self_bleu 对 K\\* 判定无任何影响。** 所有 4 个模型的 K\\* 在 14D 和 15D 下完全一致。\n\nAUC 差异（Delta）极小：\n- 最大绝对 Delta 仅 0.0031（Qwen-base 1v2 pair），远小于 CI 宽度（~0.018）\n- 所有 pair 的 14D CI 与 15D CI 高度重叠，差异无统计显著性\n\n**对 Critical #3 的回应：** self_BLEU 特征的移除不改变任何模型的污染深度判定（K\\*），且对分类器 AUC 的影响在统计噪声范围内（|Δ| < 0.008），说明我们的方法对该特征不存在过度依赖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-14d-ablation-bootstrap-v2.md"
+}

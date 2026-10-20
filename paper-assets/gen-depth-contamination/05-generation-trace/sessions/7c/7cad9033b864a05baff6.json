@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cad9033b864a05baff6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research binary ours consistency",
+  "task_key": "worker_research_binary-ours-consistency_20260515T044006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_binary-ours-consistency_20260515T044006_result.json",
+    "occurrence": 1,
+    "bytes": 4264,
+    "sha256": "ac3cf7553f62977c4e5a07ce32caff45890e2180c5581978e7fb61c1b04997a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the full analysis:\n\n---\n\n## 1. All binary filtering implementations (single file)\n\nAll filtering logic is in **one file**: `scripts/exp006_filtering_strategies.py`. The training loop in `scripts/exp006_continued_pretraining.py` imports from it. No duplicate implementations.\n\n## 2. Code vs Paper comparison\n\n### BinaryOurs\n\n| Parameter | Paper (experiments_c3.tex L25-26) | Code (BinaryOurs class) | Match |\n|---|---|---|---|\n| Classifier type | LightGBM | `lgb.LGBMClassifier` | ✓ |\n| Feature set | 15-dimensional | `FEATURE_COLS` (15 items) | ✓ |\n| Label construction | human (depth=0) vs synthetic (depth≥1) | `labels = (depths > 0).astype(int)` | ✓ |\n| Weight formula | w = 1 - P(synthetic) | `1.0 - self.model.predict_proba(features)[:, 1]` | ✓ |\n| Sampling | WeightedRandomSampler (L42) | `WeightedRandomSampler` in `exp006_continued_pretraining.py` | ✓ |\n\n### BinaryDrayson\n\n| Parameter | Paper (L28) | Code (BinaryDrayson class) | Match |\n|---|---|---|---|\n| Formula | w_j = (1-q(x_j))^b / Z | `(1.0 - q) ** self.b`, normalized by `raw.max()` | ✓ |\n| b | 1 | 1 | ✓ |\n| k (oversampling) | 1.5 | 1.5 | ✓ |\n| rmax (weight cap) | **not mentioned** | 3 | ⚠️ |\n| Classifier | **not specified** | Same LightGBM as BinaryOurs | ⚠️ |\n\n### Graduated\n\n| Parameter | Paper (L30-32) | Code (Graduated class) | Match |\n|---|---|---|---|\n| Method | OBD-LightGBM, P(d\\|x) | K-1 binary LightGBM classifiers → cumulative probs | ✓ |\n| Expected depth | d̂ = Σ d·P(d\\|x) | `(dist * np.arange(n_depths)).sum(axis=1)` | ✓ |\n| Weight | w = exp(-α·d̂) | `np.exp(-self.alpha * expected_depth)` | ✓ |\n| α values | {0.1, 0.3, 0.5, 0.7, 0.9} | configurable via `--alpha` | ✓ |\n\n### Training setup\n\n| Parameter | Paper (L40-44) | Code (exp006_continued_pretraining.py) | Match |\n|---|---|---|---|\n| Model | Qwen2.5-1.5B-Instruct | `Qwen/Qwen2.5-1.5B-Instruct` | ✓ |\n| LoRA rank/α | 8 / 16 | 8 / 16 | ✓ |\n| Target modules | q_proj, v_proj | `[\"q_proj\", \"v_proj\"]` | ✓ |\n| Dropout | 0.05 | 0.05 | ✓ |\n| Epochs/LR/batch | 3 / 2e-5 / 4 | 3 / 2e-5 / 4 | ✓ |\n| Grad accum / warmup | 8 / 0.1 | 8 / 0.1 | ✓ |\n| Precision / max_len | bf16 / 512 | bf16=True / 512 | ✓ |\n| Zero-weight removal | \"zero-weight samples are removed\" (L42) | `weights > 1e-8` | ✓ |\n\n### Cross-section consistency (introduction.tex, discussion.tex)\n\n- **introduction.tex L54**: \"binary soft weighting that separates human text from all synthetic text (depth≥1)\" — ✓ consistent\n- **discussion.tex L182**: \"retaining human-authored text while downweighting synthetic text (depth≥1)\" — ✓ consistent\n- **discussion.tex L195**: \"binary filtering at the K*=2 boundary is optimal\" — ✓ consistent\n\n## 3. Inconsistencies found\n\n**Minor (2 items, neither affects reproducibility significantly):**\n\n1. **BinaryDrayson `rmax=3` omitted from paper.** The code applies weight capping `np.minimum(raw, rmax * mean_w)` with `rmax=3` (from Drayson et al. Table S1). The paper formula `w_j = (1-q)^b / Z` doesn't mention this cap. Since rmax comes from the cited Drayson et al. paper, a reader following that reference would find it, but our paper should ideally mention it for completeness.\n\n2. **BinaryDrayson classifier not specified in paper.** The paper doesn't state what classifier BinaryDrayson uses to produce q(x_j). The code reuses the identical LightGBM architecture (same hyperparameters) as BinaryOurs. This is actually important for fair comparison — the paper should note that both binary methods share the same underlying classifier so differences are attributable solely to the weighting scheme.\n\n**No major inconsistencies.** The core claims — label construction, weight formula, feature set, training hyperparameters — are all exactly matched between code and paper across all three tex files.\n\n## 4. Recommendations\n\n- **Optional fix for rmax**: Add to L28: `$w_j = (1 - q(x_j))^b / Z$, $b = 1$, oversampling factor $k = 1.5$, and weight cap $r_{\\max} = 3$`\n- **Optional fix for classifier**: Add to L28: \"using the same LightGBM classifier as binary-ours\" or note this in the comparison paragraph (L92)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-binary-ours-consistency.md"
+}

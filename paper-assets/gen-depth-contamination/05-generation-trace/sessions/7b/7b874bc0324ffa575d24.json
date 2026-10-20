@@ -1,0 +1,1743 @@
+{
+  "schema_version": "1.0",
+  "id": "7b874bc0324ffa575d24",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "code exp 026 arxiv filtering",
+  "task_key": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_exp_026_arxiv_filtering_20260518T102036.jsonl",
+    "occurrence": 1,
+    "bytes": 76439,
+    "sha256": "52d873449c541180cc6bf5d4aba2cf910154e58d1420e667f8ca69544331a887"
+  },
+  "statistics": {
+    "messages": 85,
+    "user_turns": 0,
+    "tool_calls": 42,
+    "roles": {
+      "tool_call": 42,
+      "tool_result": 42,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T10:27:35.383724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T10:27:35.384100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T10:27:35.384273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/gen-depth-contamination/ -maxdepth 3 \\( -name \"*exp024*\" -o -name \"*exp_024*\" -o -name \"*arxiv*depth*\" \\) 2>/dev/null | head -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T10:27:35.384420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/scripts/exp024_arxiv_domain.sh\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp024_bootstrap_ci.py\\\\n/root/autodl-tmp/gen-depth-contamination/logs/exp_024_arxiv.log\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv\\\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp024_bootstrap_ci.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T10:27:35.384550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/scripts/exp025* /root/autodl-tmp/gen-depth-contamination/scripts/exp006* 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T10:27:35.384681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'ls /root/autodl-tmp/gen-depth-contamination/scripts/exp025* /root/autodl-tmp/gen-depth-contamination/scripts/exp006* 2>/dev/null'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp025_bootstrap_ci.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp025_pythia_filtering.py\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T10:27:35.384824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp -maxdepth 3 -type d -name \"*Qwen2*1.5B*\" 2>/dev/null; find /root/autodl-tmp/.hf_cache -maxdepth 4 -type d -name \"*Qwen*1.5*\" 2>/dev/null; find /root/.cache/huggingface -maxdepth 5 -type d -name \"*Qwen*1.5*\" 2>/dev/null | head -10",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T10:27:35.384961+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/._____temp/Qwen/Qwen2.5-1.5B\\\\n/root/autodl-tmp/.hf_cache/._____temp/Qwen/Qwen2.5-1.5B-Instruct\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T10:27:35.385108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls -la /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/ && echo \"---\" && for d in /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_*/; do echo \"$d: $(ls $d | wc -l) files, $(wc -l < $(ls $d/*.jsonl 2>/dev/null | head -1) 2>/dev/null || echo 'N/A') lines\"; done",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T10:27:35.385246+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 17632\\\\ndrwxr-xr-x  2 root root     184 May 16 23:56 .\\\\ndrwxr-xr-x 26 root root    4096 May 18 10:44 ..\\\\n-rw-r--r--  1 root root 3152691 May 16 16:33 depth_0.jsonl\\\\n-rw-r--r--  1 root root 2051563 May 16 23:13 depth_1.jsonl\\\\n-rw-r--r--  1 root root 2257432 May 16 23:22 depth_2.jsonl\\\\n-rw-r--r--  1 root root 2313793 May 16 23:30 depth_3.jsonl\\\\n-rw-r--r--  1 root root 2293361 May 16 23:39 depth_4.jsonl\\\\n-rw-r--r--  1 root root 2221271 May 16 23:48 depth_5.jsonl\\\\n-rw-r--r--  1 root root 3749155 May 16 23:56 features.csv\\\\n---\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_*/: 0 files, N/A lines\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_*/': No such file or directory\\\\nbash: line 1: $(ls $d/*.jsonl 2>/dev/null | head -1): ambiguous redirect\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T10:27:35.385371+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/exp025_pythia_filtering.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T10:27:35.385644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-025: Pythia-1.4B filtering validation experiment.\\\\n\\\\nReplicates exp-006 (Qwen-1.5B) K*-aware filtering on Pythia-1.4B to verify\\\\ncross-model consistency. Three strategies: no_filter, binary_ours (K*=2),\\\\ngraduated_a09 (weight=0.9^depth).\\\\n\\\\nUsage:\\\\n    python scripts/exp025_pythia_filtering.py --strategy binary_ours --seed 42 --device cuda:0\\\\n    python scripts/exp025_pythia_filtering.py --strategy no_filter --seed 42 --dry_run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nos.environ.setdefault(\\\\\\\"HF_ENDPOINT\\\\\\\", \\\\\\\"https://hf-mirror.com\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"HF_DATASETS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%H:%M:%S\\\\\\\",\\\\n    handlers=[logging.StreamHandler(sys.stdout)],\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Config\\\\n# ---------------------------------------------------------------------------\\\\nPROJECT_ROOT = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination\\\\\\\")\\\\nPYTHIA_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79\\\\\\\"\\\\nDATA_DIR = PROJECT_ROOT / \\\\\\\"data_exp020_pythia_nuc09\\\\\\\"\\\\n\\\\nKSTAR = 2\\\\nGRADUATED_ALPHA = 0.9\\\\nMAX_DEPTH = 5\\\\n\\\\nLORA_RANK = 8\\\\nLORA_ALPHA = 16\\\\nLORA_TARGET_MODULES = [\\\\\\\"query_key_value\\\\\\\"]\\\\nLORA_DROPOUT = 0.05\\\\n\\\\nTRAIN_LR = 2e-4\\\\nTRAIN_BATCH_SIZE = 4\\\\nGRADIENT_ACCUMULATION = 4\\\\nTRAIN_EPOCHS = 1\\\\nMAX_LENGTH = 256\\\\n\\\\n\\\\n# ----------------------------------------------------\n…[truncated 7263 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T10:27:35.385863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "head -2 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl | python3 -c \"import sys,json; [print(list(json.loads(l).keys())) for l in sys.stdin]\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T10:27:35.386011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"['text', 'doc_id']\\\\n['text', 'doc_id']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T10:27:35.386135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_*.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T10:27:35.386253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "sed -n '80,160p' /root/autodl-tmp/gen-depth-contamination/scripts/exp025_pythia_filtering.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T10:27:35.386377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_1.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_2.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_3.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_4.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_5.jsonl\\\\n   13200 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T10:27:35.386541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def prepare_data(strategy, seed):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load depth chain data with filtering strategy applied.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rng = np.random.RandomState(seed)\\\\n\\\\n    all_texts = []\\\\n    all_weights = []\\\\n\\\\n    if strategy == \\\\\\\"no_filter\\\\\\\":\\\\n        for d in range(MAX_DEPTH + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([1.0] * len(records))\\\\n\\\\n    elif strategy == \\\\\\\"binary_ours\\\\\\\":\\\\n        for d in range(KSTAR + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([1.0] * len(records))\\\\n\\\\n    elif strategy == \\\\\\\"graduated_a09\\\\\\\":\\\\n        for d in range(MAX_DEPTH + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            w = GRADUATED_ALPHA ** d\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([w] * len(records))\\\\n\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown strategy: {strategy}\\\\\\\")\\\\n\\\\n    indices = list(range(len(all_texts)))\\\\n    rng.shuffle(indices)\\\\n    all_texts = [all_texts[i] for i in indices]\\\\n    all_weights = [all_weights[i] for i in indices]\\\\n\\\\n    log.info(f\\\\\\\"Data: strategy={strategy}, n={len(all_texts)}, \\\\\\\"\\\\n             f\\\\\\\"mean_weight={np.mean(all_weights):.4f}\\\\\\\")\\\\n    return all_texts, all_weights\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Phase 2: LoRA Continued Pretraining\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef continued_pretrain_lora(texts, weights, output_dir, device, seed):\\\\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\\\\n    from peft import LoraConfig, get_peft_model, TaskT\n…[truncated 1679 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T10:27:35.386705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "sed -n '160,220p' /root/autodl-tmp/gen-depth-contamination/scripts/exp025_pythia_filtering.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T10:27:35.386885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            if weights is not None and weights.numel() > 0:\\\\n                loss = loss * weights.mean()\\\\n            return (loss, outputs) if return_outputs else loss\\\\n\\\\n    log.info(f\\\\\\\"Tokenizing {len(texts)} texts...\\\\\\\")\\\\n    dataset = WeightedTextDataset(texts, weights, tokenizer, MAX_LENGTH)\\\\n\\\\n    log.info(\\\\\\\"Loading Pythia-1.4B...\\\\\\\")\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        PYTHIA_PATH, torch_dtype=torch.float16\\\\n    ).to(device)\\\\n\\\\n    lora_config = LoraConfig(\\\\n        task_type=TaskType.CAUSAL_LM,\\\\n        r=LORA_RANK,\\\\n        lora_alpha=LORA_ALPHA,\\\\n        target_modules=LORA_TARGET_MODULES,\\\\n        lora_dropout=LORA_DROPOUT,\\\\n        bias=\\\\\\\"none\\\\\\\",\\\\n    )\\\\n    model = get_peft_model(model, lora_config)\\\\n    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)\\\\n    total = sum(p.numel() for p in model.parameters())\\\\n    log.info(f\\\\\\\"LoRA: {trainable:,} trainable / {total:,} total \\\\\\\"\\\\n             f\\\\\\\"({trainable/total*100:.2f}%)\\\\\\\")\\\\n\\\\n    training_args = TrainingArguments(\\\\n        output_dir=str(output_dir),\\\\n        num_train_epochs=TRAIN_EPOCHS,\\\\n        per_device_train_batch_size=TRAIN_BATCH_SIZE,\\\\n        gradient_accumulation_steps=GRADIENT_ACCUMULATION,\\\\n        learning_rate=TRAIN_LR,\\\\n        warmup_ratio=0.05,\\\\n        weight_decay=0.01,\\\\n        logging_steps=50,\\\\n        save_strategy=\\\\\\\"no\\\\\\\",\\\\n        fp16=True,\\\\n        dataloader_pin_memory=False,\\\\n        seed=seed,\\\\n        report_to=\\\\\\\"none\\\\\\\",\\\\n        remove_unused_columns=False,\\\\n    )\\\\n\\\\n    trainer = WeightedTrainer(\\\\n        model=model,\\\\n        args=training_args,\\\\n        train_dataset=dataset,\\\\n    )\\\\n\\\\n    log.info(f\\\\\\\"Training: {len(dataset)} samples, bs={TRAIN_BATCH_SIZE}x{GRADIENT_ACCUMULATION}, \\\\\\\"\\\\n             f\\\\\\\"lr={TRAIN_LR}, device={device}\\\\\\\")\\\\n    trainer.train()\\\\n\\\\n    merged_dir = outpu\n…[truncated 441 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T10:27:35.387071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T10:27:35.387205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 24564 MiB, 0 %\\\\n1, 0 MiB, 24564 MiB, 0 %\\\\n2, 0 MiB, 24564 MiB, 0 %\\\\n3, 0 MiB, 24564 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T10:27:35.387425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/exp026_arxiv_filtering.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"exp-026: arXiv Graduated vs Binary Filtering on Qwen2.5-1.5B.\n\nThree strategies: no_filter (all depths), binary (depth 0-1 only),\ngraduated_a09 (weight=0.9^depth). LoRA rank=4, alpha=8.\n\nUsage:\n    python scripts/exp026_arxiv_filtering.py --strategy no_filter --seed 42 --device cuda:0\n    python scripts/exp026_arxiv_filtering.py --strategy graduated_a09 --seed 42 --dry_run\n\"\"\"\n\nimport argparse\nimport gc\nimport json\nimport logging\nimport os\nos.environ.setdefault(\"HF_ENDPOINT\", \"https://hf-mirror.com\")\nos.environ.setdefault(\"HF_DATASETS_OFFLINE\", \"1\")\nos.environ.setdefault(\"HF_HUB_OFFLINE\", \"1\")\nos.environ.setdefault(\"TRANSFORMERS_OFFLINE\", \"1\")\nimport sys\nimport time\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    datefmt=\"%H:%M:%S\",\n    handlers=[logging.StreamHandler(sys.stdout)],\n)\nlog = logging.getLogger(__name__)\n\n# ---------------------------------------------------------------------------\n# Config\n# ---------------------------------------------------------------------------\nPROJECT_ROOT = Path(\"/root/autodl-tmp/gen-depth-contamination\")\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/._____temp/Qwen/Qwen2.5-1.5B\"\nDATA_DIR = PROJECT_ROOT / \"data\" / \"exp_024_arxiv\"\n\nBINARY_MAX_DEPTH = 1  # binary keeps depth 0-1 only (Director: remove depth>=2)\nGRADUATED_ALPHA = 0.9\nMAX_DEPTH = 5\n\nLORA_RANK = 4\nLORA_ALPHA = 8\nLORA_TARGET_MODULES = [\"q_proj\", \"v_proj\"]\nLORA_DROPOUT = 0.05\n\nTRAIN_LR = 2e-4\nTRAIN_BATCH_SIZE = 4\nGRADIENT_ACCUMULATION = 4\nTRAIN_EPOCHS = 1\nMAX_LENGTH = 256\n\n\n# ---------------------------------------------------------------------------\n# Utilities\n# ---------------------------------------------------------------------------\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\n\ndef set_seed(seed):\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    if torch.cuda.is_available():\n        torch.cuda.manual_seed_all(seed)\n\n\n# ---------------------------------------------------------------------------\n# Phase 1: Data Preparation\n# ---------------------------------------------------------------------------\n\ndef prepare_data(strategy, seed):\n    rng = np.random.RandomState(seed)\n\n    all_texts = []\n    all_weights = []\n\n    if strategy == \"no_filter\":\n        for d in range(MAX_DEPTH + 1):\n            records = load_jsonl(DATA_DIR / f\"depth_{d}.jsonl\")\n            all_texts.extend(r[\"text\"] for r in records)\n            all_weights.extend([1.0] * len(records))\n\n    elif strategy == \"binary\":\n        for d in range(BINARY_MAX_DEPTH + 1):\n            records = load_jsonl(DATA_DIR / f\"depth_{d}.jsonl\")\n            all_texts.extend(r[\"text\"] for r in records)\n            all_weights.extend([1.0] * len(records))\n\n    elif strategy == \"graduated_a09\":\n        for d in range(MAX_DEPTH + 1):\n            records = load_jsonl(DATA_DIR / f\"depth_{d}.jsonl\")\n            w = GRADUATED_ALPHA ** d\n            all_texts.extend(r[\"text\"] for r in records)\n            all_weights.extend([w] * len(records))\n\n    else:\n        raise ValueError(f\"Unknown strategy: {strategy}\")\n\n    indices = list(range(len(all_texts)))\n    rng.shuffle(indices)\n    all_texts = [all_texts[i] for i in indices]\n    all_weights = [all_weights[i] for i in indices]\n\n    log.info(f\"Data: strategy={strategy}, n={len(all_texts)}, \"\n             f\"mean_weight={np.mean(all_weights):.4f}\")\n    return all_texts, all_weights\n\n\n# ---------------------------------------------------------------------------\n# Phase 2: LoRA Continued Pretraining\n# ---------------------------------------------------------------------------\n\ndef continued_pretrain_lora(texts, weights, output_dir, device, seed):\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\n    from peft import LoraConfig, get_peft_model, TaskType\n    from torch.utils.data import Dataset\n\n    set_seed(seed)\n\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    class WeightedTextDataset(Dataset):\n        def __init__(self, texts, weights, tokenizer, max_length):\n            self.encodings = []\n            self.weights = []\n            for text, w in zip(texts, weights):\n                enc = tokenizer(text, truncation=True, max_length=max_length,\n                                padding=\"max_length\", return_tensors=\"pt\")\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\n                self.weights.append(w)\n\n        def __len__(self):\n            return len(self.encodings)\n\n        def __getitem__(self, idx):\n            item = {k: v.clone() for k, v in self.encodings[idx].items()}\n            item[\"labels\"] = item[\"input_ids\"].clone()\n            item[\"labels\"][item[\"attention_mask\"] == 0] = -100\n            item[\"weight\"] = torch.tensor(self.weights[idx], dtype=torch.float32)\n            return item\n\n    class WeightedTrainer(Trainer):\n        def compute_loss(self, model, inputs, return_outputs=False, **kwargs):\n            weights = inputs.pop(\"weight\", None)\n            outputs = model(**inputs)\n            loss = outputs.loss\n            if weights is not None and weights.numel() > 0:\n                loss = loss * weights.mean()\n            return (loss, outputs) if return_outputs else loss\n\n    log.info(f\"Tokenizing {len(texts)} texts...\")\n    dataset = WeightedTextDataset(texts, weights, tokenizer, MAX_LENGTH)\n\n    log.info(f\"Loading Qwen2.5-1.5B...\")\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.float16\n    ).to(device)\n\n    lora_config = LoraConfig(\n        task_type=TaskType.CAUSAL_LM,\n        r=LORA_RANK,\n        lora_alpha=LORA_ALPHA,\n        target_modules=LORA_TARGET_MODULES,\n        lora_dropout=LORA_DROPOUT,\n        bias=\"none\",\n    )\n    model = get_peft_model(model, lora_config)\n    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)\n    total = sum(p.numel() for p in model.parameters())\n    log.info(f\"LoRA: {trainable:,} trainable / {total:,} total \"\n             f\"({trainable/total*100:.2f}%)\")\n\n    training_args = TrainingArguments(\n        output_dir=str(output_dir),\n        num_train_epochs=TRAIN_EPOCHS,\n        per_device_train_batch_size=TRAIN_BATCH_SIZE,\n        gradient_accumulation_steps=GRADIENT_ACCUMULATION,\n        learning_rate=TRAIN_LR,\n        warmup_ratio=0.05,\n        weight_decay=0.01,\n        logging_steps=50,\n        save_strategy=\"no\",\n        fp16=True,\n        dataloader_pin_memory=False,\n        seed=seed,\n        report_to=\"none\",\n        remove_unused_columns=False,\n    )\n\n    trainer = WeightedTrainer(\n        model=model,\n        args=training_args,\n        train_dataset=dataset,\n    )\n\n    log.info(f\"Training: {len(dataset)} samples, bs={TRAIN_BATCH_SIZE}x{GRADIENT_ACCUMULATION}, \"\n             f\"lr={TRAIN_LR}, device={device}\")\n    trainer.train()\n\n    merged_dir = output_dir / \"merged\"\n    log.info(\"Merging LoRA weights into base model...\")\n    merged_model = model.merge_and_unload()\n    merged_model.save_pretrained(merged_dir)\n    tokenizer.save_pretrained(merged_dir)\n    log.info(f\"Merged model saved to {merged_dir}\")\n\n    del model, merged_model, trainer, dataset\n    torch.cuda.empty_cache()\n    gc.collect()\n\n    return merged_dir\n\n\n# ---------------------------------------------------------------------------\n# Phase 3: Evaluation\n# ---------------------------------------------------------------------------\n\ndef evaluate_model(model_path, device, results_path):\n    import lm_eval\n    from lm_eval.models.huggingface import HFLM\n\n    log.info(f\"Evaluating {model_path} on {device}...\")\n\n    gpu_id = int(str(device).split(\":\")[-1]) if \":\" in str(device) else 0\n    lm = HFLM(\n        pretrained=str(model_path),\n        device=str(device),\n        batch_size=8,\n        dtype=\"float16\",\n    )\n\n    max_retries = 3\n    for attempt in range(max_retries):\n        try:\n            results = lm_eval.simple_evaluate(\n                model=lm,\n                tasks=[\"mmlu\", \"hellaswag\"],\n                batch_size=8,\n                device=str(device),\n            )\n            break\n        except (RuntimeError, ConnectionError, OSError) as e:\n            if attempt < max_retries - 1:\n                wait = 30 * (attempt + 1)\n                log.warning(f\"Eval attempt {attempt+1} failed: {e}. Retrying in {wait}s...\")\n                time.sleep(wait)\n            else:\n                raise\n\n    scores = {}\n    if \"mmlu\" in results[\"results\"]:\n        scores[\"mmlu\"] = results[\"results\"][\"mmlu\"].get(\n            \"acc,none\", results[\"results\"][\"mmlu\"].get(\"acc\", 0))\n    if \"hellaswag\" in results[\"results\"]:\n        scores[\"hellaswag\"] = results[\"results\"][\"hellaswag\"].get(\n            \"acc_norm,none\", results[\"results\"][\"hellaswag\"].get(\"acc_norm\", 0))\n\n    results_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(results_path, \"w\") as f:\n        json.dump(\n            {\"scores\": scores,\n             \"full\": {k: v for k, v in results[\"results\"].items()}},\n            f, indent=2, default=str)\n\n    log.info(f\"MMLU={scores.get('mmlu', 'N/A'):.4f}, \"\n             f\"HellaSwag={scores.get('hellaswag', 'N/A'):.4f}\")\n\n    del lm\n    torch.cuda.empty_cache()\n    gc.collect()\n\n    return scores\n\n\n# ---------------------------------------------------------------------------\n# Main\n# ---------------------------------------------------------------------------\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"exp-026: arXiv Graduated vs Binary Filtering\")\n    parser.add_argument(\"--strategy\", type=str, required=True,\n                        choices=[\"no_filter\", \"binary\", \"graduated_a09\"])\n    parser.add_argument(\"--seed\", type=int, required=True)\n    parser.add_argument(\"--device\", type=str, default=\"cuda:0\")\n    parser.add_argument(\"--dry_run\", action=\"store_true\")\n    parser.add_argument(\"--skip_eval\", action=\"store_true\")\n    args = parser.parse_args()\n\n    results_base = PROJECT_ROOT / \"results\" / \"exp_026_arxiv_filtering\"\n    output_dir = results_base / f\"{args.strategy}_seed{args.seed}\"\n    eval_path = output_dir / \"eval_results.json\"\n\n    if eval_path.exists():\n        log.info(f\"Already completed: {eval_path}\")\n        return\n\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    log_path = PROJECT_ROOT / \"logs\" / \"exp026\" / f\"{args.strategy}_seed{args.seed}.log\"\n    log_path.parent.mkdir(parents=True, exist_ok=True)\n    fh = logging.FileHandler(log_path)\n    fh.setFormatter(logging.Formatter(\"%(asctime)s [%(levelname)s] %(message)s\", datefmt=\"%H:%M:%S\"))\n    logging.getLogger().addHandler(fh)\n\n    log.info(\"=\" * 60)\n    log.info(f\"exp-026: arXiv Graduated vs Binary Filtering\")\n    log.info(f\"Strategy: {args.strategy}, Seed: {args.seed}, Device: {args.device}\")\n    log.info(f\"Model: {MODEL_PATH}\")\n    log.info(f\"Data: {DATA_DIR}\")\n    log.info(f\"LoRA: rank={LORA_RANK}, alpha={LORA_ALPHA}, target={LORA_TARGET_MODULES}\")\n    log.info(f\"Binary keeps depth 0-{BINARY_MAX_DEPTH}, graduated alpha={GRADUATED_ALPHA}\")\n    log.info(\"=\" * 60)\n\n    texts, weights = prepare_data(args.strategy, args.seed)\n\n    if args.dry_run:\n        log.info(f\"DRY RUN complete: {len(texts)} texts, \"\n                 f\"mean_weight={np.mean(weights):.4f}\")\n        return\n\n    train_dir = output_dir / \"train\"\n    model_dir = continued_pretrain_lora(texts, weights, train_dir, args.device, args.seed)\n\n    if not args.skip_eval:\n        scores = evaluate_model(model_dir, args.device, eval_path)\n    else:\n        log.info(\"Skipping eval (--skip_eval)\")\n        scores = {\"mmlu\": 0, \"hellaswag\": 0}\n        with open(eval_path, \"w\") as f:\n            json.dump({\"scores\": scores}, f)\n\n    import shutil\n    if model_dir.exists():\n        shutil.rmtree(model_dir, ignore_errors=True)\n        if train_dir.exists():\n            shutil.rmtree(train_dir, ignore_errors=True)\n        log.info(f\"Cleaned up training artifacts\")\n\n    log.info(f\"Done: {args.strategy} seed={args.seed} \"\n             f\"MMLU={scores.get('mmlu', 'N/A')} \"\n             f\"HellaSwag={scores.get('hellaswag', 'N/A')}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"exp026 python script created\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T10:27:35.387672+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp026 python script created\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T10:27:35.387846+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/run_exp026.sh << 'SHEOF'\n#!/bin/bash\n# exp-026: arXiv Graduated vs Binary Filtering\n# 3 strategies on 3 GPUs (cuda:0-2), 5 seeds each\n# cuda:3 reserved for exp_027\n\nset -e\ncd /root/autodl-tmp/gen-depth-contamination\nsource /root/miniconda3/bin/activate\n\nSEEDS=\"42 123 456 789 1024\"\nSCRIPT=\"scripts/exp026_arxiv_filtering.py\"\n\nrun_strategy() {\n    local strategy=$1\n    local device=$2\n    echo \"[$(date '+%H:%M:%S')] Starting strategy=$strategy on $device\"\n    for seed in $SEEDS; do\n        echo \"[$(date '+%H:%M:%S')] Running $strategy seed=$seed on $device\"\n        python $SCRIPT --strategy $strategy --seed $seed --device $device\n    done\n    echo \"[$(date '+%H:%M:%S')] Finished strategy=$strategy on $device\"\n}\n\nrun_strategy no_filter cuda:0 &\nPID_NO_FILTER=$!\n\nrun_strategy binary cuda:1 &\nPID_BINARY=$!\n\nrun_strategy graduated_a09 cuda:2 &\nPID_GRADUATED=$!\n\necho \"Launched 3 strategies:\"\necho \"  no_filter   on cuda:0  PID=$PID_NO_FILTER\"\necho \"  binary      on cuda:1  PID=$PID_BINARY\"\necho \"  graduated   on cuda:2  PID=$PID_GRADUATED\"\n\nwait $PID_NO_FILTER\nSTATUS_NF=$?\necho \"[$(date '+%H:%M:%S')] no_filter exited with $STATUS_NF\"\n\nwait $PID_BINARY\nSTATUS_BIN=$?\necho \"[$(date '+%H:%M:%S')] binary exited with $STATUS_BIN\"\n\nwait $PID_GRADUATED\nSTATUS_GRAD=$?\necho \"[$(date '+%H:%M:%S')] graduated_a09 exited with $STATUS_GRAD\"\n\necho \"All done. Exit codes: no_filter=$STATUS_NF binary=$STATUS_BIN graduated=$STATUS_GRAD\"\nSHEOF\nchmod +x /root/autodl-tmp/gen-depth-contamination/scripts/run_exp026.sh\necho \"run script created\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T10:27:35.388002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"run script created\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T10:27:35.388141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && python scripts/exp026_arxiv_filtering.py --strategy no_filter --seed 42 --device cuda:0 --dry_run 2>&1 && echo \"---\" && python scripts/exp026_arxiv_filtering.py --strategy binary --seed 42 --device cuda:1 --dry_run 2>&1 && echo \"---\" && python scripts/exp026_arxiv_filtering.py --strategy graduated_a09 --seed 42 --device cuda:2 --dry_run 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T10:27:35.388289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"18:22:38 [INFO] ============================================================\\\\n18:22:38 [INFO] exp-026: arXiv Graduated vs Binary Filtering\\\\n18:22:38 [INFO] Strategy: no_filter, Seed: 42, Device: cuda:0\\\\n18:22:38 [INFO] Model: /root/autodl-tmp/.hf_cache/._____temp/Qwen/Qwen2.5-1.5B\\\\n18:22:38 [INFO] Data: /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\\n18:22:38 [INFO] LoRA: rank=4, alpha=8, target=['q_proj', 'v_proj']\\\\n18:22:38 [INFO] Binary keeps depth 0-1, graduated alpha=0.9\\\\n18:22:38 [INFO] ============================================================\\\\n18:22:38 [INFO] Data: strategy=no_filter, n=13200, mean_weight=1.0000\\\\n18:22:38 [INFO] DRY RUN complete: 13200 texts, mean_weight=1.0000\\\\n---\\\\n18:22:40 [INFO] ============================================================\\\\n18:22:40 [INFO] exp-026: arXiv Graduated vs Binary Filtering\\\\n18:22:40 [INFO] Strategy: binary, Seed: 42, Device: cuda:1\\\\n18:22:40 [INFO] Model: /root/autodl-tmp/.hf_cache/._____temp/Qwen/Qwen2.5-1.5B\\\\n18:22:40 [INFO] Data: /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\\n18:22:40 [INFO] LoRA: rank=4, alpha=8, target=['q_proj', 'v_proj']\\\\n18:22:40 [INFO] Binary keeps depth 0-1, graduated alpha=0.9\\\\n18:22:40 [INFO] ============================================================\\\\n18:22:40 [INFO] Data: strategy=binary, n=4400, mean_weight=1.0000\\\\n18:22:40 [INFO] DRY RUN complete: 4400 texts, mean_weight=1.0000\\\\n---\\\\n18:22:42 [INFO] ============================================================\\\\n18:22:42 [INFO] exp-026: arXiv Graduated vs Binary Filtering\\\\n18:22:42 [INFO] Strategy: graduated_a09, Seed: 42, Device: cuda:2\\\\n18:22:42 [INFO] Model: /root/autodl-tmp/.hf_cache/._____temp/Qwen/Qwen2.5-1.5B\\\\n18:22:42 [INFO] Data: /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\\n18:22:42 [INFO] LoRA: rank=4, alpha=8, target=['q_proj', 'v_proj']\\\\n18:22:42 [INFO] Binary keeps depth 0-1, graduated alph\n…[truncated 335 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T10:27:35.388453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T10:27:35.388576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T10:27:35.388715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && mkdir -p logs/exp026 && nohup bash scripts/run_exp026.sh > logs/exp_026_arxiv_filtering.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T10:27:35.388866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=26585\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T10:27:35.388986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "sleep 5 && ps aux | grep exp026 | grep -v grep && echo \"---\" && tail -20 /root/autodl-tmp/gen-depth-contamination/logs/exp_026_arxiv_filtering.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T10:27:35.389110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'sleep 5 && ps aux | grep exp026 | grep -v grep && echo \\\\\\\"---\\\\\\\" && tail -20 /root/autodl-tmp/gen-depth-contamination/logs/exp_026_arxiv_filtering.log'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T10:27:35.389254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/logs/exp_026_arxiv_filtering.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-18T10:27:35.389464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Launched 3 strategies:\\\\n  no_filter   on cuda:0  PID=26594\\\\n  binary      on cuda:1  PID=26595\\\\n  graduated   on cuda:2  PID=26596\\\\n[18:23:02] Starting strategy=binary on cuda:1\\\\n[18:23:02] Starting strategy=no_filter on cuda:0\\\\n[18:23:02] Starting strategy=graduated_a09 on cuda:2\\\\n[18:23:02] Running binary seed=42 on cuda:1\\\\n[18:23:02] Running no_filter seed=42 on cuda:0\\\\n[18:23:02] Running graduated_a09 seed=42 on cuda:2\\\\n18:23:04 [INFO] ============================================================\\\\n18:23:04 [INFO] exp-026: arXiv Graduated vs Binary Filtering\\\\n18:23:04 [INFO] Strategy: no_filter, Seed: 42, Device: cuda:0\\\\n18:23:04 [INFO] Model: /root/autodl-tmp/.hf_cache/._____temp/Qwen/Qwen2.5-1.5B\\\\n18:23:04 [INFO] Data: /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\\n18:23:04 [INFO] LoRA: rank=4, alpha=8, target=['q_proj', 'v_proj']\\\\n18:23:04 [INFO] Binary keeps depth 0-1, graduated alpha=0.9\\\\n18:23:04 [INFO] ============================================================\\\\n18:23:04 [INFO] Data: strategy=no_filter, n=13200, mean_weight=1.0000\\\\n18:23:04 [INFO] ============================================================\\\\n18:23:04 [INFO] exp-026: arXiv Graduated vs Binary Filtering\\\\n18:23:04 [INFO] Strategy: binary, Seed: 42, Device: cuda:1\\\\n18:23:04 [INFO] Model: /root/autodl-tmp/.hf_cache/._____temp/Qwen/Qwen2.5-1.5B\\\\n18:23:04 [INFO] Data: /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\\n18:23:04 [INFO] LoRA: rank=4, alpha=8, target=['q_proj', 'v_proj']\\\\n18:23:04 [INFO] Binary keeps depth 0-1, graduated alpha=0.9\\\\n18:23:04 [INFO] ============================================================\\\\n18:23:04 [INFO] Data: strategy=binary, n=4400, mean_weight=1.0000\\\\n18:23:04 [INFO] ============================================================\\\\n18:23:04 [INFO] exp-026: arXiv Graduated vs Binary Filtering\\\\n18:23:04 [INFO] Strategy: graduated_a09, Seed: 42, Device: cuda:2\n…[truncated 6535 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-18T10:27:35.389650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "source /root/miniconda3/bin/activate && pip install tiktoken 2>&1 | tail -5",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-18T10:27:35.389855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/.hf_cache/._____temp/Qwen/Qwen2.5-1.5B/",
+              "account": "root"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-18T10:27:35.390009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Requirement already satisfied: urllib3<3,>=1.26 in ./miniconda3/lib/python3.12/site-packages (from requests->tiktoken) (2.1.0)\\\\nRequirement already satisfied: certifi>=2023.5.7 in ./miniconda3/lib/python3.12/site-packages (from requests->tiktoken) (2024.2.2)\\\\nInstalling collected packages: tiktoken\\\\nSuccessfully installed tiktoken-0.13.0\\\\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-18T10:27:35.390135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-18T10:27:35.390280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/.hf_cache -maxdepth 5 -name \"config.json\" 2>/dev/null | xargs grep -l \"Qwen2\" 2>/dev/null | head -5",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-18T10:27:35.390408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B/config.json\\\\n/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B-Instruct/config.json\\\\n/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B/config.json\\\\n/root/autodl-tmp/.hf_cache/Qwen2.5-14B-Instruct-AWQ/config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-18T10:27:35.390536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp -maxdepth 5 -name \"config.json\" -path \"*Qwen*1.5*\" 2>/dev/null | head -5",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-18T10:27:35.390659+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-18T10:27:35.390813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B/ | head -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-18T10:27:35.390964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LICENSE\\\\nREADME.md\\\\nconfig.json\\\\nconfiguration.json\\\\ngeneration_config.json\\\\nmerges.txt\\\\nmodel.safetensors\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-18T10:27:35.391086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "sed -i 's|MODEL_PATH = \"/root/autodl-tmp/.hf_cache/._____temp/Qwen/Qwen2.5-1.5B\"|MODEL_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"|' /root/autodl-tmp/gen-depth-contamination/scripts/exp026_arxiv_filtering.py && grep \"MODEL_PATH\" /root/autodl-tmp/gen-depth-contamination/scripts/exp026_arxiv_filtering.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-18T10:27:35.391213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"MODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\\\\n        MODEL_PATH, torch_dtype=torch.float16\\\\n    log.info(f\\\\\\\"Model: {MODEL_PATH}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-18T10:27:35.391401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "rm -rf /root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/ /root/autodl-tmp/gen-depth-contamination/logs/exp026/ && cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && python scripts/exp026_arxiv_filtering.py --strategy no_filter --seed 42 --device cuda:0 --dry_run 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-18T10:27:35.391573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"18:23:58 [INFO] ============================================================\\\\n18:23:58 [INFO] exp-026: arXiv Graduated vs Binary Filtering\\\\n18:23:58 [INFO] Strategy: no_filter, Seed: 42, Device: cuda:0\\\\n18:23:58 [INFO] Model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\n18:23:58 [INFO] Data: /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\\n18:23:58 [INFO] LoRA: rank=4, alpha=8, target=['q_proj', 'v_proj']\\\\n18:23:58 [INFO] Binary keeps depth 0-1, graduated alpha=0.9\\\\n18:23:58 [INFO] ============================================================\\\\n18:23:58 [INFO] Data: strategy=no_filter, n=13200, mean_weight=1.0000\\\\n18:23:58 [INFO] DRY RUN complete: 13200 texts, mean_weight=1.0000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-18T10:27:35.391722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && nohup bash scripts/run_exp026.sh > logs/exp_026_arxiv_filtering.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-18T10:27:35.391896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && nohup bash scripts/run_exp026.sh > logs/exp_026_arxiv_filtering.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=27516\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-18T10:27:35.392050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ps aux | grep exp026 | grep -v grep && echo \"---\" && nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader && echo \"---\" && tail -15 /root/autodl-tmp/gen-depth-contamination/logs/exp_026_arxiv_filtering.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-18T10:27:35.392224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root      27516  0.0  0.0   4364  2052 ?        S    18:24   0:00 bash -c cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && nohup bash scripts/run_exp026.sh > logs/exp_026_arxiv_filtering.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot      27521  0.0  0.0   4364  3144 ?        S    18:24   0:00 bash scripts/run_exp026.sh\\\\nroot      27524  0.0  0.0   4364  2016 ?        S    18:24   0:00 bash scripts/run_exp026.sh\\\\nroot      27525  0.0  0.0   4364  2016 ?        S    18:24   0:00 bash scripts/run_exp026.sh\\\\nroot      27526  0.0  0.0   4364  2012 ?        S    18:24   0:00 bash scripts/run_exp026.sh\\\\nroot      27533  571  0.3 61903992 4122432 ?    Rl   18:24   3:42 python scripts/exp026_arxiv_filtering.py --strategy no_filter --seed 42 --device cuda:0\\\\nroot      27534  789  0.1 63350964 1457576 ?    Rl   18:24   5:07 python scripts/exp026_arxiv_filtering.py --strategy binary --seed 42 --device cuda:1\\\\nroot      27535  709  0.3 61900864 4118712 ?    Rl   18:24   4:36 python scripts/exp026_arxiv_filtering.py --strategy graduated_a09 --seed 42 --device cuda:2\\\\n---\\\\n0, 3 MiB, 0 %\\\\n1, 3491 MiB, 0 %\\\\n2, 3 MiB, 0 %\\\\n3, 5161 MiB, 0 %\\\\n---\\\\n18:24:09 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\\\n18:24:10 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\\\n18:24:10 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\\\n18:24:11 [INFO] Tokenizing 13200 texts...\\\\n18:24:11 [INFO] Tokenizing 13200 texts...\\\\n18:24:11 [INFO] Tokenizing 4400 texts...\\\\n18:24:14 [INFO] Loading Qwen2.5-1.5B...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/338 [00:00<?, ?it/s]\\\\rLoading weights:  \n…[truncated 1960 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-18T10:27:35.392393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-18T10:27:35.392515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-18T10:27:35.392634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_026_arxiv_filtering",
+              "field": "hypothesis",
+              "value": "Graduated depth weighting (α=0.9^d) on arXiv depth chains will outperform both no-filter and binary-cut baselines on downstream benchmarks (MMLU, HellaSwag), because it preserves useful signal from deeper generations while down-weighting accumulated contamination, rather than discarding data entirely.",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-18T10:27:35.392786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_026_arxiv_filtering\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T10:19:57.768Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:24:57.444Z\\\", \\\"hypothesis\\\": \\\"Graduated depth weighting (α=0.9^d) on arXiv depth chains will outperform both no-filter and binary-cut baselines on downstream benchmarks (MMLU, HellaSwag), because it preserves useful signal from deeper generations while down-weighting accumulated contamination, rather than discarding data entirely.\\\", \\\"parent\\\": \\\"exp_006_graduated_filtering\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4501}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-18T10:27:35.392925+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_026_arxiv_filtering",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "gen-depth-contamination",
+              "spec": "{'command': 'bash scripts/run_exp026.sh', 'server': 'cqa1-22115', 'data_path': '/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/', 'data_count': 13200, 'model_name': 'Qwen2.5-1.5B', 'seed': '42,123,456,789,1024', 'gpu': 'cuda:0,cuda:1,cuda:2', 'strategies': 'no_filter,binary,graduated_a09', 'lora_rank': 4, 'lora_alpha': 8, 'pid': 27516}"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-18T10:27:35.393060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2682}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-18T10:27:35.393196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_026_arxiv_filtering",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-18T10:27:35.393328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_026_arxiv_filtering\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T10:19:57.768Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:25:08.071Z\\\", \\\"hypothesis\\\": \\\"Graduated depth weighting (α=0.9^d) on arXiv depth chains will outperform both no-filter and binary-cut baselines on downstream benchmarks (MMLU, HellaSwag), because it preserves useful signal from deeper generations while down-weighting accumulated contamination, rather than discarding data entirely.\\\", \\\"parent\\\": \\\"exp_006_graduated_filtering\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0395}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-18T10:27:35.393455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_026_arxiv_filtering",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "gen-depth-contamination",
+              "spec": "{'command': 'bash scripts/run_exp026.sh', 'server': 'cqa1-22115', 'data_path': '/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/', 'data_count': 13200, 'model_name': 'Qwen2.5-1.5B', 'seed': '42,123,456,789,1024', 'gpu': 'cuda:0,cuda:1,cuda:2', 'strategies': 'no_filter,binary,graduated_a09', 'lora_rank': 4, 'lora_alpha': 8, 'pid': 27516}"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-18T10:27:35.393581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2768}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-18T10:27:35.393701+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_026_arxiv_filtering",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "gen-depth-contamination",
+              "spec": "{'command': 'bash scripts/run_exp026.sh', 'server': 'cqa1-22115', 'data_path': '/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/', 'data_count': 13200, 'model_name': 'Qwen2.5-1.5B', 'seed': '42,123,456,789,1024', 'gpu': 'cuda:0,cuda:1,cuda:2', 'strategies': 'no_filter,binary,graduated_a09', 'lora_rank': 4, 'lora_alpha': 8, 'pid': 27516, 'checkpoint_source': 'lora_merge_per_run', 'eval_data': 'mmlu,hellaswag (lm-eval-harness)'}"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-18T10:27:35.393879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_026_arxiv_filtering\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T10:19:57.768Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:25:18.135Z\\\", \\\"hypothesis\\\": \\\"Graduated depth weighting (α=0.9^d) on arXiv depth chains will outperform both no-filter and binary-cut baselines on downstream benchmarks (MMLU, HellaSwag), because it preserves useful signal from deeper generations while down-weighting accumulated contamination, rather than discarding data entirely.\\\", \\\"parent\\\": \\\"exp_006_graduated_filtering\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/run_exp026.sh\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\\\", \\\"data_count\\\": 13200, \\\"model_name\\\": \\\"Qwen2.5-1.5B\\\", \\\"seed\\\": \\\"42,123,456,789,1024\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1,cuda:2\\\", \\\"strategies\\\": \\\"no_filter,binary,graduated_a09\\\", \\\"lora_rank\\\": 4, \\\"lora_alpha\\\": 8, \\\"pid\\\": 27516, \\\"checkpoint_source\\\": \\\"lora_merge_per_run\\\", \\\"eval_data\\\": \\\"mmlu,hellaswag (lm-eval-harness)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0174}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-18T10:27:35.394036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader && echo \"===\" && tail -30 /root/autodl-tmp/gen-depth-contamination/logs/exp_026_arxiv_filtering.log 2>/dev/null | tail -15",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-18T10:27:35.394190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 11867 MiB, 100 %\\\\n1, 8457 MiB, 100 %\\\\n2, 8457 MiB, 100 %\\\\n3, 8457 MiB, 100 %\\\\n===\\\\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1773, in _wrapped_call_impl\\\\n    return self._call_impl(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1784, in _call_impl\\\\n    return forward_call(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/qwen2/modeling_qwen2.py\\\\\\\", line 260, in forward\\\\n    hidden_states = hidden_states.to(torch.float32)\\\\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 6.00 MiB is free. Process 27535 has 5.85 GiB memory in use. Including non-PyTorch memory, this process has 6.06 GiB memory in use. Process 27534 has 11.58 GiB memory in use. Of the allocated memory 5.40 GiB is allocated by PyTorch, and 148.99 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\\\n\\\\n\\\\r  4%|▍         | 3/69 [00:17<06:28,  5.89s/it]\\\\r  0%|          | 0/207 [00:07<?, ?it/s]\\\\n\\\\r  0%|          | 0/207 [00:07<?, ?it/s]\\\\n\\\\r  6%|▌         | 4/69 [00:22<05:53,  5.44s/it]\\\\r  7%|▋         | 5/69 [00:26<05:15,  4.93s/it]\\\\r  9%|▊         | 6/69 [00:30<04:51,  4.62s/it]\\\\r 10%|█         | 7/69 [00:35<04:54,  4.74s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-18T10:27:35.394362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "pkill -f \"exp026_arxiv_filtering\" 2>/dev/null; pkill -f \"run_exp026\" 2>/dev/null; sleep 2 && ps aux | grep exp026 | grep -v grep; echo \"killed\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-18T10:27:35.394497+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": -1}, \\\"error\\\": \\\"exit code -1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-18T10:27:35.394616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "kill $(pgrep -f \"exp026\") 2>/dev/null; kill $(pgrep -f \"run_exp026\") 2>/dev/null; sleep 3 && pgrep -f \"exp026\" || echo \"all killed\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-18T10:27:35.394738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": -1}, \\\"error\\\": \\\"exit code -1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-18T10:27:35.394873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ps aux | grep exp026 | grep -v grep",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-18T10:27:35.394993+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-18T10:27:35.395121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "rm -rf /root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/ /root/autodl-tmp/gen-depth-contamination/logs/exp026/",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-18T10:27:35.395255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-18T10:27:35.395413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/run_exp026.sh << 'SHEOF'\n#!/bin/bash\n# exp-026: arXiv Graduated vs Binary Filtering\n# 3 strategies on 3 GPUs (cuda:0-2), 5 seeds each\n# Uses CUDA_VISIBLE_DEVICES to isolate each process to a single GPU\n\nset -e\ncd /root/autodl-tmp/gen-depth-contamination\nsource /root/miniconda3/bin/activate\n\nSEEDS=\"42 123 456 789 1024\"\nSCRIPT=\"scripts/exp026_arxiv_filtering.py\"\n\nrun_strategy() {\n    local strategy=$1\n    local gpu_id=$2\n    echo \"[$(date '+%H:%M:%S')] Starting strategy=$strategy on GPU $gpu_id\"\n    for seed in $SEEDS; do\n        echo \"[$(date '+%H:%M:%S')] Running $strategy seed=$seed on GPU $gpu_id\"\n        CUDA_VISIBLE_DEVICES=$gpu_id python $SCRIPT --strategy $strategy --seed $seed --device cuda:0\n    done\n    echo \"[$(date '+%H:%M:%S')] Finished strategy=$strategy on GPU $gpu_id\"\n}\n\nrun_strategy no_filter 0 &\nPID_NO_FILTER=$!\n\nrun_strategy binary 1 &\nPID_BINARY=$!\n\nrun_strategy graduated_a09 2 &\nPID_GRADUATED=$!\n\necho \"Launched 3 strategies:\"\necho \"  no_filter     GPU 0  PID=$PID_NO_FILTER\"\necho \"  binary        GPU 1  PID=$PID_BINARY\"\necho \"  graduated_a09 GPU 2  PID=$PID_GRADUATED\"\n\nwait $PID_NO_FILTER\nSTATUS_NF=$?\necho \"[$(date '+%H:%M:%S')] no_filter exited with $STATUS_NF\"\n\nwait $PID_BINARY\nSTATUS_BIN=$?\necho \"[$(date '+%H:%M:%S')] binary exited with $STATUS_BIN\"\n\nwait $PID_GRADUATED\nSTATUS_GRAD=$?\necho \"[$(date '+%H:%M:%S')] graduated_a09 exited with $STATUS_GRAD\"\n\necho \"All done. Exit codes: no_filter=$STATUS_NF binary=$STATUS_BIN graduated=$STATUS_GRAD\"\nSHEOF\nchmod +x /root/autodl-tmp/gen-depth-contamination/scripts/run_exp026.sh\necho \"run script updated with CUDA_VISIBLE_DEVICES isolation\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-18T10:27:35.395560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"run script updated with CUDA_VISIBLE_DEVICES isolation\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-18T10:27:35.395693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && mkdir -p logs/exp026 && nohup bash scripts/run_exp026.sh > logs/exp_026_arxiv_filtering.log 2>&1 & echo \"PID=$!\" && sleep 1",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-18T10:27:35.395837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=31749\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-18T10:27:35.395972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "sleep 45 && nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader && echo \"===\" && tail -20 /root/autodl-tmp/gen-depth-contamination/logs/exp_026_arxiv_filtering.log 2>/dev/null",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-18T10:27:35.396098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'sleep 45 && nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader && echo \\\\\\\"===\\\\\\\" && tail -20 /root/autodl-tmp/gen-depth-contamination/logs/exp_026_arxiv_filtering.log 2>/dev/null'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-18T10:27:35.396215+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader && echo \"===\" && tail -25 /root/autodl-tmp/gen-depth-contamination/logs/exp_026_arxiv_filtering.log 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-18T10:27:35.396416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 8115 MiB, 83 %\\\\n1, 8115 MiB, 79 %\\\\n2, 8115 MiB, 79 %\\\\n3, 5741 MiB, 0 %\\\\n===\\\\n18:26:12 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\\\n18:26:13 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\\\n18:26:13 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\\\n18:26:14 [INFO] Tokenizing 13200 texts...\\\\n18:26:15 [INFO] Tokenizing 13200 texts...\\\\n18:26:15 [INFO] Tokenizing 4400 texts...\\\\n18:26:17 [INFO] Loading Qwen2.5-1.5B...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/338 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/338 [00:00<01:34,  3.56it/s]\\\\rLoading weights:  25%|██▌       | 85/338 [00:00<00:00, 282.00it/s]\\\\rLoading weights:  39%|███▉      | 133/338 [00:00<00:00, 273.47it/s]\\\\rLoading weights:  51%|█████     | 171/338 [00:00<00:00, 285.22it/s]\\\\rLoading weights:  61%|██████    | 207/338 [00:00<00:00, 299.43it/s]\\\\rLoading weights:  72%|███████▏  | 242/338 [00:00<00:00, 309.06it/s]\\\\rLoading weights:  86%|████████▌ | 291/338 [00:01<00:00, 311.96it/s]\\\\rLoading weights: 100%|█████████▉| 337/338 [00:01<00:00, 349.50it/s]\\\\rLoading weights: 100%|██████████| 338/338 [00:01<00:00, 292.40it/s]\\\\n18:26:22 [INFO] Loading Qwen2.5-1.5B...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/338 [00:00<?, ?it/s]\\\\rLoading weights:  19%|█▊        | 63/338 [00:00<00:00, 410.24it/s]\\\\rLoading weights:  33%|███▎      | 111/338 [00:00<00:00, 400.22it/s]\\\\rLoading weights:  45%|████▌     | 153/338 [00:00<00:00, 402.60it/s]\\\\rLoading weights:  57%|█████▋    | 194/338 [00:00<00:00, 388.13it/s]\\\\rLoading weights:  69%|██████▉   | 233/338 [00:\n…[truncated 6501 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-18T10:27:35.396605+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中：\n- **GPU 0/1/2**: 各 ~8115 MiB, ~80% 利用率，OOM 问题已解决\n- **GPU 3**: 5741 MiB (exp_027，未受影响)\n- **binary** (275 steps): ~35% 完成，~2.5 it/s\n- **no_filter / graduated** (825 steps): ~10% 完成，~2.5 it/s\n\n训练速度 ~2.5 it/s：\n- binary: 275 steps, 预计 ~2 分钟完成训练 + eval\n- no_filter/graduated: 825 steps, 预计 ~5.5 分钟完成训练 + eval\n- 每个 strategy 5 seeds，总计约 binary ~10 min, no_filter/graduated ~28 min\n\n**汇报：**\n\n| 项目 | 详情 |\n|------|------|\n| 数据路径 | `/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/` (depth_0-5.jsonl, 2200 docs/depth) |\n| 模型 | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B/` (Qwen2.5-1.5B base) |\n| 脚本 | `scripts/exp026_arxiv_filtering.py` + `scripts/run_exp026.sh` |\n| LoRA | rank=4, alpha=8, targets=q_proj+v_proj (544,768 trainable / 1.54B total, 0.04%) |\n| Strategies | no_filter (13200 docs, GPU 0), binary depth 0-1 (4400 docs, GPU 1), graduated α=0.9^d (13200 docs, GPU 2) |\n| Seeds | 42, 123, 456, 789, 1024 |\n| Launcher PID | 31749 |\n| 日志 | `logs/exp_026_arxiv_filtering.log` |\n| 预计完成 | ~30 分钟 |\n| Registry | exp_026_arxiv_filtering → RUNNING |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp_026_arxiv_filtering_20260518T102036"
+          },
+          "id": "event-000085"
+        }
+      ],
+      "message_count": 85
+    }
+  ],
+  "readable_path": "readable/conversations/code-exp-026-arxiv-filtering.md"
+}

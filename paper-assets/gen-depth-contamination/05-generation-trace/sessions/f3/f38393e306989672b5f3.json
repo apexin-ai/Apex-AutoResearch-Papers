@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f38393e306989672b5f3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check exp 021 cuda3 status",
+  "task_key": "worker_check_exp_021_cuda3_status_20260516T061214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_021_cuda3_status_20260516T061214_result.json",
+    "occurrence": 1,
+    "bytes": 1244,
+    "sha256": "05a0d3168b02d16d89206381ecc7fc22d056a36714cad1dd1601919ba831728a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-021 状态报告\n\n**状态：崩溃（CRASHED）**\n\n### 崩溃原因\n\n实验在第一个长度（128）的 **seed data 下载阶段** 就失败了。根本原因是网络问题：\n\n```\nRuntimeError: Cannot send a request, as the client has been closed.\n```\n\n具体路径：`run_pipeline.py:88 → prepare_seed_data() → load_dataset(\"allenai/c4\", \"en\", split=\"validation\", streaming=True)`\n\n日志显示连接 HuggingFace Hub 时报 `[Errno 99] Cannot assign requested address`，重试后 HTTP client 关闭。**脚本没有 `source /etc/network_turbo`**，导致 AutoDL 网络代理未启用。\n\n### 结果\n\n| 长度 | 数据 | 结果 |\n|------|------|------|\n| 128 | 目录存在但空 | 目录存在但空 |\n| 256 | 不存在 | 不存在 |\n| 512 | 不存在 | 不存在 |\n\n三个长度**全部未完成**，无任何 obd_results.json 产出。\n\n### cuda:3 状态\n\n**空闲可用**。0% 利用率，0 MiB 显存占用，无相关进程运行。可立即用于 exp-022。\n\n### 修复建议\n\n重跑 exp-021 时需要在脚本中添加 `source /etc/network_turbo` 以及 SSL 证书环境变量（`REQUESTS_CA_BUNDLE`/`SSL_CERT_FILE`），或改用离线数据集避免网络下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-021-cuda3-status.md"
+}

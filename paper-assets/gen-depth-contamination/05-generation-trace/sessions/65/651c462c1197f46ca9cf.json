@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "651c462c1197f46ca9cf",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper domain matrix table",
+  "task_key": "worker_paper_domain-matrix-table_20260517T234025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_domain-matrix-table_20260517T234025_result.json",
+    "occurrence": 1,
+    "bytes": 655,
+    "sha256": "be1dd388b6c07e9bae556e4a3d44cf6ea6b5aca6218e327850eeaf82c25795c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个表格已生成并注册：\n\n1. **`tab_domain_model_kstar.tex`** — 正文主表，单栏适配，5列（Model, Size, C4/arXiv/Wiki K*），含 Dominant 总结行和三条 footnote 解释异常值。\n2. **`tab_domain_model_kstar_full.tex`** — 附录详表，双栏 `table*`，含 AUC(boundary) 值，用 `\\cmidrule` 分组三个 domain。\n\n设计要点：\n- booktabs 风格，bold 标注 dominant mode\n- Caption 自包含，无破折号\n- Footnote 用 `†/‡/*` 区分三类异常（scorer artifact / one-wash / capacity failure）\n- 引用方式：`\\ref{tab:domain_model_kstar}` / `\\ref{tab:domain_model_kstar_full}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-domain-matrix-table.md"
+}

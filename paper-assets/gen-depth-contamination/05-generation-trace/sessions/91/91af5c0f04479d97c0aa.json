@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91af5c0f04479d97c0aa",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "submit exp 022 cross scorer matrix",
+  "task_key": "worker_submit_exp_022_cross_scorer_matrix_20260516T150341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_022_cross_scorer_matrix_20260516T150341_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "9157a70def3f6e6732fdec5efef9b6aac086ede8e5f1375914b43aabeec74458"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 确认活跃：**71% 利用率，4783MiB 显存，PID 49787**。\n\n汇总：\n\n| 项 | 值 |\n|---|---|\n| tmux session | `exp022` |\n| PID | 49787 |\n| GPU | cuda:1 (RTX 4090 D) |\n| 显存占用 | 4783 MiB / 24564 MiB |\n| GPU 利用率 | 71% |\n| 日志 | `/root/autodl-tmp/gen-depth-contamination/logs/exp022.log` |\n\n**当前运行的是 2×2 子矩阵**（2 generators × 2 scorers = 4 组合）：\n- Generators: Qwen2.5-1.5B (continuation), Pythia-1.4B\n- Scorers: Qwen2.5-1.5B (base), Pythia-1.4B\n\n**缺失项**（无法运行完整 4×4 矩阵）：\n- **Scorer 模型未缓存**: Qwen2.5-1.5B-Instruct, OLMo-1B\n- **Generator depth chain 数据缺失**: Qwen2.5-1.5B (rewrite), OLMo-1B\n\n如需完整 4×4 矩阵，需要先 `source /etc/network_turbo` 下载缺失模型，并生成 Qwen-rewrite 和 OLMo 的 depth chain 数据。预计当前 2×2 矩阵约 40-50 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-022-cross-scorer-matrix.md"
+}

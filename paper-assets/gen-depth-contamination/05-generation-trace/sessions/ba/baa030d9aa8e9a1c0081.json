@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "baa030d9aa8e9a1c0081",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix exp deberta code restart",
+  "task_key": "worker_fix_exp_deberta_code_restart_20260520T035257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp_deberta_code_restart_20260520T035257_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "d6e0de1366eb01c9ef4fe11e2f4f397fb2fe2d7e4a9fd89c0c21301ec4bde832"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n1. **模型已缓存** — `microsoft/deberta-v3-base` 完整缓存在 `/root/autodl-tmp/.hf_cache/models--microsoft--deberta-v3-base/snapshots/8ccc9b6f36199bec6961081d44eb72fb3f7353f3/`（含 config.json, pytorch_model.bin, spm.model, tokenizer_config.json）\n2. **无部分输出** — `results/exp_deberta_code_qwen1b5/` 目录为空或不存在，无需清理\n3. **旧 tmux session 已清理**\n\n**推荐重启命令**：加 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1` 环境变量，使用离线缓存避免网络请求。确保 `HF_HOME=/root/autodl-tmp/.hf_cache` 指向正确的缓存目录。\n\n环境已就绪，可通过 `submit_training_job` 提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-deberta-code-restart.md"
+}

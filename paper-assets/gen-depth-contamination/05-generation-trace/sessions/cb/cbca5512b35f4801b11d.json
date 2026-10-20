@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbca5512b35f4801b11d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops diagnose olmo retrain v3 cron",
+  "task_key": "worker_ops_diagnose_olmo_retrain_v3_cron_20260520T145445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_olmo_retrain_v3_cron_20260520T145445_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "1f013ab22b86c0bd0226e3ea08e9645fa09ee012fc83c7fd2de27b0a17853386"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **exp_olmo_retrain_v3 成功完成**，registry 已更新。\n\n## 结果汇总\n\n**K\\* = 4**，所有 pair 的 bootstrap AUC (10K resamples) + 95% CI：\n\n| Pair | AUC (point) | Bootstrap Mean | 95% CI | Perm p-value |\n|------|------------|----------------|--------|-------------|\n| 0v1 | 0.9873 | 0.9972 | [0.9967, 0.9977] | 0.0000 |\n| 1v2 | 0.8889 | 0.9572 | [0.9542, 0.9601] | 0.0000 |\n| 2v3 | 0.7036 | 0.8885 | [0.8814, 0.8947] | 0.9980 |\n| 3v4 | 0.6817 | 0.8772 | [0.8684, 0.8852] | 1.0000 |\n\n**3v4 pair**：bootstrap AUC = 0.8772, 95% CI [0.8684, 0.8852]，CI 下界远高于 θ=0.60，分类信号仍然强。Permutation test p=1.0 说明 3v4 的 AUC 没有显著高于 2v3（即退化趋于稳定）。\n\n这与 Pythia (K\\*≥4) 和 Qwen (K\\*=7) 的 retrain-chain 结果一致，确认 retrain-chain K\\* 是 protocol-determined 而非 architecture-determined。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-olmo-retrain-v3-cron.md"
+}

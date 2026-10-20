@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67a7c3b5ec77511ed2c7",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis bootstrap kstar uncertainty",
+  "task_key": "worker_analysis_bootstrap-kstar-uncertainty_20260523T130734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-kstar-uncertainty_20260523T130734_result.json",
+    "occurrence": 1,
+    "bytes": 1192,
+    "sha256": "d18d7fb5035d2b6f3cded047383bbdcb7640244adf36cdcb47e7d115a5cba1c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap K* 不确定性分析完成。\n\n**结果汇总：**\n\n| Config | K*_point | Bootstrap K* 分布 | 95% CI |\n|--------|----------|-------------------|--------|\n| Qwen-1.5B × C4 | 2 | K*=2: 100% | [2, 2] |\n| OLMo-1B × C4 | 1 | K*=1: 100% | [1, 1] |\n| Pythia-1.4B × C4 | 2 | K*=2: 100% | [2, 2] |\n| LLaMA-8B × C4 | 2 | K*=2: 99.9% | [2, 2] |\n| Gemma-2B × C4 | 1 | K*=1: 92.7%, K*=2: 7.3% | [1, 2] |\n| LLaMA-8B × Wiki | 1 | K*=1: 94.3%, K*=2: 5.7% | [1, 2] |\n| Mistral-7B × Wiki | 1 | K*=1: 100% | [1, 1] |\n| LLaMA-8B × arXiv | 3 | K*=3: 100% | [3, 3] |\n| OLMo-1B × arXiv | 1 | K*=1: 100% | [1, 1] |\n| Qwen-1.5B × Code | 2 | K*=2: 100% | [2, 2] |\n\n**关键结论：** K* 在 8/10 configs 中完全稳定（100% bootstrap 一致），仅 Gemma-2B C4 和 LLaMA-8B Wiki 有轻微波动（因 1v2 AUC 在 θ=0.60 附近±0.005）。95% CI 宽度 ≤ 1。K* 经验上是稳定的。\n\n产出：\n- 报告: `artifacts/bootstrap_kstar_results.md`\n- 原始数据: 服务器 `results/bootstrap_kstar/bootstrap_kstar_raw.json`\n- 汇总表: 服务器 `results/bootstrap_kstar/bootstrap_kstar_summary.csv`\n- 脚本: 服务器 `scripts/bootstrap_kstar.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-kstar-uncertainty.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53f54f7159bf0b96cc44",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code wiki domain mistral",
+  "task_key": "worker_code_wiki_domain_mistral_20260524T094357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wiki_domain_mistral_20260524T094357_result.json",
+    "occurrence": 1,
+    "bytes": 869,
+    "sha256": "5f255bad583e96036132e3d46e863b8038bf74917577ce5bff188ef74b15700f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "这个实验已经全部完成了。总结：\n\n**Mistral-7B Wikipedia depth chain — 已有完整结果**\n\n### 单模型结果 (`results/exp_wiki_mistral7b/`)\n| Pair | AUC |\n|------|-----|\n| 0v1 | 0.9607 |\n| 1v2 | 0.5552 |\n| 2v3 | 0.5236 |\n| 3v4 | 0.5181 |\n| 4v5 | 0.5012 |\n| **K\\*** | **1** |\n\n### Multi-source 结果 (`results/exp_wiki_multi_source/`)\n- Generators: qwen1b5 + llama8b + mistral7b，Scorer: Qwen2.5-1.5B\n- Unified scorer (no label): 0v1 AUC=0.9603, 1v2=0.5685 → **K\\*=1**\n- Unified scorer (with label): 0v1 AUC=0.9685, 1v2=0.5790 → **K\\*=1**\n- Vocab-only: K\\*=1\n\nWiki K\\*=1 已确认（scorer-controlled），与预期一致。Mistral domain profile 完整：**Wiki=1, C4=1, Code=2, arXiv=3**。\n\n数据（5K docs × 6 depths）、features.csv、cross-scoring、bootstrap CI 全部齐全，无需重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wiki-domain-mistral.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc0d2c9c2ab8e37b97f9",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "audit figure4 data source",
+  "task_key": "worker_audit_figure4-data-source_20260523T174143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_figure4-data-source_20260523T174143_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "3449195db2a840a7961055dede20035d2393071c7e002ee729d168649c6d87cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心发现：\n\n**Figure 4 实际显示的是 AUC(0v1)（0.848–0.995），不是 6-class ordinal accuracy。**\n\n根因：5/23 将绘图脚本从 v1 切换到 v2，PDF 已更新为 v2 内容（3 模型 AUC + K* 预测），但 caption、正文、Table 7 仍然描述 v1 的内容（4 模型 ordinal accuracy + retention）。\n\n具体不一致：\n- **指标错配**：图=AUC(0v1)，caption 说 \"6-class ordinal accuracy / retention\"\n- **模型数量错配**：图=3 个模型，caption/table=4 个模型（含 Qwen-rw）\n- **Table 7 不再是 Figure 4 的 \"full matrix\"**：Table 7 是 ordinal accuracy，Figure 4 是 AUC\n\n报告已写入 `artifacts/figure4_data_audit.md` 并注册，包含三种修复方案（回退 v1 / 更新文本匹配 v2 / 合并两版）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-figure4-data-source.md"
+}

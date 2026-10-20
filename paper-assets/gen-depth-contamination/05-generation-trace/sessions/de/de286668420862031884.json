@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "de286668420862031884",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "analysis semantic ablation multi model",
+  "task_key": "worker_analysis_semantic_ablation_multi_model_20260517T162437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_semantic_ablation_multi_model_20260517T162437.log",
+    "occurrence": 1,
+    "bytes": 1720126,
+    "sha256": "3f99078e571d6e6f7adac80d7f589fe94c39445c39f469f1196942095657d99a"
+  },
+  "statistics": {
+    "messages": 1130,
+    "user_turns": 1,
+    "tool_calls": 504,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 3,
+      "assistant": 107,
+      "tool_call": 504,
+      "tool_result": 504,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 652,
+      "chunks": [
+        {
+          "path": "de286668420862031884-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "de286668420862031884-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "de286668420862031884-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "de286668420862031884-part-0004.json",
+          "message_count": 112
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 478,
+      "chunks": [
+        {
+          "path": "de286668420862031884-part-0004.json",
+          "message_count": 68
+        },
+        {
+          "path": "de286668420862031884-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "de286668420862031884-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "de286668420862031884-part-0007.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-semantic-ablation-multi-model.md"
+}

@@ -1,0 +1,2450 @@
+{
+  "schema_version": "1.0",
+  "id": "d5f5465137511d0692ca",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "analyze exp027 bootstrap ci",
+  "task_key": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analyze_exp027-bootstrap-ci_20260518T112149.jsonl",
+    "occurrence": 1,
+    "bytes": 106490,
+    "sha256": "b1b4a7696aa0f2cbbdfaa43a75b3c2bf9eba570957f3acc74a8017f4f22b9b95"
+  },
+  "statistics": {
+    "messages": 122,
+    "user_turns": 0,
+    "tool_calls": 60,
+    "roles": {
+      "tool_call": 60,
+      "tool_result": 60,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T11:32:25.908128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Find bootstrap CI scripts",
+              "subagent_type": "Explore",
+              "prompt": "Find bootstrap CI scripts in /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ — specifically look for `crossscorer_bootstrap_ci.py`, `c4_power_curve.py`, or any script with \"bootstrap\" in the name under the `scripts/` directory. Also check for any Python files that contain \"bootstrap\" as a keyword. I need to understand the bootstrap resampling logic used in this project. Search breadth: medium."
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T11:32:25.908501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T11:32:25.908681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T11:32:25.908854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/bootstrap*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T11:32:25.909002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T11:32:25.909133+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/scripts/*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T11:32:25.909255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "scripts/run_pipeline.py\nscripts/run_cross_transfer.py\nscripts/run_exp013_cross_transfer.py\nscripts/plot_exp003_decoding_ablation.py\nscripts/run_exp009_dose_response.py\nscripts/run_exp015_neural_probe.py\nscripts/exp006_analyze_results.py\nscripts/exp006_fill_discussion.py\nscripts/analyze_exp006.py\nscripts/exp_B_14d_ablation.py\nscripts/exp_D_obd_n500_v2.py\nscripts/exp_D_mcnemar.py\nscripts/exp_E_paired_stats.py\nartifacts/scripts/plot_summary_auc_decay.py\nscripts/draw_kstar_theta.py\nartifacts/scripts/transfer_heatmap.py\nartifacts/scripts/plot_auc_decay_ci.py\nartifacts/scripts/plot_filtering_strategies.py\nscripts/draw_pipeline_figure.py\nscripts/exp025_pythia_filtering.py\nscripts/plot_fig_jsd_decay.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T11:32:25.909391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "bootstrap",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+              "type": "py",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T11:32:25.909520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 18 files\nartifacts/exp008_retrain_chain.py\nartifacts/scripts/plot_auc_decay_ci.py\nscripts/draw_kstar_theta.py\nscripts/exp_D_mcnemar.py\nscripts/exp_D_obd_n500_v2.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_cbook.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_backend_tk.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_axes.py\n.venv/lib/python3.14/site-packages/matplotlib/axes/_axes.pyi\n.venv/lib/python3.14/site-packages/matplotlib/axes/_axes.py\n.venv/lib/python3.14/site-packages/matplotlib/rcsetup.py\n.venv/lib/python3.14/site-packages/matplotlib/pyplot.py\n.venv/lib/python3.14/site-packages/matplotlib/cbook.pyi\n.venv/lib/python3.14/site-packages/matplotlib/cbook.py\n.venv/lib/python3.14/site-packages/matplotlib/_animation_data.py\n.venv/lib/python3.14/site-packages/pip/_vendor/distlib/util.py\n.venv/lib/python3.14/site-packages/pip/_vendor/distlib/compat.py\nscripts/run_exp015_neural_probe.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T11:32:25.909661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/scripts/plot_auc_decay_ci.py"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T11:32:25.909859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"AUC decay curves with bootstrap confidence interval bands.\n3\t\n4\tInput:  artifacts/exp*_bootstrap_ci.json, results_*/bootstrap_ci.json,\n5\t        results_*/pairwise_auc.json (per_fold → approximate CI)\n6\tOutput: artifacts/figures/fig_s1_auc_decay_ci.pdf\n7\tDeps:   matplotlib, numpy\n8\t\"\"\"\n9\t\n10\timport argparse\n11\timport json\n12\timport re\n13\timport matplotlib\n14\tmatplotlib.use(\"Agg\")\n15\timport matplotlib.pyplot as plt\n16\timport numpy as np\n17\tfrom pathlib import Path\n18\t\n19\tTABLEAU_COLORS = [\n20\t    \"#4e79a7\", \"#e15759\", \"#76b7b2\", \"#59a14f\",\n21\t    \"#b07aa1\", \"#ff9da7\", \"#9c755f\", \"#bab0ac\",\n22\t    \"#edc948\", \"#f28e2b\",\n23\t]\n24\tMARKERS = [\"o\", \"s\", \"^\", \"D\", \"v\", \"P\", \"X\", \"*\", \"h\", \"<\"]\n25\tPAIR_KEYS = [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"]\n26\tX_LABELS = [\"0 vs 1\", \"1 vs 2\", \"2 vs 3\", \"3 vs 4\", \"4 vs 5\"]\n27\t\n28\t\n29\tdef infer_label(source_path, metadata=None):\n30\t    \"\"\"Infer model label from file path or JSON metadata.\"\"\"\n31\t    if metadata and \"experiment\" in metadata:\n32\t        exp = metadata[\"experiment\"].lower()\n33\t    else:\n34\t        exp = str(source_path).lower()\n35\t    patterns = [\n36\t        (r\"qwen.*rw|qwen.*rewrite\", \"Qwen-rw\"),\n37\t        (r\"qwen.*base\", \"Qwen-base\"),\n38\t        (r\"qwen.*7b\", \"Qwen-7B\"),\n39\t        (r\"qwen.*cont|qwen(?!.*rw|.*rewrite|.*base|.*7b)\", \"Qwen-cont\"),\n40\t        (r\"pythia.*greedy\", \"Pythia-greedy\"),\n41\t        (r\"pythia.*nuc\", \"Pythia-nuc0.9\"),\n42\t        (r\"pythia.*t07|pythia.*t0\\.7\", \"Pythia-T0.7\"),\n43\t        (r\"pythia.*t12|pythia.*t1\\.2\", \"Pythia-T1.2\"),\n44\t        (r\"pythia\", \"Pythia\"),\n45\t        (r\"olmo\", \"OLMo\"),\n46\t        (r\"mistral\", \"Mistral-7B\"),\n47\t        (r\"llama.*8b\", \"LLaMA-8B\"),\n48\t        (r\"length.?128\", \"Length-128\"),\n49\t        (r\"length.?256\", \"Length-256\"),\n50\t        (r\"length.?512\", \"Length-512\"),\n51\t    ]\n52\t    for pat, label in patterns:\n53\t        if re.search(pat, exp, re.IGNORECASE):\n54\t            return label\n55\t    name = source_path.stem if source_path.is_file() els\n…[truncated 7060 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T11:32:25.910042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_mcnemar.py"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T11:32:25.910205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"EXP-D McNemar paired test + Bootstrap difference CI: OBD vs LLMs.\n2\t\n3\tRe-runs OBD out-of-fold predictions on the same 500 samples as exp-011,\n4\tthen performs McNemar exact test and bootstrap CI on accuracy differences.\n5\t\"\"\"\n6\timport csv\n7\timport json\n8\timport re\n9\tfrom pathlib import Path\n10\t\n11\timport numpy as np\n12\t\n13\tPROJECT = Path(\"/root/autodl-tmp/gen-depth-contamination\")\n14\tDATA_DIR = PROJECT / \"data_exp001_pythia\"\n15\tSAMPLES_PATH = PROJECT / \"artifacts\" / \"exp011_samples.jsonl\"\n16\tGPT_PATH = PROJECT / \"artifacts\" / \"exp011_results_gpt_5_5.jsonl\"\n17\tCLAUDE_PATH = PROJECT / \"artifacts\" / \"exp011_results_claude_opus_4_6.jsonl\"\n18\tOUT_PATH = PROJECT / \"artifacts\" / \"exp_D_mcnemar.json\"\n19\t\n20\tFEAT_COLS = [\n21\t    \"surp_mean\", \"surp_std\", \"surp_skew\", \"surp_kurt\",\n22\t    \"surp_d1_mean\", \"surp_d1_std\", \"surp_d1_skew\",\n23\t    \"surp_d2_mean\", \"surp_d2_std\",\n24\t    \"ttr\", \"hapax_ratio\", \"self_bleu\",\n25\t    \"freq_kurtosis\", \"freq_entropy\", \"low_freq_ratio\",\n26\t]\n27\t\n28\tMAX_DEPTH = 5\n29\tN_SPLITS = 5\n30\tN_BOOTSTRAP = 10000\n31\tSEED = 42\n32\t\n33\t\n34\tdef load_features():\n35\t    feat_path = DATA_DIR / \"features.csv\"\n36\t    with open(feat_path) as f:\n37\t        reader = csv.DictReader(f)\n38\t        rows = list(reader)\n39\t    depths = np.array([int(r[\"depth\"]) for r in rows])\n40\t    doc_ids = np.array([int(r[\"doc_id\"]) for r in rows])\n41\t    X = np.array([\n42\t        [float(r[c]) if r[c] not in (\"\", \"nan\") else np.nan for c in FEAT_COLS]\n43\t        for r in rows\n44\t    ])\n45\t    col_means = np.nanmean(X, axis=0)\n46\t    for j in range(X.shape[1]):\n47\t        mask = np.isnan(X[:, j])\n48\t        X[mask, j] = col_means[j]\n49\t    return X, depths, doc_ids\n50\t\n51\t\n52\tdef run_obd_oof(X, y, groups, max_depth, n_splits):\n53\t    import lightgbm as lgb\n54\t    from sklearn.model_selection import GroupKFold\n55\t\n56\t    n = len(y)\n57\t    cum_probs = np.zeros((n, max_depth))\n58\t    gkf = GroupKFold(n_splits=n_splits)\n59\t    fold_indices = list(gkf.split(X, y, groups=groups))\n60\t\n61\t  \n…[truncated 6703 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T11:32:25.910367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_obd_n500_v2.py"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T11:32:25.910524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"EXP-D v2: OBD-LightGBM accuracy on the SAME N=500 samples as exp-011 LLM baselines.\n2\t\n3\tCorrects exp_D v1 which used plain multiclass LightGBM instead of true OBD.\n4\t\n5\tMethod:\n6\t  - True Ordinal Binary Decomposition: K-1 binary LightGBM classifiers for P(Y > k)\n7\t  - Hyperparameters from exp-010 (paper-consistent): n_estimators=200, max_depth=6, lr=0.05, num_leaves=31\n8\t  - 5-fold GroupKFold CV on full Pythia data (depths 0-5, N=30000)\n9\t  - Extract OOF predictions for the specific 500 samples from exp011_samples.jsonl\n10\t  - Report 5-class accuracy (depths 0-4) + bootstrap CI\n11\t\"\"\"\n12\timport csv\n13\timport json\n14\timport re\n15\tfrom pathlib import Path\n16\t\n17\timport numpy as np\n18\t\n19\tPROJECT = Path(\"/root/autodl-tmp/gen-depth-contamination\")\n20\tDATA_DIR = PROJECT / \"data_exp001_pythia\"\n21\tSAMPLES_PATH = PROJECT / \"artifacts\" / \"exp011_samples.jsonl\"\n22\tOUT_PATH = PROJECT / \"artifacts\" / \"exp_D_obd_n500_v2.json\"\n23\t\n24\tFEAT_COLS = [\n25\t    \"surp_mean\", \"surp_std\", \"surp_skew\", \"surp_kurt\",\n26\t    \"surp_d1_mean\", \"surp_d1_std\", \"surp_d1_skew\",\n27\t    \"surp_d2_mean\", \"surp_d2_std\",\n28\t    \"ttr\", \"hapax_ratio\", \"self_bleu\",\n29\t    \"freq_kurtosis\", \"freq_entropy\", \"low_freq_ratio\",\n30\t]\n31\t\n32\tMAX_DEPTH = 5  # depths 0-5, 6 classes (matching exp-010 / paper)\n33\tN_SPLITS = 5\n34\tN_BOOTSTRAP = 1000\n35\t\n36\t\n37\tdef load_features():\n38\t    feat_path = DATA_DIR / \"features.csv\"\n39\t    with open(feat_path) as f:\n40\t        reader = csv.DictReader(f)\n41\t        rows = list(reader)\n42\t\n43\t    depths = np.array([int(r[\"depth\"]) for r in rows])\n44\t    doc_ids = np.array([int(r[\"doc_id\"]) for r in rows])\n45\t    X = np.array([\n46\t        [float(r[c]) if r[c] not in (\"\", \"nan\") else np.nan for c in FEAT_COLS]\n47\t        for r in rows\n48\t    ])\n49\t    col_means = np.nanmean(X, axis=0)\n50\t    for j in range(X.shape[1]):\n51\t        mask = np.isnan(X[:, j])\n52\t        X[mask, j] = col_means[j]\n53\t\n54\t    return X, depths, doc_ids\n55\t\n56\t\n57\tdef run_obd_oof(X, y, groups, max_depth, \n…[truncated 6295 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T11:32:25.910681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/draw_kstar_theta.py"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T11:32:25.910861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"K* as a function of theta: auto-discovers bootstrap CI JSONs.\n3\t\n4\tInput:  artifacts/exp*_bootstrap_ci.json, results_*/bootstrap_ci.json\n5\tOutput: docs/paper/figures/fig_kstar_theta.pdf\n6\tDeps:   matplotlib, numpy\n7\t\"\"\"\n8\t\n9\timport argparse\n10\timport json\n11\timport re\n12\timport matplotlib\n13\tmatplotlib.use(\"Agg\")\n14\timport matplotlib.pyplot as plt\n15\timport numpy as np\n16\tfrom pathlib import Path\n17\t\n18\tTABLEAU_COLORS = [\n19\t    \"#4e79a7\", \"#e15759\", \"#76b7b2\", \"#59a14f\",\n20\t    \"#b07aa1\", \"#ff9da7\", \"#9c755f\", \"#bab0ac\",\n21\t    \"#edc948\", \"#f28e2b\",\n22\t]\n23\tMARKERS = [\"o\", \"s\", \"^\", \"D\", \"v\", \"P\", \"X\", \"*\", \"h\", \"<\"]\n24\tLINESTYLES = [\"-\", \"--\", \"-.\", \":\", \"-\", \"--\", \"-.\", \":\"]\n25\t\n26\t\n27\tdef infer_label(source_path: Path, metadata: dict | None = None) -> str:\n28\t    \"\"\"Infer model label from file path or JSON metadata.\"\"\"\n29\t    if metadata and \"experiment\" in metadata:\n30\t        exp = metadata[\"experiment\"].lower()\n31\t        patterns = [\n32\t            (r\"qwen.*rw|qwen.*rewrite\", \"Qwen-rw\"),\n33\t            (r\"qwen.*base\", \"Qwen-base\"),\n34\t            (r\"qwen.*7b\", \"Qwen-7B\"),\n35\t            (r\"qwen.*cont|qwen.*1\\.5\", \"Qwen-cont\"),\n36\t            (r\"pythia\", \"Pythia\"),\n37\t            (r\"olmo\", \"OLMo\"),\n38\t            (r\"mistral\", \"Mistral-7B\"),\n39\t            (r\"llama.*8b\", \"LLaMA-8B\"),\n40\t        ]\n41\t        for pat, label in patterns:\n42\t            if re.search(pat, exp, re.IGNORECASE):\n43\t                return label\n44\t\n45\t    name = source_path.stem if source_path.is_file() else source_path.name\n46\t    name = re.sub(r\"^exp\\d+_\", \"\", name).replace(\"bootstrap_ci\", \"\").strip(\"_\")\n47\t    patterns = [\n48\t        (r\"qwen.*rw|qwen.*rewrite\", \"Qwen-rw\"),\n49\t        (r\"qwen.*base\", \"Qwen-base\"),\n50\t        (r\"qwen.*7b\", \"Qwen-7B\"),\n51\t        (r\"qwen.*cont|qwen(?!.*rw|.*rewrite|.*base|.*7b)\", \"Qwen-cont\"),\n52\t        (r\"pythia\", \"Pythia\"),\n53\t        (r\"olmo\", \"OLMo\"),\n54\t        (r\"mistral\", \"Mistral-7B\"),\n55\t        (r\"llama\", \"LLaMA\n…[truncated 5352 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T11:32:25.911023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp008_retrain_chain.py"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T11:32:25.911292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# exp-008: Retrain-chain ecological validity experiment\n2\t# Each generation: LoRA fine-tune Pythia-1.4B on depth_d → generate depth_{d+1}\n3\t# Independent LoRA per generation (no accumulation), simulating real-world model collapse scenario\n4\t\n5\timport argparse\n6\timport gc\n7\timport json\n8\timport logging\n9\timport math\n10\timport os\n11\timport shutil\n12\timport sys\n13\tfrom collections import Counter\n14\tfrom pathlib import Path\n15\t\n16\timport numpy as np\n17\timport torch\n18\tfrom scipy import stats\n19\tfrom tqdm import tqdm\n20\t\n21\tlogging.basicConfig(\n22\t    level=logging.INFO,\n23\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n24\t    datefmt=\"%H:%M:%S\",\n25\t    handlers=[logging.StreamHandler(sys.stdout)],\n26\t)\n27\tlog = logging.getLogger(__name__)\n28\t\n29\t\n30\t# ---------------------------------------------------------------------------\n31\t# Config\n32\t# ---------------------------------------------------------------------------\n33\t\n34\tPYTHIA_PATH = \"/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79\"\n35\tSCORER_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"\n36\tSEED_DATA = \"/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_greedy/depth_0.jsonl\"\n37\t\n38\tLORA_RANK = 16\n39\tLORA_ALPHA = 32\n40\tLORA_TARGET_MODULES = [\"query_key_value\"]\n41\tTRAIN_LR = 2e-4\n42\tTRAIN_BATCH_SIZE = 4\n43\tGRADIENT_ACCUMULATION = 4\n44\tTRAIN_EPOCHS = 1\n45\t\n46\tGEN_TOP_P = 0.95\n47\tGEN_TEMPERATURE = 1.0\n48\tGEN_MAX_NEW_TOKENS = 256\n49\tGEN_BATCH_SIZE = 8\n50\t\n51\tMAX_DEPTH = 4\n52\tNUM_SAMPLES = 5000\n53\t\n54\t\n55\t# ---------------------------------------------------------------------------\n56\t# Utilities\n57\t# ---------------------------------------------------------------------------\n58\t\n59\tdef load_jsonl(path):\n60\t    with open(path) as f:\n61\t        return [json.loads(line) for line in f]\n62\t\n63\t\n64\tdef save_jsonl(records, path):\n65\t    Path(path).parent.mkdir(parents=True, exist_ok=True)\n66\t    with open(path, \"w\") as f:\n67\t        for \n…[truncated 25859 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T11:32:25.911508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts -name \"*.py\" | head -20"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T11:32:25.911648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_cross_transfer.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_exp013_cross_transfer.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/draw_pipeline_figure.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_obd_n500_v2.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/analyze_exp006.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/draw_kstar_theta.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_pipeline.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/plot_fig_jsd_decay.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_exp009_dose_response.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp025_pythia_filtering.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_B_14d_ablation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_E_paired_stats.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp006_fill_discussion.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/plot_exp003_decoding_ablation.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp006_analyze_results.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_exp015_neural_probe.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_mcnemar.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T11:32:25.911810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "def.*bootstrap|N_BOOTSTRAP|rng\\.(choice|randint)",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+              "type": "py",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T11:32:25.911947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 19 files\nartifacts/exp008_retrain_chain.py\nartifacts/scripts/plot_auc_decay_ci.py\nartifacts/exp-004/intermediate/run_exp004_qwen7b_depth.py\nartifacts/run_exp004_qwen7b_depth.py\nscripts/exp_D_mcnemar.py\nscripts/exp_D_obd_n500_v2.py\nartifacts/exp006_filtering_strategies.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_cbook.py\n.venv/lib/python3.14/site-packages/matplotlib/cbook.py\n.venv/lib/python3.14/site-packages/numpy/random/tests/test_randomstate_regression.py\n.venv/lib/python3.14/site-packages/numpy/random/tests/test_randomstate.py\n.venv/lib/python3.14/site-packages/numpy/random/tests/test_random.py\n.venv/lib/python3.14/site-packages/numpy/ma/tests/test_arrayobject.py\n.venv/lib/python3.14/site-packages/numpy/_core/tests/test_numeric.py\n.venv/lib/python3.14/site-packages/numpy/_core/tests/test_multithreading.py\n.venv/lib/python3.14/site-packages/numpy/_core/tests/test_mem_overlap.py\nscripts/run_exp015_neural_probe.py\nscripts/run_exp009_dose_response.py\nscripts/run_pipeline.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T11:32:25.912084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_E_paired_stats.py"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T11:32:25.912239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"EXP-E: Pairwise paired t-tests for 6 strategies × 5 seeds (MMLU & HellaSwag).\"\"\"\n2\t\n3\timport json\n4\timport os\n5\timport sys\n6\tfrom itertools import combinations\n7\timport numpy as np\n8\tfrom scipy import stats\n9\t\n10\tBASE_DIR = \"/root/autodl-tmp/gen-depth-contamination/outputs/exp006\"\n11\tOUT_PATH = \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_E_paired_stats.json\"\n12\t\n13\tMAIN_STRATEGIES = [\"binary-ours\", \"binary-drayson\", \"surprisal\", \"graduated_a0.9\", \"dsir\", \"no-filter\"]\n14\tGRADUATED_ALPHAS = [\"graduated_a0.1\", \"graduated_a0.3\", \"graduated_a0.5\", \"graduated_a0.7\"]\n15\tALL_STRATEGIES = MAIN_STRATEGIES + GRADUATED_ALPHAS\n16\tSEEDS = [42, 123, 456, 789, 1024]\n17\t\n18\t\n19\tdef load_scores():\n20\t    data = {}\n21\t    for strat in ALL_STRATEGIES:\n22\t        data[strat] = {\"mmlu\": [], \"hellaswag\": []}\n23\t        for seed in SEEDS:\n24\t            path = os.path.join(BASE_DIR, f\"{strat}_s{seed}\", \"eval_results.json\")\n25\t            with open(path) as f:\n26\t                res = json.load(f)\n27\t            data[strat][\"mmlu\"].append(res[\"scores\"][\"mmlu\"][\"acc,none\"])\n28\t            data[strat][\"hellaswag\"].append(res[\"scores\"][\"hellaswag\"][\"acc_norm,none\"])\n29\t    return data\n30\t\n31\t\n32\tdef cohens_d_paired(x, y):\n33\t    x, y = np.array(x), np.array(y)\n34\t    pooled_sd = np.sqrt((np.var(x, ddof=1) + np.var(y, ddof=1)) / 2)\n35\t    return float(np.mean(x - y) / pooled_sd) if pooled_sd > 0 else 0.0\n36\t\n37\t\n38\tdef holm_bonferroni(p_values):\n39\t    n = len(p_values)\n40\t    indexed = sorted(enumerate(p_values), key=lambda x: x[1])\n41\t    corrected = [None] * n\n42\t    cummax = 0.0\n43\t    for rank, (orig_idx, p) in enumerate(indexed):\n44\t        adjusted = p * (n - rank)\n45\t        adjusted = max(adjusted, cummax)\n46\t        adjusted = min(adjusted, 1.0)\n47\t        cummax = adjusted\n48\t        corrected[orig_idx] = adjusted\n49\t    return corrected\n50\t\n51\t\n52\tdef run_pairwise(data, metric, strategies):\n53\t    pairs = list(combinations(strategies, 2))\n54\t    raw_ps = []\n55\t    r\n…[truncated 5517 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T11:32:25.912399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_exp009_dose_response.py",
+              "limit": "150"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T11:32:25.912550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"exp009 Dose-Response — graduated vs binary filtering at varying synthetic injection ratios.\n2\t\n3\tMeasures downstream LM quality (MMLU/HellaSwag) after continued pretraining on data\n4\twith 10%/30%/50% synthetic injection, filtered by graduated vs binary-ours strategies.\n5\tFixed dataset size (default 5000) across all ratios ensures training cost parity.\n6\t\n7\tInput:  data/ directory (features.csv + depth_*.jsonl, same as exp-006)\n8\t        Qwen2.5-1.5B-Instruct base model (local path or HF hub)\n9\tOutput: outputs/exp009/r<ratio>_<strategy>_s<seed>/eval_results.json  (per-run)\n10\t        outputs/exp009/analysis.json                                   (paired t-tests)\n11\t\n12\tUsage:\n13\t    # Dry-run: 1 seed, 200 samples, 10 training steps, hellaswag-only eval (limit=20)\n14\t    python run_exp009_dose_response.py --dry-run\n15\t\n16\t    # Full experiment (30 runs)\n17\t    python run_exp009_dose_response.py\n18\t\n19\t    # Single config\n20\t    python run_exp009_dose_response.py --ratios 0.3 --strategies graduated --seeds 42\n21\t\n22\t    # Analyze existing results only\n23\t    python run_exp009_dose_response.py --analyze-only\n24\t\n25\tDependencies: torch, transformers, peft, lightgbm, lm_eval, numpy, pandas, scipy\n26\t\"\"\"\n27\t\n28\timport argparse\n29\timport json\n30\timport os\n31\timport sys\n32\timport time\n33\timport traceback\n34\tfrom collections import defaultdict\n35\t\n36\timport numpy as np\n37\timport pandas as pd\n38\timport torch\n39\tfrom torch.utils.data import Dataset, DataLoader, WeightedRandomSampler\n40\tfrom transformers import (\n41\t    AutoModelForCausalLM,\n42\t    AutoTokenizer,\n43\t    DataCollatorForLanguageModeling,\n44\t    Trainer,\n45\t    TrainingArguments,\n46\t    set_seed,\n47\t)\n48\tfrom peft import LoraConfig, get_peft_model, TaskType\n49\tfrom scipy import stats\n50\t\n51\tsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\n52\tfrom exp006_filtering_strategies import STRATEGIES, FEATURE_COLS, load_data\n53\t\n54\t\n55\tdef prepare_dose_data(df, texts, ratio, seed, total_n):\n56\t    \"\"\"Subs\n…[truncated 3633 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T11:32:25.912758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp006_filtering_strategies.py",
+              "limit": "150"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T11:32:25.913023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"exp006 Filtering Strategies — 6 data quality filters for depth chain data.\n2\t\n3\tInput:  features.csv (30000 rows: doc_id, depth, 15 features)\n4\t        depth_*.jsonl (text data, needed for DSIR)\n5\tOutput: per-sample weights [0,1] via get_weights(), boolean mask via get_mask()\n6\t\n7\tStrategies:\n8\t  1. no-filter      — uniform weights (baseline)\n9\t  2. binary-ours    — LightGBM binary (human vs synthetic), threshold=0.5\n10\t  3. binary-drayson — SIR resampling (Drayson et al. 2025), b=1, k=1.5\n11\t  4. graduated      — OBD-LightGBM ordinal + exp(-alpha*d) weighting\n12\t  5. surprisal      — surp_mean median threshold\n13\t  6. dsir           — n-gram importance resampling (Xie et al. 2023)\n14\t\"\"\"\n15\t\n16\timport argparse\n17\timport json\n18\timport os\n19\tfrom abc import ABC, abstractmethod\n20\tfrom collections import Counter\n21\tfrom hashlib import md5\n22\t\n23\timport numpy as np\n24\timport pandas as pd\n25\t\n26\tFEATURE_COLS = [\n27\t    \"surp_mean\", \"surp_std\", \"surp_skew\", \"surp_kurt\",\n28\t    \"surp_d1_mean\", \"surp_d1_std\", \"surp_d1_skew\",\n29\t    \"surp_d2_mean\", \"surp_d2_std\",\n30\t    \"ttr\", \"hapax_ratio\", \"self_bleu\",\n31\t    \"freq_kurtosis\", \"freq_entropy\", \"low_freq_ratio\",\n32\t]\n33\t\n34\t\n35\tclass FilterStrategy(ABC):\n36\t    @abstractmethod\n37\t    def fit(self, features: np.ndarray, depths: np.ndarray, texts: list = None):\n38\t        ...\n39\t\n40\t    @abstractmethod\n41\t    def get_weights(self, features: np.ndarray, texts: list = None) -> np.ndarray:\n42\t        ...\n43\t\n44\t    def get_mask(self, features: np.ndarray, texts: list = None, threshold: float = 0.0) -> np.ndarray:\n45\t        return self.get_weights(features, texts) > threshold\n46\t\n47\t\n48\tclass NoFilter(FilterStrategy):\n49\t    def fit(self, features, depths, texts=None):\n50\t        pass\n51\t\n52\t    def get_weights(self, features, texts=None):\n53\t        return np.ones(len(features))\n54\t\n55\t\n56\tclass BinaryOurs(FilterStrategy):\n57\t    \"\"\"LightGBM binary: human (depth=0) vs synthetic (depth>=1).\n58\t    Weight = 1 - P(synthetic).\n…[truncated 3583 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T11:32:25.913210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/run_pipeline.py",
+              "limit": "100"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T11:32:25.913362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tMVP Pilot Saturation Study — Complete Pipeline (Steps 2-5)\n3\t\n4\tGenerates recursive depth chains from C4 seed data using Qwen2.5-1.5B,\n5\textracts statistical features, and runs distinguishability analysis.\n6\t\n7\tInput:  C4 validation split (streamed from HuggingFace)\n8\tOutput: data/depth_{0..K}.jsonl, data/features.csv, results/*.json + summary.txt\n9\t\n10\tKey deps: torch, transformers, datasets, scipy, lightgbm, sklearn, tqdm\n11\t\"\"\"\n12\t\n13\timport argparse\n14\timport json\n15\timport logging\n16\timport math\n17\timport os\n18\timport sys\n19\tfrom collections import Counter\n20\tfrom pathlib import Path\n21\t\n22\timport numpy as np\n23\timport torch\n24\tfrom scipy import stats\n25\tfrom tqdm import tqdm\n26\t\n27\tlogging.basicConfig(\n28\t    level=logging.INFO,\n29\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n30\t    datefmt=\"%H:%M:%S\",\n31\t)\n32\tlog = logging.getLogger(__name__)\n33\t\n34\t\n35\t# ---------------------------------------------------------------------------\n36\t# Utility: simple 4-gram BLEU (no nltk dependency)\n37\t# ---------------------------------------------------------------------------\n38\t\n39\tdef ngrams(tokens, n):\n40\t    return [tuple(tokens[i : i + n]) for i in range(len(tokens) - n + 1)]\n41\t\n42\t\n43\tdef simple_bleu(candidate_tokens, reference_tokens, max_n=4):\n44\t    \"\"\"Compute sentence-level BLEU up to max_n grams with brevity penalty.\"\"\"\n45\t    if len(candidate_tokens) == 0:\n46\t        return 0.0\n47\t    precisions = []\n48\t    for n in range(1, max_n + 1):\n49\t        cand_ngrams = ngrams(candidate_tokens, n)\n50\t        ref_ngrams = ngrams(reference_tokens, n)\n51\t        if not cand_ngrams:\n52\t            precisions.append(0.0)\n53\t            continue\n54\t        ref_counts = Counter(ref_ngrams)\n55\t        clipped = 0\n56\t        cand_counts = Counter(cand_ngrams)\n57\t        for ng, cnt in cand_counts.items():\n58\t            clipped += min(cnt, ref_counts.get(ng, 0))\n59\t        precisions.append(clipped / len(cand_ngrams))\n60\t    if any(p == 0 for p in precisions):\n\n…[truncated 2035 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T11:32:25.913570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have a comprehensive understanding of the bootstrap CI implementation. Let me compile the findings:\n\n## Bootstrap CI Scripts Summary\n\nI've successfully located and analyzed the bootstrap resampling logic used in this project. Here are the key findings:\n\n### Primary Bootstrap CI Implementation Files\n\n**1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_mcnemar.py`** (Lines 120-129)\n   - Implements `bootstrap_diff_ci()` function for bootstrap difference confidence intervals\n   - **Logic**: Resamples data with replacement (n=10,000 bootstrap samples), computes accuracy differences between two methods per sample\n   - **CI Calculation**: Uses 2.5th and 97.5th percentiles of the bootstrap distribution\n   - Used for McNemar paired test + bootstrap CI comparing OBD vs LLM predictions\n\n**2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/exp_D_obd_n500_v2.py`** (Lines 101-108)\n   - Implements `bootstrap_ci()` function\n   - **Logic**: Bootstrap resamples N=1,000 times, computing accuracy on each resample\n   - **CI Calculation**: Percentile method (2.5th/97.5th percentiles)\n   - Used for single-model bootstrap CI on OBD LightGBM classifier\n\n**3. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp008_retrain_chain.py`** (Lines 485-522)\n   - Implements bootstrap CI within `run_analysis()` function\n   - **Logic**: 10,000 bootstrap resamples with replacement, trains classifier on each resample\n   - **Model Fitting**: LightGBM trained fresh on each bootstrap sample\n   - **CI Calculation**: Percentile method on bootstrap AUC distributions\n   - Comprehensive pipeline with pairwise AUC, JSD, K*, permutation tests\n\n**4. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/scripts/plot_auc_decay_ci.py`** (Lines 85-125)\n   - **Data Loading**: Reads pre-computed bootstrap CI JSON files\n   - **Two Methods\n…[truncated 1712 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Agent",
+            "elapsed_ms": 5
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T11:32:25.913757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls -la /root/autodl-tmp/gen-depth-contamination/data/exp_027_latex_ablation/",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T11:32:25.913928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 17292\\\\ndrwxr-xr-x  2 root root     184 May 18 18:34 .\\\\ndrwxr-xr-x 27 root root    4096 May 18 18:23 ..\\\\n-rw-r--r--  1 root root 3133386 May 18 18:23 depth_0.jsonl\\\\n-rw-r--r--  1 root root 2032215 May 18 18:23 depth_1.jsonl\\\\n-rw-r--r--  1 root root 2211102 May 18 18:23 depth_2.jsonl\\\\n-rw-r--r--  1 root root 2246339 May 18 18:23 depth_3.jsonl\\\\n-rw-r--r--  1 root root 2205612 May 18 18:23 depth_4.jsonl\\\\n-rw-r--r--  1 root root 2118176 May 18 18:23 depth_5.jsonl\\\\n-rw-r--r--  1 root root 3741498 May 18 18:34 features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T11:32:25.914059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-18T11:32:25.914189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 24\\\\ndrwxr-xr-x  2 root root  149 May 18 18:35 .\\\\ndrwxr-xr-x 33 root root 4096 May 18 18:26 ..\\\\n-rw-r--r--  1 root root  639 May 18 18:35 feature_importance.json\\\\n-rw-r--r--  1 root root   96 May 18 18:34 jsd.json\\\\n-rw-r--r--  1 root root   56 May 18 18:35 ordinal_results.json\\\\n-rw-r--r--  1 root root  575 May 18 18:34 pairwise_auc.json\\\\n-rw-r--r--  1 root root 1326 May 18 18:35 summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-18T11:32:25.914319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp008_retrain_chain.py",
+              "limit": "100",
+              "offset": "470"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-18T11:32:25.914475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "470\t            jsd = 0.5 * np.sum(p * np.log2(p / m)) + 0.5 * np.sum(q * np.log2(q / m))\n471\t            jsds.append(float(jsd))\n472\t        pairwise_jsd[f\"{k-1}v{k}\"] = round(float(np.mean(jsds)), 6)\n473\t        log.info(f\"  JSD({k-1} vs {k}) = {np.mean(jsds):.6f}\")\n474\t\n475\t    with open(results_dir / \"jsd.json\", \"w\") as f:\n476\t        json.dump(pairwise_jsd, f, indent=2)\n477\t\n478\t    # K*\n479\t    k_star = 0\n480\t    for k in range(1, max_depth + 1):\n481\t        if pairwise_auc.get(f\"{k-1}v{k}\", 0) > 0.60:\n482\t            k_star = k\n483\t    log.info(f\"K* = {k_star}\")\n484\t\n485\t    # Bootstrap CI\n486\t    log.info(\"Bootstrap CI (10000 resamples)...\")\n487\t    bootstrap_results = {}\n488\t    rng = np.random.RandomState(42)\n489\t    for k in range(1, max_depth + 1):\n490\t        mask = (depths == k - 1) | (depths == k)\n491\t        X = feat_matrix[mask]\n492\t        y = (depths[mask] == k).astype(int)\n493\t        groups = doc_ids[mask]\n494\t        if len(np.unique(y)) < 2:\n495\t            continue\n496\t\n497\t        n = len(X)\n498\t        boot_aucs = []\n499\t        for _ in range(10000):\n500\t            idx = rng.choice(n, n, replace=True)\n501\t            X_b, y_b = X[idx], y[idx]\n502\t            if len(np.unique(y_b)) < 2:\n503\t                continue\n504\t            clf = lgb.LGBMClassifier(\n505\t                n_estimators=100, max_depth=6, learning_rate=0.05,\n506\t                num_leaves=31, verbose=-1, n_jobs=-1,\n507\t            )\n508\t            clf.fit(X_b, y_b)\n509\t            proba = clf.predict_proba(X_b)[:, 1]\n510\t            boot_aucs.append(roc_auc_score(y_b, proba))\n511\t\n512\t        if boot_aucs:\n513\t            ci_lo = float(np.percentile(boot_aucs, 2.5))\n514\t            ci_hi = float(np.percentile(boot_aucs, 97.5))\n515\t            bootstrap_results[f\"{k-1}v{k}\"] = {\n516\t                \"mean\": round(float(np.mean(boot_aucs)), 4),\n517\t                \"ci_95\": [round(ci_lo, 4), round(ci_hi, 4)],\n518\t            }\n519\t            log.info(f\"  Bootstrap AUC({k-1}\n…[truncated 2208 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-18T11:32:25.914642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "head -3 /root/autodl-tmp/gen-depth-contamination/data/exp_027_latex_ablation/features.csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-18T11:32:25.914792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\n0,0,3.2880189076383064,3.0792762398852567,1.0022333493853872,0.21667259078267787,-0.014234875444839857,4.021983532992029,0.10126073360253228,0.047920460786138264,6.8147699031169005,0.7371134020618557,0.8391608391608392,0.0,17.058097793268516,6.885246847578275,0.9300699300699301\\\\r\\\\n1,0,3.2794168031821815,2.833895853612952,0.9374791895368758,0.44950793517850096,-0.021321614583333332,3.7925839759708673,-0.1340113795964952,0.01903463630546075,6.440128629716455,0.7316017316017316,0.834319526627219,0.0009856785965805328,16.14255093488592,7.129627829265425,0.9171597633136095\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-18T11:32:25.914935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/pairwise_auc.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-18T11:32:25.915077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9948,\\\\n    \\\\\\\"1v2\\\\\\\": 0.8297,\\\\n    \\\\\\\"2v3\\\\\\\": 0.6229,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5468,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5476\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9905,\\\\n      0.9979,\\\\n      0.9937,\\\\n      0.9974,\\\\n      0.9943\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.8085,\\\\n      0.8529,\\\\n      0.8198,\\\\n      0.8292,\\\\n      0.8381\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.6429,\\\\n      0.6196,\\\\n      0.6258,\\\\n      0.5986,\\\\n      0.6275\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.5515,\\\\n      0.572,\\\\n      0.5373,\\\\n      0.5589,\\\\n      0.5142\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.537,\\\\n      0.5757,\\\\n      0.5458,\\\\n      0.5527,\\\\n      0.527\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-18T11:32:25.915203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/summary.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-18T11:32:25.915380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nMVP Pilot Saturation Study — Results Summary\\\\n============================================================\\\\n\\\\nPairwise AUC (adjacent depths):\\\\n  depth 0 vs 1: AUC = 0.9948 ± 0.0027  folds=[0.9905, 0.9979, 0.9937, 0.9974, 0.9943]\\\\n  depth 1 vs 2: AUC = 0.8297 ± 0.0152  folds=[0.8085, 0.8529, 0.8198, 0.8292, 0.8381]\\\\n  depth 2 vs 3: AUC = 0.6229 ± 0.0144  folds=[0.6429, 0.6196, 0.6258, 0.5986, 0.6275]\\\\n  depth 3 vs 4: AUC = 0.5468 ± 0.0198  folds=[0.5515, 0.572, 0.5373, 0.5589, 0.5142]\\\\n  depth 4 vs 5: AUC = 0.5476 ± 0.0165  folds=[0.537, 0.5757, 0.5458, 0.5527, 0.527]\\\\n\\\\nPairwise JSD (adjacent depths):\\\\n  depth 0 vs 1: JSD = 0.201513\\\\n  depth 1 vs 2: JSD = 0.062547\\\\n  depth 2 vs 3: JSD = 0.01612\\\\n  depth 3 vs 4: JSD = 0.007644\\\\n  depth 4 vs 5: JSD = 0.007585\\\\n\\\\nK* (max depth with AUC > 0.60): 3\\\\n\\\\nOrdinal Classification (6-class, 5-fold CV):\\\\n  MAE = 0.8817\\\\n  Accuracy = 0.4589\\\\n\\\\nTop-10 Feature Importance:\\\\n  freq_entropy         9922.6\\\\n  surp_std             7667.0\\\\n  surp_d1_skew         7578.2\\\\n  surp_d1_mean         7132.6\\\\n  surp_mean            7072.0\\\\n  surp_d2_mean         6947.4\\\\n  freq_kurtosis        6818.0\\\\n  surp_kurt            6704.4\\\\n  surp_d1_std          6664.8\\\\n  surp_skew            6071.2\\\\n\\\\n============================================================\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-18T11:32:25.915535+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_027_latex_ablation/features.csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-18T11:32:25.915700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"13201 /root/autodl-tmp/gen-depth-contamination/data/exp_027_latex_ablation/features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-18T11:32:25.916040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-18T11:32:25.916186+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-18T11:32:25.916337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "account": "root",
+              "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/exp027_bootstrap_ci.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"exp_027 Bootstrap CI: doc-level bootstrap on OOF predictions + permutation test.\"\"\"\n\nimport json\nimport time\nimport numpy as np\nimport pandas as pd\nimport lightgbm as lgb\nfrom pathlib import Path\nfrom sklearn.model_selection import GroupKFold\nfrom sklearn.metrics import roc_auc_score\n\nDATA_DIR = Path(\"/root/autodl-tmp/gen-depth-contamination/data/exp_027_latex_ablation\")\nRESULTS_DIR = Path(\"/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation\")\nN_BOOT = 10_000\nN_PERM = 1_000\nSEED = 42\nTHETA = 0.60\n\nLGB_PARAMS = dict(\n    n_estimators=200, max_depth=6, learning_rate=0.05,\n    num_leaves=31, verbose=-1, n_jobs=-1,\n)\n\n\ndef main():\n    t0 = time.time()\n    df = pd.read_csv(DATA_DIR / \"features.csv\")\n    feat_cols = [c for c in df.columns if c not in (\"doc_id\", \"depth\")]\n    print(f\"Data: {len(df)} rows, {len(feat_cols)} features, depths {sorted(df.depth.unique())}\")\n\n    pairs = [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"]\n    results = {}\n\n    for pair in pairs:\n        lo, hi = int(pair[0]), int(pair[2])\n        sub = df[df[\"depth\"].isin([lo, hi])].copy().reset_index(drop=True)\n        X = sub[feat_cols].values\n        y = (sub[\"depth\"] == hi).astype(int).values\n        doc_ids = sub[\"doc_id\"].values\n        unique_docs = np.unique(doc_ids)\n\n        print(f\"\\n--- {pair}: {len(sub)} samples, {len(unique_docs)} docs ---\")\n\n        # Step 1: GroupKFold(5) OOF predictions\n        oof = np.zeros(len(X))\n        fold_aucs = []\n        gkf = GroupKFold(n_splits=5)\n        for tr, te in gkf.split(X, y, groups=doc_ids):\n            clf = lgb.LGBMClassifier(**LGB_PARAMS)\n            clf.fit(X[tr], y[tr])\n            oof[te] = clf.predict_proba(X[te])[:, 1]\n            fold_aucs.append(roc_auc_score(y[te], oof[te]))\n\n        point_est = roc_auc_score(y, oof)\n        print(f\"  OOF AUC = {point_est:.4f}  folds={[round(a,4) for a in fold_aucs]}\")\n\n        # Step 2: Doc-level bootstrap CI on OOF predictions\n        doc_to_idx = {d: np.where(doc_ids == d)[0] for d in unique_docs}\n        rng = np.random.RandomState(SEED)\n        boot_aucs = []\n        for _ in range(N_BOOT):\n            bd = rng.choice(unique_docs, len(unique_docs), replace=True)\n            bi = np.concatenate([doc_to_idx[d] for d in bd])\n            yb, pb = y[bi], oof[bi]\n            if len(np.unique(yb)) < 2:\n                continue\n            boot_aucs.append(roc_auc_score(yb, pb))\n\n        ci_lo = float(np.percentile(boot_aucs, 2.5))\n        ci_hi = float(np.percentile(boot_aucs, 97.5))\n        print(f\"  CI95 = [{ci_lo:.4f}, {ci_hi:.4f}]  boot_mean={np.mean(boot_aucs):.4f}  ({len(boot_aucs)}/{N_BOOT} valid)\")\n\n        result = {\n            \"point_estimate\": round(point_est, 4),\n            \"boot_mean\": round(float(np.mean(boot_aucs)), 4),\n            \"ci_lower\": round(ci_lo, 4),\n            \"ci_upper\": round(ci_hi, 4),\n            \"per_fold\": [round(a, 4) for a in fold_aucs],\n            \"n_boot_valid\": len(boot_aucs),\n        }\n\n        # Step 3: Permutation test (2v3 only)\n        # Permute labels against fixed OOF predictions; under H0 labels are\n        # independent of predictions so AUC ~ 0.5\n        if pair == \"2v3\":\n            rng_p = np.random.RandomState(SEED + 1)\n            perm_aucs = []\n            for _ in range(N_PERM):\n                y_perm = rng_p.permutation(y)\n                if len(np.unique(y_perm)) < 2:\n                    continue\n                perm_aucs.append(roc_auc_score(y_perm, oof))\n\n            p_val = float(np.mean([a >= point_est for a in perm_aucs]))\n            result[\"p_value\"] = round(p_val, 6)\n            result[\"perm_null_mean\"] = round(float(np.mean(perm_aucs)), 4)\n            result[\"perm_null_std\"] = round(float(np.std(perm_aucs)), 4)\n            result[\"n_perm\"] = len(perm_aucs)\n            print(f\"  Perm test: p={p_val:.6f}  null={np.mean(perm_aucs):.4f}+/-{np.std(perm_aucs):.4f}\")\n\n        results[pair] = result\n\n    # Summary\n    print(f\"\\n{'='*60}\")\n    print(\"RESULTS SUMMARY\")\n    print(f\"{'='*60}\")\n    for pair, r in results.items():\n        s = f\"  {pair}: AUC={r['point_estimate']:.4f} [{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]\"\n        if \"p_value\" in r:\n            s += f\"  p={r['p_value']:.6f}\"\n        s += f\"  ci_lo {'>' if r['ci_lower'] > THETA else '<='} theta={THETA}\"\n        print(s)\n\n    r23 = results[\"2v3\"]\n    verdict = r23[\"ci_lower\"] > THETA\n    print(f\"\\n*** 2v3 CI lower = {r23['ci_lower']:.4f} {'>' if verdict else '<='} theta={THETA}\")\n    print(f\"    -> {'CONFIRMED: signal above threshold' if verdict else 'BELOW threshold'}\")\n    print(f\"\\nTotal: {time.time()-t0:.1f}s\")\n\n    RESULTS_DIR.mkdir(parents=True, exist_ok=True)\n    out = RESULTS_DIR / \"bootstrap_ci_results.json\"\n    with open(out, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"Saved: {out}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\""
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-18T11:32:25.916517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-18T11:32:25.916646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "account": "root",
+              "command": "cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp027_bootstrap_ci.py 2>&1",
+              "warn": "True"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-18T11:32:25.916798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: python: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-18T11:32:25.916930+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "account": "root",
+              "command": "cd /root/autodl-tmp/gen-depth-contamination && python3 scripts/exp027_bootstrap_ci.py 2>&1",
+              "warn": "True"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-18T11:32:25.917058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"/root/autodl-tmp/gen-depth-contamination/scripts/exp027_bootstrap_ci.py\\\\\\\", line 7, in <module>\\\\n    import pandas as pd\\\\nModuleNotFoundError: No module named 'pandas'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-18T11:32:25.917179+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__detect_image",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-18T11:32:25.917294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-18T11:32:25.917405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__detect_image"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-18T11:32:25.917627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"ssh_error\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"SSH error: exit code 1\\\"\\n}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__detect_image",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-18T11:32:25.917837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "which python3",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-18T11:32:25.918039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-18T11:32:25.918225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/miniconda3/envs/ /root/anaconda3/envs/ /opt/conda/envs/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-18T11:32:25.918408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-18T11:32:25.918598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/miniconda3/envs/",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-18T11:32:25.918799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-18T11:32:25.918985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "account": "root",
+              "command": "which python3 && python3 -c \"import sys; print(sys.executable, sys.version)\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-18T11:32:25.919168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/bin/python3\\\\n/usr/bin/python3 3.10.12 (main, Mar  3 2026, 11:56:32) [GCC 11.4.0]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-18T11:32:25.919365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "account": "root",
+              "command": "pip3 install pandas numpy scikit-learn lightgbm 2>&1 | tail -5"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-18T11:32:25.919554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Requirement already satisfied: scipy>=1.8.0 in /usr/local/lib/python3.10/dist-packages (from scikit-learn) (1.15.3)\\\\nRequirement already satisfied: six>=1.5 in /usr/local/lib/python3.10/dist-packages (from python-dateutil>=2.8.2->pandas) (1.17.0)\\\\nInstalling collected packages: pytz, tzdata, pandas\\\\nSuccessfully installed pandas-2.3.3 pytz-2026.2 tzdata-2026.2\\\\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-18T11:32:25.919763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "account": "root",
+              "command": "cd /root/autodl-tmp/gen-depth-contamination && python3 scripts/exp027_bootstrap_ci.py 2>&1"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-18T11:32:25.920002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/gen-depth-contamination && python3 scripts/exp027_bootstrap_ci.py 2>&1'\\\\n\\\\nStdout:\\\\n\\\\n/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-18T11:32:25.920243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "account": "root",
+              "command": "cd /root/autodl-tmp/gen-depth-contamination && nohup python3 scripts/exp027_bootstrap_ci.py > /tmp/exp027_bootstrap.log 2>&1 & echo \"PID=$!\""
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-18T11:32:25.920391+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/gen-depth-contamination && nohup python3 scripts/exp027_bootstrap_ci.py > /tmp/exp027_bootstrap.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=51173\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-18T11:32:25.920543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "account": "root",
+              "command": "ps aux | grep exp027 | grep -v grep",
+              "warn": "True"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-18T11:32:25.920668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -20 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-18T11:32:25.920835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root      50945  0.0  0.0   4364  1448 ?        Ss   19:27   0:00 bash -c cd /root/autodl-tmp/gen-depth-contamination && python3 scripts/exp027_bootstrap_ci.py 2>&1\\\\nroot      50946  622  0.0 10155740 180336 ?     Rl   19:27   7:28 python3 scripts/exp027_bootstrap_ci.py\\\\nroot      51173  0.0  0.0   4364   240 ?        S    19:28   0:00 bash -c cd /root/autodl-tmp/gen-depth-contamination && nohup python3 scripts/exp027_bootstrap_ci.py > /tmp/exp027_bootstrap.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\nroot      51174  761  0.0 10155248 173816 ?     Rl   19:28   4:34 python3 scripts/exp027_bootstrap_ci.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-18T11:32:25.921044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:2749: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n\\\", \n…[truncated 100 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-18T11:32:25.921234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "account": "root",
+              "command": "kill 50946 50945 51173 51174 2>/dev/null; sleep 1; ps aux | grep exp027 | grep -v grep || echo \"All killed\""
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-18T11:32:25.921369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All killed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-18T11:32:25.921511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "account": "root",
+              "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/exp027_bootstrap_ci.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"exp_027 Bootstrap CI: doc-level bootstrap on OOF predictions + permutation test.\"\"\"\n\nimport json, time, warnings\nimport numpy as np\nimport pandas as pd\nimport lightgbm as lgb\nfrom pathlib import Path\nfrom sklearn.model_selection import GroupKFold\nfrom sklearn.metrics import roc_auc_score\n\nwarnings.filterwarnings(\"ignore\")\n\nDATA_DIR = Path(\"/root/autodl-tmp/gen-depth-contamination/data/exp_027_latex_ablation\")\nRESULTS_DIR = Path(\"/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation\")\nN_BOOT = 10_000\nN_PERM = 1_000\nSEED = 42\nTHETA = 0.60\n\nLGB_PARAMS = dict(\n    n_estimators=200, max_depth=6, learning_rate=0.05,\n    num_leaves=31, verbose=-1, n_jobs=-1,\n)\n\n\ndef main():\n    t0 = time.time()\n    df = pd.read_csv(DATA_DIR / \"features.csv\")\n    feat_cols = [c for c in df.columns if c not in (\"doc_id\", \"depth\")]\n    print(f\"Data: {len(df)} rows, {len(feat_cols)} features, depths {sorted(df.depth.unique())}\", flush=True)\n\n    pairs = [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"]\n    results = {}\n\n    for pair in pairs:\n        lo, hi = int(pair[0]), int(pair[2])\n        sub = df[df[\"depth\"].isin([lo, hi])].copy().reset_index(drop=True)\n        X = sub[feat_cols].values\n        y = (sub[\"depth\"] == hi).astype(int).values\n        doc_ids = sub[\"doc_id\"].values\n        unique_docs = np.unique(doc_ids)\n\n        print(f\"\\n--- {pair}: {len(sub)} samples, {len(unique_docs)} docs ---\", flush=True)\n\n        # Step 1: GroupKFold(5) OOF predictions\n        oof = np.zeros(len(X))\n        fold_aucs = []\n        gkf = GroupKFold(n_splits=5)\n        for fold_i, (tr, te) in enumerate(gkf.split(X, y, groups=doc_ids)):\n            clf = lgb.LGBMClassifier(**LGB_PARAMS)\n            clf.fit(X[tr], y[tr])\n            oof[te] = clf.predict_proba(X[te])[:, 1]\n            fold_aucs.append(roc_auc_score(y[te], oof[te]))\n\n        point_est = roc_auc_score(y, oof)\n        print(f\"  OOF AUC = {point_est:.4f}  folds={[round(a,4) for a in fold_aucs]}\", flush=True)\n\n        # Step 2: Doc-level bootstrap CI on OOF predictions\n        doc_to_idx = {d: np.where(doc_ids == d)[0] for d in unique_docs}\n        rng = np.random.RandomState(SEED)\n        boot_aucs = []\n        t1 = time.time()\n        for bi in range(N_BOOT):\n            bd = rng.choice(unique_docs, len(unique_docs), replace=True)\n            idx = np.concatenate([doc_to_idx[d] for d in bd])\n            yb, pb = y[idx], oof[idx]\n            if len(np.unique(yb)) < 2:\n                continue\n            boot_aucs.append(roc_auc_score(yb, pb))\n            if (bi + 1) % 2000 == 0:\n                print(f\"    bootstrap {bi+1}/{N_BOOT} ({time.time()-t1:.1f}s)\", flush=True)\n\n        ci_lo = float(np.percentile(boot_aucs, 2.5))\n        ci_hi = float(np.percentile(boot_aucs, 97.5))\n        print(f\"  CI95 = [{ci_lo:.4f}, {ci_hi:.4f}]  boot_mean={np.mean(boot_aucs):.4f}  ({len(boot_aucs)}/{N_BOOT} valid, {time.time()-t1:.1f}s)\", flush=True)\n\n        result = {\n            \"point_estimate\": round(point_est, 4),\n            \"boot_mean\": round(float(np.mean(boot_aucs)), 4),\n            \"ci_lower\": round(ci_lo, 4),\n            \"ci_upper\": round(ci_hi, 4),\n            \"per_fold\": [round(a, 4) for a in fold_aucs],\n            \"n_boot_valid\": len(boot_aucs),\n        }\n\n        # Step 3: Permutation test (2v3 only)\n        if pair == \"2v3\":\n            print(f\"  Permutation test ({N_PERM} perms)...\", flush=True)\n            rng_p = np.random.RandomState(SEED + 1)\n            perm_aucs = []\n            for pi in range(N_PERM):\n                y_perm = rng_p.permutation(y)\n                if len(np.unique(y_perm)) < 2:\n                    continue\n                perm_aucs.append(roc_auc_score(y_perm, oof))\n\n            p_val = float(np.mean([a >= point_est for a in perm_aucs]))\n            result[\"p_value\"] = round(p_val, 6)\n            result[\"perm_null_mean\"] = round(float(np.mean(perm_aucs)), 4)\n            result[\"perm_null_std\"] = round(float(np.std(perm_aucs)), 4)\n            result[\"n_perm\"] = len(perm_aucs)\n            print(f\"  Perm: p={p_val:.6f}  null={np.mean(perm_aucs):.4f}+/-{np.std(perm_aucs):.4f}\", flush=True)\n\n        results[pair] = result\n\n    # Summary\n    print(f\"\\n{'='*60}\", flush=True)\n    print(\"RESULTS SUMMARY\", flush=True)\n    print(f\"{'='*60}\", flush=True)\n    for pair, r in results.items():\n        s = f\"  {pair}: AUC={r['point_estimate']:.4f} [{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]\"\n        if \"p_value\" in r:\n            s += f\"  p={r['p_value']:.6f}\"\n        s += f\"  ci_lo {'>' if r['ci_lower'] > THETA else '<='} theta={THETA}\"\n        print(s, flush=True)\n\n    r23 = results[\"2v3\"]\n    verdict = r23[\"ci_lower\"] > THETA\n    print(f\"\\n*** 2v3 CI lower = {r23['ci_lower']:.4f} {'>' if verdict else '<='} theta={THETA}\", flush=True)\n    print(f\"    -> {'CONFIRMED: signal above threshold' if verdict else 'BELOW threshold'}\", flush=True)\n    print(f\"\\nTotal: {time.time()-t0:.1f}s\", flush=True)\n\n    RESULTS_DIR.mkdir(parents=True, exist_ok=True)\n    out = RESULTS_DIR / \"bootstrap_ci_results.json\"\n    with open(out, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"Saved: {out}\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Updated.\""
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-18T11:32:25.921687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Updated.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-18T11:32:25.921853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "account": "root",
+              "command": "cd /root/autodl-tmp/gen-depth-contamination && nohup python3 -u scripts/exp027_bootstrap_ci.py > /tmp/exp027_bootstrap.log 2>&1 &\ndisown\necho \"STARTED\""
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-18T11:32:25.922032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/gen-depth-contamination && nohup python3 -u scripts/exp027_bootstrap_ci.py > /tmp/exp027_bootstrap.log 2>&1 &\\\\\\\\ndisown\\\\\\\\necho \\\\\\\"STARTED\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nSTARTED\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-18T11:32:25.922188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -30 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-18T11:32:25.922323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Data: 13200 rows, 15 features, depths [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5)]\\\\n\\\\n--- 0v1: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.9944  folds=[0.9912, 0.9978, 0.9934, 0.9976, 0.994]\\\\n    bootstrap 2000/10000 (4.5s)\\\\n    bootstrap 4000/10000 (8.7s)\\\\n    bootstrap 6000/10000 (13.1s)\\\\n    bootstrap 8000/10000 (16.7s)\\\\n    bootstrap 10000/10000 (20.3s)\\\\n  CI95 = [0.9925, 0.9960]  boot_mean=0.9944  (10000/10000 valid, 20.3s)\\\\n\\\\n--- 1v2: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.8315  folds=[0.8125, 0.8563, 0.8227, 0.8285, 0.8373]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (7.1s)\\\\n    bootstrap 6000/10000 (10.6s)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-18T11:32:25.922462+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sleep 120 && echo \"done waiting\"",
+              "description": "Wait 2 minutes for bootstrap to complete",
+              "run_in_background": "True"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-18T11:32:25.922587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Command running in background with ID: bg1avxqdz. Output is being written to: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/0eb0119c-751b-4ee4-862f-7c124e4aa0a0/tasks/bg1avxqdz.output"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-18T11:32:25.922709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -40 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-18T11:32:25.922868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Data: 13200 rows, 15 features, depths [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5)]\\\\n\\\\n--- 0v1: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.9944  folds=[0.9912, 0.9978, 0.9934, 0.9976, 0.994]\\\\n    bootstrap 2000/10000 (4.5s)\\\\n    bootstrap 4000/10000 (8.7s)\\\\n    bootstrap 6000/10000 (13.1s)\\\\n    bootstrap 8000/10000 (16.7s)\\\\n    bootstrap 10000/10000 (20.3s)\\\\n  CI95 = [0.9925, 0.9960]  boot_mean=0.9944  (10000/10000 valid, 20.3s)\\\\n\\\\n--- 1v2: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.8315  folds=[0.8125, 0.8563, 0.8227, 0.8285, 0.8373]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (7.1s)\\\\n    bootstrap 6000/10000 (10.6s)\\\\n    bootstrap 8000/10000 (14.1s)\\\\n    bootstrap 10000/10000 (17.6s)\\\\n  CI95 = [0.8205, 0.8426]  boot_mean=0.8316  (10000/10000 valid, 17.6s)\\\\n\\\\n--- 2v3: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.6248  folds=[0.6512, 0.6178, 0.6157, 0.6054, 0.6351]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-18T11:32:25.923023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -50 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-18T11:32:25.923170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Data: 13200 rows, 15 features, depths [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5)]\\\\n\\\\n--- 0v1: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.9944  folds=[0.9912, 0.9978, 0.9934, 0.9976, 0.994]\\\\n    bootstrap 2000/10000 (4.5s)\\\\n    bootstrap 4000/10000 (8.7s)\\\\n    bootstrap 6000/10000 (13.1s)\\\\n    bootstrap 8000/10000 (16.7s)\\\\n    bootstrap 10000/10000 (20.3s)\\\\n  CI95 = [0.9925, 0.9960]  boot_mean=0.9944  (10000/10000 valid, 20.3s)\\\\n\\\\n--- 1v2: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.8315  folds=[0.8125, 0.8563, 0.8227, 0.8285, 0.8373]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (7.1s)\\\\n    bootstrap 6000/10000 (10.6s)\\\\n    bootstrap 8000/10000 (14.1s)\\\\n    bootstrap 10000/10000 (17.6s)\\\\n  CI95 = [0.8205, 0.8426]  boot_mean=0.8316  (10000/10000 valid, 17.6s)\\\\n\\\\n--- 2v3: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.6248  folds=[0.6512, 0.6178, 0.6157, 0.6054, 0.6351]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (6.9s)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-18T11:32:25.923338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -30 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-18T11:32:25.923489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Data: 13200 rows, 15 features, depths [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5)]\\\\n\\\\n--- 0v1: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.9944  folds=[0.9912, 0.9978, 0.9934, 0.9976, 0.994]\\\\n    bootstrap 2000/10000 (4.5s)\\\\n    bootstrap 4000/10000 (8.7s)\\\\n    bootstrap 6000/10000 (13.1s)\\\\n    bootstrap 8000/10000 (16.7s)\\\\n    bootstrap 10000/10000 (20.3s)\\\\n  CI95 = [0.9925, 0.9960]  boot_mean=0.9944  (10000/10000 valid, 20.3s)\\\\n\\\\n--- 1v2: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.8315  folds=[0.8125, 0.8563, 0.8227, 0.8285, 0.8373]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (7.1s)\\\\n    bootstrap 6000/10000 (10.6s)\\\\n    bootstrap 8000/10000 (14.1s)\\\\n    bootstrap 10000/10000 (17.6s)\\\\n  CI95 = [0.8205, 0.8426]  boot_mean=0.8316  (10000/10000 valid, 17.6s)\\\\n\\\\n--- 2v3: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.6248  folds=[0.6512, 0.6178, 0.6157, 0.6054, 0.6351]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (6.9s)\\\\n    bootstrap 6000/10000 (10.3s)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-18T11:32:25.923621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -20 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-18T11:32:25.923752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    bootstrap 6000/10000 (13.1s)\\\\n    bootstrap 8000/10000 (16.7s)\\\\n    bootstrap 10000/10000 (20.3s)\\\\n  CI95 = [0.9925, 0.9960]  boot_mean=0.9944  (10000/10000 valid, 20.3s)\\\\n\\\\n--- 1v2: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.8315  folds=[0.8125, 0.8563, 0.8227, 0.8285, 0.8373]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (7.1s)\\\\n    bootstrap 6000/10000 (10.6s)\\\\n    bootstrap 8000/10000 (14.1s)\\\\n    bootstrap 10000/10000 (17.6s)\\\\n  CI95 = [0.8205, 0.8426]  boot_mean=0.8316  (10000/10000 valid, 17.6s)\\\\n\\\\n--- 2v3: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.6248  folds=[0.6512, 0.6178, 0.6157, 0.6054, 0.6351]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (6.9s)\\\\n    bootstrap 6000/10000 (10.3s)\\\\n    bootstrap 8000/10000 (13.7s)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-18T11:32:25.923908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -15 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-18T11:32:25.924036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    bootstrap 10000/10000 (17.6s)\\\\n  CI95 = [0.8205, 0.8426]  boot_mean=0.8316  (10000/10000 valid, 17.6s)\\\\n\\\\n--- 2v3: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.6248  folds=[0.6512, 0.6178, 0.6157, 0.6054, 0.6351]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (6.9s)\\\\n    bootstrap 6000/10000 (10.3s)\\\\n    bootstrap 8000/10000 (13.7s)\\\\n    bootstrap 10000/10000 (17.2s)\\\\n  CI95 = [0.6098, 0.6402]  boot_mean=0.6248  (10000/10000 valid, 17.2s)\\\\n  Permutation test (1000 perms)...\\\\n  Perm: p=0.000000  null=0.5000+/-0.0087\\\\n\\\\n--- 3v4: 4400 samples, 2200 docs ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-18T11:32:25.924183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -30 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-18T11:32:25.924319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    bootstrap 2000/10000 (4.5s)\\\\n    bootstrap 4000/10000 (8.7s)\\\\n    bootstrap 6000/10000 (13.1s)\\\\n    bootstrap 8000/10000 (16.7s)\\\\n    bootstrap 10000/10000 (20.3s)\\\\n  CI95 = [0.9925, 0.9960]  boot_mean=0.9944  (10000/10000 valid, 20.3s)\\\\n\\\\n--- 1v2: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.8315  folds=[0.8125, 0.8563, 0.8227, 0.8285, 0.8373]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (7.1s)\\\\n    bootstrap 6000/10000 (10.6s)\\\\n    bootstrap 8000/10000 (14.1s)\\\\n    bootstrap 10000/10000 (17.6s)\\\\n  CI95 = [0.8205, 0.8426]  boot_mean=0.8316  (10000/10000 valid, 17.6s)\\\\n\\\\n--- 2v3: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.6248  folds=[0.6512, 0.6178, 0.6157, 0.6054, 0.6351]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (6.9s)\\\\n    bootstrap 6000/10000 (10.3s)\\\\n    bootstrap 8000/10000 (13.7s)\\\\n    bootstrap 10000/10000 (17.2s)\\\\n  CI95 = [0.6098, 0.6402]  boot_mean=0.6248  (10000/10000 valid, 17.2s)\\\\n  Permutation test (1000 perms)...\\\\n  Perm: p=0.000000  null=0.5000+/-0.0087\\\\n\\\\n--- 3v4: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.5440  folds=[0.5501, 0.5691, 0.5507, 0.5379, 0.5131]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-18T11:32:25.924444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -20 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-18T11:32:25.924571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    bootstrap 6000/10000 (10.6s)\\\\n    bootstrap 8000/10000 (14.1s)\\\\n    bootstrap 10000/10000 (17.6s)\\\\n  CI95 = [0.8205, 0.8426]  boot_mean=0.8316  (10000/10000 valid, 17.6s)\\\\n\\\\n--- 2v3: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.6248  folds=[0.6512, 0.6178, 0.6157, 0.6054, 0.6351]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (6.9s)\\\\n    bootstrap 6000/10000 (10.3s)\\\\n    bootstrap 8000/10000 (13.7s)\\\\n    bootstrap 10000/10000 (17.2s)\\\\n  CI95 = [0.6098, 0.6402]  boot_mean=0.6248  (10000/10000 valid, 17.2s)\\\\n  Permutation test (1000 perms)...\\\\n  Perm: p=0.000000  null=0.5000+/-0.0087\\\\n\\\\n--- 3v4: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.5440  folds=[0.5501, 0.5691, 0.5507, 0.5379, 0.5131]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (7.0s)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-18T11:32:25.924693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -25 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-18T11:32:25.924849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"--- 1v2: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.8315  folds=[0.8125, 0.8563, 0.8227, 0.8285, 0.8373]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (7.1s)\\\\n    bootstrap 6000/10000 (10.6s)\\\\n    bootstrap 8000/10000 (14.1s)\\\\n    bootstrap 10000/10000 (17.6s)\\\\n  CI95 = [0.8205, 0.8426]  boot_mean=0.8316  (10000/10000 valid, 17.6s)\\\\n\\\\n--- 2v3: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.6248  folds=[0.6512, 0.6178, 0.6157, 0.6054, 0.6351]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (6.9s)\\\\n    bootstrap 6000/10000 (10.3s)\\\\n    bootstrap 8000/10000 (13.7s)\\\\n    bootstrap 10000/10000 (17.2s)\\\\n  CI95 = [0.6098, 0.6402]  boot_mean=0.6248  (10000/10000 valid, 17.2s)\\\\n  Permutation test (1000 perms)...\\\\n  Perm: p=0.000000  null=0.5000+/-0.0087\\\\n\\\\n--- 3v4: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.5440  folds=[0.5501, 0.5691, 0.5507, 0.5379, 0.5131]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (7.0s)\\\\n    bootstrap 6000/10000 (10.5s)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-18T11:32:25.924983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -15 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-18T11:32:25.925111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (6.9s)\\\\n    bootstrap 6000/10000 (10.3s)\\\\n    bootstrap 8000/10000 (13.7s)\\\\n    bootstrap 10000/10000 (17.2s)\\\\n  CI95 = [0.6098, 0.6402]  boot_mean=0.6248  (10000/10000 valid, 17.2s)\\\\n  Permutation test (1000 perms)...\\\\n  Perm: p=0.000000  null=0.5000+/-0.0087\\\\n\\\\n--- 3v4: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.5440  folds=[0.5501, 0.5691, 0.5507, 0.5379, 0.5131]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (7.0s)\\\\n    bootstrap 6000/10000 (10.5s)\\\\n    bootstrap 8000/10000 (13.9s)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-18T11:32:25.925232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -20 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-18T11:32:25.925359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  OOF AUC = 0.6248  folds=[0.6512, 0.6178, 0.6157, 0.6054, 0.6351]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (6.9s)\\\\n    bootstrap 6000/10000 (10.3s)\\\\n    bootstrap 8000/10000 (13.7s)\\\\n    bootstrap 10000/10000 (17.2s)\\\\n  CI95 = [0.6098, 0.6402]  boot_mean=0.6248  (10000/10000 valid, 17.2s)\\\\n  Permutation test (1000 perms)...\\\\n  Perm: p=0.000000  null=0.5000+/-0.0087\\\\n\\\\n--- 3v4: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.5440  folds=[0.5501, 0.5691, 0.5507, 0.5379, 0.5131]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (7.0s)\\\\n    bootstrap 6000/10000 (10.5s)\\\\n    bootstrap 8000/10000 (13.9s)\\\\n    bootstrap 10000/10000 (17.5s)\\\\n  CI95 = [0.5277, 0.5598]  boot_mean=0.5439  (10000/10000 valid, 17.5s)\\\\n\\\\n--- 4v5: 4400 samples, 2200 docs ---\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-18T11:32:25.925501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -25 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-18T11:32:25.925634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n--- 2v3: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.6248  folds=[0.6512, 0.6178, 0.6157, 0.6054, 0.6351]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (6.9s)\\\\n    bootstrap 6000/10000 (10.3s)\\\\n    bootstrap 8000/10000 (13.7s)\\\\n    bootstrap 10000/10000 (17.2s)\\\\n  CI95 = [0.6098, 0.6402]  boot_mean=0.6248  (10000/10000 valid, 17.2s)\\\\n  Permutation test (1000 perms)...\\\\n  Perm: p=0.000000  null=0.5000+/-0.0087\\\\n\\\\n--- 3v4: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.5440  folds=[0.5501, 0.5691, 0.5507, 0.5379, 0.5131]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (7.0s)\\\\n    bootstrap 6000/10000 (10.5s)\\\\n    bootstrap 8000/10000 (13.9s)\\\\n    bootstrap 10000/10000 (17.5s)\\\\n  CI95 = [0.5277, 0.5598]  boot_mean=0.5439  (10000/10000 valid, 17.5s)\\\\n\\\\n--- 4v5: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.5425  folds=[0.5253, 0.5664, 0.547, 0.5423, 0.5292]\\\\n    bootstrap 2000/10000 (3.4s)\\\\n    bootstrap 4000/10000 (6.8s)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-18T11:32:25.925760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -20 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-18T11:32:25.925986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    bootstrap 6000/10000 (10.3s)\\\\n    bootstrap 8000/10000 (13.7s)\\\\n    bootstrap 10000/10000 (17.2s)\\\\n  CI95 = [0.6098, 0.6402]  boot_mean=0.6248  (10000/10000 valid, 17.2s)\\\\n  Permutation test (1000 perms)...\\\\n  Perm: p=0.000000  null=0.5000+/-0.0087\\\\n\\\\n--- 3v4: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.5440  folds=[0.5501, 0.5691, 0.5507, 0.5379, 0.5131]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (7.0s)\\\\n    bootstrap 6000/10000 (10.5s)\\\\n    bootstrap 8000/10000 (13.9s)\\\\n    bootstrap 10000/10000 (17.5s)\\\\n  CI95 = [0.5277, 0.5598]  boot_mean=0.5439  (10000/10000 valid, 17.5s)\\\\n\\\\n--- 4v5: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.5425  folds=[0.5253, 0.5664, 0.547, 0.5423, 0.5292]\\\\n    bootstrap 2000/10000 (3.4s)\\\\n    bootstrap 4000/10000 (6.8s)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-18T11:32:25.926132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -15 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-18T11:32:25.926279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"--- 3v4: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.5440  folds=[0.5501, 0.5691, 0.5507, 0.5379, 0.5131]\\\\n    bootstrap 2000/10000 (3.5s)\\\\n    bootstrap 4000/10000 (7.0s)\\\\n    bootstrap 6000/10000 (10.5s)\\\\n    bootstrap 8000/10000 (13.9s)\\\\n    bootstrap 10000/10000 (17.5s)\\\\n  CI95 = [0.5277, 0.5598]  boot_mean=0.5439  (10000/10000 valid, 17.5s)\\\\n\\\\n--- 4v5: 4400 samples, 2200 docs ---\\\\n  OOF AUC = 0.5425  folds=[0.5253, 0.5664, 0.547, 0.5423, 0.5292]\\\\n    bootstrap 2000/10000 (3.4s)\\\\n    bootstrap 4000/10000 (6.8s)\\\\n    bootstrap 6000/10000 (10.3s)\\\\n    bootstrap 8000/10000 (13.8s)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.65}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-18T11:32:25.926406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -20 /tmp/exp027_bootstrap.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-18T11:32:25.926537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    bootstrap 4000/10000 (6.8s)\\\\n    bootstrap 6000/10000 (10.3s)\\\\n    bootstrap 8000/10000 (13.8s)\\\\n    bootstrap 10000/10000 (17.3s)\\\\n  CI95 = [0.5265, 0.5584]  boot_mean=0.5425  (10000/10000 valid, 17.3s)\\\\n\\\\n============================================================\\\\nRESULTS SUMMARY\\\\n============================================================\\\\n  0v1: AUC=0.9944 [0.9925, 0.9960]  ci_lo > theta=0.6\\\\n  1v2: AUC=0.8315 [0.8205, 0.8426]  ci_lo > theta=0.6\\\\n  2v3: AUC=0.6248 [0.6098, 0.6402]  p=0.000000  ci_lo > theta=0.6\\\\n  3v4: AUC=0.5440 [0.5277, 0.5598]  ci_lo <= theta=0.6\\\\n  4v5: AUC=0.5425 [0.5265, 0.5584]  ci_lo <= theta=0.6\\\\n\\\\n*** 2v3 CI lower = 0.6098 > theta=0.6\\\\n    -> CONFIRMED: signal above threshold\\\\n\\\\nTotal: 98.1s\\\\nSaved: /root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/bootstrap_ci_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-18T11:32:25.926674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/bootstrap_ci_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-18T11:32:25.926848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"0v1\\\\\\\": {\\\\n    \\\\\\\"point_estimate\\\\\\\": 0.9944,\\\\n    \\\\\\\"boot_mean\\\\\\\": 0.9944,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.9925,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.996,\\\\n    \\\\\\\"per_fold\\\\\\\": [\\\\n      0.9912,\\\\n      0.9978,\\\\n      0.9934,\\\\n      0.9976,\\\\n      0.994\\\\n    ],\\\\n    \\\\\\\"n_boot_valid\\\\\\\": 10000\\\\n  },\\\\n  \\\\\\\"1v2\\\\\\\": {\\\\n    \\\\\\\"point_estimate\\\\\\\": 0.8315,\\\\n    \\\\\\\"boot_mean\\\\\\\": 0.8316,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.8205,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.8426,\\\\n    \\\\\\\"per_fold\\\\\\\": [\\\\n      0.8125,\\\\n      0.8563,\\\\n      0.8227,\\\\n      0.8285,\\\\n      0.8373\\\\n    ],\\\\n    \\\\\\\"n_boot_valid\\\\\\\": 10000\\\\n  },\\\\n  \\\\\\\"2v3\\\\\\\": {\\\\n    \\\\\\\"point_estimate\\\\\\\": 0.6248,\\\\n    \\\\\\\"boot_mean\\\\\\\": 0.6248,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.6098,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.6402,\\\\n    \\\\\\\"per_fold\\\\\\\": [\\\\n      0.6512,\\\\n      0.6178,\\\\n      0.6157,\\\\n      0.6054,\\\\n      0.6351\\\\n    ],\\\\n    \\\\\\\"n_boot_valid\\\\\\\": 10000,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"perm_null_mean\\\\\\\": 0.5,\\\\n    \\\\\\\"perm_null_std\\\\\\\": 0.0087,\\\\n    \\\\\\\"n_perm\\\\\\\": 1000\\\\n  },\\\\n  \\\\\\\"3v4\\\\\\\": {\\\\n    \\\\\\\"point_estimate\\\\\\\": 0.544,\\\\n    \\\\\\\"boot_mean\\\\\\\": 0.5439,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.5277,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.5598,\\\\n    \\\\\\\"per_fold\\\\\\\": [\\\\n      0.5501,\\\\n      0.5691,\\\\n      0.5507,\\\\n      0.5379,\\\\n      0.5131\\\\n    ],\\\\n    \\\\\\\"n_boot_valid\\\\\\\": 10000\\\\n  },\\\\n  \\\\\\\"4v5\\\\\\\": {\\\\n    \\\\\\\"point_estimate\\\\\\\": 0.5425,\\\\n    \\\\\\\"boot_mean\\\\\\\": 0.5425,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.5265,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.5584,\\\\n    \\\\\\\"per_fold\\\\\\\": [\\\\n      0.5253,\\\\n      0.5664,\\\\n      0.547,\\\\n      0.5423,\\\\n      0.5292\\\\n    ],\\\\n    \\\\\\\"n_boot_valid\\\\\\\": 10000\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-18T11:32:25.927012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_027_bootstrap_ci",
+              "description": "Create artifact directory"
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-18T11:32:25.927138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-18T11:32:25.927276+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_027_bootstrap_ci/results_summary.md",
+              "content": "# exp_027 Bootstrap CI Results (LaTeX Ablation)\n\n## Method\n- **Data**: exp_027_latex_ablation features.csv (13,200 rows, 15 features, depths 0-5)\n- **Classifier**: LightGBM (200 trees, max_depth=6, lr=0.05)\n- **OOF**: GroupKFold(5), grouped by doc_id\n- **Bootstrap**: 10,000 doc-level resamples on OOF predictions, percentile CI\n- **Permutation test** (2v3 only): 1,000 label permutations against fixed OOF predictions\n\n## Results\n\n| Pair | Point Est | CI Lower | CI Upper | Per-fold AUCs | CI lower > 0.60? |\n|------|-----------|----------|----------|---------------|-------------------|\n| 0v1  | 0.9944    | 0.9925   | 0.9960   | 0.9912, 0.9978, 0.9934, 0.9976, 0.9940 | Yes |\n| 1v2  | 0.8315    | 0.8205   | 0.8426   | 0.8125, 0.8563, 0.8227, 0.8285, 0.8373 | Yes |\n| **2v3** | **0.6248** | **0.6098** | **0.6402** | 0.6512, 0.6178, 0.6157, 0.6054, 0.6351 | **Yes** |\n| 3v4  | 0.5440    | 0.5277   | 0.5598   | 0.5501, 0.5691, 0.5507, 0.5379, 0.5131 | No |\n| 4v5  | 0.5425    | 0.5265   | 0.5584   | 0.5253, 0.5664, 0.5470, 0.5423, 0.5292 | No |\n\n## 2v3 Permutation Test\n- p-value: 0.000 (0/1000 permutations exceeded observed AUC)\n- Null distribution: mean=0.5000, std=0.0087\n\n## Conclusion\n**2v3 CI lower = 0.6098 > theta = 0.60: CONFIRMED.**\n\nK*=3 holds under bootstrap CI even after LaTeX removal. The 2v3 signal is statistically significant (p < 0.001) and the 95% CI lower bound clears the theta=0.60 threshold, though with only 0.0098 margin. The drop from the original 0.6436 to 0.6248 is notable but does not invalidate the K*=3 finding.\n\n## Artifacts\n- Server JSON: `/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/bootstrap_ci_results.json`\n- Script: `/root/autodl-tmp/gen-depth-contamination/scripts/exp027_bootstrap_ci.py`\n"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-18T11:32:25.927440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_027_bootstrap_ci/results_summary.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-18T11:32:25.927607+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n**2v3 CI lower = 0.6098 > θ = 0.60: CONFIRMED.** K*=3 在去除 LaTeX 后依然成立。\n\n| Pair | AUC | 95% CI | > θ? |\n|------|-----|--------|------|\n| 0v1 | 0.9944 | [0.9925, 0.9960] | Yes |\n| 1v2 | 0.8315 | [0.8205, 0.8426] | Yes |\n| **2v3** | **0.6248** | **[0.6098, 0.6402]** | **Yes** |\n| 3v4 | 0.5440 | [0.5277, 0.5598] | No |\n| 4v5 | 0.5425 | [0.5265, 0.5584] | No |\n\n2v3 permutation test p=0.000 (null mean=0.50). CI lower bound 超过阈值 0.0098，margin 很小但统计上成立。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149"
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-18T11:32:25.927819+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Background wait task completed — bootstrap already finished before it, results reported above.)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_exp027-bootstrap-ci_20260518T112149"
+          },
+          "id": "event-000122"
+        }
+      ],
+      "message_count": 122
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-exp027-bootstrap-ci.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69e287973093b9d73994",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research reference audit",
+  "task_key": "worker_research_reference_audit_20260520T112725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_reference_audit_20260520T112725_result.json",
+    "occurrence": 1,
+    "bytes": 1250,
+    "sha256": "32016de55ddce912bffc4fb9b90d95f770319a3c0d5a3315427a78e58307ea18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "该论文已正式发表在 NeurIPS 2024。缺失的 bibtex entry：\n\n```bibtex\n@inproceedings{dohmatob2024demystified,\n  title={Model Collapse Demystified: The Case of Regression},\n  author={Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2024},\n  url={https://arxiv.org/abs/2402.07712}\n}\n```\n\n## 汇总\n\n| # | 论文 | 状态 | 详情 |\n|---|------|------|------|\n| 1 | Dohmatob et al. \"Model Collapse Demystified\" | ❌ **缺失** | 需添加上方 entry（NeurIPS 2024，key: `dohmatob2024demystified`） |\n| 2 | Seddik et al. \"How Bad is Training on Synthetic Data?\" | ✅ 已有 | key: `seddik2024how`，line 449 |\n| 3 | RADAR (Hu et al.) | ✅ 已有 | key: `hu2023radar`，line 456（注意：作者是 **Hu** 不是 Li） |\n| 4 | Tulchinskii et al. \"Intrinsic Dimension\" | ✅ 已有 | key: `tulchinskii2024intrinsic`，line 463 |\n\n注意：同一作者 Dohmatob 已有两篇在 bib 中（`dohmatob2024model` \"A Tale of Tails\" 和 `dohmatob2025strong` \"Strong Model Collapse\"），但 \"Model Collapse Demystified\" 是第三篇不同的论文，确实缺失。\n\n需要我将该 entry 写入 `references.bib` 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-reference-audit.md"
+}

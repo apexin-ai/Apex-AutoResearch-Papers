@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4eba100ff5f90e7b8339",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops feature importance analysis",
+  "task_key": "worker_ops_feature_importance_analysis_20260521T051032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_feature_importance_analysis_20260521T051032_result.json",
+    "occurrence": 1,
+    "bytes": 2082,
+    "sha256": "573b82b8c5f0f44bc463ac6b3d3baa9a4f5c07900123f157028fca5c6c682654"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。关键发现：\n\n## Permutation Importance 结果（C4, Qwen-1.5B, LightGBM）\n\n### Baseline AUC\n| Pair | AUC |\n|------|-----|\n| 0 vs 1 | **0.9219** |\n| 1 vs 2 | **0.6104** |\n| 2 vs 3 | 0.5318 (≈ random) |\n\n### 0v1 分类（强区分）Top-5\n| Rank | Feature | Importance (ΔAUC) |\n|------|---------|-------------------|\n| 1 | **Δ¹ Surprisal Std** | 0.2092 ± 0.0135 |\n| 2 | Surprisal Std | 0.0952 ± 0.0097 |\n| 3 | Freq Entropy | 0.0635 ± 0.0051 |\n| 4 | Surprisal Kurtosis | 0.0427 ± 0.0035 |\n| 5 | Surprisal Skew | 0.0349 ± 0.0017 |\n\n### 1v2 分类（K* boundary）Top-5\n| Rank | Feature | Importance (ΔAUC) |\n|------|---------|-------------------|\n| 1 | **Surprisal Std** | 0.0583 ± 0.0064 |\n| 2 | Δ² Surprisal Std | 0.0218 ± 0.0068 |\n| 3 | Freq Entropy | 0.0170 ± 0.0061 |\n| 4 | Mean Surprisal | 0.0133 ± 0.0048 |\n| 5 | TTR | 0.0060 ± 0.0054 |\n\n### 核心结论\n\n1. **Mean surprisal 在 0v1 中占 6.8%**（排第6，importance=0.034），远不如 Δ¹ Surprisal Std（占 41.7%）。\n\n2. **1v2 boundary 的关键信号是 surp_std（surprisal 方差）**，占绝对主导（importance 0.0583，是第二名的 2.7 倍）。这意味着 K*=2 boundary 处，depth 1→2 的核心变化是 token-level surprisal 的 **离散度收窄**，而非均值移动。\n\n3. **0v1 和 1v2 的 importance 分布质变不同**：\n   - 0v1 由一阶导数特征（surp_d1_std）主导——生成文本的 surprisal 变化模式在 depth 0→1 剧烈改变\n   - 1v2 一阶导数特征贡献归零（0.005），转为由 **基础统计量**（surp_std）和 **二阶导数**（surp_d2_std）主导——说明 depth 1→2 的退化更微妙，体现在分布的 spread 和曲率变化上\n\n4. **2v3 所有特征 importance 极低且方差大**，验证了 K*=2 之后特征空间已无法区分的结论。\n\n产出文件均在服务器 cqa1-22115 上：\n- `results/feature_importance/importance_results.json`\n- `artifacts/feature_importance_barplot.pdf` / `.png`\n- `artifacts/feature_importance_table.tex`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-feature-importance-analysis.md"
+}

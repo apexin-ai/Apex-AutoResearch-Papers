@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d76d35d97ebdf38e611",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp019 exit",
+  "task_key": "worker_diagnose_exp019_exit_20260516T111615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp019_exit_20260516T111615_result.json",
+    "occurrence": 1,
+    "bytes": 1281,
+    "sha256": "a6f8b8535ebc1d62597a6f1cdab334d193e813c46fb6e57898702d2533ca0589"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-019 Mistral-7B 结果汇报\n\n### 1. 判断：**SUCCESS**\n\n### 2. 日志关键行\n```\n19:14:13 [INFO]   Ordinal MAE = 1.2275, Accuracy = 0.3567, K* = 1\n19:14:13 [INFO] Pipeline complete.\n```\n\n### 3. K* = 1（假设预期为 2，实际为 1）\n\n**Pairwise AUC：**\n| 对比 | AUC | 判断 |\n|------|-----|------|\n| 0v1 | **0.9843** ± 0.0020 | 强可区分 |\n| 1v2 | 0.5935 ± 0.0054 | < 0.60 阈值 |\n| 2v3 | 0.5402 ± 0.0116 | 接近随机 |\n| 3v4 | 0.5232 ± 0.0034 | 接近随机 |\n| 4v5 | 0.5181 ± 0.0061 | 接近随机 |\n\n**Pairwise JSD：** 0v1 有显著差异 (0.124)，之后急剧衰减至 ~0.004-0.008。\n\n**Ordinal：** MAE=1.2275, Accuracy=35.67%\n\n**Top 特征：** freq_entropy, surp_d1_skew, surp_d1_mean\n\n### 4. 数据完整性\ndepth 0-5 各 5000 条，全部完整。结果目录 4 个 JSON + summary.txt，齐全。\n\n### 5. cuda:1 状态：**空闲**（无进程占用）\n\n### 6. Registry 已更新\n- status → DONE\n- conclusion → success\n- metrics → 含 K*、AUC、JSD、ordinal 全量数据\n- checkpoint_path / log_path 已设置\n- failure_reason 已清空\n\n**注意：** 假设预期 K*=2，实际 Mistral-7B K*=1，说明 depth 0→1 后信号即已饱和，与 Qwen 系列可能存在差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp019-exit.md"
+}

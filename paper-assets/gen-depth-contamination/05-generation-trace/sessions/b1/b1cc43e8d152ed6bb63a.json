@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1cc43e8d152ed6bb63a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis c4 1b5 qwen rw check",
+  "task_key": "worker_analysis_c4-1b5-qwen-rw-check_20260519T230027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c4-1b5-qwen-rw-check_20260519T230027_result.json",
+    "occurrence": 1,
+    "bytes": 1314,
+    "sha256": "b380d819b2c9bbca4a41bda125465bc0f0cee253b8a864e4d841157031a3cda7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### qwen_rw 实验：已完成\n\n**K\\* = 2**（theta=0.6），训练耗时 3441s (~57min)。\n\n| Pair | DeBERTa AUC | 95% CI | OBD Baseline | Delta |\n|------|------------|--------|-------------|-------|\n| 0v1 | **0.9923** | [0.9907, 0.9937] | 0.987 | +0.0053 |\n| 1v2 | **0.7052** | [0.6977, 0.7129] | 0.6262 | **+0.0790** |\n| 2v3 | 0.5988 | [0.5905, 0.6063] | 0.5496 | +0.0492 |\n| 3v4 | 0.5698 | [0.5626, 0.5774] | 0.5294 | +0.0404 |\n| 4v5 | 0.5475 | [0.5404, 0.5542] | 0.5182 | +0.0293 |\n\n- 0v1 和 1v2 的 CI lower 均 > 0.6（theta），K\\*=2\n- DeBERTa 在所有 pair 上均优于 OBD baseline，1v2 提升最大（+7.9pp）\n\n### GPU 状态\n\n| GPU | 利用率 | 显存占用 |\n|-----|-------|---------|\n| 0 | **0% 空闲** | 0 / 24564 MiB |\n| 1 | 98% | 23337 / 24564 MiB |\n| 2 | 97% | 23337 / 24564 MiB |\n| 3 | 97% | 23221 / 24564 MiB |\n\n### Cross-transfer 进度\n\n3 个 GPU 都在跑 DeBERTa cross-transfer（PID 208306/208307/208308），已产出 6 个 JSON 结果。当前进度：\n- **GPU1**: Ep 2 step 400/1500（第2轮早期）\n- **GPU2**: Ep 3 step 800/1500（第3轮过半）\n- **GPU3**: Ep 1 step 1200/1500（第1轮末期）\n\n每个 GPU 跑多个 train→test 组合，按每组 ~10min 估算，还需若干小时完成全部组合。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c4-1b5-qwen-rw-check.md"
+}

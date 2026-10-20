@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bc0d8a44524532f17f7",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260513T090523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260513T090523_result.json",
+    "occurrence": 1,
+    "bytes": 1420,
+    "sha256": "05ce706789cd6840e4b3e571e67880265f670307decbd57456bca0755744db1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section 已写入 `docs/paper/method.tex` 并注册为 artifact。\n\n**内容摘要：**\n\n6 个子节，~1500 words，2 个表格：\n\n| 子节 | 核心内容 |\n|------|---------|\n| §3.1 Problem Formulation | 递归生成 → Markov chain → DPI → $K^*_{\\text{theory}}$ 上界 → $K^*_{\\text{empirical}}$ operational 定义（bootstrap CI + θ） |\n| §3.2 Feature Extraction | 15D 特征表（Table 1），5 组特征的动机，hand-crafted vs learned 的三条理由 |\n| §3.3 OBD Classifier | OBD-LightGBM 分解为 K 个 cumulative binary classifiers；与 multiclass LightGBM（MAE 更高）和 ordinal logreg（AUC 0.4883 vs 0.6095，中心坍缩病理）的对比 |\n| §3.4 Operationalizing K* | θ=0.60 基于 permutation null 95th pctl < 0.55；四阈值敏感性分析（θ=0.60 时 K*=2 全配置一致） |\n| §3.5 Experimental Setup | 4 configs × 3 model families（Table 2），C4 seed，5-fold CV，AUC 为主指标 |\n| §3.6 Generation Mode Control | Continuation vs Rewrite；canonical condition 选择基于 transfer retention（80-92% vs 61-63%）和 cont→rw 89% vs rw→cont 82% 不对称性 |\n\n**数据溯源：** 所有定量 claim 均来自 registry（exp-010 OBD 对比、exp-007 bootstrap CI、exp-013 cross-transfer、exp-017/001/002 pairwise AUC）。θ 敏感性分析如实报告：θ=0.65 时仅 rewrite 保持 K\\*=2，continuation 降为 1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method.md"
+}

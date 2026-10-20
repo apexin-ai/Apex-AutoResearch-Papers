@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd954361056b388d551d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code runtime benchmark",
+  "task_key": "worker_code_runtime_benchmark_20260525T063042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_runtime_benchmark_20260525T063042_result.json",
+    "occurrence": 1,
+    "bytes": 977,
+    "sha256": "4dd983abbb4eea6c6a980ca5a5482d0ad2710d3c36887e9292b6f853cc004299"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Benchmark 完成。结果摘要：\n\n| 方法 | ms/doc (mean±std) | throughput | GPU 内存 |\n|------|-------------------|-----------|---------|\n| **OBD Pipeline** | 44.3 ± 7.8 | 22.6 docs/s | 3,102 MB |\n| Binoculars | 17.0 ± 1.2 | 58.8 docs/s | 5,049 MB |\n| DivEye | 14.2 ± 0.2 | 70.3 docs/s | 3,102 MB |\n| Neural Probe | 14.6 ± 0.2 | 68.3 docs/s | 3,061 MB |\n\n**OBD pipeline 分解：**\n- Scorer forward (GPU): 20.1 ms (45%)\n- CPU feature extraction: 23.4 ms (53%) — 瓶颈在 self-BLEU 计算\n- LightGBM inference: 0.77 ms (2%)\n\nOBD 比 baselines 慢约 2.6×，主要开销来自 CPU 端的 vocabulary diversity 特征计算（self-BLEU 需对 100 个 reference 文档逐一计算）。但 OBD 用更低的 GPU 内存（vs Binoculars 需双模型 5GB），且提供 15D 可解释特征和 depth ordering 能力，而非仅二分类检测。\n\n结果已保存至 `results/runtime_benchmark/benchmark_results.json` 并注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-runtime-benchmark.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6c11c41fbed1b8e2269",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops check pythia retrain done",
+  "task_key": "worker_ops_check-pythia-retrain-done_20260519T034431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-pythia-retrain-done_20260519T034431_result.json",
+    "occurrence": 1,
+    "bytes": 1473,
+    "sha256": "dba2714ce427951cf016590ad0674e473c2b7f6a004c41531a36d9dc3c87b93a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **成功完成**，K*=7。\n\n## 结果汇总\n\n**模型**: Pythia-1.4B (retrain-chain protocol, LoRA r=16)\n**Scorer**: Qwen2.5-1.5B\n**K* = 7** (threshold AUC > 0.60, 所有 7 个 depth pair 均超阈值)\n\n### Pairwise AUC (5-fold GroupKFold CV)\n\n| Depth Pair | AUC (mean) | 95% CI |\n|---|---|---|\n| 0 vs 1 | 0.9844 | [0.9829, 0.9858] |\n| 1 vs 2 | 0.9470 | [0.9418, 0.9522] |\n| 2 vs 3 | 0.8891 | [0.8822, 0.8960] |\n| 3 vs 4 | 0.7999 | [0.7951, 0.8047] |\n| 4 vs 5 | 0.6907 | [0.6880, 0.6934] |\n| 5 vs 6 | 0.6497 | [0.6429, 0.6565] |\n| 6 vs 7 | 0.6340 | [0.6275, 0.6406] |\n\n### Pairwise JSD (单调递减)\n\n| Depth Pair | JSD |\n|---|---|\n| 0 vs 1 | 0.1775 |\n| 1 vs 2 | 0.1286 |\n| 2 vs 3 | 0.1069 |\n| 3 vs 4 | 0.0643 |\n| 4 vs 5 | 0.0331 |\n| 5 vs 6 | 0.0271 |\n| 6 vs 7 | 0.0138 |\n\n### 关键结论\n\n**Pythia retrain K* = 7，与 Qwen retrain K* ≥ 7 一致。** \"Retrain artifacts are model-independent\" 的 claim 成立：\n\n- 两个架构不同的模型（Pythia GPT-NeoX vs Qwen）在 retrain protocol 下均达到 K*=7\n- AUC 衰减曲线形态高度相似：从 ~0.98 单调下降，到 depth 7 仍 >0.63\n- JSD 同样单调递减，收敛趋势一致\n- 6v7 的 AUC=0.634 和 CI 下界 0.6275 均 >0.60 阈值，说明即使到 depth 7 仍有统计显著的可区分性\n\n分析脚本 `analyze_pythia_retrain_depth7.py` 不存在，以上结果直接从 `summary.json` / `pairwise_auc.json` / `jsd.json` 提取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-pythia-retrain-done.md"
+}

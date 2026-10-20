@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7cf2d70c47f5cc4e711",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops pythia69b v3 early check",
+  "task_key": "worker_ops_pythia69b_v3_early_check_20260521T032239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pythia69b_v3_early_check_20260521T032239_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "1103d45ee2e22b8f980f4d6e5b5d2e696c247fd9da8e3bec956aadaba788b6cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 完全正常启动，已进入生成阶段。\n\n```\nPROCESS_ALIVE: yes (PID 395575, elapsed ~74s)\nGPU_ACTIVE: yes (model loaded on cuda:0, depth 1 generation in progress)\nMODEL_LOADED: yes (Pythia-6.9B loaded on cuda:0 at 11:22:32)\nSCORER_CONFIRMED: yes (/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B)\nPIPELINE_STAGE: depth_1 (generating)\nLOG_SNIPPET:\n  11:23:36 [INFO] Saved 5000 seed documents to data/exp_pythia69b_c4/depth_0.jsonl\n  11:23:36 [INFO] ======================================== Step 3: Depth Chain ========================================\n  11:23:36 [INFO] Generating depth 1 (5000 docs, batch_size=4) ...\n  depth 1:   0%| 1/1250 [00:05<2:00:14, 5.78s/it]\n```\n\nC4 采样中间遇到一次 SSL 超时，自动重试成功。5000 条 seed 已保存到 `depth_0.jsonl`，现在正在跑 depth 1 生成（1250 batches, 预估 ~2 小时）。v3 这次顺利过关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pythia69b-v3-early-check.md"
+}

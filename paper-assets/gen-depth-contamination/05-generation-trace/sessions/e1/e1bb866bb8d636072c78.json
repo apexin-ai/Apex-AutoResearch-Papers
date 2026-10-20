@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1bb866bb8d636072c78",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing c3 structural prewrite",
+  "task_key": "worker_writing_c3-structural-prewrite_20260514T192714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_c3-structural-prewrite_20260514T192714_result.json",
+    "occurrence": 1,
+    "bytes": 654,
+    "sha256": "db776aa5a13cd4bc44793e2761160f91e2d394cf0cc8c6ece12cdfcff38db6a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "五处修改全部完成：\n\n1. **tab:filtering_main** — 扩展为 6 列（+ΔMMLU、ΔHS、p），行名完整，Graduated 去掉了 `\\textbf{}`，caption 说明 Δ 和 p 的含义\n2. **三轨 contingency** — TODO 注释替换为 VERSION A/B/B2 三套预写叙事\n3. **tab:alpha_sweep** — 扩展为 5 列（+Δ vs binary-ours、Eff. corpus %），caption 更新\n4. **α sensitivity 叙事** — 替换为确定性段落（极限行为 + K*=2 连接），仅保留一行 TODO\n5. **Analysis 叙事** — 替换为四问分析框架，仅保留一行 TODO\n\nLines 1–43 未动。所有数值保持占位符，无预设 bold。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-c3-structural-prewrite.md"
+}

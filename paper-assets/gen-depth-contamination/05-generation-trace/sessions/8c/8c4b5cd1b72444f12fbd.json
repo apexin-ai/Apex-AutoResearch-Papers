@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c4b5cd1b72444f12fbd",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops regenerate fig2 auc decay",
+  "task_key": "worker_ops_regenerate_fig2_auc_decay_20260520T151329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_regenerate_fig2_auc_decay_20260520T151329_result.json",
+    "occurrence": 1,
+    "bytes": 294,
+    "sha256": "add8c3ec8335755222e7f5d649dad5d22d19d3e45623d12498057e39abf3c7a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 已重新生成，y 轴标签已更新为 \"Pairwise AUC (5-fold CV)\"。文件位置：\n\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/fig2_auc_decay.pdf` (39.5 KB)\n- PNG: 同目录 `fig2_auc_decay.png` (504.7 KB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-regenerate-fig2-auc-decay.md"
+}

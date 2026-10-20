@@ -1,0 +1,831 @@
+{
+  "schema_version": "1.0",
+  "id": "d77d338a335ed57264b0",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "paper dream simulation prep",
+  "task_key": "worker_paper_dream-simulation-prep_20260519T044614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_dream-simulation-prep_20260519T044614.jsonl",
+    "occurrence": 1,
+    "bytes": 40479,
+    "sha256": "5e04bfdf60f17ca5c87132445fc3e3907e6c90907e3c5961f633a0090cbf2f9e"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T04:49:32.894060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T04:49:32.894410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T04:49:32.894582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T04:49:32.894918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — gen-depth-contamination\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR submission May 25, 2026)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Backup: AAAI 2027 (abstract July 25, paper August 1)\\\\n\\\\n## Canonical Experimental Condition\\\\n\\\\n**Continuation mode 是 cross-model 结论的基础。**\\\\n\\\\n> \\\\\\\"We evaluate both generation modes because real-world recursive contamination can arise from either. Our analysis reveals generation mode as a significant confound, leading us to recommend continuation mode as the canonical condition for cross-model comparisons.\\\\\\\"\\\\n\\\\n| Condition | Pythia↔OLMo | Qwen↔others | 论文定位 |\\\\n|-----------|-------------|-------------|---------|\\\\n| Continuation | 90-92% retention | 80-85% retention | **主实验条件** — cross-model claims 的基础 |\\\\n| Rewrite (instruction) | N/A | 61-63% retention | **upper bound with mode-specific confound** — 仅作 ablation |\\\\n\\\\n**原则**：\\\\n- C1' 的跨模型 claim 必须基于 continuation mode 数据\\\\n- Rewrite mode 的高 AUC (0.6957 vs cont 0.6114) 是 mode-specific signal amplification，不能作为泛化性证据\\\\n- mvp-001 (Qwen-rewrite) 定位为 \\\\\\\"pilot study demonstrating feasibility\\\\\\\"，后续用 continuation mode rigorously validate\\\\n- cont→rw 89% vs rw→cont 82% 不对称性 → continuation features 是 rewrite 的通用子集\\\\n\\\\n## Core Claims (2+1 结构, updated D049/D050)\\\\n\\\\n### Primary: C1' (K* Characterization — Domain-Dependent Bounded Saturation)\\\\n首次系统测量递归合成文本的 generational discrimination boundary K*，demonstrating that K* is low-bounded (≤3) and domain-dependent。\\\\n\\\\nDPI 理论证明有限 K*_theory 必然存在（信息论 impossibility boundary）；我们首次在受控实验中测量 K*_empirical，它提供 K*_theory 的保守下界。通过 9 model configurations（5 architecture families, 1B-14B）、4 source domains（C4, Wikipedia, arXiv, Code/Python）、4 decoding strategies 系统表征 K*_empirical 的行为，发现：\\\\n\\\\n- **K*∈{1,2,3} at θ=0.60**：K* 是有界的且域依赖的，呈现 domain ceiling 阶梯：Wikipedi\n…[truncated 14244 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T04:49:32.895131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "limit": "0"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T04:49:32.895705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (85,700 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/12d9f3f5-d0e3-451a-8958-787f90cd7df2/tool-results/mcp-agent-ml-research-read_registry-1779166001877.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/12d9f3f5-d0e3-451a-8958-787f90cd7df2/tool-results/mcp-agent-ml-research-read_registry-1779166001877.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/12d9f3f5-d0e3-451a-8958-787f90cd7df2/tool-results/mcp-agent-ml-research-read_registry-1779166001877.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T04:49:32.895928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T04:49:32.896113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% EMNLP 2026 Main - ARR May 2026\n2\t% Generational Depth Contamination\n3\t\\documentclass[11pt]{article}\n4\t\\usepackage[review]{acl}\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{amsmath}\n12\t\\usepackage{amssymb}\n13\t\\usepackage{booktabs}\n14\t\\usepackage{multirow}\n15\t\\usepackage{enumitem}\n16\t\\usepackage{subcaption}\n17\t\\usepackage{pifont}\n18\t\\newcommand{\\cmark}{\\ding{51}}\n19\t\\newcommand{\\xmark}{\\ding{55}}\n20\t\\usepackage[section]{placeins}\n21\t\n22\t\\newcommand{\\Kstar}{{K^*}}\n23\t\\newcommand{\\Kempirical}{{K^*_{\\text{empirical}}}}\n24\t\\newcommand{\\Ktheory}{{K^*_{\\text{theory}}}}\n25\t\\newcommand{\\auc}{\\text{AUC}}\n26\t\\newcommand{\\jsd}{\\text{JSD}}\n27\t\\newcommand{\\tpm}{\\ensuremath{\\,\\pm\\,}}\n28\t\n29\t\\title{Generational Depth Estimation of Recursive Synthetic Text:\\\\Measuring the Discrimination Boundary}\n30\t\n31\t\\author{Anonymous}\n32\t\n33\t\\begin{document}\n34\t\\maketitle\n35\t\n36\t% === Abstract ===\n37\t\\begin{abstract}\n38\tWeb-scale corpora are increasingly contaminated by recursive synthetic content, yet no method estimates a document's generational depth.\n39\tWe measure the discrimination boundary $\\Kempirical$ (the maximum depth at which adjacent generations remain distinguishable) using 15 statistical features and an OBD-LightGBM classifier.\n40\tAcross five architecture families (1B--14B), four source domains (three text, one code), and four decoding strategies at $\\theta{=}0.60$ (AUC decision threshold), $\\Kempirical{=}2$ for general web text (8/9 model configurations), $\\Kempirical{=}1$--$2$ for code (Python, model-dependent), and $\\Kempirical{=}3$ for structured academic text (arXiv).\n41\tA single additional generation pass suffices to render first-generation synthetic web text indistinguishable from deeper synthetic content, a \\emph{one-wash laundering} effect.\n42\tLargely generator-independent statistical features, computed via a fixed reference scorer, enable 80--92\\% a\n…[truncated 4703 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T04:49:32.896275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T04:49:32.896499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate generational depth estimation on nine model configurations spanning five architecture families:\n5\tPythia-1.4B, OLMo-1B, Qwen2.5-1.5B-Instruct (rewrite and continuation), Qwen2.5-1.5B (base), Qwen2.5-7B, Qwen2.5-14B, LLaMA-3.1-8B, and Mistral-7B, all in continuation mode except where noted.\n6\tAll experiments use the OBD-LightGBM classifier with the 15-dimensional feature set (Section~\\ref{sec:method}), with 5{,}000 texts per depth level (generations 0--5; power analysis in Appendix~\\ref{sec:power_curve}).\n7\t\n8\t%% ====================================================================\n9\t\\subsection{\\texorpdfstring{$\\Kempirical \\leq 2$}{K*<=2} Across Model Configurations (C4)}\n10\t\\label{sec:kstar_boundary}\n11\t\n12\t\\begin{table*}[t]\n13\t\\centering\n14\t\\small\n15\t\\caption{Pairwise $\\auc$ for adjacent depth pairs with bootstrap 95\\% CIs and permutation $p$-values for boundary rows.\n16\t$\\Kempirical = 2$ requires 1v2 $\\auc > \\theta{=}0.60$ and 2v3 $\\auc < \\theta$; CIs quantify boundary uncertainty.\n17\tExtended results (all models) in Table~\\ref{tab:kstar_ci_extended}.}\n18\t\\label{tab:kstar_ci}\n19\t\\begin{tabular}{lcccccccccc}\n20\t\\toprule\n21\t & \\multicolumn{2}{c}{Qwen-rw} & \\multicolumn{2}{c}{Pythia} & \\multicolumn{2}{c}{OLMo} & \\multicolumn{2}{c}{Qwen-cont} & \\multicolumn{2}{c}{Qwen-7B\\rlap{$^\\ddagger$}} \\\\\n22\t\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}\\cmidrule(lr){8-9}\\cmidrule(lr){10-11}\n23\t & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI \\\\\n24\t\\midrule\n25\t0v1 & .9956 & & .9932 & & .9970 & & .9971 & & .9638 & [.961,\\,.967] \\\\\n26\t1v2 & .6955 & [.686,\\,.704]\\rlap{$^*$} & .6539 & [.645,\\,.663]\\rlap{$^*$} & .6145 & [.605,\\,.625]\\rlap{$^*$} & .6112 & [.602,\\,.621]\\rlap{$^*$} & .6168 & [.608,\\,.626]\\rlap{$^*$} \\\\\n27\t2v3 & .5893 & [.580,\\,.599] & .5514 & [.542,\\,.563] & .5496 & [.540,\\,.560] & .5609 & [.551,\\,.571] & .5492 & [.539,\\,.559] \\\\\n28\t3v4 & .5435 & & .51\n…[truncated 14060 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T04:49:32.896651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/code_crossmodel_table.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T04:49:32.896816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t%%% Code Domain Cross-Model K* Table\n2\t\\begin{table*}[t]\n3\t  \\centering\n4\t  \\footnotesize\n5\t  \\caption{Code domain (Python, CodeSearchNet) pairwise AUC with 5-fold cross-validated 95\\% CIs across five models (four architecture families).\n6\t  Each model generates depth-0 through depth-5 text via iterative continuation of Python code snippets;\n7\t  LightGBM classifiers (5-fold GroupKFold) distinguish consecutive depths using surprisal and lexical features.\n8\t  $K^*$ denotes the empirical saturation depth at threshold $\\theta = 0.60$.\n9\t  Qwen2.5-1.5B yields $K^* = 2$; Pythia-1.4B yields $K^* = 1$; remaining models pending completion.}\n10\t  \\label{tab:code_crossmodel_kstar}\n11\t  \\resizebox{\\textwidth}{!}{%\n12\t  \\begin{tabular}{lcccccccccc}\n13\t    \\toprule\n14\t     & \\multicolumn{2}{c}{Qwen2.5-1.5B} & \\multicolumn{2}{c}{Pythia-1.4B} & \\multicolumn{2}{c}{Qwen2.5-7B} & \\multicolumn{2}{c}{LLaMA-3.1-8B} & \\multicolumn{2}{c}{Mistral-7B-v0.3} \\\\\n15\t    \\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}\\cmidrule(lr){8-9}\\cmidrule(lr){10-11}\n16\t     & AUC & 95\\% CI & AUC & 95\\% CI & AUC & 95\\% CI & AUC & 95\\% CI & AUC & 95\\% CI \\\\\n17\t    \\midrule\n18\t    0v1 & .9388 & [.929,\\,.949] & \\textbf{.9592} & [.956,\\,.963] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n19\t    1v2 & \\textbf{.7382} & [.709,\\,.767]\\rlap{$^*$} & .5983 & [.593,\\,.603] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n20\t    2v3 & .5300 & [.514,\\,.546] & .5215 & --- & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n21\t    3v4 & .5022 & --- & .5152 & --- & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n22\t    4v5 & .5219 & --- & .5046 & --- & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n23\t    \\midrule\n24\t    $K^*$ & \\multicolumn{2}{c}{\\textbf{2}} & \\multicolumn{2}{c}{1} & \\multicolumn{2}{c}{TBD} & \\multicolumn{2}{c}{TBD} & \\multicolumn{2}{c}{TBD} \\\\\n25\t    \\bottomrule\n26\t    \\multicolumn{11}\n…[truncated 174 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T04:49:32.897007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T04:49:32.897138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T04:49:32.897256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/experiment_plan.yaml 2>/dev/null | head -500",
+              "description": "Read experiment plan YAML"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T04:49:32.897433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiments:\n- id: exp-001\n  claim: 1\n  description: 'Cross-model depth chain generation: Pythia-1.4B, nucleus p=0.95 T=1.0,\n    C4 5K docs, depth 0-5. 验证 K* 是否跨模型一致。'\n  priority: P0\n  gpu_budget_hours: 6\n  deps: []\n  registry_id: exp_001_pythia_depth\n- id: exp-002\n  claim: 1\n  description: 'Cross-model depth chain generation: OLMo-1B, nucleus p=0.95 T=1.0,\n    C4 5K docs, depth 0-5.'\n  priority: P0\n  gpu_budget_hours: 6\n  deps: []\n  registry_id: exp_002_olmo_depth\n- id: exp-003\n  claim:\n  - 1\n  - 3\n  description: 'Decoding strategy ablation on Qwen2.5-1.5B: greedy / nucleus p=0.9\n    / T=0.7 / T=1.2, C4 5K docs, depth 0-5. 测试解码策略对 K* 的调控效应。'\n  priority: P0\n  gpu_budget_hours: 20\n  deps: []\n  registry_id: exp_003_decoding_ablation\n- id: exp-004\n  claim: 1\n  description: 'Cross-scale probe: Qwen2.5-7B, nucleus p=0.95 T=1.0, C4 5K docs, depth\n    0-5, scorer=Qwen2.5-1.5B. 测试 K* 是否随模型规模变化。（实际参数已从原计划 1K/depth 0-3 扩展以匹配其他实验配置）'\n  priority: P0\n  gpu_budget_hours: 18\n  deps: []\n  registry_id: exp_004_7b_crossscale\n- id: exp-005\n  claim: 2\n  description: 'Feature group ablation + degradation ordering analysis: 对每个模型的 depth\n    chain，按 feature group（surprisal/diversity/tail-thinning）分别计算 pairwise AUC 和饱和深度，绘制\n    degradation ordering heatmap。'\n  priority: P0\n  gpu_budget_hours: 2\n  deps:\n  - exp-001\n  - exp-002\n  registry_id: exp_005_degradation\n- id: exp-006\n  claim: 3\n  description: 'Downstream filtering evaluation: 在 Qwen2.5-1.5B depth chain 上比较 no-filter\n    / binary-ours (同 15D 特征 binary classifier) / binary-Drayson (importance resampling)\n    / graduated / surprisal-based / DSIR 六种策略，用 continued pretraining + lm-eval-harness\n    (MMLU, HellaSwag) 评估。5 seeds（paired t-test 报 p-values）。graduated filtering 加 α\n    sensitivity sweep（α ∈ {0.1, 0.3, 0.5, 0.7, 0.9}）。关键对比：binary-ours vs graduated\n    （唯一变量 = binary/ordinal decision，公平验证 C3）。[Dream + Reviewer 行动项]'\n  priority: P0\n  gpu_budget_hours: 72\n  deps: []\n  registry_id: exp_006_graduated_filtering\n- id: exp-007\n  claim:\n\n…[truncated 6874 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T04:49:32.897591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/12d9f3f5-d0e3-451a-8958-787f90cd7df2/tool-results/mcp-agent-ml-research-read_registry-1779166001877.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\n# Find exp_028 and any power curve related experiments\nfor exp in result:\n    if 'power' in exp.get('experiment_id','').lower() or '028' in exp.get('experiment_id',''):\n        print(json.dumps(exp, indent=2))\n\"",
+              "description": "Find exp-028 power curve in registry"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T04:49:32.897720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 8, in <module>\n    if 'power' in exp.get('experiment_id','').lower() or '028' in exp.get('experiment_id',''):\n                  ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T04:49:32.897936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/experiment_plan.yaml 2>/dev/null | wc -l",
+              "description": "Count lines in experiment plan"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T04:49:32.898106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "287"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T04:49:32.898232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/12d9f3f5-d0e3-451a-8958-787f90cd7df2/tool-results/mcp-agent-ml-research-read_registry-1779166001877.txt') as f:\n    data = json.load(f)\nresult_str = data['result']\nresult = json.loads(result_str)\n# It's a list of experiments\nfor exp in result:\n    eid = exp.get('experiment_id', '')\n    if 'power' in eid.lower() or '028' in eid:\n        print(json.dumps({k: exp[k] for k in ['experiment_id','status','conclusion','hypothesis'] if k in exp}, indent=2))\n        print('---')\n\" 2>&1",
+              "description": "Find power curve experiment in registry"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T04:49:32.898356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 9, in <module>\n    eid = exp.get('experiment_id', '')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T04:49:32.898476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/12d9f3f5-d0e3-451a-8958-787f90cd7df2/tool-results/mcp-agent-ml-research-read_registry-1779166001877.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\n# Show structure\nprint(type(result))\nif isinstance(result, dict):\n    print(list(result.keys())[:10])\n    # Maybe it's nested\n    for k,v in result.items():\n        if 'power' in k.lower() or '028' in k.lower():\n            print(k, type(v))\nelif isinstance(result, list):\n    print(f'List of {len(result)} items')\n    print(type(result[0]))\n    if isinstance(result[0], str):\n        # Maybe it's a list of strings\n        for item in result:\n            if 'power' in item.lower() or '028' in item.lower():\n                print(item[:200])\n    elif isinstance(result[0], dict):\n        print(list(result[0].keys()))\n\" 2>&1",
+              "description": "Probe registry data structure"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T04:49:32.898609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(python3 -c \"\nimport json\nwith open('/hom…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T04:49:32.898732+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/12d9f3f5-d0e3-451a-8958-787f90cd7df2/tool-results/mcp-agent-ml-research-read_registry-1779166001877.txt') as f:\n    data = json.load(f)\nresult_str = data['result']\nresult = json.loads(result_str)\nprint(type(result))\nif isinstance(result, dict):\n    # find power/028 keys\n    for k in result:\n        if 'power' in k.lower() or '028' in k.lower():\n            v = result[k]\n            if isinstance(v, dict):\n                print(k, {kk: v[kk] for kk in ['status','conclusion'] if kk in v})\n            else:\n                print(k, str(v)[:300])\n    # Also print all keys\n    print('All keys:', list(result.keys()))\nelif isinstance(result, list):\n    print(f'List len={len(result)}')\n    print('First item type:', type(result[0]))\n    print('First item[:200]:', str(result[0])[:200])\n\"\n",
+              "description": "Probe registry JSON structure"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T04:49:32.898905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<class 'dict'>\nAll keys: ['success', 'data', 'error', 'metadata']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T04:49:32.899032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/12d9f3f5-d0e3-451a-8958-787f90cd7df2/tool-results/mcp-agent-ml-research-read_registry-1779166001877.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexperiments = result['data']\nprint(type(experiments), len(experiments))\n# Find power curve\nfor exp in experiments:\n    eid = exp.get('experiment_id','')\n    if 'power' in eid.lower() or '028' in eid:\n        print(json.dumps({k: exp[k] for k in ['experiment_id','status','conclusion'] if k in exp}, indent=2))\n\"\n",
+              "description": "Find power curve in registry data"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T04:49:32.899156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 10, in <module>\n    eid = exp.get('experiment_id','')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\n<class 'dict'> 4"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T04:49:32.899300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/12d9f3f5-d0e3-451a-8958-787f90cd7df2/tool-results/mcp-agent-ml-research-read_registry-1779166001877.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexperiments = result['data']\n# experiments is a dict with 4 keys - check keys\nprint(type(experiments))\nif isinstance(experiments, dict):\n    print(list(experiments.keys())[:5])\n    # Maybe it's {exp_id: exp_data}\n    for k in experiments:\n        if 'power' in k.lower() or '028' in k.lower():\n            print(k, json.dumps(experiments[k], indent=2)[:500])\nelif isinstance(experiments, list):\n    print(len(experiments))\n\"\n",
+              "description": "Check registry data dict structure"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T04:49:32.899448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<class 'dict'>\n['experiments', 'count', 'total', 'baseline']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T04:49:32.899567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/12d9f3f5-d0e3-451a-8958-787f90cd7df2/tool-results/mcp-agent-ml-research-read_registry-1779166001877.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\nprint(type(experiments), len(experiments) if isinstance(experiments, list) else 'dict')\nfor exp in experiments:\n    eid = exp.get('experiment_id','')\n    if 'power' in eid.lower() or '028' in eid:\n        print(json.dumps({k: exp[k] for k in ['experiment_id','status','conclusion'] if k in exp}, indent=2))\n\"\n",
+              "description": "Find power curve experiment"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T04:49:32.899687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 9, in <module>\n    eid = exp.get('experiment_id','')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\n<class 'dict'> dict"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T04:49:32.899825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/12d9f3f5-d0e3-451a-8958-787f90cd7df2/tool-results/mcp-agent-ml-research-read_registry-1779166001877.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n# It's a dict keyed by experiment_id\nfor k in experiments:\n    if 'power' in k.lower() or '028' in k.lower():\n        e = experiments[k]\n        print(k, ':', json.dumps({kk: e[kk] for kk in ['status','conclusion'] if kk in e}))\nprint('---')\n# Also get summary: count of DONE/RUNNING/planned experiments\nfrom collections import Counter\nstatus_counts = Counter()\nfor k, v in experiments.items():\n    status_counts[v.get('status','unknown')] += 1\nprint('Status summary:', dict(status_counts))\n# List all experiment IDs\nprint('All IDs:', sorted(experiments.keys()))\n\"\n",
+              "description": "Query registry for power curve and status summary"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T04:49:32.899967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_028_power_curve : {\"status\": \"DONE\", \"conclusion\": \"success\"}\nexp_028_subsampling_power : {\"status\": \"DONE\", \"conclusion\": \"success\"}\n---\nStatus summary: {'RUNNING': 4, 'DONE': 75, 'PREPARING': 2}\nAll IDs: ['exp-008-retrain-chain', 'exp_001_pythia_depth', 'exp_002_olmo_depth', 'exp_003_decoding_ablation', 'exp_004_7b_crossscale', 'exp_005_degradation', 'exp_006_graduated_filtering', 'exp_007_bootstrap_ci', 'exp_008_retrain_chain', 'exp_008_retrain_chain_v2', 'exp_009_dose_10pct', 'exp_009_dose_10pct_v2', 'exp_009_dose_10pct_v3', 'exp_009_dose_30pct', 'exp_009_dose_30pct_v2', 'exp_009_dose_30pct_v3', 'exp_009_dose_50pct', 'exp_009_dose_50pct_v2', 'exp_009_dose_50pct_v3', 'exp_009_dose_response', 'exp_010_ordinal_baseline', 'exp_011_llm_zeroshot', 'exp_012_binary_confidence', 'exp_013_cross_transfer', 'exp_015_neural_probe', 'exp_016_base_vs_instruct', 'exp_017_qwen_continuation', 'exp_018_llama8b_depth', 'exp_019_mistral7b_depth', 'exp_019b_mistral_cross_scorer', 'exp_020_pythia_decoding', 'exp_021_length_ablation', 'exp_022_cross_scorer_matrix', 'exp_023_domain_ablation', 'exp_024_arxiv_domain', 'exp_025_pythia_arxiv', 'exp_025_pythia_filtering', 'exp_026_arxiv_filtering', 'exp_026_feature_stability', 'exp_026_feature_stability_v2', 'exp_027', 'exp_027_latex_ablation', 'exp_027_retrain_bootstrap', 'exp_028_power_curve', 'exp_028_subsampling_power', 'exp_14b_c4', 'exp_32b_c4', 'exp_A_alt_scorer', 'exp_B_14d_ablation', 'exp_C_permutation_10k', 'exp_D_obd_n500', 'exp_E_paired_stats', 'exp_arXiv_llama8b', 'exp_arXiv_llama8b_crossscorer', 'exp_arXiv_mistral7b', 'exp_arXiv_mistral7b_crossscorer', 'exp_arXiv_olmo', 'exp_arXiv_qwen1b5_crossscorer', 'exp_arXiv_qwen7b', 'exp_arXiv_qwen7b_crossscorer', 'exp_code_llama8b', 'exp_code_mistral7b', 'exp_code_pythia1b4', 'exp_code_qwen1b5', 'exp_code_qwen7b', 'exp_kstar_theta', 'exp_olmo_retrain_chain', 'exp_olmo_retrain_v2', 'exp_pythia_retrain_depth7', 'exp_qwen_retrain_chain', 'exp_qwen_retrain_depth7', 'exp_wiki_llama8b', 'e\n…[truncated 196 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T04:49:32.900111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/12d9f3f5-d0e3-451a-8958-787f90cd7df2/tool-results/mcp-agent-ml-research-read_registry-1779166001877.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n# Check RUNNING experiments\nfor k, v in experiments.items():\n    if v.get('status') == 'RUNNING':\n        print(k, ':', v.get('description','')[:100])\n# Check PREPARING\nfor k, v in experiments.items():\n    if v.get('status') == 'PREPARING':\n        print(k, ':', v.get('description','')[:100])\n# Check code domain experiments\nprint('--- Code domain ---')\nfor k, v in experiments.items():\n    if 'code' in k.lower():\n        print(k, ':', v.get('status'), v.get('conclusion',''))\n\"\n",
+              "description": "Check RUNNING/PREPARING and code experiments"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T04:49:32.900238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_code_llama8b : \nexp_code_mistral7b : \nexp_32b_c4 : \nexp_code_qwen7b : \nexp_olmo_retrain_v2 : \nexp_008_retrain_chain : \n--- Code domain ---\nexp_code_llama8b : RUNNING \nexp_code_mistral7b : RUNNING \nexp_code_qwen7b : RUNNING \nexp_code_pythia1b4 : DONE negative\nexp_code_qwen1b5 : DONE success"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T04:49:32.900368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/experiment_plan.yaml 2>/dev/null | tail -n +500",
+              "description": "Read remaining experiment plan"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T04:49:32.900482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T04:49:32.900609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/12d9f3f5-d0e3-451a-8958-787f90cd7df2/tool-results/mcp-agent-ml-research-read_registry-1779166001877.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n# Check all plan experiment IDs vs registry\nplan_ids_to_registry = {\n    'exp-001': 'exp_001_pythia_depth',\n    'exp-002': 'exp_002_olmo_depth',\n    'exp-003': 'exp_003_decoding_ablation',\n    'exp-004': 'exp_004_7b_crossscale',\n    'exp-005': 'exp_005_degradation',\n    'exp-006': 'exp_006_graduated_filtering',\n    'exp-007': 'exp_007_bootstrap_ci',\n    'exp-008': 'exp_008_retrain_chain_v2',\n    'exp-009': 'exp_009_dose_50pct',\n    'exp-010': 'exp_010_ordinal_baseline',\n    'exp-011': 'exp_011_llm_zeroshot',\n    'exp-012': 'exp_012_binary_confidence',\n    'exp-013': 'exp_013_cross_transfer',\n    'exp-015': 'exp_015_neural_probe',\n    'exp-016': 'exp_016_base_vs_instruct',\n    'exp-017': 'exp_017_qwen_continuation',\n    'mvp-001': 'mvp_pilot_sat_v1',\n    'exp-018': 'exp_018_llama8b_depth',\n    'exp-019': 'exp_019_mistral7b_depth',\n    'exp-020': 'exp_020_pythia_decoding',\n    'exp-021': 'exp_021_length_ablation',\n    'exp-022': 'exp_022_cross_scorer_matrix',\n    'exp-023': 'exp_023_domain_ablation',\n    'exp-024': 'exp_024_arxiv_domain',\n    'exp-025': 'exp_025_pythia_filtering',\n    'exp-026': 'exp_026_arxiv_filtering',\n    'exp-027': 'exp_027_latex_ablation',\n    'exp-028': None,  # plan says null\n}\nfor plan_id, reg_id in plan_ids_to_registry.items():\n    if reg_id is None:\n        # exp-028 has null in plan but exists in registry\n        print(f'{plan_id}: plan registry_id=null, but registry has exp_028_power_curve (DONE/success) and exp_028_subsampling_power (DONE/success)')\n    elif reg_id in experiments:\n        e = experiments[reg_id]\n        print(f'{plan_id} -> {reg_id}: {e.get(\\\"status\\\")}/{e.get(\\\"conclusion\\\",\\\"\\\")}')\n    else:\n        print(f'{plan_id} -> {reg_id}: NOT FOUND IN REGISTRY')\n\"\n",
+              "description": "Cross-reference plan IDs with registry status"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T04:49:32.900754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-001 -> exp_001_pythia_depth: DONE/success\nexp-002 -> exp_002_olmo_depth: DONE/success\nexp-003 -> exp_003_decoding_ablation: DONE/success\nexp-004 -> exp_004_7b_crossscale: DONE/success\nexp-005 -> exp_005_degradation: DONE/success\nexp-006 -> exp_006_graduated_filtering: DONE/success\nexp-007 -> exp_007_bootstrap_ci: DONE/success\nexp-008 -> exp_008_retrain_chain_v2: DONE/success\nexp-009 -> exp_009_dose_50pct: DONE/failed\nexp-010 -> exp_010_ordinal_baseline: DONE/success\nexp-011 -> exp_011_llm_zeroshot: DONE/success\nexp-012 -> exp_012_binary_confidence: DONE/success\nexp-013 -> exp_013_cross_transfer: DONE/success\nexp-015 -> exp_015_neural_probe: DONE/success\nexp-016 -> exp_016_base_vs_instruct: DONE/success\nexp-017 -> exp_017_qwen_continuation: DONE/success\nmvp-001 -> mvp_pilot_sat_v1: DONE/success\nexp-018 -> exp_018_llama8b_depth: DONE/success\nexp-019 -> exp_019_mistral7b_depth: DONE/success\nexp-020 -> exp_020_pythia_decoding: DONE/success\nexp-021 -> exp_021_length_ablation: DONE/success\nexp-022 -> exp_022_cross_scorer_matrix: DONE/success\nexp-023 -> exp_023_domain_ablation: DONE/success\nexp-024 -> exp_024_arxiv_domain: DONE/success\nexp-025 -> exp_025_pythia_filtering: DONE/negative\nexp-026 -> exp_026_arxiv_filtering: DONE/negative\nexp-027 -> exp_027_latex_ablation: DONE/success\nexp-028: plan registry_id=null, but registry has exp_028_power_curve (DONE/success) and exp_028_subsampling_power (DONE/success)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T04:49:32.901004+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the checklist report.\n\n---\n\n## Dream Simulation 前置检查报告\n\n### 1. paper_framing.md 完整性\n\n| 检查项 | 状态 | 说明 |\n|--------|------|------|\n| C1' 实验支撑 | **部分缺失** | C1'(a) 列 7/8 configs，但 LaTeX 正文/abstract 报 8/9（含 Qwen-14B）。paper_framing 缺 Qwen-14B 数据行 |\n| C1' Code domain | **待更新** | paper_framing 明确标注 \"LLaMA/Mistral/Qwen-7B Code 结果待更新\"，对应 3 个 RUNNING 实验 |\n| C3 实验支撑 | **需重审** | exp_026_arxiv_filtering=DONE/negative, exp_025_pythia_filtering=DONE/negative。paper_framing C3 仅 claim web text binary filtering 优势，但 \"K* determines filtering granularity\" 的隐含预测（arXiv K*=3 应 graduated 更优）被否定，reviewer 会追问 |\n| Story Spine 最新结果 | **基本完整** | retrain K*=7 跨模型、Code Qwen K*=2、4 域阶梯均已包含 |\n| Anticipated Concerns | **覆盖 Pythia Code K*=1** | Concern #5 明确讨论，框架为 domain ceiling + competence |\n| C3 negative results | **未覆盖** | Concerns 列表无条目讨论 arXiv filtering negative / Pythia filtering negative |\n\n### 2. experiment_plan.yaml 覆盖率\n\n| 检查项 | 状态 | 说明 |\n|--------|------|------|\n| P0 实验完成度 | **全部 DONE 或 RUNNING** | 无 P0 仍为 planned |\n| exp-028 不一致 | **确认** | plan 中 `registry_id: null`，但 registry 中 `exp_028_power_curve` 和 `exp_028_subsampling_power` 均 DONE/success。需更新 plan |\n| exp-009 链接 | **注意** | plan 链接 `exp_009_dose_50pct` (DONE/failed)，但 v3 版本 (10%/30%/50%) 均存在于 registry。plan 未更新 |\n| exp-014 | **未执行** | P2，registry_id=null，naturalistic validation 未做（可接受，P2 优先级） |\n| RUNNING 实验 (4) | `exp_code_llama8b`, `exp_code_mistral7b`, `exp_code_qwen7b`, `exp_32b_c4` |\n| PREPARING (2) | `exp_olmo_retrain_v2`, `exp_008_retrain_chain` |\n\n### 3. LaTeX 文件状态\n\n| 文件 | 状态 | 问题 |\n|------|------|------|\n| **main.tex abstract** | **数字不一致** | Abstract 写 \"8/9 model configurations\"，paper_framing C1'(a) 写 \"7/8\"。根源：abstract 含 Qwen-14B，paper_framing 表格缺 Qwen-14B |\n| **experiments_c1.tex** | **Code 段落已写** | 引用 `tab:code_crossmodel_kstar`，正文写 \"Qwen K*=2, Pythia borderline K*=1\"，但 domain_kstar 表中 3 个模型 Code 列为 \"---\" |\n| **code_crossmodel_table.tex** | **3/5 TBD** | Qwen-7B, LLaMA-8B, Mistral-7B 全部 TBD，caption 标注 \"remaining models pending completion\" |\n\n### 4. Dream Simulation 更新清单\n\n#### Critical Blockers（必须在 dream 前完成）\n\n1. **paper_framing C1'(a) 补 Qwen-14B 数据行**，对齐 abstract 的 8/9 统计\n2. **添加 Anticipated Concern：arXiv filtering negative result**。Reviewer 必问：\"If K* determines optimal filtering granularity, why doesn't graduated outperform binary on arXiv (K*=3)？\" 需要预备 defense（e.g., 训练数据量不足以体现 graduated 优势、LoRA capacity constraint、arXiv 占比低导致 downstream metric 不敏感）\n3. **exp-028 registry_id 更新**：plan 中填入 `exp_028_power_curve`\n\n#### Nice-to-Have（dream 后可补）\n\n1. Code 3 模型 RUNNING 实验完成后更新 `code_crossmodel_table.tex`（去掉 TBD）和 `domain_kstar` 表\n2. exp-009 plan registry_id 更新为最终 v3 版本\n3. paper_framing Story Spine 中 Code domain 描述从 \"Qwen-1.5B confirmed\" 扩展为包含 3+ 模型结果\n\n#### 预测 Dream Reviewer 主要 Weakness\n\n1. **C3 可证伪性弱**：paper claim \"K* determines filtering granularity\"，但 arXiv K*=3 时 graduated filtering 并未优于 binary（exp-026 negative），Pythia filtering 也 negative（exp-025）。C3 的 evidence 仅限 Qwen + C4 web text，泛化性不足\n2. **Code domain 数据不完整**：5 模型表格 3 个 TBD，domain hierarchy claim (C4≥Code≥Wiki) 仅基于 2 个模型\n3. **C3 effect size 小**：MMLU 30% ratio p=0.074 不显著，paper_framing 已标注 defensive framing，但 reviewer 可能仍认为 practical impact 不足\n4. **Model family imbalance**：Limitations 已承认 Qwen 占 5/9 configs，reviewer 可能 push back\n5. **θ=0.60 敏感性**：多个 boundary case CI 距 θ 极近（Qwen-cont +0.2pp, LLaMA +0.3pp），reviewer 可能质疑 K*=2 判定的 robustness"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_dream-simulation-prep_20260519T044614"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/conversations/paper-dream-simulation-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2520efaa72e0c16a43b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check exp 018 results",
+  "task_key": "worker_check_exp_018_results_20260516T154954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_018_results_20260516T154954_result.json",
+    "occurrence": 1,
+    "bytes": 2070,
+    "sha256": "d10c22df86f4c6dca71be52255bd97367dd0151bbe617f9612acc6f773f00cd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-018 LLaMA-8B 实验已成功完成，cron 误判为 failed。** 所有结果文件于 2026-05-16 23:27 写入完毕，pipeline 正常退出 (return_code=0)。\n\n---\n\n## 完整结果\n\n### K* = 2（确认）\n\n定义：max depth where AUC > 0.60。\n\n### Pairwise AUC（5-fold CV，mean ± std）\n\n| Pair | AUC | std | Per-fold |\n|------|-----|-----|----------|\n| **0 vs 1** | **0.9225** | 0.0036 | [0.9196, 0.9194, 0.9280, 0.9200, 0.9257] |\n| **1 vs 2** | **0.6123** | 0.0130 | [0.6362, 0.6072, 0.5975, 0.6067, 0.6140] |\n| 2 vs 3 | 0.5274 | 0.0131 | [0.5345, 0.5442, 0.5342, 0.5141, 0.5101] |\n| 3 vs 4 | 0.5169 | 0.0108 | [0.5185, 0.5292, 0.4968, 0.5175, 0.5222] |\n| 4 vs 5 | 0.5162 | 0.0096 | [0.5089, 0.5225, 0.5321, 0.5103, 0.5072] |\n\nAUC 在 depth 2 之后快速饱和至 ~0.52（接近随机），1v2 是最后一个显著高于 chance 的 pair。\n\n### Pairwise JSD\n\n| Pair | JSD |\n|------|-----|\n| 0 vs 1 | 0.076925 |\n| 1 vs 2 | 0.012301 |\n| 2 vs 3 | 0.004631 |\n| 3 vs 4 | 0.004292 |\n| 4 vs 5 | 0.003572 |\n\nJSD 同样在 depth 1→2 后急剧衰减（6× drop from 0v1 to 1v2, 再 2.7× drop from 1v2 to 2v3）。\n\n### Ordinal Classification（6-class, 5-fold CV）\n\n- MAE = 1.3146\n- Accuracy = 0.3269\n\n### Top-10 Feature Importance\n\n| Rank | Feature | Importance |\n|------|---------|------------|\n| 1 | surp_d1_skew | 8758.6 |\n| 2 | freq_entropy | 8621.8 |\n| 3 | surp_d2_mean | 8361.2 |\n| 4 | surp_std | 8254.2 |\n| 5 | surp_d1_mean | 8162.0 |\n| 6 | surp_mean | 8063.4 |\n| 7 | freq_kurtosis | 7788.4 |\n| 8 | surp_kurt | 7401.2 |\n| 9 | surp_skew | 7080.8 |\n| 10 | surp_d1_std | 6133.2 |\n\n### 进程状态\n\n进程已正常退出，不在运行。\n\n---\n\n**结论**：实验完整成功，ROADMAP 中 K\\*=2 的记录正确。Cron auto-resolve 为 failed 是误判（可能进程在 cron 检测窗口之间已结束，sentinel/W&B 未配置导致 cron 无法确认成功）。日志中无 bootstrap CI——结果文件里只有 per-fold std，没有单独的 bootstrap 置信区间输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-018-results.md"
+}

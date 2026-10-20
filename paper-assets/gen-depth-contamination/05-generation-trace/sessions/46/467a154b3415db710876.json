@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "467a154b3415db710876",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops cloud 32b download check",
+  "task_key": "worker_ops_cloud_32b_download_check_20260517T193529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cloud_32b_download_check_20260517T193529_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "2c41e537c9973782d5edf9c6f50ec57a26a17af713b781b21d125bc2097debfe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| 检查项 | 结果 |\n|---|---|\n| **32B 下载** | **完成** — 下载进程已退出 |\n| shard 数 | 17/17 ✓ |\n| 总大小 | 62GB ✓ |\n| config.json | 存在 ✓ |\n| tokenizer 验证 | vocab_size=151643 ✓ |\n| **exp_14b_c4** | tmux session 运行中，GPU 0 占用 31GB / 86% util，进程 PID 8591 |\n| GPU 1 | 空闲（0MiB，100% util 为空闲态显示） |\n| **磁盘** | 93G/250G used，剩余 158G (37%) |\n\n32B 模型完整可用，磁盘空间充裕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cloud-32b-download-check.md"
+}

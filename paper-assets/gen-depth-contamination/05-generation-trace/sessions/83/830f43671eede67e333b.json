@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "830f43671eede67e333b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check full status snapshot",
+  "task_key": "worker_check_full_status_snapshot_20260516T183356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_full_status_snapshot_20260516T183356_result.json",
+    "occurrence": 1,
+    "bytes": 1227,
+    "sha256": "f379f74037a944860957e4369c47a3c502ed4f7f0991cdb9705d67c81e59e790"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态快照 (2026-05-16)\n\n### 1. GPU 状态\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 0 / 24564 MiB | 0% | **空闲** |\n| 1 | 0 / 24564 MiB | 0% | **空闲** |\n| 2 | 3771 / 24564 MiB | 89% | PID 67287 (exp-025) |\n| 3 | 0 / 24564 MiB | 0% | **空闲** |\n\n### 2. exp-025 (pythia-1.4b × arxiv): RUNNING\n\n- **PID**: 67287, 已运行 32min38s\n- **当前进度**: Step 3 Depth Chain — **depth 4, batch 71/275 (26%)**\n- **已完成**: depth 0 (seed, skipped) → depth 1 ✓ → depth 2 ✓ → depth 3 ✓\n- **待完成**: depth 4 剩余 74% → depth 5 全部 → Step 4 特征提取 → Step 5 评分\n- **速度**: ~2.14s/batch\n- **预估剩余**: depth 4 剩余 ~7min + depth 5 ~10min + 特征/评分 ~5min ≈ **~22min**\n- **结果目录**: 空（pipeline 完成后一次性写出）\n\n参数: `pythia-1.4b` + `Qwen2.5-1.5B` scorer, continuation mode, top_p=0.95, T=1.0, 2200 samples, max_depth=5\n\n### 3. exp-022 (cross_scorer): 不存在\n\n结果目录 `results/exp_022_cross_scorer/` 不存在。该实验未在此服务器上运行过，或结果已被清理。\n\n### 4. 可用 GPU\n\n**GPU 0, 1, 3 空闲**，可立即分配新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-full-status-snapshot.md"
+}

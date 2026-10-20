@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9eddc7e0d8b85f44a9c6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code olmo arxiv cross scorer",
+  "task_key": "worker_code_olmo_arxiv_cross_scorer_20260524T101734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_olmo_arxiv_cross_scorer_20260524T101734_result.json",
+    "occurrence": 1,
+    "bytes": 154,
+    "sha256": "32c9818256b170e85f2e4563fa2c0a8b88a759843643257923c60d78cb9f0dc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Scoring 阶段进行中（6 depths × 2200 texts，预计 ~3min）。等 scoring 完成后继续检查 classification + bootstrap 进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-olmo-arxiv-cross-scorer.md"
+}

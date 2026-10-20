@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7a21b0e416e1f91dbb9",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp wiki qwen7b",
+  "task_key": "worker_analysis_exp_wiki_qwen7b_20260517T222327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_wiki_qwen7b_20260517T222327_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "b6e48368f2091d562f7255b55eb05f062e310db4ebcf2ff3c5c68b4bc9d0f525"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**结果：K\\* = 2 (success)**\n\n- depth 0→1: AUC=0.967 (极强判别)\n- depth 1→2: AUC=0.611 (刚过 0.60 阈值，仍可判别)\n- depth 2→3: AUC=0.556 (落入 chance level)\n\nQwen2.5-7B 在 Wikipedia 上 K\\*=2，与 Qwen2.5-1.5B 完全一致。假设验证成功：Qwen 家族的 K\\*=2 pattern 在 Wikipedia 上跨规模 (1.5B→7B) 稳定，而同规模的 LLaMA-8B 和 Mistral-7B 均为 K\\*=1。这是模型家族/预训练策略的特征，不是规模效应。\n\nRegistry 已更新为 DONE(success)，分析报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-wiki-qwen7b.md"
+}

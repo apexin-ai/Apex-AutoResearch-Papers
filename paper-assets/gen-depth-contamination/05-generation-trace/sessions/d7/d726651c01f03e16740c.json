@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d726651c01f03e16740c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 011 model update",
+  "task_key": "worker_code_exp_011_model_update_20260513T095506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_011_model_update_20260513T095506_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "4806501057b13c7ab8eec7cf8257a444ff876b5a3196872b75ee0e5fd58374af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改汇总：\n\n- **MODEL_MAP**: `\"claude-3-5-sonnet\": \"claude-3-5-sonnet-20241022\"` → `\"claude-opus-4-6\": \"claude-opus-4-6\"`\n- **docstring**: `Claude 3.5 Sonnet` → `Claude Opus 4.6`\n- **help text**: `claude-3-5-sonnet` → `claude-opus-4-6`\n- **GPT-4o**: 保持 `gpt-4o-2024-08-06` 不变\n- **分析脚本**: 无需修改（用 glob + 记录内 model 字段，自动适配）\n- **验证**: 无残留旧引用，`--help` 输出正确显示 `{gpt-4o,claude-opus-4-6}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-011-model-update.md"
+}

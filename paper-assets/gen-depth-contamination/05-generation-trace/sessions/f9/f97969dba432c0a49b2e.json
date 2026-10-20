@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "f97969dba432c0a49b2e",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops bootstrap stability check",
+  "task_key": "worker_ops_bootstrap_stability_check_20260521T053035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bootstrap_stability_check_20260521T053035.log",
+    "occurrence": 1,
+    "bytes": 665630,
+    "sha256": "1fa64d5b0a824396a84d45e5f6759f96916f9b774f1639fe91dae044b8d7f2dd"
+  },
+  "statistics": {
+    "messages": 458,
+    "user_turns": 0,
+    "tool_calls": 204,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 204,
+      "tool_result": 204,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 458,
+      "chunks": [
+        {
+          "path": "f97969dba432c0a49b2e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f97969dba432c0a49b2e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f97969dba432c0a49b2e-part-0003.json",
+          "message_count": 98
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-bootstrap-stability-check.md"
+}

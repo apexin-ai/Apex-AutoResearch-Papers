@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b134502f4ea1c7c080e1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp013 cross transfer prep",
+  "task_key": "worker_analysis_exp013_cross_transfer_prep_20260513T064047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp013_cross_transfer_prep_20260513T064047_result.json",
+    "occurrence": 1,
+    "bytes": 752,
+    "sha256": "3c8d9475dc6368e62b28189f7154679b11c94c2f3e1dd51cf6e2786e56a0df01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪，dry-run 通过。\n\n**注意**：任务描述中的数据路径有误。实际 features.csv 位置：\n- Qwen-rewrite: `data/features.csv`\n- Pythia: `data_exp001_pythia/features.csv`\n- OLMo: `data_exp002_olmo/features.csv`\n- Qwen-cont: `data_exp017_qwen_cont/features.csv`\n\n脚本已使用正确路径作为默认值。\n\n**脚本功能**：\n- 4×4 transfer matrix，对角线用 5-fold GroupKFold CV，非对角线用全量 train→test\n- OBD-LightGBM 参数与 exp-010 一致（200 trees, depth=6, lr=0.05）\n- 4 个指标：accuracy, MAE, Kendall τ_b, mean pairwise AUC\n- 输出 JSON + CSV + 格式化打印 + transfer retention 比率\n- 支持 `--data_dirs` / `--labels` / `--out_dir` / `--seed` 参数"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp013-cross-transfer-prep.md"
+}

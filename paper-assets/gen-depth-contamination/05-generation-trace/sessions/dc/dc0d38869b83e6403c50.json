@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc0d38869b83e6403c50",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp006 analysis script",
+  "task_key": "worker_code_exp006-analysis-script_20260514T083951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp006-analysis-script_20260514T083951_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "3947194931c789b1b45e5c5deb1e42ddbbe20c5bf9ff25a6a6ba29da4cfcb1fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`scripts/analyze_exp006.py` 已创建。与已有的两个分析脚本相比，新增：\n\n- **Cohen's d** effect size\n- **Bonferroni 校正**（12 次比较，校正后 α≈0.0042）\n- **Contingency 判断**：自动判定 VERSION_A（graduated 显著优于 binary）或 VERSION_B（无显著差异），输出判据\n- **LaTeX 表格**包含 `vs binary-ours (p)` 列\n- **Wilcoxon signed-rank** 作为非参数补充\n\n数据结构匹配实际实验：graduated 按 α 扫描（0.1–0.9），自动选最优 α 后与其他策略对比。\n\n用法：`python analyze_exp006.py --results_dir /root/autodl-tmp/gen-depth-contamination/outputs/exp006 --output_dir artifacts/exp006`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp006-analysis-script-copy-2.md"
+}

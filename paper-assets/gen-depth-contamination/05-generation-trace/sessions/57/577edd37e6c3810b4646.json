@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "577edd37e6c3810b4646",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "agent / loop_16_1779062047.md",
+  "task_key": "loop_16_1779062047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779062047.md",
+    "occurrence": 1,
+    "bytes": 3926,
+    "sha256": "a89b4041c04a88bf2676a085568011924d9ebc2be431f72691d913bae5422a5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-17T23:35:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：cqa1-22115 cuda:0/1/2/3（4×4090D）。云 GPU westd-42896 由 Director 分配，仅跑 14B/32B scale 实验\n- Wikipedia K*=1 结果（Pythia/OLMo）不写入正文主线，放 Appendix discussion（D054 决策）\n- exp-008 retrain-chain 结论 K*≥4 → 已删除 \"conservative upper bound\" claim（D051）\n- scorer 统一用 Qwen2.5-1.5B，不可换 scorer（实验一致性）\n- submit_training_job 命令必须自带 `/root/miniconda3/bin/python3.12`（服务器无 .venv）\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-22115**：工作目录 `/root/autodl-tmp/gen-depth-contamination`，Python `/root/miniconda3/bin/python3.12`\n- HF cache：`/root/autodl-tmp/.hf_cache/`（模型已下载：Qwen2.5-1.5B, Qwen2.5-7B, Pythia-1.4B, OLMo-1B, LLaMA-3.1-8B, Mistral-7B-v0.3）\n- 数据目录：`/root/autodl-tmp/gen-depth-contamination/data/`，结果目录：`results/`\n- Pipeline 脚本：`scripts/run_pipeline.py`，code commit `0b10b4309b`\n- **westd-42896**：云 GPU 2×RTX PRO 6000 96GB，工作目录同结构，14B/32B 模型下载中\n- 活跃进程：exp_wiki_mistral7b (PID 41845, cqa1 cuda:1)、exp_wiki_qwen7b (PID 732600, cqa1 cuda:0)、exp_14b_c4 (PID 8586, westd cuda:0)\n- W&B：数据可用（cron 回调已确认 \"W&B data available\"）\n\n### 3. 📊 当前状态\n**刚做完**：收到 exp_wiki_llama8b cron 完成回调，已派 Worker `worker_analysis_exp_wiki_llama8b_20260517T193221` 去 SSH 分析结果（读 results JSON、判定 K*、更新 registry→DONE、写分析报告）。Worker 尚未回调。\n\n**RUNNING**：\n| exp_id | server | GPU | 假设 |\n|--------|--------|-----|------|\n| exp_wiki_mistral7b | cqa1 | cuda:1 | Mistral-7B Wiki K*=?（C4=1, arXiv=3） |\n| exp_wiki_qwen7b | cqa1 | cuda:0 | Qwen-7B Wiki K*=?（Qwen-1.5B Wiki K*=2） |\n| exp_14b_c4 | westd | cuda:0 | Qwen2.5-14B C4 K*=?（scale validation） |\n\n**PREPARING**：exp_32b_c4（等 32B 模型下载）、exp_008_retrain_chain（未就绪）\n\n**空闲 GPU**：cqa1 cuda:2 + cuda:3（exp_wiki_llama8b 刚释放 cuda:2）\n\n### 4. 📋 待办（条件触发式）\n- Worker 分析回调到达 → 读 K* 结果，update report.md，向 Director 汇报（带 [资源] 行）\n- exp_wiki_llama8b K*=2 → success，Wikipedia pattern 更新为 \"8B scale 维持 K*=2，与 Qwen-1.5B 一致\"\n- exp_wiki_llama8b K*=1 → 与 Pythia/OLMo 一致的 one-wash，需讨论 scale 不是决定因素\n- exp_wiki_mistral7b/qwen7b cron 回调 → 同样派 Worker 分析，汇总 Wikipedia 6-model 全貌\n- Wiki 6/6 模型全部完成 → 汇总 Wikipedia K* pattern 表，向 Director 报告是否足够写入论文\n- exp_14b_c4 完成 → K*=2 确认 scale invariance；K*≠2 → scorer confound contingency（14B self-scorer）\n- cuda:2/cuda:3 空闲 → 可提交 exp_32b_c4（如模型下载完成）或其他 PREPARING 实验\n- 全域结果汇总后 → Paper Agent 综合 patch（arXiv 5-model table, Wiki table, 14B/32B, Mistral narrative）\n\n### 5. 🎯 战略上下文\n- **核心发现**：K* 是 domain-dependent 且 low-bounded。C4 K*=2（7/8 configs），arXiv K*=3（5/5 models 100%），Wikipedia K*∈{1,2}（模型依赖）\n- **Mistral 特殊性**：C4 K*=1（one-wash）但 arXiv K*=3 → one-wash 是 domain-specific 而非 model-intrinsic（D056，关键 claim）\n- **DDL**：EMNLP 2026 ARR May 25（还剩 8 天），论文需要 Wiki + scale 数据完成后做 comprehensive patch\n- **易错点**：\n  - Wikipedia 结果异质性大（K*=1 和 K*=2 混合），不要急于 claim 统一 pattern——D054 已决定 K*=1 放 Appendix\n  - 14B/32B 如果 K*=1 不要慌——可能是 scorer confound（1.5B scorer 对 14B 输出能力不足），需 14B self-scorer 实验验证\n  - cuda:2/3 空闲是失职——分析完 exp_wiki_llama8b 后立即考虑填充（exp_32b_c4 或其他）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779062047.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afeda867659572a82ce4",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code check gemma27b done",
+  "task_key": "worker_code_check_gemma27b_done_20260522T230409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_gemma27b_done_20260522T230409_result.json",
+    "occurrence": 1,
+    "bytes": 1455,
+    "sha256": "97e5e736612a781a0c54741aa1b45b766cc65306b3037b648b8815496530d84a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。报告如下：\n\n---\n\n## seed_gemma27b_c4_s42 实验结果\n\n**状态：Phase 1 成功，Phase 2 失败**\n\n### Pairwise AUC（自评分，Gemma-2-27B 作为 scorer）\n\n| 对比 | AUC | ±std |\n|------|-----|------|\n| 0v1 | **0.9695** | 0.0038 |\n| 1v2 | **0.6196** | 0.0111 |\n| 2v3 | 0.5388 | 0.0088 |\n| 3v4 | 0.5069 | 0.0098 |\n| 4v5 | 0.5124 | 0.0114 |\n\n**K\\* = 2**（θ=0.60），Ordinal MAE=1.253, Accuracy=0.348\n\n### Phase 2 失败原因\n\n`run_pipeline.py` 不支持 `--seed` 参数，Qwen cross-scoring 未执行。需要去掉 `--seed 42` 或给脚本加 seed 参数后重跑。\n\n### 跨模型 K\\* 对比（C4 域）\n\n| 模型 | 参数量 | K\\* | 1v2 AUC | Scorer |\n|------|--------|-----|---------|--------|\n| OLMo-1B | 1B | 1 | 0.498 | Qwen cross |\n| Qwen-1.5B | 1.5B | 2 | 0.635 | Qwen cross |\n| Pythia-1.4B | 1.4B | 2 | 0.617 | Qwen cross |\n| LLaMA-8B | 8B | 1 | 0.588 (oof) | Qwen cross |\n| **Gemma-2-27B** | **27B** | **2** | **0.620** | **Self** |\n\nGemma-27B 自评分 K\\*=2，与 Pythia-1.4B 和 Qwen-1.5B 一致。但注意当前结果是自评分——历史经验显示自评分的 1v2 AUC 通常比 Qwen cross-scoring 高（如 Pythia 自评分 0.654 → cross 0.607）。Qwen cross-scoring 后 1v2 可能降至 ~0.58-0.60，K\\* 有可能降为 1。\n\n**需要重跑 Phase 2**（去掉 `--seed 42`）才能得到 cross-scoring 结果，确认 K\\* 是否稳健。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-gemma27b-done.md"
+}

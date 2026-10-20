@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7d64b1fa9d5005bce4a",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "agent / loop_16_1779063917.md",
+  "task_key": "loop_16_1779063917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779063917.md",
+    "occurrence": 1,
+    "bytes": 4667,
+    "sha256": "0be77160d9b856290e76c44858ef1fa97ec947c3ff3edbffeba8ed5a6777cbc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-18T00:15:55+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cqa1-22115 的 cuda:0/1/2/3（gpu_ids 白名单），其他 GPU 必须 push back Director\n- GPU 编号始终从 0 开始（框架自动注入 CUDA_VISIBLE_DEVICES）\n- submit_training_job 命令必须自带环境激活：`/root/miniconda3/bin/python3.12`（绝对路径），不要假设 .venv 或 conda activate 可用\n- Wikipedia K*=1 结果（Pythia/OLMo negative）不写正文主线，放 Appendix discussion（D054 决策）\n- DDL: EMNLP 2026 ARR May 25（距今 7 天）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-22115，工作目录 `/root/autodl-tmp/gen-depth-contamination`\n- Python：`/root/miniconda3/bin/python3.12`\n- HF cache：`/root/autodl-tmp/.hf_cache/`\n- 模型路径格式：`/root/autodl-tmp/.hf_cache/{org}/{model_name}`（斜杠替换为 `___`）\n- scorer 固定：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B`\n- 代码 commit：`0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5`\n- 磁盘：`/autodl-pub` 96% 已用（288G 可用）⚠️，`/autodl-pub/data` 65% 已用（1.5T 可用）\n- 活跃进程：\n  - exp_arXiv_qwen7b: PID 42742, cuda:0\n  - exp_wiki_mistral7b: PID 41845, cuda:1\n  - exp_wiki_llama8b: PID 38142, cuda:2\n  - cuda:3 空闲（exp_arXiv_mistral7b 刚完成）\n\n### 3. 📊 当前状态\n**刚做完**：收到 exp_arXiv_mistral7b 完成回调（ANALYZING），已派 Worker `worker_analysis_exp_arXiv_mistral7b_20260517T162643` 分析结果。该 Worker 正在 SSH 读取结果文件、确定 K*、更新 registry。**Worker 回调尚未返回**。\n\n**Registry 状态**：\n- ANALYZING: exp_arXiv_mistral7b（Mistral-7B arXiv K* test，等 Worker 分析）\n- RUNNING: exp_arXiv_qwen7b（Qwen-7B arXiv K*=3 跨规模验证）、exp_wiki_mistral7b（Mistral-7B Wikipedia K* test）、exp_wiki_llama8b（LLaMA-8B Wikipedia K* test）\n- PREPARING: exp_32b_c4（Qwen-32B scale test）、exp_14b_c4（Qwen-14B scale test）、exp_008_retrain_chain\n- DONE: 52 个（success 40, negative 3, failed 9）\n\n**等待中**：\n- Worker 回调：worker_analysis_exp_arXiv_mistral7b（分钟级内应返回）\n- Cron 监控：3 个 RUNNING 实验各有 cron\n- Director 决策：Group C 审稿 Round 2 最终报告处理、Reviewer 覆盖度评估结果\n\n### 4. 📋 待办\n- Worker analysis 回调到达 → 读 conclusion，按 on-experiment-done 分叉处理：success 则更新 report.md + 汇报 Director（arXiv K* 跨模型矩阵又多一个数据点）；negative 则分析证伪推导\n- exp_arXiv_mistral7b 结果出来后 → 如果 K*=1，Mistral one-wash 跨域确认（与 OLMo 一致）；如果 K*>1，重大发现：domain 可以 rescue one-wash model，需紧急汇报 Director\n- exp_arXiv_qwen7b cron 回调 → 分析 K*，预期 K*=3（跨规模验证），如果确认则 arXiv K*=3 有 4 个模型支撑\n- exp_wiki_mistral7b cron 回调 → 分析 K*，预期 K*=1（one-wash 跨域），对比 Pythia/OLMo Wikipedia 结果\n- exp_wiki_llama8b cron 回调 → 分析 K*，预期 K*=2（跨规模验证），如果确认则 Wikipedia K* 有 model-dependent 分化\n- 3 个 RUNNING 全部完成 → cuda:0-3 全空闲，根据 Reviewer 覆盖度评估结果决定是否跑 exp_32b_c4 / exp_14b_c4 / self_BLEU ablation\n- Group C 审稿最终报告到达 → 按 reviewer 意见决定补实验或修改论文\n\n### 5. 🎯 战略上下文\n- 核心发现：K*∈{1,2,3}，domain-dependent bounded saturation。C4 web text K*=2（7/8 configs），arXiv K*=3（已有 Qwen-1.5B + Pythia-1.4B + LLaMA-8B 三模型交叉验证），Mistral K*=1（text-intrinsic one-wash）\n- **当前批次实验的战略意义**：这 4 个实验（arXiv Mistral/Qwen-7B + Wiki Mistral/LLaMA-8B）是跨规模+跨域的交叉验证矩阵，用于加固 Table 2 的数据密度，回应审稿人 overclaiming concern\n- D054 决策：Wikipedia K*=1 结果（Pythia/OLMo negative）不进正文主线，放 Appendix。但如果 LLaMA-8B 在 Wiki 上 K*=2，说明 Wikipedia K* 也有 model-dependent 分化，可能需要重新讨论 D054\n- D055 决策：arXiv K*=3 已升级为三模型交叉验证，如果 Mistral arXiv K*=1 或 Qwen-7B arXiv K*=3，又各增加一个有趣数据点\n- **易错点**：不要把 Mistral 的 K*=1 当作 negative result——它恰恰是 \"text-intrinsic one-wash\" claim 的正面证据。只有当预期 K*=1 但实际 K*>1 时才是 hypothesis 被证伪\n- 审稿 Round 2 三个 critical：overclaiming、theta sensitivity、self_BLEU ablation。Reviewer 覆盖度评估 Worker 已派出但结果未回\n- 论文 v4 PDF 已发用户，Paper Agent cross-reference patch 进行中\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779063917.md"
+}

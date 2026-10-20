@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "f24840d55ee46abe9bf2",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops base model gsm8k cuda1",
+  "task_key": "worker_ops_base_model_gsm8k_cuda1_20260520T222842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_base_model_gsm8k_cuda1_20260520T222842.log",
+    "occurrence": 1,
+    "bytes": 589243,
+    "sha256": "3341000fb355b34246a1688b08ed89666293b281c853cec782e2246c2d69fbd6"
+  },
+  "statistics": {
+    "messages": 529,
+    "user_turns": 0,
+    "tool_calls": 226,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 73,
+      "tool_call": 226,
+      "tool_result": 226,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 529,
+      "chunks": [
+        {
+          "path": "f24840d55ee46abe9bf2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f24840d55ee46abe9bf2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f24840d55ee46abe9bf2-part-0003.json",
+          "message_count": 169
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-base-model-gsm8k-cuda1.md"
+}

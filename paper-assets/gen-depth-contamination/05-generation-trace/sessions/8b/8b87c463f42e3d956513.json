@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "8b87c463f42e3d956513",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops feat importance corrected v2",
+  "task_key": "worker_ops_feat_importance_corrected_v2_20260521T092834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_feat_importance_corrected_v2_20260521T092834.log",
+    "occurrence": 1,
+    "bytes": 1606877,
+    "sha256": "87f9a011fe1ede9f8edfdf23f3931fd2bec9df481f0d5dc99839f6472acf3fe7"
+  },
+  "statistics": {
+    "messages": 509,
+    "user_turns": 1,
+    "tool_calls": 185,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 131,
+      "tool_call": 185,
+      "tool_result": 185,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 329,
+      "chunks": [
+        {
+          "path": "8b87c463f42e3d956513-part-0001.json",
+          "message_count": 177
+        },
+        {
+          "path": "8b87c463f42e3d956513-part-0002.json",
+          "message_count": 152
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 180,
+      "chunks": [
+        {
+          "path": "8b87c463f42e3d956513-part-0002.json",
+          "message_count": 28
+        },
+        {
+          "path": "8b87c463f42e3d956513-part-0003.json",
+          "message_count": 152
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-feat-importance-corrected-v2.md"
+}

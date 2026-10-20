@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dce7b517807c479034e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp wiki v2 fix and submit",
+  "task_key": "worker_code_exp_wiki_v2_fix_and_submit_20260517T114130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_wiki_v2_fix_and_submit_20260517T114130_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "d07dab6a51980c4ed6b23421fa6fc7a315a3dd3f16f3d5c74dca9010a74c993a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常运行 depth 1 生成阶段。\n\n**完成总结：**\n\n| 任务 | 状态 |\n|------|------|\n| 修复 `run_pipeline.py` skip-if-exists 逻辑 | ✓ 添加 model_name 参数、mismatch 检测、metadata 嵌入 |\n| Git commit | ✓ `0b10b43` |\n| 数据目录准备 | ✓ `data/exp_wiki_pythia/` 和 `data/exp_wiki_olmo/` 各 5000 行 depth_0.jsonl |\n| exp_wiki_pythia_v2 (cuda:2) | ✓ 运行中，Pythia-1.4B continuation |\n| exp_wiki_olmo_v2 (cuda:3) | ✓ 运行中，OLMo-1B-hf continuation |\n| Registry 更新 | ✓ 两个实验 RUNNING，spec 含 data_path/model_name/seed/git_commit |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-wiki-v2-fix-and-submit.md"
+}

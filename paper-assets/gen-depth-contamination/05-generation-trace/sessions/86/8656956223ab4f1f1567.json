@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8656956223ab4f1f1567",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "sync fig2 auc decay",
+  "task_key": "worker_sync_fig2_auc_decay_20260515T235919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_fig2_auc_decay_20260515T235919_result.json",
+    "occurrence": 1,
+    "bytes": 760,
+    "sha256": "f57e3a7a30d1e9b5d3f3b3600181f4b896a52362bbe9a766c849073cb52d8c67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 服务器文件确认\n| 文件 | 状态 | 大小 | 时间戳 |\n|------|------|------|--------|\n| `artifacts/figures/auc_decay.pdf` | 存在 | 21KB | 2026-05-16 07:50 +0800 (UTC 23:50, Worker 完成后) |\n| `artifacts/figures/auc_decay.png` | 存在 | 105KB | 同上 |\n| `artifacts/kstar_theta_curve.pdf` | 存在 | 33KB | 同上 |\n\n## 服务器论文目录\n- `paper/figures/fig2_auc_decay.pdf` — 已复制\n- `paper/figures/fig2_auc_decay.png` — 已复制\n- `paper/figures/fig_kstar_theta.pdf` — 已复制\n\n## 本地同步\n- 本地路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper/figures/`\n- 3 个文件全部通过 scp 同步完成（21KB + 108KB + 34KB）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-fig2-auc-decay.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa4de6ccbfd14e7dcf19",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp deberta c4 1b5",
+  "task_key": "worker_diagnose_exp_deberta_c4_1b5_20260519T231400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_deberta_c4_1b5_20260519T231400_result.json",
+    "occurrence": 1,
+    "bytes": 455,
+    "sha256": "02226fac412a3ff180d524b5d521cf03779d58fecb6eed9cf7865df116adbe6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：exp_deberta_c4_1b5 正常完成，应将状态从 \"failed\" 改为 \"success\"。**\n\n关键证据：\n- 日志最后一行是 `Done.`，3 个 epoch 全部跑完，无任何错误\n- 结果文件齐全（JSON metrics + OOF predictions + log）\n- K*=2，DeBERTa 在所有 pair 上均优于 OBD baseline（delta +0.005 到 +0.079）\n- 误判原因：cron 监控依赖 W&B sentinel，但该实验未使用 W&B"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-deberta-c4-1b5.md"
+}

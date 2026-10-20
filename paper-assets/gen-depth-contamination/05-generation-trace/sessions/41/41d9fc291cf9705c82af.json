@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41d9fc291cf9705c82af",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops gpu diagnosis cqa1",
+  "task_key": "worker_ops_gpu-diagnosis-cqa1_20260519T010316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-diagnosis-cqa1_20260519T010316_result.json",
+    "occurrence": 1,
+    "bytes": 876,
+    "sha256": "68d5e60fc56affe77503e597d67c5575b45a2a636d95ee7e5205549e91962cc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。核心结论：\n\n**GPU 状态：**\n- **cuda:0** — 空闲，retrain-depth-ext 于 08:53 完成\n- **cuda:1** — 空闲，exp_code_qwen7b (PID 110240) 已崩溃（EXIT_CODE=1，httpx client closed，00:32Z）\n- **cuda:2** — 97% 利用率，exp_code_llama8b 正常运行，depth 2 生成 97%\n- **cuda:3** — 97% 利用率，exp_code_mistral7b 正常运行，depth 1 生成 57%\n\n**retrain-depth-ext 结果（depth 0→7 全链）：**\n\n| Pair | AUC | JSD |\n|------|-----|-----|\n| 0v1 | 0.984 | 0.230 |\n| 1v2 | 0.897 | 0.104 |\n| 2v3 | 0.810 | 0.075 |\n| 3v4 | 0.760 | 0.065 |\n| 4v5 | 0.746 | 0.061 |\n| 5v6 | 0.702 | 0.035 |\n| 6v7 | 0.641 | 0.018 |\n\nK*=7，AUC/JSD 均单调递减，depth 6→7 AUC=0.641 仍高于 0.6 阈值但接近收敛。\n\n**待处理：** cuda:0 和 cuda:1 均空闲可用；exp_code_qwen7b 需重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-diagnosis-cqa1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fda7329d448015f4f94c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check exp021 progress",
+  "task_key": "worker_check_exp021_progress_20260516T102643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp021_progress_20260516T102643_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "e3602d7d11a338ec8415d0fe85271cac36d0f3c5edfef10ad91914c1502fe09e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 和带 `2>/dev/null` 的命令被 read-only 工具拦截了，不过关键信息已经拿到。\n\n**exp-021 进度汇报：**\n\n1. **128** — 已完成 ✓（日志中 256 已经在跑，说明 128 早已完成）\n2. **256** — 已完成 ✓（日志显示 `=== Done length=256 ===`，pipeline complete，K*=2）\n3. **512** — 正在跑，**depth 1 生成中**，进度 173/313 batches（~55%）。按 ~7s/batch 估算，depth 1 还需 ~16 分钟完成，之后还有 depth 2-5 + scoring + classification，整体 512 预计还需 **~2 小时**。\n\n**GPU**: GPU 3 占用 3846 MiB，进程 PID 32175，正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp021-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c2692ec0b30da355004",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp wiki v2 fix and submit",
+  "task_key": "worker_code_exp_wiki_v2_fix_and_submit_20260517T120104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_wiki_v2_fix_and_submit_20260517T120104_result.json",
+    "occurrence": 1,
+    "bytes": 1005,
+    "sha256": "8197f91f3969c6749de84d2c557dfd1dd1e5a293ee35545a7471ccbf5befbc05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**总结：**\n\n1. **Pipeline 修复**：\n   - `generate_depth_chain` 已有 model mismatch 检查（读取 first record 的 `model_name`，不匹配则 WARNING + 强制重新生成）\n   - 补充修复了 `extract_all_features` 的 skip 逻辑：新增 mtime 检查，如果任何 depth file 比 features.csv 更新则强制重新提取\n\n2. **独立数据目录**：已创建并填充\n   - `data/exp_wiki_pythia/`: depth_0 (5000 seed) + depth_1 (5000, model_name=Pythia-1.4B) ✓\n   - `data/exp_wiki_olmo/`: depth_0 (5000 seed) + depth_1 (5000, model_name=OLMo-1B-hf) ✓\n\n3. **实验状态**：两个 v2 实验已在运行中（~16 分钟前启动）\n   - `exp_wiki_pythia_v2` (cuda:2): depth 2 生成中，25% (77/313 batches)\n   - `exp_wiki_olmo_v2` (cuda:3): depth 2 生成中，50% (156/313 batches)\n   - Registry 已有完整 spec 记录\n\n预计每个实验总计约 1 小时内完成（5 depths × ~13min/depth + features extraction + analysis）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-wiki-v2-fix-and-submit-copy-2.md"
+}

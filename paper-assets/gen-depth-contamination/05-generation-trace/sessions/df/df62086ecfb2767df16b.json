@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df62086ecfb2767df16b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis multi source vocab only",
+  "task_key": "worker_analysis_multi_source_vocab_only_20260520T073227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_multi_source_vocab_only_20260520T073227_result.json",
+    "occurrence": 1,
+    "bytes": 1199,
+    "sha256": "3217439940f751f0294b8a1eeb24b8646d1765df68f064bf4dc55fcc38a30d78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `multi_source_vocab_only_results.json`。\n\n```\n=== Vocab-Only Multi-Source Results ===\n\nv1 (Qwen+Pythia+OLMo):\n  0v1 AUC: 0.8675  CI=[0.8586, 0.8763]\n  1v2 AUC: 0.6760  CI=[0.6617, 0.6903]\n  2v3 AUC: 0.4938  CI=[0.4799, 0.5075]\n  K* (θ=0.60): 2\n\nv2 (Qwen+Pythia+LLaMA-8B):\n  0v1 AUC: 0.8296  CI=[0.8201, 0.8391]\n  1v2 AUC: 0.6830  CI=[0.6693, 0.6969]\n  2v3 AUC: 0.5057  CI=[0.4920, 0.5195]\n  K* (θ=0.60): 2\n\nFull-feature comparison:\n  v1 full K*: 2 vs vocab-only K*: 2  ✓ 一致\n  v2 full K*: N/A (未跑 v2 full-feature) vs vocab-only K*: 2\n```\n\n**关键发现：K\\*=2 在仅用 6 个 scorer-independent vocabulary features 时仍然成立。** 这排除了 scorer confound 的解释——即使完全不使用任何 OBD/surprisal 特征（由 scorer 模型计算），LightGBM 仍然在 depth 0→1 和 1→2 检测到显著差异，2→3 之后退化到随机。\n\n注意 vocab-only 的 0v1 AUC（v1: 0.8675, v2: 0.8296）比 full-feature（v1: 0.9929）明显低，说明 OBD features 确实贡献了区分能力，但不影响 K\\* 的判断。1v2 AUC 差异更小（vocab-only 0.676 vs full 0.700），K\\* 边界一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multi-source-vocab-only.md"
+}

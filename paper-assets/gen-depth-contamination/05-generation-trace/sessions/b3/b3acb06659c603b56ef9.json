@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3acb06659c603b56ef9",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper appendix fig s1",
+  "task_key": "worker_paper_appendix_fig_s1_20260513T235346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_fig_s1_20260513T235346_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "dcb5e509a2d16dc1feb3f8dc5cc0ad4f32aa78561cff10265251612c96fa5bd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，无错误。appendix 图片已正确包含在第 14-15 页。\n\n完成内容：\n- `figures/fig_s1_auc_decay_ci.pdf` — 4 条 model-mode 曲线 + bootstrap 95% CI 版图\n- `appendix.tex` — Fig S1 with caption and label `fig:s1_auc_decay_ci`\n- `main.tex` — 在 bibliography 之后 `\\input{appendix}`\n- 编译通过，输出 15 页 PDF"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-fig-s1.md"
+}

@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "id": "72abff193245390fcf47",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops exp deberta filtering submit4",
+  "task_key": "worker_ops_exp_deberta_filtering_submit4_20260520T183727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp_deberta_filtering_submit4_20260520T183727.log",
+    "occurrence": 1,
+    "bytes": 2235961,
+    "sha256": "66f2c126cd53b595d9245ceb6acf53f60d1317fca526c256a10729e64bf0bcc4"
+  },
+  "statistics": {
+    "messages": 1506,
+    "user_turns": 2,
+    "tool_calls": 626,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 1,
+      "assistant": 237,
+      "tool_call": 626,
+      "tool_result": 626,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 945,
+      "chunks": [
+        {
+          "path": "72abff193245390fcf47-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "72abff193245390fcf47-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "72abff193245390fcf47-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "72abff193245390fcf47-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "72abff193245390fcf47-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "72abff193245390fcf47-part-0006.json",
+          "message_count": 45
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 528,
+      "chunks": [
+        {
+          "path": "72abff193245390fcf47-part-0006.json",
+          "message_count": 135
+        },
+        {
+          "path": "72abff193245390fcf47-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "72abff193245390fcf47-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "72abff193245390fcf47-part-0009.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "72abff193245390fcf47-part-0009.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-exp-deberta-filtering-submit4.md"
+}

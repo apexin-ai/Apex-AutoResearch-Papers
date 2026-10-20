@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "id": "8e88d8981058c359eb44",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops pythia69b v3 resume features",
+  "task_key": "worker_ops_pythia69b_v3_resume_features_20260521T123155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pythia69b_v3_resume_features_20260521T123155.log",
+    "occurrence": 1,
+    "bytes": 1947622,
+    "sha256": "2b2f1bb48d3e8e374b23ca4782a01b69b6630c05e8b1d81beaeebfa9e94cfc06"
+  },
+  "statistics": {
+    "messages": 782,
+    "user_turns": 2,
+    "tool_calls": 314,
+    "roles": {
+      "log": 1,
+      "system": 34,
+      "record": 1,
+      "assistant": 115,
+      "tool_call": 314,
+      "tool_result": 314,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "8e88d8981058c359eb44-part-0001.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 512,
+      "chunks": [
+        {
+          "path": "8e88d8981058c359eb44-part-0001.json",
+          "message_count": 156
+        },
+        {
+          "path": "8e88d8981058c359eb44-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8e88d8981058c359eb44-part-0003.json",
+          "message_count": 176
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 259,
+      "chunks": [
+        {
+          "path": "8e88d8981058c359eb44-part-0003.json",
+          "message_count": 4
+        },
+        {
+          "path": "8e88d8981058c359eb44-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "8e88d8981058c359eb44-part-0005.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-pythia69b-v3-resume-features.md"
+}

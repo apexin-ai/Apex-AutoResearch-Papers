@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cd8bce1948ca107d441",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper compile full audit final",
+  "task_key": "worker_paper_compile_full_audit_final_20260523T115555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_full_audit_final_20260523T115555_result.json",
+    "occurrence": 1,
+    "bytes": 626,
+    "sha256": "0852bb7c68b19b3549d8e6e378b8773555342e21f094dec946cba6dc06a8cc69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译与验证结果：\n\n| 项目 | 结果 |\n|------|------|\n| **编译** | 0 errors, PDF 生成成功 (554KB, 18页) |\n| **页数** | Main text 8页 (正文至 Conclusion 结束在 p8), Limitations+Ethics 在 p9, References p10, Appendix p11-18 — **符合 EMNLP 8页限制** |\n| **Table 10 (Mistral-7B)** | .9209 / .5695 / .5335 / .5140 / .5184 — **全部匹配** |\n| **Table 17 (Pythia)** | 0v1 = .972（无CI）, 2v3 = .544 — **匹配** |\n| **Table 19 (Pythia decoding)** | T=0.7 2v3 = .594, T=1.2 2v3 = .523 — **匹配** |\n| **PDF 已复制** | `artifacts/paper_final_audit_20260523.pdf` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-full-audit-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b34c2c3b2a90c778fbc6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp qwen cont 10k",
+  "task_key": "worker_code_exp_qwen_cont_10k_20260522T092300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_qwen_cont_10k_20260522T092300_result.json",
+    "occurrence": 1,
+    "bytes": 1020,
+    "sha256": "21b292f426cfb83cc054f54d5accb139abce4ce2bcfea8b805329c108844bc5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并运行中。汇总：\n\n**1. 原始数据和模型路径**\n- 原始实验: `exp_016_base_vs_instruct`，数据在 `data_exp016_qwen_base/`，5000 样本\n- Base 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B`\n- Instruct scorer: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct`\n\n**2. 策略: 全量重跑**\n- Pipeline 不支持增量（无 append/resume 参数），从头生成 10k samples\n- Pipeline 自动从 C4 validation 下载 depth_0（10k 行），无需手动扩展\n\n**3. depth_0 样本数**\n- Pipeline 的 `prepare_seed_data()` 根据 `--num_samples 10000` 自动从 C4 流式采样 10k 条，无瓶颈\n\n**4. 执行信息**\n- tmux session: `exp_qwen_cont_10k`\n- GPU 1 已占用 3721 MiB，模型加载完成，正在下载 C4 种子数据\n- 两阶段: Phase 1 base 生成 → 删 features.csv → Phase 2 Instruct 评分\n- 日志: `/tmp/exp_qwen_cont_10k_phase1.log`, `/tmp/exp_qwen_cont_10k_phase2.log`\n- Registry: `exp_qwen_cont_10k` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-qwen-cont-10k.md"
+}

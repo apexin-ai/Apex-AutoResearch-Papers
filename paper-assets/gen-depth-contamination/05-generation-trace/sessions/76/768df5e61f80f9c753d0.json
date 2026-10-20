@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "768df5e61f80f9c753d0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp E paired stats",
+  "task_key": "worker_code_exp_E_paired_stats_20260515T104232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_E_paired_stats_20260515T104232_result.json",
+    "occurrence": 1,
+    "bytes": 1225,
+    "sha256": "4143e84c94d05d1ef13bf00496ee62d096cb2a0ff6726fe82955175ebaa6a802"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 输出格式正确。结果汇总：\n\n**MMLU（6 main strategies, 15 pairs, Holm-Bonferroni）：**\n- 11/15 pairs 显著 (p_corr < 0.05)\n- binary-ours 显著优于所有其他策略\n- binary-drayson 显著优于 dsir、no-filter\n- 最大 effect size: binary-ours vs dsir (d=11.0)\n\n**HellaSwag（同上）：**\n- 9/15 pairs 显著\n- binary-ours 和 graduated_a0.9 并列最高 (0.6701)，两者无显著差异 (p=1.0)\n- binary-ours/graduated_a0.9 显著优于 surprisal、dsir、no-filter\n- 最大 effect size: graduated_a0.9 vs dsir (d=8.98)\n\n**策略均值排序：**\n| Strategy | MMLU | HellaSwag |\n|---|---|---|\n| binary-ours | 0.5941 | 0.6701 |\n| binary-drayson | 0.5913 | 0.6691 |\n| surprisal | 0.5894 | 0.6641 |\n| graduated_a0.9 | 0.5892 | 0.6701 |\n| graduated_a0.7 | 0.5892 | 0.6695 |\n| graduated_a0.5 | 0.5880 | 0.6687 |\n| graduated_a0.3 | 0.5877 | 0.6669 |\n| graduated_a0.1 | 0.5873 | 0.6640 |\n| dsir | 0.5869 | 0.6631 |\n| no-filter | 0.5865 | 0.6638 |\n\n脚本和 JSON 都已就位：\n- 脚本: `scripts/exp_E_paired_stats.py`\n- 输出: `artifacts/exp_E_paired_stats.json`（含 per-seed 数据、6-strategy 主比较、graduated alpha sweep 比较、key_findings）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-e-paired-stats.md"
+}

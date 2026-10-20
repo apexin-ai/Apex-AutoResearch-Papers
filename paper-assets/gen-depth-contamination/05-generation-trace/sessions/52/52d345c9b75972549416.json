@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52d345c9b75972549416",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "rerun exp007 bootstrap ci olmo",
+  "task_key": "worker_rerun_exp007_bootstrap_ci_olmo_20260521T155853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_rerun_exp007_bootstrap_ci_olmo_20260521T155853_result.json",
+    "occurrence": 1,
+    "bytes": 48,
+    "sha256": "cafa66324b4671499f88b030542e2a209c262a8bcd6b0a7323d5e0c1d7e82fff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/rerun-exp007-bootstrap-ci-olmo.md"
+}

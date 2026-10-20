@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7adae1b096cb6f1798c5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp code mistral7b",
+  "task_key": "worker_diagnose_exp_code_mistral7b_20260519T110653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_code_mistral7b_20260519T110653_result.json",
+    "occurrence": 1,
+    "bytes": 593,
+    "sha256": "bce1cd6da44e552c20430e5c0d74f6f318becf5fe2fe6527e1d1b2ef81f89826"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已保存到 `artifacts/exp_code_mistral7b_diagnosis.md`。\n\n**结论：实验没有失败，是监控误报。** Pipeline 于 07:50 启动，18:54 正常完成（`Pipeline complete.`），所有 6 个 depth（0-5）各 5,500 行数据 + 全部分析结果均已生成。\n\n误判原因：\n- 日志写到了 `results/exp_code_mistral7b.log` 而非监控期望的 `~/runs/` 路径\n- 无 W&B metrics、无 sentinel 文件\n- 进程正常退出后被监控系统视为\"死亡\"\n\n不需要重跑。建议将该实验在 cron 系统中手动标记为 completed。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-code-mistral7b.md"
+}

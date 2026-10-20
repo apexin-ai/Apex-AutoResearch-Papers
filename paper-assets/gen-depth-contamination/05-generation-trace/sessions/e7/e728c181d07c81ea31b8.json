@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e728c181d07c81ea31b8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp006 graduated filtering",
+  "task_key": "worker_code_exp006_graduated_filtering_20260513T072850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp006_graduated_filtering_20260513T072850_result.json",
+    "occurrence": 1,
+    "bytes": 1581,
+    "sha256": "6fea3193bc4f80a5d0436d1d6157a634cf1e006744982abfee675971698fb895"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个 dry-run 通过。\n\n## 报告\n\n### 1. 创建的文件\n\n| 文件 | 说明 |\n|------|------|\n| `scripts/exp006_filtering_strategies.py` | 6 种过滤策略 (NoFilter, BinaryOurs, BinaryDrayson, Graduated, SurprisalBased, DSIR)，统一 `FilterStrategy` 接口 |\n| `scripts/exp006_continued_pretraining.py` | LoRA CPT pipeline，加载 Qwen2.5-1.5B + 过滤策略 + WeightedRandomSampler 训练 |\n| `scripts/exp006_evaluate.py` | lm-eval-harness 评估 (MMLU + HellaSwag)，支持 base model 和 LoRA adapter |\n| `scripts/run_exp006.sh` | 主控脚本，遍历 strategy × seed × alpha，支持断点续跑 |\n| `scripts/exp006_analyze.py` | 结果聚合、paired t-test、alpha sensitivity 分析 |\n\n### 2. 依赖检查\n\n全部已安装，无需额外安装：\n- `lm_eval` 0.4.11, `peft` 0.19.0, `datasets` 4.8.4, `scipy` 1.17.1, `lightgbm` 4.6.0, `sklearn` 1.8.0\n\n### 3. 数据检查\n\n- `features.csv`: 30000 行, 17 列 (doc_id, depth, 15 features)\n- `depth_0.jsonl` ~ `depth_5.jsonl`: 各 5000 条，格式 `{\"text\": \"...\", \"doc_id\": N}`\n- 无 `depth_*/` 目录（数据是 flat jsonl 文件）\n\n### 4. dry-run 结果\n\n4 个 Python 脚本 `--help` 全部正常解析参数，无 import 错误。\n\n### 5. 估算 GPU 时间\n\n| 配置 | 数量 |\n|------|------|\n| 非 graduated 策略 | 5 strategies × 5 seeds = 25 runs |\n| graduated α sweep | 5 alphas × 5 seeds = 25 runs |\n| **总计** | **50 runs** |\n| 单次 (train + eval) | ~25 min (15 min train + 10 min eval) |\n| **总 GPU 时间** | **~20.8 小时** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp006-graduated-filtering.md"
+}

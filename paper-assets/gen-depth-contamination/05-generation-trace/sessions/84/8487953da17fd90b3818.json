@@ -1,0 +1,1611 @@
+{
+  "schema_version": "1.0",
+  "id": "8487953da17fd90b3818",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "paper fix overfull hbox",
+  "task_key": "worker_paper_fix-overfull-hbox_20260519T054912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-overfull-hbox_20260519T054912.log",
+    "occurrence": 1,
+    "bytes": 142289,
+    "sha256": "436e7fa361e23c2ab19987918d4b77c3294a8afece8c30961c3cca5bb9a2195c"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 11,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "a7ce46a9-e348-4f8e-ba60-2913908c18b6",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779172800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "4dee5648-0b9d-4a41-86c2-9a38b49ae16e",
+                "session_id": "b711b192-5bd0-4cae-814c-409d87b75980"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me start by reading the relevant files to understand the issue."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "7ec57ee1-d0bc-414d-8ec7-d20c0b46609d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016CjGZDYFYjBZUDLgmi1nZf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12805,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12805
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TTp9Udn4qdeUNbJ1BN9d12",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "offset": 590,
+                "limit": 40
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "5f781d2a-bf5b-47f6-97bf-ac7ca4b206af",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016CjGZDYFYjBZUDLgmi1nZf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12805,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12805
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T05:49:26.832Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TTp9Udn4qdeUNbJ1BN9d12",
+              "type": "tool_result",
+              "content": "590\t\\label{tab:code_crossmodel_kstar}\n591\t\\begin{tabular}{l cc cc}\n592\t\\toprule\n593\t & \\multicolumn{2}{c}{Qwen2.5-1.5B} & \\multicolumn{2}{c}{Pythia-1.4B} \\\\\n594\t\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\n595\t & AUC & 95\\% CI & AUC & 95\\% CI \\\\\n596\t\\midrule\n597\t0v1 & .9388 & [.929,\\,.949] & \\textbf{.9592} & [.956,\\,.963] \\\\\n598\t1v2 & \\textbf{.7382} & [.709,\\,.767]\\rlap{$^*$} & .5983 & [.593,\\,.603] \\\\\n599\t2v3 & .5300 & [.514,\\,.546] & .5215 & --- \\\\\n600\t3v4 & .5022 & --- & .5152 & --- \\\\\n601\t4v5 & .5219 & --- & .5046 & --- \\\\\n602\t\\midrule\n603\t$K^*$ & \\multicolumn{2}{c}{\\textbf{2}} & \\multicolumn{2}{c}{1} \\\\\n604\t\\bottomrule\n605\t\\multicolumn{5}{l}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}\n606\t\\end{tabular}\n607\t\\end{table}\n608\t\n609\t\\subsection{Borderline Feature Analysis}\n610\t\\label{sec:borderline_analysis}\n611\t\n612\tTo understand why Mistral-7B yields $\\Kempirical{=}1$ while other C4 models yield $\\Kempirical{=}2$, we compute per-feature Cohen's $d$ (depth-1 vs.\\ depth-2) and LightGBM feature importances across six C4 configurations spanning the full 1v2 AUC range (0.594--0.884).\n613\t\n614\tMistral-7B exhibits the lowest depth-0 mean surprisal (2.32 vs.\\ 2.90--3.02 for other models), the scorer model therefore already finds Mistral's output highly predictable.\n615\tThis compressed baseline limits the dynamic range available for detecting inter-generational degradation: all 15 Cohen's $d$ values are weak ($\\bar{|d|} = 0.112$; Table~\\ref{tab:cohens_d_full}), and no single feature exceeds 13\\% of total classifier importance.\n616\tThe borderline models (LLaMA-8B, Pythia at $T{=}1.2$) show a similar pattern at slightly higher effect sizes.\n617\t\n618\tGreedy decoding is qualitatively distinct: Pythia-greedy achieves 0.884 AUC via lexical collapse (hapax ratio $d = -1.056$, capturing 47\\% of importance), a signal absent under sampling-based generation where all non-greedy models rely on surprisal variability features.\n619\t\n620\t\\begin{table*}[h]\n621\t\\centering\n622\t\\small\n623\t\\caption{Feature-level summary of C4 1v2 classification across model categories. Imp.\\ = normalized LightGBM gain importance (\\%). $\\bar{|d|}$ = mean absolute Cohen's $d$ over all 15 features. $\\Delta\\text{surp}_{1\\to2}$: change in mean surprisal from depth 1 to depth 2.}\n624\t\\label{tab:borderline_features}\n625\t\\begin{tabular}{@{}llc lcc@{}}\n626\t\\toprule\n627\tCategory & Model & AUC & Top-3 Features (Imp.\\%) & $\\bar{|d|}$ & $\\Delta\\text{surp}_{1\\to2}$ \\\\\n628\t\\midrule\n629\tStrong & Pythia-greedy & 0.884 & hapax\\_ratio (47), surp\\_mean (11), low\\_freq\\_ratio (8) & 0.365 & $-$0.160 \\\\"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "fcbd4777-f95b-40f5-9b63-f7e2dadc289c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "content": "\\label{tab:code_crossmodel_kstar}\n\\begin{tabular}{l cc cc}\n\\toprule\n & \\multicolumn{2}{c}{Qwen2.5-1.5B} & \\multicolumn{2}{c}{Pythia-1.4B} \\\\\n\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\n & AUC & 95\\% CI & AUC & 95\\% CI \\\\\n\\midrule\n0v1 & .9388 & [.929,\\,.949] & \\textbf{.9592} & [.956,\\,.963] \\\\\n1v2 & \\textbf{.7382} & [.709,\\,.767]\\rlap{$^*$} & .5983 & [.593,\\,.603] \\\\\n2v3 & .5300 & [.514,\\,.546] & .5215 & --- \\\\\n3v4 & .5022 & --- & .5152 & --- \\\\\n4v5 & .5219 & --- & .5046 & --- \\\\\n\\midrule\n$K^*$ & \\multicolumn{2}{c}{\\textbf{2}} & \\multicolumn{2}{c}{1} \\\\\n\\bottomrule\n\\multicolumn{5}{l}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}\n\\end{tabular}\n\\end{table}\n\n\\subsection{Borderline Feature Analysis}\n\\label{sec:borderline_analysis}\n\nTo understand why Mistral-7B yields $\\Kempirical{=}1$ while other C4 models yield $\\Kempirical{=}2$, we compute per-feature Cohen's $d$ (depth-1 vs.\\ depth-2) and LightGBM feature importances across six C4 configurations spanning the full 1v2 AUC range (0.594--0.884).\n\nMistral-7B exhibits the lowest depth-0 mean surprisal (2.32 vs.\\ 2.90--3.02 for other models), the scorer model therefore already finds Mistral's output highly predictable.\nThis compressed baseline limits the dynamic range available for detecting inter-generational degradation: all 15 Cohen's $d$ values are weak ($\\bar{|d|} = 0.112$; Table~\\ref{tab:cohens_d_full}), and no single feature exceeds 13\\% of total classifier importance.\nThe borderline models (LLaMA-8B, Pythia at $T{=}1.2$) show a similar pattern at slightly higher effect sizes.\n\nGreedy decoding is qualitatively distinct: Pythia-greedy achieves 0.884 AUC via lexical collapse (hapax ratio $d = -1.056$, capturing 47\\% of importance), a signal absent under sampling-based generation where all non-greedy models rely on surprisal variability features.\n\n\\begin{table*}[h]\n\\centering\n\\small\n\\caption{Feature-level summary of C4 1v2 classification across model categories. Imp.\\ = normalized LightGBM gain importance (\\%). $\\bar{|d|}$ = mean absolute Cohen's $d$ over all 15 features. $\\Delta\\text{surp}_{1\\to2}$: change in mean surprisal from depth 1 to depth 2.}\n\\label{tab:borderline_features}\n\\begin{tabular}{@{}llc lcc@{}}\n\\toprule\nCategory & Model & AUC & Top-3 Features (Imp.\\%) & $\\bar{|d|}$ & $\\Delta\\text{surp}_{1\\to2}$ \\\\\n\\midrule\nStrong & Pythia-greedy & 0.884 & hapax\\_ratio (47), surp\\_mean (11), low\\_freq\\_ratio (8) & 0.365 & $-$0.160 \\\\",
+                "numLines": 40,
+                "startLine": 590,
+                "totalLines": 670
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hv7TQEYAunkf8dt3Ki69uD",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/code_crossmodel_table.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "b779a222-ce94-403f-99a0-f86e27cb36af",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016CjGZDYFYjBZUDLgmi1nZf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12805,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12805
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T05:49:27.205Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hv7TQEYAunkf8dt3Ki69uD",
+              "type": "tool_result",
+              "content": "artifacts/code_crossmodel_table.tex\nartifacts/_project/paper/code_crossmodel_table.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "1a1e4a2b-6b2b-45ec-9224-9e266560ad63",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/code_crossmodel_table.tex",
+                "artifacts/_project/paper/code_crossmodel_table.tex"
+              ],
+              "durationMs": 79,
+              "numFiles": 2,
+              "truncated": false
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The overfull hbox is at line 605 with the `\\multicolumn{5}{l}{...}` footnote. I need to change the `l` to `p{\\linewidth}` or similar. Let me also check the artifacts file.",
+              "signature": "EucCClkIDRgCKkAZZNdwm/hkUmhcfPTzFnbyy+C3ADED6YvGjBBpDDa9CSkKJAhw5zo7eQ7G2VnPBwcUdYO2dWXZQw3nyf7ehSk2Mg9jbGF1ZGUtb3B1cy00LTY4ABIMLdiMr72VEb/tK+JlGgz5qwr+abGyPx+oImQiMK2tgsuB84xZ63s6QthmZsZwxSyd2xuu1OUIY/RgaCE9qgk7g+bFvLE34SObBj5O1iq7ASZbrwBBJiPH5FvbiERnzi02IJ1sZwKDJB4L3OsGPZfb2kwIRov3mtEJzrZUsl3sIcu1NkTMFZjET6ufr1K2JpjsyJtITw/ox5sfmfcn42YskRdNcyxLZmJXIu+EyrfsXUuJsv4wUmfYzjx0JYIQ+W2IXklc2z3/6GBw4/n2Kg6UOb8O+JygLivc4qGgf46i8HOB5xmID3WREbP8flxaiUlPjGDSJOgpr4T2bNlhDbAMSuo1rsTiEjkgrdQYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "c4a6a48f-d079-45e5-95be-ac432fc321f7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0189QkvgjNFmY9T7VYBM3h2j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1427,
+                "cache_read_input_tokens": 24646,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1427
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found the issue at line 605. Let me check the artifacts source file too."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "3d75b330-a5f0-4f27-8e85-f64cc24fa29b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0189QkvgjNFmY9T7VYBM3h2j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1427,
+                "cache_read_input_tokens": 24646,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1427
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YbqgFemiUdzsesVFr6UdUD",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/code_crossmodel_table.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "d39483b3-6d2a-4130-a3d9-c99ded877658",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0189QkvgjNFmY9T7VYBM3h2j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1427,
+                "cache_read_input_tokens": 24646,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1427
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T05:49:33.342Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YbqgFemiUdzsesVFr6UdUD",
+              "type": "tool_result",
+              "content": "1\t%%% Code Domain Cross-Model K* Table\n2\t\\begin{table*}[t]\n3\t  \\centering\n4\t  \\footnotesize\n5\t  \\caption{Code domain (Python, CodeSearchNet) pairwise AUC with 5-fold cross-validated 95\\% CIs across five models (four architecture families).\n6\t  Each model generates depth-0 through depth-5 text via iterative continuation of Python code snippets;\n7\t  LightGBM classifiers (5-fold GroupKFold) distinguish consecutive depths using surprisal and lexical features.\n8\t  $K^*$ denotes the empirical saturation depth at threshold $\\theta = 0.60$.\n9\t  Qwen2.5-1.5B yields $K^* = 2$; Pythia-1.4B yields $K^* = 1$; remaining models pending completion.}\n10\t  \\label{tab:code_crossmodel_kstar}\n11\t  \\resizebox{\\textwidth}{!}{%\n12\t  \\begin{tabular}{lcccccccccc}\n13\t    \\toprule\n14\t     & \\multicolumn{2}{c}{Qwen2.5-1.5B} & \\multicolumn{2}{c}{Pythia-1.4B} & \\multicolumn{2}{c}{Qwen2.5-7B} & \\multicolumn{2}{c}{LLaMA-3.1-8B} & \\multicolumn{2}{c}{Mistral-7B-v0.3} \\\\\n15\t    \\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}\\cmidrule(lr){8-9}\\cmidrule(lr){10-11}\n16\t     & AUC & 95\\% CI & AUC & 95\\% CI & AUC & 95\\% CI & AUC & 95\\% CI & AUC & 95\\% CI \\\\\n17\t    \\midrule\n18\t    0v1 & .9388 & [.929,\\,.949] & \\textbf{.9592} & [.956,\\,.963] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n19\t    1v2 & \\textbf{.7382} & [.709,\\,.767]\\rlap{$^*$} & .5983 & [.593,\\,.603] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n20\t    2v3 & .5300 & [.514,\\,.546] & .5215 & --- & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n21\t    3v4 & .5022 & --- & .5152 & --- & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n22\t    4v5 & .5219 & --- & .5046 & --- & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n23\t    \\midrule\n24\t    $K^*$ & \\multicolumn{2}{c}{\\textbf{2}} & \\multicolumn{2}{c}{1} & \\multicolumn{2}{c}{TBD} & \\multicolumn{2}{c}{TBD} & \\multicolumn{2}{c}{TBD} \\\\\n25\t    \\bottomrule\n26\t    \\multicolumn{11}{l}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$ defined as max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$ with $p < 0.05$.}\n27\t  \\end{tabular}}\n28\t\\end{table*}\n29\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "7f55ba4a-007d-4de4-b636-f30b770f7bf4",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/code_crossmodel_table.tex",
+                "content": "%%% Code Domain Cross-Model K* Table\n\\begin{table*}[t]\n  \\centering\n  \\footnotesize\n  \\caption{Code domain (Python, CodeSearchNet) pairwise AUC with 5-fold cross-validated 95\\% CIs across five models (four architecture families).\n  Each model generates depth-0 through depth-5 text via iterative continuation of Python code snippets;\n  LightGBM classifiers (5-fold GroupKFold) distinguish consecutive depths using surprisal and lexical features.\n  $K^*$ denotes the empirical saturation depth at threshold $\\theta = 0.60$.\n  Qwen2.5-1.5B yields $K^* = 2$; Pythia-1.4B yields $K^* = 1$; remaining models pending completion.}\n  \\label{tab:code_crossmodel_kstar}\n  \\resizebox{\\textwidth}{!}{%\n  \\begin{tabular}{lcccccccccc}\n    \\toprule\n     & \\multicolumn{2}{c}{Qwen2.5-1.5B} & \\multicolumn{2}{c}{Pythia-1.4B} & \\multicolumn{2}{c}{Qwen2.5-7B} & \\multicolumn{2}{c}{LLaMA-3.1-8B} & \\multicolumn{2}{c}{Mistral-7B-v0.3} \\\\\n    \\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}\\cmidrule(lr){8-9}\\cmidrule(lr){10-11}\n     & AUC & 95\\% CI & AUC & 95\\% CI & AUC & 95\\% CI & AUC & 95\\% CI & AUC & 95\\% CI \\\\\n    \\midrule\n    0v1 & .9388 & [.929,\\,.949] & \\textbf{.9592} & [.956,\\,.963] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n    1v2 & \\textbf{.7382} & [.709,\\,.767]\\rlap{$^*$} & .5983 & [.593,\\,.603] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n    2v3 & .5300 & [.514,\\,.546] & .5215 & --- & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n    3v4 & .5022 & --- & .5152 & --- & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n    4v5 & .5219 & --- & .5046 & --- & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] & .TBD & [.TBD,\\,.TBD] \\\\\n    \\midrule\n    $K^*$ & \\multicolumn{2}{c}{\\textbf{2}} & \\multicolumn{2}{c}{1} & \\multicolumn{2}{c}{TBD} & \\multicolumn{2}{c}{TBD} & \\multicolumn{2}{c}{TBD} \\\\\n    \\bottomrule\n    \\multicolumn{11}{l}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$ defined as max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$ with $p < 0.05$.}\n  \\end{tabular}}\n\\end{table*}\n",
+                "numLines": 29,
+                "startLine": 1,
+                "totalLines": 29
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The artifacts version uses `\\resizebox{\\textwidth}{!}` so the `\\multicolumn{11}{l}` there won't overfull. The issue is in `appendix_extended.tex` line 605 where the table is narrower (5 columns, no resizebox) and the footnote overflows.\n\nLet me fix the appendix file by switching to `p{\\linewidth}`:"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "a90ddd6b-1837-4e8f-8149-433bd1d441a6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PJ42yow6vKEtPmWrKVesyH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1350,
+                "cache_read_input_tokens": 26073,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1350
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012fCoMmhZMt57AzPZF9tvHn",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "old_string": "\\multicolumn{5}{l}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}",
+                "new_string": "\\multicolumn{5}{p{\\linewidth}}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "e056e346-5124-4ca1-9dd0-548c567adfac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PJ42yow6vKEtPmWrKVesyH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1350,
+                "cache_read_input_tokens": 26073,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1350
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T05:49:41.242Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012fCoMmhZMt57AzPZF9tvHn",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "ff968f6b-8f6a-48c2-9035-6d8e3b31c9fb",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+              "oldString": "\\multicolumn{5}{l}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}",
+              "newString": "\\multicolumn{5}{p{\\linewidth}}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}",
+              "originalFile": "\\section{Extended Analysis and Limitations}\n\\label{sec:extended_discussion}\n\nThis section provides supporting tables for cross-scorer validation (Tables~\\ref{tab:crossscorer}--\\ref{tab:anova_crossscorer}), followed by extended limitations, ablation studies, and domain-specific analyses.\n\n\\noindent\\begin{minipage}{\\columnwidth}\n\\centering\n\\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\rho > 0.90$) and rewrite-mode $\\Kempirical = 2$, but reduce continuation-mode $\\Kempirical$ from 2 to 1.}\n\\label{tab:crossscorer}\n\\resizebox{\\columnwidth}{!}{\\input{tables/tab_crossscorer}}\n\\end{minipage}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Three-way ANOVA (Generator $\\times$ Scorer $\\times$ Depth-Pair) on per-fold pairwise $\\auc$ values (Type~II SS). DV = per-fold AUC; $N{=}300$ (12 cells $\\times$ 5 folds $\\times$ 5 depth-pairs; 3 generators $\\times$ 4 scorers). Scorer is statistically significant ($p < .001$) but has a small effect size ($\\eta^2_p = 0.19$) relative to Depth-Pair ($\\eta^2_p = 1.00$) and Generator ($\\eta^2_p = 0.89$), indicating that scorer choice has a detectable but practically minor influence on depth discrimination (Scorer $\\eta^2_p$ is approximately 5$\\times$ smaller than Generator and dwarfed by Depth-Pair). Per-fold AUC values within the same generator share seed documents across folds and are not fully independent; we therefore rely on effect-size ratios rather than $p$-values for interpretation.}\n\\label{tab:anova_crossscorer}\n\\begin{tabular}{lrrrr}\n\\toprule\n\\textbf{Source} & \\textbf{df} & $F$ & $p$ & $\\eta^2_p$ \\\\\n\\midrule\nGenerator     & 2  & 926.8  & ${<}.001$  & .885 \\\\\nScorer        & 3  & 19.02  & ${<}.001$  & .192 \\\\\nDepth-Pair    & 4  & 24736  & ${<}.001$  & .998 \\\\\nGen$\\times$Scorer & 6 & 8.16 & ${<}.001$ & .170 \\\\\nGen$\\times$Depth  & 8 & 993.7 & ${<}.001$ & .971 \\\\\nScorer$\\times$Depth & 12 & 2.45 & .005 & .109 \\\\\nResidual      & 240 & & & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Extended Limitations}\n\\label{sec:extended_limitations}\n\n\\emph{Prompt-chain versus retrain-chain.}\nBoth Qwen2.5-1.5B and Pythia-1.4B yield $\\Kempirical{=}7$ under retrain-chain LoRA fine-tuning (Table~\\ref{tab:retrain_ci}), extending detectable depth by 5 additional generations beyond prompt-chain $\\Kempirical{=}2$.\nCumulative model-adaptation artifacts (vocabulary narrowing, repetition bias) make each retrained generation highly distinguishable.\nThe two models exhibit different decay profiles: Pythia achieves higher early-pair AUC (1v2: 0.947 vs.\\ 0.897) but drops more steeply at deeper pairs (4v5: 0.691 vs.\\ 0.746), yet both converge to $\\Kempirical{=}7$ (6v7: Qwen 0.641, Pythia 0.634; both CI lower bounds $> \\theta$).\nThis convergence despite differences in effective LoRA adaptation capacity (Pythia uses fused QKV attention with rank-16 vs.\\ Qwen's separate Q/K/V projections) indicates robustness to LoRA parameterization.\nThe extended discriminability under retraining aligns with theoretical analyses of iterative retraining instability on synthetic data~\\cite{bertrand2024stability, gerstgrasser2024model}, where each retraining cycle amplifies distributional artifacts beyond the text-intrinsic degradation observed in prompt-chains.\nExtrapolating yields 7v8 $\\approx 0.57 < \\theta$ for both models, suggesting $\\Kempirical{=}7$ is near the ceiling.\nPrompt-chain $\\Kempirical$ represents the operationally relevant boundary for data curation (text-intrinsic information loss); retrain-chain $\\Kempirical$ represents the upper bound achievable via model archaeology (known training pipeline).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Retrain-chain pairwise $\\auc$ with 5-fold CV 95\\% CIs. Both models yield $\\Kempirical{=}7$; all CI lower bounds $> \\theta{=}0.60$. Retrain-chain CIs use fold-level estimates (Section~\\ref{sec:retrain_ci_note}).}\n\\label{tab:retrain_ci}\n\\begin{tabular}{lcccc}\n\\toprule\n & \\multicolumn{2}{c}{\\textbf{Qwen-1.5B}} & \\multicolumn{2}{c}{\\textbf{Pythia-1.4B}} \\\\\n\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\n\\textbf{Pair} & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI \\\\\n\\midrule\n0v1 & 0.9837 & $[.982,\\,.985]$ & 0.9844 & $[.983,\\,.986]$ \\\\\n1v2 & 0.8971 & $[.895,\\,.899]$ & 0.9470 & $[.942,\\,.952]$ \\\\\n2v3 & 0.8098 & $[.805,\\,.814]$ & 0.8891 & $[.882,\\,.896]$ \\\\\n3v4 & 0.7600 & $[.753,\\,.767]$ & 0.7999 & $[.795,\\,.805]$ \\\\\n4v5 & 0.7459 & $[.738,\\,.754]$ & 0.6907 & $[.688,\\,.693]$ \\\\\n5v6 & 0.7017 & $[.696,\\,.708]$ & 0.6497 & $[.643,\\,.657]$ \\\\\n6v7 & 0.6410 & $[.638,\\,.645]$ & 0.6340 & $[.628,\\,.641]$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{CI methodology note.}\n\\label{sec:retrain_ci_note}\nThe main pipeline reports bootstrap 95\\% CIs (1{,}000 or 10{,}000 resamples), which are valid because each bootstrap sample preserves the GroupKFold document structure: resampling operates on documents, and all depths of a given document remain together.\nIn the retrain-chain setting, each generation's training corpus is the \\emph{output} of the previous generation's fine-tuned model. This creates inter-generation dependencies that standard bootstrap resampling cannot preserve, and naive resampling would inflate AUC estimates.\nWe therefore report fold-based 95\\% CIs for retrain-chain experiments, computed as $\\bar{x} \\pm 1.96 \\cdot s / \\sqrt{K}$ from the $K{=}5$ GroupKFold AUC values.\n\n\\emph{Threshold sensitivity.}\nTable~\\ref{tab:theta_sensitivity} reports $\\Kempirical$ across $\\theta \\in [0.55, 0.70]$ for representative configurations including arXiv and cross-scorer conditions.\nQwen-continuation's 1v2 CI lower bound exceeds $\\theta$ by only 0.2\\,pp; all ten boundary comparisons yield permutation $p < 0.001$.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{$\\Kempirical$ as a function of $\\theta$ across conditions. The \\textbf{domain ordering} (arXiv $>$ web $\\geq$ cross-scorer) and \\textbf{bounded range} ($\\Kempirical{\\leq}4$) are preserved across $\\theta \\in [0.55, 0.70]$. The headline result (web $\\Kempirical{=}2$, arXiv $\\Kempirical{=}3$) holds for $\\theta \\in [0.575, 0.625]$.}\n\\label{tab:theta_sensitivity}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Condition} & \\textbf{Config} & $\\theta{=}0.55$ & $\\theta{=}0.60$ & $\\theta{=}0.625$ & $\\theta{=}0.70$ \\\\\n\\midrule\nC4 (web) & Qwen-rw      & 3 & 2 & 2 & 1 \\\\\nC4 (web) & Pythia       & 2 & 2 & 2 & 1 \\\\\nC4 (web) & OLMo         & 2 & 2 & 1 & 1 \\\\\nC4 (web) & Qwen-cont    & 3 & 2 & 2 & 1 \\\\\nC4 (web) & Qwen-7B      & 2 & 2 & 2 & 1 \\\\\nC4 (web) & Mistral-7B   & 1 & 1 & 1 & 1 \\\\\n\\midrule\narXiv    & Qwen-1.5B-base (cont.) & 4 & 3 & 3 & 2 \\\\\narXiv    & Pythia-1.4B (cont.)    & 4 & 3 & 3 & 2 \\\\\n\\midrule\nCross-scorer & Qwen-cont/Pythia-scored & 2 & 1 & 1 & 1 \\\\\nCross-scorer & Qwen-cont/OLMo-scored   & 2 & 1 & 1 & 1 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_theta_sensitivity.pdf}\n\\caption{$\\Kempirical$ as a function of $\\theta$ across all model $\\times$ domain configurations (three panels: C4, arXiv, Wikipedia). The domain ordering (Wikipedia $\\Kempirical{\\leq}1$ $<$ C4 $\\Kempirical{\\leq}2$ $<$ arXiv $\\Kempirical{\\leq}3$) is preserved across the full $\\theta \\in [0.55, 0.70]$ range. Within each domain, inter-model variation is small relative to inter-domain differences, confirming that source domain rather than model identity governs $\\Kempirical$.}\n\\label{fig:theta_sensitivity}\n\\end{figure}\n\n\\emph{Structural confound: token length.}\nIn continuation mode the generation prompt is discarded, so all depths $\\geq 1$ consist entirely of machine-generated tokens and the 1v2 boundary compares texts differing only in conditioning context (human-authored vs.\\ machine-generated prompt), not structural composition.\nDepth~0 texts average ${\\sim}$191 subword tokens (C4 truncation), while depth~1+ texts average 193--256 tokens depending on model (Table~\\ref{tab:token_length}).\nThis asymmetry is directionally opposite to a length-inflation confound: shorter depth-0 texts provide less feature-extraction context, making 0v1 discrimination harder, not easier.\nWithin depths 1--5, mean token counts are stable (within-model range $\\leq$ 4 tokens for all configurations except Qwen-continuation at 6 tokens), so the pairwise comparisons underlying $\\Kempirical{=}2$ are unaffected by length.\nEOS truncation rates are similarly depth-stable within each model: Qwen-rewrite 7--11\\%, Pythia 34--36\\%, OLMo $<$1\\%, Qwen-continuation 17--20\\%, Qwen-7B 45--47\\%.\nModels with the highest truncation (Pythia, Qwen-7B) still yield $\\Kempirical{=}2$ with the same step-function AUC decay pattern as low-truncation models (Table~\\ref{tab:kstar_ci}), EOS truncation therefore does not drive the boundary.\n\n\\emph{Graduated filtering.}\nAll $\\alpha$ values (0.1--0.9) underperform binary-ours on MMLU ($\\alpha{=}0.1$: 0.5873; $\\alpha{=}0.9$: 0.5892 vs.\\ 0.5941); at $\\alpha{=}0.9$, HellaSwag matches exactly (0.6701).\nBinary-ours significantly outperforms all alternatives on MMLU ($p_{\\text{corr}} \\leq 0.021$); Graduated$_{0.9}$ is indistinguishable on HellaSwag ($p = 1.00$) but worse on MMLU ($p_{\\text{corr}} = 0.011$).\n\\label{tab:pairwise_significance}\n\n\\subsection{Dose-Response: Contamination Ratio Effect}\n\\label{sec:dose_response}\n\nThe main filtering experiments (Section~\\ref{sec:filtering}) use 100\\% synthetic data to maximize effect size.\nTo characterize behavior at lower contamination ratios, we mix synthetic depths 1--5 with clean C4 at 10\\%, 30\\%, and 50\\% contamination (Qwen-1.5B continuation, 5 seeds each; Table~\\ref{tab:dose_response}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{MMLU and HellaSwag by contamination ratio and filtering strategy (5 seeds, mean $\\pm$ std). Base model MMLU: 0.6018. Binary filtering retains a significant advantage on HellaSwag across all ratios ($p \\leq 0.004$, Holm-Bonferroni corrected).}\n\\label{tab:dose_response}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{2}{c}{\\textbf{10\\%}} & \\multicolumn{2}{c}{\\textbf{30\\%}} & \\multicolumn{2}{c}{\\textbf{50\\%}} \\\\\n\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}\n\\textbf{Strategy} & MMLU & HellaSwag & MMLU & HellaSwag & MMLU & HellaSwag \\\\\n\\midrule\nNo-filter   & $.6058{\\pm}.0002$ & $.6689{\\pm}.0006$ & $.6069{\\pm}.0007$ & $.6664{\\pm}.0018$ & $.6063{\\pm}.0012$ & $.6680{\\pm}.0005$ \\\\\nBinary-ours & $\\mathbf{.6079{\\pm}.0004}$ & $\\mathbf{.6727{\\pm}.0007}$ & $\\mathbf{.6082{\\pm}.0011}$ & $\\mathbf{.6725{\\pm}.0006}$ & $\\mathbf{.6088{\\pm}.0009}$ & $\\mathbf{.6731{\\pm}.0004}$ \\\\\nGraduated   & $.6066{\\pm}.0010$ & $.6700{\\pm}.0014$ & $.6072{\\pm}.0008$ & $.6665{\\pm}.0012$ & $.6062{\\pm}.0008$ & $.6679{\\pm}.0001$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nAt all tested ratios (10--50\\%), no-filter MMLU remains above the base model (0.6018), synthetic data at these proportions is therefore net-beneficial rather than harmful.\nBinary filtering consistently improves over no-filter, with HellaSwag differences significant across all ratios ($p \\leq 0.004$, Holm-Bonferroni corrected).\nMMLU differences are smaller and significant only at 10\\% after correction ($p = 0.001$).\nGraduated weighting is indistinguishable from no-filter at all ratios (MMLU $p \\geq 0.27$; HellaSwag $p \\geq 0.06$), depth assignments beyond $\\Kempirical$ therefore inject noise regardless of contamination severity.\nEffect sizes diminish 3--6$\\times$ relative to the 100\\% setting (Section~\\ref{sec:filtering}), but the strategy ordering (binary $>$ graduated $\\approx$ no-filter) is preserved.\n\n\\subsection{Cross-Model Filtering Replication}\n\\label{sec:pythia_filtering}\n\nTo test whether $\\Kempirical{=}2$ correctly predicts optimal curation granularity across architectures, we replicate the filtering experiment on Pythia-1.4B (LoRA rank 8, nucleus $p{=}0.9$, $T{=}1.0$, 3 seeds; Table~\\ref{tab:pythia_filtering}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Pythia-1.4B filtering replication (3 seeds, mean $\\pm$ std). Strategy ordering matches Qwen (binary $>$ no-filter $>$ graduated on MMLU).}\n\\label{tab:pythia_filtering}\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n\\midrule\nNo-filter & $.2568{\\pm}.0012$ & $.5250{\\pm}.0008$ \\\\\nBinary-ours & $\\mathbf{.2585{\\pm}.0004}$ & $.5251{\\pm}.0001$ \\\\\nGraduated$_{0.9}$ & $.2561{\\pm}.0009$ & $\\mathbf{.5253{\\pm}.0007}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe strategy ordering (binary $>$ no-filter $>$ graduated on MMLU) matches Qwen (Section~\\ref{sec:filtering}).\nThe small absolute differences reflect the model's near-chance MMLU baseline rather than filtering inefficacy; the consistent ordering across two architectures supports $\\Kempirical{=}2$'s predictive value for curation granularity.\nHellaSwag differences are negligible across all strategies.\n\n\\subsection{Feature Subset Stability}\n\\label{sec:feature_subset}\n\nTo test whether $\\Kempirical{=}2$ depends on the specific 15D feature combination, we evaluate random feature subsets of varying size on Pythia-1.4B prompt-chain data (Table~\\ref{tab:feature_subset}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{1v2 $\\auc$ by feature subset size (Pythia-1.4B). $\\Kempirical{=}2$ ($\\auc > \\theta{=}0.60$) is robust at $\\geq$8 features.}\n\\label{tab:feature_subset}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Subset} & \\textbf{Tested} & \\textbf{Pass} & \\textbf{Min $\\auc$} & \\textbf{Mean $\\auc$} \\\\\n\\midrule\n15D (full) & 1 & 1 & 0.6262 & 0.6262 \\\\\n10D        & 5 & 5 & 0.6153 & 0.6191 \\\\\n8D         & 5 & 5 & 0.6056 & 0.6159 \\\\\n5D         & 5 & 2 & 0.5856 & 0.5998 \\\\\n3D (top-3) & 1 & 0 & 0.5871 & 0.5871 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n$\\Kempirical{=}2$ holds for all subsets of size $\\geq$8 (10/10 pass, min $\\auc = 0.6056$), becomes fragile at 5D (2/5 pass), and fails at 3D (top-3 surprisal features alone: $\\auc = 0.5871 < \\theta$).\nThe boundary does not depend on any specific feature combination but requires sufficient dimensionality ($\\geq$8) to capture the multi-faceted distributional shift between generations 1 and 2.\n\n\\subsection{self\\_BLEU Feature Independence}\n\\label{sec:selfbleu_ablation}\n\nTo verify that $\\Kempirical$ does not depend on the self\\_BLEU feature (which may reflect stylistic repetition rather than depth-correlated degradation), we compare 15D and 14D (self\\_BLEU removed) classifiers across four model configurations (Table~\\ref{tab:selfbleu_ablation}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{15D vs.\\ 14D (self\\_BLEU removed) 1v2 $\\auc$ with bootstrap 95\\% CIs. Removing self\\_BLEU does not change $\\Kempirical$ for any configuration. Maximum $|\\Delta\\auc| = 0.0031$, within bootstrap CI width (${\\sim}0.018$).}\n\\label{tab:selfbleu_ablation}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Model} & $\\Kempirical$ & \\textbf{15D $\\auc$ [CI]} & \\textbf{14D $\\auc$ [CI]} & $\\Delta$ \\\\\n\\midrule\nQwen-base   & 2/2 & $.6288$ $[.620,\\,.638]$ & $.6258$ $[.616,\\,.635]$ & $-.0031$ \\\\\nPythia-1.4B  & 2/2 & $.8840$ $[.878,\\,.890]$ & $.8830$ $[.876,\\,.889]$ & $-.0010$ \\\\\nLLaMA-8B     & 2/2 & $.6075$ $[.598,\\,.617]$ & $.6074$ $[.598,\\,.617]$ & $-.0001$ \\\\\nMistral-7B   & 1/1 & $.5902$ $[.580,\\,.600]$ & $.5903$ $[.580,\\,.600]$ & $+.0002$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nAll four configurations preserve their $\\Kempirical$ under 14D, with negligible AUC change ($|\\Delta| \\leq 0.003$).\nThe self\\_BLEU feature contributes minimally to the depth boundary; $\\Kempirical{=}2$ is driven by surprisal and entropy features rather than lexical repetition statistics.\n\n\\subsection{Wikipedia Domain: Scorer Confound Resolution}\n\\label{sec:wiki_domain}\n\nUnder same-family scoring (Qwen-1.5B scorer), Wikipedia $\\Kempirical$ appeared to exhibit model-family dependence: Qwen generators (1.5B and 7B) yielded $\\Kempirical{=}2$, while all four non-Qwen models yielded $\\Kempirical{=}1$ (Table~\\ref{tab:wiki_domain}).\nA scorer confound ablation resolves this apparent split.\nRescoring the same Qwen-7B Wikipedia text with Pythia-1.4B reduces 1v2 $\\auc$ from $0.611$ to $0.587$ ($\\Delta = -2.4$\\,pp), dropping $\\Kempirical$ from 2 to 1.\nWith the scorer confound controlled, all six models yield $\\Kempirical{=}1$ on Wikipedia, and the domain ordering simplifies to: arXiv ($\\Kempirical{=}3$) $>$ C4 ($\\Kempirical{=}2$) $>$ Wikipedia ($\\Kempirical{=}1$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Wikipedia pairwise $\\auc$ across 6 models. $^\\dagger$Qwen rows use same-family scorer (Qwen-1.5B); cross-family scoring (Pythia-1.4B) reduces Qwen-7B to $\\Kempirical{=}1$ ($\\Delta = -2.4$\\,pp), resolving the apparent family split.}\n\\label{tab:wiki_domain}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llccccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{0v1} & \\textbf{1v2} & \\textbf{2v3} & $\\Kempirical$ & \\textbf{Scorer} \\\\\n\\midrule\nQwen-1.5B (base) & Qwen & ---  & .619 & .550 & 2$^\\dagger$ & Qwen-1.5B \\\\\nQwen-1.5B (base) & Qwen & ---  & .599 & ---  & 1 & Pythia-1.4B \\\\\nQwen-7B          & Qwen & .967 & .611 & .556 & 2$^\\dagger$ & Qwen-1.5B \\\\\nQwen-7B          & Qwen & ---  & .587 & ---  & 1 & Pythia-1.4B \\\\\n\\midrule\nPythia-1.4B   & non-Qwen & .975 & .585 & .545 & 1 & Qwen-1.5B \\\\\nOLMo-1B       & non-Qwen & .993 & .499 & .501 & 1 & Qwen-1.5B \\\\\nLLaMA-3.1-8B  & non-Qwen & .932 & .595 & .539 & 1 & Qwen-1.5B \\\\\nMistral-7B    & non-Qwen & .961 & .555 & .524 & 1 & Qwen-1.5B \\\\\n\\bottomrule\n\\multicolumn{7}{l}{\\footnotesize $^\\dagger$Same-family scorer; cross-family scoring yields $\\Kempirical{=}1$.}\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Per-fold transparency.}\nFor Qwen-1.5B, cross-family scoring (Pythia-1.4B) yields $\\auc$(1v2) $= 0.5994$, with per-fold values $[0.596, 0.606, 0.600, 0.603, 0.592]$ (2/5 folds marginally above $\\theta = 0.60$).\nThe aggregate mean falls below $\\theta$, confirming $\\Kempirical{=}1$.\nFor Qwen-7B, the corresponding $\\auc$ drops further to $0.587$.\n\n\\subsection{ArXiv Cross-Scorer Bootstrap CIs}\n\\label{sec:arxiv_crossscorer_ci}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Bootstrap 95\\% CI for arXiv cross-scorer (Pythia-1.4B) 2v3 boundary $\\auc$ (10{,}000 resamples). Point estimates classify 3/4 generators as $\\Kempirical{=}3$; strict CI lower-bound criterion confirms 2/4.}\n\\label{tab:arxiv_crossscorer_ci}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Generator} & \\textbf{2v3 $\\auc$} & \\textbf{95\\% CI} & \\textbf{CI lower $> \\theta$} \\\\\n\\midrule\nQwen-1.5B    & 0.632 & $[0.617,\\,0.646]$ & Yes \\\\\nLLaMA-3.1-8B & 0.620 & $[0.605,\\,0.636]$ & Yes (0.5\\,pp margin) \\\\\nMistral-7B   & 0.608 & $[0.593,\\,0.622]$ & No \\\\\nQwen-7B      & 0.599 & $[0.584,\\,0.613]$ & No \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\subsection{JSD Decay Analysis}\n\\label{sec:jsd_extended}\n\nThe token-level JSD between adjacent generations reveals two distinct decay regimes (Figure~\\ref{fig:jsd_decay}).\nFor C4 web text, 0v1 JSD exceeds 1v2 by 6--56$\\times$ across all 8 models (1B--14B) with $\\Kempirical{=}2$ (median cliff ratio ${\\sim}$15$\\times$), and subsequent pairs converge to a noise floor of ${\\sim}$0.003--0.005.\nFitting $\\jsd(k, k{+}1) \\propto e^{-\\lambda k}$ yields $\\lambda \\approx 2.2$--$3.5$ for C4 (mean ${\\approx}\\,2.9$), consistent with rapid mixing of $G_\\delta$ toward its stationary distribution.\nThese decay rates represent qualitative characterizations from 5-point curves rather than precise estimates.\nThe empirical decay rate $\\lambda$ is consistent within each domain but varies across domains: C4 yields $\\lambda \\approx 2.9$, Wikipedia $\\lambda \\approx 3.1$ (excluding OLMo, whose $\\lambda = 6.3$ reflects a capacity-limited collapse: 0v1 $\\jsd = 0.169$ with near-complete information loss at the first step, the exponential fit is therefore unreliable), and arXiv $\\lambda \\approx 1.0$.\nThis cross-model consistency indicates that the contraction rate of $G_\\delta$ is governed primarily by the structure of the input domain rather than the model architecture.\nArXiv text decays ${\\sim}$3$\\times$ slower than C4 ($\\lambda \\approx 1.0$ vs.\\ $2.9$), with a correspondingly higher convergence floor (${\\sim}$0.007--0.009 vs.\\ ${\\sim}$0.003--0.004).\nFormulaic structural features (LaTeX formatting, citation patterns, section templates) degrade more slowly under autoregressive generation and supply persistent depth-distinguishing signal, this accounts for the elevated $\\Kempirical{=}3$.\nThe retrain-chain exhibits a fundamentally different profile: $\\lambda = 0.285$ with a cliff ratio of only 1.31$\\times$ and no sharp drop between adjacent pairs (Figure~\\ref{fig:retrain_decay}).\nThis gradual, sustained divergence reflects cumulative model-adaptation artifacts rather than text-intrinsic information loss, further supporting the distinction between prompt-chain and retrain-chain $\\Kempirical$ (Appendix~\\ref{sec:boundary_extended}).\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_retrain_decay.png}\n\\caption{Retrain-chain AUC decay across 7 generation pairs (Qwen2.5-1.5B LoRA). Unlike prompt-chain (sharp cliff at 0v1$\\to$1v2), retrain-chain AUC decays gradually from 0.984 to 0.641, with all pairs above $\\theta{=}0.60$. Error bars: 95\\% CI from 5-fold CV. Dashed line: $\\theta{=}0.60$; extrapolated 7v8 $\\approx 0.57$ (below $\\theta$), suggesting $\\Kempirical{=}7$ is near the ceiling.}\n\\label{fig:retrain_decay}\n\\end{figure}\n\n\\subsection{Boundary Cases and Scale Effect}\n\\label{sec:boundary_extended}\n\nOf 9 tested model configurations on C4, 8 yield $\\Kempirical{=}2$; Mistral-7B is the only sub-2 exception ($\\Kempirical{=}1$; 1v2 $\\auc = 0.594$, CI $[0.584, 0.603]$), validating $\\theta{=}0.60$ as an effective discriminator (gap: $0.594$ vs.\\ $0.611$--$0.696$).\nMistral's cross-domain profile reinforces the domain-governed interpretation: despite $\\Kempirical{=}1$ on both C4 and Wikipedia, it yields $\\Kempirical{=}3$ on arXiv (1v2 $\\auc = 0.820$, 2v3 $= 0.628$), and this profile persists under cross-scorer validation (Pythia-1.4B scorer: C4 $\\Kempirical{=}1$, arXiv $\\Kempirical{=}3$ (2v3 $\\auc = 0.608$, CI $[0.593, 0.622]$)), domain lexical diversity can therefore rescue even web-text one-wash generators (Table~\\ref{tab:domain_kstar}).\nLarger models produce more human-like text, reducing 0v1 JSD: 0.16--0.29 at $\\leq$1.5B, 0.077--0.13 at 7--14B.\nHowever, Qwen-14B still yields $\\Kempirical{=}2$ (1v2 $\\auc = 0.621$, CI $[0.612, 0.630]$), with 0v1 $\\auc = 0.960$ comparable to Qwen-7B ($0.964$), scale in the 1B--14B range therefore does not shift the discrimination boundary.\n\n\\paragraph{Sample-size control.}\nAs a sample-size control, subsampling C4 to $n{=}2{,}200$ (matching arXiv) yields $\\Kempirical{=}1$ (1v2 $\\auc = 0.601$, CI $[0.586, 0.616]$).\nReduced sample size widens confidence intervals and produces more conservative $\\Kempirical$ estimates, arXiv's $\\Kempirical{=}3$ at the same sample size therefore reflects genuine domain signal rather than a statistical artifact of smaller training sets.\n\n\\subsection{LaTeX Markup Ablation (arXiv)}\n\\label{sec:latex_ablation}\n\nTo disentangle content-level depth signal from formatting artifacts on arXiv, we strip all LaTeX markup (commands, environments, inline math delimiters) and re-extract features from the plain-text residual (Qwen-1.5B continuation, $n{=}2{,}200$; Table~\\ref{tab:latex_ablation}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{arXiv pairwise $\\auc$ with and without LaTeX markup (Qwen-1.5B continuation). Removing formatting reduces 2v3 by ${\\sim}$1.8\\,pp but $\\Kempirical$ remains at 3 (CI lower $> \\theta$). LaTeX stripping fraction increases with depth (0.6\\% at depth 0, 4.6\\% at depth 5), deeper generations therefore produce proportionally more formatting tokens.}\n\\label{tab:latex_ablation}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccr}\n\\toprule\n\\textbf{Pair} & \\textbf{Original} & \\textbf{Stripped} & $\\Delta$ \\\\\n\\midrule\n0v1 & 0.9946 & 0.9948 & $+$0.0002 \\\\\n1v2 & 0.8580 & 0.8297 & $-$0.028 \\\\\n2v3 & 0.6427 $[0.628,\\,0.658]$ & 0.6248 $[0.610,\\,0.640]$ & $-$0.018 \\\\\n3v4 & 0.5437 & 0.5468 & $+$0.003 \\\\\n\\midrule\n$\\Kempirical$ & 3 & 3 & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nContent-level statistical properties (surprisal distribution, vocabulary diversity) account for the large majority of the depth signal; LaTeX formatting contributes a modest but measurable increment (${\\sim}$1.8\\,pp at the boundary pair).\nThe depth-correlated increase in LaTeX stripping fraction (depth 0: $-$0.6\\%, depth 5: $-$4.6\\%) indicates that autoregressive generation progressively introduces formatting tokens, consistent with mode-seeking behavior in structured text.\n\n\\subsection{Statistical Power Analysis}\n\\label{sec:power_curve}\n\nTo characterize the minimum sample size required for reliable $\\Kempirical$ determination, we subsample C4 at $n \\in \\{500, 1000, 2000, 3000, 4000, 5000\\}$ and measure 1v2 AUC stability across 10 resamples per size (Qwen-1.5B-base continuation, 5-fold GroupKFold; Table~\\ref{tab:power_curve}, Figure~\\ref{fig:power_curve}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Subsampling power analysis for $\\Kempirical{=}2$ determination (C4, Qwen-1.5B-base, 10 resamples per $n$). Detection probability: fraction of resamples where 1v2 $\\auc > \\theta{=}0.60$.}\n\\label{tab:power_curve}\n\\begin{tabular}{rccc}\n\\toprule\n$n$ & \\textbf{Mean 1v2 $\\auc$} & \\textbf{Std} & \\textbf{Detection Prob.} \\\\\n\\midrule\n500 & 0.581 & 0.018 & 20\\% \\\\\n1{,}000 & 0.591 & 0.014 & 30\\% \\\\\n2{,}000 & 0.610 & 0.009 & 100\\% \\\\\n3{,}000 & 0.617 & 0.005 & 100\\% \\\\\n4{,}000 & 0.622 & 0.004 & 100\\% \\\\\n5{,}000 & 0.629 & 0.000 & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_power_curve.png}\n\\caption{$\\Kempirical{=}2$ detection rate (left axis, blue) and mean 1v2 $\\auc$ (right axis, green) as a function of sample size $n$. Detection rate reaches 100\\% at $n{=}2{,}000$; the 80\\% power threshold (dotted purple) is crossed between $n{=}1{,}000$ and $n{=}2{,}000$. Error bars: $\\pm$1 std over 10 resamples. The dashed red line marks $\\theta{=}0.60$.}\n\\label{fig:power_curve}\n\\end{figure}\n\nDetection rate jumps from 20\\% ($n{=}500$) to 100\\% ($n{=}2{,}000$), with the 80\\% power threshold crossed near $n{=}1{,}500$.\nAt $n{=}5{,}000$ (the sample size used in all main experiments), variance is zero across resamples, our results are therefore well above the minimum required for reliable boundary estimation.\nThe sharp transition reflects the proximity of the 1v2 AUC to $\\theta$: small increases in $n$ reduce variance sufficiently to move all resamples above the threshold.\n\n\\subsection{Feature Group Ablation}\n\\label{sec:feature_ablation}\n\nTo assess the relative contribution of each feature group to depth discrimination, we train a plain LightGBM classifier (\\texttt{n\\_estimators}$=$200, \\texttt{max\\_depth}$=$6; distinct from the OBD-LightGBM used in Section~\\ref{sec:method}) on the 1\\,vs.\\,2 task using (a) each feature group alone (\\emph{single}) and (b) the full 15D set minus one group (\\emph{leave-one-out}).\nRepresentative models per domain: LLaMA-3.1-8B (C4), Qwen-1.5B continuation (arXiv), and the domain ablation configuration (Wikipedia).\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_feature_ablation.pdf}\n\\caption{Feature group ablation heatmap for 1\\,vs.\\,2 classification AUC. \\emph{Left}: single-group performance. \\emph{Right}: leave-one-out performance. Surprisal (base) features are the dominant signal on arXiv (single AUC $= 0.809$) but provide only weak marginal signal on C4 and Wikipedia.}\n\\label{fig:feature_ablation}\n\\end{figure}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Feature group ablation for 1\\,vs.\\,2 classification (AUC). \\textbf{Single}: using only features from one group. \\textbf{Leave-one-out}: removing one group from the full 15D feature set. $\\Delta$ denotes the AUC drop from the full model. Classifier: plain LightGBM (\\texttt{n\\_estimators}$=$200, \\texttt{max\\_depth}$=$6), distinct from the OBD-LightGBM pipeline; AUC values are not directly comparable to Table~\\ref{tab:kstar_ci}.}\n\\label{tab:feature_ablation}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{l ccc ccc}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{Single Group}} & \\multicolumn{3}{c}{\\textbf{Leave-One-Out ($\\Delta$)}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\nFeature Group & C4 & arXiv & Wiki & C4 & arXiv & Wiki \\\\\n\\midrule\nSurprisal (base) & 0.597 & 0.809 & 0.581 & 0.601 ($-$0.007) & 0.828 ($-$0.031) & 0.616 ($-$0.003) \\\\\nSurprisal (deriv.) & 0.590 & 0.789 & 0.590 & 0.612 (+0.003) & 0.856 ($-$0.003) & 0.623 (+0.004) \\\\\nLexical diversity & 0.550 & 0.691 & 0.557 & 0.608 ($-$0.001) & 0.855 ($-$0.005) & 0.614 ($-$0.005) \\\\\nFreq. distribution & 0.533 & 0.684 & 0.564 & 0.604 ($-$0.005) & 0.851 ($-$0.009) & 0.612 ($-$0.007) \\\\\n\\midrule\nFull (15D) & 0.609 & 0.860 & 0.619 & \\multicolumn{3}{c}{---} \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nSurprisal (base) features dominate on arXiv (single-group AUC $= 0.809$; LOO drop $= 0.031$, the largest across all domain--group combinations), consistent with the persistent surprisal-distribution signal in structured academic text.\nOn C4 and Wikipedia, all LOO drops are small ($\\leq 0.007$, within cross-fold standard deviation), no single feature group is therefore individually critical for the weaker low-$\\Kempirical$ signal.\nRemoving surprisal derivatives increases AUC on C4 (+0.003) and Wikipedia (+0.004), suggesting partial redundancy with the base surprisal group in low-$\\Kempirical$ domains.\n\n\\subsection{Classifier Choice: McNemar Test}\n\\label{sec:mcnemar_baselines}\n\nTo verify that depth discriminability is driven by the 15D feature representation rather than classifier choice, we compare OBD-LightGBM against three baseline classifiers (logistic regression, linear SVC, random forest) on the depth-1 vs.\\ depth-2 binary classification task using McNemar's test with continuity correction on 5-fold GroupKFold out-of-fold predictions (Table~\\ref{tab:mcnemar_obd_baselines}).\nOf 36 comparisons, 31 are non-significant ($p \\geq 0.05$), and all five significant results concentrate in two model $\\times$ domain conditions.\nFor LLaMA-8B on C4, all three baselines significantly outperform OBD ($p \\leq 0.001$), likely reflecting LightGBM overfitting on the relatively noisy 8B-generated features rather than a systematic classifier advantage.\nFor Qwen-1.5B on Wikipedia, OBD outperforms both linear classifiers ($p < 0.001$) but not random forest ($p = 0.655$).\n\n\\begin{table*}[h]\n\\centering\n\\small\n\\caption{McNemar test $p$-values comparing OBD-LightGBM against baseline classifiers on the depth-1 vs.\\ depth-2 binary classification task (5-fold GroupKFold, out-of-fold predictions). Classifier accuracy shown in parentheses. Significant results ($p < 0.05$) are \\textbf{bold}; $^{*}p<0.05$, $^{**}p<0.01$, $^{***}p<0.001$.}\n\\label{tab:mcnemar_obd_baselines}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Domain} & \\textbf{OBD Acc.} & \\textbf{vs.\\ LogReg} & \\textbf{vs.\\ LinearSVC} & \\textbf{vs.\\ RandomForest} \\\\\n\\midrule\nQwen-1.5B-base & C4    & .592 & .232 (.598)            & .605 (.595)              & .271 (.597) \\\\\nPythia-1.4B     & C4    & .631 & $\\mathbf{.033^{*}}$ (.621) & .105 (.624)              & .451 (.628) \\\\\nLLaMA-8B        & C4    & .573 & $\\mathbf{6.2{\\times}10^{-5\\,***}}$ (.592) & $\\mathbf{1.1{\\times}10^{-4\\,***}}$ (.591) & $\\mathbf{.001^{**}}$ (.586) \\\\\n\\midrule\nQwen-1.5B      & Wiki  & .588 & $\\mathbf{9.4{\\times}10^{-4\\,***}}$ (.570) & $\\mathbf{2.3{\\times}10^{-4\\,***}}$ (.568) & .655 (.590) \\\\\nPythia          & Wiki  & .560 & .180 (.567)            & .540 (.564)              & .369 (.564) \\\\\nOLMo            & Wiki  & .500 & .868 (.502)            & .705 (.503)              & .751 (.502) \\\\\nLLaMA-8B        & Wiki  & .573 & .252 (.579)            & .270 (.579)              & .110 (.580) \\\\\n\\midrule\nQwen-1.5B      & arXiv & .781 & .156 (.774)            & .079 (.772)              & .364 (.777) \\\\\nPythia          & arXiv & .733 & .232 (.727)            & .384 (.728)              & .735 (.732) \\\\\nOLMo            & arXiv & .493 & .520 (.487)            & .681 (.489)              & .759 (.496) \\\\\nQwen-7B         & arXiv & .757 & .160 (.749)            & .327 (.751)              & .733 (.758) \\\\\nMistral-7B      & arXiv & .742 & .524 (.738)            & .633 (.739)              & .225 (.748) \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\n\\vspace{4pt}\n\\footnotesize\n36 comparisons total. 5/36 reach $p < 0.05$; 4/36 reach $p < 0.01$.\nThe predominance of non-significant results confirms that depth discriminability is feature-driven, not classifier-driven.\n\\end{table*}\n\n\\subsection{Domain Lexical Statistics}\n\\label{sec:domain_lexical_stats}\n\nTable~\\ref{tab:domain-ttr-entropy} reports type-token ratio (TTR) and vocabulary entropy across three domains and six depth levels.\nThe TTR ordering at depth 0 (arXiv $>$ C4 $>$ Wikipedia) aligns with the $\\Kempirical$ ordering, with large effect sizes (Cohen's $d = 1.52$ for arXiv vs.\\ Wikipedia).\nVocabulary entropy shows a partial reversal at depth 0: C4 ($H = 6.225$) falls below Wikipedia ($H = 6.408$), while arXiv remains highest ($H = 6.853$).\nThis reversal likely reflects C4's greater content heterogeneity (higher variance: $\\sigma = 0.706$ vs.\\ $0.284$), which inflates TTR but depresses mean entropy.\nAs depth increases, all domains converge, with arXiv exhibiting the steepest decline, consistent with its higher $\\Kempirical$ and slower convergence to the stationary distribution.\n\n\\begin{table*}[h]\n\\centering\n\\small\n\\caption{Type-Token Ratio (TTR) and vocabulary entropy across three domains and generation depths.\nAt depth~0 (original human text), arXiv exhibits the highest lexical diversity (TTR\\,=\\,0.755, $H$\\,=\\,6.853),\nfollowed by C4 and Wikipedia.\nAs depth increases, all domains converge, with arXiv showing the steepest decline.\nCohen's $d$ values are computed at depth~0 for pairwise domain comparisons.}\n\\label{tab:domain-ttr-entropy}\n\\begin{tabular}{ll rrr rrr}\n\\toprule\n& & \\multicolumn{3}{c}{\\textbf{TTR}} & \\multicolumn{3}{c}{\\textbf{Vocab Entropy ($H$)}} \\\\\n\\cmidrule(lr){3-5} \\cmidrule(lr){6-8}\n\\textbf{Depth} & $N$ & \\textbf{Wiki} & \\textbf{C4} & \\textbf{arXiv} & \\textbf{Wiki} & \\textbf{C4} & \\textbf{arXiv} \\\\\n\\midrule\n0 & 5k/5k/2.2k & .665\\tpm.061 & .720\\tpm.105 & \\textbf{.755}\\tpm.055 & 6.408\\tpm.284 & 6.225\\tpm.706 & \\textbf{6.853}\\tpm.295 \\\\\n1 &             & .655\\tpm.121 & .707\\tpm.149 & \\textbf{.732}\\tpm.098 & 5.932\\tpm.843 & 5.737\\tpm1.189 & \\textbf{6.113}\\tpm.655 \\\\\n2 &             & .647\\tpm.145 & .676\\tpm.159 & \\textbf{.677}\\tpm.131 & 5.784\\tpm.905 & 5.774\\tpm1.139 & \\textbf{5.998}\\tpm.967 \\\\\n3 &             & .645\\tpm.159 & \\textbf{.662}\\tpm.164 & .635\\tpm.134 & 5.664\\tpm1.085 & 5.743\\tpm1.161 & \\textbf{5.964}\\tpm.933 \\\\\n4 &             & .636\\tpm.164 & \\textbf{.647}\\tpm.169 & .621\\tpm.140 & 5.660\\tpm1.062 & 5.758\\tpm1.167 & \\textbf{5.898}\\tpm.942 \\\\\n5 &             & .632\\tpm.172 & \\textbf{.636}\\tpm.175 & .618\\tpm.150 & 5.593\\tpm1.130 & 5.772\\tpm1.141 & \\textbf{5.816}\\tpm.968 \\\\\n\\midrule\n\\multicolumn{8}{l}{\\textit{Cohen's $d$ at depth 0 (positive $=$ second domain higher):}} \\\\\n\\multicolumn{2}{l}{C4 vs.\\ Wiki}   & \\multicolumn{3}{c}{$d = +0.65$} & \\multicolumn{3}{c}{$d = -0.34$} \\\\\n\\multicolumn{2}{l}{arXiv vs.\\ C4}  & \\multicolumn{3}{c}{$d = +0.37$} & \\multicolumn{3}{c}{$d = +1.03$} \\\\\n\\multicolumn{2}{l}{arXiv vs.\\ Wiki} & \\multicolumn{3}{c}{$d = +1.52$} & \\multicolumn{3}{c}{$d = +1.55$} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\subsection{Leave-One-Family-Out Threshold Validation}\n\\label{sec:theta_lofo}\n\nTo validate $\\theta{=}0.60$ without circular reasoning, we perform leave-one-family-out (LOFO) cross-validation: each fold removes one architecture family, derives $\\hat{\\theta}$ as the midpoint between $\\min(\\auc_{1v2})$ and $\\max(\\auc_{2v3})$ over the remaining families, then predicts $\\Kempirical$ for the held-out models.\nTable~\\ref{tab:theta_lofo} reports results across all three domains.\n\nOn C4, 8/9 held-out predictions agree with the original $\\Kempirical$ assignment at $\\theta{=}0.60$ (agreement: 89\\%).\nThe single mismatch is Qwen-1.5B-RW (rewrite mode), whose 2v3 AUC of 0.5893 lies above the LOFO-derived $\\hat{\\theta}{=}0.5725$ but below the global $\\theta{=}0.60$; this configuration is also the sole rewrite-mode model, the discrepancy is therefore attributable to mode rather than threshold instability.\nThe derived $\\hat{\\theta}$ values span $[0.5725, 0.6004]$, and $\\theta{=}0.60$ falls within this range.\n\nArXiv corroborates with 6/6 agreement (100\\%), though the wide $\\hat{\\theta}$ range $[0.5735, 0.7296]$ reflects OLMo-1B's near-chance performance ($\\auc_{1v2}{=}0.503$), which inflates the gap midpoint when OLMo is included in the training fold.\n\nWikipedia yields only 1/6 agreement (17\\%).\nThis failure is expected: most models produce near-chance 1v2 AUC on Wikipedia ($0.499$--$0.619$), so the gap between $\\min(\\auc_{1v2})$ and $\\max(\\auc_{2v3})$ is narrow or inverted, the gap-based threshold derivation is therefore invalid.\nWikipedia's $\\Kempirical{=}1$ assignment is independently confirmed by the global $\\theta{=}0.60$ criterion (Section~\\ref{sec:cross_domain}); LOFO simply cannot validate this because the method requires a clear AUC discontinuity between boundary and non-boundary pairs.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Leave-One-Family-Out (LOFO) cross-validation of $\\theta$ across three domains. Each fold holds out one architecture family, derives $\\hat{\\theta}$ as the midpoint between $\\min(\\text{AUC}_{1\\text{v}2})$ and $\\max(\\text{AUC}_{2\\text{v}3})$ over the remaining families, and predicts $K^*$ for held-out models. C4 (primary): 8/9 agreement (89\\%). arXiv: 6/6 (100\\%). Wikipedia: 1/6 (17\\%, see text).}\n\\label{tab:theta_lofo}\n\\begin{tabular}{l l l c c c c c c}\n\\toprule\nDomain & Held-out & Model & $\\text{AUC}_{1\\text{v}2}$ & $\\text{AUC}_{2\\text{v}3}$ & $\\hat{\\theta}$ & $K^*_{\\hat{\\theta}}$ & $K^*_{0.60}$ & Match \\\\\n\\midrule\nC4 & Pythia & Pythia-1.4B & 0.6539 & 0.5515 & 0.5914 & 2 & 2 & \\cmark \\\\\n & OLMo & OLMo-1B & 0.6146 & 0.5497 & 0.5914 & 2 & 2 & \\cmark \\\\\n & Qwen & Qwen-1.5B-RW & 0.6957 & 0.5893 & 0.5725 & 3 & 2 & \\xmark \\\\\n &  & Qwen-7B & 0.6178 & 0.5460 & 0.5725 & 2 & 2 & \\cmark \\\\\n &  & Qwen-1.5B-base & 0.6262 & 0.5496 & 0.5725 & 2 & 2 & \\cmark \\\\\n &  & Qwen-1.5B-cont & 0.6114 & 0.5609 & 0.5725 & 2 & 2 & \\cmark \\\\\n &  & Qwen-14B & 0.6210 & 0.5494 & 0.5725 & 2 & 2 & \\cmark \\\\\n & LLaMA & LLaMA-3.1-8B & 0.6123 & 0.5274 & 0.5914 & 2 & 2 & \\cmark \\\\\n & Mistral & Mistral-7B & 0.5935 & 0.5402 & 0.6004 & 1 & 1 & \\cmark \\\\\n\\cmidrule{2-9}\n & \\multicolumn{7}{l}{$\\hat{\\theta}$ $\\in$ [0.5725, 0.6004], agreement: 8/9 (89\\%)} \\\\\n\\midrule\narXiv & Pythia & Pythia-1.4B & 0.8047 & 0.6545 & 0.5735 & 3 & 3 & \\cmark \\\\\n & OLMo & OLMo-1B & 0.5034 & 0.5069 & 0.7296 & 1 & 1 & \\cmark \\\\\n & Qwen & Qwen-1.5B & 0.8581 & 0.6436 & 0.5789 & 3 & 3 & \\cmark \\\\\n &  & Qwen-7B & 0.8347 & 0.6255 & 0.5789 & 3 & 3 & \\cmark \\\\\n & LLaMA & LLaMA-3.1-8B & 0.8447 & 0.6215 & 0.5789 & 3 & 3 & \\cmark \\\\\n & Mistral & Mistral-7B & 0.8201 & 0.6275 & 0.5789 & 3 & 3 & \\cmark \\\\\n\\cmidrule{2-9}\n & \\multicolumn{7}{l}{$\\hat{\\theta}$ $\\in$ [0.5735, 0.7296], agreement: 6/6 (100\\%)} \\\\\n\\midrule\nWikipedia & Pythia & Pythia-1.4B & 0.5846 & 0.5445 & 0.5274 & 3 & 1 & \\xmark \\\\\n & OLMo & OLMo-1B & 0.4986 & 0.5012 & 0.5557 & 1 & 1 & \\cmark \\\\\n & Qwen & Qwen-1.5B & 0.6193 & 0.5498 & 0.5215 & 4 & 2 & \\xmark \\\\\n &  & Qwen-7B & 0.6108 & 0.5562 & 0.5215 & 4 & 2 & \\xmark \\\\\n & LLaMA & LLaMA-3.1-8B & 0.5954 & 0.5392 & 0.5274 & 3 & 1 & \\xmark \\\\\n & Mistral & Mistral-7B & 0.5552 & 0.5236 & 0.5274 & 2 & 1 & \\xmark \\\\\n\\cmidrule{2-9}\n & \\multicolumn{7}{l}{$\\hat{\\theta}$ $\\in$ [0.5215, 0.5557], agreement: 1/6 (17\\%)} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\subsection{Code Domain Results}\n\\label{sec:code_domain}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Code domain (Python, CodeSearchNet~\\cite{husain2019codesearchnet}) pairwise AUC for Qwen2.5-1.5B. $\\Kempirical{=}2$: 1v2 exceeds $\\theta{=}0.60$; 2v3 drops to chance. JSD ratio (1v2/2v3) $= 11.7\\times$, comparable to C4's cliff structure.}\n\\label{tab:code_domain_qwen}\n\\begin{tabular}{l c c c}\n\\toprule\nPair & AUC & 95\\% CI & JSD \\\\\n\\midrule\n0 vs 1 & 0.9388 & [0.929, 0.949] & 0.0814 \\\\\n1 vs 2 & 0.7382 & [0.709, 0.767] & 0.0443 \\\\\n2 vs 3 & 0.5300 & [0.514, 0.546] & 0.0038 \\\\\n3 vs 4 & 0.5022 & [0.486, 0.518] & 0.0033 \\\\\n4 vs 5 & 0.5219 & [0.510, 0.534] & 0.0030 \\\\\n\\midrule\n\\multicolumn{4}{l}{$\\Kempirical = 2$ ($\\theta = 0.60$)} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Code domain (Python, CodeSearchNet) cross-model pairwise AUC with 5-fold cross-validated 95\\% CIs. Qwen2.5-1.5B yields $\\Kempirical{=}2$; Pythia-1.4B yields borderline $\\Kempirical{=}1$ (1v2 CI upper $= 0.603 > \\theta$). Additional models pending completion.}\n\\label{tab:code_crossmodel_kstar}\n\\begin{tabular}{l cc cc}\n\\toprule\n & \\multicolumn{2}{c}{Qwen2.5-1.5B} & \\multicolumn{2}{c}{Pythia-1.4B} \\\\\n\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\n & AUC & 95\\% CI & AUC & 95\\% CI \\\\\n\\midrule\n0v1 & .9388 & [.929,\\,.949] & \\textbf{.9592} & [.956,\\,.963] \\\\\n1v2 & \\textbf{.7382} & [.709,\\,.767]\\rlap{$^*$} & .5983 & [.593,\\,.603] \\\\\n2v3 & .5300 & [.514,\\,.546] & .5215 & --- \\\\\n3v4 & .5022 & --- & .5152 & --- \\\\\n4v5 & .5219 & --- & .5046 & --- \\\\\n\\midrule\n$K^*$ & \\multicolumn{2}{c}{\\textbf{2}} & \\multicolumn{2}{c}{1} \\\\\n\\bottomrule\n\\multicolumn{5}{l}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}\n\\end{tabular}\n\\end{table}\n\n\\subsection{Borderline Feature Analysis}\n\\label{sec:borderline_analysis}\n\nTo understand why Mistral-7B yields $\\Kempirical{=}1$ while other C4 models yield $\\Kempirical{=}2$, we compute per-feature Cohen's $d$ (depth-1 vs.\\ depth-2) and LightGBM feature importances across six C4 configurations spanning the full 1v2 AUC range (0.594--0.884).\n\nMistral-7B exhibits the lowest depth-0 mean surprisal (2.32 vs.\\ 2.90--3.02 for other models), the scorer model therefore already finds Mistral's output highly predictable.\nThis compressed baseline limits the dynamic range available for detecting inter-generational degradation: all 15 Cohen's $d$ values are weak ($\\bar{|d|} = 0.112$; Table~\\ref{tab:cohens_d_full}), and no single feature exceeds 13\\% of total classifier importance.\nThe borderline models (LLaMA-8B, Pythia at $T{=}1.2$) show a similar pattern at slightly higher effect sizes.\n\nGreedy decoding is qualitatively distinct: Pythia-greedy achieves 0.884 AUC via lexical collapse (hapax ratio $d = -1.056$, capturing 47\\% of importance), a signal absent under sampling-based generation where all non-greedy models rely on surprisal variability features.\n\n\\begin{table*}[h]\n\\centering\n\\small\n\\caption{Feature-level summary of C4 1v2 classification across model categories. Imp.\\ = normalized LightGBM gain importance (\\%). $\\bar{|d|}$ = mean absolute Cohen's $d$ over all 15 features. $\\Delta\\text{surp}_{1\\to2}$: change in mean surprisal from depth 1 to depth 2.}\n\\label{tab:borderline_features}\n\\begin{tabular}{@{}llc lcc@{}}\n\\toprule\nCategory & Model & AUC & Top-3 Features (Imp.\\%) & $\\bar{|d|}$ & $\\Delta\\text{surp}_{1\\to2}$ \\\\\n\\midrule\nStrong & Pythia-greedy & 0.884 & hapax\\_ratio (47), surp\\_mean (11), low\\_freq\\_ratio (8) & 0.365 & $-$0.160 \\\\\nStrong & Pythia-nuc09 & 0.677 & surp\\_std (20), freq\\_entropy (11), surp\\_d1\\_std (8) & 0.170 & $-$0.196 \\\\\nStrong & Qwen-1.5B-base & 0.626 & surp\\_std (13), freq\\_entropy (10), surp\\_mean (9) & 0.125 & $-$0.159 \\\\\n\\midrule\nBorderline & Pythia-$T{=}1.2$ & 0.617 & surp\\_std (15), freq\\_entropy (10), surp\\_kurt (8) & 0.112 & $-$0.059 \\\\\nBorderline & LLaMA-3.1-8B & 0.612 & surp\\_std (12), surp\\_d1\\_std (10), freq\\_entropy (9) & 0.137 & $-$0.215 \\\\\n\\midrule\nBelow $\\theta$ & Mistral-7B & 0.594 & surp\\_std (13), freq\\_entropy (9), surp\\_d1\\_skew (9) & 0.112 & $-$0.086 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\begin{table*}[h]\n\\centering\n\\scriptsize\n\\caption{Cohen's $d$ (depth-1 vs.\\ depth-2) for all 15 features across six C4 models. \\textbf{Bold}: largest $|d|$ in each row. Greedy decoding produces qualitatively different effect sizes via lexical collapse (hapax\\_ratio, low\\_freq\\_ratio); under sampling, surprisal variability features (surp\\_std, surp\\_d1\\_std, surp\\_d2\\_std) carry the dominant signal.}\n\\label{tab:cohens_d_full}\n\\begin{tabular}{@{}lrrrrrr@{}}\n\\toprule\nFeature & \\rotatebox{60}{Pythia-greedy} & \\rotatebox{60}{Pythia-nuc09} & \\rotatebox{60}{Qwen-1.5B-base} & \\rotatebox{60}{Pythia-$T{=}1.2$} & \\rotatebox{60}{LLaMA-3.1-8B} & \\rotatebox{60}{Mistral-7B} \\\\\n\\midrule\nsurp\\_mean & \\textbf{$-$0.416} & $-$0.306 & $-$0.244 & $-$0.103 & $-$0.263 & $-$0.152 \\\\\nsurp\\_std & $-$0.301 & \\textbf{$-$0.370} & $-$0.229 & $-$0.268 & $-$0.316 & $-$0.190 \\\\\nsurp\\_skew & \\textbf{$+$0.468} & $+$0.086 & $+$0.085 & $-$0.217 & $+$0.049 & $+$0.103 \\\\\nsurp\\_kurt & \\textbf{$+$0.433} & $+$0.102 & $+$0.071 & $-$0.188 & $+$0.031 & $+$0.124 \\\\\nsurp\\_d1\\_mean & $+$0.028 & $+$0.031 & $-$0.024 & $+$0.026 & \\textbf{$+$0.080} & $+$0.026 \\\\\nsurp\\_d1\\_std & $-$0.318 & \\textbf{$-$0.342} & $-$0.236 & $-$0.228 & $-$0.306 & $-$0.212 \\\\\nsurp\\_d1\\_skew & \\textbf{$-$0.224} & $-$0.058 & $-$0.053 & $-$0.012 & $-$0.014 & $-$0.084 \\\\\nsurp\\_d2\\_mean & $+$0.004 & $+$0.001 & \\textbf{$+$0.034} & $-$0.015 & $-$0.030 & $+$0.012 \\\\\nsurp\\_d2\\_std & $-$0.312 & \\textbf{$-$0.332} & $-$0.247 & $-$0.209 & $-$0.292 & $-$0.207 \\\\\nttr & \\textbf{$-$0.404} & $-$0.212 & $-$0.123 & $-$0.115 & $-$0.203 & $-$0.135 \\\\\nhapax\\_ratio & \\textbf{$-$1.056} & $-$0.221 & $-$0.144 & $-$0.108 & $-$0.186 & $-$0.139 \\\\\nself\\_bleu & $-$0.056 & $+$0.031 & \\textbf{$+$0.140} & $+$0.058 & $+$0.118 & $+$0.127 \\\\\nfreq\\_kurtosis & $+$0.071 & \\textbf{$-$0.083} & $-$0.007 & $+$0.007 & $+$0.005 & $-$0.030 \\\\\nfreq\\_entropy & \\textbf{$-$0.350} & $-$0.158 & $-$0.104 & $-$0.021 & $+$0.031 & $-$0.044 \\\\\nlow\\_freq\\_ratio & \\textbf{$-$1.029} & $-$0.226 & $-$0.139 & $-$0.110 & $-$0.134 & $-$0.090 \\\\\n\\midrule\n$\\bar{|d|}$ & 0.365 & 0.170 & 0.125 & 0.112 & 0.137 & 0.112 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 602,
+                  "oldLines": 7,
+                  "newStart": 602,
+                  "newLines": 7,
+                  "lines": [
+                    " \\midrule",
+                    " $K^*$ & \\multicolumn{2}{c}{\\textbf{2}} & \\multicolumn{2}{c}{1} \\\\",
+                    " \\bottomrule",
+                    "-\\multicolumn{5}{l}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}",
+                    "+\\multicolumn{5}{p{\\linewidth}}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}",
+                    " \\end{tabular}",
+                    " \\end{table}",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me compile to verify."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "c9e16cdd-e483-4904-90b1-2c107886f18b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018M4mypoKPjEDM9dmHu9hjX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 434,
+                "cache_read_input_tokens": 27423,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 434
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DnE7tXLUwrUj6XCDkN44xr",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "dd09110e-31e8-4306-8857-d1d60b6d1345",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018M4mypoKPjEDM9dmHu9hjX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 434,
+                "cache_read_input_tokens": 27423,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 434
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T05:49:45.839Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DnE7tXLUwrUj6XCDkN44xr",
+              "type": "tool_result",
+              "content": "/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.p\nfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>\nOutput written on main.pdf (28 pages, 849602 bytes).\nTranscript written on main.log.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "8ce59bce-e253-46d5-ba6b-535a97f43212",
+            "tool_use_result": {
+              "stdout": "/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.p\nfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>\nOutput written on main.pdf (28 pages, 849602 bytes).\nTranscript written on main.log.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0185ni3Fk8DpiFUHyRfsLnQE",
+              "name": "Bash",
+              "input": {
+                "command": "pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "0b5c88be-80e0-4fe6-b3e7-f140c349d52c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GVsGySD5fHtzWQwygGqFW7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 283,
+                "cache_read_input_tokens": 27857,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 283
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T05:49:49.766Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0185ni3Fk8DpiFUHyRfsLnQE",
+              "type": "tool_result",
+              "content": "/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.p\nfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>\nOutput written on main.pdf (28 pages, 849602 bytes).\nTranscript written on main.log.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "6372faa3-c2a9-425f-9388-e98c89d9a197",
+            "tool_use_result": {
+              "stdout": "/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.p\nfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>\nOutput written on main.pdf (28 pages, 849602 bytes).\nTranscript written on main.log.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check overfull hbox warnings related to this table."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "0a849d83-42a3-4261-8ba2-8802e1073ba4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016L2oYUK5Z8VXJcnM6Hux2E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 345,
+                "cache_read_input_tokens": 28140,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 345
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B8bB9SM5JqmUuq49GHGqM4",
+              "name": "Bash",
+              "input": {
+                "command": "grep -c \"Overfull.*hbox\" main.log && echo \"---\" && grep \"Overfull.*hbox\" main.log | grep -i \"code_crossmodel\\|footnotesize\\|Permutation\\|56\\.\" || echo \"No matching overfull lines\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "15175dad-601d-43d8-a04e-da3900a03a6f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016L2oYUK5Z8VXJcnM6Hux2E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 345,
+                "cache_read_input_tokens": 28140,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 345
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T05:49:53.680Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B8bB9SM5JqmUuq49GHGqM4",
+              "type": "tool_result",
+              "content": "2\n---\nNo matching overfull lines",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "3cbe0517-7505-4b52-9e52-6b1676e05c16",
+            "tool_use_result": {
+              "stdout": "2\n---\nNo matching overfull lines",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011eHmXoGFMmMKynXAh7XqPA",
+              "name": "Bash",
+              "input": {
+                "command": "grep \"Overfull.*hbox\" main.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "bec8e8e5-fd26-4848-9c66-84e93ef41415",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GDXtNDyeRA9iSALqnxDjWW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 156,
+                "cache_read_input_tokens": 28485,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 156
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T05:49:55.292Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011eHmXoGFMmMKynXAh7XqPA",
+              "type": "tool_result",
+              "content": "Overfull \\hbox (1.31956pt too wide) in paragraph at lines 189--200\nOverfull \\hbox (12.0pt too wide) in paragraph at lines 591--607",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "0ea89e45-94b4-4ffd-9ff3-ed737855b35c",
+            "tool_use_result": {
+              "stdout": "Overfull \\hbox (1.31956pt too wide) in paragraph at lines 189--200\nOverfull \\hbox (12.0pt too wide) in paragraph at lines 591--607",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Still an overfull hbox at lines 591-607, which is the table area. But it's now 12pt instead of 56pt. Let me look more closely at what's causing this remaining overfull. It might be the table itself, not the footnote. Let me check the table structure.\n\nThe table is `\\begin{tabular}{l cc cc}` inside a `\\begin{table}[t]` (not `table*`). Let me look at the full table context.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "91a61f80-a94f-44e8-a841-bcc396f2974a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EGFy22LigXuGbV21iZmhzJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 124,
+                "cache_read_input_tokens": 28641,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 124
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Still 12pt overfull at lines 591-607. The footnote fix reduced it from 56pt but it's not fully resolved. Let me check the context more carefully."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "c7c9025e-55d6-4f7f-8f68-26993cc8359b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EGFy22LigXuGbV21iZmhzJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 124,
+                "cache_read_input_tokens": 28641,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 124
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q3AQ9fyajaeMrGpEhTBz4o",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "offset": 582,
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "d97c2164-8e5a-44b7-b461-4a0e2a01132e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EGFy22LigXuGbV21iZmhzJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 124,
+                "cache_read_input_tokens": 28641,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 124
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T05:50:01.648Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q3AQ9fyajaeMrGpEhTBz4o",
+              "type": "tool_result",
+              "content": "582\t\\bottomrule\n583\t\\end{tabular}\n584\t\\end{table}\n585\t\n586\t\\begin{table}[h]\n587\t\\centering\n588\t\\small\n589\t\\caption{Code domain (Python, CodeSearchNet) cross-model pairwise AUC with 5-fold cross-validated 95\\% CIs. Qwen2.5-1.5B yields $\\Kempirical{=}2$; Pythia-1.4B yields borderline $\\Kempirical{=}1$ (1v2 CI upper $= 0.603 > \\theta$). Additional models pending completion.}\n590\t\\label{tab:code_crossmodel_kstar}\n591\t\\begin{tabular}{l cc cc}\n592\t\\toprule\n593\t & \\multicolumn{2}{c}{Qwen2.5-1.5B} & \\multicolumn{2}{c}{Pythia-1.4B} \\\\\n594\t\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\n595\t & AUC & 95\\% CI & AUC & 95\\% CI \\\\\n596\t\\midrule\n597\t0v1 & .9388 & [.929,\\,.949] & \\textbf{.9592} & [.956,\\,.963] \\\\\n598\t1v2 & \\textbf{.7382} & [.709,\\,.767]\\rlap{$^*$} & .5983 & [.593,\\,.603] \\\\\n599\t2v3 & .5300 & [.514,\\,.546] & .5215 & --- \\\\\n600\t3v4 & .5022 & --- & .5152 & --- \\\\\n601\t4v5 & .5219 & --- & .5046 & --- \\\\\n602\t\\midrule\n603\t$K^*$ & \\multicolumn{2}{c}{\\textbf{2}} & \\multicolumn{2}{c}{1} \\\\\n604\t\\bottomrule\n605\t\\multicolumn{5}{p{\\linewidth}}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}\n606\t\\end{tabular}\n607\t\\end{table}\n608\t\n609\t\\subsection{Borderline Feature Analysis}\n610\t\\label{sec:borderline_analysis}\n611\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "8f1b217a-32bb-4da8-b712-f81f61b6073a",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "content": "\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Code domain (Python, CodeSearchNet) cross-model pairwise AUC with 5-fold cross-validated 95\\% CIs. Qwen2.5-1.5B yields $\\Kempirical{=}2$; Pythia-1.4B yields borderline $\\Kempirical{=}1$ (1v2 CI upper $= 0.603 > \\theta$). Additional models pending completion.}\n\\label{tab:code_crossmodel_kstar}\n\\begin{tabular}{l cc cc}\n\\toprule\n & \\multicolumn{2}{c}{Qwen2.5-1.5B} & \\multicolumn{2}{c}{Pythia-1.4B} \\\\\n\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\n & AUC & 95\\% CI & AUC & 95\\% CI \\\\\n\\midrule\n0v1 & .9388 & [.929,\\,.949] & \\textbf{.9592} & [.956,\\,.963] \\\\\n1v2 & \\textbf{.7382} & [.709,\\,.767]\\rlap{$^*$} & .5983 & [.593,\\,.603] \\\\\n2v3 & .5300 & [.514,\\,.546] & .5215 & --- \\\\\n3v4 & .5022 & --- & .5152 & --- \\\\\n4v5 & .5219 & --- & .5046 & --- \\\\\n\\midrule\n$K^*$ & \\multicolumn{2}{c}{\\textbf{2}} & \\multicolumn{2}{c}{1} \\\\\n\\bottomrule\n\\multicolumn{5}{p{\\linewidth}}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}\n\\end{tabular}\n\\end{table}\n\n\\subsection{Borderline Feature Analysis}\n\\label{sec:borderline_analysis}\n",
+                "numLines": 30,
+                "startLine": 582,
+                "totalLines": 670
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The table is inside `\\begin{table}[h]` (single column), so `\\linewidth` should work. But there's still 12pt overfull. The issue is likely that the `p{\\linewidth}` column within a tabular adds some extra padding. Let me use `@{}` to eliminate column padding, or use `\\dimexpr\\linewidth-2\\tabcolsep` to account for the tabular padding."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "530f6eee-29ba-4fe9-806d-adecf00896a4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012M5dguzjNtGCbL85R4UiL3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 948,
+                "cache_read_input_tokens": 28765,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 948
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mwh7GpXpsXdDVzbj49CPn8",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "old_string": "\\multicolumn{5}{p{\\linewidth}}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}",
+                "new_string": "\\multicolumn{5}{@{}p{\\linewidth}@{}}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "ca72125c-c793-4570-8989-cb7f04220368",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012M5dguzjNtGCbL85R4UiL3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 948,
+                "cache_read_input_tokens": 28765,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 948
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T05:50:07.887Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mwh7GpXpsXdDVzbj49CPn8",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "9293c2ff-e91b-4f4b-99e4-f32d6d2e88f9",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+              "oldString": "\\multicolumn{5}{p{\\linewidth}}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}",
+              "newString": "\\multicolumn{5}{@{}p{\\linewidth}@{}}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}",
+              "originalFile": "\\section{Extended Analysis and Limitations}\n\\label{sec:extended_discussion}\n\nThis section provides supporting tables for cross-scorer validation (Tables~\\ref{tab:crossscorer}--\\ref{tab:anova_crossscorer}), followed by extended limitations, ablation studies, and domain-specific analyses.\n\n\\noindent\\begin{minipage}{\\columnwidth}\n\\centering\n\\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\rho > 0.90$) and rewrite-mode $\\Kempirical = 2$, but reduce continuation-mode $\\Kempirical$ from 2 to 1.}\n\\label{tab:crossscorer}\n\\resizebox{\\columnwidth}{!}{\\input{tables/tab_crossscorer}}\n\\end{minipage}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Three-way ANOVA (Generator $\\times$ Scorer $\\times$ Depth-Pair) on per-fold pairwise $\\auc$ values (Type~II SS). DV = per-fold AUC; $N{=}300$ (12 cells $\\times$ 5 folds $\\times$ 5 depth-pairs; 3 generators $\\times$ 4 scorers). Scorer is statistically significant ($p < .001$) but has a small effect size ($\\eta^2_p = 0.19$) relative to Depth-Pair ($\\eta^2_p = 1.00$) and Generator ($\\eta^2_p = 0.89$), indicating that scorer choice has a detectable but practically minor influence on depth discrimination (Scorer $\\eta^2_p$ is approximately 5$\\times$ smaller than Generator and dwarfed by Depth-Pair). Per-fold AUC values within the same generator share seed documents across folds and are not fully independent; we therefore rely on effect-size ratios rather than $p$-values for interpretation.}\n\\label{tab:anova_crossscorer}\n\\begin{tabular}{lrrrr}\n\\toprule\n\\textbf{Source} & \\textbf{df} & $F$ & $p$ & $\\eta^2_p$ \\\\\n\\midrule\nGenerator     & 2  & 926.8  & ${<}.001$  & .885 \\\\\nScorer        & 3  & 19.02  & ${<}.001$  & .192 \\\\\nDepth-Pair    & 4  & 24736  & ${<}.001$  & .998 \\\\\nGen$\\times$Scorer & 6 & 8.16 & ${<}.001$ & .170 \\\\\nGen$\\times$Depth  & 8 & 993.7 & ${<}.001$ & .971 \\\\\nScorer$\\times$Depth & 12 & 2.45 & .005 & .109 \\\\\nResidual      & 240 & & & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Extended Limitations}\n\\label{sec:extended_limitations}\n\n\\emph{Prompt-chain versus retrain-chain.}\nBoth Qwen2.5-1.5B and Pythia-1.4B yield $\\Kempirical{=}7$ under retrain-chain LoRA fine-tuning (Table~\\ref{tab:retrain_ci}), extending detectable depth by 5 additional generations beyond prompt-chain $\\Kempirical{=}2$.\nCumulative model-adaptation artifacts (vocabulary narrowing, repetition bias) make each retrained generation highly distinguishable.\nThe two models exhibit different decay profiles: Pythia achieves higher early-pair AUC (1v2: 0.947 vs.\\ 0.897) but drops more steeply at deeper pairs (4v5: 0.691 vs.\\ 0.746), yet both converge to $\\Kempirical{=}7$ (6v7: Qwen 0.641, Pythia 0.634; both CI lower bounds $> \\theta$).\nThis convergence despite differences in effective LoRA adaptation capacity (Pythia uses fused QKV attention with rank-16 vs.\\ Qwen's separate Q/K/V projections) indicates robustness to LoRA parameterization.\nThe extended discriminability under retraining aligns with theoretical analyses of iterative retraining instability on synthetic data~\\cite{bertrand2024stability, gerstgrasser2024model}, where each retraining cycle amplifies distributional artifacts beyond the text-intrinsic degradation observed in prompt-chains.\nExtrapolating yields 7v8 $\\approx 0.57 < \\theta$ for both models, suggesting $\\Kempirical{=}7$ is near the ceiling.\nPrompt-chain $\\Kempirical$ represents the operationally relevant boundary for data curation (text-intrinsic information loss); retrain-chain $\\Kempirical$ represents the upper bound achievable via model archaeology (known training pipeline).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Retrain-chain pairwise $\\auc$ with 5-fold CV 95\\% CIs. Both models yield $\\Kempirical{=}7$; all CI lower bounds $> \\theta{=}0.60$. Retrain-chain CIs use fold-level estimates (Section~\\ref{sec:retrain_ci_note}).}\n\\label{tab:retrain_ci}\n\\begin{tabular}{lcccc}\n\\toprule\n & \\multicolumn{2}{c}{\\textbf{Qwen-1.5B}} & \\multicolumn{2}{c}{\\textbf{Pythia-1.4B}} \\\\\n\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\n\\textbf{Pair} & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI \\\\\n\\midrule\n0v1 & 0.9837 & $[.982,\\,.985]$ & 0.9844 & $[.983,\\,.986]$ \\\\\n1v2 & 0.8971 & $[.895,\\,.899]$ & 0.9470 & $[.942,\\,.952]$ \\\\\n2v3 & 0.8098 & $[.805,\\,.814]$ & 0.8891 & $[.882,\\,.896]$ \\\\\n3v4 & 0.7600 & $[.753,\\,.767]$ & 0.7999 & $[.795,\\,.805]$ \\\\\n4v5 & 0.7459 & $[.738,\\,.754]$ & 0.6907 & $[.688,\\,.693]$ \\\\\n5v6 & 0.7017 & $[.696,\\,.708]$ & 0.6497 & $[.643,\\,.657]$ \\\\\n6v7 & 0.6410 & $[.638,\\,.645]$ & 0.6340 & $[.628,\\,.641]$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{CI methodology note.}\n\\label{sec:retrain_ci_note}\nThe main pipeline reports bootstrap 95\\% CIs (1{,}000 or 10{,}000 resamples), which are valid because each bootstrap sample preserves the GroupKFold document structure: resampling operates on documents, and all depths of a given document remain together.\nIn the retrain-chain setting, each generation's training corpus is the \\emph{output} of the previous generation's fine-tuned model. This creates inter-generation dependencies that standard bootstrap resampling cannot preserve, and naive resampling would inflate AUC estimates.\nWe therefore report fold-based 95\\% CIs for retrain-chain experiments, computed as $\\bar{x} \\pm 1.96 \\cdot s / \\sqrt{K}$ from the $K{=}5$ GroupKFold AUC values.\n\n\\emph{Threshold sensitivity.}\nTable~\\ref{tab:theta_sensitivity} reports $\\Kempirical$ across $\\theta \\in [0.55, 0.70]$ for representative configurations including arXiv and cross-scorer conditions.\nQwen-continuation's 1v2 CI lower bound exceeds $\\theta$ by only 0.2\\,pp; all ten boundary comparisons yield permutation $p < 0.001$.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{$\\Kempirical$ as a function of $\\theta$ across conditions. The \\textbf{domain ordering} (arXiv $>$ web $\\geq$ cross-scorer) and \\textbf{bounded range} ($\\Kempirical{\\leq}4$) are preserved across $\\theta \\in [0.55, 0.70]$. The headline result (web $\\Kempirical{=}2$, arXiv $\\Kempirical{=}3$) holds for $\\theta \\in [0.575, 0.625]$.}\n\\label{tab:theta_sensitivity}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Condition} & \\textbf{Config} & $\\theta{=}0.55$ & $\\theta{=}0.60$ & $\\theta{=}0.625$ & $\\theta{=}0.70$ \\\\\n\\midrule\nC4 (web) & Qwen-rw      & 3 & 2 & 2 & 1 \\\\\nC4 (web) & Pythia       & 2 & 2 & 2 & 1 \\\\\nC4 (web) & OLMo         & 2 & 2 & 1 & 1 \\\\\nC4 (web) & Qwen-cont    & 3 & 2 & 2 & 1 \\\\\nC4 (web) & Qwen-7B      & 2 & 2 & 2 & 1 \\\\\nC4 (web) & Mistral-7B   & 1 & 1 & 1 & 1 \\\\\n\\midrule\narXiv    & Qwen-1.5B-base (cont.) & 4 & 3 & 3 & 2 \\\\\narXiv    & Pythia-1.4B (cont.)    & 4 & 3 & 3 & 2 \\\\\n\\midrule\nCross-scorer & Qwen-cont/Pythia-scored & 2 & 1 & 1 & 1 \\\\\nCross-scorer & Qwen-cont/OLMo-scored   & 2 & 1 & 1 & 1 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_theta_sensitivity.pdf}\n\\caption{$\\Kempirical$ as a function of $\\theta$ across all model $\\times$ domain configurations (three panels: C4, arXiv, Wikipedia). The domain ordering (Wikipedia $\\Kempirical{\\leq}1$ $<$ C4 $\\Kempirical{\\leq}2$ $<$ arXiv $\\Kempirical{\\leq}3$) is preserved across the full $\\theta \\in [0.55, 0.70]$ range. Within each domain, inter-model variation is small relative to inter-domain differences, confirming that source domain rather than model identity governs $\\Kempirical$.}\n\\label{fig:theta_sensitivity}\n\\end{figure}\n\n\\emph{Structural confound: token length.}\nIn continuation mode the generation prompt is discarded, so all depths $\\geq 1$ consist entirely of machine-generated tokens and the 1v2 boundary compares texts differing only in conditioning context (human-authored vs.\\ machine-generated prompt), not structural composition.\nDepth~0 texts average ${\\sim}$191 subword tokens (C4 truncation), while depth~1+ texts average 193--256 tokens depending on model (Table~\\ref{tab:token_length}).\nThis asymmetry is directionally opposite to a length-inflation confound: shorter depth-0 texts provide less feature-extraction context, making 0v1 discrimination harder, not easier.\nWithin depths 1--5, mean token counts are stable (within-model range $\\leq$ 4 tokens for all configurations except Qwen-continuation at 6 tokens), so the pairwise comparisons underlying $\\Kempirical{=}2$ are unaffected by length.\nEOS truncation rates are similarly depth-stable within each model: Qwen-rewrite 7--11\\%, Pythia 34--36\\%, OLMo $<$1\\%, Qwen-continuation 17--20\\%, Qwen-7B 45--47\\%.\nModels with the highest truncation (Pythia, Qwen-7B) still yield $\\Kempirical{=}2$ with the same step-function AUC decay pattern as low-truncation models (Table~\\ref{tab:kstar_ci}), EOS truncation therefore does not drive the boundary.\n\n\\emph{Graduated filtering.}\nAll $\\alpha$ values (0.1--0.9) underperform binary-ours on MMLU ($\\alpha{=}0.1$: 0.5873; $\\alpha{=}0.9$: 0.5892 vs.\\ 0.5941); at $\\alpha{=}0.9$, HellaSwag matches exactly (0.6701).\nBinary-ours significantly outperforms all alternatives on MMLU ($p_{\\text{corr}} \\leq 0.021$); Graduated$_{0.9}$ is indistinguishable on HellaSwag ($p = 1.00$) but worse on MMLU ($p_{\\text{corr}} = 0.011$).\n\\label{tab:pairwise_significance}\n\n\\subsection{Dose-Response: Contamination Ratio Effect}\n\\label{sec:dose_response}\n\nThe main filtering experiments (Section~\\ref{sec:filtering}) use 100\\% synthetic data to maximize effect size.\nTo characterize behavior at lower contamination ratios, we mix synthetic depths 1--5 with clean C4 at 10\\%, 30\\%, and 50\\% contamination (Qwen-1.5B continuation, 5 seeds each; Table~\\ref{tab:dose_response}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{MMLU and HellaSwag by contamination ratio and filtering strategy (5 seeds, mean $\\pm$ std). Base model MMLU: 0.6018. Binary filtering retains a significant advantage on HellaSwag across all ratios ($p \\leq 0.004$, Holm-Bonferroni corrected).}\n\\label{tab:dose_response}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{2}{c}{\\textbf{10\\%}} & \\multicolumn{2}{c}{\\textbf{30\\%}} & \\multicolumn{2}{c}{\\textbf{50\\%}} \\\\\n\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}\n\\textbf{Strategy} & MMLU & HellaSwag & MMLU & HellaSwag & MMLU & HellaSwag \\\\\n\\midrule\nNo-filter   & $.6058{\\pm}.0002$ & $.6689{\\pm}.0006$ & $.6069{\\pm}.0007$ & $.6664{\\pm}.0018$ & $.6063{\\pm}.0012$ & $.6680{\\pm}.0005$ \\\\\nBinary-ours & $\\mathbf{.6079{\\pm}.0004}$ & $\\mathbf{.6727{\\pm}.0007}$ & $\\mathbf{.6082{\\pm}.0011}$ & $\\mathbf{.6725{\\pm}.0006}$ & $\\mathbf{.6088{\\pm}.0009}$ & $\\mathbf{.6731{\\pm}.0004}$ \\\\\nGraduated   & $.6066{\\pm}.0010$ & $.6700{\\pm}.0014$ & $.6072{\\pm}.0008$ & $.6665{\\pm}.0012$ & $.6062{\\pm}.0008$ & $.6679{\\pm}.0001$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nAt all tested ratios (10--50\\%), no-filter MMLU remains above the base model (0.6018), synthetic data at these proportions is therefore net-beneficial rather than harmful.\nBinary filtering consistently improves over no-filter, with HellaSwag differences significant across all ratios ($p \\leq 0.004$, Holm-Bonferroni corrected).\nMMLU differences are smaller and significant only at 10\\% after correction ($p = 0.001$).\nGraduated weighting is indistinguishable from no-filter at all ratios (MMLU $p \\geq 0.27$; HellaSwag $p \\geq 0.06$), depth assignments beyond $\\Kempirical$ therefore inject noise regardless of contamination severity.\nEffect sizes diminish 3--6$\\times$ relative to the 100\\% setting (Section~\\ref{sec:filtering}), but the strategy ordering (binary $>$ graduated $\\approx$ no-filter) is preserved.\n\n\\subsection{Cross-Model Filtering Replication}\n\\label{sec:pythia_filtering}\n\nTo test whether $\\Kempirical{=}2$ correctly predicts optimal curation granularity across architectures, we replicate the filtering experiment on Pythia-1.4B (LoRA rank 8, nucleus $p{=}0.9$, $T{=}1.0$, 3 seeds; Table~\\ref{tab:pythia_filtering}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Pythia-1.4B filtering replication (3 seeds, mean $\\pm$ std). Strategy ordering matches Qwen (binary $>$ no-filter $>$ graduated on MMLU).}\n\\label{tab:pythia_filtering}\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n\\midrule\nNo-filter & $.2568{\\pm}.0012$ & $.5250{\\pm}.0008$ \\\\\nBinary-ours & $\\mathbf{.2585{\\pm}.0004}$ & $.5251{\\pm}.0001$ \\\\\nGraduated$_{0.9}$ & $.2561{\\pm}.0009$ & $\\mathbf{.5253{\\pm}.0007}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe strategy ordering (binary $>$ no-filter $>$ graduated on MMLU) matches Qwen (Section~\\ref{sec:filtering}).\nThe small absolute differences reflect the model's near-chance MMLU baseline rather than filtering inefficacy; the consistent ordering across two architectures supports $\\Kempirical{=}2$'s predictive value for curation granularity.\nHellaSwag differences are negligible across all strategies.\n\n\\subsection{Feature Subset Stability}\n\\label{sec:feature_subset}\n\nTo test whether $\\Kempirical{=}2$ depends on the specific 15D feature combination, we evaluate random feature subsets of varying size on Pythia-1.4B prompt-chain data (Table~\\ref{tab:feature_subset}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{1v2 $\\auc$ by feature subset size (Pythia-1.4B). $\\Kempirical{=}2$ ($\\auc > \\theta{=}0.60$) is robust at $\\geq$8 features.}\n\\label{tab:feature_subset}\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Subset} & \\textbf{Tested} & \\textbf{Pass} & \\textbf{Min $\\auc$} & \\textbf{Mean $\\auc$} \\\\\n\\midrule\n15D (full) & 1 & 1 & 0.6262 & 0.6262 \\\\\n10D        & 5 & 5 & 0.6153 & 0.6191 \\\\\n8D         & 5 & 5 & 0.6056 & 0.6159 \\\\\n5D         & 5 & 2 & 0.5856 & 0.5998 \\\\\n3D (top-3) & 1 & 0 & 0.5871 & 0.5871 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n$\\Kempirical{=}2$ holds for all subsets of size $\\geq$8 (10/10 pass, min $\\auc = 0.6056$), becomes fragile at 5D (2/5 pass), and fails at 3D (top-3 surprisal features alone: $\\auc = 0.5871 < \\theta$).\nThe boundary does not depend on any specific feature combination but requires sufficient dimensionality ($\\geq$8) to capture the multi-faceted distributional shift between generations 1 and 2.\n\n\\subsection{self\\_BLEU Feature Independence}\n\\label{sec:selfbleu_ablation}\n\nTo verify that $\\Kempirical$ does not depend on the self\\_BLEU feature (which may reflect stylistic repetition rather than depth-correlated degradation), we compare 15D and 14D (self\\_BLEU removed) classifiers across four model configurations (Table~\\ref{tab:selfbleu_ablation}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{15D vs.\\ 14D (self\\_BLEU removed) 1v2 $\\auc$ with bootstrap 95\\% CIs. Removing self\\_BLEU does not change $\\Kempirical$ for any configuration. Maximum $|\\Delta\\auc| = 0.0031$, within bootstrap CI width (${\\sim}0.018$).}\n\\label{tab:selfbleu_ablation}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Model} & $\\Kempirical$ & \\textbf{15D $\\auc$ [CI]} & \\textbf{14D $\\auc$ [CI]} & $\\Delta$ \\\\\n\\midrule\nQwen-base   & 2/2 & $.6288$ $[.620,\\,.638]$ & $.6258$ $[.616,\\,.635]$ & $-.0031$ \\\\\nPythia-1.4B  & 2/2 & $.8840$ $[.878,\\,.890]$ & $.8830$ $[.876,\\,.889]$ & $-.0010$ \\\\\nLLaMA-8B     & 2/2 & $.6075$ $[.598,\\,.617]$ & $.6074$ $[.598,\\,.617]$ & $-.0001$ \\\\\nMistral-7B   & 1/1 & $.5902$ $[.580,\\,.600]$ & $.5903$ $[.580,\\,.600]$ & $+.0002$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nAll four configurations preserve their $\\Kempirical$ under 14D, with negligible AUC change ($|\\Delta| \\leq 0.003$).\nThe self\\_BLEU feature contributes minimally to the depth boundary; $\\Kempirical{=}2$ is driven by surprisal and entropy features rather than lexical repetition statistics.\n\n\\subsection{Wikipedia Domain: Scorer Confound Resolution}\n\\label{sec:wiki_domain}\n\nUnder same-family scoring (Qwen-1.5B scorer), Wikipedia $\\Kempirical$ appeared to exhibit model-family dependence: Qwen generators (1.5B and 7B) yielded $\\Kempirical{=}2$, while all four non-Qwen models yielded $\\Kempirical{=}1$ (Table~\\ref{tab:wiki_domain}).\nA scorer confound ablation resolves this apparent split.\nRescoring the same Qwen-7B Wikipedia text with Pythia-1.4B reduces 1v2 $\\auc$ from $0.611$ to $0.587$ ($\\Delta = -2.4$\\,pp), dropping $\\Kempirical$ from 2 to 1.\nWith the scorer confound controlled, all six models yield $\\Kempirical{=}1$ on Wikipedia, and the domain ordering simplifies to: arXiv ($\\Kempirical{=}3$) $>$ C4 ($\\Kempirical{=}2$) $>$ Wikipedia ($\\Kempirical{=}1$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Wikipedia pairwise $\\auc$ across 6 models. $^\\dagger$Qwen rows use same-family scorer (Qwen-1.5B); cross-family scoring (Pythia-1.4B) reduces Qwen-7B to $\\Kempirical{=}1$ ($\\Delta = -2.4$\\,pp), resolving the apparent family split.}\n\\label{tab:wiki_domain}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llccccc}\n\\toprule\n\\textbf{Model} & \\textbf{Family} & \\textbf{0v1} & \\textbf{1v2} & \\textbf{2v3} & $\\Kempirical$ & \\textbf{Scorer} \\\\\n\\midrule\nQwen-1.5B (base) & Qwen & ---  & .619 & .550 & 2$^\\dagger$ & Qwen-1.5B \\\\\nQwen-1.5B (base) & Qwen & ---  & .599 & ---  & 1 & Pythia-1.4B \\\\\nQwen-7B          & Qwen & .967 & .611 & .556 & 2$^\\dagger$ & Qwen-1.5B \\\\\nQwen-7B          & Qwen & ---  & .587 & ---  & 1 & Pythia-1.4B \\\\\n\\midrule\nPythia-1.4B   & non-Qwen & .975 & .585 & .545 & 1 & Qwen-1.5B \\\\\nOLMo-1B       & non-Qwen & .993 & .499 & .501 & 1 & Qwen-1.5B \\\\\nLLaMA-3.1-8B  & non-Qwen & .932 & .595 & .539 & 1 & Qwen-1.5B \\\\\nMistral-7B    & non-Qwen & .961 & .555 & .524 & 1 & Qwen-1.5B \\\\\n\\bottomrule\n\\multicolumn{7}{l}{\\footnotesize $^\\dagger$Same-family scorer; cross-family scoring yields $\\Kempirical{=}1$.}\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Per-fold transparency.}\nFor Qwen-1.5B, cross-family scoring (Pythia-1.4B) yields $\\auc$(1v2) $= 0.5994$, with per-fold values $[0.596, 0.606, 0.600, 0.603, 0.592]$ (2/5 folds marginally above $\\theta = 0.60$).\nThe aggregate mean falls below $\\theta$, confirming $\\Kempirical{=}1$.\nFor Qwen-7B, the corresponding $\\auc$ drops further to $0.587$.\n\n\\subsection{ArXiv Cross-Scorer Bootstrap CIs}\n\\label{sec:arxiv_crossscorer_ci}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Bootstrap 95\\% CI for arXiv cross-scorer (Pythia-1.4B) 2v3 boundary $\\auc$ (10{,}000 resamples). Point estimates classify 3/4 generators as $\\Kempirical{=}3$; strict CI lower-bound criterion confirms 2/4.}\n\\label{tab:arxiv_crossscorer_ci}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Generator} & \\textbf{2v3 $\\auc$} & \\textbf{95\\% CI} & \\textbf{CI lower $> \\theta$} \\\\\n\\midrule\nQwen-1.5B    & 0.632 & $[0.617,\\,0.646]$ & Yes \\\\\nLLaMA-3.1-8B & 0.620 & $[0.605,\\,0.636]$ & Yes (0.5\\,pp margin) \\\\\nMistral-7B   & 0.608 & $[0.593,\\,0.622]$ & No \\\\\nQwen-7B      & 0.599 & $[0.584,\\,0.613]$ & No \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\subsection{JSD Decay Analysis}\n\\label{sec:jsd_extended}\n\nThe token-level JSD between adjacent generations reveals two distinct decay regimes (Figure~\\ref{fig:jsd_decay}).\nFor C4 web text, 0v1 JSD exceeds 1v2 by 6--56$\\times$ across all 8 models (1B--14B) with $\\Kempirical{=}2$ (median cliff ratio ${\\sim}$15$\\times$), and subsequent pairs converge to a noise floor of ${\\sim}$0.003--0.005.\nFitting $\\jsd(k, k{+}1) \\propto e^{-\\lambda k}$ yields $\\lambda \\approx 2.2$--$3.5$ for C4 (mean ${\\approx}\\,2.9$), consistent with rapid mixing of $G_\\delta$ toward its stationary distribution.\nThese decay rates represent qualitative characterizations from 5-point curves rather than precise estimates.\nThe empirical decay rate $\\lambda$ is consistent within each domain but varies across domains: C4 yields $\\lambda \\approx 2.9$, Wikipedia $\\lambda \\approx 3.1$ (excluding OLMo, whose $\\lambda = 6.3$ reflects a capacity-limited collapse: 0v1 $\\jsd = 0.169$ with near-complete information loss at the first step, the exponential fit is therefore unreliable), and arXiv $\\lambda \\approx 1.0$.\nThis cross-model consistency indicates that the contraction rate of $G_\\delta$ is governed primarily by the structure of the input domain rather than the model architecture.\nArXiv text decays ${\\sim}$3$\\times$ slower than C4 ($\\lambda \\approx 1.0$ vs.\\ $2.9$), with a correspondingly higher convergence floor (${\\sim}$0.007--0.009 vs.\\ ${\\sim}$0.003--0.004).\nFormulaic structural features (LaTeX formatting, citation patterns, section templates) degrade more slowly under autoregressive generation and supply persistent depth-distinguishing signal, this accounts for the elevated $\\Kempirical{=}3$.\nThe retrain-chain exhibits a fundamentally different profile: $\\lambda = 0.285$ with a cliff ratio of only 1.31$\\times$ and no sharp drop between adjacent pairs (Figure~\\ref{fig:retrain_decay}).\nThis gradual, sustained divergence reflects cumulative model-adaptation artifacts rather than text-intrinsic information loss, further supporting the distinction between prompt-chain and retrain-chain $\\Kempirical$ (Appendix~\\ref{sec:boundary_extended}).\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_retrain_decay.png}\n\\caption{Retrain-chain AUC decay across 7 generation pairs (Qwen2.5-1.5B LoRA). Unlike prompt-chain (sharp cliff at 0v1$\\to$1v2), retrain-chain AUC decays gradually from 0.984 to 0.641, with all pairs above $\\theta{=}0.60$. Error bars: 95\\% CI from 5-fold CV. Dashed line: $\\theta{=}0.60$; extrapolated 7v8 $\\approx 0.57$ (below $\\theta$), suggesting $\\Kempirical{=}7$ is near the ceiling.}\n\\label{fig:retrain_decay}\n\\end{figure}\n\n\\subsection{Boundary Cases and Scale Effect}\n\\label{sec:boundary_extended}\n\nOf 9 tested model configurations on C4, 8 yield $\\Kempirical{=}2$; Mistral-7B is the only sub-2 exception ($\\Kempirical{=}1$; 1v2 $\\auc = 0.594$, CI $[0.584, 0.603]$), validating $\\theta{=}0.60$ as an effective discriminator (gap: $0.594$ vs.\\ $0.611$--$0.696$).\nMistral's cross-domain profile reinforces the domain-governed interpretation: despite $\\Kempirical{=}1$ on both C4 and Wikipedia, it yields $\\Kempirical{=}3$ on arXiv (1v2 $\\auc = 0.820$, 2v3 $= 0.628$), and this profile persists under cross-scorer validation (Pythia-1.4B scorer: C4 $\\Kempirical{=}1$, arXiv $\\Kempirical{=}3$ (2v3 $\\auc = 0.608$, CI $[0.593, 0.622]$)), domain lexical diversity can therefore rescue even web-text one-wash generators (Table~\\ref{tab:domain_kstar}).\nLarger models produce more human-like text, reducing 0v1 JSD: 0.16--0.29 at $\\leq$1.5B, 0.077--0.13 at 7--14B.\nHowever, Qwen-14B still yields $\\Kempirical{=}2$ (1v2 $\\auc = 0.621$, CI $[0.612, 0.630]$), with 0v1 $\\auc = 0.960$ comparable to Qwen-7B ($0.964$), scale in the 1B--14B range therefore does not shift the discrimination boundary.\n\n\\paragraph{Sample-size control.}\nAs a sample-size control, subsampling C4 to $n{=}2{,}200$ (matching arXiv) yields $\\Kempirical{=}1$ (1v2 $\\auc = 0.601$, CI $[0.586, 0.616]$).\nReduced sample size widens confidence intervals and produces more conservative $\\Kempirical$ estimates, arXiv's $\\Kempirical{=}3$ at the same sample size therefore reflects genuine domain signal rather than a statistical artifact of smaller training sets.\n\n\\subsection{LaTeX Markup Ablation (arXiv)}\n\\label{sec:latex_ablation}\n\nTo disentangle content-level depth signal from formatting artifacts on arXiv, we strip all LaTeX markup (commands, environments, inline math delimiters) and re-extract features from the plain-text residual (Qwen-1.5B continuation, $n{=}2{,}200$; Table~\\ref{tab:latex_ablation}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{arXiv pairwise $\\auc$ with and without LaTeX markup (Qwen-1.5B continuation). Removing formatting reduces 2v3 by ${\\sim}$1.8\\,pp but $\\Kempirical$ remains at 3 (CI lower $> \\theta$). LaTeX stripping fraction increases with depth (0.6\\% at depth 0, 4.6\\% at depth 5), deeper generations therefore produce proportionally more formatting tokens.}\n\\label{tab:latex_ablation}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccr}\n\\toprule\n\\textbf{Pair} & \\textbf{Original} & \\textbf{Stripped} & $\\Delta$ \\\\\n\\midrule\n0v1 & 0.9946 & 0.9948 & $+$0.0002 \\\\\n1v2 & 0.8580 & 0.8297 & $-$0.028 \\\\\n2v3 & 0.6427 $[0.628,\\,0.658]$ & 0.6248 $[0.610,\\,0.640]$ & $-$0.018 \\\\\n3v4 & 0.5437 & 0.5468 & $+$0.003 \\\\\n\\midrule\n$\\Kempirical$ & 3 & 3 & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nContent-level statistical properties (surprisal distribution, vocabulary diversity) account for the large majority of the depth signal; LaTeX formatting contributes a modest but measurable increment (${\\sim}$1.8\\,pp at the boundary pair).\nThe depth-correlated increase in LaTeX stripping fraction (depth 0: $-$0.6\\%, depth 5: $-$4.6\\%) indicates that autoregressive generation progressively introduces formatting tokens, consistent with mode-seeking behavior in structured text.\n\n\\subsection{Statistical Power Analysis}\n\\label{sec:power_curve}\n\nTo characterize the minimum sample size required for reliable $\\Kempirical$ determination, we subsample C4 at $n \\in \\{500, 1000, 2000, 3000, 4000, 5000\\}$ and measure 1v2 AUC stability across 10 resamples per size (Qwen-1.5B-base continuation, 5-fold GroupKFold; Table~\\ref{tab:power_curve}, Figure~\\ref{fig:power_curve}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Subsampling power analysis for $\\Kempirical{=}2$ determination (C4, Qwen-1.5B-base, 10 resamples per $n$). Detection probability: fraction of resamples where 1v2 $\\auc > \\theta{=}0.60$.}\n\\label{tab:power_curve}\n\\begin{tabular}{rccc}\n\\toprule\n$n$ & \\textbf{Mean 1v2 $\\auc$} & \\textbf{Std} & \\textbf{Detection Prob.} \\\\\n\\midrule\n500 & 0.581 & 0.018 & 20\\% \\\\\n1{,}000 & 0.591 & 0.014 & 30\\% \\\\\n2{,}000 & 0.610 & 0.009 & 100\\% \\\\\n3{,}000 & 0.617 & 0.005 & 100\\% \\\\\n4{,}000 & 0.622 & 0.004 & 100\\% \\\\\n5{,}000 & 0.629 & 0.000 & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_power_curve.png}\n\\caption{$\\Kempirical{=}2$ detection rate (left axis, blue) and mean 1v2 $\\auc$ (right axis, green) as a function of sample size $n$. Detection rate reaches 100\\% at $n{=}2{,}000$; the 80\\% power threshold (dotted purple) is crossed between $n{=}1{,}000$ and $n{=}2{,}000$. Error bars: $\\pm$1 std over 10 resamples. The dashed red line marks $\\theta{=}0.60$.}\n\\label{fig:power_curve}\n\\end{figure}\n\nDetection rate jumps from 20\\% ($n{=}500$) to 100\\% ($n{=}2{,}000$), with the 80\\% power threshold crossed near $n{=}1{,}500$.\nAt $n{=}5{,}000$ (the sample size used in all main experiments), variance is zero across resamples, our results are therefore well above the minimum required for reliable boundary estimation.\nThe sharp transition reflects the proximity of the 1v2 AUC to $\\theta$: small increases in $n$ reduce variance sufficiently to move all resamples above the threshold.\n\n\\subsection{Feature Group Ablation}\n\\label{sec:feature_ablation}\n\nTo assess the relative contribution of each feature group to depth discrimination, we train a plain LightGBM classifier (\\texttt{n\\_estimators}$=$200, \\texttt{max\\_depth}$=$6; distinct from the OBD-LightGBM used in Section~\\ref{sec:method}) on the 1\\,vs.\\,2 task using (a) each feature group alone (\\emph{single}) and (b) the full 15D set minus one group (\\emph{leave-one-out}).\nRepresentative models per domain: LLaMA-3.1-8B (C4), Qwen-1.5B continuation (arXiv), and the domain ablation configuration (Wikipedia).\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_feature_ablation.pdf}\n\\caption{Feature group ablation heatmap for 1\\,vs.\\,2 classification AUC. \\emph{Left}: single-group performance. \\emph{Right}: leave-one-out performance. Surprisal (base) features are the dominant signal on arXiv (single AUC $= 0.809$) but provide only weak marginal signal on C4 and Wikipedia.}\n\\label{fig:feature_ablation}\n\\end{figure}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Feature group ablation for 1\\,vs.\\,2 classification (AUC). \\textbf{Single}: using only features from one group. \\textbf{Leave-one-out}: removing one group from the full 15D feature set. $\\Delta$ denotes the AUC drop from the full model. Classifier: plain LightGBM (\\texttt{n\\_estimators}$=$200, \\texttt{max\\_depth}$=$6), distinct from the OBD-LightGBM pipeline; AUC values are not directly comparable to Table~\\ref{tab:kstar_ci}.}\n\\label{tab:feature_ablation}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{l ccc ccc}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{Single Group}} & \\multicolumn{3}{c}{\\textbf{Leave-One-Out ($\\Delta$)}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\nFeature Group & C4 & arXiv & Wiki & C4 & arXiv & Wiki \\\\\n\\midrule\nSurprisal (base) & 0.597 & 0.809 & 0.581 & 0.601 ($-$0.007) & 0.828 ($-$0.031) & 0.616 ($-$0.003) \\\\\nSurprisal (deriv.) & 0.590 & 0.789 & 0.590 & 0.612 (+0.003) & 0.856 ($-$0.003) & 0.623 (+0.004) \\\\\nLexical diversity & 0.550 & 0.691 & 0.557 & 0.608 ($-$0.001) & 0.855 ($-$0.005) & 0.614 ($-$0.005) \\\\\nFreq. distribution & 0.533 & 0.684 & 0.564 & 0.604 ($-$0.005) & 0.851 ($-$0.009) & 0.612 ($-$0.007) \\\\\n\\midrule\nFull (15D) & 0.609 & 0.860 & 0.619 & \\multicolumn{3}{c}{---} \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nSurprisal (base) features dominate on arXiv (single-group AUC $= 0.809$; LOO drop $= 0.031$, the largest across all domain--group combinations), consistent with the persistent surprisal-distribution signal in structured academic text.\nOn C4 and Wikipedia, all LOO drops are small ($\\leq 0.007$, within cross-fold standard deviation), no single feature group is therefore individually critical for the weaker low-$\\Kempirical$ signal.\nRemoving surprisal derivatives increases AUC on C4 (+0.003) and Wikipedia (+0.004), suggesting partial redundancy with the base surprisal group in low-$\\Kempirical$ domains.\n\n\\subsection{Classifier Choice: McNemar Test}\n\\label{sec:mcnemar_baselines}\n\nTo verify that depth discriminability is driven by the 15D feature representation rather than classifier choice, we compare OBD-LightGBM against three baseline classifiers (logistic regression, linear SVC, random forest) on the depth-1 vs.\\ depth-2 binary classification task using McNemar's test with continuity correction on 5-fold GroupKFold out-of-fold predictions (Table~\\ref{tab:mcnemar_obd_baselines}).\nOf 36 comparisons, 31 are non-significant ($p \\geq 0.05$), and all five significant results concentrate in two model $\\times$ domain conditions.\nFor LLaMA-8B on C4, all three baselines significantly outperform OBD ($p \\leq 0.001$), likely reflecting LightGBM overfitting on the relatively noisy 8B-generated features rather than a systematic classifier advantage.\nFor Qwen-1.5B on Wikipedia, OBD outperforms both linear classifiers ($p < 0.001$) but not random forest ($p = 0.655$).\n\n\\begin{table*}[h]\n\\centering\n\\small\n\\caption{McNemar test $p$-values comparing OBD-LightGBM against baseline classifiers on the depth-1 vs.\\ depth-2 binary classification task (5-fold GroupKFold, out-of-fold predictions). Classifier accuracy shown in parentheses. Significant results ($p < 0.05$) are \\textbf{bold}; $^{*}p<0.05$, $^{**}p<0.01$, $^{***}p<0.001$.}\n\\label{tab:mcnemar_obd_baselines}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Domain} & \\textbf{OBD Acc.} & \\textbf{vs.\\ LogReg} & \\textbf{vs.\\ LinearSVC} & \\textbf{vs.\\ RandomForest} \\\\\n\\midrule\nQwen-1.5B-base & C4    & .592 & .232 (.598)            & .605 (.595)              & .271 (.597) \\\\\nPythia-1.4B     & C4    & .631 & $\\mathbf{.033^{*}}$ (.621) & .105 (.624)              & .451 (.628) \\\\\nLLaMA-8B        & C4    & .573 & $\\mathbf{6.2{\\times}10^{-5\\,***}}$ (.592) & $\\mathbf{1.1{\\times}10^{-4\\,***}}$ (.591) & $\\mathbf{.001^{**}}$ (.586) \\\\\n\\midrule\nQwen-1.5B      & Wiki  & .588 & $\\mathbf{9.4{\\times}10^{-4\\,***}}$ (.570) & $\\mathbf{2.3{\\times}10^{-4\\,***}}$ (.568) & .655 (.590) \\\\\nPythia          & Wiki  & .560 & .180 (.567)            & .540 (.564)              & .369 (.564) \\\\\nOLMo            & Wiki  & .500 & .868 (.502)            & .705 (.503)              & .751 (.502) \\\\\nLLaMA-8B        & Wiki  & .573 & .252 (.579)            & .270 (.579)              & .110 (.580) \\\\\n\\midrule\nQwen-1.5B      & arXiv & .781 & .156 (.774)            & .079 (.772)              & .364 (.777) \\\\\nPythia          & arXiv & .733 & .232 (.727)            & .384 (.728)              & .735 (.732) \\\\\nOLMo            & arXiv & .493 & .520 (.487)            & .681 (.489)              & .759 (.496) \\\\\nQwen-7B         & arXiv & .757 & .160 (.749)            & .327 (.751)              & .733 (.758) \\\\\nMistral-7B      & arXiv & .742 & .524 (.738)            & .633 (.739)              & .225 (.748) \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\n\\vspace{4pt}\n\\footnotesize\n36 comparisons total. 5/36 reach $p < 0.05$; 4/36 reach $p < 0.01$.\nThe predominance of non-significant results confirms that depth discriminability is feature-driven, not classifier-driven.\n\\end{table*}\n\n\\subsection{Domain Lexical Statistics}\n\\label{sec:domain_lexical_stats}\n\nTable~\\ref{tab:domain-ttr-entropy} reports type-token ratio (TTR) and vocabulary entropy across three domains and six depth levels.\nThe TTR ordering at depth 0 (arXiv $>$ C4 $>$ Wikipedia) aligns with the $\\Kempirical$ ordering, with large effect sizes (Cohen's $d = 1.52$ for arXiv vs.\\ Wikipedia).\nVocabulary entropy shows a partial reversal at depth 0: C4 ($H = 6.225$) falls below Wikipedia ($H = 6.408$), while arXiv remains highest ($H = 6.853$).\nThis reversal likely reflects C4's greater content heterogeneity (higher variance: $\\sigma = 0.706$ vs.\\ $0.284$), which inflates TTR but depresses mean entropy.\nAs depth increases, all domains converge, with arXiv exhibiting the steepest decline, consistent with its higher $\\Kempirical$ and slower convergence to the stationary distribution.\n\n\\begin{table*}[h]\n\\centering\n\\small\n\\caption{Type-Token Ratio (TTR) and vocabulary entropy across three domains and generation depths.\nAt depth~0 (original human text), arXiv exhibits the highest lexical diversity (TTR\\,=\\,0.755, $H$\\,=\\,6.853),\nfollowed by C4 and Wikipedia.\nAs depth increases, all domains converge, with arXiv showing the steepest decline.\nCohen's $d$ values are computed at depth~0 for pairwise domain comparisons.}\n\\label{tab:domain-ttr-entropy}\n\\begin{tabular}{ll rrr rrr}\n\\toprule\n& & \\multicolumn{3}{c}{\\textbf{TTR}} & \\multicolumn{3}{c}{\\textbf{Vocab Entropy ($H$)}} \\\\\n\\cmidrule(lr){3-5} \\cmidrule(lr){6-8}\n\\textbf{Depth} & $N$ & \\textbf{Wiki} & \\textbf{C4} & \\textbf{arXiv} & \\textbf{Wiki} & \\textbf{C4} & \\textbf{arXiv} \\\\\n\\midrule\n0 & 5k/5k/2.2k & .665\\tpm.061 & .720\\tpm.105 & \\textbf{.755}\\tpm.055 & 6.408\\tpm.284 & 6.225\\tpm.706 & \\textbf{6.853}\\tpm.295 \\\\\n1 &             & .655\\tpm.121 & .707\\tpm.149 & \\textbf{.732}\\tpm.098 & 5.932\\tpm.843 & 5.737\\tpm1.189 & \\textbf{6.113}\\tpm.655 \\\\\n2 &             & .647\\tpm.145 & .676\\tpm.159 & \\textbf{.677}\\tpm.131 & 5.784\\tpm.905 & 5.774\\tpm1.139 & \\textbf{5.998}\\tpm.967 \\\\\n3 &             & .645\\tpm.159 & \\textbf{.662}\\tpm.164 & .635\\tpm.134 & 5.664\\tpm1.085 & 5.743\\tpm1.161 & \\textbf{5.964}\\tpm.933 \\\\\n4 &             & .636\\tpm.164 & \\textbf{.647}\\tpm.169 & .621\\tpm.140 & 5.660\\tpm1.062 & 5.758\\tpm1.167 & \\textbf{5.898}\\tpm.942 \\\\\n5 &             & .632\\tpm.172 & \\textbf{.636}\\tpm.175 & .618\\tpm.150 & 5.593\\tpm1.130 & 5.772\\tpm1.141 & \\textbf{5.816}\\tpm.968 \\\\\n\\midrule\n\\multicolumn{8}{l}{\\textit{Cohen's $d$ at depth 0 (positive $=$ second domain higher):}} \\\\\n\\multicolumn{2}{l}{C4 vs.\\ Wiki}   & \\multicolumn{3}{c}{$d = +0.65$} & \\multicolumn{3}{c}{$d = -0.34$} \\\\\n\\multicolumn{2}{l}{arXiv vs.\\ C4}  & \\multicolumn{3}{c}{$d = +0.37$} & \\multicolumn{3}{c}{$d = +1.03$} \\\\\n\\multicolumn{2}{l}{arXiv vs.\\ Wiki} & \\multicolumn{3}{c}{$d = +1.52$} & \\multicolumn{3}{c}{$d = +1.55$} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\subsection{Leave-One-Family-Out Threshold Validation}\n\\label{sec:theta_lofo}\n\nTo validate $\\theta{=}0.60$ without circular reasoning, we perform leave-one-family-out (LOFO) cross-validation: each fold removes one architecture family, derives $\\hat{\\theta}$ as the midpoint between $\\min(\\auc_{1v2})$ and $\\max(\\auc_{2v3})$ over the remaining families, then predicts $\\Kempirical$ for the held-out models.\nTable~\\ref{tab:theta_lofo} reports results across all three domains.\n\nOn C4, 8/9 held-out predictions agree with the original $\\Kempirical$ assignment at $\\theta{=}0.60$ (agreement: 89\\%).\nThe single mismatch is Qwen-1.5B-RW (rewrite mode), whose 2v3 AUC of 0.5893 lies above the LOFO-derived $\\hat{\\theta}{=}0.5725$ but below the global $\\theta{=}0.60$; this configuration is also the sole rewrite-mode model, the discrepancy is therefore attributable to mode rather than threshold instability.\nThe derived $\\hat{\\theta}$ values span $[0.5725, 0.6004]$, and $\\theta{=}0.60$ falls within this range.\n\nArXiv corroborates with 6/6 agreement (100\\%), though the wide $\\hat{\\theta}$ range $[0.5735, 0.7296]$ reflects OLMo-1B's near-chance performance ($\\auc_{1v2}{=}0.503$), which inflates the gap midpoint when OLMo is included in the training fold.\n\nWikipedia yields only 1/6 agreement (17\\%).\nThis failure is expected: most models produce near-chance 1v2 AUC on Wikipedia ($0.499$--$0.619$), so the gap between $\\min(\\auc_{1v2})$ and $\\max(\\auc_{2v3})$ is narrow or inverted, the gap-based threshold derivation is therefore invalid.\nWikipedia's $\\Kempirical{=}1$ assignment is independently confirmed by the global $\\theta{=}0.60$ criterion (Section~\\ref{sec:cross_domain}); LOFO simply cannot validate this because the method requires a clear AUC discontinuity between boundary and non-boundary pairs.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Leave-One-Family-Out (LOFO) cross-validation of $\\theta$ across three domains. Each fold holds out one architecture family, derives $\\hat{\\theta}$ as the midpoint between $\\min(\\text{AUC}_{1\\text{v}2})$ and $\\max(\\text{AUC}_{2\\text{v}3})$ over the remaining families, and predicts $K^*$ for held-out models. C4 (primary): 8/9 agreement (89\\%). arXiv: 6/6 (100\\%). Wikipedia: 1/6 (17\\%, see text).}\n\\label{tab:theta_lofo}\n\\begin{tabular}{l l l c c c c c c}\n\\toprule\nDomain & Held-out & Model & $\\text{AUC}_{1\\text{v}2}$ & $\\text{AUC}_{2\\text{v}3}$ & $\\hat{\\theta}$ & $K^*_{\\hat{\\theta}}$ & $K^*_{0.60}$ & Match \\\\\n\\midrule\nC4 & Pythia & Pythia-1.4B & 0.6539 & 0.5515 & 0.5914 & 2 & 2 & \\cmark \\\\\n & OLMo & OLMo-1B & 0.6146 & 0.5497 & 0.5914 & 2 & 2 & \\cmark \\\\\n & Qwen & Qwen-1.5B-RW & 0.6957 & 0.5893 & 0.5725 & 3 & 2 & \\xmark \\\\\n &  & Qwen-7B & 0.6178 & 0.5460 & 0.5725 & 2 & 2 & \\cmark \\\\\n &  & Qwen-1.5B-base & 0.6262 & 0.5496 & 0.5725 & 2 & 2 & \\cmark \\\\\n &  & Qwen-1.5B-cont & 0.6114 & 0.5609 & 0.5725 & 2 & 2 & \\cmark \\\\\n &  & Qwen-14B & 0.6210 & 0.5494 & 0.5725 & 2 & 2 & \\cmark \\\\\n & LLaMA & LLaMA-3.1-8B & 0.6123 & 0.5274 & 0.5914 & 2 & 2 & \\cmark \\\\\n & Mistral & Mistral-7B & 0.5935 & 0.5402 & 0.6004 & 1 & 1 & \\cmark \\\\\n\\cmidrule{2-9}\n & \\multicolumn{7}{l}{$\\hat{\\theta}$ $\\in$ [0.5725, 0.6004], agreement: 8/9 (89\\%)} \\\\\n\\midrule\narXiv & Pythia & Pythia-1.4B & 0.8047 & 0.6545 & 0.5735 & 3 & 3 & \\cmark \\\\\n & OLMo & OLMo-1B & 0.5034 & 0.5069 & 0.7296 & 1 & 1 & \\cmark \\\\\n & Qwen & Qwen-1.5B & 0.8581 & 0.6436 & 0.5789 & 3 & 3 & \\cmark \\\\\n &  & Qwen-7B & 0.8347 & 0.6255 & 0.5789 & 3 & 3 & \\cmark \\\\\n & LLaMA & LLaMA-3.1-8B & 0.8447 & 0.6215 & 0.5789 & 3 & 3 & \\cmark \\\\\n & Mistral & Mistral-7B & 0.8201 & 0.6275 & 0.5789 & 3 & 3 & \\cmark \\\\\n\\cmidrule{2-9}\n & \\multicolumn{7}{l}{$\\hat{\\theta}$ $\\in$ [0.5735, 0.7296], agreement: 6/6 (100\\%)} \\\\\n\\midrule\nWikipedia & Pythia & Pythia-1.4B & 0.5846 & 0.5445 & 0.5274 & 3 & 1 & \\xmark \\\\\n & OLMo & OLMo-1B & 0.4986 & 0.5012 & 0.5557 & 1 & 1 & \\cmark \\\\\n & Qwen & Qwen-1.5B & 0.6193 & 0.5498 & 0.5215 & 4 & 2 & \\xmark \\\\\n &  & Qwen-7B & 0.6108 & 0.5562 & 0.5215 & 4 & 2 & \\xmark \\\\\n & LLaMA & LLaMA-3.1-8B & 0.5954 & 0.5392 & 0.5274 & 3 & 1 & \\xmark \\\\\n & Mistral & Mistral-7B & 0.5552 & 0.5236 & 0.5274 & 2 & 1 & \\xmark \\\\\n\\cmidrule{2-9}\n & \\multicolumn{7}{l}{$\\hat{\\theta}$ $\\in$ [0.5215, 0.5557], agreement: 1/6 (17\\%)} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\subsection{Code Domain Results}\n\\label{sec:code_domain}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Code domain (Python, CodeSearchNet~\\cite{husain2019codesearchnet}) pairwise AUC for Qwen2.5-1.5B. $\\Kempirical{=}2$: 1v2 exceeds $\\theta{=}0.60$; 2v3 drops to chance. JSD ratio (1v2/2v3) $= 11.7\\times$, comparable to C4's cliff structure.}\n\\label{tab:code_domain_qwen}\n\\begin{tabular}{l c c c}\n\\toprule\nPair & AUC & 95\\% CI & JSD \\\\\n\\midrule\n0 vs 1 & 0.9388 & [0.929, 0.949] & 0.0814 \\\\\n1 vs 2 & 0.7382 & [0.709, 0.767] & 0.0443 \\\\\n2 vs 3 & 0.5300 & [0.514, 0.546] & 0.0038 \\\\\n3 vs 4 & 0.5022 & [0.486, 0.518] & 0.0033 \\\\\n4 vs 5 & 0.5219 & [0.510, 0.534] & 0.0030 \\\\\n\\midrule\n\\multicolumn{4}{l}{$\\Kempirical = 2$ ($\\theta = 0.60$)} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Code domain (Python, CodeSearchNet) cross-model pairwise AUC with 5-fold cross-validated 95\\% CIs. Qwen2.5-1.5B yields $\\Kempirical{=}2$; Pythia-1.4B yields borderline $\\Kempirical{=}1$ (1v2 CI upper $= 0.603 > \\theta$). Additional models pending completion.}\n\\label{tab:code_crossmodel_kstar}\n\\begin{tabular}{l cc cc}\n\\toprule\n & \\multicolumn{2}{c}{Qwen2.5-1.5B} & \\multicolumn{2}{c}{Pythia-1.4B} \\\\\n\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\n & AUC & 95\\% CI & AUC & 95\\% CI \\\\\n\\midrule\n0v1 & .9388 & [.929,\\,.949] & \\textbf{.9592} & [.956,\\,.963] \\\\\n1v2 & \\textbf{.7382} & [.709,\\,.767]\\rlap{$^*$} & .5983 & [.593,\\,.603] \\\\\n2v3 & .5300 & [.514,\\,.546] & .5215 & --- \\\\\n3v4 & .5022 & --- & .5152 & --- \\\\\n4v5 & .5219 & --- & .5046 & --- \\\\\n\\midrule\n$K^*$ & \\multicolumn{2}{c}{\\textbf{2}} & \\multicolumn{2}{c}{1} \\\\\n\\bottomrule\n\\multicolumn{5}{p{\\linewidth}}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}\n\\end{tabular}\n\\end{table}\n\n\\subsection{Borderline Feature Analysis}\n\\label{sec:borderline_analysis}\n\nTo understand why Mistral-7B yields $\\Kempirical{=}1$ while other C4 models yield $\\Kempirical{=}2$, we compute per-feature Cohen's $d$ (depth-1 vs.\\ depth-2) and LightGBM feature importances across six C4 configurations spanning the full 1v2 AUC range (0.594--0.884).\n\nMistral-7B exhibits the lowest depth-0 mean surprisal (2.32 vs.\\ 2.90--3.02 for other models), the scorer model therefore already finds Mistral's output highly predictable.\nThis compressed baseline limits the dynamic range available for detecting inter-generational degradation: all 15 Cohen's $d$ values are weak ($\\bar{|d|} = 0.112$; Table~\\ref{tab:cohens_d_full}), and no single feature exceeds 13\\% of total classifier importance.\nThe borderline models (LLaMA-8B, Pythia at $T{=}1.2$) show a similar pattern at slightly higher effect sizes.\n\nGreedy decoding is qualitatively distinct: Pythia-greedy achieves 0.884 AUC via lexical collapse (hapax ratio $d = -1.056$, capturing 47\\% of importance), a signal absent under sampling-based generation where all non-greedy models rely on surprisal variability features.\n\n\\begin{table*}[h]\n\\centering\n\\small\n\\caption{Feature-level summary of C4 1v2 classification across model categories. Imp.\\ = normalized LightGBM gain importance (\\%). $\\bar{|d|}$ = mean absolute Cohen's $d$ over all 15 features. $\\Delta\\text{surp}_{1\\to2}$: change in mean surprisal from depth 1 to depth 2.}\n\\label{tab:borderline_features}\n\\begin{tabular}{@{}llc lcc@{}}\n\\toprule\nCategory & Model & AUC & Top-3 Features (Imp.\\%) & $\\bar{|d|}$ & $\\Delta\\text{surp}_{1\\to2}$ \\\\\n\\midrule\nStrong & Pythia-greedy & 0.884 & hapax\\_ratio (47), surp\\_mean (11), low\\_freq\\_ratio (8) & 0.365 & $-$0.160 \\\\\nStrong & Pythia-nuc09 & 0.677 & surp\\_std (20), freq\\_entropy (11), surp\\_d1\\_std (8) & 0.170 & $-$0.196 \\\\\nStrong & Qwen-1.5B-base & 0.626 & surp\\_std (13), freq\\_entropy (10), surp\\_mean (9) & 0.125 & $-$0.159 \\\\\n\\midrule\nBorderline & Pythia-$T{=}1.2$ & 0.617 & surp\\_std (15), freq\\_entropy (10), surp\\_kurt (8) & 0.112 & $-$0.059 \\\\\nBorderline & LLaMA-3.1-8B & 0.612 & surp\\_std (12), surp\\_d1\\_std (10), freq\\_entropy (9) & 0.137 & $-$0.215 \\\\\n\\midrule\nBelow $\\theta$ & Mistral-7B & 0.594 & surp\\_std (13), freq\\_entropy (9), surp\\_d1\\_skew (9) & 0.112 & $-$0.086 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\\begin{table*}[h]\n\\centering\n\\scriptsize\n\\caption{Cohen's $d$ (depth-1 vs.\\ depth-2) for all 15 features across six C4 models. \\textbf{Bold}: largest $|d|$ in each row. Greedy decoding produces qualitatively different effect sizes via lexical collapse (hapax\\_ratio, low\\_freq\\_ratio); under sampling, surprisal variability features (surp\\_std, surp\\_d1\\_std, surp\\_d2\\_std) carry the dominant signal.}\n\\label{tab:cohens_d_full}\n\\begin{tabular}{@{}lrrrrrr@{}}\n\\toprule\nFeature & \\rotatebox{60}{Pythia-greedy} & \\rotatebox{60}{Pythia-nuc09} & \\rotatebox{60}{Qwen-1.5B-base} & \\rotatebox{60}{Pythia-$T{=}1.2$} & \\rotatebox{60}{LLaMA-3.1-8B} & \\rotatebox{60}{Mistral-7B} \\\\\n\\midrule\nsurp\\_mean & \\textbf{$-$0.416} & $-$0.306 & $-$0.244 & $-$0.103 & $-$0.263 & $-$0.152 \\\\\nsurp\\_std & $-$0.301 & \\textbf{$-$0.370} & $-$0.229 & $-$0.268 & $-$0.316 & $-$0.190 \\\\\nsurp\\_skew & \\textbf{$+$0.468} & $+$0.086 & $+$0.085 & $-$0.217 & $+$0.049 & $+$0.103 \\\\\nsurp\\_kurt & \\textbf{$+$0.433} & $+$0.102 & $+$0.071 & $-$0.188 & $+$0.031 & $+$0.124 \\\\\nsurp\\_d1\\_mean & $+$0.028 & $+$0.031 & $-$0.024 & $+$0.026 & \\textbf{$+$0.080} & $+$0.026 \\\\\nsurp\\_d1\\_std & $-$0.318 & \\textbf{$-$0.342} & $-$0.236 & $-$0.228 & $-$0.306 & $-$0.212 \\\\\nsurp\\_d1\\_skew & \\textbf{$-$0.224} & $-$0.058 & $-$0.053 & $-$0.012 & $-$0.014 & $-$0.084 \\\\\nsurp\\_d2\\_mean & $+$0.004 & $+$0.001 & \\textbf{$+$0.034} & $-$0.015 & $-$0.030 & $+$0.012 \\\\\nsurp\\_d2\\_std & $-$0.312 & \\textbf{$-$0.332} & $-$0.247 & $-$0.209 & $-$0.292 & $-$0.207 \\\\\nttr & \\textbf{$-$0.404} & $-$0.212 & $-$0.123 & $-$0.115 & $-$0.203 & $-$0.135 \\\\\nhapax\\_ratio & \\textbf{$-$1.056} & $-$0.221 & $-$0.144 & $-$0.108 & $-$0.186 & $-$0.139 \\\\\nself\\_bleu & $-$0.056 & $+$0.031 & \\textbf{$+$0.140} & $+$0.058 & $+$0.118 & $+$0.127 \\\\\nfreq\\_kurtosis & $+$0.071 & \\textbf{$-$0.083} & $-$0.007 & $+$0.007 & $+$0.005 & $-$0.030 \\\\\nfreq\\_entropy & \\textbf{$-$0.350} & $-$0.158 & $-$0.104 & $-$0.021 & $+$0.031 & $-$0.044 \\\\\nlow\\_freq\\_ratio & \\textbf{$-$1.029} & $-$0.226 & $-$0.139 & $-$0.110 & $-$0.134 & $-$0.090 \\\\\n\\midrule\n$\\bar{|d|}$ & 0.365 & 0.170 & 0.125 & 0.112 & 0.137 & 0.112 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 602,
+                  "oldLines": 7,
+                  "newStart": 602,
+                  "newLines": 7,
+                  "lines": [
+                    " \\midrule",
+                    " $K^*$ & \\multicolumn{2}{c}{\\textbf{2}} & \\multicolumn{2}{c}{1} \\\\",
+                    " \\bottomrule",
+                    "-\\multicolumn{5}{p{\\linewidth}}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}",
+                    "+\\multicolumn{5}{@{}p{\\linewidth}@{}}{\\footnotesize $^*$Permutation $p < 0.001$. $K^*$: max $k$ where $k$v$(k{+}1)$ AUC $\\geq \\theta = 0.60$.}",
+                    " \\end{tabular}",
+                    " \\end{table}",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0139TXbLekQQU2iuxHG2K4i3",
+              "name": "Bash",
+              "input": {
+                "command": "pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep \"Overfull.*hbox\"",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "45e12e16-d7c1-4ebb-8bbd-e5b1e7d79593",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PWBKBPUWDhzPCqPRdy138B",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 448,
+                "cache_read_input_tokens": 29713,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 448
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bh1cqjdz0",
+                "tool_use_id": "toolu_0139TXbLekQQU2iuxHG2K4i3",
+                "description": "pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep \"Overfull.*hbox\"",
+                "task_type": "local_bash",
+                "uuid": "3379f9e3-b056-4509-ae27-e4575706357f",
+                "session_id": "b711b192-5bd0-4cae-814c-409d87b75980"
+              }
+            }
+          ],
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bh1cqjdz0",
+                "tool_use_id": "toolu_0139TXbLekQQU2iuxHG2K4i3",
+                "status": "completed",
+                "output_file": "",
+                "summary": "pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep \"Overfull.*hbox\"",
+                "uuid": "613d1a0d-7e43-4449-a01c-081ec04c5e56",
+                "session_id": "b711b192-5bd0-4cae-814c-409d87b75980"
+              }
+            }
+          ],
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T05:50:15.793Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0139TXbLekQQU2iuxHG2K4i3",
+              "type": "tool_result",
+              "content": "/texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>\nOutput written on main.pdf (28 pages, 849591 bytes).\nTranscript written on main.log.\nOverfull \\hbox (1.31956pt too wide) in paragraph at lines 189--200",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "1a8e872c-ad8d-4779-a156-432f936db865",
+            "tool_use_result": {
+              "stdout": "/texlive/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>\nOutput written on main.pdf (28 pages, 849591 bytes).\nTranscript written on main.log.\nOverfull \\hbox (1.31956pt too wide) in paragraph at lines 189--200",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**修复前后对比：**\n- 修复前：2 个 overfull hbox，其中 `lines 591--607` 有 56pt（实测编译为 12pt）overfull\n- 修复后：1 个 overfull hbox（仅剩 `lines 189--200` 的 1.3pt，与本次修复无关）\n\n**修改内容：** `appendix_extended.tex:605` 的 `\\multicolumn{5}{l}{...}` 改为 `\\multicolumn{5}{@{}p{\\linewidth}@{}}{...}`，消除 tabcolsep 额外间距并启用自动换行。\n\n`artifacts/code_crossmodel_table.tex` 无需修改，其表格使用 `\\resizebox{\\textwidth}{!}` 包裹，不存在溢出问题。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "uuid": "241b5ada-66b2-4160-bd92-b948c5f59b93",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E7XCG6WE9QrA8iTfioTtC4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 216,
+                "cache_read_input_tokens": 30161,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 216
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**修复前后对比：**\n- 修复前：2 个 overfull hbox，其中 `lines 591--607` 有 56pt（实测编译为 12pt）overfull\n- 修复后：1 个 overfull hbox（仅剩 `lines 189--200` 的 1.3pt，与本次修复无关）\n\n**修改内容：** `appendix_extended.tex:605` 的 `\\multicolumn{5}{l}{...}` 改为 `\\multicolumn{5}{@{}p{\\linewidth}@{}}{...}`，消除 tabcolsep 额外间距并启用自动换行。\n\n`artifacts/code_crossmodel_table.tex` 无需修改，其表格使用 `\\resizebox{\\textwidth}{!}` 包裹，不存在溢出问题。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 61772,
+            "duration_api_ms": 54744,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "b711b192-5bd0-4cae-814c-409d87b75980",
+            "total_cost_usd": 0.32089650000000003,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 18536,
+              "cache_read_input_tokens": 291745,
+              "output_tokens": 2318,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 18536,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 238,
+                  "cache_read_input_tokens": 30161,
+                  "cache_creation_input_tokens": 216,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 216
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1064,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001164,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 2318,
+                "cacheReadInputTokens": 291745,
+                "cacheCreationInputTokens": 18536,
+                "webSearchRequests": 0,
+                "costUSD": 0.31973250000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "eac1bce2-a5fc-44a0-a07f-3f68a123f917"
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-fix-overfull-hbox-copy-2.md"
+}

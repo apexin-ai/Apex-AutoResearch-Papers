@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52153de4f55652622556",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper figure3 width recompile",
+  "task_key": "worker_paper_figure3_width_recompile_20260522T150522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure3_width_recompile_20260522T150522_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "4b399a9001e77036d7f0a9ebb59409d91d889d61ef4378ff212b6c2ee86611ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| 项目 | 结果 |\n|------|------|\n| 改动 | `width=0.75\\textwidth` → `width=0.95\\textwidth`（line 56，`figure*` 环境已在 stash 中） |\n| 编译 | 三遍 pdflatex + bibtex 全部成功 |\n| 总页数 | 24 页 |\n| 正文 | Conclusion 在第 8 页，≤ 8 页 ✓ |\n| Overfull | 5 个，均为已有表格 overfull，无新增 |\n| Undefined | 0 |\n| PDF | `/root/autodl-tmp/gen-depth-contamination/docs/paper/main.pdf` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure3-width-recompile.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d9274e7dc3fdb35ca4d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra westd health check",
+  "task_key": "worker_infra_westd-health-check_20260519T202556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd-health-check_20260519T202556_result.json",
+    "occurrence": 1,
+    "bytes": 1059,
+    "sha256": "237a004574fc8745a427fd99b2949d6fbde712263d9f3a1462aede7a04ec9bbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告\n\n### 1. exp_deberta_c4 (PID 130789) — **已完成**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | 存活，运行 49m42s（bash wrapper 尚未退出） |\n| 进度 | **5/5 fold 全部完成**，每 fold 3 epoch，loss 从 ~1.44 降至 ~1.10 |\n| 配置 | Config=exp_14b_c4, 30000 samples, 6 classes (depth 0-5), 5000 docs |\n| 结果文件 | `exp_14b_c4_oof.npz` (1.88MB) 已生成 |\n| GPU 0 | **0% 利用率**，787 MiB / 97887 MiB — 训练实际已结束 |\n\n训练数据完整，每 fold ~188s/epoch，总计 ~47 min 符合预期。\n\n---\n\n### 2. exp_32b_c4 (PID 44715) — **运行中，接近尾声**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | 存活，运行 **1天13小时22分** |\n| 进度 | **depth 5**: 2290/2500 batches (**92%**) |\n| 速度 | ~14.5-14.9 s/it |\n| 剩余时间 | ~210 batches × 14.7s ≈ **51 min** |\n| GPU 1 | **90% 利用率**，64775 MiB / 97887 MiB |\n\nDepth 5 是最后一个 depth (0-5)，完成后整个 pipeline 结束。预计约 **50 分钟后**完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd-health-check.md"
+}

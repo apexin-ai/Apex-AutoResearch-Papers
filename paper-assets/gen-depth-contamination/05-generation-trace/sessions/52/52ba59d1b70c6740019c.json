@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52ba59d1b70c6740019c",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "agent / loop_16_1779062428.md",
+  "task_key": "loop_16_1779062428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779062428.md",
+    "occurrence": 1,
+    "bytes": 4915,
+    "sha256": "c8080740c69d1523271fa32203bee538a8a1121d36a2f407415a91fd57fd8d31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: max_wall_time\nupdated: '2026-05-17T23:59:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cqa1-22115 cuda:0/1/2/3 + westd-42896 cuda:0/1，其他 GPU 一律不可用\n- westd-42896 两卡已满载（14B cuda:0 / 32B cuda:1），不可在 westd 启动新实验\n- **DDL: EMNLP 2026 ARR May 25（剩 ~6 天）**，所有工作必须围绕投稿收敛\n- run_pipeline.py 每个实验必须用独立 data 目录（M002 教训：skip-if-exists 会复用错误模型的数据）\n- exp_14b_c4 / exp_32b_c4 若 K*=1，必须先用 14B scorer 重跑 surprisal 排除 scorer capacity confound，再下结论（预案见 memory.md \"Scorer Confound 预案\"）\n- 论文 Wiki narrative 必须更新为 D060 结论（scorer artifact → all Wiki K*=1），旧版 \"Qwen uniqueness on Wikipedia\" 已作废\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-22115** (autodl-4090d, 4×4090D 24GB)\n  - 工作目录: `/root/autodl-tmp/gen-depth-contamination`\n  - Python: `/root/miniconda3/bin/python`\n  - 活跃: exp_wiki_scorer_confound_1b5 (PID 180543, cron 监控中)\n  - cuda:1/2/3 空闲\n- **westd-42896** (2×RTX PRO 6000 96GB)\n  - 工作目录: `/root/autodl-tmp/gen-depth-contamination`\n  - Python: `/root/miniconda3/bin/python`\n  - 模型缓存: `/root/autodl-tmp/.hf_cache/Qwen/`（Qwen2.5-14B, Qwen2.5-32B）\n  - 活跃: exp_14b_c4 (PID 8586, cuda:0, cron 监控) + exp_32b_c4 (PID 14637, cuda:1, cron 监控)\n- scorer 默认: Qwen2.5-1.5B（`--scorer_path` 已参数化，可换 Pythia/14B）\n- W&B: 无（pipeline 不用 W&B，结果写 results/ 目录下 JSON）\n\n### 3. 📊 当前状态\n**刚完成**: D060 scorer confound 确认（Qwen-7B Wiki K*=2 是 Qwen-1.5B scorer artifact），Wikipedia 全线统一为 K*=1。正在等 exp_wiki_scorer_confound_1b5 对 Qwen-1.5B 做同样复验。\n\n**RUNNING (3)**:\n| exp_id | 服务器 | GPU | PID | 假设 | ETA |\n|--------|--------|-----|-----|------|-----|\n| exp_14b_c4 | westd | cuda:0 | 8586 | Qwen-14B C4 K*=? (scale validation) | ~May 18 15:30 |\n| exp_32b_c4 | westd | cuda:1 | 14637 | Qwen-32B C4 K*=? (scale validation) | ~May 20 07:00 |\n| exp_wiki_scorer_confound_1b5 | cqa1 | ? | 180543 | Pythia scorer on Qwen-1.5B Wiki text → K*=1? | 短（rescoring only） |\n\n**PREPARING (1)**: exp_008_retrain_chain（已 killed，需重新部署，非紧急——retrain-chain 已有 v2 成功数据 K*≥4）\n\n**等待中**: 3 个 cron 回调（上述 3 个 RUNNING 实验完成时自动触发）\n\n**Worker 池**: 0（空，违反 L1 #4 但当前无非阻塞任务未派发——论文更新需等 scorer confound 1.5B 结果确认后再动）\n\n### 4. 📋 待办（条件触发式）\n- **exp_wiki_scorer_confound_1b5 完成 → K*=1**: 确认 D060 对 Qwen-1.5B 同样成立 → update registry → 立即派 Paper Worker 更新 Wiki narrative（D060: all Wiki K*=1, scorer artifact disclosed）+ 更新 Domain×Model K* table\n- **exp_wiki_scorer_confound_1b5 完成 → K*=2**: 意外结果（Qwen-1.5B 不受 scorer bias 影响而 Qwen-7B 受？）→ 向 Director 汇报异常，暂缓论文 Wiki 部分修改\n- **exp_14b_c4 完成 → K*=2**: 预期结果，scale invariance confirmed at 14B → 更新 table，一句话加入论文\n- **exp_14b_c4 完成 → K*=1**: 触发 scorer capacity contingency（用 14B 作为 scorer 重跑）→ 向 Director 汇报\n- **exp_32b_c4 完成 → K*=2**: scale invariance 覆盖 1.5B→32B（~20x），强 claim\n- **exp_32b_c4 完成 → K*=1**: 同上 scorer contingency\n- **以上全部完成 + 论文 patch done → 派 Group C 审稿 Worker 做 final review**\n- cqa1 cuda:1/2/3 空闲 → 如 Director 有新实验需求可立即启用（retrain-chain 重跑或其他 ablation）\n\n### 5. 🎯 战略上下文\n**核心结论**: K* 是 low-bounded（≤3）且 domain-governed。完整 6×3 Domain×Model matrix: arXiv K*=3（5/5 models）, C4 K*=2（7/8, Mistral K*=1 exception）, Wiki K*=1（6/6 after scorer control）。Mistral 的 C4→arXiv K* 跃变（1→3）是 domain dependence 最强证据。\n\n**决策链关键节点**:\n- D060: Wiki scorer confound = Qwen family bias artifact，核心 story 反而更 clean\n- D056: Mistral one-wash 是 domain-specific 而非 model-intrinsic\n- D053: Dose-response 否定 graduated > binary（C3 保守限定）\n- D051: Retrain-chain K*≥4 删除 \"conservative upper bound\" claim\n\n**易错点**:\n- 不要把 Qwen scorer 下的 Wiki K*=2 当真实值——D060 已证明是 artifact，论文必须用 Pythia scorer 下的 K*=1\n- exp_14b_c4 / exp_32b_c4 如果 K*=1，**不要直接下结论是 text-intrinsic one-wash**——必须先排除 1.5B scorer 对 14B/32B 生成文本的 capacity confound（1.5B scorer 可能\"看不懂\"大模型输出）\n- cqa1 服务器名是 cqa1-22115，westd 是 westd-42896，不要混淆\n- 论文还有 \"Paper Agent: update wiki narrative for D060\" 和 \"综合 paper patch\" 两个大任务未完成，6 天内必须收敛\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779062428.md"
+}

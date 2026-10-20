@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fb50e55fd528a9b5e8a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "read arxiv multi source results",
+  "task_key": "worker_read_arxiv_multi_source_results_20260520T084450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_read_arxiv_multi_source_results_20260520T084450_result.json",
+    "occurrence": 1,
+    "bytes": 1132,
+    "sha256": "c3aa1c638f18a6f80f154f58f3110acb654c2dc16350768efac1bb26c8e731f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## arXiv Multi-Source 实验结果\n\n**设置**: 域=arXiv, scorer=Qwen2.5-1.5B, generators=[qwen1b5, pythia1b4, llama8b], 1000 docs/generator, θ=0.6\n\n### AUC 汇总\n\n| Pair | Vocab-only (no label) | Vocab-only (with label) | Unified (no label) | Unified (with label) |\n|------|----------------------|------------------------|--------------------|--------------------|\n| 0v1 | 0.9431 | 0.9436 | 0.9899 | **0.9911** |\n| 1v2 | 0.6922 | 0.7020 | 0.8117 | **0.8338** |\n| 2v3 | 0.5890 | 0.5883 | 0.6247 | **0.6276** |\n| 3v4 | 0.5082 | 0.5077 | 0.5269 | **0.5330** |\n| 4v5 | 0.5176 | 0.5163 | 0.5321 | **0.5359** |\n\n### K* 结果\n\n| 方法 | K* |\n|------|-----|\n| Vocab-only (no label) | **2** |\n| Vocab-only (with label) | **2** |\n| Unified scorer (no label) | **3** |\n| Unified scorer (with label) | **3** |\n\n### C4 对比参考\n\nC4 域下所有三种方法的 K* 均为 **2**。\n\n**关键发现**: Unified scorer 在 arXiv 域上 K*=3，比 vocab-only 的 K*=2 多探测一代，且 AUC 全面高于 vocab-only（尤其 1v2: 0.83 vs 0.70）。with_label 变体带来微弱但一致的提升。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/read-arxiv-multi-source-results.md"
+}

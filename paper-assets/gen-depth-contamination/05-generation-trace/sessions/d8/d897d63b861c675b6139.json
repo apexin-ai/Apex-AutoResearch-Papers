@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d897d63b861c675b6139",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops fix jsd decay legend",
+  "task_key": "worker_ops_fix_jsd_decay_legend_20260521T122546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_jsd_decay_legend_20260521T122546_result.json",
+    "occurrence": 1,
+    "bytes": 390,
+    "sha256": "9b342053feaa2b71a065c9907d336f9356cbd084af7385bfaf1fabca321c36b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 已重新生成，图例已改为 \"7 models\"。\n\n- **PDF**: `/root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.pdf` (23.6 KB)\n- **PNG**: `/root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.png` (156.8 KB)\n\n本地脚本 `scripts/plot_fig_jsd_decay.py` 第 56 行也已同步修改：`{len(c4_k2)}` → 硬编码 `7`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-jsd-decay-legend.md"
+}

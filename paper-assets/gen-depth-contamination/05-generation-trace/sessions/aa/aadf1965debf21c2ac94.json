@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aadf1965debf21c2ac94",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp003 config12 deep analysis",
+  "task_key": "worker_analysis_exp003_config12_deep_analysis_20260513T172521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp003_config12_deep_analysis_20260513T172521_result.json",
+    "occurrence": 1,
+    "bytes": 2844,
+    "sha256": "f07c97d592d4704eb1929a38c642f543d468a1b400304f1f30dd79cd92b049b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部产出已生成。以下是完整分析结论。\n\n---\n\n## 1. Config 1 (Greedy) vs Config 2 (Nuc09) 详细对比\n\n### Pairwise AUC Profile\n\n| Depth-Pair | Greedy | Nuc09 | Δ |\n|:---:|:---:|:---:|:---:|\n| 0v1 | 0.9797 | **0.9946** | +0.0149 |\n| 1v2 | **0.6893** | 0.6866 | −0.0027 |\n| 2v3 | 0.5613 | **0.5917** | +0.0304 |\n| 3v4 | 0.5404 | **0.5466** | +0.0062 |\n| 4v5 | **0.5139** | 0.5068 | −0.0071 |\n\n**关键发现**：1v2 AUC 几乎相同（Δ=0.0027），decoding strategy 对核心区分度影响极小。Nuc09 在 0v1 和 2v3 上略优，但差异在 fold 方差范围内。\n\n### Single-Feature AUC Ranking (1v2) — Spearman ρ\n\n| 对比 | ρ | p-value |\n|:---|:---:|:---:|\n| Greedy vs Nuc09 | **0.600** | 0.018 |\n| Greedy vs T07 | **0.914** | 2×10⁻⁶ |\n| Nuc09 vs T07 | **0.782** | 0.00057 |\n\nGreedy 与 Nuc09 的 feature ranking 一致性中等 (ρ=0.60)，与 T07 高度一致 (ρ=0.91)。Nuc09 的 sampling 随机性改变了部分 feature 的相对区分力。\n\n### Top-3 Discriminative Features (single-feature AUC, 1v2)\n\n| Config | #1 | #2 | #3 |\n|:---|:---|:---|:---|\n| Greedy | self_bleu (0.5961) | hapax_ratio (0.5752) | ttr (0.5462) |\n| Nuc09 | hapax_ratio (0.6561) | ttr (0.6043) | surp_skew (0.5997) |\n| T07 | hapax_ratio (0.6365) | ttr (0.5867) | low_freq_ratio (0.5805) |\n\n**hapax_ratio 和 ttr 在所有 config 的 top-3 中出现**（词汇多样性指标稳定）。Greedy 的 self_bleu 排第一（greedy 解码产生更多重复模式），而 sampling 方法（Nuc09/T07）的 surpirsal 分布特征更突出。\n\n---\n\n## 2. Cross-Experiment 1v2 AUC 排序 + D016 Universality\n\n| Rank | Config | 1v2 AUC |\n|:---:|:---|:---:|\n| 1 | MVP-Qwen-Rewrite | **0.6957** |\n| 2 | Config1-Greedy | 0.6893 |\n| 3 | Config3-T07 | 0.6887 |\n| 4 | Config2-Nuc09 | 0.6866 |\n| 5 | Exp001-Pythia-Cont | 0.6539 |\n| 6 | Exp002-OLMo-Cont | 0.6146 |\n| 7 | Exp017-Qwen-Cont | 0.6114 |\n\n**D016 Universality (θ=0.60): YES — 所有 7 个 config 的 1v2 AUC 均 > 0.60。** 最弱环节是 Exp017-Qwen-Cont (0.6114)，仍高于阈值 1.9%。\n\n### θ-Sensitivity (K*)\n\n| Config | θ=0.55 | θ=0.60 | θ=0.65 | θ=0.70 |\n|:---|:---:|:---:|:---:|:---:|\n| Greedy | K*=3 | K*=2 | K*=2 | K*=1 |\n| Nuc09 | K*=3 | K*=2 | K*=2 | K*=1 |\n| T07 | K*=3 | K*=2 | K*=2 | K*=1 |\n\n三个 config 的 K* profile 完全一致：θ=0.60 时可检测到 depth 2，θ=0.55 时可检测到 depth 3。\n\n---\n\n## 3. 产出清单\n\n| 产出 | 位置 |\n|:---|:---|\n| 分析脚本 | `scripts/exp003_analyze_all_configs.py`（已验证可运行，支持 2-4 configs） |\n| JSON 结果 | `artifacts/exp003_analysis.json`（当前含 3 configs 数据） |\n| Config 4 (t12) | 仅 depth_0 完成，pipeline 运行中。脚本可在 t12 完成后直接重跑出 4-config 结果 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp003-config12-deep-analysis.md"
+}

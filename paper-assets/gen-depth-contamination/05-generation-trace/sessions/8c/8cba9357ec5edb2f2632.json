@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cba9357ec5edb2f2632",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper table45 overlap fix",
+  "task_key": "worker_paper_table45_overlap_fix_20260522T063749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table45_overlap_fix_20260522T063749_result.json",
+    "occurrence": 1,
+    "bytes": 1406,
+    "sha256": "864be385a2dfa908d7cf49ce26d0603cf741421b903416a40a282e9890d85199"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，无 float 相关 warning。仅有标准 hyperref/caption warnings。\n\n---\n\n## 结果\n\n### Part 1: Table 4/5 重叠 — 已修复\n\n**根因**：Table 4 (`tab:domain_kstar`) 在 `experiments_c1.tex` 中用 `\\begin{minipage}` + `\\captionof{table}`（inline 非 float），Table 5 (`tab:tab_filtering_main`) 在 `experiments_c3.tex` 中用 `\\begin{table}[t]`（float）。LaTeX 将 float 放到 minipage 所在页面顶部导致重叠。\n\n**修复**：将 Table 4 从 minipage 转为 `\\begin{table}[t]` float，让 LaTeX 正确管理两个表的排版。\n\n### Part 2: S12 caption — 已修复\n\n**arXiv 数据来源**：**Qwen2.5-1.5B (base)**，不是 Instruct。证据：\n- `exp024_arxiv_domain.sh` 头部注释: \"模型: Qwen2.5-1.5B (base)\"\n- `exp024_bootstrap_ci.json`: \"exp-024 Qwen2.5-1.5B-base arXiv continuation\"\n- MODEL 路径: `.hf_cache/Qwen/Qwen2.5-1.5B`（无 Instruct）\n\n**修复**：\"Qwen2.5-1.5B-Instruct, continuation mode\" → \"Qwen2.5-1.5B, continuation mode\"\n\n注：S12 数据格仍为 `---` 占位符。\n\n### Part 3: ANOVA caption — 已修复\n\n- **旧版**：\"The non-significant Scorer main effect confirms scorer independence of depth discrimination.\"\n- **新版**：\"Scorer is statistically significant but explains modest variance ($\\eta^2_p{=}.166$).\"\n\n注：ANOVA 表数据格也仍为 `---` 占位符。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-table45-overlap-fix.md"
+}

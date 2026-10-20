@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "780a3343888729e14d0b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper writing experiments c1",
+  "task_key": "worker_paper_writing_experiments_c1_20260513T092525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_c1_20260513T092525_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "b5ee3acdfbc466d05029c8af1a31f6112bef72d62d0ed85e2fa3357108a38309"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`experiments_c1.tex` 已写入并注册（`art_20260513_5beff5`）。\n\n内容概要：\n- **§4.1** K\\*=2 boundary — Table 3（4-model bootstrap CI）+ Figure 2（AUC decay），含 Qwen-cont marginal case（CI_low=0.6015）和 OLMo 深层 p 值非显著报告\n- **§4.2** Cross-model transfer — Table 4（4×4 accuracy matrix）+ Figure 3（heatmap），Pythia↔OLMo 91–92% retention vs Qwen-rw 61–63% catastrophic failure\n- **§4.3** Feature degradation ordering — Table 5（top-3 features），Spearman ρ≥0.85（continuation mode），含 limitation: depth-pair τ≈0.37 at 1v2\n- **§4.4** Generation mode effect — rewrite vs continuation Δ=+8.4pp，transfer asymmetry 89% vs 82%，detectability–generalizability tradeoff\n\n所有数字严格对齐 registry，负向结果已报告，未使用 \"significantly\" 或 \"consistently outperforms\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments-c1.md"
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "42dbb1a2a242c835d3a7",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code gemma2b 10k qwen phase2",
+  "task_key": "worker_code_gemma2b_10k_qwen_phase2_20260522T231822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma2b_10k_qwen_phase2_20260522T231822.log",
+    "occurrence": 1,
+    "bytes": 1274715,
+    "sha256": "fb8a79baff49e0d975b9982f6862e7482b7407ac575906b632506f4f571dfbcd"
+  },
+  "statistics": {
+    "messages": 969,
+    "user_turns": 1,
+    "tool_calls": 423,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "assistant": 90,
+      "record": 1,
+      "tool_call": 423,
+      "tool_result": 423,
+      "user": 1,
+      "result": 6
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 885,
+      "chunks": [
+        {
+          "path": "42dbb1a2a242c835d3a7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "42dbb1a2a242c835d3a7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "42dbb1a2a242c835d3a7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "42dbb1a2a242c835d3a7-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "42dbb1a2a242c835d3a7-part-0005.json",
+          "message_count": 165
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 84,
+      "chunks": [
+        {
+          "path": "42dbb1a2a242c835d3a7-part-0005.json",
+          "message_count": 15
+        },
+        {
+          "path": "42dbb1a2a242c835d3a7-part-0006.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-gemma2b-10k-qwen-phase2.md"
+}

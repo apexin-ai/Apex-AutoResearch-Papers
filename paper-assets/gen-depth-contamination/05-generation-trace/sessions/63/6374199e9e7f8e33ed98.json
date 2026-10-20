@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6374199e9e7f8e33ed98",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "review ref audit C",
+  "task_key": "worker_review_ref-audit-C_20260526T104716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_ref-audit-C_20260526T104716_result.json",
+    "occurrence": 1,
+    "bytes": 365,
+    "sha256": "6bfae7927928f2bccea8a8956edb09d011ed18ed0fa0b764c03aa295a1d49068"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。37 条 bib 全部通过验证——无幻觉引用、无作者/年份/标题/会议错误。唯一发现是 `liang2023gpt` 在 related_work.tex 中被当作 \"GPTZero\" 基准引用，但该论文实际讲的是检测器对非母语英语写作者的偏见，不是 GPTZero 本身。结果已写入 `artifacts/ref_audit_worker_C.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-ref-audit-c.md"
+}

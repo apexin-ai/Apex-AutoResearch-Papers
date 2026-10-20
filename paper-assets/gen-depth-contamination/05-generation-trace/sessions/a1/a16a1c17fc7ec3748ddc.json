@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a16a1c17fc7ec3748ddc",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp wiki scorer confound",
+  "task_key": "worker_analysis_exp_wiki_scorer_confound_20260517T231852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_wiki_scorer_confound_20260517T231852_result.json",
+    "occurrence": 1,
+    "bytes": 1269,
+    "sha256": "c316262942b7f175a35ffe464ae76680ca3b4146cd2907db8a973f59057776ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**Scorer confound confirmed.** Pythia-1.4B scorer 下 K\\*=1，Qwen-1.5B scorer 下 K\\*=2。\n\n### Pairwise AUC 对比\n\n| Depth Pair | Qwen-1.5B Scorer | Pythia-1.4B Scorer | Delta |\n|------------|------------------:|-------------------:|------:|\n| 0 vs 1     | **0.9673**        | 0.9404             | -0.027 |\n| **1 vs 2** | **0.6108**        | 0.5870             | -0.024 |\n| 2 vs 3     | 0.5562            | 0.5456             | -0.011 |\n| 3 vs 4     | 0.5297            | 0.5250             | -0.005 |\n| 4 vs 5     | 0.5290            | 0.5172             | -0.012 |\n\n关键：1v2 从 0.6108（刚过 θ=0.60）降到 0.5870（低于阈值），K\\* 从 2 变为 1。\n\n### 解读\n\n- **depth 0v1 信号稳健**：两个 scorer 均 >0.94，K\\*=1 不受 scorer 选择影响\n- **depth 1v2 是 scorer artifact**：Qwen scorer 的 0.6108 仅超阈值 0.011，换成跨家族 scorer 后消失\n- **AUC 全线下降**：Pythia scorer 在所有 depth pair 均低于 Qwen scorer，说明同家族 scorer 系统性膨胀区分度\n- **对论文影响**：Qwen-7B Wikipedia 应报告 K\\*=1（跨家族 scorer 结果），与其他模型一致。原始 K\\*=2 需标注为 scorer confound\n\n报告已写入 artifacts 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-wiki-scorer-confound-copy-2.md"
+}

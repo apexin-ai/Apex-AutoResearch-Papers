@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4d2b254f5b3b443fe59",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing c3 fallback outline",
+  "task_key": "worker_writing_c3-fallback-outline_20260514T130459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_c3-fallback-outline_20260514T130459_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "d1433676ef0284f174938ce2b3d9daa0276e8dc0a7e6463793b59aef7c8b7bd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/c3_fallback_outline.md`。\n\n结构概要：\n- **Version A**：5 段骨架，沿用现有 experiments_c3.tex 思路（graduated wins）\n- **Version B**（重点，8 段详细 outline）：核心叙事 = \"K\\*=2 不仅是 characterization boundary，更是 operationally sufficient boundary；binary 即最优，graduated 无额外收益\"。包含两个 analysis 段落分别论证 why graduated fails（feature step-function vs assumed smooth decay）和 why binary is optimal（information-theoretic interpretation + Drayson 互补定位）\n- 附 table/figure checklist（5 项）、contingency triggers（激活条件 p>0.05 + <0.5pp）、以及对 conclusion/discussion/abstract 的连锁修改说明"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-c3-fallback-outline.md"
+}

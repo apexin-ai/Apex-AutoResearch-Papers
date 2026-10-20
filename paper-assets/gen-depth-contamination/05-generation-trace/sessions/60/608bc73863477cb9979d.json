@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "608bc73863477cb9979d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops fetch mistral 3v4 4v5",
+  "task_key": "worker_ops_fetch-mistral-3v4-4v5_20260519T111547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fetch-mistral-3v4-4v5_20260519T111547_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "51ad4b3189f836d8149dfbb9c377c803957b51d6c57190d7f928c199554e2d9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**3v4 AUC**\n- Mean: 0.5286, Std: 0.0104\n- Folds: [0.5311, 0.5101, 0.5382, 0.5257, 0.5380]\n\n**4v5 AUC**\n- Mean: 0.5099, Std: 0.0060\n- Folds: [0.5152, 0.5183, 0.5016, 0.5070, 0.5076]\n\n**JSD**\n- 3v4: 0.003206\n- 4v5: 0.003083\n\n**Ordinal Classification**\n- MAE: 1.3191\n- Accuracy: 0.3243\n- K*: 2\n\n**Top-10 Features**\n1. freq_entropy — 10110.8\n2. surp_d2_mean — 9448.2\n3. surp_d1_mean — 9375.2\n4. surp_d1_skew — 8616.4\n5. surp_std — 8279.0\n6. surp_mean — 7972.2\n7. freq_kurtosis — 7696.2\n8. surp_kurt — 6874.4\n9. surp_skew — 6565.2\n10. surp_d2_std — 6290.8"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fetch-mistral-3v4-4v5.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6ebc294700e277f0b48",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix registry exp003 config4",
+  "task_key": "worker_fix_registry_exp003_config4_20260513T234006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_registry_exp003_config4_20260513T234006_result.json",
+    "occurrence": 1,
+    "bytes": 403,
+    "sha256": "b5d92fede0fac5e19b0a9f5829e60c6bb2fbd537262a4b4b5ff4d8d9bbc8caba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已补全。cross_config_analysis 现在包含完整的 6 对 Spearman 相关性：\n\n| 配对 | ρ |\n|------|------|\n| greedy vs nuc09 | 0.600 |\n| greedy vs t07 | 0.914 |\n| **greedy vs t12** | **0.5321** |\n| nuc09 vs t07 | 0.782 |\n| **nuc09 vs t12** | **0.8929** |\n| **t07 vs t12** | **0.6679** |\n\n数据来源：`artifacts/exp003_analysis.json` 中的 `spearman_rho_matrix`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-registry-exp003-config4.md"
+}

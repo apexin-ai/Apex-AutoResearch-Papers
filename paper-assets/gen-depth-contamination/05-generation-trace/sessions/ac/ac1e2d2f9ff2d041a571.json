@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac1e2d2f9ff2d041a571",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "audit rebuttal artifacts",
+  "task_key": "worker_audit_rebuttal_artifacts_20260515T150610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_rebuttal_artifacts_20260515T150610_result.json",
+    "occurrence": 1,
+    "bytes": 3202,
+    "sha256": "bbc33b427b64a0dac93454fa54831cd48d8b3c29be1def917f14b22535b905aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Artifact 验证\n\n| 实验 | 状态 | 详情 |\n|------|------|------|\n| EXP-A | **存在** | 目录，含 4 子目录 (olmo_qwen_cont, olmo_qwen_rw, pythia_qwen_cont, pythia_qwen_rw) + run.log (1.07MB)，May 15 18:59 |\n| EXP-B | **存在** | exp_B_14d_ablation.json, 2242B, May 15 18:28 |\n| EXP-C | **存在** | exp_C_permutation_10k.json, 3558B, May 15 18:37 |\n| EXP-D | **存在** | exp_D_obd_n500_v2.json, 789B, May 15 18:47 |\n| EXP-E | **存在** | exp_E_paired_stats.json, 39807B, May 15 22:21 |\n\n全部 5 个已注册实验的 artifact 均存在。\n\n## exp_kstar_theta\n\n- **产出文件**:\n  - `artifacts/kstar_theta_curve.pdf` — 32KB, 生成于 2026-05-15 21:18\n  - `artifacts/kstar_theta_curve.png` — 335KB, 生成于 2026-05-15 21:18\n- **生成脚本**: `scripts/plot_kstar_theta.py`\n- **内容摘要**: K*(θ) 曲线图，绘制 4 个模型 (Qwen-rewrite, Pythia, OLMo, Qwen-cont) 在 5 个 depth pair (0v1, 1v2, 2v3, 3v4, 4v5) 上的分类准确率衰减。所有模型在 0v1 准确率 ≥0.993，到 4v5 衰减至 ~0.50–0.53（接近随机）。\n\n## 未注册的 artifact\n\n以下文件在 `artifacts/` 中存在但无 registry entry：\n\n| 文件 | 大小 | 日期 | 描述 |\n|------|------|------|------|\n| `bootstrap_ci_4model.json` | 5.2KB | May 13 | 4模型 bootstrap CI |\n| `bootstrap_ci_results.json` | 3.9KB | May 13 | bootstrap CI 结果 |\n| `cross_transfer_matrix.csv` | 806B | May 13 | 跨模型迁移矩阵 |\n| `cross_transfer_matrix.json` | 5.8KB | May 13 | 同上 JSON 格式 |\n| `exp003_analysis.json` | 4.7KB | May 14 | exp003 分析 |\n| `exp003_decoding_ablation.pdf` | 21KB | May 14 | decoding 消融图 |\n| `exp003_decoding_ablation.png` | 54KB | May 14 | 同上 PNG |\n| `exp003_decoding_ablation.tex` | 628B | May 14 | 同上 LaTeX |\n| `exp011_analysis.json` | 1.8KB | May 13 | exp011 分析 |\n| `exp011_results_claude_opus_4_6.jsonl` | 58KB | May 13 | exp011 Claude 结果 |\n| `exp011_results_gpt_5_5.jsonl` | 54KB | May 13 | exp011 GPT 结果 |\n| `exp011_samples.jsonl` | 496KB | May 13 | exp011 样本数据 |\n| `exp015_dryrun.json` | 1.2KB | May 14 | exp015 dry run |\n| `exp015_neural_probe_results.json` | 12KB | May 15 | exp015 neural probe |\n| `exp_D_mcnemar.json` | 788B | May 15 | McNemar 检验（初版） |\n| `exp_D_mcnemar_comprehensive.json` | 1.6KB | May 15 | McNemar 检验（综合版） |\n| `exp_D_mcnemar_final.json` | 1.4KB | May 15 | McNemar 检验（最终版） |\n| `exp_D_mcnemar_fixed.json` | 1.3KB | May 15 | McNemar 检验（修复版） |\n| `exp_D_obd_n500.json` | 648B | May 15 | OBD n500 v1 |\n| `kstar_theta_curve.pdf` | 32KB | May 15 | K*(θ) 曲线 |\n| `kstar_theta_curve.png` | 335KB | May 15 | K*(θ) 曲线 |\n| `ordinal_comparison_results.json` | 3.8KB | May 13 | 序数比较结果 |\n| `figures/auc_heatmap.pdf` | 34KB | May 13 | AUC 热力图 |\n| `figures/feature_importance.pdf` | 20KB | May 13 | 特征重要性图 |\n| `figures/jsd_decay.pdf` | 24KB | May 13 | JSD 衰减图 |\n\n共 25 个未注册文件/目录。其中 `exp_D_mcnemar*` 系列有 4 个迭代版本，建议只保留 `exp_D_mcnemar_final.json` 并注册。`kstar_theta_curve` 也应注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-rebuttal-artifacts.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9795de94b5a1bc3527b4",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra deberta check now",
+  "task_key": "worker_infra_deberta-check-now_20260519T192110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_deberta-check-now_20260519T192110_result.json",
+    "occurrence": 1,
+    "bytes": 217,
+    "sha256": "8606875425e46f7a7360b63c713de5cab1cde86dbb1b51f27239f28b26ddc18b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后自动复查。当前摘要：\n\n- **DeBERTa**: 2/5 实验完成，当前 wiki_qwen7b Fold 1 Ep 3 (step 600/1500)，预计总剩余 ~2h\n- **32B C4**: depth 5 进度 80.2%，预计剩余 ~2h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-deberta-check-now.md"
+}

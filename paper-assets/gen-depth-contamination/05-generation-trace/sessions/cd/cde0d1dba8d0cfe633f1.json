@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cde0d1dba8d0cfe633f1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp arXiv qwen7b",
+  "task_key": "worker_analysis_exp_arXiv_qwen7b_20260517T163548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_arXiv_qwen7b_20260517T163548_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "ccb8f714f2877eaddf4ae7d00ec500a157bc486da96f30bfaf70f8544d4bd4f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_arXiv_qwen7b 分析完成。结论：SUCCESS，K\\*=3。**\n\n核心结果：\n\n| Depth Pair | AUC | JSD |\n|---|---|---|\n| 0 vs 1 | 0.983 | 0.166 |\n| 1 vs 2 | 0.835 | 0.067 |\n| 2 vs 3 | 0.626 | 0.016 |\n| **3 vs 4** | **0.544** (< 0.60) | **0.009** |\n| 4 vs 5 | 0.513 | 0.006 |\n\nK\\*=3：depth 2v3 仍可区分（AUC=0.626），depth 3v4 不可区分（AUC=0.544）。\n\narXiv domain K\\*=3 现已在 5 个模型、4 种架构（Pythia/LLaMA/Mistral/Qwen）、4 个规模（1.4B/1.5B/7B/8B）上全部验证通过。域属性（structured academic text）主导 K\\* 值，模型架构和规模不影响。\n\n产出已注册，registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-arxiv-qwen7b.md"
+}

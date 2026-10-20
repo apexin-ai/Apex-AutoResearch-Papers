@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7d98654a57ea3164ca3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra c4 1b5 data search",
+  "task_key": "worker_infra_c4-1b5-data-search_20260519T201428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_c4-1b5-data-search_20260519T201428_result.json",
+    "occurrence": 1,
+    "bytes": 1876,
+    "sha256": "edd61d2113f370a0976a7dbe18d1d9f42918eb4fdb8ab1dca42ca5fd1d15f593"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "搜索完成。以下是结果：\n\n---\n\n## C4 1.5B-scale depth chain 原始文本数据搜索结果\n\n### 目标模型覆盖情况\n\n| Generator Model | 状态 | 路径 (cqa1-22115) | Depths | Docs |\n|---|---|---|---|---|\n| **Qwen2.5-1.5B (rewrite)** | ✅ 有 | `data_exp016_qwen_base/depth_*.jsonl` | 0-5 | 5000 |\n| **Pythia-1.4B** | ✅ 有 | `data_exp020_pythia_greedy/depth_*.jsonl` | 0-5 | 5000 |\n| **OLMo-1B** | ❌ 缺失 | `data/olmo_retrain_chain/` 只有 depth_0（seed） | - | - |\n| **Qwen2.5-1.5B (continuation)** | ✅ 有 | `data/exp_021_length_256/depth_*.jsonl` | 0-5 | 5000 |\n\n### 数据格式确认\n全部 `{\"text\": \"...\", \"doc_id\": N}` 格式，可直接用于 DeBERTa。所有数据集共享同一批 C4 seed（doc_id=0 均为 \"The woman who died after falling from a bridge over the A21...\"）。\n\n### cqa1-22115 上的额外 C4 数据（同一 seed 集）\n- `data_exp020_pythia_nuc09/` — Pythia-1.4B nucleus p=0.9, depth 0-5, 5000 docs\n- `data_exp020_pythia_t07/` — Pythia-1.4B temp=0.7, depth 0-5, 5000 docs\n- `data_exp020_pythia_t12/` — Pythia-1.4B temp=1.2\n- `data/exp_021_length_128/` — Qwen cont 128 tokens\n- `data/exp_021_length_512/` — Qwen cont 512 tokens\n- `data/exp_008_retrain_chain/` — Pythia retrain chain, depth 0-7\n- `data/exp_qwen_retrain_chain/` — Qwen retrain chain, depth 0-7\n\n### westd-42896\n- `data/exp_14b_c4/` — **Qwen2.5-14B** on C4（不是 1.5B scale）\n- `data/exp_32b_c4/` — **Qwen2.5-32B** on C4（不是 1.5B scale）\n- DeBERTa 已在该服务器上对 14B/32B 数据训练中\n\n### 结论\n- 原始 exp_001/002/003/006 目录在两台服务器上均不存在（可能来自已释放的实例），但对应数据已在 cqa1-22115 上以新编号重新生成\n- **OLMo-1B on C4 需要重新生成**，目前只有 seed，没有任何 depth chain 输出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-c4-1b5-data-search.md"
+}

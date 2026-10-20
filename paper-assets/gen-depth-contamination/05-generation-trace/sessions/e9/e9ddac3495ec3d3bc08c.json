@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9ddac3495ec3d3bc08c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 027 latex ablation",
+  "task_key": "worker_code_exp_027_latex_ablation_20260518T102052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_027_latex_ablation_20260518T102052_result.json",
+    "occurrence": 1,
+    "bytes": 1179,
+    "sha256": "043cbc35f36554319ff02c03680755d7058cb86df6368c6a016668e7797e0de7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-027 完成\n\n**K\\*=3 在去除 LaTeX 后保持不变。** 核心结论：arXiv 的 depth-3 饱和点不依赖 LaTeX 格式特征。\n\n### 对比总结\n\n| Pair | Original | LaTeX Stripped | Delta |\n|------|----------|---------------|-------|\n| 0v1  | 0.9948   | 0.9948        | 0.000 |\n| 1v2  | 0.8581   | 0.8297        | -0.028|\n| 2v3  | **0.6436** | **0.6229**  | -0.021|\n| 3v4  | 0.5440   | 0.5468        | +0.003|\n| 4v5  | 0.5299   | 0.5476        | +0.018|\n\n- 去除 LaTeX 后 AUC 在高区分度 pair（1v2, 2v3）略降 0.02-0.03，低区分度 pair（3v4, 4v5）略升\n- 2v3 仍 >0.60（0.6229），3v4 仍 <0.60（0.5468），**K\\*=3 不变**\n- Feature importance 排序基本一致（freq_entropy, surp_std 仍排前两位）\n- LaTeX 内容在深层反而更多（模型生成 LaTeX），reduction 从 depth 0 的 0.6% 递增至 depth 5 的 4.4%\n\n### 产出文件\n- 去除 LaTeX 的数据：`data/exp_027_latex_ablation/depth_{0..5}.jsonl`\n- Features：`data/exp_027_latex_ablation/features.csv`\n- 结果：`results/exp_027_latex_ablation/` (pairwise_auc.json, summary.txt 等)\n- 对比报告已注册：`art_20260518_3de274`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-027-latex-ablation.md"
+}

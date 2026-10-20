@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78cd3704c01ed6e625ae",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check exp 020 status",
+  "task_key": "worker_check_exp_020_status_20260516T065319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_020_status_20260516T065319_result.json",
+    "occurrence": 1,
+    "bytes": 458,
+    "sha256": "cb476add61b2a25fc60d5410bf875186b29ce48c199bb494154f4177e8220289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-020 状态：正常运行中**\n\n- **PID 14551** 存活，进程正常\n- **当前进度**：depth 2，308/313（~98%），即将完成当前 depth\n- **速度**：~6.78s/it，剩余 5 个样本，预计 ~34 秒完成 depth 2\n- **GPU 2**：利用率 100%，显存占用 14651 MiB\n\n日志中有一条 `padding_side='left'` 警告，不影响运行。初始阶段下载 C4 数据集时出现过一次 SSL 超时但自动重试成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-020-status.md"
+}

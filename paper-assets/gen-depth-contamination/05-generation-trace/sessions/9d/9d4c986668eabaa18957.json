@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d4c986668eabaa18957",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code pythia qwen bootstrap ci",
+  "task_key": "worker_code_pythia_qwen_bootstrap_ci_20260522T212208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pythia_qwen_bootstrap_ci_20260522T212208_result.json",
+    "occurrence": 1,
+    "bytes": 2004,
+    "sha256": "2f981a9895d6af890ba9e601c35f411c88cbdc324dd0153b2709cd44b188c1a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。汇报如下：\n\n---\n\n## Pythia Qwen-scored (scorer: Qwen2.5-1.5B)\n\n**所有 depth pair AUC:**\n\n| Pair | AUC | Fold values |\n|------|-----|-------------|\n| 0v1 | 0.9722 | [0.9763, 0.9711, 0.9726, 0.9665, 0.9742] |\n| 1v2 | 0.6074 | [0.5926, 0.6082, 0.6199, 0.6063, 0.6098] |\n| 2v3 | 0.5440 | [0.5528, 0.5379, 0.5479, 0.5566, 0.5249] |\n| 3v4 | 0.5051 | [0.4959, 0.4889, 0.5130, 0.5072, 0.5207] |\n| 4v5 | 0.5079 | [0.5079, 0.5160, 0.5182, 0.5004, 0.4969] |\n\n**K\\* = 2** (max depth with AUC > 0.60)\n\n**Bootstrap CI (1v2), 10000 iterations, doc-level, seed=42:**\n\n| Metric | Value |\n|--------|-------|\n| Point AUC (OOF) | 0.6072 |\n| Boot mean ± std | 0.6073 ± 0.0050 |\n| **95% CI** | **[0.5975, 0.6172]** |\n| **99.5% CI (Bonferroni, α=0.005)** | **[0.5934, 0.6210]** |\n| Permutation p-value | 0.0001 |\n| 95% CI lower > θ=0.60 | **False** (0.5975) |\n| 99.5% CI lower > θ=0.60 | **False** (0.5934) |\n\n**判定：BORDERLINE** — 点估计 0.6074 > 0.60，但 95% CI 下界 0.5975 未越过 0.60 阈值。与自评分版本行为一致（之前 borderline_bootstrap_ci.json 中 exp-021 的 CI 也是 [0.5979, 0.6166]，verdict=BORDERLINE）。\n\n---\n\n## OLMo Qwen-scored (scorer: Qwen2.5-1.5B)\n\n**所有 depth pair AUC:**\n\n| Pair | AUC | Fold values |\n|------|-----|-------------|\n| 0v1 | 0.9861 | [0.9880, 0.9859, 0.9853, 0.9835, 0.9875] |\n| 1v2 | 0.5001 | [0.5263, 0.4991, 0.4932, 0.4750, 0.5068] |\n| 2v3 | 0.4972 | [0.5128, 0.4742, 0.5035, 0.4949, 0.5007] |\n| 3v4 | 0.5034 | [0.5159, 0.4978, 0.5070, 0.4969, 0.4993] |\n| 4v5 | 0.4971 | [0.4943, 0.4999, 0.4999, 0.5023, 0.4892] |\n\n**K\\* = 1** (仅 0v1 > 0.60，1v2 已降至随机水平 0.5001)\n\n---\n\n**关键发现：** Pythia Qwen-scored 的 1v2 AUC (0.6074) 与自评分版 (0.6073) 几乎完全一致，bootstrap CI 和 verdict 也匹配。OLMo Qwen-scored 的 1v2 直接降到 0.50，K\\*=1，说明 OLMo 合成数据在 depth≥2 后完全不可区分。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pythia-qwen-bootstrap-ci.md"
+}

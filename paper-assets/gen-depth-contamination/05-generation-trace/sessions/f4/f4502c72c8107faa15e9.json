@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4502c72c8107faa15e9",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops westd backup 14b to cqa1",
+  "task_key": "worker_ops_westd-backup-14b-to-cqa1_20260518T094555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-backup-14b-to-cqa1_20260518T094555_result.json",
+    "occurrence": 1,
+    "bytes": 491,
+    "sha256": "1ad58f098f0564713f5ad87383652c188c1cf8d005cc3bfc88475f2c24626441"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "备份完成。验证结果：\n\n| 文件 | westd (源) | cqa1 (备份) |\n|---|---|---|\n| bootstrap_ci_results.json | 2034 | 2035 |\n| feature_importance.json | 639 | 640 |\n| jsd.json | 96 | 97 |\n| ordinal_results.json | 56 | 57 |\n| pairwise_auc.json | 573 | 574 |\n| summary.txt | 1324 | 1325 |\n| **总计** | **24K** | **24K** |\n\n6 个文件全部传输，每个文件大小差 1 byte（heredoc 末尾换行符差异），内容完整一致。总大小均为 24K。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-backup-14b-to-cqa1.md"
+}

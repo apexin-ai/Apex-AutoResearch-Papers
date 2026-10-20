@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c96ae14cdae2b9aae8b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 026 feature stability",
+  "task_key": "worker_code_exp_026_feature_stability_20260517T074346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_026_feature_stability_20260517T074346_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "3d3e7cf49f09645553c99230f5a9aede8f85103e8342e54234920badcf7af20a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_026 完成。汇总结果：\n\n```\nsubset_size | num_tested | num_K*=2 | min_1v2_AUC | mean_1v2_AUC\n---------------------------------------------------------------\n15          | 1          | 0        | 0.9472      | 0.9472\n10          | 5          | 0        | 0.8698      | 0.9202\n8           | 5          | 0        | 0.8955      | 0.9156\n5           | 5          | 0        | 0.8785      | 0.9081\n3 (top-3)   | 1          | 0        | 0.8314      | 0.8314\n```\n\n**结论**：1v2 AUC 在所有 17 个 feature 子集中均远超 θ=0.60（最低 0.8314，来自仅用 top-3 特征）。Feature 子集选择对区分能力无实质影响。\n\n注：实际 K\\* 在该数据集上为 4（不是 2），即所有相邻 depth pair（0v1 到 3v4）的 AUC 均 > 0.60，表明 exp_008 retrain chain 数据中 depth 0-4 全程可区分。`num_K*=2` 列全为 0 是因为 K\\* 始终为 4。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-026-feature-stability.md"
+}

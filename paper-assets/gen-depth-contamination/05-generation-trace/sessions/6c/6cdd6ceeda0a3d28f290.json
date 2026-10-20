@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cdd6ceeda0a3d28f290",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper compile verify fig4",
+  "task_key": "worker_paper_compile-verify-fig4_20260523T175408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile-verify-fig4_20260523T175408_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "c8da5ef03388688dd23448e7a2820953bfdbc93b8e0aca38f9fc9017d59a053d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 6 captured. Here's the verification:\n\n1. **Figure 4 位置**: 在第 6 页左栏中部，✓\n2. **两个面板**: 可以看到两个 heatmap 面板（accuracy 和 retention），✓\n3. **4 个模型**: 图中有 4×4 的 heatmap 格子，caption 提到 \"continuation-mode models\"，行列对应 4 个模型，✓\n4. **Caption**: \"Cross-model transfer heatmap (continuation-mode models). Each cell shows 6-class ordinal accuracy when trained on the row model and tested on the column model, divided by its in-domain accuracy (retention rate); Pythia=OLMo: 90–92%\" ✓\n5. **字号**: heatmap 内的数值和轴标签在 200 dpi 下清晰可读，✓\n\nFigure 4 渲染正确，v1 版本（6-class ordinal accuracy + retention，4 模型 heatmap）已确认。PDF 保存在 `artifacts/paper_compile_fig4_verify.pdf`，截图在 `artifacts/page_check_fig4/page-06.png`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-verify-fig4.md"
+}

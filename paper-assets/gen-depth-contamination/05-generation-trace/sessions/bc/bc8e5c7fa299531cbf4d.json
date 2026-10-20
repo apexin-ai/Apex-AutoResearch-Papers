@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc8e5c7fa299531cbf4d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 016 base vs instruct",
+  "task_key": "worker_code_exp_016_base_vs_instruct_20260516T010452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_016_base_vs_instruct_20260516T010452_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "af670466a9d63507bd610e71e0c1d65c13419b71ab6181b24531bf3f8a641f06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 正在运行：C4 采样完成（5000 samples），正在生成 depth 1。一切正常。\n\n实验状态总结：\n- **exp-016** (Qwen2.5-1.5B **base** continuation) 已在 westc-26893 cuda:0 上启动\n- tmux session: `exp016`，日志: `/tmp/exp016.log`\n- C4 seed data 已生成，正在进行 depth chain generation\n- Registry 已更新为 RUNNING\n- 预计全 pipeline（5 depths × 5000 samples + feature extraction + classification）需要约 1-2 小时\n\n可用 `tail /tmp/exp016.log` 或检查 tmux session `exp016` 监控进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-016-base-vs-instruct.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a450bb675e285680b507",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 verify running",
+  "task_key": "worker_infra_exp006_verify_running_20260513T210509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006_verify_running_20260513T210509_result.json",
+    "occurrence": 1,
+    "bytes": 352,
+    "sha256": "d4a881969a68de44839486dd4e261ce22ebe58304f33b50f51a0f4458d9ad64a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-006 正在正常运行。**\n\n| 指标 | 状态 |\n|------|------|\n| PID 46129 | 存活，运行 2m43s |\n| GPU 利用率 | 82%，13.4 / 24.6 GB 显存占用 |\n| 当前进度 | [1/50] `no-filter_s42`，step 204/2814 (7%)，~1.29 it/s |\n| 预计总时长 | ~20.8h（50 runs × ~25min） |\n\n训练正常推进，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-verify-running.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9877e57a8f5015c25951",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check exp004 progress",
+  "task_key": "worker_check_exp004_progress_20260515T150956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp004_progress_20260515T150956_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "382a12cb734a733cd3e22e0e791304ebdc8ec41704a0596aa4052b2b7d42f3fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n- PID 113156, 15142 MiB VRAM（Qwen2.5-7B fp16）\n\n## 训练进度\n- **当前阶段**: generation\n- **当前 depth**: 2/5（depth 0、1 已完成，正在生成 depth 2）\n- **depth 2 进度**: 1118/1250 batches（**89%**），batch_size=4 → 4472/5000 samples\n- **已完成样本数**: depth 0: 5000, depth 1: 5000, depth 2: ~4472（进行中）\n- **速度**: ~6.5s/batch\n- **预估剩余时间**:\n  - depth 2 剩余: 132 batches × 6.5s ≈ **14 分钟**\n  - depth 3-4 各约 2h 10min → 还需约 **4.5 小时**完成全部 generation\n\n## 日志尾部关键行\n```\ndepth 2:  89% | 1118/1250 [1:58:25<14:23, 6.54s/it]\n```\n\n配置确认: continuation mode, 5000 seeds, scorer=Qwen2.5-1.5B, fp16, gen_batch=4, feat_batch=8。Generation 之后还有 feature extraction 和 classification 阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp004-progress.md"
+}

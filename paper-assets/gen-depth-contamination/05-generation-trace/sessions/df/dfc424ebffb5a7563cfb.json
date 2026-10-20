@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfc424ebffb5a7563cfb",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp014 v1 independent",
+  "task_key": "worker_code_exp014_v1_independent_20260525T160109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp014_v1_independent_20260525T160109_result.json",
+    "occurrence": 1,
+    "bytes": 757,
+    "sha256": "107bba4e0b1ac23b6cc210f6ae883822749311d71959141e94cb840259a34501"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交（tmux session: `exp_014_independent_metrics`, GPU: cuda:1）。\n\n执行流程：\n1. 下载 GPT-2 Large（~3GB，网络加速已开启）\n2. 计算 5K docs 的 6 个独立指标（PPL/MTLD/HDD/3gram-rep/4gram-rep/Zipf）\n3. 运行分析脚本：correlation + stratified + statistical tests + length-controlled + MAUVE + plots\n\n预计总时长约 20-40 分钟（5K docs 比较小，GPT-2 PPL 约 10 分钟，MAUVE 约 5 分钟，下载时间取决于网络）。\n\n输出文件：\n- `results/exp014_v2/cc_quality_independent.csv`\n- `results/exp014_v2/independent_analysis_results.json`\n- `results/exp014_v2/independent_violin.pdf`\n- `results/exp014_v2/depth_distribution.pdf`\n- `results/exp014_v2/mauve_by_bin.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp014-v1-independent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "646369533a0dc9c80e40",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 019b mistral cross scorer",
+  "task_key": "worker_code_exp_019b_mistral_cross_scorer_20260516T112058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_019b_mistral_cross_scorer_20260516T112058_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "f06e556d5f7fff8cac196f3c7d7bc074c4eae1d3bf71aaa74eafef1e0355439e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动验证通过。\n\n**汇报：**\n\n1. **Pipeline 支持 cross-scorer**: `--scorer_path` 参数（line 632），会在 feature extraction 阶段替换为指定 scorer 模型\n2. **自动跳过生成阶段**: 检测到 depth_*.jsonl 已存在时跳过（line 74, 143）。用新 `data_exp019b_mistral_cross` 目录（symlink depth 文件，无 features.csv），确保 feature extraction 用 cross-scorer 重新计算\n3. **提交成功**: PID 36365，tmux session `exp_019b_mistral_cross_scorer`\n4. **启动验证**:\n   - Mistral-7B 正在加载到 cuda:1（已占用 14.2GB / 24.6GB）\n   - Scorer 已正确识别为 `Qwen2___5-1___5B`\n   - 生成阶段将被跳过，之后卸载 Mistral → 加载 Qwen-1.5B scorer → 提取 15D features → OBD 分类\n5. **预估运行时间**: ~2-3h（跳过生成，只做 scoring 30K 样本 + classification）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-019b-mistral-cross-scorer.md"
+}

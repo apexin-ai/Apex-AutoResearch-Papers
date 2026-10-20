@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cca6daec3fa4524ab849",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp A check results",
+  "task_key": "worker_diagnose_exp_A_check_results_20260515T104822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_A_check_results_20260515T104822_result.json",
+    "occurrence": 1,
+    "bytes": 1464,
+    "sha256": "e3bab93f3c40322234e5ae0059eb5856f336dad79dbe32bbafc3df9151e08c53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验仍在运行中。** 进程状态明确：\n\n### 当前状态\n\n- **tmux session `exp_A`** 正在运行 `run_exp_A.sh`\n- 当前正在执行第 2/4 组：**Pythia × Qwen-cont**（Surprisal 计算中，PID 111726，CPU 107%）\n- 日志仍在持续写入（最后修改 18:49:13，几秒前）\n- 已完成约 49%（309/625 batches），当前在 depth 0 的 surprisal 提取阶段\n\n### 已完成的结果：Pythia × Qwen-RW (1/4)\n\n| 指标 | 值 |\n|------|-----|\n| **K\\*** | **2** |\n| AUC(0v1) | 0.9923 ± ~0.001 |\n| AUC(1v2) | 0.7012 ± 0.007 |\n| AUC(2v3) | 0.5870 ± 0.011 |\n| AUC(3v4) | 0.5487 ± 0.006 |\n| AUC(4v5) | 0.5285 ± 0.003 |\n| Ordinal MAE | 1.006 |\n| Ordinal Accuracy | 41.7% |\n| **Spearman ρ vs Qwen baseline** | **0.906 (p=0.0)** |\n\n**Top-5 Feature Importance:**\n1. freq_entropy (8924)\n2. surp_mean (8831)\n3. hapax_ratio (8614)\n4. surp_skew (8095)\n5. surp_d1_mean (7995)\n\n### 关键发现\n\n1. **K\\* = 2，与 Qwen-scored 一致** — 替代 scorer (Pythia-1.4B) 下可区分深度的断点不变\n2. **Feature importance 与 Qwen baseline 高度相关** (ρ=0.906) — 特征重要性排序在不同 scorer 下稳健\n3. 实验仍在运行，剩余 3 组（pythia_qwen_cont, olmo_qwen_rw, olmo_qwen_cont）尚未完成\n\n需要等实验跑完再查看完整 4 组结果。当前进度估计：第 2 组的 depth 0 surprisal 约 49%，每组有多个 depth 要跑，总共还需较长时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-a-check-results.md"
+}

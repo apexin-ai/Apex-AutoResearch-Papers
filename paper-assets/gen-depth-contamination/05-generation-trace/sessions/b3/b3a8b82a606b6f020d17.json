@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3a8b82a606b6f020d17",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops kill gemma download",
+  "task_key": "worker_ops_kill-gemma-download_20260519T081739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-gemma-download_20260519T081739_result.json",
+    "occurrence": 1,
+    "bytes": 206,
+    "sha256": "63879929e702c771c35b30e446db73bdbe2efdb8af487e553b0d59ec9312c6d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无残留：\n\n- 无 Gemma 相关进程\n- 无 huggingface-cli 下载进程\n- `/root/autodl-pub/models/gemma-2-2b/` 目录不存在，下载未开始或已被清理\n\n无需任何操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-gemma-download.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "481aac0806eb3e4dea41",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp 018 019 failures",
+  "task_key": "worker_diagnose_exp_018_019_failures_20260516T063126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_018_019_failures_20260516T063126_result.json",
+    "occurrence": 1,
+    "bytes": 1433,
+    "sha256": "fb943a6633fa8583787ed23f450a158c1a80efcea2b4d6e33d187b87249d8e37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n**结论：exp-018 和 exp-019 均在正常运行，并未失败。**\n\n### exp-018 (LLaMA-3.1-8B, cuda:0)\n- **状态**: 运行中 (PID 10403, 13:01 启动)\n- **当前进度**: depth 1 生成中，943/1250 batches (75%)，~5.93s/batch\n- **已完成数据**: `depth_0.jsonl` (4.4MB)\n- **配置**: 5000 samples, max_depth=5, batch_size=4\n- **预计 depth 1 完成**: ~30 分钟后\n\n### exp-019 (Mistral-7B-v0.3, cuda:1)\n- **状态**: 运行中 (PID 12147, 13:16 启动)\n- **当前进度**: depth 2 生成中，21/625 batches (3%)，~6.15s/batch\n- **已完成数据**: `depth_0.jsonl` (4.1MB) + `depth_1.jsonl` (4.2MB)\n- **配置**: 5000 samples, max_depth=5, batch_size=8\n- **预计 depth 2 完成**: ~62 分钟后\n\n### GPU 状态\n| GPU | 显存 | 利用率 | 占用进程 |\n|-----|------|--------|---------|\n| 0 | 16.1/24.6 GB | 96% | exp-018 (LLaMA-8B) |\n| 1 | 14.7/24.6 GB | 96% | exp-019 (Mistral-7B) |\n| 2 | 16.4/24.6 GB | 100% | exp-020 (Pythia, 3进程) |\n| 3 | 0/24.6 GB | 0% | 空闲 |\n\n### 说明\n注册表中标记为 `DONE(failed)` 可能是误标。两个实验的进程、日志、GPU 占用都正常，没有任何错误信息。exp-019 进度领先（已完成 depth 1），exp-018 稍慢（batch_size=4 vs 8）。\n\n每个实验需要完成 depth 0-5 共 6 轮生成，按当前速度，完整跑完预计还需 **5-8 小时**。无需修复，等待即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-018-019-failures.md"
+}

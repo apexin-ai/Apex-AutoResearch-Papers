@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "f496e53ae2b5ce8d780b",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "compute lofo importance",
+  "task_key": "worker_compute_lofo-importance_20260519T183649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_lofo-importance_20260519T183649.log",
+    "occurrence": 1,
+    "bytes": 939209,
+    "sha256": "0ad0b30392dcd921828eb473e7a4edd69213f4334a9d59783bdf00f8be7ca36e"
+  },
+  "statistics": {
+    "messages": 769,
+    "user_turns": 0,
+    "tool_calls": 344,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 77,
+      "tool_call": 344,
+      "tool_result": 344,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 769,
+      "chunks": [
+        {
+          "path": "f496e53ae2b5ce8d780b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f496e53ae2b5ce8d780b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f496e53ae2b5ce8d780b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f496e53ae2b5ce8d780b-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "f496e53ae2b5ce8d780b-part-0005.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/compute-lofo-importance.md"
+}

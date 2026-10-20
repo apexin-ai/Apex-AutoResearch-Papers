@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afd1152afb5a16ab4377",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra deberta data audit",
+  "task_key": "worker_infra_deberta-data-audit_20260519T192508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_deberta-data-audit_20260519T192508_result.json",
+    "occurrence": 1,
+    "bytes": 1369,
+    "sha256": "03440a710cbeccbe5b245323ab9d789b7f617d0704d77de532481b6a0102b3e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果明确：\n\n### 1. 已完成的 2 个实验\n- **wiki_pythia** (结果已保存 wiki_pythia.json)\n- **wiki_olmo** (结果已保存 wiki_olmo.json)\n\n### 2. 全部 5 个实验 config\n脚本 `EXPERIMENTS` 字典定义了：\n1. `wiki_pythia` → `data/exp_wiki_pythia` ✅ 已完成\n2. `wiki_olmo` → `data/exp_wiki_olmo` ✅ 已完成\n3. `wiki_qwen7b` → `data/exp_wiki_qwen7b` ← 当前正在运行（日志第 520 行）\n4. `wiki_llama8b` → `data/exp_wiki_llama8b`\n5. `wiki_mistral7b` → `data/exp_wiki_mistral7b`\n\n### 3. 是否包含 C4 数据？\n**否。全部 5 个实验都是 Wiki 域。** 脚本中没有任何 C4 相关配置。\n\n### 4. cqa1 上有哪些 C4 数据？\n**没有 C4 数据目录。** `data/` 下只有 wiki、arXiv、code 三类域的数据，无任何 `c4` 或 `qwen_rewrite` 目录。\n\n### 5. 数据路径配置\n```python\nDATA_DIR = ROOT / \"data\"\nEXPERIMENTS = {\n    \"wiki_pythia\":    DATA_DIR / \"exp_wiki_pythia\",\n    \"wiki_olmo\":      DATA_DIR / \"exp_wiki_olmo\",\n    \"wiki_qwen7b\":    DATA_DIR / \"exp_wiki_qwen7b\",\n    \"wiki_llama8b\":   DATA_DIR / \"exp_wiki_llama8b\",\n    \"wiki_mistral7b\": DATA_DIR / \"exp_wiki_mistral7b\",\n}\n```\n\n**结论：确认训练确实只用了 Wiki 数据，不包含 C4。如果需要 C4 域的 DeBERTa upper-bound，需要另起实验。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-deberta-data-audit.md"
+}

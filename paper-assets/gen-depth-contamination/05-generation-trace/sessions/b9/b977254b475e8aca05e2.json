@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b977254b475e8aca05e2",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code fix code analysis script",
+  "task_key": "worker_code_fix-code-analysis-script_20260519T025536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-code-analysis-script_20260519T025536_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "ee4a0c856effdc13accb4e7184ff8577db69166fe47427b6f1ec2231dbeff87a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n| 检查项 | 结果 |\n|--------|------|\n| Qwen-1.5B: K\\*=2, 0v1 AUC | K\\*=2, AUC=0.9388 |\n| Pythia-1.4B: K\\*=1, 0v1 AUC | K\\*=1, AUC=0.9592 |\n| 其他 3 模型 | TBD |\n| Caption 含 \"CodeSearchNet Python\" | 有 |\n| Caption 含 \"TheStack\" | 无 |\n| 表格列数 | `l cc cc cc cc cc` = 11 列 |\n| cmidrule 分组 | `{2-3} {4-5} {6-7} {8-9} {10-11}` |\n\nPythia-1.4B 的 K\\*=1 与预期一致，但 0v1 AUC 实际值为 0.9592（高于预估的 0.8952）。这是从 `exp_code_pythia1b4/pairwise_auc.json` 读出的真实数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-code-analysis-script.md"
+}

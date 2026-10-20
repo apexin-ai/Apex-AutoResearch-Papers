@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8597084166653a5c529",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "submit exp 022 cross scorer v2",
+  "task_key": "worker_submit_exp_022_cross_scorer_v2_20260516T150528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_022_cross_scorer_v2_20260516T150528_result.json",
+    "occurrence": 1,
+    "bytes": 913,
+    "sha256": "ebd326077950eae821af4c58fb065d2759ea5a5b9813d1457e21f904d1e7b84b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验运行正常。状态汇总：\n\n**cuda:3 已占用** — 第一个组合 `qwen_base × qwen_base` feature extraction 已到 75%（depth 0），~8 it/s。\n\n**12 个组合的进度**：\n- 第 1 批（已缓存模型，6 个组合）：qwen_base/pythia 做 scorer × 3 generators — 正在进行\n- 第 2 批（待下载模型，6 个组合）：qwen_instruct/olmo 做 scorer × 3 generators — 等模型下载\n\n**模型下载**：\n- Qwen2.5-1.5B-Instruct：3% of 2.88GB，~6MB/s\n- OLMo-1B-hf：26% of 4.38GB，~6MB/s\n\n**注意**：原计划 4 generators 但 OLMo-1B 没有 depth chain 数据，实际可跑 3 generators × 4 scorers = 12 个组合。\n\n**tmux session**: `exp022`\n**日志**: `logs/exp022.log`\n\n第一批约 60 分钟跑完。下载完成后重跑脚本处理第二批（脚本自动跳过已完成的组合）。需要我持续监控还是你稍后自己看？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-022-cross-scorer-v2.md"
+}

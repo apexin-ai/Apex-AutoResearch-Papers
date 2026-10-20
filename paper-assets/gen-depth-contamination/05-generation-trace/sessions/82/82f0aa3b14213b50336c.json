@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82f0aa3b14213b50336c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "experiment exp 014 naturalistic",
+  "task_key": "worker_experiment_exp_014_naturalistic_20260520T110716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_exp_014_naturalistic_20260520T110716_result.json",
+    "occurrence": 1,
+    "bytes": 350,
+    "sha256": "d1bac8084b431d71806185754a8430985cc51aa38199265aa85da23a4ac3f2d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-014 全部收尾完成：\n\n- **Registry**: DONE (conclusion=success), hypothesis/spec/checkpoint_path/log_path 均已填写\n- **Artifacts**: 注册了实验脚本 (`run_naturalistic_validation.py`) 和结果 JSON\n- **Local script**: 已同步服务器上的两处 patch (SCORER_MODEL 路径 + `sample_cc_data` 改用 wget+gzip)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-exp-014-naturalistic.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bec043337dd91ba1b425",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops exp deberta filtering v2",
+  "task_key": "worker_ops_exp_deberta_filtering_v2_20260520T175843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp_deberta_filtering_v2_20260520T175843_result.json",
+    "occurrence": 1,
+    "bytes": 466,
+    "sha256": "fffc29d5f809ca8d89dc0b8da5a5d70720ff9ca0718bbfd65cf40682ad13e8f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DeBERTa 预测任务已提交到 cqa1-22115 GPU 1（tmux: `deberta_filtering_predict`）。\n\n**当前进度：**\n- predictions.npz 不存在，已在 cqa1 GPU 1 上启动 5-fold DeBERTa OOF 预测\n- 跳过了跨服务器传输（westd），因为 cqa1 有 3 块空闲 GPU\n- Registry 状态已更新为 RUNNING\n- 预计预测任务需要 30-60 分钟，2 分钟后自动检查进度\n\n完成后会自动提交 4 个策略的过滤比较实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp-deberta-filtering-v2.md"
+}

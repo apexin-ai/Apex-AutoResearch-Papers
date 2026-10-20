@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd9d1951f891c13d1ba7",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp 009 v3 harvest",
+  "task_key": "worker_analysis_exp_009_v3_harvest_20260517T050332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_009_v3_harvest_20260517T050332_result.json",
+    "occurrence": 1,
+    "bytes": 1481,
+    "sha256": "11c7fa24813fb6d94694a61aabc148ce2ca64a13b76ab6d817002ef8e8ada6e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告\n\n### 进程状态\n| 实验 | PID | GPU | 状态 |\n|------|-----|-----|------|\n| exp_009_dose_10pct_v3 | 93385 | cuda:1 | 运行中 (4h50m) |\n| exp_009_dose_30pct_v3 | 93527 | cuda:2 | 运行中 (4h50m) |\n| exp_009_dose_50pct_v3 | 93604 | cuda:3 | 运行中 (4h50m) |\n\n### 进度详情\n\n每个实验 = 5 seeds × 3 strategies = 15 个 train+eval 周期\n\n| 实验 | 已完成 | 当前任务 | 进度 |\n|------|--------|----------|------|\n| 10pct (ratio=0.1) | 11/15 | seed3 graduated 训练中 (20%) | 73% |\n| 30pct (ratio=0.3) | 10/15 | seed3 binary_ours 评估中 (loglikelihood 60%) | 70% |\n| 50pct (ratio=0.5) | 10/15 | seed3 binary_ours 评估中 (HellaSwag tokenize 65%) | 70% |\n\n### 时间估算\n- 每个 train+eval 周期 ≈ 27-30 min\n- 10pct 剩余: ~4 个周期 ≈ **1h 50m**\n- 30pct 剩余: ~4.4 个周期 ≈ **2h 10m**\n- 50pct 剩余: ~4.5 个周期 ≈ **2h 15m**\n- **预计全部完成时间: ~2h 15m 后 (约 UTC 15:20)**\n\n### GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 0% | 0 / 24564 MiB (空闲) |\n| cuda:1 | 97% | 21079 / 24564 MiB (10pct 训练中) |\n| cuda:2 | 100% | 17615 / 24564 MiB (30pct eval loglikelihood) |\n| cuda:3 | 0% | 3517 / 24564 MiB (50pct CPU tokenize阶段，GPU 等待) |\n\n### 异常\n无 OOM 或 crash。cuda:3 当前 0% 利用率是正常的，50pct 实验正在 HellaSwag tokenize (CPU-bound)，tokenize 完成后 GPU 会恢复满载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-009-v3-harvest.md"
+}

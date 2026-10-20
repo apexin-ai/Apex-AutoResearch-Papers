@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de3de80eff351cbf78ce",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra check exp002 disk state",
+  "task_key": "worker_infra_check_exp002_disk_state_20260513T003409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_exp002_disk_state_20260513T003409_result.json",
+    "occurrence": 1,
+    "bytes": 1153,
+    "sha256": "197f0234c59764f451493935d58a8419f2cf483739329a76d21f64b8779fac01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-002 (OLMo-1B) 磁盘数据状态汇总\n\n### 数据文件\n\n| 文件 | 状态 | 大小 | 行数 |\n|------|------|------|------|\n| `depth_0.jsonl` | **完成** | 4.4M | 5000 |\n| `depth_1.jsonl` | 未写入 | - | - |\n| `depth_2.jsonl` ~ `depth_5.jsonl` | 未写入 | - | - |\n\n### 进程状态\n\n- **PID 20225** 存活，启动于 `08:16:06`，已运行 **18 分 26 秒**\n- 当前进度：**depth 1: 301/313 batches (96%)**，每 batch ~3.6s\n- GPU: RTX 4090 D, 49% 利用率, 4325/24564 MiB 显存\n- 结果目录 `results_exp002_olmo/` 已创建但为空（pipeline 结束才写入）\n\n### 判断\n\n- **首次运行**，非重启。进程 08:16 启动，连续运行 18 分钟，depth 0 采样完成后直接进入 depth 1 generation。\n- depth_1.jsonl 尚未落盘（pipeline 逻辑是整个 depth 跑完才写文件）。\n\n### 预估剩余时间\n\n| 阶段 | 预估耗时 |\n|------|---------|\n| depth 1 剩余 12 batches | ~43 秒 |\n| depth 2-5 (各 313 batches × ~3.6s) | ~75 分钟 |\n| **总剩余** | **~76 分钟** |\n\n预计 **09:50 左右** 全部完成，在 8 小时 timeout 限制内。无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-exp002-disk-state.md"
+}

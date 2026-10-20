@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c64a4a3822ebfbd2dca6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 progress check",
+  "task_key": "worker_infra_exp006-progress-check_20260515T013137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006-progress-check_20260515T013137_result.json",
+    "occurrence": 1,
+    "bytes": 736,
+    "sha256": "68c707363c937eeaa16ef7c77018e333a0ee24f89f8e58d7559bbf5642e4914a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-006 进度报告\n\n| 指标 | 状态 |\n|------|------|\n| **已完成** | 38/41 runs |\n| **正在跑** | `graduated_a0.9_s456` — 训练 99% (2787/2814 steps)，即将完成 |\n| **剩余** | `graduated_a0.9_s789`, `graduated_a0.9_s1024` |\n| **GPU** | 73% 利用率，13.5 / 24 GB 显存 |\n| **速度** | ~1.26 it/s |\n\n**当前 run 细节：** `graduated_a0.9_s456` 只剩 27 steps (~22秒训练) + eval 阶段，几分钟内完成。\n\n**剩余 ETA：** 当前 run 即将完成，之后还有 2 runs × ~37 min ≈ **~75 min 全部跑完**（预计 ~10:50 UTC）。\n\n**健康状态：** 正常。Loss 稳定在 2.58-2.65，grad norm 0.22-0.29，无 OOM 或异常。tmux session 存活，进程正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-progress-check-copy-3.md"
+}

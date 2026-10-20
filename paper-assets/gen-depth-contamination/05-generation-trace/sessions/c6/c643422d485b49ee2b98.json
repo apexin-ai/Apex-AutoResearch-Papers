@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c643422d485b49ee2b98",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp010 ordinal baseline",
+  "task_key": "worker_analysis_exp010_ordinal_baseline_20260513T041948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp010_ordinal_baseline_20260513T041948_result.json",
+    "occurrence": 1,
+    "bytes": 1280,
+    "sha256": "05a4c925ef3ba5ee07a2d473ce5aa9e21eec5683e0e0ecfc50ce9d3f45069394"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-010 完成。结果汇总：\n\n## MAE 对比（越低越好）\n\n| Dataset | OBD-LightGBM | Multiclass LightGBM | Ordinal LogReg | 最佳 ordinal 胜? |\n|---------|-------------|---------------------|----------------|-----------------|\n| Qwen    | 0.9836      | **1.0163**          | **0.9105**     | YES (-10.4%)    |\n| Pythia  | 1.1072      | **1.1399**          | **1.0220**     | YES (-10.3%)    |\n| OLMo    | 1.1469      | **1.1813**          | **1.0352**     | YES (-12.4%)    |\n\n## Kendall's τ-b（越高越好）\n\n| Dataset | OBD-LightGBM | Multiclass | Ordinal LogReg |\n|---------|-------------|------------|----------------|\n| Qwen    | 0.5518      | 0.5367     | **0.5630**     |\n| Pythia  | 0.4745      | 0.4622     | **0.4900**     |\n| OLMo    | 0.4683      | 0.4497     | **0.4656**     |\n\n**结论：success** — ordinal 方法在 MAE 和 τ-b 上全面胜过无序 multiclass，3/3 数据集一致。\n\n注意事项：ordinal_logreg 的 pairwise AUC 最差（~0.48-0.50 vs multiclass 的 ~0.60），说明它的 MAE 优势来自预测分布向中心收缩（类似 mean regression），而非真正更好的 depth 区分能力。OBD-LightGBM 在 MAE 和 AUC 上都优于 standard multiclass，是更均衡的 ordinal 方法。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp010-ordinal-baseline.md"
+}

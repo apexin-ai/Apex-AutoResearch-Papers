@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2d3bb910cc0c84e9fe0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp 009 v3 final harvest",
+  "task_key": "worker_analysis_exp_009_v3_final_harvest_20260517T070309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_009_v3_final_harvest_20260517T070309_result.json",
+    "occurrence": 1,
+    "bytes": 2855,
+    "sha256": "b98833b2a3115be52971813431856caecaa58f1895a9344a329f96e9b2b8f51b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Exp-009 v3 状态报告\n\n### 1. 完成状态：**未完成**\n\nv3 实验在平台重启后因 `python` 不在 PATH（conda 环境未加载）而**立即失败**（每个 log 仅 54 字节，内容为 `python: command not found`）。无进程运行，无 tmux session 存活。\n\n结果来自 v2 运行，v3 没有产生任何新结果。\n\n### 2. 已有结果汇总（v2 产出）\n\n| Ratio | Strategy | Seeds | MMLU (mean±std) | HellaSwag (mean±std) |\n|-------|----------|-------|-----------------|---------------------|\n| 10% | no_filter | 4/5 | 0.6058±0.0002 | 0.6687±0.0006 |\n| 10% | binary_ours | 4/5 | 0.6080±0.0006 | 0.6728±0.0008 |\n| 10% | graduated | 3/5 | 0.6064±0.0015 | 0.6693±0.0017 |\n| 30% | no_filter | 4/5 | 0.6068±0.0008 | 0.6670±0.0016 |\n| 30% | binary_ours | 4/5 | 0.6080±0.0014 | 0.6723±0.0004 |\n| 30% | graduated | 3/5 | 0.6075±0.0006 | 0.6663±0.0012 |\n| 50% | no_filter | 4/5 | 0.6064±0.0015 | 0.6682±0.0004 |\n| 50% | binary_ours | 3/5 | 0.6085±0.0008 | 0.6729±0.0004 |\n| 50% | graduated | 3/5 | 0.6069±0.0001 | 0.6680±0.0001 |\n\n### 3. Graduated vs Binary_ours 差值\n\n| Ratio | MMLU diff | HellaSwag diff |\n|-------|-----------|----------------|\n| 10% | -0.0015 | -0.0035 |\n| 30% | -0.0005 | -0.0059 |\n| 50% | -0.0016 | -0.0049 |\n\nGraduated 在所有 ratio 上均**略逊于** binary_ours。\n\nBinary_ours vs No_filter（过滤收益）：\n\n| Ratio | MMLU diff | HellaSwag diff |\n|-------|-----------|----------------|\n| 10% | +0.0022 | +0.0041 |\n| 30% | +0.0012 | +0.0053 |\n| 50% | +0.0020 | +0.0047 |\n\nBinary 过滤在所有条件下均有正向提升。\n\n### 4. GPU 状态\n\n| GPU | Utilization | Memory |\n|-----|-------------|--------|\n| 0 | 0% | 0/24564 MiB |\n| 1 | 0% | 0/24564 MiB |\n| 2 | 0% | 0/24564 MiB |\n| 3 | 0% | 0/24564 MiB |\n\n4×GPU 完全空闲。\n\n### 5. 缺失数据\n\n| Ratio | Strategy | Missing Seeds |\n|-------|----------|---------------|\n| 10% | no_filter | seed 4 |\n| 10% | binary_ours | seed 4 |\n| 10% | graduated | seed 3, 4 |\n| 30% | no_filter | seed 4 |\n| 30% | binary_ours | seed 4 |\n| 30% | graduated | seed 3, 4 |\n| 50% | no_filter | seed 4 |\n| 50% | binary_ours | seed 3, 4 |\n| 50% | graduated | seed 3, 4 |\n\n总计缺失：32/45 中完成 32 个... 不对，已完成 **32 个结果文件**中有 **32 个**（实际 11+11+10=32）。缺失 **13 个**（每个 ratio 缺 4-5 个）。\n\n### 6. 问题根因与修复\n\n平台重启后 conda 环境未自动激活，导致 `python` 命令不可用。需要在启动脚本中显式 source conda：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n```\n\n或直接用 `/root/miniconda3/bin/python` 作为解释器重新启动缺失 seeds 的实验。\n\n需要我现在修复环境并重启缺失 seeds 的实验吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-009-v3-final-harvest.md"
+}

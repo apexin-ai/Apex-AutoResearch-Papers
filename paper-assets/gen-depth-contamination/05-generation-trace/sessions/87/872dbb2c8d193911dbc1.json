@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "872dbb2c8d193911dbc1",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "agent / loop_12_1778901484.md",
+  "task_key": "loop_12_1778901484",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778901484.md",
+    "occurrence": 1,
+    "bytes": 3773,
+    "sha256": "96db7f188072639921100fd724a32fdc9c7c6d2921f014adb25a00108860991f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T03:17:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westc-26893:cuda:0（gpu_ids=[cuda:0]），不可用其他 GPU\n- 服务器用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不要假设 .venv 存在\n- AutoDL 必须 `source /etc/network_turbo` + 设 SSL 证书环境变量 + `HF_HUB_DISABLE_XET=1`\n- 大模型下载用 ModelScope 不用 HuggingFace（AutoDL 代理下 HF 大文件极慢）\n- exp_012 的 Binoculars performer 模型 ID 已修正为 `allenai/OLMo-1B-0724-hf`（原 ID 404），脚本已修复，不要改回去\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westc-26893，工作目录 `/root/autodl-tmp/gen-depth-contamination`\n- Python：`/root/miniconda3/bin/python`（conda base env，Python 3.12）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 模型路径：Qwen-7B `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-7B`，Qwen-1.5B `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct`\n- 数据：`data_exp004_qwen7b/`（7B 生成数据 5K×6 depth），`data_exp001_pythia/`，`data_exp002_olmo/`，`data_exp017_qwen_cont/`\n- 活跃进程：无（GPU 空闲）\n- Worker 在跑：`worker_diagnose_exp_004_7b_crossscale_20260515T222832`（诊断已过时，exp-004 已成功），`worker_paper_integrate_exp004_20260515T231453`（论文整合 exp-004 结果中）\n\n### 3. 📊 当前状态\n刚完成 exp_004_7b_crossscale 分析：K*=2 在 7B 确认（AUC 1v2=0.618 > θ=0.60），FR-4 Warning 解决。Registry 已更新 conclusion=success + 完整 metrics。飞书结果卡片已发。Director 汇报已发（含 exp-012 分配请求）。\n\n- **DONE**: 19 个实验全部成功（exp-004 从 failed 恢复为 success）\n- **QUEUED**: exp_012_binary_confidence — Binary detector confidence vs true depth Spearman ρ，代码已 dry-run 验证，等 Director 分配 GPU\n- **等待中**: \n  - Director 回复 exp-012 GPU 分配（westc-26893:cuda:0）\n  - Worker `paper_integrate_exp004` 完成论文整合\n  - Worker `diagnose_exp_004` 回调（已过时，可忽略其结果）\n\n### 4. 📋 待办\n- Director 分配 exp_012 → 立即 `submit_on_allocated`，命令已在 registry spec 中，预计 60-90 min\n- exp_012 完成（cron 回调）→ 分析 Spearman ρ + 更新 registry → 派 Worker 整合到论文\n- paper_integrate_exp004 Worker 回调 → 检查修改质量，确认 experiments.tex/discussion.tex 已更新\n- exp_012 + exp_004 论文整合全部完成 → 向 Director 请求 submit_paper_to_review（continue 模式二审）\n- diagnose Worker 回调 → 忽略诊断结论（exp-004 已成功），不做后续动作\n\n### 5. 🎯 战略上下文\n- **核心结论**: K*=2 universality — 跨 5 模型 (1B-7B) × 4 解码策略 × 2 generation mode 全部一致。3 Critical + 全部 Warning 已解决\n- **论文状态**: 审稿 rebuttal 阶段，weak reject / borderline。2+1 claim 结构：C1'(K* characterization) + C3(filtering application)。18 页编译 0 critical warnings。待整合 exp-004 + exp-012 结果\n- **DDL**: ARR 05-25 提交。exp-012 完成 → 论文定稿 → submit_paper_to_review → 二审迭代 (05-17~19) → 最终打磨 (05-20~24)\n- **易踩的坑**:\n  - exp-004 0v1 AUC 0.964 是所有模型中最低的——不要 panic，这是 expected（7B 更 human-like），1v2 仍 >0.60 才是重点\n  - exp-012 Binoculars 使用 OLMo-1B-0724-**hf** 不是 OLMo-1B-0724（后者 404）\n  - memory.md 中 7B 发现还没写入（本 session 被打断），需补：0v1 下降趋势 + freq_entropy 在 7B 首次 top-1 + resume 模式（数据生成与 feature extraction 可解耦恢复）\n  - 论文中 \"1B–1.5B\" 表述需全部更新为 \"1B–7B\"——paper Worker 在做，但需验证\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778901484.md"
+}

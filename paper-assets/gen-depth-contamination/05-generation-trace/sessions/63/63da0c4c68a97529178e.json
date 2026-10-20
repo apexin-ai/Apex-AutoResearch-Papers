@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63da0c4c68a97529178e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 011 openrouter",
+  "task_key": "worker_code_exp_011_openrouter_20260513T100154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_011_openrouter_20260513T100154_result.json",
+    "occurrence": 1,
+    "bytes": 396,
+    "sha256": "5dda8e5873792a7b2bb1df95b33966d6ebe4eaae66ee3745b0f3816cee8b3fdc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- `--help` 参数正确：`--model {gpt-5.5,claude-opus-4-6}`\n- grep 残留检查：唯一匹配是 MODEL_MAP 里的 `\"anthropic/claude-opus-4-6\"`（这是 OpenRouter 的模型 ID，不是旧的 anthropic 库调用），无残留\n- `exp011_analyze.py` 用 `glob(\"exp011_results_*.jsonl\")` + 从 record 读 `model` 字段，自动适配新文件名，不需要改"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-011-openrouter.md"
+}

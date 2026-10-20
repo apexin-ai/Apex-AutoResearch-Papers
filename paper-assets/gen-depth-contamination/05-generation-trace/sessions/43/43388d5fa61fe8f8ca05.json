@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "43388d5fa61fe8f8ca05",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code exp gemma27b c4 setup",
+  "task_key": "worker_code_exp_gemma27b_c4_setup_20260522T075802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_gemma27b_c4_setup_20260522T075802.log",
+    "occurrence": 1,
+    "bytes": 1479475,
+    "sha256": "447966f2565bb73a12db88b25fbed296df06aac7c61b9c4ed1499d421259a2c7"
+  },
+  "statistics": {
+    "messages": 946,
+    "user_turns": 1,
+    "tool_calls": 246,
+    "roles": {
+      "log": 1,
+      "system": 58,
+      "record": 1,
+      "assistant": 343,
+      "tool_call": 246,
+      "tool_result": 246,
+      "result": 50,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 656,
+      "chunks": [
+        {
+          "path": "43388d5fa61fe8f8ca05-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "43388d5fa61fe8f8ca05-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "43388d5fa61fe8f8ca05-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "43388d5fa61fe8f8ca05-part-0004.json",
+          "message_count": 116
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 290,
+      "chunks": [
+        {
+          "path": "43388d5fa61fe8f8ca05-part-0004.json",
+          "message_count": 64
+        },
+        {
+          "path": "43388d5fa61fe8f8ca05-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "43388d5fa61fe8f8ca05-part-0006.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-gemma27b-c4-setup.md"
+}

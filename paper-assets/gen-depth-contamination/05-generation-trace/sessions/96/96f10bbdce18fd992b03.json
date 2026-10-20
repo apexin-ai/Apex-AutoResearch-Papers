@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96f10bbdce18fd992b03",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops pythia69b fix and resubmit",
+  "task_key": "worker_ops_pythia69b_fix_and_resubmit_20260521T021627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pythia69b_fix_and_resubmit_20260521T021627_result.json",
+    "occurrence": 1,
+    "bytes": 738,
+    "sha256": "da2a8683d8b4da45d9d83792b1db07f950044a38f0d36af416d5d49305dc1bc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n```\nQWEN_SCORER_PATH=/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\nPYTHIA69B_MODEL_PATH=/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-6.9b/snapshots/c0e3eee36dc47af0c49f361c74cfe459c09f7f23\nDOWNLOAD_STATUS=ready\n```\n\n**执行摘要：**\n- 残留进程 6 个（PID 390545/390546/390600/390604/390605/390610）已全部 kill -9 清理\n- Pythia-6.9B 已完整下载，无需等待\n- Qwen2.5-1.5B 是 ModelScope 格式路径（`___` 分隔符），模型文件完整（含 model.safetensors）\n- data/exp_pythia69b_c4 已清空重建，results 目录已就绪\n\n可以重新提交带 `--scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B` 的 pipeline 命令。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pythia69b-fix-and-resubmit.md"
+}

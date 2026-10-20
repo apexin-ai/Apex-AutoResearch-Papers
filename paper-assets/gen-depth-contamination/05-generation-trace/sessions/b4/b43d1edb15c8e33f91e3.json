@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b43d1edb15c8e33f91e3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix exp 025 restart",
+  "task_key": "worker_fix_exp_025_restart_20260516T180057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp_025_restart_20260516T180057_result.json",
+    "occurrence": 1,
+    "bytes": 463,
+    "sha256": "8cae237830f1432142758adcd621f699dfc02fdfea62fa269792e6bab7af6bfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n1. **Pythia 路径**: `/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79`\n2. **cuda:3 PID 66243**: 已 kill（kill -9 成功）\n3. **exp-025 新 PID**: 67287\n4. **GPU 占用**: GPU-f0bd05dc（cuda:2）上 PID 67287 占用 3882 MiB\n5. **日志确认正常**: 模型加载成功，已开始 depth 1 生成（2200 docs, batch_size=8），正在推进中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-025-restart.md"
+}

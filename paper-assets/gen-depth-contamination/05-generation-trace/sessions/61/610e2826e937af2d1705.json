@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "610e2826e937af2d1705",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp 14b c4",
+  "task_key": "worker_diagnose_exp_14b_c4_20260518T051051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_14b_c4_20260518T051051_result.json",
+    "occurrence": 1,
+    "bytes": 2022,
+    "sha256": "791a903fb127bb831486b5c176b79875f3aaa66ccf1f5541f1a176cb855cffc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。汇总：\n\n**时间线：**\n- 01:08:58 — 模型加载完成，depth_0 已存在跳过，开始 depth 1\n- 04:01 — depth_1 完成 (2h52m)\n- 06:52 — depth_2 完成 (2h51m)\n- 09:46 — depth_3 完成 (2h54m)\n- 12:39 — depth_4 完成 (2h53m)\n- 12:39 — depth_5 开始\n- ~13:09 — **timeout kill** (depth_5 仅完成 214/1250 batches = 17%)\n\n**已完成：** depth_0 ~ depth_4 各 5000 行全部完成。depth_5 无落盘文件。Scoring 阶段 0% (results 目录不存在，日志中无 Scoring 记录)。\n\n**速率：** 14B 模型 generation ~8.35s/batch，每个 depth (1250 batches) 约 2h53m。\n\n```json\n{\"root_cause\":\"timeout: 12h不够14B模型跑完5 depths generation + 6 depths scoring。generation alone需要~14.4h (5×2h53m)，scoring额外需2-3h，总计约17-18h\",\"error_type\":\"resource\",\"completed_depths\":[0,1,2,3,4],\"partial_depth\":\"depth_5 generation at 17% (214/1250 batches), no file written to disk\",\"estimated_total_hours\":18,\"fix_steps\":[\"增加timeout到24h\",\"pipeline支持resume则可从depth_5断点续跑，省去已完成的depth_0-4 (~11.5h)\",\"或减少num_samples从5000到3000 (总时间降到~11h)\",\"或增大batch_size从4到8 (需验证GPU内存是否够)\"],\"can_auto_fix\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "timeout: 12h不够14B模型跑完5 depths generation + 6 depths scoring。generation alone需要~14.4h (5×2h53m)，scoring额外需2-3h，总计约17-18h",
+              "error_type": "resource",
+              "completed_depths": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "partial_depth": "depth_5 generation at 17% (214/1250 batches), no file written to disk",
+              "estimated_total_hours": 18,
+              "fix_steps": [
+                "增加timeout到24h",
+                "pipeline支持resume则可从depth_5断点续跑，省去已完成的depth_0-4 (~11.5h)",
+                "或减少num_samples从5000到3000 (总时间降到~11h)",
+                "或增大batch_size从4到8 (需验证GPU内存是否够)"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-14b-c4.md"
+}

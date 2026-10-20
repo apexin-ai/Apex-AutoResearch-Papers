@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f905ca2d263782fc1466",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "bugfix deberta json regen",
+  "task_key": "worker_bugfix_deberta-json-regen_20260519T205128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_deberta-json-regen_20260519T205128_result.json",
+    "occurrence": 1,
+    "bytes": 448,
+    "sha256": "b99a1f5365560e9c641486f20855f5b897c5fd5f79a2c621c7a773afc1973bf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已更新。`k_star` 从 1（旧 0-indexed）更正为 **2**（1-indexed）。\n\n逻辑验证：\n- 0v1: ci_lower=0.993 > θ=0.6 → K* ≥ 1\n- 1v2: ci_lower=0.6696 > θ=0.6 → K* ≥ 2\n- 2v3: ci_lower=0.5814 < θ=0.6 → 停止\n\n**K\\* = 2 (1-indexed)**，即 DeBERTa 在 C4 上能可靠区分 depth 0 vs 1 和 depth 1 vs 2，从 depth 2 开始无法区分。Pairwise 指标不变，因为底层 OOF predictions 相同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-deberta-json-regen.md"
+}

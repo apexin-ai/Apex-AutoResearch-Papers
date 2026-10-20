@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a155d58d6194b97a5768",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code olmo1b 10k cuda2",
+  "task_key": "worker_code_olmo1b_10k_cuda2_20260522T200147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_olmo1b_10k_cuda2_20260522T200147_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "8e446a391e2f2d453fb16bf5d392eab774f3992505179c77a4727cd3c67ad26a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动并注册完毕。\n\n**状态汇总：**\n- **exp_id**: `exp_olmo1b_10k`\n- **PID**: 66415\n- **GPU**: cuda:2（6GB 已占用，66% utilization）\n- **Phase 1**: OLMo-1B continuation 生成 depth 1-5（10K docs，batch_size=32，~2.5s/batch）\n- **Phase 2**: Qwen2.5-1.5B-Instruct cross-scoring（自动跟在 Phase 1 后执行）\n- **日志**: `/tmp/exp_olmo1b_10k.log`\n- **数据**: `data/olmo1b_c4_10k/`\n- **结果**: `results/olmo1b_c4_10k/`\n\n估计 Phase 1 每个 depth 约 15 分钟（313 batches × ~3s），5 个 depth 共约 75 分钟；Phase 2 feature extraction + analysis 约 30-40 分钟。总计约 2 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-olmo1b-10k-cuda2.md"
+}

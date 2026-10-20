@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1eae82c1c9e35aec880",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper appendix 10k robustness",
+  "task_key": "worker_paper_appendix_10k_robustness_20260522T141751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_10k_robustness_20260522T141751_result.json",
+    "occurrence": 1,
+    "bytes": 629,
+    "sha256": "a6e0b9fd35c1c923071f67ccc85e8e221eff879a6edda473a9de01c73f3dca15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n**插入位置**：文件末尾，紧接 `\\subsection{Bonferroni-Corrected Confidence Intervals}` 及其表格之后。\n\n**添加内容**：\n- `\\subsection{Cross-Sample Robustness: 5K vs.\\ 10K}`（`\\label{sec:robustness_10k}`）\n- 两段说明文字：第一段交代实验动机（between-sample variability），第二段报告 Pythia-1.4B 结果（K\\*=2 一致，1v2 AUC Δ=-0.036，2v3 near chance），末尾留 pending 占位句\n- `Table~\\ref{tab:robustness_10k}`：6 行表格，Pythia 行填入完整数据，Qwen/LLaMA 5K 行交叉引用 Bonferroni CI 表，10K 行标 *pending*"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-10k-robustness.md"
+}

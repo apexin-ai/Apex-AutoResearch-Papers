@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3dc4f2418e0abdeaef7",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code bootstrap ci 10k",
+  "task_key": "worker_code_bootstrap_ci_10k_20260522T144938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap_ci_10k_20260522T144938_result.json",
+    "occurrence": 1,
+    "bytes": 876,
+    "sha256": "ac7b3e97ad1916d03bbb7a59799f4422d313972bcc5845a6c40c91219e5534ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n## Bootstrap CI 结果\n\n| Case | AUC(1v2) | 95% CI | 99.5% CI (Bonferroni) | Lower > θ=0.60 | Perm p-value | Verdict |\n|------|----------|--------|----------------------|----------------|--------------|---------|\n| **Qwen-cont 10K** | 0.6346 | [0.6282, 0.6409] | [0.6255, 0.6436] | **0.6255 > 0.60** | 0.0001 | **PASS** |\n| **Pythia-1.4B 10K** | 0.6175 | [0.6108, 0.6242] | [0.6078, 0.6273] | **0.6078 > 0.60** | 0.0001 | **PASS** |\n\n两个 case 的 Bonferroni 修正后 99.5% CI lower bound 均超过 θ=0.60，permutation p-value 均为 0.0001（即 10001 次中仅 1 次达到 observed AUC）。\n\nJSON 输出文件：\n- 主脚本输出：`/root/autodl-tmp/gen-depth-contamination/artifacts/borderline_bootstrap_ci.json`（95% CI + permutation）\n- Bonferroni 补充：`/tmp/bonferroni_results.json`（99.5% CI）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bootstrap-ci-10k.md"
+}

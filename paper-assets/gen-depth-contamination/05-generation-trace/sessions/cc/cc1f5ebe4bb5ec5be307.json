@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc1f5ebe4bb5ec5be307",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "audit experiments tables",
+  "task_key": "worker_audit_experiments_tables_20260525T194345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_experiments_tables_20260525T194345_result.json",
+    "occurrence": 1,
+    "bytes": 1162,
+    "sha256": "1433d1066a50814469f415f9032dff72f52c54991e5326ae15a5b59dadf11a89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。~340 个数字已验证，报告保存在 `artifacts/audit_experiments_tables.md`。\n\n**核心发现：**\n\n1. **❌ 需修正** — `experiments_c1.tex:56` 声称 \"> 0.99 at ≤1.5B\" 不准确。仅 Qwen-rw (0.9956) 和 Qwen-cont (0.9972) 超过 0.99；Pythia=0.9722、OLMo=0.9861、Qwen-base=0.9870、Gemma=0.9534 均不满足。建议改为 \"> 0.99 for Qwen-1.5B\" 或 \"> 0.97\"。\n\n2. **⚠️ 表间不一致** — Wiki Qwen-1.5B 的 K\\* 在 `tab_domain_model_kstar` 中报 1（controlled），在 `tab_domain_kstar`（正文内表格）中报 2（raw）。同一模型+domain 出现两个不同 K\\* 值，reviewer 会注意到。\n\n3. **⚠️ 表间不一致** — arXiv Qwen-1.5B 2v3 AUC 在 full table 中为 0.6427，在 in-text table 中为 .644；arXiv Pythia 2v3 在 full table 为 0.6545，in-text 为 .648。两个表使用了不同 source experiment。\n\n**整体评估**: tab_filtering_main、tab_alpha_sweep、tab_crossscorer、tab_pairwise_significance 全部精确匹配。~97% 的数字完全正确或在合理 rounding 范围内。3 个需修正的问题中仅 #1 属于 substantive claim error。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-experiments-tables.md"
+}

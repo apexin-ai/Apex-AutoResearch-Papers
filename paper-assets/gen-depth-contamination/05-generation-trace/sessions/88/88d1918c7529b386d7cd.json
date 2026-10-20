@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88d1918c7529b386d7cd",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check olmo arxiv progress",
+  "task_key": "worker_check_olmo_arxiv_progress_20260524T105749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_olmo_arxiv_progress_20260524T105749_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "135c6f263e801840bce6e09c54d9efec693dd8093ede022324f7b4b89c4ce28a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验已完成**，耗时 365.8s，结果如下：\n\n### OLMo-1B arXiv Cross-Scorer (Scorer: Qwen2.5-1.5B-Instruct)\n\n| Pair | AUC | 95% CI | p_perm | Sig? | CI > θ=0.6? |\n|------|-----|--------|--------|------|-------------|\n| 0v1 | 0.9994 | [0.9990, 0.9997] | 0.0001 | **SIG** | **PASS** |\n| 1v2 | 0.4996 | [0.4828, 0.5166] | 0.5100 | n.s. | FAIL |\n| 2v3 | 0.4971 | [0.4796, 0.5138] | 0.6267 | n.s. | FAIL |\n| 3v4 | 0.5091 | [0.4922, 0.5262] | 0.1488 | n.s. | FAIL |\n| 4v5 | 0.5360 | [0.5183, 0.5533] | 0.0001 | **SIG** | FAIL |\n\n**K\\* = 1**（cross-scorer），与 self-scoring 的 K\\*=1 一致。其他 arXiv generators（Qwen/LLaMA/Mistral/Pythia）的 K\\*=3。\n\nOLMo 在 arXiv 域上只有 0v1 能被可靠区分（AUC≈1.0），depth 1 之后的代际差异完全消失。4v5 虽然 permutation 显著但 AUC 仅 0.536、CI 远未达到 θ=0.6 阈值，不满足 PASS 条件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-olmo-arxiv-progress.md"
+}

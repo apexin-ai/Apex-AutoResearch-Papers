@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70ce5c34ed7fe521dc23",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing related work probing fix",
+  "task_key": "worker_writing_related-work-probing-fix_20260514T045514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_related-work-probing-fix_20260514T045514_result.json",
+    "occurrence": 1,
+    "bytes": 739,
+    "sha256": "045b93b16cdc503515312a01888dc0ba6385272ef72b6f551df8218264615914"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。摘要：\n\n**related_work.tex**:\n- **Ordinal Classification 段落**：将原来独立引用 CORAL 的结尾句改写，加入 Frank & Hall (2001) 作为 ordinal-to-binary decomposition 的开创性工作，并将 OBD head 的设计与之关联\n- **新增 Probing Classifiers 段落**（3 句，位于 Ordinal Classification 和 Data Selection 之间）：引用 Alain & Bengio (2017)、Conneau et al. (2018)、Belinkov (2022)，说明 neural probe 实验遵循该范式，probe 的有限容量确保可区分性来自表征本身而非 probe 学到的新信息\n\n**references.bib**：新增 4 条 bib entry — `alain2017understanding`、`conneau2018probing`、`belinkov2022probing`、`frank2001ordinal`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-related-work-probing-fix.md"
+}

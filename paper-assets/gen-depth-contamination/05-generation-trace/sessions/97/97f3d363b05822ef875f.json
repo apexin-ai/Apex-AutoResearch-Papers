@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97f3d363b05822ef875f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra check exp001 status",
+  "task_key": "worker_infra_check_exp001_status_20260513T001347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_exp001_status_20260513T001347_result.json",
+    "occurrence": 1,
+    "bytes": 1718,
+    "sha256": "a1bfb106ca31e526d000730ee4297f881337cab390ad35b9962b16c0c4818a2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-001 状态汇报\n\n### 1. 状态：**Completed**\n\nPID 17138 已退出，无 run_pipeline 进程在运行。所有结果文件已生成（时间戳 May 13 07:13）。\n\n### 2. GPU：**空闲**\n\n`0 %, 0 MiB / 24564 MiB` — GPU 利用率 0%，显存未占用。\n\n### 3. 数据文件 ✅ 完整\n\n`data_exp001_pythia/` 下 depth_0 ~ depth_5.jsonl 全部存在，外加 features.csv：\n\n| 文件 | 大小 |\n|------|------|\n| depth_0.jsonl | 4.3 MB |\n| depth_1.jsonl | 4.6 MB |\n| depth_2.jsonl | 4.6 MB |\n| depth_3.jsonl | 4.6 MB |\n| depth_4.jsonl | 4.6 MB |\n| depth_5.jsonl | 4.6 MB |\n| features.csv | 8.0 MB |\n\n### 4. 结果\n\n**Pairwise AUC（相邻深度）：**\n\n| 对比 | AUC | 判断 |\n|------|-----|------|\n| 0 vs 1 | **0.9932** ± 0.0007 | 极易区分 |\n| 1 vs 2 | **0.6539** ± 0.0069 | 可区分 |\n| 2 vs 3 | 0.5515 ± 0.0137 | 接近随机 |\n| 3 vs 4 | 0.5153 ± 0.0084 | ≈ 随机 |\n| 4 vs 5 | 0.5135 ± 0.0078 | ≈ 随机 |\n\n**K\\* = 2**（AUC > 0.60 的最大深度）\n\n**Pairwise JSD：**\n\n| 对比 | JSD |\n|------|-----|\n| 0 vs 1 | 0.2142 |\n| 1 vs 2 | 0.0140 |\n| 2 vs 3 | 0.0051 |\n| 3 vs 4 | 0.0033 |\n| 4 vs 5 | 0.0031 |\n\n**Ordinal Classification（6-class, 5-fold CV）：**\n- MAE = 1.14\n- Accuracy = 38.3%\n\n**Top-5 Feature Importance：**\n1. freq_entropy (9207)\n2. surp_std (9041)\n3. surp_d1_skew (8457)\n4. surp_d2_mean (8173)\n5. surp_d1_mean (8074)\n\n### 总结\n\n实验已完成，GPU 完全空闲。核心发现：depth 0→1 信号极强（AUC 0.99），depth 1→2 仍可区分（AUC 0.65），depth ≥ 2 后饱和（AUC ≈ 0.51，接近随机猜测）。JSD 趋势一致——0→1 跳跃式下降后快速收敛。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-exp001-status.md"
+}

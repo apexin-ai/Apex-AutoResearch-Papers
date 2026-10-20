@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b690e847760e209a073",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check running experiments",
+  "task_key": "worker_check_running_experiments_20260524T095747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_running_experiments_20260524T095747_result.json",
+    "occurrence": 1,
+    "bytes": 1263,
+    "sha256": "585f8cdbad591d702fd60714c809197f5464672e3c9bb6e5ff109b5971881d6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态\n\n- **arxiv_multi_source**: **DONE** | PID 165918 已退出\n  - K* = 3（max depth with AUC > 0.60）\n  - Pairwise AUC: 0v1=0.9948, 1v2=0.8581, 2v3=0.6436, 3v4=0.544, 4v5=0.5299\n  - Pairwise JSD: 0v1=0.203, 1v2=0.077, 2v3=0.020, 3v4=0.008, 4v5=0.008\n  - Ordinal 6-class: MAE=0.826, Acc=47.7%\n  - Top features: freq_entropy, surp_std, surp_mean\n\n- **code_domain_olmo**: **RUNNING** | 已运行 35min | depth 3 生成中 180/344 batches (52%)\n  - depth 0-2 已完成，depth 3 进行中，还剩 depth 4-5\n  - 速度 ~3.2s/it，depth 3 剩余约 9min，整体预计还需 ~40-50min\n\n- **gemma27b_filtering**: **RUNNING** | 已运行 11min | 3 strategies × 3 seeds = 9 runs\n  - 已完成: no_filter_seed42, binary_ours_seed42, graduated_a09_seed42 (3/9)\n  - 进行中: no_filter_seed123（训练完成，eval 加载中）(4/9)\n  - 剩余: 5 runs，每 run ~4min，预计还需 ~20-25min\n\n## GPU 状态\n```\ncuda:0:  36% util | 12,139 / 97,887 MiB  (arxiv 已完成，残留显存或其他进程)\ncuda:1:  85% util | 14,308 / 97,887 MiB  (code_domain_olmo 活跃)\ncuda:2:  36% util |  8,729 / 97,887 MiB  (无实验，可能有其他进程)\ncuda:3:  35% util |  8,729 / 97,887 MiB  (gemma27b_filtering 活跃)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-running-experiments.md"
+}

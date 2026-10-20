@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7911efe2d075808316dd",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix deberta code cuda3 prep",
+  "task_key": "worker_fix_deberta_code_cuda3_prep_20260520T052907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_deberta_code_cuda3_prep_20260520T052907_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "256e7093d6aeae15083ef0bcb4f83c892129f541cd78def540888cb10e30350b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary:\n\n**GPU 状态**\n| GPU | Memory Used | Status |\n|-----|-------------|--------|\n| 0 | 0 MiB | idle |\n| 1 | 0 MiB | idle |\n| 2 | 3257 MiB | OLMo SF-4 running |\n| **3** | **0 MiB** | **空闲，可用** |\n\n**清理完成**\n- tmux session `exp_deberta_code_qwen1b5` 已 kill\n- `results/exp_deberta_code_qwen1b5/` 已删除\n\n**OOM 修复**（3 处改动）\n- 新增 `EVAL_BS = 8`（line 45）\n- val DataLoader 改用 `EVAL_BS`（line 98）\n- eval 前加 `torch.cuda.empty_cache()`（line 122, 131）\n- 语法验证通过\n\n**推荐重启命令**（CUDA_VISIBLE_DEVICES=3）:\n```bash\nCUDA_VISIBLE_DEVICES=3 bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_code.py'\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-deberta-code-cuda3-prep.md"
+}

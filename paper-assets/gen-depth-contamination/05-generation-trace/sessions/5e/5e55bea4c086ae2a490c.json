@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e55bea4c086ae2a490c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ssh check v1 data",
+  "task_key": "worker_ssh_check_v1_data_20260525T155720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_v1_data_20260525T155720_result.json",
+    "occurrence": 1,
+    "bytes": 1711,
+    "sha256": "4830e91c1c31f661c5fae9a2f8f11b209365fc0405ac00eea4b590d05bc91d75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### 1. v1 数据目录和文件清单\n\n**目录**: `results/exp_014_naturalistic/`\n\n| 文件 | 大小 | 行数 |\n|------|------|------|\n| `cc_sample.jsonl` | 4.7MB | 5,000 |\n| `cc_predictions.csv` | 481KB | 5,001 (含 header) |\n| `cc_features.csv` | 1.3MB | 5,001 (含 header) |\n| `naturalistic_validation_results.json` | 4.8KB | — |\n\n**训练数据**: `data_exp016_qwen_base/` — 6 个 depth jsonl + `features.csv`（30,001 行），完整。\n\n### 2. 原始 CC 文本数据\n**有。** `cc_sample.jsonl`，5,000 条，每条含 `text` + `doc_id`，内容是真实网页文本（Common Crawl）。\n\n### 3. cc_predictions.csv\n**有。** 列：`doc_id, binary_pred, ai_probability, ordinal_pred, depth_0_prob~depth_5_prob, yules_k, mean_word_len, vocab_growth_rate`\n\n### 4. cc_features.csv（15D）\n**有。** 列：`doc_id, surp_mean, surp_std, surp_skew, surp_kurt, surp_d1_mean, surp_d1_std, surp_d1_skew, surp_d2_mean, surp_d2_std, ttr, hapax_ratio, self_bleu, freq_kurtosis, freq_entropy, low_freq_ratio`\n\n### 5. C4 validation streaming\n**不可用。** 30s 超时，AutoDL 代理连 HF Hub 太慢，无法完成初始化。\n\n### 6. v1 分析结果（naturalistic_validation_results.json）\n完整保留，关键指标：binary_oof_auc=0.9919，CC 中 depth_0 占 92.9%（4645/5000），freq_entropy_rho=-0.78，ttr_rho=0.145。\n\n**v2 状态**：`data_exp014_v2/` 空目录，`results/exp014_v2/run.log` 卡在枚举 fineweb 文件列表，未产出任何数据。\n\n### 建议：方案 A\n\nv1 数据完整可复用（原始文本 + predictions + features + 分析结果全在），无需重新采集。C4 streaming 在 AutoDL 上不可行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-v1-data.md"
+}

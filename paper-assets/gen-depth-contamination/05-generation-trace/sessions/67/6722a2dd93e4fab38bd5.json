@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6722a2dd93e4fab38bd5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp020 greedy anomaly",
+  "task_key": "worker_analysis_exp020_greedy_anomaly_20260516T085648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp020_greedy_anomaly_20260516T085648_result.json",
+    "occurrence": 1,
+    "bytes": 3191,
+    "sha256": "8b277722fc01cbee75ea7d01d5d4a11c7f2e9212edc087e1d7077828971645e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已经足够了。以下是结构化调查结果：\n\n---\n\n## exp-020 Pythia Greedy AUC=0.8838 调查报告\n\n### 1. 文本质量：确认存在严重 repetition collapse\n\n| 指标 | depth_0 | depth_1 | depth_2 |\n|------|---------|---------|---------|\n| 4-gram 重复率 | 0.0132 | **0.7237** | **0.8063** |\n| TTR | 0.7213 | **0.1875** | **0.1444** |\n\n**depth_1 样本**（doc_id=2）：`\"He then married Mary (Hoffman) Meisner, who died in 1856. He then married Mary (Hoffman) Meisner, who died in 1859. He then married...\"`\n\n**depth_2 样本**（doc_id=0）：`\"The road was closed again at around 10.30am. The road was closed again at around 11.30am. The road was closed again at around 1.30pm...\"`\n\ndepth_1 已经高度退化，depth_2 进一步恶化——Pythia-1.4B greedy continuation 模式产生了 **级联重复坍塌**。\n\n### 2. 参数：正确\n\n脚本使用 `--no_sample`（line 627 → `store_false` → `do_sample=False`），`--generation_mode continuation`。代码中 `model.generate()` 正确传入 `do_sample=do_sample`。无温度/top_p 意外覆盖。参数与预期一致。\n\n### 3. 数据泄漏\n\n| 统计项 | 值 |\n|--------|-----|\n| depth_1 内部重复 | 1/5000 |\n| depth_2 内部重复 | 75/5000 |\n| depth_1∩depth_2 hash重叠 | 36 |\n\n36 条相同文本（greedy 确定性 → 相同 prefix 产出相同 continuation），但比例 <1%，不是 AUC 异常的主因。\n\nGroupKFold 使用 `doc_id` 分组（line 465），同一 doc_id 的不同 depth 不会跨 fold，**分组逻辑正确，无数据泄漏**。\n\n### 4. 特征分布（depth_1 vs depth_2 Cohen's d 排名）\n\n| 特征 | |Cohen's d| | depth_1 mean | depth_2 mean |\n|------|-----------|-------------|-------------|\n| **hapax_ratio** | **1.056** | 0.316 | 0.089 |\n| **low_freq_ratio** | **1.029** | 0.391 | 0.128 |\n| surp_skew | 0.468 | 4.356 | 5.133 |\n| surp_kurt | 0.433 | 25.44 | 34.57 |\n| surp_mean | 0.416 | 0.580 | 0.420 |\n| ttr | 0.404 | 0.187 | 0.130 |\n\n前两个特征 (`hapax_ratio`, `low_freq_ratio`) 效应量 >1.0，直接反映词汇多样性从 depth_1→depth_2 的进一步坍塌。\n\n### 5. 初步诊断\n\n**根因：Pythia-1.4B greedy continuation 产生级联重复坍塌，depth_1→depth_2 的词汇多样性显著下降被 hapax/low_freq 特征完美捕获。**\n\n机制：\n- depth_0（人类文本）→ depth_1：greedy 产生严重重复（TTR 从 0.72 降到 0.19），AUC=0.999\n- depth_1 → depth_2：重复进一步加剧（TTR 从 0.19 降到 0.14），AUC=0.884\n- depth_2+ → depth_3/4/5：已触底（全部退化为近乎纯重复循环），AUC≈0.52（随机水平）\n\n**这不是 bug，是 greedy decoding 在弱模型上的已知特性**。1v2 AUC=0.8838 测量的是「重复程度是否还在恶化」，而非 nucleus 实验中测量的「微妙分布漂移」。K*=2 结论不受影响——2v3 已饱和（AUC=0.53）。\n\n**建议**：在论文/报告中将 greedy 结果标注为\"repetition-dominated regime\"，与 nucleus 结果分开讨论。greedy config 的价值在于展示 K* 对 repetition collapse 的鲁棒性（K*=2 不变），而非 AUC 绝对值的对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp020-greedy-anomaly.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d34782a335de5b75ffce",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp 003 final",
+  "task_key": "worker_analysis_exp_003_final_20260513T202333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_003_final_20260513T202333_result.json",
+    "occurrence": 1,
+    "bytes": 1030,
+    "sha256": "6793d84b0ae7816c58640d178e0cbdaf356db9f870d4a9b3688b1f76eb5003c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。汇总：\n\n## exp_003_decoding_ablation 最终结果\n\n| Config | 解码策略 | 1v2 AUC | K*(θ=0.60) |\n|--------|---------|---------|------------|\n| 1 | Greedy | 0.6893 | **2** |\n| 2 | Nucleus p=0.9, T=1.0 | 0.6866 | **2** |\n| 3 | Nucleus p=0.95, T=0.7 | 0.6887 | **2** |\n| 4 | Nucleus p=0.95, T=1.2 | 0.7039 | **2** |\n\n**结论: success** — 4 种解码策略 K* 一致为 2，支持 D016 universality narrative。\n\n关键发现：\n- Config 4 (高温度 T=1.2) 1v2 AUC 最高 (0.7039)，跨所有实验排名第一\n- 4 个 config 的 1v2 AUC 极度稳定，极差仅 0.0173\n- θ-sensitivity 在 θ∈{0.55, 0.60, 0.65} 时 4 config 完全一致；仅 θ=0.70 时 Config 4 的 K* 多保留 1 级 (K*=2 vs 1)\n- 特征排名 Spearman ρ 范围 [0.53, 0.91]，top features 一致为 hapax_ratio, ttr, surp_skew\n- 跨实验 D016 检验通过：全部 8 个 config/model 组合的 1v2 AUC 均 > 0.60\n\n分析产物已保存至 `artifacts/exp003_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-003-final.md"
+}

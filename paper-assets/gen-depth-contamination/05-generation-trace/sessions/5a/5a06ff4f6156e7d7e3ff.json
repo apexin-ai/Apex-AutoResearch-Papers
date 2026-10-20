@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a06ff4f6156e7d7e3ff",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper d107 abstract appendix discussion",
+  "task_key": "worker_paper_d107_abstract_appendix_discussion_20260522T220435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d107_abstract_appendix_discussion_20260522T220435_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "e2614607047cf4baa0ae819f084905145f491dffdcccfffc9f0b803ef7f56015"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成。汇总：\n\n| 文件 | 行号 | 旧值 | 新值 |\n|------|------|------|------|\n| `main.tex` | 38 | `four retain significance` | `three retain significance` |\n| `main.tex` | 38 | `the two marginal cases` | `the three marginal cases` |\n| `appendix_extended.tex` | 169 | `.6539` / `.0046` / `[.641,\\,.667]` / `\\checkmark` | `.6074` / `.0050` / `[.593,\\,.621]` / `$\\times$` |\n| `conclusion.tex` | 9 | `four of six` | `three of six` |\n| `conclusion.tex` | 9 | `two marginal cases` | `three marginal cases` |\n| `discussion.tex` | 20 (新增) | — | self-scoring inflation 量化段落 |\n\n新增段落无破折号违规（仅含复合词连字符 cross-family、cross-scoring、cross-scored、self-scored、deployment-realistic）。OLMo 行在 K*=1 分组（line 176），不涉及本次 Pythia 修正范围。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d107-abstract-appendix-discussion.md"
+}

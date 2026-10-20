@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bd89b555e09b86da26d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research exp014 feasibility",
+  "task_key": "worker_research_exp014_feasibility_20260518T045543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_exp014_feasibility_20260518T045543_result.json",
+    "occurrence": 1,
+    "bytes": 1775,
+    "sha256": "4d525f7e868ff6c82525cbc4176837c922be8f979b3c0cb4d16dbe51338d371e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-014 可行性评估\n\n### 实验概要\n- **描述**: Common Crawl 2025/2026 snapshot 做 depth 预测，与 AlignScore + vocabulary richness 做 correlation\n- **支撑 claim**: C1 (K* characterization)\n- **优先级**: P2（最低）\n- **依赖**: exp-005 (已完成)\n\n### 资源现状\n\n| 资源 | 状态 |\n|------|------|\n| 磁盘 | 212GB 空闲 ✅ |\n| GPU | 4× 4090D 全部空闲 ✅ |\n| 已缓存模型 | Pythia-1.4B, Qwen-7B ✅ |\n| 已缓存数据 | C4, Wikipedia, arXiv ✅ |\n| Common Crawl 网络 | **734 B/s — 基本不可用** ❌ |\n| AlignScore | 未安装，需下载 ~1.7GB 模型 |\n\n### 关键阻碍\n\n1. **网络瓶颈（showstopper）**: 服务器到 Common Crawl CDN 下载速度 ~734 B/s。即使只下载 1GB 样本也需 ~16 天。HF 上没有原始 CC 2025/2026 snapshot 数据集。\n\n2. **概念循环风险**: CC 野生数据没有 ground-truth depth 标签。实验只能证明 \"模型预测的高 depth 文本质量更低\"，reviewer 可以反驳这只是在检测低质量文本而非真实递归深度。验证力度有限。\n\n3. **时间约束**: EMNLP ARR deadline **May 25（7 天后）**。paper_framing.md 的核心 claims 和 evidence 均未引用 exp-014。24 个实验全部完成，证据链已经很强（8 models × 3 domains × 4 decoding strategies + cross-model transfer + neural probe）。\n\n### 判断: **不建议执行**\n\n- **可行性**: 因网络问题，不可行（除非找到 CC 数据的国内镜像或替代来源）\n- **必要性**: P2 + 不在 paper framing 中 + deadline 7 天 → 边际价值极低\n- **建议**: 在论文 Future Work 中提及 naturalistic validation 方向，deadline 后有余力再做\n- **不需要 Director 审批**（建议直接 skip）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-exp014-feasibility.md"
+}

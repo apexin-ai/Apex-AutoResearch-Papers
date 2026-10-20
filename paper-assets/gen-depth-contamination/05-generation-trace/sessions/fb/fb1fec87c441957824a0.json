@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb1fec87c441957824a0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 progress check",
+  "task_key": "worker_infra_exp006_progress_check_20260513T223453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006_progress_check_20260513T223453_result.json",
+    "occurrence": 1,
+    "bytes": 757,
+    "sha256": "5a09bd871b6734870569a77d25d36f2475741f3055f85f81b77940d8335d2f55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-006 Graduated Filtering 进度报告\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 46129 存活，已运行 1h32m |\n| **进度** | **[3/50]** `no-filter_s456` 训练中，step 310/2814 (11%) |\n| **已完成** | 2/50 runs (4%) |\n| **速度** | ~1.30 it/s，每 run 训练 ~36min + MMLU 评估 ~8min ≈ **44min/run** |\n\n### 时间估算\n\n- 实际每 run 耗时 **44min**（原估计 25min，偏差 76%）\n- 总预计耗时：50 × 44min ≈ **36.7h**（原估计 20.8h）\n- 已耗时：~1.5h\n- **剩余：~35h**\n\n### 注意\n\n结果输出路径为 `/root/autodl-tmp/gen-depth-contamination/outputs/exp006/`（非 artifacts 目录）。Run 1 adapter 已保存到 `outputs/exp006/no-filter_s42/final_adapter`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-progress-check.md"
+}

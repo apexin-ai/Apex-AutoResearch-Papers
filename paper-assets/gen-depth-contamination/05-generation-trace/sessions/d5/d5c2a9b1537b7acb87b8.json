@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5c2a9b1537b7acb87b8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 004 fix",
+  "task_key": "worker_code_exp-004-fix_20260514T032216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-004-fix_20260514T032216_result.json",
+    "occurrence": 1,
+    "bytes": 1007,
+    "sha256": "79f9c8856d98b4ee8ad771dd384188a202227478db46dd3b02e3cd1096766703"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改已完成，syntax check 通过。\n\n### 修改摘要\n\n| 参数 | 修改前 | 修改后 |\n|------|--------|--------|\n| `--n_docs` | 5000 | **1000** |\n| `--max_depth` | 5 | **3** |\n| `--data_dir` | `data_exp004` | **`data_exp004_qwen7b`** |\n| `--results_dir` | `results_exp004` | **`results_exp004_qwen7b`** |\n\n### 无需修改的项\n- **`--generation_mode`**: 已默认 `continuation`，`generate_depth_chain` 中 continuation 逻辑正确（截取前半 tokens 让模型续写）\n- **`--model_path`**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-7B-Instruct/` 直接包含 `config.json` + 4 个 safetensors，路径正确\n- **`--batch_size`**: 已默认 1\n- **`--quantize`**: 已有 `4bit` 选项作为 fallback，默认 fp16\n\n### 显存估算\n- **fp16**: ~14GB 模型权重 + ~8GB KV cache/generation buffer → 单卡 24GB 可行（batch_size=1）\n- **4bit (NF4)**: ~4GB 模型权重 + ~8GB buffer → 单卡 ~12GB，余量充裕\n\n### Syntax check: `SYNTAX_OK`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-004-fix.md"
+}

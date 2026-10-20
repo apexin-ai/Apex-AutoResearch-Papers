@@ -1,0 +1,1449 @@
+{
+  "schema_version": "1.0",
+  "id": "62a03ea26e66098818f1",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "research bib verify r9m2",
+  "task_key": "worker_research_bib-verify-r9m2_20260519T134020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bib-verify-r9m2_20260519T134020.log",
+    "occurrence": 1,
+    "bytes": 91606,
+    "sha256": "a9a504fd8cf73b0665e61044eda1a1efe311cea2c51a9f734c5ca99ee5e20cdb"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__read_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "e92af031-71f3-4f43-8fe4-940504b5dc11",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779201000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "86da427f-b004-4fce-8e75-2e195c8361d9",
+                "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "我先读取现有的 bib 文件，同时并行搜索三个条目的信息。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "2114090e-77c0-4bf7-8d05-6b8519a32089",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01153RS2QhLu81zenpNsxRcQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11974,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11974
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V2TF4uCKGE3oTCedVedCor",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "4da59032-da7d-4f06-b0ab-795423e5e27d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01153RS2QhLu81zenpNsxRcQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11974,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11974
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T13:40:33.272Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V2TF4uCKGE3oTCedVedCor",
+              "type": "tool_result",
+              "content": "1\t% === References for gen-depth-contamination ===\n2\t% Source: literature_map.yaml — verified 2026-05-15\n3\t\n4\t% === Must-Cite ===\n5\t\n6\t@inproceedings{drayson2025,\n7\t  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n8\t  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n9\t  booktitle={Proceedings of EMNLP},\n10\t  year={2025},\n11\t  url={https://arxiv.org/abs/2502.15654}\n12\t}\n13\t\n14\t@inproceedings{schaeffer2025position,\n15\t  title={Position: Model Collapse Does Not Mean What You Think},\n16\t  author={Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Anirudh and Koyejo, Sanmi},\n17\t  booktitle={Proceedings of ICML},\n18\t  year={2025},\n19\t  url={https://arxiv.org/abs/2503.03150}\n20\t}\n21\t\n22\t@inproceedings{kazdan2025collapse,\n23\t  title={Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World},\n24\t  author={Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David and Koyejo, Sanmi},\n25\t  booktitle={Proceedings of ICML},\n26\t  year={2025},\n27\t  url={https://arxiv.org/abs/2410.16713}\n28\t}\n29\t\n30\t@inproceedings{mitchell2023detectgpt,\n31\t  title={{DetectGPT}: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n32\t  author={Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n33\t  booktitle={Proceedings of ICML},\n34\t  year={2023}\n35\t}\n36\t\n37\t% === Should-Cite ===\n38\t\n39\t@article{basani2026diveye,\n40\t  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},\n41\t  author={Basani, Advik Raj and Chen, Pin-Yu},\n42\t  journal={Transactions on Machine Learning Research},\n43\t  issn={2835-8856},\n44\t  year={2026},\n45\t  url={https://arxiv.org/abs/2509.18880}\n46\t}\n47\t\n48\t@inproceedings{zawalski2026codec,\n49\t  title={{CoDeC}: Detecting Data Contamination in {LLM}s via In-Context Learning},\n50\t  author={Zawalski, Micha{\\l} and Boubdir, Meriem and Ba{\\l}azy, Klaudia and Nushi, Besmira and Ribalta, Pablo},\n51\t  booktitle={Proceedings of ICLR},\n52\t  year={2026},\n53\t  url={https://arxiv.org/abs/2510.27055}\n54\t}\n55\t\n56\t@inproceedings{zhang2024minkpp,\n57\t  title={Min-{K}\\%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models},\n58\t  author={Zhang, Jingyang and Zheng, Jingwei and Gao, Jing and Miao, Chunyan},\n59\t  booktitle={Proceedings of EMNLP},\n60\t  year={2024}\n61\t}\n62\t\n63\t@article{shumailov2024collapse,\n64\t  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n65\t  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n66\t  journal={Nature},\n67\t  volume={631},\n68\t  pages={755--759},\n69\t  year={2024}\n70\t}\n71\t\n72\t@inproceedings{alemohammad2024selfconsuming,\n73\t  title={Self-Consuming Generative Models Go {MAD}},\n74\t  author={Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G.},\n75\t  booktitle={Proceedings of ICLR},\n76\t  year={2024}\n77\t}\n78\t\n79\t@inproceedings{bertrand2024stability,\n80\t  title={On the Stability of Iterative Retraining of Generative Models on their own Data},\n81\t  author={Bertrand, Quentin and Bose, Avishek Joey and Duplessis, Alexandre and Jiralerspong, Marco and Gidel, Gauthier},\n82\t  booktitle={Proceedings of ICLR},\n83\t  year={2024},\n84\t  url={https://arxiv.org/abs/2310.00429}\n85\t}\n86\t\n87\t@inproceedings{dohmatob2024model,\n88\t  title={A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n89\t  author={Dohmatob, Elvis and Feng, Yunzhen and Yang, Pin-Yu and Charton, Francois and Kempe, Julia},\n90\t  booktitle={Proceedings of ICML},\n91\t  year={2024}\n92\t}\n93\t\n94\t@inproceedings{xie2023dsir,\n95\t  title={Data Selection for Language Models via Importance Resampling},\n96\t  author={Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n97\t  booktitle={Advances in Neural Information Processing Systems},\n98\t  year={2023}\n99\t}\n100\t\n101\t@inproceedings{tirumala2023d4,\n102\t  title={{D4}: Improving {LLM} Pretraining via Document De-Duplication and Diversification},\n103\t  author={Tirumala, Kushal and Markosyan, Aram and Zettlemoyer, Luke and Aghajanyan, Armen},\n104\t  booktitle={Advances in Neural Information Processing Systems},\n105\t  year={2023}\n106\t}\n107\t\n108\t@inproceedings{xie2023doremi,\n109\t  title={{DoReMi}: Optimizing Data Mixtures Speeds Up Language Model Pretraining},\n110\t  author={Xie, Sang Michael and Pham, Hieu and Dong, Xuanyi and Du, Nan and Liu, Hanxiao and Lu, Yifeng and Liang, Percy and Le, Quoc V. and Ma, Tengyu and Yu, Adams Wei},\n111\t  booktitle={Advances in Neural Information Processing Systems},\n112\t  year={2023}\n113\t}\n114\t\n115\t@inproceedings{hans2024binoculars,\n116\t  title={Spotting {LLMs} With Binoculars},\n117\t  author={Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n118\t  booktitle={Proceedings of ICML},\n119\t  year={2024}\n120\t}\n121\t\n122\t% === Probing Classifiers ===\n123\t\n124\t@inproceedings{alain2017understanding,\n125\t  title={Understanding Intermediate Layers Using Linear Classifier Probes},\n126\t  author={Alain, Guillaume and Bengio, Yoshua},\n127\t  booktitle={ICLR Workshop},\n128\t  year={2017}\n129\t}\n130\t\n131\t@article{belinkov2022probing,\n132\t  title={Probing Classifiers: Promises, Shortcomings, and Advances},\n133\t  author={Belinkov, Yonatan},\n134\t  journal={Computational Linguistics},\n135\t  volume={48},\n136\t  number={1},\n137\t  pages={207--219},\n138\t  year={2022}\n139\t}\n140\t\n141\t% === Model Collapse Avoidability ===\n142\t\n143\t@inproceedings{bao2024fast,\n144\t  title={{Fast-DetectGPT}: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature},\n145\t  author={Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n146\t  booktitle={Proceedings of ICLR},\n147\t  year={2024},\n148\t  url={https://arxiv.org/abs/2310.05130}\n149\t}\n150\t\n151\t@inproceedings{frank2001ordinal,\n152\t  title={A Simple Approach to Ordinal Classification},\n153\t  author={Frank, Eibe and Hall, Mark},\n154\t  booktitle={Proceedings of ECML},\n155\t  pages={145--156},\n156\t  year={2001}\n157\t}\n158\t\n159\t% === Beyond-Binary Detection ===\n160\t\n161\t@inproceedings{cheng2025beyond,\n162\t  title={Beyond Binary: Towards Fine-Grained {LLM}-Generated Text Detection via Role Recognition and Involvement Measurement},\n163\t  author={Cheng, Zihao and Zhou, Li and Jiang, Feng and Wang, Benyou and Li, Haizhou},\n164\t  booktitle={Proceedings of the ACM Web Conference (WWW)},\n165\t  year={2025},\n166\t  url={https://arxiv.org/abs/2410.14259}\n167\t}\n168\t\n169\t@article{mehta2025beyond,\n170\t  title={Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models},\n171\t  author={Mehta, Sushant},\n172\t  journal={arXiv preprint arXiv:2511.17602},\n173\t  year={2025},\n174\t  url={https://arxiv.org/abs/2511.17602}\n175\t}\n176\t\n177\t% === AI-Generated Content Prevalence ===\n178\t\n179\t@inproceedings{sun2025aigt,\n180\t  title={Are We in the {AI}-Generated Text World Already? Quantifying and Monitoring {AIGT} on Social Media},\n181\t  author={Sun, Zhen and Zhang, Zongmin and Shen, Xinyue and Zhang, Ziyi and Liu, Yule and Backes, Michael and Zhang, Yang and He, Xinlei},\n182\t  booktitle={Proceedings of ACL},\n183\t  year={2025},\n184\t  url={https://arxiv.org/abs/2412.18148}\n185\t}\n186\t\n187\t@article{spennemann2025quantifying,\n188\t  title={Delving into: the Quantification of {AI}-Generated Content on the Internet (Synthetic Data)},\n189\t  author={Spennemann, Dirk H. R.},\n190\t  journal={arXiv preprint arXiv:2504.08755},\n191\t  year={2025},\n192\t  url={https://arxiv.org/abs/2504.08755}\n193\t}\n194\t\n195\t% === New entries (added 2026-05-16, Round 4 reviewer) ===\n196\t\n197\t@inproceedings{dohmatob2025strong,\n198\t  title={Strong Model Collapse},\n199\t  author={Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n200\t  booktitle={Proceedings of ICLR},\n201\t  year={2025},\n202\t  url={https://arxiv.org/abs/2410.04840}\n203\t}\n204\t\n205\t@inproceedings{wang2024semeval,\n206\t  title={{SemEval}-2024 Task 8: Multidomain, Multimodel and Multilingual Machine-Generated Text Detection},\n207\t  author={Wang, Yuxia and Mansurov, Jonibek and Ivanov, Petar and Su, Jinyan and Shelmanov, Artem and Tsvigun, Akim and Afzal, Osama Mohammed and Mahmoud, Tarek and Puccetti, Giovanni and Arnold, Thomas},\n208\t  booktitle={Proceedings of SemEval},\n209\t  year={2024},\n210\t  url={https://arxiv.org/abs/2404.14183}\n211\t}\n212\t\n213\t@inproceedings{gerstgrasser2024model,\n214\t  title={Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data},\n215\t  author={Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n216\t  booktitle={Proceedings of COLM},\n217\t  year={2024},\n218\t  url={https://arxiv.org/abs/2404.01413}\n219\t}\n220\t\n221\t@inproceedings{guo2024curious,\n222\t  title={The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text},\n223\t  author={Guo, Yanzhu and Shang, Guokan and Vazirgiannis, Michalis and Clavel, Chloe},\n224\t  booktitle={Findings of NAACL},\n225\t  year={2024},\n226\t  url={https://arxiv.org/abs/2311.09807}\n227\t}\n228\t\n229\t@article{briesch2023selfconsuming,\n230\t  title={Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop},\n231\t  author={Briesch, Martin and Sobania, Dominik and Rothlauf, Franz},\n232\t  journal={arXiv preprint arXiv:2311.16822},\n233\t  year={2023},\n234\t  url={https://arxiv.org/abs/2311.16822}\n235\t}\n236\t\n237\t@inproceedings{padmakumar2024writing,\n238\t  title={Does Writing with Language Models Reduce Content Diversity?},\n239\t  author={Padmakumar, Vishakh and He, He},\n240\t  booktitle={Proceedings of ICLR},\n241\t  year={2024},\n242\t  url={https://arxiv.org/abs/2309.05196}\n243\t}\n244\t\n245\t% === New entries (added 2026-05-15, FR-10) ===\n246\t\n247\t@inproceedings{krishna2023paraphrasing,\n248\t  title={Paraphrasing Evades Detectors of {AI}-Generated Text, but Retrieval is an Effective Defense},\n249\t  author={Krishna, Kalpesh and Song, Yixiao and Karpinska, Marzena and Wieting, John and Iyyer, Mohit},\n250\t  booktitle={Advances in Neural Information Processing Systems},\n251\t  year={2023}\n252\t}\n253\t\n254\t@article{sadasivan2023detect,\n255\t  title={Can {AI}-Generated Text be Reliably Detected?},\n256\t  author={Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n257\t  journal={arXiv preprint arXiv:2303.11156},\n258\t  year={2023},\n259\t  url={https://arxiv.org/abs/2303.11156}\n260\t}\n261\t\n262\t@inproceedings{hao2025rewrite,\n263\t  title={Learning to Rewrite: Generalized {LLM}-Generated Text Detection},\n264\t  author={Hao, Wei and Guan, Ran and Lu, Kangjie and Zhang, Shuai},\n265\t  booktitle={Findings of ACL},\n266\t  year={2025}\n267\t}\n268\t\n269\t@inproceedings{shi2025collapse,\n270\t  title={A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective},\n271\t  author={Shi, Lianghe and Wu, Meng and Zhang, Huijie and Zhang, Zekai and Tao, Molei and Qu, Qing},\n272\t  booktitle={Advances in Neural Information Processing Systems},\n273\t  year={2025}\n274\t}\n275\t\n276\t@article{gambetta2024surplexity,\n277\t  title={Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative {AI}},\n278\t  author={Gambetta, Daniele and Gezici, Gizem and Giannotti, Fosca and Pedreschi, Dino and Knott, Alistair and Pappalardo, Luca},\n279\t  journal={arXiv preprint arXiv:2410.12341},\n280\t  year={2024}\n281\t}\n282\t\n283\t@inproceedings{amin2025escaping,\n284\t  title={Escaping Collapse: The Strength of Weak Data for Large Language Model Training},\n285\t  author={Amin, Kareem and Babakniya, Sara and Bie, Alex and Kong, Weiwei and Syed, Umar and Vassilvitskii, Sergei},\n286\t  booktitle={Advances in Neural Information Processing Systems},\n287\t  year={2025}\n288\t}\n289\t\n290\t@inproceedings{kirchenbauer2023watermark,\n291\t  title     = {A Watermark for Large Language Models},\n292\t  author    = {Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n293\t  booktitle = {Proceedings of the 40th International Conference on Machine Learning},\n294\t  pages     = {17061--17084},\n295\t  year      = {2023},\n296\t  volume    = {202},\n297\t  series    = {Proceedings of Machine Learning Research},\n298\t  publisher = {PMLR}\n299\t}\n300\t\n301\t@inproceedings{penedo2024fineweb,\n302\t  title     = {The {FineWeb} Datasets: Decanting the Web for the Finest Text Data at Scale},\n303\t  author    = {Penedo, Guilherme and Kydl{\\'{\\i}}{\\v{c}}ek, Hynek and Ben Allal, Loubna and Lozhkov, Anton and Mitchell, Margaret and Raffel, Colin and Von Werra, Leandro and Wolf, Thomas},\n304\t  booktitle = {Advances in Neural Information Processing Systems},\n305\t  volume    = {37},\n306\t  pages     = {30811--30849},\n307\t  year      = {2024}\n308\t}\n309\t\n310\t@inproceedings{gehrmann2019gltr,\n311\t  title     = {{GLTR}: Statistical Detection and Visualization of Generated Text},\n312\t  author    = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander},\n313\t  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics: System Demonstrations},\n314\t  pages     = {111--116},\n315\t  year      = {2019},\n316\t  address   = {Florence, Italy},\n317\t  publisher = {Association for Computational Linguistics},\n318\t  doi       = {10.18653/v1/P19-3019}\n319\t}\n320\t\n321\t@inproceedings{ke2017lightgbm,\n322\t  title     = {{LightGBM}: A Highly Efficient Gradient Boosting Decision Tree},\n323\t  author    = {Ke, Guolin and Meng, Qi and Finley, Thomas and Wang, Taifeng and Chen, Wei and Ma, Weidong and Ye, Qiwei and Liu, Tie-Yan},\n324\t  booktitle = {Advances in Neural Information Processing Systems},\n325\t  volume    = {30},\n326\t  year      = {2017}\n327\t}\n328\t\n329\t@article{wu2023survey,\n330\t  title     = {A Survey on {LLM}-generated Text Detection: Necessity, Methods, and Future Directions},\n331\t  author    = {Wu, Junchao and Yang, Shu and Zhan, Runzhe and Yuan, Yulin and Wong, Derek F. and Chao, Lidia S.},\n332\t  journal   = {arXiv preprint arXiv:2310.14724},\n333\t  year      = {2025}\n334\t}\n335\t\n336\t@article{tang2024science,\n337\t  title     = {The Science of Detecting {LLM}-Generated Text},\n338\t  author    = {Tang, Ruixiang and Chuang, Yu-Neng and Hu, Xia},\n339\t  journal   = {Communications of the ACM},\n340\t  volume    = {67},\n341\t  number    = {4},\n342\t  pages     = {50--59},\n343\t  year      = {2024},\n344\t  doi       = {10.1145/3624725}\n345\t}\n346\t\n347\t@inproceedings{oren2024proving,\n348\t  title     = {Proving Test Set Contamination in Black Box Language Models},\n349\t  author    = {Oren, Yonatan and Meister, Nicole and Chatterji, Niladri S. and Ladhak, Faisal and Hashimoto, Tatsunori B.},\n350\t  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations},\n351\t  year      = {2024}\n352\t}\n353\t\n354\t@article{cao2020coral,\n355\t  title     = {Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation},\n356\t  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n357\t  journal   = {Pattern Recognition Letters},\n358\t  volume    = {140},\n359\t  pages     = {325--331},\n360\t  year      = {2020},\n361\t  doi       = {10.1016/j.patrec.2020.11.008}\n362\t}\n363\t\n364\t@article{husain2019codesearchnet,\n365\t  title     = {{CodeSearchNet} Challenge: Evaluating the State of Semantic Code Search},\n366\t  author    = {Husain, Hamel and Wu, Ho-Hsiang and Gazit, Tiferet and Allamanis, Miltiadis and Brockschmidt, Marc},\n367\t  journal   = {arXiv preprint arXiv:1909.09436},\n368\t  year      = {2019},\n369\t  url       = {https://arxiv.org/abs/1909.09436}\n370\t}\n371\t\n372\t% === New entries (added 2026-05-19, citation density expansion) ===\n373\t\n374\t@article{raffel2020t5,\n375\t  title={Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer},\n376\t  author={Raffel, Colin and Shazeer, Noam and Roberts, Adam and Lee, Katherine and Narang, Sharan and Matena, Michael and Zhou, Yanqi and Li, Wei and Liu, Peter J.},\n377\t  journal={Journal of Machine Learning Research},\n378\t  volume={21},\n379\t  number={140},\n380\t  pages={1--67},\n381\t  year={2020}\n382\t}\n383\t\n384\t@inproceedings{yang2024dnagpt,\n385\t  title={{DNA-GPT}: Divergent {N}-Gram Analysis for Training-Free Detection of {GPT}-Generated Text},\n386\t  author={Yang, Xianjun and Cheng, Wei and Petzold, Linda and Wang, William Yang and Chen, Haifeng},\n387\t  booktitle={Proceedings of ICLR},\n388\t  year={2024},\n389\t  url={https://arxiv.org/abs/2305.17359}\n390\t}\n391\t\n392\t@inproceedings{verma2024ghostbuster,\n393\t  title={Ghostbuster: Detecting Text Ghostwritten by Large Language Models},\n394\t  author={Verma, Vivek and Fleisig, Eve and Tomlin, Nicholas and Klein, Dan},\n395\t  booktitle={Proceedings of NAACL},\n396\t  pages={1702--1717},\n397\t  year={2024}\n398\t}\n399\t\n400\t@inproceedings{hale2001surprisal,\n401\t  title={A Probabilistic {E}arley Parser as a Psycholinguistic Model},\n402\t  author={Hale, John},\n403\t  booktitle={Proceedings of the Second Meeting of the North American Chapter of the Association for Computational Linguistics},\n404\t  pages={1--8},\n405\t  year={2001}\n406\t}\n407\t\n408\t@article{levy2008expectation,\n409\t  title={Expectation-Based Syntactic Comprehension},\n410\t  author={Levy, Roger},\n411\t  journal={Cognition},\n412\t  volume={106},\n413\t  number={3},\n414\t  pages={1126--1177},\n415\t  year={2008}\n416\t}\n417\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "c3ede8a3-3d2e-40e3-b7a9-c70764100dfa",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib",
+                "content": "% === References for gen-depth-contamination ===\n% Source: literature_map.yaml — verified 2026-05-15\n\n% === Must-Cite ===\n\n@inproceedings{drayson2025,\n  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n  booktitle={Proceedings of EMNLP},\n  year={2025},\n  url={https://arxiv.org/abs/2502.15654}\n}\n\n@inproceedings{schaeffer2025position,\n  title={Position: Model Collapse Does Not Mean What You Think},\n  author={Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Anirudh and Koyejo, Sanmi},\n  booktitle={Proceedings of ICML},\n  year={2025},\n  url={https://arxiv.org/abs/2503.03150}\n}\n\n@inproceedings{kazdan2025collapse,\n  title={Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World},\n  author={Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David and Koyejo, Sanmi},\n  booktitle={Proceedings of ICML},\n  year={2025},\n  url={https://arxiv.org/abs/2410.16713}\n}\n\n@inproceedings{mitchell2023detectgpt,\n  title={{DetectGPT}: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n  author={Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n  booktitle={Proceedings of ICML},\n  year={2023}\n}\n\n% === Should-Cite ===\n\n@article{basani2026diveye,\n  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},\n  author={Basani, Advik Raj and Chen, Pin-Yu},\n  journal={Transactions on Machine Learning Research},\n  issn={2835-8856},\n  year={2026},\n  url={https://arxiv.org/abs/2509.18880}\n}\n\n@inproceedings{zawalski2026codec,\n  title={{CoDeC}: Detecting Data Contamination in {LLM}s via In-Context Learning},\n  author={Zawalski, Micha{\\l} and Boubdir, Meriem and Ba{\\l}azy, Klaudia and Nushi, Besmira and Ribalta, Pablo},\n  booktitle={Proceedings of ICLR},\n  year={2026},\n  url={https://arxiv.org/abs/2510.27055}\n}\n\n@inproceedings{zhang2024minkpp,\n  title={Min-{K}\\%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models},\n  author={Zhang, Jingyang and Zheng, Jingwei and Gao, Jing and Miao, Chunyan},\n  booktitle={Proceedings of EMNLP},\n  year={2024}\n}\n\n@article{shumailov2024collapse,\n  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n  journal={Nature},\n  volume={631},\n  pages={755--759},\n  year={2024}\n}\n\n@inproceedings{alemohammad2024selfconsuming,\n  title={Self-Consuming Generative Models Go {MAD}},\n  author={Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G.},\n  booktitle={Proceedings of ICLR},\n  year={2024}\n}\n\n@inproceedings{bertrand2024stability,\n  title={On the Stability of Iterative Retraining of Generative Models on their own Data},\n  author={Bertrand, Quentin and Bose, Avishek Joey and Duplessis, Alexandre and Jiralerspong, Marco and Gidel, Gauthier},\n  booktitle={Proceedings of ICLR},\n  year={2024},\n  url={https://arxiv.org/abs/2310.00429}\n}\n\n@inproceedings{dohmatob2024model,\n  title={A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n  author={Dohmatob, Elvis and Feng, Yunzhen and Yang, Pin-Yu and Charton, Francois and Kempe, Julia},\n  booktitle={Proceedings of ICML},\n  year={2024}\n}\n\n@inproceedings{xie2023dsir,\n  title={Data Selection for Language Models via Importance Resampling},\n  author={Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n@inproceedings{tirumala2023d4,\n  title={{D4}: Improving {LLM} Pretraining via Document De-Duplication and Diversification},\n  author={Tirumala, Kushal and Markosyan, Aram and Zettlemoyer, Luke and Aghajanyan, Armen},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n@inproceedings{xie2023doremi,\n  title={{DoReMi}: Optimizing Data Mixtures Speeds Up Language Model Pretraining},\n  author={Xie, Sang Michael and Pham, Hieu and Dong, Xuanyi and Du, Nan and Liu, Hanxiao and Lu, Yifeng and Liang, Percy and Le, Quoc V. and Ma, Tengyu and Yu, Adams Wei},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n@inproceedings{hans2024binoculars,\n  title={Spotting {LLMs} With Binoculars},\n  author={Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n  booktitle={Proceedings of ICML},\n  year={2024}\n}\n\n% === Probing Classifiers ===\n\n@inproceedings{alain2017understanding,\n  title={Understanding Intermediate Layers Using Linear Classifier Probes},\n  author={Alain, Guillaume and Bengio, Yoshua},\n  booktitle={ICLR Workshop},\n  year={2017}\n}\n\n@article{belinkov2022probing,\n  title={Probing Classifiers: Promises, Shortcomings, and Advances},\n  author={Belinkov, Yonatan},\n  journal={Computational Linguistics},\n  volume={48},\n  number={1},\n  pages={207--219},\n  year={2022}\n}\n\n% === Model Collapse Avoidability ===\n\n@inproceedings{bao2024fast,\n  title={{Fast-DetectGPT}: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature},\n  author={Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n  booktitle={Proceedings of ICLR},\n  year={2024},\n  url={https://arxiv.org/abs/2310.05130}\n}\n\n@inproceedings{frank2001ordinal,\n  title={A Simple Approach to Ordinal Classification},\n  author={Frank, Eibe and Hall, Mark},\n  booktitle={Proceedings of ECML},\n  pages={145--156},\n  year={2001}\n}\n\n% === Beyond-Binary Detection ===\n\n@inproceedings{cheng2025beyond,\n  title={Beyond Binary: Towards Fine-Grained {LLM}-Generated Text Detection via Role Recognition and Involvement Measurement},\n  author={Cheng, Zihao and Zhou, Li and Jiang, Feng and Wang, Benyou and Li, Haizhou},\n  booktitle={Proceedings of the ACM Web Conference (WWW)},\n  year={2025},\n  url={https://arxiv.org/abs/2410.14259}\n}\n\n@article{mehta2025beyond,\n  title={Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models},\n  author={Mehta, Sushant},\n  journal={arXiv preprint arXiv:2511.17602},\n  year={2025},\n  url={https://arxiv.org/abs/2511.17602}\n}\n\n% === AI-Generated Content Prevalence ===\n\n@inproceedings{sun2025aigt,\n  title={Are We in the {AI}-Generated Text World Already? Quantifying and Monitoring {AIGT} on Social Media},\n  author={Sun, Zhen and Zhang, Zongmin and Shen, Xinyue and Zhang, Ziyi and Liu, Yule and Backes, Michael and Zhang, Yang and He, Xinlei},\n  booktitle={Proceedings of ACL},\n  year={2025},\n  url={https://arxiv.org/abs/2412.18148}\n}\n\n@article{spennemann2025quantifying,\n  title={Delving into: the Quantification of {AI}-Generated Content on the Internet (Synthetic Data)},\n  author={Spennemann, Dirk H. R.},\n  journal={arXiv preprint arXiv:2504.08755},\n  year={2025},\n  url={https://arxiv.org/abs/2504.08755}\n}\n\n% === New entries (added 2026-05-16, Round 4 reviewer) ===\n\n@inproceedings{dohmatob2025strong,\n  title={Strong Model Collapse},\n  author={Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n  booktitle={Proceedings of ICLR},\n  year={2025},\n  url={https://arxiv.org/abs/2410.04840}\n}\n\n@inproceedings{wang2024semeval,\n  title={{SemEval}-2024 Task 8: Multidomain, Multimodel and Multilingual Machine-Generated Text Detection},\n  author={Wang, Yuxia and Mansurov, Jonibek and Ivanov, Petar and Su, Jinyan and Shelmanov, Artem and Tsvigun, Akim and Afzal, Osama Mohammed and Mahmoud, Tarek and Puccetti, Giovanni and Arnold, Thomas},\n  booktitle={Proceedings of SemEval},\n  year={2024},\n  url={https://arxiv.org/abs/2404.14183}\n}\n\n@inproceedings{gerstgrasser2024model,\n  title={Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data},\n  author={Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n  booktitle={Proceedings of COLM},\n  year={2024},\n  url={https://arxiv.org/abs/2404.01413}\n}\n\n@inproceedings{guo2024curious,\n  title={The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text},\n  author={Guo, Yanzhu and Shang, Guokan and Vazirgiannis, Michalis and Clavel, Chloe},\n  booktitle={Findings of NAACL},\n  year={2024},\n  url={https://arxiv.org/abs/2311.09807}\n}\n\n@article{briesch2023selfconsuming,\n  title={Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop},\n  author={Briesch, Martin and Sobania, Dominik and Rothlauf, Franz},\n  journal={arXiv preprint arXiv:2311.16822},\n  year={2023},\n  url={https://arxiv.org/abs/2311.16822}\n}\n\n@inproceedings{padmakumar2024writing,\n  title={Does Writing with Language Models Reduce Content Diversity?},\n  author={Padmakumar, Vishakh and He, He},\n  booktitle={Proceedings of ICLR},\n  year={2024},\n  url={https://arxiv.org/abs/2309.05196}\n}\n\n% === New entries (added 2026-05-15, FR-10) ===\n\n@inproceedings{krishna2023paraphrasing,\n  title={Paraphrasing Evades Detectors of {AI}-Generated Text, but Retrieval is an Effective Defense},\n  author={Krishna, Kalpesh and Song, Yixiao and Karpinska, Marzena and Wieting, John and Iyyer, Mohit},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2023}\n}\n\n@article{sadasivan2023detect,\n  title={Can {AI}-Generated Text be Reliably Detected?},\n  author={Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n  journal={arXiv preprint arXiv:2303.11156},\n  year={2023},\n  url={https://arxiv.org/abs/2303.11156}\n}\n\n@inproceedings{hao2025rewrite,\n  title={Learning to Rewrite: Generalized {LLM}-Generated Text Detection},\n  author={Hao, Wei and Guan, Ran and Lu, Kangjie and Zhang, Shuai},\n  booktitle={Findings of ACL},\n  year={2025}\n}\n\n@inproceedings{shi2025collapse,\n  title={A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective},\n  author={Shi, Lianghe and Wu, Meng and Zhang, Huijie and Zhang, Zekai and Tao, Molei and Qu, Qing},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2025}\n}\n\n@article{gambetta2024surplexity,\n  title={Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative {AI}},\n  author={Gambetta, Daniele and Gezici, Gizem and Giannotti, Fosca and Pedreschi, Dino and Knott, Alistair and Pappalardo, Luca},\n  journal={arXiv preprint arXiv:2410.12341},\n  year={2024}\n}\n\n@inproceedings{amin2025escaping,\n  title={Escaping Collapse: The Strength of Weak Data for Large Language Model Training},\n  author={Amin, Kareem and Babakniya, Sara and Bie, Alex and Kong, Weiwei and Syed, Umar and Vassilvitskii, Sergei},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2025}\n}\n\n@inproceedings{kirchenbauer2023watermark,\n  title     = {A Watermark for Large Language Models},\n  author    = {Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n  booktitle = {Proceedings of the 40th International Conference on Machine Learning},\n  pages     = {17061--17084},\n  year      = {2023},\n  volume    = {202},\n  series    = {Proceedings of Machine Learning Research},\n  publisher = {PMLR}\n}\n\n@inproceedings{penedo2024fineweb,\n  title     = {The {FineWeb} Datasets: Decanting the Web for the Finest Text Data at Scale},\n  author    = {Penedo, Guilherme and Kydl{\\'{\\i}}{\\v{c}}ek, Hynek and Ben Allal, Loubna and Lozhkov, Anton and Mitchell, Margaret and Raffel, Colin and Von Werra, Leandro and Wolf, Thomas},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {37},\n  pages     = {30811--30849},\n  year      = {2024}\n}\n\n@inproceedings{gehrmann2019gltr,\n  title     = {{GLTR}: Statistical Detection and Visualization of Generated Text},\n  author    = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander},\n  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics: System Demonstrations},\n  pages     = {111--116},\n  year      = {2019},\n  address   = {Florence, Italy},\n  publisher = {Association for Computational Linguistics},\n  doi       = {10.18653/v1/P19-3019}\n}\n\n@inproceedings{ke2017lightgbm,\n  title     = {{LightGBM}: A Highly Efficient Gradient Boosting Decision Tree},\n  author    = {Ke, Guolin and Meng, Qi and Finley, Thomas and Wang, Taifeng and Chen, Wei and Ma, Weidong and Ye, Qiwei and Liu, Tie-Yan},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {30},\n  year      = {2017}\n}\n\n@article{wu2023survey,\n  title     = {A Survey on {LLM}-generated Text Detection: Necessity, Methods, and Future Directions},\n  author    = {Wu, Junchao and Yang, Shu and Zhan, Runzhe and Yuan, Yulin and Wong, Derek F. and Chao, Lidia S.},\n  journal   = {arXiv preprint arXiv:2310.14724},\n  year      = {2025}\n}\n\n@article{tang2024science,\n  title     = {The Science of Detecting {LLM}-Generated Text},\n  author    = {Tang, Ruixiang and Chuang, Yu-Neng and Hu, Xia},\n  journal   = {Communications of the ACM},\n  volume    = {67},\n  number    = {4},\n  pages     = {50--59},\n  year      = {2024},\n  doi       = {10.1145/3624725}\n}\n\n@inproceedings{oren2024proving,\n  title     = {Proving Test Set Contamination in Black Box Language Models},\n  author    = {Oren, Yonatan and Meister, Nicole and Chatterji, Niladri S. and Ladhak, Faisal and Hashimoto, Tatsunori B.},\n  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations},\n  year      = {2024}\n}\n\n@article{cao2020coral,\n  title     = {Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation},\n  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n  journal   = {Pattern Recognition Letters},\n  volume    = {140},\n  pages     = {325--331},\n  year      = {2020},\n  doi       = {10.1016/j.patrec.2020.11.008}\n}\n\n@article{husain2019codesearchnet,\n  title     = {{CodeSearchNet} Challenge: Evaluating the State of Semantic Code Search},\n  author    = {Husain, Hamel and Wu, Ho-Hsiang and Gazit, Tiferet and Allamanis, Miltiadis and Brockschmidt, Marc},\n  journal   = {arXiv preprint arXiv:1909.09436},\n  year      = {2019},\n  url       = {https://arxiv.org/abs/1909.09436}\n}\n\n% === New entries (added 2026-05-19, citation density expansion) ===\n\n@article{raffel2020t5,\n  title={Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer},\n  author={Raffel, Colin and Shazeer, Noam and Roberts, Adam and Lee, Katherine and Narang, Sharan and Matena, Michael and Zhou, Yanqi and Li, Wei and Liu, Peter J.},\n  journal={Journal of Machine Learning Research},\n  volume={21},\n  number={140},\n  pages={1--67},\n  year={2020}\n}\n\n@inproceedings{yang2024dnagpt,\n  title={{DNA-GPT}: Divergent {N}-Gram Analysis for Training-Free Detection of {GPT}-Generated Text},\n  author={Yang, Xianjun and Cheng, Wei and Petzold, Linda and Wang, William Yang and Chen, Haifeng},\n  booktitle={Proceedings of ICLR},\n  year={2024},\n  url={https://arxiv.org/abs/2305.17359}\n}\n\n@inproceedings{verma2024ghostbuster,\n  title={Ghostbuster: Detecting Text Ghostwritten by Large Language Models},\n  author={Verma, Vivek and Fleisig, Eve and Tomlin, Nicholas and Klein, Dan},\n  booktitle={Proceedings of NAACL},\n  pages={1702--1717},\n  year={2024}\n}\n\n@inproceedings{hale2001surprisal,\n  title={A Probabilistic {E}arley Parser as a Psycholinguistic Model},\n  author={Hale, John},\n  booktitle={Proceedings of the Second Meeting of the North American Chapter of the Association for Computational Linguistics},\n  pages={1--8},\n  year={2001}\n}\n\n@article{levy2008expectation,\n  title={Expectation-Based Syntactic Comprehension},\n  author={Levy, Roger},\n  journal={Cognition},\n  volume={106},\n  number={3},\n  pages={1126--1177},\n  year={2008}\n}\n",
+                "numLines": 417,
+                "startLine": 1,
+                "totalLines": 417
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EjGd8pu4hXAk1qSxQARfbC",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "80ae757f-f6c0-412a-bc53-50b8635ad944",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01153RS2QhLu81zenpNsxRcQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11974,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11974
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T13:40:33.501Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01EjGd8pu4hXAk1qSxQARfbC",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "b251fc88-be33-42e9-b11f-ec2b1132972b",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 20
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the bib file content and the WebSearch tool. Let me search for all three references in parallel.",
+              "signature": "EqYCClkIDRgCKkBTlYeifAjWCNMQpDbqFRmeflLM5POhgx8uNYPKGkCvFE+m1GXGqfOaXtF+xratQZ/ImNV/L3Ce7kHmh/w5XFTzMg9jbGF1ZGUtb3B1cy00LTY4ABIMfchz8Cyre3jBX+jOGgwH9ukxwWKenhlLU94iMJRbWjmX8O/f+xaVtUff7lDJWmuyEIgurKVmPhxMHJvLhEyNoxEboEj+ZLRGQKEFxSp7cKPHDNb+OTEz4oIVVKd4WjVjKYkwlhrxuCuQAMqE9U8WW4tn8MhyzAvzyk+zVFk674jWOSgRbuY+PY2aBYJMLFlNvsufrds/Nk2Dr4sxMNWImPFY0LoCk1F/n8tn8JgdGlj60qUHHMG6yWTJ2vlaIxUjg9PZNHomOtVrGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "deefe42c-b178-4c8e-a538-448d628bdee3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U4GF7i75cHX5LevCdaTBdn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7568,
+                "cache_read_input_tokens": 23815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7568
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "并行搜索三个条目。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "6337c161-2242-4c43-af72-8761a0683742",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U4GF7i75cHX5LevCdaTBdn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7568,
+                "cache_read_input_tokens": 23815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7568
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CQSCFMccfKara9fh8A9AJT",
+              "name": "WebSearch",
+              "input": {
+                "query": "Alemohammad \"Self-Consuming Generative Models Go MAD\" ICLR 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "c68c94df-8e0f-4567-a5f7-33809998025f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U4GF7i75cHX5LevCdaTBdn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7568,
+                "cache_read_input_tokens": 23815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7568
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NEevrJNxJmE34JhaKiBZeU",
+              "name": "WebSearch",
+              "input": {
+                "query": "Mehta \"Beyond Surface-Level Similarity\" \"Hierarchical Contamination Detection\" arXiv 2511.17602"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "b918c862-27fd-43fb-8df6-47a1a35c31f2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U4GF7i75cHX5LevCdaTBdn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7568,
+                "cache_read_input_tokens": 23815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7568
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014AB5vZWoThKfwWGVS7pF4c",
+              "name": "WebSearch",
+              "input": {
+                "query": "Levy 2024 \"task contamination\" language model benchmark"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "2e715c43-60ec-4c10-8db4-a9505ff1ba07",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U4GF7i75cHX5LevCdaTBdn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7568,
+                "cache_read_input_tokens": 23815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7568
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T13:40:44.539Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CQSCFMccfKara9fh8A9AJT",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Alemohammad \"Self-Consuming Generative Models Go MAD\" ICLR 2024\"\n\nLinks: [{\"title\":\"SELF-CONSUMING GENERATIVE MODELS GO MAD - Houston Methodist Scholars\",\"url\":\"https://scholars.houstonmethodist.org/en/publications/self-consuming-generative-models-go-mad/\"},{\"title\":\"Self-Consuming AI Resources\",\"url\":\"https://dsp.rice.edu/ai-loops/\"},{\"title\":\"Self-Consuming Generative Models Go MAD | NSF Public Access Repository\",\"url\":\"https://par.nsf.gov/biblio/10570494\"},{\"title\":\"[2307.01850] Self-Consuming Generative Models Go MAD\",\"url\":\"https://arxiv.org/abs/2307.01850\"},{\"title\":\"ICLR Poster Self-Consuming Generative Models Go MAD\",\"url\":\"https://iclr.cc/virtual/2024/poster/18592\"},{\"title\":\"Self-Consuming Generative Models Go MAD | OpenReview\",\"url\":\"https://openreview.net/forum?id=ShjMHfmPs0\"},{\"title\":\"[PDF] Self-Consuming Generative Models Go MAD | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Self-Consuming-Generative-Models-Go-MAD-Alemohammad-Casco-Rodriguez/ad022cd5da75637ac3e0a8f8cc4f0d394ba5ff7a\"},{\"title\":\"SELF-CONSUMING GENERATIVE MODELS GO MAD\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/ebc042e767de551803ccfcc45e2454f5-Paper-Conference.pdf\"},{\"title\":\"Self-Consuming Generative Models Go MAD | Montreal AI Ethics Institute\",\"url\":\"https://montrealethics.ai/self-consuming-generative-models-go-mad/\"}]\n\nBased on the search results, here's what I found about this paper:\n\n\"Self-Consuming Generative Models Go MAD\" is a paper by Alemohammad and colleagues presented at ICLR 2024 in Vienna, Austria.\n\n**Key Research Focus:**\n\nThe paper addresses the temptation to use AI-synthesized data to train next-generation models, creating an autophagous (\"self-consuming\") loop whose properties are poorly understood.\n\n**Main Findings:**\n\nThe primary conclusion is that without enough fresh real data in each generation of an autophagous loop, future generative models are doomed to have their quality (precision) or diversity (recall) progressively decrease, a condition termed Model Autophagy Disorder (MAD). Appreciable MADness arises in just a few generations.\n\n**Methodology:**\n\nThe research conducts a thorough analytical and empirical analysis using state-of-the-art generative image models of three families of autophagous loops that differ in how fixed or fresh real training data is available through generations of training and whether samples from previous-generation models have been biased to trade off data quality versus diversity.\n\nThe paper is available on arXiv and has an official PDF available through ICLR proceedings.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "b0ce707d-95a9-4fd0-a5b8-a14f393cd7ca",
+            "tool_use_result": {
+              "query": "Alemohammad \"Self-Consuming Generative Models Go MAD\" ICLR 2024",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01Xj165STAjyNe8SPaSYD9zn",
+                  "content": [
+                    {
+                      "title": "SELF-CONSUMING GENERATIVE MODELS GO MAD - Houston Methodist Scholars",
+                      "url": "https://scholars.houstonmethodist.org/en/publications/self-consuming-generative-models-go-mad/"
+                    },
+                    {
+                      "title": "Self-Consuming AI Resources",
+                      "url": "https://dsp.rice.edu/ai-loops/"
+                    },
+                    {
+                      "title": "Self-Consuming Generative Models Go MAD | NSF Public Access Repository",
+                      "url": "https://par.nsf.gov/biblio/10570494"
+                    },
+                    {
+                      "title": "[2307.01850] Self-Consuming Generative Models Go MAD",
+                      "url": "https://arxiv.org/abs/2307.01850"
+                    },
+                    {
+                      "title": "ICLR Poster Self-Consuming Generative Models Go MAD",
+                      "url": "https://iclr.cc/virtual/2024/poster/18592"
+                    },
+                    {
+                      "title": "Self-Consuming Generative Models Go MAD | OpenReview",
+                      "url": "https://openreview.net/forum?id=ShjMHfmPs0"
+                    },
+                    {
+                      "title": "[PDF] Self-Consuming Generative Models Go MAD | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/Self-Consuming-Generative-Models-Go-MAD-Alemohammad-Casco-Rodriguez/ad022cd5da75637ac3e0a8f8cc4f0d394ba5ff7a"
+                    },
+                    {
+                      "title": "SELF-CONSUMING GENERATIVE MODELS GO MAD",
+                      "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/ebc042e767de551803ccfcc45e2454f5-Paper-Conference.pdf"
+                    },
+                    {
+                      "title": "Self-Consuming Generative Models Go MAD | Montreal AI Ethics Institute",
+                      "url": "https://montrealethics.ai/self-consuming-generative-models-go-mad/"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about this paper:\n\n\"Self-Consuming Generative Models Go MAD\" is a paper by Alemohammad and colleagues presented at ICLR 2024 in Vienna, Austria.\n\n**Key Research Focus:**\n\nThe paper addresses the temptation to use AI-synthesized data to train next-generation models, creating an autophagous (\"self-consuming\") loop whose properties are poorly understood.\n\n**Main Findings:**\n\nThe primary conclusion is that without enough fresh real data in each generation of an autophagous loop, future generative models are doomed to have their quality (precision) or diversity (recall) progressively decrease, a condition termed Model Autophagy Disorder (MAD). Appreciable MADness arises in just a few generations.\n\n**Methodology:**\n\nThe research conducts a thorough analytical and empirical analysis using state-of-the-art generative image models of three families of autophagous loops that differ in how fixed or fresh real training data is available through generations of training and whether samples from previous-generation models have been biased to trade off data quality versus diversity.\n\nThe paper is available on arXiv and has an official PDF available through ICLR proceedings."
+              ],
+              "durationSeconds": 6.370896357000001
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T13:40:44.694Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014AB5vZWoThKfwWGVS7pF4c",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Levy 2024 \"task contamination\" language model benchmark\"\n\nLinks: [{\"title\":\"A Survey from Static to Dynamic Evaluation\",\"url\":\"https://aclanthology.org/2025.emnlp-main.511.pdf\"},{\"title\":\"C$^2$LEVA: Toward Comprehensive and Contamination-Free Language Model Evaluation\",\"url\":\"https://arxiv.org/pdf/2412.04947\"},{\"title\":\"Contamination Report for Multilingual Benchmarks\",\"url\":\"https://arxiv.org/pdf/2410.16186\"},{\"title\":\"Task Contamination: Language Models May Not Be Few-Shot Anymore\",\"url\":\"https://arxiv.org/pdf/2312.16337\"},{\"title\":\"A Survey on Data Contamination for Large Language Models\",\"url\":\"https://openreview.net/pdf?id=O3rnGt7DK7\"},{\"title\":\"A Survey on Data Contamination for Large Language Models\",\"url\":\"https://arxiv.org/pdf/2502.14425\"},{\"title\":\"Rethinking Benchmark and Contamination for Language Models with   Rephrased Samples\",\"url\":\"https://arxiv.org/pdf/2311.04850\"}]\n\nBased on the search results, I found relevant information about task contamination in language models. The most directly relevant result is:\n\nA paper titled \"Task Contamination: Language Models May Not Be Few-Shot Anymore\" systematically analyzes this problem by evaluating 12 different models on 16 classification tasks and 1 semantic parsing task. The researchers analyzed each model on datasets created before its training data was crawled on the internet versus datasets created afterward, and found that datasets created before the LLM training data was collected have a significantly higher chance of having performance higher than the majority baseline.\n\nThe paper performs training data inspection and task example extraction to look for possible task contamination. This work appears to be one of the first comprehensive studies addressing task contamination as a specific issue distinct from test data contamination in language model benchmarks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "b54c3b25-5e18-4842-9a6c-09feab7fa6f1",
+            "tool_use_result": {
+              "query": "Levy 2024 \"task contamination\" language model benchmark",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01487kdaWkvsu3VdsWeq1QM1",
+                  "content": [
+                    {
+                      "title": "A Survey from Static to Dynamic Evaluation",
+                      "url": "https://aclanthology.org/2025.emnlp-main.511.pdf"
+                    },
+                    {
+                      "title": "C$^2$LEVA: Toward Comprehensive and Contamination-Free Language Model Evaluation",
+                      "url": "https://arxiv.org/pdf/2412.04947"
+                    },
+                    {
+                      "title": "Contamination Report for Multilingual Benchmarks",
+                      "url": "https://arxiv.org/pdf/2410.16186"
+                    },
+                    {
+                      "title": "Task Contamination: Language Models May Not Be Few-Shot Anymore",
+                      "url": "https://arxiv.org/pdf/2312.16337"
+                    },
+                    {
+                      "title": "A Survey on Data Contamination for Large Language Models",
+                      "url": "https://openreview.net/pdf?id=O3rnGt7DK7"
+                    },
+                    {
+                      "title": "A Survey on Data Contamination for Large Language Models",
+                      "url": "https://arxiv.org/pdf/2502.14425"
+                    },
+                    {
+                      "title": "Rethinking Benchmark and Contamination for Language Models with   Rephrased Samples",
+                      "url": "https://arxiv.org/pdf/2311.04850"
+                    }
+                  ]
+                },
+                "Based on the search results, I found relevant information about task contamination in language models. The most directly relevant result is:\n\nA paper titled \"Task Contamination: Language Models May Not Be Few-Shot Anymore\" systematically analyzes this problem by evaluating 12 different models on 16 classification tasks and 1 semantic parsing task. The researchers analyzed each model on datasets created before its training data was crawled on the internet versus datasets created afterward, and found that datasets created before the LLM training data was collected have a significantly higher chance of having performance higher than the majority baseline.\n\nThe paper performs training data inspection and task example extraction to look for possible task contamination. This work appears to be one of the first comprehensive studies addressing task contamination as a specific issue distinct from test data contamination in language model benchmarks."
+              ],
+              "durationSeconds": 5.148910282000001
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T13:40:48.648Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NEevrJNxJmE34JhaKiBZeU",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Mehta \"Beyond Surface-Level Similarity\" \"Hierarchical Contamination Detection\" arXiv 2511.17602\"\n\nLinks: [{\"title\":\"[2511.17602] Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models\",\"url\":\"https://arxiv.org/abs/2511.17602\"},{\"title\":\"(PDF) Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models\",\"url\":\"https://www.researchgate.net/publication/397933312_Beyond_Surface-Level_Similarity_Hierarchical_Contamination_Detection_for_Synthetic_Training_Data_in_Foundation_Models\"},{\"title\":\"Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models\",\"url\":\"https://arxiv.org/html/2511.17602v1\"},{\"title\":\"Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models\",\"url\":\"https://arxiv.org/pdf/2511.17602\"},{\"title\":\"Beyond Surface-Level Similarity: Hierarchical Contamination Detection\",\"url\":\"https://www.arxiv.org/pdf/2511.17602\"},{\"title\":\"Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models | Article Information | J-GLOBAL\",\"url\":\"https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202502216067314793\"}]\n\nI found the paper you're searching for! Here are the details:\n\n**Title:** Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models\n\n**Author:** Sushant Mehta\n\n**arXiv ID:** 2511.17602 (posted November 18, 2025)\n\n**Overview:**\nThe paper addresses benchmark contamination in synthetic training data for foundation models. While existing detection methods identify token-level overlap, they fail to detect semantic-level contamination where synthetic data conceptually resemble benchmarks without lexical overlap.\n\n**Proposed Framework:**\nThe paper proposes a hierarchical contamination detection framework operating at four levels: token level, semantic level, reasoning pattern, and performance cliff detection. Through controlled experiments on MMLU, GSM8K and HumanEval, semantic-level contamination that evades existing methods (F1=0.17-0.49) is effectively detected by their hierarchical approach (F1 = 0.76), with an average improvement of 26.5% over state-of-the-art baselines.\n\nThe paper is available on arXiv at: https://arxiv.org/abs/2511.17602\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "e7f37c43-9e12-43c0-b8a7-228a7ac1457e",
+            "tool_use_result": {
+              "query": "Mehta \"Beyond Surface-Level Similarity\" \"Hierarchical Contamination Detection\" arXiv 2511.17602",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_017tVGVfuNRCG9L5pL3tBJcp",
+                  "content": [
+                    {
+                      "title": "[2511.17602] Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models",
+                      "url": "https://arxiv.org/abs/2511.17602"
+                    },
+                    {
+                      "title": "(PDF) Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models",
+                      "url": "https://www.researchgate.net/publication/397933312_Beyond_Surface-Level_Similarity_Hierarchical_Contamination_Detection_for_Synthetic_Training_Data_in_Foundation_Models"
+                    },
+                    {
+                      "title": "Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models",
+                      "url": "https://arxiv.org/html/2511.17602v1"
+                    },
+                    {
+                      "title": "Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models",
+                      "url": "https://arxiv.org/pdf/2511.17602"
+                    },
+                    {
+                      "title": "Beyond Surface-Level Similarity: Hierarchical Contamination Detection",
+                      "url": "https://www.arxiv.org/pdf/2511.17602"
+                    },
+                    {
+                      "title": "Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models | Article Information | J-GLOBAL",
+                      "url": "https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202502216067314793"
+                    }
+                  ]
+                },
+                "I found the paper you're searching for! Here are the details:\n\n**Title:** Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models\n\n**Author:** Sushant Mehta\n\n**arXiv ID:** 2511.17602 (posted November 18, 2025)\n\n**Overview:**\nThe paper addresses benchmark contamination in synthetic training data for foundation models. While existing detection methods identify token-level overlap, they fail to detect semantic-level contamination where synthetic data conceptually resemble benchmarks without lexical overlap.\n\n**Proposed Framework:**\nThe paper proposes a hierarchical contamination detection framework operating at four levels: token level, semantic level, reasoning pattern, and performance cliff detection. Through controlled experiments on MMLU, GSM8K and HumanEval, semantic-level contamination that evades existing methods (F1=0.17-0.49) is effectively detected by their hierarchical approach (F1 = 0.76), with an average improvement of 26.5% over state-of-the-art baselines.\n\nThe paper is available on arXiv at: https://arxiv.org/abs/2511.17602"
+              ],
+              "durationSeconds": 9.490197297
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me get more details on each. For condition 1 (alemohammad2024selfconsuming), the search confirms it's ICLR 2024, first author is Alemohammad. The existing bib looks correct.\n\nFor condition 2 (mehta2025beyond), the search confirms: author is Sushant Mehta (single author), arXiv 2511.17602, posted November 2025. The year in the bib is 2025 which matches. Let me check if it's been published to a conference.\n\n\nFor condition 3 (levy2024task), I found \"Task Contamination: Language Models May Not Be Few-Shot Anymore\" at arXiv 2312.16337 and need to verify the publication details.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "eb3e0382-768d-4cce-981b-42ba276588ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0171Xmz54nMEYZHG3nrnXLXi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 518,
+                "cache_creation_input_tokens": 1728,
+                "cache_read_input_tokens": 31383,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1728
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了第三个条目的线索。让我获取更多细节。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "afde453f-f416-4d75-a1a2-c9132b9bdf26",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0171Xmz54nMEYZHG3nrnXLXi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 518,
+                "cache_creation_input_tokens": 1728,
+                "cache_read_input_tokens": 31383,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1728
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014AeeZ4jiCbu216mFhwLiVh",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Task Contamination: Language Models May Not Be Few-Shot Anymore\" arXiv 2312.16337 authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "06992ddf-5a3c-4cb1-b17f-278909dcc4d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0171Xmz54nMEYZHG3nrnXLXi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 518,
+                "cache_creation_input_tokens": 1728,
+                "cache_read_input_tokens": 31383,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1728
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WtyqWC1CHnnovZvBaS2DoS",
+              "name": "WebSearch",
+              "input": {
+                "query": "Mehta \"Beyond Surface-Level Similarity\" 2511.17602 published conference 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "2ef0fb8d-1fb5-463d-b949-6c34b588937f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0171Xmz54nMEYZHG3nrnXLXi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 518,
+                "cache_creation_input_tokens": 1728,
+                "cache_read_input_tokens": 31383,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1728
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T13:40:59.144Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014AeeZ4jiCbu216mFhwLiVh",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Task Contamination: Language Models May Not Be Few-Shot Anymore\" arXiv 2312.16337 authors\"\n\nLinks: [{\"title\":\"[2312.16337] Task Contamination: Language Models May Not Be Few-Shot Anymore\",\"url\":\"https://arxiv.org/abs/2312.16337\"},{\"title\":\"[2312.16337v1] Task Contamination: Language Models May Not Be Few-Shot Anymore\",\"url\":\"https://arxiv.org/abs/2312.16337v1\"},{\"title\":\"Task Contamination: Language Models May Not Be Few-Shot Anymore\",\"url\":\"https://paperreading.club/page?id=201833\"},{\"title\":\"Task Contamination: Language Models May Not Be Few-Shot Anymore\",\"url\":\"https://arxiv.org/pdf/2312.16337\"},{\"title\":\"Language Models May Not Be Few-Shot Anymore\",\"url\":\"https://www.emergentmind.com/papers/2312.16337\"},{\"title\":\"[PDF] Task Contamination: Language Models May Not Be Few-Shot Anymore | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/a7b20c1bba14d4cd2b317138496d35d47142d30f\"},{\"title\":\"Pretraining Data Exposure in Large Language Models: A Survey of Membership Inference, Data Contamination, and Security Implications | SpringerLink\",\"url\":\"https://link.springer.com/chapter/10.1007/978-3-031-97144-0_14\"}]\n\nBased on the search results, the authors of the arXiv paper 2312.16337 \"Task Contamination: Language Models May Not Be Few-Shot Anymore\" are Changmao Li and Jeffrey Flanigan. The paper was submitted on December 26, 2023.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "15c8a206-9ed2-4c61-84c2-92c3efcf6d7c",
+            "tool_use_result": {
+              "query": "\"Task Contamination: Language Models May Not Be Few-Shot Anymore\" arXiv 2312.16337 authors",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_013KhKC4D2i2ekb5oDnijvoP",
+                  "content": [
+                    {
+                      "title": "[2312.16337] Task Contamination: Language Models May Not Be Few-Shot Anymore",
+                      "url": "https://arxiv.org/abs/2312.16337"
+                    },
+                    {
+                      "title": "[2312.16337v1] Task Contamination: Language Models May Not Be Few-Shot Anymore",
+                      "url": "https://arxiv.org/abs/2312.16337v1"
+                    },
+                    {
+                      "title": "Task Contamination: Language Models May Not Be Few-Shot Anymore",
+                      "url": "https://paperreading.club/page?id=201833"
+                    },
+                    {
+                      "title": "Task Contamination: Language Models May Not Be Few-Shot Anymore",
+                      "url": "https://arxiv.org/pdf/2312.16337"
+                    },
+                    {
+                      "title": "Language Models May Not Be Few-Shot Anymore",
+                      "url": "https://www.emergentmind.com/papers/2312.16337"
+                    },
+                    {
+                      "title": "[PDF] Task Contamination: Language Models May Not Be Few-Shot Anymore | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/a7b20c1bba14d4cd2b317138496d35d47142d30f"
+                    },
+                    {
+                      "title": "Pretraining Data Exposure in Large Language Models: A Survey of Membership Inference, Data Contamination, and Security Implications | SpringerLink",
+                      "url": "https://link.springer.com/chapter/10.1007/978-3-031-97144-0_14"
+                    }
+                  ]
+                },
+                "Based on the search results, the authors of the arXiv paper 2312.16337 \"Task Contamination: Language Models May Not Be Few-Shot Anymore\" are Changmao Li and Jeffrey Flanigan. The paper was submitted on December 26, 2023."
+              ],
+              "durationSeconds": 3.446737312000001
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T13:41:01.628Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WtyqWC1CHnnovZvBaS2DoS",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Mehta \"Beyond Surface-Level Similarity\" 2511.17602 published conference 2026\"\n\nLinks: [{\"title\":\"[2511.17602] Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models\",\"url\":\"https://arxiv.org/abs/2511.17602\"},{\"title\":\"(PDF) Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models\",\"url\":\"https://www.researchgate.net/publication/397933312_Beyond_Surface-Level_Similarity_Hierarchical_Contamination_Detection_for_Synthetic_Training_Data_in_Foundation_Models\"},{\"title\":\"Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models\",\"url\":\"https://arxiv.org/html/2511.17602\"},{\"title\":\"Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models | Article Information | J-GLOBAL\",\"url\":\"https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202502216067314793\"},{\"title\":\"Surface-based Single-subject Morphological Brain Networks: Effects of Morphological Index, Brain Parcellation and Similarity Measure, Sample Size-varying Stability and Test-retest Reliability\",\"url\":\"https://www.biorxiv.org/content/10.1101/2021.01.25.428021.full.pdf\"},{\"title\":\"Charred or Fragmented, Yet Comparable: Quantifying Dental Surface Similarity Across Teeth, Jaws, and Heat Exposure\",\"url\":\"https://www.medrxiv.org/content/10.1101/2025.04.07.25325362.full.pdf\"}]\n\nBased on the search results, I found information about the paper you're asking about:\n\nThe paper \"Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models\" is authored by Sushant Mehta. It was submitted to arXiv on November 18, 2025.\n\nThe paper proposes a hierarchical contamination detection framework operating at four levels: token level, semantic level, reasoning pattern, and performance cliff detection. The research addresses how synthetic data has become essential for training foundation models, yet benchmark contamination threatens evaluation integrity, and how existing detection methods fail to detect semantic-level contamination where synthetic data conceptually resemble benchmarks without lexical overlap.\n\nHowever, based on the search results, this appears to be an **arXiv preprint** (submitted November 18, 2025) rather than a published conference paper in 2026. The work is noted as a preprint that may not have been peer reviewed yet. I did not find evidence in the search results that this has been published at a conference in 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "f8dac65a-1b5c-4120-b05a-1eb556ff893c",
+            "tool_use_result": {
+              "query": "Mehta \"Beyond Surface-Level Similarity\" 2511.17602 published conference 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01PA6qb6JurZ6BMETP1abvFM",
+                  "content": [
+                    {
+                      "title": "[2511.17602] Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models",
+                      "url": "https://arxiv.org/abs/2511.17602"
+                    },
+                    {
+                      "title": "(PDF) Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models",
+                      "url": "https://www.researchgate.net/publication/397933312_Beyond_Surface-Level_Similarity_Hierarchical_Contamination_Detection_for_Synthetic_Training_Data_in_Foundation_Models"
+                    },
+                    {
+                      "title": "Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models",
+                      "url": "https://arxiv.org/html/2511.17602"
+                    },
+                    {
+                      "title": "Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models | Article Information | J-GLOBAL",
+                      "url": "https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202502216067314793"
+                    },
+                    {
+                      "title": "Surface-based Single-subject Morphological Brain Networks: Effects of Morphological Index, Brain Parcellation and Similarity Measure, Sample Size-varying Stability and Test-retest Reliability",
+                      "url": "https://www.biorxiv.org/content/10.1101/2021.01.25.428021.full.pdf"
+                    },
+                    {
+                      "title": "Charred or Fragmented, Yet Comparable: Quantifying Dental Surface Similarity Across Teeth, Jaws, and Heat Exposure",
+                      "url": "https://www.medrxiv.org/content/10.1101/2025.04.07.25325362.full.pdf"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about the paper you're asking about:\n\nThe paper \"Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models\" is authored by Sushant Mehta. It was submitted to arXiv on November 18, 2025.\n\nThe paper proposes a hierarchical contamination detection framework operating at four levels: token level, semantic level, reasoning pattern, and performance cliff detection. The research addresses how synthetic data has become essential for training foundation models, yet benchmark contamination threatens evaluation integrity, and how existing detection methods fail to detect semantic-level contamination where synthetic data conceptually resemble benchmarks without lexical overlap.\n\nHowever, based on the search results, this appears to be an **arXiv preprint** (submitted November 18, 2025) rather than a published conference paper in 2026. The work is noted as a preprint that may not have been peer reviewed yet. I did not find evidence in the search results that this has been published at a conference in 2026."
+              ],
+              "durationSeconds": 5.733734824000003
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me also check the arXiv page for the \"Task Contamination\" paper to get the authors and confirm whether it was published at AAAI 2024 or some other venue.",
+              "signature": "EtkCClkIDRgCKkAB/LUGPPaqSx2vsJuThxUE9duXsxJHxkBdRRwguEZCrcPC4IweRrmBiPMzOrnT1b2hsvuEW76QNybjKxCeRxGZMg9jbGF1ZGUtb3B1cy00LTY4ABIMd0dgOX476pQdmmDTGgzIbhuk1A9fZXd8uHoiMAjmh8DPA2lkJLaXgY6XGqG1Vhwnv1lsSiNBKfMH8iegcLjMRUGVKmP2H8cPkPzwRCqtAckBDVzKo+ANgG1e4b5pgVEiAsHDZP2VKgrDSnfv15Wrqc7bzkQDf4Tn9XEcluoGY7aKitRPPOYFA0p/m2A04nzBPyvTJ/YphC0IIseIRavv7laZ0xPoQ38eW/Xp9AgoB/pbtJ5kMw0ULgkghC5pEuntQ95nYB685SerZLavtquP3kME/8JeRvLrUoF+U9NJhJN/gGgoL8l49Du+jiiZOoydCVWzPptLsrVf5MAuGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "53c317eb-31e6-48b4-b7ff-a6461b62f139",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015PDgdP8vtsnwS1yiHYyqdd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2173,
+                "cache_read_input_tokens": 33111,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2173
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me confirm the Levy 2024 paper's venue and verify the \"Task Contamination\" paper details."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "ed2c8d65-1a05-4772-b3dd-f5aea695caae",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015PDgdP8vtsnwS1yiHYyqdd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2173,
+                "cache_read_input_tokens": 33111,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2173
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ja2s7W9CmAL2YXPGKZ6t6h",
+              "name": "WebSearch",
+              "input": {
+                "query": "Changmao Li Jeffrey Flanigan \"Task Contamination\" AAAI 2024 conference"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "dda242b8-5e88-4cd3-92e2-eec67ce3404a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015PDgdP8vtsnwS1yiHYyqdd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2173,
+                "cache_read_input_tokens": 33111,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2173
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T13:41:11.183Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ja2s7W9CmAL2YXPGKZ6t6h",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Changmao Li Jeffrey Flanigan \"Task Contamination\" AAAI 2024 conference\"\n\nLinks: [{\"title\":\"Task Contamination: Language Models May Not Be Few-Shot Anymore\",\"url\":\"https://www.researchgate.net/publication/379294383_Task_Contamination_Language_Models_May_Not_Be_Few-Shot_Anymore\"},{\"title\":\"dblp: Jeffrey Flanigan\",\"url\":\"https://dblp.org/pid/75/9768.html\"},{\"title\":\"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub\",\"url\":\"https://github.com/lyy1994/awesome-data-contamination\"},{\"title\":\"Jeffrey Flanigan's research works | University of California, Santa Cruz and other places\",\"url\":\"https://www.researchgate.net/scientific-contributions/Jeffrey-Flanigan-70495420\"},{\"title\":\"Task Contamination: Language Models May Not Be Few-Shot Anymore | Proceedings of the AAAI Conference on Artificial Intelligence\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/view/29808\"},{\"title\":\"[2312.16337v1] Task Contamination: Language Models May Not Be Few-Shot Anymore\",\"url\":\"https://arxiv.org/abs/2312.16337v1\"},{\"title\":\"[PDF] Task Contamination: Language Models May Not Be Few-Shot Anymore | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Task-Contamination:-Language-Models-May-Not-Be-Li-Flanigan/a7b20c1bba14d4cd2b317138496d35d47142d30f\"},{\"title\":\"[2312.16337] Task Contamination: Language Models May Not Be Few-Shot Anymore\",\"url\":\"https://arxiv.org/abs/2312.16337\"},{\"title\":\"Task Contamination: Language Models May Not Be Few-Shot Anymore\",\"url\":\"https://arxiv.org/pdf/2312.16337\"}]\n\nI found information about the paper you're looking for. Here are the search results:\n\n\"Task Contamination: Language Models May Not Be Few-Shot Anymore\" is a paper by Changmao Li and Jeffrey Flanigan from the University of California, Santa Cruz, published at the AAAI 2024 Conference.\n\n**Paper Summary:**\n\nThe paper investigates how zero-shot and few-shot performance of LLMs has changed chronologically over datasets released over time. Using GPT-3 series models and several other recent open-sourced LLMs, the authors found that datasets released prior to the LLM training data creation date perform surprisingly better than datasets released post the LLM training data creation date.\n\n**Key Findings:**\n\nThe research strongly indicates that for many LLMs, there exists task contamination on zero-shot and few-shot evaluation for datasets released prior to the LLMs' training data creation date. Additionally, the authors utilized training data inspection, task example extraction, and a membership inference attack, which reveal further evidence of task contamination.\n\n**Publication Details:**\n\nThe paper was published in March 2024 in the Proceedings of the AAAI Conference on Artificial Intelligence 38(16):18471-18480.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "1ae6d4b2-8c37-4e38-95c9-fd51c22de6ba",
+            "tool_use_result": {
+              "query": "Changmao Li Jeffrey Flanigan \"Task Contamination\" AAAI 2024 conference",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01WUWAE3YTS8kFdz3HrQiJd8",
+                  "content": [
+                    {
+                      "title": "Task Contamination: Language Models May Not Be Few-Shot Anymore",
+                      "url": "https://www.researchgate.net/publication/379294383_Task_Contamination_Language_Models_May_Not_Be_Few-Shot_Anymore"
+                    },
+                    {
+                      "title": "dblp: Jeffrey Flanigan",
+                      "url": "https://dblp.org/pid/75/9768.html"
+                    },
+                    {
+                      "title": "GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub",
+                      "url": "https://github.com/lyy1994/awesome-data-contamination"
+                    },
+                    {
+                      "title": "Jeffrey Flanigan's research works | University of California, Santa Cruz and other places",
+                      "url": "https://www.researchgate.net/scientific-contributions/Jeffrey-Flanigan-70495420"
+                    },
+                    {
+                      "title": "Task Contamination: Language Models May Not Be Few-Shot Anymore | Proceedings of the AAAI Conference on Artificial Intelligence",
+                      "url": "https://ojs.aaai.org/index.php/AAAI/article/view/29808"
+                    },
+                    {
+                      "title": "[2312.16337v1] Task Contamination: Language Models May Not Be Few-Shot Anymore",
+                      "url": "https://arxiv.org/abs/2312.16337v1"
+                    },
+                    {
+                      "title": "[PDF] Task Contamination: Language Models May Not Be Few-Shot Anymore | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/Task-Contamination:-Language-Models-May-Not-Be-Li-Flanigan/a7b20c1bba14d4cd2b317138496d35d47142d30f"
+                    },
+                    {
+                      "title": "[2312.16337] Task Contamination: Language Models May Not Be Few-Shot Anymore",
+                      "url": "https://arxiv.org/abs/2312.16337"
+                    },
+                    {
+                      "title": "Task Contamination: Language Models May Not Be Few-Shot Anymore",
+                      "url": "https://arxiv.org/pdf/2312.16337"
+                    }
+                  ]
+                },
+                "I found information about the paper you're looking for. Here are the search results:\n\n\"Task Contamination: Language Models May Not Be Few-Shot Anymore\" is a paper by Changmao Li and Jeffrey Flanigan from the University of California, Santa Cruz, published at the AAAI 2024 Conference.\n\n**Paper Summary:**\n\nThe paper investigates how zero-shot and few-shot performance of LLMs has changed chronologically over datasets released over time. Using GPT-3 series models and several other recent open-sourced LLMs, the authors found that datasets released prior to the LLM training data creation date perform surprisingly better than datasets released post the LLM training data creation date.\n\n**Key Findings:**\n\nThe research strongly indicates that for many LLMs, there exists task contamination on zero-shot and few-shot evaluation for datasets released prior to the LLMs' training data creation date. Additionally, the authors utilized training data inspection, task example extraction, and a membership inference attack, which reveal further evidence of task contamination.\n\n**Publication Details:**\n\nThe paper was published in March 2024 in the Proceedings of the AAAI Conference on Artificial Intelligence 38(16):18471-18480."
+              ],
+              "durationSeconds": 4.639850806999995
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the information I need. Let me summarize:\n\n**Condition 1: alemohammad2024selfconsuming**\n- First author: Alemohammad, Sina — CORRECT\n- Year: 2024 — CORRECT\n- Venue: ICLR 2024 — CORRECT (confirmed by ICLR virtual poster page and proceedings)\n- Author list matches\n- **Verdict: No changes needed**\n\n**Condition 2: mehta2025beyond**\n- First author: Mehta, Sushant — CORRECT\n\n\n- Single author, year 2025, arXiv ID 2511.17602 all check out, and there's no conference publication yet, so this stays as is.\n\n**Condition 3: levy2024task**\n- This key doesn't actually exist in the bibliography. The paper I'm looking for is \"Task Contamination: Language Models May Not Be Few-Shot Anymore\" by Changmao Li and Jeffrey Flanigan from AAAI 2024, which is a different work entirely.\n- The bibliography does have `levy2008expectation`, but that's Roger Levy's 2008 Cognition paper, completely unrelated.\n- The user's question asks about accent marks on \"Lévy\" versus \"Levy\", but the actual authors here are Li and Flanigan, not Levy at all — there might be some confusion about which paper is being referenced.\n- I should verify whether there's actually a Levy 2024 paper on task contamination or related topics in NLP that might be what's intended. Now I'm finalizing the report. Conditions 1 and 2 check out correctly, and condition 3 doesn't have an entry in the bibliography to fix—I'll just document my findings about the missing \"levy2024task\" reference and note that the most likely intended citation is the Li & Flanigan paper on task contamination from AAAI 2024.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "75b22f59-ba50-4912-ad17-e05eabcf58b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016c8WqFXtrWUK5Gmxz9y97d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 972,
+                "cache_read_input_tokens": 35284,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 972
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个条目全部验证完毕。\n\n## 验证报告\n\n### 条目 1: alemohammad2024selfconsuming\n\n| 字段 | 现有 bib | 验证结果 | 状态 |\n|------|----------|----------|------|\n| 第一作者 | Alemohammad, Sina | Alemohammad, Sina | 正确 |\n| 年份 | 2024 | 2024 | 正确 |\n| Venue | Proceedings of ICLR | ICLR 2024 (Poster) | 正确 |\n| 作者列表 | 8人 | 匹配 | 正确 |\n\n**无需修改。** Venue 是 ICLR 2024，不是 ICML。[ICLR 官方页面](https://iclr.cc/virtual/2024/poster/18592)和 [OpenReview](https://openreview.net/forum?id=ShjMHfmPs0) 均确认。\n\n### 条目 2: mehta2025beyond\n\n| 字段 | 现有 bib | 验证结果 | 状态 |\n|------|----------|----------|------|\n| 第一作者 | Mehta, Sushant | Mehta, Sushant | 正确 |\n| 作者数量 | 1人 | 确认仅1人 | 正确 |\n| 年份 | 2025 | 2025 (Nov 18) | 正确 |\n| arXiv ID | 2511.17602 | 2511.17602 | 正确 |\n| 发表状态 | arXiv preprint | 未查到会议发表记录，仍为 preprint | 正确 |\n\n**无需修改。**\n\n### 条目 3: levy2024task\n\nbib 中确认不存在 `levy2024task`，tex 中也未引用。\n\n搜索 \"Levy 2024 task\" 相关论文，最接近的匹配是：\n\n> **\"Task Contamination: Language Models May Not Be Few-Shot Anymore\"**\n> 作者：**Changmao Li, Jeffrey Flanigan** (UC Santa Cruz)\n> 发表于：**AAAI 2024**, Proceedings of the AAAI Conference on Artificial Intelligence, 38(16):18471-18480\n> arXiv: [2312.16337](https://arxiv.org/abs/2312.16337)\n\n关键发现：\n- 该论文作者是 **Li** 和 **Flanigan**，不是 Levy。`levy2024task` 这个 key 可能是将 \"Li\" 误记为 \"Levy\"。\n- 现有 bib 中的 `levy2008expectation` 是 Roger Levy (无重音) 的 Cognition 2008 论文，完全不同的论文，无需修改。\n- 如需引用 task contamination 论文，正确的 bib 条目应为：\n\n```bibtex\n@inproceedings{li2024task,\n  title={Task Contamination: Language Models May Not Be Few-Shot Anymore},\n  author={Li, Changmao and Flanigan, Jeffrey},\n  booktitle={Proceedings of AAAI},\n  year={2024},\n  url={https://arxiv.org/abs/2312.16337}\n}\n```\n\n**结论：三个条目的现有 bib 内容均无错误，无需修改 bib 文件。** 条目 3 不存在于 bib 中也未被引用，如果后续需要引用应使用 key `li2024task`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "uuid": "730b708d-bc57-4368-b6d7-b70c49b6a9ab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016c8WqFXtrWUK5Gmxz9y97d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 972,
+                "cache_read_input_tokens": 35284,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 972
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个条目全部验证完毕。\n\n## 验证报告\n\n### 条目 1: alemohammad2024selfconsuming\n\n| 字段 | 现有 bib | 验证结果 | 状态 |\n|------|----------|----------|------|\n| 第一作者 | Alemohammad, Sina | Alemohammad, Sina | 正确 |\n| 年份 | 2024 | 2024 | 正确 |\n| Venue | Proceedings of ICLR | ICLR 2024 (Poster) | 正确 |\n| 作者列表 | 8人 | 匹配 | 正确 |\n\n**无需修改。** Venue 是 ICLR 2024，不是 ICML。[ICLR 官方页面](https://iclr.cc/virtual/2024/poster/18592)和 [OpenReview](https://openreview.net/forum?id=ShjMHfmPs0) 均确认。\n\n### 条目 2: mehta2025beyond\n\n| 字段 | 现有 bib | 验证结果 | 状态 |\n|------|----------|----------|------|\n| 第一作者 | Mehta, Sushant | Mehta, Sushant | 正确 |\n| 作者数量 | 1人 | 确认仅1人 | 正确 |\n| 年份 | 2025 | 2025 (Nov 18) | 正确 |\n| arXiv ID | 2511.17602 | 2511.17602 | 正确 |\n| 发表状态 | arXiv preprint | 未查到会议发表记录，仍为 preprint | 正确 |\n\n**无需修改。**\n\n### 条目 3: levy2024task\n\nbib 中确认不存在 `levy2024task`，tex 中也未引用。\n\n搜索 \"Levy 2024 task\" 相关论文，最接近的匹配是：\n\n> **\"Task Contamination: Language Models May Not Be Few-Shot Anymore\"**\n> 作者：**Changmao Li, Jeffrey Flanigan** (UC Santa Cruz)\n> 发表于：**AAAI 2024**, Proceedings of the AAAI Conference on Artificial Intelligence, 38(16):18471-18480\n> arXiv: [2312.16337](https://arxiv.org/abs/2312.16337)\n\n关键发现：\n- 该论文作者是 **Li** 和 **Flanigan**，不是 Levy。`levy2024task` 这个 key 可能是将 \"Li\" 误记为 \"Levy\"。\n- 现有 bib 中的 `levy2008expectation` 是 Roger Levy (无重音) 的 Cognition 2008 论文，完全不同的论文，无需修改。\n- 如需引用 task contamination 论文，正确的 bib 条目应为：\n\n```bibtex\n@inproceedings{li2024task,\n  title={Task Contamination: Language Models May Not Be Few-Shot Anymore},\n  author={Li, Changmao and Flanigan, Jeffrey},\n  booktitle={Proceedings of AAAI},\n  year={2024},\n  url={https://arxiv.org/abs/2312.16337}\n}\n```\n\n**结论：三个条目的现有 bib 内容均无错误，无需修改 bib 文件。** 条目 3 不存在于 bib 中也未被引用，如果后续需要引用应使用 key `li2024task`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 82659,
+            "duration_api_ms": 99546,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "2b3ab669-dccf-4ad4-b06d-31a94dcad38d",
+            "total_cost_usd": 0.42885675,
+            "usage": {
+              "input_tokens": 526,
+              "cache_creation_input_tokens": 24415,
+              "cache_read_input_tokens": 135434,
+              "output_tokens": 2915,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 24415,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1992,
+                  "cache_read_input_tokens": 35284,
+                  "cache_creation_input_tokens": 972,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 972
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 62526,
+                "outputTokens": 2103,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 6,
+                "costUSD": 0.133041,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 526,
+                "outputTokens": 2915,
+                "cacheReadInputTokens": 135434,
+                "cacheCreationInputTokens": 24415,
+                "webSearchRequests": 0,
+                "costUSD": 0.29581575,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "dad482ec-ae18-4bd9-9667-eece82a6e582"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-bib-verify-r9m2.md"
+}

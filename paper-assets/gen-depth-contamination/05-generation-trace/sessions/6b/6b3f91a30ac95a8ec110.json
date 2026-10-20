@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b3f91a30ac95a8ec110",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp wiki qwen7b prep",
+  "task_key": "worker_code_exp_wiki_qwen7b_prep_20260517T164018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_wiki_qwen7b_prep_20260517T164018_result.json",
+    "occurrence": 1,
+    "bytes": 462,
+    "sha256": "2b5ae11bec5dde5f227fac5a621ade6e755b59a2ccda78f7007e05fa1f99a538"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n| 项目 | 值 |\n|---|---|\n| **seed data 行数** | 5000 行 (`depth_0.jsonl`) |\n| **目录内容** | 仅 `depth_0.jsonl`，无 depth_1-5 |\n| **Qwen2.5-7B 模型路径** | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B` (另有 huggingface cache 格式: `models--Qwen--Qwen2.5-7B`) |\n| **Qwen2.5-1.5B scorer 路径** | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B` (Instruct 版: `Qwen2___5-1___5B-Instruct`) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-wiki-qwen7b-prep.md"
+}

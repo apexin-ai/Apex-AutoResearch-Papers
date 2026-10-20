@@ -1,0 +1,2221 @@
+{
+  "schema_version": "1.0",
+  "session_id": "f45d6ab3e11113ade0d8",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-22T08:34:15.484Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K9wTeGD4FJfLa1aWLecpXC",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "3f20316c-1986-4cac-b5e7-046db2c607cb",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+              "oldString": "\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Seed robustness: $\\Kempirical$ under two random seeds. 1v2 $\\Delta$: change in 1v2 AUC from seed 42 to seed 123. $\\Kempirical$ is stable in 2/3 configurations; the Qwen-Wiki shift to $\\Kempirical{=}3$ is marginal (2v3 fold variance crosses $\\theta$).}\n\\label{tab:seed_robustness}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Domain} & \\multicolumn{2}{c}{$\\Kempirical$} & \\textbf{1v2 $\\Delta$} & \\textbf{Stable?} \\\\\n\\cmidrule(lr){3-4}\n & & seed=42 & seed=123 & & \\\\\n\\midrule\nPythia-1.4B & Wikipedia & 1 & 1 & $-0.8$\\,pp & \\checkmark \\\\\nQwen-1.5B  & C4        & 2 & 2 & $+9.0$\\,pp & \\checkmark \\\\\nQwen-1.5B  & Wikipedia & 2 & 3$^\\dagger$ & $+8.7$\\,pp & $\\times$ \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^\\dagger$2v3 $\\auc = 0.6067$; fold 5 $= 0.595 < \\theta$. Marginal boundary.}\n\\end{tabular}}\n\\end{table}",
+              "newString": "\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Seed robustness: $\\Kempirical$ under two random seeds. 1v2 $\\Delta$: change in 1v2 AUC from seed 42 to seed 123. $\\Kempirical$ is stable in 2/3 configurations; the Qwen-Wiki shift to $\\Kempirical{=}3$ is marginal (2v3 fold variance crosses $\\theta$).}\n\\label{tab:seed_robustness}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Domain} & \\multicolumn{2}{c}{$\\Kempirical$} & \\textbf{1v2 $\\Delta$} & \\textbf{Stable?} \\\\\n\\cmidrule(lr){3-4}\n & & seed=42 & seed=123 & & \\\\\n\\midrule\nPythia-1.4B & Wikipedia & 1 & 1 & $-0.8$\\,pp & \\checkmark \\\\\nQwen-1.5B  & C4        & 2 & 2 & $+9.0$\\,pp & \\checkmark \\\\\nQwen-1.5B  & Wikipedia & 2 & 3$^\\dagger$ & $+8.7$\\,pp & $\\times$ \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^\\dagger$2v3 $\\auc = 0.6067$; fold 5 $= 0.595 < \\theta$. Marginal boundary.}\n\\end{tabular}}\n\\end{table}\n\n\\subsection{Bonferroni-Corrected Confidence Intervals}\n\\label{sec:bonferroni_ci}\n\nTo control the family-wise error rate across all 10 model configurations, we apply Bonferroni correction: $\\alpha_{\\text{corr}} = 0.05 / 10 = 0.005$, yielding 99.5\\% confidence intervals ($z = 2.807$).\nTable~\\ref{tab:bonferroni_ci} reports the corrected intervals for each configuration's $\\Kempirical$ boundary pair.\nEight of ten configurations retain CI lower bounds above $\\theta{=}0.60$; two marginal $\\Kempirical{=}2$ configurations (Qwen-cont, LLaMA-8B) see their lower bounds dip below $\\theta$ under the stricter criterion ($0.5976$ and $0.5988$, respectively).\nThese near-misses reflect narrow effect sizes ($\\auc - \\theta < 0.013$) rather than classification failure: both retain point estimates above $\\theta$ and uncorrected 95\\% CI lower bounds above $\\theta$.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Bonferroni-corrected 99.5\\% confidence intervals for $\\Kempirical$ boundary pairs across all 10 configurations. $\\alpha_{\\text{corr}} = 0.005$; CI computed as $\\auc \\pm 2.807 \\times \\hat{\\sigma}_{\\text{boot}}$. ``Pass $\\theta$'': CI lower bound $> 0.60$.}\n\\label{tab:bonferroni_ci}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Configuration} & \\textbf{Boundary} & $\\auc$ & $\\hat{\\sigma}_{\\text{boot}}$ & \\textbf{99.5\\% CI} & \\textbf{Pass $\\theta$} \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{$\\Kempirical = 2$ configurations}} \\\\\nQwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\,.708]$ & \\checkmark \\\\\nPythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\,.667]$ & \\checkmark \\\\\nQwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\,.639]$ & \\checkmark \\\\\nQwen-7B$^\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\,.630]$ & \\checkmark \\\\\nLLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\,.626]$ & $\\times$ \\\\\nQwen-cont (Instruct)     & 1v2 & .6112 & .0049 & $[.598,\\,.625]$ & $\\times$ \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{$\\Kempirical = 1$ configurations}} \\\\\nOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\,.989]$ & \\checkmark \\\\\nMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\,.987]$ & \\checkmark \\\\\nPythia-6.9B$^\\S$          & 0v1 & .9599 & .0015$^\\dagger$ & $[.956,\\,.964]$ & \\checkmark \\\\\nGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\,.958]$ & \\checkmark \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\n\\multicolumn{6}{l}{\\footnotesize $^\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\n\\multicolumn{6}{l}{\\footnotesize $^\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\n\\end{tabular}}\n\\end{table}",
+              "originalFile": "\\section{Extended Discussion}\n\\label{sec:extended_discussion}\n\n\\subsection{Theoretical Implications of $\\Kempirical = 2$}\n\nThe DPI guarantees a finite $\\Ktheory$; for general web text, $\\Kempirical \\leq 2$ across all 10 configurations (1B--8B, 6 families), while structured domains (arXiv) yield $\\Kempirical{=}3$, aligning with model collapse convergence~\\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.\nDecoding strategy modestly affects signal strength (1v2 $\\auc \\in [0.6866, 0.7039]$) but does not shift the boundary.\n\n\\subsection{Cross-Model Transfer Implications}\n\nCross-model classification retains 80--100\\% accuracy with scorer-invariant feature rankings ($\\rho > 0.90$), enabling single-classifier deployment across generators.\nAbsolute discriminability at the $\\Kempirical$ boundary is scorer-sensitive: alternative scorers reduce Qwen-continuation $\\Kempirical$ from 2 to 1, while rewrite-mode $\\Kempirical = 2$ is preserved.\nModel family similarity modulates transfer (Pythia$\\leftrightarrow$OLMo: 90--92\\% vs.\\ Qwen-cont$\\leftrightarrow$OLMo: 80--85\\%).\n\n\\begin{minipage}{\\columnwidth}\n\\centering\n\\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\rho > 0.90$) and rewrite-mode $\\Kempirical = 2$, but reduce continuation-mode $\\Kempirical$ from 2 to 1.}\n\\label{tab:crossscorer}\n\\resizebox{\\columnwidth}{!}{\\input{tables/tab_crossscorer}}\n\\end{minipage}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Three-way ANOVA (Generator $\\times$ Scorer $\\times$ Depth-Pair) on per-fold pairwise $\\auc$ values. DV = per-fold AUC; $N{=}300$ (12 cells $\\times$ 5 folds $\\times$ 5 depth-pairs). Scorer is statistically significant but explains modest variance ($\\eta^2_p{=}.166$) relative to Depth-Pair ($\\eta^2_p{=}.997$), supporting near-scorer-independence of depth discrimination.}\n\\label{tab:anova_crossscorer}\n\\begin{tabular}{lrrrr}\n\\toprule\n\\textbf{Source} & \\textbf{df} & $F$ & $p$ & $\\eta^2_p$ \\\\\n\\midrule\nGenerator     & 2  & 851.91  & ${<}.001$  & .866 \\\\\nScorer        & 3  & 17.48  & ${<}.001$  & .166 \\\\\nDepth-Pair    & 4  & 22737.70  & ${<}.001$  & .997 \\\\\nGen$\\times$Scorer & 6 & 7.50 & ${<}.001$ & .146 \\\\\nGen$\\times$Depth  & 8 & 913.41 & ${<}.001$ & .965 \\\\\nScorer$\\times$Depth & 12 & 2.25 & $.010$ & .093 \\\\\nResidual      & 264 & & & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\noindent GroupKFold cross-validation may underestimate $p$-value variance due to within-group correlation; the reported significance levels should be interpreted as lower bounds.\n\n\\subsection{Decoding Strategy Details}\n\\label{sec:extended_decoding}\n\nPythia-6.9B under greedy decoding yields $\\Kempirical{=}2$ (1v2 $\\auc = 0.854$), but switching to nucleus sampling ($p{=}0.95$) reduces the boundary to $\\Kempirical{=}1$ (1v2 $\\auc = 0.596$), providing direct evidence that greedy repetition artifacts inflate depth separability.\nStricter thresholds ($\\theta{=}0.65$) yield more conservative $\\Kempirical$ estimates, while $\\theta{=}0.55$ captures weaker signals at the cost of higher false-alarm rates.\nAll four decoding strategies yield $\\Kempirical{=}2$ at $\\theta{=}0.60$ (1v2 $\\auc \\in [0.687, 0.704]$; Table~\\ref{tab:s2_decoding}).\n\n\\subsection{Feature Importance Across Decoding Strategies}\n\nFeature importance ordering varies across decoding strategies: greedy and $T{=}0.7$ share highly correlated rankings ($\\rho = 0.914$), while greedy vs.\\ $T{=}1.2$ yields lower correlation ($\\rho = 0.53$, nonsignificant after Bonferroni).\nThe depth boundary is robust but the optimal feature subset is strategy-dependent.\n\n\\subsection{Scale and Neural Probe}\n\\label{sec:extended_neural_probe}\n\nCross-scale validation confirms $\\Kempirical = 2$ from 1.5B through 8B: Qwen-7B (1v2 $\\auc = 0.6168$ $[0.608, 0.626]$) and LLaMA-3.1-8B (1v2 $\\auc = 0.6123$, 0v1 $= 0.9225$) both exceed $\\theta$, with progressively lower 0v1 signal consistent with larger models generating more human-like text. Scaling to 13B+ remains open.\n\nThe neural probe yields model-dependent $\\Kempirical^{\\text{neural}}$: $3$ for Qwen (self-familiarity effect from instruction-tuned representations) but $2$ for Pythia; OLMo yields $\\Kempirical^{\\text{neural}} = 1$ (1v2 $\\auc = 0.5054$), consistent with the 15D LightGBM boundary.\nThe 15D model-free features yield $\\Kempirical = 2$ for Pythia and Qwen, while OLMo yields $\\Kempirical = 1$ under the standardized pipeline.\n\n\\subsection{LLM Zero-Shot Baseline}\n\\label{sec:extended_llm}\n\nGPT-5.5 achieves 33.2\\% accuracy (MAE = 1.10) and Claude Opus~4.6 33.1\\% (MAE = 1.15) on a balanced 500-sample test set, comparable to OBD-LightGBM's 38.0\\% (95\\% CI: $[0.340, 0.422]$; McNemar $p = 0.081$, $0.069$; Table~\\ref{tab:s3_llm_zeroshot}).\nPer-depth recall confirms convergent failure at depths $\\geq 2$ (Section~\\ref{sec:why_kstar}).\nWhen 6-class probabilities are marginalized to 5 classes ($P(d{\\geq}4)$), accuracy rises to 44.4\\% but concentrates in depth-4 (recall: 22\\%$\\to$80\\%) while depths 2--3 collapse to 2--8\\%; we report raw 6-class results.\n\n\\subsection{Practical Considerations}\n\nAll filtering strategies degrade general capabilities (MMLU: 0.6018 $\\to$ 0.5865--0.5941; HellaSwag: 0.6821 $\\to$ 0.6638--0.6701); our 100\\% synthetic setting is an upper bound; in mixed corpora, degradation scales with contamination fraction~\\cite{shumailov2024collapse, dohmatob2024model}.\n$\\Kstar$-aware binary filtering reduces MMLU degradation by ${\\sim}$50\\% ($-$1.53\\,pp $\\to$ $-$0.77\\,pp), requires no per-model calibration, and is combinable with distribution-matching methods (DSIR, DoReMi).\n\n\\subsection{Extended Limitations}\n\\label{sec:extended_limitations}\n\n\\emph{Prompt-chain versus retrain-chain.}\nRetrain-chain validation (Pythia-1.4B LoRA, 5 generations) yields $\\Kempirical{\\geq}4$ (1v2 $\\auc = 0.9484$, 2v3 $= 0.8888$, 3v4 $= 0.7982$), far exceeding prompt-chain $\\Kempirical{=}2$.\nThe elevated signal arises from cumulative model-adaptation artifacts rather than text-intrinsic degradation; prompt-chain $\\Kempirical$ is the operationally relevant boundary for data curation.\n\n\\emph{Threshold sensitivity.}\nAt $\\theta = 0.55$, $\\Kempirical = 3$ for Qwen-rewrite/continuation; at $\\theta = 0.70$, $\\Kempirical = 1$ across all configurations (Figure~\\ref{fig:kstar_theta}).\nQwen-continuation's 1v2 CI lower bound exceeds $\\theta$ by only 0.2\\,pp; all ten boundary comparisons yield permutation $p < 0.001$.\n\n\\emph{Structural confound: token length.}\nIn continuation mode the generation prompt is discarded, so all depths $\\geq 1$ consist entirely of machine-generated tokens and the 1v2 boundary compares texts differing only in conditioning context (human-authored vs.\\ machine-generated prompt), not structural composition.\nDepth~0 texts average ${\\sim}$191 subword tokens (C4 truncation), while depth~1+ texts average 193--256 tokens depending on model (Table~\\ref{tab:token_length}).\nThis asymmetry is directionally opposite to a length-inflation confound: shorter depth-0 texts provide less feature-extraction context, making 0v1 discrimination harder, not easier.\nWithin depths 1--5, mean token counts are stable (within-model range $\\leq$ 4 tokens for all configurations except Qwen-continuation at 6 tokens), so the pairwise comparisons underlying $\\Kempirical{=}2$ are unaffected by length.\nEOS truncation rates are similarly depth-stable within each model: Qwen-rewrite 7--11\\%, Pythia 34--36\\%, OLMo $<$1\\%, Qwen-continuation 17--20\\%, Qwen-7B 45--47\\%.\nModels with the highest truncation (Pythia, Qwen-7B) still yield $\\Kempirical{=}2$ with the same step-function AUC decay pattern as low-truncation models (Table~\\ref{tab:kstar_ci}), confirming that EOS truncation does not drive the boundary.\n\n\\emph{Graduated filtering.}\nAll $\\alpha$ values (0.1--0.9) underperform binary-ours on MMLU ($\\alpha{=}0.1$: 0.5873; $\\alpha{=}0.9$: 0.5892 vs.\\ 0.5941); at $\\alpha{=}0.9$, HellaSwag matches exactly (0.6701).\nBinary-ours significantly outperforms all alternatives on MMLU ($p_{\\text{corr}} \\leq 0.021$); Graduated$_{0.9}$ is indistinguishable on HellaSwag ($p = 1.00$) but worse on MMLU ($p_{\\text{corr}} = 0.011$).\n\\label{tab:pairwise_significance}\n\n\\subsection{Dose-Response: Contamination Ratio Effect}\n\\label{sec:dose_response}\n\nThe main filtering experiments (Section~\\ref{sec:filtering}) use 100\\% synthetic data to maximize effect size.\nTo characterize behavior at lower contamination ratios, we mix synthetic depths 1--5 with clean C4 at 10\\%, 30\\%, and 50\\% contamination (Qwen-1.5B continuation, 5 seeds each; Table~\\ref{tab:dose_response}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{MMLU accuracy by contamination ratio (fraction of synthetic data in training set) and filtering strategy. Base model (no fine-tuning): 0.6018. Mean $\\pm$ std over 5 seeds.}\n\\label{tab:dose_response}\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Strategy} & \\textbf{10\\%} & \\textbf{30\\%} & \\textbf{50\\%} \\\\\n\\midrule\nNo-filter   & $0.6009 \\pm .003$ & $0.5978 \\pm .004$ & $0.5932 \\pm .004$ \\\\\nBinary-ours & $0.6011 \\pm .003$ & $0.5988 \\pm .003$ & $0.5956 \\pm .004$ \\\\\nGraduated   & $0.6008 \\pm .003$ & $0.5982 \\pm .004$ & $0.5944 \\pm .004$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAt 10\\% contamination, no-filter MMLU ($0.6009$) remains within noise of the base model ($0.6018$, $\\Delta = -0.09$\\,pp), and all three strategies are indistinguishable ($\\Delta_{\\max} = 0.03$\\,pp between strategies, $p > 0.8$).\nAt 30\\%, differences emerge directionally ($\\Delta = 0.10$\\,pp, binary vs.\\ no-filter) but remain non-significant ($p > 0.3$).\nAt 50\\%, binary-ours shows a 0.24\\,pp advantage over no-filter, approaching but not reaching significance ($p = 0.12$).\nThe strategy ordering (binary $>$ graduated $>$ no-filter) is consistent with the 100\\% setting, but effect sizes scale linearly with contamination fraction.\nThis demonstrates that $\\Kstar$-aware curation provides practical benefit primarily when contamination is severe enough to cause measurable quality degradation.\n\n\\subsection{Seed Robustness}\n\\label{sec:seed_robustness}\n\nBecause the random seed governs both corpus sampling and generation quality (not merely CV splits), absolute AUC values are seed-dependent.\nWe re-run three configurations with seed$\\,{=}\\,123$ (primary: seed$\\,{=}\\,42$; Table~\\ref{tab:seed_robustness}).\n$\\Kempirical$ is stable in 2/3 cases: Pythia-1.4B on Wikipedia yields $\\Kempirical{=}1$ under both seeds (1v2 $\\Delta = -0.8$\\,pp), and Qwen-1.5B on C4 yields $\\Kempirical{=}2$ (1v2 $\\Delta = +9.0$\\,pp, both seeds above $\\theta$).\nQwen-1.5B on Wikipedia shifts from $\\Kempirical{=}2$ to $\\Kempirical{=}3$ under seed$\\,{=}\\,123$, but the 2v3 AUC ($0.6067$) is marginal: one of five folds falls below $\\theta$ (fold~5 $= 0.595$), so this does not constitute strong evidence for $\\Kempirical{=}3$.\nThe ${\\pm}9$\\,pp absolute AUC variation across seeds strengthens the methodological case for threshold-based $\\Kempirical$ over raw AUC comparisons: the qualitative boundary is robust even when point estimates shift.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Seed robustness: $\\Kempirical$ under two random seeds. 1v2 $\\Delta$: change in 1v2 AUC from seed 42 to seed 123. $\\Kempirical$ is stable in 2/3 configurations; the Qwen-Wiki shift to $\\Kempirical{=}3$ is marginal (2v3 fold variance crosses $\\theta$).}\n\\label{tab:seed_robustness}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Domain} & \\multicolumn{2}{c}{$\\Kempirical$} & \\textbf{1v2 $\\Delta$} & \\textbf{Stable?} \\\\\n\\cmidrule(lr){3-4}\n & & seed=42 & seed=123 & & \\\\\n\\midrule\nPythia-1.4B & Wikipedia & 1 & 1 & $-0.8$\\,pp & \\checkmark \\\\\nQwen-1.5B  & C4        & 2 & 2 & $+9.0$\\,pp & \\checkmark \\\\\nQwen-1.5B  & Wikipedia & 2 & 3$^\\dagger$ & $+8.7$\\,pp & $\\times$ \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^\\dagger$2v3 $\\auc = 0.6067$; fold 5 $= 0.595 < \\theta$. Marginal boundary.}\n\\end{tabular}}\n\\end{table}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 153,
+                  "oldLines": 3,
+                  "newStart": 153,
+                  "newLines": 41,
+                  "lines": [
+                    " \\multicolumn{6}{l}{\\footnotesize $^\\dagger$2v3 $\\auc = 0.6067$; fold 5 $= 0.595 < \\theta$. Marginal boundary.}",
+                    " \\end{tabular}}",
+                    " \\end{table}",
+                    "+",
+                    "+\\subsection{Bonferroni-Corrected Confidence Intervals}",
+                    "+\\label{sec:bonferroni_ci}",
+                    "+",
+                    "+To control the family-wise error rate across all 10 model configurations, we apply Bonferroni correction: $\\alpha_{\\text{corr}} = 0.05 / 10 = 0.005$, yielding 99.5\\% confidence intervals ($z = 2.807$).",
+                    "+Table~\\ref{tab:bonferroni_ci} reports the corrected intervals for each configuration's $\\Kempirical$ boundary pair.",
+                    "+Eight of ten configurations retain CI lower bounds above $\\theta{=}0.60$; two marginal $\\Kempirical{=}2$ configurations (Qwen-cont, LLaMA-8B) see their lower bounds dip below $\\theta$ under the stricter criterion ($0.5976$ and $0.5988$, respectively).",
+                    "+These near-misses reflect narrow effect sizes ($\\auc - \\theta < 0.013$) rather than classification failure: both retain point estimates above $\\theta$ and uncorrected 95\\% CI lower bounds above $\\theta$.",
+                    "+",
+                    "+\\begin{table}[h]",
+                    "+\\centering",
+                    "+\\footnotesize",
+                    "+\\caption{Bonferroni-corrected 99.5\\% confidence intervals for $\\Kempirical$ boundary pairs across all 10 configurations. $\\alpha_{\\text{corr}} = 0.005$; CI computed as $\\auc \\pm 2.807 \\times \\hat{\\sigma}_{\\text{boot}}$. ``Pass $\\theta$'': CI lower bound $> 0.60$.}",
+                    "+\\label{tab:bonferroni_ci}",
+                    "+\\resizebox{\\columnwidth}{!}{%",
+                    "+\\begin{tabular}{llcccc}",
+                    "+\\toprule",
+                    "+\\textbf{Configuration} & \\textbf{Boundary} & $\\auc$ & $\\hat{\\sigma}_{\\text{boot}}$ & \\textbf{99.5\\% CI} & \\textbf{Pass $\\theta$} \\\\",
+                    "+\\midrule",
+                    "+\\multicolumn{6}{l}{\\textit{$\\Kempirical = 2$ configurations}} \\\\",
+                    "+Qwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\,.708]$ & \\checkmark \\\\",
+                    "+Pythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\,.667]$ & \\checkmark \\\\",
+                    "+Qwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\,.639]$ & \\checkmark \\\\",
+                    "+Qwen-7B$^\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\,.630]$ & \\checkmark \\\\",
+                    "+LLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\,.626]$ & $\\times$ \\\\",
+                    "+Qwen-cont (Instruct)     & 1v2 & .6112 & .0049 & $[.598,\\,.625]$ & $\\times$ \\\\",
+                    "+\\midrule",
+                    "+\\multicolumn{6}{l}{\\textit{$\\Kempirical = 1$ configurations}} \\\\",
+                    "+OLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\,.989]$ & \\checkmark \\\\",
+                    "+Mistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\,.987]$ & \\checkmark \\\\",
+                    "+Pythia-6.9B$^\\S$          & 0v1 & .9599 & .0015$^\\dagger$ & $[.956,\\,.964]$ & \\checkmark \\\\",
+                    "+Gemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\,.958]$ & \\checkmark \\\\",
+                    "+\\bottomrule",
+                    "+\\multicolumn{6}{l}{\\footnotesize $^\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\",
+                    "+\\multicolumn{6}{l}{\\footnotesize $^\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\",
+                    "+\\multicolumn{6}{l}{\\footnotesize $^\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}",
+                    "+\\end{tabular}}",
+                    "+\\end{table}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me sync these changes to the server and verify the LaTeX compiles."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "1d174e58-b253-42a0-ad83-8b4c65da7d1a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018BtNs8SvbMG5a1TRwVrGRC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2370,
+                "cache_read_input_tokens": 128519,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2370
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KXZMi65uvPa3zGbvTSSGm9",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cd /root/autodl-tmp/gen-depth-contamination && git pull 2>&1 || echo \"NOT_A_GIT_REPO\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "acfac822-4705-4cf5-be1a-4f8a97f3b7a3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018BtNs8SvbMG5a1TRwVrGRC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2370,
+                "cache_read_input_tokens": 128519,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2370
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-22T08:34:20.625Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KXZMi65uvPa3zGbvTSSGm9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"There is no tracking information for the current branch.\\\\nPlease specify which branch you want to merge with.\\\\nSee git-pull(1) for details.\\\\n\\\\n    git pull <remote> <branch>\\\\n\\\\nIf you wish to set tracking information for this branch you can do so with:\\\\n\\\\n    git branch --set-upstream-to=<remote>/<branch> master\\\\n\\\\nNOT_A_GIT_REPO\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "54e3436a-e4ca-4715-aac8-bb04b993765b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"There is no tracking information for the current branch.\\\\nPlease specify which branch you want to merge with.\\\\nSee git-pull(1) for details.\\\\n\\\\n    git pull <remote> <branch>\\\\n\\\\nIf you wish to set tracking information for this branch you can do so with:\\\\n\\\\n    git branch --set-upstream-to=<remote>/<branch> master\\\\n\\\\nNOT_A_GIT_REPO\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"There is no tracking information for the current branch.\\nPlease specify which branch you want to merge with.\\nSee git-pull(1) for details.\\n\\n    git pull <remote> <branch>\\n\\nIf you wish to set tracking information for this branch you can do so with:\\n\\n    git branch --set-upstream-to=<remote>/<branch> master\\n\\nNOT_A_GIT_REPO\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The remote server doesn't have a tracked remote. I need to sync the files manually. Let me use scp or copy the content directly via ssh_execute.\n\nActually, looking at the project setup, the changes I made are on the local machine. I need to push the content to the remote server. Let me copy the modified files.\n\nLet me read the modified files locally and then write them on the server.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "78090456-21af-427f-956f-00ebe67d4c6b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01312t7BNNX24yX9QhNbBPyC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 334,
+                "cache_read_input_tokens": 130889,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 334
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The server doesn't have git tracking. Let me copy the modified files to the server directly."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "0a49548e-508c-4a61-a2b3-d1e0760f432e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01312t7BNNX24yX9QhNbBPyC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 334,
+                "cache_read_input_tokens": 130889,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 334
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JsGW9iBykQ78M4sVWhqHWE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+                "offset": 454,
+                "limit": 25
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "97ae661e-b412-4ae3-a441-b95bf2a2d8c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01312t7BNNX24yX9QhNbBPyC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 334,
+                "cache_read_input_tokens": 130889,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 334
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-22T08:34:27.152Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JsGW9iBykQ78M4sVWhqHWE",
+              "type": "tool_result",
+              "content": "454\t%%% Table S12: Domain Ablation\n455\t\\begin{table*}[t]\n456\t  \\centering\n457\t  \\small\n458\t  \\caption{Pairwise $\\auc$ across depth pairs for three text domains (Qwen2.5-1.5B-Instruct, continuation mode). Tests generalization of $\\Kempirical{=}2$ beyond C4 web text to structured and technical domains.}\n459\t  \\label{tab:s12_domain_ablation}\n460\t  \\begin{tabular}{lccc}\n461\t    \\toprule\n462\t    \\textbf{Depth Pair} & \\textbf{C4 (web)} & \\textbf{Wikipedia} & \\textbf{arXiv} \\\\\n463\t    \\midrule\n464\t    0 vs.\\ 1 & .9971 & .9961 & .9948 \\\\\n465\t    1 vs.\\ 2 & .6112 & .6193 & .8581 \\\\\n466\t    \\cmidrule(lr){1-4}\n467\t    2 vs.\\ 3 & .5609 & .5498 & $.6436\\;[.628,\\,.658]$\\rlap{$^*$} \\\\\n468\t    3 vs.\\ 4 & .5409 & .5231 & .5440 \\\\\n469\t    4 vs.\\ 5 & .5141 & .5141 & .5299 \\\\\n470\t    \\midrule\n471\t    $\\Kempirical$ & 2 & 2 & 3 \\\\\n472\t    \\bottomrule\n473\t    \\multicolumn{4}{l}{\\footnotesize $^*$Bootstrap 95\\% CI ($n{=}10{,}000$); permutation $p < 0.001$. CI lower bound exceeds $\\theta$.}\n474\t  \\end{tabular}\n475\t\\end{table*}\n476\t\n477\t%%% Table S13: Scorer Sensitivity Analysis\n478\t\\begin{table*}[t]"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "2d09e3e3-a608-4b96-9bdd-3ec4fb8b92bf",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+                "content": "%%% Table S12: Domain Ablation\n\\begin{table*}[t]\n  \\centering\n  \\small\n  \\caption{Pairwise $\\auc$ across depth pairs for three text domains (Qwen2.5-1.5B-Instruct, continuation mode). Tests generalization of $\\Kempirical{=}2$ beyond C4 web text to structured and technical domains.}\n  \\label{tab:s12_domain_ablation}\n  \\begin{tabular}{lccc}\n    \\toprule\n    \\textbf{Depth Pair} & \\textbf{C4 (web)} & \\textbf{Wikipedia} & \\textbf{arXiv} \\\\\n    \\midrule\n    0 vs.\\ 1 & .9971 & .9961 & .9948 \\\\\n    1 vs.\\ 2 & .6112 & .6193 & .8581 \\\\\n    \\cmidrule(lr){1-4}\n    2 vs.\\ 3 & .5609 & .5498 & $.6436\\;[.628,\\,.658]$\\rlap{$^*$} \\\\\n    3 vs.\\ 4 & .5409 & .5231 & .5440 \\\\\n    4 vs.\\ 5 & .5141 & .5141 & .5299 \\\\\n    \\midrule\n    $\\Kempirical$ & 2 & 2 & 3 \\\\\n    \\bottomrule\n    \\multicolumn{4}{l}{\\footnotesize $^*$Bootstrap 95\\% CI ($n{=}10{,}000$); permutation $p < 0.001$. CI lower bound exceeds $\\theta$.}\n  \\end{tabular}\n\\end{table*}\n\n%%% Table S13: Scorer Sensitivity Analysis\n\\begin{table*}[t]",
+                "numLines": 25,
+                "startLine": 454,
+                "totalLines": 501
+              }
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qxq25Zkb5fLTdZb4ULGbuH",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+                "offset": 126,
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "4f3227d4-b258-4f60-a26e-f7f52b69f6c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01312t7BNNX24yX9QhNbBPyC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 334,
+                "cache_read_input_tokens": 130889,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 334
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-22T08:34:28.109Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qxq25Zkb5fLTdZb4ULGbuH",
+              "type": "tool_result",
+              "content": "126\tTo test domain dependence, we evaluate on Wikipedia ($n{=}5{,}000$) and arXiv abstracts ($n{=}2{,}200$) using two model families.\n127\tWikipedia yields $\\Kempirical{=}2$ (1v2 $\\auc = 0.623$, 2v3 $\\auc = 0.571$), matching the C4 baseline.\n128\tBoth Qwen-1.5B and Pythia-1.4B yield $\\Kempirical{=}3$ for arXiv (Table~\\ref{tab:domain_kstar}): 2v3 $\\auc = 0.644\\;[0.628,\\,0.658]$ and $0.655\\;[0.640,\\,0.669]$ respectively (bootstrap CI lower bounds above $\\theta$; permutation $p < 0.001$), demonstrating that structured academic text permits discrimination to greater depth independently of architecture.\n129\tThe elevated signal reflects higher per-generation distributional shift (1v2 JSD $= 0.077$ vs.\\ ${\\sim}0.01$ for C4), as formulaic structure amplifies deviation from domain norms.\n130\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "07c06cd9-7b17-4f3d-99ff-b1c71b092798",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+                "content": "To test domain dependence, we evaluate on Wikipedia ($n{=}5{,}000$) and arXiv abstracts ($n{=}2{,}200$) using two model families.\nWikipedia yields $\\Kempirical{=}2$ (1v2 $\\auc = 0.623$, 2v3 $\\auc = 0.571$), matching the C4 baseline.\nBoth Qwen-1.5B and Pythia-1.4B yield $\\Kempirical{=}3$ for arXiv (Table~\\ref{tab:domain_kstar}): 2v3 $\\auc = 0.644\\;[0.628,\\,0.658]$ and $0.655\\;[0.640,\\,0.669]$ respectively (bootstrap CI lower bounds above $\\theta$; permutation $p < 0.001$), demonstrating that structured academic text permits discrimination to greater depth independently of architecture.\nThe elevated signal reflects higher per-generation distributional shift (1v2 JSD $= 0.077$ vs.\\ ${\\sim}0.01$ for C4), as formulaic structure amplifies deviation from domain norms.\n",
+                "numLines": 5,
+                "startLine": 126,
+                "totalLines": 154
+              }
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AHk4a3ft1jagkiEGTj2ofW",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "offset": 137,
+                "limit": 60
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "8969441c-eecc-4c83-9b0b-1d28a029fbcb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01312t7BNNX24yX9QhNbBPyC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 334,
+                "cache_read_input_tokens": 130889,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 334
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-22T08:34:28.765Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AHk4a3ft1jagkiEGTj2ofW",
+              "type": "tool_result",
+              "content": "137\t\\begin{table}[h]\n138\t\\centering\n139\t\\footnotesize\n140\t\\caption{Seed robustness: $\\Kempirical$ under two random seeds. 1v2 $\\Delta$: change in 1v2 AUC from seed 42 to seed 123. $\\Kempirical$ is stable in 2/3 configurations; the Qwen-Wiki shift to $\\Kempirical{=}3$ is marginal (2v3 fold variance crosses $\\theta$).}\n141\t\\label{tab:seed_robustness}\n142\t\\resizebox{\\columnwidth}{!}{%\n143\t\\begin{tabular}{llcccc}\n144\t\\toprule\n145\t\\textbf{Model} & \\textbf{Domain} & \\multicolumn{2}{c}{$\\Kempirical$} & \\textbf{1v2 $\\Delta$} & \\textbf{Stable?} \\\\\n146\t\\cmidrule(lr){3-4}\n147\t & & seed=42 & seed=123 & & \\\\\n148\t\\midrule\n149\tPythia-1.4B & Wikipedia & 1 & 1 & $-0.8$\\,pp & \\checkmark \\\\\n150\tQwen-1.5B  & C4        & 2 & 2 & $+9.0$\\,pp & \\checkmark \\\\\n151\tQwen-1.5B  & Wikipedia & 2 & 3$^\\dagger$ & $+8.7$\\,pp & $\\times$ \\\\\n152\t\\bottomrule\n153\t\\multicolumn{6}{l}{\\footnotesize $^\\dagger$2v3 $\\auc = 0.6067$; fold 5 $= 0.595 < \\theta$. Marginal boundary.}\n154\t\\end{tabular}}\n155\t\\end{table}\n156\t\n157\t\\subsection{Bonferroni-Corrected Confidence Intervals}\n158\t\\label{sec:bonferroni_ci}\n159\t\n160\tTo control the family-wise error rate across all 10 model configurations, we apply Bonferroni correction: $\\alpha_{\\text{corr}} = 0.05 / 10 = 0.005$, yielding 99.5\\% confidence intervals ($z = 2.807$).\n161\tTable~\\ref{tab:bonferroni_ci} reports the corrected intervals for each configuration's $\\Kempirical$ boundary pair.\n162\tEight of ten configurations retain CI lower bounds above $\\theta{=}0.60$; two marginal $\\Kempirical{=}2$ configurations (Qwen-cont, LLaMA-8B) see their lower bounds dip below $\\theta$ under the stricter criterion ($0.5976$ and $0.5988$, respectively).\n163\tThese near-misses reflect narrow effect sizes ($\\auc - \\theta < 0.013$) rather than classification failure: both retain point estimates above $\\theta$ and uncorrected 95\\% CI lower bounds above $\\theta$.\n164\t\n165\t\\begin{table}[h]\n166\t\\centering\n167\t\\footnotesize\n168\t\\caption{Bonferroni-corrected 99.5\\% confidence intervals for $\\Kempirical$ boundary pairs across all 10 configurations. $\\alpha_{\\text{corr}} = 0.005$; CI computed as $\\auc \\pm 2.807 \\times \\hat{\\sigma}_{\\text{boot}}$. ``Pass $\\theta$'': CI lower bound $> 0.60$.}\n169\t\\label{tab:bonferroni_ci}\n170\t\\resizebox{\\columnwidth}{!}{%\n171\t\\begin{tabular}{llcccc}\n172\t\\toprule\n173\t\\textbf{Configuration} & \\textbf{Boundary} & $\\auc$ & $\\hat{\\sigma}_{\\text{boot}}$ & \\textbf{99.5\\% CI} & \\textbf{Pass $\\theta$} \\\\\n174\t\\midrule\n175\t\\multicolumn{6}{l}{\\textit{$\\Kempirical = 2$ configurations}} \\\\\n176\tQwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\,.708]$ & \\checkmark \\\\\n177\tPythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\,.667]$ & \\checkmark \\\\\n178\tQwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\,.639]$ & \\checkmark \\\\\n179\tQwen-7B$^\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\,.630]$ & \\checkmark \\\\\n180\tLLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\,.626]$ & $\\times$ \\\\\n181\tQwen-cont (Instruct)     & 1v2 & .6112 & .0049 & $[.598,\\,.625]$ & $\\times$ \\\\\n182\t\\midrule\n183\t\\multicolumn{6}{l}{\\textit{$\\Kempirical = 1$ configurations}} \\\\\n184\tOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\,.989]$ & \\checkmark \\\\\n185\tMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\,.987]$ & \\checkmark \\\\\n186\tPythia-6.9B$^\\S$          & 0v1 & .9599 & .0015$^\\dagger$ & $[.956,\\,.964]$ & \\checkmark \\\\\n187\tGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\,.958]$ & \\checkmark \\\\\n188\t\\bottomrule\n189\t\\multicolumn{6}{l}{\\footnotesize $^\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\n190\t\\multicolumn{6}{l}{\\footnotesize $^\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\n191\t\\multicolumn{6}{l}{\\footnotesize $^\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\n192\t\\end{tabular}}\n193\t\\end{table}\n194\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "1d807e3a-6634-4333-a887-51b69c6c84c8",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "content": "\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Seed robustness: $\\Kempirical$ under two random seeds. 1v2 $\\Delta$: change in 1v2 AUC from seed 42 to seed 123. $\\Kempirical$ is stable in 2/3 configurations; the Qwen-Wiki shift to $\\Kempirical{=}3$ is marginal (2v3 fold variance crosses $\\theta$).}\n\\label{tab:seed_robustness}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Domain} & \\multicolumn{2}{c}{$\\Kempirical$} & \\textbf{1v2 $\\Delta$} & \\textbf{Stable?} \\\\\n\\cmidrule(lr){3-4}\n & & seed=42 & seed=123 & & \\\\\n\\midrule\nPythia-1.4B & Wikipedia & 1 & 1 & $-0.8$\\,pp & \\checkmark \\\\\nQwen-1.5B  & C4        & 2 & 2 & $+9.0$\\,pp & \\checkmark \\\\\nQwen-1.5B  & Wikipedia & 2 & 3$^\\dagger$ & $+8.7$\\,pp & $\\times$ \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^\\dagger$2v3 $\\auc = 0.6067$; fold 5 $= 0.595 < \\theta$. Marginal boundary.}\n\\end{tabular}}\n\\end{table}\n\n\\subsection{Bonferroni-Corrected Confidence Intervals}\n\\label{sec:bonferroni_ci}\n\nTo control the family-wise error rate across all 10 model configurations, we apply Bonferroni correction: $\\alpha_{\\text{corr}} = 0.05 / 10 = 0.005$, yielding 99.5\\% confidence intervals ($z = 2.807$).\nTable~\\ref{tab:bonferroni_ci} reports the corrected intervals for each configuration's $\\Kempirical$ boundary pair.\nEight of ten configurations retain CI lower bounds above $\\theta{=}0.60$; two marginal $\\Kempirical{=}2$ configurations (Qwen-cont, LLaMA-8B) see their lower bounds dip below $\\theta$ under the stricter criterion ($0.5976$ and $0.5988$, respectively).\nThese near-misses reflect narrow effect sizes ($\\auc - \\theta < 0.013$) rather than classification failure: both retain point estimates above $\\theta$ and uncorrected 95\\% CI lower bounds above $\\theta$.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Bonferroni-corrected 99.5\\% confidence intervals for $\\Kempirical$ boundary pairs across all 10 configurations. $\\alpha_{\\text{corr}} = 0.005$; CI computed as $\\auc \\pm 2.807 \\times \\hat{\\sigma}_{\\text{boot}}$. ``Pass $\\theta$'': CI lower bound $> 0.60$.}\n\\label{tab:bonferroni_ci}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Configuration} & \\textbf{Boundary} & $\\auc$ & $\\hat{\\sigma}_{\\text{boot}}$ & \\textbf{99.5\\% CI} & \\textbf{Pass $\\theta$} \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{$\\Kempirical = 2$ configurations}} \\\\\nQwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\,.708]$ & \\checkmark \\\\\nPythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\,.667]$ & \\checkmark \\\\\nQwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\,.639]$ & \\checkmark \\\\\nQwen-7B$^\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\,.630]$ & \\checkmark \\\\\nLLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\,.626]$ & $\\times$ \\\\\nQwen-cont (Instruct)     & 1v2 & .6112 & .0049 & $[.598,\\,.625]$ & $\\times$ \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{$\\Kempirical = 1$ configurations}} \\\\\nOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\,.989]$ & \\checkmark \\\\\nMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\,.987]$ & \\checkmark \\\\\nPythia-6.9B$^\\S$          & 0v1 & .9599 & .0015$^\\dagger$ & $[.956,\\,.964]$ & \\checkmark \\\\\nGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\,.958]$ & \\checkmark \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\n\\multicolumn{6}{l}{\\footnotesize $^\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\n\\multicolumn{6}{l}{\\footnotesize $^\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\n\\end{tabular}}\n\\end{table}\n",
+                "numLines": 58,
+                "startLine": 137,
+                "totalLines": 194
+              }
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits look correct. Now let me sync the three modified files to the server and test compilation."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "2303222b-a994-48dc-a76b-4c2a73cc8842",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BpaCpjj6W3b9JEuqwqg9qs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3085,
+                "cache_read_input_tokens": 131223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3085
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JtByNDs5EoUQYbN8VJDSyf",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex | base64 | wc -c",
+                "description": "Check appendix.tex size for transfer"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "c6d32297-3eb6-4731-973c-ac1a09d53868",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BpaCpjj6W3b9JEuqwqg9qs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3085,
+                "cache_read_input_tokens": 131223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3085
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-22T08:34:35.468Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JtByNDs5EoUQYbN8VJDSyf",
+              "type": "tool_result",
+              "content": "36859",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "a83d39c1-0621-474f-ab29-41e14c6eb4d8",
+            "tool_use_result": {
+              "stdout": "36859",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KhhNCVi9wWXy9QGaDTmtBX",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cd /root/autodl-tmp/gen-depth-contamination/docs/paper && sed -i 's/    2 vs\\.\\\\ 3 \\& \\.5609 \\& \\.5498 \\& \\.6436 \\\\\\\\/    2 vs.\\\\ 3 \\& .5609 \\& .5498 \\& $.6436\\\\;[.628,\\\\,.658]$\\\\rlap{$^*$} \\\\\\\\/' appendix.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "7bd8aca9-57fa-4c11-a6c6-952d8acebd0a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EB226XZtCQRmefNRYEicT6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 158,
+                "cache_read_input_tokens": 134308,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 158
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-22T08:34:40.737Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KhhNCVi9wWXy9QGaDTmtBX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "42d5f107-0912-4b12-ac33-7acf4ad943a2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Hmm, using sed on the server for complex LaTeX is risky. Let me instead use a heredoc approach to write the modified sections. Actually, let me just use python to do the replacements on the server, since the files are small enough and Python handles multi-line replacements better.\n\nActually, let me check if the sed worked first.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "705a9b31-1b21-4d7a-9e44-f84af81b32fb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LBcqegrNSz9oq2reCkMe4n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 288,
+                "cache_read_input_tokens": 134466,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 288
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N43ZLpV93hDY1XUxZxwmLS",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "grep -n \"6436\" /root/autodl-tmp/gen-depth-contamination/docs/paper/appendix.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "b4424e09-4db3-4f13-a005-b69e7b8d3402",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LBcqegrNSz9oq2reCkMe4n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 288,
+                "cache_read_input_tokens": 134466,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 288
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-22T08:34:46.522Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N43ZLpV93hDY1XUxZxwmLS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"467:    2 vs.\\\\\\\\ 3 & .5609 & .5498 & $.6436\\\\\\\\;[.628,\\\\\\\\,.658]$\\\\\\\\rlap{$^*$} \\\\\\\\\\\\\\\\\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "295cbee1-1341-4d03-ae0d-cd4bee03f25a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"467:    2 vs.\\\\\\\\ 3 & .5609 & .5498 & $.6436\\\\\\\\;[.628,\\\\\\\\,.658]$\\\\\\\\rlap{$^*$} \\\\\\\\\\\\\\\\\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"467:    2 vs.\\\\ 3 & .5609 & .5498 & $.6436\\\\;[.628,\\\\,.658]$\\\\rlap{$^*$} \\\\\\\\\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, the sed worked for the 2v3 row. Now I need to add the footnote line after the \\bottomrule. Let me also check if I need to add the footnote.",
+              "signature": "EtcCCmMIDRgCKkBju4KuVkYDjS4DTmG6yimP5L40XBULS2O/LsDwm53R0bjKF/IGOZDClqUx5Fil96uoavrzdASputhdkGFNnR9SMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDGgKupJx6BauqR9xyxoMlfPHwEMNp2YboPY6IjDg6y5uU6rKJOXGno+dPoq5Pp7Q93WCf65yG2pn6kjrFRi+FWlDKxNuq8HiDsKFlw4qoQFYxzsuWoXHQIERQilT+J8GfR25NIwq7jB4UI2inM3fc/01Nit85HjUtfh0wA0hTdjfD2mABG61Gg9Q/gMeCJgC3Kxz5nCeY8RtOhMBYLVLWRDNR4QXNi44FNwxN2bqkLGSykoknpmDf8JIBLvGU+pWVAvzeGtJXKpmd/SEwmirfZGFTg+JZ9Mh66I6kRMaLmrC0PVxvaMXCZWRKNKcuCUc/xgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "f3011bca-409c-4e32-b9f1-6f17a3b05a28",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JDATmfsA5EGDEbFwUdsaZx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 455,
+                "cache_read_input_tokens": 134754,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 455
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, the 2v3 row is updated. Now let me add the footnote and update the other files on the server using Python for safer multi-line edits."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "ed54fa39-39c8-4566-9f82-ad8bd2bf710c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JDATmfsA5EGDEbFwUdsaZx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 455,
+                "cache_read_input_tokens": 134754,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 455
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015WhuZKEg8qTXiHNgvUgWjx",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cd /root/autodl-tmp/gen-depth-contamination/docs/paper && python3 -c \"\nimport re\n# Add footnote to Table S12 in appendix.tex\nwith open('appendix.tex', 'r') as f:\n    content = f.read()\n\nold = '''    \\\\\\\\bottomrule\n  \\\\\\\\end{tabular}\n\\\\\\\\end{table*}\n\n%%% Table S13: Scorer Sensitivity Analysis'''\n\nnew = '''    \\\\\\\\bottomrule\n    \\\\\\\\multicolumn{4}{l}{\\\\\\\\footnotesize \\$^*\\$Bootstrap 95\\\\\\\\% CI (\\$n{=}10{,}000\\$); permutation \\$p < 0.001\\$. CI lower bound exceeds \\$\\\\\\\\theta\\$.}\n  \\\\\\\\end{tabular}\n\\\\\\\\end{table*}\n\n%%% Table S13: Scorer Sensitivity Analysis'''\n\n# Only replace the first occurrence near Table S12\nidx = content.find('s12_domain_ablation')\nif idx > 0:\n    rest = content[idx:]\n    old_in_rest = old.replace('\\\\\\\\\\\\\\\\', '\\\\\\\\')\n    # Find the bottomrule after S12\n    bt_idx = rest.find('\\\\\\\\bottomrule\\n  \\\\\\\\end{tabular}\\n\\\\\\\\end{table*}\\n\\n%%% Table S13')\n    if bt_idx > 0:\n        abs_idx = idx + bt_idx\n        old_text = content[abs_idx:abs_idx+len('\\\\\\\\bottomrule\\n  \\\\\\\\end{tabular}\\n\\\\\\\\end{table*}\\n\\n%%% Table S13')]\n        print(f'Found at {abs_idx}, text: {repr(old_text[:60])}')\n    else:\n        print('Could not find bottomrule pattern after S12')\n        # Try different approach\n        lines = content.split('\\n')\n        for i, line in enumerate(lines):\n            if 'bottomrule' in line and i > 0 and 's12_domain_ablation' in '\\n'.join(lines[max(0,i-20):i]):\n                print(f'Found bottomrule at line {i+1}: {line}')\n                break\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "313388fe-9095-473b-af38-2a1532b2fa76",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JDATmfsA5EGDEbFwUdsaZx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 455,
+                "cache_read_input_tokens": 134754,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 455
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-22T08:34:58.616Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015WhuZKEg8qTXiHNgvUgWjx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Found at 25791, text: '\\\\\\\\\\\\\\\\bottomrule\\\\\\\\n  \\\\\\\\\\\\\\\\end{tabular}\\\\\\\\n\\\\\\\\\\\\\\\\end{table*}\\\\\\\\n\\\\\\\\n%%% Table S13'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "4b038cac-f218-4363-9fd8-67f8983ac608",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Found at 25791, text: '\\\\\\\\\\\\\\\\bottomrule\\\\\\\\n  \\\\\\\\\\\\\\\\end{tabular}\\\\\\\\n\\\\\\\\\\\\\\\\end{table*}\\\\\\\\n\\\\\\\\n%%% Table S13'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Found at 25791, text: '\\\\\\\\bottomrule\\\\n  \\\\\\\\end{tabular}\\\\n\\\\\\\\end{table*}\\\\n\\\\n%%% Table S13'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014wDyowyrKzLJxGbgVTzFqE",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cd /root/autodl-tmp/gen-depth-contamination/docs/paper && python3 -c \"\nwith open('appendix.tex', 'r') as f:\n    content = f.read()\n\nold = '\\\\\\\\bottomrule\\n  \\\\\\\\end{tabular}\\n\\\\\\\\end{table*}\\n\\n%%% Table S13: Scorer Sensitivity Analysis'\n\nnew = '\\\\\\\\bottomrule\\n    \\\\\\\\multicolumn{4}{l}{\\\\\\\\footnotesize \\$^*\\$Bootstrap 95\\\\\\\\% CI (\\$n{=}10{,}000\\$); permutation \\$p < 0.001\\$. CI lower bound exceeds \\$\\\\\\\\theta\\$.}\\n  \\\\\\\\end{tabular}\\n\\\\\\\\end{table*}\\n\\n%%% Table S13: Scorer Sensitivity Analysis'\n\n# Find the right occurrence (after s12_domain_ablation)\nidx = content.find('s12_domain_ablation')\nif idx < 0:\n    print('ERROR: s12 not found')\nelse:\n    rest = content[idx:]\n    bt = rest.find(old)\n    if bt < 0:\n        print('ERROR: bottomrule pattern not found after S12')\n        # Show what's there\n        bt2 = rest.find('\\\\\\\\bottomrule')\n        if bt2 > 0:\n            print(repr(rest[bt2:bt2+100]))\n    else:\n        abs_pos = idx + bt\n        content = content[:abs_pos] + new + content[abs_pos + len(old):]\n        with open('appendix.tex', 'w') as f:\n            f.write(content)\n        print('OK: footnote added')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "6a055245-bb26-4f06-a989-43c5caf68643",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0155RKE6X2rRP17XJ49B5dMd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 881,
+                "cache_read_input_tokens": 135209,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 881
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-22T08:35:06.957Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014wDyowyrKzLJxGbgVTzFqE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: footnote added\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "dde374cb-f0e7-485f-a5dc-ad584d4c1f50",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: footnote added\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"OK: footnote added\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now update experiments_c1.tex on the server."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "43f35287-88ac-41d2-a8eb-c10c21f51829",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VQX5HcqFmFiSsTitnKCyHF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 607,
+                "cache_read_input_tokens": 136090,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 607
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DoTwkLxruawMJSTtXt6xMS",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cd /root/autodl-tmp/gen-depth-contamination/docs/paper && python3 -c \"\nwith open('experiments_c1.tex', 'r') as f:\n    content = f.read()\n\nold = 'Both Qwen-1.5B and Pythia-1.4B yield \\$\\\\\\\\Kempirical{=}3\\$ for arXiv (Table~\\\\\\\\ref{tab:domain_kstar}), demonstrating that structured academic text permits discrimination to greater depth independently of architecture.'\n\nnew = 'Both Qwen-1.5B and Pythia-1.4B yield \\$\\\\\\\\Kempirical{=}3\\$ for arXiv (Table~\\\\\\\\ref{tab:domain_kstar}): 2v3 \\$\\\\\\\\auc = 0.644\\\\\\\\;[0.628,\\\\\\\\,0.658]\\$ and \\$0.655\\\\\\\\;[0.640,\\\\\\\\,0.669]\\$ respectively (bootstrap CI lower bounds above \\$\\\\\\\\theta\\$; permutation \\$p < 0.001\\$), demonstrating that structured academic text permits discrimination to greater depth independently of architecture.'\n\nif old in content:\n    content = content.replace(old, new)\n    with open('experiments_c1.tex', 'w') as f:\n        f.write(content)\n    print('OK')\nelse:\n    print('NOT FOUND')\n    # Check what's there\n    idx = content.find('Both Qwen-1.5B and Pythia-1.4B yield')\n    if idx >= 0:\n        print(repr(content[idx:idx+300]))\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "4eb16de0-7854-46ae-9a1c-c043300f3cff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VQX5HcqFmFiSsTitnKCyHF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 607,
+                "cache_read_input_tokens": 136090,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 607
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-22T08:35:19.107Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DoTwkLxruawMJSTtXt6xMS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "6a7281b7-aea5-4508-85ec-5340fe91dd18",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now update appendix_extended.tex on the server with the Bonferroni table."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "76dccb6b-8c1d-42bc-a29d-1c79d992ee8c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NmVeojB9oiq8wzNxMU1DAc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 589,
+                "cache_read_input_tokens": 136697,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 589
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011VNLZVdX1cVaj2KvfxpkPj",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cd /root/autodl-tmp/gen-depth-contamination/docs/paper && python3 << 'PYEOF'\nwith open('appendix_extended.tex', 'r') as f:\n    content = f.read()\n\n# Check if Bonferroni section already exists\nif 'bonferroni_ci' in content:\n    print('ALREADY EXISTS')\nelse:\n    # Find the end of the seed robustness table\n    marker = r\"\"\"\\end{tabular}}\n\\end{table}\"\"\"\n    \n    # Find last occurrence (the seed robustness table is the last table)\n    idx = content.rfind(marker)\n    if idx < 0:\n        print('MARKER NOT FOUND')\n    else:\n        insert_pos = idx + len(marker)\n        \n        bonferroni = r\"\"\"\n\n\\subsection{Bonferroni-Corrected Confidence Intervals}\n\\label{sec:bonferroni_ci}\n\nTo control the family-wise error rate across all 10 model configurations, we apply Bonferroni correction: $\\alpha_{\\text{corr}} = 0.05 / 10 = 0.005$, yielding 99.5\\% confidence intervals ($z = 2.807$).\nTable~\\ref{tab:bonferroni_ci} reports the corrected intervals for each configuration's $\\Kempirical$ boundary pair.\nEight of ten configurations retain CI lower bounds above $\\theta{=}0.60$; two marginal $\\Kempirical{=}2$ configurations (Qwen-cont, LLaMA-8B) see their lower bounds dip below $\\theta$ under the stricter criterion ($0.5976$ and $0.5988$, respectively).\nThese near-misses reflect narrow effect sizes ($\\auc - \\theta < 0.013$) rather than classification failure: both retain point estimates above $\\theta$ and uncorrected 95\\% CI lower bounds above $\\theta$.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Bonferroni-corrected 99.5\\% confidence intervals for $\\Kempirical$ boundary pairs across all 10 configurations. $\\alpha_{\\text{corr}} = 0.005$; CI computed as $\\auc \\pm 2.807 \\times \\hat{\\sigma}_{\\text{boot}}$. ``Pass $\\theta$'': CI lower bound $> 0.60$.}\n\\label{tab:bonferroni_ci}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Configuration} & \\textbf{Boundary} & $\\auc$ & $\\hat{\\sigma}_{\\text{boot}}$ & \\textbf{99.5\\% CI} & \\textbf{Pass $\\theta$} \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{$\\Kempirical = 2$ configurations}} \\\\\nQwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\,.708]$ & \\checkmark \\\\\nPythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\,.667]$ & \\checkmark \\\\\nQwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\,.639]$ & \\checkmark \\\\\nQwen-7B$^\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\,.630]$ & \\checkmark \\\\\nLLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\,.626]$ & $\\times$ \\\\\nQwen-cont (Instruct)     & 1v2 & .6112 & .0049 & $[.598,\\,.625]$ & $\\times$ \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{$\\Kempirical = 1$ configurations}} \\\\\nOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\,.989]$ & \\checkmark \\\\\nMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\,.987]$ & \\checkmark \\\\\nPythia-6.9B$^\\S$          & 0v1 & .9599 & .0015$^\\dagger$ & $[.956,\\,.964]$ & \\checkmark \\\\\nGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\,.958]$ & \\checkmark \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\n\\multicolumn{6}{l}{\\footnotesize $^\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\n\\multicolumn{6}{l}{\\footnotesize $^\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\n\\end{tabular}}\n\\end{table}\"\"\"\n        \n        content = content[:insert_pos] + bonferroni + content[insert_pos:]\n        with open('appendix_extended.tex', 'w') as f:\n            f.write(content)\n        print('OK: Bonferroni section added')\nPYEOF\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "3ed20986-2112-4431-907f-69ab4181864d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NmVeojB9oiq8wzNxMU1DAc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 589,
+                "cache_read_input_tokens": 136697,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 589
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-22T08:35:41.392Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011VNLZVdX1cVaj2KvfxpkPj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: Bonferroni section added\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "d5e41cbe-2764-4d99-b7c2-4f7b718da490",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: Bonferroni section added\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"OK: Bonferroni section added\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me verify the LaTeX compiles."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "4021132a-ee74-47e8-aa76-b459388194d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qc2DxvqrjtY2K5Wn7zGGnf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1627,
+                "cache_read_input_tokens": 137286,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1627
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012WtpzGuoJSfs2LRSsyq7Nw",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cd /root/autodl-tmp/gen-depth-contamination/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -20",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "773debc3-2958-4bc8-b67a-ae30822b3ead",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qc2DxvqrjtY2K5Wn7zGGnf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1627,
+                "cache_read_input_tokens": 137286,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1627
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-22T08:35:49.655Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012WtpzGuoJSfs2LRSsyq7Nw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"mf-dist/fonts/type1/public/amsfonts/cmextra/cmmib9.pfb></usr/share/texlive/texm\\\\nf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/\\\\nfonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/ty\\\\npe1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ\\\\nic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo\\\\nnts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c\\\\nmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.p\\\\nfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></us\\\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share\\\\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texliv\\\\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf\\\\n-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-\\\\ndist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-d\\\\nist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/typ\\\\ne1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet\\\\nic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><\\\\n/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texl\\\\nive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (22 pages, 542144 bytes).\\\\nTranscript written on main.log.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "7211074d-e89a-4359-ac2e-2ca3288d1f2e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"mf-dist/fonts/type1/public/amsfonts/cmextra/cmmib9.pfb></usr/share/texlive/texm\\\\nf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/\\\\nfonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/ty\\\\npe1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ\\\\nic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo\\\\nnts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c\\\\nmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.p\\\\nfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></us\\\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share\\\\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texliv\\\\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf\\\\n-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-\\\\ndist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-d\\\\nist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/typ\\\\ne1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet\\\\nic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><\\\\n/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texl\\\\nive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (22 pages, 542144 bytes).\\\\nTranscript written on main.log.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"mf-dist/fonts/type1/public/amsfonts/cmextra/cmmib9.pfb></usr/share/texlive/texm\\nf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/\\nfonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/ty\\npe1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ\\nic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo\\nnts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c\\nmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.p\\nfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></us\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share\\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texliv\\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf\\n-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-\\ndist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-d\\nist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/typ\\ne1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet\\nic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><\\n/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texl\\nive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\nOutput written on main.pdf (22 pages, 542144 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"
+              }
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The LaTeX compiled successfully (22 pages, no errors). Let me also check for warnings related to my edits.",
+              "signature": "Eq8CCmMIDRgCKkAB7R4b9hTLZPzkibdDbsGmtROQtItLvr7nLSgSRuNFzPmwl2r0Zna6KctS8tTp6gwDcyRo6BYpG03L6gsqtyS4Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDDW/+bQW5MaEDeB4ZBoM9uQ1hSaIHEkl1evKIjApVkPvBwQ013k1LqXzqyvU5myJasTfAtmS1jAKWTSLHuxfNnfJ39kEMRI1vlVOQBYqelZBtUa9ngc6WqxSerczF1Wm1Dx9uSF9ZCw6KzCcysNhP94KObPHollFjidsyxjQ+Y+Sflk8RA7c2RjqUAQ68PYCr++fjizNf6DM+WvNl5CMA8e6OvupROMSHDgXvHMoMu2m0m7YtCVqfeRGkGRCZRoLiEtKjRBjWDuwGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "eda5151a-257c-44b5-8812-1b6ca64abb65",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HgAzhF7DVpY82ACYGapDwi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 986,
+                "cache_read_input_tokens": 138913,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 986
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX compiled successfully (22 pages). Let me check for any warnings related to our changes."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "5fbfdcc6-d6a7-439e-b269-48e4fa3b3f29",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HgAzhF7DVpY82ACYGapDwi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 986,
+                "cache_read_input_tokens": 138913,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 986
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TA5s6AeU63eRtudzkLGksE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "grep -i \"warning\\|error\\|undefined\" /root/autodl-tmp/gen-depth-contamination/docs/paper/main.log | grep -iv \"font\\|rerun\\|multiply\\|already\\|float\" | head -15",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "7941121e-8469-42cf-a816-909e8b7f3418",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HgAzhF7DVpY82ACYGapDwi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 986,
+                "cache_read_input_tokens": 138913,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 986
+                },
+                "output_tokens": 13,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-22T08:35:57.543Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TA5s6AeU63eRtudzkLGksE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "ce13a2c0-66e3-439f-a55f-f75191c60a1c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UHdKDcPveN9kEj19BJjU3h",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "grep \"undefined\" /root/autodl-tmp/gen-depth-contamination/docs/paper/main.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "fcf26c6a-a855-45c0-a30d-a3388c6d615b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L7sbuNRQfYWobk92mr2UWz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 418,
+                "cache_read_input_tokens": 139899,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 418
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-22T08:36:04.721Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UHdKDcPveN9kEj19BJjU3h",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Package natbib Warning: Citation `geng2026markovian' on page 2 undefined on inp\\\\nPackage natbib Warning: Citation `shahriar2025erosion' on page 2 undefined on i\\\\nLaTeX Warning: Reference `tab:bonferroni_ci' on page 22 undefined on input line\\\\nPackage natbib Warning: There were undefined citations.\\\\nLaTeX Warning: There were undefined references.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "f83cf1eb-7bdc-4e8a-8641-87abf33d31b7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Package natbib Warning: Citation `geng2026markovian' on page 2 undefined on inp\\\\nPackage natbib Warning: Citation `shahriar2025erosion' on page 2 undefined on i\\\\nLaTeX Warning: Reference `tab:bonferroni_ci' on page 22 undefined on input line\\\\nPackage natbib Warning: There were undefined citations.\\\\nLaTeX Warning: There were undefined references.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Package natbib Warning: Citation `geng2026markovian' on page 2 undefined on inp\\nPackage natbib Warning: Citation `shahriar2025erosion' on page 2 undefined on i\\nLaTeX Warning: Reference `tab:bonferroni_ci' on page 22 undefined on input line\\nPackage natbib Warning: There were undefined citations.\\nLaTeX Warning: There were undefined references.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SvYSzben7hS2PPmX6QXMNz",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "grep \"bonferroni\" /root/autodl-tmp/gen-depth-contamination/docs/paper/main.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "1a1777f1-205d-45ac-9165-77a553327c2d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L7sbuNRQfYWobk92mr2UWz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 418,
+                "cache_read_input_tokens": 139899,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 418
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-22T08:36:05.247Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SvYSzben7hS2PPmX6QXMNz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LaTeX Warning: Reference `tab:bonferroni_ci' on page 22 undefined on input line\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "367263d8-a7ad-4566-9183-e5a1a6ad7e9b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LaTeX Warning: Reference `tab:bonferroni_ci' on page 22 undefined on input line\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"LaTeX Warning: Reference `tab:bonferroni_ci' on page 22 undefined on input line\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `tab:bonferroni_ci` reference is undefined because we need a second pass of pdflatex (or bibtex + pdflatex) to resolve the new label. The citation warnings for `geng2026markovian` and `shahriar2025erosion` are pre-existing. Let me run pdflatex again.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "38947ca2-f28e-4092-ba4a-41ffc5ef24f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ABLEgukK7GU31mEPJAeeGu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 581,
+                "cache_read_input_tokens": 140317,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 581
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The `tab:bonferroni_ci` reference is undefined because it's a new label — needs a second compilation pass."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "8dbab39f-c1c1-4bfa-8811-fc32c5b37322",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ABLEgukK7GU31mEPJAeeGu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 581,
+                "cache_read_input_tokens": 140317,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 581
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015p9jsAUMNmv3sMaLasbx5i",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cd /root/autodl-tmp/gen-depth-contamination/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "b7151468-fc14-4707-86a8-f912ca8525a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ABLEgukK7GU31mEPJAeeGu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 581,
+                "cache_read_input_tokens": 140317,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 581
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-22T08:36:14.162Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015p9jsAUMNmv3sMaLasbx5i",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><\\\\n/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texl\\\\nive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (22 pages, 542083 bytes).\\\\nTranscript written on main.log.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "41626d55-0e90-4d54-9ad5-d2898bbab789",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><\\\\n/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texl\\\\nive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (22 pages, 542083 bytes).\\\\nTranscript written on main.log.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"ic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><\\n/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texl\\nive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\nOutput written on main.pdf (22 pages, 542083 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+              }
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FsQXjydxS5TeVPbct64sTr",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "grep \"bonferroni\" /root/autodl-tmp/gen-depth-contamination/docs/paper/main.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "dcc04a1d-2792-4e8c-9091-fa91dd320ca6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019xMgPxrX9rY5XMuZ4fBnXf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 485,
+                "cache_read_input_tokens": 140898,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 485
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-22T08:36:20.921Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FsQXjydxS5TeVPbct64sTr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "5b7c7e64-0ef1-456b-8166-96f75aacc5db",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No more undefined reference warnings for `bonferroni_ci`. Compilation is clean.\n\nLet me register the artifacts and summarize the results."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "d8a73648-ca25-40d8-ae5c-305219dc287b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JR3KxyzN86BxR8mbP7qfec",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 209,
+                "cache_read_input_tokens": 141383,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 209
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SYxAyDCXxwUgfFJgsMzTQx",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "MF-1 arXiv CI + SF-3 Bonferroni table",
+                "type": "paper",
+                "description": "Added arXiv 2v3 bootstrap CI to Table S12 and main text Section 4.6; added Bonferroni-corrected 99.5% CI table to appendix_extended.tex",
+                "project": "gen-depth-contamination",
+                "content": "## MF-1: arXiv 2v3 CI\n\n### Verified values (from JSON)\n- Qwen arXiv 2v3: AUC=0.6427, CI=[0.6275, 0.6575], perm_p=0.0001 ✓\n- Pythia arXiv 2v3: AUC=0.6544, CI=[0.6401, 0.6688], perm_p=0.0001 ✓\n\n### Edits\n1. appendix.tex Table S12: arXiv 2v3 row now shows $.6436\\;[.628,.658]$ with footnote\n2. experiments_c1.tex Section 4.6: added inline CIs for both Qwen and Pythia arXiv 2v3\n\n## SF-3: Bonferroni 99.5% CI (10 configs)\n\nα_corr = 0.05/10 = 0.005, z = 2.807\n\n| Config | Boundary | AUC | σ_boot | 99.5% CI | Pass θ |\n|--------|----------|-----|--------|----------|--------|\n| Qwen-rw | 1v2 | .6955 | .0046 | [.683, .708] | ✓ |\n| Pythia-1.4B | 1v2 | .6539 | .0046 | [.641, .667] | ✓ |\n| Qwen-base | 1v2 | .6260 | .0047 | [.613, .639] | ✓ |\n| Qwen-7B | 1v2 | .6168 | .0046 | [.604, .630] | ✓ |\n| LLaMA-8B | 1v2 | .6123 | .0048 | [.599, .626] | ✗ |\n| Qwen-cont | 1v2 | .6112 | .0049 | [.598, .625] | ✗ |\n| OLMo-1B | 0v1 | .9860 | .0009 | [.983, .989] | ✓ |\n| Mistral-7B | 0v1 | .9842 | .0009 | [.982, .987] | ✓ |\n| Pythia-6.9B | 0v1 | .9599 | ~.0015 | [.956, .964] | ✓ |\n| Gemma-2-2B | 0v1 | .9530 | .0018 | [.948, .958] | ✓ |\n\n**2/10 fail**: Qwen-cont (CI_lower=0.5976) and LLaMA-8B (CI_lower=0.5988)\n",
+                "content_filename": "mf1_sf3_bonferroni_summary.md",
+                "tags": [
+                  "paper",
+                  "statistics",
+                  "bonferroni",
+                  "arXiv-CI"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "a949da4f-52b2-4320-8220-456edd53726b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JR3KxyzN86BxR8mbP7qfec",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 209,
+                "cache_read_input_tokens": 141383,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 209
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-22T08:36:41.071Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SYxAyDCXxwUgfFJgsMzTQx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260522_bd25ce\\\", \\\"name\\\": \\\"MF-1 arXiv CI + SF-3 Bonferroni table\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Added arXiv 2v3 bootstrap CI to Table S12 and main text Section 4.6; added Bonferroni-corrected 99.5% CI table to appendix_extended.tex\\\", \\\"path\\\": \\\"projects/gen-depth-contamination/artifacts/_project/paper/mf1_sf3_bonferroni_summary.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-22T08:36:40.773552+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"statistics\\\", \\\"bonferroni\\\", \\\"arXiv-CI\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "b6a12b0a-5a9b-4fac-9305-1f5607c6d3f9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260522_bd25ce\\\", \\\"name\\\": \\\"MF-1 arXiv CI + SF-3 Bonferroni table\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Added arXiv 2v3 bootstrap CI to Table S12 and main text Section 4.6; added Bonferroni-corrected 99.5% CI table to appendix_extended.tex\\\", \\\"path\\\": \\\"projects/gen-depth-contamination/artifacts/_project/paper/mf1_sf3_bonferroni_summary.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-22T08:36:40.773552+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"statistics\\\", \\\"bonferroni\\\", \\\"arXiv-CI\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260522_bd25ce\", \"name\": \"MF-1 arXiv CI + SF-3 Bonferroni table\", \"type\": \"paper\", \"description\": \"Added arXiv 2v3 bootstrap CI to Table S12 and main text Section 4.6; added Bonferroni-corrected 99.5% CI table to appendix_extended.tex\", \"path\": \"projects/gen-depth-contamination/artifacts/_project/paper/mf1_sf3_bonferroni_summary.md\", \"url\": null, \"project\": \"gen-depth-contamination\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-22T08:36:40.773552+00:00\", \"tags\": [\"paper\", \"statistics\", \"bonferroni\", \"arXiv-CI\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 结果汇总\n\n### Part 1: MF-1 — arXiv 2v3 CI\n\n**JSON 验证**（均正确）：\n- Qwen arXiv 2v3: AUC=0.6427, CI=[0.6275, 0.6575], perm_p=0.0001\n- Pythia arXiv 2v3: AUC=0.6544, CI=[0.6401, 0.6688], perm_p=0.0001\n\n**修改**：\n1. `appendix.tex` Table S12 arXiv 2v3 行：`.6436` → `$.6436\\;[.628,\\,.658]$` + 脚注（p<0.001, CI lower > θ）\n2. `experiments_c1.tex` Section 4.6：arXiv 讨论句添加了两个模型的 2v3 CI 和 \"CI lower bounds above θ\" 措辞\n\n### Part 2: SF-3 — Bonferroni 99.5% CI\n\nα_corr = 0.005, z = 2.807\n\n| Config | Boundary | AUC | σ_boot | 99.5% CI | Pass θ |\n|---|---|---|---|---|---|\n| Qwen-rw | 1v2 | .6955 | .0046 | [.683, .708] | ✓ |\n| Pythia-1.4B | 1v2 | .6539 | .0046 | [.641, .667] | ✓ |\n| Qwen-base | 1v2 | .6260 | .0047 | [.613, .639] | ✓ |\n| Qwen-7B | 1v2 | .6168 | .0046 | [.604, .630] | ✓ |\n| **LLaMA-8B** | **1v2** | **.6123** | **.0048** | **[.599, .626]** | **✗** |\n| **Qwen-cont** | **1v2** | **.6112** | **.0049** | **[.598, .625]** | **✗** |\n| OLMo-1B | 0v1 | .9860 | .0009 | [.983, .989] | ✓ |\n| Mistral-7B | 0v1 | .9842 | .0009 | [.982, .987] | ✓ |\n| Pythia-6.9B | 0v1 | .9599 | ~.0015† | [.956, .964] | ✓ |\n| Gemma-2-2B | 0v1 | .9530 | .0018 | [.948, .958] | ✓ |\n\n**2/10 CI lower bound 跌破 θ=0.60**：\n- **Qwen-cont**：CI_lower = 0.5976 < 0.60（符合预期）\n- **LLaMA-8B**：CI_lower = 0.5988 < 0.60（额外发现）\n\nBonferroni 表已添加到 `appendix_extended.tex` Section \"Bonferroni-Corrected Confidence Intervals\"。正文 6/10 计数未修改。\n\n†Pythia-6.9B 无单独 bootstrap JSON，σ_boot 从同类配置估计。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "uuid": "8afb36d5-5140-4121-bffd-87e4911ee6f2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014T6sTwoWTu72RZdvbfRUXg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1333,
+                "cache_read_input_tokens": 141592,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1333
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 结果汇总\n\n### Part 1: MF-1 — arXiv 2v3 CI\n\n**JSON 验证**（均正确）：\n- Qwen arXiv 2v3: AUC=0.6427, CI=[0.6275, 0.6575], perm_p=0.0001\n- Pythia arXiv 2v3: AUC=0.6544, CI=[0.6401, 0.6688], perm_p=0.0001\n\n**修改**：\n1. `appendix.tex` Table S12 arXiv 2v3 行：`.6436` → `$.6436\\;[.628,\\,.658]$` + 脚注（p<0.001, CI lower > θ）\n2. `experiments_c1.tex` Section 4.6：arXiv 讨论句添加了两个模型的 2v3 CI 和 \"CI lower bounds above θ\" 措辞\n\n### Part 2: SF-3 — Bonferroni 99.5% CI\n\nα_corr = 0.005, z = 2.807\n\n| Config | Boundary | AUC | σ_boot | 99.5% CI | Pass θ |\n|---|---|---|---|---|---|\n| Qwen-rw | 1v2 | .6955 | .0046 | [.683, .708] | ✓ |\n| Pythia-1.4B | 1v2 | .6539 | .0046 | [.641, .667] | ✓ |\n| Qwen-base | 1v2 | .6260 | .0047 | [.613, .639] | ✓ |\n| Qwen-7B | 1v2 | .6168 | .0046 | [.604, .630] | ✓ |\n| **LLaMA-8B** | **1v2** | **.6123** | **.0048** | **[.599, .626]** | **✗** |\n| **Qwen-cont** | **1v2** | **.6112** | **.0049** | **[.598, .625]** | **✗** |\n| OLMo-1B | 0v1 | .9860 | .0009 | [.983, .989] | ✓ |\n| Mistral-7B | 0v1 | .9842 | .0009 | [.982, .987] | ✓ |\n| Pythia-6.9B | 0v1 | .9599 | ~.0015† | [.956, .964] | ✓ |\n| Gemma-2-2B | 0v1 | .9530 | .0018 | [.948, .958] | ✓ |\n\n**2/10 CI lower bound 跌破 θ=0.60**：\n- **Qwen-cont**：CI_lower = 0.5976 < 0.60（符合预期）\n- **LLaMA-8B**：CI_lower = 0.5988 < 0.60（额外发现）\n\nBonferroni 表已添加到 `appendix_extended.tex` Section \"Bonferroni-Corrected Confidence Intervals\"。正文 6/10 计数未修改。\n\n†Pythia-6.9B 无单独 bootstrap JSON，σ_boot 从同类配置估计。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 859291,
+            "duration_api_ms": 860051,
+            "num_turns": 66,
+            "stop_reason": "end_turn",
+            "session_id": "84de79fb-eed5-469c-9cd4-b35ad7f5c810",
+            "total_cost_usd": 3.784139000000001,
+            "usage": {
+              "input_tokens": 38,
+              "cache_creation_input_tokens": 131084,
+              "cache_read_input_tokens": 3518212,
+              "output_tokens": 48129,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 131084,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 897,
+                  "cache_read_input_tokens": 141592,
+                  "cache_creation_input_tokens": 1333,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1333
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-opus-4-6": {
+                "inputTokens": 38,
+                "outputTokens": 48129,
+                "cacheReadInputTokens": 3518212,
+                "cacheCreationInputTokens": 131084,
+                "webSearchRequests": 0,
+                "costUSD": 3.7817960000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              },
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2233,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002343,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "98c14254-d227-4059-9ba3-bc287cfe708e"
+          },
+          "id": "event-000177"
+        }
+      ]
+    }
+  ]
+}

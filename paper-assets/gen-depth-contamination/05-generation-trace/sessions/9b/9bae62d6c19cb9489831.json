@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bae62d6c19cb9489831",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra download 14b awq",
+  "task_key": "worker_infra_download_14b_awq_20260517T235915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download_14b_awq_20260517T235915_result.json",
+    "occurrence": 1,
+    "bytes": 733,
+    "sha256": "9429e3440c658fbc201c93f4bba9b4a56ce9dc3203acd93a7a1a8caed48fc439"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成，文件完整。\n\n**结果汇总：**\n\n- 模型：`Qwen/Qwen2.5-14B-Instruct-AWQ`（注意：HF 上不存在 `Qwen2.5-14B-AWQ`，正确名称是 `Qwen2.5-14B-Instruct-AWQ`）\n- 路径：`/root/autodl-tmp/.hf_cache/Qwen2.5-14B-Instruct-AWQ/`\n- 总大小：9.4GB\n- 文件清单（13 个，全部完整）：\n  - `model-00001-of-00003.safetensors` (3.8G)\n  - `model-00002-of-00003.safetensors` (3.7G)\n  - `model-00003-of-00003.safetensors` (1.9G)\n  - `model.safetensors.index.json` (105K)\n  - `config.json`, `generation_config.json`, `tokenizer.json`, `tokenizer_config.json`, `vocab.json`, `merges.txt`, `LICENSE`, `README.md`\n- 下载源：hf-mirror.com（huggingface.co 从国内不可达）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-14b-awq.md"
+}

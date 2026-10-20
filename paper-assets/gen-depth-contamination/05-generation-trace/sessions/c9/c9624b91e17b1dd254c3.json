@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9624b91e17b1dd254c3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper exp A crossscorer table",
+  "task_key": "worker_paper_exp_A_crossscorer_table_20260515T112213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_exp_A_crossscorer_table_20260515T112213_result.json",
+    "occurrence": 1,
+    "bytes": 511,
+    "sha256": "9fdc5639764e627f74647b462508aaeed03d5994731be3f5da6a97717f71c18e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `docs/paper/tables/tab_crossscorer.tex`。\n\n设计说明：\n- 按 Generator Data 分两组（Qwen-RW / Qwen-cont），每组首行为 self-scorer baseline\n- K*=1 的行用 `\\textcolor{red}{1†}` 标注\n- AUC(1v2) < 0.60 的值（0.5923, 0.5858）用 `\\underline{}` 标注\n- Self-scorer baseline 缺失的列用 `---` 填充\n- 风格与现有表格一致：booktabs、`\\small`、无 float wrapper\n\n需要 preamble 中有 `\\usepackage{xcolor}` 支持 `\\textcolor{red}{}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-exp-a-crossscorer-table.md"
+}

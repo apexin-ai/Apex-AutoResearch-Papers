@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "501cd4a7b3a3a9934001",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper mistral consistency check",
+  "task_key": "worker_paper_mistral-consistency-check_20260519T114424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_mistral-consistency-check_20260519T114424_result.json",
+    "occurrence": 1,
+    "bytes": 3499,
+    "sha256": "e1960f55a84a9efe61abd6314c94ae7fdcdce3b39dc6ac7adabe1f63f412885c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完毕。以下是发现的不一致和需要修改的位置。\n\n---\n\n## 一致性检查结果\n\n### 无问题（已正确录入）\n\n| 位置 | 内容 | 状态 |\n|------|------|------|\n| `main.tex:72` (Limitations) | \"code domain tested with four models (Qwen2.5-1.5B, LLaMA-3.1-8B, and Mistral-7B-v0.3, K*=2; Pythia-1.4B, K*=1)\" | ✓ 已更新 |\n| `discussion.tex:32` | \"Python code K*=2 for three models (K*=1 for capacity-limited Pythia-1.4B)\" | ✓ 三模型 = Qwen+LLaMA+Mistral |\n| `discussion.tex:34` | \"yields K*=2 on code and K*=3 on arXiv\" | ✓ Code K*=2 正确 |\n| Abstract (`main.tex:40`) | \"K*=1--2 for code (Python, model-dependent)\" | ✓ 仍准确 |\n| Introduction 贡献列表 (`introduction.tex:29`) | \"Code (K*=1--2), model-dependent variation\" | ✓ |\n| `artifacts/code_crossmodel_table.tex` | 4 模型表，含 Mistral-7B-v0.3 K*=2 | ✓ 新表已生成 |\n| 空 cite / undefined refs | `grep cite{}` = 0, `grep ?? main.aux` = 0 | ✓ 无问题 |\n| Mistral C4=1, arXiv=3, Wiki=1 所有提及 | 全文一致 | ✓ |\n\n---\n\n### 需要修改的位置\n\n#### 1. `experiments_c1.tex:166` — Domain × Model K* 矩阵表\n\n**问题**: Mistral-7B Code 列仍为 `---`，应为 `2`。\n\n```\n当前: Mistral-7B   & 1 & --- & 3 & 1 \\\\\n应改: Mistral-7B   & 1 & 2 & 3 & 1 \\\\\n```\n\n#### 2. `experiments_c1.tex:142-143` — Code 段落正文\n\n**问题**: 只提到 3 个模型（Qwen, LLaMA, Pythia），未提及 Mistral-7B-v0.3。\n\n```\n当前: yield K*=2 for both Qwen2.5-1.5B ... and LLaMA-3.1-8B ..., but borderline K*=1 for Pythia-1.4B\n应改: 加入 Mistral-7B-v0.3 (AUC=0.615, K*=2) 并将 \"both\" 改为 \"three models\"\n```\n\n同时引用 `Table~\\ref{tab:code_crossmodel_kstar}`（该表也需更新，见下条）。\n\n#### 3. `appendix_extended.tex:586-607` — Code crossmodel 表 (`tab:code_crossmodel_kstar`)\n\n**问题**: 表中只有 3 个模型（Qwen, LLaMA, Pythia），缺少 Mistral-7B-v0.3 列。`artifacts/code_crossmodel_table.tex` 已有 4 模型完整版本。\n\n**建议**: 用 artifacts 版本替换当前表，或手动加入 Mistral 列。注意 artifacts 版是 `table*` (双栏)，当前版是 `table` (单栏)，格式需确认。\n\n#### 4. `appendix_extended.tex:589` — 表 caption\n\n**问题**: Caption 说 \"Qwen2.5-1.5B and LLaMA-3.1-8B yield K*=2\"，缺 Mistral。\n\n```\n应改: \"Qwen2.5-1.5B, LLaMA-3.1-8B, and Mistral-7B-v0.3 yield K*=2; Pythia-1.4B yields borderline K*=1\"\n```\n\n#### 5. `appendix_extended.tex:314` — Boundary Cases 段落（中等优先级）\n\n**问题**: \"despite K*=1 on both C4 and Wikipedia, it yields K*=3 on arXiv\" 只提 C4/Wiki/arXiv，未提 Code K*=2。\n\n**建议**: 扩展为 \"despite K*=1 on C4 and Wikipedia, it yields K*=2 on code and K*=3 on arXiv\"（与 `discussion.tex:34` 保持一致）。\n\n#### 6. `experiments_c1.tex:154` — Domain × Model 表 caption（低优先级）\n\n**问题**: 表 caption 的脚注只定义了 `$^\\ddagger$` (Pythia borderline)，但加入 Mistral Code=2 后，可能需要额外脚注标注 Mistral 的 Code 数据来源（同一 `code_crossmodel_kstar` 表）。\n\n---\n\n### 总结\n\n- **高优先级修改**: 3 处（experiments_c1.tex 表格+正文，appendix_extended.tex 表格+caption）\n- **中等优先级**: 1 处（appendix_extended.tex:314 段落）\n- **低优先级**: 1 处（表 caption 脚注）\n- **Citation 检查**: 无空 cite，无 undefined reference"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-mistral-consistency-check.md"
+}

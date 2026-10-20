@@ -1,0 +1,1330 @@
+{
+  "schema_version": "1.0",
+  "id": "d0f4de114780383356eb",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "paper r26 fig5 hatch",
+  "task_key": "worker_paper_r26_fig5_hatch_20260522T084215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r26_fig5_hatch_20260522T084215.log",
+    "occurrence": 1,
+    "bytes": 87080,
+    "sha256": "4013ff6d511a4b44fae0e78643673fc06fe4de972b90d1406524196fb25f9e0b"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "333faf15-6be5-4236-a661-22476d85ff73",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779447600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "b1d8e176-48f3-41db-ba9d-b082194d3534",
+                "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the script and checking the tex references in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "3699cfee-6729-40d1-ae5d-4fb40dac8dda",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JfdBQaqcbPThAfqn28dmDz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12180,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12180
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GLAc7MrJw5Wdm3becP9XgK",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "7c323e57-be5a-4a24-9462-0b37e758d040",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JfdBQaqcbPThAfqn28dmDz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12180,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12180
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T08:42:28.291Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01GLAc7MrJw5Wdm3becP9XgK",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "d554a6d9-a53a-4bdd-8dc1-b5941060e86b",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the script and check tex references in parallel.",
+              "signature": "EoECCmMIDRgCKkCz7grhaw5tRqrWNus9525ToXLB7wqi7lkyg6I2ccD+5jmgENj+9OQgGdwwQpy57x9UMhxo5S0Q+pq5dYHTwg4YMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDIrjscW5k5xgE2rJXxoM0GO/+0ixs6vww/+6IjApxt6uZYQYj4zCmadWMROlVRfg5uwtKqlAEcIVUdyHac9as9pAxk3UbjiqNvwF1WAqTLiGPii1TGDe34O2FejEIbj2Rc/5Q589HRmfGbx1y5dNgO1DZujEBdLLqBtA6agNWBZ3jJWA7NDuWxqgszrBNO/uJYJf+Xd8UP9wNgEYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "b90c33a6-93ca-4da8-ab01-67f8be67ddf6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VefwTLiwiGAVKpD1en99wv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 687,
+                "cache_read_input_tokens": 24021,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 687
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011dmRw4XVgbR9F1DchRtn42",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/plot_filtering_strategies.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "e61f9e86-d69b-4be9-bd2a-12c3a2b54909",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VefwTLiwiGAVKpD1en99wv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 687,
+                "cache_read_input_tokens": 24021,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 687
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BrppuKgzzUaKnhWmBXnKCQ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "grep -rn \"filtering_strategies\\|fig5\\|figure.*5\" /root/autodl-tmp/gen-depth-contamination/docs/paper/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "0050f96c-2635-4753-8039-ef07347d0d57",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VefwTLiwiGAVKpD1en99wv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 687,
+                "cache_read_input_tokens": 24021,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 687
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T08:42:33.745Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011dmRw4XVgbR9F1DchRtn42",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Filtering strategy comparison: bar chart of downstream MMLU under different curation methods.\\\\n\\\\nInput:  artifacts/*filter*.json, results_*/*filter*.json, or embedded paper data (exp-006)\\\\nOutput: artifacts/figures/fig_filtering_strategies.pdf\\\\nDeps:   matplotlib, numpy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\n\\\\nTABLEAU_COLORS = [\\\\n    \\\\\\\"#4e79a7\\\\\\\", \\\\\\\"#e15759\\\\\\\", \\\\\\\"#76b7b2\\\\\\\", \\\\\\\"#59a14f\\\\\\\",\\\\n    \\\\\\\"#b07aa1\\\\\\\", \\\\\\\"#ff9da7\\\\\\\", \\\\\\\"#9c755f\\\\\\\", \\\\\\\"#bab0ac\\\\\\\",\\\\n    \\\\\\\"#edc948\\\\\\\", \\\\\\\"#f28e2b\\\\\\\",\\\\n]\\\\n\\\\nEMBEDDED_FILTERING = {\\\\n    \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-006 K*-aware data curation\\\\\\\",\\\\n    \\\\\\\"metric\\\\\\\": \\\\\\\"MMLU (5-shot)\\\\\\\",\\\\n    \\\\\\\"strategies\\\\\\\": [\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"No filter\\\\\\\", \\\\\\\"score\\\\\\\": 0.5867, \\\\\\\"std\\\\\\\": 0.0021, \\\\\\\"category\\\\\\\": \\\\\\\"baseline\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"DSIR\\\\\\\", \\\\\\\"score\\\\\\\": 0.5867, \\\\\\\"std\\\\\\\": 0.0019, \\\\\\\"category\\\\\\\": \\\\\\\"baseline\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"Surprisal\\\\\\\\nselection\\\\\\\", \\\\\\\"score\\\\\\\": 0.5894, \\\\\\\"std\\\\\\\": 0.0018, \\\\\\\"category\\\\\\\": \\\\\\\"alternative\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"Graduated\\\\\\\\nweighting\\\\\\\", \\\\\\\"score\\\\\\\": 0.5892, \\\\\\\"std\\\\\\\": 0.0022, \\\\\\\"category\\\\\\\": \\\\\\\"alternative\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"Binary $K^*$\\\\\\\\nfiltering\\\\\\\", \\\\\\\"score\\\\\\\": 0.5941, \\\\\\\"std\\\\\\\": 0.0017, \\\\\\\"category\\\\\\\": \\\\\\\"ours\\\\\\\"},\\\\n    ],\\\\n}\\\\n\\\\n\\\\ndef discover_filtering_files(root):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find filtering experiment JSON files.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    patterns = [\\\\n        \\\\\\\"artifacts/*filter*.json\\\\\\\",\\\\n        \\\\\\\"artifacts/*curation*.json\\\\\\\",\\\\n        \\\\\\\"results_*/*filter*.json\\\\\\\",\\\\n        \\\\\\\"results/*filter*.json\\\\\\\",\\\\n        \\\\\\\"results_*/*curation*.json\\\\\\\",\\\\n    ]\\\\n    files = set()\\\\n    for pat in patterns:\\\\n        files.update(root.glob(pat))\\\\n    return sorted(files)\\\\n\\\\n\\\\ndef load_filtering_data(json_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load filtering comparison data from JSON.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(json_path) as f:\\\\n        raw = json.load(f)\\\\n    if \\\\\\\"strategies\\\\\\\" in raw:\\\\n        return raw\\\\n    return None\\\\n\\\\n\\\\ndef parse_args():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Plot filtering strategy comparison\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", type=Path,\\\\n                        default=Path(__file__).resolve().parent.parent,\\\\n                        help=\\\\\\\"Root directory to scan for filtering data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=Path, default=None,\\\\n                        help=\\\\\\\"Output PDF path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--use-embedded\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Force use of embedded paper data\\\\\\\")\\\\n    return parser.parse_args()\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    root = args.data_dir\\\\n\\\\n    data = None\\\\n    if not args.use_embedded:\\\\n        filter_files = discover_filtering_files(root)\\\\n        for fp in filter_files:\\\\n            data = load_filtering_data(fp)\\\\n            if data is not None:\\\\n                print(f\\\\\\\"Loaded filtering data from {fp}\\\\\\\")\\\\n                break\\\\n\\\\n    if data is None:\\\\n        print(\\\\\\\"No filtering JSON found on disk — using embedded paper data\\\\\\\")\\\\n        data = EMBEDDED_FILTERING\\\\n\\\\n    strategies = data[\\\\\\\"strategies\\\\\\\"]\\\\n    metric_label = data.get(\\\\\\\"metric\\\\\\\", \\\\\\\"MMLU (5-shot)\\\\\\\")\\\\n\\\\n    names = [s[\\\\\\\"name\\\\\\\"] for s in strategies]\\\\n    scores = np.array([s[\\\\\\\"score\\\\\\\"] for s in strategies])\\\\n    stds = np.array([s.get(\\\\\\\"std\\\\\\\", 0) for s in strategies])\\\\n    categories = [s.get(\\\\\\\"category\\\\\\\", \\\\\\\"other\\\\\\\") for s in strategies]\\\\n\\\\n    category_colors = {\\\\n        \\\\\\\"baseline\\\\\\\": \\\\\\\"#bab0ac\\\\\\\",\\\\n        \\\\\\\"alternative\\\\\\\": \\\\\\\"#4e79a7\\\\\\\",\\\\n        \\\\\\\"ours\\\\\\\": \\\\\\\"#e15759\\\\\\\",\\\\n        \\\\\\\"other\\\\\\\": \\\\\\\"#76b7b2\\\\\\\",\\\\n    }\\\\n    colors = [category_colors.get(c, \\\\\\\"#76b7b2\\\\\\\") for c in categories]\\\\n\\\\n    plt.rcParams.update({\\\\n        \\\\\\\"font.family\\\\\\\": \\\\\\\"serif\\\\\\\",\\\\n        \\\\\\\"font.size\\\\\\\": 11,\\\\n        \\\\\\\"axes.linewidth\\\\\\\": 0.8,\\\\n        \\\\\\\"xtick.major.width\\\\\\\": 0.8,\\\\n        \\\\\\\"ytick.major.width\\\\\\\": 0.8,\\\\n    })\\\\n\\\\n    fig, ax = plt.subplots(figsize=(6, 4), constrained_layout=True)\\\\n\\\\n    x = np.arange(len(names))\\\\n    bar_width = 0.6\\\\n    bars = ax.bar(x, scores, bar_width, color=colors, edgecolor=\\\\\\\"white\\\\\\\",\\\\n                  linewidth=0.8, zorder=3)\\\\n\\\\n    if np.any(stds > 0):\\\\n        ax.errorbar(x, scores, yerr=1.96 * stds, fmt=\\\\\\\"none\\\\\\\", ecolor=\\\\\\\"#333333\\\\\\\",\\\\n                    elinewidth=1.0, capsize=3, capthick=1.0, zorder=4)\\\\n\\\\n    for i, (bar, score) in enumerate(zip(bars, scores)):\\\\n        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.0008,\\\\n                f\\\\\\\"{score:.4f}\\\\\\\", ha=\\\\\\\"center\\\\\\\", va=\\\\\\\"bottom\\\\\\\", fontsize=9,\\\\n                fontweight=\\\\\\\"bold\\\\\\\" if categories[i] == \\\\\\\"ours\\\\\\\" else \\\\\\\"normal\\\\\\\")\\\\n\\\\n    best_idx = np.argmax(scores)\\\\n    bars[best_idx].set_edgecolor(\\\\\\\"#333333\\\\\\\")\\\\n    bars[best_idx].set_linewidth(1.5)\\\\n\\\\n    y_min = min(scores) - 0.006\\\\n    y_max = max(scores) + 0.005\\\\n    ax.set_ylim(y_min, y_max)\\\\n\\\\n    no_filter_score = next((s[\\\\\\\"score\\\\\\\"] for s in strategies if \\\\\\\"no filter\\\\\\\" in s[\\\\\\\"name\\\\\\\"].lower()), None)\\\\n    if no_filter_score is not None:\\\\n        ax.axhline(no_filter_score, color=\\\\\\\"#bab0ac\\\\\\\", ls=\\\\\\\"--\\\\\\\", lw=0.8, zorder=1)\\\\n        ax.text(len(names) - 0.5, no_filter_score + 0.0003, \\\\\\\"no-filter baseline\\\\\\\",\\\\n                fontsize=8, color=\\\\\\\"#999999\\\\\\\", ha=\\\\\\\"right\\\\\\\", va=\\\\\\\"bottom\\\\\\\")\\\\n\\\\n    ax.set_xticks(x)\\\\n    ax.set_xticklabels(names, fontsize=11.5)\\\\n    ax.set_ylabel(metric_label)\\\\n    ax.tick_params(direction=\\\\\\\"in\\\\\\\")\\\\n    ax.grid(axis=\\\\\\\"y\\\\\\\", color=\\\\\\\"#e0e0e0\\\\\\\", linewidth=0.5, zorder=0)\\\\n\\\\n    from matplotlib.patches import Patch\\\\n    legend_elements = [\\\\n        Patch(facecolor=\\\\\\\"#bab0ac\\\\\\\", edgecolor=\\\\\\\"white\\\\\\\", label=\\\\\\\"Baseline\\\\\\\"),\\\\n        Patch(facecolor=\\\\\\\"#4e79a7\\\\\\\", edgecolor=\\\\\\\"white\\\\\\\", label=\\\\\\\"Alternative\\\\\\\"),\\\\n        Patch(facecolor=\\\\\\\"#e15759\\\\\\\", edgecolor=\\\\\\\"white\\\\\\\", label=\\\\\\\"Ours\\\\\\\"),\\\\n    ]\\\\n    ax.legend(handles=legend_elements, fontsize=9, loc=\\\\\\\"upper left\\\\\\\",\\\\n              framealpha=0.9, edgecolor=\\\\\\\"0.8\\\\\\\")\\\\n\\\\n    if args.output:\\\\n        out_path = args.output\\\\n    else:\\\\n        out_dir = root / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"figures\\\\\\\"\\\\n        out_dir.mkdir(parents=True, exist_ok=True)\\\\n        out_path = out_dir / \\\\\\\"fig_filtering_strategies.pdf\\\\\\\"\\\\n\\\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    fig.savefig(out_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    png_path = out_path.with_suffix(\\\\\\\".png\\\\\\\")\\\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n\\\\n    pdf_size = out_path.stat().st_size\\\\n    png_size = png_path.stat().st_size\\\\n    print(f\\\\\\\"Strategies: {names}\\\\\\\")\\\\n    print(f\\\\\\\"PDF: {pdf_size/1024:.1f} KB | PNG: {png_size/1024:.1f} KB\\\\\\\")\\\\n    assert pdf_size > 3 * 1024, f\\\\\\\"PDF too small: {pdf_size}\\\\\\\"\\\\n    print(\\\\\\\"OK\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "fcaedbb2-0eec-428e-82ef-cc04262cf01f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Filtering strategy comparison: bar chart of downstream MMLU under different curation methods.\\\\n\\\\nInput:  artifacts/*filter*.json, results_*/*filter*.json, or embedded paper data (exp-006)\\\\nOutput: artifacts/figures/fig_filtering_strategies.pdf\\\\nDeps:   matplotlib, numpy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\n\\\\nTABLEAU_COLORS = [\\\\n    \\\\\\\"#4e79a7\\\\\\\", \\\\\\\"#e15759\\\\\\\", \\\\\\\"#76b7b2\\\\\\\", \\\\\\\"#59a14f\\\\\\\",\\\\n    \\\\\\\"#b07aa1\\\\\\\", \\\\\\\"#ff9da7\\\\\\\", \\\\\\\"#9c755f\\\\\\\", \\\\\\\"#bab0ac\\\\\\\",\\\\n    \\\\\\\"#edc948\\\\\\\", \\\\\\\"#f28e2b\\\\\\\",\\\\n]\\\\n\\\\nEMBEDDED_FILTERING = {\\\\n    \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-006 K*-aware data curation\\\\\\\",\\\\n    \\\\\\\"metric\\\\\\\": \\\\\\\"MMLU (5-shot)\\\\\\\",\\\\n    \\\\\\\"strategies\\\\\\\": [\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"No filter\\\\\\\", \\\\\\\"score\\\\\\\": 0.5867, \\\\\\\"std\\\\\\\": 0.0021, \\\\\\\"category\\\\\\\": \\\\\\\"baseline\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"DSIR\\\\\\\", \\\\\\\"score\\\\\\\": 0.5867, \\\\\\\"std\\\\\\\": 0.0019, \\\\\\\"category\\\\\\\": \\\\\\\"baseline\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"Surprisal\\\\\\\\nselection\\\\\\\", \\\\\\\"score\\\\\\\": 0.5894, \\\\\\\"std\\\\\\\": 0.0018, \\\\\\\"category\\\\\\\": \\\\\\\"alternative\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"Graduated\\\\\\\\nweighting\\\\\\\", \\\\\\\"score\\\\\\\": 0.5892, \\\\\\\"std\\\\\\\": 0.0022, \\\\\\\"category\\\\\\\": \\\\\\\"alternative\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"Binary $K^*$\\\\\\\\nfiltering\\\\\\\", \\\\\\\"score\\\\\\\": 0.5941, \\\\\\\"std\\\\\\\": 0.0017, \\\\\\\"category\\\\\\\": \\\\\\\"ours\\\\\\\"},\\\\n    ],\\\\n}\\\\n\\\\n\\\\ndef discover_filtering_files(root):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find filtering experiment JSON files.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    patterns = [\\\\n        \\\\\\\"artifacts/*filter*.json\\\\\\\",\\\\n        \\\\\\\"artifacts/*curation*.json\\\\\\\",\\\\n        \\\\\\\"results_*/*filter*.json\\\\\\\",\\\\n        \\\\\\\"results/*filter*.json\\\\\\\",\\\\n        \\\\\\\"results_*/*curation*.json\\\\\\\",\\\\n    ]\\\\n    files = set()\\\\n    for pat in patterns:\\\\n        files.update(root.glob(pat))\\\\n    return sorted(files)\\\\n\\\\n\\\\ndef load_filtering_data(json_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load filtering comparison data from JSON.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(json_path) as f:\\\\n        raw = json.load(f)\\\\n    if \\\\\\\"strategies\\\\\\\" in raw:\\\\n        return raw\\\\n    return None\\\\n\\\\n\\\\ndef parse_args():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Plot filtering strategy comparison\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", type=Path,\\\\n                        default=Path(__file__).resolve().parent.parent,\\\\n                        help=\\\\\\\"Root directory to scan for filtering data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=Path, default=None,\\\\n                        help=\\\\\\\"Output PDF path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--use-embedded\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Force use of embedded paper data\\\\\\\")\\\\n    return parser.parse_args()\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    root = args.data_dir\\\\n\\\\n    data = None\\\\n    if not args.use_embedded:\\\\n        filter_files = discover_filtering_files(root)\\\\n        for fp in filter_files:\\\\n            data = load_filtering_data(fp)\\\\n            if data is not None:\\\\n                print(f\\\\\\\"Loaded filtering data from {fp}\\\\\\\")\\\\n                break\\\\n\\\\n    if data is None:\\\\n        print(\\\\\\\"No filtering JSON found on disk — using embedded paper data\\\\\\\")\\\\n        data = EMBEDDED_FILTERING\\\\n\\\\n    strategies = data[\\\\\\\"strategies\\\\\\\"]\\\\n    metric_label = data.get(\\\\\\\"metric\\\\\\\", \\\\\\\"MMLU (5-shot)\\\\\\\")\\\\n\\\\n    names = [s[\\\\\\\"name\\\\\\\"] for s in strategies]\\\\n    scores = np.array([s[\\\\\\\"score\\\\\\\"] for s in strategies])\\\\n    stds = np.array([s.get(\\\\\\\"std\\\\\\\", 0) for s in strategies])\\\\n    categories = [s.get(\\\\\\\"category\\\\\\\", \\\\\\\"other\\\\\\\") for s in strategies]\\\\n\\\\n    category_colors = {\\\\n        \\\\\\\"baseline\\\\\\\": \\\\\\\"#bab0ac\\\\\\\",\\\\n        \\\\\\\"alternative\\\\\\\": \\\\\\\"#4e79a7\\\\\\\",\\\\n        \\\\\\\"ours\\\\\\\": \\\\\\\"#e15759\\\\\\\",\\\\n        \\\\\\\"other\\\\\\\": \\\\\\\"#76b7b2\\\\\\\",\\\\n    }\\\\n    colors = [category_colors.get(c, \\\\\\\"#76b7b2\\\\\\\") for c in categories]\\\\n\\\\n    plt.rcParams.update({\\\\n        \\\\\\\"font.family\\\\\\\": \\\\\\\"serif\\\\\\\",\\\\n        \\\\\\\"font.size\\\\\\\": 11,\\\\n        \\\\\\\"axes.linewidth\\\\\\\": 0.8,\\\\n        \\\\\\\"xtick.major.width\\\\\\\": 0.8,\\\\n        \\\\\\\"ytick.major.width\\\\\\\": 0.8,\\\\n    })\\\\n\\\\n    fig, ax = plt.subplots(figsize=(6, 4), constrained_layout=True)\\\\n\\\\n    x = np.arange(len(names))\\\\n    bar_width = 0.6\\\\n    bars = ax.bar(x, scores, bar_width, color=colors, edgecolor=\\\\\\\"white\\\\\\\",\\\\n                  linewidth=0.8, zorder=3)\\\\n\\\\n    if np.any(stds > 0):\\\\n        ax.errorbar(x, scores, yerr=1.96 * stds, fmt=\\\\\\\"none\\\\\\\", ecolor=\\\\\\\"#333333\\\\\\\",\\\\n                    elinewidth=1.0, capsize=3, capthick=1.0, zorder=4)\\\\n\\\\n    for i, (bar, score) in enumerate(zip(bars, scores)):\\\\n        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.0008,\\\\n                f\\\\\\\"{score:.4f}\\\\\\\", ha=\\\\\\\"center\\\\\\\", va=\\\\\\\"bottom\\\\\\\", fontsize=9,\\\\n                fontweight=\\\\\\\"bold\\\\\\\" if categories[i] == \\\\\\\"ours\\\\\\\" else \\\\\\\"normal\\\\\\\")\\\\n\\\\n    best_idx = np.argmax(scores)\\\\n    bars[best_idx].set_edgecolor(\\\\\\\"#333333\\\\\\\")\\\\n    bars[best_idx].set_linewidth(1.5)\\\\n\\\\n    y_min = min(scores) - 0.006\\\\n    y_max = max(scores) + 0.005\\\\n    ax.set_ylim(y_min, y_max)\\\\n\\\\n    no_filter_score = next((s[\\\\\\\"score\\\\\\\"] for s in strategies if \\\\\\\"no filter\\\\\\\" in s[\\\\\\\"name\\\\\\\"].lower()), None)\\\\n    if no_filter_score is not None:\\\\n        ax.axhline(no_filter_score, color=\\\\\\\"#bab0ac\\\\\\\", ls=\\\\\\\"--\\\\\\\", lw=0.8, zorder=1)\\\\n        ax.text(len(names) - 0.5, no_filter_score + 0.0003, \\\\\\\"no-filter baseline\\\\\\\",\\\\n                fontsize=8, color=\\\\\\\"#999999\\\\\\\", ha=\\\\\\\"right\\\\\\\", va=\\\\\\\"bottom\\\\\\\")\\\\n\\\\n    ax.set_xticks(x)\\\\n    ax.set_xticklabels(names, fontsize=11.5)\\\\n    ax.set_ylabel(metric_label)\\\\n    ax.tick_params(direction=\\\\\\\"in\\\\\\\")\\\\n    ax.grid(axis=\\\\\\\"y\\\\\\\", color=\\\\\\\"#e0e0e0\\\\\\\", linewidth=0.5, zorder=0)\\\\n\\\\n    from matplotlib.patches import Patch\\\\n    legend_elements = [\\\\n        Patch(facecolor=\\\\\\\"#bab0ac\\\\\\\", edgecolor=\\\\\\\"white\\\\\\\", label=\\\\\\\"Baseline\\\\\\\"),\\\\n        Patch(facecolor=\\\\\\\"#4e79a7\\\\\\\", edgecolor=\\\\\\\"white\\\\\\\", label=\\\\\\\"Alternative\\\\\\\"),\\\\n        Patch(facecolor=\\\\\\\"#e15759\\\\\\\", edgecolor=\\\\\\\"white\\\\\\\", label=\\\\\\\"Ours\\\\\\\"),\\\\n    ]\\\\n    ax.legend(handles=legend_elements, fontsize=9, loc=\\\\\\\"upper left\\\\\\\",\\\\n              framealpha=0.9, edgecolor=\\\\\\\"0.8\\\\\\\")\\\\n\\\\n    if args.output:\\\\n        out_path = args.output\\\\n    else:\\\\n        out_dir = root / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"figures\\\\\\\"\\\\n        out_dir.mkdir(parents=True, exist_ok=True)\\\\n        out_path = out_dir / \\\\\\\"fig_filtering_strategies.pdf\\\\\\\"\\\\n\\\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    fig.savefig(out_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    png_path = out_path.with_suffix(\\\\\\\".png\\\\\\\")\\\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n\\\\n    pdf_size = out_path.stat().st_size\\\\n    png_size = png_path.stat().st_size\\\\n    print(f\\\\\\\"Strategies: {names}\\\\\\\")\\\\n    print(f\\\\\\\"PDF: {pdf_size/1024:.1f} KB | PNG: {png_size/1024:.1f} KB\\\\\\\")\\\\n    assert pdf_size > 3 * 1024, f\\\\\\\"PDF too small: {pdf_size}\\\\\\\"\\\\n    print(\\\\\\\"OK\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Filtering strategy comparison: bar chart of downstream MMLU under different curation methods.\\n\\nInput:  artifacts/*filter*.json, results_*/*filter*.json, or embedded paper data (exp-006)\\nOutput: artifacts/figures/fig_filtering_strategies.pdf\\nDeps:   matplotlib, numpy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom pathlib import Path\\n\\nTABLEAU_COLORS = [\\n    \\\"#4e79a7\\\", \\\"#e15759\\\", \\\"#76b7b2\\\", \\\"#59a14f\\\",\\n    \\\"#b07aa1\\\", \\\"#ff9da7\\\", \\\"#9c755f\\\", \\\"#bab0ac\\\",\\n    \\\"#edc948\\\", \\\"#f28e2b\\\",\\n]\\n\\nEMBEDDED_FILTERING = {\\n    \\\"experiment\\\": \\\"exp-006 K*-aware data curation\\\",\\n    \\\"metric\\\": \\\"MMLU (5-shot)\\\",\\n    \\\"strategies\\\": [\\n        {\\\"name\\\": \\\"No filter\\\", \\\"score\\\": 0.5867, \\\"std\\\": 0.0021, \\\"category\\\": \\\"baseline\\\"},\\n        {\\\"name\\\": \\\"DSIR\\\", \\\"score\\\": 0.5867, \\\"std\\\": 0.0019, \\\"category\\\": \\\"baseline\\\"},\\n        {\\\"name\\\": \\\"Surprisal\\\\nselection\\\", \\\"score\\\": 0.5894, \\\"std\\\": 0.0018, \\\"category\\\": \\\"alternative\\\"},\\n        {\\\"name\\\": \\\"Graduated\\\\nweighting\\\", \\\"score\\\": 0.5892, \\\"std\\\": 0.0022, \\\"category\\\": \\\"alternative\\\"},\\n        {\\\"name\\\": \\\"Binary $K^*$\\\\nfiltering\\\", \\\"score\\\": 0.5941, \\\"std\\\": 0.0017, \\\"category\\\": \\\"ours\\\"},\\n    ],\\n}\\n\\n\\ndef discover_filtering_files(root):\\n    \\\"\\\"\\\"Find filtering experiment JSON files.\\\"\\\"\\\"\\n    patterns = [\\n        \\\"artifacts/*filter*.json\\\",\\n        \\\"artifacts/*curation*.json\\\",\\n        \\\"results_*/*filter*.json\\\",\\n        \\\"results/*filter*.json\\\",\\n        \\\"results_*/*curation*.json\\\",\\n    ]\\n    files = set()\\n    for pat in patterns:\\n        files.update(root.glob(pat))\\n    return sorted(files)\\n\\n\\ndef load_filtering_data(json_path):\\n    \\\"\\\"\\\"Load filtering comparison data from JSON.\\\"\\\"\\\"\\n    with open(json_path) as f:\\n        raw = json.load(f)\\n    if \\\"strategies\\\" in raw:\\n        return raw\\n    return None\\n\\n\\ndef parse_args():\\n    parser = argparse.ArgumentParser(description=\\\"Plot filtering strategy comparison\\\")\\n    parser.add_argument(\\\"--data-dir\\\", type=Path,\\n                        default=Path(__file__).resolve().parent.parent,\\n                        help=\\\"Root directory to scan for filtering data\\\")\\n    parser.add_argument(\\\"--output\\\", type=Path, default=None,\\n                        help=\\\"Output PDF path\\\")\\n    parser.add_argument(\\\"--use-embedded\\\", action=\\\"store_true\\\",\\n                        help=\\\"Force use of embedded paper data\\\")\\n    return parser.parse_args()\\n\\n\\ndef main():\\n    args = parse_args()\\n    root = args.data_dir\\n\\n    data = None\\n    if not args.use_embedded:\\n        filter_files = discover_filtering_files(root)\\n        for fp in filter_files:\\n            data = load_filtering_data(fp)\\n            if data is not None:\\n                print(f\\\"Loaded filtering data from {fp}\\\")\\n                break\\n\\n    if data is None:\\n        print(\\\"No filtering JSON found on disk — using embedded paper data\\\")\\n        data = EMBEDDED_FILTERING\\n\\n    strategies = data[\\\"strategies\\\"]\\n    metric_label = data.get(\\\"metric\\\", \\\"MMLU (5-shot)\\\")\\n\\n    names = [s[\\\"name\\\"] for s in strategies]\\n    scores = np.array([s[\\\"score\\\"] for s in strategies])\\n    stds = np.array([s.get(\\\"std\\\", 0) for s in strategies])\\n    categories = [s.get(\\\"category\\\", \\\"other\\\") for s in strategies]\\n\\n    category_colors = {\\n        \\\"baseline\\\": \\\"#bab0ac\\\",\\n        \\\"alternative\\\": \\\"#4e79a7\\\",\\n        \\\"ours\\\": \\\"#e15759\\\",\\n        \\\"other\\\": \\\"#76b7b2\\\",\\n    }\\n    colors = [category_colors.get(c, \\\"#76b7b2\\\") for c in categories]\\n\\n    plt.rcParams.update({\\n        \\\"font.family\\\": \\\"serif\\\",\\n        \\\"font.size\\\": 11,\\n        \\\"axes.linewidth\\\": 0.8,\\n        \\\"xtick.major.width\\\": 0.8,\\n        \\\"ytick.major.width\\\": 0.8,\\n    })\\n\\n    fig, ax = plt.subplots(figsize=(6, 4), constrained_layout=True)\\n\\n    x = np.arange(len(names))\\n    bar_width = 0.6\\n    bars = ax.bar(x, scores, bar_width, color=colors, edgecolor=\\\"white\\\",\\n                  linewidth=0.8, zorder=3)\\n\\n    if np.any(stds > 0):\\n        ax.errorbar(x, scores, yerr=1.96 * stds, fmt=\\\"none\\\", ecolor=\\\"#333333\\\",\\n                    elinewidth=1.0, capsize=3, capthick=1.0, zorder=4)\\n\\n    for i, (bar, score) in enumerate(zip(bars, scores)):\\n        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.0008,\\n                f\\\"{score:.4f}\\\", ha=\\\"center\\\", va=\\\"bottom\\\", fontsize=9,\\n                fontweight=\\\"bold\\\" if categories[i] == \\\"ours\\\" else \\\"normal\\\")\\n\\n    best_idx = np.argmax(scores)\\n    bars[best_idx].set_edgecolor(\\\"#333333\\\")\\n    bars[best_idx].set_linewidth(1.5)\\n\\n    y_min = min(scores) - 0.006\\n    y_max = max(scores) + 0.005\\n    ax.set_ylim(y_min, y_max)\\n\\n    no_filter_score = next((s[\\\"score\\\"] for s in strategies if \\\"no filter\\\" in s[\\\"name\\\"].lower()), None)\\n    if no_filter_score is not None:\\n        ax.axhline(no_filter_score, color=\\\"#bab0ac\\\", ls=\\\"--\\\", lw=0.8, zorder=1)\\n        ax.text(len(names) - 0.5, no_filter_score + 0.0003, \\\"no-filter baseline\\\",\\n                fontsize=8, color=\\\"#999999\\\", ha=\\\"right\\\", va=\\\"bottom\\\")\\n\\n    ax.set_xticks(x)\\n    ax.set_xticklabels(names, fontsize=11.5)\\n    ax.set_ylabel(metric_label)\\n    ax.tick_params(direction=\\\"in\\\")\\n    ax.grid(axis=\\\"y\\\", color=\\\"#e0e0e0\\\", linewidth=0.5, zorder=0)\\n\\n    from matplotlib.patches import Patch\\n    legend_elements = [\\n        Patch(facecolor=\\\"#bab0ac\\\", edgecolor=\\\"white\\\", label=\\\"Baseline\\\"),\\n        Patch(facecolor=\\\"#4e79a7\\\", edgecolor=\\\"white\\\", label=\\\"Alternative\\\"),\\n        Patch(facecolor=\\\"#e15759\\\", edgecolor=\\\"white\\\", label=\\\"Ours\\\"),\\n    ]\\n    ax.legend(handles=legend_elements, fontsize=9, loc=\\\"upper left\\\",\\n              framealpha=0.9, edgecolor=\\\"0.8\\\")\\n\\n    if args.output:\\n        out_path = args.output\\n    else:\\n        out_dir = root / \\\"artifacts\\\" / \\\"figures\\\"\\n        out_dir.mkdir(parents=True, exist_ok=True)\\n        out_path = out_dir / \\\"fig_filtering_strategies.pdf\\\"\\n\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\n    fig.savefig(out_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    png_path = out_path.with_suffix(\\\".png\\\")\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n\\n    pdf_size = out_path.stat().st_size\\n    png_size = png_path.stat().st_size\\n    print(f\\\"Strategies: {names}\\\")\\n    print(f\\\"PDF: {pdf_size/1024:.1f} KB | PNG: {png_size/1024:.1f} KB\\\")\\n    assert pdf_size > 3 * 1024, f\\\"PDF too small: {pdf_size}\\\"\\n    print(\\\"OK\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T08:42:33.765Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BrppuKgzzUaKnhWmBXnKCQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "6f07b32a-c76f-4918-adae-4f0af45a418e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The grep with `\\|` was blocked because `|` is a shell metacharacter. Let me just use a simpler grep. But actually, I have enough info from the script. Let me also check the tex reference with a simpler pattern.\n\nThe script has 3 categories: baseline, alternative, ours. There are 5 bars:\n1. \"No filter\" - baseline - color #bab0ac\n2. \"DSIR\" - baseline - color #bab0ac\n\n\n3. \"Surprisal\\nselection\" - alternative - color #4e79a7\n4. \"Graduated\\nweighting\" - alternative - color #4e79a7\n5. \"Binary $K^*$\\nfiltering\" - ours - color #e15759\n\nNow I'm realizing the hatch patterns should align with the three categories rather than individual bars. Baseline gets solid fill, and I'll use different hatches for the alternative and ours categories to distinguish them visually.\n\nI need to update the plotting script to apply these hatch patterns per category, modify the legend to show the hatches alongside the colors, and switch the edge colors to something darker so the patterns are actually visible.\n\nModifying the bar plotting logic... Writing hatch configuration... Now I need to complete the loop that applies hatches to each bar, then update the legend patches to include the hatch patterns and change the edge color to medium gray so the hatches are visible. I also need to handle the special case for the best-performing bar.\n\nFor the output path, I should verify whether the figure gets copied to the docs directory or if there's a symlink, but I'll proceed with making the edits directly using a Python script that reads the file, applies the targeted replacements, and writes it back.\n\nWriting sed commands... Writing shell script edits...\n\nActually, I'm realizing the sed approach is getting unwieldy with all these nested quotes and special characters. A Python script would be much more straightforward and reliable for making these targeted modifications to the plotting file. Updating the bar chart styling...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "65c84e04-d02b-4d64-bfa0-7f7299ac8c57",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U7ZRRMqBo22dc37krPhtrw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3411,
+                "cache_read_input_tokens": 24708,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3411
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script structure: 5 bars across 3 categories (baseline/alternative/ours). I'll add hatch patterns and apply them."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "64e0d6fd-944c-4df8-99da-67a9271021bc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U7ZRRMqBo22dc37krPhtrw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3411,
+                "cache_read_input_tokens": 24708,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3411
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DWUGWnCWApgtsREFmEjP5K",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cat << 'PYEOF' | python3 -\npath = '/root/autodl-tmp/gen-depth-contamination/scripts/plot_filtering_strategies.py'\nwith open(path) as f:\n    content = f.read()\n\n# 1. Add category_hatches after colors list\nold = '    colors = [category_colors.get(c, \"#76b7b2\") for c in categories]'\nnew = '''    colors = [category_colors.get(c, \"#76b7b2\") for c in categories]\n\n    category_hatches = {\n        \"baseline\": \"\",\n        \"alternative\": \"//\",\n        \"ours\": \"xx\",\n        \"other\": \"..\",\n    }\n    hatches = [category_hatches.get(c, \"\") for c in categories]'''\ncontent = content.replace(old, new)\n\n# 2. Change edgecolor in bar creation and add hatch loop\nold = '''    bars = ax.bar(x, scores, bar_width, color=colors, edgecolor=\"white\",\n                  linewidth=0.8, zorder=3)'''\nnew = '''    bars = ax.bar(x, scores, bar_width, color=colors, edgecolor=\"#555555\",\n                  linewidth=0.8, zorder=3)\n\n    for bar, h in zip(bars, hatches):\n        bar.set_hatch(h)'''\ncontent = content.replace(old, new)\n\n# 3. Update legend patches\nold = '''        Patch(facecolor=\"#bab0ac\", edgecolor=\"white\", label=\"Baseline\"),\n        Patch(facecolor=\"#4e79a7\", edgecolor=\"white\", label=\"Alternative\"),\n        Patch(facecolor=\"#e15759\", edgecolor=\"white\", label=\"Ours\"),'''\nnew = '''        Patch(facecolor=\"#bab0ac\", edgecolor=\"#555555\", label=\"Baseline\"),\n        Patch(facecolor=\"#4e79a7\", edgecolor=\"#555555\", hatch=\"//\", label=\"Alternative\"),\n        Patch(facecolor=\"#e15759\", edgecolor=\"#555555\", hatch=\"xx\", label=\"Ours\"),'''\ncontent = content.replace(old, new)\n\nwith open(path, 'w') as f:\n    f.write(content)\nprint(\"Patched successfully\")\nPYEOF",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "15416270-ca35-4f3a-94ff-a47567f2bdd6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U7ZRRMqBo22dc37krPhtrw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3411,
+                "cache_read_input_tokens": 24708,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3411
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T08:43:26.471Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DWUGWnCWApgtsREFmEjP5K",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Patched successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "b858c352-9c15-4efc-a350-1e4f3c98cce9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Patched successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Patched successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Patch applied. Now verify the diff and run the script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "6f0008ef-ae10-406c-b6bd-66368e74ac25",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018VtHGrwAhmbuRYA17sKXDb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3596,
+                "cache_read_input_tokens": 28119,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3596
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011qN9F8Bwvh31UN8dVZEHFr",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/plot_filtering_strategies.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "af4e65d6-d7c3-49d6-b452-d77a9074ac4e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018VtHGrwAhmbuRYA17sKXDb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3596,
+                "cache_read_input_tokens": 28119,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3596
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Lbq1nJCMqv21bSBKHSyMXG",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/plot_filtering_strategies.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "26b87b44-bbf6-49a5-9293-42544cf87638",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018VtHGrwAhmbuRYA17sKXDb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3596,
+                "cache_read_input_tokens": 28119,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3596
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T08:43:33.337Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011qN9F8Bwvh31UN8dVZEHFr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"No filtering JSON found on disk — using embedded paper data\\\\nStrategies: ['No filter', 'DSIR', 'Surprisal\\\\\\\\nselection', 'Graduated\\\\\\\\nweighting', 'Binary $K^*$\\\\\\\\nfiltering']\\\\nPDF: 27.0 KB | PNG: 151.2 KB\\\\nOK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "bf928c76-e9a1-4d3d-b052-f753009e6ea5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"No filtering JSON found on disk — using embedded paper data\\\\nStrategies: ['No filter', 'DSIR', 'Surprisal\\\\\\\\nselection', 'Graduated\\\\\\\\nweighting', 'Binary $K^*$\\\\\\\\nfiltering']\\\\nPDF: 27.0 KB | PNG: 151.2 KB\\\\nOK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.32}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"No filtering JSON found on disk — using embedded paper data\\nStrategies: ['No filter', 'DSIR', 'Surprisal\\\\nselection', 'Graduated\\\\nweighting', 'Binary $K^*$\\\\nfiltering']\\nPDF: 27.0 KB | PNG: 151.2 KB\\nOK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.32}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T08:43:33.830Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Lbq1nJCMqv21bSBKHSyMXG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Filtering strategy comparison: bar chart of downstream MMLU under different curation methods.\\\\n\\\\nInput:  artifacts/*filter*.json, results_*/*filter*.json, or embedded paper data (exp-006)\\\\nOutput: artifacts/figures/fig_filtering_strategies.pdf\\\\nDeps:   matplotlib, numpy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\n\\\\nTABLEAU_COLORS = [\\\\n    \\\\\\\"#4e79a7\\\\\\\", \\\\\\\"#e15759\\\\\\\", \\\\\\\"#76b7b2\\\\\\\", \\\\\\\"#59a14f\\\\\\\",\\\\n    \\\\\\\"#b07aa1\\\\\\\", \\\\\\\"#ff9da7\\\\\\\", \\\\\\\"#9c755f\\\\\\\", \\\\\\\"#bab0ac\\\\\\\",\\\\n    \\\\\\\"#edc948\\\\\\\", \\\\\\\"#f28e2b\\\\\\\",\\\\n]\\\\n\\\\nEMBEDDED_FILTERING = {\\\\n    \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-006 K*-aware data curation\\\\\\\",\\\\n    \\\\\\\"metric\\\\\\\": \\\\\\\"MMLU (5-shot)\\\\\\\",\\\\n    \\\\\\\"strategies\\\\\\\": [\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"No filter\\\\\\\", \\\\\\\"score\\\\\\\": 0.5867, \\\\\\\"std\\\\\\\": 0.0021, \\\\\\\"category\\\\\\\": \\\\\\\"baseline\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"DSIR\\\\\\\", \\\\\\\"score\\\\\\\": 0.5867, \\\\\\\"std\\\\\\\": 0.0019, \\\\\\\"category\\\\\\\": \\\\\\\"baseline\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"Surprisal\\\\\\\\nselection\\\\\\\", \\\\\\\"score\\\\\\\": 0.5894, \\\\\\\"std\\\\\\\": 0.0018, \\\\\\\"category\\\\\\\": \\\\\\\"alternative\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"Graduated\\\\\\\\nweighting\\\\\\\", \\\\\\\"score\\\\\\\": 0.5892, \\\\\\\"std\\\\\\\": 0.0022, \\\\\\\"category\\\\\\\": \\\\\\\"alternative\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"Binary $K^*$\\\\\\\\nfiltering\\\\\\\", \\\\\\\"score\\\\\\\": 0.5941, \\\\\\\"std\\\\\\\": 0.0017, \\\\\\\"category\\\\\\\": \\\\\\\"ours\\\\\\\"},\\\\n    ],\\\\n}\\\\n\\\\n\\\\ndef discover_filtering_files(root):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find filtering experiment JSON files.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    patterns = [\\\\n        \\\\\\\"artifacts/*filter*.json\\\\\\\",\\\\n        \\\\\\\"artifacts/*curation*.json\\\\\\\",\\\\n        \\\\\\\"results_*/*filter*.json\\\\\\\",\\\\n        \\\\\\\"results/*filter*.json\\\\\\\",\\\\n        \\\\\\\"results_*/*curation*.json\\\\\\\",\\\\n    ]\\\\n    files = set()\\\\n    for pat in patterns:\\\\n        files.update(root.glob(pat))\\\\n    return sorted(files)\\\\n\\\\n\\\\ndef load_filtering_data(json_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load filtering comparison data from JSON.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(json_path) as f:\\\\n        raw = json.load(f)\\\\n    if \\\\\\\"strategies\\\\\\\" in raw:\\\\n        return raw\\\\n    return None\\\\n\\\\n\\\\ndef parse_args():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Plot filtering strategy comparison\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", type=Path,\\\\n                        default=Path(__file__).resolve().parent.parent,\\\\n                        help=\\\\\\\"Root directory to scan for filtering data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=Path, default=None,\\\\n                        help=\\\\\\\"Output PDF path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--use-embedded\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Force use of embedded paper data\\\\\\\")\\\\n    return parser.parse_args()\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    root = args.data_dir\\\\n\\\\n    data = None\\\\n    if not args.use_embedded:\\\\n        filter_files = discover_filtering_files(root)\\\\n        for fp in filter_files:\\\\n            data = load_filtering_data(fp)\\\\n            if data is not None:\\\\n                print(f\\\\\\\"Loaded filtering data from {fp}\\\\\\\")\\\\n                break\\\\n\\\\n    if data is None:\\\\n        print(\\\\\\\"No filtering JSON found on disk — using embedded paper data\\\\\\\")\\\\n        data = EMBEDDED_FILTERING\\\\n\\\\n    strategies = data[\\\\\\\"strategies\\\\\\\"]\\\\n    metric_label = data.get(\\\\\\\"metric\\\\\\\", \\\\\\\"MMLU (5-shot)\\\\\\\")\\\\n\\\\n    names = [s[\\\\\\\"name\\\\\\\"] for s in strategies]\\\\n    scores = np.array([s[\\\\\\\"score\\\\\\\"] for s in strategies])\\\\n    stds = np.array([s.get(\\\\\\\"std\\\\\\\", 0) for s in strategies])\\\\n    categories = [s.get(\\\\\\\"category\\\\\\\", \\\\\\\"other\\\\\\\") for s in strategies]\\\\n\\\\n    category_colors = {\\\\n        \\\\\\\"baseline\\\\\\\": \\\\\\\"#bab0ac\\\\\\\",\\\\n        \\\\\\\"alternative\\\\\\\": \\\\\\\"#4e79a7\\\\\\\",\\\\n        \\\\\\\"ours\\\\\\\": \\\\\\\"#e15759\\\\\\\",\\\\n        \\\\\\\"other\\\\\\\": \\\\\\\"#76b7b2\\\\\\\",\\\\n    }\\\\n    colors = [category_colors.get(c, \\\\\\\"#76b7b2\\\\\\\") for c in categories]\\\\n\\\\n    category_hatches = {\\\\n        \\\\\\\"baseline\\\\\\\": \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"alternative\\\\\\\": \\\\\\\"//\\\\\\\",\\\\n        \\\\\\\"ours\\\\\\\": \\\\\\\"xx\\\\\\\",\\\\n        \\\\\\\"other\\\\\\\": \\\\\\\"..\\\\\\\",\\\\n    }\\\\n    hatches = [category_hatches.get(c, \\\\\\\"\\\\\\\") for c in categories]\\\\n\\\\n    plt.rcParams.update({\\\\n        \\\\\\\"font.family\\\\\\\": \\\\\\\"serif\\\\\\\",\\\\n        \\\\\\\"font.size\\\\\\\": 11,\\\\n        \\\\\\\"axes.linewidth\\\\\\\": 0.8,\\\\n        \\\\\\\"xtick.major.width\\\\\\\": 0.8,\\\\n        \\\\\\\"ytick.major.width\\\\\\\": 0.8,\\\\n    })\\\\n\\\\n    fig, ax = plt.subplots(figsize=(6, 4), constrained_layout=True)\\\\n\\\\n    x = np.arange(len(names))\\\\n    bar_width = 0.6\\\\n    bars = ax.bar(x, scores, bar_width, color=colors, edgecolor=\\\\\\\"#555555\\\\\\\",\\\\n                  linewidth=0.8, zorder=3)\\\\n\\\\n    for bar, h in zip(bars, hatches):\\\\n        bar.set_hatch(h)\\\\n\\\\n    if np.any(stds > 0):\\\\n        ax.errorbar(x, scores, yerr=1.96 * stds, fmt=\\\\\\\"none\\\\\\\", ecolor=\\\\\\\"#333333\\\\\\\",\\\\n                    elinewidth=1.0, capsize=3, capthick=1.0, zorder=4)\\\\n\\\\n    for i, (bar, score) in enumerate(zip(bars, scores)):\\\\n        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.0008,\\\\n                f\\\\\\\"{score:.4f}\\\\\\\", ha=\\\\\\\"center\\\\\\\", va=\\\\\\\"bottom\\\\\\\", fontsize=9,\\\\n                fontweight=\\\\\\\"bold\\\\\\\" if categories[i] == \\\\\\\"ours\\\\\\\" else \\\\\\\"normal\\\\\\\")\\\\n\\\\n    best_idx = np.argmax(scores)\\\\n    bars[best_idx].set_edgecolor(\\\\\\\"#333333\\\\\\\")\\\\n    bars[best_idx].set_linewidth(1.5)\\\\n\\\\n    y_min = min(scores) - 0.006\\\\n    y_max = max(scores) + 0.005\\\\n    ax.set_ylim(y_min, y_max)\\\\n\\\\n    no_filter_score = next((s[\\\\\\\"score\\\\\\\"] for s in strategies if \\\\\\\"no filter\\\\\\\" in s[\\\\\\\"name\\\\\\\"].lower()), None)\\\\n    if no_filter_score is not None:\\\\n        ax.axhline(no_filter_score, color=\\\\\\\"#bab0ac\\\\\\\", ls=\\\\\\\"--\\\\\\\", lw=0.8, zorder=1)\\\\n        ax.text(len(names) - 0.5, no_filter_score + 0.0003, \\\\\\\"no-filter baseline\\\\\\\",\\\\n                fontsize=8, color=\\\\\\\"#999999\\\\\\\", ha=\\\\\\\"right\\\\\\\", va=\\\\\\\"bottom\\\\\\\")\\\\n\\\\n    ax.set_xticks(x)\\\\n    ax.set_xticklabels(names, fontsize=11.5)\\\\n    ax.set_ylabel(metric_label)\\\\n    ax.tick_params(direction=\\\\\\\"in\\\\\\\")\\\\n    ax.grid(axis=\\\\\\\"y\\\\\\\", color=\\\\\\\"#e0e0e0\\\\\\\", linewidth=0.5, zorder=0)\\\\n\\\\n    from matplotlib.patches import Patch\\\\n    legend_elements = [\\\\n        Patch(facecolor=\\\\\\\"#bab0ac\\\\\\\", edgecolor=\\\\\\\"#555555\\\\\\\", label=\\\\\\\"Baseline\\\\\\\"),\\\\n        Patch(facecolor=\\\\\\\"#4e79a7\\\\\\\", edgecolor=\\\\\\\"#555555\\\\\\\", hatch=\\\\\\\"//\\\\\\\", label=\\\\\\\"Alternative\\\\\\\"),\\\\n        Patch(facecolor=\\\\\\\"#e15759\\\\\\\", edgecolor=\\\\\\\"#555555\\\\\\\", hatch=\\\\\\\"xx\\\\\\\", label=\\\\\\\"Ours\\\\\\\"),\\\\n    ]\\\\n    ax.legend(handles=legend_elements, fontsize=9, loc=\\\\\\\"upper left\\\\\\\",\\\\n              framealpha=0.9, edgecolor=\\\\\\\"0.8\\\\\\\")\\\\n\\\\n    if args.output:\\\\n        out_path = args.output\\\\n    else:\\\\n        out_dir = root / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"figures\\\\\\\"\\\\n        out_dir.mkdir(parents=True, exist_ok=True)\\\\n        out_path = out_dir / \\\\\\\"fig_filtering_strategies.pdf\\\\\\\"\\\\n\\\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    fig.savefig(out_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    png_path = out_path.with_suffix(\\\\\\\".png\\\\\\\")\\\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n\\\\n    pdf_size = out_path.stat().st_size\\\\n    png_size = png_path.stat().st_size\\\\n    print(f\\\\\\\"Strategies: {names}\\\\\\\")\\\\n    print(f\\\\\\\"PDF: {pdf_size/1024:.1f} KB | PNG: {png_size/1024:.1f} KB\\\\\\\")\\\\n    assert pdf_size > 3 * 1024, f\\\\\\\"PDF too small: {pdf_size}\\\\\\\"\\\\n    print(\\\\\\\"OK\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "c4ec61b1-4629-4deb-a406-288be3e79302",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Filtering strategy comparison: bar chart of downstream MMLU under different curation methods.\\\\n\\\\nInput:  artifacts/*filter*.json, results_*/*filter*.json, or embedded paper data (exp-006)\\\\nOutput: artifacts/figures/fig_filtering_strategies.pdf\\\\nDeps:   matplotlib, numpy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\n\\\\nTABLEAU_COLORS = [\\\\n    \\\\\\\"#4e79a7\\\\\\\", \\\\\\\"#e15759\\\\\\\", \\\\\\\"#76b7b2\\\\\\\", \\\\\\\"#59a14f\\\\\\\",\\\\n    \\\\\\\"#b07aa1\\\\\\\", \\\\\\\"#ff9da7\\\\\\\", \\\\\\\"#9c755f\\\\\\\", \\\\\\\"#bab0ac\\\\\\\",\\\\n    \\\\\\\"#edc948\\\\\\\", \\\\\\\"#f28e2b\\\\\\\",\\\\n]\\\\n\\\\nEMBEDDED_FILTERING = {\\\\n    \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-006 K*-aware data curation\\\\\\\",\\\\n    \\\\\\\"metric\\\\\\\": \\\\\\\"MMLU (5-shot)\\\\\\\",\\\\n    \\\\\\\"strategies\\\\\\\": [\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"No filter\\\\\\\", \\\\\\\"score\\\\\\\": 0.5867, \\\\\\\"std\\\\\\\": 0.0021, \\\\\\\"category\\\\\\\": \\\\\\\"baseline\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"DSIR\\\\\\\", \\\\\\\"score\\\\\\\": 0.5867, \\\\\\\"std\\\\\\\": 0.0019, \\\\\\\"category\\\\\\\": \\\\\\\"baseline\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"Surprisal\\\\\\\\nselection\\\\\\\", \\\\\\\"score\\\\\\\": 0.5894, \\\\\\\"std\\\\\\\": 0.0018, \\\\\\\"category\\\\\\\": \\\\\\\"alternative\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"Graduated\\\\\\\\nweighting\\\\\\\", \\\\\\\"score\\\\\\\": 0.5892, \\\\\\\"std\\\\\\\": 0.0022, \\\\\\\"category\\\\\\\": \\\\\\\"alternative\\\\\\\"},\\\\n        {\\\\\\\"name\\\\\\\": \\\\\\\"Binary $K^*$\\\\\\\\nfiltering\\\\\\\", \\\\\\\"score\\\\\\\": 0.5941, \\\\\\\"std\\\\\\\": 0.0017, \\\\\\\"category\\\\\\\": \\\\\\\"ours\\\\\\\"},\\\\n    ],\\\\n}\\\\n\\\\n\\\\ndef discover_filtering_files(root):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find filtering experiment JSON files.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    patterns = [\\\\n        \\\\\\\"artifacts/*filter*.json\\\\\\\",\\\\n        \\\\\\\"artifacts/*curation*.json\\\\\\\",\\\\n        \\\\\\\"results_*/*filter*.json\\\\\\\",\\\\n        \\\\\\\"results/*filter*.json\\\\\\\",\\\\n        \\\\\\\"results_*/*curation*.json\\\\\\\",\\\\n    ]\\\\n    files = set()\\\\n    for pat in patterns:\\\\n        files.update(root.glob(pat))\\\\n    return sorted(files)\\\\n\\\\n\\\\ndef load_filtering_data(json_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load filtering comparison data from JSON.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(json_path) as f:\\\\n        raw = json.load(f)\\\\n    if \\\\\\\"strategies\\\\\\\" in raw:\\\\n        return raw\\\\n    return None\\\\n\\\\n\\\\ndef parse_args():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Plot filtering strategy comparison\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", type=Path,\\\\n                        default=Path(__file__).resolve().parent.parent,\\\\n                        help=\\\\\\\"Root directory to scan for filtering data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=Path, default=None,\\\\n                        help=\\\\\\\"Output PDF path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--use-embedded\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Force use of embedded paper data\\\\\\\")\\\\n    return parser.parse_args()\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    root = args.data_dir\\\\n\\\\n    data = None\\\\n    if not args.use_embedded:\\\\n        filter_files = discover_filtering_files(root)\\\\n        for fp in filter_files:\\\\n            data = load_filtering_data(fp)\\\\n            if data is not None:\\\\n                print(f\\\\\\\"Loaded filtering data from {fp}\\\\\\\")\\\\n                break\\\\n\\\\n    if data is None:\\\\n        print(\\\\\\\"No filtering JSON found on disk — using embedded paper data\\\\\\\")\\\\n        data = EMBEDDED_FILTERING\\\\n\\\\n    strategies = data[\\\\\\\"strategies\\\\\\\"]\\\\n    metric_label = data.get(\\\\\\\"metric\\\\\\\", \\\\\\\"MMLU (5-shot)\\\\\\\")\\\\n\\\\n    names = [s[\\\\\\\"name\\\\\\\"] for s in strategies]\\\\n    scores = np.array([s[\\\\\\\"score\\\\\\\"] for s in strategies])\\\\n    stds = np.array([s.get(\\\\\\\"std\\\\\\\", 0) for s in strategies])\\\\n    categories = [s.get(\\\\\\\"category\\\\\\\", \\\\\\\"other\\\\\\\") for s in strategies]\\\\n\\\\n    category_colors = {\\\\n        \\\\\\\"baseline\\\\\\\": \\\\\\\"#bab0ac\\\\\\\",\\\\n        \\\\\\\"alternative\\\\\\\": \\\\\\\"#4e79a7\\\\\\\",\\\\n        \\\\\\\"ours\\\\\\\": \\\\\\\"#e15759\\\\\\\",\\\\n        \\\\\\\"other\\\\\\\": \\\\\\\"#76b7b2\\\\\\\",\\\\n    }\\\\n    colors = [category_colors.get(c, \\\\\\\"#76b7b2\\\\\\\") for c in categories]\\\\n\\\\n    category_hatches = {\\\\n        \\\\\\\"baseline\\\\\\\": \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"alternative\\\\\\\": \\\\\\\"//\\\\\\\",\\\\n        \\\\\\\"ours\\\\\\\": \\\\\\\"xx\\\\\\\",\\\\n        \\\\\\\"other\\\\\\\": \\\\\\\"..\\\\\\\",\\\\n    }\\\\n    hatches = [category_hatches.get(c, \\\\\\\"\\\\\\\") for c in categories]\\\\n\\\\n    plt.rcParams.update({\\\\n        \\\\\\\"font.family\\\\\\\": \\\\\\\"serif\\\\\\\",\\\\n        \\\\\\\"font.size\\\\\\\": 11,\\\\n        \\\\\\\"axes.linewidth\\\\\\\": 0.8,\\\\n        \\\\\\\"xtick.major.width\\\\\\\": 0.8,\\\\n        \\\\\\\"ytick.major.width\\\\\\\": 0.8,\\\\n    })\\\\n\\\\n    fig, ax = plt.subplots(figsize=(6, 4), constrained_layout=True)\\\\n\\\\n    x = np.arange(len(names))\\\\n    bar_width = 0.6\\\\n    bars = ax.bar(x, scores, bar_width, color=colors, edgecolor=\\\\\\\"#555555\\\\\\\",\\\\n                  linewidth=0.8, zorder=3)\\\\n\\\\n    for bar, h in zip(bars, hatches):\\\\n        bar.set_hatch(h)\\\\n\\\\n    if np.any(stds > 0):\\\\n        ax.errorbar(x, scores, yerr=1.96 * stds, fmt=\\\\\\\"none\\\\\\\", ecolor=\\\\\\\"#333333\\\\\\\",\\\\n                    elinewidth=1.0, capsize=3, capthick=1.0, zorder=4)\\\\n\\\\n    for i, (bar, score) in enumerate(zip(bars, scores)):\\\\n        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.0008,\\\\n                f\\\\\\\"{score:.4f}\\\\\\\", ha=\\\\\\\"center\\\\\\\", va=\\\\\\\"bottom\\\\\\\", fontsize=9,\\\\n                fontweight=\\\\\\\"bold\\\\\\\" if categories[i] == \\\\\\\"ours\\\\\\\" else \\\\\\\"normal\\\\\\\")\\\\n\\\\n    best_idx = np.argmax(scores)\\\\n    bars[best_idx].set_edgecolor(\\\\\\\"#333333\\\\\\\")\\\\n    bars[best_idx].set_linewidth(1.5)\\\\n\\\\n    y_min = min(scores) - 0.006\\\\n    y_max = max(scores) + 0.005\\\\n    ax.set_ylim(y_min, y_max)\\\\n\\\\n    no_filter_score = next((s[\\\\\\\"score\\\\\\\"] for s in strategies if \\\\\\\"no filter\\\\\\\" in s[\\\\\\\"name\\\\\\\"].lower()), None)\\\\n    if no_filter_score is not None:\\\\n        ax.axhline(no_filter_score, color=\\\\\\\"#bab0ac\\\\\\\", ls=\\\\\\\"--\\\\\\\", lw=0.8, zorder=1)\\\\n        ax.text(len(names) - 0.5, no_filter_score + 0.0003, \\\\\\\"no-filter baseline\\\\\\\",\\\\n                fontsize=8, color=\\\\\\\"#999999\\\\\\\", ha=\\\\\\\"right\\\\\\\", va=\\\\\\\"bottom\\\\\\\")\\\\n\\\\n    ax.set_xticks(x)\\\\n    ax.set_xticklabels(names, fontsize=11.5)\\\\n    ax.set_ylabel(metric_label)\\\\n    ax.tick_params(direction=\\\\\\\"in\\\\\\\")\\\\n    ax.grid(axis=\\\\\\\"y\\\\\\\", color=\\\\\\\"#e0e0e0\\\\\\\", linewidth=0.5, zorder=0)\\\\n\\\\n    from matplotlib.patches import Patch\\\\n    legend_elements = [\\\\n        Patch(facecolor=\\\\\\\"#bab0ac\\\\\\\", edgecolor=\\\\\\\"#555555\\\\\\\", label=\\\\\\\"Baseline\\\\\\\"),\\\\n        Patch(facecolor=\\\\\\\"#4e79a7\\\\\\\", edgecolor=\\\\\\\"#555555\\\\\\\", hatch=\\\\\\\"//\\\\\\\", label=\\\\\\\"Alternative\\\\\\\"),\\\\n        Patch(facecolor=\\\\\\\"#e15759\\\\\\\", edgecolor=\\\\\\\"#555555\\\\\\\", hatch=\\\\\\\"xx\\\\\\\", label=\\\\\\\"Ours\\\\\\\"),\\\\n    ]\\\\n    ax.legend(handles=legend_elements, fontsize=9, loc=\\\\\\\"upper left\\\\\\\",\\\\n              framealpha=0.9, edgecolor=\\\\\\\"0.8\\\\\\\")\\\\n\\\\n    if args.output:\\\\n        out_path = args.output\\\\n    else:\\\\n        out_dir = root / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"figures\\\\\\\"\\\\n        out_dir.mkdir(parents=True, exist_ok=True)\\\\n        out_path = out_dir / \\\\\\\"fig_filtering_strategies.pdf\\\\\\\"\\\\n\\\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    fig.savefig(out_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    png_path = out_path.with_suffix(\\\\\\\".png\\\\\\\")\\\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n\\\\n    pdf_size = out_path.stat().st_size\\\\n    png_size = png_path.stat().st_size\\\\n    print(f\\\\\\\"Strategies: {names}\\\\\\\")\\\\n    print(f\\\\\\\"PDF: {pdf_size/1024:.1f} KB | PNG: {png_size/1024:.1f} KB\\\\\\\")\\\\n    assert pdf_size > 3 * 1024, f\\\\\\\"PDF too small: {pdf_size}\\\\\\\"\\\\n    print(\\\\\\\"OK\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Filtering strategy comparison: bar chart of downstream MMLU under different curation methods.\\n\\nInput:  artifacts/*filter*.json, results_*/*filter*.json, or embedded paper data (exp-006)\\nOutput: artifacts/figures/fig_filtering_strategies.pdf\\nDeps:   matplotlib, numpy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom pathlib import Path\\n\\nTABLEAU_COLORS = [\\n    \\\"#4e79a7\\\", \\\"#e15759\\\", \\\"#76b7b2\\\", \\\"#59a14f\\\",\\n    \\\"#b07aa1\\\", \\\"#ff9da7\\\", \\\"#9c755f\\\", \\\"#bab0ac\\\",\\n    \\\"#edc948\\\", \\\"#f28e2b\\\",\\n]\\n\\nEMBEDDED_FILTERING = {\\n    \\\"experiment\\\": \\\"exp-006 K*-aware data curation\\\",\\n    \\\"metric\\\": \\\"MMLU (5-shot)\\\",\\n    \\\"strategies\\\": [\\n        {\\\"name\\\": \\\"No filter\\\", \\\"score\\\": 0.5867, \\\"std\\\": 0.0021, \\\"category\\\": \\\"baseline\\\"},\\n        {\\\"name\\\": \\\"DSIR\\\", \\\"score\\\": 0.5867, \\\"std\\\": 0.0019, \\\"category\\\": \\\"baseline\\\"},\\n        {\\\"name\\\": \\\"Surprisal\\\\nselection\\\", \\\"score\\\": 0.5894, \\\"std\\\": 0.0018, \\\"category\\\": \\\"alternative\\\"},\\n        {\\\"name\\\": \\\"Graduated\\\\nweighting\\\", \\\"score\\\": 0.5892, \\\"std\\\": 0.0022, \\\"category\\\": \\\"alternative\\\"},\\n        {\\\"name\\\": \\\"Binary $K^*$\\\\nfiltering\\\", \\\"score\\\": 0.5941, \\\"std\\\": 0.0017, \\\"category\\\": \\\"ours\\\"},\\n    ],\\n}\\n\\n\\ndef discover_filtering_files(root):\\n    \\\"\\\"\\\"Find filtering experiment JSON files.\\\"\\\"\\\"\\n    patterns = [\\n        \\\"artifacts/*filter*.json\\\",\\n        \\\"artifacts/*curation*.json\\\",\\n        \\\"results_*/*filter*.json\\\",\\n        \\\"results/*filter*.json\\\",\\n        \\\"results_*/*curation*.json\\\",\\n    ]\\n    files = set()\\n    for pat in patterns:\\n        files.update(root.glob(pat))\\n    return sorted(files)\\n\\n\\ndef load_filtering_data(json_path):\\n    \\\"\\\"\\\"Load filtering comparison data from JSON.\\\"\\\"\\\"\\n    with open(json_path) as f:\\n        raw = json.load(f)\\n    if \\\"strategies\\\" in raw:\\n        return raw\\n    return None\\n\\n\\ndef parse_args():\\n    parser = argparse.ArgumentParser(description=\\\"Plot filtering strategy comparison\\\")\\n    parser.add_argument(\\\"--data-dir\\\", type=Path,\\n                        default=Path(__file__).resolve().parent.parent,\\n                        help=\\\"Root directory to scan for filtering data\\\")\\n    parser.add_argument(\\\"--output\\\", type=Path, default=None,\\n                        help=\\\"Output PDF path\\\")\\n    parser.add_argument(\\\"--use-embedded\\\", action=\\\"store_true\\\",\\n                        help=\\\"Force use of embedded paper data\\\")\\n    return parser.parse_args()\\n\\n\\ndef main():\\n    args = parse_args()\\n    root = args.data_dir\\n\\n    data = None\\n    if not args.use_embedded:\\n        filter_files = discover_filtering_files(root)\\n        for fp in filter_files:\\n            data = load_filtering_data(fp)\\n            if data is not None:\\n                print(f\\\"Loaded filtering data from {fp}\\\")\\n                break\\n\\n    if data is None:\\n        print(\\\"No filtering JSON found on disk — using embedded paper data\\\")\\n        data = EMBEDDED_FILTERING\\n\\n    strategies = data[\\\"strategies\\\"]\\n    metric_label = data.get(\\\"metric\\\", \\\"MMLU (5-shot)\\\")\\n\\n    names = [s[\\\"name\\\"] for s in strategies]\\n    scores = np.array([s[\\\"score\\\"] for s in strategies])\\n    stds = np.array([s.get(\\\"std\\\", 0) for s in strategies])\\n    categories = [s.get(\\\"category\\\", \\\"other\\\") for s in strategies]\\n\\n    category_colors = {\\n        \\\"baseline\\\": \\\"#bab0ac\\\",\\n        \\\"alternative\\\": \\\"#4e79a7\\\",\\n        \\\"ours\\\": \\\"#e15759\\\",\\n        \\\"other\\\": \\\"#76b7b2\\\",\\n    }\\n    colors = [category_colors.get(c, \\\"#76b7b2\\\") for c in categories]\\n\\n    category_hatches = {\\n        \\\"baseline\\\": \\\"\\\",\\n        \\\"alternative\\\": \\\"//\\\",\\n        \\\"ours\\\": \\\"xx\\\",\\n        \\\"other\\\": \\\"..\\\",\\n    }\\n    hatches = [category_hatches.get(c, \\\"\\\") for c in categories]\\n\\n    plt.rcParams.update({\\n        \\\"font.family\\\": \\\"serif\\\",\\n        \\\"font.size\\\": 11,\\n        \\\"axes.linewidth\\\": 0.8,\\n        \\\"xtick.major.width\\\": 0.8,\\n        \\\"ytick.major.width\\\": 0.8,\\n    })\\n\\n    fig, ax = plt.subplots(figsize=(6, 4), constrained_layout=True)\\n\\n    x = np.arange(len(names))\\n    bar_width = 0.6\\n    bars = ax.bar(x, scores, bar_width, color=colors, edgecolor=\\\"#555555\\\",\\n                  linewidth=0.8, zorder=3)\\n\\n    for bar, h in zip(bars, hatches):\\n        bar.set_hatch(h)\\n\\n    if np.any(stds > 0):\\n        ax.errorbar(x, scores, yerr=1.96 * stds, fmt=\\\"none\\\", ecolor=\\\"#333333\\\",\\n                    elinewidth=1.0, capsize=3, capthick=1.0, zorder=4)\\n\\n    for i, (bar, score) in enumerate(zip(bars, scores)):\\n        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.0008,\\n                f\\\"{score:.4f}\\\", ha=\\\"center\\\", va=\\\"bottom\\\", fontsize=9,\\n                fontweight=\\\"bold\\\" if categories[i] == \\\"ours\\\" else \\\"normal\\\")\\n\\n    best_idx = np.argmax(scores)\\n    bars[best_idx].set_edgecolor(\\\"#333333\\\")\\n    bars[best_idx].set_linewidth(1.5)\\n\\n    y_min = min(scores) - 0.006\\n    y_max = max(scores) + 0.005\\n    ax.set_ylim(y_min, y_max)\\n\\n    no_filter_score = next((s[\\\"score\\\"] for s in strategies if \\\"no filter\\\" in s[\\\"name\\\"].lower()), None)\\n    if no_filter_score is not None:\\n        ax.axhline(no_filter_score, color=\\\"#bab0ac\\\", ls=\\\"--\\\", lw=0.8, zorder=1)\\n        ax.text(len(names) - 0.5, no_filter_score + 0.0003, \\\"no-filter baseline\\\",\\n                fontsize=8, color=\\\"#999999\\\", ha=\\\"right\\\", va=\\\"bottom\\\")\\n\\n    ax.set_xticks(x)\\n    ax.set_xticklabels(names, fontsize=11.5)\\n    ax.set_ylabel(metric_label)\\n    ax.tick_params(direction=\\\"in\\\")\\n    ax.grid(axis=\\\"y\\\", color=\\\"#e0e0e0\\\", linewidth=0.5, zorder=0)\\n\\n    from matplotlib.patches import Patch\\n    legend_elements = [\\n        Patch(facecolor=\\\"#bab0ac\\\", edgecolor=\\\"#555555\\\", label=\\\"Baseline\\\"),\\n        Patch(facecolor=\\\"#4e79a7\\\", edgecolor=\\\"#555555\\\", hatch=\\\"//\\\", label=\\\"Alternative\\\"),\\n        Patch(facecolor=\\\"#e15759\\\", edgecolor=\\\"#555555\\\", hatch=\\\"xx\\\", label=\\\"Ours\\\"),\\n    ]\\n    ax.legend(handles=legend_elements, fontsize=9, loc=\\\"upper left\\\",\\n              framealpha=0.9, edgecolor=\\\"0.8\\\")\\n\\n    if args.output:\\n        out_path = args.output\\n    else:\\n        out_dir = root / \\\"artifacts\\\" / \\\"figures\\\"\\n        out_dir.mkdir(parents=True, exist_ok=True)\\n        out_path = out_dir / \\\"fig_filtering_strategies.pdf\\\"\\n\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\n    fig.savefig(out_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    png_path = out_path.with_suffix(\\\".png\\\")\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n\\n    pdf_size = out_path.stat().st_size\\n    png_size = png_path.stat().st_size\\n    print(f\\\"Strategies: {names}\\\")\\n    print(f\\\"PDF: {pdf_size/1024:.1f} KB | PNG: {png_size/1024:.1f} KB\\\")\\n    assert pdf_size > 3 * 1024, f\\\"PDF too small: {pdf_size}\\\"\\n    print(\\\"OK\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表生成成功 (PDF: 27.0 KB, PNG: 151.2 KB)。检查输出文件和 docs/paper/figures/ 是否有副本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "eda8b402-95ed-441e-8096-d3bcd888eff8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D8eNkH3fHPWRjykinJTYgK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3635,
+                "cache_read_input_tokens": 31715,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3635
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014tevVygA2gssp3Lmz28fSP",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ls -la /root/autodl-tmp/gen-depth-contamination/artifacts/figures/fig_filtering_strategies.*",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "f91af621-848b-4750-a969-0468e3509460",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D8eNkH3fHPWRjykinJTYgK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3635,
+                "cache_read_input_tokens": 31715,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3635
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T08:43:39.542Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014tevVygA2gssp3Lmz28fSP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  27671 May 22 16:43 /root/autodl-tmp/gen-depth-contamination/artifacts/figures/fig_filtering_strategies.pdf\\\\n-rw-r--r-- 1 root root 154781 May 22 16:43 /root/autodl-tmp/gen-depth-contamination/artifacts/figures/fig_filtering_strategies.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "4d258fd7-3e2f-4171-8bc4-0b28c38719d4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  27671 May 22 16:43 /root/autodl-tmp/gen-depth-contamination/artifacts/figures/fig_filtering_strategies.pdf\\\\n-rw-r--r-- 1 root root 154781 May 22 16:43 /root/autodl-tmp/gen-depth-contamination/artifacts/figures/fig_filtering_strategies.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  27671 May 22 16:43 /root/autodl-tmp/gen-depth-contamination/artifacts/figures/fig_filtering_strategies.pdf\\n-rw-r--r-- 1 root root 154781 May 22 16:43 /root/autodl-tmp/gen-depth-contamination/artifacts/figures/fig_filtering_strategies.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q3zw4YfJzGGda98BFdZ9zA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "find /root/autodl-tmp/gen-depth-contamination/docs -name \"fig_filtering*\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "a1006727-9f04-43de-aaf3-47ed5448c1b4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D8eNkH3fHPWRjykinJTYgK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3635,
+                "cache_read_input_tokens": 31715,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3635
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T08:43:40.111Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q3zw4YfJzGGda98BFdZ9zA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_filtering_strategies.pdf\\\\n/root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_filtering_strategies.png\\\\n/root/autodl-tmp/gen-depth-contamination/docs/paper_backup_premerge/figures/fig_filtering_strategies.pdf\\\\n/root/autodl-tmp/gen-depth-contamination/docs/paper_backup_premerge/figures/fig_filtering_strategies.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "3b9560c6-d09e-4caa-8121-75f96a192a10",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_filtering_strategies.pdf\\\\n/root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_filtering_strategies.png\\\\n/root/autodl-tmp/gen-depth-contamination/docs/paper_backup_premerge/figures/fig_filtering_strategies.pdf\\\\n/root/autodl-tmp/gen-depth-contamination/docs/paper_backup_premerge/figures/fig_filtering_strategies.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_filtering_strategies.pdf\\n/root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_filtering_strategies.png\\n/root/autodl-tmp/gen-depth-contamination/docs/paper_backup_premerge/figures/fig_filtering_strategies.pdf\\n/root/autodl-tmp/gen-depth-contamination/docs/paper_backup_premerge/figures/fig_filtering_strategies.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The figures exist in `docs/paper/figures/` too, but those are older copies. I need to copy the new figures there.",
+              "signature": "ErcCCmMIDRgCKkBPS7qADFkXievTtBs3jfcfIwHfVCi6m8HxHE2s455BQ6Vg1z9VsWanfmYMKsc8hpLh6NHVw7OYg3qcNRYCQBftMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDIV0G8OsAxKtQd7q0xoMcd3mMGRPY4JOIGjqIjDEv4uQLDaYqTOx7qd4j7zDalx5REZtzitrLEdRcz+KzpNC33N1AijLTIG2+S6psYMqgQH2WBkaz2gt7h9FMUGXLzT7AppBAVW632mUSUkC36XxWT6lpU7auVMoG4NIFp3P2AVleX4ze+nUE7OeuIlo8jNIDoSe/tkmvb3eDVGao1yBXsvYDGnLI8Q6Pz6gOUOEcyyjSObN9buQpAIqroEiZGXsPmnLAW4fzedmMaCGdvPu9dAYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "88949d2d-860c-420c-bff7-4a2192831a1d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FndBQmtRbE3bbByZdgGwR1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 840,
+                "cache_read_input_tokens": 35350,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 840
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`docs/paper/figures/` 有旧副本，需要覆盖。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "937bc845-b6e1-4dd9-a2cc-27f63ba8ee77",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FndBQmtRbE3bbByZdgGwR1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 840,
+                "cache_read_input_tokens": 35350,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 840
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ba7X2CUyeAKJjtewKq1r1H",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cp /root/autodl-tmp/gen-depth-contamination/artifacts/figures/fig_filtering_strategies.pdf /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_filtering_strategies.pdf && cp /root/autodl-tmp/gen-depth-contamination/artifacts/figures/fig_filtering_strategies.png /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_filtering_strategies.png",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "31b5fa0c-19de-4ee6-a574-7c48b2d6ac17",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FndBQmtRbE3bbByZdgGwR1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 840,
+                "cache_read_input_tokens": 35350,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 840
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T08:43:45.471Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ba7X2CUyeAKJjtewKq1r1H",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "fbc002b9-1225-4b7c-a8af-e55e8f947fe5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### Hatch pattern 分配\n\n| Category | Hatch | 示例 bar |\n|----------|-------|---------|\n| baseline | 无 (实色) | No filter, DSIR |\n| alternative | `//` (斜线) | Surprisal selection, Graduated weighting |\n| ours | `xx` (交叉) | Binary K* filtering |\n\n### 脚本修改 diff\n\n3 处改动：\n\n1. **新增 `category_hatches` 字典** — 在 `colors` 列表后，定义每个 category 对应的 hatch pattern\n2. **bar 创建后应用 hatch** — `edgecolor` 从 `\"white\"` 改为 `\"#555555\"`（使 hatch 线条可见），并逐 bar 设置 `set_hatch()`\n3. **图例同步更新** — legend Patch 加上对应 hatch 和新 edgecolor\n\n新图已覆盖 `artifacts/figures/` 和 `docs/paper/figures/` 中的 PDF/PNG。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "uuid": "9930ce85-8ba6-428f-9e3d-483620ebc796",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MYWcXHdw8MFQ7S3urjZeDC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 351,
+                "cache_read_input_tokens": 36190,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 351
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### Hatch pattern 分配\n\n| Category | Hatch | 示例 bar |\n|----------|-------|---------|\n| baseline | 无 (实色) | No filter, DSIR |\n| alternative | `//` (斜线) | Surprisal selection, Graduated weighting |\n| ours | `xx` (交叉) | Binary K* filtering |\n\n### 脚本修改 diff\n\n3 处改动：\n\n1. **新增 `category_hatches` 字典** — 在 `colors` 列表后，定义每个 category 对应的 hatch pattern\n2. **bar 创建后应用 hatch** — `edgecolor` 从 `\"white\"` 改为 `\"#555555\"`（使 hatch 线条可见），并逐 bar 设置 `set_hatch()`\n3. **图例同步更新** — legend Patch 加上对应 hatch 和新 edgecolor\n\n新图已覆盖 `artifacts/figures/` 和 `docs/paper/figures/` 中的 PDF/PNG。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 88672,
+            "duration_api_ms": 87392,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "2e9032a3-5bdf-4e1b-b3c9-424805ee867c",
+            "total_cost_usd": 0.37803099999999995,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 24700,
+              "cache_read_input_tokens": 191944,
+              "output_tokens": 5052,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 24700,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 289,
+                  "cache_read_input_tokens": 36190,
+                  "cache_creation_input_tokens": 351,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 351
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1234,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001329,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 5052,
+                "cacheReadInputTokens": 191944,
+                "cacheCreationInputTokens": 24700,
+                "webSearchRequests": 0,
+                "costUSD": 0.376702,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "ca18d82f-0ccf-49ba-9c82-26d7ab556f96"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-r26-fig5-hatch.md"
+}

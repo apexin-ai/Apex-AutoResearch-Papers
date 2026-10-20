@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "539ce274dedf39d6c96b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper compile bootstrap fix",
+  "task_key": "worker_paper_compile_bootstrap_fix_20260523T081329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_bootstrap_fix_20260523T081329_result.json",
+    "occurrence": 1,
+    "bytes": 331,
+    "sha256": "fecde4e4568b5f9fa280e831899566ca5c96f3353f8f280b3c1463213c0b27a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译结果：\n\n- **Errors: 0** — 编译成功\n- **Warnings: 2** — 均为 `'h' float specifier changed to 'ht'`（无害）\n- **总页数: 18 页**（含附录）\n- **正文: 8 页**（第1–8页），Limitations 和 References 从第9页开始\n\n正文恰好 8 页，符合 EMNLP 2026 的 8 页限制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-bootstrap-fix.md"
+}

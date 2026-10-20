@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b555733014437aad141e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp wiki pair submit",
+  "task_key": "worker_code_exp_wiki_pair_submit_20260517T112140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_wiki_pair_submit_20260517T112140_result.json",
+    "occurrence": 1,
+    "bytes": 498,
+    "sha256": "91bf692f26870651c4543bef8e6627e414ac17d1b2a5a0438f96c0358f1020df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已成功提交并注册为 RUNNING：\n\n| 实验 | GPU | PID | 日志 |\n|------|-----|-----|------|\n| `exp_wiki_pythia` | cuda:2 | 26873 | `~/runs/gen-depth-contamination/exp_wiki_pythia.log` |\n| `exp_wiki_olmo` | cuda:3 | 27620 | `~/runs/gen-depth-contamination/exp_wiki_olmo.log` |\n\n两者共享 Wikipedia 5K seed data，使用 Qwen2.5-1.5B 作为 scorer，continuation mode，depth 0-5，nucleus p=0.95, T=1.0，bootstrap 10000 resamples（pipeline 默认）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-wiki-pair-submit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acce1cfad6d8ea2a03a2",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops urgent gpu0 piqa cleanup",
+  "task_key": "worker_ops_urgent_gpu0_piqa_cleanup_20260520T215856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_gpu0_piqa_cleanup_20260520T215856_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "e2716a77243c6d5f2003fc2673e39671594c6dc5b17919eb9595f656e6475796"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个操作完成。汇总：\n\n| 操作 | 状态 | 详情 |\n|------|------|------|\n| **1. GSM8K 补跑** | 已提交 | tmux session `gsm8k-serial-rerun`, PID 373073, cuda:0。3 个任务串行，预计 ~50-60min |\n| **2. PIQA 指标确认** | 已确认 | `scores` 已使用正确指标：PIQA=acc, ARC-C=acc_norm，无需修正 |\n| **3. sweep_r10_nofilter 清理** | 已清理 | 无活跃 session，有一个残留 tmux 服务端进程（已死壳），kill-session 返回 no session |\n| **4. Data Snapshot** | 已保存 | 10 个 eval 文件冻结，artifact `art_20260520_eb9283` |\n\n**缺失 GSM8K 的文件**（等待补跑完成）：\n- `base_model_eval.json` — base 模型 GSM8K（第 3 个串行任务会补）\n- `binary_ours_seed1_eval.json` — 第 2 个串行任务会补\n- `no_filter_seed0_eval.json`, `no_filter_seed1_eval.json` — 第 1 个串行任务会补"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-gpu0-piqa-cleanup.md"
+}

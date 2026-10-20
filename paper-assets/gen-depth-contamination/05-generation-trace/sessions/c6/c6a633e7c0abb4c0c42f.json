@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6a633e7c0abb4c0c42f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis cross transfer final check",
+  "task_key": "worker_analysis_cross-transfer-final-check_20260520T025640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross-transfer-final-check_20260520T025640_result.json",
+    "occurrence": 1,
+    "bytes": 2960,
+    "sha256": "557ec277037fd522fa53ea5fe37bc1afd0c74ac0785b39f3393408be9f77fc43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。以下是汇总。\n\n---\n\n## 1. 新实验结果\n\n### wiki_qwen7b → wiki_llama8b (完成)\n\n| Pair | AUC | 95% CI | ci_lower > θ |\n|------|-----|--------|-------------|\n| 0v1 | 0.9998 | [0.9995, 1.0000] | ✓ |\n| 1v2 | 0.7384 | [0.7308, 0.7464] | ✓ |\n| 2v3 | 0.6278 | [0.6196, 0.6357] | ✓ |\n| 3v4 | 0.5870 | [0.5795, 0.5941] | ✗ |\n| 4v5 | 0.5519 | [0.5451, 0.5589] | ✗ |\n\n**K\\* = 3**, kstar_indexing = **MISSING**（JSON 中无此字段）, elapsed = 3621s\n\n### wiki_llama8b → wiki_qwen7b (崩溃)\n\n```\nAssertionError: Invalid device id\n```\n脚本用 `--gpu 1` 启动，但 `cuda:1` 不可用。需用 `--gpu 0` 重跑。\n\n---\n\n## 2. 完整 13/14 对矩阵（按 train_model 分组）\n\n| # | Train → Test | K\\* | 0v1 AUC | 1v2 AUC | 2v3 AUC | 3v4 AUC | 4v5 AUC | indexing |\n|---|-------------|-----|---------|---------|---------|---------|---------|----------|\n| | **llama8b trains** | | | | | | | |\n| 1 | llama8b → olmo | 1 | 0.9999 | 0.4984 | 0.4886 | 0.4999 | 0.4971 | 1-indexed |\n| 2 | llama8b → pythia | 2 | 0.9998 | 0.6800 | 0.5958 | 0.5538 | 0.5502 | 1-indexed |\n| 3 | llama8b → qwen7b | — | **崩溃，待重跑** | | | | | |\n| | **mistral7b trains** | | | | | | | |\n| 4 | mistral7b → pythia | 2 | 0.9999 | 0.6602 | 0.5746 | 0.5434 | 0.5393 | 1-indexed |\n| | **olmo trains** | | | | | | | |\n| 5 | olmo → llama8b | 2 | 0.9770 | 0.6439 | 0.5683 | 0.5424 | 0.5226 | 1-indexed |\n| 6 | olmo → pythia | 1 | 0.9324 | 0.5864 | 0.5247 | 0.5066 | 0.5164 | 1-indexed |\n| 7 | olmo → qwen7b | 2 | 0.9822 | 0.6331 | 0.5457 | 0.5310 | 0.5119 | 1-indexed |\n| | **pythia trains** | | | | | | | |\n| 8 | pythia → llama8b | 2 | 0.9999 | 0.6994 | 0.6073 | 0.5819 | 0.5473 | 1-indexed |\n| 9 | pythia → mistral7b | 2 | 0.9999 | 0.6931 | 0.6013 | 0.5607 | 0.5496 | 1-indexed |\n| 10 | pythia → olmo | 1 | 0.9998 | 0.4871 | 0.4907 | 0.4970 | 0.4980 | 1-indexed |\n| 11 | pythia → qwen7b | 3 | 0.9999 | 0.7010 | 0.6095 | 0.5684 | 0.5466 | 1-indexed |\n| | **qwen7b trains** | | | | | | | |\n| 12 | qwen7b → llama8b | **3** | 0.9998 | 0.7384 | 0.6278 | 0.5870 | 0.5519 | **MISSING** |\n| 13 | qwen7b → olmo | 1 | 0.9997 | 0.4920 | 0.4889 | 0.5014 | 0.4973 | 1-indexed |\n| 14 | qwen7b → pythia | 2 | 0.9997 | 0.6651 | 0.5774 | 0.5468 | 0.5409 | 1-indexed |\n\n---\n\n## 3. 异常汇总\n\n1. **wiki_llama8b → wiki_qwen7b**：崩溃（`Invalid device id`，cuda:1 不存在）。需用 `--gpu 0` 单独重跑。\n2. **wiki_qwen7b → wiki_llama8b**：JSON 中缺少 `kstar_indexing` 字段（其余 12 个均为 `1-indexed`）。推测是新版脚本漏写，或旧版脚本补写的。功能上不影响结果，但应补上。\n3. **→ olmo 方向 K\\*=1 模式明显**：llama8b/pythia/qwen7b 训练后迁移到 olmo 测试集时，1v2 AUC 全部约 0.49（随机水平），K\\* 一致为 1，说明 depth 信号完全不跨模型迁移到 olmo。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-transfer-final-check.md"
+}

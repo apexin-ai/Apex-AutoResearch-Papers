@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fff5a40fddf52491d81c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code get gemma2b 10k pid",
+  "task_key": "worker_code_get_gemma2b_10k_pid_20260522T180224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_get_gemma2b_10k_pid_20260522T180224_result.json",
+    "occurrence": 1,
+    "bytes": 24,
+    "sha256": "45690ee8b2be2967a70c8051b4a1875c5711bf1366579249747b4716de51fbe8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**54709**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-get-gemma2b-10k-pid.md"
+}

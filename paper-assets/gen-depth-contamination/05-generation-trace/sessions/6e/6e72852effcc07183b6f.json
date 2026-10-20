@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e72852effcc07183b6f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "exp cqa1 c4 1b5 pythia greedy",
+  "task_key": "worker_exp_cqa1-c4-1b5-pythia-greedy_20260519T230250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_cqa1-c4-1b5-pythia-greedy_20260519T230250_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "a3d9c474a2e637f1e1fa29de29862afa4ec0a6173290e2817572a5d1e19da1c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常运行：\n\n- **cuda:0**: 99% 利用率，19629 MiB 显存占用\n- **cuda:1/2/3**: 不受影响，cross-transfer 继续运行\n- **tmux session**: `deberta_c4_1b5_pythia`\n- **日志**: `/root/autodl-tmp/gen-depth-contamination/logs/deberta_c4_1b5_pythia.log`\n- **config**: pythia_greedy, 5-fold GroupKFold, 30000 samples (5000 docs x 6 depths)\n\n第一次启动因 `transformers` 尝试在线查 adapter config 而崩溃（AutoDL 网络不通），加 `HF_HUB_OFFLINE=1` + `TRANSFORMERS_OFFLINE=1` 后解决。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-cqa1-c4-1b5-pythia-greedy.md"
+}

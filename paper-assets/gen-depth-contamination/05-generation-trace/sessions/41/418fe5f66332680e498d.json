@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "418fe5f66332680e498d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper fix figure1 pipeline",
+  "task_key": "worker_paper_fix_figure1_pipeline_20260517T080308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_figure1_pipeline_20260517T080308_result.json",
+    "occurrence": 1,
+    "bytes": 397,
+    "sha256": "70346883e2472995ed14e51d73ee46677dc9eb622db2586b207f6af8edbc5f88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"depth 0→K\" 弧线和文字现在完整显示，顶部有充足留白。\n\n修复内容（`scripts/draw_pipeline_figure.py`）：\n- `ylim` 上限 3.2 → 3.5\n- `tight_layout(pad=0.3)` → `subplots_adjust(top=0.95)`（避免 tight_layout 过度压缩）\n- `savefig` 添加 `pad_inches=0.2`（原来缺省值 0.1 太紧）\n\nPDF 和 PNG 已更新到 `docs/paper/figures/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-figure1-pipeline.md"
+}

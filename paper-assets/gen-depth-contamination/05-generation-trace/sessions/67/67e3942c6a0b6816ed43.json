@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67e3942c6a0b6816ed43",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp005 4model degradation",
+  "task_key": "worker_analysis_exp005_4model_degradation_20260513T061801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp005_4model_degradation_20260513T061801_result.json",
+    "occurrence": 1,
+    "bytes": 1234,
+    "sha256": "cffa52fe317d91122ee7e7237ba15faa96deb512c01bbdbb8a7db0d251b498c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 4×4 τ 矩阵结果（Kendall τ, first-pair AUC ranking）\n\n|  | Pythia | OLMo | Qwen-rewrite | Qwen-cont |\n|---|---|---|---|---|\n| **Pythia** | — | **0.733** | 0.467 | **0.695** |\n| **OLMo** | | — | 0.429 | 0.543 |\n| **Qwen-rewrite** | | | — | **0.733** |\n| **Qwen-cont** | | | | — |\n\n### 关键判断\n\n**Generation mode 是主因，架构是次因。**\n\n1. **Qwen-cont vs Pythia τ=0.695**，远高于 Qwen-rewrite vs Pythia τ=0.467（Δ=+0.23）。切换到 continuation mode 后 Qwen 与 Pythia 的排序一致性大幅提升。\n\n2. **Qwen-cont vs OLMo τ=0.543**，高于 Qwen-rewrite vs OLMo τ=0.429（Δ=+0.11）。提升幅度较小但方向一致。\n\n3. **Qwen-rewrite vs Qwen-cont τ=0.733**——同架构不同 mode，排序一致性高但非完美，说明 mode 确实改变了部分 feature 的退化优先级。\n\n4. **残余架构效应**：Qwen-cont vs OLMo (0.54) 仍显著低于 Pythia vs OLMo (0.73)，说明架构差异贡献约 30-40% 的 ordering 偏离。\n\n**C2 claim 建议**：退化排序在 continuation mode 下大体一致（mode 是之前偏离的主因），但需注明不同架构仍存在残余差异。\n\nArtifact 已注册：`art_20260513_f28dd5`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp005-4model-degradation.md"
+}

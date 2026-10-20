@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a111ba2ec6041f13f7ed",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code update jsd figure 14b",
+  "task_key": "worker_code_update-jsd-figure-14b_20260518T084358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_update-jsd-figure-14b_20260518T084358_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "22839937e4873db2c438ebd4a9567dee2b2089483e8708bcc52afd51ca4b9e4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary:\n\n**What changed:**\n- Created reproducible script `scripts/plot_fig_jsd_decay.py` with all JSD data hardcoded\n- Regenerated `docs/paper/figures/fig_jsd_decay.{pdf,png}` with Qwen2.5-14B added to the C4 band\n- Updated figure caption in `discussion.tex` and appendix text in `appendix_extended.tex` from \"7 models\" to \"8 models (1B--14B)\"\n\n**Figure now contains:**\n- **C4 band (8 models, K\\*=2):** Qwen-1.5B, Qwen-1.5B-cont, LLaMA-8B, Pythia-greedy, Pythia-nuc0.9, Pythia-T0.7, Pythia-T1.2, **Qwen-14B** (new)\n- **Mistral-7B** (K\\*=1, dashed purple)\n- **arXiv Pythia** (K\\*=3, green)\n- **Retrain-chain** (K\\*>=4, dotted red)\n\n14B JSD values (0v1=0.1097, 1v2=0.0112, 2v3=0.0062, 3v4=0.0044, 4v5=0.0036) fall squarely within the existing C4 band, consistent with scale invariance of the K\\*=2 pattern."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-update-jsd-figure-14b.md"
+}

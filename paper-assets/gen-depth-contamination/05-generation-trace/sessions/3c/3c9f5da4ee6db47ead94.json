@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c9f5da4ee6db47ead94",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp D obd n500 v2",
+  "task_key": "worker_code_exp_D_obd_n500_v2_20260515T104206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_D_obd_n500_v2_20260515T104206_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "da4380df20645596e66b3bd31f2a4751df0e4e63a795e5098d004b7247146f31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 方法 | N=500 Accuracy | 95% CI |\n|------|---------------|--------|\n| **OBD-LightGBM** | **0.380** | [0.340, 0.424] |\n| GPT-5.5 | 0.332 | — |\n| Claude | 0.331 | — |\n\n验证通过：\n- Full OBD accuracy = 0.3856，与 exp-010 报告的 0.3856 完全一致（复现成功）\n- N=500 子集 accuracy = 0.380，在合理范围内（接近 full 的 0.386，且 CI 覆盖此值）\n- 所有 500 个样本均匹配成功\n- 使用了正确的 OBD 方法（K-1 binary classifiers），不是 plain multiclass\n- 超参数与 exp-010 一致（n_estimators=200, max_depth=6, num_leaves=31）\n\n输出已保存到 `artifacts/exp_D_obd_n500_v2.json`，脚本在 `scripts/exp_D_obd_n500_v2.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-d-obd-n500-v2.md"
+}

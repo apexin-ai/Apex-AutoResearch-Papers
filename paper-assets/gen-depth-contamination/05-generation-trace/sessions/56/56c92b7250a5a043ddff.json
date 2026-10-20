@@ -1,0 +1,880 @@
+{
+  "schema_version": "1.0",
+  "id": "56c92b7250a5a043ddff",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "ssh run exp005 degradation",
+  "task_key": "worker_ssh_run_exp005_degradation_20260513T023913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_run_exp005_degradation_20260513T023913.jsonl",
+    "occurrence": 1,
+    "bytes": 36886,
+    "sha256": "0f596c58e15a7512999abce70e293765562ca46cbc8b219c3a1436b486b8bec2"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T02:41:29.887660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T02:41:29.888217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T02:41:29.888573+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/scripts/run_exp005_degradation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T02:41:29.888916+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "find /root/autodl-tmp/gen-depth-contamination -name \"features.csv\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T02:41:29.889154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_exp005_degradation.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T02:41:29.889442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/features.csv\\\\n/root/autodl-tmp/gen-depth-contamination/data_v1_right_padding/features.csv\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/features.csv\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo/features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T02:41:29.889621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "head -80 /root/autodl-tmp/gen-depth-contamination/scripts/run_exp005_degradation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T02:41:29.889884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nexp-005: Degradation Ordering Analysis across Models\\\\n\\\\nAnalyzes how individual features degrade across recursive generation depths\\\\nand whether the degradation ordering is consistent across different models.\\\\n\\\\nInput:  Multiple experiment data directories containing features.csv\\\\n        (columns: doc_id, depth, surp_mean, ..., low_freq_ratio)\\\\nOutput: JSON results + terminal summary in --output_dir\\\\n\\\\nDeps: numpy, scipy, sklearn (all CPU-only)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\n\\\\nFEATURE_COLS = [\\\\n    \\\\\\\"surp_mean\\\\\\\", \\\\\\\"surp_std\\\\\\\", \\\\\\\"surp_skew\\\\\\\", \\\\\\\"surp_kurt\\\\\\\",\\\\n    \\\\\\\"surp_d1_mean\\\\\\\", \\\\\\\"surp_d1_std\\\\\\\", \\\\\\\"surp_d1_skew\\\\\\\",\\\\n    \\\\\\\"surp_d2_mean\\\\\\\", \\\\\\\"surp_d2_std\\\\\\\",\\\\n    \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"self_bleu\\\\\\\",\\\\n    \\\\\\\"freq_kurtosis\\\\\\\", \\\\\\\"freq_entropy\\\\\\\", \\\\\\\"low_freq_ratio\\\\\\\",\\\\n]\\\\n\\\\nFEATURE_GROUPS = {\\\\n    \\\\\\\"Surprisal\\\\\\\": [\\\\\\\"surp_mean\\\\\\\", \\\\\\\"surp_std\\\\\\\", \\\\\\\"surp_skew\\\\\\\", \\\\\\\"surp_kurt\\\\\\\"],\\\\n    \\\\\\\"Surprisal-Δ\\\\\\\": [\\\\\\\"surp_d1_mean\\\\\\\", \\\\\\\"surp_d1_std\\\\\\\", \\\\\\\"surp_d1_skew\\\\\\\", \\\\\\\"surp_d2_mean\\\\\\\", \\\\\\\"surp_d2_std\\\\\\\"],\\\\n    \\\\\\\"VocabDiv\\\\\\\": [\\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"self_bleu\\\\\\\"],\\\\n    \\\\\\\"TailFreq\\\\\\\": [\\\\\\\"freq_kurtosis\\\\\\\", \\\\\\\"freq_entropy\\\\\\\", \\\\\\\"low_freq_ratio\\\\\\\"],\\\\n}\\\\n\\\\n\\\\ndef load_features(data_dir: Path) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load features.csv and return {depth: {feature: np.array}}.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    feat_path = data_dir / \\\\\\\"features.csv\\\\\\\"\\\\n    if not feat_path.exists():\\\\n        raise FileNotFoundError(f\\\\\\\"features.csv not found in {data_dir}\\\\\\\")\\\\n\\\\n    with open(feat_path) as f:\\\\n        reader = csv.DictReader(f)\\\\n        rows = list(reader)\\\\n\\\\n    by\n…[truncated 1136 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T02:41:29.890068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "grep -n \"argparse\\|add_argument\\|parse_args\" /root/autodl-tmp/gen-depth-contamination/scripts/run_exp005_degradation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T02:41:29.890202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T02:41:29.890326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "grep -n \"add_argument\" /root/autodl-tmp/gen-depth-contamination/scripts/run_exp005_degradation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T02:41:29.890461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"327:    parser.add_argument(\\\\\\\"--data_dirs\\\\\\\", nargs=\\\\\\\"+\\\\\\\", required=True,\\\\n329:    parser.add_argument(\\\\\\\"--labels\\\\\\\", nargs=\\\\\\\"+\\\\\\\", required=True,\\\\n331:    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, default=\\\\\\\"results_exp005\\\\\\\",\\\\n333:    parser.add_argument(\\\\\\\"--max_features\\\\\\\", type=int, default=None,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T02:41:29.890601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_005_degradation",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "gen-depth-contamination",
+              "spec": "{'command': 'python scripts/run_exp005_degradation.py --data_dirs data_exp001_pythia data_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation', 'server': 'autodl-4090d', 'data_path': 'data_exp001_pythia, data_exp002_olmo, data', 'data_count': 3, 'model_name': 'Pythia-1.4B, OLMo-1B, Qwen-1.5B', 'seed': 42}"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T02:41:29.890743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.015}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T02:41:29.890919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_exp005_degradation.py --data_dirs data_exp001_pythia data_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T02:41:29.891118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Analyzing Pythia-1.4B (data_exp001_pythia) ...\\\\nAnalyzing OLMo-1B (data_exp002_olmo) ...\\\\nAnalyzing Qwen-1.5B (data) ...\\\\nResults saved to results_exp005_degradation/degradation_analysis.json\\\\n\\\\n======================================================================\\\\nexp-005: Degradation Ordering Analysis\\\\n======================================================================\\\\n\\\\n--- Pythia-1.4B ---\\\\n  Feature ranking by first-pair AUC (0v1 discrimination):\\\\n     1. surp_d1_std           AUC(0v1)=0.9633  avg_AUC=0.6363  decay=-0.1002\\\\n     2. surp_d2_std           AUC(0v1)=0.9627  avg_AUC=0.6330  decay=-0.0996\\\\n     3. surp_std              AUC(0v1)=0.9586  avg_AUC=0.6391  decay=-0.0974\\\\n     4. surp_mean             AUC(0v1)=0.8628  avg_AUC=0.6078  decay=-0.0768\\\\n     5. ttr                   AUC(0v1)=0.7368  avg_AUC=0.5642  decay=-0.0513\\\\n     6. low_freq_ratio        AUC(0v1)=0.7156  avg_AUC=0.5594  decay=-0.0473\\\\n     7. hapax_ratio           AUC(0v1)=0.7146  avg_AUC=0.5597  decay=-0.0464\\\\n     8. self_bleu             AUC(0v1)=0.6265  avg_AUC=0.5312  decay=-0.0253\\\\n     9. freq_entropy          AUC(0v1)=0.5991  avg_AUC=0.5367  decay=-0.0220\\\\n    10. surp_kurt             AUC(0v1)=0.5701  avg_AUC=0.5198  decay=-0.0162\\\\n\\\\n  Depth-pair AUC for top-5 features:\\\\n    Feature               0v1    1v2    2v3    3v4    4v5  \\\\n    surp_d1_std           0.9633  0.6244  0.5565  0.5251  0.5122\\\\n    surp_d2_std           0.9627  0.6156  0.5526  0.5235  0.5108\\\\n    surp_std              0.9586  0.6265  0.5579  0.5349  0.5175\\\\n    surp_mean             0.8628  0.5886  0.5540  0.5207  0.5127\\\\n    ttr                   0.7368  0.5526  0.5222  0.5058  0.5037\\\\n\\\\n--- OLMo-1B ---\\\\n  Feature ranking by first-pair AUC (0v1 discrimination):\\\\n     1. surp_std              AUC(0v1)=0.9340  avg_AUC=0.6310  decay=-0.0901\\\\n     2. surp_d1_std           AUC(0v1)=0.9324  avg_AUC=0.6284  decay=-0.0907\\\\n    \n…[truncated 3893 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T02:41:29.891302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T02:41:29.891428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_005_degradation",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T02:41:29.891749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"models\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"label\\\\\\\": \\\\\\\"Pythia-1.4B\\\\\\\",\\\\n      \\\\\\\"data_dir\\\\\\\": \\\\\\\"data_exp001_pythia\\\\\\\",\\\\n      \\\\\\\"num_depths\\\\\\\": 6,\\\\n      \\\\\\\"per_feature\\\\\\\": {\\\\n        \\\\\\\"surp_mean\\\\\\\": {\\\\n          \\\\\\\"depth_means\\\\\\\": [\\\\n            3.017847645470992,\\\\n            2.2344004181336223,\\\\n            2.081087920752896,\\\\n            1.9927257249764807,\\\\n            1.9547124886180602,\\\\n            1.9265073496605931\\\\n          ],\\\\n          \\\\\\\"depth_stds\\\\\\\": [\\\\n            0.6308100639206136,\\\\n            0.6391063238644953,\\\\n            0.6376051549960631,\\\\n            0.641462913234914,\\\\n            0.6409097631691353,\\\\n            0.6576264990622024\\\\n          ],\\\\n          \\\\\\\"pairwise_auc\\\\\\\": {\\\\n            \\\\\\\"0v1\\\\\\\": 0.8628,\\\\n            \\\\\\\"1v2\\\\\\\": 0.5886,\\\\n            \\\\\\\"2v3\\\\\\\": 0.554,\\\\n            \\\\\\\"3v4\\\\\\\": 0.5207,\\\\n            \\\\\\\"4v5\\\\\\\": 0.5127\\\\n          },\\\\n          \\\\\\\"pairwise_jsd\\\\\\\": {\\\\n            \\\\\\\"0v1\\\\\\\": 0.256445,\\\\n            \\\\\\\"1v2\\\\\\\": 0.014133,\\\\n            \\\\\\\"2v3\\\\\\\": 0.006289,\\\\n            \\\\\\\"3v4\\\\\\\": 0.002731,\\\\n            \\\\\\\"4v5\\\\\\\": 0.002249\\\\n          },\\\\n          \\\\\\\"pairwise_cohens_d\\\\\\\": {\\\\n            \\\\\\\"0v1\\\\\\\": 1.2337,\\\\n            \\\\\\\"1v2\\\\\\\": 0.2401,\\\\n            \\\\\\\"2v3\\\\\\\": 0.1382,\\\\n            \\\\\\\"3v4\\\\\\\": 0.0593,\\\\n            \\\\\\\"4v5\\\\\\\": 0.0434\\\\n          },\\\\n          \\\\\\\"first_pair_auc\\\\\\\": 0.8628,\\\\n          \\\\\\\"avg_auc\\\\\\\": 0.6078,\\\\n          \\\\\\\"auc_decay_rate\\\\\\\": -0.07681\\\\n        },\\\\n        \\\\\\\"surp_std\\\\\\\": {\\\\n          \\\\\\\"depth_means\\\\\\\": [\\\\n            2.861163810552175,\\\\n            1.9871206600670652,\\\\n            1.874578822836632,\\\\n            1.823059798524833,\\\\n            1.8038726107344882,\\\\n            1.7862002393305862\\\\n          ],\\\\n          \\\\\\\"depth_stds\\\\\\\": [\\\\n            0.3497688365470433,\\\\n            0.36403677641036497,\\\\n      \n…[truncated 8204 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T02:41:29.891936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_005_degradation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T02:40:12.117Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:40:12.117Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1082}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T02:41:29.892105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_005_degradation",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "gen-depth-contamination",
+              "spec": "{'command': 'python scripts/run_exp005_degradation.py --data_dirs data_exp001_pythia data_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation', 'server': 'autodl-4090d', 'data_path': 'data_exp001_pythia, data_exp002_olmo, data', 'data_count': 3, 'model_name': 'Pythia-1.4B, OLMo-1B, Qwen-1.5B', 'seed': 42, 'checkpoint_source': 'N/A', 'eval_data': 'N/A'}"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T02:41:29.892261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_005_degradation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T02:40:12.117Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:40:28.712Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_exp005_degradation.py --data_dirs data_exp001_pythia data_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"data_exp001_pythia, data_exp002_olmo, data\\\", \\\"data_count\\\": 3, \\\"model_name\\\": \\\"Pythia-1.4B, OLMo-1B, Qwen-1.5B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"eval_data\\\": \\\"N/A\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0903}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T02:41:29.892390+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_005_degradation",
+              "field": "checkpoint_path",
+              "value": "N/A",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T02:41:29.892523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_005_degradation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T02:40:12.117Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:40:31.995Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_exp005_degradation.py --data_dirs data_exp001_pythia data_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"data_exp001_pythia, data_exp002_olmo, data\\\", \\\"data_count\\\": 3, \\\"model_name\\\": \\\"Pythia-1.4B, OLMo-1B, Qwen-1.5B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"eval_data\\\": \\\"N/A\\\"}, \\\"checkpoint_path\\\": \\\"N/A\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0357}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T02:41:29.892646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_005_degradation",
+              "field": "log_path",
+              "value": "/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T02:41:29.892805+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_005_degradation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T02:40:12.117Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:40:32.947Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_exp005_degradation.py --data_dirs data_exp001_pythia data_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"data_exp001_pythia, data_exp002_olmo, data\\\", \\\"data_count\\\": 3, \\\"model_name\\\": \\\"Pythia-1.4B, OLMo-1B, Qwen-1.5B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"eval_data\\\": \\\"N/A\\\"}, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0343}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T02:41:29.893040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_005_degradation",
+              "field": "metrics",
+              "value": "{'cross_model_kendall_tau_avg_auc': {'Pythia_vs_OLMo': 0.8476, 'Pythia_vs_Qwen': 0.5238, 'OLMo_vs_Qwen': 0.4857, 'mean': 0.619}, 'cross_model_spearman_rho_avg_auc': {'Pythia_vs_OLMo': 0.95, 'Pythia_vs_Qwen': 0.7214, 'OLMo_vs_Qwen': 0.6571, 'mean': 0.776}, 'top3_features_by_first_auc': {'Pythia': ['surp_d1_std', 'surp_d2_std', 'surp_std'], 'OLMo': ['surp_std', 'surp_d1_std', 'surp_d2_std'], 'Qwen': ['freq_entropy', 'surp_std', 'surp_d1_std']}, 'degradation_ordering_consistency': 'partial — Pythia/OLMo share surp_*_std as top discriminators; Qwen diverges with freq_entropy #1', 'depth_pair_tau_decay': 'consistency strong at 0v1 (mean τ~0.54), drops sharply at deeper pairs (4v5 mean τ~0.10)'}",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T02:41:29.893266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_005_degradation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T02:40:12.117Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:40:44.331Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_exp005_degradation.py --data_dirs data_exp001_pythia data_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"data_exp001_pythia, data_exp002_olmo, data\\\", \\\"data_count\\\": 3, \\\"model_name\\\": \\\"Pythia-1.4B, OLMo-1B, Qwen-1.5B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"eval_data\\\": \\\"N/A\\\"}, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\\\", \\\"metrics\\\": {\\\"cross_model_kendall_tau_avg_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.8476, \\\"Pythia_vs_Qwen\\\": 0.5238, \\\"OLMo_vs_Qwen\\\": 0.4857, \\\"mean\\\": 0.619}, \\\"cross_model_spearman_rho_avg_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.95, \\\"Pythia_vs_Qwen\\\": 0.7214, \\\"OLMo_vs_Qwen\\\": 0.6571, \\\"mean\\\": 0.776}, \\\"top3_features_by_first_auc\\\": {\\\"Pythia\\\": [\\\"surp_d1_std\\\", \\\"surp_d2_std\\\", \\\"surp_std\\\"], \\\"OLMo\\\": [\\\"surp_std\\\", \\\"surp_d1_std\\\", \\\"surp_d2_std\\\"], \\\"Qwen\\\": [\\\"freq_entropy\\\", \\\"surp_std\\\", \\\"surp_d1_std\\\"]}, \\\"degradation_ordering_consistency\\\": \\\"partial — Pythia/OLMo share surp_*_std as top discriminators; Qwen diverges with freq_entropy #1\\\", \\\"depth_pair_tau_decay\\\": \\\"consistency strong at 0v1 (mean τ~0.54), drops sharply at deeper pairs (4v5 mean τ~0.10)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0388}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-13T02:41:29.893414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_005_degradation",
+              "field": "conclusion",
+              "value": "success",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-13T02:41:29.893577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_005_degradation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T02:40:12.117Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:40:47.239Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_exp005_degradation.py --data_dirs data_exp001_pythia data_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"data_exp001_pythia, data_exp002_olmo, data\\\", \\\"data_count\\\": 3, \\\"model_name\\\": \\\"Pythia-1.4B, OLMo-1B, Qwen-1.5B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"eval_data\\\": \\\"N/A\\\"}, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\\\", \\\"metrics\\\": {\\\"cross_model_kendall_tau_avg_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.8476, \\\"Pythia_vs_Qwen\\\": 0.5238, \\\"OLMo_vs_Qwen\\\": 0.4857, \\\"mean\\\": 0.619}, \\\"cross_model_spearman_rho_avg_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.95, \\\"Pythia_vs_Qwen\\\": 0.7214, \\\"OLMo_vs_Qwen\\\": 0.6571, \\\"mean\\\": 0.776}, \\\"top3_features_by_first_auc\\\": {\\\"Pythia\\\": [\\\"surp_d1_std\\\", \\\"surp_d2_std\\\", \\\"surp_std\\\"], \\\"OLMo\\\": [\\\"surp_std\\\", \\\"surp_d1_std\\\", \\\"surp_d2_std\\\"], \\\"Qwen\\\": [\\\"freq_entropy\\\", \\\"surp_std\\\", \\\"surp_d1_std\\\"]}, \\\"degradation_ordering_consistency\\\": \\\"partial — Pythia/OLMo share surp_*_std as top discriminators; Qwen diverges with freq_entropy #1\\\", \\\"depth_pair_tau_decay\\\": \\\"consistency strong at 0v1 (mean τ~0.54), drops sharply at deeper pairs (4v5 mean τ~0.10)\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0385}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T02:41:29.893724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_005_degradation",
+              "field": "status",
+              "value": "DONE",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-13T02:41:29.893956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_005_degradation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T02:40:12.117Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:40:50.885Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_exp005_degradation.py --data_dirs data_exp001_pythia data_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"data_exp001_pythia, data_exp002_olmo, data\\\", \\\"data_count\\\": 3, \\\"model_name\\\": \\\"Pythia-1.4B, OLMo-1B, Qwen-1.5B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"eval_data\\\": \\\"N/A\\\"}, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\\\", \\\"metrics\\\": {\\\"cross_model_kendall_tau_avg_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.8476, \\\"Pythia_vs_Qwen\\\": 0.5238, \\\"OLMo_vs_Qwen\\\": 0.4857, \\\"mean\\\": 0.619}, \\\"cross_model_spearman_rho_avg_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.95, \\\"Pythia_vs_Qwen\\\": 0.7214, \\\"OLMo_vs_Qwen\\\": 0.6571, \\\"mean\\\": 0.776}, \\\"top3_features_by_first_auc\\\": {\\\"Pythia\\\": [\\\"surp_d1_std\\\", \\\"surp_d2_std\\\", \\\"surp_std\\\"], \\\"OLMo\\\": [\\\"surp_std\\\", \\\"surp_d1_std\\\", \\\"surp_d2_std\\\"], \\\"Qwen\\\": [\\\"freq_entropy\\\", \\\"surp_std\\\", \\\"surp_d1_std\\\"]}, \\\"degradation_ordering_consistency\\\": \\\"partial — Pythia/OLMo share surp_*_std as top discriminators; Qwen diverges with freq_entropy #1\\\", \\\"depth_pair_tau_decay\\\": \\\"consistency strong at 0v1 (mean τ~0.54), drops sharply at deeper pairs (4v5 mean τ~0.10)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T02:40:50.885Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0892}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-13T02:41:29.894126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "exp005_degradation_analysis",
+              "type": "data",
+              "description": "Degradation ordering analysis JSON - per-model feature rankings, cross-model Kendall tau/Spearman rho, depth-pair consistency",
+              "project": "gen-depth-contamination",
+              "exp_id": "exp_005_degradation",
+              "source_path": "/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json",
+              "tags": "['exp005', 'degradation', 'cross-model', 'feature-ranking']"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-13T02:41:29.894262+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-13T02:41:29.894429+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "exp005_degradation_analysis",
+              "type": "data",
+              "description": "Degradation ordering analysis - per-model feature rankings, cross-model Kendall tau/Spearman rho, depth-pair consistency. Remote path: /root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json",
+              "project": "gen-depth-contamination",
+              "exp_id": "exp_005_degradation",
+              "content": "{\n  \"summary\": \"exp-005 degradation ordering analysis across 3 models\",\n  \"remote_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\",\n  \"server\": \"autodl-4090d\",\n  \"cross_model_kendall_tau_avg_auc\": {\n    \"Pythia_vs_OLMo\": 0.8476,\n    \"Pythia_vs_Qwen\": 0.5238,\n    \"OLMo_vs_Qwen\": 0.4857,\n    \"mean\": 0.619\n  },\n  \"cross_model_spearman_rho_avg_auc\": {\n    \"Pythia_vs_OLMo\": 0.95,\n    \"Pythia_vs_Qwen\": 0.7214,\n    \"OLMo_vs_Qwen\": 0.6571,\n    \"mean\": 0.776\n  },\n  \"top3_features_by_first_auc\": {\n    \"Pythia\": [\"surp_d1_std\", \"surp_d2_std\", \"surp_std\"],\n    \"OLMo\": [\"surp_std\", \"surp_d1_std\", \"surp_d2_std\"],\n    \"Qwen\": [\"freq_entropy\", \"surp_std\", \"surp_d1_std\"]\n  }\n}",
+              "content_filename": "exp005_degradation_summary.json",
+              "tags": "['exp005', 'degradation', 'cross-model', 'feature-ranking']"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-13T02:41:29.894568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'summary': 'exp-005 degr...p_std', 'surp_d1_std']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-13T02:41:29.894695+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "exp005_degradation_analysis",
+              "type": "data",
+              "description": "Degradation ordering analysis - per-model feature rankings, cross-model Kendall tau/Spearman rho, depth-pair consistency. Remote path: /root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json",
+              "project": "gen-depth-contamination",
+              "exp_id": "exp_005_degradation",
+              "content": "{\"summary\":\"exp-005 degradation ordering analysis across 3 models\",\"remote_path\":\"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\",\"server\":\"autodl-4090d\",\"cross_model_kendall_tau_avg_auc\":{\"Pythia_vs_OLMo\":0.8476,\"Pythia_vs_Qwen\":0.5238,\"OLMo_vs_Qwen\":0.4857,\"mean\":0.619},\"cross_model_spearman_rho_avg_auc\":{\"Pythia_vs_OLMo\":0.95,\"Pythia_vs_Qwen\":0.7214,\"OLMo_vs_Qwen\":0.6571,\"mean\":0.776},\"top3_features_by_first_auc\":{\"Pythia\":[\"surp_d1_std\",\"surp_d2_std\",\"surp_std\"],\"OLMo\":[\"surp_std\",\"surp_d1_std\",\"surp_d2_std\"],\"Qwen\":[\"freq_entropy\",\"surp_std\",\"surp_d1_std\"]}}",
+              "content_filename": "exp005_degradation_summary.json",
+              "tags": "['exp005', 'degradation', 'cross-model', 'feature-ranking']"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-13T02:41:29.894851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'summary': 'exp-005 degr...p_std', 'surp_d1_std']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-13T02:41:29.894982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "exp005_degradation_analysis",
+              "type": "data",
+              "description": "Degradation ordering analysis across 3 models. Remote: autodl-4090d:/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json",
+              "project": "gen-depth-contamination",
+              "exp_id": "exp_005_degradation",
+              "url": "autodl-4090d:/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json",
+              "tags": "['exp005', 'degradation', 'cross-model', 'feature-ranking']"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-13T02:41:29.895122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260513_6220fa\\\", \\\"name\\\": \\\"exp005_degradation_analysis\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Degradation ordering analysis across 3 models. Remote: autodl-4090d:/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\\\", \\\"path\\\": null, \\\"url\\\": \\\"autodl-4090d:/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"exp_id\\\": \\\"exp_005_degradation\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-13T02:41:17.785733+00:00\\\", \\\"tags\\\": [\\\"exp005\\\", \\\"degradation\\\", \\\"cross-model\\\", \\\"feature-ranking\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-13T02:41:29.895285+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-005 完成，registry 已更新为 DONE (success)。\n\n## 结果摘要\n\n### Cross-model Kendall τ (by avg AUC)\n\n| 模型对 | τ | p |\n|--------|---|---|\n| Pythia vs OLMo | **0.848** | 0.000 |\n| Pythia vs Qwen | 0.524 | 0.006 |\n| OLMo vs Qwen | 0.486 | 0.011 |\n| **Mean** | **0.619** | — |\n\n### Degradation ordering (top-3 最先饱和的特征)\n\n| Pythia-1.4B | OLMo-1B | Qwen-1.5B |\n|-------------|---------|-----------|\n| surp_d1_std | surp_std | **freq_entropy** |\n| surp_d2_std | surp_d1_std | surp_std |\n| surp_std | surp_d2_std | surp_d1_std |\n\n### 判断：**success，需要 caveat**\n\n- Pythia/OLMo 一致性强（τ=0.85, ρ=0.95），共享 surp_*_std 作为最早饱和的特征组\n- Qwen 偏离：freq_entropy 排 #1（AUC=0.97），TailFreq 组在 Qwen 上的判别力远强于另外两个模型\n- 深层 depth pair（3v4, 4v5）跨模型一致性迅速衰减到接近随机（τ→0），说明 ordering consistency 主要体现在早期 depth\n- **C2 claim**：部分支持——同族模型一致性好，跨架构族需要加 caveat 说明 Qwen 的 TailFreq 特异性"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_run_exp005_degradation_20260513T023913"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-run-exp005-degradation.md"
+}

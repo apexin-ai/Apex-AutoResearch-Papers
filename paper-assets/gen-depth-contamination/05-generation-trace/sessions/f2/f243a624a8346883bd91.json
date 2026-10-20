@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f243a624a8346883bd91",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "paper olmo k1 cascade p0",
+  "task_key": "worker_paper_olmo_k1_cascade_p0_20260521T164550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_olmo_k1_cascade_p0_20260521T164550.log",
+    "occurrence": 1,
+    "bytes": 701719,
+    "sha256": "e32a64605925358818a053360bdda61f0ceb933fa715a5e8ff751f3bbc5070b8"
+  },
+  "statistics": {
+    "messages": 223,
+    "user_turns": 0,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 81,
+      "tool_result": 81,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 223,
+      "chunks": [
+        {
+          "path": "f243a624a8346883bd91-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f243a624a8346883bd91-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-olmo-k1-cascade-p0.md"
+}

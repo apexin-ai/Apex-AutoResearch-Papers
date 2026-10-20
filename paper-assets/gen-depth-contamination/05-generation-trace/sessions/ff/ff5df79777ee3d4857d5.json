@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff5df79777ee3d4857d5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops check pythia69b cmdline",
+  "task_key": "worker_ops_check_pythia69b_cmdline_20260521T144323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_pythia69b_cmdline_20260521T144323_result.json",
+    "occurrence": 1,
+    "bytes": 862,
+    "sha256": "7148e70ab58e48373fa7a0789d79a44156ceac2aff58616fd28c3d0a3547bad8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整命令行（null 替换为空格）：\n\n```\npython scripts/run_pipeline.py \\\n  --model_path /root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-6.9b/snapshots/c0e3eee36dc47af0c49f361c74cfe459c09f7f23/ \\\n  --num_samples 5000 \\\n  --max_depth 5 \\\n  --batch_size 4 \\\n  --feat_batch_size 2 \\\n  --generation_mode continuation \\\n  --data_dir data/exp_pythia69b_c4_nuc \\\n  --results_dir results/exp_pythia69b_c4_nuc\n```\n\n**关键回答：**\n\n- **`--scorer_path`**：**没有。** 命令行中不存在此参数。\n- **`--no_sample`**：**没有。** 日志确认使用的是 `do_sample=True, top_p=0.95, temperature=1.0`（nucleus sampling）。\n- **`--model_path`**：指向 `/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-6.9b/snapshots/c0e3eee36dc47af0c49f361c74cfe459c09f7f23/`（Pythia-6.9B 本地缓存）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-pythia69b-cmdline.md"
+}

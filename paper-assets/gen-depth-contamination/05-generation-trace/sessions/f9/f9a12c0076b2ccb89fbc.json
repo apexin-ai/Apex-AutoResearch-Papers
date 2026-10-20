@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9a12c0076b2ccb89fbc",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper conclusion draft",
+  "task_key": "worker_paper_conclusion_draft_20260514T012904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_conclusion_draft_20260514T012904_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "cfe3b75a77bdec1e832de9d12a4c57fe1bd34bd691caae2e1e80e3a42e4629f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。conclusion.tex 已重构为 3+1 结构，编译无 warning：\n\n- **Para 1 (K\\*=2)**：8/8 conditions 统一验证，bootstrap CI + permutation test 统计显著性，Qwen-cont CI lower=0.6015 最边缘，0v1 >0.99 → 1v2 0.6112–0.7039 的 ~30pp 骤降\n- **Para 2 (OBD 框架)**：15D features + LightGBM，跨模型迁移 80–92%（Pythia↔OLMo 91–92%），ρ≥0.85 特征退化一致性，GPT-5.5/Claude ~33% vs OBD 38.6%\n- **Para 3 (C3 graduated filtering)**：三级分类法占位，TODO 待 exp-006 结果填充\n- **Para 4 (limitations + future work)**：模型规模/语言/retrain-chain/few-shot/learned representations\n\n所有定量 claim 均附 exp\\_id 来源注释（LaTeX comments），数字与 registry 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-conclusion-draft.md"
+}

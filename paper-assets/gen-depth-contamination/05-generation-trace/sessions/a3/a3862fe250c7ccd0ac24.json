@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3862fe250c7ccd0ac24",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper consistency check",
+  "task_key": "worker_paper_consistency_check_20260523T002253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_consistency_check_20260523T002253_result.json",
+    "occurrence": 1,
+    "bytes": 2686,
+    "sha256": "023d5f574bd9eb0b5020a8e06c6f338b7aca13c4817c899e37e7d55bdecc6669"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完毕。逐项报告如下：\n\n---\n\n## 检查结果\n\n### 1. \"three of six\" Bonferroni pass — PASS\n\n- `experiments_c1.tex:46` — \"three of six boundary configurations\" ✓\n- `conclusion.tex:9` — \"three of six $\\Kempirical{=}2$ configurations\" ✓\n- `main.tex:38` (abstract) — 等价表述 \"Among the six nominal...three retain significance\" ✓\n- `appendix_extended.tex:155` — 补充描述 \"three marginal K*=2 configurations\" ✓\n- 无 \"four of six\" 残留 ✓\n\n### 2. Pythia 1v2 AUC = 0.6074 — FAIL\n\n正确值已出现在 experiments_c1.tex:26, tab_domain_model_kstar_full.tex:14, appendix_extended.tex:170, appendix_extended.tex:196。\n\n**旧值 .6539 残留：**\n\n| 文件 | 行 | 当前值 | 应改为 |\n|------|-----|--------|--------|\n| `appendix.tex` | 139 | `.6539 & [.645,\\,.663]\\rlap{$^*$}` | `.6074 & [.598,\\,.617]\\rlap{$^*$}` |\n| `appendix.tex` | 343 | `$.654\\;[.645,.663]$` | `$.607\\;[.598,.617]$` |\n\n### 3. OLMo 1v2 AUC = 0.500/0.5001 — FAIL\n\n正确值已出现在 experiments_c1.tex:26, tab_domain_model_kstar_full.tex:17, appendix_extended.tex:201。\n\n**旧值 .5080/.508 残留：**\n\n| 文件 | 行 | 当前值 | 应改为 |\n|------|-----|--------|--------|\n| `appendix.tex` | 139 | `.5080` | `.5001` |\n| `appendix.tex` | 343 | `$.508\\;[.496,.519]$` | `$.500\\;[.496,.519]$` |\n| `discussion.tex` | 37 | `0.508--0.598` | `0.500--0.598` |\n\n### 4. OLMo K* = 1 — PASS\n\n- `tab_domain_model_kstar.tex:15` — OLMo 1B, K*=1 ✓\n- `tab_domain_model_kstar_full.tex:17` — OLMo 1B, K*=1 ✓\n- 正文所有引用一致 ✓\n\n### 5. K* 分布描述 (6/10 K*=2, 4/10 K*=1) — PASS\n\n- `experiments_c1.tex:45` — \"6/10 configurations yield K*=2 (Qwen ×4, LLaMA-8B, Pythia-1.4B)\" ✓\n- `discussion.tex:17` — \"6/10 configurations K*=2\" ✓\n- `appendix.tex:129` — \"K*=2 holds for 6/10 conditions...OLMo-1B, Mistral-7B, Pythia-6.9B, Gemma-2-2B: K*=1\" ✓\n- Abstract/conclusion 用等价表述，一致 ✓\n\n### 6. 破折号检查 — PASS\n\n- Unicode em dash (—) 仅出现在注释行 `main.tex:1`（非正文）\n- 无 Unicode en dash (–)\n- LaTeX `---` 仅用于表格占位符（\"not available\"）\n- LaTeX `--` 仅用于数值范围（标准用法）\n\n---\n\n## 总结\n\n**3 处 FAIL，均在 appendix.tex 和 discussion.tex，涉及 D107 scorer 修正后的旧值残留：**\n\n1. `appendix.tex:139` — Pythia .6539→.6074（含CI），OLMo .5080→.5001\n2. `appendix.tex:343` — Pythia .654→.607（含CI），OLMo .508→.500\n3. `discussion.tex:37` — OLMo 范围起始值 0.508→0.500\n\n需要修正这 5 个数值点。是否现在修正？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-consistency-check.md"
+}

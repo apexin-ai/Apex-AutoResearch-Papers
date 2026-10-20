@@ -1,0 +1,2451 @@
+{
+  "schema_version": "1.0",
+  "id": "76128db2d5ba5a5b27f7",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "analysis check arxiv code data",
+  "task_key": "worker_analysis_check-arxiv-code-data_20260520T030754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check-arxiv-code-data_20260520T030754.log",
+    "occurrence": 1,
+    "bytes": 111218,
+    "sha256": "b3161c235908730219018155cf95c38867e2541d9c7c2ff4b7449fe1e19606a7"
+  },
+  "statistics": {
+    "messages": 61,
+    "user_turns": 0,
+    "tool_calls": 26,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 26,
+      "tool_result": 26,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "4a49b63a-a36e-4dea-97f7-a1c136f4d3e3",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779264000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "10a04171-8806-4642-8494-6317b4484c35",
+                "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the server for arXiv and Code domain depth chain data. I'll use ssh_read_only to explore the data directories.",
+              "signature": "ErcCClkIDRgCKkDAhj6/PMHDHzvgSklwrjsmlIycBTUbY2nptrxriGYFf4tP+SEkyGxjkiw+JqlPnm4uJ9+j2fsmUGwDqAnQLzy+Mg9jbGF1ZGUtb3B1cy00LTY4ABIMPds4owpzYnBaRZftGgxP45NsoRPkk8BFfWAiMHLJTTpBeR6LQ5+0Uf4REoZgiXKluyYblH86Zsk1bBBIiTsL9QlqTvQ75Or2gSeQNCqLARmETw+qJnezaozTXzexCzCX8cVOOJPspWoasZUUmNsRhUQfzx3HMw6RvHcOh8gB0AUpEz4ydmzTRfIFE4aCAWRc0NCAyMNW/76pazVurJP5ZDGVGbvnNLmki+FORCvHivGEA0dJSCjZn5UbOsWRj1LdElEThblKI8ED03mMWHpUNzdtrKgwlFZvkSIYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "02d8a69e-5354-4013-95bd-2e090b48a293",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tn43aWQwKU5sWaSSzXmGS2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12488,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12488
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012tocMSSYGR57nWCBPudnot",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "d785d2bb-5d17-43f6-b495-5cc2a9d9d472",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tn43aWQwKU5sWaSSzXmGS2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12488,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12488
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T03:08:10.132Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_012tocMSSYGR57nWCBPudnot",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "cf5c21fc-6592-4103-9436-9893bb1e32e7",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015zeKa5kdkL8Tso5vQGApZq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ls -la /root/autodl-tmp/gen-depth-contamination/data/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "7805d14f-11b3-4775-8808-26e7e67b715a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YPXARh3omQfJF9jwJku6mW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 470,
+                "cache_read_input_tokens": 24329,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 470
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T03:08:14.065Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015zeKa5kdkL8Tso5vQGApZq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16\\\\ndrwxr-xr-x 36 root root 4096 May 19 14:28 .\\\\ndrwxr-xr-x 27 root root 4096 May 19 09:09 ..\\\\ndrwxr-xr-x  2 root root   35 May 19 00:55 code_python_seed\\\\ndrwxr-xr-x  2 root root 4096 May 19 11:09 exp_008_retrain_chain\\\\ndrwxr-xr-x  5 root root   70 May 17 06:23 exp_009_dose_response\\\\ndrwxr-xr-x  2 root root  184 May 16 23:27 exp_018_llama8b\\\\ndrwxr-xr-x  2 root root  184 May 16 16:12 exp_021_length_128\\\\ndrwxr-xr-x  2 root root  184 May 16 18:05 exp_021_length_256\\\\ndrwxr-xr-x  2 root root  184 May 16 21:41 exp_021_length_512\\\\ndrwxr-xr-x  2 root root  184 May 16 22:09 exp_023_wiki\\\\ndrwxr-xr-x  2 root root  184 May 16 23:56 exp_024_arxiv\\\\ndrwxr-xr-x  2 root root  184 May 17 02:59 exp_025_pythia_arxiv\\\\ndrwxr-xr-x  2 root root  184 May 18 18:34 exp_027_latex_ablation\\\\ndrwxr-xr-x  2 root root  184 May 17 21:58 exp_arXiv_llama8b\\\\ndrwxr-xr-x  2 root root  184 May 18 10:53 exp_arXiv_llama8b_crossscorer\\\\ndrwxr-xr-x  2 root root  184 May 18 00:24 exp_arXiv_mistral7b\\\\ndrwxr-xr-x  2 root root  184 May 18 10:52 exp_arXiv_mistral7b_crossscorer\\\\ndrwxr-xr-x  2 root root  184 May 17 19:56 exp_arXiv_olmo\\\\ndrwxr-xr-x  2 root root  184 May 18 10:53 exp_arXiv_qwen1b5_crossscorer\\\\ndrwxr-xr-x  2 root root  184 May 18 00:32 exp_arXiv_qwen7b\\\\ndrwxr-xr-x  2 root root  184 May 18 10:53 exp_arXiv_qwen7b_crossscorer\\\\ndrwxr-xr-x  2 root root  184 May 19 16:03 exp_code_llama8b\\\\ndrwxr-xr-x  2 root root  184 May 19 18:54 exp_code_mistral7b\\\\ndrwxr-xr-x  2 root root  184 May 19 08:22 exp_code_pythia1b4\\\\ndrwxr-xr-x  2 root root  184 May 19 05:08 exp_code_qwen1b5\\\\ndrwxr-xr-x  2 root root  184 May 19 14:49 exp_code_qwen1b5_pythia_scorer\\\\ndrwxr-xr-x  2 root root  184 May 19 20:09 exp_code_qwen7b\\\\ndrwxr-xr-x  2 root root 4096 May 19 08:25 exp_qwen_retrain_chain\\\\ndrwxr-xr-x  2 root root  184 May 18 03:27 exp_wiki_llama8b\\\\ndrwxr-xr-x  2 root root  184 May 18 03:48 exp_wiki_mistral7b\\\\ndrwxr-xr-x  2 root root  184 May 17 21:06 exp_wiki_olmo\\\\ndrwxr-xr-x  2 root root  184 May 17 21:13 exp_wiki_pythia\\\\ndrwxr-xr-x  2 root root  184 May 18 06:20 exp_wiki_qwen7b\\\\ndrwxr-xr-x  2 root root  184 May 18 07:12 exp_wiki_scorer_confound\\\\ndrwxr-xr-x  2 root root  184 May 18 09:17 exp_wiki_scorer_confound_1b5\\\\ndrwxr-xr-x  2 root root   35 May 19 00:12 olmo_retrain_chain\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "11366b53-3ebf-43cd-b815-01e70842ba67",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16\\\\ndrwxr-xr-x 36 root root 4096 May 19 14:28 .\\\\ndrwxr-xr-x 27 root root 4096 May 19 09:09 ..\\\\ndrwxr-xr-x  2 root root   35 May 19 00:55 code_python_seed\\\\ndrwxr-xr-x  2 root root 4096 May 19 11:09 exp_008_retrain_chain\\\\ndrwxr-xr-x  5 root root   70 May 17 06:23 exp_009_dose_response\\\\ndrwxr-xr-x  2 root root  184 May 16 23:27 exp_018_llama8b\\\\ndrwxr-xr-x  2 root root  184 May 16 16:12 exp_021_length_128\\\\ndrwxr-xr-x  2 root root  184 May 16 18:05 exp_021_length_256\\\\ndrwxr-xr-x  2 root root  184 May 16 21:41 exp_021_length_512\\\\ndrwxr-xr-x  2 root root  184 May 16 22:09 exp_023_wiki\\\\ndrwxr-xr-x  2 root root  184 May 16 23:56 exp_024_arxiv\\\\ndrwxr-xr-x  2 root root  184 May 17 02:59 exp_025_pythia_arxiv\\\\ndrwxr-xr-x  2 root root  184 May 18 18:34 exp_027_latex_ablation\\\\ndrwxr-xr-x  2 root root  184 May 17 21:58 exp_arXiv_llama8b\\\\ndrwxr-xr-x  2 root root  184 May 18 10:53 exp_arXiv_llama8b_crossscorer\\\\ndrwxr-xr-x  2 root root  184 May 18 00:24 exp_arXiv_mistral7b\\\\ndrwxr-xr-x  2 root root  184 May 18 10:52 exp_arXiv_mistral7b_crossscorer\\\\ndrwxr-xr-x  2 root root  184 May 17 19:56 exp_arXiv_olmo\\\\ndrwxr-xr-x  2 root root  184 May 18 10:53 exp_arXiv_qwen1b5_crossscorer\\\\ndrwxr-xr-x  2 root root  184 May 18 00:32 exp_arXiv_qwen7b\\\\ndrwxr-xr-x  2 root root  184 May 18 10:53 exp_arXiv_qwen7b_crossscorer\\\\ndrwxr-xr-x  2 root root  184 May 19 16:03 exp_code_llama8b\\\\ndrwxr-xr-x  2 root root  184 May 19 18:54 exp_code_mistral7b\\\\ndrwxr-xr-x  2 root root  184 May 19 08:22 exp_code_pythia1b4\\\\ndrwxr-xr-x  2 root root  184 May 19 05:08 exp_code_qwen1b5\\\\ndrwxr-xr-x  2 root root  184 May 19 14:49 exp_code_qwen1b5_pythia_scorer\\\\ndrwxr-xr-x  2 root root  184 May 19 20:09 exp_code_qwen7b\\\\ndrwxr-xr-x  2 root root 4096 May 19 08:25 exp_qwen_retrain_chain\\\\ndrwxr-xr-x  2 root root  184 May 18 03:27 exp_wiki_llama8b\\\\ndrwxr-xr-x  2 root root  184 May 18 03:48 exp_wiki_mistral7b\\\\ndrwxr-xr-x  2 root root  184 May 17 21:06 exp_wiki_olmo\\\\ndrwxr-xr-x  2 root root  184 May 17 21:13 exp_wiki_pythia\\\\ndrwxr-xr-x  2 root root  184 May 18 06:20 exp_wiki_qwen7b\\\\ndrwxr-xr-x  2 root root  184 May 18 07:12 exp_wiki_scorer_confound\\\\ndrwxr-xr-x  2 root root  184 May 18 09:17 exp_wiki_scorer_confound_1b5\\\\ndrwxr-xr-x  2 root root   35 May 19 00:12 olmo_retrain_chain\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 16\\ndrwxr-xr-x 36 root root 4096 May 19 14:28 .\\ndrwxr-xr-x 27 root root 4096 May 19 09:09 ..\\ndrwxr-xr-x  2 root root   35 May 19 00:55 code_python_seed\\ndrwxr-xr-x  2 root root 4096 May 19 11:09 exp_008_retrain_chain\\ndrwxr-xr-x  5 root root   70 May 17 06:23 exp_009_dose_response\\ndrwxr-xr-x  2 root root  184 May 16 23:27 exp_018_llama8b\\ndrwxr-xr-x  2 root root  184 May 16 16:12 exp_021_length_128\\ndrwxr-xr-x  2 root root  184 May 16 18:05 exp_021_length_256\\ndrwxr-xr-x  2 root root  184 May 16 21:41 exp_021_length_512\\ndrwxr-xr-x  2 root root  184 May 16 22:09 exp_023_wiki\\ndrwxr-xr-x  2 root root  184 May 16 23:56 exp_024_arxiv\\ndrwxr-xr-x  2 root root  184 May 17 02:59 exp_025_pythia_arxiv\\ndrwxr-xr-x  2 root root  184 May 18 18:34 exp_027_latex_ablation\\ndrwxr-xr-x  2 root root  184 May 17 21:58 exp_arXiv_llama8b\\ndrwxr-xr-x  2 root root  184 May 18 10:53 exp_arXiv_llama8b_crossscorer\\ndrwxr-xr-x  2 root root  184 May 18 00:24 exp_arXiv_mistral7b\\ndrwxr-xr-x  2 root root  184 May 18 10:52 exp_arXiv_mistral7b_crossscorer\\ndrwxr-xr-x  2 root root  184 May 17 19:56 exp_arXiv_olmo\\ndrwxr-xr-x  2 root root  184 May 18 10:53 exp_arXiv_qwen1b5_crossscorer\\ndrwxr-xr-x  2 root root  184 May 18 00:32 exp_arXiv_qwen7b\\ndrwxr-xr-x  2 root root  184 May 18 10:53 exp_arXiv_qwen7b_crossscorer\\ndrwxr-xr-x  2 root root  184 May 19 16:03 exp_code_llama8b\\ndrwxr-xr-x  2 root root  184 May 19 18:54 exp_code_mistral7b\\ndrwxr-xr-x  2 root root  184 May 19 08:22 exp_code_pythia1b4\\ndrwxr-xr-x  2 root root  184 May 19 05:08 exp_code_qwen1b5\\ndrwxr-xr-x  2 root root  184 May 19 14:49 exp_code_qwen1b5_pythia_scorer\\ndrwxr-xr-x  2 root root  184 May 19 20:09 exp_code_qwen7b\\ndrwxr-xr-x  2 root root 4096 May 19 08:25 exp_qwen_retrain_chain\\ndrwxr-xr-x  2 root root  184 May 18 03:27 exp_wiki_llama8b\\ndrwxr-xr-x  2 root root  184 May 18 03:48 exp_wiki_mistral7b\\ndrwxr-xr-x  2 root root  184 May 17 21:06 exp_wiki_olmo\\ndrwxr-xr-x  2 root root  184 May 17 21:13 exp_wiki_pythia\\ndrwxr-xr-x  2 root root  184 May 18 06:20 exp_wiki_qwen7b\\ndrwxr-xr-x  2 root root  184 May 18 07:12 exp_wiki_scorer_confound\\ndrwxr-xr-x  2 root root  184 May 18 09:17 exp_wiki_scorer_confound_1b5\\ndrwxr-xr-x  2 root root   35 May 19 00:12 olmo_retrain_chain\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据目录结构已获取。arXiv 和 Code 数据都存在。继续检查内部结构。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "b8e060c4-b2bf-4ebb-b585-f5cdd21e6c7a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017BL5XGPwCawczDcRf4zKyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1481,
+                "cache_read_input_tokens": 24799,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1481
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CNN47k1QLLtcnZGHYnc675",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ls -la /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "17d19b32-0786-4919-bf3b-080e27d7519a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017BL5XGPwCawczDcRf4zKyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1481,
+                "cache_read_input_tokens": 24799,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1481
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T03:08:20.015Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CNN47k1QLLtcnZGHYnc675",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 17632\\\\ndrwxr-xr-x  2 root root     184 May 16 23:56 .\\\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\\\n-rw-r--r--  1 root root 3152691 May 16 16:33 depth_0.jsonl\\\\n-rw-r--r--  1 root root 2051563 May 16 23:13 depth_1.jsonl\\\\n-rw-r--r--  1 root root 2257432 May 16 23:22 depth_2.jsonl\\\\n-rw-r--r--  1 root root 2313793 May 16 23:30 depth_3.jsonl\\\\n-rw-r--r--  1 root root 2293361 May 16 23:39 depth_4.jsonl\\\\n-rw-r--r--  1 root root 2221271 May 16 23:48 depth_5.jsonl\\\\n-rw-r--r--  1 root root 3749155 May 16 23:56 features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "7ed3db74-668c-4b79-8c56-a174a5d26f9e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 17632\\\\ndrwxr-xr-x  2 root root     184 May 16 23:56 .\\\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\\\n-rw-r--r--  1 root root 3152691 May 16 16:33 depth_0.jsonl\\\\n-rw-r--r--  1 root root 2051563 May 16 23:13 depth_1.jsonl\\\\n-rw-r--r--  1 root root 2257432 May 16 23:22 depth_2.jsonl\\\\n-rw-r--r--  1 root root 2313793 May 16 23:30 depth_3.jsonl\\\\n-rw-r--r--  1 root root 2293361 May 16 23:39 depth_4.jsonl\\\\n-rw-r--r--  1 root root 2221271 May 16 23:48 depth_5.jsonl\\\\n-rw-r--r--  1 root root 3749155 May 16 23:56 features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 17632\\ndrwxr-xr-x  2 root root     184 May 16 23:56 .\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\n-rw-r--r--  1 root root 3152691 May 16 16:33 depth_0.jsonl\\n-rw-r--r--  1 root root 2051563 May 16 23:13 depth_1.jsonl\\n-rw-r--r--  1 root root 2257432 May 16 23:22 depth_2.jsonl\\n-rw-r--r--  1 root root 2313793 May 16 23:30 depth_3.jsonl\\n-rw-r--r--  1 root root 2293361 May 16 23:39 depth_4.jsonl\\n-rw-r--r--  1 root root 2221271 May 16 23:48 depth_5.jsonl\\n-rw-r--r--  1 root root 3749155 May 16 23:56 features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013siZV2b1YL1pVBo4R1ZRgc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ls -la /root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "5ba9b957-b62b-4ea1-b699-b720d65c9363",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017BL5XGPwCawczDcRf4zKyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1481,
+                "cache_read_input_tokens": 24799,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1481
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T03:08:20.949Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013siZV2b1YL1pVBo4R1ZRgc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 41364\\\\ndrwxr-xr-x  2 root root     184 May 19 08:22 .\\\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\\\n-rw-r--r--  1 root root 4270135 May 19 05:49 depth_0.jsonl\\\\n-rw-r--r--  1 root root 5823211 May 19 06:21 depth_1.jsonl\\\\n-rw-r--r--  1 root root 5818097 May 19 06:47 depth_2.jsonl\\\\n-rw-r--r--  1 root root 5763532 May 19 07:14 depth_3.jsonl\\\\n-rw-r--r--  1 root root 5700686 May 19 07:40 depth_4.jsonl\\\\n-rw-r--r--  1 root root 5668790 May 19 08:07 depth_5.jsonl\\\\n-rw-r--r--  1 root root 9296873 May 19 08:22 features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "674f19c5-3718-4682-b789-7119297a8250",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 41364\\\\ndrwxr-xr-x  2 root root     184 May 19 08:22 .\\\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\\\n-rw-r--r--  1 root root 4270135 May 19 05:49 depth_0.jsonl\\\\n-rw-r--r--  1 root root 5823211 May 19 06:21 depth_1.jsonl\\\\n-rw-r--r--  1 root root 5818097 May 19 06:47 depth_2.jsonl\\\\n-rw-r--r--  1 root root 5763532 May 19 07:14 depth_3.jsonl\\\\n-rw-r--r--  1 root root 5700686 May 19 07:40 depth_4.jsonl\\\\n-rw-r--r--  1 root root 5668790 May 19 08:07 depth_5.jsonl\\\\n-rw-r--r--  1 root root 9296873 May 19 08:22 features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 41364\\ndrwxr-xr-x  2 root root     184 May 19 08:22 .\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\n-rw-r--r--  1 root root 4270135 May 19 05:49 depth_0.jsonl\\n-rw-r--r--  1 root root 5823211 May 19 06:21 depth_1.jsonl\\n-rw-r--r--  1 root root 5818097 May 19 06:47 depth_2.jsonl\\n-rw-r--r--  1 root root 5763532 May 19 07:14 depth_3.jsonl\\n-rw-r--r--  1 root root 5700686 May 19 07:40 depth_4.jsonl\\n-rw-r--r--  1 root root 5668790 May 19 08:07 depth_5.jsonl\\n-rw-r--r--  1 root root 9296873 May 19 08:22 features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0113EnsbPcw5JhEJoZFxJJUa",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ls -la /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_pythia/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "e93aef02-a475-4c80-9627-b1d220ebd7e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017BL5XGPwCawczDcRf4zKyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1481,
+                "cache_read_input_tokens": 24799,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1481
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T03:08:21.893Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0113EnsbPcw5JhEJoZFxJJUa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 40188\\\\ndrwxr-xr-x  2 root root     184 May 17 21:13 .\\\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\\\n-rw-r--r--  1 root root 5560755 May 17 20:03 depth_0.jsonl\\\\n-rw-r--r--  1 root root 5889572 May 17 20:02 depth_1.jsonl\\\\n-rw-r--r--  1 root root 5652323 May 17 20:15 depth_2.jsonl\\\\n-rw-r--r--  1 root root 5408012 May 17 20:29 depth_3.jsonl\\\\n-rw-r--r--  1 root root 5203289 May 17 20:42 depth_4.jsonl\\\\n-rw-r--r--  1 root root 5005911 May 17 20:55 depth_5.jsonl\\\\n-rw-r--r--  1 root root 8414158 May 17 21:13 features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "925d5c69-9e7d-4d70-bda7-5a1c24a0a299",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 40188\\\\ndrwxr-xr-x  2 root root     184 May 17 21:13 .\\\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\\\n-rw-r--r--  1 root root 5560755 May 17 20:03 depth_0.jsonl\\\\n-rw-r--r--  1 root root 5889572 May 17 20:02 depth_1.jsonl\\\\n-rw-r--r--  1 root root 5652323 May 17 20:15 depth_2.jsonl\\\\n-rw-r--r--  1 root root 5408012 May 17 20:29 depth_3.jsonl\\\\n-rw-r--r--  1 root root 5203289 May 17 20:42 depth_4.jsonl\\\\n-rw-r--r--  1 root root 5005911 May 17 20:55 depth_5.jsonl\\\\n-rw-r--r--  1 root root 8414158 May 17 21:13 features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 40188\\ndrwxr-xr-x  2 root root     184 May 17 21:13 .\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\n-rw-r--r--  1 root root 5560755 May 17 20:03 depth_0.jsonl\\n-rw-r--r--  1 root root 5889572 May 17 20:02 depth_1.jsonl\\n-rw-r--r--  1 root root 5652323 May 17 20:15 depth_2.jsonl\\n-rw-r--r--  1 root root 5408012 May 17 20:29 depth_3.jsonl\\n-rw-r--r--  1 root root 5203289 May 17 20:42 depth_4.jsonl\\n-rw-r--r--  1 root root 5005911 May 17 20:55 depth_5.jsonl\\n-rw-r--r--  1 root root 8414158 May 17 21:13 features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BWVmEgFTrLiz6E3TVBFvw3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ls -la /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "739a30e1-4514-4613-90b9-1ec2b168f215",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017BL5XGPwCawczDcRf4zKyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1481,
+                "cache_read_input_tokens": 24799,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1481
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PTQo4Gr1rwNoyZVkZtJKc6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ls -la /root/autodl-tmp/gen-depth-contamination/data/exp_code_llama8b/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "47022ff5-3158-43fb-a154-3bca5bb4e011",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017BL5XGPwCawczDcRf4zKyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1481,
+                "cache_read_input_tokens": 24799,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1481
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T03:08:22.831Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BWVmEgFTrLiz6E3TVBFvw3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 18012\\\\ndrwxr-xr-x  2 root root     184 May 17 21:58 .\\\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\\\n-rw-r--r--  1 root root 3152691 May 17 19:22 depth_0.jsonl\\\\n-rw-r--r--  1 root root 1977443 May 17 19:53 depth_1.jsonl\\\\n-rw-r--r--  1 root root 2296161 May 17 20:23 depth_2.jsonl\\\\n-rw-r--r--  1 root root 2421511 May 17 20:52 depth_3.jsonl\\\\n-rw-r--r--  1 root root 2411493 May 17 21:21 depth_4.jsonl\\\\n-rw-r--r--  1 root root 2421866 May 17 21:50 depth_5.jsonl\\\\n-rw-r--r--  1 root root 3747504 May 17 21:58 features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "30b3f039-bd62-4daf-877e-0927029e0101",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 18012\\\\ndrwxr-xr-x  2 root root     184 May 17 21:58 .\\\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\\\n-rw-r--r--  1 root root 3152691 May 17 19:22 depth_0.jsonl\\\\n-rw-r--r--  1 root root 1977443 May 17 19:53 depth_1.jsonl\\\\n-rw-r--r--  1 root root 2296161 May 17 20:23 depth_2.jsonl\\\\n-rw-r--r--  1 root root 2421511 May 17 20:52 depth_3.jsonl\\\\n-rw-r--r--  1 root root 2411493 May 17 21:21 depth_4.jsonl\\\\n-rw-r--r--  1 root root 2421866 May 17 21:50 depth_5.jsonl\\\\n-rw-r--r--  1 root root 3747504 May 17 21:58 features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 18012\\ndrwxr-xr-x  2 root root     184 May 17 21:58 .\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\n-rw-r--r--  1 root root 3152691 May 17 19:22 depth_0.jsonl\\n-rw-r--r--  1 root root 1977443 May 17 19:53 depth_1.jsonl\\n-rw-r--r--  1 root root 2296161 May 17 20:23 depth_2.jsonl\\n-rw-r--r--  1 root root 2421511 May 17 20:52 depth_3.jsonl\\n-rw-r--r--  1 root root 2411493 May 17 21:21 depth_4.jsonl\\n-rw-r--r--  1 root root 2421866 May 17 21:50 depth_5.jsonl\\n-rw-r--r--  1 root root 3747504 May 17 21:58 features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T03:08:23.296Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PTQo4Gr1rwNoyZVkZtJKc6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 41284\\\\ndrwxr-xr-x  2 root root     184 May 19 16:03 .\\\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\\\n-rw-r--r--  1 root root 4270135 May 19 00:55 depth_0.jsonl\\\\n-rw-r--r--  1 root root 4494210 May 19 06:50 depth_1.jsonl\\\\n-rw-r--r--  1 root root 6128672 May 19 09:04 depth_2.jsonl\\\\n-rw-r--r--  1 root root 6098155 May 19 11:19 depth_3.jsonl\\\\n-rw-r--r--  1 root root 6034226 May 19 13:34 depth_4.jsonl\\\\n-rw-r--r--  1 root root 6000148 May 19 15:48 depth_5.jsonl\\\\n-rw-r--r--  1 root root 9232046 May 19 16:03 features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "eb4c4153-adf3-42aa-9fc9-cc704dbb8e15",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 41284\\\\ndrwxr-xr-x  2 root root     184 May 19 16:03 .\\\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\\\n-rw-r--r--  1 root root 4270135 May 19 00:55 depth_0.jsonl\\\\n-rw-r--r--  1 root root 4494210 May 19 06:50 depth_1.jsonl\\\\n-rw-r--r--  1 root root 6128672 May 19 09:04 depth_2.jsonl\\\\n-rw-r--r--  1 root root 6098155 May 19 11:19 depth_3.jsonl\\\\n-rw-r--r--  1 root root 6034226 May 19 13:34 depth_4.jsonl\\\\n-rw-r--r--  1 root root 6000148 May 19 15:48 depth_5.jsonl\\\\n-rw-r--r--  1 root root 9232046 May 19 16:03 features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 41284\\ndrwxr-xr-x  2 root root     184 May 19 16:03 .\\ndrwxr-xr-x 36 root root    4096 May 19 14:28 ..\\n-rw-r--r--  1 root root 4270135 May 19 00:55 depth_0.jsonl\\n-rw-r--r--  1 root root 4494210 May 19 06:50 depth_1.jsonl\\n-rw-r--r--  1 root root 6128672 May 19 09:04 depth_2.jsonl\\n-rw-r--r--  1 root root 6098155 May 19 11:19 depth_3.jsonl\\n-rw-r--r--  1 root root 6034226 May 19 13:34 depth_4.jsonl\\n-rw-r--r--  1 root root 6000148 May 19 15:48 depth_5.jsonl\\n-rw-r--r--  1 root root 9232046 May 19 16:03 features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有目录结构一致（depth_0~5.jsonl + features.csv）。继续检查样本量和 DeBERTa 相关脚本/结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "8ac64e28-5e2d-418f-810e-f446fe4c7d2e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LL4viR54QrEqERfPGVrHqU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2608,
+                "cache_read_input_tokens": 26280,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2608
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YHGfoPgQzrqoyJse7wFH1R",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "a73d9b4f-1599-4cb1-8583-297bf0ae1bf0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LL4viR54QrEqERfPGVrHqU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2608,
+                "cache_read_input_tokens": 26280,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2608
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T03:08:28.631Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YHGfoPgQzrqoyJse7wFH1R",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"13201 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "065752b8-677a-46e7-a691-d1b7e54b3b95",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"13201 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"13201 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01APp2mkoTVDMtsyvQZqMw6P",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/features.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "f726088c-e4fa-4a98-b92f-176914c7911d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LL4viR54QrEqERfPGVrHqU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2608,
+                "cache_read_input_tokens": 26280,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2608
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T03:08:30.048Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01APp2mkoTVDMtsyvQZqMw6P",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "7f3cca97-f948-4489-ad01-18ac3621cd6c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hw55mQT8muzeMTetpqbp1Q",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_pythia/features.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "4aeeadfd-2770-40ec-99ba-21607146eb11",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LL4viR54QrEqERfPGVrHqU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2608,
+                "cache_read_input_tokens": 26280,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2608
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T03:08:30.984Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hw55mQT8muzeMTetpqbp1Q",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30001 /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_pythia/features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "9824192d-1df0-4194-8c07-7a888ee2cdbf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30001 /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_pythia/features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"30001 /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_pythia/features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BYx7m9nSrct1SY5RBAFFnB",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "head -2 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "1daa10f2-75da-41c2-abf8-ee422444e6d7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LL4viR54QrEqERfPGVrHqU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2608,
+                "cache_read_input_tokens": 26280,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2608
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T03:08:31.977Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BYx7m9nSrct1SY5RBAFFnB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\n0,0,3.2879585653332106,3.0793082857085046,1.002563714711493,0.21755137393208557,-0.01426267793594306,4.022438980985233,0.10207318395016106,0.0479762784072331,6.815073036762189,0.7371134020618557,0.8391608391608392,0.0,17.058097793268516,6.885246847578275,0.9300699300699301\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "6444ffb0-842e-4ffe-b7f0-528a7f57eff1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\n0,0,3.2879585653332106,3.0793082857085046,1.002563714711493,0.21755137393208557,-0.01426267793594306,4.022438980985233,0.10207318395016106,0.0479762784072331,6.815073036762189,0.7371134020618557,0.8391608391608392,0.0,17.058097793268516,6.885246847578275,0.9300699300699301\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\n0,0,3.2879585653332106,3.0793082857085046,1.002563714711493,0.21755137393208557,-0.01426267793594306,4.022438980985233,0.10207318395016106,0.0479762784072331,6.815073036762189,0.7371134020618557,0.8391608391608392,0.0,17.058097793268516,6.885246847578275,0.9300699300699301\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RTscLdfNYESxiCEysjMV9T",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "head -2 /root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/features.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "c8bde1b2-1f91-4222-b053-e1e9485ec1ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LL4viR54QrEqERfPGVrHqU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2608,
+                "cache_read_input_tokens": 26280,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2608
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T03:08:32.678Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RTscLdfNYESxiCEysjMV9T",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\ncode_py_0,0,3.102545846795812,3.203880771616909,0.9708897114020896,0.05591782888565788,-0.017283313679245283,3.6558230338755924,0.24454016328959588,0.005991800136475767,5.936531333645303,0.759493670886076,0.75,0.0,5.061393817234697,5.77834055816235,0.95\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "f020202d-b584-4683-a02c-238db3a2730f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\ncode_py_0,0,3.102545846795812,3.203880771616909,0.9708897114020896,0.05591782888565788,-0.017283313679245283,3.6558230338755924,0.24454016328959588,0.005991800136475767,5.936531333645303,0.759493670886076,0.75,0.0,5.061393817234697,5.77834055816235,0.95\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\ncode_py_0,0,3.102545846795812,3.203880771616909,0.9708897114020896,0.05591782888565788,-0.017283313679245283,3.6558230338755924,0.24454016328959588,0.005991800136475767,5.936531333645303,0.759493670886076,0.75,0.0,5.061393817234697,5.77834055816235,0.95\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TxEipy1v14uSdrV12tYebS",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "head -2 /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_pythia/features.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "99d54df7-5de3-4bc5-ad4e-373b722976e7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LL4viR54QrEqERfPGVrHqU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2608,
+                "cache_read_input_tokens": 26280,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2608
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T03:08:33.332Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TxEipy1v14uSdrV12tYebS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\n0,0,2.336347075537139,2.5525476948975796,1.5332317360886234,2.549923053281778,-0.014148622047244094,3.527360281867045,-0.31626849867927326,0.03823454483695652,5.991814889820265,0.6764705882352942,0.855072463768116,0.0016278615991439994,58.87349151040733,6.5312756236151435,0.9347826086956522\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "5f1abe2f-9014-4f15-b2c9-a49fd635851b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\n0,0,2.336347075537139,2.5525476948975796,1.5332317360886234,2.549923053281778,-0.014148622047244094,3.527360281867045,-0.31626849867927326,0.03823454483695652,5.991814889820265,0.6764705882352942,0.855072463768116,0.0016278615991439994,58.87349151040733,6.5312756236151435,0.9347826086956522\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\n0,0,2.336347075537139,2.5525476948975796,1.5332317360886234,2.549923053281778,-0.014148622047244094,3.527360281867045,-0.31626849867927326,0.03823454483695652,5.991814889820265,0.6764705882352942,0.855072463768116,0.0016278615991439994,58.87349151040733,6.5312756236151435,0.9347826086956522\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ua2L4ca8WLCMi9BHjg7TkQ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "find /root/autodl-tmp/gen-depth-contamination/scripts/ -name \"*deberta*\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "7e29bb01-c0bb-4b25-adce-dd0540e4461b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LL4viR54QrEqERfPGVrHqU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2608,
+                "cache_read_input_tokens": 26280,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2608
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T03:08:34.273Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ua2L4ca8WLCMi9BHjg7TkQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_upperbound.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_cross_transfer.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/analyze_deberta_results.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_c4_1b5.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "159cd594-605b-4bad-b8b9-d8561a0d9237",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_upperbound.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_cross_transfer.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/analyze_deberta_results.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_c4_1b5.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_upperbound.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_cross_transfer.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/analyze_deberta_results.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_c4_1b5.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019tXywVEiGgQRpWaQcYdbzf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -type d -name \"*deberta*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "7ca7bcba-fbf0-4d4e-90ea-b07416fd70c9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LL4viR54QrEqERfPGVrHqU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2608,
+                "cache_read_input_tokens": 26280,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2608
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T03:08:35.204Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019tXywVEiGgQRpWaQcYdbzf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "e1911fd9-f953-4cd0-8523-00a64e0eb59c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "再检查所有 arXiv/Code 实验目录的样本量和跨模型数据。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "29d0e7b2-f647-466f-9ae1-45eaf62f659a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMkRFWRs4SWouzVtwQT4LA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2875,
+                "cache_read_input_tokens": 28888,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2875
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UcCyDfSPaAQFXQK5CYhsKW",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_mistral7b/features.csv /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/features.csv /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen7b/features.csv /root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "91243940-b689-4f5d-b4d9-897415524299",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMkRFWRs4SWouzVtwQT4LA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2875,
+                "cache_read_input_tokens": 28888,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2875
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T03:08:41.818Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UcCyDfSPaAQFXQK5CYhsKW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv\\\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_mistral7b/features.csv\\\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/features.csv\\\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen7b/features.csv\\\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv\\\\n   66005 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "b9951f8c-e461-4d25-a9d9-62ed3a9f9dbd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv\\\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_mistral7b/features.csv\\\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/features.csv\\\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen7b/features.csv\\\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv\\\\n   66005 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_mistral7b/features.csv\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/features.csv\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen7b/features.csv\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv\\n   66005 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RLj6MEu3prjPNVxnCmF3Vu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_code_llama8b/features.csv /root/autodl-tmp/gen-depth-contamination/data/exp_code_mistral7b/features.csv /root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5/features.csv /root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen7b/features.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "d9b06692-76be-4b03-8c4a-e1100558ec7c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMkRFWRs4SWouzVtwQT4LA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2875,
+                "cache_read_input_tokens": 28888,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2875
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T03:08:43.350Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RLj6MEu3prjPNVxnCmF3Vu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_llama8b/features.csv\\\\n   33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_mistral7b/features.csv\\\\n   33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5/features.csv\\\\n   33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen7b/features.csv\\\\n  132004 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "64bd7a8d-d4c0-4ffb-bd8b-074ccb376166",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_llama8b/features.csv\\\\n   33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_mistral7b/features.csv\\\\n   33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5/features.csv\\\\n   33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen7b/features.csv\\\\n  132004 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"   33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_llama8b/features.csv\\n   33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_mistral7b/features.csv\\n   33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5/features.csv\\n   33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen7b/features.csv\\n  132004 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R57XJCyxR7ePZSpQtpp8uC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b_crossscorer/features.csv /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_mistral7b_crossscorer/features.csv /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen1b5_crossscorer/features.csv /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen7b_crossscorer/features.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "1558487f-ac1e-4f8f-b9f0-77218ddbb69f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMkRFWRs4SWouzVtwQT4LA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2875,
+                "cache_read_input_tokens": 28888,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2875
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T03:08:45.228Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R57XJCyxR7ePZSpQtpp8uC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b_crossscorer/features.csv\\\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_mistral7b_crossscorer/features.csv\\\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen1b5_crossscorer/features.csv\\\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen7b_crossscorer/features.csv\\\\n   52804 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "db715b08-c366-4334-ad02-36665395a9dd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b_crossscorer/features.csv\\\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_mistral7b_crossscorer/features.csv\\\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen1b5_crossscorer/features.csv\\\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen7b_crossscorer/features.csv\\\\n   52804 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b_crossscorer/features.csv\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_mistral7b_crossscorer/features.csv\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen1b5_crossscorer/features.csv\\n   13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen7b_crossscorer/features.csv\\n   52804 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016YgYDfkkUcBZyxwKDJHYCf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5_pythia_scorer/features.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "a7939654-e6b5-48a3-96e7-3caa4aa67ff9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMkRFWRs4SWouzVtwQT4LA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2875,
+                "cache_read_input_tokens": 28888,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2875
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T03:08:46.486Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016YgYDfkkUcBZyxwKDJHYCf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5_pythia_scorer/features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "b73d1907-6765-4102-b43c-554291afe171",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5_pythia_scorer/features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"33001 /root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5_pythia_scorer/features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UXFGvfNi9MYzWCvPxAoHga",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "3ceda553-fc72-4109-97cb-fe6181d50e08",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMkRFWRs4SWouzVtwQT4LA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2875,
+                "cache_read_input_tokens": 28888,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2875
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T03:08:47.414Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UXFGvfNi9MYzWCvPxAoHga",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 32\\\\ndrwxr-xr-x  2 root root  176 May 20 05:39 .\\\\ndrwxr-xr-x 54 root root 4096 May 20 06:00 ..\\\\n-rw-r--r--  1 root root 7497 May 20 06:03 summary.json\\\\n-rw-r--r--  1 root root 1358 May 20 06:01 wiki_llama8b.json\\\\n-rw-r--r--  1 root root 1359 May 20 06:01 wiki_mistral7b.json\\\\n-rw-r--r--  1 root root 1351 May 20 06:03 wiki_olmo.json\\\\n-rw-r--r--  1 root root 1354 May 20 06:01 wiki_pythia.json\\\\n-rw-r--r--  1 root root 1356 May 20 06:01 wiki_qwen7b.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "ea77a359-d415-4f50-b8bd-14c3a13705e0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 32\\\\ndrwxr-xr-x  2 root root  176 May 20 05:39 .\\\\ndrwxr-xr-x 54 root root 4096 May 20 06:00 ..\\\\n-rw-r--r--  1 root root 7497 May 20 06:03 summary.json\\\\n-rw-r--r--  1 root root 1358 May 20 06:01 wiki_llama8b.json\\\\n-rw-r--r--  1 root root 1359 May 20 06:01 wiki_mistral7b.json\\\\n-rw-r--r--  1 root root 1351 May 20 06:03 wiki_olmo.json\\\\n-rw-r--r--  1 root root 1354 May 20 06:01 wiki_pythia.json\\\\n-rw-r--r--  1 root root 1356 May 20 06:01 wiki_qwen7b.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 32\\ndrwxr-xr-x  2 root root  176 May 20 05:39 .\\ndrwxr-xr-x 54 root root 4096 May 20 06:00 ..\\n-rw-r--r--  1 root root 7497 May 20 06:03 summary.json\\n-rw-r--r--  1 root root 1358 May 20 06:01 wiki_llama8b.json\\n-rw-r--r--  1 root root 1359 May 20 06:01 wiki_mistral7b.json\\n-rw-r--r--  1 root root 1351 May 20 06:03 wiki_olmo.json\\n-rw-r--r--  1 root root 1354 May 20 06:01 wiki_pythia.json\\n-rw-r--r--  1 root root 1356 May 20 06:01 wiki_qwen7b.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ABoKtmKmLTyWVDzEgMgvZq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "923f286a-d878-4485-97aa-4db91e106af6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMkRFWRs4SWouzVtwQT4LA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2875,
+                "cache_read_input_tokens": 28888,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2875
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T03:08:48.355Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ABoKtmKmLTyWVDzEgMgvZq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 248\\\\ndrwxr-xr-x  2 root root  4096 May 20 09:56 .\\\\ndrwxr-xr-x 54 root root  4096 May 20 06:00 ..\\\\n-rw-r--r--  1 root root 61238 May 20 08:22 gpu1.log\\\\n-rw-r--r--  1 root root 61210 May 20 08:15 gpu2.log\\\\n-rw-r--r--  1 root root 61324 May 20 08:17 gpu3.log\\\\n-rw-r--r--  1 root root  1128 May 20 08:44 wiki_llama8b__to__wiki_olmo.json\\\\n-rw-r--r--  1 root root  1128 May 20 08:44 wiki_llama8b__to__wiki_pythia.json\\\\n-rw-r--r--  1 root root  1131 May 20 08:44 wiki_mistral7b__to__wiki_pythia.json\\\\n-rw-r--r--  1 root root  1118 May 20 08:44 wiki_olmo__to__wiki_llama8b.json\\\\n-rw-r--r--  1 root root  1122 May 20 08:44 wiki_olmo__to__wiki_pythia.json\\\\n-rw-r--r--  1 root root  1119 May 20 08:44 wiki_olmo__to__wiki_qwen7b.json\\\\n-rw-r--r--  1 root root  1127 May 20 08:44 wiki_pythia__to__wiki_llama8b.json\\\\n-rw-r--r--  1 root root  1127 May 20 08:44 wiki_pythia__to__wiki_mistral7b.json\\\\n-rw-r--r--  1 root root  1124 May 20 08:44 wiki_pythia__to__wiki_olmo.json\\\\n-rw-r--r--  1 root root  1122 May 20 08:44 wiki_pythia__to__wiki_qwen7b.json\\\\n-rw-r--r--  1 root root  1124 May 20 11:00 wiki_qwen7b__to__wiki_llama8b.json\\\\n-rw-r--r--  1 root root  1125 May 20 08:44 wiki_qwen7b__to__wiki_olmo.json\\\\n-rw-r--r--  1 root root  1126 May 20 08:44 wiki_qwen7b__to__wiki_pythia.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "b99895ce-a2a3-4ffe-9fab-575641b0a51a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 248\\\\ndrwxr-xr-x  2 root root  4096 May 20 09:56 .\\\\ndrwxr-xr-x 54 root root  4096 May 20 06:00 ..\\\\n-rw-r--r--  1 root root 61238 May 20 08:22 gpu1.log\\\\n-rw-r--r--  1 root root 61210 May 20 08:15 gpu2.log\\\\n-rw-r--r--  1 root root 61324 May 20 08:17 gpu3.log\\\\n-rw-r--r--  1 root root  1128 May 20 08:44 wiki_llama8b__to__wiki_olmo.json\\\\n-rw-r--r--  1 root root  1128 May 20 08:44 wiki_llama8b__to__wiki_pythia.json\\\\n-rw-r--r--  1 root root  1131 May 20 08:44 wiki_mistral7b__to__wiki_pythia.json\\\\n-rw-r--r--  1 root root  1118 May 20 08:44 wiki_olmo__to__wiki_llama8b.json\\\\n-rw-r--r--  1 root root  1122 May 20 08:44 wiki_olmo__to__wiki_pythia.json\\\\n-rw-r--r--  1 root root  1119 May 20 08:44 wiki_olmo__to__wiki_qwen7b.json\\\\n-rw-r--r--  1 root root  1127 May 20 08:44 wiki_pythia__to__wiki_llama8b.json\\\\n-rw-r--r--  1 root root  1127 May 20 08:44 wiki_pythia__to__wiki_mistral7b.json\\\\n-rw-r--r--  1 root root  1124 May 20 08:44 wiki_pythia__to__wiki_olmo.json\\\\n-rw-r--r--  1 root root  1122 May 20 08:44 wiki_pythia__to__wiki_qwen7b.json\\\\n-rw-r--r--  1 root root  1124 May 20 11:00 wiki_qwen7b__to__wiki_llama8b.json\\\\n-rw-r--r--  1 root root  1125 May 20 08:44 wiki_qwen7b__to__wiki_olmo.json\\\\n-rw-r--r--  1 root root  1126 May 20 08:44 wiki_qwen7b__to__wiki_pythia.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 248\\ndrwxr-xr-x  2 root root  4096 May 20 09:56 .\\ndrwxr-xr-x 54 root root  4096 May 20 06:00 ..\\n-rw-r--r--  1 root root 61238 May 20 08:22 gpu1.log\\n-rw-r--r--  1 root root 61210 May 20 08:15 gpu2.log\\n-rw-r--r--  1 root root 61324 May 20 08:17 gpu3.log\\n-rw-r--r--  1 root root  1128 May 20 08:44 wiki_llama8b__to__wiki_olmo.json\\n-rw-r--r--  1 root root  1128 May 20 08:44 wiki_llama8b__to__wiki_pythia.json\\n-rw-r--r--  1 root root  1131 May 20 08:44 wiki_mistral7b__to__wiki_pythia.json\\n-rw-r--r--  1 root root  1118 May 20 08:44 wiki_olmo__to__wiki_llama8b.json\\n-rw-r--r--  1 root root  1122 May 20 08:44 wiki_olmo__to__wiki_pythia.json\\n-rw-r--r--  1 root root  1119 May 20 08:44 wiki_olmo__to__wiki_qwen7b.json\\n-rw-r--r--  1 root root  1127 May 20 08:44 wiki_pythia__to__wiki_llama8b.json\\n-rw-r--r--  1 root root  1127 May 20 08:44 wiki_pythia__to__wiki_mistral7b.json\\n-rw-r--r--  1 root root  1124 May 20 08:44 wiki_pythia__to__wiki_olmo.json\\n-rw-r--r--  1 root root  1122 May 20 08:44 wiki_pythia__to__wiki_qwen7b.json\\n-rw-r--r--  1 root root  1124 May 20 11:00 wiki_qwen7b__to__wiki_llama8b.json\\n-rw-r--r--  1 root root  1125 May 20 08:44 wiki_qwen7b__to__wiki_olmo.json\\n-rw-r--r--  1 root root  1126 May 20 08:44 wiki_qwen7b__to__wiki_pythia.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E5ixv6VbdksjvQhTHKNGX8",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -type d -name \"*arxiv*\" -o -type d -name \"*code*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "d2b4e483-fcb4-472d-ab2c-3a95f28e6772",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMkRFWRs4SWouzVtwQT4LA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2875,
+                "cache_read_input_tokens": 28888,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2875
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T03:08:49.111Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E5ixv6VbdksjvQhTHKNGX8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_llama8b\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_mistral7b\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen7b\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5_pythia_scorer\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "55ca90f4-382c-4ad8-82d5-f403f354944d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_llama8b\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_mistral7b\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen7b\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5_pythia_scorer\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_llama8b\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_mistral7b\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen7b\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5_pythia_scorer\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016Qh4Fw2FMGg3HQh94Q3k9m",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "head -2 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "727aa29b-7bbc-4eed-88bf-8df32063a61b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QE7FjxN3afbFjYeWHAzVCd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3650,
+                "cache_read_input_tokens": 31763,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3650
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T03:08:52.549Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016Qh4Fw2FMGg3HQh94Q3k9m",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\n0,0,3.2879585653332106,3.0793082857085046,1.002563714711493,0.21755137393208557,-0.01426267793594306,4.022438980985233,0.10207318395016106,0.0479762784072331,6.815073036762189,0.7371134020618557,0.8391608391608392,0.0,17.058097793268516,6.885246847578275,0.9300699300699301\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "6f141fa3-c122-4255-999a-cd6d90afe40f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\n0,0,3.2879585653332106,3.0793082857085046,1.002563714711493,0.21755137393208557,-0.01426267793594306,4.022438980985233,0.10207318395016106,0.0479762784072331,6.815073036762189,0.7371134020618557,0.8391608391608392,0.0,17.058097793268516,6.885246847578275,0.9300699300699301\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\n0,0,3.2879585653332106,3.0793082857085046,1.002563714711493,0.21755137393208557,-0.01426267793594306,4.022438980985233,0.10207318395016106,0.0479762784072331,6.815073036762189,0.7371134020618557,0.8391608391608392,0.0,17.058097793268516,6.885246847578275,0.9300699300699301\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0137Tokv2j6A3rM3DmWpY1Ax",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "head -2 /root/autodl-tmp/gen-depth-contamination/data/exp_code_llama8b/features.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "fbbc8a37-1b69-497b-8a45-0b0147a0425a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QE7FjxN3afbFjYeWHAzVCd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3650,
+                "cache_read_input_tokens": 31763,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3650
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T03:08:53.502Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0137Tokv2j6A3rM3DmWpY1Ax",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\ncode_py_0,0,3.102545846795812,3.203880771616909,0.9708897114020896,0.05591782888565788,-0.017283313679245283,3.6558230338755924,0.24454016328959588,0.005991800136475767,5.936531333645303,0.759493670886076,0.75,0.0,5.061393817234697,5.77834055816235,0.95\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "db4ba5be-57a5-4884-bc49-7798369dbe00",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\ncode_py_0,0,3.102545846795812,3.203880771616909,0.9708897114020896,0.05591782888565788,-0.017283313679245283,3.6558230338755924,0.24454016328959588,0.005991800136475767,5.936531333645303,0.759493670886076,0.75,0.0,5.061393817234697,5.77834055816235,0.95\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\ncode_py_0,0,3.102545846795812,3.203880771616909,0.9708897114020896,0.05591782888565788,-0.017283313679245283,3.6558230338755924,0.24454016328959588,0.005991800136475767,5.936531333645303,0.759493670886076,0.75,0.0,5.061393817234697,5.77834055816235,0.95\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X8JnidM8Rn3NTHhvDePSmM",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -path \"*arxiv*\" -name \"*.json\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "f6ef331d-394b-4305-b95d-ad16fc4d9f07",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QE7FjxN3afbFjYeWHAzVCd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3650,
+                "cache_read_input_tokens": 31763,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3650
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-20T03:08:54.913Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X8JnidM8Rn3NTHhvDePSmM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/jsd.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/ordinal_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/feature_importance.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/jsd.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/ordinal_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/feature_importance.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed42/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed42/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed42/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed123/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed123/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed123/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed456/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed789/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed456/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed456/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed1024/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed789/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed789/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed1024/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed1024/eval_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "289235b2-616b-4fcf-94e8-91d7e1ff7994",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/jsd.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/ordinal_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/feature_importance.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/jsd.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/ordinal_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/feature_importance.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed42/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed42/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed42/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed123/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed123/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed123/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed456/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed789/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed456/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed456/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed1024/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed789/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed789/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed1024/eval_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed1024/eval_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/jsd.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/ordinal_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/feature_importance.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/jsd.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/ordinal_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/feature_importance.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed42/eval_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed42/eval_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed42/eval_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed123/eval_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed123/eval_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed123/eval_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed456/eval_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed789/eval_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed456/eval_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed456/eval_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/binary_seed1024/eval_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed789/eval_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed789/eval_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/graduated_a09_seed1024/eval_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/no_filter_seed1024/eval_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D5TTmzjViv5G1vK5fLxFL4",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -path \"*deberta*\" -name \"*.json\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "5201b56b-ed19-4da0-b9dd-7e85587ffcce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QE7FjxN3afbFjYeWHAzVCd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3650,
+                "cache_read_input_tokens": 31763,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3650
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-20T03:08:55.450Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D5TTmzjViv5G1vK5fLxFL4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_pythia.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_olmo.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_qwen7b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_llama8b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_mistral7b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/summary.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_qwen7b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_olmo.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_llama8b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_qwen7b__to__wiki_olmo.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_pythia.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_llama8b__to__wiki_olmo.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_llama8b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_qwen7b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_mistral7b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_llama8b__to__wiki_pythia.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_mistral7b__to__wiki_pythia.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_qwen7b__to__wiki_pythia.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_qwen7b__to__wiki_llama8b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5/qwen_rw.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5/qwen_cont256.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "f6617158-bbaf-4247-9e32-72e52322dc90",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_pythia.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_olmo.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_qwen7b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_llama8b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_mistral7b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/summary.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_qwen7b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_olmo.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_llama8b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_qwen7b__to__wiki_olmo.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_pythia.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_llama8b__to__wiki_olmo.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_llama8b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_qwen7b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_mistral7b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_llama8b__to__wiki_pythia.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_mistral7b__to__wiki_pythia.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_qwen7b__to__wiki_pythia.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_qwen7b__to__wiki_llama8b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5/qwen_rw.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5/qwen_cont256.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_pythia.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_olmo.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_qwen7b.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_llama8b.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_mistral7b.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/summary.json\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_qwen7b.json\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_olmo.json\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_llama8b.json\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_qwen7b__to__wiki_olmo.json\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_pythia.json\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_llama8b__to__wiki_olmo.json\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_llama8b.json\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_qwen7b.json\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_mistral7b.json\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_llama8b__to__wiki_pythia.json\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_mistral7b__to__wiki_pythia.json\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_qwen7b__to__wiki_pythia.json\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_qwen7b__to__wiki_llama8b.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5/qwen_rw.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5/qwen_cont256.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总报告如下：\n\n---\n\n## 1. arXiv depth chain 数据\n\n**存在，数据充足。** 共有以下目录（均在 `/root/autodl-tmp/gen-depth-contamination/data/`）：\n\n| 目录 | Scorer 模型 | 样本数 | Depth 层级 |\n|------|------------|--------|-----------|\n| `exp_024_arxiv` | Qwen-1.5B (原始) | 13,200 | depth 0-5 (6级) |\n| `exp_025_pythia_arxiv` | Pythia-1.4B | 13,200 | depth 0-5 |\n| `exp_arXiv_llama8b` | LLaMA-8B | 13,200 | depth 0-5 |\n| `exp_arXiv_mistral7b` | Mistral-7B | 13,200 | depth 0-5 |\n| `exp_arXiv_olmo` | OLMo | 13,200 | depth 0-5 |\n| `exp_arXiv_qwen7b` | Qwen-7B | 13,200 | depth 0-5 |\n| `exp_arXiv_llama8b_crossscorer` | LLaMA-8B (cross) | 13,200 | depth 0-5 |\n| `exp_arXiv_mistral7b_crossscorer` | Mistral-7B (cross) | 13,200 | depth 0-5 |\n| `exp_arXiv_qwen1b5_crossscorer` | Qwen-1.5B (cross) | 13,200 | depth 0-5 |\n| `exp_arXiv_qwen7b_crossscorer` | Qwen-7B (cross) | 13,200 | depth 0-5 |\n\n每个 depth 级别 2,200 样本（13,200 / 6 = 2,200）。OBD K*=3 的生成链，depth 0 为 seed。\n\n## 2. Code depth chain 数据\n\n**存在，数据充足。** \n\n| 目录 | Scorer 模型 | 样本数 | Depth 层级 |\n|------|------------|--------|-----------|\n| `exp_code_pythia1b4` | Pythia-1.4B | 33,000 | depth 0-5 |\n| `exp_code_llama8b` | LLaMA-8B | 33,000 | depth 0-5 |\n| `exp_code_mistral7b` | Mistral-7B | 33,000 | depth 0-5 |\n| `exp_code_qwen1b5` | Qwen-1.5B | 33,000 | depth 0-5 |\n| `exp_code_qwen7b` | Qwen-7B | 33,000 | depth 0-5 |\n| `exp_code_qwen1b5_pythia_scorer` | Qwen-1.5B (Pythia cross) | 33,000 | depth 0-5 |\n| `code_python_seed` | Seed 数据 | - | - |\n\n每个 depth 级别 5,500 样本（33,000 / 6）。Code domain 样本量大于 arXiv（5,500 vs 2,200/depth）。\n\n## 3. 数据格式\n\n**三个 domain 完全一致**，均为：\n- `depth_0.jsonl` ~ `depth_5.jsonl`（原始文本）\n- `features.csv`（15 列统计特征：`doc_id, depth, surp_mean, surp_std, surp_skew, surp_kurt, surp_d1_mean, surp_d1_std, surp_d1_skew, surp_d2_mean, surp_d2_std, ttr, hapax_ratio, self_bleu, freq_kurtosis, freq_entropy, low_freq_ratio`）\n\nWiki/arXiv/Code 的 features.csv schema 完全相同，**可直接复用 DeBERTa 脚本**。\n\n## 4. DeBERTa 脚本\n\n现有 4 个脚本（`/root/autodl-tmp/gen-depth-contamination/scripts/`）：\n- `run_deberta_upperbound.py` — upper bound 实验\n- `run_deberta_cross_transfer.py` — cross-model transfer\n- `run_deberta_c4_1b5.py` — C4 domain 专用\n- `analyze_deberta_results.py` — 结果分析\n\n## 5. 已有 DeBERTa 结果\n\n- `exp_deberta_upperbound/` — **仅 wiki**（wiki_pythia, wiki_olmo, wiki_qwen7b, wiki_llama8b, wiki_mistral7b）\n- `deberta_cross_transfer/` — **仅 wiki 跨模型**（wiki_X → wiki_Y，13 对）\n- `exp_deberta_c4_1b5/` — C4 domain（qwen_rw, qwen_cont256）\n\n**arXiv 和 Code 的 DeBERTa 实验尚未运行。** arXiv 已有的结果（exp_024_arxiv, exp_025_pythia_arxiv, exp_026_arxiv_filtering）是 feature-based 分类器结果（pairwise AUC/JSD/ordinal），不是 DeBERTa。Code 的结果目录也是 feature-based 的。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "uuid": "8c60868d-b296-4824-904d-a72a7223645b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LAKPYZK8f8ZnHpiy3zdBXn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3126,
+                "cache_read_input_tokens": 35413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3126
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总报告如下：\n\n---\n\n## 1. arXiv depth chain 数据\n\n**存在，数据充足。** 共有以下目录（均在 `/root/autodl-tmp/gen-depth-contamination/data/`）：\n\n| 目录 | Scorer 模型 | 样本数 | Depth 层级 |\n|------|------------|--------|-----------|\n| `exp_024_arxiv` | Qwen-1.5B (原始) | 13,200 | depth 0-5 (6级) |\n| `exp_025_pythia_arxiv` | Pythia-1.4B | 13,200 | depth 0-5 |\n| `exp_arXiv_llama8b` | LLaMA-8B | 13,200 | depth 0-5 |\n| `exp_arXiv_mistral7b` | Mistral-7B | 13,200 | depth 0-5 |\n| `exp_arXiv_olmo` | OLMo | 13,200 | depth 0-5 |\n| `exp_arXiv_qwen7b` | Qwen-7B | 13,200 | depth 0-5 |\n| `exp_arXiv_llama8b_crossscorer` | LLaMA-8B (cross) | 13,200 | depth 0-5 |\n| `exp_arXiv_mistral7b_crossscorer` | Mistral-7B (cross) | 13,200 | depth 0-5 |\n| `exp_arXiv_qwen1b5_crossscorer` | Qwen-1.5B (cross) | 13,200 | depth 0-5 |\n| `exp_arXiv_qwen7b_crossscorer` | Qwen-7B (cross) | 13,200 | depth 0-5 |\n\n每个 depth 级别 2,200 样本（13,200 / 6 = 2,200）。OBD K*=3 的生成链，depth 0 为 seed。\n\n## 2. Code depth chain 数据\n\n**存在，数据充足。** \n\n| 目录 | Scorer 模型 | 样本数 | Depth 层级 |\n|------|------------|--------|-----------|\n| `exp_code_pythia1b4` | Pythia-1.4B | 33,000 | depth 0-5 |\n| `exp_code_llama8b` | LLaMA-8B | 33,000 | depth 0-5 |\n| `exp_code_mistral7b` | Mistral-7B | 33,000 | depth 0-5 |\n| `exp_code_qwen1b5` | Qwen-1.5B | 33,000 | depth 0-5 |\n| `exp_code_qwen7b` | Qwen-7B | 33,000 | depth 0-5 |\n| `exp_code_qwen1b5_pythia_scorer` | Qwen-1.5B (Pythia cross) | 33,000 | depth 0-5 |\n| `code_python_seed` | Seed 数据 | - | - |\n\n每个 depth 级别 5,500 样本（33,000 / 6）。Code domain 样本量大于 arXiv（5,500 vs 2,200/depth）。\n\n## 3. 数据格式\n\n**三个 domain 完全一致**，均为：\n- `depth_0.jsonl` ~ `depth_5.jsonl`（原始文本）\n- `features.csv`（15 列统计特征：`doc_id, depth, surp_mean, surp_std, surp_skew, surp_kurt, surp_d1_mean, surp_d1_std, surp_d1_skew, surp_d2_mean, surp_d2_std, ttr, hapax_ratio, self_bleu, freq_kurtosis, freq_entropy, low_freq_ratio`）\n\nWiki/arXiv/Code 的 features.csv schema 完全相同，**可直接复用 DeBERTa 脚本**。\n\n## 4. DeBERTa 脚本\n\n现有 4 个脚本（`/root/autodl-tmp/gen-depth-contamination/scripts/`）：\n- `run_deberta_upperbound.py` — upper bound 实验\n- `run_deberta_cross_transfer.py` — cross-model transfer\n- `run_deberta_c4_1b5.py` — C4 domain 专用\n- `analyze_deberta_results.py` — 结果分析\n\n## 5. 已有 DeBERTa 结果\n\n- `exp_deberta_upperbound/` — **仅 wiki**（wiki_pythia, wiki_olmo, wiki_qwen7b, wiki_llama8b, wiki_mistral7b）\n- `deberta_cross_transfer/` — **仅 wiki 跨模型**（wiki_X → wiki_Y，13 对）\n- `exp_deberta_c4_1b5/` — C4 domain（qwen_rw, qwen_cont256）\n\n**arXiv 和 Code 的 DeBERTa 实验尚未运行。** arXiv 已有的结果（exp_024_arxiv, exp_025_pythia_arxiv, exp_026_arxiv_filtering）是 feature-based 分类器结果（pairwise AUC/JSD/ordinal），不是 DeBERTa。Code 的结果目录也是 feature-based 的。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 76793,
+            "duration_api_ms": 75875,
+            "num_turns": 27,
+            "stop_reason": "end_turn",
+            "session_id": "3a19298b-3acb-4157-9fbc-310f91b02165",
+            "total_cost_usd": 0.386371,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 26698,
+              "cache_read_input_tokens": 183313,
+              "output_tokens": 5035,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 26698,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1477,
+                  "cache_read_input_tokens": 35413,
+                  "cache_creation_input_tokens": 3126,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3126
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1822,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0019270000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 5035,
+                "cacheReadInputTokens": 183313,
+                "cacheCreationInputTokens": 26698,
+                "webSearchRequests": 0,
+                "costUSD": 0.384444,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f9efe8b2-e310-40cf-b715-55180bcdc525"
+          },
+          "id": "event-000061"
+        }
+      ],
+      "message_count": 61
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-check-arxiv-code-data.md"
+}

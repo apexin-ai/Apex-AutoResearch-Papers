@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "78c37005ca56829d3c23",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops pythia14b c4 depth chain rerun",
+  "task_key": "worker_ops_pythia14b_c4_depth_chain_rerun_20260521T102513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pythia14b_c4_depth_chain_rerun_20260521T102513_result.json",
+    "occurrence": 1,
+    "bytes": 2444259,
+    "sha256": "560d56a9a14b22aa0d788c10750f8b01c3871ff49193bca76905c290fd404882"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2444279,
+                "serialized_sha256": "54d128cf6520274504001c7806fbf5499e1beacfc254c2c049deeab1964e6911",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pythia14b-c4-depth-chain-rerun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b39c4cfa7e7947e4dd63",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops urgent check deberta filtering",
+  "task_key": "worker_ops_urgent_check_deberta_filtering_20260520T191854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_check_deberta_filtering_20260520T191854_result.json",
+    "occurrence": 1,
+    "bytes": 1726,
+    "sha256": "3cede2cf15fc3276c084bf0217979f0f16c7367263785b2f46ca3a001578e77e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### exp_deberta_filtering_comparison — 仍在运行\n\n**Phase 1（DeBERTa OOF 预测）：** 已完成，`predictions.npz` 已保存\n\n**Phase 2（LoRA 训练 + 评估）：**\n\n| 策略 | GPU | 训练 | 评估 |\n|------|-----|------|------|\n| no_filter | cuda:1 | 完成（03:18 merged） | 进行中（下载 MMLU） |\n| obd_binary | cuda:2 | 完成（03:15 merged） | 进行中（下载 MMLU） |\n| deberta_binary | cuda:3 | 完成（03:16 merged） | 进行中（下载 MMLU） |\n| **deberta_graduated** | — | **未提交** | **未提交** |\n\n3 个策略的 MMLU eval 正在通过 hf-mirror 逐个下载 subject（datasets-server 503，速度慢）。无 eval 结果 JSON 产出。\n\n### exp_expanded_downstream_eval — 仍在运行（GPU 0）\n- 当前：`graduated_seed1` 训练中，步骤 1457/1875（78%）\n- 已出结果：`binary_ours_seed1` → piqa=0.752, truthfulqa=0.446, winogrande=0.642, arc=0.519, gsm8k=None（xethub 401 失败）\n- GSM8K 下载持续失败（401 Unauthorized from xethub）\n\n### 其他\n- `sweep_r10_nofilter`：已失败（exit code 1，无法下载 ai2_arc 数据集，OfflineModeIsEnabled）\n- westd-42896：完全空闲\n\n### 问题\n1. **deberta_graduated 未提交** — registry spec 中标记为 `\"pending\"`，需要手动提交到空闲 GPU 或等 westd\n2. **GSM8K 基准持续 401 错误** — xethub 认证问题，影响 expanded_eval 实验\n3. **MMLU 下载缓慢** — datasets-server 503，逐个 subject 下载，3 个策略的 eval 预计还需较长时间\n\n需要我执行什么操作？比如：\n- 提交 deberta_graduated 到空闲 GPU\n- 等 eval 完成后再收集结果\n- 处理 GSM8K 401 问题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-check-deberta-filtering.md"
+}

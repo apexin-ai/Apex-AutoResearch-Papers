@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd3a740eb48febcd2379",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analyze exp026 paired ttest",
+  "task_key": "worker_analyze_exp026-paired-ttest_20260518T114213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp026-paired-ttest_20260518T114213_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "2752019e81cb45567f7de3998c9b64dbc86c256f761fe63c76cceed895aec819"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `artifacts/exp_026_ttest/results_summary.md`。\n\n核心结论：\n\n**graduated vs no_filter：差异不显著（null result confirmed）**\n- MMLU: +0.01pp, p=0.692, d=0.19\n- HellaSwag: -0.01pp, p=0.245, d=-0.61\n- 两个指标的 95% CI 都包含零\n\n**binary vs no_filter：存在显著 trade-off**\n- MMLU: -0.23pp (p=0.005, survives Bonferroni)\n- HellaSwag: +0.41pp (p<0.00001, survives Bonferroni)\n\n**graduated vs binary：显著差异（与上面同一 trade-off pattern）**\n- MMLU: +0.24pp (p=0.015, 不过 Bonferroni)\n- HellaSwag: -0.43pp (p<0.0001, 过 Bonferroni)\n\ngraduated (alpha=0.9) 在统计上等同于 no_filter，是个 no-op。binary filtering 有真实但很小的 MMLU/HellaSwag trade-off。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp026-paired-ttest.md"
+}

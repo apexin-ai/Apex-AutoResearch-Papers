@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53957554d654f689eda8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code prep exp005 analysis",
+  "task_key": "worker_code_prep_exp005_analysis_20260513T021202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_exp005_analysis_20260513T021202_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "d7b899bb66330af20fbaabd16645c130dc88aad8466e21548d90eda039edd7a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪，产出如下：\n\n**`scripts/run_exp005_degradation.py`** — 输入多个 `features.csv` 目录，输出：\n- `degradation_analysis.json` (完整结果含 cross-model 一致性)\n- `degradation_{model}.json` (每模型单独结果)\n\n**已用 Qwen + Pythia 完整数据跑通的关键发现：**\n\n| 指标 | 值 |\n|------|-----|\n| Kendall τ (first-pair AUC ranking) | **+0.54** (p=0.004) |\n| Spearman ρ (first-pair AUC ranking) | **+0.72** (p=0.002) |\n\n两个模型的特征退化排序中等一致。0v1 depth pair 的特征排名相关性显著，但更深 depth pair (1v2, 2v3...) 的排名一致性迅速下降（τ 接近 0），说明深层退化模式是模型相关的。\n\n等 exp-002 OLMo 的 features.csv 产出后，加入 `--data_dirs` 即可做三模型对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-exp005-analysis.md"
+}

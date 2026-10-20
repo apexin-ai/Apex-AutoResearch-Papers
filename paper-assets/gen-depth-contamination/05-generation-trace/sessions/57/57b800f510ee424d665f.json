@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57b800f510ee424d665f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper compile pythia fix",
+  "task_key": "worker_paper_compile_pythia_fix_20260523T075536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_pythia_fix_20260523T075536_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "454186feffc02ae7e419d95301d76caaa73eabf74c2ffe1d1e16c210202cb55d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇报：\n\n**编译状态**：0 errors，PDF 生成成功（18 页总计）。\n\n**Pythia-1.4B AUC 数据一致性**：Table 2 与 Table 10 完全一致 ✓\n\n| Depth Pair | Table 2 | Table 10 | 匹配 |\n|---|---|---|---|\n| 0v1 | .9722 | .9722 | ✓ |\n| 1v2 | .6074 | .6074 | ✓ |\n| 2v3 | .5440 | .5440 | ✓ |\n| 3v4 | .5051 | .5051 | ✓ |\n| 4v5 | .5079 | .5079 | ✓ |\n\n与预期值完全吻合：0v1=.9722, 1v2=.6074, 2v3=.5440, 3v4=.5051, 4v5=.5079 ✓\n\n**CI 一致性**：\n- 1v2 CI：两表均为 [.598, .617] ✓\n- 2v3 CI：两表均为 [.534, .554] ✓\n\n**页数**：正文 8 页（pages 1-8），Limitations 从第 9 页开始（不计入页数限制），符合 EMNLP 2026 要求 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-pythia-fix.md"
+}

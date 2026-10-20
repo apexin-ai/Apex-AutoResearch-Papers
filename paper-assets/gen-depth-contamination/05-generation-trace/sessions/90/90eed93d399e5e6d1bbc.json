@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90eed93d399e5e6d1bbc",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra kill westd qwen cont duplicate",
+  "task_key": "worker_infra_kill-westd-qwen-cont-duplicate_20260520T003725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-westd-qwen-cont-duplicate_20260520T003725_result.json",
+    "occurrence": 1,
+    "bytes": 292,
+    "sha256": "deac24976ff85955c9b6234701fcfee1e52ef1834b1536f41507715fc4923cbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-42896 当前状态：\n\n- **tmux**: 无任何 session\n- **deberta_c4_1b5 进程**: 无\n- **cuda:0**: 空闲（0% utilization, 0 MiB）\n- **cuda:1**: 空闲（0% utilization, 0 MiB）\n\nqwen_cont256 没有在 westd 上运行，两块 GPU 均已空闲，无需 kill。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-westd-qwen-cont-duplicate.md"
+}

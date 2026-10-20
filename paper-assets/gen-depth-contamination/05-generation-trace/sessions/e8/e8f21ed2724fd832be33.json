@@ -1,0 +1,544 @@
+{
+  "schema_version": "1.0",
+  "id": "e8f21ed2724fd832be33",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "audit related work completeness",
+  "task_key": "worker_audit_related_work_completeness_20260514T021616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_related_work_completeness_20260514T021616.log",
+    "occurrence": 1,
+    "bytes": 50444,
+    "sha256": "da0c76872fa7c66b30151e5c9451fa77972d02a1ed9951db266dfb77e231f63f"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 2,
+      "tool_result": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "3821aa19-5666-4636-bd3d-9d35c3af77c8",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "b5da37ae-109e-4329-b654-f9a36b6374ac",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778742600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "6d5ad634-27b9-49be-bb2f-30ffbc89f9b3",
+                "session_id": "3821aa19-5666-4636-bd3d-9d35c3af77c8"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the related_work.tex and references.bib files to conduct the review.",
+              "signature": "EosCClkIDRgCKkBVEFNEPCqU/0J7JTpRhwhZH2jgT24JBnmmB+mYfK/KR/3oi/kR/WQ46ULUs5/OHqW31SCrftO+UJOt0tZ9BPfjMg9jbGF1ZGUtb3B1cy00LTY4ABIMJ+NYtT+M4nLRUcyXGgxOhy7TK1sgeWwKWdAiMI4nAMYNELo3CJzrVpYVmHnZ6WtfAIPqfUk5/G1IQpP8azi+NwZF/rQICEuly4owSypgOur7dZGLXjriH1jc6vqC/xyuIceoYVfV2rKu2G3FRUAT+HbLVv7QSIERZT4dTU1uSv3cJpFYnbZ61pQD8jD/z7MvUwEWf6coHdxylaQSGuS4/x5T8boflEIYIsPzNCJoGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3821aa19-5666-4636-bd3d-9d35c3af77c8",
+            "uuid": "73947c33-5f56-4303-818a-045c7d65af41",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BXejwQV5r84Kz8HgmvXq33",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11654,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11654
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gy7vxZFb6TyQcFRZKMp5GW",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3821aa19-5666-4636-bd3d-9d35c3af77c8",
+            "uuid": "ad516dd2-d805-4308-9d03-64471945a138",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BXejwQV5r84Kz8HgmvXq33",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11654,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11654
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T02:16:27.336Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gy7vxZFb6TyQcFRZKMp5GW",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Model Collapse and Recursive Generation.}\n5\tTraining on model-generated data can cause progressive distribution shift known as \\emph{model collapse}.\n6\tShumailov et al.~\\cite{shumailov2024collapse} showed that iteratively training language models on their own outputs leads to irreversible tail-distribution degradation, with minority modes vanishing across generations.\n7\tAlemohammad et al.~\\cite{alemohammad2024selfconsuming} formalized this for self-consuming generative models, proving convergence to a fixed point under mild regularity conditions.\n8\tDohmatob et al.~\\cite{dohmatob2024model} derived scaling laws for collapse, demonstrating that tail probability mass is lost at rates predictable from model and data scale.\n9\tSchaeffer et al.~\\cite{schaeffer2025position} organized the fragmented literature into a taxonomy of eight definitions across three families.\n10\tOur $\\Kstar$ aligns with their Family~B (distributional deformation), specifically D4 (collapsing variance) and D6 (mode entanglement)---the features that degrade most rapidly in our experiments are precisely variance-based surprisal measures.\n11\tKazdan et al.~\\cite{kazdan2025collapse} distinguished \\emph{replace} and \\emph{accumulate} regimes: in the replace regime each generation completely supplants its predecessor, producing faster collapse.\n12\tOur prompt-chain protocol operates in the replace regime, so $\\Kempirical = 2$ is a conservative lower bound; the accumulate regime would yield slower degradation and higher $\\Kstar$.\n13\tShi et al.~\\cite{shi2025generalization} identified a generalization-to-memorization transition in recursively trained models, providing cross-modal evidence that information loss is progressive.\n14\tThese works characterize the macro dynamics of collapse but do not provide tools for per-text generational depth estimation.\n15\t\n16\t\\paragraph{Binary Synthetic Text Detection.}\n17\tDistinguishing machine-generated from human-written text is a well-studied binary classification problem.\n18\tZellers et al.~\\cite{zellers2019grover} demonstrated that the generating model itself is an effective detector, while Ippolito et al.~\\cite{ippolito2020detection} analyzed how detection difficulty scales with generation quality.\n19\tRecent zero-shot methods have narrowed the gap: Mitchell et al.~\\cite{mitchell2023detectgpt} introduced DetectGPT, which uses probability curvature to detect machine-generated text without access to the generating model.\n20\tDivEye~\\cite{basani2026diveye} uses surprisal diversity features to detect synthetic text without generator-specific training data, and Min-K\\%++~\\cite{zhang2024minkpp} adapts membership inference techniques to flag model-generated passages via outlier token likelihoods.\n21\tCoDeC~\\cite{zawalski2026codec} frames contamination detection as in-context learning, calibrating thresholds from few-shot exemplars.\n22\t\n23\tAll these methods produce binary outputs and do not distinguish generational depth.\n24\tThe connection to membership inference is instructive: Min-K\\%++ and related approaches test whether a text appeared in training data---a related but distinct question from how many recursive generation steps it has undergone.\n25\tA further limitation is that binary detectors cannot separate beneficial recursive generation (e.g., self-refinement, where a model iteratively improves its own output) from harmful recursive contamination, creating systematic false positives when applied to curated synthetic data.\n26\tBinary features are designed for the human-vs.-synthetic boundary and are not expected to capture fine-grained depth differences, as the distributional shift between adjacent generations is orders of magnitude smaller than the shift between human and first-generation text.\n27\t\n28\t\\paragraph{Data Selection and Curation.}\n29\tPrincipled data selection methods improve training corpus quality through distribution matching and deduplication.\n30\tDSIR~\\cite{xie2023dsir} selects pretraining data by importance resampling against a target distribution.\n31\tD4~\\cite{tirumala2024d4} combines deduplication with diversification to reduce redundancy, and DoReMi~\\cite{xie2024doremi} learns domain weights via a proxy model to optimize downstream performance.\n32\tThese methods operate on distributional properties of the corpus but do not estimate whether individual documents have undergone recursive generation.\n33\t\n34\tThe closest prior work is Drayson et al.~\\cite{drayson2025}, who combined binary machine-generated text detection with stratified importance resampling (SIR) to filter synthetic content and prevent model collapse.\n35\tTheir approach is a special case of our graduated filtering framework: when $\\Kstar = 1$, ordinal depth estimation reduces to binary classification, and depth-aware curation degenerates to their SIR-based scheme.\n36\tWe generalize this binary formulation to ordinal depth estimation, enabling finer-grained curation that preserves mildly contaminated text (depth~1, retaining most original signal) while removing deeply corrupted text (depth~$\\geq 3$).\n37\tAmin et al.~\\cite{amin2025escaping} demonstrated that even weak quality signals suffice to escape model collapse when applied iteratively, suggesting that approximate depth estimates beyond $\\Kempirical$ may remain practically useful.\n38\tGambetta et al.~\\cite{gambetta2025surplexity} proposed surplexity as a text quality metric correlated with generative degradation, though without explicit depth calibration.\n39\t\n40\t\\paragraph{Watermarking and Provenance.}\n41\tAn alternative approach embeds identifiers at generation time.\n42\tKirchenbauer et al.~\\cite{kirchenbauer2023watermark} proposed statistical watermarking for LLM outputs by partitioning the vocabulary into green and red token lists conditioned on preceding context.\n43\tWatermarking is complementary to depth estimation: it requires control over the generation process and cooperation from providers, whereas our method operates post-hoc on unwatermarked text.\n44\tThe two approaches address different threat models---watermarking assumes a cooperative generator, while depth estimation targets uncontrolled settings where provenance metadata is unavailable."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3821aa19-5666-4636-bd3d-9d35c3af77c8",
+            "uuid": "dbab4f60-6373-438d-b4a8-de4a2b55626c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex",
+                "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Model Collapse and Recursive Generation.}\nTraining on model-generated data can cause progressive distribution shift known as \\emph{model collapse}.\nShumailov et al.~\\cite{shumailov2024collapse} showed that iteratively training language models on their own outputs leads to irreversible tail-distribution degradation, with minority modes vanishing across generations.\nAlemohammad et al.~\\cite{alemohammad2024selfconsuming} formalized this for self-consuming generative models, proving convergence to a fixed point under mild regularity conditions.\nDohmatob et al.~\\cite{dohmatob2024model} derived scaling laws for collapse, demonstrating that tail probability mass is lost at rates predictable from model and data scale.\nSchaeffer et al.~\\cite{schaeffer2025position} organized the fragmented literature into a taxonomy of eight definitions across three families.\nOur $\\Kstar$ aligns with their Family~B (distributional deformation), specifically D4 (collapsing variance) and D6 (mode entanglement)---the features that degrade most rapidly in our experiments are precisely variance-based surprisal measures.\nKazdan et al.~\\cite{kazdan2025collapse} distinguished \\emph{replace} and \\emph{accumulate} regimes: in the replace regime each generation completely supplants its predecessor, producing faster collapse.\nOur prompt-chain protocol operates in the replace regime, so $\\Kempirical = 2$ is a conservative lower bound; the accumulate regime would yield slower degradation and higher $\\Kstar$.\nShi et al.~\\cite{shi2025generalization} identified a generalization-to-memorization transition in recursively trained models, providing cross-modal evidence that information loss is progressive.\nThese works characterize the macro dynamics of collapse but do not provide tools for per-text generational depth estimation.\n\n\\paragraph{Binary Synthetic Text Detection.}\nDistinguishing machine-generated from human-written text is a well-studied binary classification problem.\nZellers et al.~\\cite{zellers2019grover} demonstrated that the generating model itself is an effective detector, while Ippolito et al.~\\cite{ippolito2020detection} analyzed how detection difficulty scales with generation quality.\nRecent zero-shot methods have narrowed the gap: Mitchell et al.~\\cite{mitchell2023detectgpt} introduced DetectGPT, which uses probability curvature to detect machine-generated text without access to the generating model.\nDivEye~\\cite{basani2026diveye} uses surprisal diversity features to detect synthetic text without generator-specific training data, and Min-K\\%++~\\cite{zhang2024minkpp} adapts membership inference techniques to flag model-generated passages via outlier token likelihoods.\nCoDeC~\\cite{zawalski2026codec} frames contamination detection as in-context learning, calibrating thresholds from few-shot exemplars.\n\nAll these methods produce binary outputs and do not distinguish generational depth.\nThe connection to membership inference is instructive: Min-K\\%++ and related approaches test whether a text appeared in training data---a related but distinct question from how many recursive generation steps it has undergone.\nA further limitation is that binary detectors cannot separate beneficial recursive generation (e.g., self-refinement, where a model iteratively improves its own output) from harmful recursive contamination, creating systematic false positives when applied to curated synthetic data.\nBinary features are designed for the human-vs.-synthetic boundary and are not expected to capture fine-grained depth differences, as the distributional shift between adjacent generations is orders of magnitude smaller than the shift between human and first-generation text.\n\n\\paragraph{Data Selection and Curation.}\nPrincipled data selection methods improve training corpus quality through distribution matching and deduplication.\nDSIR~\\cite{xie2023dsir} selects pretraining data by importance resampling against a target distribution.\nD4~\\cite{tirumala2024d4} combines deduplication with diversification to reduce redundancy, and DoReMi~\\cite{xie2024doremi} learns domain weights via a proxy model to optimize downstream performance.\nThese methods operate on distributional properties of the corpus but do not estimate whether individual documents have undergone recursive generation.\n\nThe closest prior work is Drayson et al.~\\cite{drayson2025}, who combined binary machine-generated text detection with stratified importance resampling (SIR) to filter synthetic content and prevent model collapse.\nTheir approach is a special case of our graduated filtering framework: when $\\Kstar = 1$, ordinal depth estimation reduces to binary classification, and depth-aware curation degenerates to their SIR-based scheme.\nWe generalize this binary formulation to ordinal depth estimation, enabling finer-grained curation that preserves mildly contaminated text (depth~1, retaining most original signal) while removing deeply corrupted text (depth~$\\geq 3$).\nAmin et al.~\\cite{amin2025escaping} demonstrated that even weak quality signals suffice to escape model collapse when applied iteratively, suggesting that approximate depth estimates beyond $\\Kempirical$ may remain practically useful.\nGambetta et al.~\\cite{gambetta2025surplexity} proposed surplexity as a text quality metric correlated with generative degradation, though without explicit depth calibration.\n\n\\paragraph{Watermarking and Provenance.}\nAn alternative approach embeds identifiers at generation time.\nKirchenbauer et al.~\\cite{kirchenbauer2023watermark} proposed statistical watermarking for LLM outputs by partitioning the vocabulary into green and red token lists conditioned on preceding context.\nWatermarking is complementary to depth estimation: it requires control over the generation process and cooperation from providers, whereas our method operates post-hoc on unwatermarked text.\nThe two approaches address different threat models---watermarking assumes a cooperative generator, while depth estimation targets uncontrolled settings where provenance metadata is unavailable.",
+                "numLines": 44,
+                "startLine": 1,
+                "totalLines": 44
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ErAD2VjqxQyGyaGjhmDDoL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3821aa19-5666-4636-bd3d-9d35c3af77c8",
+            "uuid": "e91dfcf4-2c89-4b23-b584-23f8fb7b0614",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BXejwQV5r84Kz8HgmvXq33",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11654,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11654
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T02:16:27.441Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ErAD2VjqxQyGyaGjhmDDoL",
+              "type": "tool_result",
+              "content": "1\t% === References for gen-depth-contamination ===\n2\t% Source: literature_map.yaml — PENDING formal verification via verify_references\n3\t% NOTE: All entries require online verification before final submission\n4\t\n5\t% === Must-Cite ===\n6\t\n7\t@inproceedings{drayson2025,\n8\t  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n9\t  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n10\t  booktitle={Proceedings of EMNLP},\n11\t  year={2025},\n12\t  url={https://arxiv.org/abs/2502.15654}\n13\t}\n14\t\n15\t@inproceedings{schaeffer2025position,\n16\t  title={Position: Model Collapse Does Not Mean What You Think},\n17\t  author={Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Anirudh and Koyejo, Sanmi},\n18\t  booktitle={Proceedings of ICML},\n19\t  year={2025},\n20\t  url={https://arxiv.org/abs/2503.03150}\n21\t}\n22\t\n23\t@inproceedings{kazdan2025collapse,\n24\t  title={Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World},\n25\t  author={Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David and Koyejo, Sanmi},\n26\t  booktitle={Proceedings of ICML},\n27\t  year={2025},\n28\t  url={https://arxiv.org/abs/2410.16713}\n29\t}\n30\t\n31\t@inproceedings{shi2025generalization,\n32\t  title={A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective},\n33\t  author={Shi, Shiliang and Wu, Qiong and Zhang, Zhen and Zhang, Jing and Tao, Dacheng and Qu, Xiangyang},\n34\t  booktitle={Advances in NeurIPS},\n35\t  year={2025},\n36\t  note={Spotlight},\n37\t  url={https://arxiv.org/abs/2509.16499}\n38\t}\n39\t\n40\t@inproceedings{mitchell2023detectgpt,\n41\t  title={{DetectGPT}: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n42\t  author={Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n43\t  booktitle={Proceedings of ICML},\n44\t  year={2023}\n45\t}\n46\t\n47\t% === Should-Cite ===\n48\t\n49\t@article{basani2026diveye,\n50\t  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},\n51\t  author={Basani, Yash and Chen, Liyan},\n52\t  journal={Transactions on Machine Learning Research},\n53\t  year={2026},\n54\t  url={https://arxiv.org/abs/2509.18880}\n55\t}\n56\t\n57\t@inproceedings{amin2025escaping,\n58\t  title={Escaping Collapse: The Strength of Weak Data for Large Language Model Training},\n59\t  author={Amin, Kareem and others},\n60\t  booktitle={Advances in NeurIPS},\n61\t  year={2025},\n62\t  url={https://arxiv.org/abs/2502.08924}\n63\t}\n64\t\n65\t@inproceedings{zawalski2026codec,\n66\t  title={{CoDeC}: Detecting Data Contamination in {LLM}s via In-Context Learning},\n67\t  author={Zawalski, Kacper and others},\n68\t  booktitle={Proceedings of ICLR},\n69\t  year={2026},\n70\t  url={https://arxiv.org/abs/2510.27055}\n71\t}\n72\t\n73\t@article{gambetta2025surplexity,\n74\t  title={Learning by Surprise: Surplexity for Mitigating Model Collapse},\n75\t  author={Gambetta, Lorenzo and others},\n76\t  journal={arXiv preprint arXiv:2410.12341},\n77\t  year={2025},\n78\t  url={https://arxiv.org/abs/2410.12341}\n79\t}\n80\t\n81\t@inproceedings{zhang2024minkpp,\n82\t  title={Min-{K}\\%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models},\n83\t  author={Zhang, Jingyang and Zheng, Jingwei and Gao, Jing and Miao, Chunyan},\n84\t  booktitle={Proceedings of EMNLP},\n85\t  year={2024}\n86\t}\n87\t\n88\t@article{shumailov2024collapse,\n89\t  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n90\t  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n91\t  journal={Nature},\n92\t  year={2024}\n93\t}\n94\t\n95\t@inproceedings{alemohammad2024selfconsuming,\n96\t  title={Self-Consuming Generative Models Go {MAD}},\n97\t  author={Alemohammad, Sina and Casco-Rodriguez, Josue and Luber, Lorenzo and Babaei, Ahmed Imtiaz and Letizia, Daniel and Bastani, Osbert and Baraniuk, Richard},\n98\t  booktitle={Proceedings of ICLR},\n99\t  year={2024}\n100\t}\n101\t\n102\t@inproceedings{dohmatob2024model,\n103\t  title={A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n104\t  author={Dohmatob, Elvis and Feng, Yunzhen and Yang, Pin-Yu and Charton, Francois and Kempe, Julia},\n105\t  booktitle={Proceedings of ICML},\n106\t  year={2024}\n107\t}\n108\t\n109\t@inproceedings{xie2023dsir,\n110\t  title={Data Selection with Importance Resampling},\n111\t  author={Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n112\t  booktitle={Proceedings of ICML},\n113\t  year={2023}\n114\t}\n115\t\n116\t@inproceedings{tirumala2024d4,\n117\t  title={{D4}: Improving {LLM} Pretraining via Document De-Duplication and Diversification},\n118\t  author={Tirumala, Kushal and Markosyan, Aram and Zettlemoyer, Luke and Aghajanyan, Armen},\n119\t  booktitle={Advances in NeurIPS},\n120\t  year={2023}\n121\t}\n122\t\n123\t@inproceedings{xie2024doremi,\n124\t  title={{DoReMi}: Optimizing Data Mixtures Speeds Up Language Model Pretraining},\n125\t  author={Xie, Sang Michael and Pham, Hieu and Dong, Xuanyi and Du, Nan and Liu, Hanxiao and Lu, Yifeng and Liang, Percy and Le, Quoc V. and Ma, Tengyu and Yu, Adams Wei},\n126\t  booktitle={Advances in NeurIPS},\n127\t  year={2023}\n128\t}\n129\t\n130\t@inproceedings{kirchenbauer2023watermark,\n131\t  title={A Watermark for Large Language Models},\n132\t  author={Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n133\t  booktitle={Proceedings of ICML},\n134\t  year={2023}\n135\t}\n136\t\n137\t@inproceedings{zellers2019grover,\n138\t  title={Defending Against Neural Fake News},\n139\t  author={Zellers, Rowan and Holtzman, Ari and Rashkin, Hannah and Bisk, Yonatan and Farhadi, Ali and Roesner, Franziska and Choi, Yejin},\n140\t  booktitle={Advances in NeurIPS},\n141\t  year={2019}\n142\t}\n143\t\n144\t@inproceedings{ippolito2020detection,\n145\t  title={Automatic Detection of Generated Text is Easiest when Humans are Fooled},\n146\t  author={Ippolito, Daphne and Duckworth, Daniel and Callison-Burch, Chris and Eck, Douglas},\n147\t  booktitle={Proceedings of ACL},\n148\t  year={2020}\n149\t}\n150\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3821aa19-5666-4636-bd3d-9d35c3af77c8",
+            "uuid": "6e1c7a04-cf90-4901-9523-76f93e4153bb",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib",
+                "content": "% === References for gen-depth-contamination ===\n% Source: literature_map.yaml — PENDING formal verification via verify_references\n% NOTE: All entries require online verification before final submission\n\n% === Must-Cite ===\n\n@inproceedings{drayson2025,\n  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n  booktitle={Proceedings of EMNLP},\n  year={2025},\n  url={https://arxiv.org/abs/2502.15654}\n}\n\n@inproceedings{schaeffer2025position,\n  title={Position: Model Collapse Does Not Mean What You Think},\n  author={Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Anirudh and Koyejo, Sanmi},\n  booktitle={Proceedings of ICML},\n  year={2025},\n  url={https://arxiv.org/abs/2503.03150}\n}\n\n@inproceedings{kazdan2025collapse,\n  title={Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World},\n  author={Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David and Koyejo, Sanmi},\n  booktitle={Proceedings of ICML},\n  year={2025},\n  url={https://arxiv.org/abs/2410.16713}\n}\n\n@inproceedings{shi2025generalization,\n  title={A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective},\n  author={Shi, Shiliang and Wu, Qiong and Zhang, Zhen and Zhang, Jing and Tao, Dacheng and Qu, Xiangyang},\n  booktitle={Advances in NeurIPS},\n  year={2025},\n  note={Spotlight},\n  url={https://arxiv.org/abs/2509.16499}\n}\n\n@inproceedings{mitchell2023detectgpt,\n  title={{DetectGPT}: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n  author={Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n  booktitle={Proceedings of ICML},\n  year={2023}\n}\n\n% === Should-Cite ===\n\n@article{basani2026diveye,\n  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},\n  author={Basani, Yash and Chen, Liyan},\n  journal={Transactions on Machine Learning Research},\n  year={2026},\n  url={https://arxiv.org/abs/2509.18880}\n}\n\n@inproceedings{amin2025escaping,\n  title={Escaping Collapse: The Strength of Weak Data for Large Language Model Training},\n  author={Amin, Kareem and others},\n  booktitle={Advances in NeurIPS},\n  year={2025},\n  url={https://arxiv.org/abs/2502.08924}\n}\n\n@inproceedings{zawalski2026codec,\n  title={{CoDeC}: Detecting Data Contamination in {LLM}s via In-Context Learning},\n  author={Zawalski, Kacper and others},\n  booktitle={Proceedings of ICLR},\n  year={2026},\n  url={https://arxiv.org/abs/2510.27055}\n}\n\n@article{gambetta2025surplexity,\n  title={Learning by Surprise: Surplexity for Mitigating Model Collapse},\n  author={Gambetta, Lorenzo and others},\n  journal={arXiv preprint arXiv:2410.12341},\n  year={2025},\n  url={https://arxiv.org/abs/2410.12341}\n}\n\n@inproceedings{zhang2024minkpp,\n  title={Min-{K}\\%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models},\n  author={Zhang, Jingyang and Zheng, Jingwei and Gao, Jing and Miao, Chunyan},\n  booktitle={Proceedings of EMNLP},\n  year={2024}\n}\n\n@article{shumailov2024collapse,\n  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n  journal={Nature},\n  year={2024}\n}\n\n@inproceedings{alemohammad2024selfconsuming,\n  title={Self-Consuming Generative Models Go {MAD}},\n  author={Alemohammad, Sina and Casco-Rodriguez, Josue and Luber, Lorenzo and Babaei, Ahmed Imtiaz and Letizia, Daniel and Bastani, Osbert and Baraniuk, Richard},\n  booktitle={Proceedings of ICLR},\n  year={2024}\n}\n\n@inproceedings{dohmatob2024model,\n  title={A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n  author={Dohmatob, Elvis and Feng, Yunzhen and Yang, Pin-Yu and Charton, Francois and Kempe, Julia},\n  booktitle={Proceedings of ICML},\n  year={2024}\n}\n\n@inproceedings{xie2023dsir,\n  title={Data Selection with Importance Resampling},\n  author={Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n  booktitle={Proceedings of ICML},\n  year={2023}\n}\n\n@inproceedings{tirumala2024d4,\n  title={{D4}: Improving {LLM} Pretraining via Document De-Duplication and Diversification},\n  author={Tirumala, Kushal and Markosyan, Aram and Zettlemoyer, Luke and Aghajanyan, Armen},\n  booktitle={Advances in NeurIPS},\n  year={2023}\n}\n\n@inproceedings{xie2024doremi,\n  title={{DoReMi}: Optimizing Data Mixtures Speeds Up Language Model Pretraining},\n  author={Xie, Sang Michael and Pham, Hieu and Dong, Xuanyi and Du, Nan and Liu, Hanxiao and Lu, Yifeng and Liang, Percy and Le, Quoc V. and Ma, Tengyu and Yu, Adams Wei},\n  booktitle={Advances in NeurIPS},\n  year={2023}\n}\n\n@inproceedings{kirchenbauer2023watermark,\n  title={A Watermark for Large Language Models},\n  author={Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n  booktitle={Proceedings of ICML},\n  year={2023}\n}\n\n@inproceedings{zellers2019grover,\n  title={Defending Against Neural Fake News},\n  author={Zellers, Rowan and Holtzman, Ari and Rashkin, Hannah and Bisk, Yonatan and Farhadi, Ali and Roesner, Franziska and Choi, Yejin},\n  booktitle={Advances in NeurIPS},\n  year={2019}\n}\n\n@inproceedings{ippolito2020detection,\n  title={Automatic Detection of Generated Text is Easiest when Humans are Fooled},\n  author={Ippolito, Daphne and Duckworth, Daniel and Callison-Burch, Chris and Eck, Douglas},\n  booktitle={Proceedings of ACL},\n  year={2020}\n}\n",
+                "numLines": 150,
+                "startLine": 1,
+                "totalLines": 150
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me analyze the related work systematically against all the check items.\n\n## 1. Key Baseline Method Coverage\n\n### Binary AI text detection:\n- **DivEye (Basani 2026)**: ✅ Cited in line 20, bib entry exists\n- **Binoculars (Hans et al. 2024)**: ❌ NOT cited\n- **DetectGPT (Mitchell et al. 2023)**: ✅ Cited in line 19, bib entry exists\n\n\n- **Min-K%++ (Zhang 2024)**: ✅ Cited in line 20, bib entry exists\n- **CoDeC (Zawalski 2026)**: ✅ Cited in line 21, bib entry exists\n- **GLTR (Gehrmann et al. 2019)**: ❌ NOT cited\n\n### Model collapse:\n- **Shumailov et al. 2024 (Nature)**: ✅ Cited in line 6\n- **Alemohammad et al. 2024 (self-consuming)**: ✅ Cited in line 7\n- **Dohmatob et al. 2024 (scaling)**: Still checking coverage...\n\n### Data selection/filtering:\n- **DSIR (Xie et al. 2023)**: ✅ Cited in line 30\n- **D4 (Tirumala et al. 2024)**: ✅ Cited in line 31\n- **DoReMi (Xie et al. 2024)**: ✅ Cited in line 31\n\n### Recursive contamination:\n- **Drayson et al. 2025**: ✅ Cited in line 34\n\n### Ordinal classification:\n- ❌ No ordinal regression baselines cited (e.g., CORAL, ordinal regression methods)\n\nNow I'm looking at what related work might be missing, particularly around data contamination detection methods.\n\nThe paper doesn't address detecting pretraining data in LLMs or benchmark contamination specifically — works like Shi et al. and Golchin & Surdeanu are absent, though this is somewhat tangential to the main focus. Text quality filtering approaches like CCNet, RedPajama, and FineWeb aren't discussed either. Watermarking is covered through Kirchenbauer et al., though other recent approaches like Christ et al. and Zhao et al. could strengthen that section. Statistical fingerprinting of LLM outputs isn't explicitly covered as a topic.\n\nNow I'm checking the citations for authenticity. The basani2026diveye reference points to an arXiv ID from September 2025 with a TMLR 2026 publication, which seems plausible but worth verifying given the future date. The zawalski2026codec citation also appears to be from 2026, and I'm examining whether these are legitimate references or potentially fabricated.\n\nFor shi2025generalization, the arXiv ID from September 2025 aligns with a NeurIPS 2025 Spotlight paper, and while Dacheng Tao is a recognized researcher, I should flag the other authors for verification. I'm also noticing a discrepancy with tirumala2024d4, which is listed as 2023 in the bibliography but cited differently.\n\nActually, looking closer at the timeline: Tirumala's D4 paper was published at NeurIPS 2023, so the bib year is correct despite the task description saying 2024. Similarly, xie2024doremi has a key/year mismatch—the bib shows 2023, which is when DoReMi actually appeared at NeurIPS. For zhang2024minkpp, the task just references \"Zhang 2024\" without specifying which author or full context, so I should note that Jingyang Zhang is the first author on Min-K%++.\n\nThe most concerning citations are the ones with very high arXiv numbers that don't align with their claimed dates—shi2025generalization with arXiv:2509.16499 and basani2026diveye with arXiv:2509.18880 both need verification. zawalski2026codec's arXiv:2510.27055 is similarly suspicious. gambetta2025surplexity at least has an October 2024 timestamp that's more plausible, though \"surplexity\" as a term could go either way.\n\nI'm also noticing year mismatches in the bibliography where the citation keys don't align with the actual year fields—tirumala2024d4 and xie2024doremi both claim 2024 in their keys but list 2023 in the metadata.\n\nLooking at the related work structure, each of the four main sections has a clear gap statement, which is good. But there's a notable absence of any discussion around ordinal classification, which seems like it should be covered given the paper's focus.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3821aa19-5666-4636-bd3d-9d35c3af77c8",
+            "uuid": "6d1ab825-abc6-4852-ae91-bab079ba8c98",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MSNUhSKsQKBaVKd1mX7HDm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4156,
+                "cache_read_input_tokens": 23495,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4156
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Related Work 审查报告\n\n---\n\n### 1. 关键 baseline 覆盖情况\n\n| 方法 | 状态 | 备注 |\n|------|------|------|\n| DivEye (Basani 2026) | ✅ | line 20 |\n| **Binoculars (Hans et al. 2024)** | ❌ 缺失 | 重要 zero-shot 检测方法，与 DetectGPT/Min-K%++ 同级 |\n| DetectGPT (Mitchell et al. 2023) | ✅ | line 19 |\n| Min-K%++ (Zhang 2024) | ✅ | line 20 |\n| CoDeC (Zawalski 2026) | ✅ | line 21 |\n| **GLTR (Gehrmann et al. 2019)** | ❌ 缺失 | 早期 statistical detection 开创工作，作为 detection 历史线应提及 |\n| Shumailov et al. 2024 (Nature) | ✅ | line 6 |\n| Alemohammad et al. 2024 | ✅ | line 7 |\n| Dohmatob et al. 2024 | ✅ | line 8 |\n| Schaeffer et al. 2025 | ✅ | line 9 |\n| DSIR (Xie et al. 2023) | ✅ | line 30 |\n| D4 (Tirumala et al. 2023) | ✅ | line 31 |\n| DoReMi (Xie et al. 2023) | ✅ | line 31 |\n| Drayson et al. 2025 | ✅ | line 34，定位准确 |\n| **Ordinal classification baselines** | ❌ 缺失 | 无任何 ordinal regression 引用（见下） |\n\n---\n\n### 2. 潜在遗漏的重要相关工作\n\n**高优先级（建议补充）：**\n\n1. **Binoculars (Hans et al., 2024)** — 用两个 LLM 的 cross-perplexity 比值做 zero-shot 检测，是当前 binary detection 的 SOTA 之一。Binary detection 段落列了 DetectGPT/DivEye/Min-K%++/CoDeC 但漏了 Binoculars，不合理。\n\n2. **GLTR (Gehrmann et al., 2019)** — 基于 token-level 统计（top-k 分布）的早期检测方法，是 statistical fingerprinting 的奠基工作。与论文使用 surprisal 特征的方法论直接相关。\n\n3. **Ordinal regression/classification methods** — 论文将 depth estimation 建模为 ordinal 问题，但 related work 完全没有提及 ordinal classification 文献（如 CORAL [Cao et al. 2020]、ordinal regression 经典方法）。建议加一小段说明为什么 ordinal 建模合适，以及现有 ordinal 方法在此场景的局限。\n\n**中优先级（视篇幅考虑）：**\n\n4. **Benchmark contamination detection** — Shi et al. \"Detecting Pretraining Data from Large Language Models\" (2023), Golchin & Surdeanu \"Time Travel in LLMs\" (2024) 等。与本文的 \"contamination\" 概念有语义重叠，读者可能期望看到区分说明。\n\n5. **Text quality filtering for pretraining** — CCNet (Wenzek et al. 2020)、RefinedWeb (Penedo et al. 2023)、FineWeb。Data Selection 段落只覆盖了 distribution-matching 类方法，heuristic quality filtering 这条线缺失。这些方法与 depth-aware curation 是替代方案关系。\n\n6. **Fast-DetectGPT (Bao et al. 2024)** — DetectGPT 的加速版本，已成为常用 baseline。\n\n**低优先级（可不加）：**\n\n7. **Watermarking 扩展** — 当前只引了 Kirchenbauer 2023 一篇，作为一个独立段落稍薄。但如果篇幅紧张，一篇代表性引用够了。\n\n8. **Information-theoretic analysis** — 与论文方法论关联不够直接，可省略。\n\n---\n\n### 3. 引用真实性抽查\n\n**需验证的可疑引用（2025-2026）：**\n\n| 引用 | 可疑点 | 风险级别 |\n|------|--------|---------|\n| `shi2025generalization` arXiv:2509.16499 | arXiv ID 为 2509.16499（2025 年 9 月），NeurIPS 2025 Spotlight。作者含 Dacheng Tao（真实知名学者），但其余作者组合需验证 | 中 |\n| `basani2026diveye` arXiv:2509.18880 | TMLR 2026 发表。\"Yash Basani\" 不是该领域常见作者名，需验证 | 中 |\n| `zawalski2026codec` arXiv:2510.27055 | ICLR 2026。使用了 `{others}` 省略作者列表，需补全并验证 | 中 |\n| `gambetta2025surplexity` arXiv:2410.12341 | \"Surplexity\" 是自造术语，arXiv ID (2410) 对应 2024 年 10 月，相对可查 | 低-中 |\n\n**bib 文件格式问题：**\n\n- `tirumala2024d4`：bib key 含 \"2024\" 但 `year={2023}`，NeurIPS 2023 — 年份字段正确但 key 误导\n- `xie2024doremi`：同上，key 含 \"2024\" 但 `year={2023}` — NeurIPS 2023\n- `zawalski2026codec` 和 `amin2025escaping`：作者字段用 `{others}` 偷懒，最终提交前必须补全完整作者列表\n\n**bib 文件头部声明（line 2-3）明确标注 \"PENDING formal verification\"** — 说明团队自身也意识到需要验证。建议在提交前用 Semantic Scholar API 或手动逐条核实所有 2025-2026 引用。\n\n---\n\n### 4. 结构完整性\n\n**当前结构（4 段）：**\n1. Model Collapse and Recursive Generation ✅\n2. Binary Synthetic Text Detection ✅\n3. Data Selection and Curation ✅\n4. Watermarking and Provenance ✅\n\n**Gap statement 检查：**\n- ¶1 line 14: \"do not provide tools for per-text generational depth estimation\" ✅\n- ¶2 lines 23-26: \"produce binary outputs and do not distinguish generational depth\" ✅\n- ¶3 lines 35-36: \"We generalize this binary formulation to ordinal depth estimation\" ✅\n- ¶4 lines 43-44: \"watermarking assumes a cooperative generator, while depth estimation targets uncontrolled settings\" ✅\n\n每段结尾的 gap statement 都清晰地指向本文贡献，叙事逻辑通顺。\n\n**结构性缺陷：**\n\n- **缺少 Ordinal Classification 段落**：论文核心贡献是将 binary 问题升级为 ordinal 问题，但 related work 没有任何 ordinal regression/classification 文献。这是一个明显的结构缺口——reviewer 几乎一定会问 \"why ordinal and not standard multi-class?\"。建议在 Binary Detection 和 Data Selection 之间插入一段，讨论 ordinal 方法及其在 NLP 中的应用。\n\n- **Binary Detection 段落偏长**（lines 17-26, ~10 行正文）：包含了方法枚举 + 限制分析 + membership inference 联系 + false positive 讨论。可以考虑将 false positive / self-refinement 讨论移到 introduction 或 discussion。\n\n---\n\n### 改进建议清单\n\n| 优先级 | 建议 |\n|--------|------|\n| **P0** | 补充 Binoculars (Hans et al. 2024) 到 Binary Detection 段 |\n| **P0** | 新增 Ordinal Classification 段落（~5-8 行），引用 CORAL 等经典方法 |\n| **P0** | 验证所有 2025-2026 引用的真实性（bib 文件自己也标了 PENDING） |\n| **P1** | 补充 GLTR (Gehrmann et al. 2019) 作为 statistical detection 起源 |\n| **P1** | 补全 `zawalski2026codec` 和 `amin2025escaping` 的完整作者列表 |\n| **P1** | 修正 `tirumala2024d4` 和 `xie2024doremi` 的 bib key 与 year 不一致 |\n| **P2** | Data Selection 段补充 heuristic quality filtering 线（CCNet/RefinedWeb） |\n| **P2** | 考虑加一句区分 benchmark contamination detection 与本文的 generational contamination |\n| **P2** | 补充 Fast-DetectGPT 到 Binary Detection 段 |"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3821aa19-5666-4636-bd3d-9d35c3af77c8",
+            "uuid": "42c7e2f1-4673-4377-b74f-f45dd42d8b35",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MSNUhSKsQKBaVKd1mX7HDm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4156,
+                "cache_read_input_tokens": 23495,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4156
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Related Work 审查报告\n\n---\n\n### 1. 关键 baseline 覆盖情况\n\n| 方法 | 状态 | 备注 |\n|------|------|------|\n| DivEye (Basani 2026) | ✅ | line 20 |\n| **Binoculars (Hans et al. 2024)** | ❌ 缺失 | 重要 zero-shot 检测方法，与 DetectGPT/Min-K%++ 同级 |\n| DetectGPT (Mitchell et al. 2023) | ✅ | line 19 |\n| Min-K%++ (Zhang 2024) | ✅ | line 20 |\n| CoDeC (Zawalski 2026) | ✅ | line 21 |\n| **GLTR (Gehrmann et al. 2019)** | ❌ 缺失 | 早期 statistical detection 开创工作，作为 detection 历史线应提及 |\n| Shumailov et al. 2024 (Nature) | ✅ | line 6 |\n| Alemohammad et al. 2024 | ✅ | line 7 |\n| Dohmatob et al. 2024 | ✅ | line 8 |\n| Schaeffer et al. 2025 | ✅ | line 9 |\n| DSIR (Xie et al. 2023) | ✅ | line 30 |\n| D4 (Tirumala et al. 2023) | ✅ | line 31 |\n| DoReMi (Xie et al. 2023) | ✅ | line 31 |\n| Drayson et al. 2025 | ✅ | line 34，定位准确 |\n| **Ordinal classification baselines** | ❌ 缺失 | 无任何 ordinal regression 引用（见下） |\n\n---\n\n### 2. 潜在遗漏的重要相关工作\n\n**高优先级（建议补充）：**\n\n1. **Binoculars (Hans et al., 2024)** — 用两个 LLM 的 cross-perplexity 比值做 zero-shot 检测，是当前 binary detection 的 SOTA 之一。Binary detection 段落列了 DetectGPT/DivEye/Min-K%++/CoDeC 但漏了 Binoculars，不合理。\n\n2. **GLTR (Gehrmann et al., 2019)** — 基于 token-level 统计（top-k 分布）的早期检测方法，是 statistical fingerprinting 的奠基工作。与论文使用 surprisal 特征的方法论直接相关。\n\n3. **Ordinal regression/classification methods** — 论文将 depth estimation 建模为 ordinal 问题，但 related work 完全没有提及 ordinal classification 文献（如 CORAL [Cao et al. 2020]、ordinal regression 经典方法）。建议加一小段说明为什么 ordinal 建模合适，以及现有 ordinal 方法在此场景的局限。\n\n**中优先级（视篇幅考虑）：**\n\n4. **Benchmark contamination detection** — Shi et al. \"Detecting Pretraining Data from Large Language Models\" (2023), Golchin & Surdeanu \"Time Travel in LLMs\" (2024) 等。与本文的 \"contamination\" 概念有语义重叠，读者可能期望看到区分说明。\n\n5. **Text quality filtering for pretraining** — CCNet (Wenzek et al. 2020)、RefinedWeb (Penedo et al. 2023)、FineWeb。Data Selection 段落只覆盖了 distribution-matching 类方法，heuristic quality filtering 这条线缺失。这些方法与 depth-aware curation 是替代方案关系。\n\n6. **Fast-DetectGPT (Bao et al. 2024)** — DetectGPT 的加速版本，已成为常用 baseline。\n\n**低优先级（可不加）：**\n\n7. **Watermarking 扩展** — 当前只引了 Kirchenbauer 2023 一篇，作为一个独立段落稍薄。但如果篇幅紧张，一篇代表性引用够了。\n\n8. **Information-theoretic analysis** — 与论文方法论关联不够直接，可省略。\n\n---\n\n### 3. 引用真实性抽查\n\n**需验证的可疑引用（2025-2026）：**\n\n| 引用 | 可疑点 | 风险级别 |\n|------|--------|---------|\n| `shi2025generalization` arXiv:2509.16499 | arXiv ID 为 2509.16499（2025 年 9 月），NeurIPS 2025 Spotlight。作者含 Dacheng Tao（真实知名学者），但其余作者组合需验证 | 中 |\n| `basani2026diveye` arXiv:2509.18880 | TMLR 2026 发表。\"Yash Basani\" 不是该领域常见作者名，需验证 | 中 |\n| `zawalski2026codec` arXiv:2510.27055 | ICLR 2026。使用了 `{others}` 省略作者列表，需补全并验证 | 中 |\n| `gambetta2025surplexity` arXiv:2410.12341 | \"Surplexity\" 是自造术语，arXiv ID (2410) 对应 2024 年 10 月，相对可查 | 低-中 |\n\n**bib 文件格式问题：**\n\n- `tirumala2024d4`：bib key 含 \"2024\" 但 `year={2023}`，NeurIPS 2023 — 年份字段正确但 key 误导\n- `xie2024doremi`：同上，key 含 \"2024\" 但 `year={2023}` — NeurIPS 2023\n- `zawalski2026codec` 和 `amin2025escaping`：作者字段用 `{others}` 偷懒，最终提交前必须补全完整作者列表\n\n**bib 文件头部声明（line 2-3）明确标注 \"PENDING formal verification\"** — 说明团队自身也意识到需要验证。建议在提交前用 Semantic Scholar API 或手动逐条核实所有 2025-2026 引用。\n\n---\n\n### 4. 结构完整性\n\n**当前结构（4 段）：**\n1. Model Collapse and Recursive Generation ✅\n2. Binary Synthetic Text Detection ✅\n3. Data Selection and Curation ✅\n4. Watermarking and Provenance ✅\n\n**Gap statement 检查：**\n- ¶1 line 14: \"do not provide tools for per-text generational depth estimation\" ✅\n- ¶2 lines 23-26: \"produce binary outputs and do not distinguish generational depth\" ✅\n- ¶3 lines 35-36: \"We generalize this binary formulation to ordinal depth estimation\" ✅\n- ¶4 lines 43-44: \"watermarking assumes a cooperative generator, while depth estimation targets uncontrolled settings\" ✅\n\n每段结尾的 gap statement 都清晰地指向本文贡献，叙事逻辑通顺。\n\n**结构性缺陷：**\n\n- **缺少 Ordinal Classification 段落**：论文核心贡献是将 binary 问题升级为 ordinal 问题，但 related work 没有任何 ordinal regression/classification 文献。这是一个明显的结构缺口——reviewer 几乎一定会问 \"why ordinal and not standard multi-class?\"。建议在 Binary Detection 和 Data Selection 之间插入一段，讨论 ordinal 方法及其在 NLP 中的应用。\n\n- **Binary Detection 段落偏长**（lines 17-26, ~10 行正文）：包含了方法枚举 + 限制分析 + membership inference 联系 + false positive 讨论。可以考虑将 false positive / self-refinement 讨论移到 introduction 或 discussion。\n\n---\n\n### 改进建议清单\n\n| 优先级 | 建议 |\n|--------|------|\n| **P0** | 补充 Binoculars (Hans et al. 2024) 到 Binary Detection 段 |\n| **P0** | 新增 Ordinal Classification 段落（~5-8 行），引用 CORAL 等经典方法 |\n| **P0** | 验证所有 2025-2026 引用的真实性（bib 文件自己也标了 PENDING） |\n| **P1** | 补充 GLTR (Gehrmann et al. 2019) 作为 statistical detection 起源 |\n| **P1** | 补全 `zawalski2026codec` 和 `amin2025escaping` 的完整作者列表 |\n| **P1** | 修正 `tirumala2024d4` 和 `xie2024doremi` 的 bib key 与 year 不一致 |\n| **P2** | Data Selection 段补充 heuristic quality filtering 线（CCNet/RefinedWeb） |\n| **P2** | 考虑加一句区分 benchmark contamination detection 与本文的 generational contamination |\n| **P2** | 补充 Fast-DetectGPT 到 Binary Detection 段 |"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 83645,
+            "duration_api_ms": 84514,
+            "num_turns": 3,
+            "stop_reason": "end_turn",
+            "session_id": "3821aa19-5666-4636-bd3d-9d35c3af77c8",
+            "total_cost_usd": 0.23267549999999998,
+            "usage": {
+              "input_tokens": 4,
+              "cache_creation_input_tokens": 15810,
+              "cache_read_input_tokens": 35336,
+              "output_tokens": 4583,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 15810,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 4385,
+                  "cache_read_input_tokens": 23495,
+                  "cache_creation_input_tokens": 4156,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4156
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1520,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 4,
+                "outputTokens": 4583,
+                "cacheReadInputTokens": 35336,
+                "cacheCreationInputTokens": 15810,
+                "webSearchRequests": 0,
+                "costUSD": 0.2310755,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "98bc4827-1f92-47c4-8edf-b367c26a2db1"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-related-work-completeness.md"
+}

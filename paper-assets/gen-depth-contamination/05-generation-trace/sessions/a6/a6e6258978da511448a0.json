@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "a6e6258978da511448a0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp arXiv qwen1b5 crossscorer",
+  "task_key": "worker_diagnose_exp_arXiv_qwen1b5_crossscorer_20260518T022133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_arXiv_qwen1b5_crossscorer_20260518T022133_result.json",
+    "occurrence": 1,
+    "bytes": 1658,
+    "sha256": "e3797e0173ea162280cec1dc2fd513172b8ec840cf4bb71bb2de2039477e48bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动，`--skip_generation` 正确跳过了 Steps 2-3，Pythia-1.4B scorer 正在提取特征（当前 depth 0 VocabDiv ~44%）。\n\n```json\n{\"root_cause\":\"prepare_seed_data skip条件要求 line_count >= num_samples，arXiv depth_0.jsonl 只有2200行但 num_samples 默认5000，条件不满足导致尝试下载C4；同时 generate_depth_chain 因 arXiv 数据缺少 model_name 字段也会强制重新生成；网络不可用(Errno 99)使下载直接崩溃\",\"error_type\":\"data\",\"fix_steps\":[\"在 run_pipeline.py 添加 --skip_generation 参数，跳过 Steps 2-3\",\"使用 --skip_generation --scorer_path pythia-1.4b 重新启动实验\",\"设置 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 防止任何网络访问\"],\"can_auto_fix\":true,\"data_location\":\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_{0..5}.jsonl\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "prepare_seed_data skip条件要求 line_count >= num_samples，arXiv depth_0.jsonl 只有2200行但 num_samples 默认5000，条件不满足导致尝试下载C4；同时 generate_depth_chain 因 arXiv 数据缺少 model_name 字段也会强制重新生成；网络不可用(Errno 99)使下载直接崩溃",
+              "error_type": "data",
+              "fix_steps": [
+                "在 run_pipeline.py 添加 --skip_generation 参数，跳过 Steps 2-3",
+                "使用 --skip_generation --scorer_path pythia-1.4b 重新启动实验",
+                "设置 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 防止任何网络访问"
+              ],
+              "can_auto_fix": true,
+              "data_location": "/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_{0..5}.jsonl"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-arxiv-qwen1b5-crossscorer.md"
+}

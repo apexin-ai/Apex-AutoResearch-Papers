@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7d4885082144fff04b9",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops exp deberta filtering comparison continue",
+  "task_key": "worker_ops_exp_deberta_filtering_comparison_continue_20260520T175333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp_deberta_filtering_comparison_continue_20260520T175333_result.json",
+    "occurrence": 1,
+    "bytes": 101,
+    "sha256": "32eb1892d0ddf8122792ef3b4671a5929d28393ebc6c99e142233b5c8842bf15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Prediction job 正在 cqa1-22115 cuda:1 上运行，4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp-deberta-filtering-comparison-continue.md"
+}

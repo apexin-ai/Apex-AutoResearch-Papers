@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3245b84c251ecb45178",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops check olmo retrain v3 progress",
+  "task_key": "worker_ops_check_olmo_retrain_v3_progress_20260520T132957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_olmo_retrain_v3_progress_20260520T132957_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "e93fce8b78d8e82049ee313a35bcf5abd0e9a3fc89abab879b12542945cc3441"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进度汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 PID 310312 | **ALIVE**，已运行 2h42m，RSS 3.9GB，CPU ~2266% |\n| Bootstrap 0v1 | **完成** — AUC 0.9972 [0.9967, 0.9977]（21:05:34 完成，耗时 ~32.5 min） |\n| Bootstrap 1v2 | **进行中** — 已运行约 25 min（从 21:05 开始） |\n| Bootstrap 2v3 | 未开始 |\n| Bootstrap 3v4 | 未开始 |\n\n日志中有 18,370 行 sklearn warnings（LGBMClassifier feature names），是正常的 bootstrap resample 输出，不影响运行。\n\n**预估时间线**（每对 ~32 min）：\n- 1v2 完成：~21:37\n- 2v3 完成：~22:09\n- 3v4 完成：~22:41\n\n**预计 bootstrap CI 全部完成：约 1 小时后。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-olmo-retrain-v3-progress.md"
+}

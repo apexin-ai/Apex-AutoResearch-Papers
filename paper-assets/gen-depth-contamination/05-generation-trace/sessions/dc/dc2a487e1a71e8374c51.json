@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc2a487e1a71e8374c51",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing fix reviewer info residual",
+  "task_key": "worker_writing_fix-reviewer-info-residual_20260514T054533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_fix-reviewer-info-residual_20260514T054533_result.json",
+    "occurrence": 1,
+    "bytes": 329,
+    "sha256": "35a6e5be0b74032b557aaa950a609018413aeaf737813f4c5510648618d56884"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改完成：\n\n1. **L12**：1v2 range 加了 \"across all eight model×decoding conditions\"，与 L13 的 2v3 scope 标注对称。\n2. **L110**：`K*=2 is robust` → `K*≥2`，明确标注 θ=0.55 时 K\\*=3（全 4 个 decoding config 的 2v3 AUC 均 >0.55），θ∈{0.60, 0.65} 时回到 K\\*=2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-fix-reviewer-info-residual.md"
+}

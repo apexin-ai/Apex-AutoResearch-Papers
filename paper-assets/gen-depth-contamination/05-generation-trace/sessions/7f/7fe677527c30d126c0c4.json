@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fe677527c30d126c0c4",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra download qwen7b",
+  "task_key": "worker_infra_download-qwen7b_20260514T025606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download-qwen7b_20260514T025606_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "57a9be3a7ce36bb6fd84c66c8dfc88817981f65693f99ad87b789edf25a02ebf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成，汇报：\n\n| 项目 | 结果 |\n|------|------|\n| 状态 | 成功 |\n| 模型路径 | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-7B-Instruct/` |\n| 总大小 | 15 GB（4 个 safetensors 分片：3.7G + 3.6G + 3.6G + 3.4G） |\n| Config 验证 | 28 layers, hidden_size=3584 |\n| 下载耗时 | ~5 分钟（ModelScope CDN，~13 MB/s） |\n| 磁盘剩余 | 119 GB / 150 GB（21% 已用） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-qwen7b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e31fc736448d7a19b794",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 progress check",
+  "task_key": "worker_infra_exp006-progress-check_20260515T060321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006-progress-check_20260515T060321_result.json",
+    "occurrence": 1,
+    "bytes": 511,
+    "sha256": "afbf2cdeb2e366a9b40a09b4049da752ff43ec76c948d8ffe8886dd9c9178d7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**STATUS: still_running**\n**PROGRESS: 46/51** (eval_results.json completed)\n**GPU_STATUS: busy (87% util, 11775/24564 MiB)**\n\n当前正在跑 `dsir_s42`，训练进度 2811/2814（99.9%），即将完成。速度 ~1.29 it/s。\n\n剩余 runs：\n- `dsir_s42` — 训练还剩 3 steps（几秒），之后跑 eval\n- `dsir_s123`, `dsir_s456`, `dsir_s789`, `dsir_s1024` — 各约 36 分钟训练 + eval\n\n预估剩余时间：**~2.5 小时**（4 个完整 dsir run + 当前 run 的 eval）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-progress-check-copy-2.md"
+}

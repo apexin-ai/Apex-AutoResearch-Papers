@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e623241f56f28e4ac644",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix exp 14b c4 resubmit",
+  "task_key": "worker_fix_exp_14b_c4_resubmit_20260518T051103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp_14b_c4_resubmit_20260518T051103_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "2e1135d373a9ce7f13cc25b68cd24794db6a146cab49135bf79b377aee406649"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功重提交并在运行中。\n\n- **数据检查**: depth 0-4 各 5000 行完好，depth_5 不存在（无需清理）\n- **results 目录**: 已清理\n- **Registry**: DONE → PREPARING → QUEUED → RUNNING\n- **任务**: westd-42896 cuda:0，tmux session `exp_14b_c4`，timeout 6h，模型正在加载（14B checkpoint shards loading）\n- Pipeline 会自动跳过已完成的 depth 0-4，只跑 depth 5"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-14b-c4-resubmit.md"
+}

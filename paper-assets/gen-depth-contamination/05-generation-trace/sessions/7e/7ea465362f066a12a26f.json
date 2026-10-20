@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "7ea465362f066a12a26f",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code gemma2b 10k bootstrap ci",
+  "task_key": "worker_code_gemma2b_10k_bootstrap_ci_20260523T000341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma2b_10k_bootstrap_ci_20260523T000341.log",
+    "occurrence": 1,
+    "bytes": 725124,
+    "sha256": "5f9ceb1b1ee8042e81280e64a4b0bf598471bc705c8e60bd02e48e9531b62fe4"
+  },
+  "statistics": {
+    "messages": 543,
+    "user_turns": 0,
+    "tool_calls": 239,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 239,
+      "tool_result": 239,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 543,
+      "chunks": [
+        {
+          "path": "7ea465362f066a12a26f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ea465362f066a12a26f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ea465362f066a12a26f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ea465362f066a12a26f-part-0004.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-gemma2b-10k-bootstrap-ci.md"
+}

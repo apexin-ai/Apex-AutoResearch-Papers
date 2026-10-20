@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4629ec658bed279387d5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp D final",
+  "task_key": "worker_code_exp_D_final_20260515T114128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_D_final_20260515T114128_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "103f4df3961cb0d28552029194d89e4a0f69e7007d791669f89e95931b89bd7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n```\n=== EXP-D FINAL (v2 logic + seed=42) ===\nOBD accuracy: 38.0% [CI: 34.0%, 42.2%]\nPer-depth: d0=96% d1=39% d2=14% d3=19% d4=22%\n\nMcNemar vs GPT-5.5: diff=+4.8pp, p=0.0809, CI=[-0.4%, 10.0%], includes_zero=YES\nMcNemar vs Claude:   diff=+5.0pp, p=0.0693, CI=[0.0%, 10.2%], includes_zero=YES\n\nMulti-seed: [38.0, 38.0, 38.0, 38.0, 38.0] mean=38.0 ± 0.0\n\nSensitivity:\n  v2 (no seed):         38.0%\n  capping (no seed):    43.6%\n  prob merge (seed=42): 44.4%\n  v2 logic (seed=42):   38.0%  ← THIS\n```\n\n关键发现：\n- v2 逻辑 + seed=42 得到 **38.0%**，与之前 v2 no-seed 结果完全一致（多种子 std=0.0，GroupKFold 是确定性的，seed 只影响 LightGBM 内部微小差异，最终 argmax 结果不变）\n- McNemar 两个对比均 **不显著**（p=0.081 vs GPT, p=0.069 vs Claude），CI 均包含零\n- JSON 已保存至 `artifacts/rebuttal/exp_D_mcnemar_final.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-d-final.md"
+}

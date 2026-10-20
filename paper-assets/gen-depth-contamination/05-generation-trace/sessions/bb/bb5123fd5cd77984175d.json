@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb5123fd5cd77984175d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops pythia v3 status check",
+  "task_key": "worker_ops_pythia_v3_status_check_20260521T055714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pythia_v3_status_check_20260521T055714_result.json",
+    "occurrence": 1,
+    "bytes": 829,
+    "sha256": "7c2a8c6774749b6ef7b9236bd66ce1788bbb78fb88fa8d5345a43d40f74df38d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在汇总：\n\n```\nSTATUS: running\nCURRENT_STAGE: depth_2 (生成阶段)\nPROGRESS: ~25%\nETA: ~4h 30m\nRESULTS_AVAILABLE: no\nK_STAR: N/A\nAUC_DATA: N/A\n```\n\n**详情：**\n\n- **GPU 0**: 97% 利用率，13973/24564 MiB 显存占用。GPU 1-3 空闲。\n- **生成进度**:\n  - `depth_0.jsonl`: 5000 条 ✅ 完成\n  - `depth_1.jsonl`: 5000 条 ✅ 完成\n  - `depth_2`: 正在生成，552/1250 batches（44%），~5.05s/it，剩余 ~59 分钟完成当前 depth\n- **results 目录**: 空，尚无 AUC/K* 结果文件\n- **整体进度估算**: depth 0-1 已完成，depth 2 进行到 44%。假设总共需要生成 depth 0-5（6 个 depth），当前在第 3 个的 44% 处，整体约 **25%**。剩余 3.5 个 depth 的生成 + 后续 feature extraction / OBD 计算，预估还需 **4-5 小时**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pythia-v3-status-check.md"
+}

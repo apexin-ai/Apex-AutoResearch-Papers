@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "5bd4c1aeb035190aa1ee",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code update jsd figure 14b",
+  "task_key": "worker_code_update-jsd-figure-14b_20260518T084358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_update-jsd-figure-14b_20260518T084358.log",
+    "occurrence": 1,
+    "bytes": 714558,
+    "sha256": "b7787c32604f34c15eb338e934e7c960b7ef852f8686df7bec9476867f64665a"
+  },
+  "statistics": {
+    "messages": 310,
+    "user_turns": 1,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 52,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 108,
+      "user": 1,
+      "tool_result": 108,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "5bd4c1aeb035190aa1ee-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 304,
+      "chunks": [
+        {
+          "path": "5bd4c1aeb035190aa1ee-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "5bd4c1aeb035190aa1ee-part-0002.json",
+          "message_count": 130
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-update-jsd-figure-14b.md"
+}

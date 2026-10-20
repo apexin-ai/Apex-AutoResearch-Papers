@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c251c53e02952783bf41",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper semantic ablation table",
+  "task_key": "worker_paper_semantic_ablation_table_20260517T161724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_semantic_ablation_table_20260517T161724_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "c50765cb4dd3943203c6b450f1d0d02ad582a2712d88f23c7d729a1611f9d291"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `/root/autodl-tmp/gen-depth-contamination/artifacts/semantic_ablation_table.tex`（58 行）。\n\n内容：\n- **Table 1**: 15D vs 17D AUC 对比，K* boundary 行加粗，底部 θ 注释\n- **Table 2**: 全部 17 个特征按 importance 降序，两个 semantic 特征用 `\\textbf` 标注，分类列标注 Surprisal/Frequency/Lexical/Semantic\n- 底部元信息注释包含 generator/embedding/NER/domain/N"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-semantic-ablation-table.md"
+}

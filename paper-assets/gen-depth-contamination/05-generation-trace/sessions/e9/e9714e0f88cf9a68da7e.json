@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9714e0f88cf9a68da7e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp019 bootstrap ci",
+  "task_key": "worker_analysis_exp019_bootstrap_ci_20260516T112009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp019_bootstrap_ci_20260516T112009_result.json",
+    "occurrence": 1,
+    "bytes": 1527,
+    "sha256": "7c13e1f470f10f9cd4ceea4217bfe6cbe845c5ebf5af7f4580ab9bb43912a5d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-019 Mistral-7B Bootstrap CI 结果\n\n| Pair | AUC | 95% CI | CI lower > θ=0.60? | p_perm | p(AUC≤0.60) |\n|------|-----|--------|---------------------|--------|-------------|\n| **0v1** | 0.9842 | [0.9824, 0.9860] | PASS | 0.0001 | 0.0000 |\n| **1v2** | 0.5934 | **[0.5835, 0.6032]** | **FAIL** | 0.0001 | **0.9017** |\n| 2v3 | 0.5402 | [0.5301, 0.5510] | FAIL | 0.0001 | 1.0000 |\n| 3v4 | 0.5233 | [0.5128, 0.5338] | FAIL | 0.0003 | 1.0000 |\n| 4v5 | 0.5180 | [0.5070, 0.5287] | FAIL | 0.0014 | 1.0000 |\n\n**K\\* (CI-based) = 1**，与 point estimate 一致。\n\n### 关键发现\n\n1. **1v2 CI [0.5835, 0.6032] 跨越 θ=0.60**。CI lower = 0.5835 < 0.60，无法拒绝 \"AUC ≤ 0.60\" 的零假设。p(AUC≤0.60) = 0.9017，即 90.17% 的 bootstrap 样本 AUC ≤ 0.60。\n\n2. 虽然 4/5 folds > 0.585（接近 0.60），但 OOF point AUC = 0.5934，bootstrap CI 明确显示这不能可靠地超过 0.60。\n\n3. 所有 pair 的 permutation p-value 极小（≤0.0014），说明分类器确实学到了信号（AUC 显著 > 0.50），只是 1v2 的信号不够强到超过 θ。\n\n### 与 exp-016 Qwen-base 对比\n\n| | exp-016 Qwen-base 1v2 | exp-019 Mistral-7B 1v2 |\n|---|---|---|\n| AUC | **0.6260** | 0.5934 |\n| 95% CI | **[0.6168, 0.6353]** | [0.5835, 0.6032] |\n| CI lower > 0.60 | **Yes** | No |\n| K\\* | **2** | 1 |\n\nexp-016 Qwen-base 的 1v2 CI lower = 0.6168，远在 0.60 之上，K\\*=2 稳固。exp-019 Mistral-7B 差距 ~0.033 AUC，CI 完全不重叠，K\\*=1 确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp019-bootstrap-ci.md"
+}

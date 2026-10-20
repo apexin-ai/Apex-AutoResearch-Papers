@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f02a7ba9090ae35f3c11",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops urgent 5question snapshot",
+  "task_key": "worker_ops_urgent_5question_snapshot_20260520T213719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_5question_snapshot_20260520T213719_result.json",
+    "occurrence": 1,
+    "bytes": 3615,
+    "sha256": "72b6eabbd3d06e894fd925ef54d0ee6dbd97f343d7e6ffae93a1dd4fec5481a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "以下是全部原始数据。\n\n---\n\n## Q1: seed2 Eval 结果\n\n| Task | no_filter_seed2 | binary_ours_seed2 | graduated_seed2 |\n|------|----------------|-------------------|-----------------|\n| piqa | 0.7519 | 0.7476 | 0.7497 |\n| truthfulqa_mc2 | 0.4277 | 0.4378 | 0.4275 |\n| winogrande | 0.6480 | 0.6409 | 0.6456 |\n| arc_challenge | 0.5239 | 0.5128 | 0.5213 |\n| gsm8k | 0.5671 | 0.5853 | 0.5648 |\n\n## Q2: 全部 seed 结果（含 base_model）\n\n| Config | piqa | truthfulqa_mc2 | winogrande | arc_challenge | gsm8k |\n|--------|------|---------------|------------|--------------|-------|\n| **base_model** | 0.7612 | 0.4659 | 0.6456 | 0.5486 | None |\n| no_filter_seed0 | 0.7541 | 0.4224 | 0.6519 | 0.5128 | None |\n| no_filter_seed1 | 0.7497 | 0.4237 | 0.6456 | 0.5213 | None |\n| no_filter_seed2 | 0.7519 | 0.4277 | 0.6480 | 0.5239 | 0.5671 |\n| binary_ours_seed0 | 0.7465 | 0.4359 | 0.6385 | 0.5196 | None |\n| binary_ours_seed1 | 0.7497 | 0.4456 | 0.6425 | 0.5188 | None |\n| binary_ours_seed2 | 0.7476 | 0.4378 | 0.6409 | 0.5128 | 0.5853 |\n| graduated_seed0 | 0.7530 | 0.4225 | 0.6488 | 0.5128 | None |\n| graduated_seed1 | 0.7503 | 0.4234 | 0.6440 | 0.5230 | 0.5618 |\n| graduated_seed2 | 0.7497 | 0.4275 | 0.6456 | 0.5213 | 0.5648 |\n\n**gsm8k = None** 表示该 seed 的 GSM8K 评估尚未完成。\n\n## Q3: PID 334631 状态\n\n```\nPID 334631 NOT RUNNING\n```\n\n## Q4: Checkpoint 存在性\n\n| Config | checkpoint | train_dir_exists |\n|--------|-----------|-----------------|\n| base_model | NO | NO |\n| no_filter_seed0 | NO | YES |\n| binary_ours_seed0 | NO | YES |\n| graduated_seed0 | NO | YES |\n| no_filter_seed1 | NO | NO |\n| binary_ours_seed1 | NO | NO |\n\ntrain_dir 存在但无 adapter_config.json（seed0 三个），seed1 的 train_dir 不存在。\n\n## Q5: GPU 状态\n\n**cqa1-22115 (4× 24GB)**\n\n| GPU | Util | Mem Used | Mem Total |\n|-----|------|----------|-----------|\n| 0 | 0% | 0 MiB | 24564 MiB |\n| 1 | 95% | 5327 MiB | 24564 MiB |\n| 2 | 95% | 5327 MiB | 24564 MiB |\n| 3 | 95% | 5327 MiB | 24564 MiB |\n\n活跃 Python 进程:\n- GPU 1: `gsm8k_patch_nf_s0` — `exp_expanded_downstream_eval.py --strategy no_filter --seed_start 0`\n- GPU 2: `gsm8k_patch_bo_s0` — `exp_expanded_downstream_eval.py --strategy binary_ours --seed_start 0` (含 torch compile workers)\n- GPU 3: `gsm8k_patch_grad_s0` — `exp_expanded_downstream_eval.py --strategy graduated --seed_start 0`\n- 另有 `sweep_r10_nofilter` tmux session（exp_contamination_rate_sweep.py --rate 10 --strategy no_filter），占 GPU 1\n\ntmux sessions: `gsm8k_patch_nf_s0`, `gsm8k_patch_bo_s0`, `gsm8k_patch_grad_s0`（+ `sweep_r10_nofilter`）\n\n**westd-42896 (2× 98GB)**\n\n| GPU | Util | Mem Used | Mem Total |\n|-----|------|----------|-----------|\n| 0 | 0% | 0 MiB | 97887 MiB |\n| 1 | 0% | 0 MiB | 97887 MiB |\n\n仅有 tensorboard/jupyter 后台进程 + 一个 deberta-v3-base modelscope 下载进程（看起来挂起）。无活跃 GPU 任务。\n\n## Q6: GSM8K 补跑进度\n\n三个 GSM8K 补跑 job 正在 cqa1 的 GPU 1/2/3 上并行运行（均为 seed0 的 generate_until 阶段）：\n\n| Session | Strategy | Progress | ETA (approx) |\n|---------|----------|----------|------|\n| gsm8k_patch_nf_s0 | no_filter seed0 | 32% (424/1319) | ~32 min |\n| gsm8k_patch_bo_s0 | binary_ours seed0 | 58% (766/1319) | ~15 min |\n| gsm8k_patch_grad_s0 | graduated seed0 | 33% (433/1319) | ~24 min |\n\n这三个 job 正在补跑 seed0 缺失的 GSM8K 评估。`base_gsm`、`nf_s1`、`bo_s1` sessions 不存在——seed1 的 GSM8K 和 base_model 的 GSM8K 尚未启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-5question-snapshot.md"
+}

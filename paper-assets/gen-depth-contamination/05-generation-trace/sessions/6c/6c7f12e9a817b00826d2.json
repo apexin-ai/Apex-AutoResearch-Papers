@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c7f12e9a817b00826d2",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 012 script verify",
+  "task_key": "worker_code_exp_012_script_verify_20260515T151147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_012_script_verify_20260515T151147_result.json",
+    "occurrence": 1,
+    "bytes": 1472,
+    "sha256": "29d8a2ad38c0a2b8299a0cacc4550d84763cf270b59f9e94f73d7a55efa89d1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Dry-run 完全通过。** 全部 3 个模型加载、推理、分析、可视化均无报错。\n\n## 结果汇总\n\n### 1. 脚本路径和修改\n- **路径**: `/root/autodl-tmp/gen-depth-contamination/scripts/exp012_ppl_depth_correlation.py`\n- **主要修改**:\n  - 新增 `--device` 参数（支持 `cuda` / `cpu` / 自动检测）\n  - `--max_samples` 改名为 `--n_samples`\n  - 输出路径改为 `artifacts/exp012_results.json` 和 `artifacts/exp012_confidence_vs_depth.pdf`\n  - 新增 `make_plots()` 函数：4×3 scatter plot（4 model conditions × 3 methods），每个子图标注 Spearman ρ\n  - Binoculars performer 修正为 `allenai/OLMo-1B-0724-hf`（原 `allenai/OLMo-1B-0724` 已下架）\n  - 删除旧的 `--dry_run` 纯数据加载模式，改为直接用 `--n_samples 5` 做端到端验证\n  - 有一个 deprecation warning `torch_dtype` → `dtype`，不影响运行\n\n### 2. Dry-run 结果\n- **设备**: GPU (CUDA), RTX 4090 D\n- **参数**: `--n_samples 5 --batch_size 2`\n- **状态**: 通过，全部 3 个产出文件生成\n  - `exp012_results.json` (4KB)\n  - `exp012_per_sample_scores.json` (5.8KB)\n  - `exp012_confidence_vs_depth.pdf` (54KB)\n\n### 3. 正式运行时间预估\n- Dry-run 120 texts（5 samples × 6 depths × 4 conditions）\n- 正式运行 12000 texts（500 samples × 6 depths × 4 conditions）→ 100× 数据量\n- 3 个模型各跑一遍 × 100 倍数据 → 预估 **~60-90 分钟** on GPU"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-012-script-verify.md"
+}

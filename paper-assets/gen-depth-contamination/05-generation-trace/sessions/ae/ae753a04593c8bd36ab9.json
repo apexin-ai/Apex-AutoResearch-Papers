@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae753a04593c8bd36ab9",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops cloud install tmux",
+  "task_key": "worker_ops_cloud_install_tmux_20260517T170644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cloud_install_tmux_20260517T170644_result.json",
+    "occurrence": 1,
+    "bytes": 62,
+    "sha256": "83517931b37552220544b16c95d370ccb7093645735eb00d3ee8a90d62663204"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 3.2a 已在 westd-42896 上安装成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cloud-install-tmux.md"
+}

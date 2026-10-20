@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c233481e3acc729575c7",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp arXiv mistral7b",
+  "task_key": "worker_analysis_exp_arXiv_mistral7b_20260517T162643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_arXiv_mistral7b_20260517T162643_result.json",
+    "occurrence": 1,
+    "bytes": 815,
+    "sha256": "890290e245af64a31d2487dd8adaa13de826ba8bd05f306854a80151d3db87dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部更新完成。\n\n## 结果摘要\n\n- **K\\* = 3**\n- 各 depth discrimination AUC: 0v1=0.9848, 1v2=0.8201, 2v3=0.6275, 3v4=0.5295, 4v5=0.5295\n- 各 depth JSD: 0v1=0.142, 1v2=0.076, 2v3=0.019, 3v4=0.010, 4v5=0.009\n- **Hypothesis 被否定**: Mistral 的 K\\*=1 **不是** text-intrinsic。arXiv domain 将 K\\* 从 1 rescue 到 3。\n- **Conclusion: success** (有重要发现)\n- Ordinal: MAE=0.8958, Accuracy=0.4474\n- Top features: freq_entropy, surp_std, surp_d1_skew, surp_mean\n\n**关键发现**: One-wash 存在两种类型: (1) **domain-dependent** (Mistral: C4 K\\*=1, arXiv K\\*=3, 可被结构化 domain rescue), (2) **model-intrinsic** (OLMo: C4 K\\*=1, arXiv K\\*=1, 跨域不变)。arXiv K\\*=3 现已跨 Qwen/Pythia/Mistral/LLaMA 四个模型确认，OLMo 是唯一例外。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-arxiv-mistral7b.md"
+}

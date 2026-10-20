@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd249d6e45b8fa59c1fb",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "figure fig s1 auc decay ci fix",
+  "task_key": "worker_figure_fig_s1_auc_decay_ci_fix_20260521T164603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig_s1_auc_decay_ci_fix_20260521T164603_result.json",
+    "occurrence": 1,
+    "bytes": 362,
+    "sha256": "42697b0625b824628903d0a02454224214de3aab41c9247a24e7e19481769f7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated successfully. Results:\n\n- **4 clean legend labels**: Qwen-1.5B-RW, Pythia-1.4B, OLMo-1B, Qwen-1.5B-cont\n- **OLMo-1B 1v2 = 0.508** (drops to ~chance at K*=1) ✓\n- **Other models 1v2 > 0.60**: Qwen-RW=0.961, Pythia=0.879, Qwen-cont=0.621 ✓\n- Output: `docs/paper/figures/fig_s1_auc_decay_ci.pdf` (22.8 KB) + `.png` (273.2 KB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig-s1-auc-decay-ci-fix.md"
+}

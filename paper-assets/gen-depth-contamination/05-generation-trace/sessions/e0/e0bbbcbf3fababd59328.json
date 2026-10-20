@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0bbbcbf3fababd59328",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp015 oom fix",
+  "task_key": "worker_code_exp015-oom-fix_20260515T043946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp015-oom-fix_20260515T043946_result.json",
+    "occurrence": 1,
+    "bytes": 3485,
+    "sha256": "ad0bd6eb8f4640b31d2e886cd1954c69e5c4b4b08c418081a0e2e02231077704"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是完整产出。\n\n---\n\n## 1. OOM 瓶颈分析\n\n**原因**：并发执行。exp-006 占 15.2GB + exp-015 embedding extraction ~5-9GB > 24GB。\n\n代码本身的 v2 设计已经是\"先提取 embedding 再释放 LLM\"，对单模型已够用。真正缺失的是：\n- **不支持多模型**：`--model_path` 只接受一个值，无法一次跑 3 个模型族\n- **无法 sequential 加载/释放**：如果手动跑 3 次，结果会覆盖（同一个 output 文件）\n\n## 2. 修复措施\n\n| # | 改动 | 原因 |\n|---|------|------|\n| 1 | `--model_path` 改为 `nargs=\"+\"`, 与 `--data_dir`/`--label` 1:1 配对 | 支持 3 个模型族一次跑完 |\n| 2 | 按 model_path 分组，sequential 加载 → 提取 → 释放 → 下一个 | 任意时刻 GPU 上只有 1 个 LLM |\n| 3 | `embed_batch_size` 默认 16→8 | 24GB 安全余量 |\n| 4 | `extract_embeddings` 中加 `del inputs, out, hidden, mask, pooled` | 减少 batch 间 peak VRAM |\n| 5 | 加 `log_gpu_mem()` 在模型加载后/释放后/MLP 训练前 | 可观测性 |\n| 6 | CUDA 调用改用 `device.startswith(\"cuda\")` 守卫 | 修复 `--device cpu` dry-run crash |\n| 7 | `device_map` 根据 device 选择 `\"auto\"` 或 `\"cpu\"` | 同上 |\n| 8 | 结果中加 `model_path` 字段 | 区分不同模型族的结果 |\n\n## 3. 关键代码差异\n\n**argparse** (旧 → 新):\n```python\n# 旧: 单一模型\n--model_path  type=str, default=\"...Qwen...\"\n# 新: 多模型, 与 data_dir/label 配对\n--model_path  type=str, nargs=\"+\", default=[Pythia, OLMo, Qwen]\n```\n\n**main() Phase 2** (旧 → 新):\n```python\n# 旧: 一个 LLM 处理所有 dataset\nllm = AutoModelForCausalLM.from_pretrained(args.model_path, ...)\nfor ds in dataset_info:\n    emb = extract_embeddings(llm, ...)\ndel llm\n\n# 新: 按 model 分组, sequential 加载/释放\nfor model_path, datasets in model_groups.items():\n    llm = AutoModelForCausalLM.from_pretrained(model_path, ...)\n    for ds in datasets:\n        emb = extract_embeddings(llm, ...)\n    del llm, tokenizer; gc.collect(); torch.cuda.empty_cache()\n```\n\n## 4. Dry-run 结果\n\n**配置**: Pythia-1.4B, 5 samples/depth, max_depth=2, batch_size=2, GPU (与 exp-006 共存)\n\n| 阶段 | Peak VRAM |\n|------|-----------|\n| 模型加载 | 2.63 GB |\n| Embedding extraction | 2.91 GB |\n| 模型释放后 | 0.01 GB |\n| MLP training | 40.8 MB |\n\n**独占 GPU 预估** (batch_size=8, 30K samples, max_length=512):\n\n| 模型 | Weight (fp16) | hidden_dim | 预估 Peak VRAM |\n|------|--------------|------------|---------------|\n| OLMo-1B | ~2.0 GB | 2048 | ~5-7 GB |\n| Pythia-1.4B | ~2.6 GB | 2048 | ~6-8 GB |\n| Qwen2.5-1.5B | ~3.0 GB | 1536 | ~7-9 GB |\n\n三个模型 sequential 处理，任意时刻 peak < 10GB，远低于 24GB 上限。即使 batch_size=8 偶尔 OOM，自动减半机制兜底。\n\n## 5. 推荐运行命令\n\n```bash\n# 确保 exp-006 已结束或不再占 GPU\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/gen-depth-contamination\n\n# 3 个模型族 full run (默认参数即可)\nnohup python3 scripts/run_exp015_neural_probe.py \\\n  > ~/runs/gen-depth-contamination/exp015_v3.log 2>&1 &\n\n# 或者更保守 (batch_size=4):\nnohup python3 scripts/run_exp015_neural_probe.py \\\n  --embed_batch_size 4 \\\n  > ~/runs/gen-depth-contamination/exp015_v3.log 2>&1 &\n```\n\n脚本备份在 `scripts/run_exp015_neural_probe_v2_backup.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp015-oom-fix.md"
+}

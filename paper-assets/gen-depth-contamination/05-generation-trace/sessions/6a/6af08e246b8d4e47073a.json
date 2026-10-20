@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6af08e246b8d4e47073a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp D obd n500",
+  "task_key": "worker_code_exp_D_obd_n500_20260515T102324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_D_obd_n500_20260515T102324_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "b9082abe0fc1a74376732a8f6a4389f51e510d66264edb1ee9c779e7059c717b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "EXP-D 完成。结果：\n\n**OBD-LightGBM 在 N=500 子集上的 5-class accuracy: 45.6% ± 2.4% (95% CI: [39.4%, 51.8%])**\n\n| 方法 | N | 5-class Accuracy |\n|------|---|-----------------|\n| OBD-LightGBM | 500 | 45.6% ± 2.4% |\n| GPT-5.5 | 500 | 33.2% |\n| Claude Opus 4.6 | 500 | 33.1% |\n| OBD-LightGBM (full) | 25,000 | 45.4% |\n\n注意：之前报告的 38.6% 是 6-class (depths 0-5) 准确率。本次为公平比较使用 5-class (depths 0-4)，与 LLM baseline 一致，得到 full 准确率 45.4%。在匹配样本量 N=500 时，OBD 仍显著高于两个 LLM baseline 约 12 个百分点。\n\n输出已保存至 `artifacts/exp_D_obd_n500.json`，脚本在 `scripts/exp_D_obd_n500.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-d-obd-n500.md"
+}

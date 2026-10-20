@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cbce9c6710c26b65d72",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra check exp002 progress",
+  "task_key": "worker_infra_check_exp002_progress_20260513T021143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_exp002_progress_20260513T021143_result.json",
+    "occurrence": 1,
+    "bytes": 760,
+    "sha256": "1c9ef0c326b7544f031b1a370fe7522afc27b25d7f145be17419f6b40962eaaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-002 OLMo-1B 状态汇总\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 20225 存活，已运行 1h56m |\n| **当前步骤** | 特征提取 — VocabDiv depth=3, 33% (1671/5000) |\n| **数据生成** | ✅ 全部完成 (depth_0 ~ depth_5, 共 ~33MB) |\n| **Results** | 目录为空，特征提取尚未写入最终结果 |\n| **GPU** | 0% 利用率, 3135/24564 MiB（当前 VocabDiv 是 CPU 密集计算） |\n\n### 进度估算\n\n- 数据生成阶段：08:16 → 09:51，已完成\n- 特征提取阶段：09:51 开始，当前在 depth 3/5 的 33%\n- VocabDiv 速度 ~16 it/s，depth 3 剩余 ~3.5 min，depth 4-5 各 ~5 min\n\n**预估剩余：15-30 分钟**（取决于 VocabDiv 之后是否还有其他指标计算）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-exp002-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9380f12edb79e4460a74",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops status check nvidia smi",
+  "task_key": "worker_ops_status_check_nvidia_smi_20260520T204045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status_check_nvidia_smi_20260520T204045_result.json",
+    "occurrence": 1,
+    "bytes": 4851,
+    "sha256": "397ed3c3079195f8a3bb071e0c1c24debafda718e82643a84bc86a1606c7c94b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。以下是完整状态报告：\n\n---\n\n## cqa1-22115 状态报告\n\n### 1. nvidia-smi\n\n| GPU | 型号 | 显存占用 | GPU-Util | 温度 | 功耗 |\n|-----|------|----------|----------|------|------|\n| 0 | RTX 4090 D | 8261 / 24564 MiB | 95% | 60°C | 326W |\n| 1 | RTX 4090 D | 22613 / 24564 MiB | 100% | 68°C | 413W |\n| 2 | RTX 4090 D | 5327 / 24564 MiB | 95% | 62°C | 331W |\n| 3 | RTX 4090 D | 22613 / 24564 MiB | 100% | 66°C | 391W |\n\n4 张卡全部在跑。GPU 进程：\n- GPU 0: PID 334631 — `python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3`\n- GPU 1: PID 362958 — seed2 任务之一\n- GPU 2: PID 363100 — seed2 任务之一\n- GPU 3: PID 363247 — seed2 任务之一\n\n### 2. Python 进程\n\n主要实验进程：\n- **PID 334631** (GPU 0): `exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3`，启动于 01:17，CPU 107%\n- **PID 362958** (GPU 1): seed2 并行任务\n- **PID 363100** (GPU 2): seed2 并行任务\n- **PID 363247** (GPU 3): seed2 并行任务\n\n另有大量 torch inductor compile_worker 子进程（每个主进程约 32 个 worker）。\n\n还有一个已死的 sweep_r10_nofilter 进程（tmux session 仍在但进程已退出）。\n\n### 3. tmux sessions\n\n```\nexp_expanded_downstream_eval: 1 windows (created Thu May 21 01:17:37 2026)\nseed2_binary_ours:            1 windows (created Thu May 21 04:20:47 2026)\nseed2_graduated:              1 windows (created Thu May 21 04:20:48 2026)\nseed2_no_filter:              1 windows (created Thu May 21 04:20:44 2026)\n```\n\n`sweep_r10_nofilter` session 不存在（已消失或被清理）。\n\n### 4. seed2 并行任务进度\n\n训练目录已创建（merged 子目录存在 = 训练完成，正在 eval 阶段）：\n\n| 任务 | 训练目录 | 状态 |\n|------|----------|------|\n| no_filter_seed2 | `no_filter_seed2_train/merged/` (04:14) | 训练完成，正在 eval |\n| binary_ours_seed2 | `binary_ours_seed2_train/merged/` (04:27) | 训练完成，正在 eval |\n| graduated_seed2 | `graduated_seed2_train/merged/` (04:33) | 训练完成，正在 eval |\n\n尚无 `seed2_*_eval.json` 文件，说明 eval 仍在进行中。\n\n**seed2_no_filter 日志**（GPU 2）：正在跑 GSM8K generate_until，刚开始推理（building contexts 阶段刚完成，batch size auto-detected = 9）。\n\n**seed2_graduated 日志**（GPU 3）：同样在跑 GSM8K generate_until，刚进入推理阶段。\n\n### 5. cuda:0 原进程状态 (exp_expanded_downstream_eval)\n\n**正在运行 GSM8K eval**，进度 ~61%（811/1319 generate_until requests），速度 ~1.4 it/s。预计还需 ~6 分钟完成当前 GSM8K eval。\n\n### 6. GSM8K 补跑状态\n\ncuda:0 的主进程正在跑 GSM8K（见上）。三个 seed2 并行任务也在跑 GSM8K eval。\n\n无单独的 GSM8K 补跑进程。GSM8K 被集成在 eval 流程中统一执行。\n\n### 7. 完整结果文件及 GSM8K 状态\n\n| 文件 | GSM8K | 备注 |\n|------|-------|------|\n| `base_model_eval.json` (01:29) | **null** | 缺 GSM8K |\n| `no_filter_seed0_eval.json` (01:51) | **null** | 缺 GSM8K |\n| `binary_ours_seed0_eval.json` (02:08) | **null** | 缺 GSM8K |\n| `graduated_seed0_eval.json` (02:31) | **null** | 缺 GSM8K |\n| `no_filter_seed1_eval.json` (02:54) | **null** | 缺 GSM8K |\n| `binary_ours_seed1_eval.json` (03:10) | **null** | 缺 GSM8K |\n| `graduated_seed1_eval.json` (04:01) | **0.5618** | 唯一有 GSM8K 的文件 |\n\n**7 个 eval 文件中，6 个 GSM8K 为 null，只有 graduated_seed1 有值 (0.5618)**。\n\ncuda:0 当前正在补跑某个配置的 GSM8K（进度 61%）。seed2 三个并行任务也在各自的 GSM8K eval 中。\n\n### 8. sweep_r10_nofilter 状态\n\n**已崩溃**，退出码 1。错误：\n```\nConnectionError: Couldn't reach 'allenai/ai2_arc' on the Hub (OfflineModeIsEnabled)\n```\n原因：offline mode 下无法下载 ai2_arc 数据集。\n\n---\n\n## westd-42896 状态报告\n\n| GPU | 型号 | 显存占用 | GPU-Util | 温度 |\n|-----|------|----------|----------|------|\n| 0 | RTX PRO 6000 Blackwell | 0 / 97887 MiB | 0% | 29°C |\n| 1 | RTX PRO 6000 Blackwell | 0 / 97887 MiB | 0% | 30°C |\n\n**两张卡完全空闲，无 GPU 进程。**\n\n唯一值得注意的 Python 进程：\n- **PID 129963**: `modelscope snapshot_download('microsoft/deberta-v3-base')`，从 May 20 起运行至今，可能卡住了（0.0% CPU）。\n\n---\n\n## 总结\n\n1. **cqa1-22115 四卡全满**：GPU 0 在补跑 GSM8K（~61%），GPU 1/2/3 在跑 seed2 eval（刚进入 GSM8K 阶段）\n2. **已完成 eval**: 7 个文件，但 6 个缺 GSM8K（只有 graduated_seed1 有值），当前正在逐个补跑\n3. **sweep_r10_nofilter 已死**：ai2_arc 离线下载失败\n4. **westd-42896 完全空闲**，有一个疑似卡死的 modelscope 下载进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-nvidia-smi.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "456338b62bd9a92ad683",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "audit paper figure table consistency",
+  "task_key": "worker_audit_paper_figure_table_consistency_20260513T232830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper_figure_table_consistency_20260513T232830_result.json",
+    "occurrence": 1,
+    "bytes": 5107,
+    "sha256": "01ebc61e662a57fc4646e1946acdb7ab422348b247203231a96fcebc45a84fe1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完成。以下是完整的修正项清单。\n\n---\n\n## 论文图文一致性检查报告\n\n### 1. Caption 描述与图片内容不匹配\n\n| 项 | 详情 |\n|---|---|\n| **文件** | `experiments_c1.tex:76` |\n| **类型** | caption 不匹配 |\n| **问题** | Caption 称 \"four model-mode configurations (solid) and **four decoding strategies (dashed)**\"，但 fig2_auc_decay 实际只有 4 条 solid 曲线（model-mode），**无任何 dashed 解码策略曲线**。Caption 还提到 \"decoding strategy curves omit CIs as they were computed on a separate experimental setup\"，同样无对应内容。 |\n| **修正建议** | 要么从 caption 删除关于 decoding strategy dashed curves 的描述，要么在图中补画 4 条 dashed 曲线（exp_003 数据：greedy/nuc-0.9/T=0.7/T=1.2 的 1v2 AUC 分别为 0.6893/0.6866/0.6887/0.7039）。 |\n\n### 2. 特征分组数目错误\n\n| 项 | 详情 |\n|---|---|\n| **文件** | `method.tex:46` |\n| **类型** | 数值不一致 |\n| **当前值** | \"organized into **five** groups\" |\n| **正确值** | \"organized into **four** groups\" |\n| **依据** | Table 1 (tab:features) 明确只有 4 个分组：Surprisal moments (4)、Surprisal derivatives (5)、Vocabulary diversity (3)、Frequency tail (3)，共 15 维。 |\n\n### 3. 重复 label `sec:generation_mode`\n\n| 项 | 详情 |\n|---|---|\n| **文件** | `method.tex:167` + `experiments_c1.tex:294` |\n| **类型** | 悬空引用 / 标签冲突 |\n| **问题** | 两个文件都定义了 `\\label{sec:generation_mode}`：method.tex 的 \"Generation Mode Control\" (§3.6) 和 experiments_c1.tex 的 \"Generation Mode Effect\" (§4.4)。LaTeX 会报 \"multiply-defined label\" 警告，`\\ref{sec:generation_mode}`（出现在 experiments_c1.tex:104）将指向最后定义的那个。 |\n| **修正建议** | 将 method.tex:167 改为 `\\label{sec:generation_mode_method}`，experiments_c1.tex:294 保留 `\\label{sec:generation_mode}`。或反之命名区分（如 `sec:gen_mode_exp`）。 |\n\n### 4. 悬空引用 `\\ref{sec:conclusion}`\n\n| 项 | 详情 |\n|---|---|\n| **文件** | `introduction.tex:56` |\n| **类型** | 悬空引用 |\n| **问题** | `Section~\\ref{sec:conclusion} concludes.` 引用了 `sec:conclusion`，但 `main.tex:53` 的 `\\input{conclusion}` 已被注释掉。编译后显示为 \"Section **??** concludes.\" |\n| **修正建议** | 取消注释 `main.tex:53` 的 `\\input{conclusion}`；或将 introduction.tex:52-56 的论文结构导航段落暂时注释掉。 |\n\n### 5. `discussion.tex` 未被包含\n\n| 项 | 详情 |\n|---|---|\n| **文件** | `main.tex` / `discussion.tex` |\n| **类型** | 孤立标签 |\n| **问题** | `discussion.tex` 定义了 6 个 label（`sec:discussion`, `sec:discuss_kstar`, `sec:discuss_transfer`, `sec:discuss_features`, `sec:discuss_llm`, `sec:limitations`），但 `main.tex` 中既无 `\\input{discussion}` 也无被注释的版本。这些 label 当前无编译文件引用，不会报错，但 discussion 内容将缺失。 |\n| **修正建议** | 在 main.tex 中 conclusion 之前加 `\\input{discussion}`（或注释占位 `% \\input{discussion}`）。 |\n\n### 6. 跨模型转移 \"comparably poorly\" 表述不准确\n\n| 项 | 详情 |\n|---|---|\n| **文件** | `experiments_c1.tex:183` |\n| **类型** | caption / 文本不匹配 |\n| **问题** | \"The reverse direction performs comparably poorly.\" — 前向（Qwen-rw→Pythia/OLMo）保留率 61-63%，反向（Pythia/OLMo→Qwen-rw）保留率 70-72%（fig3 heatmap 可验证）。10pp 差距使 \"comparably\" 不太准确。 |\n| **修正建议** | 改为 \"The reverse direction also shows degraded transfer (70--72\\% retention)\" 或类似更精确的表述。 |\n\n---\n\n### 无问题项确认\n\n| 检查项 | 结果 |\n|---|---|\n| `figures/fig2_auc_decay.pdf` 存在 | ✅ |\n| `figures/fig3_transfer_heatmap.pdf` 存在 | ✅ |\n| `figures/pipeline.pdf`（已注释） | ✅ 不影响编译 |\n| `references.bib` 存在 | ✅ |\n| tab:kstar_ci 全部数值 vs registry (exp_007) | ✅ 完全一致 |\n| tab:transfer_matrix 全部数值 vs registry (exp_013) | ✅ 完全一致 |\n| tab:top_features 排名 vs registry (exp_005) | ✅ 完全一致 |\n| Spearman ρ 值 (caption of tab:top_features) vs registry | ✅ 完全一致 |\n| Kendall τ 值 (§4.3 text) vs registry | ✅ 完全一致 |\n| OBD vs multiclass MAE 数值 (§3.3) vs registry (exp_010) | ✅ 一致（四舍五入） |\n| LLM zero-shot 数值 (§5.4) vs registry (exp_011) | ✅ 完全一致 |\n| 解码消融数值 (§5.1, §5.3) vs registry (exp_003) | ✅ 完全一致 |\n| Permutation p 值 (§4.1 text) vs registry | ✅ 完全一致 |\n| fig3 heatmap 数值 vs table/registry | ✅ 完全一致 |\n| 所有其他 `\\ref` ↔ `\\label` 对应 | ✅ 无额外悬空 |\n\n---\n\n**优先级排序**：问题 #1（caption-图不匹配）和 #4（悬空引用显示 \"??\"）最紧急——Reviewer 会直接看到。#2（五→四）是明显事实错误。#3（重复 label）会触发 LaTeX 警告。#5-#6 属于结构/措辞问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-paper-figure-table-consistency.md"
+}

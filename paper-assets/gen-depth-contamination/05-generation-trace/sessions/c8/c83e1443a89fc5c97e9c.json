@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c83e1443a89fc5c97e9c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing figure plan",
+  "task_key": "worker_writing_figure_plan_20260512T164742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_figure_plan_20260512T164742_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "f6cb983e5e88c1fa3da4cade9aa6d6e540d0967355d0ca972cf64d2e399fb720"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表方案已写入 `docs/figure_plan.md`。\n\n包含 10 个图表（6 个 P0 必做 + 4 个 P2 篇幅允许时）：\n\n**必做 (P0)**：\n- Fig 1: Pipeline 示意图（TikZ，可立即开始）\n- Fig 2: Pairwise AUC 衰减曲线（核心结果）\n- Fig 3: JSD 衰减 + DPI 理论预测叠加\n- Fig 4: Feature importance 水平柱状图（三色编码）\n- Fig 5: Graduated vs binary filtering 下游对比\n- Fig 6: Feature group × depth 判别力热力图（降解序）\n- Table 1: 完整 pairwise AUC 矩阵\n\n**可选 (P2)**：\n- Fig 7: UMAP 特征空间可视化\n- Fig 8: Surprisal 分布 ridge plot\n- Fig 9: 6×6 confusion matrix\n- Fig 10: Cross-model transfer 热力图\n- Table 2: 消融实验汇总\n\n方案包含了全局配色规范（三组特征蓝/绿/橙贯穿全文）、尺寸规范（ACL/EMNLP 模板）、路线 A/B 适配说明，以及按实验依赖排序的制作时间线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-figure-plan.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adfdfbce22760078385d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "recovery check and restart",
+  "task_key": "worker_recovery_check_and_restart_20260524T111358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_recovery_check_and_restart_20260524T111358_result.json",
+    "occurrence": 1,
+    "bytes": 1240,
+    "sha256": "fc9e9c68a613df3dba7b4105fc40797010dd1b231d8416d0620115a015da6a38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验恢复完成。汇总：\n\n## 恢复结果\n\n### 1. gemma27b_filtering — 无需重启\n实际状态：**9/9 runs 全部完成**（非之前以为的 4/9），所有 eval_results.json 完整。\n\n| Strategy | Seed | MMLU | HellaSwag |\n|----------|------|------|-----------|\n| no_filter | 42 | 0.5960 | 0.6638 |\n| no_filter | 123 | 0.5954 | 0.6636 |\n| no_filter | 456 | 0.5953 | 0.6626 |\n| binary_ours | 42 | 0.5975 | 0.6775 |\n| binary_ours | 123 | 0.5946 | 0.6620 |\n| binary_ours | 456 | 0.5953 | 0.6626 |\n| graduated_a09 | 42 | 0.5954 | 0.6636 |\n| graduated_a09 | 123 | 0.5953 | 0.6626 |\n| graduated_a09 | 456 | 0.5953 | 0.6626 |\n\n### 2. code_domain_olmo — 分析步骤修复完成\n- 生成 (depth 0-5) + 特征提取 (features.csv, 33000 rows): 重启前已完成\n- 分析步骤因 bug 失败：`int(doc_id)` 不兼容字符串 ID `code_py_0`\n- 已修复 `run_pipeline.py` 第 453 行，重跑分析成功\n\n**code_olmo 结果：**\n- K* = 1（仅 depth 0 vs 1 可区分）\n- AUC(0v1) = 0.9996, AUC(1v2) = 0.5567, AUC(2v3+) ≈ 0.50\n- JSD(0v1) = 0.334, JSD(1v2+) ≈ 0.003-0.006\n- Ordinal MAE = 1.289, Accuracy = 0.346\n\n**GPU 状态：4 张卡全部空闲 (0% utilization, 0 MiB)。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/recovery-check-and-restart.md"
+}

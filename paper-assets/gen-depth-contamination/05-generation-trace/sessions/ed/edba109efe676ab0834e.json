@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edba109efe676ab0834e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check arxiv multi source data",
+  "task_key": "worker_check_arxiv_multi_source_data_20260520T080200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_arxiv_multi_source_data_20260520T080200_result.json",
+    "occurrence": 1,
+    "bytes": 1865,
+    "sha256": "e8cba06ccfcc7ba26f269b43b7e34e2ec078b3bcad54b3d042abee4de23fc136"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== arXiv Multi-Source Data Availability ===\n\nQwen2.5-1.5B arXiv:\n  Status: AVAILABLE\n  Path: /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\n  Depths: [0, 1, 2, 3, 4, 5]\n  Doc count per depth: 2200 (uniform)\n  Features: 13200 rows (features.csv ready)\n  Generator confirmed: exp024_arxiv_domain.sh → MODEL=Qwen/Qwen2.5-1.5B\n\nPythia-1.4B arXiv:\n  Status: AVAILABLE\n  Path: /root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/\n  Depths: [0, 1, 2, 3, 4, 5]\n  Doc count per depth: 2200 (uniform)\n  Features: 13200 rows (features.csv ready)\n  Generator confirmed: exp025 scripts → Pythia-1.4B\n\nLLaMA-8B arXiv:\n  Status: AVAILABLE\n  Path: /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/\n  Depths: [0, 1, 2, 3, 4, 5]\n  Doc count per depth: 2200 (uniform)\n  Features: 13200 rows (features.csv ready)\n\nGeneration scripts available: YES\n  - scripts/download_arxiv_seed.py (seed data)\n  - scripts/exp024_arxiv_domain.sh (Qwen pipeline)\n  - scripts/run_exp025.sh (Pythia filtering)\n\nMulti-source detection scripts: YES\n  - scripts/run_multi_source.py (v1, uses C4 data)\n  - scripts/run_multi_source_v2.py\n  - scripts/run_multi_source_unified_scorer.py\n  - scripts/run_multi_source_vocab_only.py\n\nExisting multi-source results:\n  - results/exp_multi_source_detection/\n  - results/exp_multi_source_detection_v2/\n  - results/exp_multi_source_unified_scorer/\n\nAlso available (bonus): arXiv cross-scorer experiments\n  - exp_arXiv_qwen1b5_crossscorer (symlinks to exp_024_arxiv data, separate features)\n  - exp_arXiv_llama8b_crossscorer\n  - exp_arXiv_mistral7b_crossscorer\n  - exp_arXiv_qwen7b_crossscorer\n\nRecommendation: READY to run multi-source arXiv experiment. All 3 generators have complete depth 0-5 chains with 2200 docs each and pre-computed features.\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-arxiv-multi-source-data.md"
+}

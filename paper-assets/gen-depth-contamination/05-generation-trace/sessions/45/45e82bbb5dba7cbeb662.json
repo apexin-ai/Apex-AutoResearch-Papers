@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45e82bbb5dba7cbeb662",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code fix kstar theta ci lower",
+  "task_key": "worker_code_fix_kstar_theta_ci_lower_20260515T130507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_kstar_theta_ci_lower_20260515T130507_result.json",
+    "occurrence": 1,
+    "bytes": 935,
+    "sha256": "9950ea1c5f6d14034fe829f5dd89f7c19d0ef5588f48e4e99959fc2cc46182a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。汇报：\n\n**修改前** `compute_kstar()`：\n```python\ndef compute_kstar(auc_values, theta):\n    ...\n    if auc >= theta:        # ← 用 mean AUC 判断\n```\n\n**修改后**：\n```python\ndef compute_kstar(auc_values, ci_values, theta):\n    ...\n    if auc - ci >= theta:   # ← 改用 CI lower bound\n```\n\n调用处同步传入 `ci_half[name]`。\n\n**影响**（以 θ=0.60 为例）：\n| 模型 | 修改前 K*(0.60) | 修改后 K*(0.60) |\n|------|:-:|:-:|\n| Qwen-rewrite | 2 | 2 |\n| Pythia | 2 | 2 |\n| OLMo | 2 | **1** |\n| Qwen-cont | 2 | **1** |\n\nOLMo/Qwen-cont 的 1v2 CI lower bound（0.585/0.582）不过 0.60 门槛，所以 K* 从 2 降到 1。Unanimous K\\*=2 区域收窄到 θ∈[0.570, 0.580]。\n\nReviewer 指出的 Pythia 2v3 矛盾已修正：θ=0.55 时 mean AUC=0.5515 ≥ 0.55（旧：K\\*=3），但 CI lower=0.5295 < 0.55（新：K\\*=2），与论文一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-kstar-theta-ci-lower.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a55b5faa6ffaf7abd3ad",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "agent / loop_3_1778739204.md",
+  "task_key": "loop_3_1778739204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778739204.md",
+    "occurrence": 1,
+    "bytes": 4684,
+    "sha256": "586720a7b03f3a167b261a47bb2eb0b67779d1b8497c6e90534eb6b871d6496f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-14T04:52:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 westc-26893 的 cuda:0（唯一分配给本项目的卡）\n- exp-006 (PID 46129) 正在跑，**禁止 kill/中断**，是 C3 graduated filtering 唯一数据源\n- exp-015 重跑必须等 exp-006 完成后独占 GPU（上次并行 OOM 导致 Pythia/OLMo 数据丢失）\n- GPU 并行前必须用 `torch.cuda.max_memory_allocated()` 报告 peak VRAM，禁止用 nvidia-smi 静态快照（Director 硬性指令）\n- K*_15D=2 是论文 headline，K*_neural=3 只能定位为 \"preliminary / representation-dependent deepening\"，不能升级主 claim（D020 framing）\n- Neural probe 结果目前仅 Qwen-cont 单数据集，论文中必须标注 \"pending cross-model validation\"\n- LightGBM 0.3875 accuracy 来自 exp_013（hold-out split），与 neural probe 5-fold CV 不匹配，已从表格删除，重跑时需在同 folds 上重算\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westc-26893（原 autodl-4090d，别名已改）\n- GPU：RTX 4090D 24GB，1 卡\n- 工作目录：`/root/autodl-tmp/gen-depth-contamination/`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache：`/root/autodl-tmp/.hf_cache/`\n- 模型路径：\n  - Qwen2.5-1.5B-Instruct: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct/`\n  - Qwen2.5-7B-Instruct: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-7B-Instruct/`（15GB，刚下载完，verified）\n- 活跃进程：exp-006 PID 46129（bash wrapper → python3 PID 55665），tmux session `exp_006_graduated_filtering`\n- Cron：`exp_006_graduated_filtering` 活跃监控中\n- 网络：下载前必须 `source /etc/network_turbo` + 设 SSL 证书环境变量\n\n### 3. 📊 当前状态\n**刚做完**：\n- exp-015 标记 FAILED（GPU OOM，仅 Qwen-cont 完成，Pythia/OLMo 丢失）\n- Discussion + Conclusion tex 整合 neural probe K*=3 结果（6 处修改）\n- Neural probe §4.x 章节草稿完成（Reviewer 3 项修复已应用）\n- discussion.tex exp ID 泄漏修复（2 处 running text）\n- 7B 模型下载完成并验证\n- exp-004 代码修正完成（continuation mode, 1K docs, depth 0-3）\n- exp-015 重跑脚本改进完成（内存优化 + bootstrap CI + permutation test + peak VRAM logging）\n\n**RUNNING**: exp-006 graduated filtering，8/50 runs (16%)，~45.2 min/run，**ETA 05-15 ~10:45 UTC**\n\n**等待中的 Worker 回调**（3 个并行写作 Worker）：\n- `worker_writing_related-work-audit_20260514T045022` — Related Work 完整性审查\n- `worker_writing_consistency-audit_20260514T045042` — 全文一致性打磨\n- `worker_writing_abstract-v2_20260514T045103` — Abstract 更新\n\n### 4. 📋 待办（条件触发式）\n- 3 个写作 Worker 回调 → 读结果，汇报 Director，按 Director 指示修改 tex\n- exp-006 cron 回调（DONE）→ 按 on-experiment-done 流程：分析结果 → 更新 registry → 填 C3 章节（discussion.tex + conclusion.tex 的 TODO placeholder）→ 汇报 Director\n- exp-006 完成 → 立即提交 exp-015 重跑（独占 GPU，~1h）：`python scripts/run_exp015_neural_probe.py --device cuda:0 --embed_batch_size 16 --data_dir data_exp001_pythia data_exp002_olmo data_exp017_qwen_cont --label Pythia OLMo Qwen-cont`\n- exp-015 重跑完成 → 更新 neural probe 章节（填 Pythia/OLMo placeholder + bootstrap CI + permutation test）→ 提交 exp-004 7B cross-scale（~3h）\n- exp-004 完成 → 分析 7B scale 是否 shift K* → 更新 Limitations\n- 所有实验完成 → Abstract 定稿 + 全文 re-dream + Reviewer 审查 + 05-25 ARR 提交\n\n### 5. 🎯 战略上下文\n- **论文 claim 结构 (D012+D020)**：2+1 = C1'(K* characterization: a-e 子组件) + C3(graduated filtering)。C1'(e) 是 neural probe K*=3，定位为 \"representation-dependent deepening\"，K* hierarchy: K*_theory ≥ K*_neural ≥ K*_15D\n- **关键路径**：exp-006 → C3 章节 → exp-015 rerun → neural probe 章节完善 → Abstract → 定稿。exp-004 (7B) 是 optional nice-to-have\n- **易错点 1**：exp-006 ETA 之前报过 3 次不同数字（25min/run, 99min/run, 45.2min/run）。真实值是 **45.2 min/run**（37.2 training + 8.0 eval），ETA 05-15 10:45 UTC\n- **易错点 2**：exp-015 partial results（Qwen-cont K*=3）不能直接用于论文——Director 已标记 FAILED，需全 3 数据集重跑\n- **易错点 3**：discussion.tex 和 conclusion.tex 有多处 `% TODO: exp-006` placeholder，等 exp-006 结果后填充，不要提前编造数据\n- **DDL**：05-25 ARR，11 天余量。05-15 exp-006 完成后进入论文收尾冲刺\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778739204.md"
+}

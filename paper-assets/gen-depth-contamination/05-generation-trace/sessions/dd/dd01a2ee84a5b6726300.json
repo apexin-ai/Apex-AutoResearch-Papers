@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd01a2ee84a5b6726300",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops kill bootstrap and collect fold results",
+  "task_key": "worker_ops_kill-bootstrap-and-collect-fold-results_20260518T221009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-bootstrap-and-collect-fold-results_20260518T221009_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "a785b5a4f5e41190457fc301aa60621f57927f5835c96d91dfd09a2f7c116fb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告完成。\n\n## 结果汇总\n\n### A. 进程 Kill\n- PID 86210 已通过 SIGTERM 成功终止，`ps aux` 确认无残留进程。\n\n### B. GPU 释放\n- cuda:0 已完全释放：**0MiB / 24564MiB**，GPU-Util 0%。\n\n### C. Fold-based AUC 确认（与预期一致）\n\n| Depth Pair | AUC (5-fold CV) | 95% CI | JSD |\n|---|---|---|---|\n| 0 vs 1 | **0.9838** | [0.9820, 0.9855] | 0.2263 |\n| 1 vs 2 | 0.8969 | [0.8937, 0.9001] | 0.1046 |\n| 2 vs 3 | 0.8100 | [0.8052, 0.8147] | 0.0752 |\n| 3 vs 4 | 0.7624 | [0.7543, 0.7706] | 0.0654 |\n\n### D. Per-fold CI\n`pairwise_auc.json` 包含完整 per-fold 数据，CI 按 `mean ± 1.96 * std / sqrt(5)` 计算。CI 区间窄且合理（与 bootstrap 的虚高区间形成对比）。\n\n### E. LaTeX 表格\n写入路径：`artifacts/exp_qwen_retrain_chain/paper/qwen_retrain_results.tex`\n\n所有 pair AUC > 0.60，K* ≥ 4 成立。Bootstrap 结果（`bootstrap_ci.json`）已废弃不用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-bootstrap-and-collect-fold-results.md"
+}

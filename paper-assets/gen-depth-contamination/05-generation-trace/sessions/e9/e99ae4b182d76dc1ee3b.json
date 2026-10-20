@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e99ae4b182d76dc1ee3b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing related work audit",
+  "task_key": "worker_writing_related-work-audit_20260514T045022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_related-work-audit_20260514T045022_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "2bf9d1f199b660d2cbf5df0b42e2c16a5e397e523983b00270eb71463c724ee4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查完成，结果已写入 `artifacts/drafts/related_work_audit.md`。\n\n核心发现：\n\n| 类别 | 状态 |\n|------|------|\n| Model collapse | 充分（8篇） |\n| Binary detection | 充分（8篇） |\n| Data selection | 充分（4篇） |\n| Watermarking | 充分 |\n| Ordinal classification | 偏薄（仅 CORAL 1篇） |\n| **Probing classifiers** | **缺失** |\n\n**最高优先级缺口**：neural probe 实验在 discussion.tex 和 conclusion.tex 中大量讨论，但 Related Work 完全没有 probing classifiers 文献支撑。建议新增段落引用 Alain & Bengio (2017)、Conneau et al. (2018)、Belinkov (2022)。\n\n次优先级：补 Frank & Hall (2001) 加强 ordinal classification 段落，可选补 Fast-DetectGPT 和 Gerstgrasser et al. (2024)。详细建议文本和插入位置见审查文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-related-work-audit.md"
+}

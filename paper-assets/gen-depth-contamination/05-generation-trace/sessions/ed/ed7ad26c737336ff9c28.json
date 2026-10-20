@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed7ad26c737336ff9c28",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp wiki scorer confound 1b5",
+  "task_key": "worker_analysis_exp_wiki_scorer_confound_1b5_20260517T233956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_wiki_scorer_confound_1b5_20260517T233956_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "b4daae40bee133abcc73656a9c81db5303be7e382009ffa07604047035805ddd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验仍在运行中，尚未完成。\n\n**当前状态：**\n- 开始时间：07:22 CST (May 18, 2026)\n- 当前时间：07:41 CST\n- 当前进度：正在生成 depth 1 数据（301/313 batches, ~96%）\n- 速率：~3.7s/batch\n\n**预估剩余时间：**\n- Depth 1 剩余：~45s\n- Depth 2-5 生成：每层 ~19 min × 4 = ~76 min\n- Scoring 阶段：~15-30 min\n- **总计约 1.5-2 小时后完成**\n\n**注意：** pipeline 检测到 symlink 的文件没有 model metadata，触发了重新生成所有 depth 数据（而非直接复用 exp_023_wiki 数据）。这意味着它在用 Qwen-1.5B 重新生成 depth 1-5，然后再用 Pythia-1.4B scorer 评分。\n\n结果目录 `results/exp_wiki_scorer_confound_1b5/` 当前为空，需等实验完成后再读取。建议约 2 小时后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-wiki-scorer-confound-1b5-copy-2.md"
+}

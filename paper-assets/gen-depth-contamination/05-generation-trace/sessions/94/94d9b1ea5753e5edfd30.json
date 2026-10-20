@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94d9b1ea5753e5edfd30",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "experiment arxiv deberta upperbound",
+  "task_key": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_arxiv-deberta-upperbound_20260520T031015_result.json",
+    "occurrence": 1,
+    "bytes": 1037,
+    "sha256": "5f97d023261664effdd267d05fd97c550cc43967694290904a5a224e625e8cae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，已加载 13200 samples，正在 tokenize。\n\n**实验信息汇总：**\n\n| 项 | 值 |\n|---|---|\n| exp_id | `exp_deberta_arxiv_qwen1b5` |\n| PID | 276481 |\n| GPU | cuda:1 (RTX 4090 D) |\n| 脚本 | `scripts/run_deberta_arxiv.py` |\n| 日志 | `~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log` |\n| 数据 | 13200 samples (2200 docs × 6 depths), arXiv domain, Qwen-1.5B scorer |\n| 超参 | 5-fold GroupKFold, 3 epochs, BS=16, grad_accum=2, LR=2e-5, N_BOOT=10000, θ=0.60 |\n| 输出 | `results/exp_deberta_arxiv/arxiv_qwen1b5.json` |\n\n**与 wiki 版本的差异：**\n- `EXPERIMENTS` 指向 `data/exp_024_arxiv/`\n- `N_BOOT` 从 1000 改为 10000（更精确的 CI 估计）\n- `load_obd` 通过 `OBD_MAP` 加载 `results/exp_024_arxiv/pairwise_auc.json` 作为 baseline\n- 输出到 `results/exp_deberta_arxiv/`\n\n**预计耗时：** wiki 版本 5 个实验跑完的时间参考，单个 arXiv 实验（13200 samples × 5 folds × 3 epochs + 10000 bootstrap）预计 30-60 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-arxiv-deberta-upperbound.md"
+}

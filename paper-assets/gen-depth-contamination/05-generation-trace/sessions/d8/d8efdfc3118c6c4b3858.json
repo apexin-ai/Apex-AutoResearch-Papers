@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "d8efdfc3118c6c4b3858",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops olmo1b c4 depth chain rerun",
+  "task_key": "worker_ops_olmo1b_c4_depth_chain_rerun_20260521T100518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_olmo1b_c4_depth_chain_rerun_20260521T100518.log",
+    "occurrence": 1,
+    "bytes": 1941366,
+    "sha256": "7dd16eeb1af1f7cec4ff4a918cdf3b950f7d5580087f07c2b92a5dbc31cf769b"
+  },
+  "statistics": {
+    "messages": 1023,
+    "user_turns": 1,
+    "tool_calls": 415,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 185,
+      "tool_call": 415,
+      "tool_result": 415,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 523,
+      "chunks": [
+        {
+          "path": "d8efdfc3118c6c4b3858-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8efdfc3118c6c4b3858-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8efdfc3118c6c4b3858-part-0003.json",
+          "message_count": 163
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 500,
+      "chunks": [
+        {
+          "path": "d8efdfc3118c6c4b3858-part-0003.json",
+          "message_count": 17
+        },
+        {
+          "path": "d8efdfc3118c6c4b3858-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8efdfc3118c6c4b3858-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "d8efdfc3118c6c4b3858-part-0006.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-olmo1b-c4-depth-chain-rerun.md"
+}

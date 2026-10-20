@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a54fc5b2988535aad0c4",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check exp 022 detailed progress",
+  "task_key": "worker_check_exp_022_detailed_progress_20260516T161525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_022_detailed_progress_20260516T161525_result.json",
+    "occurrence": 1,
+    "bytes": 1424,
+    "sha256": "57c7dc963c13b898d5445640885a1eec814b2f28de58193f4809d16c9e144b26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_022 进度汇总\n\n### 1. 已完成 (3/12)\n\n| Generator | Scorer | K* | AUC(0v1) | AUC(1v2) |\n|-----------|--------|-----|----------|----------|\n| qwen_base | qwen_base | 2 | 0.987 | 0.626 |\n| qwen_base | pythia | 2 | 0.962 | 0.617 |\n| qwen_base | olmo | 2 | 0.960 | 0.605 |\n\n### 2. 被跳过 (1/12) — 需重跑\n\n- **qwen_base__qwen_instruct**: 脚本启动时 `config.json` 不存在被跳过，但模型现已就位（`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/config.json` 存在）\n\n### 3. 当前正在跑 (1/12)\n\n- **pythia_greedy__qwen_instruct**: Step 4 Feature Extraction，正在处理 depth 3（进度约 50%，日志时间 00:15 开始 depth 3）\n\n### 4. 待跑 (7/12)\n\n- pythia_greedy__qwen_base\n- pythia_greedy__pythia\n- pythia_greedy__olmo\n- qwen_cont256__qwen_instruct\n- qwen_cont256__qwen_base\n- qwen_cont256__pythia\n- qwen_cont256__olmo\n\n### 5. OLMo generator 数据\n\n不需要恢复。实验设计中 OLMo 仅作为 **scorer**（`/root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf`），不作为 generator。服务器上无 OLMo depth chain 数据，也无需生成。\n\n### 6. 预估完成时间\n\n- 每个 combo 约 18 分钟（6 depths × ~3 min/depth）\n- 当前 combo 5 剩余 ~8 min\n- Combos 6-12（7 个）：~126 min\n- 总计：脚本自然结束约需 **2.2 小时**\n- `qwen_base__qwen_instruct` 需额外手动重跑（~18 min）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-022-detailed-progress.md"
+}

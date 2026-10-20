@@ -1,0 +1,1235 @@
+{
+  "schema_version": "1.0",
+  "id": "684b8539bcd5d9ac1227",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "writing c3 structural prewrite",
+  "task_key": "worker_writing_c3-structural-prewrite_20260514T192714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_c3-structural-prewrite_20260514T192714.log",
+    "occurrence": 1,
+    "bytes": 126502,
+    "sha256": "df15d683ae3bcd7963bcaf014067d4a724177be8ae2fd1eae0f4fe3beb1ed364"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "d66c7dc7-6e47-4856-9981-697c4daf2165",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778799000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "eac918b3-564c-4a4e-9fa5-8884d79eccbf",
+                "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the current file first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "4488428c-40c8-47fa-8991-f71739be3cdf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GeX67v77jmEHMhvV3ELxwR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12435,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12435
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QtGXhRCM57bajbUxyHBXbW",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "5b4e6a3a-335a-426d-8e67-4c2c64a18fa7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GeX67v77jmEHMhvV3ELxwR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12435,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12435
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T19:27:29.018Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QtGXhRCM57bajbUxyHBXbW",
+              "type": "tool_result",
+              "content": "1\t\\subsection{Graduated Filtering for Depth-Aware Data Curation}\n2\t\\label{sec:graduated-filtering}\n3\t\n4\tThe $\\Kempirical = 2$ boundary establishes a three-tier taxonomy: human (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\n5\tBinary filtering discards all synthetic content indiscriminately, sacrificing depth-1 text that retains most of the original signal.\n6\tWe ask whether exploiting the coarse ordinal structure---weighting samples by predicted depth rather than applying a hard human/synthetic threshold---improves downstream language model quality.\n7\t\n8\t\\paragraph{Filtering strategies.}\n9\tWe compare six data curation strategies applied to a corpus of 30{,}000 documents (5{,}000 per depth level, depths 0--5) produced by the generational depth pipeline:\n10\t\n11\t\\begin{enumerate}[label=(\\roman*)]\n12\t  \\item \\textbf{No-filter}: all documents receive uniform weight (baseline).\n13\t\n14\t  \\item \\textbf{Binary-ours}: a LightGBM classifier trained on the 15-dimensional feature set distinguishes human (depth~0) from synthetic (depth~$\\geq 1$).\n15\t  Each document receives weight $w = 1 - P(\\text{synthetic})$.\n16\t  This represents the natural binary extension of our depth estimation framework.\n17\t\n18\t  \\item \\textbf{Binary-Drayson}: stratified importance resampling following Drayson et al.~\\cite{drayson2025}, with $w_j = (1 - q(x_j))^b / Z$, $b = 1$, and oversampling factor $k = 1.5$.\n19\t  This is the strongest existing baseline for contamination-aware data curation.\n20\t\n21\t  \\item \\textbf{Graduated}: our proposed depth-aware strategy.\n22\t  The OBD-LightGBM classifier (Section~\\ref{sec:classifier}) predicts a full depth distribution $P(d \\mid \\mathbf{x})$ for each document, from which we compute the expected depth $\\hat{d} = \\sum_d d \\cdot P(d \\mid \\mathbf{x})$.\n23\t  Sample weights follow an exponential decay: $w = \\exp(-\\alpha \\cdot \\hat{d})$, where $\\alpha$ controls the penalty for predicted depth.\n24\t  Low $\\alpha$ values retain more synthetic content with gentle down-weighting; high $\\alpha$ values approximate hard filtering.\n25\t  We sweep $\\alpha \\in \\{0.1, 0.3, 0.5, 0.7, 0.9\\}$.\n26\t\n27\t  \\item \\textbf{Surprisal}: a feature-based heuristic that retains documents whose mean surprisal exceeds the corpus median, exploiting the observation that deeper generations exhibit lower surprisal variance (Section~\\ref{sec:feature_degradation}).\n28\t\n29\t  \\item \\textbf{DSIR}: Data Selection via Importance Resampling~\\cite{xie2023dsir}, using bigram feature hashing with the depth-0 subcorpus as the reference distribution.\n30\t  This represents the state-of-the-art domain-matching baseline that is agnostic to generational depth.\n31\t\\end{enumerate}\n32\t\n33\t\\paragraph{Training setup.}\n34\tWe fine-tune Qwen2.5-1.5B-Instruct via LoRA (rank~8, $\\alpha_{\\text{LoRA}} = 16$, target modules: \\texttt{q\\_proj}, \\texttt{v\\_proj}, dropout 0.05) on the filtered corpus for 3 epochs with learning rate $2 \\times 10^{-5}$, batch size 4 with gradient accumulation 8, warmup ratio 0.1, and bfloat16 precision.\n35\tDocuments are truncated to 512 tokens.\n36\tFor strategies that produce continuous weights (graduated, binary-ours, binary-Drayson, DSIR), zero-weight samples are removed and the remaining samples are drawn via weighted random sampling; for binary strategies (surprisal), excluded samples are dropped outright.\n37\tEach strategy is evaluated across 5 random seeds (42, 123, 456, 789, 1024); the graduated strategy is further crossed with 5 $\\alpha$ values, yielding 25 additional runs.\n38\tA base model baseline (no fine-tuning) is included for reference.\n39\tThe total experimental budget is approximately 50 runs.\n40\t\n41\t\\paragraph{Evaluation.}\n42\tWe evaluate on two standard benchmarks via lm-eval-harness: MMLU (14{,}042 test examples, 0-shot) and HellaSwag (10{,}042 validation examples, 0-shot).\n43\tWe report mean accuracy $\\pm$ standard deviation across seeds.\n44\t\n45\t%% ====================================================================\n46\t\\paragraph{Results.}\n47\t\n48\t\\begin{table}[t]\n49\t\\centering\n50\t\\small\n51\t\\caption{Downstream evaluation of filtering strategies.\n52\tMMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.\n53\tMean $\\pm$ std over 5 seeds.\n54\tBest per-column result in bold; second-best underlined.\n55\tGraduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}\n56\t\\label{tab:filtering_main}\n57\t\\begin{tabular}{lcc}\n58\t\\toprule\n59\t\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n60\t\\midrule\n61\tBase model (no fine-tuning)\n62\t  & \\textit{XX.X}\n63\t  & \\textit{XX.X} \\\\\n64\t\\midrule\n65\tNo-filter\n66\t  & XX.X $\\pm$ X.X\n67\t  & XX.X $\\pm$ X.X \\\\\n68\tBinary-ours\n69\t  & XX.X $\\pm$ X.X\n70\t  & XX.X $\\pm$ X.X \\\\\n71\tBinary-Drayson\n72\t  & XX.X $\\pm$ X.X\n73\t  & XX.X $\\pm$ X.X \\\\\n74\tGraduated ($\\alpha^*$)\n75\t  & \\textbf{XX.X} $\\pm$ X.X\n76\t  & \\textbf{XX.X} $\\pm$ X.X \\\\\n77\tSurprisal\n78\t  & XX.X $\\pm$ X.X\n79\t  & XX.X $\\pm$ X.X \\\\\n80\tDSIR\n81\t  & XX.X $\\pm$ X.X\n82\t  & XX.X $\\pm$ X.X \\\\\n83\t\\bottomrule\n84\t\\end{tabular}\n85\t\\end{table}\n86\t\n87\tTable~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.\n88\t% TODO: fill results and update narrative once exp-006 completes.\n89\t% Expected narrative structure:\n90\t% 1. No-filter baseline establishes the cost of training on contaminated data.\n91\t% 2. Binary strategies (ours + Drayson) improve over no-filter by removing synthetic content.\n92\t% 3. Graduated filtering outperforms binary by preserving depth-1 signal.\n93\t% 4. DSIR and surprisal provide reference points for non-depth-aware curation.\n94\t\n95\t%% ====================================================================\n96\t\\paragraph{$\\alpha$ sensitivity.}\n97\t\n98\t\\begin{table}[t]\n99\t\\centering\n100\t\\small\n101\t\\caption{Graduated filtering $\\alpha$ sweep.\n102\tMean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.\n103\tLower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.}\n104\t\\label{tab:alpha_sweep}\n105\t\\begin{tabular}{ccc}\n106\t\\toprule\n107\t$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n108\t\\midrule\n109\t0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n110\t0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n111\t0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n112\t0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n113\t0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n114\t\\bottomrule\n115\t\\end{tabular}\n116\t\\end{table}\n117\t\n118\tTable~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.\n119\t% TODO: fill results.\n120\t% Expected narrative:\n121\t% - Characterize the Pareto frontier: low alpha retains data volume but includes\n122\t%   more noise; high alpha is more selective but discards useful signal.\n123\t% - Identify optimal alpha and discuss whether the optimum is stable across seeds.\n124\t% - Connect to the K*=2 trichotomy: the graduated scheme effectively implements\n125\t%   a soft version of the human / gen-1 / gen-2+ partition, with alpha controlling\n126\t%   how aggressively deeper content is penalized.\n127\t\n128\t%% ====================================================================\n129\t\\paragraph{Analysis.}\n130\t\n131\t% TODO: fill once results are available.\n132\t% Planned analysis points:\n133\t% (1) Does graduated filtering outperform binary? If so, this validates the\n134\t%     practical utility of the K*=2 trichotomy for data curation.\n135\t% (2) How does the optimal alpha relate to the discrimination boundary?\n136\t%     At alpha -> infinity, graduated degenerates to binary-ours (hard cutoff);\n137\t%     at alpha = 0, it degenerates to no-filter. The optimal alpha should\n138\t%     lie in between, reflecting the value of soft depth-aware weighting.\n139\t% (3) Which strategy benefits most from the seed averaging? If graduated\n140\t%     shows lower variance across seeds, it suggests the ordinal signal\n141\t%     provides a more stable curation criterion than binary classification.\n142\t% (4) Do the results differ between MMLU (knowledge-intensive) and\n143\t%     HellaSwag (commonsense reasoning)? Different tasks may exhibit\n144\t%     different sensitivity to data contamination depth.\n145\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "a888c68b-03eb-44be-ade2-d8850abea10a",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex",
+                "content": "\\subsection{Graduated Filtering for Depth-Aware Data Curation}\n\\label{sec:graduated-filtering}\n\nThe $\\Kempirical = 2$ boundary establishes a three-tier taxonomy: human (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\nBinary filtering discards all synthetic content indiscriminately, sacrificing depth-1 text that retains most of the original signal.\nWe ask whether exploiting the coarse ordinal structure---weighting samples by predicted depth rather than applying a hard human/synthetic threshold---improves downstream language model quality.\n\n\\paragraph{Filtering strategies.}\nWe compare six data curation strategies applied to a corpus of 30{,}000 documents (5{,}000 per depth level, depths 0--5) produced by the generational depth pipeline:\n\n\\begin{enumerate}[label=(\\roman*)]\n  \\item \\textbf{No-filter}: all documents receive uniform weight (baseline).\n\n  \\item \\textbf{Binary-ours}: a LightGBM classifier trained on the 15-dimensional feature set distinguishes human (depth~0) from synthetic (depth~$\\geq 1$).\n  Each document receives weight $w = 1 - P(\\text{synthetic})$.\n  This represents the natural binary extension of our depth estimation framework.\n\n  \\item \\textbf{Binary-Drayson}: stratified importance resampling following Drayson et al.~\\cite{drayson2025}, with $w_j = (1 - q(x_j))^b / Z$, $b = 1$, and oversampling factor $k = 1.5$.\n  This is the strongest existing baseline for contamination-aware data curation.\n\n  \\item \\textbf{Graduated}: our proposed depth-aware strategy.\n  The OBD-LightGBM classifier (Section~\\ref{sec:classifier}) predicts a full depth distribution $P(d \\mid \\mathbf{x})$ for each document, from which we compute the expected depth $\\hat{d} = \\sum_d d \\cdot P(d \\mid \\mathbf{x})$.\n  Sample weights follow an exponential decay: $w = \\exp(-\\alpha \\cdot \\hat{d})$, where $\\alpha$ controls the penalty for predicted depth.\n  Low $\\alpha$ values retain more synthetic content with gentle down-weighting; high $\\alpha$ values approximate hard filtering.\n  We sweep $\\alpha \\in \\{0.1, 0.3, 0.5, 0.7, 0.9\\}$.\n\n  \\item \\textbf{Surprisal}: a feature-based heuristic that retains documents whose mean surprisal exceeds the corpus median, exploiting the observation that deeper generations exhibit lower surprisal variance (Section~\\ref{sec:feature_degradation}).\n\n  \\item \\textbf{DSIR}: Data Selection via Importance Resampling~\\cite{xie2023dsir}, using bigram feature hashing with the depth-0 subcorpus as the reference distribution.\n  This represents the state-of-the-art domain-matching baseline that is agnostic to generational depth.\n\\end{enumerate}\n\n\\paragraph{Training setup.}\nWe fine-tune Qwen2.5-1.5B-Instruct via LoRA (rank~8, $\\alpha_{\\text{LoRA}} = 16$, target modules: \\texttt{q\\_proj}, \\texttt{v\\_proj}, dropout 0.05) on the filtered corpus for 3 epochs with learning rate $2 \\times 10^{-5}$, batch size 4 with gradient accumulation 8, warmup ratio 0.1, and bfloat16 precision.\nDocuments are truncated to 512 tokens.\nFor strategies that produce continuous weights (graduated, binary-ours, binary-Drayson, DSIR), zero-weight samples are removed and the remaining samples are drawn via weighted random sampling; for binary strategies (surprisal), excluded samples are dropped outright.\nEach strategy is evaluated across 5 random seeds (42, 123, 456, 789, 1024); the graduated strategy is further crossed with 5 $\\alpha$ values, yielding 25 additional runs.\nA base model baseline (no fine-tuning) is included for reference.\nThe total experimental budget is approximately 50 runs.\n\n\\paragraph{Evaluation.}\nWe evaluate on two standard benchmarks via lm-eval-harness: MMLU (14{,}042 test examples, 0-shot) and HellaSwag (10{,}042 validation examples, 0-shot).\nWe report mean accuracy $\\pm$ standard deviation across seeds.\n\n%% ====================================================================\n\\paragraph{Results.}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Downstream evaluation of filtering strategies.\nMMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.\nMean $\\pm$ std over 5 seeds.\nBest per-column result in bold; second-best underlined.\nGraduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}\n\\label{tab:filtering_main}\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n\\midrule\nBase model (no fine-tuning)\n  & \\textit{XX.X}\n  & \\textit{XX.X} \\\\\n\\midrule\nNo-filter\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nBinary-ours\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nBinary-Drayson\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nGraduated ($\\alpha^*$)\n  & \\textbf{XX.X} $\\pm$ X.X\n  & \\textbf{XX.X} $\\pm$ X.X \\\\\nSurprisal\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nDSIR\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.\n% TODO: fill results and update narrative once exp-006 completes.\n% Expected narrative structure:\n% 1. No-filter baseline establishes the cost of training on contaminated data.\n% 2. Binary strategies (ours + Drayson) improve over no-filter by removing synthetic content.\n% 3. Graduated filtering outperforms binary by preserving depth-1 signal.\n% 4. DSIR and surprisal provide reference points for non-depth-aware curation.\n\n%% ====================================================================\n\\paragraph{$\\alpha$ sensitivity.}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Graduated filtering $\\alpha$ sweep.\nMean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.\nLower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.}\n\\label{tab:alpha_sweep}\n\\begin{tabular}{ccc}\n\\toprule\n$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n\\midrule\n0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.\n% TODO: fill results.\n% Expected narrative:\n% - Characterize the Pareto frontier: low alpha retains data volume but includes\n%   more noise; high alpha is more selective but discards useful signal.\n% - Identify optimal alpha and discuss whether the optimum is stable across seeds.\n% - Connect to the K*=2 trichotomy: the graduated scheme effectively implements\n%   a soft version of the human / gen-1 / gen-2+ partition, with alpha controlling\n%   how aggressively deeper content is penalized.\n\n%% ====================================================================\n\\paragraph{Analysis.}\n\n% TODO: fill once results are available.\n% Planned analysis points:\n% (1) Does graduated filtering outperform binary? If so, this validates the\n%     practical utility of the K*=2 trichotomy for data curation.\n% (2) How does the optimal alpha relate to the discrimination boundary?\n%     At alpha -> infinity, graduated degenerates to binary-ours (hard cutoff);\n%     at alpha = 0, it degenerates to no-filter. The optimal alpha should\n%     lie in between, reflecting the value of soft depth-aware weighting.\n% (3) Which strategy benefits most from the seed averaging? If graduated\n%     shows lower variance across seeds, it suggests the ordinal signal\n%     provides a more stable curation criterion than binary classification.\n% (4) Do the results differ between MMLU (knowledge-intensive) and\n%     HellaSwag (commonsense reasoning)? Different tasks may exhibit\n%     different sensitivity to data contamination depth.\n",
+                "numLines": 145,
+                "startLine": 1,
+                "totalLines": 145
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture of the file. Let me make all the edits as specified in the task.\n\nLet me plan the edits:\n\n1. Table shell upgrade (tab:filtering_main, lines 48-85) - upgrade columns, change rows, update caption, remove \\textbf{} from Graduated\n2. Alpha sweep table upgrade (tab:alpha_sweep, lines 98-116) - add columns, update caption\n3. Three-track contingency comments (lines 87-93) - replace TODO comments\n4. Alpha sensitivity narrative (lines 118-126) - replace TODO comments\n5. Analysis narrative (lines 128-145) - replace TODO comments\n\n\n6. I'll apply all five edits in parallel since they're in different sections and won't interfere with each other.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "c9ea3a37-f8fa-44d9-aafd-3284bd14b2db",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mog5Ks5RK7EVUj85HpYqXQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2867,
+                "cache_read_input_tokens": 24276,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2867
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll apply all five edits in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "431ffc1d-b901-4463-b67c-bfb08b8e9f8b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mog5Ks5RK7EVUj85HpYqXQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2867,
+                "cache_read_input_tokens": 24276,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2867
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0173xCtYnwgfBP3tbmbFaDCt",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex",
+                "old_string": "\\begin{table}[t]\n\\centering\n\\small\n\\caption{Downstream evaluation of filtering strategies.\nMMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.\nMean $\\pm$ std over 5 seeds.\nBest per-column result in bold; second-best underlined.\nGraduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}\n\\label{tab:filtering_main}\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n\\midrule\nBase model (no fine-tuning)\n  & \\textit{XX.X}\n  & \\textit{XX.X} \\\\\n\\midrule\nNo-filter\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nBinary-ours\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nBinary-Drayson\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nGraduated ($\\alpha^*$)\n  & \\textbf{XX.X} $\\pm$ X.X\n  & \\textbf{XX.X} $\\pm$ X.X \\\\\nSurprisal\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nDSIR\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+                "new_string": "\\begin{table}[t]\n\\centering\n\\small\n\\caption{Downstream evaluation of filtering strategies.\nMMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.\nMean $\\pm$ std over 5 seeds.\n$\\Delta$ columns report the difference relative to the no-filter baseline.\n$p$-values are from paired $t$-tests (5 seeds) comparing each strategy against binary-ours.\nBest per-column result in bold; second-best underlined.\nGraduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}\n\\label{tab:filtering_main}\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$MMLU} & \\textbf{$\\Delta$HS} & \\textbf{$p$} \\\\\n\\midrule\nBase model (no fine-tuning)\n  & \\textit{XX.X}\n  & \\textit{XX.X}\n  & ---\n  & ---\n  & --- \\\\\n\\midrule\nNo-filter\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & ---\n  & ---\n  & X.XX \\\\\nBinary-ours\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & --- \\\\\nBinary-Drayson\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nGraduated ($\\alpha^*$)\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nSurprisal\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nDSIR\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "62772d70-fd34-403b-b97c-123aa5e76fd7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mog5Ks5RK7EVUj85HpYqXQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2867,
+                "cache_read_input_tokens": 24276,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2867
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T19:27:52.152Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0173xCtYnwgfBP3tbmbFaDCt",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "87379837-fa09-4946-bad2-330c7c8fce14",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex",
+              "oldString": "\\begin{table}[t]\n\\centering\n\\small\n\\caption{Downstream evaluation of filtering strategies.\nMMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.\nMean $\\pm$ std over 5 seeds.\nBest per-column result in bold; second-best underlined.\nGraduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}\n\\label{tab:filtering_main}\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n\\midrule\nBase model (no fine-tuning)\n  & \\textit{XX.X}\n  & \\textit{XX.X} \\\\\n\\midrule\nNo-filter\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nBinary-ours\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nBinary-Drayson\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nGraduated ($\\alpha^*$)\n  & \\textbf{XX.X} $\\pm$ X.X\n  & \\textbf{XX.X} $\\pm$ X.X \\\\\nSurprisal\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nDSIR\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+              "newString": "\\begin{table}[t]\n\\centering\n\\small\n\\caption{Downstream evaluation of filtering strategies.\nMMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.\nMean $\\pm$ std over 5 seeds.\n$\\Delta$ columns report the difference relative to the no-filter baseline.\n$p$-values are from paired $t$-tests (5 seeds) comparing each strategy against binary-ours.\nBest per-column result in bold; second-best underlined.\nGraduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}\n\\label{tab:filtering_main}\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$MMLU} & \\textbf{$\\Delta$HS} & \\textbf{$p$} \\\\\n\\midrule\nBase model (no fine-tuning)\n  & \\textit{XX.X}\n  & \\textit{XX.X}\n  & ---\n  & ---\n  & --- \\\\\n\\midrule\nNo-filter\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & ---\n  & ---\n  & X.XX \\\\\nBinary-ours\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & --- \\\\\nBinary-Drayson\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nGraduated ($\\alpha^*$)\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nSurprisal\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nDSIR\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+              "originalFile": "\\subsection{Graduated Filtering for Depth-Aware Data Curation}\n\\label{sec:graduated-filtering}\n\nThe $\\Kempirical = 2$ boundary establishes a three-tier taxonomy: human (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\nBinary filtering discards all synthetic content indiscriminately, sacrificing depth-1 text that retains most of the original signal.\nWe ask whether exploiting the coarse ordinal structure---weighting samples by predicted depth rather than applying a hard human/synthetic threshold---improves downstream language model quality.\n\n\\paragraph{Filtering strategies.}\nWe compare six data curation strategies applied to a corpus of 30{,}000 documents (5{,}000 per depth level, depths 0--5) produced by the generational depth pipeline:\n\n\\begin{enumerate}[label=(\\roman*)]\n  \\item \\textbf{No-filter}: all documents receive uniform weight (baseline).\n\n  \\item \\textbf{Binary-ours}: a LightGBM classifier trained on the 15-dimensional feature set distinguishes human (depth~0) from synthetic (depth~$\\geq 1$).\n  Each document receives weight $w = 1 - P(\\text{synthetic})$.\n  This represents the natural binary extension of our depth estimation framework.\n\n  \\item \\textbf{Binary-Drayson}: stratified importance resampling following Drayson et al.~\\cite{drayson2025}, with $w_j = (1 - q(x_j))^b / Z$, $b = 1$, and oversampling factor $k = 1.5$.\n  This is the strongest existing baseline for contamination-aware data curation.\n\n  \\item \\textbf{Graduated}: our proposed depth-aware strategy.\n  The OBD-LightGBM classifier (Section~\\ref{sec:classifier}) predicts a full depth distribution $P(d \\mid \\mathbf{x})$ for each document, from which we compute the expected depth $\\hat{d} = \\sum_d d \\cdot P(d \\mid \\mathbf{x})$.\n  Sample weights follow an exponential decay: $w = \\exp(-\\alpha \\cdot \\hat{d})$, where $\\alpha$ controls the penalty for predicted depth.\n  Low $\\alpha$ values retain more synthetic content with gentle down-weighting; high $\\alpha$ values approximate hard filtering.\n  We sweep $\\alpha \\in \\{0.1, 0.3, 0.5, 0.7, 0.9\\}$.\n\n  \\item \\textbf{Surprisal}: a feature-based heuristic that retains documents whose mean surprisal exceeds the corpus median, exploiting the observation that deeper generations exhibit lower surprisal variance (Section~\\ref{sec:feature_degradation}).\n\n  \\item \\textbf{DSIR}: Data Selection via Importance Resampling~\\cite{xie2023dsir}, using bigram feature hashing with the depth-0 subcorpus as the reference distribution.\n  This represents the state-of-the-art domain-matching baseline that is agnostic to generational depth.\n\\end{enumerate}\n\n\\paragraph{Training setup.}\nWe fine-tune Qwen2.5-1.5B-Instruct via LoRA (rank~8, $\\alpha_{\\text{LoRA}} = 16$, target modules: \\texttt{q\\_proj}, \\texttt{v\\_proj}, dropout 0.05) on the filtered corpus for 3 epochs with learning rate $2 \\times 10^{-5}$, batch size 4 with gradient accumulation 8, warmup ratio 0.1, and bfloat16 precision.\nDocuments are truncated to 512 tokens.\nFor strategies that produce continuous weights (graduated, binary-ours, binary-Drayson, DSIR), zero-weight samples are removed and the remaining samples are drawn via weighted random sampling; for binary strategies (surprisal), excluded samples are dropped outright.\nEach strategy is evaluated across 5 random seeds (42, 123, 456, 789, 1024); the graduated strategy is further crossed with 5 $\\alpha$ values, yielding 25 additional runs.\nA base model baseline (no fine-tuning) is included for reference.\nThe total experimental budget is approximately 50 runs.\n\n\\paragraph{Evaluation.}\nWe evaluate on two standard benchmarks via lm-eval-harness: MMLU (14{,}042 test examples, 0-shot) and HellaSwag (10{,}042 validation examples, 0-shot).\nWe report mean accuracy $\\pm$ standard deviation across seeds.\n\n%% ====================================================================\n\\paragraph{Results.}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Downstream evaluation of filtering strategies.\nMMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.\nMean $\\pm$ std over 5 seeds.\nBest per-column result in bold; second-best underlined.\nGraduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}\n\\label{tab:filtering_main}\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n\\midrule\nBase model (no fine-tuning)\n  & \\textit{XX.X}\n  & \\textit{XX.X} \\\\\n\\midrule\nNo-filter\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nBinary-ours\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nBinary-Drayson\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nGraduated ($\\alpha^*$)\n  & \\textbf{XX.X} $\\pm$ X.X\n  & \\textbf{XX.X} $\\pm$ X.X \\\\\nSurprisal\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\nDSIR\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.\n% TODO: fill results and update narrative once exp-006 completes.\n% Expected narrative structure:\n% 1. No-filter baseline establishes the cost of training on contaminated data.\n% 2. Binary strategies (ours + Drayson) improve over no-filter by removing synthetic content.\n% 3. Graduated filtering outperforms binary by preserving depth-1 signal.\n% 4. DSIR and surprisal provide reference points for non-depth-aware curation.\n\n%% ====================================================================\n\\paragraph{$\\alpha$ sensitivity.}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Graduated filtering $\\alpha$ sweep.\nMean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.\nLower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.}\n\\label{tab:alpha_sweep}\n\\begin{tabular}{ccc}\n\\toprule\n$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n\\midrule\n0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.\n% TODO: fill results.\n% Expected narrative:\n% - Characterize the Pareto frontier: low alpha retains data volume but includes\n%   more noise; high alpha is more selective but discards useful signal.\n% - Identify optimal alpha and discuss whether the optimum is stable across seeds.\n% - Connect to the K*=2 trichotomy: the graduated scheme effectively implements\n%   a soft version of the human / gen-1 / gen-2+ partition, with alpha controlling\n%   how aggressively deeper content is penalized.\n\n%% ====================================================================\n\\paragraph{Analysis.}\n\n% TODO: fill once results are available.\n% Planned analysis points:\n% (1) Does graduated filtering outperform binary? If so, this validates the\n%     practical utility of the K*=2 trichotomy for data curation.\n% (2) How does the optimal alpha relate to the discrimination boundary?\n%     At alpha -> infinity, graduated degenerates to binary-ours (hard cutoff);\n%     at alpha = 0, it degenerates to no-filter. The optimal alpha should\n%     lie in between, reflecting the value of soft depth-aware weighting.\n% (3) Which strategy benefits most from the seed averaging? If graduated\n%     shows lower variance across seeds, it suggests the ordinal signal\n%     provides a more stable curation criterion than binary classification.\n% (4) Do the results differ between MMLU (knowledge-intensive) and\n%     HellaSwag (commonsense reasoning)? Different tasks may exhibit\n%     different sensitivity to data contamination depth.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 51,
+                  "oldLines": 35,
+                  "newStart": 51,
+                  "newLines": 58,
+                  "lines": [
+                    " \\caption{Downstream evaluation of filtering strategies.",
+                    " MMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.",
+                    " Mean $\\pm$ std over 5 seeds.",
+                    "+$\\Delta$ columns report the difference relative to the no-filter baseline.",
+                    "+$p$-values are from paired $t$-tests (5 seeds) comparing each strategy against binary-ours.",
+                    " Best per-column result in bold; second-best underlined.",
+                    " Graduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}",
+                    " \\label{tab:filtering_main}",
+                    "-\\begin{tabular}{lcc}",
+                    "+\\begin{tabular}{lccccc}",
+                    " \\toprule",
+                    "-\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\",
+                    "+\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$MMLU} & \\textbf{$\\Delta$HS} & \\textbf{$p$} \\\\",
+                    " \\midrule",
+                    " Base model (no fine-tuning)",
+                    "   & \\textit{XX.X}",
+                    "-  & \\textit{XX.X} \\\\",
+                    "+  & \\textit{XX.X}",
+                    "+  & ---",
+                    "+  & ---",
+                    "+  & --- \\\\",
+                    " \\midrule",
+                    " No-filter",
+                    "   & XX.X $\\pm$ X.X",
+                    "-  & XX.X $\\pm$ X.X \\\\",
+                    "+  & XX.X $\\pm$ X.X",
+                    "+  & ---",
+                    "+  & ---",
+                    "+  & X.XX \\\\",
+                    " Binary-ours",
+                    "   & XX.X $\\pm$ X.X",
+                    "-  & XX.X $\\pm$ X.X \\\\",
+                    "+  & XX.X $\\pm$ X.X",
+                    "+  & $+$X.X",
+                    "+  & $+$X.X",
+                    "+  & --- \\\\",
+                    " Binary-Drayson",
+                    "   & XX.X $\\pm$ X.X",
+                    "-  & XX.X $\\pm$ X.X \\\\",
+                    "+  & XX.X $\\pm$ X.X",
+                    "+  & $+$X.X",
+                    "+  & $+$X.X",
+                    "+  & X.XX \\\\",
+                    " Graduated ($\\alpha^*$)",
+                    "-  & \\textbf{XX.X} $\\pm$ X.X",
+                    "-  & \\textbf{XX.X} $\\pm$ X.X \\\\",
+                    "+  & XX.X $\\pm$ X.X",
+                    "+  & XX.X $\\pm$ X.X",
+                    "+  & $+$X.X",
+                    "+  & $+$X.X",
+                    "+  & X.XX \\\\",
+                    " Surprisal",
+                    "   & XX.X $\\pm$ X.X",
+                    "-  & XX.X $\\pm$ X.X \\\\",
+                    "+  & XX.X $\\pm$ X.X",
+                    "+  & $+$X.X",
+                    "+  & $+$X.X",
+                    "+  & X.XX \\\\",
+                    " DSIR",
+                    "   & XX.X $\\pm$ X.X",
+                    "-  & XX.X $\\pm$ X.X \\\\",
+                    "+  & XX.X $\\pm$ X.X",
+                    "+  & $+$X.X",
+                    "+  & $+$X.X",
+                    "+  & X.XX \\\\",
+                    " \\bottomrule",
+                    " \\end{tabular}",
+                    " \\end{table}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016wpBV2YpKrhQKaHKftFZpu",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex",
+                "old_string": "Table~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.\n% TODO: fill results and update narrative once exp-006 completes.\n% Expected narrative structure:\n% 1. No-filter baseline establishes the cost of training on contaminated data.\n% 2. Binary strategies (ours + Drayson) improve over no-filter by removing synthetic content.\n% 3. Graduated filtering outperforms binary by preserving depth-1 signal.\n% 4. DSIR and surprisal provide reference points for non-depth-aware curation.",
+                "new_string": "Table~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.\n%% === CONTINGENCY NARRATIVES (uncomment the matching version once exp-006 results are available) ===\n%% VERSION A (graduated wins):\n%% Graduated filtering at the optimal $\\alpha^*$ significantly outperforms both binary baselines\n%% on MMLU ($+$XX.X\\,pp, $p =$ XX.XX) and HellaSwag ($+$XX.X\\,pp, $p =$ XX.XX),\n%% validating the practical utility of the $\\Kempirical = 2$ trichotomy for data curation.\n%%\n%% VERSION B (binary is optimal):\n%% Graduated filtering at its best $\\alpha$ does not significantly outperform binary-ours\n%% on either benchmark ($p >$ XX.XX), indicating that binary filtering at the $\\Kempirical$\n%% boundary already captures the actionable depth signal (Section~\\ref{sec:graduated-filtering}).\n%%\n%% VERSION B2 (depth-agnostic wins):\n%% DSIR outperforms all depth-aware strategies on [MMLU/HellaSwag/both] ($p =$ XX.XX),\n%% suggesting that distributional alignment provides stronger curation signal than\n%% depth-specific filtering at this corpus scale."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "b8537185-f8ec-4e07-866d-10d6e86a17ab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SdTtNSi1FAKfCcdLSuZD62",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1558,
+                "cache_read_input_tokens": 27143,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1558
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T19:28:06.685Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016wpBV2YpKrhQKaHKftFZpu",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "dd66d6d4-23df-4d42-92f3-d67da86f31fa",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex",
+              "oldString": "Table~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.\n% TODO: fill results and update narrative once exp-006 completes.\n% Expected narrative structure:\n% 1. No-filter baseline establishes the cost of training on contaminated data.\n% 2. Binary strategies (ours + Drayson) improve over no-filter by removing synthetic content.\n% 3. Graduated filtering outperforms binary by preserving depth-1 signal.\n% 4. DSIR and surprisal provide reference points for non-depth-aware curation.",
+              "newString": "Table~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.\n%% === CONTINGENCY NARRATIVES (uncomment the matching version once exp-006 results are available) ===\n%% VERSION A (graduated wins):\n%% Graduated filtering at the optimal $\\alpha^*$ significantly outperforms both binary baselines\n%% on MMLU ($+$XX.X\\,pp, $p =$ XX.XX) and HellaSwag ($+$XX.X\\,pp, $p =$ XX.XX),\n%% validating the practical utility of the $\\Kempirical = 2$ trichotomy for data curation.\n%%\n%% VERSION B (binary is optimal):\n%% Graduated filtering at its best $\\alpha$ does not significantly outperform binary-ours\n%% on either benchmark ($p >$ XX.XX), indicating that binary filtering at the $\\Kempirical$\n%% boundary already captures the actionable depth signal (Section~\\ref{sec:graduated-filtering}).\n%%\n%% VERSION B2 (depth-agnostic wins):\n%% DSIR outperforms all depth-aware strategies on [MMLU/HellaSwag/both] ($p =$ XX.XX),\n%% suggesting that distributional alignment provides stronger curation signal than\n%% depth-specific filtering at this corpus scale.",
+              "originalFile": "\\subsection{Graduated Filtering for Depth-Aware Data Curation}\n\\label{sec:graduated-filtering}\n\nThe $\\Kempirical = 2$ boundary establishes a three-tier taxonomy: human (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\nBinary filtering discards all synthetic content indiscriminately, sacrificing depth-1 text that retains most of the original signal.\nWe ask whether exploiting the coarse ordinal structure---weighting samples by predicted depth rather than applying a hard human/synthetic threshold---improves downstream language model quality.\n\n\\paragraph{Filtering strategies.}\nWe compare six data curation strategies applied to a corpus of 30{,}000 documents (5{,}000 per depth level, depths 0--5) produced by the generational depth pipeline:\n\n\\begin{enumerate}[label=(\\roman*)]\n  \\item \\textbf{No-filter}: all documents receive uniform weight (baseline).\n\n  \\item \\textbf{Binary-ours}: a LightGBM classifier trained on the 15-dimensional feature set distinguishes human (depth~0) from synthetic (depth~$\\geq 1$).\n  Each document receives weight $w = 1 - P(\\text{synthetic})$.\n  This represents the natural binary extension of our depth estimation framework.\n\n  \\item \\textbf{Binary-Drayson}: stratified importance resampling following Drayson et al.~\\cite{drayson2025}, with $w_j = (1 - q(x_j))^b / Z$, $b = 1$, and oversampling factor $k = 1.5$.\n  This is the strongest existing baseline for contamination-aware data curation.\n\n  \\item \\textbf{Graduated}: our proposed depth-aware strategy.\n  The OBD-LightGBM classifier (Section~\\ref{sec:classifier}) predicts a full depth distribution $P(d \\mid \\mathbf{x})$ for each document, from which we compute the expected depth $\\hat{d} = \\sum_d d \\cdot P(d \\mid \\mathbf{x})$.\n  Sample weights follow an exponential decay: $w = \\exp(-\\alpha \\cdot \\hat{d})$, where $\\alpha$ controls the penalty for predicted depth.\n  Low $\\alpha$ values retain more synthetic content with gentle down-weighting; high $\\alpha$ values approximate hard filtering.\n  We sweep $\\alpha \\in \\{0.1, 0.3, 0.5, 0.7, 0.9\\}$.\n\n  \\item \\textbf{Surprisal}: a feature-based heuristic that retains documents whose mean surprisal exceeds the corpus median, exploiting the observation that deeper generations exhibit lower surprisal variance (Section~\\ref{sec:feature_degradation}).\n\n  \\item \\textbf{DSIR}: Data Selection via Importance Resampling~\\cite{xie2023dsir}, using bigram feature hashing with the depth-0 subcorpus as the reference distribution.\n  This represents the state-of-the-art domain-matching baseline that is agnostic to generational depth.\n\\end{enumerate}\n\n\\paragraph{Training setup.}\nWe fine-tune Qwen2.5-1.5B-Instruct via LoRA (rank~8, $\\alpha_{\\text{LoRA}} = 16$, target modules: \\texttt{q\\_proj}, \\texttt{v\\_proj}, dropout 0.05) on the filtered corpus for 3 epochs with learning rate $2 \\times 10^{-5}$, batch size 4 with gradient accumulation 8, warmup ratio 0.1, and bfloat16 precision.\nDocuments are truncated to 512 tokens.\nFor strategies that produce continuous weights (graduated, binary-ours, binary-Drayson, DSIR), zero-weight samples are removed and the remaining samples are drawn via weighted random sampling; for binary strategies (surprisal), excluded samples are dropped outright.\nEach strategy is evaluated across 5 random seeds (42, 123, 456, 789, 1024); the graduated strategy is further crossed with 5 $\\alpha$ values, yielding 25 additional runs.\nA base model baseline (no fine-tuning) is included for reference.\nThe total experimental budget is approximately 50 runs.\n\n\\paragraph{Evaluation.}\nWe evaluate on two standard benchmarks via lm-eval-harness: MMLU (14{,}042 test examples, 0-shot) and HellaSwag (10{,}042 validation examples, 0-shot).\nWe report mean accuracy $\\pm$ standard deviation across seeds.\n\n%% ====================================================================\n\\paragraph{Results.}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Downstream evaluation of filtering strategies.\nMMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.\nMean $\\pm$ std over 5 seeds.\n$\\Delta$ columns report the difference relative to the no-filter baseline.\n$p$-values are from paired $t$-tests (5 seeds) comparing each strategy against binary-ours.\nBest per-column result in bold; second-best underlined.\nGraduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}\n\\label{tab:filtering_main}\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$MMLU} & \\textbf{$\\Delta$HS} & \\textbf{$p$} \\\\\n\\midrule\nBase model (no fine-tuning)\n  & \\textit{XX.X}\n  & \\textit{XX.X}\n  & ---\n  & ---\n  & --- \\\\\n\\midrule\nNo-filter\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & ---\n  & ---\n  & X.XX \\\\\nBinary-ours\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & --- \\\\\nBinary-Drayson\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nGraduated ($\\alpha^*$)\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nSurprisal\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nDSIR\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.\n% TODO: fill results and update narrative once exp-006 completes.\n% Expected narrative structure:\n% 1. No-filter baseline establishes the cost of training on contaminated data.\n% 2. Binary strategies (ours + Drayson) improve over no-filter by removing synthetic content.\n% 3. Graduated filtering outperforms binary by preserving depth-1 signal.\n% 4. DSIR and surprisal provide reference points for non-depth-aware curation.\n\n%% ====================================================================\n\\paragraph{$\\alpha$ sensitivity.}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Graduated filtering $\\alpha$ sweep.\nMean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.\nLower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.}\n\\label{tab:alpha_sweep}\n\\begin{tabular}{ccc}\n\\toprule\n$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n\\midrule\n0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.\n% TODO: fill results.\n% Expected narrative:\n% - Characterize the Pareto frontier: low alpha retains data volume but includes\n%   more noise; high alpha is more selective but discards useful signal.\n% - Identify optimal alpha and discuss whether the optimum is stable across seeds.\n% - Connect to the K*=2 trichotomy: the graduated scheme effectively implements\n%   a soft version of the human / gen-1 / gen-2+ partition, with alpha controlling\n%   how aggressively deeper content is penalized.\n\n%% ====================================================================\n\\paragraph{Analysis.}\n\n% TODO: fill once results are available.\n% Planned analysis points:\n% (1) Does graduated filtering outperform binary? If so, this validates the\n%     practical utility of the K*=2 trichotomy for data curation.\n% (2) How does the optimal alpha relate to the discrimination boundary?\n%     At alpha -> infinity, graduated degenerates to binary-ours (hard cutoff);\n%     at alpha = 0, it degenerates to no-filter. The optimal alpha should\n%     lie in between, reflecting the value of soft depth-aware weighting.\n% (3) Which strategy benefits most from the seed averaging? If graduated\n%     shows lower variance across seeds, it suggests the ordinal signal\n%     provides a more stable curation criterion than binary classification.\n% (4) Do the results differ between MMLU (knowledge-intensive) and\n%     HellaSwag (commonsense reasoning)? Different tasks may exhibit\n%     different sensitivity to data contamination depth.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 108,
+                  "oldLines": 12,
+                  "newStart": 108,
+                  "newLines": 21,
+                  "lines": [
+                    " \\end{table}",
+                    " ",
+                    " Table~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.",
+                    "-% TODO: fill results and update narrative once exp-006 completes.",
+                    "-% Expected narrative structure:",
+                    "-% 1. No-filter baseline establishes the cost of training on contaminated data.",
+                    "-% 2. Binary strategies (ours + Drayson) improve over no-filter by removing synthetic content.",
+                    "-% 3. Graduated filtering outperforms binary by preserving depth-1 signal.",
+                    "-% 4. DSIR and surprisal provide reference points for non-depth-aware curation.",
+                    "+%% === CONTINGENCY NARRATIVES (uncomment the matching version once exp-006 results are available) ===",
+                    "+%% VERSION A (graduated wins):",
+                    "+%% Graduated filtering at the optimal $\\alpha^*$ significantly outperforms both binary baselines",
+                    "+%% on MMLU ($+$XX.X\\,pp, $p =$ XX.XX) and HellaSwag ($+$XX.X\\,pp, $p =$ XX.XX),",
+                    "+%% validating the practical utility of the $\\Kempirical = 2$ trichotomy for data curation.",
+                    "+%%",
+                    "+%% VERSION B (binary is optimal):",
+                    "+%% Graduated filtering at its best $\\alpha$ does not significantly outperform binary-ours",
+                    "+%% on either benchmark ($p >$ XX.XX), indicating that binary filtering at the $\\Kempirical$",
+                    "+%% boundary already captures the actionable depth signal (Section~\\ref{sec:graduated-filtering}).",
+                    "+%%",
+                    "+%% VERSION B2 (depth-agnostic wins):",
+                    "+%% DSIR outperforms all depth-aware strategies on [MMLU/HellaSwag/both] ($p =$ XX.XX),",
+                    "+%% suggesting that distributional alignment provides stronger curation signal than",
+                    "+%% depth-specific filtering at this corpus scale.",
+                    " ",
+                    " %% ====================================================================",
+                    " \\paragraph{$\\alpha$ sensitivity.}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0187uhbby3f6gKTcDkDPcFoh",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex",
+                "old_string": "\\caption{Graduated filtering $\\alpha$ sweep.\nMean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.\nLower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.}\n\\label{tab:alpha_sweep}\n\\begin{tabular}{ccc}\n\\toprule\n$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n\\midrule\n0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n\\bottomrule\n\\end{tabular}",
+                "new_string": "\\caption{Graduated filtering $\\alpha$ sweep.\nMean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.\nLower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.\n$\\Delta$ vs binary-ours reports the difference in mean accuracy relative to the binary-ours strategy.\nEff.\\ corpus \\% is the effective proportion of the corpus retained under graduated weighting.}\n\\label{tab:alpha_sweep}\n\\begin{tabular}{ccccc}\n\\toprule\n$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$ vs binary-ours} & \\textbf{Eff.\\ corpus \\%} \\\\\n\\midrule\n0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n\\bottomrule\n\\end{tabular}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "a186a17f-a775-4083-a553-058c84bcb4b6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012mKTYtFzWnEeamGaeiiA3A",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 657,
+                "cache_read_input_tokens": 28701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 657
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T19:28:18.655Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0187uhbby3f6gKTcDkDPcFoh",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "a2ece779-7bd7-4ac2-9f13-3033150cd329",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex",
+              "oldString": "\\caption{Graduated filtering $\\alpha$ sweep.\nMean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.\nLower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.}\n\\label{tab:alpha_sweep}\n\\begin{tabular}{ccc}\n\\toprule\n$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n\\midrule\n0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n\\bottomrule\n\\end{tabular}",
+              "newString": "\\caption{Graduated filtering $\\alpha$ sweep.\nMean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.\nLower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.\n$\\Delta$ vs binary-ours reports the difference in mean accuracy relative to the binary-ours strategy.\nEff.\\ corpus \\% is the effective proportion of the corpus retained under graduated weighting.}\n\\label{tab:alpha_sweep}\n\\begin{tabular}{ccccc}\n\\toprule\n$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$ vs binary-ours} & \\textbf{Eff.\\ corpus \\%} \\\\\n\\midrule\n0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n\\bottomrule\n\\end{tabular}",
+              "originalFile": "\\subsection{Graduated Filtering for Depth-Aware Data Curation}\n\\label{sec:graduated-filtering}\n\nThe $\\Kempirical = 2$ boundary establishes a three-tier taxonomy: human (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\nBinary filtering discards all synthetic content indiscriminately, sacrificing depth-1 text that retains most of the original signal.\nWe ask whether exploiting the coarse ordinal structure---weighting samples by predicted depth rather than applying a hard human/synthetic threshold---improves downstream language model quality.\n\n\\paragraph{Filtering strategies.}\nWe compare six data curation strategies applied to a corpus of 30{,}000 documents (5{,}000 per depth level, depths 0--5) produced by the generational depth pipeline:\n\n\\begin{enumerate}[label=(\\roman*)]\n  \\item \\textbf{No-filter}: all documents receive uniform weight (baseline).\n\n  \\item \\textbf{Binary-ours}: a LightGBM classifier trained on the 15-dimensional feature set distinguishes human (depth~0) from synthetic (depth~$\\geq 1$).\n  Each document receives weight $w = 1 - P(\\text{synthetic})$.\n  This represents the natural binary extension of our depth estimation framework.\n\n  \\item \\textbf{Binary-Drayson}: stratified importance resampling following Drayson et al.~\\cite{drayson2025}, with $w_j = (1 - q(x_j))^b / Z$, $b = 1$, and oversampling factor $k = 1.5$.\n  This is the strongest existing baseline for contamination-aware data curation.\n\n  \\item \\textbf{Graduated}: our proposed depth-aware strategy.\n  The OBD-LightGBM classifier (Section~\\ref{sec:classifier}) predicts a full depth distribution $P(d \\mid \\mathbf{x})$ for each document, from which we compute the expected depth $\\hat{d} = \\sum_d d \\cdot P(d \\mid \\mathbf{x})$.\n  Sample weights follow an exponential decay: $w = \\exp(-\\alpha \\cdot \\hat{d})$, where $\\alpha$ controls the penalty for predicted depth.\n  Low $\\alpha$ values retain more synthetic content with gentle down-weighting; high $\\alpha$ values approximate hard filtering.\n  We sweep $\\alpha \\in \\{0.1, 0.3, 0.5, 0.7, 0.9\\}$.\n\n  \\item \\textbf{Surprisal}: a feature-based heuristic that retains documents whose mean surprisal exceeds the corpus median, exploiting the observation that deeper generations exhibit lower surprisal variance (Section~\\ref{sec:feature_degradation}).\n\n  \\item \\textbf{DSIR}: Data Selection via Importance Resampling~\\cite{xie2023dsir}, using bigram feature hashing with the depth-0 subcorpus as the reference distribution.\n  This represents the state-of-the-art domain-matching baseline that is agnostic to generational depth.\n\\end{enumerate}\n\n\\paragraph{Training setup.}\nWe fine-tune Qwen2.5-1.5B-Instruct via LoRA (rank~8, $\\alpha_{\\text{LoRA}} = 16$, target modules: \\texttt{q\\_proj}, \\texttt{v\\_proj}, dropout 0.05) on the filtered corpus for 3 epochs with learning rate $2 \\times 10^{-5}$, batch size 4 with gradient accumulation 8, warmup ratio 0.1, and bfloat16 precision.\nDocuments are truncated to 512 tokens.\nFor strategies that produce continuous weights (graduated, binary-ours, binary-Drayson, DSIR), zero-weight samples are removed and the remaining samples are drawn via weighted random sampling; for binary strategies (surprisal), excluded samples are dropped outright.\nEach strategy is evaluated across 5 random seeds (42, 123, 456, 789, 1024); the graduated strategy is further crossed with 5 $\\alpha$ values, yielding 25 additional runs.\nA base model baseline (no fine-tuning) is included for reference.\nThe total experimental budget is approximately 50 runs.\n\n\\paragraph{Evaluation.}\nWe evaluate on two standard benchmarks via lm-eval-harness: MMLU (14{,}042 test examples, 0-shot) and HellaSwag (10{,}042 validation examples, 0-shot).\nWe report mean accuracy $\\pm$ standard deviation across seeds.\n\n%% ====================================================================\n\\paragraph{Results.}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Downstream evaluation of filtering strategies.\nMMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.\nMean $\\pm$ std over 5 seeds.\n$\\Delta$ columns report the difference relative to the no-filter baseline.\n$p$-values are from paired $t$-tests (5 seeds) comparing each strategy against binary-ours.\nBest per-column result in bold; second-best underlined.\nGraduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}\n\\label{tab:filtering_main}\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$MMLU} & \\textbf{$\\Delta$HS} & \\textbf{$p$} \\\\\n\\midrule\nBase model (no fine-tuning)\n  & \\textit{XX.X}\n  & \\textit{XX.X}\n  & ---\n  & ---\n  & --- \\\\\n\\midrule\nNo-filter\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & ---\n  & ---\n  & X.XX \\\\\nBinary-ours\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & --- \\\\\nBinary-Drayson\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nGraduated ($\\alpha^*$)\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nSurprisal\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nDSIR\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.\n%% === CONTINGENCY NARRATIVES (uncomment the matching version once exp-006 results are available) ===\n%% VERSION A (graduated wins):\n%% Graduated filtering at the optimal $\\alpha^*$ significantly outperforms both binary baselines\n%% on MMLU ($+$XX.X\\,pp, $p =$ XX.XX) and HellaSwag ($+$XX.X\\,pp, $p =$ XX.XX),\n%% validating the practical utility of the $\\Kempirical = 2$ trichotomy for data curation.\n%%\n%% VERSION B (binary is optimal):\n%% Graduated filtering at its best $\\alpha$ does not significantly outperform binary-ours\n%% on either benchmark ($p >$ XX.XX), indicating that binary filtering at the $\\Kempirical$\n%% boundary already captures the actionable depth signal (Section~\\ref{sec:graduated-filtering}).\n%%\n%% VERSION B2 (depth-agnostic wins):\n%% DSIR outperforms all depth-aware strategies on [MMLU/HellaSwag/both] ($p =$ XX.XX),\n%% suggesting that distributional alignment provides stronger curation signal than\n%% depth-specific filtering at this corpus scale.\n\n%% ====================================================================\n\\paragraph{$\\alpha$ sensitivity.}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Graduated filtering $\\alpha$ sweep.\nMean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.\nLower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.}\n\\label{tab:alpha_sweep}\n\\begin{tabular}{ccc}\n\\toprule\n$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n\\midrule\n0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.\n% TODO: fill results.\n% Expected narrative:\n% - Characterize the Pareto frontier: low alpha retains data volume but includes\n%   more noise; high alpha is more selective but discards useful signal.\n% - Identify optimal alpha and discuss whether the optimum is stable across seeds.\n% - Connect to the K*=2 trichotomy: the graduated scheme effectively implements\n%   a soft version of the human / gen-1 / gen-2+ partition, with alpha controlling\n%   how aggressively deeper content is penalized.\n\n%% ====================================================================\n\\paragraph{Analysis.}\n\n% TODO: fill once results are available.\n% Planned analysis points:\n% (1) Does graduated filtering outperform binary? If so, this validates the\n%     practical utility of the K*=2 trichotomy for data curation.\n% (2) How does the optimal alpha relate to the discrimination boundary?\n%     At alpha -> infinity, graduated degenerates to binary-ours (hard cutoff);\n%     at alpha = 0, it degenerates to no-filter. The optimal alpha should\n%     lie in between, reflecting the value of soft depth-aware weighting.\n% (3) Which strategy benefits most from the seed averaging? If graduated\n%     shows lower variance across seeds, it suggests the ordinal signal\n%     provides a more stable curation criterion than binary classification.\n% (4) Do the results differ between MMLU (knowledge-intensive) and\n%     HellaSwag (commonsense reasoning)? Different tasks may exhibit\n%     different sensitivity to data contamination depth.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 132,
+                  "oldLines": 17,
+                  "newStart": 132,
+                  "newLines": 19,
+                  "lines": [
+                    " \\small",
+                    " \\caption{Graduated filtering $\\alpha$ sweep.",
+                    " Mean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.",
+                    "-Lower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.}",
+                    "+Lower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.",
+                    "+$\\Delta$ vs binary-ours reports the difference in mean accuracy relative to the binary-ours strategy.",
+                    "+Eff.\\ corpus \\% is the effective proportion of the corpus retained under graduated weighting.}",
+                    " \\label{tab:alpha_sweep}",
+                    "-\\begin{tabular}{ccc}",
+                    "+\\begin{tabular}{ccccc}",
+                    " \\toprule",
+                    "-$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\",
+                    "+$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$ vs binary-ours} & \\textbf{Eff.\\ corpus \\%} \\\\",
+                    " \\midrule",
+                    "-0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\",
+                    "-0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\",
+                    "-0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\",
+                    "-0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\",
+                    "-0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\",
+                    "+0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\",
+                    "+0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\",
+                    "+0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\",
+                    "+0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\",
+                    "+0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\",
+                    " \\bottomrule",
+                    " \\end{tabular}",
+                    " \\end{table}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015agrC7U8EUFxwojgaVDS5T",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex",
+                "old_string": "Table~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.\n% TODO: fill results.\n% Expected narrative:\n% - Characterize the Pareto frontier: low alpha retains data volume but includes\n%   more noise; high alpha is more selective but discards useful signal.\n% - Identify optimal alpha and discuss whether the optimum is stable across seeds.\n% - Connect to the K*=2 trichotomy: the graduated scheme effectively implements\n%   a soft version of the human / gen-1 / gen-2+ partition, with alpha controlling\n%   how aggressively deeper content is penalized.",
+                "new_string": "Table~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.\nAt $\\alpha \\to 0$, graduated filtering approaches the no-filter baseline (all documents equally weighted); at $\\alpha \\to \\infty$, it approximates binary hard filtering (depth-0 retained, all synthetic discarded).\nThe graduated scheme effectively implements a soft version of the human / gen-1 / gen-2+ partition implied by $\\Kempirical = 2$, with $\\alpha$ controlling how aggressively deeper content is penalized.\n%% TODO: fill optimal alpha, monotonicity pattern, cross-seed stability once exp-006 completes."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "c1a31b29-d8c6-44fd-be73-b510ae02ec0f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013sbeFAtS77H2vZxn16YJ4M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 884,
+                "cache_read_input_tokens": 29358,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 884
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T19:28:29.805Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015agrC7U8EUFxwojgaVDS5T",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "f9856e40-207d-4f3b-b23b-2164fac954f4",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex",
+              "oldString": "Table~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.\n% TODO: fill results.\n% Expected narrative:\n% - Characterize the Pareto frontier: low alpha retains data volume but includes\n%   more noise; high alpha is more selective but discards useful signal.\n% - Identify optimal alpha and discuss whether the optimum is stable across seeds.\n% - Connect to the K*=2 trichotomy: the graduated scheme effectively implements\n%   a soft version of the human / gen-1 / gen-2+ partition, with alpha controlling\n%   how aggressively deeper content is penalized.",
+              "newString": "Table~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.\nAt $\\alpha \\to 0$, graduated filtering approaches the no-filter baseline (all documents equally weighted); at $\\alpha \\to \\infty$, it approximates binary hard filtering (depth-0 retained, all synthetic discarded).\nThe graduated scheme effectively implements a soft version of the human / gen-1 / gen-2+ partition implied by $\\Kempirical = 2$, with $\\alpha$ controlling how aggressively deeper content is penalized.\n%% TODO: fill optimal alpha, monotonicity pattern, cross-seed stability once exp-006 completes.",
+              "originalFile": "\\subsection{Graduated Filtering for Depth-Aware Data Curation}\n\\label{sec:graduated-filtering}\n\nThe $\\Kempirical = 2$ boundary establishes a three-tier taxonomy: human (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\nBinary filtering discards all synthetic content indiscriminately, sacrificing depth-1 text that retains most of the original signal.\nWe ask whether exploiting the coarse ordinal structure---weighting samples by predicted depth rather than applying a hard human/synthetic threshold---improves downstream language model quality.\n\n\\paragraph{Filtering strategies.}\nWe compare six data curation strategies applied to a corpus of 30{,}000 documents (5{,}000 per depth level, depths 0--5) produced by the generational depth pipeline:\n\n\\begin{enumerate}[label=(\\roman*)]\n  \\item \\textbf{No-filter}: all documents receive uniform weight (baseline).\n\n  \\item \\textbf{Binary-ours}: a LightGBM classifier trained on the 15-dimensional feature set distinguishes human (depth~0) from synthetic (depth~$\\geq 1$).\n  Each document receives weight $w = 1 - P(\\text{synthetic})$.\n  This represents the natural binary extension of our depth estimation framework.\n\n  \\item \\textbf{Binary-Drayson}: stratified importance resampling following Drayson et al.~\\cite{drayson2025}, with $w_j = (1 - q(x_j))^b / Z$, $b = 1$, and oversampling factor $k = 1.5$.\n  This is the strongest existing baseline for contamination-aware data curation.\n\n  \\item \\textbf{Graduated}: our proposed depth-aware strategy.\n  The OBD-LightGBM classifier (Section~\\ref{sec:classifier}) predicts a full depth distribution $P(d \\mid \\mathbf{x})$ for each document, from which we compute the expected depth $\\hat{d} = \\sum_d d \\cdot P(d \\mid \\mathbf{x})$.\n  Sample weights follow an exponential decay: $w = \\exp(-\\alpha \\cdot \\hat{d})$, where $\\alpha$ controls the penalty for predicted depth.\n  Low $\\alpha$ values retain more synthetic content with gentle down-weighting; high $\\alpha$ values approximate hard filtering.\n  We sweep $\\alpha \\in \\{0.1, 0.3, 0.5, 0.7, 0.9\\}$.\n\n  \\item \\textbf{Surprisal}: a feature-based heuristic that retains documents whose mean surprisal exceeds the corpus median, exploiting the observation that deeper generations exhibit lower surprisal variance (Section~\\ref{sec:feature_degradation}).\n\n  \\item \\textbf{DSIR}: Data Selection via Importance Resampling~\\cite{xie2023dsir}, using bigram feature hashing with the depth-0 subcorpus as the reference distribution.\n  This represents the state-of-the-art domain-matching baseline that is agnostic to generational depth.\n\\end{enumerate}\n\n\\paragraph{Training setup.}\nWe fine-tune Qwen2.5-1.5B-Instruct via LoRA (rank~8, $\\alpha_{\\text{LoRA}} = 16$, target modules: \\texttt{q\\_proj}, \\texttt{v\\_proj}, dropout 0.05) on the filtered corpus for 3 epochs with learning rate $2 \\times 10^{-5}$, batch size 4 with gradient accumulation 8, warmup ratio 0.1, and bfloat16 precision.\nDocuments are truncated to 512 tokens.\nFor strategies that produce continuous weights (graduated, binary-ours, binary-Drayson, DSIR), zero-weight samples are removed and the remaining samples are drawn via weighted random sampling; for binary strategies (surprisal), excluded samples are dropped outright.\nEach strategy is evaluated across 5 random seeds (42, 123, 456, 789, 1024); the graduated strategy is further crossed with 5 $\\alpha$ values, yielding 25 additional runs.\nA base model baseline (no fine-tuning) is included for reference.\nThe total experimental budget is approximately 50 runs.\n\n\\paragraph{Evaluation.}\nWe evaluate on two standard benchmarks via lm-eval-harness: MMLU (14{,}042 test examples, 0-shot) and HellaSwag (10{,}042 validation examples, 0-shot).\nWe report mean accuracy $\\pm$ standard deviation across seeds.\n\n%% ====================================================================\n\\paragraph{Results.}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Downstream evaluation of filtering strategies.\nMMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.\nMean $\\pm$ std over 5 seeds.\n$\\Delta$ columns report the difference relative to the no-filter baseline.\n$p$-values are from paired $t$-tests (5 seeds) comparing each strategy against binary-ours.\nBest per-column result in bold; second-best underlined.\nGraduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}\n\\label{tab:filtering_main}\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$MMLU} & \\textbf{$\\Delta$HS} & \\textbf{$p$} \\\\\n\\midrule\nBase model (no fine-tuning)\n  & \\textit{XX.X}\n  & \\textit{XX.X}\n  & ---\n  & ---\n  & --- \\\\\n\\midrule\nNo-filter\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & ---\n  & ---\n  & X.XX \\\\\nBinary-ours\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & --- \\\\\nBinary-Drayson\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nGraduated ($\\alpha^*$)\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nSurprisal\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nDSIR\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.\n%% === CONTINGENCY NARRATIVES (uncomment the matching version once exp-006 results are available) ===\n%% VERSION A (graduated wins):\n%% Graduated filtering at the optimal $\\alpha^*$ significantly outperforms both binary baselines\n%% on MMLU ($+$XX.X\\,pp, $p =$ XX.XX) and HellaSwag ($+$XX.X\\,pp, $p =$ XX.XX),\n%% validating the practical utility of the $\\Kempirical = 2$ trichotomy for data curation.\n%%\n%% VERSION B (binary is optimal):\n%% Graduated filtering at its best $\\alpha$ does not significantly outperform binary-ours\n%% on either benchmark ($p >$ XX.XX), indicating that binary filtering at the $\\Kempirical$\n%% boundary already captures the actionable depth signal (Section~\\ref{sec:graduated-filtering}).\n%%\n%% VERSION B2 (depth-agnostic wins):\n%% DSIR outperforms all depth-aware strategies on [MMLU/HellaSwag/both] ($p =$ XX.XX),\n%% suggesting that distributional alignment provides stronger curation signal than\n%% depth-specific filtering at this corpus scale.\n\n%% ====================================================================\n\\paragraph{$\\alpha$ sensitivity.}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Graduated filtering $\\alpha$ sweep.\nMean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.\nLower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.\n$\\Delta$ vs binary-ours reports the difference in mean accuracy relative to the binary-ours strategy.\nEff.\\ corpus \\% is the effective proportion of the corpus retained under graduated weighting.}\n\\label{tab:alpha_sweep}\n\\begin{tabular}{ccccc}\n\\toprule\n$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$ vs binary-ours} & \\textbf{Eff.\\ corpus \\%} \\\\\n\\midrule\n0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.\n% TODO: fill results.\n% Expected narrative:\n% - Characterize the Pareto frontier: low alpha retains data volume but includes\n%   more noise; high alpha is more selective but discards useful signal.\n% - Identify optimal alpha and discuss whether the optimum is stable across seeds.\n% - Connect to the K*=2 trichotomy: the graduated scheme effectively implements\n%   a soft version of the human / gen-1 / gen-2+ partition, with alpha controlling\n%   how aggressively deeper content is penalized.\n\n%% ====================================================================\n\\paragraph{Analysis.}\n\n% TODO: fill once results are available.\n% Planned analysis points:\n% (1) Does graduated filtering outperform binary? If so, this validates the\n%     practical utility of the K*=2 trichotomy for data curation.\n% (2) How does the optimal alpha relate to the discrimination boundary?\n%     At alpha -> infinity, graduated degenerates to binary-ours (hard cutoff);\n%     at alpha = 0, it degenerates to no-filter. The optimal alpha should\n%     lie in between, reflecting the value of soft depth-aware weighting.\n% (3) Which strategy benefits most from the seed averaging? If graduated\n%     shows lower variance across seeds, it suggests the ordinal signal\n%     provides a more stable curation criterion than binary classification.\n% (4) Do the results differ between MMLU (knowledge-intensive) and\n%     HellaSwag (commonsense reasoning)? Different tasks may exhibit\n%     different sensitivity to data contamination depth.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 150,
+                  "oldLines": 14,
+                  "newStart": 150,
+                  "newLines": 9,
+                  "lines": [
+                    " \\end{table}",
+                    " ",
+                    " Table~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.",
+                    "-% TODO: fill results.",
+                    "-% Expected narrative:",
+                    "-% - Characterize the Pareto frontier: low alpha retains data volume but includes",
+                    "-%   more noise; high alpha is more selective but discards useful signal.",
+                    "-% - Identify optimal alpha and discuss whether the optimum is stable across seeds.",
+                    "-% - Connect to the K*=2 trichotomy: the graduated scheme effectively implements",
+                    "-%   a soft version of the human / gen-1 / gen-2+ partition, with alpha controlling",
+                    "-%   how aggressively deeper content is penalized.",
+                    "+At $\\alpha \\to 0$, graduated filtering approaches the no-filter baseline (all documents equally weighted); at $\\alpha \\to \\infty$, it approximates binary hard filtering (depth-0 retained, all synthetic discarded).",
+                    "+The graduated scheme effectively implements a soft version of the human / gen-1 / gen-2+ partition implied by $\\Kempirical = 2$, with $\\alpha$ controlling how aggressively deeper content is penalized.",
+                    "+%% TODO: fill optimal alpha, monotonicity pattern, cross-seed stability once exp-006 completes.",
+                    " ",
+                    " %% ====================================================================",
+                    " \\paragraph{Analysis.}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bcza5bz6UFbQjjQUMoyBmt",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex",
+                "old_string": "\\paragraph{Analysis.}\n\n% TODO: fill once results are available.\n% Planned analysis points:\n% (1) Does graduated filtering outperform binary? If so, this validates the\n%     practical utility of the K*=2 trichotomy for data curation.\n% (2) How does the optimal alpha relate to the discrimination boundary?\n%     At alpha -> infinity, graduated degenerates to binary-ours (hard cutoff);\n%     at alpha = 0, it degenerates to no-filter. The optimal alpha should\n%     lie in between, reflecting the value of soft depth-aware weighting.\n% (3) Which strategy benefits most from the seed averaging? If graduated\n%     shows lower variance across seeds, it suggests the ordinal signal\n%     provides a more stable curation criterion than binary classification.\n% (4) Do the results differ between MMLU (knowledge-intensive) and\n%     HellaSwag (commonsense reasoning)? Different tasks may exhibit\n%     different sensitivity to data contamination depth.",
+                "new_string": "\\paragraph{Analysis.}\nWe address four questions.\nFirst, does graduated filtering outperform binary?\nIf so, this validates the practical utility of the $\\Kempirical = 2$ trichotomy for data curation; if not, it suggests that binary filtering at the $\\Kempirical$ boundary already captures the actionable depth signal.\nSecond, how does the optimal $\\alpha$ relate to the discrimination boundary?\nThe graduated scheme allocates weighting resolution across the depth axis; if the optimal $\\alpha$ is low, the ordinal signal provides marginal value beyond binary classification.\nThird, does graduated filtering exhibit lower cross-seed variance than binary strategies, indicating that ordinal weighting provides a more stable curation criterion?\nFourth, do MMLU (knowledge-intensive) and HellaSwag (commonsense reasoning) respond differently to curation strategy, reflecting different sensitivity to contamination depth?\n%% TODO: fill analysis results once exp-006 completes."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "9a42206a-dc37-46af-bac0-21cab5174741",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q6y3ucJ4AvYKaMisgccxVh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 509,
+                "cache_read_input_tokens": 30242,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 509
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T19:28:43.204Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bcza5bz6UFbQjjQUMoyBmt",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "83725dec-acc7-4da9-b1e1-e8707d265e2c",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex",
+              "oldString": "\\paragraph{Analysis.}\n\n% TODO: fill once results are available.\n% Planned analysis points:\n% (1) Does graduated filtering outperform binary? If so, this validates the\n%     practical utility of the K*=2 trichotomy for data curation.\n% (2) How does the optimal alpha relate to the discrimination boundary?\n%     At alpha -> infinity, graduated degenerates to binary-ours (hard cutoff);\n%     at alpha = 0, it degenerates to no-filter. The optimal alpha should\n%     lie in between, reflecting the value of soft depth-aware weighting.\n% (3) Which strategy benefits most from the seed averaging? If graduated\n%     shows lower variance across seeds, it suggests the ordinal signal\n%     provides a more stable curation criterion than binary classification.\n% (4) Do the results differ between MMLU (knowledge-intensive) and\n%     HellaSwag (commonsense reasoning)? Different tasks may exhibit\n%     different sensitivity to data contamination depth.",
+              "newString": "\\paragraph{Analysis.}\nWe address four questions.\nFirst, does graduated filtering outperform binary?\nIf so, this validates the practical utility of the $\\Kempirical = 2$ trichotomy for data curation; if not, it suggests that binary filtering at the $\\Kempirical$ boundary already captures the actionable depth signal.\nSecond, how does the optimal $\\alpha$ relate to the discrimination boundary?\nThe graduated scheme allocates weighting resolution across the depth axis; if the optimal $\\alpha$ is low, the ordinal signal provides marginal value beyond binary classification.\nThird, does graduated filtering exhibit lower cross-seed variance than binary strategies, indicating that ordinal weighting provides a more stable curation criterion?\nFourth, do MMLU (knowledge-intensive) and HellaSwag (commonsense reasoning) respond differently to curation strategy, reflecting different sensitivity to contamination depth?\n%% TODO: fill analysis results once exp-006 completes.",
+              "originalFile": "\\subsection{Graduated Filtering for Depth-Aware Data Curation}\n\\label{sec:graduated-filtering}\n\nThe $\\Kempirical = 2$ boundary establishes a three-tier taxonomy: human (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\nBinary filtering discards all synthetic content indiscriminately, sacrificing depth-1 text that retains most of the original signal.\nWe ask whether exploiting the coarse ordinal structure---weighting samples by predicted depth rather than applying a hard human/synthetic threshold---improves downstream language model quality.\n\n\\paragraph{Filtering strategies.}\nWe compare six data curation strategies applied to a corpus of 30{,}000 documents (5{,}000 per depth level, depths 0--5) produced by the generational depth pipeline:\n\n\\begin{enumerate}[label=(\\roman*)]\n  \\item \\textbf{No-filter}: all documents receive uniform weight (baseline).\n\n  \\item \\textbf{Binary-ours}: a LightGBM classifier trained on the 15-dimensional feature set distinguishes human (depth~0) from synthetic (depth~$\\geq 1$).\n  Each document receives weight $w = 1 - P(\\text{synthetic})$.\n  This represents the natural binary extension of our depth estimation framework.\n\n  \\item \\textbf{Binary-Drayson}: stratified importance resampling following Drayson et al.~\\cite{drayson2025}, with $w_j = (1 - q(x_j))^b / Z$, $b = 1$, and oversampling factor $k = 1.5$.\n  This is the strongest existing baseline for contamination-aware data curation.\n\n  \\item \\textbf{Graduated}: our proposed depth-aware strategy.\n  The OBD-LightGBM classifier (Section~\\ref{sec:classifier}) predicts a full depth distribution $P(d \\mid \\mathbf{x})$ for each document, from which we compute the expected depth $\\hat{d} = \\sum_d d \\cdot P(d \\mid \\mathbf{x})$.\n  Sample weights follow an exponential decay: $w = \\exp(-\\alpha \\cdot \\hat{d})$, where $\\alpha$ controls the penalty for predicted depth.\n  Low $\\alpha$ values retain more synthetic content with gentle down-weighting; high $\\alpha$ values approximate hard filtering.\n  We sweep $\\alpha \\in \\{0.1, 0.3, 0.5, 0.7, 0.9\\}$.\n\n  \\item \\textbf{Surprisal}: a feature-based heuristic that retains documents whose mean surprisal exceeds the corpus median, exploiting the observation that deeper generations exhibit lower surprisal variance (Section~\\ref{sec:feature_degradation}).\n\n  \\item \\textbf{DSIR}: Data Selection via Importance Resampling~\\cite{xie2023dsir}, using bigram feature hashing with the depth-0 subcorpus as the reference distribution.\n  This represents the state-of-the-art domain-matching baseline that is agnostic to generational depth.\n\\end{enumerate}\n\n\\paragraph{Training setup.}\nWe fine-tune Qwen2.5-1.5B-Instruct via LoRA (rank~8, $\\alpha_{\\text{LoRA}} = 16$, target modules: \\texttt{q\\_proj}, \\texttt{v\\_proj}, dropout 0.05) on the filtered corpus for 3 epochs with learning rate $2 \\times 10^{-5}$, batch size 4 with gradient accumulation 8, warmup ratio 0.1, and bfloat16 precision.\nDocuments are truncated to 512 tokens.\nFor strategies that produce continuous weights (graduated, binary-ours, binary-Drayson, DSIR), zero-weight samples are removed and the remaining samples are drawn via weighted random sampling; for binary strategies (surprisal), excluded samples are dropped outright.\nEach strategy is evaluated across 5 random seeds (42, 123, 456, 789, 1024); the graduated strategy is further crossed with 5 $\\alpha$ values, yielding 25 additional runs.\nA base model baseline (no fine-tuning) is included for reference.\nThe total experimental budget is approximately 50 runs.\n\n\\paragraph{Evaluation.}\nWe evaluate on two standard benchmarks via lm-eval-harness: MMLU (14{,}042 test examples, 0-shot) and HellaSwag (10{,}042 validation examples, 0-shot).\nWe report mean accuracy $\\pm$ standard deviation across seeds.\n\n%% ====================================================================\n\\paragraph{Results.}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Downstream evaluation of filtering strategies.\nMMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.\nMean $\\pm$ std over 5 seeds.\n$\\Delta$ columns report the difference relative to the no-filter baseline.\n$p$-values are from paired $t$-tests (5 seeds) comparing each strategy against binary-ours.\nBest per-column result in bold; second-best underlined.\nGraduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}\n\\label{tab:filtering_main}\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$MMLU} & \\textbf{$\\Delta$HS} & \\textbf{$p$} \\\\\n\\midrule\nBase model (no fine-tuning)\n  & \\textit{XX.X}\n  & \\textit{XX.X}\n  & ---\n  & ---\n  & --- \\\\\n\\midrule\nNo-filter\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & ---\n  & ---\n  & X.XX \\\\\nBinary-ours\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & --- \\\\\nBinary-Drayson\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nGraduated ($\\alpha^*$)\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nSurprisal\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nDSIR\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.\n%% === CONTINGENCY NARRATIVES (uncomment the matching version once exp-006 results are available) ===\n%% VERSION A (graduated wins):\n%% Graduated filtering at the optimal $\\alpha^*$ significantly outperforms both binary baselines\n%% on MMLU ($+$XX.X\\,pp, $p =$ XX.XX) and HellaSwag ($+$XX.X\\,pp, $p =$ XX.XX),\n%% validating the practical utility of the $\\Kempirical = 2$ trichotomy for data curation.\n%%\n%% VERSION B (binary is optimal):\n%% Graduated filtering at its best $\\alpha$ does not significantly outperform binary-ours\n%% on either benchmark ($p >$ XX.XX), indicating that binary filtering at the $\\Kempirical$\n%% boundary already captures the actionable depth signal (Section~\\ref{sec:graduated-filtering}).\n%%\n%% VERSION B2 (depth-agnostic wins):\n%% DSIR outperforms all depth-aware strategies on [MMLU/HellaSwag/both] ($p =$ XX.XX),\n%% suggesting that distributional alignment provides stronger curation signal than\n%% depth-specific filtering at this corpus scale.\n\n%% ====================================================================\n\\paragraph{$\\alpha$ sensitivity.}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Graduated filtering $\\alpha$ sweep.\nMean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.\nLower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.\n$\\Delta$ vs binary-ours reports the difference in mean accuracy relative to the binary-ours strategy.\nEff.\\ corpus \\% is the effective proportion of the corpus retained under graduated weighting.}\n\\label{tab:alpha_sweep}\n\\begin{tabular}{ccccc}\n\\toprule\n$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$ vs binary-ours} & \\textbf{Eff.\\ corpus \\%} \\\\\n\\midrule\n0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.\nAt $\\alpha \\to 0$, graduated filtering approaches the no-filter baseline (all documents equally weighted); at $\\alpha \\to \\infty$, it approximates binary hard filtering (depth-0 retained, all synthetic discarded).\nThe graduated scheme effectively implements a soft version of the human / gen-1 / gen-2+ partition implied by $\\Kempirical = 2$, with $\\alpha$ controlling how aggressively deeper content is penalized.\n%% TODO: fill optimal alpha, monotonicity pattern, cross-seed stability once exp-006 completes.\n\n%% ====================================================================\n\\paragraph{Analysis.}\n\n% TODO: fill once results are available.\n% Planned analysis points:\n% (1) Does graduated filtering outperform binary? If so, this validates the\n%     practical utility of the K*=2 trichotomy for data curation.\n% (2) How does the optimal alpha relate to the discrimination boundary?\n%     At alpha -> infinity, graduated degenerates to binary-ours (hard cutoff);\n%     at alpha = 0, it degenerates to no-filter. The optimal alpha should\n%     lie in between, reflecting the value of soft depth-aware weighting.\n% (3) Which strategy benefits most from the seed averaging? If graduated\n%     shows lower variance across seeds, it suggests the ordinal signal\n%     provides a more stable curation criterion than binary classification.\n% (4) Do the results differ between MMLU (knowledge-intensive) and\n%     HellaSwag (commonsense reasoning)? Different tasks may exhibit\n%     different sensitivity to data contamination depth.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 156,
+                  "oldLines": 18,
+                  "newStart": 156,
+                  "newLines": 11,
+                  "lines": [
+                    " ",
+                    " %% ====================================================================",
+                    " \\paragraph{Analysis.}",
+                    "-",
+                    "-% TODO: fill once results are available.",
+                    "-% Planned analysis points:",
+                    "-% (1) Does graduated filtering outperform binary? If so, this validates the",
+                    "-%     practical utility of the K*=2 trichotomy for data curation.",
+                    "-% (2) How does the optimal alpha relate to the discrimination boundary?",
+                    "-%     At alpha -> infinity, graduated degenerates to binary-ours (hard cutoff);",
+                    "-%     at alpha = 0, it degenerates to no-filter. The optimal alpha should",
+                    "-%     lie in between, reflecting the value of soft depth-aware weighting.",
+                    "-% (3) Which strategy benefits most from the seed averaging? If graduated",
+                    "-%     shows lower variance across seeds, it suggests the ordinal signal",
+                    "-%     provides a more stable curation criterion than binary classification.",
+                    "-% (4) Do the results differ between MMLU (knowledge-intensive) and",
+                    "-%     HellaSwag (commonsense reasoning)? Different tasks may exhibit",
+                    "-%     different sensitivity to data contamination depth.",
+                    "+We address four questions.",
+                    "+First, does graduated filtering outperform binary?",
+                    "+If so, this validates the practical utility of the $\\Kempirical = 2$ trichotomy for data curation; if not, it suggests that binary filtering at the $\\Kempirical$ boundary already captures the actionable depth signal.",
+                    "+Second, how does the optimal $\\alpha$ relate to the discrimination boundary?",
+                    "+The graduated scheme allocates weighting resolution across the depth axis; if the optimal $\\alpha$ is low, the ordinal signal provides marginal value beyond binary classification.",
+                    "+Third, does graduated filtering exhibit lower cross-seed variance than binary strategies, indicating that ordinal weighting provides a more stable curation criterion?",
+                    "+Fourth, do MMLU (knowledge-intensive) and HellaSwag (commonsense reasoning) respond differently to curation strategy, reflecting different sensitivity to contamination depth?",
+                    "+%% TODO: fill analysis results once exp-006 completes."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证最终文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "33a3edc3-3125-4ccf-846a-1baed0252ed0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0151werwTFGk9uZH18eufoMZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 651,
+                "cache_read_input_tokens": 30751,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 651
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0199fBw1FqB7bPs8R3AE2Ajb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "f28737e3-2273-4761-95db-b61358c06c97",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0151werwTFGk9uZH18eufoMZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 651,
+                "cache_read_input_tokens": 30751,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 651
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T19:28:46.211Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0199fBw1FqB7bPs8R3AE2Ajb",
+              "type": "tool_result",
+              "content": "1\t\\subsection{Graduated Filtering for Depth-Aware Data Curation}\n2\t\\label{sec:graduated-filtering}\n3\t\n4\tThe $\\Kempirical = 2$ boundary establishes a three-tier taxonomy: human (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\n5\tBinary filtering discards all synthetic content indiscriminately, sacrificing depth-1 text that retains most of the original signal.\n6\tWe ask whether exploiting the coarse ordinal structure---weighting samples by predicted depth rather than applying a hard human/synthetic threshold---improves downstream language model quality.\n7\t\n8\t\\paragraph{Filtering strategies.}\n9\tWe compare six data curation strategies applied to a corpus of 30{,}000 documents (5{,}000 per depth level, depths 0--5) produced by the generational depth pipeline:\n10\t\n11\t\\begin{enumerate}[label=(\\roman*)]\n12\t  \\item \\textbf{No-filter}: all documents receive uniform weight (baseline).\n13\t\n14\t  \\item \\textbf{Binary-ours}: a LightGBM classifier trained on the 15-dimensional feature set distinguishes human (depth~0) from synthetic (depth~$\\geq 1$).\n15\t  Each document receives weight $w = 1 - P(\\text{synthetic})$.\n16\t  This represents the natural binary extension of our depth estimation framework.\n17\t\n18\t  \\item \\textbf{Binary-Drayson}: stratified importance resampling following Drayson et al.~\\cite{drayson2025}, with $w_j = (1 - q(x_j))^b / Z$, $b = 1$, and oversampling factor $k = 1.5$.\n19\t  This is the strongest existing baseline for contamination-aware data curation.\n20\t\n21\t  \\item \\textbf{Graduated}: our proposed depth-aware strategy.\n22\t  The OBD-LightGBM classifier (Section~\\ref{sec:classifier}) predicts a full depth distribution $P(d \\mid \\mathbf{x})$ for each document, from which we compute the expected depth $\\hat{d} = \\sum_d d \\cdot P(d \\mid \\mathbf{x})$.\n23\t  Sample weights follow an exponential decay: $w = \\exp(-\\alpha \\cdot \\hat{d})$, where $\\alpha$ controls the penalty for predicted depth.\n24\t  Low $\\alpha$ values retain more synthetic content with gentle down-weighting; high $\\alpha$ values approximate hard filtering.\n25\t  We sweep $\\alpha \\in \\{0.1, 0.3, 0.5, 0.7, 0.9\\}$.\n26\t\n27\t  \\item \\textbf{Surprisal}: a feature-based heuristic that retains documents whose mean surprisal exceeds the corpus median, exploiting the observation that deeper generations exhibit lower surprisal variance (Section~\\ref{sec:feature_degradation}).\n28\t\n29\t  \\item \\textbf{DSIR}: Data Selection via Importance Resampling~\\cite{xie2023dsir}, using bigram feature hashing with the depth-0 subcorpus as the reference distribution.\n30\t  This represents the state-of-the-art domain-matching baseline that is agnostic to generational depth.\n31\t\\end{enumerate}\n32\t\n33\t\\paragraph{Training setup.}\n34\tWe fine-tune Qwen2.5-1.5B-Instruct via LoRA (rank~8, $\\alpha_{\\text{LoRA}} = 16$, target modules: \\texttt{q\\_proj}, \\texttt{v\\_proj}, dropout 0.05) on the filtered corpus for 3 epochs with learning rate $2 \\times 10^{-5}$, batch size 4 with gradient accumulation 8, warmup ratio 0.1, and bfloat16 precision.\n35\tDocuments are truncated to 512 tokens.\n36\tFor strategies that produce continuous weights (graduated, binary-ours, binary-Drayson, DSIR), zero-weight samples are removed and the remaining samples are drawn via weighted random sampling; for binary strategies (surprisal), excluded samples are dropped outright.\n37\tEach strategy is evaluated across 5 random seeds (42, 123, 456, 789, 1024); the graduated strategy is further crossed with 5 $\\alpha$ values, yielding 25 additional runs.\n38\tA base model baseline (no fine-tuning) is included for reference.\n39\tThe total experimental budget is approximately 50 runs.\n40\t\n41\t\\paragraph{Evaluation.}\n42\tWe evaluate on two standard benchmarks via lm-eval-harness: MMLU (14{,}042 test examples, 0-shot) and HellaSwag (10{,}042 validation examples, 0-shot).\n43\tWe report mean accuracy $\\pm$ standard deviation across seeds.\n44\t\n45\t%% ====================================================================\n46\t\\paragraph{Results.}\n47\t\n48\t\\begin{table}[t]\n49\t\\centering\n50\t\\small\n51\t\\caption{Downstream evaluation of filtering strategies.\n52\tMMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.\n53\tMean $\\pm$ std over 5 seeds.\n54\t$\\Delta$ columns report the difference relative to the no-filter baseline.\n55\t$p$-values are from paired $t$-tests (5 seeds) comparing each strategy against binary-ours.\n56\tBest per-column result in bold; second-best underlined.\n57\tGraduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}\n58\t\\label{tab:filtering_main}\n59\t\\begin{tabular}{lccccc}\n60\t\\toprule\n61\t\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$MMLU} & \\textbf{$\\Delta$HS} & \\textbf{$p$} \\\\\n62\t\\midrule\n63\tBase model (no fine-tuning)\n64\t  & \\textit{XX.X}\n65\t  & \\textit{XX.X}\n66\t  & ---\n67\t  & ---\n68\t  & --- \\\\\n69\t\\midrule\n70\tNo-filter\n71\t  & XX.X $\\pm$ X.X\n72\t  & XX.X $\\pm$ X.X\n73\t  & ---\n74\t  & ---\n75\t  & X.XX \\\\\n76\tBinary-ours\n77\t  & XX.X $\\pm$ X.X\n78\t  & XX.X $\\pm$ X.X\n79\t  & $+$X.X\n80\t  & $+$X.X\n81\t  & --- \\\\\n82\tBinary-Drayson\n83\t  & XX.X $\\pm$ X.X\n84\t  & XX.X $\\pm$ X.X\n85\t  & $+$X.X\n86\t  & $+$X.X\n87\t  & X.XX \\\\\n88\tGraduated ($\\alpha^*$)\n89\t  & XX.X $\\pm$ X.X\n90\t  & XX.X $\\pm$ X.X\n91\t  & $+$X.X\n92\t  & $+$X.X\n93\t  & X.XX \\\\\n94\tSurprisal\n95\t  & XX.X $\\pm$ X.X\n96\t  & XX.X $\\pm$ X.X\n97\t  & $+$X.X\n98\t  & $+$X.X\n99\t  & X.XX \\\\\n100\tDSIR\n101\t  & XX.X $\\pm$ X.X\n102\t  & XX.X $\\pm$ X.X\n103\t  & $+$X.X\n104\t  & $+$X.X\n105\t  & X.XX \\\\\n106\t\\bottomrule\n107\t\\end{tabular}\n108\t\\end{table}\n109\t\n110\tTable~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.\n111\t%% === CONTINGENCY NARRATIVES (uncomment the matching version once exp-006 results are available) ===\n112\t%% VERSION A (graduated wins):\n113\t%% Graduated filtering at the optimal $\\alpha^*$ significantly outperforms both binary baselines\n114\t%% on MMLU ($+$XX.X\\,pp, $p =$ XX.XX) and HellaSwag ($+$XX.X\\,pp, $p =$ XX.XX),\n115\t%% validating the practical utility of the $\\Kempirical = 2$ trichotomy for data curation.\n116\t%%\n117\t%% VERSION B (binary is optimal):\n118\t%% Graduated filtering at its best $\\alpha$ does not significantly outperform binary-ours\n119\t%% on either benchmark ($p >$ XX.XX), indicating that binary filtering at the $\\Kempirical$\n120\t%% boundary already captures the actionable depth signal (Section~\\ref{sec:graduated-filtering}).\n121\t%%\n122\t%% VERSION B2 (depth-agnostic wins):\n123\t%% DSIR outperforms all depth-aware strategies on [MMLU/HellaSwag/both] ($p =$ XX.XX),\n124\t%% suggesting that distributional alignment provides stronger curation signal than\n125\t%% depth-specific filtering at this corpus scale.\n126\t\n127\t%% ====================================================================\n128\t\\paragraph{$\\alpha$ sensitivity.}\n129\t\n130\t\\begin{table}[t]\n131\t\\centering\n132\t\\small\n133\t\\caption{Graduated filtering $\\alpha$ sweep.\n134\tMean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.\n135\tLower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.\n136\t$\\Delta$ vs binary-ours reports the difference in mean accuracy relative to the binary-ours strategy.\n137\tEff.\\ corpus \\% is the effective proportion of the corpus retained under graduated weighting.}\n138\t\\label{tab:alpha_sweep}\n139\t\\begin{tabular}{ccccc}\n140\t\\toprule\n141\t$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$ vs binary-ours} & \\textbf{Eff.\\ corpus \\%} \\\\\n142\t\\midrule\n143\t0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n144\t0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n145\t0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n146\t0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n147\t0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n148\t\\bottomrule\n149\t\\end{tabular}\n150\t\\end{table}\n151\t\n152\tTable~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.\n153\tAt $\\alpha \\to 0$, graduated filtering approaches the no-filter baseline (all documents equally weighted); at $\\alpha \\to \\infty$, it approximates binary hard filtering (depth-0 retained, all synthetic discarded).\n154\tThe graduated scheme effectively implements a soft version of the human / gen-1 / gen-2+ partition implied by $\\Kempirical = 2$, with $\\alpha$ controlling how aggressively deeper content is penalized.\n155\t%% TODO: fill optimal alpha, monotonicity pattern, cross-seed stability once exp-006 completes.\n156\t\n157\t%% ====================================================================\n158\t\\paragraph{Analysis.}\n159\tWe address four questions.\n160\tFirst, does graduated filtering outperform binary?\n161\tIf so, this validates the practical utility of the $\\Kempirical = 2$ trichotomy for data curation; if not, it suggests that binary filtering at the $\\Kempirical$ boundary already captures the actionable depth signal.\n162\tSecond, how does the optimal $\\alpha$ relate to the discrimination boundary?\n163\tThe graduated scheme allocates weighting resolution across the depth axis; if the optimal $\\alpha$ is low, the ordinal signal provides marginal value beyond binary classification.\n164\tThird, does graduated filtering exhibit lower cross-seed variance than binary strategies, indicating that ordinal weighting provides a more stable curation criterion?\n165\tFourth, do MMLU (knowledge-intensive) and HellaSwag (commonsense reasoning) respond differently to curation strategy, reflecting different sensitivity to contamination depth?\n166\t%% TODO: fill analysis results once exp-006 completes.\n167\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "4eac3c5b-8ab0-4a85-8bde-d95b5ae367eb",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex",
+                "content": "\\subsection{Graduated Filtering for Depth-Aware Data Curation}\n\\label{sec:graduated-filtering}\n\nThe $\\Kempirical = 2$ boundary establishes a three-tier taxonomy: human (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\nBinary filtering discards all synthetic content indiscriminately, sacrificing depth-1 text that retains most of the original signal.\nWe ask whether exploiting the coarse ordinal structure---weighting samples by predicted depth rather than applying a hard human/synthetic threshold---improves downstream language model quality.\n\n\\paragraph{Filtering strategies.}\nWe compare six data curation strategies applied to a corpus of 30{,}000 documents (5{,}000 per depth level, depths 0--5) produced by the generational depth pipeline:\n\n\\begin{enumerate}[label=(\\roman*)]\n  \\item \\textbf{No-filter}: all documents receive uniform weight (baseline).\n\n  \\item \\textbf{Binary-ours}: a LightGBM classifier trained on the 15-dimensional feature set distinguishes human (depth~0) from synthetic (depth~$\\geq 1$).\n  Each document receives weight $w = 1 - P(\\text{synthetic})$.\n  This represents the natural binary extension of our depth estimation framework.\n\n  \\item \\textbf{Binary-Drayson}: stratified importance resampling following Drayson et al.~\\cite{drayson2025}, with $w_j = (1 - q(x_j))^b / Z$, $b = 1$, and oversampling factor $k = 1.5$.\n  This is the strongest existing baseline for contamination-aware data curation.\n\n  \\item \\textbf{Graduated}: our proposed depth-aware strategy.\n  The OBD-LightGBM classifier (Section~\\ref{sec:classifier}) predicts a full depth distribution $P(d \\mid \\mathbf{x})$ for each document, from which we compute the expected depth $\\hat{d} = \\sum_d d \\cdot P(d \\mid \\mathbf{x})$.\n  Sample weights follow an exponential decay: $w = \\exp(-\\alpha \\cdot \\hat{d})$, where $\\alpha$ controls the penalty for predicted depth.\n  Low $\\alpha$ values retain more synthetic content with gentle down-weighting; high $\\alpha$ values approximate hard filtering.\n  We sweep $\\alpha \\in \\{0.1, 0.3, 0.5, 0.7, 0.9\\}$.\n\n  \\item \\textbf{Surprisal}: a feature-based heuristic that retains documents whose mean surprisal exceeds the corpus median, exploiting the observation that deeper generations exhibit lower surprisal variance (Section~\\ref{sec:feature_degradation}).\n\n  \\item \\textbf{DSIR}: Data Selection via Importance Resampling~\\cite{xie2023dsir}, using bigram feature hashing with the depth-0 subcorpus as the reference distribution.\n  This represents the state-of-the-art domain-matching baseline that is agnostic to generational depth.\n\\end{enumerate}\n\n\\paragraph{Training setup.}\nWe fine-tune Qwen2.5-1.5B-Instruct via LoRA (rank~8, $\\alpha_{\\text{LoRA}} = 16$, target modules: \\texttt{q\\_proj}, \\texttt{v\\_proj}, dropout 0.05) on the filtered corpus for 3 epochs with learning rate $2 \\times 10^{-5}$, batch size 4 with gradient accumulation 8, warmup ratio 0.1, and bfloat16 precision.\nDocuments are truncated to 512 tokens.\nFor strategies that produce continuous weights (graduated, binary-ours, binary-Drayson, DSIR), zero-weight samples are removed and the remaining samples are drawn via weighted random sampling; for binary strategies (surprisal), excluded samples are dropped outright.\nEach strategy is evaluated across 5 random seeds (42, 123, 456, 789, 1024); the graduated strategy is further crossed with 5 $\\alpha$ values, yielding 25 additional runs.\nA base model baseline (no fine-tuning) is included for reference.\nThe total experimental budget is approximately 50 runs.\n\n\\paragraph{Evaluation.}\nWe evaluate on two standard benchmarks via lm-eval-harness: MMLU (14{,}042 test examples, 0-shot) and HellaSwag (10{,}042 validation examples, 0-shot).\nWe report mean accuracy $\\pm$ standard deviation across seeds.\n\n%% ====================================================================\n\\paragraph{Results.}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Downstream evaluation of filtering strategies.\nMMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.\nMean $\\pm$ std over 5 seeds.\n$\\Delta$ columns report the difference relative to the no-filter baseline.\n$p$-values are from paired $t$-tests (5 seeds) comparing each strategy against binary-ours.\nBest per-column result in bold; second-best underlined.\nGraduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}\n\\label{tab:filtering_main}\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$MMLU} & \\textbf{$\\Delta$HS} & \\textbf{$p$} \\\\\n\\midrule\nBase model (no fine-tuning)\n  & \\textit{XX.X}\n  & \\textit{XX.X}\n  & ---\n  & ---\n  & --- \\\\\n\\midrule\nNo-filter\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & ---\n  & ---\n  & X.XX \\\\\nBinary-ours\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & --- \\\\\nBinary-Drayson\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nGraduated ($\\alpha^*$)\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nSurprisal\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\nDSIR\n  & XX.X $\\pm$ X.X\n  & XX.X $\\pm$ X.X\n  & $+$X.X\n  & $+$X.X\n  & X.XX \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.\n%% === CONTINGENCY NARRATIVES (uncomment the matching version once exp-006 results are available) ===\n%% VERSION A (graduated wins):\n%% Graduated filtering at the optimal $\\alpha^*$ significantly outperforms both binary baselines\n%% on MMLU ($+$XX.X\\,pp, $p =$ XX.XX) and HellaSwag ($+$XX.X\\,pp, $p =$ XX.XX),\n%% validating the practical utility of the $\\Kempirical = 2$ trichotomy for data curation.\n%%\n%% VERSION B (binary is optimal):\n%% Graduated filtering at its best $\\alpha$ does not significantly outperform binary-ours\n%% on either benchmark ($p >$ XX.XX), indicating that binary filtering at the $\\Kempirical$\n%% boundary already captures the actionable depth signal (Section~\\ref{sec:graduated-filtering}).\n%%\n%% VERSION B2 (depth-agnostic wins):\n%% DSIR outperforms all depth-aware strategies on [MMLU/HellaSwag/both] ($p =$ XX.XX),\n%% suggesting that distributional alignment provides stronger curation signal than\n%% depth-specific filtering at this corpus scale.\n\n%% ====================================================================\n\\paragraph{$\\alpha$ sensitivity.}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Graduated filtering $\\alpha$ sweep.\nMean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.\nLower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.\n$\\Delta$ vs binary-ours reports the difference in mean accuracy relative to the binary-ours strategy.\nEff.\\ corpus \\% is the effective proportion of the corpus retained under graduated weighting.}\n\\label{tab:alpha_sweep}\n\\begin{tabular}{ccccc}\n\\toprule\n$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} & \\textbf{$\\Delta$ vs binary-ours} & \\textbf{Eff.\\ corpus \\%} \\\\\n\\midrule\n0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X & $\\pm$X.X & XX.X \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.\nAt $\\alpha \\to 0$, graduated filtering approaches the no-filter baseline (all documents equally weighted); at $\\alpha \\to \\infty$, it approximates binary hard filtering (depth-0 retained, all synthetic discarded).\nThe graduated scheme effectively implements a soft version of the human / gen-1 / gen-2+ partition implied by $\\Kempirical = 2$, with $\\alpha$ controlling how aggressively deeper content is penalized.\n%% TODO: fill optimal alpha, monotonicity pattern, cross-seed stability once exp-006 completes.\n\n%% ====================================================================\n\\paragraph{Analysis.}\nWe address four questions.\nFirst, does graduated filtering outperform binary?\nIf so, this validates the practical utility of the $\\Kempirical = 2$ trichotomy for data curation; if not, it suggests that binary filtering at the $\\Kempirical$ boundary already captures the actionable depth signal.\nSecond, how does the optimal $\\alpha$ relate to the discrimination boundary?\nThe graduated scheme allocates weighting resolution across the depth axis; if the optimal $\\alpha$ is low, the ordinal signal provides marginal value beyond binary classification.\nThird, does graduated filtering exhibit lower cross-seed variance than binary strategies, indicating that ordinal weighting provides a more stable curation criterion?\nFourth, do MMLU (knowledge-intensive) and HellaSwag (commonsense reasoning) respond differently to curation strategy, reflecting different sensitivity to contamination depth?\n%% TODO: fill analysis results once exp-006 completes.\n",
+                "numLines": 167,
+                "startLine": 1,
+                "totalLines": 167
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "五处修改全部完成：\n\n1. **tab:filtering_main** — 扩展为 6 列（+ΔMMLU、ΔHS、p），行名完整，Graduated 去掉了 `\\textbf{}`，caption 说明 Δ 和 p 的含义\n2. **三轨 contingency** — TODO 注释替换为 VERSION A/B/B2 三套预写叙事\n3. **tab:alpha_sweep** — 扩展为 5 列（+Δ vs binary-ours、Eff. corpus %），caption 更新\n4. **α sensitivity 叙事** — 替换为确定性段落（极限行为 + K*=2 连接），仅保留一行 TODO\n5. **Analysis 叙事** — 替换为四问分析框架，仅保留一行 TODO\n\nLines 1–43 未动。所有数值保持占位符，无预设 bold。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "uuid": "81c5718d-ca9e-4760-9152-e48b5f7a205a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q3GJ2a8vSNAQeRsLbUzk7d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3540,
+                "cache_read_input_tokens": 31402,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3540
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "五处修改全部完成：\n\n1. **tab:filtering_main** — 扩展为 6 列（+ΔMMLU、ΔHS、p），行名完整，Graduated 去掉了 `\\textbf{}`，caption 说明 Δ 和 p 的含义\n2. **三轨 contingency** — TODO 注释替换为 VERSION A/B/B2 三套预写叙事\n3. **tab:alpha_sweep** — 扩展为 5 列（+Δ vs binary-ours、Eff. corpus %），caption 更新\n4. **α sensitivity 叙事** — 替换为确定性段落（极限行为 + K*=2 连接），仅保留一行 TODO\n5. **Analysis 叙事** — 替换为四问分析框架，仅保留一行 TODO\n\nLines 1–43 未动。所有数值保持占位符，无预设 bold。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 93773,
+            "duration_api_ms": 95385,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "43c686f7-c065-4970-8ddb-885c8092c4dd",
+            "total_cost_usd": 0.36365625,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 23101,
+              "cache_read_input_tokens": 213714,
+              "output_tokens": 4399,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 23101,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 260,
+                  "cache_read_input_tokens": 31402,
+                  "cache_creation_input_tokens": 3540,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3540
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2303,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002398,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 4399,
+                "cacheReadInputTokens": 213714,
+                "cacheCreationInputTokens": 23101,
+                "webSearchRequests": 0,
+                "costUSD": 0.36125825,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "8e6f7711-538e-4d1d-b406-55e971fa1e78"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-c3-structural-prewrite.md"
+}

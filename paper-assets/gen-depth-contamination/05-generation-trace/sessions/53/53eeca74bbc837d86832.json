@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "id": "53eeca74bbc837d86832",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp022 stats design",
+  "task_key": "worker_analysis_exp022_stats_design_20260516T092618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp022_stats_design_20260516T092618_result.json",
+    "occurrence": 1,
+    "bytes": 3891,
+    "sha256": "d9791267791ad54b7638c102f4fd3e9e0e3521767fc9fc62c774964b0fa06464"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完成。以下是结构化汇报：\n\n---\n\n## exp-022 统计设计检查结果\n\n### 1. 每 cell 数据粒度\n\nPipeline 输出**三层粒度**：\n\n| 粒度 | 结构 | 数量/cell |\n|------|------|-----------|\n| per-doc 特征 | `features.csv`: 5000 docs × 6 depths = 30000 行 | 30000 |\n| per-fold AUC | `pairwise_auc.json[\"per_fold\"]`: 5 depth-pairs × 5 folds | 25 |\n| K* (标量) | max depth where AUC > 0.60 | **1** |\n\n### 2. CV 设置\n\n- **5-fold GroupKFold**，以 `doc_id` 为 group（同一文档的不同 depth 不跨 fold）\n- 每个 depth-pair（如 0v1）独立训练 LightGBM 分类器\n- 每个 cell 默认 `num_samples=5000`\n\n### 3. 总观测数（16 cells）\n\n| 分析目标 | 观测数 | 可行性 |\n|----------|--------|--------|\n| ANOVA on K* | 16 cells × 1 K* = **16** | **不可行** (df_residual ≈ 6, 极低功效) |\n| ANOVA on per-fold AUC | 16 cells × 5 pairs × 5 folds = **400** | **充分** |\n| Mixed-effects on per-doc 预测 | 16 × 30000 = **480000** | 过剩，但可提取更细指标 |\n\n### 4. ANOVA 可行性 — df 分析\n\n**如果 DV = K*（1 per cell）：**\n- Total df = 15\n- Generator: df=3, Scorer: df=3, Interaction: df=9\n- **Residual df = 0** → F 检验不可计算\n\n**如果 DV = fold-level AUC（25 per cell）：**\n- Total df = 399\n- Generator: 3, Scorer: 3, DepthPair: 4, Gen×Scorer: 9, Gen×Depth: 12, Scorer×Depth: 12\n- Residual df ≈ 356 → **充分**\n- 可以做 3-way ANOVA (Generator × Scorer × DepthPair) 或 linear mixed model with fold as random effect\n\n### 5. pairwise_auc.json 完整格式\n\n```json\n{\n  \"mean\": {\n    \"0v1\": 0.987,\n    \"1v2\": 0.6262,\n    \"2v3\": 0.5496,\n    \"3v4\": 0.5294,\n    \"4v5\": 0.5182\n  },\n  \"per_fold\": {\n    \"0v1\": [0.9881, 0.9884, 0.9852, 0.9851, 0.9882],\n    \"1v2\": [0.5963, 0.6362, 0.6366, 0.6337, 0.6282],\n    \"2v3\": [0.5516, 0.5456, 0.5403, 0.5605, 0.5501],\n    \"3v4\": [0.5515, 0.5133, 0.5198, 0.5350, 0.5276],\n    \"4v5\": [0.5207, 0.5393, 0.5186, 0.5169, 0.4956]\n  }\n}\n```\n\n### 6. 建议\n\n**Pipeline 无需修改**——数据粒度已经足够，问题在于分析层面如何使用它。\n\n**exp-022 分析方案：**\n\n1. **主分析**：3-way repeated-measures ANOVA，DV = fold AUC，factors = Generator(4) × Scorer(4) × DepthPair(5)。Fold 作为 block/random effect。总 N=400，残差 df 充裕。\n\n2. **K* 的替代处理**：不做 K* 的 ANOVA。改为：\n   - 用 per-fold AUC 拟合 logistic decay curve → 得到 per-fold K*（AUC 跌破 0.60 的插值点）→ 16 cells × 5 folds = 80 个 K* → 2-way ANOVA (Gen × Scorer) with residual df=48\n   - 或直接报告 K* 的 4×4 heatmap + bootstrap CI（对 5 个 fold AUC resample 1000 次，每次重新计算 K*）\n\n3. **Bootstrap CI**：当前 pipeline 无 bootstrap。建议在 exp-022 的后处理脚本中加 bootstrap（从 per-fold AUC resample），而非改 `run_pipeline.py`。\n\n**结论：Dream 审稿意见正确——如果只看 16 个 K* 做 ANOVA 确实无法工作。但 pipeline 已产出 per-fold AUC（25 obs/cell），足以支撑严格的多因素统计分析。exp-022 脚本只需在后处理中选择正确的 DV 和分析模型。**"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "mean": {
+                "0v1": 0.987,
+                "1v2": 0.6262,
+                "2v3": 0.5496,
+                "3v4": 0.5294,
+                "4v5": 0.5182
+              },
+              "per_fold": {
+                "0v1": [
+                  0.9881,
+                  0.9884,
+                  0.9852,
+                  0.9851,
+                  0.9882
+                ],
+                "1v2": [
+                  0.5963,
+                  0.6362,
+                  0.6366,
+                  0.6337,
+                  0.6282
+                ],
+                "2v3": [
+                  0.5516,
+                  0.5456,
+                  0.5403,
+                  0.5605,
+                  0.5501
+                ],
+                "3v4": [
+                  0.5515,
+                  0.5133,
+                  0.5198,
+                  0.535,
+                  0.5276
+                ],
+                "4v5": [
+                  0.5207,
+                  0.5393,
+                  0.5186,
+                  0.5169,
+                  0.4956
+                ]
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp022-stats-design.md"
+}

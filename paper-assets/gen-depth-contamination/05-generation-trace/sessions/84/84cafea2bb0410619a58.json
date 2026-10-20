@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "84cafea2bb0410619a58",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code mistral qwen phase2",
+  "task_key": "worker_code_mistral_qwen_phase2_20260523T012707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral_qwen_phase2_20260523T012707.log",
+    "occurrence": 1,
+    "bytes": 1176845,
+    "sha256": "fa860df5fbc32f8d267c2f0ff71e070ef8df86a74e2c7ecca4f3ff63ea254442"
+  },
+  "statistics": {
+    "messages": 666,
+    "user_turns": 1,
+    "tool_calls": 288,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "assistant": 82,
+      "tool_call": 288,
+      "tool_result": 288,
+      "record": 1,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 566,
+      "chunks": [
+        {
+          "path": "84cafea2bb0410619a58-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "84cafea2bb0410619a58-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "84cafea2bb0410619a58-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "84cafea2bb0410619a58-part-0004.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 100,
+      "chunks": [
+        {
+          "path": "84cafea2bb0410619a58-part-0004.json",
+          "message_count": 100
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-mistral-qwen-phase2.md"
+}

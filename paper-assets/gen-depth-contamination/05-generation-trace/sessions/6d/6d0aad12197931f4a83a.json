@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d0aad12197931f4a83a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "audit related work completeness",
+  "task_key": "worker_audit_related_work_completeness_20260514T021616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_related_work_completeness_20260514T021616_result.json",
+    "occurrence": 1,
+    "bytes": 6661,
+    "sha256": "1f2e43e72dbd386ba9062f3b178cf6da5b87d3551c0a04b61176c5851e8be5b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Related Work 审查报告\n\n---\n\n### 1. 关键 baseline 覆盖情况\n\n| 方法 | 状态 | 备注 |\n|------|------|------|\n| DivEye (Basani 2026) | ✅ | line 20 |\n| **Binoculars (Hans et al. 2024)** | ❌ 缺失 | 重要 zero-shot 检测方法，与 DetectGPT/Min-K%++ 同级 |\n| DetectGPT (Mitchell et al. 2023) | ✅ | line 19 |\n| Min-K%++ (Zhang 2024) | ✅ | line 20 |\n| CoDeC (Zawalski 2026) | ✅ | line 21 |\n| **GLTR (Gehrmann et al. 2019)** | ❌ 缺失 | 早期 statistical detection 开创工作，作为 detection 历史线应提及 |\n| Shumailov et al. 2024 (Nature) | ✅ | line 6 |\n| Alemohammad et al. 2024 | ✅ | line 7 |\n| Dohmatob et al. 2024 | ✅ | line 8 |\n| Schaeffer et al. 2025 | ✅ | line 9 |\n| DSIR (Xie et al. 2023) | ✅ | line 30 |\n| D4 (Tirumala et al. 2023) | ✅ | line 31 |\n| DoReMi (Xie et al. 2023) | ✅ | line 31 |\n| Drayson et al. 2025 | ✅ | line 34，定位准确 |\n| **Ordinal classification baselines** | ❌ 缺失 | 无任何 ordinal regression 引用（见下） |\n\n---\n\n### 2. 潜在遗漏的重要相关工作\n\n**高优先级（建议补充）：**\n\n1. **Binoculars (Hans et al., 2024)** — 用两个 LLM 的 cross-perplexity 比值做 zero-shot 检测，是当前 binary detection 的 SOTA 之一。Binary detection 段落列了 DetectGPT/DivEye/Min-K%++/CoDeC 但漏了 Binoculars，不合理。\n\n2. **GLTR (Gehrmann et al., 2019)** — 基于 token-level 统计（top-k 分布）的早期检测方法，是 statistical fingerprinting 的奠基工作。与论文使用 surprisal 特征的方法论直接相关。\n\n3. **Ordinal regression/classification methods** — 论文将 depth estimation 建模为 ordinal 问题，但 related work 完全没有提及 ordinal classification 文献（如 CORAL [Cao et al. 2020]、ordinal regression 经典方法）。建议加一小段说明为什么 ordinal 建模合适，以及现有 ordinal 方法在此场景的局限。\n\n**中优先级（视篇幅考虑）：**\n\n4. **Benchmark contamination detection** — Shi et al. \"Detecting Pretraining Data from Large Language Models\" (2023), Golchin & Surdeanu \"Time Travel in LLMs\" (2024) 等。与本文的 \"contamination\" 概念有语义重叠，读者可能期望看到区分说明。\n\n5. **Text quality filtering for pretraining** — CCNet (Wenzek et al. 2020)、RefinedWeb (Penedo et al. 2023)、FineWeb。Data Selection 段落只覆盖了 distribution-matching 类方法，heuristic quality filtering 这条线缺失。这些方法与 depth-aware curation 是替代方案关系。\n\n6. **Fast-DetectGPT (Bao et al. 2024)** — DetectGPT 的加速版本，已成为常用 baseline。\n\n**低优先级（可不加）：**\n\n7. **Watermarking 扩展** — 当前只引了 Kirchenbauer 2023 一篇，作为一个独立段落稍薄。但如果篇幅紧张，一篇代表性引用够了。\n\n8. **Information-theoretic analysis** — 与论文方法论关联不够直接，可省略。\n\n---\n\n### 3. 引用真实性抽查\n\n**需验证的可疑引用（2025-2026）：**\n\n| 引用 | 可疑点 | 风险级别 |\n|------|--------|---------|\n| `shi2025generalization` arXiv:2509.16499 | arXiv ID 为 2509.16499（2025 年 9 月），NeurIPS 2025 Spotlight。作者含 Dacheng Tao（真实知名学者），但其余作者组合需验证 | 中 |\n| `basani2026diveye` arXiv:2509.18880 | TMLR 2026 发表。\"Yash Basani\" 不是该领域常见作者名，需验证 | 中 |\n| `zawalski2026codec` arXiv:2510.27055 | ICLR 2026。使用了 `{others}` 省略作者列表，需补全并验证 | 中 |\n| `gambetta2025surplexity` arXiv:2410.12341 | \"Surplexity\" 是自造术语，arXiv ID (2410) 对应 2024 年 10 月，相对可查 | 低-中 |\n\n**bib 文件格式问题：**\n\n- `tirumala2024d4`：bib key 含 \"2024\" 但 `year={2023}`，NeurIPS 2023 — 年份字段正确但 key 误导\n- `xie2024doremi`：同上，key 含 \"2024\" 但 `year={2023}` — NeurIPS 2023\n- `zawalski2026codec` 和 `amin2025escaping`：作者字段用 `{others}` 偷懒，最终提交前必须补全完整作者列表\n\n**bib 文件头部声明（line 2-3）明确标注 \"PENDING formal verification\"** — 说明团队自身也意识到需要验证。建议在提交前用 Semantic Scholar API 或手动逐条核实所有 2025-2026 引用。\n\n---\n\n### 4. 结构完整性\n\n**当前结构（4 段）：**\n1. Model Collapse and Recursive Generation ✅\n2. Binary Synthetic Text Detection ✅\n3. Data Selection and Curation ✅\n4. Watermarking and Provenance ✅\n\n**Gap statement 检查：**\n- ¶1 line 14: \"do not provide tools for per-text generational depth estimation\" ✅\n- ¶2 lines 23-26: \"produce binary outputs and do not distinguish generational depth\" ✅\n- ¶3 lines 35-36: \"We generalize this binary formulation to ordinal depth estimation\" ✅\n- ¶4 lines 43-44: \"watermarking assumes a cooperative generator, while depth estimation targets uncontrolled settings\" ✅\n\n每段结尾的 gap statement 都清晰地指向本文贡献，叙事逻辑通顺。\n\n**结构性缺陷：**\n\n- **缺少 Ordinal Classification 段落**：论文核心贡献是将 binary 问题升级为 ordinal 问题，但 related work 没有任何 ordinal regression/classification 文献。这是一个明显的结构缺口——reviewer 几乎一定会问 \"why ordinal and not standard multi-class?\"。建议在 Binary Detection 和 Data Selection 之间插入一段，讨论 ordinal 方法及其在 NLP 中的应用。\n\n- **Binary Detection 段落偏长**（lines 17-26, ~10 行正文）：包含了方法枚举 + 限制分析 + membership inference 联系 + false positive 讨论。可以考虑将 false positive / self-refinement 讨论移到 introduction 或 discussion。\n\n---\n\n### 改进建议清单\n\n| 优先级 | 建议 |\n|--------|------|\n| **P0** | 补充 Binoculars (Hans et al. 2024) 到 Binary Detection 段 |\n| **P0** | 新增 Ordinal Classification 段落（~5-8 行），引用 CORAL 等经典方法 |\n| **P0** | 验证所有 2025-2026 引用的真实性（bib 文件自己也标了 PENDING） |\n| **P1** | 补充 GLTR (Gehrmann et al. 2019) 作为 statistical detection 起源 |\n| **P1** | 补全 `zawalski2026codec` 和 `amin2025escaping` 的完整作者列表 |\n| **P1** | 修正 `tirumala2024d4` 和 `xie2024doremi` 的 bib key 与 year 不一致 |\n| **P2** | Data Selection 段补充 heuristic quality filtering 线（CCNet/RefinedWeb） |\n| **P2** | 考虑加一句区分 benchmark contamination detection 与本文的 generational contamination |\n| **P2** | 补充 Fast-DetectGPT 到 Binary Detection 段 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-related-work-completeness.md"
+}

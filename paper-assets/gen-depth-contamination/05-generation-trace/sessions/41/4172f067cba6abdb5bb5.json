@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "4172f067cba6abdb5bb5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops exp contamination rate sweep",
+  "task_key": "worker_ops_exp_contamination_rate_sweep_20260520T170422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp_contamination_rate_sweep_20260520T170422_result.json",
+    "occurrence": 1,
+    "bytes": 2299085,
+    "sha256": "893cd953f143d6c274bf9f70b0a3499e9bd84217f70919fed68de515939c668e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2299105,
+                "serialized_sha256": "71c356d9ba6e5c6e38b869c3ad3e18e5f87b5a9d8a5f477c86ac0859b63145fa",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp-contamination-rate-sweep.md"
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "d10865894498549a49b7",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code exp gemma2b depth",
+  "task_key": "worker_code_exp_gemma2b_depth_20260520T062049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_gemma2b_depth_20260520T062049.log",
+    "occurrence": 1,
+    "bytes": 1147670,
+    "sha256": "aae21999e82bed3aa35a057a4a9c96e9a40af903f3d5f3af11afbacd8618b745"
+  },
+  "statistics": {
+    "messages": 844,
+    "user_turns": 1,
+    "tool_calls": 347,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 142,
+      "tool_call": 347,
+      "tool_result": 347,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 804,
+      "chunks": [
+        {
+          "path": "d10865894498549a49b7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d10865894498549a49b7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d10865894498549a49b7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d10865894498549a49b7-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d10865894498549a49b7-part-0005.json",
+          "message_count": 84
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 40,
+      "chunks": [
+        {
+          "path": "d10865894498549a49b7-part-0005.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-gemma2b-depth.md"
+}

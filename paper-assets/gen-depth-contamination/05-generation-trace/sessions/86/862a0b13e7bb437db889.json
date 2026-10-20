@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "862a0b13e7bb437db889",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp020 exit",
+  "task_key": "worker_diagnose_exp020_exit_20260516T144006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp020_exit_20260516T144006_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "9b1faa475503c3691e7766813be504ba568f08e98fccf3a53b0d86a5404630a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**exp-020 全部 4 个 config 成功完成。** Registry 已更新为 DONE/success。\n\n### 关键发现\n\n1. **进程退出原因**: 日志末尾显示 `Terminated`（SIGTERM），但发生在所有数据生成和评估已完成之后。数据完整性验证通过（每个 config 6 depths × 5000 lines = 30000 条）。\n\n2. **结果**:  所有 config **K\\*=2**（threshold=0.6），与假设一致——decoding 策略不影响 contamination depth 上限：\n   - greedy: 1v2 AUC 最高 (0.88)，因 repetition collapse\n   - t12 (高温): 1v2 AUC 最低 (0.62)，刚过阈值\n   - t07/nuc09 居中\n\n3. **cuda:2 状态**: 已空闲，无残留进程。\n\n4. **Registry**: status=DONE, conclusion=success, metrics 含全部 4 config 的 K* 和 per-pair AUC。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp020-exit.md"
+}

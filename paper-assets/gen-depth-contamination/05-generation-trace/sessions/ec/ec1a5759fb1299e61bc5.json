@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec1a5759fb1299e61bc5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp wiki llama8b",
+  "task_key": "worker_analysis_exp_wiki_llama8b_20260517T193221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_wiki_llama8b_20260517T193221_result.json",
+    "occurrence": 1,
+    "bytes": 752,
+    "sha256": "31c1c79da555806a76985ca535c0d72bf0571657605ad594c1193bc40db7d223"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**exp_wiki_llama8b 结果：K\\* = 1（one-wash），conclusion = negative**\n\n| Pair | AUC | 可区分? |\n|------|-----|---------|\n| 0v1 | 0.9316 | Yes |\n| 1v2 | 0.5954 | No |\n| 2v3 | 0.5392 | No |\n| 3v4 | 0.5221 | No |\n| 4v5 | 0.5212 | No |\n\nLLaMA-3.1-8B 在 Wikipedia 上 K\\*=1，与 Pythia-1.4B 和 OLMo-1B 一致，假设 K\\*=2 不成立。8B scale 未提升 discrimination boundary，说明 model scale 不是 Wikipedia domain 上 K\\* 的决定因素。Qwen-1.5B 的 K\\*=2 更可能源于架构或训练数据差异。\n\n已完成：\n- 分析报告写入 artifacts 并注册（`art_20260517_09b165`）\n- Registry 状态更新为 DONE，conclusion=negative，metrics 含所有关键指标"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-wiki-llama8b.md"
+}

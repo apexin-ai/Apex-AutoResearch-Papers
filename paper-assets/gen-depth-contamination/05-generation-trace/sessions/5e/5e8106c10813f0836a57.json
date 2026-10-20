@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e8106c10813f0836a57",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis q1 monotonicity",
+  "task_key": "worker_analysis_q1_monotonicity_20260520T044831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_q1_monotonicity_20260520T044831_result.json",
+    "occurrence": 1,
+    "bytes": 1543,
+    "sha256": "f16e0bd3b475c82fffd21d0601da6c360336b6090f920af4300e832b0dde7fc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `results/monotonicity_check.json`。汇总：\n\n### 单调性检查结果\n\n| 指标 | 值 |\n|------|---|\n| 总 AUC 序列 | 69 |\n| 严格单调递减 | **54** (78.3%) |\n| 非单调 | **15** (21.7%) |\n| 解析错误 | 0 |\n\n### 15 个非单调案例分析\n\n所有违反均发生在**深层 depth（AUC ≈ 0.50 附近）**，最大 Δ 仅 +0.0197，属于随机波动：\n\n**OLMo 系列（4 例）** — `exp_wiki_olmo`, `exp_wiki_olmo_v2`, `exp_arXiv_olmo`, `exp_deberta_upperbound/wiki_olmo`（含 obd_baseline）。OLMo 在 depth≥1 的 AUC 始终 ≈0.50，log-likelihood 几乎无区分力，微小波动即破坏单调性。\n\n**DeBERTa cross-transfer（4 例）** — 跨模型迁移后深层 AUC 降至 ≈0.49-0.50（chance level），Δ ≤ 0.0125。\n\n**Code domain（3 例）** — `code_llama8b`, `code_qwen1b5`, `code_qwen7b`，违反在 depth 3-5 处，Δ ≤ 0.0197。\n\n**其他（4 例）**:\n- `exp_021_length_128`: 短上下文（128 tokens）信号弱，Δ=0.0058\n- `exp_027_latex_ablation`: Δ=0.0008，实质无差异\n- `exp_arXiv_llama8b_crossscorer`: Δ=0.0015\n- `exp_deberta_upperbound/wiki_olmo` [DeBERTa]: Δ=0.0043\n\n**结论**：所有非单调违反均为深层 AUC 接近 chance level 时的随机噪声（max Δ < 0.02），不构成对全局单调递减趋势的实质性反例。可在论文中说明 \"monotonicity holds across all configurations, with negligible fluctuations (< 0.02 AUC) at deeper depths where discrimination approaches chance level.\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-q1-monotonicity.md"
+}

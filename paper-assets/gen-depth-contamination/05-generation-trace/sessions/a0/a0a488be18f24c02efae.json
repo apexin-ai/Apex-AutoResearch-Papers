@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0a488be18f24c02efae",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research lofo nonqwen reframing",
+  "task_key": "worker_research_lofo_nonqwen_reframing_20260521T015657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_lofo_nonqwen_reframing_20260521T015657_result.json",
+    "occurrence": 1,
+    "bytes": 2336,
+    "sha256": "2921ea6e35f5ad107ea77d46850b92886026406276c4555583a2c4f8e5298438"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Non-Qwen θ̂ Derivation\n\n### 数据可用性\n\n| 家族 | 模型 | 1v2 AUC | 1v2 ci_lower | 2v3 ci_lower | K\\* at θ=0.60 | K\\* at θ=0.58 |\n|------|------|---------|-------------|-------------|--------------|--------------|\n| Gemma | Gemma-2B | 0.5981 | 0.5882 | 0.5234 | 1 | 2 |\n| OLMo | OLMo | 0.6145 | 0.6045 | 0.5399 | 2 | 2 |\n| Pythia | Pythia-1.4B | 0.6539 | 0.6454 | 0.5417 | 2 | 2 |\n| LLaMA | LLaMA-8B | 0.6123 | 0.6028 | 0.5169 | 2 | 2 |\n| Mistral | Mistral-7B | 0.5935 | 0.5835 | 0.5301 | 1 | 2 |\n\n5/5 non-Qwen 家族数据齐全（含 LLaMA-8B 和 Mistral-7B，均为 C4 域，scorer=Qwen2.5-1.5B base）。\n\n### 推导结果\n\n- Non-Qwen K\\*=2 consensus θ̂ range: **(0.5417, 0.5835]**\n- Width: 0.0418\n- Midpoint: 0.5626\n- Binding high: **Mistral-7B** (1v2 ci_lower = 0.5835，最低)\n- Binding low: **Pythia-1.4B** (2v3 ci_lower = 0.5417，最高)\n\n注意：θ=0.60 落在此范围之外（>0.5835），导致 Gemma-2B 和 Mistral-7B 降为 K\\*=1。\n\n### Qwen Validation\n\n| Qwen 模型 | 1v2 ci_lower | 2v3 ci_lower | K\\* at θ̂=0.58 | margin(1v2) | margin(2v3) |\n|-----------|-------------|-------------|---------------|------------|------------|\n| Qwen-1.5B-rw | 0.6859 | 0.5795 | **2** | +0.1059 | **-0.0005** |\n| Qwen-1.5B-cont | 0.6015 | 0.5511 | **2** | +0.0215 | -0.0289 |\n| Qwen-7B | 0.6080 | 0.5390 | **2** | +0.0280 | -0.0410 |\n\nθ=0.58 时 3/3 Qwen 模型均返回 K\\*=2，验证通过。Qwen-rw 的 2v3 margin 仅 -0.0005，是最紧约束。\n\n### 全 8 家族 consensus\n\n- All-8 K\\*=2 range: **(0.5795, 0.5835]**，width = 0.0040\n- Binding high: Mistral-7B (1v2 ci_lower = 0.5835)\n- Binding low: Qwen-1.5B-rw (2v3 ci_lower = 0.5795)\n- θ=0.5815（midpoint）时 8/8 家族全部 K\\*=2\n\n### 结论\n\nθ̂ = **0.58** 使得 non-Qwen 推导 + Qwen 验证完全一致：5 个 non-Qwen 家族推导出的 consensus range (0.5417, 0.5835] 包含 0.58，3 个 held-out Qwen 家族在 θ=0.58 下独立验证为 K\\*=2。全 8 家族 consensus 窄带为 (0.5795, 0.5835]。\n\n原始 θ=0.60 偏高，落在 non-Qwen consensus 范围外，导致 Gemma-2B 和 Mistral-7B 被错误降级为 K\\*=1。\n\n产出文件：\n- `results/lofo_theta_validation/lofo_nonqwen_reframing.json`\n- `results/lofo_theta_validation/lofo_nonqwen_reframing_table.tex`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-lofo-nonqwen-reframing.md"
+}

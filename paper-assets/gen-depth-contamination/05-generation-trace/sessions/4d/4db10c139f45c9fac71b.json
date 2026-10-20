@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4db10c139f45c9fac71b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code refactor plot scripts",
+  "task_key": "worker_code_refactor_plot_scripts_20260516T082238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_refactor_plot_scripts_20260516T082238_result.json",
+    "occurrence": 1,
+    "bytes": 1943,
+    "sha256": "8f11784e6ed228abf56cf20ec55d8b37fd712266035e29c1d0d73783d6138862"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。PDF 文件非空（27KB 和 18KB）。\n\n---\n\n## 汇报\n\n### 1. 脚本修改摘要\n\n**`artifacts/scripts/plot_summary_auc_decay.py`**：\n- 移除 hardcoded data dict，改为 `discover_auc_files()` 自动扫描 `results_*/`, `results/*/`, `data_*/` 下的 `pairwise_auc.json`\n- `infer_label()` 从目录名自动推断模型名和分组（model/decode）\n- 颜色/marker 从 Tableau-10 colormap 循环分配\n- 支持 `--results-dir`, `--output`, `--filter` 命令行参数\n- 输出到 `artifacts/figures/fig2_auc_decay.pdf`\n\n**`scripts/draw_kstar_theta.py`**：\n- 移除 hardcoded `AUC_DATA` 和 `STYLES`，改为 `discover_ci_files()` 扫描 `artifacts/*bootstrap*ci*.json` 和 `results_*/*bootstrap*ci*.json`\n- 从 JSON 的 `pairs.{pair}.ci_lower` 自动提取 CI 下界\n- `infer_label()` 优先从 JSON metadata 中的 `experiment` 字段推断，fallback 到文件名\n- 支持 `--results-dir`, `--output`, `--filter`\n\n### 2. 自动发现的实验数据\n- `results_exp016_qwen_base/pairwise_auc.json` → 标签 \"Qwen-base\"\n- `results/exp_021_length_128/pairwise_auc.json` → 标签 \"exp_021_length_128\"\n- `artifacts/exp016_bootstrap_ci.json` → 标签 \"Qwen-base\"（from metadata）\n\n### 3. Tab kstar_ci 溢出处理\n- 主表（`tab:kstar_ci`）保持 5 模型不变（已满 `table*` 宽度），caption 加了引用扩展表\n- 新增 appendix 表 `tab:kstar_ci_extended`：7 模型（含 Qwen-base 实际数据 + LLaMA-8B placeholder `--`），放在 Table S2 之后\n\n### 4. 验证结果\n- `plot_summary_auc_decay.py`: OK，PDF 27KB\n- `draw_kstar_theta.py`: OK，PDF 18KB\n- LaTeX 扩展表已加入 `docs/paper/appendix.tex`\n\n### 5. 兼容性\n- 当 `results_exp019_mistral7b/` 和 `results_exp020_pythia_*` 产出 `pairwise_auc.json` 后，脚本会自动发现并绘制，无需改代码\n- 同理 bootstrap CI JSON 产出后 `draw_kstar_theta.py` 会自动纳入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-refactor-plot-scripts.md"
+}

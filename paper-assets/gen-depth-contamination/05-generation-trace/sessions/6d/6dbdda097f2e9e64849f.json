@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6dbdda097f2e9e64849f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing methodology draft",
+  "task_key": "worker_writing_methodology_draft_20260512T162448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_methodology_draft_20260512T162448_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "328b2e3c791cb2c1b91846c9db441238172ad2d8b8d4090f1e3ae79dfbbd2d22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Methodology 初稿已写入 `docs/methodology_draft.md`。\n\n涵盖四个 subsection：\n- **3.1** 形式化定义、prompt-chain 实现（含精确 prompt 模板）、模型选择理由、解码参数、种子数据、left-padding\n- **3.2** 三组 15 维特征的精确公式——surprisal 9D（含一阶/二阶差分）、vocab diversity 3D（TTR/hapax/self-BLEU）、tail-thinning 3D（kurtosis/entropy/LFR），全部从 `run_pipeline.py` 提取\n- **3.3** LightGBM 选择理由、pairwise + ordinal 两级评估、5-fold CV 协议、四项指标\n- **3.4** $K^*$ 操作性定义（AUC > 0.60）、阈值理由、DPI 理论联系（含 contraction rate scaling）、JSD proxy 及其局限、科学意义\n\n标注了 3 处 `[TODO]` 待补充实验数据，1 处 `[需验证]` 标注不确定的引用。还标注了 doc\\_id grouped CV 的设计缺陷需在正式实验中修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-methodology-draft.md"
+}

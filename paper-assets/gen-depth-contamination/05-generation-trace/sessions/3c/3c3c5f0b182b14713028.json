@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3c3c5f0b182b14713028",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code cuda3 utilization",
+  "task_key": "worker_code_cuda3_utilization_20260522T174219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cuda3_utilization_20260522T174219.log",
+    "occurrence": 1,
+    "bytes": 738357,
+    "sha256": "895cd660bd806ce99bf492c1d2978d8dc91b7028d3374d49c9f0101de38a1bcc"
+  },
+  "statistics": {
+    "messages": 290,
+    "user_turns": 0,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 70,
+      "tool_call": 108,
+      "tool_result": 108,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 290,
+      "chunks": [
+        {
+          "path": "3c3c5f0b182b14713028-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3c3c5f0b182b14713028-part-0002.json",
+          "message_count": 110
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-cuda3-utilization.md"
+}

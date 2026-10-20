@@ -1,0 +1,372 @@
+{
+  "schema_version": "1.0",
+  "id": "438f257f719930235f21",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "analysis q5 contamination 10pct",
+  "task_key": "worker_analysis_q5_contamination_10pct_20260520T044840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_q5_contamination_10pct_20260520T044840.jsonl",
+    "occurrence": 1,
+    "bytes": 18034,
+    "sha256": "5cce225b01602bd3e7ccc7ca7bf216f2cf91e63482e6c378c424d1413ecdf6c6"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T04:49:21.199047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T04:49:21.199391+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T04:49:21.199576+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -path \"*009*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T04:49:21.199712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -path \"*dose*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T04:49:21.199924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T04:49:21.200093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T04:49:21.200237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ -type f -name \"*.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T04:49:21.200404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed0_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed0_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed1_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed1_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed1_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed2_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed2_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed2_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed3_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed3_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed3_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed4_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed4_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed4_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/statistical_analysis.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/no_filter_seed0_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/binary_ours_seed0_\n…[truncated 3374 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T04:49:21.200558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T04:49:21.200700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 248\\\\ndrwxr-xr-x 2 root root  4096 May 17 16:48 .\\\\ndrwxr-xr-x 5 root root    70 May 17 06:23 ..\\\\n-rw-r--r-- 1 root root 14291 May 17 09:06 binary_ours_seed0_eval.json\\\\n-rw-r--r-- 1 root root 14273 May 17 10:26 binary_ours_seed1_eval.json\\\\n-rw-r--r-- 1 root root 14263 May 17 11:45 binary_ours_seed2_eval.json\\\\n-rw-r--r-- 1 root root 14284 May 17 13:01 binary_ours_seed3_eval.json\\\\n-rw-r--r-- 1 root root 14266 May 17 16:22 binary_ours_seed4_eval.json\\\\n-rw-r--r-- 1 root root 14291 May 17 09:33 graduated_seed0_eval.json\\\\n-rw-r--r-- 1 root root 14276 May 17 10:53 graduated_seed1_eval.json\\\\n-rw-r--r-- 1 root root 14273 May 17 12:11 graduated_seed2_eval.json\\\\n-rw-r--r-- 1 root root 14284 May 17 15:31 graduated_seed3_eval.json\\\\n-rw-r--r-- 1 root root 14295 May 17 16:48 graduated_seed4_eval.json\\\\n-rw-r--r-- 1 root root 14298 May 17 08:39 no_filter_seed0_eval.json\\\\n-rw-r--r-- 1 root root 14298 May 17 09:59 no_filter_seed1_eval.json\\\\n-rw-r--r-- 1 root root 14301 May 17 11:19 no_filter_seed2_eval.json\\\\n-rw-r--r-- 1 root root 14273 May 17 12:35 no_filter_seed3_eval.json\\\\n-rw-r--r-- 1 root root 14269 May 17 15:56 no_filter_seed4_eval.json\\\\n-rw-r--r-- 1 root root  1981 May 17 16:48 statistical_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T04:49:21.200868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/statistical_analysis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T04:49:21.201045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ratio\\\\\\\": 0.1,\\\\n  \\\\\\\"strategies\\\\\\\": {\\\\n    \\\\\\\"no_filter\\\\\\\": {\\\\n      \\\\\\\"mmlu_mean\\\\\\\": 0.6057968950291982,\\\\n      \\\\\\\"mmlu_std\\\\\\\": 0.00018350802915149467,\\\\n      \\\\\\\"hellaswag_mean\\\\\\\": 0.6688906592312289,\\\\n      \\\\\\\"hellaswag_std\\\\\\\": 0.0005908144582430092,\\\\n      \\\\\\\"n_seeds\\\\\\\": 5\\\\n    },\\\\n    \\\\\\\"binary_ours\\\\\\\": {\\\\n      \\\\\\\"mmlu_mean\\\\\\\": 0.607919099843327,\\\\n      \\\\\\\"mmlu_std\\\\\\\": 0.0004426796828918917,\\\\n      \\\\\\\"hellaswag_mean\\\\\\\": 0.6726946823341964,\\\\n      \\\\\\\"hellaswag_std\\\\\\\": 0.0006853077289020053,\\\\n      \\\\\\\"n_seeds\\\\\\\": 5\\\\n    },\\\\n    \\\\\\\"graduated\\\\\\\": {\\\\n      \\\\\\\"mmlu_mean\\\\\\\": 0.6065517732516735,\\\\n      \\\\\\\"mmlu_std\\\\\\\": 0.0010215308974243483,\\\\n      \\\\\\\"hellaswag_mean\\\\\\\": 0.6700258912567219,\\\\n      \\\\\\\"hellaswag_std\\\\\\\": 0.0013706154578040297,\\\\n      \\\\\\\"n_seeds\\\\\\\": 5\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparisons\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"binary_ours_vs_no_filter\\\\\\\",\\\\n      \\\\\\\"t_stat\\\\\\\": 8.552772511161114,\\\\n      \\\\\\\"p_value\\\\\\\": 0.001025993674772431,\\\\n      \\\\\\\"cohens_d\\\\\\\": 3.8249161393157998,\\\\n      \\\\\\\"mean_diff\\\\\\\": 0.0021222048141289916,\\\\n      \\\\\\\"holm_bonferroni_significant\\\\\\\": true,\\\\n      \\\\\\\"adjusted_alpha\\\\\\\": 0.0125\\\\n    },\\\\n    {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"graduated_vs_no_filter\\\\\\\",\\\\n      \\\\\\\"t_stat\\\\\\\": 1.2773866001665501,\\\\n      \\\\\\\"p_value\\\\\\\": 0.27057035942865604,\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.5712646538716375,\\\\n      \\\\\\\"mean_diff\\\\\\\": 0.0007548782224753969,\\\\n      \\\\\\\"holm_bonferroni_significant\\\\\\\": false,\\\\n      \\\\\\\"adjusted_alpha\\\\\\\": 0.05\\\\n    },\\\\n    {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"binary_ours_vs_no_filter\\\\\\\",\\\\n      \\\\\\\"t_stat\\\\\\\": 7.4572971301811055,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0017277327350855957,\\\\n      \\\\\\\"cohens_d\\\\\\\": 3.335004659375996,\\\\n      \\\\\\\"mean_diff\\\\\\\": 0.\n…[truncated 640 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T04:49:21.201201+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/statistical_analysis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T04:49:21.201375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ratio\\\\\\\": 0.3,\\\\n  \\\\\\\"strategies\\\\\\\": {\\\\n    \\\\\\\"no_filter\\\\\\\": {\\\\n      \\\\\\\"mmlu_mean\\\\\\\": 0.6069078478849167,\\\\n      \\\\\\\"mmlu_std\\\\\\\": 0.0006579580949979144,\\\\n      \\\\\\\"hellaswag_mean\\\\\\\": 0.6663612826130253,\\\\n      \\\\\\\"hellaswag_std\\\\\\\": 0.001758513447890392,\\\\n      \\\\\\\"n_seeds\\\\\\\": 5\\\\n    },\\\\n    \\\\\\\"binary_ours\\\\\\\": {\\\\n      \\\\\\\"mmlu_mean\\\\\\\": 0.6082039595499217,\\\\n      \\\\\\\"mmlu_std\\\\\\\": 0.0011156904160413718,\\\\n      \\\\\\\"hellaswag_mean\\\\\\\": 0.6724955188209519,\\\\n      \\\\\\\"hellaswag_std\\\\\\\": 0.0005921556959696658,\\\\n      \\\\\\\"n_seeds\\\\\\\": 5\\\\n    },\\\\n    \\\\\\\"graduated\\\\\\\": {\\\\n      \\\\\\\"mmlu_mean\\\\\\\": 0.6072069505768409,\\\\n      \\\\\\\"mmlu_std\\\\\\\": 0.0007571590291982239,\\\\n      \\\\\\\"hellaswag_mean\\\\\\\": 0.6665405297749454,\\\\n      \\\\\\\"hellaswag_std\\\\\\\": 0.0012091702239920654,\\\\n      \\\\\\\"n_seeds\\\\\\\": 5\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparisons\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"binary_ours_vs_no_filter\\\\\\\",\\\\n      \\\\\\\"t_stat\\\\\\\": 2.4055898100116466,\\\\n      \\\\\\\"p_value\\\\\\\": 0.07390707256214961,\\\\n      \\\\\\\"cohens_d\\\\\\\": 1.075812467340412,\\\\n      \\\\\\\"mean_diff\\\\\\\": 0.001296111665004962,\\\\n      \\\\\\\"holm_bonferroni_significant\\\\\\\": false,\\\\n      \\\\\\\"adjusted_alpha\\\\\\\": 0.016666666666666666\\\\n    },\\\\n    {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"graduated_vs_no_filter\\\\\\\",\\\\n      \\\\\\\"t_stat\\\\\\\": 0.4685795993490187,\\\\n      \\\\\\\"p_value\\\\\\\": 0.6637659359155382,\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.2095551672559874,\\\\n      \\\\\\\"mean_diff\\\\\\\": 0.00029910269192423566,\\\\n      \\\\\\\"holm_bonferroni_significant\\\\\\\": false,\\\\n      \\\\\\\"adjusted_alpha\\\\\\\": 0.025\\\\n    },\\\\n    {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"binary_ours_vs_no_filter\\\\\\\",\\\\n      \\\\\\\"t_stat\\\\\\\": 6.127609279958095,\\\\n      \\\\\\\"p_value\\\\\\\": 0.003593840883716938,\\\\n      \\\\\\\"cohens_d\\\\\\\": 2.7403501766847698,\\\\n      \\\\\\\"mean_\n…[truncated 637 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T04:49:21.201527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/statistical_analysis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T04:49:21.201698+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"ratio\\\\\\\": 0.5,\\\\n  \\\\\\\"strategies\\\\\\\": {\\\\n    \\\\\\\"no_filter\\\\\\\": {\\\\n      \\\\\\\"mmlu_mean\\\\\\\": 0.6063096425010682,\\\\n      \\\\\\\"mmlu_std\\\\\\\": 0.0012030054074222063,\\\\n      \\\\\\\"hellaswag_mean\\\\\\\": 0.6679944234216293,\\\\n      \\\\\\\"hellaswag_std\\\\\\\": 0.0004837664927899185,\\\\n      \\\\\\\"n_seeds\\\\\\\": 5\\\\n    },\\\\n    \\\\\\\"binary_ours\\\\\\\": {\\\\n      \\\\\\\"mmlu_mean\\\\\\\": 0.6088164079190997,\\\\n      \\\\\\\"mmlu_std\\\\\\\": 0.0009415464395976712,\\\\n      \\\\\\\"hellaswag_mean\\\\\\\": 0.6730930093606851,\\\\n      \\\\\\\"hellaswag_std\\\\\\\": 0.0004003137072742785,\\\\n      \\\\\\\"n_seeds\\\\\\\": 5\\\\n    },\\\\n    \\\\\\\"graduated\\\\\\\": {\\\\n      \\\\\\\"mmlu_mean\\\\\\\": 0.6062099416037602,\\\\n      \\\\\\\"mmlu_std\\\\\\\": 0.0008164598004823832,\\\\n      \\\\\\\"hellaswag_mean\\\\\\\": 0.6678749253136826,\\\\n      \\\\\\\"hellaswag_std\\\\\\\": 0.00014635469484864267,\\\\n      \\\\\\\"n_seeds\\\\\\\": 5\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparisons\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"binary_ours_vs_no_filter\\\\\\\",\\\\n      \\\\\\\"t_stat\\\\\\\": 3.0598285907853287,\\\\n      \\\\\\\"p_value\\\\\\\": 0.0376647985539478,\\\\n      \\\\\\\"cohens_d\\\\\\\": 1.3683969449516937,\\\\n      \\\\\\\"mean_diff\\\\\\\": 0.002506765418031587,\\\\n      \\\\\\\"holm_bonferroni_significant\\\\\\\": false,\\\\n      \\\\\\\"adjusted_alpha\\\\\\\": 0.016666666666666666\\\\n    },\\\\n    {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"graduated_vs_no_filter\\\\\\\",\\\\n      \\\\\\\"t_stat\\\\\\\": -0.146711518676184,\\\\n      \\\\\\\"p_value\\\\\\\": 0.8904570044767417,\\\\n      \\\\\\\"cohens_d\\\\\\\": -0.0656113857252578,\\\\n      \\\\\\\"mean_diff\\\\\\\": -9.970089730806375e-05,\\\\n      \\\\\\\"holm_bonferroni_significant\\\\\\\": false,\\\\n      \\\\\\\"adjusted_alpha\\\\\\\": 0.05\\\\n    },\\\\n    {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"comparison\\\\\\\": \\\\\\\"binary_ours_vs_no_filter\\\\\\\",\\\\n      \\\\\\\"t_stat\\\\\\\": 23.272727272729337,\\\\n      \\\\\\\"p_value\\\\\\\": 2.0203905605278165e-05,\\\\n      \\\\\\\"cohens_d\\\\\\\": 10.407880019481333,\\\\n      \\\\\\\"\n…[truncated 648 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T04:49:21.201918+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全。汇总如下：\n\n---\n\n## 10% contamination: binary classifier vs no-filter\n\n| | MMLU (5-seed mean) |\n|---|---|\n| **no_filter** | 60.58% |\n| **binary_ours** | 60.79% |\n| **pp 差距** | **+0.21 pp** |\n| **p-value** | **0.00103** (paired t-test, Holm-Bonferroni corrected α=0.0125, **显著**) |\n| Cohen's d | 3.82 |\n\n---\n\n## 全部 contamination ratios 汇总 (binary_ours vs no_filter, MMLU)\n\n| Ratio | no_filter | binary_ours | Δ (pp) | p-value | Significant? |\n|-------|-----------|-------------|--------|---------|-------------|\n| **10%** | 60.58 | 60.79 | **+0.21** | **0.00103** | **Yes** (α=0.0125) |\n| 30% | 60.69 | 60.82 | +0.13 | 0.0739 | No (α=0.0167) |\n| 50% | 60.63 | 60.88 | +0.25 | 0.0377 | No (α=0.0167) |\n\n---\n\n**数据来源**: `/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_{10,30,50}/statistical_analysis.json`\n\n10% ratio 是唯一在 MMLU 上通过 Holm-Bonferroni 校正后仍显著的条件（p=0.00103, d=3.82）。差距虽仅 0.21 pp，但跨 5 个 seed 非常稳定（binary_ours std=0.044%, no_filter std=0.018%）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_q5_contamination_10pct_20260520T044840"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-q5-contamination-10pct.md"
+}

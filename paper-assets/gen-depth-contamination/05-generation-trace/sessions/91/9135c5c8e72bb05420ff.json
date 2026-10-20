@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9135c5c8e72bb05420ff",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra cqa1 recovery status",
+  "task_key": "worker_infra_cqa1-recovery-status_20260519T215644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_cqa1-recovery-status_20260519T215644_result.json",
+    "occurrence": 1,
+    "bytes": 1555,
+    "sha256": "b24355d74881118209c7e081fa791492f428678bcbf372f6098bdb9a3837e937"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 任务 1：实验存活状态\n\n| 进程 | PID | 状态 | 进度 |\n|------|-----|------|------|\n| Wiki DeBERTa upperbound | 167144 | **已完成** | 5/5 实验全部完成，summary.json 已生成 |\n| Cross-transfer GPU1 | 208306 | **存活** (1h40m) | 1/4 对完成 (wiki_pythia→wiki_olmo)，正跑第2对 |\n| Cross-transfer GPU2 | 208307 | **存活** (1h40m) | 1/4 对完成 (wiki_olmo→wiki_qwen7b)，正跑第2对 |\n| Cross-transfer GPU3 | 208308 | **存活** (1h40m) | 1/4 对完成 (wiki_olmo→wiki_llama8b)，第2对接近完成 |\n\n每对约 55-60 分钟，每 GPU 剩 3 对，预计 cross-transfer 全部完成时间：**~09:00-09:30**。\n\n### GPU 状态\n\n| GPU | 占用 | 显存 | 任务 |\n|-----|------|------|------|\n| 0 | 97% | 19337/24564 MiB | **C4 1.5B DeBERTa qwen_rw** (刚启动) |\n| 1 | 96% | 21213/24564 MiB | cross-transfer |\n| 2 | 98% | 19665/24564 MiB | cross-transfer |\n| 3 | 98% | 22635/24564 MiB | cross-transfer |\n\n### 任务 4：C4 1.5B DeBERTa 部署\n\n- 脚本 `run_deberta_c4_1b5.py` 已创建并部署，支持 `--config` 参数\n- **qwen_rw** 已在 GPU 0 启动（PID 255066），预计 ~45 分钟完成\n- **pythia_greedy** 和 **qwen_cont256** 暂无空闲 GPU，需等待：\n  - 方案 A：qwen_rw 完成后在 GPU 0 上串行跑（总计 ~2.5h）\n  - 方案 B：等 cross-transfer 释放 GPU 1-3 后并行跑（~3h 后可用）\n\n建议在 qwen_rw 完成后立即在 GPU 0 上启动下一个 config，同时等 cross-transfer 释放 GPU 时启动第三个。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cqa1-recovery-status.md"
+}

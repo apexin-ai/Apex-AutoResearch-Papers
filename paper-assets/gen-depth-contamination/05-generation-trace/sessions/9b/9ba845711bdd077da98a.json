@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ba845711bdd077da98a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops cloud download status",
+  "task_key": "worker_ops_cloud_download_status_20260517T163408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cloud_download_status_20260517T163408_result.json",
+    "occurrence": 1,
+    "bytes": 1507,
+    "sha256": "a961bbf6ba7a514c61d4fa398ed492362b60b264d87f4fa08659b902b7055360"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 就绪清单\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| **环境就绪** | ⚠️ 部分 | Python 3.12.3, PyTorch 2.10.0+cu128, CUDA 13.0, Driver 580.82. 但 `python3` 不在 PATH（需 `export PATH=/root/miniconda3/bin:$PATH`） |\n| **GPU** | ✅ | 2× NVIDIA RTX PRO 6000 Blackwell (98GB VRAM each)，空闲 |\n| **磁盘** | ✅ | `/root/autodl-tmp` 250GB，已用 58GB，剩余 193GB |\n| **Qwen2.5-14B** | ⏳ ~15min | temp 27GB + final 1.7GB ≈ 28.7GB（接近完成，7 shards 正在写入） |\n| **Qwen2.5-32B** | ⏳ ~1.5-2h | temp 28GB / ~64GB 目标。8/17 shards 下载中，速率 ~1.2 MB/s/stream |\n| **Qwen2.5-1.5B (scorer)** | ⏳ ~25min | temp 1.2GB / ~3GB 目标 |\n| **项目代码** | ✅ | `/root/autodl-tmp/gen-depth-contamination/` 存在，`scripts/run_pipeline.py` 在位 |\n| **C4 种子数据** | ✅ | `exp_14b_c4/depth_0.jsonl` 5000 行，`exp_32b_c4/depth_0.jsonl` 5000 行 |\n\n### 下载进程\n\n所有下载通过 modelscope `snapshot_download` 并行进行（无 tmux，直接后台 python 进程）：\n- PID 4570: `dl_14b_v2.py`\n- PID 4571: `dl_32b_v2.py`\n- PID 4496: `dl_1.5b_v2.py`\n- PID 5477: `prepare_seed_final.py`（加载 wikitext 数据集）\n\n### 待修复\n\nPATH 未配置 — 运行前需执行：\n```bash\necho 'export PATH=/root/miniconda3/bin:$PATH' >> ~/.bashrc && source ~/.bashrc\n```\n\n### 预计全部就绪时间\n\n**约 2 小时后**（瓶颈是 Qwen2.5-32B 的 64GB 下载，当前约 44% 完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cloud-download-status.md"
+}

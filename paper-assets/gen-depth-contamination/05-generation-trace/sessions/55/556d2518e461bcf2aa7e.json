@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "556d2518e461bcf2aa7e",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "reviewer / loop_15.md",
+  "task_key": "loop_15",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_15.md",
+    "occurrence": 1,
+    "bytes": 3836,
+    "sha256": "940084c3ca2483c22a9cc4bf168f027b313b1e542947bc0c47b89beaa5ee4073"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: max_wall_time\nupdated: '2026-05-17T19:33:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- cqa1-22115 GPU 白名单：`gpu_ids=[0,1,2,3]`，本项目独占整台机器\n- westd-42896 GPU 白名单：`gpu_ids=[0,1]`（2×RTX PRO 6000 Blackwell 96GB）\n- 论文 DDL: **2026-05-25** EMNLP 2026 ARR\n- Wikipedia K*=1 结果（Pythia/OLMo/LLaMA-8B）不写入正文主线，放 Appendix（D054 决策）\n- discussion.tex 有未修正数据错误：Wikipedia λ≈4.2 应为 ≈3.1（排除 OLMo 后），C4 λ range \"2.9-6.3\" 上界来源不明（实际 4 模型范围 2.15-3.51）。已通知 Director，等 Paper Agent 修正。\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-22115** (root): 4×RTX 4090D 24GB, `/root/autodl-tmp/gen-depth-contamination/`\n  - 结果目录: `results/exp_*/`（pairwise_auc.json, jsd.json, summary.txt）\n  - 数据目录: `data/exp_*/depth_*.jsonl`\n  - 脚本: `scripts/run_pipeline.py`\n  - HF cache: `/root/autodl-tmp/.hf_cache/`\n- **westd-42896** (root): 2×RTX PRO 6000 96GB, `/root/autodl-tmp/gen-depth-contamination/`\n  - PATH 已修复 (`/root/miniconda3/bin`)\n  - 14B 已下载完成 (29.6GB, 8/8 shards)\n  - 32B 下载中（shards 1-8 done, 9-15 进行中，PID 4571）\n  - Scorer 1.5B 已就绪\n  - C4 seed data: `exp_14b_c4/depth_0.jsonl` + `exp_32b_c4/depth_0.jsonl` (各 5000 行)\n\n### 3. 📊 当前状态\n**刚完成审查**：exp_arXiv_mistral7b (K*=3 ✓), exp_arXiv_qwen7b (K*=3 ✓), exp_wiki_llama8b (K*=1, borderline)。已发三份审查报告 + JSD λ/semantic ablation 综合审查 + 语义消融更正（TF-IDF→all-MiniLM-L6-v2）。\n\n**仍在运行**：\n- exp_wiki_mistral7b (cqa1 cuda:1, ~still running, 5000 docs Wikipedia)\n- exp_wiki_qwen7b (cqa1 cuda:0, prepping/running)\n- exp_14b_c4 / exp_32b_c4 (westd, 等模型下载完)\n\n**等待中**：\n- Wiki Mistral/Qwen-7B 完成 → 审查 + Wikipedia domain 全貌总结\n- 32B 下载完成 → 14B/32B 实验启动 → 审查 scale effect\n- Paper Agent 综合 patch（arXiv 5-model table, JSD 数值修正）\n\n### 4. 📋 待办（条件触发式）\n- exp_wiki_mistral7b 完成 → 审查生成质量（关键：C4 K*=1 的 Mistral 在 Wiki 是否也 K*=1？若是则强化 \"domain-specific one-wash\" narrative）\n- exp_wiki_qwen7b 完成 → 汇总 Wikipedia 全部 6 模型结果，判断 continuation vs rewrite mode 是否为 K* 分界线\n- exp_14b_c4 完成 → 核心审查：K*=1 则触发 scorer confound concern（1.5B scorer 对 14B 生成文本可能区分力不足），建议 14B self-scorer 对照\n- exp_32b_c4 完成 → 同上，且若 K*=1 需检查是否 discussion.tex 第 59 行预测 \"13B+ may yield K*=1\" 的证据\n- Paper Agent 提交 JSD 数值修正 patch → 验证 Wikipedia λ 是否改为 ≈3.1，C4 range 是否有 7 模型完整数据支撑\n- Director 转发章节审查 → 按 §5 模板评分\n\n### 5. 🎯 战略上下文\n**核心结论链**：K* bounded + domain-dependent。C4=2 (7/8), arXiv=3 (5/5), Wiki≈1 (continuation mode)。Binary filtering > graduated (C3 confirmed)。Mistral one-wash is domain-specific not model-intrinsic (D056)。\n\n**最易判断错的事**：\n1. **pp 单位**：1pp = 0.01，历史两次犯 10× 错误。报告 AUC 差异前必须二次核验。\n2. **OLMo 不是普通 K*=1**：OLMo 在非 C4 域是 capacity failure（JSD 0v1=0.329 arXiv, =0.169 Wiki → 生成文本离域），不能与 Mistral/Pythia/LLaMA 的 genuine one-wash 混为一谈。\n3. **Wikipedia Qwen-1.5B K*=2 是 rewrite mode**（exp-023），其他 Wiki 实验全是 continuation mode → 比较时注意 mode 差异。\n4. **语义消融用的是 all-MiniLM-L6-v2 密集嵌入**（非 TF-IDF），我之前误判已更正。\n5. **14B/32B scorer confound**：若这些大模型 K*=1，不能直接 claim \"scale reduces K*\"，需排除 1.5B scorer 能力不足的混淆因素。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-copy-2.md"
+}

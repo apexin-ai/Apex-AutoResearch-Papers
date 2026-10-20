@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "868d0fd10457637c2a3c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp D mcnemar",
+  "task_key": "worker_code_exp_D_mcnemar_20260515T112338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_D_mcnemar_20260515T112338_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "e4bdfed346221e99db0c39f063b73841b8a3d8266e8e1608b272d686480082b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "执行完成。注意 OBD OOF accuracy 这次为 43.6%（vs v2 的 38.0%），因为 LGBMClassifier 没有固定 `random_state`。配对检验结果无论如何都高度显著。\n\n## 结果摘要\n\n### OBD vs GPT-5.5 (N=500)\n| | |\n|---|---|\n| OBD accuracy | 43.6% |\n| GPT-5.5 accuracy | 33.2% |\n| Difference | **+10.4pp** |\n| Contingency | a=94, b=124, c=72, d=210 |\n| McNemar exact p | **0.0002** |\n| Bootstrap 95% CI | **[+5.0pp, +15.8pp]** |\n| CI includes 0 | NO |\n\n### OBD vs Claude (N=500)\n| | |\n|---|---|\n| OBD accuracy | 43.6% |\n| Claude accuracy | 33.0% |\n| Difference | **+10.6pp** |\n| Contingency | a=101, b=117, c=64, d=218 |\n| McNemar exact p | **0.0001** |\n| Bootstrap 95% CI | **[+5.4pp, +15.8pp]** |\n| CI includes 0 | NO |\n\nOBD 在配对检验下显著优于两个 LLM（p < 0.001），bootstrap CI 不含 0。\n\n如果需要精确复现 v2 的 38.0% OBD 准确率，需要在 `LGBMClassifier` 里加 `random_state=42`——要我加上重跑吗？结果保存在 `artifacts/exp_D_mcnemar.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-d-mcnemar.md"
+}

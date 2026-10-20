@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49170932aced68ef049d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper figure1 pipeline paperbanana",
+  "task_key": "worker_paper_figure1_pipeline_paperbanana_20260522T030029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure1_pipeline_paperbanana_20260522T030029_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "497650a36b241f9b658fe748cea7df6450535a040ae3a66a3e3b5017af9139ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出文件：**\n- PNG: `docs/paper/figures/pipeline.png` (90 KB, 300 DPI)\n- PDF: `docs/paper/figures/pipeline.pdf` (37 KB, 矢量)\n- 源码: `artifacts/figure1_pipeline/draw_pipeline.py`\n\n**图内容：** 5 阶段水平 pipeline（蓝→橙→绿→紫→深灰），每阶段有内部细节（文档堆叠、深度链+自循环箭头、4 组特征行、K 个二分类器行、带阈值线的柱状图），底部有数学标注。\n\n**PaperBanana 说明：** PaperBanana `generate` 用 Imagen 生成的图是通用插画风格，无法精确控制标注和布局，不适合这类需要精确数学符号的 pipeline 图。最终改用 matplotlib 手写，可控性更强。\n\n**可能的改进方向：**\n- 如果需要 Stage 2 的自循环箭头更醒目，可以加粗或换色\n- 如果论文是单栏格式，可调整 `figsize` 宽度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure1-pipeline-paperbanana.md"
+}

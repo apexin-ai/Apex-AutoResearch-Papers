@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c24030c978cc602f9941",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis selfbleu ablation olmo",
+  "task_key": "worker_analysis_selfbleu_ablation_olmo_20260521T152819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_selfbleu_ablation_olmo_20260521T152819_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "e74d550a1996f0b381e3d82a4a7b63a487ec80453403e3e2c3ddd24e14eab460"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已写入 `artifacts/olmo_selfbleu_ablation.md`。\n\n**OLMo-1B C4 selfbleu ablation 结果：**\n- K\\*_15D = 1, K\\*_14D = 1, **ΔK\\* = 0**\n- 去掉 self_bleu 不改变 K\\*\n- 0v1 是唯一可区分对（AUC ≈ 0.986/0.983），1v2 及之后全部 ≈ 0.50（随机水平）\n- 所有 delta 都很小（-0.005 ~ +0.003），self_bleu 对分类贡献可忽略"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-selfbleu-ablation-olmo.md"
+}

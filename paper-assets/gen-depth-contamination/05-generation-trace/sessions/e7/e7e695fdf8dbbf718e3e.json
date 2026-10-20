@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7e695fdf8dbbf718e3e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research sweep literature liaison",
+  "task_key": "worker_research_sweep_literature_liaison_20260520T182547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_sweep_literature_liaison_20260520T182547_result.json",
+    "occurrence": 1,
+    "bytes": 1142,
+    "sha256": "4425efcf85f35d24e76ac45a96a64f70dc471733b468371478233dd2414f36f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**报告已注册** → `artifacts/exp_contamination_rate_sweep/report/contamination_rate_sweep_literature_analysis.md`\n\n**核心发现：**\n\n1. **Dose-response 一致**：Du et al. (2025) 的 20-30% 阈值和 Dohmatob et al. (ICLR 2025) 的理论结果都预测了我们观察到的 \"污染越高，binary filtering 收益越大\" 模式。没有论文做过我们这样的系统性 contamination rate × filtering strategy 矩阵。\n\n2. **Graduated ≈ no_filter 是新发现**：没有论文直接比较过 binary vs depth-graduated filtering。现有 weighting 文献 (He et al. golden ratio, Kuo et al. ICLR 2025) 的 weighting 都在 real/synthetic 二元轴上，不在 depth 轴上。我们的 graduated 失败可以被 K\\*=2 自洽解释：depth≥1 特征已收敛，depth-graduated weights 是在 noise 上加权。\n\n3. **100% binary 不可用**：这是 trivial 的边界条件，Amin et al. 的 β>0 最低要求隐含了这一点，不构成新贡献。\n\n4. **新增 5 篇论文到 literature_map.yaml**：Du et al., He et al., Bakshi & Chakraborty, Nait Saada et al., Zhu et al."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-sweep-literature-liaison.md"
+}

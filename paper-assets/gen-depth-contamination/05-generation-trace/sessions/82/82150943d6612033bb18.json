@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82150943d6612033bb18",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 final dryrun",
+  "task_key": "worker_infra_exp006_final_dryrun_20260513T163156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006_final_dryrun_20260513T163156_result.json",
+    "occurrence": 1,
+    "bytes": 1999,
+    "sha256": "4f72f2619b8d522d5facbae4192d45b68c998d5c7bf194fa3bc1ce01c7fec393"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**lm-eval dry-run 通过。** HellaSwag 评测成功，batch_size auto=64。\n\n---\n\n## exp-006 dry-run 结果汇总\n\n### 1. run_exp006.sh 关键配置\n| 参数 | 值 |\n|------|-----|\n| MODEL | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2___5-1___5B-Instruct` (1544M params, bf16) |\n| DATA_DIR | `data/` (depth_0-5.jsonl + features.csv, 30000 samples) |\n| OUTPUT_DIR | `outputs/exp006/` (自动创建) |\n| Strategies | no-filter, binary-ours, binary-drayson, graduated, surprisal, dsir (6种) |\n| Seeds | 42, 123, 456, 789, 1024 (5个) |\n| Alphas | 0.1, 0.3, 0.5, 0.7, 0.9 (graduated only) |\n| **Total runs** | **50** (~25min/run, 预计 ~21h) |\n\n### 2. lm-eval 任务\n- `mmlu`: 可用，数据集已缓存（val=1531, test=14042）\n- `hellaswag`: 可用，数据集已缓存（val=10042）\n\n### 3. dry-run 逐步结果\n| 步骤 | 状态 | 说明 |\n|------|------|------|\n| Filtering | **PASS** | 4种策略验证通过，30000 samples 正确加载 |\n| Model loading | **PASS** | 本地路径加载 1544M params，bf16 |\n| lm-eval | **PASS** | hellaswag limit=2 完成，auto batch_size=64 |\n\n### 4. 磁盘空间\n- `/root/autodl-tmp`: **137GB 可用** / 150GB（9% used）\n- 项目占 353MB，预估 exp-006 全部 adapter + eval 结果 ~3GB，**充足**\n\n### 5. 发现并修复的问题（3个）\n1. **MODEL 路径**：原值 `\"Qwen/Qwen2.5-1.5B-Instruct\"` 会触发网络下载（hub 缓存无此模型，是 modelscope 结构）→ **已改为本地绝对路径**\n2. **缺少 network_turbo + 环境变量**：脚本未 source network_turbo，评测数据集下载会失败 → **已添加**\n3. **HF_ENDPOINT=hf-mirror.com 阻塞数据集下载**：mirror 对数据集下载卡死 → **已移除**（模型已是本地路径，不需要 mirror）\n\n### 6. 结论\n**exp-006 可以无阻塞启动。** 所有关键组件验证通过，3 个阻塞性问题已修复。GPU 当前 4.6GB/24.5GB，exp-003 结束后全部可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-final-dryrun.md"
+}

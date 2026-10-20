@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4f362a75d0646f566b4",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research bib verify r9m2",
+  "task_key": "worker_research_bib-verify-r9m2_20260519T134020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bib-verify-r9m2_20260519T134020_result.json",
+    "occurrence": 1,
+    "bytes": 2340,
+    "sha256": "a451a71037646412f09b83837fe0cb5f6b0aa2caf46a397dead9e6254c1fcfa3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个条目全部验证完毕。\n\n## 验证报告\n\n### 条目 1: alemohammad2024selfconsuming\n\n| 字段 | 现有 bib | 验证结果 | 状态 |\n|------|----------|----------|------|\n| 第一作者 | Alemohammad, Sina | Alemohammad, Sina | 正确 |\n| 年份 | 2024 | 2024 | 正确 |\n| Venue | Proceedings of ICLR | ICLR 2024 (Poster) | 正确 |\n| 作者列表 | 8人 | 匹配 | 正确 |\n\n**无需修改。** Venue 是 ICLR 2024，不是 ICML。[ICLR 官方页面](https://iclr.cc/virtual/2024/poster/18592)和 [OpenReview](https://openreview.net/forum?id=ShjMHfmPs0) 均确认。\n\n### 条目 2: mehta2025beyond\n\n| 字段 | 现有 bib | 验证结果 | 状态 |\n|------|----------|----------|------|\n| 第一作者 | Mehta, Sushant | Mehta, Sushant | 正确 |\n| 作者数量 | 1人 | 确认仅1人 | 正确 |\n| 年份 | 2025 | 2025 (Nov 18) | 正确 |\n| arXiv ID | 2511.17602 | 2511.17602 | 正确 |\n| 发表状态 | arXiv preprint | 未查到会议发表记录，仍为 preprint | 正确 |\n\n**无需修改。**\n\n### 条目 3: levy2024task\n\nbib 中确认不存在 `levy2024task`，tex 中也未引用。\n\n搜索 \"Levy 2024 task\" 相关论文，最接近的匹配是：\n\n> **\"Task Contamination: Language Models May Not Be Few-Shot Anymore\"**\n> 作者：**Changmao Li, Jeffrey Flanigan** (UC Santa Cruz)\n> 发表于：**AAAI 2024**, Proceedings of the AAAI Conference on Artificial Intelligence, 38(16):18471-18480\n> arXiv: [2312.16337](https://arxiv.org/abs/2312.16337)\n\n关键发现：\n- 该论文作者是 **Li** 和 **Flanigan**，不是 Levy。`levy2024task` 这个 key 可能是将 \"Li\" 误记为 \"Levy\"。\n- 现有 bib 中的 `levy2008expectation` 是 Roger Levy (无重音) 的 Cognition 2008 论文，完全不同的论文，无需修改。\n- 如需引用 task contamination 论文，正确的 bib 条目应为：\n\n```bibtex\n@inproceedings{li2024task,\n  title={Task Contamination: Language Models May Not Be Few-Shot Anymore},\n  author={Li, Changmao and Flanigan, Jeffrey},\n  booktitle={Proceedings of AAAI},\n  year={2024},\n  url={https://arxiv.org/abs/2312.16337}\n}\n```\n\n**结论：三个条目的现有 bib 内容均无错误，无需修改 bib 文件。** 条目 3 不存在于 bib 中也未被引用，如果后续需要引用应使用 key `li2024task`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bib-verify-r9m2.md"
+}

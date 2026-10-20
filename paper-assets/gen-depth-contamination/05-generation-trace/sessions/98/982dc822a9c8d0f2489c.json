@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "982dc822a9c8d0f2489c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp llama8b 10k",
+  "task_key": "worker_code_exp_llama8b_10k_20260522T092313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_llama8b_10k_20260522T092313_result.json",
+    "occurrence": 1,
+    "bytes": 960,
+    "sha256": "bee0b82baf11ed2c832054310951c4535c2dd569bfda30fb081a157e212b9b10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 原始数据路径 | `data/exp_018_llama8b/` (5000 samples) |\n| LLaMA-8B 模型 | `/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B` |\n| Qwen Scorer | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B-Instruct` |\n| 新数据目录 | `data/exp_llama8b_10k/depth_0.jsonl` = **10,000 行** ✓ |\n| GPU | cuda:2 (RTX PRO 6000, 98GB), 占用 18GB |\n| PID | **23232** (父进程), 子 python3 进程已启动 |\n| 当前进度 | Phase 1 - depth 1 生成中, ~5.3s/batch, 1250 batches |\n| 日志 | `/tmp/exp_llama8b_10k.log` |\n\n**问题记录：** C4 `datasets` 库走 fallback 路径时在 AutoDL 代理上陷入无限分页循环，已改用 `requests` 直接下载 shard 并手工创建 depth_0.jsonl。\n\n**预估时间：** 每个 depth ~110 min 生成，5 个 depth 生成 ~9h，加上两次 feature extraction，总计 ~12-14h。由于 nohup 无硬超时，可以跑完。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-llama8b-10k.md"
+}

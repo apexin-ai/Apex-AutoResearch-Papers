@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e44ec6eb5506761f68d8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper c3 section skeleton",
+  "task_key": "worker_paper_c3-section-skeleton_20260515T042055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_c3-section-skeleton_20260515T042055_result.json",
+    "occurrence": 1,
+    "bytes": 786,
+    "sha256": "6120bc0ceae0d22de4d4c1b1f2275c9a5f5c0b4f3f07b2cd510b05e211998e57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已重写。两版骨架结构：\n\n- **Version B**（默认激活）：binary-ours 最优叙事。开头直接承认 graduated 假说失败，用 K\\*=2 机制解释为何 graduated 无效（depth≥2 不可分 → 给噪声加权），α 单调递增讨论，Drayson 对比，degradation framing。\n- **Version A**（`\\iffalse` 包裹）：surprisal/DSIR 惊喜叙事。如果 distribution-based 方法胜出，切换为 \"K\\*-aware 与 distribution-based 互补\" 框架，预留 hybrid potential 段落。\n\n两版共享实验设置段落结构，数据占位符统一用 `\\textbf{XX.XX}`，每个定量 claim 旁有 `% source: exp-006` 注释标注来源。表格通过 `\\input{tables/tab_filtering_main}` 和 `\\input{tables/tab_alpha_sweep}` 引入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-c3-section-skeleton.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86c35f31f85901f58b7a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 resume final",
+  "task_key": "worker_infra_exp006-resume-final_20260515T022102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006-resume-final_20260515T022102_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "a69672c6be34e7b92bdbe18ab04fc23f8a5f50fdccba5ed706e91c22197a97ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告：exp-006 **没有崩溃，正在正常运行**\n\nGPU 并非空转——进程 PID 94570 正在执行 `graduated_a0.9_s789` 的 eval，已运行约 5 分钟。\n\n### 当前进度\n\n| 项目 | 数值 |\n|------|------|\n| **已完成 eval** | **39 / 51** |\n| **正在运行** | `graduated_a0.9_s789` (eval 阶段) |\n| **tmux session** | `exp_006_graduated_filtering` (活跃) |\n\n### 剩余 run (11 个，当前这个完成后)\n\n1. `graduated_a0.9_s1024` (train + eval)\n2. `surprisal_s42`, `s123`, `s456`, `s789`, `s1024` (5 runs)\n3. `dsir_s42`, `s123`, `s456`, `s789`, `s1024` (5 runs)\n\n### ETA\n\n- 当前 eval 应在 ~5-10 分钟内完成\n- 剩余 11 runs × ~25 min/run ≈ **4.5-5 小时**\n- 预计完成时间：约 **15:30-16:00 (UTC)**\n\n无需任何干预，脚本 `scripts/run_exp006.sh` 在 tmux 中正常运行，内建 skip 逻辑会自动跳过已完成的 run。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-resume-final.md"
+}

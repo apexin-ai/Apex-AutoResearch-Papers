@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63e36194db21a8c3718a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp018 and gpu status",
+  "task_key": "worker_diagnose_exp018_and_gpu_status_20260516T152953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp018_and_gpu_status_20260516T152953_result.json",
+    "occurrence": 1,
+    "bytes": 2721,
+    "sha256": "13de8fdc230175fe7e5ea100b6fdab5421ba1198b4d00d5dd9615c734c6c085e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。汇总如下：\n\n---\n\n## 服务器诊断汇总 — cqa1-22115\n\n### GPU 状态\n\n| GPU | 型号 | 温度 | 功耗 | 显存占用 | 利用率 | 进程 |\n|-----|------|------|------|---------|--------|------|\n| 0 | RTX 4090 D | 31°C | 20W/425W | **0 MiB** | 0% | 无 (空闲) |\n| 1 | RTX 4090 D | 31°C | 28W/425W | **0 MiB** | 0% | 无 (空闲) |\n| 2 | RTX 4090 D | 52°C | 232W/425W | **5003 MiB** | 32% | PID 48295 (exp-024) |\n| 3 | RTX 4090 D | 31°C | 23W/425W | **3601→4020 MiB** | 0% | PID 53023 (exp-022, 新进程) |\n\n### 磁盘\n`/root/autodl-tmp/`: **76G / 250G (31%)** — 充足\n\n---\n\n### exp-018 LLaMA-8B — **正常完成，进程已退出**\n\n**死因：不是 crash，是正常结束。** 日志末尾 `23:27:38 [INFO] Pipeline complete.`\n\n产出完整：\n- `data/exp_018_llama8b/`: depth_0~5.jsonl (6个文件) + features.csv\n- `results/exp_018_llama8b/`: summary.txt, pairwise_auc.json, jsd.json, ordinal_results.json, feature_importance.json\n\n关键结果：\n- **K\\* = 2** (AUC > 0.60 的最大深度)\n- AUC: 0→1=0.9225, 1→2=0.6123, 2→3=0.5274, 3→4=0.5169, 4→5=0.5162\n- Ordinal MAE=1.3146, Accuracy=0.3269\n\n没有 tmux session `exp_018_llama8b_depth`（已消失，进程完成后自行退出）。GPU 0 已释放。\n\n---\n\n### exp-022 cross-scorer — **运行中，进度 4/12**\n\ntmux session `exp022` 存在。刚完成第 3 对 (qwen_base × pythia)，正在启动第 4 对 (qwen_base × olmo)。\n\n当前阶段：[4/12] gen=qwen_base scorer=olmo → Step 4 Feature Extraction，depth_0 的 5000 条文本做 Surprisal 计算，进度 217/625 (~35%)。\n\nGPU 3 上新进程 PID 53023 (4020 MiB)，替代了之前的 PID 52128。\n\n**预估**：12 对组合，已完成 3 对，当前第 4 对进行中。按每对 ~30-40 分钟算，剩余约 4-6 小时完成。\n\n---\n\n### exp-024 arXiv domain — **运行中，Feature Extraction 阶段**\n\ntmux session `exp_024_arxiv` 存在。PID 48295 活跃，运行 44 分钟。\n\n已完成所有生成（depth_0~5.jsonl 全部就绪，每个 2200 docs），当前在 Step 4 Feature Extraction，depth_0 的 Surprisal 提取后进入 VocabDiv 计算。\n\nGPU 2 上占用 5003 MiB，利用率 32%。\n\n**预估**：Feature extraction + classification 阶段，大约还需 15-30 分钟完成。\n\n---\n\n### 总结\n\n| 实验 | 状态 | GPU | 结论 |\n|------|------|-----|------|\n| exp-018 | **完成** | GPU 0 (已释放) | 正常结束，K\\*=2，产出完整 |\n| exp-022 | **运行中** 4/12 | GPU 3 | 预计还需 4-6h |\n| exp-024 | **运行中** feat extraction | GPU 2 | 预计还需 15-30min |\n| — | 空闲 | GPU 0, GPU 1 | 可用于新任务 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp018-and-gpu-status.md"
+}

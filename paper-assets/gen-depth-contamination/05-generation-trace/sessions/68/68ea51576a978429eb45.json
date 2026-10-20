@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "68ea51576a978429eb45",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "rerun exp013 cross transfer olmo",
+  "task_key": "worker_rerun_exp013_cross_transfer_olmo_20260521T155907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_rerun_exp013_cross_transfer_olmo_20260521T155907.log",
+    "occurrence": 1,
+    "bytes": 600056,
+    "sha256": "321947a30c94453e9701ad6b00138dd962cfe3d0fffa6299c94c75ed6524eddf"
+  },
+  "statistics": {
+    "messages": 216,
+    "user_turns": 0,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 84,
+      "tool_result": 84,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 216,
+      "chunks": [
+        {
+          "path": "68ea51576a978429eb45-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "68ea51576a978429eb45-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/rerun-exp013-cross-transfer-olmo.md"
+}

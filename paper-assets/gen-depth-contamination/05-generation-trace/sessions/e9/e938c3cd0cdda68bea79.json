@@ -1,0 +1,1364 @@
+{
+  "schema_version": "1.0",
+  "id": "e938c3cd0cdda68bea79",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "paper w8 w15 refs table1 seed",
+  "task_key": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_w8_w15_refs_table1_seed_20260522T061722.jsonl",
+    "occurrence": 1,
+    "bytes": 55002,
+    "sha256": "00af6b73f9b1ad09135a8282be423a3e7eefbb0b0d458e3d89bde3538cc82c41"
+  },
+  "statistics": {
+    "messages": 67,
+    "user_turns": 0,
+    "tool_calls": 33,
+    "roles": {
+      "tool_call": 33,
+      "tool_result": 33,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T06:21:52.778753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T06:21:52.779274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% === References for gen-depth-contamination ===\n2\t% Source: literature_map.yaml — verified 2026-05-15\n3\t\n4\t% === Must-Cite ===\n5\t\n6\t@inproceedings{drayson2025,\n7\t  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n8\t  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n9\t  booktitle={Proceedings of EMNLP},\n10\t  year={2025},\n11\t  url={https://arxiv.org/abs/2502.15654}\n12\t}\n13\t\n14\t@inproceedings{schaeffer2025position,\n15\t  title={Position: Model Collapse Does Not Mean What You Think},\n16\t  author={Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Anirudh and Koyejo, Sanmi},\n17\t  booktitle={Proceedings of ICML},\n18\t  year={2025},\n19\t  url={https://arxiv.org/abs/2503.03150}\n20\t}\n21\t\n22\t@inproceedings{kazdan2025collapse,\n23\t  title={Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World},\n24\t  author={Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David and Koyejo, Sanmi},\n25\t  booktitle={Proceedings of ICML},\n26\t  year={2025},\n27\t  url={https://arxiv.org/abs/2410.16713}\n28\t}\n29\t\n30\t@inproceedings{mitchell2023detectgpt,\n31\t  title={{DetectGPT}: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n32\t  author={Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n33\t  booktitle={Proceedings of ICML},\n34\t  year={2023}\n35\t}\n36\t\n37\t% === Should-Cite ===\n38\t\n39\t@article{basani2026diveye,\n40\t  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},\n41\t  author={Basani, Advik Raj and Chen, Pin-Yu},\n42\t  journal={Transactions on Machine Learning Research},\n43\t  issn={2835-8856},\n44\t  year={2026},\n45\t  url={https://arxiv.org/abs/2509.18880}\n46\t}\n47\t\n48\t@inproceedings{zawalski2026codec,\n49\t  title={{CoDeC}: Detecting Data Contamination in {LLM}s via In-Context Learning},\n50\t  author={Zawalski, Micha{\\l} and Boubdir, Meriem and Ba{\\l}azy, Klaudia and Nushi, Besmira an\n…[truncated 8717 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T06:21:52.779520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T06:21:52.779695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Model collapse and recursive degradation.}\n5\tIterative training on model outputs causes tail-distribution degradation~\\cite{shumailov2024collapse, alemohammad2024selfconsuming, dohmatob2024model, dohmatob2025strong}, diversity contraction~\\cite{guo2024curious, padmakumar2024writing, briesch2023selfconsuming}, and predictable convergence~\\cite{schaeffer2025position, kazdan2025collapse, gerstgrasser2024model}.\n6\tOur prompt-chain operates in the replace regime~\\cite{kazdan2025collapse}, making $\\Kempirical = 2$ a conservative lower bound.\n7\tThis literature characterizes macro dynamics but provides no per-text depth estimation, the gap we address.\n8\t\n9\t\\paragraph{Beyond binary detection.}\n10\tBinary detectors~\\cite{mitchell2023detectgpt, bao2024fast, hans2024binoculars, basani2026diveye, zhang2024minkpp} achieve strong human-vs.-machine separation but produce no depth estimate.\n11\tRecent work extends beyond binary labels to collaboration degree~\\cite{cheng2025beyond}, contamination hierarchies~\\cite{mehta2025beyond}, and multigenerator benchmarks~\\cite{wang2024semeval}; robustness concerns arise under paraphrasing~\\cite{sadasivan2023detect, krishna2023paraphrasing} and cross-mode transfer~\\cite{hao2025rewrite}; CoDeC~\\cite{zawalski2026codec} addresses contamination via membership inference.\n12\tNone estimates recursive generation depth.\n13\t\n14\t\\paragraph{Data selection and curation.}\n15\tDSIR~\\cite{xie2023dsir}, D4~\\cite{tirumala2023d4}, and DoReMi~\\cite{xie2023doremi} are depth-agnostic; Drayson et al.~\\cite{drayson2025} combined binary detection with importance resampling, a special case when $\\Kstar = 1$.\n16\t\n17\t\\paragraph{Ordinal classification and probing.}\n18\tOur OBD classifier follows Frank \\& Hall's~\\cite{frank2001ordinal} binary decomposition; our neural probe extends probing~\\cite{alain2017understanding, belinkov2022probing} to the discrimination boundary.\n19\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T06:21:52.779909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T06:21:52.780060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/related_work.tex\ndocs/paper/tables/tab_crossscorer.tex\ndocs/paper/tables/tab_pairwise_significance.tex\ndocs/paper/tables/tab_filtering_main.tex\ndocs/paper/tables/tab_alpha_sweep.tex\ndocs/paper/tables/tab_domain_model_kstar.tex\ndocs/paper/tables/tab_domain_model_kstar_full.tex\ndocs/paper/appendix_extended.tex\ndocs/paper/experiments_c3.tex\ndocs/paper/introduction.tex\ndocs/paper/experiments_c1.tex\ndocs/paper/discussion.tex\ndocs/paper/conclusion.tex\ndocs/paper/main.tex\ndocs/paper/appendix.tex\ndocs/paper/method.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T06:21:52.780189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T06:21:52.780310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T06:21:52.780444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T06:21:52.780661+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate generational depth estimation on ten model configurations spanning six architecture families:\n5\tPythia-1.4B, Pythia-6.9B, OLMo-1B, Qwen2.5-1.5B-Instruct (rewrite and continuation), Qwen2.5-1.5B (base), Qwen2.5-7B, LLaMA-3.1-8B, Mistral-7B, and Gemma-2-2B, all in continuation mode except where noted.\n6\tAll experiments use the OBD-LightGBM classifier with the 15-dimensional feature set (Section~\\ref{sec:method}), with 5{,}000 texts per depth level (generations 0--5).\n7\t\n8\t%% ====================================================================\n9\t\\subsection{$\\Kempirical \\leq 2$ Across Model Configurations (C4)}\n10\t\\label{sec:kstar_boundary}\n11\t\n12\t\\begin{table*}[t]\n13\t\\centering\n14\t\\small\n15\t\\caption{Pairwise $\\auc$ for adjacent depth pairs with bootstrap 95\\% CIs and permutation $p$-values for boundary rows.\n16\t$\\Kempirical = 2$ requires 1v2 $\\auc > \\theta{=}0.60$ and 2v3 $\\auc < \\theta$; CIs quantify boundary uncertainty.\n17\tExtended results (all models) in Table~\\ref{tab:kstar_ci_extended}.}\n18\t\\label{tab:kstar_ci}\n19\t\\begin{tabular}{lcccccccccc}\n20\t\\toprule\n21\t & \\multicolumn{2}{c}{Qwen-rw} & \\multicolumn{2}{c}{Pythia} & \\multicolumn{2}{c}{OLMo} & \\multicolumn{2}{c}{Qwen-cont} & \\multicolumn{2}{c}{Qwen-7B\\rlap{$^\\ddagger$}} \\\\\n22\t\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}\\cmidrule(lr){8-9}\\cmidrule(lr){10-11}\n23\t & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI \\\\\n24\t\\midrule\n25\t0v1 & .9956 & & .9932 & & .9860 & & .9971 & & .9638 & [.961,\\,.967] \\\\\n26\t1v2 & .6955 & [.686,\\,.704]\\rlap{$^*$} & .6539 & [.645,\\,.663]\\rlap{$^*$} & .5080 & [.496,\\,.519] & .6112 & [.602,\\,.621]\\rlap{$^*$} & .6168 & [.608,\\,.626]\\rlap{$^*$} \\\\\n27\t2v3 & .5893 & [.580,\\,.599] & .5514 & [.542,\\,.563] & .4973 & [.486,\\,.509] & .5609 & [.551,\\,.571] & .5492 & [.539,\\,.559] \\\\\n28\t3v4 & .5435 & & .5152 & & .5024 & & .5409 & & .5276 & \\\\\n29\t4v5 & .5340 & & .5136 & & .4942 & \n…[truncated 9538 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T06:21:52.780853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T06:21:52.781007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{table}[t]\n2\t\\centering\n3\t\\caption{Generative depth $K^*$ across domains and models (scorer: Qwen2.5-1.5B, $\\theta{=}0.60$). Bold values indicate the dominant mode per domain. $K^*$ is remarkably consistent within each domain: C4 yields $K^*{=}2$, arXiv yields $K^*{=}3$, and Wikipedia yields $K^*{=}1$, confirming that generative depth is domain-dependent and low-bounded.}\n4\t\\label{tab:domain_model_kstar}\n5\t{\\small\n6\t\\begin{tabular}{llccc}\n7\t\\toprule\n8\t\\textbf{Model} & \\textbf{Size} & \\textbf{C4}~$K^*$ & \\textbf{arXiv}~$K^*$ & \\textbf{Wiki}~$K^*$ \\\\\n9\t\\midrule\n10\tQwen2.5       & 1.5B & \\textbf{2} & \\textbf{3} & \\textbf{1}\\textsuperscript{$\\dagger$} \\\\\n11\tQwen2.5       & 7B   & \\textbf{2} & \\textbf{3} & \\textbf{1}\\textsuperscript{$\\dagger$} \\\\\n12\tPythia        & 1.4B & \\textbf{2} & \\textbf{3} & \\textbf{1} \\\\\n13\tLLaMA-3.1    & 8B   & \\textbf{2} & \\textbf{3} & \\textbf{1} \\\\\n14\tMistral       & 7B   & 1\\textsuperscript{$\\ddagger$} & \\textbf{3} & \\textbf{1} \\\\\n15\tOLMo          & 1B   & \\textbf{2} & 1\\textsuperscript{$*$} & \\textbf{1} \\\\\n16\t\\midrule\n17\t\\textit{Dominant} & & \\textbf{2} & \\textbf{3} & \\textbf{1} \\\\\n18\t\\bottomrule\n19\t\\end{tabular}\n20\t}\n21\t\\vspace{2pt}\n22\t\n23\t{\\footnotesize\n24\t\\textsuperscript{$\\dagger$}Scorer artifact: Qwen-1.5B scorer yields $K^*{=}2$; Pythia scorer yields $K^*{=}1$ (see \\S\\ref{sec:crossscorer}).\\\\\n25\t\\textsuperscript{$\\ddagger$}Domain-specific one-wash: AUC(1v2)${=}0.594{<}\\theta$; arXiv rescues to $K^*{=}3$. Cross-scorer validated: Pythia-1.4B also yields $K^*{=}1$ (AUC${=}0.570$).\\\\\n26\t\\textsuperscript{$*$}Capacity failure: OLMo-1B generates out-of-domain text on arXiv.\n27\t}\n28\t\\end{table}\n29\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T06:21:52.781146+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ps aux | grep run_pipeline | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T06:21:52.781273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T06:21:52.781430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T06:21:52.781661+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% EMNLP 2026 Main — ARR May 2026\n2\t% Generational Depth Contamination\n3\t\\documentclass[11pt]{article}\n4\t\\usepackage[review]{acl}\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{amsmath}\n12\t\\usepackage{amssymb}\n13\t\\usepackage{booktabs}\n14\t\\usepackage{multirow}\n15\t\\usepackage{enumitem}\n16\t\\usepackage{subcaption}\n17\t\\usepackage[section]{placeins}\n18\t\n19\t\\newcommand{\\Kstar}{{K^*}}\n20\t\\newcommand{\\Kempirical}{{K^*_{\\text{empirical}}}}\n21\t\\newcommand{\\Ktheory}{{K^*_{\\text{theory}}}}\n22\t\\newcommand{\\auc}{\\text{AUC}}\n23\t\\newcommand{\\jsd}{\\text{JSD}}\n24\t\n25\t\\title{Generational Depth Estimation of Recursive Synthetic Text:\\\\Measuring the Discrimination Boundary}\n26\t\n27\t\\author{Anonymous}\n28\t\n29\t\\begin{document}\n30\t\\maketitle\n31\t\n32\t% === Abstract ===\n33\t\\begin{abstract}\n34\tWeb-scale corpora are increasingly contaminated by recursive synthetic content, yet no method estimates a document's generational depth.\n35\tWe measure a lower bound on the generational discrimination boundary, $\\Kempirical$ (the maximum depth at which adjacent generations remain distinguishable), using 15 statistical features and an OBD-LightGBM classifier.\n36\tAcross 10 model configurations (6 architecture families, 1B--8B), 3 source domains, and 4 decoding strategies, $\\Kempirical \\in \\{1, 2, 3\\}$ at $\\theta{=}0.60$ (Cohen's $h{\\approx}0.20$): general web text yields $\\Kempirical{=}2$ in 6/10 configurations (2 of 6 families unanimously, plus a scale-dependent split in Pythia), while structured academic text (arXiv) yields $\\Kempirical{=}3$, validated across two architectures.\n37\tA single generation pass suffices to render general web text indistinguishable from deeper synthetic content, a \\emph{one-wash laundering} effect (first-generation text is detectable, but second-generation and beyond are not).\n38\tModel-free statistical features enable 80--100\\% cross-model transfer with scorer-in\n…[truncated 4009 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T06:21:52.781917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ps aux --no-headers -o pid,comm,args",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T06:21:52.782059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/results/seed_pythia14b_wiki_s123/",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T06:21:52.782192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"error: conflicting format options\\\\n\\\\nUsage:\\\\n ps [options]\\\\n\\\\n Try 'ps --help <simple|list|output|threads|misc|all>'\\\\n  or 'ps --help <s|l|o|t|m|a>'\\\\n for additional help text.\\\\n\\\\nFor more details see ps(1).\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T06:21:52.782322+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"feature_importance.json\\\\njsd.json\\\\nordinal_results.json\\\\npairwise_auc.json\\\\nsummary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T06:21:52.782453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/results/seed_qwen15b_wiki_s123/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T06:21:52.782576+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/results/seed_qwen15b_c4_s123/",
+              "account": "root"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T06:21:52.782699+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"feature_importance.json\\\\njsd.json\\\\nordinal_results.json\\\\npairwise_auc.json\\\\nsummary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T06:21:52.782843+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"feature_importance.json\\\\njsd.json\\\\nordinal_results.json\\\\npairwise_auc.json\\\\nsummary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T06:21:52.783005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/seed_pythia14b_wiki_s123/pairwise_auc.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T06:21:52.783128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/seed_qwen15b_wiki_s123/pairwise_auc.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T06:21:52.783267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9751,\\\\n    \\\\\\\"1v2\\\\\\\": 0.5766,\\\\n    \\\\\\\"2v3\\\\\\\": 0.5318,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5175,\\\\n    \\\\\\\"4v5\\\\\\\": 0.527\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9752,\\\\n      0.9739,\\\\n      0.9753,\\\\n      0.9738,\\\\n      0.9775\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.5751,\\\\n      0.6011,\\\\n      0.5639,\\\\n      0.5707,\\\\n      0.5721\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.5233,\\\\n      0.5214,\\\\n      0.5399,\\\\n      0.5345,\\\\n      0.5397\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.523,\\\\n      0.5165,\\\\n      0.5132,\\\\n      0.515,\\\\n      0.5197\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.525,\\\\n      0.5261,\\\\n      0.5231,\\\\n      0.5401,\\\\n      0.5206\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T06:21:52.783401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/seed_qwen15b_c4_s123/pairwise_auc.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T06:21:52.783541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9945,\\\\n    \\\\\\\"1v2\\\\\\\": 0.7059,\\\\n    \\\\\\\"2v3\\\\\\\": 0.6067,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5531,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5292\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9947,\\\\n      0.9936,\\\\n      0.9954,\\\\n      0.9944,\\\\n      0.9942\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.7103,\\\\n      0.7158,\\\\n      0.6968,\\\\n      0.7115,\\\\n      0.6952\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.6239,\\\\n      0.6031,\\\\n      0.6027,\\\\n      0.6089,\\\\n      0.595\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.5576,\\\\n      0.5452,\\\\n      0.5536,\\\\n      0.5543,\\\\n      0.555\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.5272,\\\\n      0.5122,\\\\n      0.5315,\\\\n      0.541,\\\\n      0.5339\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T06:21:52.783682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9956,\\\\n    \\\\\\\"1v2\\\\\\\": 0.7014,\\\\n    \\\\\\\"2v3\\\\\\\": 0.5911,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5405,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5335\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9959,\\\\n      0.9946,\\\\n      0.995,\\\\n      0.9958,\\\\n      0.997\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.688,\\\\n      0.6962,\\\\n      0.72,\\\\n      0.7001,\\\\n      0.7029\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.5904,\\\\n      0.6015,\\\\n      0.5872,\\\\n      0.5871,\\\\n      0.5894\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.5484,\\\\n      0.5248,\\\\n      0.5426,\\\\n      0.5461,\\\\n      0.5407\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.512,\\\\n      0.5302,\\\\n      0.5315,\\\\n      0.5353,\\\\n      0.5587\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T06:21:52.783828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "tab_domain_model_kstar|domain_model_kstar",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T06:21:52.783968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/tables/tab_domain_model_kstar_full.tex:4:\\label{tab:domain_model_kstar_full}\ndocs/paper/tables/tab_domain_model_kstar.tex:4:\\label{tab:domain_model_kstar}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T06:21:52.784092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T06:21:52.784237+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{table*}[t]\n2\t\\centering\n3\t\\caption{Full generative depth results with AUC at the $K^*$ boundary (scorer: Qwen2.5-1.5B, $\\theta{=}0.60$). AUC($k$v$k{+}1$) denotes the area under the ROC curve distinguishing generation $k$ from generation $k{+}1$. Bold indicates the dominant $K^*$ mode per domain. For Wikipedia ($K^*{=}1$), boundary AUC reports 0v1. All AUC values computed on held-out test splits ($n{=}500$ per class).}\n4\t\\label{tab:domain_model_kstar_full}\n5\t{\\small\n6\t\\begin{tabular}{llcccccc}\n7\t\\toprule\n8\t& & \\multicolumn{2}{c}{\\textbf{C4}} & \\multicolumn{2}{c}{\\textbf{arXiv}} & \\multicolumn{2}{c}{\\textbf{Wikipedia}} \\\\\n9\t\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8}\n10\t\\textbf{Model} & \\textbf{Size} & $K^*$ & AUC(boundary) & $K^*$ & AUC(boundary) & $K^*$ & AUC(boundary) \\\\\n11\t\\midrule\n12\tQwen2.5       & 1.5B & \\textbf{2} & 0.6262~(1v2) & \\textbf{3} & 0.6427~(2v3) & \\textbf{1}\\textsuperscript{$\\dagger$} & ---\\textsuperscript{$\\S$} \\\\\n13\tQwen2.5       & 7B   & \\textbf{2} & 0.6178~(1v2) & \\textbf{3} & 0.6255~(2v3) & \\textbf{1}\\textsuperscript{$\\dagger$} & 0.967~(0v1) \\\\\n14\tPythia        & 1.4B & \\textbf{2} & 0.6539~(1v2) & \\textbf{3} & 0.6545~(2v3) & \\textbf{1} & 0.975~(0v1) \\\\\n15\tLLaMA-3.1    & 8B   & \\textbf{2} & 0.6123~(1v2) & \\textbf{3} & 0.6215~(2v3) & \\textbf{1} & 0.932~(0v1) \\\\\n16\tMistral       & 7B   & 1\\textsuperscript{$\\ddagger$} & 0.594~(1v2) & \\textbf{3} & 0.6275~(2v3) & \\textbf{1} & 0.961~(0v1) \\\\\n17\tOLMo          & 1B   & 1 & 0.507~(1v2) & 1\\textsuperscript{$*$} & --- & \\textbf{1} & 0.993~(0v1) \\\\\n18\t\\bottomrule\n19\t\\end{tabular}\n20\t}\n21\t\\vspace{2pt}\n22\t\n23\t{\\footnotesize\n24\t\\textsuperscript{$\\dagger$}Scorer artifact: Qwen-1.5B scorer yields $K^*{=}2$; cross-family scorer (Pythia-1.4B) yields $K^*{=}1$ ($\\Delta = -2.4$\\,pp). Controlled value shown (Appendix~\\ref{app:crossscorer}).\\\\\n25\t\\textsuperscript{$\\ddagger$}AUC(1v2)${=}0.594{<}\\theta{=}0.60$: Mistral exhibits domain-specific one-wash on C4 web text. Cross-scorer validated: Pythia\n…[truncated 283 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T06:21:52.784420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/seed_pythia14b_wiki_s123/summary.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T06:21:52.784575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nMVP Pilot Saturation Study — Results Summary\\\\n============================================================\\\\n\\\\nPairwise AUC (adjacent depths):\\\\n  depth 0 vs 1: AUC = 0.9751 ± 0.0013  folds=[0.9752, 0.9739, 0.9753, 0.9738, 0.9775]\\\\n  depth 1 vs 2: AUC = 0.5766 ± 0.0128  folds=[0.5751, 0.6011, 0.5639, 0.5707, 0.5721]\\\\n  depth 2 vs 3: AUC = 0.5318 ± 0.0079  folds=[0.5233, 0.5214, 0.5399, 0.5345, 0.5397]\\\\n  depth 3 vs 4: AUC = 0.5175 ± 0.0035  folds=[0.523, 0.5165, 0.5132, 0.515, 0.5197]\\\\n  depth 4 vs 5: AUC = 0.527 ± 0.0068  folds=[0.525, 0.5261, 0.5231, 0.5401, 0.5206]\\\\n\\\\nPairwise JSD (adjacent depths):\\\\n  depth 0 vs 1: JSD = 0.076187\\\\n  depth 1 vs 2: JSD = 0.007984\\\\n  depth 2 vs 3: JSD = 0.006532\\\\n  depth 3 vs 4: JSD = 0.005086\\\\n  depth 4 vs 5: JSD = 0.004213\\\\n\\\\nK* (max depth with AUC > 0.60): 1\\\\n\\\\nOrdinal Classification (6-class, 5-fold CV):\\\\n  MAE = 1.2664\\\\n  Accuracy = 0.3468\\\\n\\\\nTop-10 Feature Importance:\\\\n  freq_entropy         9281.4\\\\n  surp_mean            8289.4\\\\n  surp_d1_skew         8158.4\\\\n  surp_d2_mean         7643.0\\\\n  freq_kurtosis        7626.4\\\\n  surp_d1_mean         7537.6\\\\n  surp_kurt            7526.0\\\\n  surp_std             7438.4\\\\n  surp_skew            6874.8\\\\n  hapax_ratio          6711.6\\\\n\\\\n============================================================\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T06:21:52.784724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/seed_qwen15b_wiki_s123/summary.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T06:21:52.784900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nMVP Pilot Saturation Study — Results Summary\\\\n============================================================\\\\n\\\\nPairwise AUC (adjacent depths):\\\\n  depth 0 vs 1: AUC = 0.9945 ± 0.0006  folds=[0.9947, 0.9936, 0.9954, 0.9944, 0.9942]\\\\n  depth 1 vs 2: AUC = 0.7059 ± 0.0083  folds=[0.7103, 0.7158, 0.6968, 0.7115, 0.6952]\\\\n  depth 2 vs 3: AUC = 0.6067 ± 0.0097  folds=[0.6239, 0.6031, 0.6027, 0.6089, 0.595]\\\\n  depth 3 vs 4: AUC = 0.5531 ± 0.0042  folds=[0.5576, 0.5452, 0.5536, 0.5543, 0.555]\\\\n  depth 4 vs 5: AUC = 0.5292 ± 0.0096  folds=[0.5272, 0.5122, 0.5315, 0.541, 0.5339]\\\\n\\\\nPairwise JSD (adjacent depths):\\\\n  depth 0 vs 1: JSD = 0.288338\\\\n  depth 1 vs 2: JSD = 0.020394\\\\n  depth 2 vs 3: JSD = 0.009871\\\\n  depth 3 vs 4: JSD = 0.004236\\\\n  depth 4 vs 5: JSD = 0.003132\\\\n\\\\nK* (max depth with AUC > 0.60): 3\\\\n\\\\nOrdinal Classification (6-class, 5-fold CV):\\\\n  MAE = 0.9546\\\\n  Accuracy = 0.4272\\\\n\\\\nTop-10 Feature Importance:\\\\n  freq_entropy         9222.2\\\\n  hapax_ratio          8495.0\\\\n  surp_mean            7902.0\\\\n  freq_kurtosis        7778.2\\\\n  surp_std             7681.0\\\\n  surp_d1_mean         7455.0\\\\n  surp_d2_mean         7440.2\\\\n  ttr                  7419.0\\\\n  surp_d1_skew         7390.2\\\\n  low_freq_ratio       7350.8\\\\n\\\\n============================================================\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T06:21:52.785042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/seed_qwen15b_c4_s123/summary.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T06:21:52.785190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nMVP Pilot Saturation Study — Results Summary\\\\n============================================================\\\\n\\\\nPairwise AUC (adjacent depths):\\\\n  depth 0 vs 1: AUC = 0.9956 ± 0.0008  folds=[0.9959, 0.9946, 0.995, 0.9958, 0.997]\\\\n  depth 1 vs 2: AUC = 0.7014 ± 0.0105  folds=[0.688, 0.6962, 0.72, 0.7001, 0.7029]\\\\n  depth 2 vs 3: AUC = 0.5911 ± 0.0053  folds=[0.5904, 0.6015, 0.5872, 0.5871, 0.5894]\\\\n  depth 3 vs 4: AUC = 0.5405 ± 0.0083  folds=[0.5484, 0.5248, 0.5426, 0.5461, 0.5407]\\\\n  depth 4 vs 5: AUC = 0.5335 ± 0.0149  folds=[0.512, 0.5302, 0.5315, 0.5353, 0.5587]\\\\n\\\\nPairwise JSD (adjacent depths):\\\\n  depth 0 vs 1: JSD = 0.270151\\\\n  depth 1 vs 2: JSD = 0.016073\\\\n  depth 2 vs 3: JSD = 0.007617\\\\n  depth 3 vs 4: JSD = 0.004672\\\\n  depth 4 vs 5: JSD = 0.003901\\\\n\\\\nK* (max depth with AUC > 0.60): 2\\\\n\\\\nOrdinal Classification (6-class, 5-fold CV):\\\\n  MAE = 1.0149\\\\n  Accuracy = 0.4179\\\\n\\\\nTop-10 Feature Importance:\\\\n  freq_entropy         9609.6\\\\n  hapax_ratio          8884.4\\\\n  surp_mean            8135.8\\\\n  surp_d1_skew         7781.8\\\\n  surp_d1_mean         7754.4\\\\n  surp_d2_mean         7632.2\\\\n  freq_kurtosis        7620.0\\\\n  surp_skew            7436.0\\\\n  surp_std             7222.0\\\\n  low_freq_ratio       7047.6\\\\n\\\\n============================================================\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T06:21:52.785349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T06:21:52.785520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis_pythia_retrain_depth7\\\\nbootstrap_stability\\\\nc4_power_curve\\\\nc4_subsample_control.json\\\\ncontamination_sweep\\\\ncross_scorer_f1\\\\ndata_consistency_snapshot_corrected.json\\\\ndeberta_cross_transfer\\\\nexp007_olmo_rerun\\\\nexp013_olmo_rerun\\\\nexp013_olmo_rerun_v2\\\\nexp015_olmo_rerun\\\\nexp_008_retrain_chain\\\\nexp_009_dose_response\\\\nexp_014_naturalistic\\\\nexp_014_naturalistic.log\\\\nexp_018_llama8b\\\\nexp_021_length_128\\\\nexp_021_length_256\\\\nexp_021_length_512\\\\nexp_023_wiki\\\\nexp_024_arxiv\\\\nexp_025_pythia_arxiv\\\\nexp_025_pythia_filtering\\\\nexp_026_arxiv_filtering\\\\nexp_027_latex_ablation\\\\nexp_028_power_curve\\\\nexp_028_power_curve.log\\\\nexp_14b_c4\\\\nexp_7b_cross_transfer\\\\nexp_7b_scorer_ablation\\\\nexp_7b_scorer_arxiv\\\\nexp_7b_scorer_arxiv.log\\\\nexp_arXiv_llama8b\\\\nexp_arXiv_llama8b_crossscorer\\\\nexp_arXiv_mistral7b\\\\nexp_arXiv_mistral7b_crossscorer\\\\nexp_arXiv_olmo\\\\nexp_arXiv_qwen1b5_crossscorer\\\\nexp_arXiv_qwen7b\\\\nexp_arXiv_qwen7b_crossscorer\\\\nexp_bootstrap_10k\\\\nexp_bootstrap_10k_log.txt\\\\nexp_changepoint_kstar\\\\nexp_code_llama8b\\\\nexp_code_mistral7b\\\\nexp_code_mistral7b.log\\\\nexp_code_multi_source\\\\nexp_code_multi_source.log\\\\nexp_code_pythia1b4\\\\nexp_code_qwen1b5\\\\nexp_code_qwen1b5_pythia_scorer\\\\nexp_code_qwen7b\\\\nexp_contamination_rate_sweep\\\\nexp_deberta_arxiv\\\\nexp_deberta_arxiv_qwen1b5\\\\nexp_deberta_c4_1b5\\\\nexp_deberta_code_qwen1b5\\\\nexp_deberta_filtering_comparison\\\\nexp_deberta_upperbound\\\\nexp_deberta_upperbound.log\\\\nexp_expanded_downstream_eval\\\\nexp_gemma2b_depth\\\\nexp_multi_source_arxiv\\\\nexp_multi_source_detection\\\\nexp_multi_source_detection_v2\\\\nexp_multi_source_unified_scorer\\\\nexp_olmo1b_c4_rerun\\\\nexp_olmo_retrain_chain\\\\nexp_pythia14b_c4_nuc\\\\nexp_pythia14b_c4_rerun\\\\nexp_pythia69b_c4\\\\nexp_pythia69b_c4_nuc\\\\nexp_pythia69b_c4_nuc_qwen\\\\nexp_pythia_retrain_depth7\\\\nexp_qwen_retrain_chain\\\\nexp_qwen_retrain_chain_ext\\\\nexp_wiki_llama8b\\\\nexp_wiki_mistral7b\\\\nexp_wiki_multi_source\\\\\n…[truncated 789 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T06:21:52.785699+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia_v2/pairwise_auc.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T06:21:52.785874+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_023_wiki/pairwise_auc.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T06:21:52.786022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.975,\\\\n    \\\\\\\"1v2\\\\\\\": 0.5846,\\\\n    \\\\\\\"2v3\\\\\\\": 0.5445,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5205,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5168\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9725,\\\\n      0.9771,\\\\n      0.977,\\\\n      0.9764,\\\\n      0.972\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.5826,\\\\n      0.5783,\\\\n      0.5842,\\\\n      0.5864,\\\\n      0.5913\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.5491,\\\\n      0.5346,\\\\n      0.5404,\\\\n      0.5444,\\\\n      0.5541\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.5312,\\\\n      0.5181,\\\\n      0.5157,\\\\n      0.5142,\\\\n      0.5234\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.5222,\\\\n      0.515,\\\\n      0.5022,\\\\n      0.5375,\\\\n      0.507\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T06:21:52.786169+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9961,\\\\n    \\\\\\\"1v2\\\\\\\": 0.6193,\\\\n    \\\\\\\"2v3\\\\\\\": 0.5498,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5231,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5141\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9955,\\\\n      0.9964,\\\\n      0.997,\\\\n      0.9955,\\\\n      0.9963\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.6152,\\\\n      0.6161,\\\\n      0.6189,\\\\n      0.6112,\\\\n      0.6352\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.5473,\\\\n      0.5559,\\\\n      0.5378,\\\\n      0.5637,\\\\n      0.5442\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.5247,\\\\n      0.5245,\\\\n      0.5175,\\\\n      0.5106,\\\\n      0.5384\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.5019,\\\\n      0.5252,\\\\n      0.5191,\\\\n      0.5161,\\\\n      0.5084\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T06:21:52.786348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\\\\\begin\\{table",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T06:21:52.786476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\\\\\begin\\{table",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T06:21:52.786602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T06:21:52.786718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T06:21:52.786853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "kstar_ci_extended|S2b|tab:s2",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T06:21:52.786999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/experiments_c1.tex:17:Extended results (all models) in Table~\\ref{tab:kstar_ci_extended}.}\ndocs/paper/experiments_c1.tex:44:LLaMA-3.1-8B confirms $\\Kempirical{=}2$ (0v1 $\\auc = 0.9225$, 1v2 $\\auc = 0.6123\\;[0.603,\\,0.622]$; CI lower bound above $\\theta$; Table~\\ref{tab:kstar_ci_extended}).\ndocs/paper/experiments_c1.tex:45:All four decoding strategies likewise yield $\\Kempirical{=}2$ (Table~\\ref{tab:s2_decoding}).\ndocs/paper/experiments_c1.tex:60:All four decoding strategies likewise yield $\\Kempirical = 2$ at $\\theta{=}0.60$ (1v2 $\\auc \\in [0.687, 0.704]$; Table~\\ref{tab:s2_decoding}).\ndocs/paper/appendix.tex:67:  \\label{tab:s2_decoding}\ndocs/paper/appendix.tex:94:%%% Table S2b: Extended K* CI (all models including new additions)\ndocs/paper/appendix.tex:101:  \\label{tab:kstar_ci_extended}\ndocs/paper/appendix.tex:412:  \\caption{Pairwise $\\auc$ with bootstrap 95\\% CIs across depth pairs for Pythia-1.4B under four decoding configurations (Exp-020; 10{,}000 bootstrap resamples). Complements Table~\\ref{tab:s2_decoding} (Qwen-rewrite) with a second model family. $^\\dagger$Greedy decoding triggers repetition collapse in Pythia-1.4B (4-gram repeat rate: $d_0{=}0.01 \\to d_1{=}0.72$), inflating 0v1 and 1v2 AUC via lexical degeneracy rather than depth-discriminative features.}\ndocs/paper/main.aux:378:\\@writefile{lot}{\\contentsline {table}{\\numberline {2}{\\ignorespaces Pairwise $\\text  {AUC}$ for adjacent depth pairs with bootstrap 95\\% CIs and permutation $p$-values for boundary rows. ${K^*_{\\text  {empirical}}}= 2$ requires 1v2 $\\text  {AUC}> \\theta {=}0.60$ and 2v3 $\\text  {AUC}< \\theta $; CIs quantify boundary uncertainty. Extended results (all models) in Table~\\ref {tab:kstar_ci_extended}.}}{5}{table.caption.8}\\protected@file@percent }\ndocs/paper/main.aux:379:\\newlabel{tab:kstar_ci}{{2}{5}{Pairwise $\\auc $ for adjacent depth pairs with bootstrap 95\\% CIs and permutation $p$-values for boundary rows. $\\Kempirical = 2$ requires 1v2 $\\auc > \\theta {=}0.60$ and 2v3 \n…[truncated 1200 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T06:21:52.787157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "numberline \\{1\\}.*table",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.aux",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-22T06:21:52.787281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "303:\\@writefile{lot}{\\contentsline {table}{\\numberline {1}{\\ignorespaces Experimental configurations for depth-chain generation. \\textbf  {Config}: shorthand identifier; \\textbf  {Model}: architecture and parameter count; \\textbf  {Mode}: generation strategy (continuation or rewrite); $N$: number of seed documents per depth level.}}{4}{table.caption.7}\\protected@file@percent }"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-22T06:21:52.787400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\\\\\input.*tab_domain_model_kstar",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-22T06:21:52.787520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-22T06:21:52.787657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Experimental configurations|tab:exp_configs|tab:configurations",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-22T06:21:52.787799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/method.tex:61:\\caption{Experimental configurations for depth-chain generation. \\textbf{Config}: shorthand identifier; \\textbf{Model}: architecture and parameter count; \\textbf{Mode}: generation strategy (continuation or rewrite); $N$: number of seed documents per depth level.}\ndocs/paper/main.aux:303:\\@writefile{lot}{\\contentsline {table}{\\numberline {1}{\\ignorespaces Experimental configurations for depth-chain generation. \\textbf  {Config}: shorthand identifier; \\textbf  {Model}: architecture and parameter count; \\textbf  {Mode}: generation strategy (continuation or rewrite); $N$: number of seed documents per depth level.}}{4}{table.caption.7}\\protected@file@percent }\ndocs/paper/main.aux:304:\\newlabel{tab:setup}{{1}{4}{Experimental configurations for depth-chain generation. \\textbf {Config}: shorthand identifier; \\textbf {Model}: architecture and parameter count; \\textbf {Mode}: generation strategy (continuation or rewrite); $N$: number of seed documents per depth level}{table.caption.7}{}}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-22T06:21:52.787957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "domain_model_kstar",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-22T06:21:52.788079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/tables/tab_domain_model_kstar_full.tex:4:\\label{tab:domain_model_kstar_full}\ndocs/paper/tables/tab_domain_model_kstar.tex:4:\\label{tab:domain_model_kstar}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-22T06:21:52.788249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib",
+              "old_string": "@inproceedings{hao2025rewrite,\n  title={Learning to Rewrite: Generalized {LLM}-Generated Text Detection},\n  author={Hao, Wei and Guan, Ran and Lu, Kangjie and Zhang, Shuai},\n  booktitle={Findings of ACL},\n  year={2025}\n}",
+              "new_string": "@inproceedings{hao2025rewrite,\n  title={Learning to Rewrite: Generalized {LLM}-Generated Text Detection},\n  author={Hao, Wei and Guan, Ran and Lu, Kangjie and Zhang, Shuai},\n  booktitle={Findings of ACL},\n  year={2025}\n}\n\n@inproceedings{wang2025unveiling,\n  title={Unveiling Attractor Cycles in Large Language Models: A Dynamical Systems View of Successive Paraphrasing},\n  author={Wang, Zhilin and Li, Yafu and Yan, Jianhao and Cheng, Yu and Zhang, Yue},\n  booktitle={Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  pages={12740--12755},\n  year={2025},\n  address={Vienna, Austria}\n}\n\n@inproceedings{fu2025theoretical,\n  title={A Theoretical Perspective: How to Prevent Model Collapse in Self-consuming Training Loops},\n  author={Fu, Shi and Wang, Yingjie and Chen, Yuzhu and Tian, Xinmei and Tao, Dacheng},\n  booktitle={Proceedings of the 13th International Conference on Learning Representations},\n  year={2025}\n}"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-22T06:21:52.788455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-22T06:21:52.788593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex",
+              "old_string": "Iterative training on model outputs causes tail-distribution degradation~\\cite{shumailov2024collapse, alemohammad2024selfconsuming, dohmatob2024model, dohmatob2025strong}, diversity contraction~\\cite{guo2024curious, padmakumar2024writing, briesch2023selfconsuming}, and predictable convergence~\\cite{schaeffer2025position, kazdan2025collapse, gerstgrasser2024model}.",
+              "new_string": "Iterative training on model outputs causes tail-distribution degradation~\\cite{shumailov2024collapse, alemohammad2024selfconsuming, dohmatob2024model, dohmatob2025strong, fu2025theoretical}, diversity contraction~\\cite{guo2024curious, padmakumar2024writing, briesch2023selfconsuming}, and predictable convergence~\\cite{schaeffer2025position, kazdan2025collapse, gerstgrasser2024model, wang2025unveiling}."
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-22T06:21:52.788742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-22T06:21:52.788892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+              "old_string": "\\multicolumn{11}{l}{\\footnotesize $^\\ddagger$Generator: Qwen2.5-7B (fp16); scorer: Qwen2.5-1.5B.}\n\\end{tabular}\n\\end{table*}",
+              "new_string": "\\multicolumn{11}{l}{\\footnotesize $^\\ddagger$Generator: Qwen2.5-7B (fp16); scorer: Qwen2.5-1.5B.} \\\\\n\\multicolumn{11}{l}{\\footnotesize Full results for all 10 configurations (including Qwen-7B, Qwen-base, Gemma-2-2B, and Pythia-6.9B) are provided in Table~\\ref{tab:kstar_ci_extended}.}\n\\end{tabular}\n\\end{table*}"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-22T06:21:52.789073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-22T06:21:52.789258+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部编辑完成。以下是三部分结果：\n\n---\n\n## Part 1: W8 — 引用添加\n\n**references.bib**: 两条 bib entry 已添加到文件末尾。\n\n**related_work.tex** 引用位置（第 5 行，Model collapse 段落）：\n- `\\citep{fu2025theoretical}` → 加入 tail-distribution degradation 引用列表（与 shumailov, alemohammad, dohmatob 等并列）\n- `\\citep{wang2025unveiling}` → 加入 predictable convergence 引用列表（与 schaeffer, kazdan, gerstgrasser 并列）\n\n上下文：\n```\n...tail-distribution degradation~\\cite{..., fu2025theoretical},\ndiversity contraction~\\cite{...},\nand predictable convergence~\\cite{..., wang2025unveiling}.\n```\n\n---\n\n## Part 2: W15 — Table 脚注\n\n`tab:kstar_ci`（编译后为 Table 2，主 pairwise AUC 表）已在底部脚注区新增一行：\n\n> Full results for all 10 configurations (including Qwen-7B, Qwen-base, Gemma-2-2B, and Pythia-6.9B) are provided in Table~\\ref{tab:kstar_ci_extended}.\n\n注：实际 Table 1 是 `tab:setup`（实验配置表），主结果表 `tab:kstar_ci` 是 Table 2。脚注引用了已有的 appendix 扩展表 `tab:kstar_ci_extended`（即论文注释中的 \"Table S2b\"）。\n\n---\n\n## Part 3: Seed Robustness 结果\n\n3 组实验（seed=123）均已完成。\n\n### 汇总对比\n\n| 配置 | 指标 | seed=42 | seed=123 | Δ | K* 变化 |\n|------|------|---------|----------|---|---------|\n| **Pythia-1.4B Wiki** | 0v1 | 0.975 | 0.9751 | +0.0001 | |\n| | 1v2 | 0.5846 | 0.5766 | −0.008 | |\n| | 2v3 | 0.5445 | 0.5318 | −0.013 | |\n| | 3v4 | 0.5205 | 0.5175 | −0.003 | |\n| | 4v5 | 0.5168 | 0.5270 | +0.010 | |\n| | **K\\*** | **1** | **1** | **same** | |\n| **Qwen-1.5B Wiki** | 0v1 | 0.9961 | 0.9945 | −0.002 | |\n| | 1v2 | 0.6193 | 0.7059 | **+0.087** | |\n| | 2v3 | 0.5498 | 0.6067 | **+0.057** | |\n| | 3v4 | 0.5231 | 0.5531 | +0.030 | |\n| | 4v5 | 0.5141 | 0.5292 | +0.015 | |\n| | **K\\*** | **2** | **3** | **+1** | |\n| **Qwen-1.5B C4** | 0v1 | 0.9971 | 0.9956 | −0.002 | |\n| | 1v2 | 0.6112 | 0.7014 | **+0.090** | |\n| | 2v3 | 0.5609 | 0.5911 | +0.030 | |\n| | 3v4 | 0.5409 | 0.5405 | −0.0004 | |\n| | 4v5 | 0.5141 | 0.5335 | +0.019 | |\n| | **K\\*** | **2** | **2** | **same** | |\n\n### 简短报告\n\n**Seed robustness 总结**：\n\nPythia-1.4B Wiki 和 Qwen-1.5B C4 的 K\\* 在 seed 变化下保持一致（分别为 1 和 2），AUC 波动在 ±1 pp 以内（Pythia）或 boundary pair 以外（C4 的 2v3 仍低于 θ=0.60）。\n\nQwen-1.5B Wiki 出现 K\\* 从 2 升至 3 的不一致：seed=123 的 1v2 AUC 从 0.619 跳至 0.706（+8.7 pp），2v3 从 0.550 升至 0.607（刚过 θ=0.60，且 fold 最低值 0.595 低于 θ）。这表明 Qwen Wiki 配置对数据采样高度敏感，2v3 boundary 处于 marginal 区域。seed=123 的 K\\*=3 不可靠（2v3 CI 下界可能低于 θ）。\n\nQwen-1.5B 两个 domain 的 1v2 AUC 在 seed=123 下均大幅升高（+8.7~9.0 pp），可能反映 seed=123 的数据分割恰好选到了更易区分的样本。这进一步支持论文中 Qwen-continuation 1v2 boundary marginal 的讨论（Limitations 第 4 点）。\n\n**结论**：K\\* 的 qualitative conclusion（C4/Wiki 为低值 1-2）在 seed 变化下基本稳健，但 Qwen Wiki 的具体 K\\* 值（2 vs. 3）取决于 seed，建议在论文 seed robustness 讨论中强调 2v3 boundary 的 marginal 特性。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_w8_w15_refs_table1_seed_20260522T061722"
+          },
+          "id": "event-000067"
+        }
+      ],
+      "message_count": 67
+    }
+  ],
+  "readable_path": "readable/conversations/paper-w8-w15-refs-table1-seed.md"
+}

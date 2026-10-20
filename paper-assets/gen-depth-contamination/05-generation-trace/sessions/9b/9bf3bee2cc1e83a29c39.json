@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bf3bee2cc1e83a29c39",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis table8 ordinal accuracy v2",
+  "task_key": "worker_analysis_table8_ordinal_accuracy_v2_20260521T163334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_table8_ordinal_accuracy_v2_20260521T163334_result.json",
+    "occurrence": 1,
+    "bytes": 638,
+    "sha256": "346d3884722c1bd400b7d7d92f890f9dcd05b24cb8278be3b75dcaa062b60916"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计算完成。结果写入 `artifacts/table8_ordinal_accuracy_v2.md`。\n\n核心结论：\n\n**v2 Off-diagonal ordinal accuracy: 80–100%, aggregate 93.3% (28/30)**\n\n- 仅 2 处 mismatch：OLMo→Pythia 和 OLMo→Qwen 的 1v2（OLMo K\\*=1 的 classifier 缺乏 depth-2 判别特征，无法识别 Pythia/Qwen K\\*=2 的信号）\n- 相比 v1（greedy Pythia, 90.0%），v2 提升了 3.3 个百分点——Pythia→Qwen 的 1v2 mismatch 被修复（AUC 0.49→0.63）\n- 原文 \"80–92%\" 应更新为 **\"80–100% (aggregate 93.3%)\"**\n\n原始 4-model exp-013 目录已不在服务器上，无法直接对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-table8-ordinal-accuracy-v2.md"
+}

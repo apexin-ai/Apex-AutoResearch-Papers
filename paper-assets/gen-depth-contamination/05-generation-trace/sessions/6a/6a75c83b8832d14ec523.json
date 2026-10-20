@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a75c83b8832d14ec523",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops retrain chain prep check",
+  "task_key": "worker_ops_retrain_chain_prep_check_20260517T195756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_retrain_chain_prep_check_20260517T195756_result.json",
+    "occurrence": 1,
+    "bytes": 1626,
+    "sha256": "2962b4964e7815fff8ae855b8beda23a083493f4378b179a345875c26de747b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完毕。验证结果如下：\n\n## exp_008_retrain_chain 代码就绪性报告\n\n**状态：Ready to submit**\n\n### 检查项\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| 脚本存在 | ✓ | `scripts/exp008_retrain_chain.py` (25217 bytes) |\n| Labels padding bug | ✓ 已修复 | `__getitem__` 只返回 `{\"input_ids\": ids}`，collator 自动生成 labels |\n| Pythia-1.4B 模型 | ✓ 已缓存 | `/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38...` |\n| Qwen2.5-1.5B scorer | ✓ 已缓存 | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B/` |\n| Seed 数据 | ✓ 5000 docs | `data_exp020_pythia_greedy/depth_0.jsonl` |\n| `--help` dry-run | ✓ 通过 | argparse 正常，imports 无报错 |\n| 磁盘空间 | ✓ 160G 可用 | `/root/autodl-tmp` 37% used |\n| GPU | ✓ 4x GPU, CUDA available | torch 2.8.0+cu128 |\n\n### 依赖版本\n\n- peft: 0.19.1 / transformers: 5.8.1 / torch: 2.8.0+cu128\n- lightgbm: 4.6.0 / sklearn: 1.8.0 / scipy: 1.17.1\n\n### 启动命令\n\n```bash\ncd /root/autodl-tmp/gen-depth-contamination && \\\nnohup /root/miniconda3/bin/python scripts/exp008_retrain_chain.py \\\n  --device cuda:0 \\\n  --max_depth 4 \\\n  --data_dir /root/autodl-tmp/gen-depth-contamination/data/exp_008_retrain_chain \\\n  --results_dir /root/autodl-tmp/gen-depth-contamination/results/exp_008_retrain_chain \\\n  --log_file /root/autodl-tmp/gen-depth-contamination/logs/exp_008_retrain_chain.log \\\n  > /root/autodl-tmp/gen-depth-contamination/logs/exp_008_retrain_chain_stdout.log 2>&1 &\n```\n\n### 无 blocker，可直接提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-retrain-chain-prep-check.md"
+}

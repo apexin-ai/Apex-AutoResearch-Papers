@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ec29e5983184fd2cca6e",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops olmo scorer confound investigation",
+  "task_key": "worker_ops_olmo_scorer_confound_investigation_20260520T125618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_olmo_scorer_confound_investigation_20260520T125618.log",
+    "occurrence": 1,
+    "bytes": 802405,
+    "sha256": "7ee0d7e39b25c6efe5122daa293b7b85bfe74b21257b5e74e0cd427f2c942ef9"
+  },
+  "statistics": {
+    "messages": 236,
+    "user_turns": 0,
+    "tool_calls": 89,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 89,
+      "tool_result": 89,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 236,
+      "chunks": [
+        {
+          "path": "ec29e5983184fd2cca6e-part-0001.json",
+          "message_count": 162
+        },
+        {
+          "path": "ec29e5983184fd2cca6e-part-0002.json",
+          "message_count": 74
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-olmo-scorer-confound-investigation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e47ef5ab89f6803af413",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix cross transfer json and progress",
+  "task_key": "worker_fix_cross_transfer_json_and_progress_20260520T040738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cross_transfer_json_and_progress_20260520T040738_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "f46e63bdb630b585781651be5306a31207e3f633c129656af1c63d8d7a7fb64b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nJSON 修复: 成功 — 路径: /root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_llama8b__to__wiki_qwen7b.json\n  已添加 \"kstar_indexing\": \"1-indexed\"，其余内容不变\n\nCode DeBERTa: 已崩溃 (CUDA OOM)\n  Fold 0/5 完成 (3 epochs, final loss=1.1670)\n  Fold 1/5 Epoch 1 ~step 400/1650 时 OOM 崩溃\n  错误: torch.OutOfMemoryError — 4090D 24GB 显存不足，disentangled_attention_bias 分配 192MiB 失败\n  进程已退出 (EXIT_CODE=1)，无运行中进程\n\nGPU utilization: 全部空闲\n  cuda:0  0%  0 MiB\n  cuda:1  0%  0 MiB\n  cuda:2  0%  0 MiB\n  cuda:3  0%  0 MiB\n```\n\n注意：日志显示训练跑在 cuda:0 而非 cuda:2，且 Fold 1 评估阶段 OOM。可能需要减小 eval batch size 或设置 `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cross-transfer-json-and-progress.md"
+}

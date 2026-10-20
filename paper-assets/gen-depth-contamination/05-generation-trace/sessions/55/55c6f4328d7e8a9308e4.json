@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55c6f4328d7e8a9308e4",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "verify exp012 gpu",
+  "task_key": "worker_verify_exp012_gpu_20260515T231420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_exp012_gpu_20260515T231420_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "74c99179455671fb944466af2a3a328b4ce879361d2d1c05022937eab78c20ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-012 已在运行。\n\n- **GPU 占用**: PID 128214，占用 7406 MiB 显存，进程为 `python`\n- **日志**: 仅 3 行输出——network_turbo 设置成功 + `torch_dtype` 弃用警告，说明刚启动不久，尚未进入训练循环\n\n**总结**: exp-012 已在 GPU 上运行（~7.2GB 显存），目前处于模型加载/初始化阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-exp012-gpu.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5c32bde7e11b0adc73e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix fig3 sync and compile",
+  "task_key": "worker_fix_fig3_sync_and_compile_20260513T235426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_fig3_sync_and_compile_20260513T235426_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "114bf9812abe9c4b6dac4d31db5b9d4b2f9fa3849addf8d4a158022716fe77b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译完成，结果：\n\n- **页数**：15 页（符合预期，14 页正文 + 1 页 appendix）\n- **PDF 大小**：298,177 bytes（合理）\n- **无 multiply-defined label / undefined reference 警告**\n- 三个图表均正确加载：fig2_auc_decay.pdf（p8）、fig3_transfer_heatmap.pdf（p9）、fig_s1_auc_decay_ci.pdf（p15 appendix）\n- 仅有 hyperref 的 Unicode token 警告和几处 overfull hbox（均为正常排版微调，非错误）\n\n图表同步 + 编译完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-fig3-sync-and-compile.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd22e3cb391e2db4531c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix paper audit corrections",
+  "task_key": "worker_fix_paper_audit_corrections_20260513T223912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_paper_audit_corrections_20260513T223912_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "b1b306ced6eb2a93274222c1d8e9e61aa897a6bb612595b2d631de139207e6dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成。改动摘要：\n\n### 已确认无需修改（7 条，此前已修正或不存在问题）\n| # | 问题 | 状态 |\n|---|------|------|\n| 1-4 | 数值 91→90、83→84 | 文件中已是正确值 |\n| 5 | 硬编码 Section~3 | 文件中已用 `\\ref{sec:method}` |\n| 6 | \"conservatively inferred\" 表注 | 文件中已替换为实际 p 值 |\n| 8 | `\\ref{sec:conclusion}` 悬空 | `conclusion.tex` 存在且包含 `\\label{sec:conclusion}`，引用有效 |\n\n### 本次修改（3 条）\n| # | 文件 | 改动 |\n|---|------|------|\n| 7 | `experiments_c1.tex:169` | 添加 `(Figure~\\ref{fig:transfer_heatmap})` 引用 |\n| 9 | `docs/paper/figures/fig2_auc_decay.pdf` | 用 `artifacts/summary_auc_decay/fig_summary_auc_decay.pdf`（22:17 生成）覆盖旧版（09:03） |\n| 10 | `experiments_c1.tex:83,94,109` | 3 处 `$\\Kstar$` → `$\\Kempirical$`（实验节讨论的是实证结果，应与节标题 `\\Kempirical` 一致；表注 line 27 的 `\\Kstar` 保留，因其指代通用概念） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-paper-audit-corrections.md"
+}

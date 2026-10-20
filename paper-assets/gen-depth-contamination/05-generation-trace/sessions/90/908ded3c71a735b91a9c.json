@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "908ded3c71a735b91a9c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops submit mistral code domain",
+  "task_key": "worker_ops_submit-mistral-code-domain_20260518T230341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-mistral-code-domain_20260518T230341_result.json",
+    "occurrence": 1,
+    "bytes": 471,
+    "sha256": "2c34acb9f0f5242841806cf119501d5dd8f5a08d27e9ea4d7959f78ddcf57122"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态汇总：**\n\n1. **Mistral-7B 未缓存** — 只有空临时目录，之前下载未成功完成\n2. **已启动 ModelScope 下载** — PID 104116，4 个文件并行下载，预计约 70 分钟完成\n3. **数据目录已就绪** — `data/exp_code_mistral7b/depth_0.jsonl`（5500 行）已复制\n4. **结果目录已创建** — `results/exp_code_mistral7b/`\n\n下载完成后会立即提交实验。~4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-mistral-code-domain.md"
+}

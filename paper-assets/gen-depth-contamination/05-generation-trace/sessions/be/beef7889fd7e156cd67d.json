@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "beef7889fd7e156cd67d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research citation verification",
+  "task_key": "worker_research_citation_verification_20260512T132729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation_verification_20260512T132729_result.json",
+    "occurrence": 1,
+    "bytes": 2297,
+    "sha256": "2c490196451d805a072b58050ef6e730a1f514a8704be91c3f61a6ab05dee2f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8 处 [需验证] 全部处理完毕。核实结果汇总：\n\n| # | 引用 | 核实结果 | 文档原始信息是否正确 | 修正 |\n|---|------|----------|---------------------|------|\n| 1 | **DivEye** | Advik Raj Basani, Pin-Yu Chen; TMLR 2026 | venue 正确，缺作者 | 补充作者 → `Basani & Chen, TMLR 2026` |\n| 2 | **Binoculars** | Hans, Schwarzschild, Cherepanova, Kazemi, Saha, Goldblum, Geiping, Goldstein; **ICML 2024** | 年份正确，缺 venue | 补充 venue → `Hans et al., ICML 2024` |\n| 3 | **Alemohammad et al.** | 2023.07 arXiv preprint → **ICLR 2024** 发表 | 文档写 \"ICML 2024\" **错误** | 修正为 `ICLR 2024` |\n| 4 | **DoReMi** | Xie et al.; **NeurIPS 2023** | 完全正确 | 仅移除 [需验证] 标签 |\n| 5 | **Data Mixing Laws** | Ye, Liu, Sun, Zhan, Zhou, Qiu; arXiv 2024.03 → **ICLR 2025** | 作者姓氏正确，年份应为 ICLR 2025 | 修正为 `Ye et al., ICLR 2025` |\n| 6 | **Surplexity** | Gambetta, Gezici, Giannotti, Pedreschi, Knott, Pappalardo; arXiv 2024.10 | 年份正确，缺作者 | 补充作者 → `Gambetta et al., 2024` |\n| 7 | **ConStat** | Jasper Dekoninck, Mark Müller, Martin Vechev; NeurIPS 2024 | venue 正确，缺作者 | 补充作者 → `Dekoninck et al., NeurIPS 2024` |\n| 8 | **DATAPROPHET** | Xuan Qi, Luxi He, Dan Roth, Xingyu Fu; ICLR 2026 | venue 正确，缺作者 | 补充作者 → `Qi et al., ICLR 2026` |\n\n所有 8 条引用均为真实论文，无虚构。发现并修正了两处事实错误：Alemohammad et al. 的 venue（ICML→ICLR）和 Data Mixing Laws 的年份/venue（2024→ICLR 2025）。`claim_routes.md` 和 `theory_framework.md` 中无 [需验证] 标注，无需修改。\n\nSources:\n- [DivEye - arXiv 2509.18880](https://arxiv.org/abs/2509.18880)\n- [Binoculars - arXiv 2401.12070](https://arxiv.org/abs/2401.12070)\n- [Self-Consuming Generative Models Go MAD - arXiv 2307.01850](https://arxiv.org/abs/2307.01850)\n- [DoReMi - arXiv 2305.10429](https://arxiv.org/abs/2305.10429)\n- [Data Mixing Laws - arXiv 2403.16952](https://arxiv.org/abs/2403.16952)\n- [Surplexity - arXiv 2410.12341](https://arxiv.org/abs/2410.12341)\n- [ConStat - arXiv 2405.16281](https://arxiv.org/abs/2405.16281)\n- [DATAPROPHET - arXiv 2603.19688](https://arxiv.org/abs/2603.19688)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-verification.md"
+}

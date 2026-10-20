@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "eb2568f23d26222c5efa",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "analysis arxiv multi source bootstrap",
+  "task_key": "worker_analysis_arxiv_multi_source_bootstrap_20260524T101433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_arxiv_multi_source_bootstrap_20260524T101433.log",
+    "occurrence": 1,
+    "bytes": 939238,
+    "sha256": "f2f733ecaf43545281705280e22d1158562d26d3c68c9f50a48f544f36ffcc29"
+  },
+  "statistics": {
+    "messages": 527,
+    "user_turns": 0,
+    "tool_calls": 230,
+    "roles": {
+      "log": 1,
+      "system": 2,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 230,
+      "tool_result": 230,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 527,
+      "chunks": [
+        {
+          "path": "eb2568f23d26222c5efa-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb2568f23d26222c5efa-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb2568f23d26222c5efa-part-0003.json",
+          "message_count": 167
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-arxiv-multi-source-bootstrap.md"
+}

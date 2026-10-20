@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59675f631694ba75fe79",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ssh run exp005 degradation",
+  "task_key": "worker_ssh_run_exp005_degradation_20260513T023913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_run_exp005_degradation_20260513T023913_result.json",
+    "occurrence": 1,
+    "bytes": 1131,
+    "sha256": "cab786a0ac47ba7f4da0e6db1c9fd23044d3d551683945f869306fb199d74420"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-005 完成，registry 已更新为 DONE (success)。\n\n## 结果摘要\n\n### Cross-model Kendall τ (by avg AUC)\n\n| 模型对 | τ | p |\n|--------|---|---|\n| Pythia vs OLMo | **0.848** | 0.000 |\n| Pythia vs Qwen | 0.524 | 0.006 |\n| OLMo vs Qwen | 0.486 | 0.011 |\n| **Mean** | **0.619** | — |\n\n### Degradation ordering (top-3 最先饱和的特征)\n\n| Pythia-1.4B | OLMo-1B | Qwen-1.5B |\n|-------------|---------|-----------|\n| surp_d1_std | surp_std | **freq_entropy** |\n| surp_d2_std | surp_d1_std | surp_std |\n| surp_std | surp_d2_std | surp_d1_std |\n\n### 判断：**success，需要 caveat**\n\n- Pythia/OLMo 一致性强（τ=0.85, ρ=0.95），共享 surp_*_std 作为最早饱和的特征组\n- Qwen 偏离：freq_entropy 排 #1（AUC=0.97），TailFreq 组在 Qwen 上的判别力远强于另外两个模型\n- 深层 depth pair（3v4, 4v5）跨模型一致性迅速衰减到接近随机（τ→0），说明 ordering consistency 主要体现在早期 depth\n- **C2 claim**：部分支持——同族模型一致性好，跨架构族需要加 caveat 说明 Qwen 的 TailFreq 特异性"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-run-exp005-degradation.md"
+}

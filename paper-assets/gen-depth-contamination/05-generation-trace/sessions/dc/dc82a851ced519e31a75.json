@@ -1,0 +1,1713 @@
+{
+  "schema_version": "1.0",
+  "id": "dc82a851ced519e31a75",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "fix deberta code postprocess",
+  "task_key": "worker_fix_deberta_code_postprocess_20260520T072450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_deberta_code_postprocess_20260520T072450.log",
+    "occurrence": 1,
+    "bytes": 92295,
+    "sha256": "3d5aa4b0e4c961143466a0f24705448a421e3223201e4da148f3e811d586cb32"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 14,
+      "tool_result": 14,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "bc219be9-8701-4d44-87a9-901a1975f816",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779279000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "a951ec1e-c43b-42d4-9301-cbedcd4ec572",
+                "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the script on the remote server to understand the bug, then fix it.",
+              "signature": "EpYCClkIDRgCKkASWKzZXWhyKLAlqkd6si7fJAO8qhx1oFyojdMNfOLm+yWr7g1pOM9GoOqSAIAXRNdO1CNvfIzn7x5EOzucuZlRMg9jbGF1ZGUtb3B1cy00LTY4ABIM9sLiDSPpYfXW6HdaGgxH1ProYlBJxdGo6HgiMDMny6nGNbc8w/OsUjlc9397NSxOU1AbrTIpmzWU18K3Kn+Hl7qDqbjwauZt/3Cw4Sprd1nd7o/+aXDmoTPoz6+vyFQMqeO0KSzYk8U1tXXheAKpqSkX7pgqLEkocIWNPGo4hD3jqnfTSCEFZ2/K4RPVeTb3d0DmV1X1U5gMA2Z2tABdn5ZY6osVhMxlBGhUsDGJDIr0sfux0k/2IyIYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "cfd8fafa-5d1b-4c07-a6f0-9effff681437",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LVki32L2uAe853Ap3Quv9d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12634,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12634
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先读取脚本确认 bug 位置，同时检查是否有已保存的 oof predictions。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "f4d7fe53-e90e-4398-a354-18866589c2f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LVki32L2uAe853Ap3Quv9d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12634,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12634
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y4XemMA1jAcyY1H6UKEFnm",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "45800d8f-4bdd-42af-894b-d2c572db3443",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LVki32L2uAe853Ap3Quv9d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12634,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12634
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T07:25:30.535Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Y4XemMA1jAcyY1H6UKEFnm",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "4b7e58c4-6bac-4710-906c-9b37310ca590",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0132SEoaCdxRm1uje7FTTWkd",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "e0fd3d23-11e7-40e1-a299-14b6e579bc54",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015hBzBXw4ijh5HRFxGnziqr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 736,
+                "cache_read_input_tokens": 24475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 736
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T07:25:35.155Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0132SEoaCdxRm1uje7FTTWkd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDeBERTa-v3-base upper-bound baseline for code domain (Qwen-1.5B scorer).\\\\n6-class ordinal depth classification, 5-fold GroupKFold, pairwise AUC with\\\\ndoc-level bootstrap CI, K* determination.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport gc\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom torch.utils.data import Dataset, DataLoader\\\\nfrom sklearn.model_selection import GroupKFold\\\\nfrom sklearn.metrics import roc_auc_score\\\\nfrom transformers import (\\\\n    AutoTokenizer,\\\\n    AutoModelForSequenceClassification,\\\\n    get_linear_schedule_with_warmup,\\\\n)\\\\n\\\\nROOT = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination\\\\\\\")\\\\nDATA_DIR = ROOT / \\\\\\\"data\\\\\\\"\\\\nRESULTS_DIR = ROOT / \\\\\\\"results\\\\\\\" / \\\\\\\"exp_deberta_code_qwen1b5\\\\\\\"\\\\n\\\\nEXPERIMENTS = {\\\\n    \\\\\\\"code_qwen1b5\\\\\\\": DATA_DIR / \\\\\\\"exp_code_qwen1b5\\\\\\\",\\\\n}\\\\n\\\\nOBD_MAP = {\\\\n    \\\\\\\"code_qwen1b5\\\\\\\": ROOT / \\\\\\\"results\\\\\\\" / \\\\\\\"exp_code_qwen1b5\\\\\\\" / \\\\\\\"pairwise_auc.json\\\\\\\",\\\\n}\\\\n\\\\nMODEL_NAME = \\\\\\\"microsoft/deberta-v3-base\\\\\\\"\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nMAX_LEN = 512\\\\nN_CLASSES = 6\\\\nN_FOLDS = 5\\\\nEPOCHS = 3\\\\nBS = 16\\\\nEVAL_BS = 8\\\\nGRAD_ACCUM = 2\\\\nLR = 2e-5\\\\nWARMUP = 0.1\\\\nWD = 0.01\\\\nN_BOOT = 10000\\\\nTHETA = 0.60\\\\nSEED = 42\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\", datefmt=\\\\\\\"%H:%M:%S\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef load_data(exp_dir):\\\\n    texts, labels, doc_ids = [], [], []\\\\n    for d in range(N_CLASSES):\\\\n        with open(exp_dir / f\\\\\\\"depth_{d}.jsonl\\\\\\\") as f:\\\\n            for line in f:\\\\n                obj = json.loads(line)\\\\n                texts.append(obj[\\\\\\\"text\\\\\\\"])\\\\n                labels.append(d)\\\\n                doc_ids.append(obj[\\\\\\\"doc_id\\\\\\\"])\\\\n    return texts, np.array(labels), np.array(doc_ids)\\\\n\\\\n\\\\nclass DS(Dataset):\\\\n    def __init__(self, ids, masks, labels):\\\\n        self.ids, self.masks, self.labels = ids, masks, labels\\\\n    def __len__(self): return len(self.labels)\\\\n    def __getitem__(self, i): return self.ids[i], self.masks[i], self.labels[i]\\\\n\\\\n\\\\ndef collate(batch):\\\\n    ids_l, mask_l, lab_l = zip(*batch)\\\\n    mx = max(len(x) for x in ids_l)\\\\n    bsz = len(ids_l)\\\\n    ids = torch.zeros(bsz, mx, dtype=torch.long)\\\\n    masks = torch.zeros(bsz, mx, dtype=torch.long)\\\\n    for i, (x, m) in enumerate(zip(ids_l, mask_l)):\\\\n        n = len(x)\\\\n        ids[i, :n] = torch.tensor(x, dtype=torch.long)\\\\n        masks[i, :n] = torch.tensor(m, dtype=torch.long)\\\\n    return ids, masks, torch.tensor(lab_l, dtype=torch.long)\\\\n\\\\n\\\\ndef train_fold(tr_ids, tr_masks, tr_labels, va_ids, va_masks, va_labels, device, fold):\\\\n    log.info(f\\\\\\\"  Fold {fold}: train={len(tr_labels)}, val={len(va_labels)}\\\\\\\")\\\\n    model = AutoModelForSequenceClassification.from_pretrained(\\\\n        MODEL_NAME, num_labels=N_CLASSES, cache_dir=HF_CACHE,\\\\n        local_files_only=True, torch_dtype=torch.float32,\\\\n    ).to(device)\\\\n\\\\n    tr_dl = DataLoader(DS(tr_ids, tr_masks, tr_labels), batch_size=BS, shuffle=True, collate_fn=collate, num_workers=2, pin_memory=True)\\\\n    va_dl = DataLoader(DS(va_ids, va_masks, va_labels), batch_size=EVAL_BS, collate_fn=collate, num_workers=2, pin_memory=True)\\\\n\\\\n    opt = torch.optim.AdamW(model.parameters(), lr=LR, weight_decay=WD)\\\\n    total_opt = (len(tr_dl) // GRAD_ACCUM) * EPOCHS\\\\n    sched = get_linear_schedule_with_warmup(opt, int(total_opt * WARMUP), total_opt)\\\\n\\\\n    model.train()\\\\n    for ep in range(EPOCHS):\\\\n        ep_loss = 0.0\\\\n        opt.zero_grad()\\\\n        for step, (ids, mask, lab) in enumerate(tr_dl):\\\\n            ids, mask, lab = ids.to(device), mask.to(device), lab.to(device)\\\\n            out = model(input_ids=ids, attention_mask=mask, labels=lab)\\\\n            (out.loss / GRAD_ACCUM).backward()\\\\n            ep_loss += out.loss.item()\\\\n            if (step + 1) % GRAD_ACCUM == 0:\\\\n                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)\\\\n                opt.step()\\\\n                sched.step()\\\\n                opt.zero_grad()\\\\n            if step % 200 == 0 and step > 0:\\\\n                log.info(f\\\\\\\"    Ep {ep+1} step {step}/{len(tr_dl)} loss={ep_loss/(step+1):.4f}\\\\\\\")\\\\n        log.info(f\\\\\\\"   \\\\n\\\\n... [截断: 输出过长，省略 1323 字符] ...\\\\n\\\\n np.array(boots)\\\\n        ci_lo, ci_hi = float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))\\\\n        results[key] = {\\\\\\\"auc\\\\\\\": round(auc,4), \\\\\\\"ci_lower\\\\\\\": round(ci_lo,4), \\\\\\\"ci_upper\\\\\\\": round(ci_hi,4),\\\\n                         \\\\\\\"ci_lower_above_theta\\\\\\\": bool(ci_lo > THETA), \\\\\\\"boot_mean\\\\\\\": round(float(boots.mean()),4), \\\\\\\"boot_std\\\\\\\": round(float(boots.std()),4)}\\\\n    kstar = 0\\\\n    for k in range(N_CLASSES - 1):\\\\n        if results[f\\\\\\\"{k}v{k+1}\\\\\\\"][\\\\\\\"ci_lower_above_theta\\\\\\\"]: kstar = k + 1\\\\n        else: break\\\\n    return results, kstar\\\\n\\\\n\\\\ndef load_obd(name):\\\\n    p = OBD_MAP.get(name)\\\\n    if p and p.exists():\\\\n        data = json.load(open(p))\\\\n        return data.get(\\\\\\\"mean\\\\\\\", data)\\\\n    return None\\\\n\\\\n\\\\ndef main():\\\\n    os.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_CACHE\\\\n    os.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\n    os.environ[\\\\\\\"HF_HUB_DISABLE_XET\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n    os.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\n    device = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\n    log.info(f\\\\\\\"Device: {device} ({torch.cuda.get_device_name(0)})\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading tokenizer: {MODEL_NAME}\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, cache_dir=HF_CACHE, use_fast=False, local_files_only=True)\\\\n    log.info(\\\\\\\"Tokenizer loaded\\\\\\\")\\\\n\\\\n    RESULTS_DIR.mkdir(parents=True, exist_ok=True)\\\\n    all_res = {}\\\\n\\\\n    for exp_name, exp_dir in EXPERIMENTS.items():\\\\n        log.info(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\\n{exp_name}\\\\\\\\n{'='*60}\\\\\\\")\\\\n        t0 = time.time()\\\\n        texts, labels, doc_ids = load_data(exp_dir)\\\\n        N = len(texts)\\\\n        log.info(f\\\\\\\"Loaded {N} samples ({N // N_CLASSES} docs x {N_CLASSES} depths)\\\\\\\")\\\\n\\\\n        log.info(\\\\\\\"Tokenizing...\\\\\\\")\\\\n        enc = tokenizer(texts, truncation=True, max_length=MAX_LEN, padding=False)\\\\n        all_ids, all_masks = enc[\\\\\\\"input_ids\\\\\\\"], enc[\\\\\\\"attention_mask\\\\\\\"]\\\\n        log.info(\\\\\\\"Tokenization done\\\\\\\")\\\\n\\\\n        gkf = GroupKFold(n_splits=N_FOLDS)\\\\n        oof = np.zeros((N, N_CLASSES))\\\\n\\\\n        for fi, (tr_i, va_i) in enumerate(gkf.split(np.arange(N), labels, doc_ids)):\\\\n            oof[va_i] = train_fold(\\\\n                [all_ids[i] for i in tr_i], [all_masks[i] for i in tr_i], labels[tr_i].tolist(),\\\\n                [all_ids[i] for i in va_i], [all_masks[i] for i in va_i], labels[va_i].tolist(),\\\\n                device, fi,\\\\n            )\\\\n\\\\n        pw, kstar = pairwise_auc_ci(labels, oof, doc_ids)\\\\n        elapsed = time.time() - t0\\\\n\\\\n        log.info(f\\\\\\\"\\\\\\\\nPairwise AUC ({exp_name}):\\\\\\\")\\\\n        for pk, v in pw.items():\\\\n            log.info(f\\\\\\\"  {pk}: {v['auc']:.4f} [{v['ci_lower']:.4f}, {v['ci_upper']:.4f}]\\\\\\\")\\\\n        log.info(f\\\\\\\"  K* (theta={THETA}): {kstar}  Time: {elapsed:.0f}s\\\\\\\")\\\\n\\\\n        obd = load_obd(exp_name)\\\\n        exp_res = {\\\\\\\"experiment\\\\\\\": exp_name, \\\\\\\"model\\\\\\\": MODEL_NAME, \\\\\\\"method\\\\\\\": \\\\\\\"DeBERTa-v3-base fine-tuned 6-class\\\\\\\",\\\\n                    \\\\\\\"n_samples\\\\\\\": N, \\\\\\\"epochs\\\\\\\": EPOCHS, \\\\\\\"lr\\\\\\\": LR, \\\\\\\"batch_size\\\\\\\": BS, \\\\\\\"max_length\\\\\\\": MAX_LEN,\\\\n                    \\\\\\\"theta\\\\\\\": THETA, \\\\\\\"kstar\\\\\\\": kstar, \\\\\\\"pairwise_auc\\\\\\\": pw, \\\\\\\"elapsed_seconds\\\\\\\": round(elapsed, 1)}\\\\n        if obd: exp_res[\\\\\\\"obd_baseline\\\\\\\"] = obd\\\\n        all_res[exp_name] = exp_res\\\\n        json.dump(exp_res, open(RESULTS_DIR / f\\\\\\\"{exp_name}.json\\\\\\\", \\\\\\\"w\\\\\\\"), indent=2)\\\\n        log.info(f\\\\\\\"Saved: {RESULTS_DIR / f'{exp_name}.json'}\\\\\\\")\\\\n\\\\n    json.dump(all_res, open(RESULTS_DIR / \\\\\\\"summary.json\\\\\\\", \\\\\\\"w\\\\\\\"), indent=2)\\\\n\\\\n    log.info(f\\\\\\\"\\\\\\\\n{'='*80}\\\\\\\\nDeBERTa vs OBD-LightGBM\\\\\\\\n{'='*80}\\\\\\\")\\\\n    for name, r in all_res.items():\\\\n        obd = r.get(\\\\\\\"obd_baseline\\\\\\\", {})\\\\n        for pk in [\\\\\\\"0v1\\\\\\\", \\\\\\\"1v2\\\\\\\", \\\\\\\"2v3\\\\\\\", \\\\\\\"3v4\\\\\\\", \\\\\\\"4v5\\\\\\\"]:\\\\n            da = r[\\\\\\\"pairwise_auc\\\\\\\"][pk][\\\\\\\"auc\\\\\\\"]\\\\n            cl, ch = r[\\\\\\\"pairwise_auc\\\\\\\"][pk][\\\\\\\"ci_lower\\\\\\\"], r[\\\\\\\"pairwise_auc\\\\\\\"][pk][\\\\\\\"ci_upper\\\\\\\"]\\\\n            oa = obd.get(pk)\\\\n            log.info(f\\\\\\\"{name:<18} {pk} DeBERTa={da:.4f} [{cl:.4f},{ch:.4f}] OBD={oa if oa else 'N/A'} delta={da-oa:+.4f}\\\\\\\" if oa else f\\\\\\\"{name:<18} {pk} DeBERTa={da:.4f} [{cl:.4f},{ch:.4f}]\\\\\\\")\\\\n        log.info(f\\\\\\\"  K*(DeBERTa)={r['kstar']}\\\\\\\")\\\\n    log.info(\\\\\\\"All done.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    torch.manual_seed(SEED)\\\\n    np.random.seed(SEED)\\\\n    if torch.cuda.is_available(): torch.cuda.manual_seed_all(SEED)\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "d6aae121-162d-4446-b2ef-ec46e1430004",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDeBERTa-v3-base upper-bound baseline for code domain (Qwen-1.5B scorer).\\\\n6-class ordinal depth classification, 5-fold GroupKFold, pairwise AUC with\\\\ndoc-level bootstrap CI, K* determination.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport gc\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom torch.utils.data import Dataset, DataLoader\\\\nfrom sklearn.model_selection import GroupKFold\\\\nfrom sklearn.metrics import roc_auc_score\\\\nfrom transformers import (\\\\n    AutoTokenizer,\\\\n    AutoModelForSequenceClassification,\\\\n    get_linear_schedule_with_warmup,\\\\n)\\\\n\\\\nROOT = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination\\\\\\\")\\\\nDATA_DIR = ROOT / \\\\\\\"data\\\\\\\"\\\\nRESULTS_DIR = ROOT / \\\\\\\"results\\\\\\\" / \\\\\\\"exp_deberta_code_qwen1b5\\\\\\\"\\\\n\\\\nEXPERIMENTS = {\\\\n    \\\\\\\"code_qwen1b5\\\\\\\": DATA_DIR / \\\\\\\"exp_code_qwen1b5\\\\\\\",\\\\n}\\\\n\\\\nOBD_MAP = {\\\\n    \\\\\\\"code_qwen1b5\\\\\\\": ROOT / \\\\\\\"results\\\\\\\" / \\\\\\\"exp_code_qwen1b5\\\\\\\" / \\\\\\\"pairwise_auc.json\\\\\\\",\\\\n}\\\\n\\\\nMODEL_NAME = \\\\\\\"microsoft/deberta-v3-base\\\\\\\"\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nMAX_LEN = 512\\\\nN_CLASSES = 6\\\\nN_FOLDS = 5\\\\nEPOCHS = 3\\\\nBS = 16\\\\nEVAL_BS = 8\\\\nGRAD_ACCUM = 2\\\\nLR = 2e-5\\\\nWARMUP = 0.1\\\\nWD = 0.01\\\\nN_BOOT = 10000\\\\nTHETA = 0.60\\\\nSEED = 42\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\", datefmt=\\\\\\\"%H:%M:%S\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef load_data(exp_dir):\\\\n    texts, labels, doc_ids = [], [], []\\\\n    for d in range(N_CLASSES):\\\\n        with open(exp_dir / f\\\\\\\"depth_{d}.jsonl\\\\\\\") as f:\\\\n            for line in f:\\\\n                obj = json.loads(line)\\\\n                texts.append(obj[\\\\\\\"text\\\\\\\"])\\\\n                labels.append(d)\\\\n                doc_ids.append(obj[\\\\\\\"doc_id\\\\\\\"])\\\\n    return texts, np.array(labels), np.array(doc_ids)\\\\n\\\\n\\\\nclass DS(Dataset):\\\\n    def __init__(self, ids, masks, labels):\\\\n        self.ids, self.masks, self.labels = ids, masks, labels\\\\n    def __len__(self): return len(self.labels)\\\\n    def __getitem__(self, i): return self.ids[i], self.masks[i], self.labels[i]\\\\n\\\\n\\\\ndef collate(batch):\\\\n    ids_l, mask_l, lab_l = zip(*batch)\\\\n    mx = max(len(x) for x in ids_l)\\\\n    bsz = len(ids_l)\\\\n    ids = torch.zeros(bsz, mx, dtype=torch.long)\\\\n    masks = torch.zeros(bsz, mx, dtype=torch.long)\\\\n    for i, (x, m) in enumerate(zip(ids_l, mask_l)):\\\\n        n = len(x)\\\\n        ids[i, :n] = torch.tensor(x, dtype=torch.long)\\\\n        masks[i, :n] = torch.tensor(m, dtype=torch.long)\\\\n    return ids, masks, torch.tensor(lab_l, dtype=torch.long)\\\\n\\\\n\\\\ndef train_fold(tr_ids, tr_masks, tr_labels, va_ids, va_masks, va_labels, device, fold):\\\\n    log.info(f\\\\\\\"  Fold {fold}: train={len(tr_labels)}, val={len(va_labels)}\\\\\\\")\\\\n    model = AutoModelForSequenceClassification.from_pretrained(\\\\n        MODEL_NAME, num_labels=N_CLASSES, cache_dir=HF_CACHE,\\\\n        local_files_only=True, torch_dtype=torch.float32,\\\\n    ).to(device)\\\\n\\\\n    tr_dl = DataLoader(DS(tr_ids, tr_masks, tr_labels), batch_size=BS, shuffle=True, collate_fn=collate, num_workers=2, pin_memory=True)\\\\n    va_dl = DataLoader(DS(va_ids, va_masks, va_labels), batch_size=EVAL_BS, collate_fn=collate, num_workers=2, pin_memory=True)\\\\n\\\\n    opt = torch.optim.AdamW(model.parameters(), lr=LR, weight_decay=WD)\\\\n    total_opt = (len(tr_dl) // GRAD_ACCUM) * EPOCHS\\\\n    sched = get_linear_schedule_with_warmup(opt, int(total_opt * WARMUP), total_opt)\\\\n\\\\n    model.train()\\\\n    for ep in range(EPOCHS):\\\\n        ep_loss = 0.0\\\\n        opt.zero_grad()\\\\n        for step, (ids, mask, lab) in enumerate(tr_dl):\\\\n            ids, mask, lab = ids.to(device), mask.to(device), lab.to(device)\\\\n            out = model(input_ids=ids, attention_mask=mask, labels=lab)\\\\n            (out.loss / GRAD_ACCUM).backward()\\\\n            ep_loss += out.loss.item()\\\\n            if (step + 1) % GRAD_ACCUM == 0:\\\\n                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)\\\\n                opt.step()\\\\n                sched.step()\\\\n                opt.zero_grad()\\\\n            if step % 200 == 0 and step > 0:\\\\n                log.info(f\\\\\\\"    Ep {ep+1} step {step}/{len(tr_dl)} loss={ep_loss/(step+1):.4f}\\\\\\\")\\\\n        log.info(f\\\\\\\"   \\\\n\\\\n... [截断: 输出过长，省略 1323 字符] ...\\\\n\\\\n np.array(boots)\\\\n        ci_lo, ci_hi = float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))\\\\n        results[key] = {\\\\\\\"auc\\\\\\\": round(auc,4), \\\\\\\"ci_lower\\\\\\\": round(ci_lo,4), \\\\\\\"ci_upper\\\\\\\": round(ci_hi,4),\\\\n                         \\\\\\\"ci_lower_above_theta\\\\\\\": bool(ci_lo > THETA), \\\\\\\"boot_mean\\\\\\\": round(float(boots.mean()),4), \\\\\\\"boot_std\\\\\\\": round(float(boots.std()),4)}\\\\n    kstar = 0\\\\n    for k in range(N_CLASSES - 1):\\\\n        if results[f\\\\\\\"{k}v{k+1}\\\\\\\"][\\\\\\\"ci_lower_above_theta\\\\\\\"]: kstar = k + 1\\\\n        else: break\\\\n    return results, kstar\\\\n\\\\n\\\\ndef load_obd(name):\\\\n    p = OBD_MAP.get(name)\\\\n    if p and p.exists():\\\\n        data = json.load(open(p))\\\\n        return data.get(\\\\\\\"mean\\\\\\\", data)\\\\n    return None\\\\n\\\\n\\\\ndef main():\\\\n    os.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_CACHE\\\\n    os.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\n    os.environ[\\\\\\\"HF_HUB_DISABLE_XET\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n    os.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\\n    device = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\n    log.info(f\\\\\\\"Device: {device} ({torch.cuda.get_device_name(0)})\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading tokenizer: {MODEL_NAME}\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, cache_dir=HF_CACHE, use_fast=False, local_files_only=True)\\\\n    log.info(\\\\\\\"Tokenizer loaded\\\\\\\")\\\\n\\\\n    RESULTS_DIR.mkdir(parents=True, exist_ok=True)\\\\n    all_res = {}\\\\n\\\\n    for exp_name, exp_dir in EXPERIMENTS.items():\\\\n        log.info(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\\n{exp_name}\\\\\\\\n{'='*60}\\\\\\\")\\\\n        t0 = time.time()\\\\n        texts, labels, doc_ids = load_data(exp_dir)\\\\n        N = len(texts)\\\\n        log.info(f\\\\\\\"Loaded {N} samples ({N // N_CLASSES} docs x {N_CLASSES} depths)\\\\\\\")\\\\n\\\\n        log.info(\\\\\\\"Tokenizing...\\\\\\\")\\\\n        enc = tokenizer(texts, truncation=True, max_length=MAX_LEN, padding=False)\\\\n        all_ids, all_masks = enc[\\\\\\\"input_ids\\\\\\\"], enc[\\\\\\\"attention_mask\\\\\\\"]\\\\n        log.info(\\\\\\\"Tokenization done\\\\\\\")\\\\n\\\\n        gkf = GroupKFold(n_splits=N_FOLDS)\\\\n        oof = np.zeros((N, N_CLASSES))\\\\n\\\\n        for fi, (tr_i, va_i) in enumerate(gkf.split(np.arange(N), labels, doc_ids)):\\\\n            oof[va_i] = train_fold(\\\\n                [all_ids[i] for i in tr_i], [all_masks[i] for i in tr_i], labels[tr_i].tolist(),\\\\n                [all_ids[i] for i in va_i], [all_masks[i] for i in va_i], labels[va_i].tolist(),\\\\n                device, fi,\\\\n            )\\\\n\\\\n        pw, kstar = pairwise_auc_ci(labels, oof, doc_ids)\\\\n        elapsed = time.time() - t0\\\\n\\\\n        log.info(f\\\\\\\"\\\\\\\\nPairwise AUC ({exp_name}):\\\\\\\")\\\\n        for pk, v in pw.items():\\\\n            log.info(f\\\\\\\"  {pk}: {v['auc']:.4f} [{v['ci_lower']:.4f}, {v['ci_upper']:.4f}]\\\\\\\")\\\\n        log.info(f\\\\\\\"  K* (theta={THETA}): {kstar}  Time: {elapsed:.0f}s\\\\\\\")\\\\n\\\\n        obd = load_obd(exp_name)\\\\n        exp_res = {\\\\\\\"experiment\\\\\\\": exp_name, \\\\\\\"model\\\\\\\": MODEL_NAME, \\\\\\\"method\\\\\\\": \\\\\\\"DeBERTa-v3-base fine-tuned 6-class\\\\\\\",\\\\n                    \\\\\\\"n_samples\\\\\\\": N, \\\\\\\"epochs\\\\\\\": EPOCHS, \\\\\\\"lr\\\\\\\": LR, \\\\\\\"batch_size\\\\\\\": BS, \\\\\\\"max_length\\\\\\\": MAX_LEN,\\\\n                    \\\\\\\"theta\\\\\\\": THETA, \\\\\\\"kstar\\\\\\\": kstar, \\\\\\\"pairwise_auc\\\\\\\": pw, \\\\\\\"elapsed_seconds\\\\\\\": round(elapsed, 1)}\\\\n        if obd: exp_res[\\\\\\\"obd_baseline\\\\\\\"] = obd\\\\n        all_res[exp_name] = exp_res\\\\n        json.dump(exp_res, open(RESULTS_DIR / f\\\\\\\"{exp_name}.json\\\\\\\", \\\\\\\"w\\\\\\\"), indent=2)\\\\n        log.info(f\\\\\\\"Saved: {RESULTS_DIR / f'{exp_name}.json'}\\\\\\\")\\\\n\\\\n    json.dump(all_res, open(RESULTS_DIR / \\\\\\\"summary.json\\\\\\\", \\\\\\\"w\\\\\\\"), indent=2)\\\\n\\\\n    log.info(f\\\\\\\"\\\\\\\\n{'='*80}\\\\\\\\nDeBERTa vs OBD-LightGBM\\\\\\\\n{'='*80}\\\\\\\")\\\\n    for name, r in all_res.items():\\\\n        obd = r.get(\\\\\\\"obd_baseline\\\\\\\", {})\\\\n        for pk in [\\\\\\\"0v1\\\\\\\", \\\\\\\"1v2\\\\\\\", \\\\\\\"2v3\\\\\\\", \\\\\\\"3v4\\\\\\\", \\\\\\\"4v5\\\\\\\"]:\\\\n            da = r[\\\\\\\"pairwise_auc\\\\\\\"][pk][\\\\\\\"auc\\\\\\\"]\\\\n            cl, ch = r[\\\\\\\"pairwise_auc\\\\\\\"][pk][\\\\\\\"ci_lower\\\\\\\"], r[\\\\\\\"pairwise_auc\\\\\\\"][pk][\\\\\\\"ci_upper\\\\\\\"]\\\\n            oa = obd.get(pk)\\\\n            log.info(f\\\\\\\"{name:<18} {pk} DeBERTa={da:.4f} [{cl:.4f},{ch:.4f}] OBD={oa if oa else 'N/A'} delta={da-oa:+.4f}\\\\\\\" if oa else f\\\\\\\"{name:<18} {pk} DeBERTa={da:.4f} [{cl:.4f},{ch:.4f}]\\\\\\\")\\\\n        log.info(f\\\\\\\"  K*(DeBERTa)={r['kstar']}\\\\\\\")\\\\n    log.info(\\\\\\\"All done.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    torch.manual_seed(SEED)\\\\n    np.random.seed(SEED)\\\\n    if torch.cuda.is_available(): torch.cuda.manual_seed_all(SEED)\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nDeBERTa-v3-base upper-bound baseline for code domain (Qwen-1.5B scorer).\\n6-class ordinal depth classification, 5-fold GroupKFold, pairwise AUC with\\ndoc-level bootstrap CI, K* determination.\\n\\\"\\\"\\\"\\n\\nimport gc\\nimport json\\nimport logging\\nimport os\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom torch.utils.data import Dataset, DataLoader\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import roc_auc_score\\nfrom transformers import (\\n    AutoTokenizer,\\n    AutoModelForSequenceClassification,\\n    get_linear_schedule_with_warmup,\\n)\\n\\nROOT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nDATA_DIR = ROOT / \\\"data\\\"\\nRESULTS_DIR = ROOT / \\\"results\\\" / \\\"exp_deberta_code_qwen1b5\\\"\\n\\nEXPERIMENTS = {\\n    \\\"code_qwen1b5\\\": DATA_DIR / \\\"exp_code_qwen1b5\\\",\\n}\\n\\nOBD_MAP = {\\n    \\\"code_qwen1b5\\\": ROOT / \\\"results\\\" / \\\"exp_code_qwen1b5\\\" / \\\"pairwise_auc.json\\\",\\n}\\n\\nMODEL_NAME = \\\"microsoft/deberta-v3-base\\\"\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\nMAX_LEN = 512\\nN_CLASSES = 6\\nN_FOLDS = 5\\nEPOCHS = 3\\nBS = 16\\nEVAL_BS = 8\\nGRAD_ACCUM = 2\\nLR = 2e-5\\nWARMUP = 0.1\\nWD = 0.01\\nN_BOOT = 10000\\nTHETA = 0.60\\nSEED = 42\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\")\\nlog = logging.getLogger(__name__)\\n\\n\\ndef load_data(exp_dir):\\n    texts, labels, doc_ids = [], [], []\\n    for d in range(N_CLASSES):\\n        with open(exp_dir / f\\\"depth_{d}.jsonl\\\") as f:\\n            for line in f:\\n                obj = json.loads(line)\\n                texts.append(obj[\\\"text\\\"])\\n                labels.append(d)\\n                doc_ids.append(obj[\\\"doc_id\\\"])\\n    return texts, np.array(labels), np.array(doc_ids)\\n\\n\\nclass DS(Dataset):\\n    def __init__(self, ids, masks, labels):\\n        self.ids, self.masks, self.labels = ids, masks, labels\\n    def __len__(self): return len(self.labels)\\n    def __getitem__(self, i): return self.ids[i], self.masks[i], self.labels[i]\\n\\n\\ndef collate(batch):\\n    ids_l, mask_l, lab_l = zip(*batch)\\n    mx = max(len(x) for x in ids_l)\\n    bsz = len(ids_l)\\n    ids = torch.zeros(bsz, mx, dtype=torch.long)\\n    masks = torch.zeros(bsz, mx, dtype=torch.long)\\n    for i, (x, m) in enumerate(zip(ids_l, mask_l)):\\n        n = len(x)\\n        ids[i, :n] = torch.tensor(x, dtype=torch.long)\\n        masks[i, :n] = torch.tensor(m, dtype=torch.long)\\n    return ids, masks, torch.tensor(lab_l, dtype=torch.long)\\n\\n\\ndef train_fold(tr_ids, tr_masks, tr_labels, va_ids, va_masks, va_labels, device, fold):\\n    log.info(f\\\"  Fold {fold}: train={len(tr_labels)}, val={len(va_labels)}\\\")\\n    model = AutoModelForSequenceClassification.from_pretrained(\\n        MODEL_NAME, num_labels=N_CLASSES, cache_dir=HF_CACHE,\\n        local_files_only=True, torch_dtype=torch.float32,\\n    ).to(device)\\n\\n    tr_dl = DataLoader(DS(tr_ids, tr_masks, tr_labels), batch_size=BS, shuffle=True, collate_fn=collate, num_workers=2, pin_memory=True)\\n    va_dl = DataLoader(DS(va_ids, va_masks, va_labels), batch_size=EVAL_BS, collate_fn=collate, num_workers=2, pin_memory=True)\\n\\n    opt = torch.optim.AdamW(model.parameters(), lr=LR, weight_decay=WD)\\n    total_opt = (len(tr_dl) // GRAD_ACCUM) * EPOCHS\\n    sched = get_linear_schedule_with_warmup(opt, int(total_opt * WARMUP), total_opt)\\n\\n    model.train()\\n    for ep in range(EPOCHS):\\n        ep_loss = 0.0\\n        opt.zero_grad()\\n        for step, (ids, mask, lab) in enumerate(tr_dl):\\n            ids, mask, lab = ids.to(device), mask.to(device), lab.to(device)\\n            out = model(input_ids=ids, attention_mask=mask, labels=lab)\\n            (out.loss / GRAD_ACCUM).backward()\\n            ep_loss += out.loss.item()\\n            if (step + 1) % GRAD_ACCUM == 0:\\n                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)\\n                opt.step()\\n                sched.step()\\n                opt.zero_grad()\\n            if step % 200 == 0 and step > 0:\\n                log.info(f\\\"    Ep {ep+1} step {step}/{len(tr_dl)} loss={ep_loss/(step+1):.4f}\\\")\\n        log.info(f\\\"   \\n\\n... [截断: 输出过长，省略 1323 字符] ...\\n\\n np.array(boots)\\n        ci_lo, ci_hi = float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))\\n        results[key] = {\\\"auc\\\": round(auc,4), \\\"ci_lower\\\": round(ci_lo,4), \\\"ci_upper\\\": round(ci_hi,4),\\n                         \\\"ci_lower_above_theta\\\": bool(ci_lo > THETA), \\\"boot_mean\\\": round(float(boots.mean()),4), \\\"boot_std\\\": round(float(boots.std()),4)}\\n    kstar = 0\\n    for k in range(N_CLASSES - 1):\\n        if results[f\\\"{k}v{k+1}\\\"][\\\"ci_lower_above_theta\\\"]: kstar = k + 1\\n        else: break\\n    return results, kstar\\n\\n\\ndef load_obd(name):\\n    p = OBD_MAP.get(name)\\n    if p and p.exists():\\n        data = json.load(open(p))\\n        return data.get(\\\"mean\\\", data)\\n    return None\\n\\n\\ndef main():\\n    os.environ[\\\"HF_HOME\\\"] = HF_CACHE\\n    os.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\n    os.environ[\\\"HF_HUB_DISABLE_XET\\\"] = \\\"1\\\"\\n    os.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\\n    device = torch.device(\\\"cuda:0\\\")\\n    log.info(f\\\"Device: {device} ({torch.cuda.get_device_name(0)})\\\")\\n\\n    log.info(f\\\"Loading tokenizer: {MODEL_NAME}\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, cache_dir=HF_CACHE, use_fast=False, local_files_only=True)\\n    log.info(\\\"Tokenizer loaded\\\")\\n\\n    RESULTS_DIR.mkdir(parents=True, exist_ok=True)\\n    all_res = {}\\n\\n    for exp_name, exp_dir in EXPERIMENTS.items():\\n        log.info(f\\\"\\\\n{'='*60}\\\\n{exp_name}\\\\n{'='*60}\\\")\\n        t0 = time.time()\\n        texts, labels, doc_ids = load_data(exp_dir)\\n        N = len(texts)\\n        log.info(f\\\"Loaded {N} samples ({N // N_CLASSES} docs x {N_CLASSES} depths)\\\")\\n\\n        log.info(\\\"Tokenizing...\\\")\\n        enc = tokenizer(texts, truncation=True, max_length=MAX_LEN, padding=False)\\n        all_ids, all_masks = enc[\\\"input_ids\\\"], enc[\\\"attention_mask\\\"]\\n        log.info(\\\"Tokenization done\\\")\\n\\n        gkf = GroupKFold(n_splits=N_FOLDS)\\n        oof = np.zeros((N, N_CLASSES))\\n\\n        for fi, (tr_i, va_i) in enumerate(gkf.split(np.arange(N), labels, doc_ids)):\\n            oof[va_i] = train_fold(\\n                [all_ids[i] for i in tr_i], [all_masks[i] for i in tr_i], labels[tr_i].tolist(),\\n                [all_ids[i] for i in va_i], [all_masks[i] for i in va_i], labels[va_i].tolist(),\\n                device, fi,\\n            )\\n\\n        pw, kstar = pairwise_auc_ci(labels, oof, doc_ids)\\n        elapsed = time.time() - t0\\n\\n        log.info(f\\\"\\\\nPairwise AUC ({exp_name}):\\\")\\n        for pk, v in pw.items():\\n            log.info(f\\\"  {pk}: {v['auc']:.4f} [{v['ci_lower']:.4f}, {v['ci_upper']:.4f}]\\\")\\n        log.info(f\\\"  K* (theta={THETA}): {kstar}  Time: {elapsed:.0f}s\\\")\\n\\n        obd = load_obd(exp_name)\\n        exp_res = {\\\"experiment\\\": exp_name, \\\"model\\\": MODEL_NAME, \\\"method\\\": \\\"DeBERTa-v3-base fine-tuned 6-class\\\",\\n                    \\\"n_samples\\\": N, \\\"epochs\\\": EPOCHS, \\\"lr\\\": LR, \\\"batch_size\\\": BS, \\\"max_length\\\": MAX_LEN,\\n                    \\\"theta\\\": THETA, \\\"kstar\\\": kstar, \\\"pairwise_auc\\\": pw, \\\"elapsed_seconds\\\": round(elapsed, 1)}\\n        if obd: exp_res[\\\"obd_baseline\\\"] = obd\\n        all_res[exp_name] = exp_res\\n        json.dump(exp_res, open(RESULTS_DIR / f\\\"{exp_name}.json\\\", \\\"w\\\"), indent=2)\\n        log.info(f\\\"Saved: {RESULTS_DIR / f'{exp_name}.json'}\\\")\\n\\n    json.dump(all_res, open(RESULTS_DIR / \\\"summary.json\\\", \\\"w\\\"), indent=2)\\n\\n    log.info(f\\\"\\\\n{'='*80}\\\\nDeBERTa vs OBD-LightGBM\\\\n{'='*80}\\\")\\n    for name, r in all_res.items():\\n        obd = r.get(\\\"obd_baseline\\\", {})\\n        for pk in [\\\"0v1\\\", \\\"1v2\\\", \\\"2v3\\\", \\\"3v4\\\", \\\"4v5\\\"]:\\n            da = r[\\\"pairwise_auc\\\"][pk][\\\"auc\\\"]\\n            cl, ch = r[\\\"pairwise_auc\\\"][pk][\\\"ci_lower\\\"], r[\\\"pairwise_auc\\\"][pk][\\\"ci_upper\\\"]\\n            oa = obd.get(pk)\\n            log.info(f\\\"{name:<18} {pk} DeBERTa={da:.4f} [{cl:.4f},{ch:.4f}] OBD={oa if oa else 'N/A'} delta={da-oa:+.4f}\\\" if oa else f\\\"{name:<18} {pk} DeBERTa={da:.4f} [{cl:.4f},{ch:.4f}]\\\")\\n        log.info(f\\\"  K*(DeBERTa)={r['kstar']}\\\")\\n    log.info(\\\"All done.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    torch.manual_seed(SEED)\\n    np.random.seed(SEED)\\n    if torch.cuda.is_available(): torch.cuda.manual_seed_all(SEED)\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DQ7JFd4Uoh2rY49uYcPnCF",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "717c186d-ceb6-4cf8-a576-17189cbaf962",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015hBzBXw4ijh5HRFxGnziqr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 736,
+                "cache_read_input_tokens": 24475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 736
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T07:25:35.701Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DQ7JFd4Uoh2rY49uYcPnCF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 20 13:31 .\\\\ndrwxr-xr-x 63 root root 4096 May 20 15:24 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "03ac0715-d89d-48ef-adc7-4e20f8958373",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 20 13:31 .\\\\ndrwxr-xr-x 63 root root 4096 May 20 15:24 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  2 root root   10 May 20 13:31 .\\ndrwxr-xr-x 63 root root 4096 May 20 15:24 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0174jAK1gVB77ZHNJFSpwqYB",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "find /root/autodl-tmp/gen-depth-contamination/ -name \"oof*\" -path \"*code*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "1316785f-7f4c-4b66-8ccf-6afbcb94ce12",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015hBzBXw4ijh5HRFxGnziqr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 736,
+                "cache_read_input_tokens": 24475,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 736
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T07:25:36.498Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0174jAK1gVB77ZHNJFSpwqYB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "1b5e6089-f1a9-4fd3-a68a-de757840894f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze the script. The output was truncated, so I need to see the `pairwise_auc_ci` function specifically. Let me grep for the relevant section.\n\nFrom what I can see:\n1. The results directory `exp_deberta_code_qwen1b5` is empty (only `.` and `..`)\n2. No `oof*` files found anywhere with \"code\" in the path\n3. The script was truncated - I need to see the `pairwise_auc_ci` function\n\n\n4. Now I'm retrieving the full script to find that function definition.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "25ed25bc-5afa-41e6-8192-4edb169ba9ff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Em4TW2Wu49teTZTny3mG3j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4457,
+                "cache_read_input_tokens": 25211,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4457
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本输出被截断，需要看 `pairwise_auc_ci` 函数。结果目录为空，没有 oof.npy，需要完整重跑。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "488ece3a-3729-4026-88d6-9f69a39eaa41",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Em4TW2Wu49teTZTny3mG3j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4457,
+                "cache_read_input_tokens": 25211,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4457
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C1uG1LMvx7LWNmZBtqyHZM",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "grep -n \"pairwise_auc_ci\\|int(d)\\|int(doc\" /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "860ec4a4-4c9c-41a2-a140-cf8f5475ef61",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Em4TW2Wu49teTZTny3mG3j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4457,
+                "cache_read_input_tokens": 25211,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4457
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T07:25:45.212Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C1uG1LMvx7LWNmZBtqyHZM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "30d4f59b-46e4-47e8-b2cc-cbbb9b92ed24",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y4ZcAjTRFgzbMCFK7g3KnA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "head -180 /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "1b96e8d2-6928-46f4-99f5-be01f99f29eb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Em4TW2Wu49teTZTny3mG3j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4457,
+                "cache_read_input_tokens": 25211,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4457
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T07:25:46.377Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y4ZcAjTRFgzbMCFK7g3KnA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDeBERTa-v3-base upper-bound baseline for code domain (Qwen-1.5B scorer).\\\\n6-class ordinal depth classification, 5-fold GroupKFold, pairwise AUC with\\\\ndoc-level bootstrap CI, K* determination.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport gc\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom torch.utils.data import Dataset, DataLoader\\\\nfrom sklearn.model_selection import GroupKFold\\\\nfrom sklearn.metrics import roc_auc_score\\\\nfrom transformers import (\\\\n    AutoTokenizer,\\\\n    AutoModelForSequenceClassification,\\\\n    get_linear_schedule_with_warmup,\\\\n)\\\\n\\\\nROOT = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination\\\\\\\")\\\\nDATA_DIR = ROOT / \\\\\\\"data\\\\\\\"\\\\nRESULTS_DIR = ROOT / \\\\\\\"results\\\\\\\" / \\\\\\\"exp_deberta_code_qwen1b5\\\\\\\"\\\\n\\\\nEXPERIMENTS = {\\\\n    \\\\\\\"code_qwen1b5\\\\\\\": DATA_DIR / \\\\\\\"exp_code_qwen1b5\\\\\\\",\\\\n}\\\\n\\\\nOBD_MAP = {\\\\n    \\\\\\\"code_qwen1b5\\\\\\\": ROOT / \\\\\\\"results\\\\\\\" / \\\\\\\"exp_code_qwen1b5\\\\\\\" / \\\\\\\"pairwise_auc.json\\\\\\\",\\\\n}\\\\n\\\\nMODEL_NAME = \\\\\\\"microsoft/deberta-v3-base\\\\\\\"\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nMAX_LEN = 512\\\\nN_CLASSES = 6\\\\nN_FOLDS = 5\\\\nEPOCHS = 3\\\\nBS = 16\\\\nEVAL_BS = 8\\\\nGRAD_ACCUM = 2\\\\nLR = 2e-5\\\\nWARMUP = 0.1\\\\nWD = 0.01\\\\nN_BOOT = 10000\\\\nTHETA = 0.60\\\\nSEED = 42\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\", datefmt=\\\\\\\"%H:%M:%S\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef load_data(exp_dir):\\\\n    texts, labels, doc_ids = [], [], []\\\\n    for d in range(N_CLASSES):\\\\n        with open(exp_dir / f\\\\\\\"depth_{d}.jsonl\\\\\\\") as f:\\\\n            for line in f:\\\\n                obj = json.loads(line)\\\\n                texts.append(obj[\\\\\\\"text\\\\\\\"])\\\\n                labels.append(d)\\\\n                doc_ids.append(obj[\\\\\\\"doc_id\\\\\\\"])\\\\n    return texts, np.array(labels), np.array(doc_ids)\\\\n\\\\n\\\\nclass DS(Dataset):\\\\n    def __init__(self, ids, masks, labels):\\\\n        self.ids, self.masks, self.labels = ids, masks, labels\\\\n    def __len__(self): return len(self.labels)\\\\n    def __getitem__(self, i): return self.ids[i], self.masks[i], self.labels[i]\\\\n\\\\n\\\\ndef collate(batch):\\\\n    ids_l, mask_l, lab_l = zip(*batch)\\\\n    mx = max(len(x) for x in ids_l)\\\\n    bsz = len(ids_l)\\\\n    ids = torch.zeros(bsz, mx, dtype=torch.long)\\\\n    masks = torch.zeros(bsz, mx, dtype=torch.long)\\\\n    for i, (x, m) in enumerate(zip(ids_l, mask_l)):\\\\n        n = len(x)\\\\n        ids[i, :n] = torch.tensor(x, dtype=torch.long)\\\\n        masks[i, :n] = torch.tensor(m, dtype=torch.long)\\\\n    return ids, masks, torch.tensor(lab_l, dtype=torch.long)\\\\n\\\\n\\\\ndef train_fold(tr_ids, tr_masks, tr_labels, va_ids, va_masks, va_labels, device, fold):\\\\n    log.info(f\\\\\\\"  Fold {fold}: train={len(tr_labels)}, val={len(va_labels)}\\\\\\\")\\\\n    model = AutoModelForSequenceClassification.from_pretrained(\\\\n        MODEL_NAME, num_labels=N_CLASSES, cache_dir=HF_CACHE,\\\\n        local_files_only=True, torch_dtype=torch.float32,\\\\n    ).to(device)\\\\n\\\\n    tr_dl = DataLoader(DS(tr_ids, tr_masks, tr_labels), batch_size=BS, shuffle=True, collate_fn=collate, num_workers=2, pin_memory=True)\\\\n    va_dl = DataLoader(DS(va_ids, va_masks, va_labels), batch_size=EVAL_BS, collate_fn=collate, num_workers=2, pin_memory=True)\\\\n\\\\n    opt = torch.optim.AdamW(model.parameters(), lr=LR, weight_decay=WD)\\\\n    total_opt = (len(tr_dl) // GRAD_ACCUM) * EPOCHS\\\\n    sched = get_linear_schedule_with_warmup(opt, int(total_opt * WARMUP), total_opt)\\\\n\\\\n    model.train()\\\\n    for ep in range(EPOCHS):\\\\n        ep_loss = 0.0\\\\n        opt.zero_grad()\\\\n        for step, (ids, mask, lab) in enumerate(tr_dl):\\\\n            ids, mask, lab = ids.to(device), mask.to(device), lab.to(device)\\\\n            out = model(input_ids=ids, attention_mask=mask, labels=lab)\\\\n            (out.loss / GRAD_ACCUM).backward()\\\\n            ep_loss += out.loss.item()\\\\n            if (step + 1) % GRAD_ACCUM == 0:\\\\n                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)\\\\n                opt.step()\\\\n                sched.step()\\\\n                opt.zero_grad()\\\\n            if step % 200 == 0 and step > 0:\\\\n                log.info(f\\\\\\\"    Ep {ep+1} step {step}/{len(tr_dl)} loss={ep_loss/(step+1):.4f}\\\\\\\")\\\\n        log.info(f\\\\\\\"    Ep {ep+1}/{EPOCHS} avg_loss={ep_loss/len(tr_dl):.4f}\\\\\\\")\\\\n\\\\n    torch.cuda.empty_cache()\\\\n    model.eval()\\\\n    probs = []\\\\n    with torch.no_grad():\\\\n        for ids, mask, _ in va_dl:\\\\n            ids, mask = ids.to(device), mask.to(device)\\\\n            out = model(input_ids=ids, attention_mask=mask)\\\\n            probs.append(torch.softmax(out.logits, dim=-1).cpu().numpy())\\\\n    del model, opt, sched\\\\n    torch.cuda.empty_cache()\\\\n    gc.collect()\\\\n    return np.concatenate(probs)\\\\n\\\\n\\\\ndef pairwise_auc_ci(labels, probs, doc_ids):\\\\n    rng = np.random.RandomState(SEED)\\\\n    results = {}\\\\n    for k in range(N_CLASSES - 1):\\\\n        key = f\\\\\\\"{k}v{k+1}\\\\\\\"\\\\n        mask = (labels == k) | (labels == k + 1)\\\\n        y = (labels[mask] == k + 1).astype(int)\\\\n        s = probs[mask][:, k+1:].sum(axis=1)\\\\n        docs = doc_ids[mask]\\\\n        auc = float(roc_auc_score(y, s))\\\\n        doc2idx = {}\\\\n        for i, d in enumerate(docs):\\\\n            doc2idx.setdefault(int(d), []).append(i)\\\\n        idx_arr = [np.array(v) for v in doc2idx.values()]\\\\n        n_docs = len(idx_arr)\\\\n        boots = []\\\\n        for _ in range(N_BOOT):\\\\n            si = rng.randint(0, n_docs, n_docs)\\\\n            idx = np.concatenate([idx_arr[j] for j in si])\\\\n            try: boots.append(roc_auc_score(y[idx], s[idx]))\\\\n            except ValueError: continue\\\\n        boots = np.array(boots)\\\\n        ci_lo, ci_hi = float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))\\\\n        results[key] = {\\\\\\\"auc\\\\\\\": round(auc,4), \\\\\\\"ci_lower\\\\\\\": round(ci_lo,4), \\\\\\\"ci_upper\\\\\\\": round(ci_hi,4),\\\\n                         \\\\\\\"ci_lower_above_theta\\\\\\\": bool(ci_lo > THETA), \\\\\\\"boot_mean\\\\\\\": round(float(boots.mean()),4), \\\\\\\"boot_std\\\\\\\": round(float(boots.std()),4)}\\\\n    kstar = 0\\\\n    for k in range(N_CLASSES - 1):\\\\n        if results[f\\\\\\\"{k}v{k+1}\\\\\\\"][\\\\\\\"ci_lower_above_theta\\\\\\\"]: kstar = k + 1\\\\n        else: break\\\\n    return results, kstar\\\\n\\\\n\\\\ndef load_obd(name):\\\\n    p = OBD_MAP.get(name)\\\\n    if p and p.exists():\\\\n        data = json.load(open(p))\\\\n        return data.get(\\\\\\\"mean\\\\\\\", data)\\\\n    return None\\\\n\\\\n\\\\ndef main():\\\\n    os.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_CACHE\\\\n    os.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\n    os.environ[\\\\\\\"HF_HUB_DISABLE_XET\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n    os.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "04e0d980-9c1e-4bab-b539-c55907061b8d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nDeBERTa-v3-base upper-bound baseline for code domain (Qwen-1.5B scorer).\\\\n6-class ordinal depth classification, 5-fold GroupKFold, pairwise AUC with\\\\ndoc-level bootstrap CI, K* determination.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport gc\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom torch.utils.data import Dataset, DataLoader\\\\nfrom sklearn.model_selection import GroupKFold\\\\nfrom sklearn.metrics import roc_auc_score\\\\nfrom transformers import (\\\\n    AutoTokenizer,\\\\n    AutoModelForSequenceClassification,\\\\n    get_linear_schedule_with_warmup,\\\\n)\\\\n\\\\nROOT = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination\\\\\\\")\\\\nDATA_DIR = ROOT / \\\\\\\"data\\\\\\\"\\\\nRESULTS_DIR = ROOT / \\\\\\\"results\\\\\\\" / \\\\\\\"exp_deberta_code_qwen1b5\\\\\\\"\\\\n\\\\nEXPERIMENTS = {\\\\n    \\\\\\\"code_qwen1b5\\\\\\\": DATA_DIR / \\\\\\\"exp_code_qwen1b5\\\\\\\",\\\\n}\\\\n\\\\nOBD_MAP = {\\\\n    \\\\\\\"code_qwen1b5\\\\\\\": ROOT / \\\\\\\"results\\\\\\\" / \\\\\\\"exp_code_qwen1b5\\\\\\\" / \\\\\\\"pairwise_auc.json\\\\\\\",\\\\n}\\\\n\\\\nMODEL_NAME = \\\\\\\"microsoft/deberta-v3-base\\\\\\\"\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\nMAX_LEN = 512\\\\nN_CLASSES = 6\\\\nN_FOLDS = 5\\\\nEPOCHS = 3\\\\nBS = 16\\\\nEVAL_BS = 8\\\\nGRAD_ACCUM = 2\\\\nLR = 2e-5\\\\nWARMUP = 0.1\\\\nWD = 0.01\\\\nN_BOOT = 10000\\\\nTHETA = 0.60\\\\nSEED = 42\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\", datefmt=\\\\\\\"%H:%M:%S\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef load_data(exp_dir):\\\\n    texts, labels, doc_ids = [], [], []\\\\n    for d in range(N_CLASSES):\\\\n        with open(exp_dir / f\\\\\\\"depth_{d}.jsonl\\\\\\\") as f:\\\\n            for line in f:\\\\n                obj = json.loads(line)\\\\n                texts.append(obj[\\\\\\\"text\\\\\\\"])\\\\n                labels.append(d)\\\\n                doc_ids.append(obj[\\\\\\\"doc_id\\\\\\\"])\\\\n    return texts, np.array(labels), np.array(doc_ids)\\\\n\\\\n\\\\nclass DS(Dataset):\\\\n    def __init__(self, ids, masks, labels):\\\\n        self.ids, self.masks, self.labels = ids, masks, labels\\\\n    def __len__(self): return len(self.labels)\\\\n    def __getitem__(self, i): return self.ids[i], self.masks[i], self.labels[i]\\\\n\\\\n\\\\ndef collate(batch):\\\\n    ids_l, mask_l, lab_l = zip(*batch)\\\\n    mx = max(len(x) for x in ids_l)\\\\n    bsz = len(ids_l)\\\\n    ids = torch.zeros(bsz, mx, dtype=torch.long)\\\\n    masks = torch.zeros(bsz, mx, dtype=torch.long)\\\\n    for i, (x, m) in enumerate(zip(ids_l, mask_l)):\\\\n        n = len(x)\\\\n        ids[i, :n] = torch.tensor(x, dtype=torch.long)\\\\n        masks[i, :n] = torch.tensor(m, dtype=torch.long)\\\\n    return ids, masks, torch.tensor(lab_l, dtype=torch.long)\\\\n\\\\n\\\\ndef train_fold(tr_ids, tr_masks, tr_labels, va_ids, va_masks, va_labels, device, fold):\\\\n    log.info(f\\\\\\\"  Fold {fold}: train={len(tr_labels)}, val={len(va_labels)}\\\\\\\")\\\\n    model = AutoModelForSequenceClassification.from_pretrained(\\\\n        MODEL_NAME, num_labels=N_CLASSES, cache_dir=HF_CACHE,\\\\n        local_files_only=True, torch_dtype=torch.float32,\\\\n    ).to(device)\\\\n\\\\n    tr_dl = DataLoader(DS(tr_ids, tr_masks, tr_labels), batch_size=BS, shuffle=True, collate_fn=collate, num_workers=2, pin_memory=True)\\\\n    va_dl = DataLoader(DS(va_ids, va_masks, va_labels), batch_size=EVAL_BS, collate_fn=collate, num_workers=2, pin_memory=True)\\\\n\\\\n    opt = torch.optim.AdamW(model.parameters(), lr=LR, weight_decay=WD)\\\\n    total_opt = (len(tr_dl) // GRAD_ACCUM) * EPOCHS\\\\n    sched = get_linear_schedule_with_warmup(opt, int(total_opt * WARMUP), total_opt)\\\\n\\\\n    model.train()\\\\n    for ep in range(EPOCHS):\\\\n        ep_loss = 0.0\\\\n        opt.zero_grad()\\\\n        for step, (ids, mask, lab) in enumerate(tr_dl):\\\\n            ids, mask, lab = ids.to(device), mask.to(device), lab.to(device)\\\\n            out = model(input_ids=ids, attention_mask=mask, labels=lab)\\\\n            (out.loss / GRAD_ACCUM).backward()\\\\n            ep_loss += out.loss.item()\\\\n            if (step + 1) % GRAD_ACCUM == 0:\\\\n                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)\\\\n                opt.step()\\\\n                sched.step()\\\\n                opt.zero_grad()\\\\n            if step % 200 == 0 and step > 0:\\\\n                log.info(f\\\\\\\"    Ep {ep+1} step {step}/{len(tr_dl)} loss={ep_loss/(step+1):.4f}\\\\\\\")\\\\n        log.info(f\\\\\\\"    Ep {ep+1}/{EPOCHS} avg_loss={ep_loss/len(tr_dl):.4f}\\\\\\\")\\\\n\\\\n    torch.cuda.empty_cache()\\\\n    model.eval()\\\\n    probs = []\\\\n    with torch.no_grad():\\\\n        for ids, mask, _ in va_dl:\\\\n            ids, mask = ids.to(device), mask.to(device)\\\\n            out = model(input_ids=ids, attention_mask=mask)\\\\n            probs.append(torch.softmax(out.logits, dim=-1).cpu().numpy())\\\\n    del model, opt, sched\\\\n    torch.cuda.empty_cache()\\\\n    gc.collect()\\\\n    return np.concatenate(probs)\\\\n\\\\n\\\\ndef pairwise_auc_ci(labels, probs, doc_ids):\\\\n    rng = np.random.RandomState(SEED)\\\\n    results = {}\\\\n    for k in range(N_CLASSES - 1):\\\\n        key = f\\\\\\\"{k}v{k+1}\\\\\\\"\\\\n        mask = (labels == k) | (labels == k + 1)\\\\n        y = (labels[mask] == k + 1).astype(int)\\\\n        s = probs[mask][:, k+1:].sum(axis=1)\\\\n        docs = doc_ids[mask]\\\\n        auc = float(roc_auc_score(y, s))\\\\n        doc2idx = {}\\\\n        for i, d in enumerate(docs):\\\\n            doc2idx.setdefault(int(d), []).append(i)\\\\n        idx_arr = [np.array(v) for v in doc2idx.values()]\\\\n        n_docs = len(idx_arr)\\\\n        boots = []\\\\n        for _ in range(N_BOOT):\\\\n            si = rng.randint(0, n_docs, n_docs)\\\\n            idx = np.concatenate([idx_arr[j] for j in si])\\\\n            try: boots.append(roc_auc_score(y[idx], s[idx]))\\\\n            except ValueError: continue\\\\n        boots = np.array(boots)\\\\n        ci_lo, ci_hi = float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))\\\\n        results[key] = {\\\\\\\"auc\\\\\\\": round(auc,4), \\\\\\\"ci_lower\\\\\\\": round(ci_lo,4), \\\\\\\"ci_upper\\\\\\\": round(ci_hi,4),\\\\n                         \\\\\\\"ci_lower_above_theta\\\\\\\": bool(ci_lo > THETA), \\\\\\\"boot_mean\\\\\\\": round(float(boots.mean()),4), \\\\\\\"boot_std\\\\\\\": round(float(boots.std()),4)}\\\\n    kstar = 0\\\\n    for k in range(N_CLASSES - 1):\\\\n        if results[f\\\\\\\"{k}v{k+1}\\\\\\\"][\\\\\\\"ci_lower_above_theta\\\\\\\"]: kstar = k + 1\\\\n        else: break\\\\n    return results, kstar\\\\n\\\\n\\\\ndef load_obd(name):\\\\n    p = OBD_MAP.get(name)\\\\n    if p and p.exists():\\\\n        data = json.load(open(p))\\\\n        return data.get(\\\\\\\"mean\\\\\\\", data)\\\\n    return None\\\\n\\\\n\\\\ndef main():\\\\n    os.environ[\\\\\\\"HF_HOME\\\\\\\"] = HF_CACHE\\\\n    os.environ[\\\\\\\"TOKENIZERS_PARALLELISM\\\\\\\"] = \\\\\\\"false\\\\\\\"\\\\n    os.environ[\\\\\\\"HF_HUB_DISABLE_XET\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n    os.environ[\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nDeBERTa-v3-base upper-bound baseline for code domain (Qwen-1.5B scorer).\\n6-class ordinal depth classification, 5-fold GroupKFold, pairwise AUC with\\ndoc-level bootstrap CI, K* determination.\\n\\\"\\\"\\\"\\n\\nimport gc\\nimport json\\nimport logging\\nimport os\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom torch.utils.data import Dataset, DataLoader\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import roc_auc_score\\nfrom transformers import (\\n    AutoTokenizer,\\n    AutoModelForSequenceClassification,\\n    get_linear_schedule_with_warmup,\\n)\\n\\nROOT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nDATA_DIR = ROOT / \\\"data\\\"\\nRESULTS_DIR = ROOT / \\\"results\\\" / \\\"exp_deberta_code_qwen1b5\\\"\\n\\nEXPERIMENTS = {\\n    \\\"code_qwen1b5\\\": DATA_DIR / \\\"exp_code_qwen1b5\\\",\\n}\\n\\nOBD_MAP = {\\n    \\\"code_qwen1b5\\\": ROOT / \\\"results\\\" / \\\"exp_code_qwen1b5\\\" / \\\"pairwise_auc.json\\\",\\n}\\n\\nMODEL_NAME = \\\"microsoft/deberta-v3-base\\\"\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\nMAX_LEN = 512\\nN_CLASSES = 6\\nN_FOLDS = 5\\nEPOCHS = 3\\nBS = 16\\nEVAL_BS = 8\\nGRAD_ACCUM = 2\\nLR = 2e-5\\nWARMUP = 0.1\\nWD = 0.01\\nN_BOOT = 10000\\nTHETA = 0.60\\nSEED = 42\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\")\\nlog = logging.getLogger(__name__)\\n\\n\\ndef load_data(exp_dir):\\n    texts, labels, doc_ids = [], [], []\\n    for d in range(N_CLASSES):\\n        with open(exp_dir / f\\\"depth_{d}.jsonl\\\") as f:\\n            for line in f:\\n                obj = json.loads(line)\\n                texts.append(obj[\\\"text\\\"])\\n                labels.append(d)\\n                doc_ids.append(obj[\\\"doc_id\\\"])\\n    return texts, np.array(labels), np.array(doc_ids)\\n\\n\\nclass DS(Dataset):\\n    def __init__(self, ids, masks, labels):\\n        self.ids, self.masks, self.labels = ids, masks, labels\\n    def __len__(self): return len(self.labels)\\n    def __getitem__(self, i): return self.ids[i], self.masks[i], self.labels[i]\\n\\n\\ndef collate(batch):\\n    ids_l, mask_l, lab_l = zip(*batch)\\n    mx = max(len(x) for x in ids_l)\\n    bsz = len(ids_l)\\n    ids = torch.zeros(bsz, mx, dtype=torch.long)\\n    masks = torch.zeros(bsz, mx, dtype=torch.long)\\n    for i, (x, m) in enumerate(zip(ids_l, mask_l)):\\n        n = len(x)\\n        ids[i, :n] = torch.tensor(x, dtype=torch.long)\\n        masks[i, :n] = torch.tensor(m, dtype=torch.long)\\n    return ids, masks, torch.tensor(lab_l, dtype=torch.long)\\n\\n\\ndef train_fold(tr_ids, tr_masks, tr_labels, va_ids, va_masks, va_labels, device, fold):\\n    log.info(f\\\"  Fold {fold}: train={len(tr_labels)}, val={len(va_labels)}\\\")\\n    model = AutoModelForSequenceClassification.from_pretrained(\\n        MODEL_NAME, num_labels=N_CLASSES, cache_dir=HF_CACHE,\\n        local_files_only=True, torch_dtype=torch.float32,\\n    ).to(device)\\n\\n    tr_dl = DataLoader(DS(tr_ids, tr_masks, tr_labels), batch_size=BS, shuffle=True, collate_fn=collate, num_workers=2, pin_memory=True)\\n    va_dl = DataLoader(DS(va_ids, va_masks, va_labels), batch_size=EVAL_BS, collate_fn=collate, num_workers=2, pin_memory=True)\\n\\n    opt = torch.optim.AdamW(model.parameters(), lr=LR, weight_decay=WD)\\n    total_opt = (len(tr_dl) // GRAD_ACCUM) * EPOCHS\\n    sched = get_linear_schedule_with_warmup(opt, int(total_opt * WARMUP), total_opt)\\n\\n    model.train()\\n    for ep in range(EPOCHS):\\n        ep_loss = 0.0\\n        opt.zero_grad()\\n        for step, (ids, mask, lab) in enumerate(tr_dl):\\n            ids, mask, lab = ids.to(device), mask.to(device), lab.to(device)\\n            out = model(input_ids=ids, attention_mask=mask, labels=lab)\\n            (out.loss / GRAD_ACCUM).backward()\\n            ep_loss += out.loss.item()\\n            if (step + 1) % GRAD_ACCUM == 0:\\n                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)\\n                opt.step()\\n                sched.step()\\n                opt.zero_grad()\\n            if step % 200 == 0 and step > 0:\\n                log.info(f\\\"    Ep {ep+1} step {step}/{len(tr_dl)} loss={ep_loss/(step+1):.4f}\\\")\\n        log.info(f\\\"    Ep {ep+1}/{EPOCHS} avg_loss={ep_loss/len(tr_dl):.4f}\\\")\\n\\n    torch.cuda.empty_cache()\\n    model.eval()\\n    probs = []\\n    with torch.no_grad():\\n        for ids, mask, _ in va_dl:\\n            ids, mask = ids.to(device), mask.to(device)\\n            out = model(input_ids=ids, attention_mask=mask)\\n            probs.append(torch.softmax(out.logits, dim=-1).cpu().numpy())\\n    del model, opt, sched\\n    torch.cuda.empty_cache()\\n    gc.collect()\\n    return np.concatenate(probs)\\n\\n\\ndef pairwise_auc_ci(labels, probs, doc_ids):\\n    rng = np.random.RandomState(SEED)\\n    results = {}\\n    for k in range(N_CLASSES - 1):\\n        key = f\\\"{k}v{k+1}\\\"\\n        mask = (labels == k) | (labels == k + 1)\\n        y = (labels[mask] == k + 1).astype(int)\\n        s = probs[mask][:, k+1:].sum(axis=1)\\n        docs = doc_ids[mask]\\n        auc = float(roc_auc_score(y, s))\\n        doc2idx = {}\\n        for i, d in enumerate(docs):\\n            doc2idx.setdefault(int(d), []).append(i)\\n        idx_arr = [np.array(v) for v in doc2idx.values()]\\n        n_docs = len(idx_arr)\\n        boots = []\\n        for _ in range(N_BOOT):\\n            si = rng.randint(0, n_docs, n_docs)\\n            idx = np.concatenate([idx_arr[j] for j in si])\\n            try: boots.append(roc_auc_score(y[idx], s[idx]))\\n            except ValueError: continue\\n        boots = np.array(boots)\\n        ci_lo, ci_hi = float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))\\n        results[key] = {\\\"auc\\\": round(auc,4), \\\"ci_lower\\\": round(ci_lo,4), \\\"ci_upper\\\": round(ci_hi,4),\\n                         \\\"ci_lower_above_theta\\\": bool(ci_lo > THETA), \\\"boot_mean\\\": round(float(boots.mean()),4), \\\"boot_std\\\": round(float(boots.std()),4)}\\n    kstar = 0\\n    for k in range(N_CLASSES - 1):\\n        if results[f\\\"{k}v{k+1}\\\"][\\\"ci_lower_above_theta\\\"]: kstar = k + 1\\n        else: break\\n    return results, kstar\\n\\n\\ndef load_obd(name):\\n    p = OBD_MAP.get(name)\\n    if p and p.exists():\\n        data = json.load(open(p))\\n        return data.get(\\\"mean\\\", data)\\n    return None\\n\\n\\ndef main():\\n    os.environ[\\\"HF_HOME\\\"] = HF_CACHE\\n    os.environ[\\\"TOKENIZERS_PARALLELISM\\\"] = \\\"false\\\"\\n    os.environ[\\\"HF_HUB_DISABLE_XET\\\"] = \\\"1\\\"\\n    os.environ[\\\"TRANSFORMERS_OFFLINE\\\"] = \\\"1\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I can see the bug clearly. In the `pairwise_auc_ci` function, line that contains:\n\n```python\ndoc2idx.setdefault(int(d), []).append(i)\n```\n\nThe `int(d)` is the problem. For code domain, doc_ids are strings like `code_py_0`, so `int(d)` will fail.\n\nThe fix is to change `int(d)` to just `d`.\n\nAlso, I need to add `np.save(RESULTS_DIR / \"oof.npy\", oof)` before the `pairwise_auc_ci` call in `main()`.\n\n\nSince the results directory is empty and there's no existing oof.npy file, I'll need to run a full 5-fold retraining. Let me use `ssh_execute` to apply these fixes with sed, starting with changing that `int(d)` conversion to just `d` on line 148, and then adding the save statement before the function call. I realize that when launching with CUDA_VISIBLE_DEVICES=3, the script's cuda:0 reference will automatically map to physical GPU 3, so I don't need to change the device specification in the code itself. I'll just apply the two bug fixes: removing the `int()` cast on the doc_id and adding the numpy save call before the pairwise AUC calculation.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "251f65cd-07d8-456d-b66b-52dc21de304c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175CedPbiCr6WTmJqm3LtRq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3390,
+                "cache_read_input_tokens": 29668,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3390
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到 bug：`pairwise_auc_ci` 函数中 `doc2idx.setdefault(int(d), []).append(i)`，对字符串 doc_id 调 `int()` 会崩溃。结果目录为空，无 oof.npy，需完整重跑。\n\n现在修复两处：\n1. `int(d)` → `d`\n2. 在 `pairwise_auc_ci` 调用前保存 oof.npy"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "34b04039-4725-41cd-89b5-0c623c4d4703",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175CedPbiCr6WTmJqm3LtRq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3390,
+                "cache_read_input_tokens": 29668,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3390
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D2qxmnH7jcskzSsXV2Zi4b",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "sed -i 's/doc2idx.setdefault(int(d), \\[\\]).append(i)/doc2idx.setdefault(d, []).append(i)/' /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "f3e1047c-caba-41d5-a0aa-9a4fb8cf127c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175CedPbiCr6WTmJqm3LtRq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3390,
+                "cache_read_input_tokens": 29668,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3390
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T07:26:09.868Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D2qxmnH7jcskzSsXV2Zi4b",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "c312ce0d-c4c5-404d-af3b-fcb1e50ce96a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019rFtuWtGo244WMyr5WLUHb",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "sed -i '/pw, kstar = pairwise_auc_ci(labels, oof, doc_ids)/i\\        np.save(RESULTS_DIR / \"oof.npy\", oof)' /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "7e59ad4b-3546-4723-9948-79055477f263",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C2tAk4g4KJNBK3tW37EVvi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1133,
+                "cache_read_input_tokens": 33058,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1133
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T07:26:19.245Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019rFtuWtGo244WMyr5WLUHb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "55111ff3-6776-44b3-9ef1-f30a5b33d682",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证修复后的代码。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "c7785421-625b-4a97-861a-99b0d13ec02b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015BhPWiSpcKobQErwkGJogB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 248,
+                "cache_read_input_tokens": 34191,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 248
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WeBaX7wfkEi9oP9AyqFNZP",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "grep -n \"doc2idx\\|oof.npy\\|pairwise_auc_ci\" /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "8b2c6110-29e4-41c2-b13b-46c883c9b0a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015BhPWiSpcKobQErwkGJogB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 248,
+                "cache_read_input_tokens": 34191,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 248
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T07:26:25.343Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WeBaX7wfkEi9oP9AyqFNZP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "7a119740-0074-4a16-9232-58b83b636cbe",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PiFSzDHsPyxjtq8MKbEeij",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "python3 -c \"import ast; ast.parse(open('/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py').read()); print('SYNTAX_OK')\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "bd631c61-1528-4900-91fe-639cba8dfeac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015BhPWiSpcKobQErwkGJogB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 248,
+                "cache_read_input_tokens": 34191,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 248
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T07:26:27.128Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PiFSzDHsPyxjtq8MKbEeij",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "d7b4998a-537d-4ab4-81d7-34b60d30e0a4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"SYNTAX_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证通过。确认修复内容和 GPU 状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "48313cd0-6e4f-4cdc-94f8-5ad7ceac0c47",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TBzTf5gL8v8n5ezdrKYWNA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 527,
+                "cache_read_input_tokens": 34439,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 527
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WA7y6Aw9EGp6u9NgB9TRV9",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "grep -n \"doc2idx\" /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "fe9734a9-302f-4ab7-81cb-ba108458a37c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TBzTf5gL8v8n5ezdrKYWNA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 527,
+                "cache_read_input_tokens": 34439,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 527
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T07:26:44.961Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WA7y6Aw9EGp6u9NgB9TRV9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"146:        doc2idx = {}\\\\n148:            doc2idx.setdefault(d, []).append(i)\\\\n149:        idx_arr = [np.array(v) for v in doc2idx.values()]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "38f37c93-8bd6-403f-a627-7e670c7a75d8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"146:        doc2idx = {}\\\\n148:            doc2idx.setdefault(d, []).append(i)\\\\n149:        idx_arr = [np.array(v) for v in doc2idx.values()]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"146:        doc2idx = {}\\n148:            doc2idx.setdefault(d, []).append(i)\\n149:        idx_arr = [np.array(v) for v in doc2idx.values()]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013yVU7AN6LqLXDnMhKVpqCT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "grep -n \"oof.npy\" /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "e1497e28-b37d-4e18-a12f-f176439ae769",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TBzTf5gL8v8n5ezdrKYWNA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 527,
+                "cache_read_input_tokens": 34439,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 527
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Eg9uhNkv3KnaGrBawwaKa2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "464bd1b2-a8fc-48b5-a0fd-b9deab09c85e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TBzTf5gL8v8n5ezdrKYWNA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 527,
+                "cache_read_input_tokens": 34439,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 527
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T07:26:46.225Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013yVU7AN6LqLXDnMhKVpqCT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"214:        np.save(RESULTS_DIR / \\\\\\\"oof.npy\\\\\\\", oof)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "ed64299d-0945-4e9f-9222-6281650bcd34",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"214:        np.save(RESULTS_DIR / \\\\\\\"oof.npy\\\\\\\", oof)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"214:        np.save(RESULTS_DIR / \\\"oof.npy\\\", oof)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T07:26:46.837Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Eg9uhNkv3KnaGrBawwaKa2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 69 %, 6489 MiB\\\\n1, 0 %, 0 MiB\\\\n2, 50 %, 7367 MiB\\\\n3, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "a9ed4443-a386-424c-a67b-a1f54ee54728",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 69 %, 6489 MiB\\\\n1, 0 %, 0 MiB\\\\n2, 50 %, 7367 MiB\\\\n3, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 69 %, 6489 MiB\\n1, 0 %, 0 MiB\\n2, 50 %, 7367 MiB\\n3, 0 %, 0 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6}}"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GUUHoxCvyp7CGQ3DpAADFP",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "tmux kill-session -t exp_deberta_code_qwen1b5 2>/dev/null; echo \"cleaned\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "68234501-a072-4037-be9e-161100581506",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ByKxaYVWFzKgvKGZvbQrMx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 838,
+                "cache_read_input_tokens": 34966,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 838
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T07:26:50.338Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GUUHoxCvyp7CGQ3DpAADFP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"cleaned\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "f4cbd662-b564-4575-871e-61f864b3df18",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"cleaned\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"cleaned\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成，汇总：\n\n### Bug 修复 diff\n\n**Fix 1** — `pairwise_auc_ci` line 148：\n```diff\n-            doc2idx.setdefault(int(d), []).append(i)\n+            doc2idx.setdefault(d, []).append(i)\n```\n\n**Fix 2** — `main()` line 214，在 `pairwise_auc_ci` 调用前插入：\n```diff\n+        np.save(RESULTS_DIR / \"oof.npy\", oof)\n         pw, kstar = pairwise_auc_ci(labels, oof, doc_ids)\n```\n\n### 状态\n- **oof.npy**：不存在，需完整重跑 5-fold 训练\n- **cuda:3**：空闲（0% util, 0 MiB）\n- **语法验证**：SYNTAX_OK\n- **旧 tmux session**：已清理\n\n### 推荐重启命令\n\n```bash\nCUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\n```\n\n需要由主 Agent 通过 `submit_training_job` 提交。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "uuid": "3b1a046e-5ab1-47ab-8780-c60b819a8340",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Cf7h4idGuy5SfXWU79T55d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 206,
+                "cache_read_input_tokens": 35804,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 206
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成，汇总：\n\n### Bug 修复 diff\n\n**Fix 1** — `pairwise_auc_ci` line 148：\n```diff\n-            doc2idx.setdefault(int(d), []).append(i)\n+            doc2idx.setdefault(d, []).append(i)\n```\n\n**Fix 2** — `main()` line 214，在 `pairwise_auc_ci` 调用前插入：\n```diff\n+        np.save(RESULTS_DIR / \"oof.npy\", oof)\n         pw, kstar = pairwise_auc_ci(labels, oof, doc_ids)\n```\n\n### 状态\n- **oof.npy**：不存在，需完整重跑 5-fold 训练\n- **cuda:3**：空闲（0% util, 0 MiB）\n- **语法验证**：SYNTAX_OK\n- **旧 tmux session**：已清理\n\n### 推荐重启命令\n\n```bash\nCUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\n```\n\n需要由主 Agent 通过 `submit_training_job` 提交。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 121071,
+            "duration_api_ms": 118761,
+            "num_turns": 15,
+            "stop_reason": "end_turn",
+            "session_id": "7f1d8ff4-c409-4207-b8ae-7891d49e4bb8",
+            "total_cost_usd": 0.36725074999999996,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 24169,
+              "cache_read_input_tokens": 263653,
+              "output_tokens": 3298,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 24169,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 360,
+                  "cache_read_input_tokens": 35804,
+                  "cache_creation_input_tokens": 206,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 206
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1748,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001858,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 3298,
+                "cacheReadInputTokens": 263653,
+                "cacheCreationInputTokens": 24169,
+                "webSearchRequests": 0,
+                "costUSD": 0.36539274999999993,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "e5bf273c-1c12-4c8a-b0b9-cc55ded017da"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-deberta-code-postprocess.md"
+}

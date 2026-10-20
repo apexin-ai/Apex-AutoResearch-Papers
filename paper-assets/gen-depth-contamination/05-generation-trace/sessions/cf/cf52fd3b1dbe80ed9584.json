@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf52fd3b1dbe80ed9584",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "exp deberta c4 westd",
+  "task_key": "worker_exp_deberta-c4-westd_20260519T192827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_deberta-c4-westd_20260519T192827_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "a9db4832150554e91c0ab59a1f85859cb08930c9eaa807d5b54609fc56dc8ddf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交并确认 RUNNING。\n\n**报告：**\n\n| 项目 | 详情 |\n|------|------|\n| exp_id | `exp_deberta_c4` |\n| 服务器 | westd-42896, cuda:0 |\n| PID | 130789 |\n| C4 configs | `exp_14b_c4` (depth 0-5, 30000 样本, 5000 docs), `exp_32b_c4` (depth 0-4, 25000 样本, 5000 docs) |\n| 总数据量 | 55,000 样本 |\n| 模型 | DeBERTa-v3-base (184.4M params) |\n| 训练设置 | 5-fold GroupKFold, 3 epochs, lr=2e-5, batch=16, max_len=512, AMP |\n| 输出 | `results/exp_deberta_c4/` (per-config JSON + OOF .npz + summary) |\n| 预估时间 | ~60-90 分钟（2 configs × 5 folds × 3 epochs） |\n| 日志 | `results/exp_deberta_c4/train.log` |\n\n注意：服务器上只有 `exp_14b_c4` 和 `exp_32b_c4` 两个 C4 数据目录，未发现任务中提到的 mvp_pilot / exp_002_pythia / exp_017_qwen_cont 等目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-deberta-c4-westd.md"
+}

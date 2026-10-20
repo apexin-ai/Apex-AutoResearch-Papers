@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "id": "add7363fc9385fa6dae7",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "audit lgbm 14b data mismatch",
+  "task_key": "worker_audit_lgbm-14b-data-mismatch_20260519T234313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log",
+    "occurrence": 1,
+    "bytes": 1050048,
+    "sha256": "2a75e75c51e0b0e84b8499dc59807b13ab9595d6b3ff2ac28aee59e24c8b5292"
+  },
+  "statistics": {
+    "messages": 483,
+    "user_turns": 3,
+    "tool_calls": 160,
+    "roles": {
+      "log": 1,
+      "system": 125,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 160,
+      "tool_result": 160,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 116,
+      "chunks": [
+        {
+          "path": "add7363fc9385fa6dae7-part-0001.json",
+          "message_count": 116
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 86,
+      "chunks": [
+        {
+          "path": "add7363fc9385fa6dae7-part-0001.json",
+          "message_count": 64
+        },
+        {
+          "path": "add7363fc9385fa6dae7-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "add7363fc9385fa6dae7-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 269,
+      "chunks": [
+        {
+          "path": "add7363fc9385fa6dae7-part-0002.json",
+          "message_count": 146
+        },
+        {
+          "path": "add7363fc9385fa6dae7-part-0003.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-lgbm-14b-data-mismatch.md"
+}

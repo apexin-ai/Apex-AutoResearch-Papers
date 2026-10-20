@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fdc27450f2782d47c06",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops verify selfbleu pythia data",
+  "task_key": "worker_ops_verify_selfbleu_pythia_data_20260521T122556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_selfbleu_pythia_data_20260521T122556_result.json",
+    "occurrence": 1,
+    "bytes": 2744,
+    "sha256": "966f90d5b56a13ed5e9d2ddcbca8f43b5993c49e21b85ce8626e2ee1e80fef2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。以下是完整报告。\n\n---\n\n## 核查结果：Table 32 Pythia-1.4B 数据确认为 greedy 数据混入\n\n### 1. 根因\n\n`scripts/exp_14d_ablation_detail.py` 第 30 行硬编码了 Pythia 的数据路径：\n\n```python\n\"Pythia\": Path(\"/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_greedy/features.csv\"),\n```\n\n其他三个模型使用的是 nucleus/continuation 模式数据：\n- Qwen-base → `data_exp016_qwen_base`\n- LLaMA-8B → `data/exp_018_llama8b`\n- Mistral-7B → `data_exp019_mistral7b`\n\n### 2. 证据链\n\n| 来源 | 1v2 AUC | 说明 |\n|------|---------|------|\n| `results_exp020_pythia_greedy/summary.txt` | **0.8838** | greedy decoding 原始结果 |\n| `artifacts/exp_14d_ablation_detail.json` → Pythia 15D | **0.884** | selfbleu ablation 输出 (= Table 32) |\n| Table 32 (appendix_extended.tex:254) | **.8840** [.878,.890] | 论文中的值 |\n| Table S10 (appendix.tex:413) Greedy 列 | **.8838** | 论文中 greedy decoding 表 (完全吻合) |\n| Table S10 Nuc p=0.9 列 | **.6770** | 正确的 nucleus 值 |\n| `results_exp020_pythia_nuc09/summary.txt` | **0.677** | nucleus p=0.9 原始结果 |\n| Table 2 (experiments_c1.tex:25) | **.6539** [.645,.663] | 主表中 Pythia 的值 |\n\n### 3. 各模型行状态\n\n| 模型 | Table 32 值 | 数据来源 | generation mode | 状态 |\n|------|------------|---------|----------------|------|\n| Qwen-base | .6288 | `data_exp016_qwen_base` | nucleus/continuation | **正确** |\n| **Pythia-1.4B** | **.8840** | **`data_exp020_pythia_greedy`** | **greedy** | **错误** |\n| LLaMA-8B | .6075 | `data/exp_018_llama8b` | nucleus | **正确** |\n| Mistral-7B | .5902 | `data_exp019_mistral7b` | nucleus | **正确** |\n\n### 4. 正确值\n\n**已有的 nucleus 数据**：`data_exp020_pythia_nuc09/features.csv`（30000 条，包含 self_bleu 列）。基于该数据的 raw 5-fold AUC = 0.677。\n\n**但需注意**：Table 2 中 Pythia C4 值为 .6539，与 nuc09 的 0.677 不一致。目前 `data/exp_pythia14b_c4_rerun/` 正在生成中（只有 depth 0-3 的 jsonl，尚无 features.csv）。Table 2 的 .6539 可能来自已覆盖或不同配置的数据。\n\n### 5. 结论\n\n- **确认 greedy 数据混入**：Table 32 Pythia 行使用了 greedy decoding 数据\n- **结论是否受影响**：ablation 结论（removing self_bleu doesn't change K\\*）在 nucleus 下仍成立（K\\*=2 不变），但 AUC 数值需要修正\n- **修复方式**：**需要重跑** `exp_14d_ablation_detail.py`，将 Pythia 路径改为正确的 nucleus sampling features（待 `exp_pythia14b_c4_rerun` 完成并生成 features.csv，或使用 `data_exp020_pythia_nuc09/features.csv`）\n- **其他模型行无问题**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-selfbleu-pythia-data.md"
+}

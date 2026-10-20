@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d395fd5af324b6dab32c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper fix llama8b 10k table reviewer",
+  "task_key": "worker_paper_fix_llama8b_10k_table_reviewer_20260522T202620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_llama8b_10k_table_reviewer_20260522T202620_result.json",
+    "occurrence": 1,
+    "bytes": 279,
+    "sha256": "fdcfa42dd623f3144154805e3e7703afe9c5f8046930c318577737724d379e20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改汇总：\n\n- **Line 217**: AUC(0v1) 0.9798→0.9282, AUC(2v3) 0.5409→0.5247, AUC(1v2) 0.5880 和 K\\*=1 保持不变\n- **Line 219** (脚注): pipeline AUC 0.6316→0.6148\n- **Line 199** (正文描述): 同步修正 pipeline AUC 0.6316→0.6148"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-llama8b-10k-table-reviewer.md"
+}

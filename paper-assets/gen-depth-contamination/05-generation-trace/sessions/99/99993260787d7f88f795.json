@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99993260787d7f88f795",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "viz pythia retrain decay curve",
+  "task_key": "worker_viz_pythia-retrain-decay-curve_20260519T034832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_pythia-retrain-decay-curve_20260519T034832_result.json",
+    "occurrence": 1,
+    "bytes": 149,
+    "sha256": "38d36e83c107f8c7e42adbead03cd759adfd2b6265a8608263f7312e63292d7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。PDF 和 PNG 均输出至 `artifacts/retrain_crossmodel_decay.{pdf,png}`，artifact 已注册（`art_20260519_e522dd`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-pythia-retrain-decay-curve.md"
+}

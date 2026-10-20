@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a39618a7e041d9b73953",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis retrain depth7 results",
+  "task_key": "worker_analysis_retrain-depth7-results_20260519T010713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_retrain-depth7-results_20260519T010713_result.json",
+    "occurrence": 1,
+    "bytes": 910,
+    "sha256": "2a8a816f820f79bf3e456082e76617426ba9072a909907ec560f3c0d07cc66c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 结果\n\n| Pair | AUC | 95% CI | JSD |\n|------|-----|--------|-----|\n| 0v1 | 0.984 | [0.982, 0.985] | 0.230 |\n| 1v2 | 0.897 | [0.895, 0.899] | 0.104 |\n| 2v3 | 0.810 | [0.805, 0.814] | 0.075 |\n| 3v4 | 0.760 | [0.753, 0.767] | 0.065 |\n| 4v5 | 0.746 | [0.738, 0.754] | 0.061 |\n| 5v6 | 0.702 | [0.696, 0.708] | 0.035 |\n| 6v7 | 0.641 | [0.638, 0.645] | 0.018 |\n\n**K\\*=7**（所有 pair AUC > 0.60，6v7 CI 下界 0.638 仍清除阈值）。\n\nDepth 0-4 与原 exp_qwen_retrain_chain 一致性验证通过（Δ < 0.003）。AUC 衰减为亚线性（凹形），JSD 在 depth 7 接近噪声底（0.018），K* ceiling 估计 7-8。\n\n**已产出**:\n- Registry: `exp_qwen_retrain_depth7` → DONE (success)\n- LaTeX table: `artifacts/exp_qwen_retrain_depth7/retrain_depth7_results.tex`\n- 分析报告: `artifacts/exp_qwen_retrain_depth7/analysis_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-retrain-depth7-results.md"
+}

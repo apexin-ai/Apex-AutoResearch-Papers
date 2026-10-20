@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ba1cea3a08786b29ee5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research pythia filtering feasibility",
+  "task_key": "worker_research_pythia_filtering_feasibility_20260520T215735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_pythia_filtering_feasibility_20260520T215735_result.json",
+    "occurrence": 1,
+    "bytes": 2539,
+    "sha256": "355f3e0002ea976182c9ad606b461e81266ebf8774cbe7f76c75e5bc806d8d69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部收集完毕。以下是汇总：\n\n---\n\n## 可行性评估：Pythia-1.4B Filtering Cross-Model Replication\n\n### 可行性: YES — 实验已经跑完，无需新计算\n\n### 1. 数据状态\n\n| 资源 | 状态 |\n|------|------|\n| Pythia depth chain (arxiv, depth 0-5) | `exp_025_pythia_arxiv/` ✅ 6个jsonl + features.csv |\n| Pythia depth chain (wiki, depth 0-5) | `exp_wiki_pythia/` ✅ |\n| Pythia depth chain (code, depth 0-5) | `exp_code_pythia1b4/` ✅ |\n| Pythia C4 features | `exp_7b_scorer_ablation/pythia_c4__qwen1.5b/features.csv` ✅ |\n| OBD classifier results | `results/exp_025_pythia_arxiv/` ✅ (pairwise_auc, jsd, ordinal, feature_importance) |\n\n### 2. Filtering + 下游 eval: 已完成\n\n`results/exp_025_pythia_filtering/` 包含 **3 conditions × 3 seeds = 9 runs**，全部有 `eval_results.json`：\n\n| Condition | Seed 42 | Seed 123 | Seed 456 | **Mean** |\n|-----------|---------|----------|----------|----------|\n| **no_filter** | MMLU=25.68 / HS=52.53 | 25.69 / 52.43 | 25.53 / 52.58 | **MMLU=25.63 / HS=52.51** |\n| **binary_ours** | 25.88 / 52.52 | 25.80 / 52.49 | 25.87 / 52.51 | **MMLU=25.85 / HS=52.51** |\n| **graduated_a09** | 25.65 / 52.55 | 25.82 / 52.40 | 25.53 / 52.58 | **MMLU=25.67 / HS=52.51** |\n\n### 3. 结果解读\n\n- binary filtering 在 MMLU 上有 +0.22pp 的微弱改善，HellaSwag 基本持平\n- graduated filtering 与 no_filter 无显著差异\n- Pythia-1.4B 的 MMLU ~25.8% 接近随机水平（4选1 = 25%），信噪比极低，filtering 效果难以显现\n- HellaSwag ~52.5% 在三组间完全一致\n\n### 4. 需要的步骤\n\n**零 GPU 时间。** 唯一需要做的是：\n1. 将 `exp_025_pythia_filtering` 结果整理进论文表格\n2. 在 Section 对应位置添加 Pythia-1.4B 行\n3. 在讨论中说明：cross-model replication 在 Pythia 上模式一致（filtering 不降性能），但因基线模型能力较弱（near-random MMLU），filtering 带来的改善幅度小于 Qwen-1.5B\n\n### 5. 建议\n\n**启动。** 数据已全部就绪，只需写作。但要注意 framing：Pythia-1.4B 的 near-random MMLU 使得 filtering 信号微弱，应该诚实讨论这一点，将其定位为 \"filtering 保持无害性 + cross-model generalization 的验证\" 而非 \"filtering 在所有模型上都带来显著提升\"。如果还需要更强的 cross-model evidence，考虑用已有的 wiki/code 域 Pythia 数据做额外 OBD 分类器评估（已有 features.csv，只需跑分类器，几分钟 CPU 时间）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-pythia-filtering-feasibility.md"
+}

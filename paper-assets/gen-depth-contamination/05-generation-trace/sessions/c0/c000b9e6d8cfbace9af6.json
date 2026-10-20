@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c000b9e6d8cfbace9af6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "exp westd c4 1b5 rsync launch",
+  "task_key": "worker_exp_westd-c4-1b5-rsync-launch_20260519T230138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_westd-c4-1b5-rsync-launch_20260519T230138_result.json",
+    "occurrence": 1,
+    "bytes": 984,
+    "sha256": "ea06993c0cdb063274e202a16aa1ff0c86de41f386eb120057bcbf7d73dc0459"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常。汇报如下：\n\n**已完成：**\n- 数据从 cqa1 rsync 到 westd（`data_exp020_pythia_greedy` 39MB + `data/exp_021_length_256` 33MB + OBD baseline 结果 + 脚本）\n- DeBERTa-v3-base 模型缓存同步（357MB）\n- 修复脚本 `--gpu` 参数 bug（原来硬编码 `cuda:0`）\n- 添加 `HF_HUB_OFFLINE=1` 避免网络重试延迟\n\n**当前状态：**\n- `deberta_c4_1b5_pythia` — **正在 westd cuda:1 训练**，Fold 0 Epoch 1 进行中（GPU 95%, 33.7GB VRAM）\n  - 5-fold × 3 epochs，30000 samples\n- `deberta_c4_1b5_qwen` — **排队等待中**，pythia 完成后自动启动 `qwen_cont256`\n- `deberta_32b_6class` — cuda:0 原有任务未受影响\n\n**tmux sessions：**\n| Session | Config | GPU | Status |\n|---------|--------|-----|--------|\n| `deberta_c4_1b5_pythia` | pythia_greedy | cuda:1 | 训练中 |\n| `deberta_c4_1b5_qwen` | qwen_cont256 | cuda:1 | 排队中 |\n| `deberta_32b_6class` | (原有) | cuda:0 | 不变 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-westd-c4-1b5-rsync-launch.md"
+}

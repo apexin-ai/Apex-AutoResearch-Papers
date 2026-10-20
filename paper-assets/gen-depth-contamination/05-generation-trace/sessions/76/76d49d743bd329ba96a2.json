@@ -1,0 +1,733 @@
+{
+  "schema_version": "1.0",
+  "id": "76d49d743bd329ba96a2",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "analysis exp arXiv olmo harvest",
+  "task_key": "worker_analysis_exp_arXiv_olmo_harvest_20260517T120756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_arXiv_olmo_harvest_20260517T120756.log",
+    "occurrence": 1,
+    "bytes": 43956,
+    "sha256": "025b8fd2dbc7fa89ec2e543fb4db65e3daeaf4cf17200ee5d7a27e8946da1b76"
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 5,
+      "tool_result": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "313486f3-4e34-4676-9193-09e59ace4c1c",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779037200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "e20e2468-14ac-43ee-9f15-4ff001df6dce",
+                "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the experiment status by examining the logs and results on the server.",
+              "signature": "Eo4CClkIDRgCKkB8HcNvK+z8b9AXvl9ak18d+ja6JX9+RP0rEoJYYw21tl5asmss3bILTqE7Qj5ZNEkDp9V+UBWh3Eau4hP8yhdbMg9jbGF1ZGUtb3B1cy00LTY4ABIM2dfRjb3yMlWce5rSGgylhzM4ZozUjV6/xDkiMD10Y//KQvtiTpVfSLkDjNGagJuvVDwgEyz+sTTL5+gZnuclgSdOlC0L2IQT1e0DyypjtyX0gVO9mvBtDZysNF9W7Q47U0JU0980TlA9rnU15qu4EmIQ7hdF5dtjTjqB9FXhQZKlJtjB4XwdiFwqkRYlutXHmuxMi94dqo+3qqLWVqyxuTBiIniAtvhMwdVcf1mmk0mzGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138",
+            "uuid": "665b66c1-6fe6-4482-8dc6-8d744029ddc3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XuD3x2z2eKrPiZNDCqjGL4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12933,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12933
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011bQ9nfDpD4QCgVGqKCfF7U",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138",
+            "uuid": "56a16077-249e-4693-8e72-9ffb45b2acda",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XuD3x2z2eKrPiZNDCqjGL4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12933,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12933
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T12:08:08.811Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_011bQ9nfDpD4QCgVGqKCfF7U",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138",
+            "uuid": "4104f80f-4429-456d-aec7-be83da21950c",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 24
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019FYWfcXHjEH9V7UC5dkb7h",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "tail -100 /root/runs/gen-depth-contamination/exp_arXiv_olmo.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138",
+            "uuid": "a5685d13-a0f6-41d7-a670-d2abef409933",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VCHRz4wXPhr9bDEwrVmN9u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 457,
+                "cache_read_input_tokens": 24774,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 457
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T12:08:13.031Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019FYWfcXHjEH9V7UC5dkb7h",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n19:56:05 [INFO]   AUC(1 vs 2) = 0.5034 ± 0.0123  folds=[0.5079, 0.5066, 0.5063, 0.5163, 0.4801]\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n19:56:06 [INFO]   AUC(2 vs 3) = 0.5069 ± 0.0207  folds=[0.506, 0.507, 0.5275, 0.5247, 0.4694]\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n19:56:07 [INFO]   AUC(3 vs 4) = 0.5021 ± 0.0164  folds=[0.4891, 0.4779, 0.51, 0.5238, 0.5096]\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n19:56:08 [INFO]   AUC(4 vs 5) = 0.5037 ± 0.0098  folds=[0.5116, 0.4891, 0.5118, 0.5113, 0.4947]\\\\n19:56:08 [INFO] Computing pairwise JSD ...\\\\n19:56:08 [INFO]   JSD(0 vs 1) = 0.329170\\\\n19:56:08 [INFO]   JSD(1 vs 2) = 0.006963\\\\n19:56:08 [INFO]   JSD(2 vs 3) = 0.006540\\\\n19:56:08 [INFO]   JSD(3 vs 4) = 0.007673\\\\n19:56:08 [INFO]   JSD(4 vs 5) = 0.006765\\\\n19:56:08 [INFO] Running ordinal LightGBM classification ...\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n19:56:39 [INFO]   Ordinal MAE = 1.3479, Accuracy = 0.3305, K* = 1\\\\n19:56:39 [INFO] \\\\n============================================================\\\\nMVP Pilot Saturation Study — Results Summary\\\\n============================================================\\\\n\\\\nPairwise AUC (adjacent depths):\\\\n  depth 0 vs 1: AUC = 0.9958 ± 0.0015  folds=[0.9951, 0.9963, 0.9949, 0.9985, 0.9943]\\\\n  depth 1 vs 2: AUC = 0.5034 ± 0.0122  folds=[0.5079, 0.5066, 0.5063, 0.5163, 0.4801]\\\\n  depth 2 vs 3: AUC = 0.5069 ± 0.0207  folds=[0.506, 0.507, 0.5275, 0.5247, 0.4694]\\\\n  depth 3 vs 4: AUC = 0.5021 ± 0.0164  folds=[0.4891, 0.4779, 0.51, 0.5238, 0.5096]\\\\n  depth 4 vs 5: AUC = 0.5037 ± 0.0098  folds=[0.5116, 0.4891, 0.5118, 0.5113, 0.4947]\\\\n\\\\nPairwise JSD (adjacent depths):\\\\n  depth 0 vs 1: JSD = 0.32917\\\\n  depth 1 vs 2: JSD = 0.006963\\\\n  depth 2 vs 3: JSD = 0.00654\\\\n  depth 3 vs 4: JSD = 0.007673\\\\n  depth 4 vs 5: JSD = 0.006765\\\\n\\\\nK* (max depth with AUC > 0.60): 1\\\\n\\\\nOrdinal Classification (6-class, 5-fold CV):\\\\n  MAE = 1.3479\\\\n  Accuracy = 0.3305\\\\n\\\\nTop-10 Feature Importance:\\\\n  surp_d1_mean         7970.6\\\\n  ttr                  7535.8\\\\n  freq_entropy         7363.0\\\\n  surp_mean            7159.4\\\\n  surp_d1_skew         7154.0\\\\n  surp_d2_mean         7143.8\\\\n  freq_kurtosis        6851.2\\\\n  surp_kurt            6711.8\\\\n  hapax_ratio          6326.2\\\\n  surp_std             6262.4\\\\n\\\\n============================================================\\\\n19:56:39 [INFO] Pipeline complete.\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138",
+            "uuid": "fd189067-006d-4779-9dfb-69ccce1a6ac3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n19:56:05 [INFO]   AUC(1 vs 2) = 0.5034 ± 0.0123  folds=[0.5079, 0.5066, 0.5063, 0.5163, 0.4801]\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n19:56:06 [INFO]   AUC(2 vs 3) = 0.5069 ± 0.0207  folds=[0.506, 0.507, 0.5275, 0.5247, 0.4694]\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n19:56:07 [INFO]   AUC(3 vs 4) = 0.5021 ± 0.0164  folds=[0.4891, 0.4779, 0.51, 0.5238, 0.5096]\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n19:56:08 [INFO]   AUC(4 vs 5) = 0.5037 ± 0.0098  folds=[0.5116, 0.4891, 0.5118, 0.5113, 0.4947]\\\\n19:56:08 [INFO] Computing pairwise JSD ...\\\\n19:56:08 [INFO]   JSD(0 vs 1) = 0.329170\\\\n19:56:08 [INFO]   JSD(1 vs 2) = 0.006963\\\\n19:56:08 [INFO]   JSD(2 vs 3) = 0.006540\\\\n19:56:08 [INFO]   JSD(3 vs 4) = 0.007673\\\\n19:56:08 [INFO]   JSD(4 vs 5) = 0.006765\\\\n19:56:08 [INFO] Running ordinal LightGBM classification ...\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n19:56:39 [INFO]   Ordinal MAE = 1.3479, Accuracy = 0.3305, K* = 1\\\\n19:56:39 [INFO] \\\\n============================================================\\\\nMVP Pilot Saturation Study — Results Summary\\\\n============================================================\\\\n\\\\nPairwise AUC (adjacent depths):\\\\n  depth 0 vs 1: AUC = 0.9958 ± 0.0015  folds=[0.9951, 0.9963, 0.9949, 0.9985, 0.9943]\\\\n  depth 1 vs 2: AUC = 0.5034 ± 0.0122  folds=[0.5079, 0.5066, 0.5063, 0.5163, 0.4801]\\\\n  depth 2 vs 3: AUC = 0.5069 ± 0.0207  folds=[0.506, 0.507, 0.5275, 0.5247, 0.4694]\\\\n  depth 3 vs 4: AUC = 0.5021 ± 0.0164  folds=[0.4891, 0.4779, 0.51, 0.5238, 0.5096]\\\\n  depth 4 vs 5: AUC = 0.5037 ± 0.0098  folds=[0.5116, 0.4891, 0.5118, 0.5113, 0.4947]\\\\n\\\\nPairwise JSD (adjacent depths):\\\\n  depth 0 vs 1: JSD = 0.32917\\\\n  depth 1 vs 2: JSD = 0.006963\\\\n  depth 2 vs 3: JSD = 0.00654\\\\n  depth 3 vs 4: JSD = 0.007673\\\\n  depth 4 vs 5: JSD = 0.006765\\\\n\\\\nK* (max depth with AUC > 0.60): 1\\\\n\\\\nOrdinal Classification (6-class, 5-fold CV):\\\\n  MAE = 1.3479\\\\n  Accuracy = 0.3305\\\\n\\\\nTop-10 Feature Importance:\\\\n  surp_d1_mean         7970.6\\\\n  ttr                  7535.8\\\\n  freq_entropy         7363.0\\\\n  surp_mean            7159.4\\\\n  surp_d1_skew         7154.0\\\\n  surp_d2_mean         7143.8\\\\n  freq_kurtosis        6851.2\\\\n  surp_kurt            6711.8\\\\n  hapax_ratio          6326.2\\\\n  surp_std             6262.4\\\\n\\\\n============================================================\\\\n19:56:39 [INFO] Pipeline complete.\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n19:56:05 [INFO]   AUC(1 vs 2) = 0.5034 ± 0.0123  folds=[0.5079, 0.5066, 0.5063, 0.5163, 0.4801]\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n19:56:06 [INFO]   AUC(2 vs 3) = 0.5069 ± 0.0207  folds=[0.506, 0.507, 0.5275, 0.5247, 0.4694]\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n19:56:07 [INFO]   AUC(3 vs 4) = 0.5021 ± 0.0164  folds=[0.4891, 0.4779, 0.51, 0.5238, 0.5096]\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n19:56:08 [INFO]   AUC(4 vs 5) = 0.5037 ± 0.0098  folds=[0.5116, 0.4891, 0.5118, 0.5113, 0.4947]\\n19:56:08 [INFO] Computing pairwise JSD ...\\n19:56:08 [INFO]   JSD(0 vs 1) = 0.329170\\n19:56:08 [INFO]   JSD(1 vs 2) = 0.006963\\n19:56:08 [INFO]   JSD(2 vs 3) = 0.006540\\n19:56:08 [INFO]   JSD(3 vs 4) = 0.007673\\n19:56:08 [INFO]   JSD(4 vs 5) = 0.006765\\n19:56:08 [INFO] Running ordinal LightGBM classification ...\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n19:56:39 [INFO]   Ordinal MAE = 1.3479, Accuracy = 0.3305, K* = 1\\n19:56:39 [INFO] \\n============================================================\\nMVP Pilot Saturation Study — Results Summary\\n============================================================\\n\\nPairwise AUC (adjacent depths):\\n  depth 0 vs 1: AUC = 0.9958 ± 0.0015  folds=[0.9951, 0.9963, 0.9949, 0.9985, 0.9943]\\n  depth 1 vs 2: AUC = 0.5034 ± 0.0122  folds=[0.5079, 0.5066, 0.5063, 0.5163, 0.4801]\\n  depth 2 vs 3: AUC = 0.5069 ± 0.0207  folds=[0.506, 0.507, 0.5275, 0.5247, 0.4694]\\n  depth 3 vs 4: AUC = 0.5021 ± 0.0164  folds=[0.4891, 0.4779, 0.51, 0.5238, 0.5096]\\n  depth 4 vs 5: AUC = 0.5037 ± 0.0098  folds=[0.5116, 0.4891, 0.5118, 0.5113, 0.4947]\\n\\nPairwise JSD (adjacent depths):\\n  depth 0 vs 1: JSD = 0.32917\\n  depth 1 vs 2: JSD = 0.006963\\n  depth 2 vs 3: JSD = 0.00654\\n  depth 3 vs 4: JSD = 0.007673\\n  depth 4 vs 5: JSD = 0.006765\\n\\nK* (max depth with AUC > 0.60): 1\\n\\nOrdinal Classification (6-class, 5-fold CV):\\n  MAE = 1.3479\\n  Accuracy = 0.3305\\n\\nTop-10 Feature Importance:\\n  surp_d1_mean         7970.6\\n  ttr                  7535.8\\n  freq_entropy         7363.0\\n  surp_mean            7159.4\\n  surp_d1_skew         7154.0\\n  surp_d2_mean         7143.8\\n  freq_kurtosis        6851.2\\n  surp_kurt            6711.8\\n  hapax_ratio          6326.2\\n  surp_std             6262.4\\n\\n============================================================\\n19:56:39 [INFO] Pipeline complete.\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011XqmAuZydCsiLUfmD19xtd",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138",
+            "uuid": "24f3e955-880e-4d11-b47e-09d1b7a64564",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Asfpwj5aHsgj3WTEBCURNR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2890,
+                "cache_read_input_tokens": 25231,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2890
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T12:08:19.239Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011XqmAuZydCsiLUfmD19xtd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 24\\\\ndrwxr-xr-x  2 root root  149 May 17 19:56 .\\\\ndrwxr-xr-x 17 root root 4096 May 17 19:48 ..\\\\n-rw-r--r--  1 root root  633 May 17 19:56 feature_importance.json\\\\n-rw-r--r--  1 root root   95 May 17 19:56 jsd.json\\\\n-rw-r--r--  1 root root   56 May 17 19:56 ordinal_results.json\\\\n-rw-r--r--  1 root root  574 May 17 19:56 pairwise_auc.json\\\\n-rw-r--r--  1 root root 1324 May 17 19:56 summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138",
+            "uuid": "aa73766e-9711-47d9-ae98-05955a631b09",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 24\\\\ndrwxr-xr-x  2 root root  149 May 17 19:56 .\\\\ndrwxr-xr-x 17 root root 4096 May 17 19:48 ..\\\\n-rw-r--r--  1 root root  633 May 17 19:56 feature_importance.json\\\\n-rw-r--r--  1 root root   95 May 17 19:56 jsd.json\\\\n-rw-r--r--  1 root root   56 May 17 19:56 ordinal_results.json\\\\n-rw-r--r--  1 root root  574 May 17 19:56 pairwise_auc.json\\\\n-rw-r--r--  1 root root 1324 May 17 19:56 summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 24\\ndrwxr-xr-x  2 root root  149 May 17 19:56 .\\ndrwxr-xr-x 17 root root 4096 May 17 19:48 ..\\n-rw-r--r--  1 root root  633 May 17 19:56 feature_importance.json\\n-rw-r--r--  1 root root   95 May 17 19:56 jsd.json\\n-rw-r--r--  1 root root   56 May 17 19:56 ordinal_results.json\\n-rw-r--r--  1 root root  574 May 17 19:56 pairwise_auc.json\\n-rw-r--r--  1 root root 1324 May 17 19:56 summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ah6kS9jx1Mwj5VYjhhRepJ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_*.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138",
+            "uuid": "b65d3035-0c28-49a6-8d26-89ce74565cbf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Asfpwj5aHsgj3WTEBCURNR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2890,
+                "cache_read_input_tokens": 25231,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2890
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T12:08:19.973Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ah6kS9jx1Mwj5VYjhhRepJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_0.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_1.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_2.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_3.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_4.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_5.jsonl\\\\n   13200 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138",
+            "uuid": "37895c7f-9370-4289-8ba6-5c7243625026",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_0.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_1.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_2.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_3.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_4.jsonl\\\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_5.jsonl\\\\n   13200 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_0.jsonl\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_1.jsonl\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_2.jsonl\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_3.jsonl\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_4.jsonl\\n    2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_5.jsonl\\n   13200 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015FR6tjym7AQ7KTuZBvwYXv",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/pairwise_auc.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138",
+            "uuid": "55523526-bb82-4bfa-830e-2352ec5fba19",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qq4YcXAHvVveeQoxLzRqeH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 912,
+                "cache_read_input_tokens": 28121,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 912
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T12:08:23.192Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015FR6tjym7AQ7KTuZBvwYXv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9958,\\\\n    \\\\\\\"1v2\\\\\\\": 0.5034,\\\\n    \\\\\\\"2v3\\\\\\\": 0.5069,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5021,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5037\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9951,\\\\n      0.9963,\\\\n      0.9949,\\\\n      0.9985,\\\\n      0.9943\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.5079,\\\\n      0.5066,\\\\n      0.5063,\\\\n      0.5163,\\\\n      0.4801\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.506,\\\\n      0.507,\\\\n      0.5275,\\\\n      0.5247,\\\\n      0.4694\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.4891,\\\\n      0.4779,\\\\n      0.51,\\\\n      0.5238,\\\\n      0.5096\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.5116,\\\\n      0.4891,\\\\n      0.5118,\\\\n      0.5113,\\\\n      0.4947\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138",
+            "uuid": "a39214b5-4491-4a2e-96c9-fcf77dcfd551",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9958,\\\\n    \\\\\\\"1v2\\\\\\\": 0.5034,\\\\n    \\\\\\\"2v3\\\\\\\": 0.5069,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5021,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5037\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9951,\\\\n      0.9963,\\\\n      0.9949,\\\\n      0.9985,\\\\n      0.9943\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.5079,\\\\n      0.5066,\\\\n      0.5063,\\\\n      0.5163,\\\\n      0.4801\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.506,\\\\n      0.507,\\\\n      0.5275,\\\\n      0.5247,\\\\n      0.4694\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.4891,\\\\n      0.4779,\\\\n      0.51,\\\\n      0.5238,\\\\n      0.5096\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.5116,\\\\n      0.4891,\\\\n      0.5118,\\\\n      0.5113,\\\\n      0.4947\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9958,\\n    \\\"1v2\\\": 0.5034,\\n    \\\"2v3\\\": 0.5069,\\n    \\\"3v4\\\": 0.5021,\\n    \\\"4v5\\\": 0.5037\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9951,\\n      0.9963,\\n      0.9949,\\n      0.9985,\\n      0.9943\\n    ],\\n    \\\"1v2\\\": [\\n      0.5079,\\n      0.5066,\\n      0.5063,\\n      0.5163,\\n      0.4801\\n    ],\\n    \\\"2v3\\\": [\\n      0.506,\\n      0.507,\\n      0.5275,\\n      0.5247,\\n      0.4694\\n    ],\\n    \\\"3v4\\\": [\\n      0.4891,\\n      0.4779,\\n      0.51,\\n      0.5238,\\n      0.5096\\n    ],\\n    \\\"4v5\\\": [\\n      0.5116,\\n      0.4891,\\n      0.5118,\\n      0.5113,\\n      0.4947\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验成功完成。\n\n## 结果汇报\n\n**状态**: SUCCESS (EXIT_CODE=0)\n\n### Pairwise AUC (adjacent depths)\n\n| Depth Pair | AUC | 判定 |\n|---|---|---|\n| 0 vs 1 | **0.9958** | ≫ 0.6 ✓ distinguishable |\n| 1 vs 2 | 0.5034 | < 0.6 ✗ chance |\n| 2 vs 3 | 0.5069 | < 0.6 ✗ chance |\n| 3 vs 4 | 0.5021 | < 0.6 ✗ chance |\n| 4 vs 5 | 0.5037 | < 0.6 ✗ chance |\n\n### K* = 1\n\n第一个 AUC 低于 theta=0.6 的 depth pair 是 1v2，所以 K\\* = 1。\n\n### 与前序实验对比\n\n| 实验 | 模型 | 域 | K* |\n|---|---|---|---|\n| exp-024 | Qwen-2.5-1.5B | arXiv | 3 |\n| exp-025 | Pythia-1.4B | arXiv | 3 |\n| **exp_arXiv_olmo** | **OLMo-1B** | **arXiv** | **1** |\n\n**OLMo-1B 结果异常**：K\\*=1 远低于预期的 3。0v1 的 AUC 极高 (0.9958)，但从 depth 1 开始所有 pair 都降到 chance level (~0.50)。这意味着 OLMo 只能区分\"原始 vs 一次改写\"，之后所有改写深度的特征完全不可分。\n\n可能原因：\n- OLMo-1B 的 tokenizer/perplexity 信号在改写文本上迅速饱和\n- 模型对改写风格的敏感度远低于 Qwen 和 Pythia\n\n### 文件路径\n- **结果目录**: `/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/`\n- **日志**: `/root/runs/gen-depth-contamination/exp_arXiv_olmo.log`\n- **数据**: `/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/` (6 depths × 2200 samples)\n\n### 补充指标\n- JSD: 0v1 = 0.329 (高), 1v2 ~ 4v5 ≈ 0.007 (接近零)\n- Ordinal 6-class accuracy: 33% (MAE=1.35)，基本是 random"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138",
+            "uuid": "da9e714e-24b1-44a9-9cca-948102bab3ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DowuPVe6A9qpKHXa2fQyoT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 611,
+                "cache_read_input_tokens": 29033,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 611
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验成功完成。\n\n## 结果汇报\n\n**状态**: SUCCESS (EXIT_CODE=0)\n\n### Pairwise AUC (adjacent depths)\n\n| Depth Pair | AUC | 判定 |\n|---|---|---|\n| 0 vs 1 | **0.9958** | ≫ 0.6 ✓ distinguishable |\n| 1 vs 2 | 0.5034 | < 0.6 ✗ chance |\n| 2 vs 3 | 0.5069 | < 0.6 ✗ chance |\n| 3 vs 4 | 0.5021 | < 0.6 ✗ chance |\n| 4 vs 5 | 0.5037 | < 0.6 ✗ chance |\n\n### K* = 1\n\n第一个 AUC 低于 theta=0.6 的 depth pair 是 1v2，所以 K\\* = 1。\n\n### 与前序实验对比\n\n| 实验 | 模型 | 域 | K* |\n|---|---|---|---|\n| exp-024 | Qwen-2.5-1.5B | arXiv | 3 |\n| exp-025 | Pythia-1.4B | arXiv | 3 |\n| **exp_arXiv_olmo** | **OLMo-1B** | **arXiv** | **1** |\n\n**OLMo-1B 结果异常**：K\\*=1 远低于预期的 3。0v1 的 AUC 极高 (0.9958)，但从 depth 1 开始所有 pair 都降到 chance level (~0.50)。这意味着 OLMo 只能区分\"原始 vs 一次改写\"，之后所有改写深度的特征完全不可分。\n\n可能原因：\n- OLMo-1B 的 tokenizer/perplexity 信号在改写文本上迅速饱和\n- 模型对改写风格的敏感度远低于 Qwen 和 Pythia\n\n### 文件路径\n- **结果目录**: `/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/`\n- **日志**: `/root/runs/gen-depth-contamination/exp_arXiv_olmo.log`\n- **数据**: `/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/` (6 depths × 2200 samples)\n\n### 补充指标\n- JSD: 0v1 = 0.329 (高), 1v2 ~ 4v5 ≈ 0.007 (接近零)\n- Ordinal 6-class accuracy: 33% (MAE=1.35)，基本是 random"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 34647,
+            "duration_api_ms": 33886,
+            "num_turns": 6,
+            "stop_reason": "end_turn",
+            "session_id": "6fab364b-7598-4edf-9b1d-aaae7fe92138",
+            "total_cost_usd": 0.20735375,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 17803,
+              "cache_read_input_tokens": 119000,
+              "output_tokens": 1397,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 17803,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 763,
+                  "cache_read_input_tokens": 29033,
+                  "cache_creation_input_tokens": 611,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 611
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1515,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016150000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 1397,
+                "cacheReadInputTokens": 119000,
+                "cacheCreationInputTokens": 17803,
+                "webSearchRequests": 0,
+                "costUSD": 0.20573875000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "9979a3ce-ce26-4c12-8909-12906dd1fe2c"
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp-arxiv-olmo-harvest.md"
+}

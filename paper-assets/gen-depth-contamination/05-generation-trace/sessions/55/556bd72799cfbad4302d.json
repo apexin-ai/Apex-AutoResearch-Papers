@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "556bd72799cfbad4302d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analyze w5 mcnemar pvalues",
+  "task_key": "worker_analyze_w5-mcnemar-pvalues_20260518T151645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_w5-mcnemar-pvalues_20260518T151645_result.json",
+    "occurrence": 1,
+    "bytes": 1016,
+    "sha256": "75536e6fd03f2b0fce4c670e31df991ce7ff806a55d2cef7ee0aeae87bf31eca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**Claim \"all McNemar p < 0.01\" 不成立。**\n\n36 组对比 (12 config x 3 baseline classifiers)，只有 4/36 达到 p < 0.01，31/36 完全不显著。\n\n关键发现:\n\n| 统计 | 值 |\n|------|-----|\n| 总比较数 | 36 |\n| p < 0.01 | 4 (11%) |\n| p < 0.05 | 5 (14%) |\n| p >= 0.05 | 31 (86%) |\n| Max p | 0.868 |\n\n5 个显著结果中:\n- **LLaMA-8B / C4**: 3 个 baseline 都显著**优于** OBD (LogReg p=6.2e-5, SVC p=1.1e-4, RF p=1.3e-3)\n- **Qwen-1.5B / Wiki**: OBD 显著优于 LogReg (p=9.4e-4) 和 SVC (p=2.3e-4)，但 RF 无差异\n\n**结论**: 绝大多数配置下 OBD-LightGBM 与 LogReg/SVM/RF 无显著差异，说明 depth 可分性来自 15D 特征表示而非分类器选择。论文中 \"all McNemar p < 0.01\" 的 claim 需要修正或删除。\n\n产出文件:\n- LaTeX 表: `artifacts/mcnemar_pvalues/mcnemar_detail.tex`\n- Summary: `artifacts/mcnemar_pvalues/summary.md`\n- 原始 JSON: 远程 `results/mcnemar_obd_vs_baselines/mcnemar_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-w5-mcnemar-pvalues.md"
+}

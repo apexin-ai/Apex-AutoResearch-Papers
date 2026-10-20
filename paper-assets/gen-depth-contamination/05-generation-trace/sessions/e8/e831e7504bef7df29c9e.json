@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e831e7504bef7df29c9e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix exp004 feat extract",
+  "task_key": "worker_fix_exp004_feat_extract_20260515T221134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp004_feat_extract_20260515T221134_result.json",
+    "occurrence": 1,
+    "bytes": 973,
+    "sha256": "ef3e76015bfb5880a78946d83cf6a144c9bd1a7c17e6f33ebb28f358c4c51b34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总：\n\n**修复内容**：\n- `scripts/run_exp004_qwen7b_depth.py` 的 `--scorer_path` 默认值从 `.../Qwen2.5-1.5B-Instruct` 修正为 `.../Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct`（ModelScope 嵌套路径）\n\n**正确的 scorer 路径**：\n`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct`\n\n**恢复脚本**：`scripts/exp004_resume_feat.sh`\n- 直接 import 主脚本的 `extract_all_features` + `run_analysis` 函数\n- 只加载 1.5B scorer（不加载 7B generator），feat_batch_size=8\n- 输出到 `results_exp004_qwen7b/`\n\n**验证结果**：\n- Scorer dry-run 通过：`Qwen2ForCausalLM, vocab=151665`\n- 函数 import 通过\n- 数据完整：6 depths × 5000 = 30000 samples\n\n**预估时间**：feature extraction ~1-1.5h（1.5B 模型 + batch=8 + 30k samples），classification ~5min。\n\n可以用 `submit_on_allocated` 提交 `bash scripts/exp004_resume_feat.sh`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp004-feat-extract.md"
+}

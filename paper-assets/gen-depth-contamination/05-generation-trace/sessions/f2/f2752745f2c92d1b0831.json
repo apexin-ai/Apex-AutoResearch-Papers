@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2752745f2c92d1b0831",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "exp cqa1 kill pythia start qwen cont",
+  "task_key": "worker_exp_cqa1-kill-pythia-start-qwen-cont_20260519T232223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_cqa1-kill-pythia-start-qwen-cont_20260519T232223_result.json",
+    "occurrence": 1,
+    "bytes": 478,
+    "sha256": "1b39d91941f46c10305afc2ce102f7211ba920e6b2c43328d4c3032178766c1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| GPU | 利用率 | 显存 | 任务 |\n|-----|--------|------|------|\n| cuda:0 | 97% | 19639 MiB | **qwen_cont256** (新启动) |\n| cuda:1 | 97% | 22825 MiB | cross-transfer (未动) |\n| cuda:2 | 97% | 20555 MiB | cross-transfer (未动) |\n| cuda:3 | 96% | 19389 MiB | cross-transfer (未动) |\n\n- tmux session: `deberta_c4_1b5_qwen_cont`\n- 日志: `logs/deberta_c4_1b5_qwen_cont.log`\n- 数据: `data/exp_021_length_256/`（depth_0~5.jsonl）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-cqa1-kill-pythia-start-qwen-cont.md"
+}

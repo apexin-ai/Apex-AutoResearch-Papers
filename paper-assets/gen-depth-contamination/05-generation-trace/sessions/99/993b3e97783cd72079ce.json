@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "993b3e97783cd72079ce",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "analysis sf4 bootstrap 10k",
+  "task_key": "worker_analysis_sf4_bootstrap_10k_20260520T042811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sf4_bootstrap_10k_20260520T042811.log",
+    "occurrence": 1,
+    "bytes": 999766,
+    "sha256": "09a9958a93a3271306918620e1ac408174921696faa61d2cb8468a7f5e59f27b"
+  },
+  "statistics": {
+    "messages": 403,
+    "user_turns": 1,
+    "tool_calls": 149,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 97,
+      "tool_call": 149,
+      "tool_result": 149,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 381,
+      "chunks": [
+        {
+          "path": "993b3e97783cd72079ce-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "993b3e97783cd72079ce-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "993b3e97783cd72079ce-part-0003.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "993b3e97783cd72079ce-part-0003.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-sf4-bootstrap-10k.md"
+}

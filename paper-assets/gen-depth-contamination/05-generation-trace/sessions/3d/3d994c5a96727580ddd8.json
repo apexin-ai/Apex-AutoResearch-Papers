@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "3d994c5a96727580ddd8",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code runtime benchmark",
+  "task_key": "worker_code_runtime_benchmark_20260525T063042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_runtime_benchmark_20260525T063042.log",
+    "occurrence": 1,
+    "bytes": 576450,
+    "sha256": "1a9ea1363e4cc06b18f3e3a3a96047db7670233e0c1237c888bf4cc87a46dad9"
+  },
+  "statistics": {
+    "messages": 194,
+    "user_turns": 1,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 68,
+      "tool_result": 68,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 27,
+      "chunks": [
+        {
+          "path": "3d994c5a96727580ddd8-part-0001.json",
+          "message_count": 27
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 167,
+      "chunks": [
+        {
+          "path": "3d994c5a96727580ddd8-part-0001.json",
+          "message_count": 153
+        },
+        {
+          "path": "3d994c5a96727580ddd8-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-runtime-benchmark.md"
+}

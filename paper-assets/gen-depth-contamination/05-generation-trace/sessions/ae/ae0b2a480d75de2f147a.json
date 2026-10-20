@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae0b2a480d75de2f147a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops pythia69b download and resubmit",
+  "task_key": "worker_ops_pythia69b_download_and_resubmit_20260521T024633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pythia69b_download_and_resubmit_20260521T024633_result.json",
+    "occurrence": 1,
+    "bytes": 1084,
+    "sha256": "0b56af24b0ecb79bfcb057bd830518bb544178ee4d4c704a61f8876b0146dbba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Step 3 complete. Directories cleaned and rebuilt.\n\n**Step 4: Status Report**\n\n| Item | Status |\n|------|--------|\n| **MODEL_DOWNLOAD** | ✅ COMPLETE |\n| **MODEL_PATH** | `/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-6.9b/snapshots/c0e3eee36dc47af0c49f361c74cfe459c09f7f23/` |\n| **MODEL_FILES_VERIFIED** | ✅ `model-00001-of-00002.safetensors` (9.3G) + `model-00002-of-00002.safetensors` (3.7G) + `config.json` (571B) |\n| **SCORER_PATH** | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B/` |\n| **SCORER_VERIFIED** | ✅ `model.safetensors` (2.9G) + `config.json` (684B) |\n| **DATA_DIR_READY** | ✅ `/root/autodl-tmp/gen-depth-contamination/data/exp_pythia69b_c4/` |\n| **RESULTS_DIR_READY** | ✅ `/root/autodl-tmp/gen-depth-contamination/results/exp_pythia69b_c4/` |\n| **READY_TO_SUBMIT** | ✅ All prerequisites met. Pipeline not submitted per instructions. |\n\n注意：safetensors 两个 shard 大小不均等（9.3G + 3.7G），但总计 ~13G 与 Pythia-6.9B 参数量（6.9B × 2 bytes/param ≈ 13.8GB fp16）一致，属正常分片。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pythia69b-download-and-resubmit.md"
+}

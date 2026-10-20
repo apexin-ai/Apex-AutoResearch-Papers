@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0a64cff3fd1345a1e75",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "viz retrain decay v3 threeline",
+  "task_key": "worker_viz_retrain-decay-v3-threeline_20260519T034938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_retrain-decay-v3-threeline_20260519T034938_result.json",
+    "occurrence": 1,
+    "bytes": 235,
+    "sha256": "2e6806aa5093582bb6aedc2453fb2ac295a51e40327e85d70f6d9908c714efa2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。三个文件已输出：\n\n- `artifacts/retrain_decay_curve_v3.pdf`\n- `artifacts/retrain_decay_curve_v3.png`\n- `docs/paper/figures/fig_retrain_decay.png`\n\nArtifact 已注册（`art_20260519_aa63ee`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-retrain-decay-v3-threeline.md"
+}

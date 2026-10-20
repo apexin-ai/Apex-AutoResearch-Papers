@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c20456a1a8f05899410c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check exp016 result",
+  "task_key": "worker_check_exp016_result_20260516T032029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp016_result_20260516T032029_result.json",
+    "occurrence": 1,
+    "bytes": 1033,
+    "sha256": "1a0de840db3ccff015f780d0f5de347525d0416735faf142e693989d24620bf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被删除或从未创建），无需处理。\n\n---\n\n## exp-016 检查报告\n\n**状态：失败**\n\n**失败阶段：** 数据生成 — depth 4，51% (160/313 batches)\n\n**失败原因：** 进程被杀，日志中无 traceback/exception。日志在 2026-05-16 11:07:46 CST 停止更新。系统 load average 15+，疑似 OOM。无 depth_4 残留文件（写入未 flush 到磁盘）。\n\n**已完成部分：**\n- depth 0-3 各 5000 条（共 20,000 条）\n- 数据文件完整，可复用\n\n**缺失部分：**\n- depth 4、depth 5 数据生成\n- feature extraction\n- classification（K* 和 pairwise AUC）\n- 结果目录为空\n\n**与 exp-017 (Instruct, K\\*=2) 的对比：** 无法进行，exp-016 未产出 K* 和 AUC 结果。\n\n**重跑建议：** depth 0-3 数据已完好，重跑时可从 depth 4 断点续跑（如果脚本支持），或确保服务器负载较低时重新执行全流程。当前服务器 load average 15+，建议等负载降低后再提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp016-result.md"
+}

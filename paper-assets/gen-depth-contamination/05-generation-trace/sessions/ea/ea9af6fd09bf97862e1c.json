@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea9af6fd09bf97862e1c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "submit exp 024 arxiv domain",
+  "task_key": "worker_submit_exp_024_arxiv_domain_20260516T144322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_024_arxiv_domain_20260516T144322_result.json",
+    "occurrence": 1,
+    "bytes": 586,
+    "sha256": "53b2f4b384bc9410da45d8ba56a2e6484acab8fa4f279b7abf8fc75cd011ef33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，模型正在加载。\n\n**结果汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| 数据 | `depth_0.jsonl` 2200行, 字段 `text`+`doc_id` ✓ |\n| 脚本修正 | `CUDA_VISIBLE_DEVICES=3` → `0` ✓ |\n| Registry | `exp_024_arxiv_domain` PREPARING ✓ |\n| 提交 | PID 46766, tmux session `exp_024_arxiv_domain`, cuda:2 ✓ |\n| 启动验证 | 模型加载中，参数正确（5000 samples, depth 0-5, continuation, p=0.95 T=1.0） ✓ |\n\n**预估运行时间**：参考 exp-023 同配置（Qwen2.5-1.5B, 5K docs, depth 0-5），约 3-5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-024-arxiv-domain.md"
+}

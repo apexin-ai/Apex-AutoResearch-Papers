@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5aa4f43bc54fda239a0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp014 naturalistic v2",
+  "task_key": "worker_code_exp014_naturalistic_v2_20260525T064459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp014_naturalistic_v2_20260525T064459_result.json",
+    "occurrence": 1,
+    "bytes": 1188,
+    "sha256": "6098d8a9505a67730860d781615ebe34317107ffb2d9c38586bd831709d877ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功启动，正在执行 Phase 1 数据采样。\n\n**已完成的操作：**\n\n1. **脚本编写**：`scripts/exp014_naturalistic_v2.py`（1165 行），包含 5 个 Phase：\n   - Phase 1：从 FineWeb CC 流式采样 50K docs（50≤words≤1000，<30% non-ASCII，截断 256 tokens）\n   - Phase 2：Qwen2.5-1.5B-Instruct 提取 15D 特征（surprisal 9D + vocab 3D + tail 3D），self-BLEU 使用全局 100 篇 reference pool\n   - Phase 3：加载 `exp_qwen_cont_10k/features.csv` 训练 5 个 binary LightGBM P(Y>k)，全量训练，OBD 预测 CC 数据\n   - Phase 4：9 个独立质量指标（GPT-2 Large PPL、MAUVE、MTLD、HD-D、3/4-gram rep、Zipf、TTR、hapax）\n   - Phase 5：Spearman/Kendall + Bonferroni、分层分析、Kruskal-Wallis/Mann-Whitney/Cliff's delta、Bootstrap CI、length-controlled correlation、3 个可视化\n\n2. **依赖安装**：`lexical-diversity`、`mauve-text`（含 `faiss-cpu`）\n\n3. **任务提交**：`exp_014_naturalistic_v2`，GPU cuda:1，tmux session，12h timeout，日志 `results/exp014_v2/run.log`\n\n每个 Phase 开头有断点续跑检查，支持中断后重启。预计总运行时间 6-8h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp014-naturalistic-v2.md"
+}

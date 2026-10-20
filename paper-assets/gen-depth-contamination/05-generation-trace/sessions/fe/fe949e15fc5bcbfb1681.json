@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe949e15fc5bcbfb1681",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "monitor exp 006 progress",
+  "task_key": "worker_monitor_exp_006_progress_20260514T025636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp_006_progress_20260514T025636_result.json",
+    "occurrence": 1,
+    "bytes": 955,
+    "sha256": "dfb7027ddadf8052ecf5775c68598b2937e6eb88db9fdc7124b2c446b9c3ab13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-006 进度汇报：**\n\n| 指标 | 状态 |\n|------|------|\n| **已完成** | **8 / 50 runs**（+ 1 正在 eval） |\n| **当前 run** | `binary-ours_s456` — 训练已完成 (2814/2814 steps, loss=2.794)，正在用 lm-eval 评估 |\n| **已完成列表** | `base_model`, `no-filter_s42/s123/s456/s789/s1024`, `binary-ours_s42/s123` |\n| **GPU VRAM** | RTX 4090 D — 3861 MiB / 24564 MiB（eval 阶段，占用较低） |\n| **GPU 利用率** | 0%（eval 间歇性使用 GPU） |\n\n**时间估算：**\n- 已运行 ~14h（05-13 21:02 → 05-14 10:57 UTC）\n- 完成 ~8.5 runs → 平均 ~99 min/run（训练 ~41min + 评估 ~58min）\n- 剩余 ~41.5 runs × 99 min ≈ **68.5h**\n- **预估完成：~05-17 07:30 UTC**\n\n注意：实际每 run 耗时（~99 min）远超预估的 46 min，主要是 lm-eval 评估时间比预期长。总耗时将从预估的 38h 膨胀到 ~82h。PID 已从 46129 变为 57675（子进程）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp-006-progress.md"
+}

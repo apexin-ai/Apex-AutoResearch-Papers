@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0c37351b29c3335bad8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp arXiv llama8b crossscorer",
+  "task_key": "worker_analysis_exp_arXiv_llama8b_crossscorer_20260518T030302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_arXiv_llama8b_crossscorer_20260518T030302_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "495ff45e9e19b82a340c2ba7676918d28a85f34a3bb887914d84243da65988ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## exp_arXiv_llama8b_crossscorer 结果\n\n**Conclusion: SUCCESS** — K\\*=3，与原实验完全一致。\n\n| Depth Pair | Qwen-1.5B | Pythia-1.4B | Delta |\n|---|---|---|---|\n| 0v1 | 0.9754 | 0.9629 | -0.013 |\n| 1v2 | 0.8447 | 0.8433 | -0.001 |\n| 2v3 | 0.6215 | 0.6201 | -0.001 |\n| 3v4 | 0.5362 | 0.5230 | -0.013 |\n| 4v5 | 0.5331 | 0.5245 | -0.009 |\n\n两个 scorer 的 AUC 差异均 < 1.5%，K\\* boundary 落在完全相同的位置（depth 2v3 仍 >0.60，depth 3v4 降至 chance）。Scorer family bias 在 arXiv domain 被排除，arXiv K\\*=3 是 robust 的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-arxiv-llama8b-crossscorer.md"
+}

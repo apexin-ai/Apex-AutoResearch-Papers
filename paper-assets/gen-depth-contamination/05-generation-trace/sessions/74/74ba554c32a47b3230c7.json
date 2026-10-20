@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74ba554c32a47b3230c7",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "reviewer / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_4.md",
+    "occurrence": 1,
+    "bytes": 3641,
+    "sha256": "e27a24b351cae12461b8a941f1ca9efd777915bed02cf637c36aac7d9857b25f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_wall_time\nupdated: '2026-05-14T01:37:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器已从 `autodl-4090d` 更名为 `westc-26893`，SSH 工具只认 `westc-26893`\n- GPU 白名单：仅 `cuda:0`（1×RTX 4090D）\n- exp-006 PID 46129 正在占用 GPU，预计 05-15 11:00 UTC 完成前不可提交新 GPU 任务\n- paper_framing.md 中的数值精度修正必须遵守：Pythia↔OLMo 是 90-92%（非 91-92%），Qwen-cont↔Pythia 是 84-85%（非 83-85%）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westc-26893`(root)，工作目录 `/root/autodl-tmp/gen-depth-contamination`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 模型：Pythia `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b`，OLMo `/root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf`，Qwen `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct`\n- 活跃进程：exp-006 graduated filtering（PID 46129, tmux, cuda:0, ~35h remaining, 3/50 runs done as of 05-13 22:35 UTC）\n- 本地 paper 目录：`projects/gen-depth-contamination/docs/paper/`（discussion.tex, conclusion.tex 等）\n\n### 3. 📊 当前状态\n刚完成 Discussion + Conclusion 两个章节草稿的审查，已通过 `reviewer_post_to_director` 提交。\n\n**Discussion 审查结果（WARNING）**：\n- 1v2 AUC 范围写 0.6112-0.6955 漏了 T1.2 的 0.7039\n- 2v3 AUC 范围写 0.5496-0.5893 漏了 nuc09 的 0.5917\n- 70-85% text-intrinsic 定量分解违反 framing 指导（应定性表述）\n- 缺失 K*=2 双端 CI 边缘性讨论（framing 明确要求）\n\n**Conclusion 审查结果（WARNING）**：\n- \"p < 0.01 for all eight 1v2 comparisons\" 错误——仅 4 个 model-mode configs 有 permutation test\n- Pythia↔OLMo 写 91-92% 应为 90-92%\n- \"in both continuation and rewrite modes\" 句法歧义，读者会理解为三模型都做了双 mode\n\n**Registry 状态**：\n- RUNNING：exp-006 graduated filtering（~35h remaining）\n- PREPARING：exp-015 neural probe（等 exp-006 释放 GPU）\n- DONE：10 个实验全部 success\n\n### 4. 📋 待办\n- Discussion/Conclusion 修复 worker 回调 → 核实修复是否覆盖全部 warning 点（尤其 permutation test 覆盖声明 + AUC 范围 + 双端边缘性）\n- exp-006 完成通知 → 审查 graduated filtering 结果（C3 是论文第二支柱，关注 vs binary 是否统计显著）\n- exp-006 完成 → Discussion/Conclusion TODO 占位填充后再审\n- exp-015 neural probe 完成 → 审查 K*_neural vs K*_15D（D015 标记为\"论文生死实验\"——若 K*_neural > K*_15D 需 reframe headline）\n- 论文全文初稿完成 → 全面溯源审查（paper_provenance.yaml 覆盖率 + claim-evidence 一致性）\n\n### 5. 🎯 战略上下文\n- 核心结论：K*_empirical=2 across 8 conditions（universality narrative, D016）\n- 论文结构 2+1：C1'(K* characterization) + C3(graduated filtering) + supporting analysis（D012）\n- C3 单点依赖风险：exp-006 是唯一支撑 C3 的实验（D013），若 graduated ≈ binary → fallback 为纯 characterization paper\n- exp-015 是 claim 强度的关键：若 K*_neural > 2 → \"K*=2 is feature-set artifact\" 需 reframe 为 \"feature-dependent K*\"（D015）\n- 易错判断：不要套人类工时直觉——DDL 05-25 ARR 还有 11 天，GPU 预算充足（28-31h remaining vs 11 天）\n- 易错数值：Discussion 的 AUC 范围已与 Conclusion 不一致（Discussion 偏窄），修复时注意统一\n- exp-003 decoding ablation 没有 bootstrap CI / permutation test，不可声称 decoding configs 有统计验证——这是审稿人最容易发现的漏洞\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-copy-3.md"
+}

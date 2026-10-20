@@ -1,0 +1,409 @@
+{
+  "schema_version": "1.0",
+  "id": "b1b52d862071b05de102",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "fix related work additions",
+  "task_key": "worker_fix_related_work_additions_20260514T022133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fix_related_work_additions_20260514T022133.jsonl",
+    "occurrence": 1,
+    "bytes": 17679,
+    "sha256": "952abddbe93259cf4179733497327089084530b08b62fc33887133ae1024c670"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T02:23:01.834358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T02:23:01.837523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Model Collapse and Recursive Generation.}\n5\tTraining on model-generated data can cause progressive distribution shift known as \\emph{model collapse}.\n6\tShumailov et al.~\\cite{shumailov2024collapse} showed that iteratively training language models on their own outputs leads to irreversible tail-distribution degradation, with minority modes vanishing across generations.\n7\tAlemohammad et al.~\\cite{alemohammad2024selfconsuming} formalized this for self-consuming generative models, proving convergence to a fixed point under mild regularity conditions.\n8\tDohmatob et al.~\\cite{dohmatob2024model} derived scaling laws for collapse, demonstrating that tail probability mass is lost at rates predictable from model and data scale.\n9\tSchaeffer et al.~\\cite{schaeffer2025position} organized the fragmented literature into a taxonomy of eight definitions across three families.\n10\tOur $\\Kstar$ aligns with their Family~B (distributional deformation), specifically D4 (collapsing variance) and D6 (mode entanglement)---the features that degrade most rapidly in our experiments are precisely variance-based surprisal measures.\n11\tKazdan et al.~\\cite{kazdan2025collapse} distinguished \\emph{replace} and \\emph{accumulate} regimes: in the replace regime each generation completely supplants its predecessor, producing faster collapse.\n12\tOur prompt-chain protocol operates in the replace regime, so $\\Kempirical = 2$ is a conservative lower bound; the accumulate regime would yield slower degradation and higher $\\Kstar$.\n13\tShi et al.~\\cite{shi2025generalization} identified a generalization-to-memorization transition in recursively trained models, providing cross-modal evidence that information loss is progressive.\n14\tThese works characterize the macro dynamics of collapse but do not provide tools for per-text generational depth estimation.\n15\t\n16\t\\paragraph{Binary Synthetic Text Detection.}\n17\tDistinguishing machine-generated from h\n…[truncated 4246 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Read",
+            "elapsed_ms": 3
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T02:23:01.837755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T02:23:01.837982+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% === References for gen-depth-contamination ===\n2\t% Source: literature_map.yaml — PENDING formal verification via verify_references\n3\t% NOTE: All entries require online verification before final submission\n4\t\n5\t% === Must-Cite ===\n6\t\n7\t@inproceedings{drayson2025,\n8\t  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n9\t  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n10\t  booktitle={Proceedings of EMNLP},\n11\t  year={2025},\n12\t  url={https://arxiv.org/abs/2502.15654}\n13\t}\n14\t\n15\t@inproceedings{schaeffer2025position,\n16\t  title={Position: Model Collapse Does Not Mean What You Think},\n17\t  author={Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Anirudh and Koyejo, Sanmi},\n18\t  booktitle={Proceedings of ICML},\n19\t  year={2025},\n20\t  url={https://arxiv.org/abs/2503.03150}\n21\t}\n22\t\n23\t@inproceedings{kazdan2025collapse,\n24\t  title={Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World},\n25\t  author={Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David and Koyejo, Sanmi},\n26\t  booktitle={Proceedings of ICML},\n27\t  year={2025},\n28\t  url={https://arxiv.org/abs/2410.16713}\n29\t}\n30\t\n31\t@inproceedings{shi2025generalization,\n32\t  title={A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective},\n33\t  author={Shi, Shiliang and Wu, Qiong and Zhang, Zhen and Zhang, Jing and Tao, Dacheng and Qu, Xiangyang},\n34\t  booktitle={Advances in NeurIPS},\n35\t  year={2025},\n36\t  note={Spotlight},\n37\t  url={https://arxiv.org/abs/2509.16499}\n38\t}\n39\t\n40\t@inproceedings{mitchell2023detectgpt,\n41\t  title={{DetectGPT}: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n42\t  author={Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n43\t  booktitle={Proceedings of ICML},\n44\t  year={2023}\n45\t}\n46\t\n47\t% === Should-Cite ===\n48\t\n49\t@article{basani2026diveye,\n50\t  tit\n…[truncated 4049 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T02:23:01.838188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex",
+              "old_string": "\\paragraph{Binary Synthetic Text Detection.}\nDistinguishing machine-generated from human-written text is a well-studied binary classification problem.\nZellers et al.~\\cite{zellers2019grover} demonstrated that the generating model itself is an effective detector, while Ippolito et al.~\\cite{ippolito2020detection} analyzed how detection difficulty scales with generation quality.\nRecent zero-shot methods have narrowed the gap: Mitchell et al.~\\cite{mitchell2023detectgpt} introduced DetectGPT, which uses probability curvature to detect machine-generated text without access to the generating model.\nDivEye~\\cite{basani2026diveye} uses surprisal diversity features to detect synthetic text without generator-specific training data, and Min-K\\%++~\\cite{zhang2024minkpp} adapts membership inference techniques to flag model-generated passages via outlier token likelihoods.\nCoDeC~\\cite{zawalski2026codec} frames contamination detection as in-context learning, calibrating thresholds from few-shot exemplars.",
+              "new_string": "\\paragraph{Binary Synthetic Text Detection.}\nDistinguishing machine-generated from human-written text is a well-studied binary classification problem.\nEarly statistical approaches such as GLTR~\\cite{gehrmann2019gltr} visualized per-token likelihood ranks to help human annotators spot generated text, establishing that token-level distributional cues are informative for detection.\nZellers et al.~\\cite{zellers2019grover} demonstrated that the generating model itself is an effective detector, while Ippolito et al.~\\cite{ippolito2020detection} analyzed how detection difficulty scales with generation quality.\nRecent zero-shot methods have narrowed the gap: Mitchell et al.~\\cite{mitchell2023detectgpt} introduced DetectGPT, which uses probability curvature to detect machine-generated text without access to the generating model.\nHans et al.~\\cite{hans2024binoculars} proposed Binoculars, which computes the cross-perplexity ratio between two closely related language models to achieve near-perfect detection without any training data.\nDivEye~\\cite{basani2026diveye} uses surprisal diversity features to detect synthetic text without generator-specific training data, and Min-K\\%++~\\cite{zhang2024minkpp} adapts membership inference techniques to flag model-generated passages via outlier token likelihoods.\nCoDeC~\\cite{zawalski2026codec} frames contamination detection as in-context learning, calibrating thresholds from few-shot exemplars."
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T02:23:01.838369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T02:23:01.838507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex",
+              "old_string": "Binary features are designed for the human-vs.-synthetic boundary and are not expected to capture fine-grained depth differences, as the distributional shift between adjacent generations is orders of magnitude smaller than the shift between human and first-generation text.\n\n\\paragraph{Data Selection and Curation.}",
+              "new_string": "Binary features are designed for the human-vs.-synthetic boundary and are not expected to capture fine-grained depth differences, as the distributional shift between adjacent generations is orders of magnitude smaller than the shift between human and first-generation text.\n\n\\paragraph{Ordinal Classification.}\nOrdinal regression methods exploit the natural ordering among class labels to improve generalization over nominal classifiers.\nCao et al.~\\cite{cao2020coral} introduced CORAL, which enforces rank consistency through weight sharing in the output layer, guaranteeing that predicted cumulative probabilities are monotonically non-increasing.\nOrdinal approaches have been applied in NLP tasks such as sentiment intensity prediction and essay scoring, where adjacent categories share more semantic overlap than distant ones.\nGenerational depth exhibits the same ordinal structure: text at depth~$k$ is distributionally closer to depth~$k\\!\\pm\\!1$ than to depth~$k\\!\\pm\\!3$, because each recursive generation step introduces an incremental distributional shift rather than a discontinuous one.\nDespite this natural fit, ordinal classification has not been applied to synthetic text depth estimation.\nOur Ordinal Boundary Detection (OBD) head leverages this ordered structure, yielding monotonic depth predictions and stronger calibration than a flat softmax baseline.\n\n\\paragraph{Data Selection and Curation.}"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T02:23:01.838671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T02:23:01.838852+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib",
+              "old_string": "@inproceedings{zellers2019grover,",
+              "new_string": "@inproceedings{gehrmann2019gltr,\n  title={{GLTR}: Statistical Detection and Visualization of Generated Text},\n  author={Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander M.},\n  booktitle={Proceedings of ACL: System Demonstrations},\n  year={2019}\n}\n\n@inproceedings{hans2024binoculars,\n  title={Spotting {LLMs} With Binoculars},\n  author={Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n  booktitle={Proceedings of ICML},\n  year={2024}\n}\n\n@article{cao2020coral,\n  title={Rank consistent ordinal regression for neural networks with application to age estimation},\n  author={Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n  journal={Pattern Recognition Letters},\n  volume={140},\n  pages={325--331},\n  year={2020}\n}\n\n@inproceedings{zellers2019grover,"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T02:23:01.839038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T02:23:01.839189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper && latexmk -pdf main.tex 2>&1 | tail -30",
+              "description": "Compile LaTeX and check for warnings",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T02:23:01.839334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "f>] (./main.aux) )\n(see the transcript file for additional information)</usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\ncm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1\n2.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/tex\nlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texli\nve/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/\nurw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8\na.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (17 pages, 305813 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T02:23:01.839465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -c \"Warning\" main.log | head -1 && grep -i \"undefined\\|multiply.*defined\\|missing\" main.log | head -10",
+              "description": "Check for LaTeX warnings about references"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T02:23:01.839582+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "11"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T02:23:01.839694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -i \"warning\" main.log | grep -v \"^$\" | head -15",
+              "description": "Show actual warning lines"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T02:23:01.840742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Bash",
+            "elapsed_ms": 1
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T02:23:01.841000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -i \"citation\\|undefined\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.log | head -10",
+              "description": "Check for undefined citation warnings"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T02:23:01.841387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T02:23:01.841598+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，无 undefined citation、无 missing reference。仅有预已存在的 hyperref PDF string 警告（与本次改动无关）。\n\n完成内容：\n- `related_work.tex`：Binary Detection 段新增 GLTR（早期统计检测）和 Binoculars（cross-perplexity ratio）引用；新增 Ordinal Classification 段落（6 行，含 CORAL 引用、ordinal 适配 depth 的论证、gap statement 指向 OBD）\n- `references.bib`：新增 `gehrmann2019gltr`、`hans2024binoculars`、`cao2020coral` 三个条目\n- PDF 编译成功，17 页，无新增 warning"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_related_work_additions_20260514T022133"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/fix-related-work-additions.md"
+}

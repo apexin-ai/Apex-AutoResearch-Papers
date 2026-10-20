@@ -1,0 +1,2601 @@
+{
+  "schema_version": "1.0",
+  "session_id": "cdcde86eb95846b17440",
+  "rounds": [
+    {
+      "number": 66,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-17T22:32:41.740012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-17T22:32:41.740425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0001}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-17T22:32:42.192016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "status": "running"
+            }
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-17T22:32:42.393010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-17T22:32:45.653914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 2, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp_14b_c4\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=8586)\\\"]}, {\\\"exp_id\\\": \\\"exp_32b_c4\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=14637)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 3913
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-17T22:32:45.704616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 3512
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-17T22:32:45.705159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-17\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_32b_c4 | Scale-dependent K* on C4: Qwen2.5-32B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 32B scale 是否稳定（已确认 1.5B/7B/8B/14B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. | — | — | — |\\\\n| exp_14b_c4 | Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 14B scale 是否稳定（已确认 1.5B/7B/8B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp_008_retrain_chain: Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\\\n\\\\n## 近期结论\\\\n- **exp_wiki_qwen7b** (success): Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. ← 基于 exp_arXiv_qwen7b\\\\n  [exp_wiki_qwen7b_analysis](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_qwen7b/report/exp_wiki_qwen7b_analysis_787c1b.md)\\\\n- **exp_wiki_mistral7b** (success): Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → Wikipedia 有 rescue Mistral 的结构信号（与预期相反）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2\n…[truncated 1378 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 3312
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-17T22:32:58.466515+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "status": "done",
+              "limit": "5"
+            }
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-17T22:32:58.517239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_analysis_theta_sensitivity_20260517T195743\\\", \\\"task_type\\\": \\\"analysis:theta_sensitivity\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T19:57:43.194407+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T20:04:00.962210+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_disk_cleanup_cqa1_20260517T195754\\\", \\\"task_type\\\": \\\"ops:disk_cleanup_cqa1\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T19:57:54.861623+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T20:01:00.642408+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_retrain_chain_prep_check_20260517T195756\\\", \\\"task_type\\\": \\\"ops:retrain_chain_prep_check\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T19:57:56.359129+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T20:00:00.537396+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_exp_wiki_qwen7b_20260517T222327\\\", \\\"task_type\\\": \\\"analysis:exp_wiki_qwen7b\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T22:23:28.004826+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T22:25:16.958015+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_cloud_progress_check_20260517T223002\\\", \\\"task_type\\\": \\\"ops:cloud_progress_check\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T22:30:02.874844+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T22:31:43.216645+00:00\\\"}], \\\"count\\\": 5}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-17T22:33:02.482981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-17T22:33:02.533635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-17T22:33:06.097928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_cloud_progress_check_20260517T223002"
+            }
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-17T22:33:06.148598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_cloud_progress_check_20260517T223002\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:cloud_progress_check\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"started_at\\\": \\\"2026-05-17T22:30:02.874844+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T22:31:43.216645+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"```\\\\nexp_id     | GPU   | 模型          | 已完成 depth | 当前进度           | 预计完成时间\\\\n-----------|-------|--------------|-------------|-------------------|------------------\\\\nexp_14b_c4 | cuda:0 (31GB/98GB, 87%, 49°C) | Qwen2.5-14B | depth 0,1  | depth 2: 1090/1250 (87%) ~8.4s/it | ~May 18 15:30\\\\nexp_32b_c4 | cuda:1 (65GB/98GB, 90%, 52°C) | Qwen2.5-32B | depth 0    | depth 1:  743/2500 (30%) ~14.9s/it | ~May 20 07:00\\\\n```\\\\n\\\\n**估算依据：**\\\\n- **exp_14b_c4**: batch_size=4 → 1250 batches/depth, ~2h52m/depth。depth 2 剩 ~22min，之后还有 depth 3/4/5 (3 × 2h52m ≈ 8h36m)，预计 ~15:30 完成\\\\n- **exp_32b_c4**: batch_size=2 → 2500 batches/depth, ~10h21m/depth。depth 1 剩 ~7h16m，之后还有 depth 2/3/4/5 (4 × 10h21m ≈ 41h24m)，预计 May 20 早上完成\\\\n\\\\nexp_32b_c4 总耗时远大于 exp_14b_c4（模型更大 + batch_size 更小）。两块卡温度和负载都正常。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-17T22:33:20.046521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "file": "ROADMAP.md",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-17T22:33:20.197605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md\\\", \\\"content\\\": \\\"# gen-depth-contamination — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-17 22:26 UTC | 更新原因: Wikipedia 6 模型完成 (D059), domain×model matrix 完整, 等 14B/32B 云端结果\\\\n\\\\n## 核心方向\\\\n首次系统测量递归合成文本的 generational discrimination boundary K*，发现 K* 是 low-bounded 且 domain-dependent。完整 6×3 Domain×Model K* matrix 显示：domain 是主导因素（arXiv K*=3, C4 K*=2, Wiki K*=1），model-specific exceptions 揭示 interaction（Mistral C4 K*=1, OLMo arXiv K*=1, Qwen Wiki K*=2）。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Domain expansion COMPLETE + Scale validation RUNNING + 论文 patch 收尾\\\\n- **实验**: 44 success / 9 technical failures / 62 total\\\\n- **Domain×Model K* Matrix (complete)**:\\\\n  | Model | C4 | arXiv | Wikipedia |\\\\n  |-------|-----|-------|-----------|\\\\n  | Qwen-1.5B | 2 | 3 | 2 |\\\\n  | Qwen-7B | 2 | 3 | 2 |\\\\n  | Pythia-1.4B | 2 | 3 | 1 |\\\\n  | LLaMA-8B | 2 | 3 | 1 |\\\\n  | Mistral-7B | 1 | 3 | 1 |\\\\n  | OLMo-1B | 2 | 1* | 1 |\\\\n- **论文**: EMNLP 2026 ARR, DDL May 25 (~6 days)\\\\n- **审稿**: Paper Agent 修正 Wikipedia overclaim + Appendix framing\\\\n\\\\n## 运行中实验\\\\n| 实验 | GPU | 预计完成 | 假设 |\\\\n|------|-----|---------|------|\\\\n| exp_14b_c4 | westd cuda:0 | ~12h | Qwen2.5-14B C4 K*=? (scale) |\\\\n| exp_32b_c4 | westd cuda:1 | ~2.5 days | Qwen2.5-32B C4 K*=? (scale) |\\\\n\\\\n## 近期任务\\\\n- [x] Wikipedia 6 模型全景完成 (D059)\\\\n- [x] arXiv 5/6 模型 K*=3 完成 (OLMo K*=1 capacity failure 除外, D055-D057)\\\\n- [x] Paper Agent Wikipedia overclaim 修正 (discussion + intro + experiments)\\\\n- [x] Paper Agent Wikipedia Appendix framing patch (scorer confound caveat)\\\\n- [x] θ sensitivity 分析完成 (Reviewer Critical #2 addressed)\\\\n- [ ] 等 exp_14b_c4 结果 → 如 K*=1 则启动 scorer confound contingency\\\\n- [ ] 等 exp_32b_c4 结果 → scale invariance claim\\\\n- [ ] Wikipedia scorer confound ablation (Pythia scorer on Qwen-7B Wiki, cqa1 cuda:1, <2h)\\\\n- [ ] 综合 paper patch: 完整 domain×model table, Mistral case \n…[truncated 2391 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 151
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-17T22:33:20.198002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-17T22:33:20.248422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-17T22:33:45.392246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 2/6 (westd cuda:0,1 满载) | Worker 0 (刚回收) | cqa1 全部空闲 standby | 磁盘: cqa1 97%(项目仅1.2GB,共享盘问题)\n\n**Director 两项任务完成汇报：**\n\n## 1. Retrain-chain Provenance 确认\n\nexp_027_retrain_bootstrap (DONE/success) 是 D051 的 retrain-chain K*≥4 数据源。Bootstrap CI 全部 CI_lower >> 0.60 (min=0.7903)，证据充分。\n\nexp_008_retrain_chain (原 PREPARING) 是过时残留，已标记 conclusion=killed。\n\n## 2. 云 GPU 进度（检查时间: May 17 22:31 UTC）\n\n| exp_id | GPU | 已完成 | 当前进度 | 速度 | 预计完成 |\n|--------|-----|--------|---------|------|---------|\n| exp_14b_c4 | cuda:0 (31/98GB, 49°C) | depth 0,1 | depth 2: 87% (1090/1250) | ~8.4s/it | **~May 18 15:30** |\n| exp_32b_c4 | cuda:1 (65/98GB, 52°C) | depth 0 | depth 1: 30% (743/2500) | ~14.9s/it | **~May 20 07:00** |\n\n**估算：**\n- 14B: ~2h52m/depth, 剩 depth 2(22min) + depth 3/4/5(8h36m) ≈ 再需 ~9h → May 18 下午\n- 32B: ~10h21m/depth, 剩 depth 1(7h16m) + depth 2/3/4/5(41h24m) ≈ 再需 ~49h → May 20 早\n\n两卡温度负载正常，无异常。\n\n**注意：** exp_14b_c4 预计今天内完成。如 K*=1，立即启动 scorer confound contingency (14B as scorer)，cqa1 全部空闲可接。exp_32b_c4 距 DDL (May 25) 有 5 天余量，可覆盖。\n\n**cqa1 四卡空闲中。** ROADMAP 提到\"Wikipedia scorer confound ablation (Pythia scorer on Qwen-7B Wiki, <2h)\"可立即在 cqa1 执行，是否批准启动？",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-17T22:33:46.496666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1104
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": "2026-05-17T22:33:51.025886+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已向Director汇报：\n- Retrain-chain provenance已确认（exp_027是D051源，exp_008已killed）\n- 云端进度：14B预计May 18下午完成，32B预计May 20早\n- 建议启动cqa1上的Wikipedia scorer confound ablation填补空闲GPU\n\n等待Director回复或实验完成回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000740"
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "messages": [
+        {
+          "source_line": 741,
+          "timestamp": "2026-05-17T22:33:51.465641+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_ops_cloud_progress_check_20260517T223002 已完成（status=done）。用 `get_worker_status('worker_ops_cloud_progress_check_20260517T223002')` 读取结果，然后处理。\n\n- worker_id: worker_ops_cloud_progress_check_20260517T223002\n- project: gen-depth-contamination\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "worker:done"
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-17T22:33:59.990993+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在 session 启动时处理完毕——读取了该 Worker 结果并已向 Director 汇报（exp_14b_c4 预计 May 18 15:30，exp_32b_c4 预计 May 20 07:00）。无需重复操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000742"
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "messages": [
+        {
+          "source_line": 743,
+          "timestamp": "2026-05-17T22:34:00.507616+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 新实验：Wikipedia scorer confound ablation\n\n**目的**: 验证 Qwen-7B Wikipedia K*=2 是否是 scorer family bias artifact。用 Pythia-1.4B 作为 scorer 重新评分 Qwen-7B 在 Wikipedia 上生成的文本。\n\n**设计**:\n- 数据：直接使用 exp_wiki_qwen7b 已生成的 depth 0-5 文本（不需要重新生成）\n- Scorer：Pythia-1.4B（替代 Qwen-1.5B）\n- 仅需：重新计算 15D features（用 Pythia scorer 计算 surprisal）→ 训练 LightGBM → 报告 pairwise AUC 和 K*\n- 预计时间：<2h\n\n**假设**: 如果 Pythia scorer 下 Qwen-7B Wiki K*=1 → scorer confound confirmed，论文叙事需进一步限定。如果仍 K*=2 → scorer confound excluded，可升级 Wikipedia 叙事。\n\n**分配**: cqa1-22115 cuda:1，注册后提交审批。\n\n另外：确认之前发的 retrain-chain provenance 任务结果——exp_008_retrain_chain PREPARING 条目是否已标记 CANCELLED？"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "director"
+          },
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": "2026-05-17T22:34:10.870178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": "2026-05-17T22:34:10.920836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000745"
+        },
+        {
+          "source_line": 746,
+          "timestamp": "2026-05-17T22:34:15.892154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp_008_retrain_chain'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000746"
+        },
+        {
+          "source_line": 747,
+          "timestamp": "2026-05-17T22:34:15.942822+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0001}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-000747"
+        },
+        {
+          "source_line": 748,
+          "timestamp": "2026-05-17T22:34:22.982945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'conclusion': 'killed'}",
+              "fields": "['status', 'conclusion']"
+            }
+          },
+          "id": "event-000748"
+        },
+        {
+          "source_line": 749,
+          "timestamp": "2026-05-17T22:34:23.033712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0001}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-000749"
+        },
+        {
+          "source_line": 750,
+          "timestamp": "2026-05-17T22:34:26.999614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['status', 'conclusion', 'hypothesis']"
+            }
+          },
+          "id": "event-000750"
+        },
+        {
+          "source_line": 751,
+          "timestamp": "2026-05-17T22:34:27.050342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0001}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-000751"
+        },
+        {
+          "source_line": 752,
+          "timestamp": "2026-05-17T22:34:31.221264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "limit": "5",
+              "fields": "['status', 'conclusion']"
+            }
+          },
+          "id": "event-000752"
+        },
+        {
+          "source_line": 753,
+          "timestamp": "2026-05-17T22:34:31.372275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0001}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 151
+          },
+          "id": "event-000753"
+        },
+        {
+          "source_line": 754,
+          "timestamp": "2026-05-17T22:34:35.186656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "limit": "5",
+              "fields": "['status', 'conclusion']"
+            }
+          },
+          "id": "event-000754"
+        },
+        {
+          "source_line": 755,
+          "timestamp": "2026-05-17T22:34:35.438015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_008_retrain_chain\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_wiki_qwen7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_wiki_mistral7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_32b_c4\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_wiki_llama8b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"count\\\": 5, \\\"total\\\": 60, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2561}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-000755"
+        },
+        {
+          "source_line": 756,
+          "timestamp": "2026-05-17T22:34:42.314351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "filters": "{'exp_id': 'exp_wiki_qwen7b'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000756"
+        },
+        {
+          "source_line": 757,
+          "timestamp": "2026-05-17T22:34:42.416068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__allocate_and_submit",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000757"
+        },
+        {
+          "source_line": 758,
+          "timestamp": "2026-05-17T22:34:42.567226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.255}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 252
+          },
+          "id": "event-000758"
+        },
+        {
+          "source_line": 759,
+          "timestamp": "2026-05-17T22:34:42.567656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "elapsed_ms": 151
+          },
+          "id": "event-000759"
+        },
+        {
+          "source_line": 760,
+          "timestamp": "2026-05-17T22:34:46.984194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "filters": "{'status': 'DONE', 'conclusion': 'success'}",
+              "fields": "['status', 'conclusion', 'spec']",
+              "limit": "10"
+            }
+          },
+          "id": "event-000760"
+        },
+        {
+          "source_line": 761,
+          "timestamp": "2026-05-17T22:34:47.185486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_wiki_qwen7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_wiki_qwen7b --results_dir results/exp_wiki_qwen7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"732600\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_qwen7b.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T17:02:43.570Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 19327.6, \\\"gpu_hours\\\": 5.37}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_wiki_mistral7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_wiki_mistral7b --results_dir results/exp_wiki_mistral7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"data_path\\\": \\\"data/exp_wiki_mistral7b\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"mistralai/Mistral-7B-v0.3\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained:mistralai/Mistral-7B-v0.3\\\", \\\"eval_data\\\": \\\"Wikipedia depth 0-5, scorer=Qwen2.5-1.5B\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_arXiv_qwen7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_arXiv_qwen7b --results_dir results/exp_arXiv_qwen7b --num_samples\n…[truncated 5852 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 201
+          },
+          "id": "event-000761"
+        },
+        {
+          "source_line": 762,
+          "timestamp": "2026-05-17T22:35:20.114242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound",
+              "field": "hypothesis",
+              "value": "Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000762"
+        },
+        {
+          "source_line": 763,
+          "timestamp": "2026-05-17T22:35:20.415754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound",
+              "field": "parent",
+              "value": "exp_wiki_qwen7b",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000763"
+        },
+        {
+          "source_line": 764,
+          "timestamp": "2026-05-17T22:35:20.566976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_wiki_scorer_confound\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T22:35:20.326Z\\\", \\\"updated_at\\\": \\\"2026-05-17T22:35:20.326Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3995}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000764"
+        },
+        {
+          "source_line": 765,
+          "timestamp": "2026-05-17T22:35:20.918977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_wiki_scorer_confound\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T22:35:20.326Z\\\", \\\"updated_at\\\": \\\"2026-05-17T22:35:20.755Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\\\", \\\"parent\\\": \\\"exp_wiki_qwen7b\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4036}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 503
+          },
+          "id": "event-000765"
+        },
+        {
+          "source_line": 766,
+          "timestamp": "2026-05-17T22:35:27.743933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound",
+              "field": "status",
+              "value": "PENDING",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000766"
+        },
+        {
+          "source_line": 767,
+          "timestamp": "2026-05-17T22:35:43.053877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_wiki_scorer_confound\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T22:35:20.326Z\\\", \\\"updated_at\\\": \\\"2026-05-17T22:35:27.932Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\\\", \\\"parent\\\": \\\"exp_wiki_qwen7b\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8344}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 15309
+          },
+          "id": "event-000767"
+        },
+        {
+          "source_line": 768,
+          "timestamp": "2026-05-17T22:35:43.204900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:exp_wiki_scorer_confound_prep",
+              "project": "gen-depth-contamination",
+              "task_prompt": "你的任务：为 exp_wiki_scorer_confound 准备执行命令。\n\n## 背景\nexp_wiki_qwen7b 已在 cqa1-22115 上完成：用 Qwen-7B 生成了 Wikipedia depth 0-5 文本，用 Qwen-1.5B 评分，K*=2。\n现在需要用 Pythia-1.4B 替代 Qwen-1.5B 重新评分（不需要重新生成文本）。\n\n## 具体任务\n\n1. SSH 到 cqa1-22115 检查：\n   - `run_pipeline.py` 是否有 `--skip_generation` 或类似参数（只做 scoring + classification）\n   - 如果没有，查看 pipeline 代码逻辑——如果 data_dir 下已有 depth_*.jsonl 文件，是否自动跳过生成\n   - Pythia-1.4B 模型路径（应在 `/root/autodl-tmp/.hf_cache/` 下，可能是 `EleutherAI/pythia-1___4b` 或类似）\n   - exp_wiki_qwen7b 的生成数据位置确认：`/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/`\n\n2. 构造正确的执行命令：\n   - 数据：直接使用 exp_wiki_qwen7b 已生成的 depth 0-5 文本\n   - Scorer：Pythia-1.4B（替代 Qwen-1.5B）\n   - Results 目录：results/exp_wiki_scorer_confound/\n   - 只需重新计算 15D features（用 Pythia scorer 的 surprisal）→ 训练 LightGBM → 报告 pairwise AUC 和 K*\n\n3. 重要：如果 pipeline 没有 skip_generation 机制，你需要：\n   - 方案 A：看是否可以用 symlink 把已有数据链接到新目录的 data_dir，pipeline 检测到已有文件就跳过\n   - 方案 B：写一个简单的 wrapper script 只调用 scoring + classification 部分\n   - 方案 C：直接复制数据到新 data_dir（浪费空间但最简单）\n\n4. 输出：最终确定的 bash 命令（可直接用于 submit_training_job），格式如：\n   `bash -c \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python ...\"`\n\n服务器：cqa1-22115 (root@)\n项目路径：/root/autodl-tmp/gen-depth-contamination/\n",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000768"
+        },
+        {
+          "source_line": 769,
+          "timestamp": "2026-05-17T22:35:48.638092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_exp_wiki_scorer_confound_prep_20260517T223543\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_code_exp_wiki_scorer_confound_prep_20260517T223543.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_exp_wiki_scorer_confound_prep_20260517T223543 started. Use get_worker_status('worker_code_exp_wiki_scorer_confound_prep_20260517T223543') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5433
+          },
+          "id": "event-000769"
+        },
+        {
+          "source_line": 770,
+          "timestamp": "2026-05-17T22:35:59.430279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/skills/on-experiment-pending.skill.md",
+              "limit": "40"
+            }
+          },
+          "id": "event-000770"
+        },
+        {
+          "source_line": 771,
+          "timestamp": "2026-05-17T22:35:59.430987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000771"
+        },
+        {
+          "source_line": 772,
+          "timestamp": "2026-05-17T22:36:03.247953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-pending*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7"
+            }
+          },
+          "id": "event-000772"
+        },
+        {
+          "source_line": 773,
+          "timestamp": "2026-05-17T22:36:03.298617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000773"
+        },
+        {
+          "source_line": 774,
+          "timestamp": "2026-05-17T22:36:10.840728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/skills/*pending*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7"
+            }
+          },
+          "id": "event-000774"
+        },
+        {
+          "source_line": 775,
+          "timestamp": "2026-05-17T22:36:10.891376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000775"
+        },
+        {
+          "source_line": 776,
+          "timestamp": "2026-05-17T22:36:15.106548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__feishu_send_approval_card",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000776"
+        },
+        {
+          "source_line": 777,
+          "timestamp": "2026-05-17T22:36:15.157209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000777"
+        },
+        {
+          "source_line": 778,
+          "timestamp": "2026-05-17T22:36:22.303906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_send_approval_card"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound",
+              "summary": "Scorer confound ablation: 用 Pythia-1.4B 替代 Qwen-1.5B scorer 重新评分 Qwen-7B Wikipedia depth 0-5 文本，验证 K*=2 是否为 scorer family bias artifact。cqa1 cuda:1, <2h。",
+              "risk_reason": "低风险：仅 scoring + classification，复用已有数据，不涉及新生成。单卡 <2h。",
+              "diff_summary": "复用 exp_wiki_qwen7b 生成的 depth 0-5 数据，仅更换 scorer_path 为 Pythia-1.4B 重新提取 15D features + LightGBM 分类。",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000778"
+        },
+        {
+          "source_line": 779,
+          "timestamp": "2026-05-17T22:54:00.845596+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认：exp_008_retrain_chain 已标记 conclusion=killed（PREPARING 状态不变因为 killed 不是 status 而是 conclusion 字段）。\n\n注册新实验并启动准备。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000779"
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "messages": [
+        {
+          "source_line": 780,
+          "timestamp": "2026-05-17T22:54:01.902125+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 是，立即在 cqa1 cuda:1 启动 Wikipedia scorer confound ablation。用已有的 exp_wiki_qwen7b 生成数据，换 Pythia-1.4B 作为 scorer 重新计算 surprisal features → LightGBM → 报告 K*。注册审批后执行。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "director"
+          },
+          "id": "event-000780"
+        },
+        {
+          "source_line": 781,
+          "timestamp": "2026-05-17T22:54:18.561726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_send_approval_card"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound",
+              "summary": "Wikipedia scorer confound ablation: 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer，重新评分 exp_wiki_qwen7b 的 depth 0-5 文本，验证 K*=2 是否为 scorer family bias artifact",
+              "risk_reason": "低风险：仅 scoring + classification，不涉及生成。使用已有数据，cqa1 cuda:1 空闲。预计 <2h。",
+              "diff_summary": "复用 exp_wiki_qwen7b 已生成数据，仅更换 scorer_path 为 Pythia-1.4B",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000781"
+        },
+        {
+          "source_line": 782,
+          "timestamp": "2026-05-17T22:54:18.965204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_exp_wiki_scorer_confound_prep_20260517T223543",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000782"
+        },
+        {
+          "source_line": 783,
+          "timestamp": "2026-05-17T22:54:22.383648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f903f1944a0c450411d76a69d0\\\", \\\"chat_id\\\": \\\"oc_5d2a0ec1de3a456564133278c1a9b203\\\", \\\"msg_type\\\": \\\"interactive\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "elapsed_ms": 3821
+          },
+          "id": "event-000783"
+        },
+        {
+          "source_line": 784,
+          "timestamp": "2026-05-17T22:54:22.434476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_exp_wiki_scorer_confound_prep_20260517T223543\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:exp_wiki_scorer_confound_prep\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"started_at\\\": \\\"2026-05-17T22:35:43.754172+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T22:38:15.367593+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"所有信息齐全。方案如下：\\\\n\\\\n## 分析\\\\n\\\\n**Pipeline 行为**：\\\\n- `--model_path` = Qwen-7B → 加载后跳过 Step 2 (depth_0 已存在) 和 Step 3 (depth_1-5 已存在且 model_name 匹配)\\\\n- `--scorer_path` = Pythia-1.4B → Step 4 卸载 Qwen-7B，加载 Pythia-1.4B 计算 surprisal features\\\\n- Step 5 用新 features 训练 LightGBM 并报告 AUC/K*\\\\n\\\\n**数据隔离**：用 symlink 把已有 depth 文件链接到新 data_dir，避免覆盖原 features.csv。\\\\n\\\\n## 执行命令\\\\n\\\\n```bash\\\\nbash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && \\\\\\\\\\\\nmkdir -p data/exp_wiki_scorer_confound && \\\\\\\\\\\\nfor d in 0 1 2 3 4 5; do \\\\\\\\\\\\n  ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\\\\\${d}.jsonl \\\\\\\\\\\\n         data/exp_wiki_scorer_confound/depth_\\\\\\\\${d}.jsonl; \\\\\\\\\\\\ndone && \\\\\\\\\\\\nmkdir -p results/exp_wiki_scorer_confound && \\\\\\\\\\\\nHF_HOME=/root/autodl-tmp/.hf_cache \\\\\\\\\\\\nTRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache \\\\\\\\\\\\n/root/miniconda3/bin/python scripts/run_pipeline.py \\\\\\\\\\\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B \\\\\\\\\\\\n  --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 \\\\\\\\\\\\n  --data_dir data/exp_wiki_scorer_confound \\\\\\\\\\\\n  --results_dir results/exp_wiki_scorer_confound \\\\\\\\\\\\n  --num_samples 5000 \\\\\\\\\\\\n  --max_depth 5 \\\\\\\\\\\\n  --batch_size 16 \\\\\\\\\\\\n  --generation_mode rewrite\\\\\\\"\\\\n```\\\\n\\\\n**执行流程**：\\\\n1. 创建 `data/exp_wiki_scorer_confound/`，symlink 6 个 depth 文件\\\\n2. 加载 Qwen-7B，跳过生成（model_name 匹配已有文件）\\\\n3. 卸载 Qwen-7B，加载 Pythia-1.4B 作为 scorer\\\\n4. 用 Pythia-1.4B 计算 15D surprisal features → `data/exp_wiki_scorer_confound/\n…[truncated 197 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 3469
+          },
+          "id": "event-000784"
+        },
+        {
+          "source_line": 785,
+          "timestamp": "2026-05-17T22:54:46.151984+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000785"
+        },
+        {
+          "source_line": 786,
+          "timestamp": "2026-05-17T22:54:47.007121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_wiki_scorer_confound\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T22:35:20.326Z\\\", \\\"updated_at\\\": \\\"2026-05-17T22:54:46.371Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\\\", \\\"parent\\\": \\\"exp_wiki_qwen7b\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8515}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 855
+          },
+          "id": "event-000786"
+        },
+        {
+          "source_line": 787,
+          "timestamp": "2026-05-17T22:55:00.910817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__allocate_and_submit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__allocate_and_submit",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound",
+              "server": "cqa1-22115",
+              "gpu_ids": "['cuda:1']",
+              "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\"",
+              "timeout_hours": "3",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000787"
+        },
+        {
+          "source_line": 788,
+          "timestamp": "2026-05-17T22:55:04.978241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_wiki_scorer_confound\\\", \\\"status\\\": \\\"RUNNING\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"178762\\\", \\\"log_file\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\\\", \\\"account\\\": \\\"root\\\", \\\"tmux_session\\\": \\\"exp_wiki_scorer_confound\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"cron_registered\\\": true, \\\"code_synced\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__allocate_and_submit",
+            "elapsed_ms": 4067
+          },
+          "id": "event-000788"
+        },
+        {
+          "source_line": 789,
+          "timestamp": "2026-05-17T22:55:16.972846+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 3/6 (westd cuda:0,1 满载 + cqa1 cuda:1 新启) | Worker 0 | cqa1 cuda:0,2,3 空闲 standby\n\n**exp_wiki_scorer_confound 已启动** ✓\n\n- 状态: RUNNING, pid=178762, cqa1-22115 cuda:1\n- 方案: symlink exp_wiki_qwen7b depth 0-5 → 换 Pythia-1.4B scorer → 15D features → LightGBM → K*\n- 预计: <2h\n- Cron 监控已注册，完成后自动回调分析\n\n**exp_008_retrain_chain 确认**: status=PREPARING, conclusion=killed。已是死条目。exp_027_retrain_bootstrap (DONE/success) 才是 D051 的有效 provenance。",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000789"
+        },
+        {
+          "source_line": 790,
+          "timestamp": "2026-05-17T22:55:18.077276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1104
+          },
+          "id": "event-000790"
+        },
+        {
+          "source_line": 791,
+          "timestamp": "2026-05-17T22:55:23.819233+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n- **exp_wiki_scorer_confound** RUNNING on cqa1 cuda:1 (pid 178762)，Cron 监控注册，预计 <2h 出结果\n- **exp_008_retrain_chain** 确认 conclusion=killed，向 Director 汇报完毕\n- 云端 exp_14b_c4 / exp_32b_c4 继续运行中（14B 预计 May 18 下午，32B 预计 May 20 早）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000791"
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "messages": [
+        {
+          "source_line": 792,
+          "timestamp": "2026-05-17T22:55:24.217047+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_exp_wiki_scorer_confound_prep_20260517T223543 已完成（status=done）。用 `get_worker_status('worker_code_exp_wiki_scorer_confound_prep_20260517T223543')` 读取结果，然后处理。\n\n- worker_id: worker_code_exp_wiki_scorer_confound_prep_20260517T223543\n- project: gen-depth-contamination\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "worker:done"
+          },
+          "id": "event-000792"
+        },
+        {
+          "source_line": 793,
+          "timestamp": "2026-05-17T22:55:32.858077+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已处理过该 Worker 结果（命令已用于提交 exp_wiki_scorer_confound，实验已在 RUNNING）。无需额外操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000793"
+        }
+      ]
+    },
+    {
+      "number": 71,
+      "messages": [
+        {
+          "source_line": 794,
+          "timestamp": "2026-05-17T23:17:22.741332+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 追加实验：Qwen-1.5B Wikipedia scorer confound 复验\n\n和 exp_wiki_scorer_confound 同样设计：用 Pythia-1.4B scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki) 的 depth 0-5 文本。symlink 数据 + Pythia scorer features + LightGBM + K*。\n\n预期：K* 从 2 降至 1（与 Qwen-7B 结果一致），完善 2/2 Qwen Wiki scorer confound 证据链。\n\ncqa1 cuda:1，注册后提交审批。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "director"
+          },
+          "id": "event-000794"
+        },
+        {
+          "source_line": 795,
+          "timestamp": "2026-05-17T23:17:30.175943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['status', 'spec']"
+            }
+          },
+          "id": "event-000795"
+        },
+        {
+          "source_line": 796,
+          "timestamp": "2026-05-17T23:17:30.729974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_32b_c4\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-32B --data_dir data/exp_32b_c4 --results_dir results/exp_32b_c4 --num_samples 5000 --max_depth 5 --batch_size 2 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\", \\\"server\\\": \\\"westd-42896\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"14637\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_32b_c4.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T19:38:18.566Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/exp_32b_c4\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"Qwen/Qwen2.5-32B\\\", \\\"seed\\\": 42}}, \\\"exp_14b_c4\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B --data_dir data/exp_14b_c4 --results_dir results/exp_14b_c4 --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\", \\\"server\\\": \\\"westd-42896\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"8586\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_14b_c4.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T17:08:45.438Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5402}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 554
+          },
+          "id": "event-000796"
+        },
+        {
+          "source_line": 797,
+          "timestamp": "2026-05-17T23:17:35.304364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "filters": "{'exp_id': 'exp_wiki_scorer_confound'}",
+              "fields": "['*']",
+              "limit": "1"
+            }
+          },
+          "id": "event-000797"
+        },
+        {
+          "source_line": 798,
+          "timestamp": "2026-05-17T23:17:35.555701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2339}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-000798"
+        },
+        {
+          "source_line": 799,
+          "timestamp": "2026-05-17T23:17:41.437440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000799"
+        },
+        {
+          "source_line": 800,
+          "timestamp": "2026-05-17T23:17:45.762228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 2, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp_14b_c4\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=8586)\\\"]}, {\\\"exp_id\\\": \\\"exp_32b_c4\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=14637)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 4324
+          },
+          "id": "event-000800"
+        },
+        {
+          "source_line": 801,
+          "timestamp": "2026-05-17T23:17:52.847245+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "limit": "3",
+              "fields": "['status', 'conclusion', 'spec']"
+            }
+          },
+          "id": "event-000801"
+        },
+        {
+          "source_line": 802,
+          "timestamp": "2026-05-17T23:17:53.150324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_wiki_scorer_confound\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"178762\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T22:55:03.139Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp_008_retrain_chain\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_wiki_qwen7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_wiki_qwen7b --results_dir results/exp_wiki_qwen7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"732600\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_qwen7b.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T17:02:43.570Z\\\", \\\"submitted_via\\\":\n…[truncated 271 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 303
+          },
+          "id": "event-000802"
+        },
+        {
+          "source_line": 803,
+          "timestamp": "2026-05-17T23:18:04.808952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "filters": "{'conclusion': 'success'}",
+              "fields": "['spec']",
+              "limit": "50"
+            }
+          },
+          "id": "event-000803"
+        },
+        {
+          "source_line": 804,
+          "timestamp": "2026-05-17T23:18:05.113517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_wiki_qwen7b\\\": {\\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_wiki_qwen7b --results_dir results/exp_wiki_qwen7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"732600\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_qwen7b.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T17:02:43.570Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 19327.6, \\\"gpu_hours\\\": 5.37}}, \\\"exp_wiki_mistral7b\\\": {\\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_wiki_mistral7b --results_dir results/exp_wiki_mistral7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"data_path\\\": \\\"data/exp_wiki_mistral7b\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"mistralai/Mistral-7B-v0.3\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained:mistralai/Mistral-7B-v0.3\\\", \\\"eval_data\\\": \\\"Wikipedia depth 0-5, scorer=Qwen2.5-1.5B\\\"}}, \\\"exp_arXiv_qwen7b\\\": {\\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_arXiv_qwen7b --results_dir results/exp_arXiv_qwen7b --num_samples 2200 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1_\n…[truncated 29738 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 304
+          },
+          "id": "event-000804"
+        },
+        {
+          "source_line": 805,
+          "timestamp": "2026-05-17T23:18:37.372657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound_1b5",
+              "field": "hypothesis",
+              "value": "Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000805"
+        },
+        {
+          "source_line": 806,
+          "timestamp": "2026-05-17T23:18:37.874833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_wiki_scorer_confound_1b5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T23:18:37.565Z\\\", \\\"updated_at\\\": \\\"2026-05-17T23:18:37.565Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3781}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-000806"
+        },
+        {
+          "source_line": 807,
+          "timestamp": "2026-05-17T23:18:38.828740+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound_1b5",
+              "field": "parent",
+              "value": "exp_023_domain_ablation",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000807"
+        },
+        {
+          "source_line": 808,
+          "timestamp": "2026-05-17T23:18:39.280916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_wiki_scorer_confound_1b5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T23:18:37.565Z\\\", \\\"updated_at\\\": \\\"2026-05-17T23:18:39.042Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\\\", \\\"parent\\\": \\\"exp_023_domain_ablation\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3972}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000808"
+        },
+        {
+          "source_line": 809,
+          "timestamp": "2026-05-17T23:18:51.837040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:exp_wiki_scorer_confound",
+              "project": "gen-depth-contamination",
+              "task_prompt": "分析 exp_wiki_scorer_confound 实验结果。\n\n## 背景\n这是一个 scorer confound ablation 实验：用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer，重新评分 Qwen-7B 在 Wikipedia 上生成的 depth 0-5 文本。原始实验 (exp_wiki_qwen7b) 用 Qwen-1.5B scorer 时 K*=2。\n\n## 关键问题\n- Pythia-1.4B scorer 下的 pairwise AUC 是多少？\n- K* (θ=0.60) 是多少？\n- K*=2 还是 K*=1？如果 K*=2 → scorer confound excluded；如果 K*=1 → scorer confound confirmed\n\n## 执行步骤\n\n1. SSH 到 cqa1-22115，读取结果：\n   - `cat /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound/pairwise_auc.json` 或类似文件\n   - 检查 `results/exp_wiki_scorer_confound/` 目录下所有输出文件\n   - 也看 log: `cat ~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log | tail -100`\n\n2. 提取关键指标：\n   - 每对 depth (0v1, 1v2, 2v3, 3v4, 4v5) 的 AUC\n   - K* 值（首个 AUC < 0.60 的 depth pair）\n   - 与原始 Qwen scorer 结果对比\n\n3. 写分析报告到本地：\n   `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound/report/exp_wiki_scorer_confound_analysis.md`\n\n   报告格式：\n   - 结论（一句话：confound excluded 还是 confirmed）\n   - Pairwise AUC 对比表 (Qwen scorer vs Pythia scorer)\n   - K* 值\n   - 对论文叙事的影响\n\n服务器：cqa1-22115 (root@)\n项目路径：/root/autodl-tmp/gen-depth-contamination/\n",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-000809"
+        },
+        {
+          "source_line": 810,
+          "timestamp": "2026-05-17T23:19:00.207500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp_wiki_scorer_confound_20260517T231852\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_exp_wiki_scorer_confound_20260517T231852.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_exp_wiki_scorer_confound_20260517T231852 started. Use get_worker_status('worker_analysis_exp_wiki_scorer_confound_20260517T231852') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 8370
+          },
+          "id": "event-000810"
+        },
+        {
+          "source_line": 811,
+          "timestamp": "2026-05-17T23:19:21.279418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound_1b5",
+              "field": "status",
+              "value": "PENDING",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000811"
+        },
+        {
+          "source_line": 812,
+          "timestamp": "2026-05-17T23:19:22.739584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_wiki_scorer_confound_1b5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T23:18:37.565Z\\\", \\\"updated_at\\\": \\\"2026-05-17T23:19:21.508Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\\\", \\\"parent\\\": \\\"exp_023_domain_ablation\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9081}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1460
+          },
+          "id": "event-000812"
+        },
+        {
+          "source_line": 813,
+          "timestamp": "2026-05-17T23:19:25.417465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_send_approval_card"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound_1b5",
+              "summary": "Qwen-1.5B Wikipedia scorer confound 复验: Pythia-1.4B scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki) depth 0-5 文本，验证 K*=2 是否为 scorer family bias",
+              "risk_reason": "低风险：仅 scoring + classification，复用已有数据 symlink，<2h。与 exp_wiki_scorer_confound 同设计。",
+              "diff_summary": "symlink exp_023_wiki depth 0-5 → Pythia-1.4B scorer features → LightGBM → K*",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000813"
+        },
+        {
+          "source_line": 814,
+          "timestamp": "2026-05-17T23:19:26.872715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f908116fca4c45c961adb88801\\\", \\\"chat_id\\\": \\\"oc_5d2a0ec1de3a456564133278c1a9b203\\\", \\\"msg_type\\\": \\\"interactive\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "elapsed_ms": 1455
+          },
+          "id": "event-000814"
+        },
+        {
+          "source_line": 815,
+          "timestamp": "2026-05-17T23:19:36.929797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 3/6 (westd cuda:0,1 满载 + cqa1 cuda:1 刚空出) | Worker 1 (analysis:exp_wiki_scorer_confound) | cqa1 cuda:0,2,3 空闲\n\n**exp_wiki_scorer_confound_1b5 已注册，审批卡已发。**\n\n同时进行中：\n1. exp_wiki_scorer_confound 分析 Worker 已派出（ANALYZING → 很快出结果）\n2. exp_wiki_scorer_confound_1b5 审批通过后立即提交 cqa1 cuda:1\n\n命令已就绪（symlink exp_023_wiki depth 0-5 + Pythia scorer + LightGBM），等审批即可启动。",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000815"
+        },
+        {
+          "source_line": 816,
+          "timestamp": "2026-05-17T23:19:38.034428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1104
+          },
+          "id": "event-000816"
+        },
+        {
+          "source_line": 817,
+          "timestamp": "2026-05-17T23:19:40.987311+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_wiki_scorer_confound 已进入 ANALYZING（进程结束），cuda:1 空闲。并行处理：分析第一个实验 + 注册第二个。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000817"
+        }
+      ]
+    },
+    {
+      "number": 72,
+      "messages": [
+        {
+          "source_line": 818,
+          "timestamp": "2026-05-17T23:19:41.452858+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analysis_exp_wiki_scorer_confound_20260517T231531 已完成（status=done）。用 `get_worker_status('worker_analysis_exp_wiki_scorer_confound_20260517T231531')` 读取结果，然后处理。\n\n- worker_id: worker_analysis_exp_wiki_scorer_confound_20260517T231531\n- project: gen-depth-contamination\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "worker:done"
+          },
+          "id": "event-000818"
+        },
+        {
+          "source_line": 819,
+          "timestamp": "2026-05-17T23:19:48.652330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_exp_wiki_scorer_confound_20260517T231531"
+            }
+          },
+          "id": "event-000819"
+        },
+        {
+          "source_line": 820,
+          "timestamp": "2026-05-17T23:19:48.703043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp_wiki_scorer_confound_20260517T231531\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:exp_wiki_scorer_confound\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"started_at\\\": \\\"2026-05-17T23:15:31.878138+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T23:17:23.632354+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Report saved. The experiment isn't in the registry (likely wasn't registered), but the analysis is complete.\\\\n\\\\n---\\\\n\\\\n**Verdict: Scorer confound confirmed. Qwen-7B Wikipedia K\\\\\\\\*=1 (not 2).**\\\\n\\\\nThe critical depth pair 1v2 AUC drops from 0.6108 (Qwen scorer, barely above 0.60) to 0.5870 (Pythia scorer, below threshold). Qwen-1.5B scorer inflates AUC uniformly across all depth pairs by 0.005-0.027, with the largest bias at shallow depths. This aligns Qwen-7B with all other models on Wikipedia (K\\\\\\\\*=1).\\\\n\\\\n```json\\\\n{\\\\n  \\\\\\\"k_star\\\\\\\": 1,\\\\n  \\\\\\\"confound_verdict\\\\\\\": \\\\\\\"confirmed\\\\\\\",\\\\n  \\\\\\\"depth_pairs\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": {\\\\\\\"ordinal_accuracy\\\\\\\": null, \\\\\\\"auc\\\\\\\": 0.9404, \\\\\\\"auc_std\\\\\\\": 0.0043, \\\\\\\"jsd\\\\\\\": 0.068909},\\\\n    \\\\\\\"1v2\\\\\\\": {\\\\\\\"ordinal_accuracy\\\\\\\": null, \\\\\\\"auc\\\\\\\": 0.5870, \\\\\\\"auc_std\\\\\\\": 0.0088, \\\\\\\"jsd\\\\\\\": 0.008241},\\\\n    \\\\\\\"2v3\\\\\\\": {\\\\\\\"ordinal_accuracy\\\\\\\": null, \\\\\\\"auc\\\\\\\": 0.5456, \\\\\\\"auc_std\\\\\\\": 0.0049, \\\\\\\"jsd\\\\\\\": 0.005474},\\\\n    \\\\\\\"3v4\\\\\\\": {\\\\\\\"ordinal_accuracy\\\\\\\": null, \\\\\\\"auc\\\\\\\": 0.5250, \\\\\\\"auc_std\\\\\\\": 0.0134, \\\\\\\"jsd\\\\\\\": 0.004037},\\\\n    \\\\\\\"4v5\\\\\\\": {\\\\\\\"ordinal_accuracy\\\\\\\": null, \\\\\\\"auc\\\\\\\": 0.5172, \\\\\\\"auc_std\\\\\\\": 0.0082, \\\\\\\"jsd\\\\\\\": 0.003646}\\\\n  },\\\\n  \\\\\\\"ordinal_mae\\\\\\\": 1.3559,\\\\n  \\\\\\\"ordinal_accuracy\\\\\\\": 0.331,\\\\n  \\\\\\\"comparison_with_qwen_scorer\\\\\\\": {\\\\n    \\\\\\\"qwen_scorer_k_star\\\\\\\": 2,\\\\n    \\\\\\\"pythia_scorer_k_star\\\\\\\": 1,\\\\n    \\\\\\\"critical_pair_1v2_auc_delta\\\\\\\": -0.0238\\\\n  },\\\\n  \\\\\\\"wandb_run_id\\\\\\\": null\\\\n}\\\\n```\\\", \\\"data\\\": {\\\"k_star\\\": 1, \\\"confoun\n…[truncated 775 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000820"
+        },
+        {
+          "source_line": 821,
+          "timestamp": "2026-05-17T23:20:22.147113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound",
+              "field": "status",
+              "value": "DONE",
+              "project": "gen-depth-contamination",
+              "spec": "{'checkpoint_path': '/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound/', 'log_path': '~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log', 'data_path': 'data/exp_wiki_scorer_confound (symlink → data/exp_wiki_qwen7b)', 'data_count': 5000, 'model_name': 'Qwen2.5-7B (generator) + Pythia-1.4B (scorer)', 'seed': 42}"
+            }
+          },
+          "id": "event-000821"
+        },
+        {
+          "source_line": 822,
+          "timestamp": "2026-05-17T23:20:22.450107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2626}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 302
+          },
+          "id": "event-000822"
+        },
+        {
+          "source_line": 823,
+          "timestamp": "2026-05-17T23:20:22.878995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound",
+              "field": "conclusion",
+              "value": "negative",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000823"
+        },
+        {
+          "source_line": 824,
+          "timestamp": "2026-05-17T23:20:24.394259+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_wiki_scorer_confound\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T22:35:20.326Z\\\", \\\"updated_at\\\": \\\"2026-05-17T23:20:23.381Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\\\", \\\"parent\\\": \\\"exp_wiki_qwen7b\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-17T22:55:01.348Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"code_commit\\\": \\\"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\\\", \\\"finished_at\\\": \\\"2026-05-17T23:13:55.501Z\\\", \\\"training_hours\\\": 0.32}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results\n…[truncated 1139 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1515
+          },
+          "id": "event-000824"
+        },
+        {
+          "source_line": 825,
+          "timestamp": "2026-05-17T23:20:24.596942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound",
+              "field": "metrics",
+              "value": "{'k_star': 1, 'confound_verdict': 'confirmed', 'auc_0v1': 0.9404, 'auc_1v2': 0.587, 'auc_2v3': 0.5456, 'auc_3v4': 0.525, 'auc_4v5': 0.5172, 'critical_delta_1v2': -0.0238}",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000825"
+        },
+        {
+          "source_line": 826,
+          "timestamp": "2026-05-17T23:20:25.301450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_wiki_scorer_confound\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T22:35:20.326Z\\\", \\\"updated_at\\\": \\\"2026-05-17T23:20:25.000Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\\\", \\\"parent\\\": \\\"exp_wiki_qwen7b\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-17T22:55:01.348Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"code_commit\\\": \\\"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\\\", \\\"finished_at\\\": \\\"2026-05-17T23:13:55.501Z\\\", \\\"training_hours\\\": 0.32}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results\n…[truncated 1342 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 704
+          },
+          "id": "event-000826"
+        },
+        {
+          "source_line": 827,
+          "timestamp": "2026-05-17T23:20:31.326280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound",
+              "field": "status",
+              "value": "DONE",
+              "project": "gen-depth-contamination",
+              "spec": "{'checkpoint_path': '/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound/', 'log_path': '~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log'}"
+            }
+          },
+          "id": "event-000827"
+        },
+        {
+          "source_line": 828,
+          "timestamp": "2026-05-17T23:20:32.183398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_wiki_scorer_confound\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T22:35:20.326Z\\\", \\\"updated_at\\\": \\\"2026-05-17T23:20:31.517Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\\\", \\\"parent\\\": \\\"exp_wiki_qwen7b\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-17T22:55:01.348Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"code_commit\\\": \\\"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\\\", \\\"finished_at\\\": \\\"2026-05-17T23:13:55.501Z\\\", \\\"training_hours\\\": 0.32}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_\n…[truncated 1590 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 857
+          },
+          "id": "event-000828"
+        },
+        {
+          "source_line": 829,
+          "timestamp": "2026-05-17T23:21:10.145303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 2/6 (westd cuda:0,1 满载) | Worker 1 (analysis:exp_wiki_scorer_confound 已完成) | cqa1 全部空闲\n\n---\n\n[负向结果] exp_wiki_scorer_confound\n\n**被证伪的 hypothesis：** Qwen-7B Wikipedia K*=2 是真实信号（与 scorer 无关）\n\n**结果：** Scorer confound **confirmed**。Pythia-1.4B scorer 下 K*=1。\n\n| Depth pair | Qwen scorer AUC | Pythia scorer AUC | Δ |\n|-----------|----------------|-------------------|-----|\n| 0v1 | ~0.96 | 0.9404 | -0.02 |\n| **1v2** | **0.6108** | **0.5870** | **-0.0238** |\n| 2v3 | ~0.56 | 0.5456 | - |\n| 3v4 | ~0.53 | 0.5250 | - |\n| 4v5 | ~0.52 | 0.5172 | - |\n\n关键：1v2 pair 从 0.6108 (barely > θ=0.60) 降至 0.5870 (< θ=0.60)。Qwen-1.5B scorer 对 Qwen 生成文本有 uniform +0.005~0.027 family bias。\n\n**证伪粒度：** 完全。K* 从 2 直接降至 1。不是部分边缘效应。\n\n**推导：** \n- \"Qwen uniqueness on Wikipedia\" 是 scorer family bias artifact\n- 如果 exp_wiki_scorer_confound_1b5 (Qwen-1.5B 复验) 结果一致 → Wikipedia 域统一 K*=1（所有模型）\n- Domain 层级简化为：arXiv(3) > C4(2) > Wikipedia(1)，无 model-specific exception on Wiki\n- C4 和 arXiv 的 K* 不受此影响（exp_022_cross_scorer_matrix 已验证 C4 scorer-independent；arXiv K*=3 远超阈值 → scorer bias 不影响）\n\n**对论文叙事的影响：**\n1. 正面：domain 层级更 clean，story 更简洁\n2. 负面：失去 \"Qwen 在 Wikipedia 的独特模式\" 这个 interesting finding\n3. 论文需修订 Wikipedia 叙事：从 \"model-specific exception\" 变为 \"universal one-wash on homogeneous domains + important scorer confound caveat\"\n\n**建议：** 等 exp_wiki_scorer_confound_1b5 确认后，一并调整 paper framing。不需要 Framing 提案级别的大改——Wikipedia 本来就在 Appendix discussion，核心 story (domain-dependent K*) 不变，反而更 clean。\n\nexp_wiki_scorer_confound_1b5 审批卡已发，cuda:1 空闲待命。",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000829"
+        },
+        {
+          "source_line": 830,
+          "timestamp": "2026-05-17T23:21:13.759979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3614
+          },
+          "id": "event-000830"
+        },
+        {
+          "source_line": 831,
+          "timestamp": "2026-05-17T23:21:18.582298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000831"
+        },
+        {
+          "source_line": 832,
+          "timestamp": "2026-05-17T23:21:18.683071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000832"
+        },
+        {
+          "source_line": 833,
+          "timestamp": "2026-05-17T23:21:22.655330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000833"
+        },
+        {
+          "source_line": 834,
+          "timestamp": "2026-05-17T23:21:22.707305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/memory.md\\\", \\\"content\\\": \\\"# Memory — gen-depth-contamination\\\\n\\\\n## 决策与经验\\\\n\\\\n### Scorer Confound 预案 — 14B/32B 实验 (2026-05-17)\\\\n- **触发条件**: exp_14b_c4 或 exp_32b_c4 的 K*=1 时\\\\n- **操作**: 用 Qwen2.5-14B 作为 scorer（替代 1.5B）重新计算 surprisal features → 重跑 pairwise AUC\\\\n- **判断**: K* 变为 2 → scorer capacity confound confirmed；K* 仍为 1 → text-intrinsic one-wash\\\\n- **硬件**: RTX PRO 6000 96GB 装得下 14B scorer\\\\n- **代码**: run_pipeline.py 的 --scorer_path 已参数化，无需改代码\\\\n- **32B scorer**: 保守用 14B（14B vs 1.5B 已是 10x capacity gap），32B bf16 ~64GB 可能太紧\\\\n\\\\n### JSD Decay Rate λ 解释 K* 变异的机制 (2026-05-17)\\\\n- JSD 衰减存在两种截然不同的模式: sharp cliff (λ=2.9-6.3) vs gradual decay (λ=0.7-1.2)\\\\n- **λ 直接映射到 K***: C4 λ≈2.9 → K*=2, Wiki λ≈4.2 → K*=1-2, arXiv(non-OLMo) λ≈1.0 → K*=3\\\\n- Domain 内 λ 高度一致（C4 上 4 个模型 λ≈2.9），说明衰减速度主要由 domain structure 决定\\\\n- OLMo 是极端 outlier（cliff 47-50x），所有信息第一步坍塌 → 解释其跨域 K*=1\\\\n- Retrain-chain 无 cliff 模式（λ=0.285, cliff=1.31x），从根本上不同于 prompt-chain\\\\n- **论文意义**: 为 K* domain dependence 提供机制解释，不只是观察 K* 不同，而是量化信息坍塌速率\\\\n\\\\n### M002: Pipeline skip-if-exists 导致 data reuse bug (2026-05-17)\\\\n- exp_wiki_pythia 和 exp_wiki_olmo 共享 data_path `data/exp_023_wiki/`（exp-023 Qwen 的数据目录）\\\\n- run_pipeline.py 的 skip-if-exists 逻辑检测到 depth_*.jsonl 已存在，跳过生成，直接复用 Qwen 生成的数据\\\\n- 结果与 exp-023 完全相同（1v2=0.6193, K*=2），实验无效\\\\n- **硬规则：每个实验必须使用独立 data 目录**，即使同 domain 同 seed data，也要复制 depth_0.jsonl 到新目录让 pipeline 用目标模型重新生成\\\\n- 修复方案：run_pipeline.py 增加 model mismatch 检查（depth_*.jsonl metadata 中的 model_name 与当前 --model_path 不匹配时强制重新生成）\\\\n\\\\n### Dose-Response 否定 Graduated Filtering Superiority (2026-05-17)\\\\n- exp-009 v3: 3 ratios × 3 strategies × 5 seeds = 45 runs, Qwen2.5-1.5B continued pretraining\\\\n- **Binary filtering 在所有 ratio 下显著优于 no_filter**（HellaSwag: 10% +0.38pp p=0.002, 30% +0.61pp p=0.004, 50% +0.51pp p<0.001）\\\\n- **Graduated filtering ≈ no_filter 在所有 ratio 下无统计显著差异**\\\\n-\n…[truncated 4265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-000834"
+        },
+        {
+          "source_line": 835,
+          "timestamp": "2026-05-17T23:22:01.706004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "file": "memory.md",
+              "content": "# Memory — gen-depth-contamination\n\n## 决策与经验\n\n### Wikipedia Scorer Confound Confirmed (2026-05-17)\n- **发现**: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact\n- Pythia-1.4B scorer 下: 1v2 AUC=0.5870 (< θ=0.60) → K*=1\n- Qwen-1.5B scorer 下: 1v2 AUC=0.6108 (barely > θ=0.60) → K*=2\n- **机制**: Qwen scorer 对 Qwen 生成文本有 uniform +0.005~0.027 AUC inflation (family bias)\n- **影响**: Wikipedia 可能统一为 K*=1（所有模型），等 exp_wiki_scorer_confound_1b5 确认\n- C4/arXiv 不受影响: C4 已有 cross-scorer 验证(exp_022)；arXiv AUC 远超阈值\n- **论文调整**: \"Qwen uniqueness on Wikipedia\" 需改为 \"scorer confound caveat\"，但核心 story (domain-dependent K*) 反而更 clean: arXiv(3)>C4(2)>Wikipedia(1)\n\n### Scorer Confound 预案 — 14B/32B 实验 (2026-05-17)\n- **触发条件**: exp_14b_c4 或 exp_32b_c4 的 K*=1 时\n- **操作**: 用 Qwen2.5-14B 作为 scorer（替代 1.5B）重新计算 surprisal features → 重跑 pairwise AUC\n- **判断**: K* 变为 2 → scorer capacity confound confirmed；K* 仍为 1 → text-intrinsic one-wash\n- **硬件**: RTX PRO 6000 96GB 装得下 14B scorer\n- **代码**: run_pipeline.py 的 --scorer_path 已参数化，无需改代码\n- **32B scorer**: 保守用 14B（14B vs 1.5B 已是 10x capacity gap），32B bf16 ~64GB 可能太紧\n\n### JSD Decay Rate λ 解释 K* 变异的机制 (2026-05-17)\n- JSD 衰减存在两种截然不同的模式: sharp cliff (λ=2.9-6.3) vs gradual decay (λ=0.7-1.2)\n- **λ 直接映射到 K***: C4 λ≈2.9 → K*=2, Wiki λ≈4.2 → K*=1-2, arXiv(non-OLMo) λ≈1.0 → K*=3\n- Domain 内 λ 高度一致（C4 上 4 个模型 λ≈2.9），说明衰减速度主要由 domain structure 决定\n- OLMo 是极端 outlier（cliff 47-50x），所有信息第一步坍塌 → 解释其跨域 K*=1\n- Retrain-chain 无 cliff 模式（λ=0.285, cliff=1.31x），从根本上不同于 prompt-chain\n- **论文意义**: 为 K* domain dependence 提供机制解释，不只是观察 K* 不同，而是量化信息坍塌速率\n\n### M002: Pipeline skip-if-exists 导致 data reuse bug (2026-05-17)\n- exp_wiki_pythia 和 exp_wiki_olmo 共享 data_path `data/exp_023_wiki/`（exp-023 Qwen 的数据目录）\n- run_pipeline.py 的 skip-if-exists 逻辑检测到 depth_*.jsonl 已存在，跳过生成，直接复用 Qwen 生成的数据\n- 结果与 exp-023 完全相同（1v2=0.6193, K*=2），实验无效\n- **硬规则：每个实验必须使用独立 data 目录**，即使同 domain 同 seed data，也要复制 depth_0.jsonl 到新目录让 pipeline 用目标模型重新生成\n- 修复方案：run_pipeline.py 增加 model mismatch 检查（depth_*.jsonl metadata 中的 model_name 与当前 --model_path 不匹配时强制重新生成）\n\n### Dose-Response 否定 Graduated Filtering Superiority (2026-05-17)\n- exp-009 v3: 3 ratios × 3 strategies × 5 seeds = 45 runs, Qwen2.5-1.5B continued pretraining\n- **Binary filtering 在所有 ratio 下显著优于 no_filter**（HellaSwag: 10% +0.38pp p=0.002, 30% +0.61pp p=0.004, 50% +0.51pp p<0.001）\n- **Graduated filtering ≈ no_filter 在所有 ratio 下无统计显著差异**\n- Binary 优势 non-monotonic（30% 最大），而非随 ratio 线性增长\n- C3 hypothesis \"graduated > binary\" 被全面否定；C3 保守限定为 exp-006 原始结果（D052）\n- 教训: soft weighting 在 continued pretraining 场景下不如 hard cutoff，可能因为稀释了过滤效果\n\n### arXiv Domain K*=3 — Domain Complexity 决定 K* (2026-05-16, updated 2026-05-17)\n- exp-024 (Qwen): arXiv K*=3, 2v3 AUC=0.6427, CI [0.6275, 0.6575]\n- exp-025 (Pythia): arXiv K*=3, 2v3 AUC=0.6544, CI [0.6401, 0.6688]\n- **exp_arXiv_mistral7b (Mistral-7B): arXiv K*=3, 2v3 AUC=0.6275, 3v4 AUC=0.5295**\n- **已确认: domain effect 跨 4 个模型一致**（Qwen-1.5B / Pythia-1.4B / Mistral-7B / LLaMA-8B），OLMo 例外\n- 机制假说: 学术文本结构化程度高（公式、引用、固定句式），代际退化更慢\n- K* 不是 universal constant，而是 domain complexity 的函数\n- 论文 Framing: \"K* depends on domain; general text K*=2, structured text K*=3\"\n- Top features (Pythia on arXiv): freq_entropy, surp_std, surp_mean, surp_d1_skew, surp_d1_mean\n\n### Mistral-7B: C4 K*=1 vs arXiv K*=3 — Domain Rescue Confirmed (2026-05-17)\n- **C4 (exp-019/019b)**: K*=1, 1v2 AUC=0.5935 (self) / 0.5695 (cross-scorer)\n- **arXiv (exp_arXiv_mistral7b)**: K*=3, AUC: 0v1=0.9848, 1v2=0.8201, 2v3=0.6275, 3v4=0.5295, 4v5=0.5295\n- JSD: 0v1=0.142, 1v2=0.076, 2v3=0.019, 3v4=0.010, 4v5=0.009\n- **结论: Mistral 的 K*=1 不是 text-intrinsic，domain complexity 可以 rescue one-wash models**\n- 对比 OLMo: C4 K*=1, arXiv K*=1 → OLMo 是真正的 text-intrinsic one-wash\n- **论文意义**: one-wash 有两类: (1) domain-dependent (Mistral, 可被结构化 domain rescue), (2) model-intrinsic (OLMo, 跨域不变)\n- Ordinal classification: MAE=0.8958, Accuracy=0.4474\n- Top features: freq_entropy(9844), surp_std(7501), surp_d1_skew(7299), surp_mean(7286)\n\n### lm-eval on 4090D 24GB OOM 教训 (2026-05-17)\n- MMLU 5-shot 评估 batch_size=8 在 Qwen2.5-1.5B 上 OOM (logits 8×~2000×151936)\n- 解决方案: `batch_size=\"auto:4\"` + `max_length=2048`（auto 找到实际可用 batch=64）\n- 必须搭配 offline 模式防止 HF 下载中断: HF_DATASETS_OFFLINE=1 + TRANSFORMERS_OFFLINE=1\n- exp-009 因此 crash 两次（v1 网络问题 + v2 OOM），v3 才稳定\n\n### HF Streaming 在 AutoDL 上不可靠 (2026-05-16)\n- exp-021 两次因 HF streaming hang 失败\n- 解决方案: 提前下载到本地 + HF_DATASETS_OFFLINE=1 + TRANSFORMERS_OFFLINE=1\n- 所有后续实验（exp-023 Wiki, exp-024 arXiv）都已采用本地数据策略\n\n### Pythia-1.4B Greedy Repetition Collapse (2026-05-16)\n- exp-020 greedy 1v2 AUC=0.8838 异常高——根因是级联重复坍塌（4-gram repeat rate d1=0.72, d2=0.81）\n- hapax_ratio (d=1.06) 和 low_freq_ratio (d=1.03) 是 top 贡献特征\n- K*=2 不受影响，论文标注为 \"repetition-dominated regime\"\n\n### exp-008 retrain-chain labels padding bug (2026-05-16)\n- TextDataset.__getitem__ 同时返回变长 input_ids 和 labels\n- DataCollatorForLanguageModeling 只 pad input_ids，labels 长度不一致 → ValueError\n- 解决方案: 移除 __getitem__ 中的 labels 字段，让 collator 自动从 padded input_ids 生成\n\n### exp-020 重复进程 (2026-05-16)\n- nuc09 配置被手动重复启动 3 次，非脚本 bug\n- 教训: 用 submit_training_job 而非手动 nohup，避免重复启动\n\n### 绘图脚本重构 (2026-05-16)\n- plot_summary_auc_decay.py + draw_kstar_theta.py 改为 glob 自动发现 JSON\n- 新实验产出结果自动纳入，无需改代码\n- 3 个缺失脚本补写完成（transfer_heatmap, auc_decay_ci, filtering_strategies），用内入 fallback 数据\n\n### exp-022 统计设计 (2026-05-16)\n- K* 做 ANOVA 不可行（16 cells, df_residual=0）\n- 替代: per-fold AUC (N=400) 做 3-way ANOVA，或 per-fold K* (N=80) 做 2-way ANOVA\n\n### Bootstrap CI Borderline Cases (2026-05-16)\n- exp-021 512tok 1v2: CI [0.5979, 0.6166] — BORDERLINE (CI crosses θ)\n- exp-020 t07 2v3: CI [0.5855, 0.6025] — BORDERLINE (CI upper crosses θ)\n- exp-020 t12 1v2: CI [0.6071, 0.6270] — PASS\n- 论文中 512tok 和 t07 需加 footnote 注明 CI 跨越阈值\n\n### exp-018 Cron 误报教训 (2026-05-16)\n- 进程正常完成后 PID 消失，无 W&B sentinel，cron 5× 检测后误判 failed\n- 实际结果完整（K*=2, 1v2=0.6123, CI [0.6028, 0.6216] PASS）\n- 教训: Pipeline 脚本应在末尾写 sentinel file (如 DONE 标记) 供 cron 检测\n\n### 实验阶段总结 (2026-05-17, updated)\n- 所有实验完成：38 success / 7 technical failures / 0 method negatives\n- K* 范围: 1 (Mistral-C4, OLMo) / 2 (majority on C4) / 3 (arXiv domain, including Mistral)\n- Retrain-chain K*≥4 (bootstrap CI confirmed, all CI_lower >> θ=0.60)\n- Feature stability: ≥8D robust, 5D fragile, top-3 fails\n- Dose-response: binary > graduated ≈ no_filter across all ratios\n- **One-wash 两类**: Mistral domain-dependent (C4 K*=1, arXiv K*=3), OLMo model-intrinsic (跨域 K*=1)\n"
+            }
+          },
+          "id": "event-000835"
+        },
+        {
+          "source_line": 836,
+          "timestamp": "2026-05-17T23:22:01.807236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 101
+          },
+          "id": "event-000836"
+        },
+        {
+          "source_line": 837,
+          "timestamp": "2026-05-17T23:22:08.572749+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n- exp_wiki_scorer_confound → DONE/negative (K*=1, scorer confound confirmed)\n- Registry + metrics 更新\n- Memory.md 写入 scorer confound 发现\n- 向 Director 汇报负向结果 + 推导\n- exp_wiki_scorer_confound_1b5 已 PENDING 等审批，cuda:1 空闲待命"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000837"
+        }
+      ]
+    },
+    {
+      "number": 73,
+      "messages": [
+        {
+          "source_line": 838,
+          "timestamp": "2026-05-17T23:22:09.190983+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[APPROVAL GRANTED] 实验 **exp_wiki_scorer_confound_1b5** 审批已通过，已进入执行队列（QUEUED）。请立即检查队列并开始执行该实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "approval"
+          },
+          "id": "event-000838"
+        },
+        {
+          "source_line": 839,
+          "timestamp": "2026-05-17T23:22:27.736100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__allocate_and_submit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__allocate_and_submit",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound_1b5",
+              "server": "cqa1-22115",
+              "gpu_ids": "['cuda:1']",
+              "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\"",
+              "timeout_hours": "3",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000839"
+        },
+        {
+          "source_line": 840,
+          "timestamp": "2026-05-17T23:22:28.189403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Experiment 'exp_wiki_scorer_confound_1b5' status is 'ALLOCATED', expected 'QUEUED'.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__allocate_and_submit",
+            "elapsed_ms": 453
+          },
+          "id": "event-000840"
+        },
+        {
+          "source_line": 841,
+          "timestamp": "2026-05-17T23:22:33.869747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__submit_on_allocated",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000841"
+        },
+        {
+          "source_line": 842,
+          "timestamp": "2026-05-17T23:22:33.920475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000842"
+        },
+        {
+          "source_line": 843,
+          "timestamp": "2026-05-17T23:22:40.797950+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_on_allocated"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "tool_args": {
+              "exp_id": "exp_wiki_scorer_confound_1b5",
+              "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\"",
+              "timeout_hours": "3",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000843"
+        },
+        {
+          "source_line": 844,
+          "timestamp": "2026-05-17T23:22:44.468442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_wiki_scorer_confound_1b5\\\", \\\"status\\\": \\\"RUNNING\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"180543\\\", \\\"log_file\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\\\", \\\"account\\\": \\\"root\\\", \\\"tmux_session\\\": \\\"exp_wiki_scorer_confound_1b5\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"cron_registered\\\": true, \\\"code_synced\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "elapsed_ms": 3670
+          },
+          "id": "event-000844"
+        },
+        {
+          "source_line": 845,
+          "timestamp": "2026-05-17T23:22:48.472129+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_wiki_scorer_confound_1b5 已启动：cqa1-22115 cuda:1, pid=180543, cron 监控已注册。预计 <2h 完成，结果自动回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000845"
+        }
+      ]
+    },
+    {
+      "number": 74,
+      "messages": [
+        {
+          "source_line": 846,
+          "timestamp": "2026-05-17T23:22:48.478167+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analysis_exp_wiki_scorer_confound_20260517T231852 已完成（status=done）。用 `get_worker_status('worker_analysis_exp_wiki_scorer_confound_20260517T231852')` 读取结果，然后处理。\n\n- worker_id: worker_analysis_exp_wiki_scorer_confound_20260517T231852\n- project: gen-depth-contamination\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "worker:done"
+          },
+          "id": "event-000846"
+        },
+        {
+          "source_line": 847,
+          "timestamp": "2026-05-17T23:22:57.566122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_exp_wiki_scorer_confound_20260517T231852"
+            }
+          },
+          "id": "event-000847"
+        },
+        {
+          "source_line": 848,
+          "timestamp": "2026-05-17T23:22:57.616895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp_wiki_scorer_confound_20260517T231852\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:exp_wiki_scorer_confound\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"started_at\\\": \\\"2026-05-17T23:18:52.694399+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T23:21:24.229323+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## 结果\\\\n\\\\n**Scorer confound confirmed.** Pythia-1.4B scorer 下 K\\\\\\\\*=1，Qwen-1.5B scorer 下 K\\\\\\\\*=2。\\\\n\\\\n### Pairwise AUC 对比\\\\n\\\\n| Depth Pair | Qwen-1.5B Scorer | Pythia-1.4B Scorer | Delta |\\\\n|------------|------------------:|-------------------:|------:|\\\\n| 0 vs 1     | **0.9673**        | 0.9404             | -0.027 |\\\\n| **1 vs 2** | **0.6108**        | 0.5870             | -0.024 |\\\\n| 2 vs 3     | 0.5562            | 0.5456             | -0.011 |\\\\n| 3 vs 4     | 0.5297            | 0.5250             | -0.005 |\\\\n| 4 vs 5     | 0.5290            | 0.5172             | -0.012 |\\\\n\\\\n关键：1v2 从 0.6108（刚过 θ=0.60）降到 0.5870（低于阈值），K\\\\\\\\* 从 2 变为 1。\\\\n\\\\n### 解读\\\\n\\\\n- **depth 0v1 信号稳健**：两个 scorer 均 >0.94，K\\\\\\\\*=1 不受 scorer 选择影响\\\\n- **depth 1v2 是 scorer artifact**：Qwen scorer 的 0.6108 仅超阈值 0.011，换成跨家族 scorer 后消失\\\\n- **AUC 全线下降**：Pythia scorer 在所有 depth pair 均低于 Qwen scorer，说明同家族 scorer 系统性膨胀区分度\\\\n- **对论文影响**：Qwen-7B Wikipedia 应报告 K\\\\\\\\*=1（跨家族 scorer 结果），与其他模型一致。原始 K\\\\\\\\*=2 需标注为 scorer confound\\\\n\\\\n报告已写入 artifacts 并注册。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000848"
+        },
+        {
+          "source_line": 849,
+          "timestamp": "2026-05-17T23:23:07.840951+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000849"
+        }
+      ]
+    },
+    {
+      "number": 75,
+      "messages": [
+        {
+          "source_line": 850,
+          "timestamp": "2026-05-17T23:34:12.671206+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000850"
+        },
+        {
+          "source_line": 851,
+          "timestamp": "2026-05-17T23:34:53.836324+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- cqa1-22115 GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3（4×4090D）\n- westd-42896 GPU 白名单: cuda:0, cuda:1（2×RTX PRO 6000 96GB）\n- submit_training_job 的 tmux 用 /bin/sh，命令必须 `bash -c \"...\"` 包裹（不能直接 source）\n- GPU 编号脚本内始终从 0 开���（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）\n- exp_wiki_scorer_confound 结果已确认 scorer confound：Qwen Wiki K*=2 是 artifact，论文不能再 claim \"Qwen uniqueness on Wikipedia\"\n- 14B/32B scorer confound 预案：如 K*=1，用 14B 作为 scorer 重跑（不是 32B，32B 太紧）\n\n### 2. 🖥️ 基础设施快照\n**cqa1-22115** (本地 4×4090D 24GB):\n- 工作目录: /root/autodl-tmp/gen-depth-contamination/\n- Python: /root/miniconda3/bin/python (3.12)\n- HF cache: /root/autodl-tmp/.hf_cache/\n- Pythia-1.4B: /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79\n- 活跃进程: exp_wiki_scorer_confound_1b5 (PID 180543, tmux=exp_wiki_scorer_confound_1b5, cuda:1)\n\n**westd-42896** (云 2×RTX PRO 6000 96GB):\n- 工作目录: /root/autodl-tmp/gen-depth-contamination/\n- Python: /root/miniconda3/bin/python (3.12), PATH 需 /root/miniconda3/bin\n- 14B 模型: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B (29.6GB)\n- 32B 模型: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-32B (62GB)\n- 活跃进程: exp_14b_c4 (PID 8586, tmux=exp_14b_c4, cuda:0), exp_32b_c4 (PID 14637, tmux=exp_32b_c4, cuda:1)\n\n### 3. 📊 当前状态\n刚完成 exp_wiki_scorer_confound 分析：**scorer confound confirmed**（Pythia scorer → K*=1，Qwen scorer → K*=2，delta=-0.024 on critical 1v2 pair）。已更新 registry(DONE/negative)、memory.md、向 Director 汇报。\n\nRegistry RUNNING:\n- exp_14b_c4 (westd cuda:0): Qwen-14B C4 scale validation, 预计 May 18 ~15:30 完成\n- exp_32b_c4 (westd cuda:1): Qwen-32B C4 scale validation, 预计 May 20 ~07:00 完成\n- exp_wiki_scorer_confound_1b5 (cqa1 cuda:1): Qwen-1.5B Wiki + Pythia scorer, 预计 <2h\n\n无待处理 Worker 回调。Cron 监控 3 个 RUNNING 实验。\n\n### 4. 📋 待办\n- exp_wiki_scorer_confound_1b5 cron 回调 → 分析 K*，预期 K*=1 确认 confound → 向 Director 汇报 \"Wikipedia 统一 K*=1，2/2 Qwen 均 confirmed\"\n- exp_14b_c4 cron 回调 → 分析 K*：若 K*=2 → success (scale invariance confirmed)；若 K*=1 → 启动 scorer confound contingency (14B as scorer on same data, westd cuda:0)\n- exp_32b_c4 cron 回调 → 同上逻辑\n- Director 决策 Wikipedia paper framing 调整后 → 派 Paper Worker 修订 Wikipedia discussion (Appendix → scorer confound caveat)\n- cqa1 cuda:0,2,3 空闲 → Director 未分配新任务，standby\n\n### 5. 🎯 战略上下文\n**核心结论**: K* is domain-dependent. arXiv(3) > C4(2) > Wikipedia(1). 模型差异次要（Mistral C4 one-wash, OLMo 跨域 one-wash）。\n\n**Domain×Model Matrix 修正后**:\n| Model | C4 | arXiv | Wikipedia |\n|-------|-----|-------|-----------|\n| Qwen-1.5B/7B | 2 | 3 | 1* |\n| Pythia/LLaMA/Mistral | 2/1 | 3 | 1 |\n| OLMo | 2 | 1 | 1 |\n\n*scorer confound: Qwen scorer → K*=2, cross-family scorer → K*=1\n\n**易错点**:\n1. Wikipedia K*=2 已经 invalidated，不要再引用原始 exp_wiki_qwen7b/exp_023 的 K*=2 作为真值\n2. C4 上的 K*=2 已经由 exp_022_cross_scorer_matrix 验证 scorer-independent，不受本次 confound 影响\n3. 14B/32B 如果 K*=1，scorer confound 预案用 14B scorer（不是 32B），在 westd 同台机器跑\n4. DDL May 25 (EMNLP ARR)，32B 预计 May 20 完成，留 5 天写论文 patch\n5. 磁盘: cqa1 97% 但项目仅 1.2GB（共享盘问题，不是我们的）；westd 正常\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000851"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc70411630ecc08ea35d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix deploy shard fix restart",
+  "task_key": "worker_fix_deploy_shard_fix_restart_20260512T121007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_deploy_shard_fix_restart_20260512T121007_result.json",
+    "occurrence": 1,
+    "bytes": 515,
+    "sha256": "a4a0cc675305b5bc83df661c5dc6d7bb215468c3c05ec698fef8530493dfcc6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Step 2 正常运行，C4 shard 采样速度约 800 it/s，5000 条预计不到 10 秒完成。修复生效，实验已正常推进。\n\n**总结：**\n1. 清理了 3 个残留进程 (PID 4934, 4939, 5158)\n2. 修复脚本 URL 改为使用 `HF_ENDPOINT` 环境变量（解决 huggingface.co 直连超时问题），通过 hf-mirror.com 加速\n3. 更新了 run_mvp.sh\n4. C4 shard 验证通过，实验 `mvp_pilot_sat_v1` 已重新提交（PID 5922，tmux session），Step 2 采样中，约 800 it/s"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-deploy-shard-fix-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adbf3fd637b3c17ff692",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper fix overfull hbox",
+  "task_key": "worker_paper_fix-overfull-hbox_20260519T054912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-overfull-hbox_20260519T054912_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "79ebc688f74c1ece93ba431ebec4aa1ba3a50f3449ebeedc5a2b5aebec131f11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**修复前后对比：**\n- 修复前：2 个 overfull hbox，其中 `lines 591--607` 有 56pt（实测编译为 12pt）overfull\n- 修复后：1 个 overfull hbox（仅剩 `lines 189--200` 的 1.3pt，与本次修复无关）\n\n**修改内容：** `appendix_extended.tex:605` 的 `\\multicolumn{5}{l}{...}` 改为 `\\multicolumn{5}{@{}p{\\linewidth}@{}}{...}`，消除 tabcolsep 额外间距并启用自动换行。\n\n`artifacts/code_crossmodel_table.tex` 无需修改，其表格使用 `\\resizebox{\\textwidth}{!}` 包裹，不存在溢出问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-overfull-hbox.md"
+}

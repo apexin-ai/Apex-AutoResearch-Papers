@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8539c2a96815d466c3a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper compile p1 p5 fixes",
+  "task_key": "worker_paper_compile_p1_p5_fixes_20260523T071006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_p1_p5_fixes_20260523T071006_result.json",
+    "occurrence": 1,
+    "bytes": 1283,
+    "sha256": "bde09b6b4b1801d920683b328ce260e6405f738d23031a856360ed160f2a090b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All information collected. Here's the full report:\n\n---\n\n## Compilation Results\n\n**LaTeX errors: 0** (only underfull hbox warnings)\n\n**Page count: 8 pages** of main text (content through page 8, bibliography starts on page 9)\n\n## Fix Verification\n\n| # | Check | Status |\n|---|-------|--------|\n| 1 | **Table 10** (tab:kstar_ci_extended): Pythia-6.9B 4v5 | **PASS** — shows `---` with footnote \"K*=1; 4v5 not required for boundary determination\", no \"experiment pending\" |\n| 2 | **Table 2 footnote** | **PASS** — reads \"starred boundary comparisons (AUC > θ)\" |\n| 3 | **Figure 3 caption** | **PASS** — says \"five configurations\" |\n| 4 | **Figure 4 caption** | **PASS** — reads \"Cross-model transfer heatmap (continuation-mode models)... Pythia↔OLMo: 90–92%\", no mention of \"Qwen-rewrite→continuation: 61–63%\" |\n| 5 | **method.tex Section 3.3** | **PASS** — \"six primary configurations spanning three model families... four additional models (LLaMA-3.1-8B, Mistral-7B, Pythia-6.9B, Gemma-2-2B) are introduced in Section 4\" |\n| 6 | **Figure 1 caption** | **PASS** — includes \"(Simplified notation; see Eq. [kstar] for the formal K* definition.)\" |\n\nAll 6 checks pass. PDF compiles cleanly at 8 pages of main text."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-p1-p5-fixes.md"
+}

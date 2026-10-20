@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82bc7b8f497b9a91ff4c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper arr submission checklist",
+  "task_key": "worker_paper_arr_submission_checklist_20260522T092331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_arr_submission_checklist_20260522T092331_result.json",
+    "occurrence": 1,
+    "bytes": 2941,
+    "sha256": "0ad23e46f521394dedcbc0a90e47fe119e7a755bee162f13fb1572e27a5e86f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the full report:\n\n---\n\n## EMNLP 2026 ARR May 提交材料检查报告\n\n### 1. 格式合规检查\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| Review mode | ✓ | `\\usepackage[review]{acl}` |\n| 匿名 | ✓ | `\\author{Anonymous}` |\n| Limitations | ✓ | `\\section*{Limitations}`（unnumbered，`\\clearpage` 后） |\n| Ethics Statement | ✓ | `\\section*{Ethics Statement}`（unnumbered） |\n| 正文破折号 | ✓ | 正文 7 个 tex 文件中无 `---`（em-dash） |\n| Checklist 不在 PDF 中 | ✓ | main.tex 中无 checklist 内容 |\n\n### 2. 正文页数\n\n从 `main.aux` 中提取的 section 页码：\n\n| Section | 页码 |\n|---------|------|\n| 1 Introduction | 1 |\n| 2 Related Work | 2 |\n| 3 Method | 2 |\n| 4 Experiments | 4 |\n| 5 K*-Guided Filtering | 6 |\n| 6 Discussion | 7 |\n| 7 Conclusion | 8 |\n\nConclusion 仅 ~8 行，完全在第 8 页内。`\\clearpage` 在 Conclusion 之后、Limitations 之前，确保 Limitations 从第 9 页开始。\n\n**正文（Abstract 到 Conclusion）= 8 页 ✓**（恰好踩线）\n\n### 3. Supplementary / Appendix\n\n- Appendix 包含在主 PDF 中（`\\appendix` → `appendix.tex` + `appendix_extended.tex`）\n- Appendix 章节：A (Supplementary Figures), B (Supplementary Tables), C (Supplementary Details), D (Extended Discussion)\n- **总 PDF 页数：23 页**（`\\@abspage@last{23}`）\n\n### 4. 引用完整性\n\n| 项目 | 状态 |\n|------|------|\n| Undefined references | ✓ 0 个 |\n| Undefined citations | ✓ 0 个 |\n| LaTeX Warnings | ✓ 0 个 |\n| BibTeX Warnings | ✓ 0 个 |\n| Bibliography entries | 36 条 |\n| Citation commands | 34 处 |\n\n### 5. 图表编号\n\n**正文**：Figure 1→2→3→4，Table 1→2→3→4→5 ✓ 连续\n\n**Appendix**：Figure 5，Table 6→...→27 ✓ 连续\n\n正文浮动体类型：\n- 1 个 `figure*`（method.tex，pipeline 图）\n- 1 个 `table*`（experiments_c1.tex，K* CI 表）\n- 3 个 `figure`，1 个 `table`\n\n### 6. 其他\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| Page numbers | ✓ | review mode 自动显示 |\n| 字体 Type 1 | ⚠️ | `pdffonts` 不可用，无法确认。`times` + `T1` 编码通常生成 Type 1，大概率没问题 |\n| Overfull hbox | ⚠️ | **11 处**，最大 58.6pt（严重）。部分可能在 appendix |\n\n### 需要关注的项\n\n1. **⚠️ 正文恰好 8 页**：没有余量。任何后续修改（加文字、调图表大小）都可能导致超页。建议冻结正文。\n\n2. **⚠️ Overfull hbox 58.6pt**：这个溢出很大（约 2cm），reviewer 可能注意到。建议定位并修复最严重的几处（特别是正文部分的）。其他 10-20pt 的溢出在 review 阶段通常可接受。\n\n3. **⚠️ 字体检查**：建议在有 `pdffonts`（poppler-utils）的环境下确认所有字体为 Type 1 / OTF，ARR 不接受 Type 3 位图字体。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-arr-submission-checklist-copy-2.md"
+}

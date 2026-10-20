@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0f196fa009484920cc5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp D comprehensive",
+  "task_key": "worker_code_exp_D_comprehensive_20260515T113549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_D_comprehensive_20260515T113549_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "d12a5ac22eef18f5c086cb053ca3a82fe23359c46493c99b85def842a1c990f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**修复后 OBD accuracy: 44.4%** (95% CI: [40.0%, 48.8%])\n\n| 对比 | Accuracy |\n|------|----------|\n| Old (capping, no seed) | 43.6% |\n| Old (v2, no seed) | 38.0% |\n| **New (prob merge, seed=42)** | **44.4%** |\n\n**多种子稳定性：5 个种子全部 44.4%，std=0.0。** GroupKFold 分折是确定性的，`random_state` 对 LightGBM 在这个数据规模/超参下几乎无影响，之前的 5.6pp 波动完全来自未固定种子+`n_jobs=-1` 的线程级不确定性。现在彻底消除。\n\n**McNemar 结论不变，且更强：**\n- OBD vs GPT-5.5: +11.2pp, p=0.0001, CI=[+5.6%, +16.8%]\n- OBD vs Claude: +11.4pp, p=1.4e-5, CI=[+6.2%, +16.4%]\n\n两个对比均显著 (p<0.001)，CI 不包含 0。可复现性验证通过（两次 seed=42 运行结果完全一致）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-d-comprehensive.md"
+}

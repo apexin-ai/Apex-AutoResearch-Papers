@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "405fae0aec138ae06d0e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "prep 14b scorer contingency",
+  "task_key": "worker_prep_14b_scorer_contingency_20260518T002139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_14b_scorer_contingency_20260518T002139_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "40ff6c24a9168688a5981f909812de74bee476b5d90deb4c5e3b3ad5fae4be90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "准备完成。总结：\n\n**模型**: Qwen2.5-14B-Instruct-AWQ (4-bit, 9.4GB) 已在 `/root/autodl-tmp/.hf_cache/Qwen2.5-14B-Instruct-AWQ/`，加载后占 9.98GB GPU 显存，单张 4090D 轻松容纳。\n\n**脚本**:\n- `scripts/score_14b_confound.py` — 加载 AWQ 模型，复用 run_pipeline.py 的 feature extraction + analysis\n- `scripts/exp_14b_scorer_confound.sh` — 一键启动，只需确认 `SRC_DATA_DIR` 指向 exp_14b_c4 数据\n\n**Dry-run 验证通过**: 模型加载 9.4s，batch-16 forward 0.08s (5ms/sample)，峰值显存 13.09GB。\n\n**预估运行时间**: ~15-20 min（含 feature extraction + analysis）。\n\n**待**: exp_14b_c4 数据就绪后，执行 `CUDA_VISIBLE_DEVICES=0 bash scripts/exp_14b_scorer_confound.sh` 即可。\n\n报告已写到 `artifacts/14b_scorer_contingency/prep_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-14b-scorer-contingency.md"
+}

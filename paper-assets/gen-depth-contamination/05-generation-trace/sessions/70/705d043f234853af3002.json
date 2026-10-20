@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "705d043f234853af3002",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing neural probe prewrite",
+  "task_key": "worker_writing_neural-probe-prewrite_20260514T055243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_neural-probe-prewrite_20260514T055243_result.json",
+    "occurrence": 1,
+    "bytes": 1013,
+    "sha256": "2d87396b177964389bd9d9509747bbaf09a69d32d6955a650618139c5b3ac132"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "草稿已写入 `artifacts/drafts/neural_probe_analysis.tex` 并注册。\n\n**内容结构：**\n\n| 部分 | 内容 |\n|------|------|\n| **Setup** | frozen Qwen2.5-1.5B → avg-pool → MLP (1536→512→256→6), 5-fold GroupKFold |\n| **Results** | K\\*\\_neural=3（2v3 AUC=0.6195±0.0094 > θ=0.60），1v2 margin 从 +0.0114 扩大到 +0.0983，3v4=0.5930 差 θ 仅 0.007 |\n| **K\\* hierarchy** | K\\*\\_theory ≥ K\\*\\_neural=3 ≥ K\\*\\_15D=2，\"representation-dependent deepening\" 叙事 |\n| **Branch (a)** | exp-006 成功 → neural probe 的第三边界为 graduated filtering 的子分类提供动机 |\n| **Branch (b)** | exp-006 不显著 → 第三边界主要是理论意义，操作建议不变（depth≥2 合并处理） |\n\n所有 Qwen-cont 单数据集数字均标注 `% TODO: pending cross-model validation`，Pythia/OLMo 留 placeholder 注释，未编造数据。两个文本分支以注释块形式保留，根据 exp-006 结果取消注释对应版本即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-neural-probe-prewrite.md"
+}

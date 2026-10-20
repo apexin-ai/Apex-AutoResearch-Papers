@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43a928fd14068847ed0f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops fetch qwen7b complete metrics",
+  "task_key": "worker_ops_fetch-qwen7b-complete-metrics_20260519T121502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fetch-qwen7b-complete-metrics_20260519T121502_result.json",
+    "occurrence": 1,
+    "bytes": 1129,
+    "sha256": "19764c3328b4909264722de8a017f011b8965a2608b63e9a0e39dba068df9168"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。完整 metrics 如下：\n\n## exp_code_qwen7b 完整结果 (K\\* = 2)\n\n### Pairwise AUC (5-fold CV)\n\n| Pair | AUC | 95% CI | Folds |\n|------|-----|--------|-------|\n| 0v1 | 0.9051 | ±0.0043 | 0.9073, 0.9012, 0.9120, 0.9049, 0.9003 |\n| 1v2 | 0.7276 | ±0.0055 | 0.7377, 0.7254, 0.7240, 0.7220, 0.7289 |\n| 2v3 | 0.5368 | ±0.0145 | 0.5179, 0.5332, 0.5275, 0.5462, 0.5593 |\n| 3v4 | 0.5090 | ±0.0055 | 0.5029, 0.5054, 0.5085, 0.5092, 0.5191 |\n| 4v5 | 0.5139 | ±0.0128 | 0.5016, 0.5317, 0.5264, 0.5090, 0.5007 |\n\n### Pairwise JSD\n\n| Pair | JSD |\n|------|-----|\n| 0v1 | 0.061265 |\n| 1v2 | 0.042256 |\n| 2v3 | 0.004130 |\n| 3v4 | 0.003198 |\n| 4v5 | 0.003393 |\n\n### Ordinal Classification (6-class)\n- MAE = 1.2651\n- Accuracy = 0.3423\n\n### Top-10 Features\n1. freq_entropy (9730.0)\n2. surp_d2_mean (9236.2)\n3. surp_d1_mean (9126.2)\n4. surp_d1_skew (8833.4)\n5. surp_std (8110.2)\n6. freq_kurtosis (7838.6)\n7. surp_mean (7586.0)\n8. surp_kurt (6769.2)\n9. hapax_ratio (6636.4)\n10. ttr (6332.6)\n\nRegistry 已更新：conclusion=success, metrics 已录入完整数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fetch-qwen7b-complete-metrics.md"
+}

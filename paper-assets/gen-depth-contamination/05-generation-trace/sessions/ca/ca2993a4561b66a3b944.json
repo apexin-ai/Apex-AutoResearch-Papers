@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca2993a4561b66a3b944",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper c3 version a upgrade",
+  "task_key": "worker_paper_c3-version-a-upgrade_20260515T060727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_c3-version-a-upgrade_20260515T060727_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "ef3a57f7608adc926d04b972bc10618db194fbd08220946e0331996b21133261"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过：\n\n1. **Version B（lines 1-107）**——完整保留，未修改\n2. **Version A（lines 116-234）**——在 `\\iffalse ... \\fi` 中\n3. **10 段结构齐全**：Opening (121-123) → Filtering strategies (125-143) → Training setup + Evaluation (145-155) → Graduated vs Binary (158-172) → Quality-Aware Strategies (174-185) → Depth × Quality Interaction (187-203) → α sensitivity (205-213) → Comparison with Drayson (215-219) → Degradation context (221-226) → Summary (228-232)\n4. **所有数字均为 `\\textbf{XX.XX}` 占位符**\n5. **LaTeX 语法**——`enumerate`/`itemize` 环境正确闭合，`\\iffalse`/`\\fi` 配对，括号匹配，`% source:` 注释保留\n\n核心 claim 升级：从旧版的 \"graduated > binary\" 改为 \"K* framework 作为 curation strategy selector——depth-only 不够，quality-aware strategies（surprisal/DSIR）借助 K*-aware 框架超越 binary baseline，揭示 depth × quality 交互效应\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-c3-version-a-upgrade.md"
+}

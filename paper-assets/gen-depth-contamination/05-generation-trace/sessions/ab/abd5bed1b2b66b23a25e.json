@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abd5bed1b2b66b23a25e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix deberta code launch verify",
+  "task_key": "worker_fix_deberta_code_launch_verify_20260520T073517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_deberta_code_launch_verify_20260520T073517_result.json",
+    "occurrence": 1,
+    "bytes": 276,
+    "sha256": "bf43e98309b956173cfe2a823b6d4ff5d5cb670bc6e724ae0dbc40820794c375"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nSTATUS: RUNNING\nGPU3: 19327 MiB / 98% utilization\nCODE_CHECK: int(d) fix: OK (line 148 uses setdefault) | oof.npy save: OK (line 214) | EVAL_BS=8: OK (line 45)\n```\n\n实验在 cuda:3 上正常运行，所有代码修复均已到位，无需重提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-deberta-code-launch-verify.md"
+}

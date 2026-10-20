@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7ea465362f066a12a26f",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The content parameter needs to be a string, not a JSON object. Let me pass it as a string.",
+              "signature": "Ep8CCmMIDhgCKkBVmF5cZPrsThs502iNzFaghfRNDXa9I9VYz8LPGCCgtsv5YB4z598rWR71LB1vK/7yGoLQvBR0sqzMR9NvRTOiMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDIPr3pUb/fZTH6Zh3hoMK3eCXFay01QB94KxIjD+T1F/tDTP7jMNdXFiySbDGEyKJNHxn+9SL+qMKTR8fl/s9fDGDQL5WPlW4KmvnkAqarQUFLQOOygT2BsfU7xrHCllnyxgjB5jAXUvFVQallKJZMzSKzmHwQUcIGn/X0gBwd7LUi1AM7Kiagb3r0fiL4fBwKAROH2FI29talsr1vOVr0OTKVDNi10N6NninnhR9Jflc3zKg4mhyiQYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e5baa3e6-5151-45d4-b73e-d351dfa6987a",
+            "uuid": "ca147e8d-e7cd-4963-b767-2cc8cde79324",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019o4yXYHZTpjKGnD1PMfNhm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1025,
+                "cache_read_input_tokens": 116788,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1025
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 注册遇到格式问题，但结果已保存在服务器上 `/root/autodl-tmp/gen-depth-contamination/artifacts/gemma2b_10k_qwen_bootstrap_ci.json`。\n\n---\n\n## Gemma-2-2B 10K Qwen Cross-Scored Bootstrap CI 结果\n\n| Pair | OOF AUC | Boot std | 95% CI | Bonferroni 99.5% CI (pct) | Bonferroni 99.5% CI (norm) | perm p | θ判定 |\n|------|---------|----------|--------|---------------------------|----------------------------|--------|-------|\n| **0v1** | 0.9533 | 0.0013 | [0.9507, 0.9558] | [0.9496, 0.9568] | [0.9497, 0.9569] | 0.0001 | **PASS** |\n| **1v2** | 0.6099 | 0.0034 | [0.6031, 0.6167] | **[0.5998, 0.6192]** | [0.6003, 0.6196] | 0.0001 | **分裂** |\n| 2v3 | 0.5409 | 0.0037 | [0.5336, 0.5482] | [0.5304, 0.5512] | [0.5305, 0.5513] | 0.0001 | FAIL |\n| 3v4 | 0.5174 | 0.0038 | [0.5098, 0.5249] | [0.5068, 0.5283] | [0.5066, 0.5281] | 0.0001 | FAIL |\n| 4v5 | 0.5158 | 0.0039 | [0.5082, 0.5235] | [0.5046, 0.5268] | [0.5047, 0.5269] | 0.0001 | FAIL |\n\n### 1v2 关键分析\n\n- **95% CI lower = 0.6031 > θ=0.60** → PASS\n- **Bonferroni 99.5% CI (percentile) lower = 0.5998 < θ=0.60** → **FAIL**（差 0.0002）\n- **Bonferroni 99.5% CI (normal) lower = 0.6003 > θ=0.60** → PASS（仅高 0.0003）\n- Permutation p = 0.0001（高度显著，AUC 确实非随机）\n\n**结论**：1v2 在 Bonferroni 校正下的 percentile CI 和 normal CI 给出**矛盾判定**。Percentile 方法 lower = 0.5998 刚好未过 θ（差 0.2pp），normal 方法 lower = 0.6003 刚好过了（高 0.3pp）。这是一个极度 borderline 的结果，如预期。K* = 1（保守取 percentile 方法）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e5baa3e6-5151-45d4-b73e-d351dfa6987a",
+            "uuid": "9c4b69e4-efdd-4cc6-afd3-af505cb2f133",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019o4yXYHZTpjKGnD1PMfNhm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1025,
+                "cache_read_input_tokens": 116788,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1025
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 注册遇到格式问题，但结果已保存在服务器上 `/root/autodl-tmp/gen-depth-contamination/artifacts/gemma2b_10k_qwen_bootstrap_ci.json`。\n\n---\n\n## Gemma-2-2B 10K Qwen Cross-Scored Bootstrap CI 结果\n\n| Pair | OOF AUC | Boot std | 95% CI | Bonferroni 99.5% CI (pct) | Bonferroni 99.5% CI (norm) | perm p | θ判定 |\n|------|---------|----------|--------|---------------------------|----------------------------|--------|-------|\n| **0v1** | 0.9533 | 0.0013 | [0.9507, 0.9558] | [0.9496, 0.9568] | [0.9497, 0.9569] | 0.0001 | **PASS** |\n| **1v2** | 0.6099 | 0.0034 | [0.6031, 0.6167] | **[0.5998, 0.6192]** | [0.6003, 0.6196] | 0.0001 | **分裂** |\n| 2v3 | 0.5409 | 0.0037 | [0.5336, 0.5482] | [0.5304, 0.5512] | [0.5305, 0.5513] | 0.0001 | FAIL |\n| 3v4 | 0.5174 | 0.0038 | [0.5098, 0.5249] | [0.5068, 0.5283] | [0.5066, 0.5281] | 0.0001 | FAIL |\n| 4v5 | 0.5158 | 0.0039 | [0.5082, 0.5235] | [0.5046, 0.5268] | [0.5047, 0.5269] | 0.0001 | FAIL |\n\n### 1v2 关键分析\n\n- **95% CI lower = 0.6031 > θ=0.60** → PASS\n- **Bonferroni 99.5% CI (percentile) lower = 0.5998 < θ=0.60** → **FAIL**（差 0.0002）\n- **Bonferroni 99.5% CI (normal) lower = 0.6003 > θ=0.60** → PASS（仅高 0.0003）\n- Permutation p = 0.0001（高度显著，AUC 确实非随机）\n\n**结论**：1v2 在 Bonferroni 校正下的 percentile CI 和 normal CI 给出**矛盾判定**。Percentile 方法 lower = 0.5998 刚好未过 θ（差 0.2pp），normal 方法 lower = 0.6003 刚好过了（高 0.3pp）。这是一个极度 borderline 的结果，如预期。K* = 1（保守取 percentile 方法）。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 998794,
+            "duration_api_ms": 898972,
+            "num_turns": 240,
+            "stop_reason": "end_turn",
+            "session_id": "e5baa3e6-5151-45d4-b73e-d351dfa6987a",
+            "total_cost_usd": 11.217941499999993,
+            "usage": {
+              "input_tokens": 235,
+              "cache_creation_input_tokens": 105972,
+              "cache_read_input_tokens": 18972123,
+              "output_tokens": 42673,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 105972,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 861,
+                  "cache_read_input_tokens": 116788,
+                  "cache_creation_input_tokens": 1025,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1025
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1420,
+                "outputTokens": 27,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001555,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 235,
+                "outputTokens": 42673,
+                "cacheReadInputTokens": 18972123,
+                "cacheCreationInputTokens": 105972,
+                "webSearchRequests": 0,
+                "costUSD": 11.216386499999993,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "448f1da2-04ae-4ff6-b1d6-8dc253701ee5"
+          },
+          "id": "event-000543"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3eb5530439d11481b697",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops check olmo retrain v3 bootstrap",
+  "task_key": "worker_ops_check_olmo_retrain_v3_bootstrap_20260520T142723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_olmo_retrain_v3_bootstrap_20260520T142723_result.json",
+    "occurrence": 1,
+    "bytes": 773,
+    "sha256": "2e2f5bbd32991de6b926e463654088e131b88f4514a6aea3b77d9e98f4383216"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：进行中 (3/4 pairs 完成)**\n\n进程活跃，日志最后更新 22:29:11（北京时间），3v4 bootstrap 正在计算。\n\n## 已完成结果\n\n| Pair | Point AUC | Bootstrap AUC | 95% CI |\n|------|-----------|---------------|--------|\n| 0v1 | 0.9873 | 0.9972 | [0.9967, 0.9977] |\n| 1v2 | 0.8889 | 0.9572 | [0.9542, 0.9601] |\n| 2v3 | 0.7036 | 0.8885 | [0.8814, 0.8947] |\n| 3v4 | 0.6817 | 计算中... | — |\n\n## 时间估算\n\n每个 pair 的 bootstrap (10K resamples) 耗时约 30 分钟：\n- 0v1: 20:33 → 21:05 (32 min)\n- 1v2: 21:05 → 21:35 (30 min)  \n- 2v3: 21:35 → 22:05 (30 min)\n- 3v4: ~22:05 开始，预计 **~22:35 完成**（约 5-6 分钟后）\n\n所有 CI 下界远超 θ=0.60 阈值，K*≥4 结论稳固。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-olmo-retrain-v3-bootstrap.md"
+}

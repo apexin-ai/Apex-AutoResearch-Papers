@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "db9620d3de4789971bfb",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops exp026 exit diagnosis",
+  "task_key": "worker_ops_exp026-exit-diagnosis_20260518T111735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026-exit-diagnosis_20260518T111735_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "4dd83408657d4a60439d4c3683b38fe09c9915108b2b40e297faa9f908780d97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: {\"type\":\"error\",\"error\":{\"details\":null,\"type\":\"overloaded_error\",\"message\":\"Overloaded\"},\"request_id\":\"req_011Cb9wZNayoQCqrFuPXBtTC\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "details": null,
+                "type": "overloaded_error",
+                "message": "Overloaded"
+              },
+              "request_id": "req_011Cb9wZNayoQCqrFuPXBtTC"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-exit-diagnosis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb4e683a14910004a591",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "viz retrain decay curve",
+  "task_key": "worker_viz_retrain-decay-curve_20260519T010907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_retrain-decay-curve_20260519T010907_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "c4f25894ddfdcd0def9a628550df7d6f3e7945ee36e7c2576362443848c111b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出：\n\n- 服务器：`/root/autodl-tmp/gen-depth-contamination/figures/retrain_decay_curve.{pdf,png}`\n- 本地 artifact：`retrain_decay_curve.png`（已注册，ID `art_20260519_490934`）\n- 脚本：`/root/autodl-tmp/gen-depth-contamination/scripts/plot_retrain_decay.py`\n\n图中 retrain-chain 从 0.984 缓慢衰减到 0.641（depth 6v7 仍高于 θ=0.60，K*≥7），prompt-chain 在 1v2 即骤降到 0.629 并在 2v3 跌破阈值（K*=2），对比清晰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-retrain-decay-curve.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d919600265fa593a328",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops check running experiments 20260520",
+  "task_key": "worker_ops_check_running_experiments_20260520_20260520T131530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_running_experiments_20260520_20260520T131530_result.json",
+    "occurrence": 1,
+    "bytes": 1451,
+    "sha256": "f5c78b571077809d06ecd425f864875da14471c3c8660c1c73d1cc5b2d470dee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n---\n\n```\nexp_7b_scorer_arxiv (PID 320673): 已退出（正常完成） | GPU: 已释放\n```\n\n21:14:37 Pipeline complete. 结果摘要：\n\n| Config | K* | 0v1 AUC | 1v2 AUC | 2v3 AUC |\n|---|---|---|---|---|\n| pythia_arxiv\\_\\_qwen1.5b | 3 | 0.9872 | 0.7938 | 0.6544 |\n| olmo_arxiv\\_\\_qwen1.5b | 1 | 0.9954 | 0.5182 | 0.4956 |\n| pythia_arxiv\\_\\_qwen7b | 3 | 0.9844 | 0.7987 | 0.6551 |\n| olmo_arxiv\\_\\_qwen7b | 1 | 0.9941 | 0.5089 | 0.4920 |\n\n结论：7B scorer 和 1.5B scorer 在两个 model family 上 K\\* 完全一致（pythia=3, olmo=1）。\n\n---\n\n```\nexp_olmo_retrain_v3 (PID 310312): 存活 | 运行时长 2h27m | GPU: cuda:0 (非 cuda:2)，当前 0% 利用率\n```\n\n进度：\n- Generation chain (depth 0→4): **已完成** (18:48 - 20:13，耗时 ~1h25m)\n- Feature extraction (5 depths × 5000 texts): **已完成** (20:13 - 20:32)\n- Pairwise AUC/JSD: **已完成** — AUC(0v1)=0.9873, AUC(1v2)=0.8889, AUC(2v3)=0.7036, AUC(3v4)=0.6817, **K\\*=4**\n- **Bootstrap CI (10000 resamples): 进行中** — 已完成 1/4 对 (0v1: 0.9972 [0.9967, 0.9977]，耗时 32 min)，当前在跑后续 pair\n\nGPU 利用率 0% 是正常的，Bootstrap 阶段跑的是 LGBMClassifier（CPU-bound），不用 GPU。日志尾部全是 sklearn feature name 警告，不影响结果。\n\n**预计完成时间**：每对 bootstrap 约 32 min，剩余 3 对 ≈ 96 min，预计 **~22:40** 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-running-experiments-20260520.md"
+}

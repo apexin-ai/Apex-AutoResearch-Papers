@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c614fe5cc96198f4e26",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code theta sensitivity figure",
+  "task_key": "worker_code_theta-sensitivity-figure_20260518T133210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_theta-sensitivity-figure_20260518T133210_result.json",
+    "occurrence": 1,
+    "bytes": 731,
+    "sha256": "947e179dc39054310c9830566db6e3c9e4f6ac600fb362c7a4b3193bde0e5f2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "输出完成。\n\n**文件位置**：\n- PDF: `artifacts/figures/fig_theta_sensitivity.pdf`\n- PNG: `artifacts/figures/fig_theta_sensitivity.png`\n\n**包含的模型配置**：\n\n| Panel | Models |\n|-------|--------|\n| C4 (7) | Qwen2.5-1.5B, Pythia-1.4B, OLMo-1B, Qwen2.5-7B, LLaMA-3.1-8B, Mistral-7B, Qwen2.5-14B |\n| arXiv (4) | Qwen2.5-1.5B, Pythia-1.4B, LLaMA-3.1-8B, Mistral-7B |\n| Wiki (4) | Qwen2.5-7B, LLaMA-3.1-8B, Pythia-1.4B, OLMo-1B |\n\n**关键观察**：\n- θ=0.60 处 domain ordering 清晰：Wiki K*≈1, C4 K*≈2, arXiv K*≈3\n- 该 ordering 在 θ∈[0.55, 0.70] 全范围内保持稳定\n- 模型间差异远小于域间差异，验证 K* 主要由 domain 决定而非 model family/scale"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-theta-sensitivity-figure.md"
+}

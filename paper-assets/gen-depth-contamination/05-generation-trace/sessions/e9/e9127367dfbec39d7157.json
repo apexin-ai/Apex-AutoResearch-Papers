@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9127367dfbec39d7157",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code check gemma progress",
+  "task_key": "worker_code_check_gemma_progress_20260522T223759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_gemma_progress_20260522T223759_result.json",
+    "occurrence": 1,
+    "bytes": 1667,
+    "sha256": "f008c3a140b9eacb3d34c85b950ad2a90a332caa8b199101f03a3b062e1b4a61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告\n\n### 1. seed_gemma27b_c4_s42 (Gemma-2-27B, cuda:0)\n\n| 项 | 状态 |\n|---|---|\n| 进程 | PID 26893, 运行 12h34m |\n| GPU | cuda:0, 99% 利用率, 55.4/97.9 GB VRAM |\n| Step 3 (Depth Chain) | **已完成** — 5 个 depth 全部生成完毕 (每个 depth ~2.5h) |\n| Step 4 (Feature Extraction) | **进行中** — 06:21 开始 |\n\nFeature Extraction 详细进度：\n- depth 0-1: surprisal + vocabdiv + tail **已完成**\n- depth 2: surprisal **已完成**, VocabDiv 刚开始 (3%, 153/5000)\n- depth 3-5: 未开始\n\n每个 depth 特征提取约 7 min (surprisal ~4.7min @2.22 it/s + VocabDiv ~2min @40 it/s)。剩余 ~22-25 min 完成 Step 4，之后还有 Step 5 (Analysis)，预计再 5-10 min。\n\n**预计总剩余：~30-35 min**\n\n---\n\n### 2. exp_gemma2b_10k (Gemma-2-2B, cuda:3)\n\n| 项 | 状态 |\n|---|---|\n| 进程 | PID 54709, 运行 4h40m |\n| GPU | cuda:3, 0% 利用率 (当前在 CPU 阶段), 7.7/97.9 GB VRAM |\n| Step 3 (Depth Chain) | **已完成** — 5 个 depth 全部生成完毕 (每个 depth ~55min) |\n| Step 4 (Feature Extraction) | **进行中** — 06:34 开始 |\n\nFeature Extraction 详细进度：\n- depth 0: surprisal **已完成**, VocabDiv 进行中 (86%, 8643/10000 @42 it/s)\n- depth 1-5: 未开始\n\n10K 样本的 VocabDiv (含 self-BLEU) 每个 depth ~4 min，surprisal 每个 depth ~2-3 min (2B 模型较快)。剩余约 depth 0 VocabDiv 收尾 + 5 个完整 depth ≈ ~35-40 min Feature Extraction + Step 5 Analysis。\n\n**预计总剩余：~40-45 min**\n\n---\n\n两个实验都运行正常，均在 Step 4 Feature Extraction 阶段，Step 3 生成已全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-gemma-progress.md"
+}

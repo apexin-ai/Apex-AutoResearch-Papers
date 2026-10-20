@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c58169b1277683c3240",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper code crossmodel table",
+  "task_key": "worker_paper_code-crossmodel-table_20260519T000706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_code-crossmodel-table_20260519T000706_result.json",
+    "occurrence": 1,
+    "bytes": 486,
+    "sha256": "915606dde3ea17225014b7717d8426576219fcdfc0545f2a0bacd650dc0a9924"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "表格已写入 `artifacts/code_crossmodel_table.tex`。\n\n要点：\n- Qwen2.5-1.5B 数据已填入（K*=2, 0v1=.9388, 1v2=.7382, 2v3=.5300），与源文件一致\n- 其余 3 模型用 `.TBD` 占位，实验完成后直接替换\n- 格式参照 `tab:kstar_ci_extended`：宽表、`\\cmidrule` 分组、bootstrap CI 列、脚注标注统计检验\n- 底部增加 K* 汇总行，方便一眼对比跨模型一致性\n- 小数统一 4 位，最优值加粗，无破折号"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-code-crossmodel-table.md"
+}

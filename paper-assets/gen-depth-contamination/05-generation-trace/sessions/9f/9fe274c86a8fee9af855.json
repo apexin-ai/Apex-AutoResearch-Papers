@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fe274c86a8fee9af855",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp arXiv qwen7b prep",
+  "task_key": "worker_code_exp_arXiv_qwen7b_prep_20260517T130345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_arXiv_qwen7b_prep_20260517T130345_result.json",
+    "occurrence": 1,
+    "bytes": 857,
+    "sha256": "15cd53e048b7b23730e081f8a8a4c1609bed02741b7cc0afb84c87435a3be07a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 正常。汇报结果：\n\n**1. Qwen2.5-7B 模型路径：❌ 未找到**\n- 服务器上没有 Qwen2.5-7B 缓存。`.hf_cache/Qwen/` 下只有：\n  - `Qwen2___5-1___5B`\n  - `Qwen2___5-1___5B-Instruct`\n- 需要先下载 Qwen2.5-7B 才能运行实验。\n\n**2. Scorer 路径：✅**\n- `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B/` 存在，含 `config.json`, `model.safetensors` 等完整文件。\n\n**3. data/exp_arXiv_qwen7b/depth_0.jsonl：✅**\n- 已创建目录并复制，确认 **2200 行**。\n\n**4. pipeline --help：✅**\n- 需用 `/root/miniconda3/bin/python3.12` 调用（系统 `python`/`python3` 未链接到 conda 环境）。\n- `run_pipeline.py` 支持 `--model_path`, `--data_dir`, `--scorer_path` 等参数，正常输出。\n\n**阻塞项：** 实验需要先下载 Qwen2.5-7B 模型到服务器。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-arxiv-qwen7b-prep.md"
+}

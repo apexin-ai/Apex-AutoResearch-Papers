@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d0b08a320fcc3ae6143",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp wiki scorer confound 1b5",
+  "task_key": "worker_analysis_exp_wiki_scorer_confound_1b5_20260518T012012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_wiki_scorer_confound_1b5_20260518T012012_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "062bf7a04891c867350e38df7c90876764c22cc63cf9a2a2743198376e94aee4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 结果\n\n**K\\* = 1，Scorer confound confirmed for both Qwen scales。**\n\n| Pair | AUC (Pythia scorer, 1.5B gen) | AUC (Pythia scorer, 7B gen) |\n|------|------|------|\n| 0v1 | **0.9729** | 0.9404 |\n| 1v2 | 0.5994 | 0.587 |\n| 2v3 | 0.533 | ~0.5 |\n| 3v4 | 0.521 | ~0.5 |\n| 4v5 | 0.507 | ~0.5 |\n\n两个 scale 的 pattern 完全一致：Pythia 只能区分 depth 0 vs 1+，之后全部跌至随机水平。原始 Qwen-1.5B 自评 K\\*=2 是 scorer artifact。\n\nRegistry 已更新：conclusion=negative, status=DONE。报告已注册为 artifact `art_20260518_4f91f8`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-wiki-scorer-confound-1b5.md"
+}

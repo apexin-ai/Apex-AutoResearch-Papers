@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfb0c10f5a8bc75a83cd",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "reviewer / loop_12.md",
+  "task_key": "loop_12",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_12.md",
+    "occurrence": 1,
+    "bytes": 3606,
+    "sha256": "99e831c19372526e747883f8b49e72e8a1a74f740db241642e9ab07e8e703afd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: max_wall_time\nupdated: '2026-05-16T11:52:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`gpu_ids=[0,1,2,3]`（4×RTX 3090 24GB），本项目独占整台机器，无越界风险但需注意进程间冲突\n- exp-020 Pythia nuc09 曾出现重复进程写同一目录（已修复），审查新实验时注意检查是否有类似重入\n- Mistral-7B (exp-019) K*=1 是**真实结论**，不是 bug——bootstrap CI [0.5835, 0.6032] 确认，不要质疑这个结果\n- Pythia greedy K*=2 + AUC=0.88 是 repetition collapse 导致的（TTR 0.72→0.19→0.14），不是检测能力强——论文中不能当正面证据用\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`cqa1-22115(root)`，工作目录 `/root/autodl-tmp/gen-depth-contamination`\n- Python：conda base (`/root/miniconda3/bin/python`)，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型缓存：`/root/autodl-tmp/.hf_cache`，需 `HF_DATASETS_OFFLINE=1` 避免 streaming hang\n- 网络：`source /etc/network_turbo` 必须在 pip/git 前执行\n- 活跃进程（截至 handoff）：\n  - exp-018 LLaMA-8B: PID 10403, cuda:0, tmux `exp_018_llama8b`（运行 >6h，cross-scorer）\n  - exp-019b Mistral cross-scorer: PID 36365, cuda:1, tmux `exp_019b_mistral_cross_scorer`\n  - exp-020 Pythia nuc09: PID 27042, cuda:2（evaluation 阶段）\n  - exp-021 length_512: PID 32175, cuda:3, tmux `exp_021_length_ablation`（depth 3 gen ~18%）\n\n### 3. 📊 当前状态\n刚完成：exp-020 nuc09 重复进程修复审查（数据完整，2 个多余 PID 已 kill）。\n\n已完成实验（本轮已审）：\n- exp-019 Mistral-7B: K*=1, 1v2=0.5934 (**打破 K*=2 universality**)\n- exp-020 Pythia greedy: K*=2, 1v2=0.8838 (repetition collapse artifact)\n- exp-021 length_128: K*=2, 1v2=0.6219\n- exp-021 length_256: K*=2, 1v2=0.6282\n\nRUNNING：exp-018 (cuda:0), exp-019b (cuda:1), exp-020 nuc09 (cuda:2), exp-021 len512 (cuda:3)\nNOT_STARTED：exp-020 t07/t12, exp-022 cross-scorer matrix, exp-023 wiki, exp-024 arxiv\n\n### 4. 📋 待办\n- exp-019b 完成 → 核心问题：Mistral cross-scorer K* 是否 >1？若 K*≥2 → Mistral K*=1 是 scorer-dependent（paper 可 claim \"cross-scorer 恢复\"）；若仍 K*=1 → text-intrinsic，paper framing 必须调整为 \"K* model-dependent\"\n- exp-018 LLaMA-8B 完成 → 若 K*=1 → 两个 7B+ 模型都 K*=1，\"K*=2 universal\" claim 彻底不成立；若 K*=2 → Mistral 是特例\n- exp-021 length_512 完成 → 确认 K*=2 + 对比 128/256 的 AUC 是否有显著上升趋势\n- exp-020 nuc09 完成 → 验证 nucleus sampling K* 与 greedy 的差异（greedy 的 0.88 是 collapse，nuc 应回归正常范围）\n- 全部子配置完成后 → 做 coverage matrix 全面审查 + claim 强度最终评估\n\n### 5. 🎯 战略上下文\n- 核心发现：K* boundary 存在但**不 universal**。Qwen-1.5B 系列 K*=2 稳固（base/instruct/各 decoding/各长度），Mistral-7B K*=1\n- paper_framing.md 当前写的 \"K*=2 在所有 10 个测试条件下保持不变\" **已过时**，需根据 exp-018/019b 结果改写\n- 最易判断错的事：**不要把 Pythia greedy 的高 AUC (0.88) 当作 \"Pythia 更容易检测\" 的正面证据**——那是 repetition collapse 的 artifact，文本质量本身已崩溃（TTR<0.2），检测 trivial。论文应排除或标注为 degenerate case\n- DDL：EMNLP 2026 ARR May 25（距今 9 天）。4 GPU 并行 + 弹性扩容足够完成剩余实验\n- exp-019b 是当前最关键的诊断实验——它决定 Mistral K*=1 的归因（scorer vs text），直接影响论文 narrative 走向\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-copy-3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41154fc7547238bc52a1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra merge sync compile",
+  "task_key": "worker_infra_merge_sync_compile_20260522T064500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_merge_sync_compile_20260522T064500_result.json",
+    "occurrence": 1,
+    "bytes": 1234,
+    "sha256": "4dfd881b0345b8ef640e9f27b8372641469d37c5009bf278ec14ba343bafa2fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "合并完成。总结：\n\n## 合并决策记录\n\n| 文件 | 决策 | 详情 |\n|------|------|------|\n| **appendix.tex** | 用本地版 | 本地已包含所有数据填充（S10 Pythia, S12 domain, ANOVA, S13）+ 写作改进 |\n| **appendix_extended.tex** | 用本地版 | 本地已有 ANOVA 数据 + Seed Robustness 新节 |\n| **references.bib** | 合并 | 本地为基础 + 从服务器 patch 14条 URL |\n| **related_work.tex** | 用本地版 | 本地已有 fu2025/wang2025 引用 |\n| **experiments_c1.tex** | 合并 | 本地写作改进为基础 + 服务器 table float 修复（minipage→`\\begin{table}[t]`） |\n| **main.tex** | 用本地版 | Paper Agent 写作改进 |\n| **introduction/method/discussion/conclusion/experiments_c3** | 用本地版 | Paper Agent 写作改进 |\n| **figures/** | 从服务器取3组更新图 | fig3_transfer_heatmap, fig_filtering_strategies, fig_kstar_theta |\n\n## 编译结果\n- **21 页**，0 errors，0 undefined references/citations\n- appendix_extended.tex 无残留 `---`\n- appendix.tex 中 3 处 `---`（S13 summary table 的 OLMo/Qwen-7B/Mistral 行）为合理缺失（未做 cross-domain 实验）\n- Table 5 float 修复已确认（`\\begin{table}[t]`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-merge-sync-compile.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbde5380617701435770",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research reference verification r22",
+  "task_key": "worker_research_reference_verification_r22_20260520T162247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_reference_verification_r22_20260520T162247_result.json",
+    "occurrence": 1,
+    "bytes": 4290,
+    "sha256": "9c454982d787d7f84ff708f8b19e002b5084a9e742b335c240af26b76135c596"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 参考文献验证结果\n\n### 1. ✅ \"Can Generative AI Survive Data Contamination?\" — arXiv:2602.16065\n\n| 字段 | 审稿人声称 | 实际 |\n|------|-----------|------|\n| arXiv ID | 2602.16065 | **确认存在** |\n| 标题 | Can Generative AI Survive Data Contamination? | **Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training**（审稿人用了缩略标题） |\n| 作者 | 未提及 | Kevin Wang, Hongqian Niu, Didong Li |\n| 日期 | 2026 | 2026-02-17 |\n| 发表状态 | arXiv preprint | arXiv preprint |\n\n**摘要**：研究网络数据中 AI 生成内容混入后，生成模型递归训练（后代模型在前代合成数据上训练）的理论保证。现有理论仅分析离散/高斯简化设定下的 model collapse，本文扩展到更现实的数据分布和灵活的生成模型。\n\n**与本项目相关性**：🔴 **高度相关**。直接研究 contaminated recursive training 的理论框架，与 generational depth estimation 的核心问题（递归合成文本的代际追踪）高度对口。\n\n---\n\n### 2. ✅ \"Beyond the Final Actor\" — arXiv:2604.04932\n\n| 字段 | 审稿人声称 | 实际 |\n|------|-----------|------|\n| arXiv ID | 2604.04932 | **确认存在** |\n| 标题 | Beyond the Final Actor | **Beyond the Final Actor: Modeling the Dual Roles of Creator and Editor for Fine-Grained LLM-Generated Text Detection**（审稿人用了缩略标题） |\n| 作者 | 未提及 | Yang Li, Qiang Sheng, Zhengjia Wang, Yehan Yang, Danding Wang, Juan Cao |\n| 日期 | 2026 | 2026-04-06 |\n| 发表状态 | arXiv preprint | arXiv preprint |\n\n**摘要**：提出细粒度 LLM 生成文本检测的四分类设定（纯人写、纯 LLM 写、LLM 润色人写文本、人修改 LLM 文本），方法 RACE 利用修辞结构理论（RST）构建逻辑图刻画\"创作者\"签名，提取篇章单元级特征刻画\"编辑者\"风格，超越 12 个 baseline。\n\n**与本项目相关性**：🟡 **中等相关**。关注 LLM 生成文本的细粒度检测，但其四分类设定（creator vs editor）与 generational depth estimation（追踪递归生成代数）是不同的维度。可作为 related work 中 fine-grained detection 的代表性工作引用。\n\n---\n\n### 3. ✅ \"A Probabilistic Perspective on Model Collapse\" — arXiv:2505.13947\n\n| 字段 | 审稿人声称 | 实际 |\n|------|-----------|------|\n| arXiv ID | 未提供 | **arXiv:2505.13947**（存在，审稿人未给 ID 但论文真实） |\n| 标题 | A Probabilistic Perspective on Model Collapse | **完全匹配** |\n| 作者 | Xu et al. (2025) | **Shirong Xu, Hengzhi He, Guang Cheng** (UCLA)，姓氏匹配 |\n| 日期 | 2025 | 2025-05-20 |\n| 发表状态 | 未声称 | arXiv preprint |\n\n**摘要**：从概率视角研究递归参数模型训练中的 model collapse。将递归训练过程建模为模型估计的随机游走，样本量决定步长，估计过程决定方向和偏差。严格证明：逐步增加每步训练的样本量是防止 model collapse 的必要条件；当估计无偏时，所需增长率为超线性。\n\n**与本项目相关性**：🔴 **高度相关**。提供 model collapse 的概率论基础和递归训练的理论刻画（随机游走框架），与 generational depth estimation 的理论动机直接相关。\n\n---\n\n### 总结\n\n| # | 论文 | 验证 | Hallucination 风险 | 建议 |\n|---|------|------|-------------------|------|\n| 1 | Can Generative AI Survive Data Contamination? | ✅ 通过 | 无 | 建议引用，高度相关 |\n| 2 | Beyond the Final Actor | ✅ 通过 | 无 | 可引用，中等相关 |\n| 3 | A Probabilistic Perspective on Model Collapse | ✅ 通过 | 无（审稿人只是没给 arXiv ID） | 建议引用，高度相关 |\n\n三篇均为真实论文，无 hallucination。第 3 篇的完整引用为：Shirong Xu, Hengzhi He, and Guang Cheng. \"A Probabilistic Perspective on Model Collapse.\" arXiv:2505.13947, May 2025.\n\nSources:\n- [Can Generative AI Survive Data Contamination?](https://arxiv.org/abs/2602.16065)\n- [Beyond the Final Actor](https://arxiv.org/abs/2604.04932)\n- [A Probabilistic Perspective on Model Collapse](https://arxiv.org/abs/2505.13947)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-reference-verification-r22.md"
+}

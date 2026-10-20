@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b46ce41a77065458571",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260513T113049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260513T113049_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "020723ae11fef87641d0edeac7872fbc11e98a42881d7986ba786bc021a15a5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work 已写入 `docs/paper/related_work.tex`。四段结构：\n\n1. **Model Collapse & Recursive Generation** — 从 Shumailov 到 Shi，采纳 Schaeffer taxonomy（$\\Kstar$ = Family B, D4+D6），用 Kazdan replace/accumulate contextualize 实验设计\n2. **Binary Synthetic Text Detection** — Grover 到 CoDeC，覆盖 membership inference 联系和 self-refinement false-positive 风险，引用 AUC ≤ 0.53 实验数据\n3. **Data Selection & Curation** — DSIR/D4/DoReMi + Drayson 作为 closest prior work 详细对比（SIR 是 K*=1 特例），Amin + Gambetta 补充\n4. **Watermarking & Provenance** — Kirchenbauer，complementary framing\n\n约 780 words，所有 18 个 bibtex key 均与 references.bib 完全匹配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

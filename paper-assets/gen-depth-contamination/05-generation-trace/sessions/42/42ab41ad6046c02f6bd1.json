@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42ab41ad6046c02f6bd1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp006 fixes",
+  "task_key": "worker_code_exp006_fixes_20260513T081337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp006_fixes_20260513T081337_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "4fa820e727b88a1d9128221e2d91f27b4fd84764b4c326f78a1b99aab3179032"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件全部通过 dry-run 验证。\n\n---\n\n### 修改汇总\n\n**`scripts/run_exp006.sh`**\n- 在 strategy loop 之前插入 base model baseline 评估块：无 adapter，调用 `exp006_evaluate.py --model-name \"$MODEL\" --output \"$BASE_RESULT\" --cache-dir \"$CACHE_DIR\"`，结果写入 `outputs/exp006/base_model/eval_results.json`，有 skip 机制\n\n**`scripts/exp006_filtering_strategies.py`** — BinaryDrayson 类\n- `b`: 1.5 → **1**（Drayson 2025 Table S1, SmolLM-1.7B）\n- 新增 `rmax=3` 参数\n- `get_weights()` 和 `get_mask()` 中加入 `raw = np.minimum(raw, self.rmax * mean_w)` 截断\n- docstring 注明参数来源（arXiv:2502.15654 Table S1）\n\n**`scripts/exp006_analyze.py`**\n- 加载 `base_model/eval_results.json` 作为 \"base (no training)\" 行\n- 表格首行显示 base model 分数\n- 新增 \"One-sample t-tests vs base model\" 段（因 base 无多 seed，用 `ttest_1samp` 替代 paired）\n- 末尾输出 data source 说明"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp006-fixes.md"
+}

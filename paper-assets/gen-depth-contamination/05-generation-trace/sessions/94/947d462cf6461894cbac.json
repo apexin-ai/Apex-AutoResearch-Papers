@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "947d462cf6461894cbac",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "analysis bootstrap kstar uncertainty",
+  "task_key": "worker_analysis_bootstrap-kstar-uncertainty_20260523T130734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-kstar-uncertainty_20260523T130734.log",
+    "occurrence": 1,
+    "bytes": 867462,
+    "sha256": "07676a080e8f6a21d2091bb40278ac8a6369d3a76e4900b2dd4728c70a8580d5"
+  },
+  "statistics": {
+    "messages": 442,
+    "user_turns": 0,
+    "tool_calls": 181,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 181,
+      "tool_result": 181,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 442,
+      "chunks": [
+        {
+          "path": "947d462cf6461894cbac-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "947d462cf6461894cbac-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "947d462cf6461894cbac-part-0003.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-bootstrap-kstar-uncertainty.md"
+}

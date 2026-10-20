@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2d22de8ef5e75cb71c7",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis 32b 6class check",
+  "task_key": "worker_analysis_32b-6class-check_20260520T001512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_32b-6class-check_20260520T001512_result.json",
+    "occurrence": 1,
+    "bytes": 1206,
+    "sha256": "3cbd0b339b6641416c9345bdfe450569debee54b4d2c874b8547786b9fdb252b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 结果汇总\n\n**K\\* = 2**（1-indexed，与 5-class 一致，θ=0.60）\n\n### Pairwise AUC 对比（6-class vs 5-class）\n\n| Pair | 6-class AUC | 95% CI | 5-class AUC | Δ |\n|------|------------|--------|-------------|------|\n| 0v1 | **0.9923** | [0.9910, 0.9936] | 0.9575 | +0.0348 |\n| 1v2 | **0.6945** | [0.6864, 0.7026] | 0.6183 | +0.0762 |\n| 2v3 | **0.5978** | [0.5898, 0.6058] | 0.5454 | +0.0524 |\n| 3v4 | **0.5669** | [0.5590, 0.5746] | — | new |\n| 4v5 | **0.5426** | [0.5351, 0.5501] | — | new |\n\n### 要点\n\n- **K\\* 不变**：6-class 下 K\\*=2，与 5-class 完全一致。2v3 AUC=0.5978 刚好低于 θ=0.60 阈值，是分界点。\n- **所有已有 pair AUC 均上升**：6-class 重跑后 0v1/1v2/2v3 全部比 5-class 高，可能因为 6-class 分类器在更多类别上训练提供了更好的表征。\n- **Signal decay 模式清晰**：0v1 (0.992) → 1v2 (0.695) → 2v3 (0.598) → 3v4 (0.567) → 4v5 (0.543)，单调递减趋向 0.5（随机水平）。\n- **4v5 F1 极低（0.26）**：几乎无法区分 depth 4 和 depth 5，AUC 也仅 0.5426，确认深层生成文本的可区分性趋于消失。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-32b-6class-check.md"
+}

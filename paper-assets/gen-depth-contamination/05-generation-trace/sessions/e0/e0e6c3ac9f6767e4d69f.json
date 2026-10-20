@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0e6c3ac9f6767e4d69f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analyze c4 subsampling power curve",
+  "task_key": "worker_analyze_c4_subsampling_power_curve_20260518T102108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_c4_subsampling_power_curve_20260518T102108_result.json",
+    "occurrence": 1,
+    "bytes": 811,
+    "sha256": "ebaf1186407e7b757d0acc6dcba9b1e96e2ba7406d8f5fc25a2aa634765c2c0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果摘要\n\n| n | Mean AUC | Std | P(AUC > 0.60) |\n|---:|---:|---:|---:|\n| 1000 | 0.608 | 0.012 | 90% |\n| 1500 | 0.612 | 0.011 | 90% |\n| 2000 | 0.610 | 0.011 | 80% |\n| 2500 | 0.618 | 0.006 | **100%** |\n| 3000 | 0.615 | 0.009 | 100% |\n| 3500 | 0.623 | 0.005 | 100% |\n| 4000 | 0.620 | 0.003 | 100% |\n| 4500 | 0.627 | 0.007 | 100% |\n| 5000 | 0.629 | 0.000 | 100% |\n\n**结论**: n=1000 即可达 90% 检测概率；n=2500 起 10/10 trials 全部超过 theta=0.60，达到 100% 可靠检测。K\\*=2 信号很强，不是大样本量的伪信号。\n\n**产出文件**:\n- 服务器: `results/c4_power_curve/{power_curve_results.json, fig_power_curve.pdf, fig_power_curve.png}`\n- 本地: `artifacts/c4_power_curve/{results.json, fig_power_curve.png, summary.md}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-c4-subsampling-power-curve.md"
+}

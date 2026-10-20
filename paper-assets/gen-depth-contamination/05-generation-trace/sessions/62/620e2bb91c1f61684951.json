@@ -1,0 +1,692 @@
+{
+  "schema_version": "1.0",
+  "id": "620e2bb91c1f61684951",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "knowledge restore drayson citations",
+  "task_key": "worker_knowledge_restore_drayson_citations_20260513T012807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_knowledge_restore_drayson_citations_20260513T012807.jsonl",
+    "occurrence": 1,
+    "bytes": 37028,
+    "sha256": "616427ac5c989f75e452bdf8a5a78481aaef25c176c53304194fb4749f495992"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T01:30:59.047283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/related_work_structure.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T01:30:59.047645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Related Work 结构笔记\n2\t\n3\t> 四个 thread 的核心论文梳理，每个 thread 说明与本工作的定位关系。\n4\t\n5\t---\n6\t\n7\t## Thread 1: Binary Synthetic Text Detection → 我们扩展到 Ordinal Depth\n8\t\n9\t**核心问题**：现有检测方法将合成文本视为 binary label（human vs. machine），忽略了代际深度这一关键维度。\n10\t\n11\t**核心论文**：\n12\t\n13\t1. **Min-K%++ (Zhang et al., ICLR 2025)**\n14\t   - 通过 token probability 分析检测 pre-training membership，改进了 Min-K% 基线\n15\t   - 局限：membership inference ≠ ordinal depth estimation；仅判断\"是否在训练集中\"，无法回答\"经过了几代生成\"\n16\t   - 与我们的关系：Min-K% 的 low-probability token fraction 是我们 token-level 特征的子集；我们证明这些特征可以做更细粒度的 ordinal prediction\n17\t\n18\t2. **DivEye (Basani & Chen, TMLR 2026)**\n19\t   - 9 个 surprisal-based 统计特征（分布矩 + 一阶/二阶差分）用于可解释的 binary 检测，超过 zero-shot baseline 33.2%\n20\t   - 局限：纯 binary 分类，未利用特征随 depth 变化的系统性趋势\n21\t   - 与我们的关系：DivEye 的 9 维 surprisal 特征是我们特征集的核心子集；我们扩展为 ordinal regression 输入，证明同一特征集可支撑 depth 分辨\n22\t\n23\t3. **DetectGPT (Mitchell et al., ICML 2023)**\n24\t   - 利用 log probability curvature（perturbation-based）检测 machine-generated text\n25\t   - 后续改进：DNA-GPT、Fast-DetectGPT 等\n26\t   - 与我们的关系：zero-shot detection 方法的 confidence score 理论上可作为 depth proxy（confidence ↑ with depth），但我们在 baseline 对比中验证其与 true depth 的 Spearman 相关性，预期弱于专用 ordinal classifier\n27\t\n28\t4. **Binoculars (Hans et al., ICML 2024)**\n29\t   - 使用两个 LM 的 perplexity 比值检测合成文本\n30\t   - 与我们的关系：另一种 binary detection confidence → depth proxy 的 baseline\n31\t\n32\t**我们的定位**：从 binary classification 升级为 ordinal regression。不是提出新的检测特征，而是证明已有特征（DivEye-style + 扩展）在 ordinal depth 维度上有系统性可分辨结构，且 ordinal signal 对下游 data curation 有实用价值。\n33\t\n34\t---\n35\t\n36\t## Thread 2: Model Collapse / Iterative Retraining → 我们量化代际退化边界\n37\t\n38\t**核心问题**：递归训练导致的模型坍缩已被广泛研究，但缺少从 forensic 视角量化单个文档\"经历了几代\"的工具。\n39\t\n40\t**核心论文**：\n41\t\n42\t1. **Shumailov et al. (Nature 2024)**\n43\t   - 首次系统证明递归训练导致 tail disappearance → diversity loss → mode conflation 的三阶段坍缩\n44\t   - 早期坍缩（tail loss）比晚期坍缩（mode conflation）发生得更早、更剧烈\n45\t   - 与我们的关系：他们刻画了 macro 现象（population-level collapse dynamics），我们构建 micro 工具（单文档 depth forensics）。他们的\"早期退化最剧烈\"观察是我们 K* 假\n…[truncated 4804 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T01:30:59.047863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/methodology_draft.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T01:30:59.048106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# 3. Methodology\n2\t\n3\t## 3.1 Multi-generation Corpus Construction\n4\t\n5\t### 问题形式化\n6\t\n7\t设 $X_0$ 为人类撰写的文本（seed text），建模为概率空间上的随机变量。LLM 的生成过程定义为随机信道 $\\mathcal{T}: \\mathcal{X} \\to \\mathcal{X}$，将输入文本映射到输出文本。递归生成形成 Markov chain：\n8\t\n9\t$$X_0 \\xrightarrow{\\mathcal{T}} X_1 \\xrightarrow{\\mathcal{T}} X_2 \\xrightarrow{\\mathcal{T}} \\cdots \\xrightarrow{\\mathcal{T}} X_K$$\n10\t\n11\t其中 depth-0 文本 $X_0$ 为人类原始文本，depth-$k$ 文本 $X_k = \\mathcal{T}(X_{k-1})$ 由 depth-$(k-1)$ 文本经过一次 LLM 信道产生。该形式化依赖两个关键假设：**(A1) 时不变信道**——同一 LLM 与 decoding strategy 在每次迭代中定义相同的信道 $\\mathcal{T}$；**(A2) Markov 性**——$X_{k+1}$ 仅依赖 $X_k$，不依赖更早的 $X_0, \\ldots, X_{k-1}$。这两个假设在 prompt-chain 设定下成立（每次生成仅以上一轮输出为输入），retrain-chain 场景需将 $\\mathcal{T}$ 放宽为 $\\mathcal{T}_k$。\n12\t\n13\t### Prompt-chain 实现\n14\t\n15\t我们采用 prompt-chain 方式构造 depth chain：每一轮将前一深度的文本嵌入固定的 rewrite prompt 模板，由模型生成同主题、同风格的新文本。具体 prompt 模板如下：\n16\t\n17\t> Below is a passage. Write a new passage of similar length on the same topic and in the same style.\n18\t>\n19\t> Original passage:\n20\t> {prev\\_text}\n21\t>\n22\t> New passage:\n23\t\n24\t该模板要求模型保持主题与风格一致性，同时生成全新文本而非简单复述。这一设计的意图是模拟现实场景中合成文本被反复改写的过程——例如 AI 生成的内容被爬取后再次作为 LLM 的输入进行改写或续写。\n25\t\n26\tPrompt-chain 与 retrain-chain（在合成数据上重新训练模型再生成）的区别值得说明。Retrain-chain 更接近 Shumailov et al. [2024] 描述的 model collapse 真实路径，但 prompt-chain 提供了一个 **upper bound estimate**：如果在 prompt-chain（模型权重不变、仅输入文本退化）下特征已饱和，retrain-chain（模型本身也退化）下只会更快饱和。我们选择 prompt-chain 作为 MVP 方案以控制变量，retrain-chain 验证留作后续研究。\n27\t\n28\t### 模型选择\n29\t\n30\t我们选用 **Qwen2.5-1.5B-Instruct** [Qwen Team, 2024] 作为生成模型。选择理由如下：\n31\t\n32\t**Instruct 而非 base 模型**。现实世界中绝大多数合成文本（ChatGPT 输出、AI 写作工具、自动摘要等）均来自经过 instruction tuning 的模型。使用 Instruct 版本可确保生成文本的分布特征更接近实际污染数据。此外，Instruct 模型能更好地遵循 rewrite prompt 中的改写指令，生成主题一致但非直接复制的文本，而 base 模型可能简单延续原文或产生不相关内容。\n33\t\n34\t**1.5B 参数规模**。选择小规模模型基于以下考量：(1) 计算效率——在单块 RTX 4090D (24GB) 上可高效完成 5000 文档 × 5 个深度的生成任务；(2) model collapse 文献 [Shumailov et al., 2024; Drayson et al., 2025] 表明退化现象在小模型上更为显著，有利于在 pilot study 中观察清晰的深度信号；(3) Qwen2.5 系列在 1.5B 规模上已展现出 competitive 的语言能力 [需验\n…[truncated 11648 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T01:30:59.048275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/full_study_plan.md"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T01:30:59.048481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Full Study 实验矩阵预案\n2\t\n3\t> 基于 MVP (Qwen2.5-1.5B-Instruct, C4 5K, depth 0→5, nucleus p=0.95 T=1.0) 的经验推算\n4\t> 目标: EMNLP ARR 2026-05-25 提交（剩余 13 天）\n5\t> 硬件: 1×RTX 4090D 24GB @ autodl-4090d\n6\t\n7\t---\n8\t\n9\t## 1. 实验矩阵\n10\t\n11\t### 维度 1：模型族\n12\t\n13\t| 模型 | 参数量 | 类型 | HuggingFace 路径 | ModelScope 路径 | VRAM (bf16) | 4090D 可行性 | 推荐 batch_size | 目的 |\n14\t|------|--------|------|-------------------|-----------------|-------------|-------------|----------------|------|\n15\t| Qwen2.5-1.5B-Instruct | 1.5B | Instruct | `Qwen/Qwen2.5-1.5B-Instruct` | `Qwen/Qwen2.5-1.5B-Instruct` | ~3GB | ✅ 余量 21GB | gen=64, feat=24 | MVP baseline，Instruct 代表真实污染源 |\n16\t| Pythia-1.4B | 1.4B | Base | `EleutherAI/pythia-1.4b` | N/A（用 HF_ENDPOINT mirror） | ~2.8GB | ✅ 余量 21GB | gen=64, feat=24 | Base vs Instruct 对比；GPT-NeoX 架构代表 |\n17\t| OLMo-1B | 1B | Base | `allenai/OLMo-1B-0724-hf` | N/A（用 HF_ENDPOINT mirror） | ~2GB | ✅ 余量 22GB | gen=64, feat=32 | 不同训练方法/数据的 base model family |\n18\t| Qwen2.5-7B-Instruct | 7B | Instruct | `Qwen/Qwen2.5-7B-Instruct` | `Qwen/Qwen2.5-7B-Instruct` | ~14GB | ✅ 余量 10GB | gen=8, feat=4 | Cross-scale: K* 是否随模型规模变化 |\n19\t\n20\t**注**: Pythia/OLMo 在 ModelScope 无官方仓库，AutoDL 下载需设 `HF_ENDPOINT=https://hf-mirror.com`。Qwen 系列优先走 ModelScope CDN。\n21\t\n22\t### 维度 2：解码策略消融\n23\t\n24\t| ID | 策略 | 参数 | 目的 | 与 MVP 关系 |\n25\t|----|------|------|------|-------------|\n26\t| D-greedy | Greedy | T→0 (do_sample=False) | 确定性下界：最大 mode collapse，预测 K* 最小 | 新增 |\n27\t| D-p90 | Nucleus p=0.9 | top_p=0.9, T=1.0 | p 值敏感性 | 新增 |\n28\t| D-p95 | Nucleus p=0.95 | top_p=0.95, T=1.0 | MVP 默认 | 已有 |\n29\t| D-lowT | Low temperature | top_p=0.95, T=0.7 | 温度降低 → 多样性下降速度加快? | 新增 |\n30\t| D-highT | High temperature | top_p=0.95, T=1.2 | 温度升高 → 延缓饱和? 支撑 MI 衰减假设检验 | 新增 |\n31\t\n32\t**核心假设检验**: greedy → 近指数 MI 衰减（快速饱和），high-T → 较慢多项式衰减（随机性延缓同质化）。用 AIC/BIC 对比拟合优度。\n33\t\n34\t### 维度 3：生成方式\n35\t\n36\t| 方式 | 配置 | 预估耗时 | 目的 |\n37\t|------|------|----------|------|\n38\t| Prompt-chain | 直接喂上一代输出给 LLM，用 rewrite prompt | ~2-2.5h/config (1.5B) | Upper bound，MVP 已验证 |\n39\t| \n…[truncated 11656 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T01:30:59.048641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T01:30:59.048804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# gen-depth-contamination — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-13 01:08 UTC | 更新原因: Reviewer 建议: exp-013 加 exp-017 依赖 (4×4 matrix), 文献整合任务合并 Drayson positioning\n4\t\n5\t## 核心方向\n6\t递归合成文本的代际深度估计：测量 K*_empirical（给定特征族下的 practical discrimination boundary），为 depth-aware data curation 提供 actionable guidance。Route B framing（K* 作为首次系统测量的 operational quantity）。Drayson et al. (EMNLP 2025) = closest prior work (binary filtering 防 collapse)，我们是 ordinal 推广。详见 paper_framing.md。\n7\t\n8\t## 当前进展\n9\t- **阶段**: Research（P0 实验推进中）+ 审稿通道已开\n10\t- **MVP**: K*=2 confirmed (Qwen2.5-1.5B, mvp-001 success)\n11\t- **exp-001 (Pythia-1.4B)**: DONE — K*=2, 跨模型验证完成\n12\t- **exp-002 (OLMo-1B)**: RUNNING (depth 3 进行中, ~1.5h 完成)\n13\t- **Dream**: D005 整合 8 项行动项; D006 回滚 Drayson 引用清理\n14\t- **覆盖率**: 2/10 P0 完成 (mvp-001, exp-001)\n15\t\n16\t## 近期任务\n17\t- [ ] exp-002 OLMo-1B depth chain（RUNNING, ~1.5h）\n18\t- [ ] exp-017 Qwen continuation mode control（exp-002 后立即启动）\n19\t- [ ] exp-013 cross-model transfer — 4×4 matrix（依赖 exp-001 + exp-002 + exp-017）\n20\t- [ ] exp-003 decoding strategy ablation（依赖 GPU）\n21\t- [ ] exp-005 degradation ordering analysis（依赖 exp-001 + exp-002）\n22\t- [ ] exp-007 K* sensitivity + bootstrap CI（依赖 exp-001/002/003）\n23\t- [ ] 文献整合：Drayson positioning (binary→ordinal generalization) + Schaeffer ICML'25 (K* 定义族) + Kazdan ICML'25 (accumulate vs replace) + He NeurIPS'25 (gen→mem)\n24\t- [ ] [Dream 观察] exp-013 结果出来后评估 cross-model transfer framing 是否 misleading\n25\t- [ ] [Dream 观察] exp-006 设计时确认 DSIR baseline 实现可行性\n26\t\n27\t## GPU 预算\n28\t- 分配：1×RTX 4090D (cuda:0) on autodl-4090d\n29\t- P0 总预算：~123h（含 Dream 调整后的 exp-006=72h, exp-007=2h）\n30\t- 已消耗：~18h (mvp-001 + exp-001)\n31\t- 剩余可用：~240h\n32\t\n33\t## 实验序列规划\n34\texp-002 (6h) → exp-017 (6h) → exp-013 (2h, 纯分析, 4×4 transfer matrix) → exp-003 (20h) → exp-005 (2h, 纯分析) → exp-007 (2h, 纯分析) → exp-004 (8h) → exp-006 (72h, 最重 C3 证据)\n35\t\n36\t## 关键决策日志\n37\t\n38\t| ID | 日期 | 摘要 | 关联实验 |\n39\t|----|------|------|----------|\n40\t| D006 | 2026-05-13 | 回滚 Drayson et al. 引用清理——Reviewer 确认为真实论文 (EMN\n…[truncated 485 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T01:30:59.049043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "幻觉|Drayson",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T01:30:59.049256+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (29.3KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2d5c486d-f470-4b1c-9c9c-4d70b10a5d55/tool-results/toolu_0131adT3gQcqkvWoy6AXZsEg.txt\n\nPreview (first 2KB):\ndecisions.yaml:53:    CI + permutation-test; (5) exp-015 从 P2 升 P1; (6) 3-class accuracy 显式报告。6 项观察项待真实实验验证：Drayson\ndecisions.yaml:70:  summary: '回滚 Drayson et al. 引用清理——Reviewer 确认为真实论文 (EMNLP 2025 #1506)'\ndecisions.yaml:71:  rationale: D005 中基于 web search 无结果将 Drayson et al. (2025) 判定为 Dream 幻觉引用并指示 Agent\ndecisions.yaml:74:    web search 不足以判定引用为幻觉，应交叉验证（arXiv ID + 作者机构 + 会议 proceedings）。\nROADMAP.md:3:> 最后更新: 2026-05-13 01:08 UTC | 更新原因: Reviewer 建议: exp-013 加 exp-017 依赖 (4×4 matrix), 文献整合任务合并 Drayson positioning\nROADMAP.md:6:递归合成文本的代际深度估计：测量 K*_empirical（给定特征族下的 practical discrimination boundary），为 depth-aware data curation 提供 actionable guidance。Route B framing（K* 作为首次系统测量的 operational quantity）。Drayson et al. (EMNLP 2025) = closest prior work (binary filtering 防 collapse)，我们是 ordinal 推广。详见 paper_framing.md。\nROADMAP.md:13:- **Dream**: D005 整合 8 项行动项; D006 回滚 Drayson 引用清理\nROADMAP.md:23:- [ ] 文献整合：Drayson positioning (binary→ordinal generalization) + Schaeffer ICML'25 (K* 定义族) + Kazdan ICML'25 (accumulate vs replace) + He NeurIPS'25 (gen→mem)\nROADMAP.md:40:| D006 | 2026-05-13 | 回滚 Drayson et al. 引用清理——Reviewer 确认为真实论文 (EMNLP 20 | — |\ndocs/IDEA_BRIEF.md:34:[Omitted long matching line]\ndocs/IDEA_BRIEF.md:44:[Omitted long matching line]\ndocs/IDEA_BRIEF.md:46:[Omitted long matching line]\ndocs/IDEA_BRIEF.md:56:[Omitted long matching line]\ndocs/IDEA_BRIEF.md:82:- Machine-generated text detection prevents language model collapse (Drayson et al., EMNLP 2025)\ndocs/IDEA_BRIEF.md:105:  - novelty: **{'rationale': 'Verified novel across 14+ targeted searches: no existing work frames generational depth estimation as a prediction task. Drayson et al. (EMNLP 2025) and Guo et al. (NAACL 202\n…[truncated 292 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T01:30:59.049445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2d5c486d-f470-4b1c-9c9c-4d70b10a5d55/tool-results/toolu_0131adT3gQcqkvWoy6AXZsEg.txt",
+              "offset": "0",
+              "limit": "100"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T01:30:59.049662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\tdecisions.yaml:53:    CI + permutation-test; (5) exp-015 从 P2 升 P1; (6) 3-class accuracy 显式报告。6 项观察项待真实实验验证：Drayson\n1\tdecisions.yaml:70:  summary: '回滚 Drayson et al. 引用清理——Reviewer 确认为真实论文 (EMNLP 2025 #1506)'\n2\tdecisions.yaml:71:  rationale: D005 中基于 web search 无结果将 Drayson et al. (2025) 判定为 Dream 幻觉引用并指示 Agent\n3\tdecisions.yaml:74:    web search 不足以判定引用为幻觉，应交叉验证（arXiv ID + 作者机构 + 会议 proceedings）。\n4\tROADMAP.md:3:> 最后更新: 2026-05-13 01:08 UTC | 更新原因: Reviewer 建议: exp-013 加 exp-017 依赖 (4×4 matrix), 文献整合任务合并 Drayson positioning\n5\tROADMAP.md:6:递归合成文本的代际深度估计：测量 K*_empirical（给定特征族下的 practical discrimination boundary），为 depth-aware data curation 提供 actionable guidance。Route B framing（K* 作为首次系统测量的 operational quantity）。Drayson et al. (EMNLP 2025) = closest prior work (binary filtering 防 collapse)，我们是 ordinal 推广。详见 paper_framing.md。\n6\tROADMAP.md:13:- **Dream**: D005 整合 8 项行动项; D006 回滚 Drayson 引用清理\n7\tROADMAP.md:23:- [ ] 文献整合：Drayson positioning (binary→ordinal generalization) + Schaeffer ICML'25 (K* 定义族) + Kazdan ICML'25 (accumulate vs replace) + He NeurIPS'25 (gen→mem)\n8\tROADMAP.md:40:| D006 | 2026-05-13 | 回滚 Drayson et al. 引用清理——Reviewer 确认为真实论文 (EMNLP 20 | — |\n9\tdocs/IDEA_BRIEF.md:34:[Omitted long matching line]\n10\tdocs/IDEA_BRIEF.md:44:[Omitted long matching line]\n11\tdocs/IDEA_BRIEF.md:46:[Omitted long matching line]\n12\tdocs/IDEA_BRIEF.md:56:[Omitted long matching line]\n13\tdocs/IDEA_BRIEF.md:82:- Machine-generated text detection prevents language model collapse (Drayson et al., EMNLP 2025)\n14\tdocs/IDEA_BRIEF.md:105:  - novelty: **{'rationale': 'Verified novel across 14+ targeted searches: no existing work frames generational depth estimation as a prediction task. Drayson et al. (EMNLP 2025) and Guo et al. (NAACL 2024) characterize feature evolution across generations descriptively, but neither builds a depth classifier or proposes depth-aware filtering. The ordinal depth estimation formulation and graduated filtering application are genuinely new contributions.', 'score':\n…[truncated 13270 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T01:30:59.049876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/related_work_structure.md",
+              "old_string": "4. **Alemohammad et al. (ICLR 2024) — \"Self-Consuming Generative Models Go MAD\"**\n   - 理论与实验分析自消费训练循环（model autophagy disorder），证明迭代训练导致分布退化\n   - 关键贡献：形式化了 fully synthetic / synthetic augmentation / fresh data 三种数据混合策略的退化速率差异\n   - 局限：关注宏观训练退化现象，未提供逐代检测或 depth estimation 工具\n   - 与我们的关系：为递归退化提供了互补的理论视角（自消费 vs 我们的 iterated channel），其 depth-wise 退化曲线与我们的 JSD 衰减一致\n\n**我们的定位**：从 binary quality gate → graduated quality signal。",
+              "new_string": "4. **Alemohammad et al. (ICLR 2024) — \"Self-Consuming Generative Models Go MAD\"**\n   - 理论与实验分析自消费训练循环（model autophagy disorder），证明迭代训练导致分布退化\n   - 关键贡献：形式化了 fully synthetic / synthetic augmentation / fresh data 三种数据混合策略的退化速率差异\n   - 局限：关注宏观训练退化现象，未提供逐代检测或 depth estimation 工具\n   - 与我们的关系：为递归退化提供了互补的理论视角（自消费 vs 我们的 iterated channel），其 depth-wise 退化曲线与我们的 JSD 衰减一致\n\n5. **Drayson et al. (EMNLP 2025)**\n   - 训练 MGT 检测器并用 importance resampling 提升训练数据中人类文本的权重，不仅防止 collapse 还提升了性能\n   - 局限：仍是 binary detection（human vs. machine），不估计深度\n   - 与我们的关系：最直接的上游工作——他们用 binary detection 做 collapse prevention，我们用 ordinal depth estimation 做 graduated curation，是 binary → ordinal 的自然推广\n\n**我们的定位**：从 binary quality gate → graduated quality signal。"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T01:30:59.050028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T01:30:59.050155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/methodology_draft.md",
+              "old_string": "- **对数据 curation 从业者**：$K^*$ 告诉你在当前模型和生成配置下，depth-aware filtering 能有效区分多少层深度——depth $\\leq K^*$ 的文本可进行 graduated weighting，depth $> K^*$ 的文本可统一处理。",
+              "new_string": "- **对数据 curation 从业者**：$K^*$ 告诉你在当前模型和生成配置下，depth-aware filtering 能有效区分多少层深度——depth $\\leq K^*$ 的文本可进行 graduated weighting，depth $> K^*$ 的文本可统一处理。Drayson et al. (2025) 已证明即使 binary MGT detection 也能通过 importance resampling 防止 model collapse；我们的 depth estimator 将此推广为 graduated、ordinal-aware 的 curation，在可区分范围内提供比 binary 更细粒度的质量信号。"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T01:30:59.050280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T01:30:59.050401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/full_study_plan.md",
+              "old_string": "| Binary filter | DivEye 特征二分类移除所有检测为合成的文本 |",
+              "new_string": "| Binary filter | DivEye 特征二分类移除所有检测为合成的文本；另设 Drayson et al. (2025) importance resampling 变体作为 binary curation baseline |"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T01:30:59.050553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T01:30:59.050731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md",
+              "old_string": "| D006 | 2026-05-13 | 回滚 Drayson et al. 引用清理——Reviewer 确认为真实论文 (EMNLP 20 | — |",
+              "new_string": "| D006 | 2026-05-13 | [Dream 观察] Drayson et al. (2025) 经二次验证确认为真实论文（arXiv:2502.15654, EMNLP 2025），已恢复引用（2026-05-13） | — |"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T01:30:59.050913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T01:30:59.051077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/related_work_structure.md",
+              "offset": "85",
+              "limit": "15"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T01:30:59.051210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "85\t   - \"Learning by Surprise\"——按 surprise 值过滤训练数据缓解 collapse\n86\t   - 不区分 human vs. AI text，完全基于 perplexity 信号\n87\t   - 与我们的关系：Surplexity 是我们 downstream curation 实验的 baseline 之一；depth-aware filtering 预期优于 surprise-only filtering，因为 depth 编码了更多 provenance 信息\n88\t\n89\t4. **Alemohammad et al. (ICLR 2024) — \"Self-Consuming Generative Models Go MAD\"**\n90\t   - 理论与实验分析自消费训练循环（model autophagy disorder），证明迭代训练导致分布退化\n91\t   - 关键贡献：形式化了 fully synthetic / synthetic augmentation / fresh data 三种数据混合策略的退化速率差异\n92\t   - 局限：关注宏观训练退化现象，未提供逐代检测或 depth estimation 工具\n93\t   - 与我们的关系：为递归退化提供了互补的理论视角（自消费 vs 我们的 iterated channel），其 depth-wise 退化曲线与我们的 JSD 衰减一致\n94\t\n95\t5. **Drayson et al. (EMNLP 2025) — \"On the Role of Synthetic Text Detection in Model Collapse Prevention\"**\n96\t   - 训练 MGT 检测器做 importance resampling 防止 model collapse，在 GPT-2 和 SmolLM2 (124M–1.7B) 上实验\n97\t   - 关键贡献：首次将 binary MGT detection 作为 data curation 手段应用于 model collapse prevention\n98\t   - 局限：仍是 binary detection（synthetic vs human），不估计生成深度（depth）\n99\t   - 与我们的关系：**最接近的先行工作 (closest prior work)**。他们用 binary MGT detection 做 data curation 防 collapse，我们扩展为 ordinal depth estimation 做 graduated curation——从 binary filtering → graduated weighting 的自然推广。我们的工作回答了 Drayson 未触及的问题：不仅区分 human/synthetic，还估计文本经历了几代递归生成"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T01:30:59.051342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/methodology_draft.md",
+              "offset": "245",
+              "limit": "15"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T01:30:59.051467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "245\t需要承认的局限：unigram-level JSD 忽略了序列结构（n-gram patterns、句法依赖等），不等价于真正的互信息 $I(X_0; X_k)$。但 DPI 的定性结论——单调衰减——在 JSD 框架下同样成立，因此作为 tracking metric 仍然有效。\n246\t\n247\t### $K^*$ 的科学意义\n248\t\n249\t$K^*$ 是本工作提出的首次被系统测量的科学量。此前关于递归生成退化的研究 [Shumailov et al., 2024; Alemohammad et al., 2024; Drayson et al., 2025] 主要提供定性描述（\"early generations show most change\"）或仅做 binary 过滤（synthetic vs human），但从未给出精确的判别边界。Drayson et al. (EMNLP 2025) 是最接近的先行工作——他们训练 MGT 检测器做 importance resampling 防止 model collapse，但仍限于 binary detection，不估计生成深度。我们的 ordinal depth estimation 是其自然推广：从 binary filtering 到 graduated weighting。$K^*$ 的测量具有直接的实践指导价值：\n250\t\n251\t- **对数据 curation 从业者**：$K^*$ 告诉你在当前模型和生成配置下，depth-aware filtering 能有效区分多少层深度——depth $\\leq K^*$ 的文本可进行 graduated weighting，depth $> K^*$ 的文本可统一处理。\n252\t- **对 model collapse 研究**：$K^*$ 量化了 Shumailov et al. 描述的 \"early collapse\" 与 \"late collapse\" 之间的精确过渡边界。\n253\t- **对 AI 生成文本检测**：$K^*$ 揭示了 depth estimation 作为检测范式的 fundamental resolution limit——无论特征工程或分类器如何改进，信息论约束决定了 $K^*$ 之外不可能做得更好。\n254\t\n255\t[TODO: 补充 MVP 实验中测得的 $K^*$ 实际值及其置信区间]\n256\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T01:30:59.051600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/full_study_plan.md",
+              "offset": "50",
+              "limit": "10"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T01:30:59.051723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "50\t\n51\t**过滤策略对比**:\n52\t| 策略 | 说明 |\n53\t|------|------|\n54\t| No filter | 全部混入（baseline） |\n55\t| Binary filter | DivEye 特征二分类移除所有检测为合成的文本 |\n56\t| Depth-graduated | weight = quality(k)/quality(0)，按深度衰减曲线经验推导权重 |\n57\t| Surplexity filter | 按 surprisal 高低过滤 |\n58\t\n59\t**污染比例**: 10% / 30% / 50% 合成文本注入"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T01:30:59.051897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/full_study_plan.md",
+              "old_string": "| Binary filter | DivEye 特征二分类移除所有检测为合成的文本 |",
+              "new_string": "| Binary filter | DivEye 特征二分类移除所有检测为合成的文本；另设 Drayson et al. (2025) importance resampling 变体作为 binary curation baseline |"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T01:30:59.052063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/full_study_plan.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-13T01:30:59.052198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Drayson",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-13T01:30:59.052327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/IDEA_BRIEF.md:34:[Omitted long matching line]\ndocs/IDEA_BRIEF.md:44:[Omitted long matching line]\ndocs/IDEA_BRIEF.md:46:[Omitted long matching line]\ndocs/IDEA_BRIEF.md:56:[Omitted long matching line]\ndocs/IDEA_BRIEF.md:82:- Machine-generated text detection prevents language model collapse (Drayson et al., EMNLP 2025)\ndocs/IDEA_BRIEF.md:105:  - novelty: **{'rationale': 'Verified novel across 14+ targeted searches: no existing work frames generational depth estimation as a prediction task. Drayson et al. (EMNLP 2025) and Guo et al. (NAACL 2024) characterize feature evolution across generations descriptively, but neither builds a depth classifier or proposes depth-aware filtering. The ordinal depth estimation formulation and graduated filtering application are genuinely new contributions.', 'score': 4}**/5\ndocs/related_work_structure.md:95:5. **Drayson et al. (EMNLP 2025) — \"On the Role of Synthetic Text Detection in Model Collapse Prevention\"**\ndocs/related_work_structure.md:99:   - 与我们的关系：**最接近的先行工作 (closest prior work)**。他们用 binary MGT detection 做 data curation 防 collapse，我们扩展为 ordinal depth estimation 做 graduated curation——从 binary filtering → graduated weighting 的自然推广。我们的工作回答了 Drayson 未触及的问题：不仅区分 human/synthetic，还估计文本经历了几代递归生成\ndocs/methodology_draft.md:34:[Omitted long matching line]\ndocs/methodology_draft.md:249:[Omitted long matching line]\ndocs/full_study_plan.md:16:| Pythia-1.4B | 1.4B | Base | `EleutherAI/pythia-1.4b` | N/A（用 HF_ENDPOINT mirror） | ~2.8GB | ✅ 余量 21GB | gen=64, feat=24 | Base vs Instruct 对比；GPT-NeoX 架构代表；与 Drayson et al. (2025) GPT-2 实验规模对齐 |\ndocs/full_study_plan.md:55:| Binary filter | DivEye 特征二分类移除所有检测为合成的文本；另设 Drayson et al. (2025) importance resampling 变体作为 binary curation baseline |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T01:30:59.052469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Drayson",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-13T01:30:59.052594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3:> 最后更新: 2026-05-13 01:08 UTC | 更新原因: Reviewer 建议: exp-013 加 exp-017 依赖 (4×4 matrix), 文献整合任务合并 Drayson positioning\n6:递归合成文本的代际深度估计：测量 K*_empirical（给定特征族下的 practical discrimination boundary），为 depth-aware data curation 提供 actionable guidance。Route B framing（K* 作为首次系统测量的 operational quantity）。Drayson et al. (EMNLP 2025) = closest prior work (binary filtering 防 collapse)，我们是 ordinal 推广。详见 paper_framing.md。\n13:- **Dream**: D005 整合 8 项行动项; D006 回滚 Drayson 引用清理\n23:- [ ] 文献整合：Drayson positioning (binary→ordinal generalization) + Schaeffer ICML'25 (K* 定义族) + Kazdan ICML'25 (accumulate vs replace) + He NeurIPS'25 (gen→mem)\n25:- [x] [Dream 观察] Drayson et al. (EMNLP 2025) 确认为真实论文 (arXiv:2502.15654)，已恢复所有引用\n41:| D006 | 2026-05-13 | [Dream 观察] Drayson et al. (2025) 经二次验证确认为真实论文（arXiv:2502.15654, EMNLP 2025），已恢复引用（2026-05-13） | — |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-13T01:30:59.052770+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。Drayson et al. 引用已在所有相关文件中确认到位：\n\n- **`docs/related_work_structure.md:95`** — Thread 3 第 5 项，标注为 closest prior work（已在之前 session 恢复）\n- **`docs/methodology_draft.md:34,249`** — 模型选择理由 + K* 科学意义段落（已在之前 session 恢复）\n- **`docs/full_study_plan.md:55`** — Binary filter 策略行新增 Drayson importance resampling baseline（本次修改）\n- **`ROADMAP.md:41`** — D006 更新为\"经二次验证确认为真实论文（arXiv:2502.15654, EMNLP 2025），已恢复引用\"（本次修改）\n- **`ROADMAP.md:25`** — 已有完成态任务项 `[x] Drayson et al. 确认为真实论文，已恢复所有引用`（系统已自动添加）"
+            }
+          ],
+          "metadata": {
+            "session": "worker_knowledge_restore_drayson_citations_20260513T012807"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/knowledge-restore-drayson-citations.md"
+}

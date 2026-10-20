@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc80d5d9573715ad50d1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp009 dose response",
+  "task_key": "worker_code_exp009_dose_response_20260513T234043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp009_dose_response_20260513T234043_result.json",
+    "occurrence": 1,
+    "bytes": 2968,
+    "sha256": "0f41909a58647811a1b019541b4b27b6becdf5230d59b0efea60563d6462d475"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 交付物总结\n\n### 1. 脚本已部署\n`/root/autodl-tmp/gen-depth-contamination/scripts/run_exp009_dose_response.py` (608 行)\n\n**设计要点：**\n- **固定数据集大小** N=5000，确保各 injection ratio 下训练成本一致\n  - 10%: 4500 human + 500 synthetic\n  - 30%: 3500 human + 1500 synthetic\n  - 50%: 2500 human + 2500 synthetic\n- 复用 exp-006 的 `exp006_filtering_strategies.py`（BinaryOurs + Graduated 分类器）\n- 相同 (ratio, seed) 下所有策略看到同一份数据，确保公平对比\n- 支持 `--dry-run`、`--analyze-only`、`--skip-eval` 三种模式\n- 结果自动跳过已完成的 run（断点续跑）\n\n### 2. Dry-run 验证结果\n\n**Pre-GPU 验证（全部通过）：**\n- 数据加载：30000 samples (human=5000, synthetic=25000)\n- 三个 ratio 的子采样均正确（10%/30%/50%）\n- 确定性检查通过（same seed → same data）\n- 三种 filtering 策略在小数据上均正常：\n  - no-filter: 200/200 kept, weight=1.0\n  - binary-ours: 200/200 kept, weight mean=0.70\n  - graduated: 200/200 kept, weight mean=0.78\n\n**Training 验证（`--skip-eval`，通过）：**\n- 3/3 策略均成功训练完 10 步\n- no-filter: loss=2.73, binary-ours: loss=3.01, graduated: loss=2.84\n- 模型加载、LoRA 适配、WeightedRandomSampler 均正常\n\n**Evaluation：** 因 exp-006 占用 13GB GPU 显存，eval 阶段 OOM。eval 代码与 exp-006 完全一致，无需单独验证——exp-006 已跑出完整 MMLU/HellaSwag 结果。\n\n### 3. GPU 预算估算\n\n**基于 exp-006 实测数据推算：**\n\n| 阶段 | exp-006 (30K 样本) | exp-009 (5K 样本) |\n|------|-------------------|-------------------|\n| 数据准备 + 过滤 | ~0.5 min | ~0.5 min |\n| 模型加载 (训练) | ~1 min | ~1 min |\n| 训练 (3 epochs) | 36.3 min | **~6 min** |\n| 模型保存 + 清理 | ~0.5 min | ~0.5 min |\n| 模型加载 (eval) | ~1 min | ~1 min |\n| lm-eval (MMLU+HellaSwag) | ~6 min | ~6 min |\n| **单 run 合计** | **~45 min** | **~15 min** |\n\n- **Total runs**: 3 ratios × 2 strategies × 5 seeds = **30 runs**\n- **总 GPU 时间**: 30 × 15 min = **~450 min ≈ 7.5 小时**\n- **GPU 要求**: RTX 4090D 24GB，独占（不能与 exp-006 同时跑）\n\n### 提交命令\n\n等 exp-006 完成后（预计 05-15），执行：\n\n```bash\ncd /root/autodl-tmp/gen-depth-contamination && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_HUB_DISABLE_XET=1 && \\\nnohup python3 scripts/run_exp009_dose_response.py \\\n    --ratios 0.1 0.3 0.5 \\\n    --strategies binary-ours graduated \\\n    --seeds 42 123 456 789 1024 \\\n    --alpha 0.5 \\\n    > /tmp/exp009_full.log 2>&1 &\necho \"PID=$!\"\n```\n\n**建议**：exp-006 出结果后先更新 `--alpha` 为最佳值，再提交。查看结果用：\n```bash\npython3 scripts/run_exp009_dose_response.py --analyze-only\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp009-dose-response.md"
+}

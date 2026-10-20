@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41696adf03d4bf1a3d19",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper compile consistency fixes",
+  "task_key": "worker_paper_compile_consistency_fixes_20260523T045201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_consistency_fixes_20260523T045201_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "f30c0bb504cffd51020bbc61971d58eaddc4a312f312b01ef92a9655a8cca453"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过：\n\n- **编译**: 0 errors, 18 pages total, 正文 8 页（References 从第 9 页开始）\n- **Check 1** (Limitations scale): \"up to 8B parameters\" + \"supplementary experiments with 14B and 32B models (Appendix)\" ✓\n- **Check 2** (Code description): CodeSearchNet Python 实验描述存在 ✓\n- **Check 3** (table caption): \"representative configurations shown\" ✓\n- **Check 4** (intro contribution b): \"and code yield $K^*_{\\leq}2$\" ✓\n- **Check 5** (appendix title): \"Additional Scope Analysis\" ✓\n- **Check 6** (cross-section consistency): 10 configs / 6 families / 1B--8B / 4 domains / K*≤2 web text / arXiv K*=3 three families — 全部一致 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-consistency-fixes.md"
+}

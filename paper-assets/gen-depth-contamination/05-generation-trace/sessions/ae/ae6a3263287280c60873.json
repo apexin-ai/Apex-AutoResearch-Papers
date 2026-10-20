@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae6a3263287280c60873",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 019 mistral7b",
+  "task_key": "worker_code_exp_019_mistral7b_20260516T051504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_019_mistral7b_20260516T051504_result.json",
+    "occurrence": 1,
+    "bytes": 450,
+    "sha256": "1774b29a6c23973fe99b2c2637fe3a7e3a0f42c657c0c989cbf7785500b38409"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-019 已启动并注册完成。\n\n**状态摘要：**\n- **exp-019** (Mistral-7B-v0.3 continuation depth chain) 在 cqa1-22115 cuda:1 运行中\n- PID 12147，模型已加载（15GB VRAM），正在下载 C4 种子数据\n- exp-018 (LLaMA-8B) 在 cuda:0 并行运行，互不干扰\n- 日志：`/root/autodl-tmp/gen-depth-contamination/exp019.log`\n- Self-scoring 模式（Mistral 自身做 scorer），cross-scorer 留给 exp-022"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-019-mistral7b.md"
+}

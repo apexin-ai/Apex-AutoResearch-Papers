@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89722627d04fb1f85937",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code cuda1 cleanup check",
+  "task_key": "worker_code_cuda1_cleanup_check_20260522T200249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cuda1_cleanup_check_20260522T200249_result.json",
+    "occurrence": 1,
+    "bytes": 375,
+    "sha256": "190473540193475563c29825f5a3bd4dc104dfa1d4980b3c77c82ba692cd2f88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n\n- **PID 61742**：已自行完成，无需 kill\n- **cuda:1**：已释放，memory.used = 0 MiB，utilization = 0%\n\nGPU 总览：\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 54229 MiB | 95% |\n| 1 | **0 MiB** | **0%** |\n| 2 | 9411 MiB | 72% |\n| 3 | 6525 MiB | 58% |\n\ncuda:1 完全空闲，可用于新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cuda1-cleanup-check.md"
+}

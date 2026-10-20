@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9b341f5f00552d420a5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ssh check exp014 status",
+  "task_key": "worker_ssh_check_exp014_status_20260525T154208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_exp014_status_20260525T154208_result.json",
+    "occurrence": 1,
+    "bytes": 2010,
+    "sha256": "5d85eac775792a69c7de383b44161bc5016fbf6d17056b64f45824cceaeaa1c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. exp_014_naturalistic_v2 (PID 233952) — **FAILED**\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | 进程已结束，exit code 0 |\n| 退出时间 | 2026-05-25 16:37 CST |\n| 实际运行 | ~1h46m (14:51 → 16:37) |\n| 到达阶段 | 仅 Phase 1，未进入 Phase 2/3 |\n\n**失败原因**：卡在 Phase 1 \"Data Sampling from FineWeb\"。HF datasets 库对 FineWeb 做全量文件树枚举（18,646 次 HTTP API 请求），三个 crawl split 全部断连：\n- `CC-MAIN-2025-26`：14:54:29 — \"Server disconnected without sending a response\"\n- `CC-MAIN-2024-51`：15:58:07 — 同上\n- `default`：开始枚举后日志截止于 15:58:29\n\n另外，日志第 6 行有 WARNING：`You are sending unauthenticated requests to the HF Hub`——没设 HF_TOKEN，导致限速严重。\n\n### 2. exp_014_independent_metrics (PID 234919) — **STUCK (死循环)**\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | 仍在运行，已运行 8h28m+ |\n| 原因 | `while [ ! -f cc_predictions.csv ]; do sleep 60` 永远等不到 v2 的产出 |\n| 动作 | 需要 kill |\n\n### 产出文件\n\n| 文件 | 状态 |\n|------|------|\n| `data_exp014_v2/` | **空目录** — 无任何数据文件 |\n| `results/exp014_v2/run.log` | 7.8MB, 18657 行（几乎全是 HF API 日志） |\n| `cc_sample.jsonl` | 不存在 |\n| `cc_features.csv` | 不存在 |\n| `cc_predictions.csv` | 不存在 |\n| `cc_quality_independent.csv` | 不存在 |\n| `analysis_results.json` | 不存在 |\n| `independent_analysis_results.json` | 不存在 |\n\nGPU 当前无进程占用。\n\n### 根因\n\nFineWeb 是 ~15TB 数据集，文件树极大。`datasets` streaming 模式先枚举全部 parquet 文件再开始流式读取。AutoDL 网络 + 无 HF_TOKEN 组合下，枚举极慢且连接反复断开。需要：\n1. 设置 `HF_TOKEN` 提升速率限制\n2. 指定精确的 split/config 避免全量枚举\n3. 或改用更小的子集 / 预下载方式\n\n需要我 kill 掉 PID 234919 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-exp014-status.md"
+}

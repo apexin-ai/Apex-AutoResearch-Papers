@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea664d87a84211d5858c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp006 resume",
+  "task_key": "worker_code_exp006-resume_20260514T210748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp006-resume_20260514T210748_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "bce8100f6d6a17dd20493a9ed5c2caf0e4de6ee025f7b4bf0d2647dd84042484"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **清理**: 删除了 `graduated_a0.7_s456` 残留目录（仅含 `filter_config.json`）\n- **脚本**: 无需修改，`run_one()` 已内置 skip 逻辑（检查 `eval_results.json`）\n- **timeout**: 本次通过裸 tmux 启动，无 `timeout` 包装，不会再被 24h 杀掉\n- **启动**: tmux session `exp_006_graduated_filtering` 运行中，GPU 88% 利用率\n- **进度**: 33/50 skip 完成，`graduated_a0.7_s456` 正在训练（2814 steps, ~1.27 it/s）\n- **剩余**: 18 runs（a0.7×3 + a0.9×5 + surprisal×5 + dsir×5），ETA ~13.5h（~05-15 18:30 UTC）\n- **日志**: `~/runs/gen-depth-contamination/exp_006_resumed.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp006-resume.md"
+}

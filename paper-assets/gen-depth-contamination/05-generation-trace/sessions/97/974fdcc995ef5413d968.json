@@ -1,0 +1,1015 @@
+{
+  "schema_version": "1.0",
+  "id": "974fdcc995ef5413d968",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "analysis exp 009 partial 10 30",
+  "task_key": "worker_analysis_exp_009_partial_10_30_20260517T090630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_009_partial_10_30_20260517T090630.log",
+    "occurrence": 1,
+    "bytes": 107357,
+    "sha256": "63aff61dcb41b349b987813822a431577c4f9f266bb9ec0130b3674d558f1ba8"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "192ac81c-675e-4f08-b4be-71944a5aa1bf",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779012000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "d530f0a3-3950-4f85-b93e-aed2ec332276",
+                "session_id": "50889262-56b2-4038-8a3c-992193a80ab8"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking the files on the server to understand what's there.",
+              "signature": "EocCClkIDRgCKkB9hfMJaaP+W8Puagh0W6CTJiZHUsexlk2uVXOpoypXTTiqciSS9Yp/oKK24nED+d5xWwQTNsHpTuZOpuucy7UBMg9jbGF1ZGUtb3B1cy00LTY4ABIMr7Ht7MAbOemscOpkGgx/hEfKXVA8fLuXfLIiMNjqn0I8ynRzYL7OMACOfYly61qBytXK2BP0Ij0ebUYr9M8C21NjCZZKntCYlpo5dCpcXEOqUvoQjcUi51h4apO4CkxqvhZznfpr0n/CNwBl8UvEP0WeMs7md/iQF/gMoiFa/cD9DBJTqeJTLgvaIgy3YFOIyCVBbpXvtG6mFuStkJCdn1EW5JOfHy9kVcgYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "ef273dee-2ebe-480b-b133-f46459209553",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ga46ADj9TRqRaJ5p8Vwa1c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12924,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12924
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J2feyYanZ2AiQZHvQV586f",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "154f4a86-4286-40dc-b367-2e3eacb6f3d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ga46ADj9TRqRaJ5p8Vwa1c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12924,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12924
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T09:06:44.579Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01J2feyYanZ2AiQZHvQV586f",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "e138902b-0002-42db-a64c-c4752b950aee",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking the file counts and structure on the server.",
+              "signature": "EoACClkIDRgCKkDfmaIugCdLu5Adp3SalZiCu5/z511h5+Gz+XUd4gK4uLwJPwSoG5BLGw7NRMTgZtR8kCZHDO/PZXhlAbdSacfrMg9jbGF1ZGUtb3B1cy00LTY4ABIMUEZ1k9hnnPJt/ne9GgwP2HTeBoWHT2L5Sa0iMDmtY+t97gYsrwyvtxTDR0T8dF1gP6wTcKjEJNu5pN7LGOYBiplrFMBu43qpQ9FWcSpV4OVwFdglOTm6oDbpSGv7CUxRHOTpR3qaBXdA9gN10Msek5tBkg5O+3nyxNUf1010NEKRFWVfpuhqhHznzoODhAScBjfQ9Z8T1afuMgUntawmrGy2MRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "99ff2caf-9a54-4120-9954-2bb81d2bebc9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0128HhnrJ1giSZWziP8AjfFm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 377,
+                "cache_read_input_tokens": 24765,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 377
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wd6wGWfZfhme4o3imrdBEK",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ls /root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/ 2>&1 && echo \"---\" && ls /root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/ 2>&1",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "731391e0-2cd6-49ea-8372-843e16866d3a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0128HhnrJ1giSZWziP8AjfFm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 377,
+                "cache_read_input_tokens": 24765,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 377
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T09:06:50.796Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wd6wGWfZfhme4o3imrdBEK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"binary_ours_seed0_eval.json\\\\nbinary_ours_seed1_eval.json\\\\nbinary_ours_seed2_eval.json\\\\nbinary_ours_seed3_eval.json\\\\nbinary_ours_seed4_eval.json\\\\ngraduated_seed0_eval.json\\\\ngraduated_seed1_eval.json\\\\ngraduated_seed2_eval.json\\\\ngraduated_seed3_eval.json\\\\ngraduated_seed4_eval.json\\\\nno_filter_seed0_eval.json\\\\nno_filter_seed1_eval.json\\\\nno_filter_seed2_eval.json\\\\nno_filter_seed3_eval.json\\\\nno_filter_seed4_eval.json\\\\nstatistical_analysis.json\\\\n---\\\\nbinary_ours_seed0_eval.json\\\\nbinary_ours_seed1_eval.json\\\\nbinary_ours_seed2_eval.json\\\\nbinary_ours_seed3_eval.json\\\\nbinary_ours_seed4_eval.json\\\\ngraduated_seed0_eval.json\\\\ngraduated_seed1_eval.json\\\\ngraduated_seed2_eval.json\\\\ngraduated_seed3_eval.json\\\\ngraduated_seed4_eval.json\\\\nno_filter_seed0_eval.json\\\\nno_filter_seed1_eval.json\\\\nno_filter_seed2_eval.json\\\\nno_filter_seed3_eval.json\\\\nno_filter_seed4_eval.json\\\\nstatistical_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "f1779e2c-6b9b-4ac2-a5e0-1d2514d38400",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"binary_ours_seed0_eval.json\\\\nbinary_ours_seed1_eval.json\\\\nbinary_ours_seed2_eval.json\\\\nbinary_ours_seed3_eval.json\\\\nbinary_ours_seed4_eval.json\\\\ngraduated_seed0_eval.json\\\\ngraduated_seed1_eval.json\\\\ngraduated_seed2_eval.json\\\\ngraduated_seed3_eval.json\\\\ngraduated_seed4_eval.json\\\\nno_filter_seed0_eval.json\\\\nno_filter_seed1_eval.json\\\\nno_filter_seed2_eval.json\\\\nno_filter_seed3_eval.json\\\\nno_filter_seed4_eval.json\\\\nstatistical_analysis.json\\\\n---\\\\nbinary_ours_seed0_eval.json\\\\nbinary_ours_seed1_eval.json\\\\nbinary_ours_seed2_eval.json\\\\nbinary_ours_seed3_eval.json\\\\nbinary_ours_seed4_eval.json\\\\ngraduated_seed0_eval.json\\\\ngraduated_seed1_eval.json\\\\ngraduated_seed2_eval.json\\\\ngraduated_seed3_eval.json\\\\ngraduated_seed4_eval.json\\\\nno_filter_seed0_eval.json\\\\nno_filter_seed1_eval.json\\\\nno_filter_seed2_eval.json\\\\nno_filter_seed3_eval.json\\\\nno_filter_seed4_eval.json\\\\nstatistical_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"binary_ours_seed0_eval.json\\nbinary_ours_seed1_eval.json\\nbinary_ours_seed2_eval.json\\nbinary_ours_seed3_eval.json\\nbinary_ours_seed4_eval.json\\ngraduated_seed0_eval.json\\ngraduated_seed1_eval.json\\ngraduated_seed2_eval.json\\ngraduated_seed3_eval.json\\ngraduated_seed4_eval.json\\nno_filter_seed0_eval.json\\nno_filter_seed1_eval.json\\nno_filter_seed2_eval.json\\nno_filter_seed3_eval.json\\nno_filter_seed4_eval.json\\nstatistical_analysis.json\\n---\\nbinary_ours_seed0_eval.json\\nbinary_ours_seed1_eval.json\\nbinary_ours_seed2_eval.json\\nbinary_ours_seed3_eval.json\\nbinary_ours_seed4_eval.json\\ngraduated_seed0_eval.json\\ngraduated_seed1_eval.json\\ngraduated_seed2_eval.json\\ngraduated_seed3_eval.json\\ngraduated_seed4_eval.json\\nno_filter_seed0_eval.json\\nno_filter_seed1_eval.json\\nno_filter_seed2_eval.json\\nno_filter_seed3_eval.json\\nno_filter_seed4_eval.json\\nstatistical_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012nqzFPYpApDv6WLrNv5NdH",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "ps aux | grep -E \"ratio.0\\.5|dose_50|ratio_50\" | grep -v grep; echo \"---\"; ls /root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/ 2>&1 | wc -l",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "3c77a1ba-c1e6-4bd9-bc82-24379e86047d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0128HhnrJ1giSZWziP8AjfFm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 377,
+                "cache_read_input_tokens": 24765,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 377
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T09:06:52.132Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012nqzFPYpApDv6WLrNv5NdH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root       4404  0.0  0.0   4496  3600 pts/2    Ss+  15:05   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_009_dose_50pct_v3.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/gen-depth-contamination/exp_009_dose_50pct_v3.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_009_dose_50pct_v3.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/gen-depth-contamination && export CUDA_VISIBLE_DEVICES=3 && timeout 14400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && python scripts/exp009_dose_response.py --ratio 0.5 --device cuda:0 --num_seeds 5\\\\\\\"'; } > ~/runs/gen-depth-contamination/exp_009_dose_50pct_v3.log 2>&1\\\\nroot       4408  0.0  0.0   2800  1008 pts/2    S    15:05   0:00 timeout 14400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && python scripts/exp009_dose_response.py --ratio 0.5 --device cuda:0 --num_seeds 5\\\\\\\"\\\\nroot       4409  122  0.7 55791184 7539792 pts/2 Rl  15:05 148:17 python scripts/exp009_dose_response.py --ratio 0.5 --device cuda:0 --num_seeds 5\\\\n---\\\\n14\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "d5ecbef1-5bd2-49b4-818e-bd69854519af",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root       4404  0.0  0.0   4496  3600 pts/2    Ss+  15:05   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_009_dose_50pct_v3.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/gen-depth-contamination/exp_009_dose_50pct_v3.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/exp_009_dose_50pct_v3.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/gen-depth-contamination && export CUDA_VISIBLE_DEVICES=3 && timeout 14400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && python scripts/exp009_dose_response.py --ratio 0.5 --device cuda:0 --num_seeds 5\\\\\\\"'; } > ~/runs/gen-depth-contamination/exp_009_dose_50pct_v3.log 2>&1\\\\nroot       4408  0.0  0.0   2800  1008 pts/2    S    15:05   0:00 timeout 14400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && python scripts/exp009_dose_response.py --ratio 0.5 --device cuda:0 --num_seeds 5\\\\\\\"\\\\nroot       4409  122  0.7 55791184 7539792 pts/2 Rl  15:05 148:17 python scripts/exp009_dose_response.py --ratio 0.5 --device cuda:0 --num_seeds 5\\\\n---\\\\n14\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"root       4404  0.0  0.0   4496  3600 pts/2    Ss+  15:05   0:00 bash -c rm -f /tmp/agent-ml-exit/exp_009_dose_50pct_v3.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/gen-depth-contamination/exp_009_dose_50pct_v3.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_009_dose_50pct_v3.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/autodl-tmp/gen-depth-contamination && export CUDA_VISIBLE_DEVICES=3 && timeout 14400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && python scripts/exp009_dose_response.py --ratio 0.5 --device cuda:0 --num_seeds 5\\\"'; } > ~/runs/gen-depth-contamination/exp_009_dose_50pct_v3.log 2>&1\\nroot       4408  0.0  0.0   2800  1008 pts/2    S    15:05   0:00 timeout 14400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && python scripts/exp009_dose_response.py --ratio 0.5 --device cuda:0 --num_seeds 5\\\"\\nroot       4409  122  0.7 55791184 7539792 pts/2 Rl  15:05 148:17 python scripts/exp009_dose_response.py --ratio 0.5 --device cuda:0 --num_seeds 5\\n---\\n14\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "10% 和 30% 各有 15 个 eval JSON + 1 个 statistical_analysis.json，完整。50% 正在运行（PID 4409），已产出 14/15 个文件。\n\n现在检查 JSON 结构并提取数据。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "e200d905-201b-4e30-88d2-05038c7a026f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SW7SP3wzZ2zWKfozfcptPX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1589,
+                "cache_read_input_tokens": 25142,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1589
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UrhB25iRqN7WCpKY2mSQfW",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "4f3c28f2-4abc-4ca3-8534-693466b3f020",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SW7SP3wzZ2zWKfozfcptPX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1589,
+                "cache_read_input_tokens": 25142,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1589
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T09:06:57.961Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UrhB25iRqN7WCpKY2mSQfW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scores\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": 0.6059678108531549,\\\\n    \\\\\\\"hellaswag\\\\\\\": 0.6679944234216292\\\\n  },\\\\n  \\\\\\\"full\\\\\\\": {\\\\n    \\\\\\\"mmlu_abstract_algebra\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_abstract_algebra\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 100,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.29,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.045604802157206865\\\\n    },\\\\n    \\\\\\\"mmlu_anatomy\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_anatomy\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"anatomy\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 135,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.5111111111111111,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.043182754919779784\\\\n    },\\\\n    \\\\\\\"mmlu_astronomy\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_astronomy\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"astronomy\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 152,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7171052631578947,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.03665349695640767\\\\n    },\\\\n    \\\\\\\"mmlu_college_biology\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_college_biology\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"college_biology\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 144,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6597222222222222,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.03962135573486219\\\\n    },\\\\n    \\\\\\\"mmlu_college_chemistry\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_college_chemistry\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"college_chemistry\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 100,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.44,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.049888765156985884\\\\n    },\\\\n    \\\\\\\"mmlu_college_computer_science\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_college_computer_science\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"college_computer_science\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 100,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.49,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.05024183937956913\\\\n    },\\\\n    \\\\\\\"mmlu_college_mathematics\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_college_mathematics\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"college_mathematics\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 100,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.36,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.048241815132442176\\\\n    },\\\\n    \\\\\\\"mmlu_college_physics\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_college_physics\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"college_physics\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 102,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.4411764705882353,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.049406356306056644\\\\n    },\\\\n    \\\\\\\"mmlu_computer_security\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_computer_security\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"computer_security\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 100,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.76,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.04292346959909278\\\\n    },\\\\n    \\\\\\\"mmlu_conceptual_physics\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_conceptual_physics\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"conceptual_physics\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 235,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.5914893617021276,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.03213418026701576\\\\n    },\\\\n    \\\\\\\"mmlu_electrical_engineering\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_electrical_engineering\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"electrical_engineering\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 145,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6344827586206897,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.04013124195424389\\\\n    },\\\\n    \\\\\\\"mmlu_elementary_mathematics\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_elementary_mathematics\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"elementary_mathematics\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 378,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.48677248677248675,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.02574229728957518\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_biology\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_biology\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_biology\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 310,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7677419354838709,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.024022256130308235\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_chemistry\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_chemistry\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_chemistry\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 203,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.5172413793103449,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.03515895551165702\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_computer_science\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_computer_science\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_computer_science\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 100,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.0492365963917331\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_mathematics\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_mathematics\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_mathematics\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 270,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.37037037037037035,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.029443169323031496\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_physics\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_physics\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_physics\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 151,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.3841059602649007,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.03971301814719192\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_statistics\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_statistics\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_statistic\\\\n\\\\n... [截断: 输出过长，省略 6298 字符] ...\\\\n\\\\n43175816526\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_us_history\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_us_history\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_us_history\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 204,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7107843137254902,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.031822318676475524\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_world_history\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_world_history\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_world_history\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 237,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7510548523206751,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.028146970599422647\\\\n    },\\\\n    \\\\\\\"mmlu_international_law\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_international_law\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"international_law\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 121,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7768595041322314,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.038007544752287334\\\\n    },\\\\n    \\\\\\\"mmlu_jurisprudence\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_jurisprudence\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"jurisprudence\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 108,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.8333333333333334,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.03602814176392641\\\\n    },\\\\n    \\\\\\\"mmlu_logical_fallacies\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_logical_fallacies\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"logical_fallacies\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 163,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6993865030674846,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.036025113188067656\\\\n    },\\\\n    \\\\\\\"mmlu_moral_disputes\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_moral_disputes\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"moral_disputes\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 346,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6676300578034682,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.025361168749688214\\\\n    },\\\\n    \\\\\\\"mmlu_moral_scenarios\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_moral_scenarios\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"moral_scenarios\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 895,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.288268156424581,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.015149132860209523\\\\n    },\\\\n    \\\\\\\"mmlu_philosophy\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_philosophy\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"philosophy\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 311,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.684887459807074,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.026385273703464482\\\\n    },\\\\n    \\\\\\\"mmlu_prehistory\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_prehistory\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"prehistory\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 324,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6728395061728395,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.026105673861409787\\\\n    },\\\\n    \\\\\\\"mmlu_professional_law\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_professional_law\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"professional_law\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1534,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.45827900912646674,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.012725701656953702\\\\n    },\\\\n    \\\\\\\"mmlu_world_religions\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_world_religions\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"world_religions\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 171,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.8011695906432749,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.030611116557432514\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 10042,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.4962158932483569,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.004989638507409855,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.6679944234216292,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.004699705280976508\\\\n    },\\\\n    \\\\\\\"mmlu_stem\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"stem\\\\\\\",\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_stem\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 3153,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.5347288296860133,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.008579187550620752,\\\\n      \\\\\\\"sample_count\\\\\\\": {\\\\n        \\\\\\\"acc,none\\\\\\\": 3153\\\\n      }\\\\n    },\\\\n    \\\\\\\"mmlu_other\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"other\\\\\\\",\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_other\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 3107,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6659156742838751,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.008223663566870222,\\\\n      \\\\\\\"sample_count\\\\\\\": {\\\\n        \\\\\\\"acc,none\\\\\\\": 3107\\\\n      }\\\\n    },\\\\n    \\\\\\\"mmlu_social_sciences\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"social sciences\\\\\\\",\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_social_sciences\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 3077,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7143321416964575,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.007989881887657839,\\\\n      \\\\\\\"sample_count\\\\\\\": {\\\\n        \\\\\\\"acc,none\\\\\\\": 3077\\\\n      }\\\\n    },\\\\n    \\\\\\\"mmlu_humanities\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"humanities\\\\\\\",\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_humanities\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 4705,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.5432518597236982,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.006817032271506975,\\\\n      \\\\\\\"sample_count\\\\\\\": {\\\\n        \\\\\\\"acc,none\\\\\\\": 4705\\\\n      }\\\\n    },\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 14042,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6059678108531549,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.003912050903168173,\\\\n      \\\\\\\"sample_count\\\\\\\": {\\\\n        \\\\\\\"acc,none\\\\\\\": 14042\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "eddd2dfe-fc33-4e36-a4f1-e981fdca5eaf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scores\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": 0.6059678108531549,\\\\n    \\\\\\\"hellaswag\\\\\\\": 0.6679944234216292\\\\n  },\\\\n  \\\\\\\"full\\\\\\\": {\\\\n    \\\\\\\"mmlu_abstract_algebra\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_abstract_algebra\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 100,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.29,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.045604802157206865\\\\n    },\\\\n    \\\\\\\"mmlu_anatomy\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_anatomy\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"anatomy\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 135,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.5111111111111111,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.043182754919779784\\\\n    },\\\\n    \\\\\\\"mmlu_astronomy\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_astronomy\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"astronomy\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 152,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7171052631578947,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.03665349695640767\\\\n    },\\\\n    \\\\\\\"mmlu_college_biology\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_college_biology\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"college_biology\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 144,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6597222222222222,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.03962135573486219\\\\n    },\\\\n    \\\\\\\"mmlu_college_chemistry\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_college_chemistry\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"college_chemistry\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 100,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.44,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.049888765156985884\\\\n    },\\\\n    \\\\\\\"mmlu_college_computer_science\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_college_computer_science\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"college_computer_science\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 100,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.49,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.05024183937956913\\\\n    },\\\\n    \\\\\\\"mmlu_college_mathematics\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_college_mathematics\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"college_mathematics\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 100,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.36,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.048241815132442176\\\\n    },\\\\n    \\\\\\\"mmlu_college_physics\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_college_physics\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"college_physics\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 102,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.4411764705882353,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.049406356306056644\\\\n    },\\\\n    \\\\\\\"mmlu_computer_security\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_computer_security\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"computer_security\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 100,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.76,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.04292346959909278\\\\n    },\\\\n    \\\\\\\"mmlu_conceptual_physics\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_conceptual_physics\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"conceptual_physics\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 235,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.5914893617021276,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.03213418026701576\\\\n    },\\\\n    \\\\\\\"mmlu_electrical_engineering\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_electrical_engineering\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"electrical_engineering\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 145,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6344827586206897,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.04013124195424389\\\\n    },\\\\n    \\\\\\\"mmlu_elementary_mathematics\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_elementary_mathematics\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"elementary_mathematics\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 378,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.48677248677248675,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.02574229728957518\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_biology\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_biology\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_biology\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 310,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7677419354838709,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.024022256130308235\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_chemistry\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_chemistry\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_chemistry\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 203,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.5172413793103449,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.03515895551165702\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_computer_science\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_computer_science\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_computer_science\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 100,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.0492365963917331\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_mathematics\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_mathematics\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_mathematics\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 270,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.37037037037037035,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.029443169323031496\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_physics\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_physics\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_physics\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 151,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.3841059602649007,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.03971301814719192\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_statistics\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_statistics\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_statistic\\\\n\\\\n... [截断: 输出过长，省略 6298 字符] ...\\\\n\\\\n43175816526\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_us_history\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_us_history\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_us_history\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 204,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7107843137254902,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.031822318676475524\\\\n    },\\\\n    \\\\\\\"mmlu_high_school_world_history\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_high_school_world_history\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"high_school_world_history\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 237,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7510548523206751,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.028146970599422647\\\\n    },\\\\n    \\\\\\\"mmlu_international_law\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_international_law\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"international_law\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 121,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7768595041322314,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.038007544752287334\\\\n    },\\\\n    \\\\\\\"mmlu_jurisprudence\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_jurisprudence\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"jurisprudence\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 108,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.8333333333333334,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.03602814176392641\\\\n    },\\\\n    \\\\\\\"mmlu_logical_fallacies\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_logical_fallacies\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"logical_fallacies\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 163,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6993865030674846,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.036025113188067656\\\\n    },\\\\n    \\\\\\\"mmlu_moral_disputes\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_moral_disputes\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"moral_disputes\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 346,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6676300578034682,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.025361168749688214\\\\n    },\\\\n    \\\\\\\"mmlu_moral_scenarios\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_moral_scenarios\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"moral_scenarios\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 895,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.288268156424581,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.015149132860209523\\\\n    },\\\\n    \\\\\\\"mmlu_philosophy\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_philosophy\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"philosophy\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 311,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.684887459807074,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.026385273703464482\\\\n    },\\\\n    \\\\\\\"mmlu_prehistory\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_prehistory\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"prehistory\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 324,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6728395061728395,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.026105673861409787\\\\n    },\\\\n    \\\\\\\"mmlu_professional_law\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_professional_law\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"professional_law\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1534,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.45827900912646674,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.012725701656953702\\\\n    },\\\\n    \\\\\\\"mmlu_world_religions\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_world_religions\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"world_religions\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 171,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.8011695906432749,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.030611116557432514\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 10042,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.4962158932483569,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.004989638507409855,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.6679944234216292,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.004699705280976508\\\\n    },\\\\n    \\\\\\\"mmlu_stem\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"stem\\\\\\\",\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_stem\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 3153,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.5347288296860133,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.008579187550620752,\\\\n      \\\\\\\"sample_count\\\\\\\": {\\\\n        \\\\\\\"acc,none\\\\\\\": 3153\\\\n      }\\\\n    },\\\\n    \\\\\\\"mmlu_other\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"other\\\\\\\",\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_other\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 3107,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6659156742838751,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.008223663566870222,\\\\n      \\\\\\\"sample_count\\\\\\\": {\\\\n        \\\\\\\"acc,none\\\\\\\": 3107\\\\n      }\\\\n    },\\\\n    \\\\\\\"mmlu_social_sciences\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"social sciences\\\\\\\",\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_social_sciences\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 3077,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7143321416964575,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.007989881887657839,\\\\n      \\\\\\\"sample_count\\\\\\\": {\\\\n        \\\\\\\"acc,none\\\\\\\": 3077\\\\n      }\\\\n    },\\\\n    \\\\\\\"mmlu_humanities\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"humanities\\\\\\\",\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu_humanities\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 4705,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.5432518597236982,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.006817032271506975,\\\\n      \\\\\\\"sample_count\\\\\\\": {\\\\n        \\\\\\\"acc,none\\\\\\\": 4705\\\\n      }\\\\n    },\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 14042,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6059678108531549,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.003912050903168173,\\\\n      \\\\\\\"sample_count\\\\\\\": {\\\\n        \\\\\\\"acc,none\\\\\\\": 14042\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"mmlu\\\": 0.6059678108531549,\\n    \\\"hellaswag\\\": 0.6679944234216292\\n  },\\n  \\\"full\\\": {\\n    \\\"mmlu_abstract_algebra\\\": {\\n      \\\"name\\\": \\\"mmlu_abstract_algebra\\\",\\n      \\\"alias\\\": \\\"abstract_algebra\\\",\\n      \\\"sample_len\\\": 100,\\n      \\\"acc,none\\\": 0.29,\\n      \\\"acc_stderr,none\\\": 0.045604802157206865\\n    },\\n    \\\"mmlu_anatomy\\\": {\\n      \\\"name\\\": \\\"mmlu_anatomy\\\",\\n      \\\"alias\\\": \\\"anatomy\\\",\\n      \\\"sample_len\\\": 135,\\n      \\\"acc,none\\\": 0.5111111111111111,\\n      \\\"acc_stderr,none\\\": 0.043182754919779784\\n    },\\n    \\\"mmlu_astronomy\\\": {\\n      \\\"name\\\": \\\"mmlu_astronomy\\\",\\n      \\\"alias\\\": \\\"astronomy\\\",\\n      \\\"sample_len\\\": 152,\\n      \\\"acc,none\\\": 0.7171052631578947,\\n      \\\"acc_stderr,none\\\": 0.03665349695640767\\n    },\\n    \\\"mmlu_college_biology\\\": {\\n      \\\"name\\\": \\\"mmlu_college_biology\\\",\\n      \\\"alias\\\": \\\"college_biology\\\",\\n      \\\"sample_len\\\": 144,\\n      \\\"acc,none\\\": 0.6597222222222222,\\n      \\\"acc_stderr,none\\\": 0.03962135573486219\\n    },\\n    \\\"mmlu_college_chemistry\\\": {\\n      \\\"name\\\": \\\"mmlu_college_chemistry\\\",\\n      \\\"alias\\\": \\\"college_chemistry\\\",\\n      \\\"sample_len\\\": 100,\\n      \\\"acc,none\\\": 0.44,\\n      \\\"acc_stderr,none\\\": 0.049888765156985884\\n    },\\n    \\\"mmlu_college_computer_science\\\": {\\n      \\\"name\\\": \\\"mmlu_college_computer_science\\\",\\n      \\\"alias\\\": \\\"college_computer_science\\\",\\n      \\\"sample_len\\\": 100,\\n      \\\"acc,none\\\": 0.49,\\n      \\\"acc_stderr,none\\\": 0.05024183937956913\\n    },\\n    \\\"mmlu_college_mathematics\\\": {\\n      \\\"name\\\": \\\"mmlu_college_mathematics\\\",\\n      \\\"alias\\\": \\\"college_mathematics\\\",\\n      \\\"sample_len\\\": 100,\\n      \\\"acc,none\\\": 0.36,\\n      \\\"acc_stderr,none\\\": 0.048241815132442176\\n    },\\n    \\\"mmlu_college_physics\\\": {\\n      \\\"name\\\": \\\"mmlu_college_physics\\\",\\n      \\\"alias\\\": \\\"college_physics\\\",\\n      \\\"sample_len\\\": 102,\\n      \\\"acc,none\\\": 0.4411764705882353,\\n      \\\"acc_stderr,none\\\": 0.049406356306056644\\n    },\\n    \\\"mmlu_computer_security\\\": {\\n      \\\"name\\\": \\\"mmlu_computer_security\\\",\\n      \\\"alias\\\": \\\"computer_security\\\",\\n      \\\"sample_len\\\": 100,\\n      \\\"acc,none\\\": 0.76,\\n      \\\"acc_stderr,none\\\": 0.04292346959909278\\n    },\\n    \\\"mmlu_conceptual_physics\\\": {\\n      \\\"name\\\": \\\"mmlu_conceptual_physics\\\",\\n      \\\"alias\\\": \\\"conceptual_physics\\\",\\n      \\\"sample_len\\\": 235,\\n      \\\"acc,none\\\": 0.5914893617021276,\\n      \\\"acc_stderr,none\\\": 0.03213418026701576\\n    },\\n    \\\"mmlu_electrical_engineering\\\": {\\n      \\\"name\\\": \\\"mmlu_electrical_engineering\\\",\\n      \\\"alias\\\": \\\"electrical_engineering\\\",\\n      \\\"sample_len\\\": 145,\\n      \\\"acc,none\\\": 0.6344827586206897,\\n      \\\"acc_stderr,none\\\": 0.04013124195424389\\n    },\\n    \\\"mmlu_elementary_mathematics\\\": {\\n      \\\"name\\\": \\\"mmlu_elementary_mathematics\\\",\\n      \\\"alias\\\": \\\"elementary_mathematics\\\",\\n      \\\"sample_len\\\": 378,\\n      \\\"acc,none\\\": 0.48677248677248675,\\n      \\\"acc_stderr,none\\\": 0.02574229728957518\\n    },\\n    \\\"mmlu_high_school_biology\\\": {\\n      \\\"name\\\": \\\"mmlu_high_school_biology\\\",\\n      \\\"alias\\\": \\\"high_school_biology\\\",\\n      \\\"sample_len\\\": 310,\\n      \\\"acc,none\\\": 0.7677419354838709,\\n      \\\"acc_stderr,none\\\": 0.024022256130308235\\n    },\\n    \\\"mmlu_high_school_chemistry\\\": {\\n      \\\"name\\\": \\\"mmlu_high_school_chemistry\\\",\\n      \\\"alias\\\": \\\"high_school_chemistry\\\",\\n      \\\"sample_len\\\": 203,\\n      \\\"acc,none\\\": 0.5172413793103449,\\n      \\\"acc_stderr,none\\\": 0.03515895551165702\\n    },\\n    \\\"mmlu_high_school_computer_science\\\": {\\n      \\\"name\\\": \\\"mmlu_high_school_computer_science\\\",\\n      \\\"alias\\\": \\\"high_school_computer_science\\\",\\n      \\\"sample_len\\\": 100,\\n      \\\"acc,none\\\": 0.6,\\n      \\\"acc_stderr,none\\\": 0.0492365963917331\\n    },\\n    \\\"mmlu_high_school_mathematics\\\": {\\n      \\\"name\\\": \\\"mmlu_high_school_mathematics\\\",\\n      \\\"alias\\\": \\\"high_school_mathematics\\\",\\n      \\\"sample_len\\\": 270,\\n      \\\"acc,none\\\": 0.37037037037037035,\\n      \\\"acc_stderr,none\\\": 0.029443169323031496\\n    },\\n    \\\"mmlu_high_school_physics\\\": {\\n      \\\"name\\\": \\\"mmlu_high_school_physics\\\",\\n      \\\"alias\\\": \\\"high_school_physics\\\",\\n      \\\"sample_len\\\": 151,\\n      \\\"acc,none\\\": 0.3841059602649007,\\n      \\\"acc_stderr,none\\\": 0.03971301814719192\\n    },\\n    \\\"mmlu_high_school_statistics\\\": {\\n      \\\"name\\\": \\\"mmlu_high_school_statistics\\\",\\n      \\\"alias\\\": \\\"high_school_statistic\\n\\n... [截断: 输出过长，省略 6298 字符] ...\\n\\n43175816526\\n    },\\n    \\\"mmlu_high_school_us_history\\\": {\\n      \\\"name\\\": \\\"mmlu_high_school_us_history\\\",\\n      \\\"alias\\\": \\\"high_school_us_history\\\",\\n      \\\"sample_len\\\": 204,\\n      \\\"acc,none\\\": 0.7107843137254902,\\n      \\\"acc_stderr,none\\\": 0.031822318676475524\\n    },\\n    \\\"mmlu_high_school_world_history\\\": {\\n      \\\"name\\\": \\\"mmlu_high_school_world_history\\\",\\n      \\\"alias\\\": \\\"high_school_world_history\\\",\\n      \\\"sample_len\\\": 237,\\n      \\\"acc,none\\\": 0.7510548523206751,\\n      \\\"acc_stderr,none\\\": 0.028146970599422647\\n    },\\n    \\\"mmlu_international_law\\\": {\\n      \\\"name\\\": \\\"mmlu_international_law\\\",\\n      \\\"alias\\\": \\\"international_law\\\",\\n      \\\"sample_len\\\": 121,\\n      \\\"acc,none\\\": 0.7768595041322314,\\n      \\\"acc_stderr,none\\\": 0.038007544752287334\\n    },\\n    \\\"mmlu_jurisprudence\\\": {\\n      \\\"name\\\": \\\"mmlu_jurisprudence\\\",\\n      \\\"alias\\\": \\\"jurisprudence\\\",\\n      \\\"sample_len\\\": 108,\\n      \\\"acc,none\\\": 0.8333333333333334,\\n      \\\"acc_stderr,none\\\": 0.03602814176392641\\n    },\\n    \\\"mmlu_logical_fallacies\\\": {\\n      \\\"name\\\": \\\"mmlu_logical_fallacies\\\",\\n      \\\"alias\\\": \\\"logical_fallacies\\\",\\n      \\\"sample_len\\\": 163,\\n      \\\"acc,none\\\": 0.6993865030674846,\\n      \\\"acc_stderr,none\\\": 0.036025113188067656\\n    },\\n    \\\"mmlu_moral_disputes\\\": {\\n      \\\"name\\\": \\\"mmlu_moral_disputes\\\",\\n      \\\"alias\\\": \\\"moral_disputes\\\",\\n      \\\"sample_len\\\": 346,\\n      \\\"acc,none\\\": 0.6676300578034682,\\n      \\\"acc_stderr,none\\\": 0.025361168749688214\\n    },\\n    \\\"mmlu_moral_scenarios\\\": {\\n      \\\"name\\\": \\\"mmlu_moral_scenarios\\\",\\n      \\\"alias\\\": \\\"moral_scenarios\\\",\\n      \\\"sample_len\\\": 895,\\n      \\\"acc,none\\\": 0.288268156424581,\\n      \\\"acc_stderr,none\\\": 0.015149132860209523\\n    },\\n    \\\"mmlu_philosophy\\\": {\\n      \\\"name\\\": \\\"mmlu_philosophy\\\",\\n      \\\"alias\\\": \\\"philosophy\\\",\\n      \\\"sample_len\\\": 311,\\n      \\\"acc,none\\\": 0.684887459807074,\\n      \\\"acc_stderr,none\\\": 0.026385273703464482\\n    },\\n    \\\"mmlu_prehistory\\\": {\\n      \\\"name\\\": \\\"mmlu_prehistory\\\",\\n      \\\"alias\\\": \\\"prehistory\\\",\\n      \\\"sample_len\\\": 324,\\n      \\\"acc,none\\\": 0.6728395061728395,\\n      \\\"acc_stderr,none\\\": 0.026105673861409787\\n    },\\n    \\\"mmlu_professional_law\\\": {\\n      \\\"name\\\": \\\"mmlu_professional_law\\\",\\n      \\\"alias\\\": \\\"professional_law\\\",\\n      \\\"sample_len\\\": 1534,\\n      \\\"acc,none\\\": 0.45827900912646674,\\n      \\\"acc_stderr,none\\\": 0.012725701656953702\\n    },\\n    \\\"mmlu_world_religions\\\": {\\n      \\\"name\\\": \\\"mmlu_world_religions\\\",\\n      \\\"alias\\\": \\\"world_religions\\\",\\n      \\\"sample_len\\\": 171,\\n      \\\"acc,none\\\": 0.8011695906432749,\\n      \\\"acc_stderr,none\\\": 0.030611116557432514\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"name\\\": \\\"hellaswag\\\",\\n      \\\"alias\\\": \\\"hellaswag\\\",\\n      \\\"sample_len\\\": 10042,\\n      \\\"acc,none\\\": 0.4962158932483569,\\n      \\\"acc_stderr,none\\\": 0.004989638507409855,\\n      \\\"acc_norm,none\\\": 0.6679944234216292,\\n      \\\"acc_norm_stderr,none\\\": 0.004699705280976508\\n    },\\n    \\\"mmlu_stem\\\": {\\n      \\\"alias\\\": \\\"stem\\\",\\n      \\\"name\\\": \\\"mmlu_stem\\\",\\n      \\\"sample_len\\\": 3153,\\n      \\\"acc,none\\\": 0.5347288296860133,\\n      \\\"acc_stderr,none\\\": 0.008579187550620752,\\n      \\\"sample_count\\\": {\\n        \\\"acc,none\\\": 3153\\n      }\\n    },\\n    \\\"mmlu_other\\\": {\\n      \\\"alias\\\": \\\"other\\\",\\n      \\\"name\\\": \\\"mmlu_other\\\",\\n      \\\"sample_len\\\": 3107,\\n      \\\"acc,none\\\": 0.6659156742838751,\\n      \\\"acc_stderr,none\\\": 0.008223663566870222,\\n      \\\"sample_count\\\": {\\n        \\\"acc,none\\\": 3107\\n      }\\n    },\\n    \\\"mmlu_social_sciences\\\": {\\n      \\\"alias\\\": \\\"social sciences\\\",\\n      \\\"name\\\": \\\"mmlu_social_sciences\\\",\\n      \\\"sample_len\\\": 3077,\\n      \\\"acc,none\\\": 0.7143321416964575,\\n      \\\"acc_stderr,none\\\": 0.007989881887657839,\\n      \\\"sample_count\\\": {\\n        \\\"acc,none\\\": 3077\\n      }\\n    },\\n    \\\"mmlu_humanities\\\": {\\n      \\\"alias\\\": \\\"humanities\\\",\\n      \\\"name\\\": \\\"mmlu_humanities\\\",\\n      \\\"sample_len\\\": 4705,\\n      \\\"acc,none\\\": 0.5432518597236982,\\n      \\\"acc_stderr,none\\\": 0.006817032271506975,\\n      \\\"sample_count\\\": {\\n        \\\"acc,none\\\": 4705\\n      }\\n    },\\n    \\\"mmlu\\\": {\\n      \\\"alias\\\": \\\"mmlu\\\",\\n      \\\"name\\\": \\\"mmlu\\\",\\n      \\\"sample_len\\\": 14042,\\n      \\\"acc,none\\\": 0.6059678108531549,\\n      \\\"acc_stderr,none\\\": 0.003912050903168173,\\n      \\\"sample_count\\\": {\\n        \\\"acc,none\\\": 14042\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 结构清楚：`scores.mmlu` 和 `scores.hellaswag`。现在写分析脚本提取全部数据。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "c6e99e01-b41f-4918-979e-84cc49e7ea64",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019n6WenjpmtKeSG2EwrTjqb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4792,
+                "cache_read_input_tokens": 26731,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4792
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MzoFcq9CiBBiNoo4Q8AWAj",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cd /root/autodl-tmp/gen-depth-contamination && python3 -c \"\nimport json, os, glob, numpy as np\nfrom scipy import stats\n\nbase = '/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response'\nstrategies = ['no_filter', 'binary_ours', 'graduated']\nratios = ['ratio_10', 'ratio_30']\n\nall_raw = []\nsummary = {}\n\nfor ratio_name in ratios:\n    ratio_dir = os.path.join(base, ratio_name)\n    summary[ratio_name] = {}\n    for strat in strategies:\n        scores_mmlu = []\n        scores_hella = []\n        for seed in range(5):\n            fname = f'{strat}_seed{seed}_eval.json'\n            fpath = os.path.join(ratio_dir, fname)\n            with open(fpath) as f:\n                d = json.load(f)\n            m = d['scores']['mmlu']\n            h = d['scores']['hellaswag']\n            scores_mmlu.append(m)\n            scores_hella.append(h)\n            all_raw.append({'ratio': ratio_name, 'strategy': strat, 'seed': seed, 'mmlu': m, 'hellaswag': h})\n        summary[ratio_name][strat] = {\n            'mmlu_mean': float(np.mean(scores_mmlu)),\n            'mmlu_std': float(np.std(scores_mmlu, ddof=1)),\n            'hellaswag_mean': float(np.mean(scores_hella)),\n            'hellaswag_std': float(np.std(scores_hella, ddof=1)),\n            'mmlu_scores': scores_mmlu,\n            'hellaswag_scores': scores_hella\n        }\n\n# Paired t-tests\ncomparisons = [('binary_ours', 'no_filter'), ('graduated', 'binary_ours'), ('graduated', 'no_filter')]\nttests = {}\nfor ratio_name in ratios:\n    ttests[ratio_name] = []\n    for a, b in comparisons:\n        a_mmlu = np.array(summary[ratio_name][a]['mmlu_scores'])\n        b_mmlu = np.array(summary[ratio_name][b]['mmlu_scores'])\n        a_hella = np.array(summary[ratio_name][a]['hellaswag_scores'])\n        b_hella = np.array(summary[ratio_name][b]['hellaswag_scores'])\n        t_m, p_m = stats.ttest_rel(a_mmlu, b_mmlu)\n        t_h, p_h = stats.ttest_rel(a_hella, b_hella)\n        ttests[ratio_name].append({\n            'comparison': f'{a} vs {b}',\n            'delta_mmlu': float(np.mean(a_mmlu - b_mmlu)),\n            'p_mmlu': float(p_m),\n            'delta_hellaswag': float(np.mean(a_hella - b_hella)),\n            'p_hellaswag': float(p_h)\n        })\n\n# Print Table 1\nprint('=== Table 1: Mean +/- Std ===')\nprint(f'{\\\"Ratio\\\":<10} {\\\"Strategy\\\":<15} {\\\"MMLU\\\":<20} {\\\"HellaSwag\\\":<20}')\nfor ratio_name in ratios:\n    for strat in strategies:\n        s = summary[ratio_name][strat]\n        print(f'{ratio_name:<10} {strat:<15} {s[\\\"mmlu_mean\\\"]:.4f}+/-{s[\\\"mmlu_std\\\"]:.4f}  {s[\\\"hellaswag_mean\\\"]:.4f}+/-{s[\\\"hellaswag_std\\\"]:.4f}')\n\nprint()\nprint('=== Table 2: Paired t-tests ===')\nprint(f'{\\\"Ratio\\\":<10} {\\\"Comparison\\\":<30} {\\\"D_MMLU\\\":<10} {\\\"p(MMLU)\\\":<10} {\\\"D_Hella\\\":<10} {\\\"p(Hella)\\\":<10}')\nfor ratio_name in ratios:\n    for t in ttests[ratio_name]:\n        print(f'{ratio_name:<10} {t[\\\"comparison\\\"]:<30} {t[\\\"delta_mmlu\\\"]:+.4f}   {t[\\\"p_mmlu\\\"]:.4f}    {t[\\\"delta_hellaswag\\\"]:+.4f}   {t[\\\"p_hellaswag\\\"]:.4f}')\n\nprint()\nprint('=== Table 3: Raw Data ===')\nprint(f'{\\\"Ratio\\\":<10} {\\\"Strategy\\\":<15} {\\\"Seed\\\":<5} {\\\"MMLU\\\":<10} {\\\"HellaSwag\\\":<10}')\nfor r in all_raw:\n    print(f'{r[\\\"ratio\\\"]:<10} {r[\\\"strategy\\\"]:<15} {r[\\\"seed\\\"]:<5} {r[\\\"mmlu\\\"]:.4f}    {r[\\\"hellaswag\\\"]:.4f}')\n\n# Save artifact\nos.makedirs('/root/autodl-tmp/gen-depth-contamination/artifacts', exist_ok=True)\noutput = {\n    'summary': summary,\n    'paired_ttests': ttests,\n    'raw_data': all_raw\n}\n# Remove numpy arrays from summary for JSON serialization\nfor rn in summary:\n    for st in summary[rn]:\n        del summary[rn][st]['mmlu_scores']\n        del summary[rn][st]['hellaswag_scores']\n\nwith open('/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_partial_10_30.json', 'w') as f:\n    json.dump(output, f, indent=2)\nprint()\nprint('Saved to artifacts/exp009_v3_partial_10_30.json')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "15d105ff-66d9-4e94-a2cc-1aa78ef93088",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019n6WenjpmtKeSG2EwrTjqb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4792,
+                "cache_read_input_tokens": 26731,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4792
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T09:07:22.592Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MzoFcq9CiBBiNoo4Q8AWAj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/gen-depth-contamination && python3 -c \\\\\\\"\\\\\\\\nimport json, os, glob, numpy as np\\\\\\\\nfrom scipy import stats\\\\\\\\n\\\\\\\\nbase = \\\\\\\\'/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response\\\\\\\\'\\\\\\\\nstrategies = [\\\\\\\\'no_filter\\\\\\\\', \\\\\\\\'binary_ours\\\\\\\\', \\\\\\\\'graduated\\\\\\\\']\\\\\\\\nratios = [\\\\\\\\'ratio_10\\\\\\\\', \\\\\\\\'ratio_30\\\\\\\\']\\\\\\\\n\\\\\\\\nall_raw = []\\\\\\\\nsummary = {}\\\\\\\\n\\\\\\\\nfor ratio_name in ratios:\\\\\\\\n    ratio_dir = os.path.join(base, ratio_name)\\\\\\\\n    summary[ratio_name] = {}\\\\\\\\n    for strat in strategies:\\\\\\\\n        scores_mmlu = []\\\\\\\\n        scores_hella = []\\\\\\\\n        for seed in range(5):\\\\\\\\n            fname = f\\\\\\\\'{strat}_seed{seed}_eval.json\\\\\\\\'\\\\\\\\n            fpath = os.path.join(ratio_dir, fname)\\\\\\\\n            with open(fpath) as f:\\\\\\\\n                d = json.load(f)\\\\\\\\n            m = d[\\\\\\\\'scores\\\\\\\\'][\\\\\\\\'mmlu\\\\\\\\']\\\\\\\\n            h = d[\\\\\\\\'scores\\\\\\\\'][\\\\\\\\'hellaswag\\\\\\\\']\\\\\\\\n            scores_mmlu.append(m)\\\\\\\\n            scores_hella.append(h)\\\\\\\\n            all_raw.append({\\\\\\\\'ratio\\\\\\\\': ratio_name, \\\\\\\\'strategy\\\\\\\\': strat, \\\\\\\\'seed\\\\\\\\': seed, \\\\\\\\'mmlu\\\\\\\\': m, \\\\\\\\'hellaswag\\\\\\\\': h})\\\\\\\\n        summary[ratio_name][strat] = {\\\\\\\\n            \\\\\\\\'mmlu_mean\\\\\\\\': float(np.mean(scores_mmlu)),\\\\\\\\n            \\\\\\\\'mmlu_std\\\\\\\\': float(np.std(scores_mmlu, ddof=1)),\\\\\\\\n            \\\\\\\\'hellaswag_mean\\\\\\\\': float(np.mean(scores_hella)),\\\\\\\\n            \\\\\\\\'hellaswag_std\\\\\\\\': float(np.std(scores_hella, ddof=1)),\\\\\\\\n            \\\\\\\\'mmlu_scores\\\\\\\\': scores_mmlu,\\\\\\\\n            \\\\\\\\'hellaswag_scores\\\\\\\\': scores_hella\\\\\\\\n        }\\\\\\\\n\\\\\\\\n# Paired t-tests\\\\\\\\ncomparisons = [(\\\\\\\\'binary_ours\\\\\\\\', \\\\\\\\'no_filter\\\\\\\\'), (\\\\\\\\'graduated\\\\\\\\', \\\\\\\\'binary_ours\\\\\\\\'), (\\\\\\\\'graduated\\\\\\\\', \\\\\\\\'no_filter\\\\\\\\')]\\\\\\\\nttests = {}\\\\\\\\nfor ratio_name in ratios:\\\\\\\\n    ttests[ratio_name] = []\\\\\\\\n    for a, b in comparisons:\\\\\\\\n        a_mmlu = np.array(summary[ratio_name][a][\\\\\\\\'mmlu_scores\\\\\\\\'])\\\\\\\\n        b_mmlu = np.array(summary[ratio_name][b][\\\\\\\\'mmlu_scores\\\\\\\\'])\\\\\\\\n        a_hella = np.array(summary[ratio_name][a][\\\\\\\\'hellaswag_scores\\\\\\\\'])\\\\\\\\n        b_hella = np.array(summary[ratio_name][b][\\\\\\\\'hellaswag_scores\\\\\\\\'])\\\\\\\\n        t_m, p_m = stats.ttest_rel(a_mmlu, b_mmlu)\\\\\\\\n        t_h, p_h = stats.ttest_rel(a_hella, b_hella)\\\\\\\\n        ttests[ratio_name].append({\\\\\\\\n            \\\\\\\\'comparison\\\\\\\\': f\\\\\\\\'{a} vs {b}\\\\\\\\',\\\\\\\\n            \\\\\\\\'delta_mmlu\\\\\\\\': float(np.mean(a_mmlu - b_mmlu)),\\\\\\\\n            \\\\\\\\'p_mmlu\\\\\\\\': float(p_m),\\\\\\\\n            \\\\\\\\'delta_hellaswag\\\\\\\\': float(np.mean(a_hella - b_hella)),\\\\\\\\n            \\\\\\\\'p_hellaswag\\\\\\\\': float(p_h)\\\\\\\\n        })\\\\\\\\n\\\\\\\\n# Print Table 1\\\\\\\\nprint(\\\\\\\\'=== Table 1: Mean +/- Std ===\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'{\\\\\\\\\\\\\\\\\\\\\\\"Ratio\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"Strategy\\\\\\\\\\\\\\\\\\\\\\\":<15} {\\\\\\\\\\\\\\\\\\\\\\\"MMLU\\\\\\\\\\\\\\\\\\\\\\\":<20} {\\\\\\\\\\\\\\\\\\\\\\\"HellaSwag\\\\\\\\\\\\\\\\\\\\\\\":<20}\\\\\\\\')\\\\\\\\nfor ratio_name in ratios:\\\\\\\\n    for strat in strategies:\\\\\\\\n        s = summary[ratio_name][strat]\\\\\\\\n        print(f\\\\\\\\'{ratio_name:<10} {strat:<15} {s[\\\\\\\\\\\\\\\\\\\\\\\"mmlu_mean\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}+/-{s[\\\\\\\\\\\\\\\\\\\\\\\"mmlu_std\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}  {s[\\\\\\\\\\\\\\\\\\\\\\\"hellaswag_mean\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}+/-{s[\\\\\\\\\\\\\\\\\\\\\\\"hellaswag_std\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}\\\\\\\\')\\\\\\\\n\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'=== Table 2: Paired t-tests ===\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'{\\\\\\\\\\\\\\\\\\\\\\\"Ratio\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"Comparison\\\\\\\\\\\\\\\\\\\\\\\":<30} {\\\\\\\\\\\\\\\\\\\\\\\"D_MMLU\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"p(MMLU)\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"D_Hella\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"p(Hella)\\\\\\\\\\\\\\\\\\\\\\\":<10}\\\\\\\\')\\\\\\\\nfor ratio_name in ratios:\\\\\\\\n    for t in ttests[ratio_name]:\\\\\\\\n        print(f\\\\\\\\'{ratio_name:<10} {t[\\\\\\\\\\\\\\\\\\\\\\\"comparison\\\\\\\\\\\\\\\\\\\\\\\"]:<30} {t[\\\\\\\\\\\\\\\\\\\\\\\"delta_mmlu\\\\\\\\\\\\\\\\\\\\\\\"]:+.4f}   {t[\\\\\\\\\\\\\\\\\\\\\\\"p_mmlu\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}    {t[\\\\\\\\\\\\\\\\\\\\\\\"delta_hellaswag\\\\\\\\\\\\\\\\\\\\\\\"]:+.4f}   {t[\\\\\\\\\\\\\\\\\\\\\\\"p_hellaswag\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}\\\\\\\\')\\\\\\\\n\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'=== Table 3: Raw Data ===\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'{\\\\\\\\\\\\\\\\\\\\\\\"Ratio\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"Strategy\\\\\\\\\\\\\\\\\\\\\\\":<15} {\\\\\\\\\\\\\\\\\\\\\\\"Seed\\\\\\\\\\\\\\\\\\\\\\\":<5} {\\\\\\\\\\\\\\\\\\\\\\\"MMLU\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"HellaSwag\\\\\\\\\\\\\\\\\\\\\\\":<10}\\\\\\\\')\\\\\\\\nfor r in all_raw:\\\\\\\\n    print(f\\\\\\\\'{r[\\\\\\\\\\\\\\\\\\\\\\\"ratio\\\\\\\\\\\\\\\\\\\\\\\"]:<10} {r[\\\\\\\\\\\\\\\\\\\\\\\"strategy\\\\\\\\\\\\\\\\\\\\\\\"]:<15} {r[\\\\\\\\\\\\\\\\\\\\\\\"seed\\\\\\\\\\\\\\\\\\\\\\\"]:<5} {r[\\\\\\\\\\\\\\\\\\\\\\\"mmlu\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}    {r[\\\\\\\\\\\\\\\\\\\\\\\"hellaswag\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Save artifact\\\\\\\\nos.makedirs(\\\\\\\\'/root/autodl-tmp/gen-depth-contamination/artifacts\\\\\\\\', exist_ok=True)\\\\\\\\noutput = {\\\\\\\\n    \\\\\\\\'summary\\\\\\\\': summary,\\\\\\\\n    \\\\\\\\'paired_ttests\\\\\\\\': ttests,\\\\\\\\n    \\\\\\\\'raw_data\\\\\\\\': all_raw\\\\\\\\n}\\\\\\\\n# Remove numpy arrays from summary for JSON serialization\\\\\\\\nfor rn in summary:\\\\\\\\n    for st in summary[rn]:\\\\\\\\n        del summary[rn][st][\\\\\\\\'mmlu_scores\\\\\\\\']\\\\\\\\n        del summary[rn][st][\\\\\\\\'hellaswag_scores\\\\\\\\']\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_partial_10_30.json\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    json.dump(output, f, indent=2)\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'Saved to artifacts/exp009_v3_partial_10_30.json\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 2, in <module>\\\\nModuleNotFoundError: No module named 'numpy'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "ec6bfc68-efd8-4ea5-9886-c222c5ffc267",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/gen-depth-contamination && python3 -c \\\\\\\"\\\\\\\\nimport json, os, glob, numpy as np\\\\\\\\nfrom scipy import stats\\\\\\\\n\\\\\\\\nbase = \\\\\\\\'/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response\\\\\\\\'\\\\\\\\nstrategies = [\\\\\\\\'no_filter\\\\\\\\', \\\\\\\\'binary_ours\\\\\\\\', \\\\\\\\'graduated\\\\\\\\']\\\\\\\\nratios = [\\\\\\\\'ratio_10\\\\\\\\', \\\\\\\\'ratio_30\\\\\\\\']\\\\\\\\n\\\\\\\\nall_raw = []\\\\\\\\nsummary = {}\\\\\\\\n\\\\\\\\nfor ratio_name in ratios:\\\\\\\\n    ratio_dir = os.path.join(base, ratio_name)\\\\\\\\n    summary[ratio_name] = {}\\\\\\\\n    for strat in strategies:\\\\\\\\n        scores_mmlu = []\\\\\\\\n        scores_hella = []\\\\\\\\n        for seed in range(5):\\\\\\\\n            fname = f\\\\\\\\'{strat}_seed{seed}_eval.json\\\\\\\\'\\\\\\\\n            fpath = os.path.join(ratio_dir, fname)\\\\\\\\n            with open(fpath) as f:\\\\\\\\n                d = json.load(f)\\\\\\\\n            m = d[\\\\\\\\'scores\\\\\\\\'][\\\\\\\\'mmlu\\\\\\\\']\\\\\\\\n            h = d[\\\\\\\\'scores\\\\\\\\'][\\\\\\\\'hellaswag\\\\\\\\']\\\\\\\\n            scores_mmlu.append(m)\\\\\\\\n            scores_hella.append(h)\\\\\\\\n            all_raw.append({\\\\\\\\'ratio\\\\\\\\': ratio_name, \\\\\\\\'strategy\\\\\\\\': strat, \\\\\\\\'seed\\\\\\\\': seed, \\\\\\\\'mmlu\\\\\\\\': m, \\\\\\\\'hellaswag\\\\\\\\': h})\\\\\\\\n        summary[ratio_name][strat] = {\\\\\\\\n            \\\\\\\\'mmlu_mean\\\\\\\\': float(np.mean(scores_mmlu)),\\\\\\\\n            \\\\\\\\'mmlu_std\\\\\\\\': float(np.std(scores_mmlu, ddof=1)),\\\\\\\\n            \\\\\\\\'hellaswag_mean\\\\\\\\': float(np.mean(scores_hella)),\\\\\\\\n            \\\\\\\\'hellaswag_std\\\\\\\\': float(np.std(scores_hella, ddof=1)),\\\\\\\\n            \\\\\\\\'mmlu_scores\\\\\\\\': scores_mmlu,\\\\\\\\n            \\\\\\\\'hellaswag_scores\\\\\\\\': scores_hella\\\\\\\\n        }\\\\\\\\n\\\\\\\\n# Paired t-tests\\\\\\\\ncomparisons = [(\\\\\\\\'binary_ours\\\\\\\\', \\\\\\\\'no_filter\\\\\\\\'), (\\\\\\\\'graduated\\\\\\\\', \\\\\\\\'binary_ours\\\\\\\\'), (\\\\\\\\'graduated\\\\\\\\', \\\\\\\\'no_filter\\\\\\\\')]\\\\\\\\nttests = {}\\\\\\\\nfor ratio_name in ratios:\\\\\\\\n    ttests[ratio_name] = []\\\\\\\\n    for a, b in comparisons:\\\\\\\\n        a_mmlu = np.array(summary[ratio_name][a][\\\\\\\\'mmlu_scores\\\\\\\\'])\\\\\\\\n        b_mmlu = np.array(summary[ratio_name][b][\\\\\\\\'mmlu_scores\\\\\\\\'])\\\\\\\\n        a_hella = np.array(summary[ratio_name][a][\\\\\\\\'hellaswag_scores\\\\\\\\'])\\\\\\\\n        b_hella = np.array(summary[ratio_name][b][\\\\\\\\'hellaswag_scores\\\\\\\\'])\\\\\\\\n        t_m, p_m = stats.ttest_rel(a_mmlu, b_mmlu)\\\\\\\\n        t_h, p_h = stats.ttest_rel(a_hella, b_hella)\\\\\\\\n        ttests[ratio_name].append({\\\\\\\\n            \\\\\\\\'comparison\\\\\\\\': f\\\\\\\\'{a} vs {b}\\\\\\\\',\\\\\\\\n            \\\\\\\\'delta_mmlu\\\\\\\\': float(np.mean(a_mmlu - b_mmlu)),\\\\\\\\n            \\\\\\\\'p_mmlu\\\\\\\\': float(p_m),\\\\\\\\n            \\\\\\\\'delta_hellaswag\\\\\\\\': float(np.mean(a_hella - b_hella)),\\\\\\\\n            \\\\\\\\'p_hellaswag\\\\\\\\': float(p_h)\\\\\\\\n        })\\\\\\\\n\\\\\\\\n# Print Table 1\\\\\\\\nprint(\\\\\\\\'=== Table 1: Mean +/- Std ===\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'{\\\\\\\\\\\\\\\\\\\\\\\"Ratio\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"Strategy\\\\\\\\\\\\\\\\\\\\\\\":<15} {\\\\\\\\\\\\\\\\\\\\\\\"MMLU\\\\\\\\\\\\\\\\\\\\\\\":<20} {\\\\\\\\\\\\\\\\\\\\\\\"HellaSwag\\\\\\\\\\\\\\\\\\\\\\\":<20}\\\\\\\\')\\\\\\\\nfor ratio_name in ratios:\\\\\\\\n    for strat in strategies:\\\\\\\\n        s = summary[ratio_name][strat]\\\\\\\\n        print(f\\\\\\\\'{ratio_name:<10} {strat:<15} {s[\\\\\\\\\\\\\\\\\\\\\\\"mmlu_mean\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}+/-{s[\\\\\\\\\\\\\\\\\\\\\\\"mmlu_std\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}  {s[\\\\\\\\\\\\\\\\\\\\\\\"hellaswag_mean\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}+/-{s[\\\\\\\\\\\\\\\\\\\\\\\"hellaswag_std\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}\\\\\\\\')\\\\\\\\n\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'=== Table 2: Paired t-tests ===\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'{\\\\\\\\\\\\\\\\\\\\\\\"Ratio\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"Comparison\\\\\\\\\\\\\\\\\\\\\\\":<30} {\\\\\\\\\\\\\\\\\\\\\\\"D_MMLU\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"p(MMLU)\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"D_Hella\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"p(Hella)\\\\\\\\\\\\\\\\\\\\\\\":<10}\\\\\\\\')\\\\\\\\nfor ratio_name in ratios:\\\\\\\\n    for t in ttests[ratio_name]:\\\\\\\\n        print(f\\\\\\\\'{ratio_name:<10} {t[\\\\\\\\\\\\\\\\\\\\\\\"comparison\\\\\\\\\\\\\\\\\\\\\\\"]:<30} {t[\\\\\\\\\\\\\\\\\\\\\\\"delta_mmlu\\\\\\\\\\\\\\\\\\\\\\\"]:+.4f}   {t[\\\\\\\\\\\\\\\\\\\\\\\"p_mmlu\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}    {t[\\\\\\\\\\\\\\\\\\\\\\\"delta_hellaswag\\\\\\\\\\\\\\\\\\\\\\\"]:+.4f}   {t[\\\\\\\\\\\\\\\\\\\\\\\"p_hellaswag\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}\\\\\\\\')\\\\\\\\n\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'=== Table 3: Raw Data ===\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'{\\\\\\\\\\\\\\\\\\\\\\\"Ratio\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"Strategy\\\\\\\\\\\\\\\\\\\\\\\":<15} {\\\\\\\\\\\\\\\\\\\\\\\"Seed\\\\\\\\\\\\\\\\\\\\\\\":<5} {\\\\\\\\\\\\\\\\\\\\\\\"MMLU\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"HellaSwag\\\\\\\\\\\\\\\\\\\\\\\":<10}\\\\\\\\')\\\\\\\\nfor r in all_raw:\\\\\\\\n    print(f\\\\\\\\'{r[\\\\\\\\\\\\\\\\\\\\\\\"ratio\\\\\\\\\\\\\\\\\\\\\\\"]:<10} {r[\\\\\\\\\\\\\\\\\\\\\\\"strategy\\\\\\\\\\\\\\\\\\\\\\\"]:<15} {r[\\\\\\\\\\\\\\\\\\\\\\\"seed\\\\\\\\\\\\\\\\\\\\\\\"]:<5} {r[\\\\\\\\\\\\\\\\\\\\\\\"mmlu\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}    {r[\\\\\\\\\\\\\\\\\\\\\\\"hellaswag\\\\\\\\\\\\\\\\\\\\\\\"]:.4f}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Save artifact\\\\\\\\nos.makedirs(\\\\\\\\'/root/autodl-tmp/gen-depth-contamination/artifacts\\\\\\\\', exist_ok=True)\\\\\\\\noutput = {\\\\\\\\n    \\\\\\\\'summary\\\\\\\\': summary,\\\\\\\\n    \\\\\\\\'paired_ttests\\\\\\\\': ttests,\\\\\\\\n    \\\\\\\\'raw_data\\\\\\\\': all_raw\\\\\\\\n}\\\\\\\\n# Remove numpy arrays from summary for JSON serialization\\\\\\\\nfor rn in summary:\\\\\\\\n    for st in summary[rn]:\\\\\\\\n        del summary[rn][st][\\\\\\\\'mmlu_scores\\\\\\\\']\\\\\\\\n        del summary[rn][st][\\\\\\\\'hellaswag_scores\\\\\\\\']\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_partial_10_30.json\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    json.dump(output, f, indent=2)\\\\\\\\nprint()\\\\\\\\nprint(\\\\\\\\'Saved to artifacts/exp009_v3_partial_10_30.json\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 2, in <module>\\\\nModuleNotFoundError: No module named 'numpy'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/gen-depth-contamination && python3 -c \\\"\\\\nimport json, os, glob, numpy as np\\\\nfrom scipy import stats\\\\n\\\\nbase = \\\\'/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response\\\\'\\\\nstrategies = [\\\\'no_filter\\\\', \\\\'binary_ours\\\\', \\\\'graduated\\\\']\\\\nratios = [\\\\'ratio_10\\\\', \\\\'ratio_30\\\\']\\\\n\\\\nall_raw = []\\\\nsummary = {}\\\\n\\\\nfor ratio_name in ratios:\\\\n    ratio_dir = os.path.join(base, ratio_name)\\\\n    summary[ratio_name] = {}\\\\n    for strat in strategies:\\\\n        scores_mmlu = []\\\\n        scores_hella = []\\\\n        for seed in range(5):\\\\n            fname = f\\\\'{strat}_seed{seed}_eval.json\\\\'\\\\n            fpath = os.path.join(ratio_dir, fname)\\\\n            with open(fpath) as f:\\\\n                d = json.load(f)\\\\n            m = d[\\\\'scores\\\\'][\\\\'mmlu\\\\']\\\\n            h = d[\\\\'scores\\\\'][\\\\'hellaswag\\\\']\\\\n            scores_mmlu.append(m)\\\\n            scores_hella.append(h)\\\\n            all_raw.append({\\\\'ratio\\\\': ratio_name, \\\\'strategy\\\\': strat, \\\\'seed\\\\': seed, \\\\'mmlu\\\\': m, \\\\'hellaswag\\\\': h})\\\\n        summary[ratio_name][strat] = {\\\\n            \\\\'mmlu_mean\\\\': float(np.mean(scores_mmlu)),\\\\n            \\\\'mmlu_std\\\\': float(np.std(scores_mmlu, ddof=1)),\\\\n            \\\\'hellaswag_mean\\\\': float(np.mean(scores_hella)),\\\\n            \\\\'hellaswag_std\\\\': float(np.std(scores_hella, ddof=1)),\\\\n            \\\\'mmlu_scores\\\\': scores_mmlu,\\\\n            \\\\'hellaswag_scores\\\\': scores_hella\\\\n        }\\\\n\\\\n# Paired t-tests\\\\ncomparisons = [(\\\\'binary_ours\\\\', \\\\'no_filter\\\\'), (\\\\'graduated\\\\', \\\\'binary_ours\\\\'), (\\\\'graduated\\\\', \\\\'no_filter\\\\')]\\\\nttests = {}\\\\nfor ratio_name in ratios:\\\\n    ttests[ratio_name] = []\\\\n    for a, b in comparisons:\\\\n        a_mmlu = np.array(summary[ratio_name][a][\\\\'mmlu_scores\\\\'])\\\\n        b_mmlu = np.array(summary[ratio_name][b][\\\\'mmlu_scores\\\\'])\\\\n        a_hella = np.array(summary[ratio_name][a][\\\\'hellaswag_scores\\\\'])\\\\n        b_hella = np.array(summary[ratio_name][b][\\\\'hellaswag_scores\\\\'])\\\\n        t_m, p_m = stats.ttest_rel(a_mmlu, b_mmlu)\\\\n        t_h, p_h = stats.ttest_rel(a_hella, b_hella)\\\\n        ttests[ratio_name].append({\\\\n            \\\\'comparison\\\\': f\\\\'{a} vs {b}\\\\',\\\\n            \\\\'delta_mmlu\\\\': float(np.mean(a_mmlu - b_mmlu)),\\\\n            \\\\'p_mmlu\\\\': float(p_m),\\\\n            \\\\'delta_hellaswag\\\\': float(np.mean(a_hella - b_hella)),\\\\n            \\\\'p_hellaswag\\\\': float(p_h)\\\\n        })\\\\n\\\\n# Print Table 1\\\\nprint(\\\\'=== Table 1: Mean +/- Std ===\\\\')\\\\nprint(f\\\\'{\\\\\\\\\\\"Ratio\\\\\\\\\\\":<10} {\\\\\\\\\\\"Strategy\\\\\\\\\\\":<15} {\\\\\\\\\\\"MMLU\\\\\\\\\\\":<20} {\\\\\\\\\\\"HellaSwag\\\\\\\\\\\":<20}\\\\')\\\\nfor ratio_name in ratios:\\\\n    for strat in strategies:\\\\n        s = summary[ratio_name][strat]\\\\n        print(f\\\\'{ratio_name:<10} {strat:<15} {s[\\\\\\\\\\\"mmlu_mean\\\\\\\\\\\"]:.4f}+/-{s[\\\\\\\\\\\"mmlu_std\\\\\\\\\\\"]:.4f}  {s[\\\\\\\\\\\"hellaswag_mean\\\\\\\\\\\"]:.4f}+/-{s[\\\\\\\\\\\"hellaswag_std\\\\\\\\\\\"]:.4f}\\\\')\\\\n\\\\nprint()\\\\nprint(\\\\'=== Table 2: Paired t-tests ===\\\\')\\\\nprint(f\\\\'{\\\\\\\\\\\"Ratio\\\\\\\\\\\":<10} {\\\\\\\\\\\"Comparison\\\\\\\\\\\":<30} {\\\\\\\\\\\"D_MMLU\\\\\\\\\\\":<10} {\\\\\\\\\\\"p(MMLU)\\\\\\\\\\\":<10} {\\\\\\\\\\\"D_Hella\\\\\\\\\\\":<10} {\\\\\\\\\\\"p(Hella)\\\\\\\\\\\":<10}\\\\')\\\\nfor ratio_name in ratios:\\\\n    for t in ttests[ratio_name]:\\\\n        print(f\\\\'{ratio_name:<10} {t[\\\\\\\\\\\"comparison\\\\\\\\\\\"]:<30} {t[\\\\\\\\\\\"delta_mmlu\\\\\\\\\\\"]:+.4f}   {t[\\\\\\\\\\\"p_mmlu\\\\\\\\\\\"]:.4f}    {t[\\\\\\\\\\\"delta_hellaswag\\\\\\\\\\\"]:+.4f}   {t[\\\\\\\\\\\"p_hellaswag\\\\\\\\\\\"]:.4f}\\\\')\\\\n\\\\nprint()\\\\nprint(\\\\'=== Table 3: Raw Data ===\\\\')\\\\nprint(f\\\\'{\\\\\\\\\\\"Ratio\\\\\\\\\\\":<10} {\\\\\\\\\\\"Strategy\\\\\\\\\\\":<15} {\\\\\\\\\\\"Seed\\\\\\\\\\\":<5} {\\\\\\\\\\\"MMLU\\\\\\\\\\\":<10} {\\\\\\\\\\\"HellaSwag\\\\\\\\\\\":<10}\\\\')\\\\nfor r in all_raw:\\\\n    print(f\\\\'{r[\\\\\\\\\\\"ratio\\\\\\\\\\\"]:<10} {r[\\\\\\\\\\\"strategy\\\\\\\\\\\"]:<15} {r[\\\\\\\\\\\"seed\\\\\\\\\\\"]:<5} {r[\\\\\\\\\\\"mmlu\\\\\\\\\\\"]:.4f}    {r[\\\\\\\\\\\"hellaswag\\\\\\\\\\\"]:.4f}\\\\')\\\\n\\\\n# Save artifact\\\\nos.makedirs(\\\\'/root/autodl-tmp/gen-depth-contamination/artifacts\\\\', exist_ok=True)\\\\noutput = {\\\\n    \\\\'summary\\\\': summary,\\\\n    \\\\'paired_ttests\\\\': ttests,\\\\n    \\\\'raw_data\\\\': all_raw\\\\n}\\\\n# Remove numpy arrays from summary for JSON serialization\\\\nfor rn in summary:\\\\n    for st in summary[rn]:\\\\n        del summary[rn][st][\\\\'mmlu_scores\\\\']\\\\n        del summary[rn][st][\\\\'hellaswag_scores\\\\']\\\\n\\\\nwith open(\\\\'/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_partial_10_30.json\\\\', \\\\'w\\\\') as f:\\\\n    json.dump(output, f, indent=2)\\\\nprint()\\\\nprint(\\\\'Saved to artifacts/exp009_v3_partial_10_30.json\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nTraceback (most recent call last):\\n  File \\\"<string>\\\", line 2, in <module>\\nModuleNotFoundError: No module named 'numpy'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Need to use the conda environment. Let me write a script file instead of inline python to avoid escaping issues.",
+              "signature": "EqwCClkIDRgCKkD7OCYIfeCnJrPNmG1LbmVshFrK45qlJM6NzWICwlTZqQSShlnGNGtXLL9ySDXPNER6qUolcS4AE6J7weLYET2uMg9jbGF1ZGUtb3B1cy00LTY4ABIMLyrt9TnE7lzYFF+/Ggzr1cuoz9GvsvPtsKciMAZk395U+ihoHD6qreQNjYTeWZQyu3lPNv84wfob7r7hvyDsBRzSNr211eHaVR/cGSqAAX7LNiNyYhzgiQ49vp68Clpi2ZYXC5bK7nZ6MR8allvZ+ichvLrizZhOI8M4shWea3t6+kuDxT1NSpX283xUr7thVCnh9hNGVuiS0gh5REsq/c5LkNucN4XptlgCIZTWnclXw3bYAezUZBZ0zLmJnkAIML9mO+nG9rB7gBe6C5w6GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "65a2de8f-2143-4b79-bcff-10e950e0223d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Th5J1f2ZLEHS1YwtTU7LBZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4037,
+                "cache_read_input_tokens": 31523,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4037
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要用 conda 环境。写个脚本文件执行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "a70d8d74-6ed0-4c12-8c59-4f018ca970ed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Th5J1f2ZLEHS1YwtTU7LBZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4037,
+                "cache_read_input_tokens": 31523,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4037
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EGexkPpFaA86vr69NoZSHY",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "cat > /tmp/analyze_exp009.py << 'SCRIPT'\nimport json, os, glob\nimport numpy as np\nfrom scipy import stats\n\nbase = '/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response'\nstrategies = ['no_filter', 'binary_ours', 'graduated']\nratios = ['ratio_10', 'ratio_30']\n\nall_raw = []\nsummary = {}\n\nfor ratio_name in ratios:\n    ratio_dir = os.path.join(base, ratio_name)\n    summary[ratio_name] = {}\n    for strat in strategies:\n        scores_mmlu = []\n        scores_hella = []\n        for seed in range(5):\n            fname = f'{strat}_seed{seed}_eval.json'\n            fpath = os.path.join(ratio_dir, fname)\n            with open(fpath) as f:\n                d = json.load(f)\n            m = d['scores']['mmlu']\n            h = d['scores']['hellaswag']\n            scores_mmlu.append(m)\n            scores_hella.append(h)\n            all_raw.append({'ratio': ratio_name, 'strategy': strat, 'seed': seed, 'mmlu': m, 'hellaswag': h})\n        summary[ratio_name][strat] = {\n            'mmlu_mean': float(np.mean(scores_mmlu)),\n            'mmlu_std': float(np.std(scores_mmlu, ddof=1)),\n            'hellaswag_mean': float(np.mean(scores_hella)),\n            'hellaswag_std': float(np.std(scores_hella, ddof=1)),\n            'mmlu_scores': scores_mmlu,\n            'hellaswag_scores': scores_hella\n        }\n\n# Paired t-tests\ncomparisons = [('binary_ours', 'no_filter'), ('graduated', 'binary_ours'), ('graduated', 'no_filter')]\nttests = {}\nfor ratio_name in ratios:\n    ttests[ratio_name] = []\n    for a, b in comparisons:\n        a_mmlu = np.array(summary[ratio_name][a]['mmlu_scores'])\n        b_mmlu = np.array(summary[ratio_name][b]['mmlu_scores'])\n        a_hella = np.array(summary[ratio_name][a]['hellaswag_scores'])\n        b_hella = np.array(summary[ratio_name][b]['hellaswag_scores'])\n        t_m, p_m = stats.ttest_rel(a_mmlu, b_mmlu)\n        t_h, p_h = stats.ttest_rel(a_hella, b_hella)\n        ttests[ratio_name].append({\n            'comparison': f'{a} vs {b}',\n            'delta_mmlu': float(np.mean(a_mmlu - b_mmlu)),\n            'p_mmlu': float(p_m),\n            'delta_hellaswag': float(np.mean(a_hella - b_hella)),\n            'p_hellaswag': float(p_h)\n        })\n\n# Print Table 1\nprint('=== Table 1: Mean +/- Std ===')\nprint(f'{\"Ratio\":<10} {\"Strategy\":<15} {\"MMLU\":<20} {\"HellaSwag\":<20}')\nfor ratio_name in ratios:\n    for strat in strategies:\n        s = summary[ratio_name][strat]\n        print(f'{ratio_name:<10} {strat:<15} {s[\"mmlu_mean\"]:.4f}+/-{s[\"mmlu_std\"]:.4f}  {s[\"hellaswag_mean\"]:.4f}+/-{s[\"hellaswag_std\"]:.4f}')\n\nprint()\nprint('=== Table 2: Paired t-tests ===')\nprint(f'{\"Ratio\":<10} {\"Comparison\":<30} {\"D_MMLU\":<10} {\"p(MMLU)\":<10} {\"D_Hella\":<10} {\"p(Hella)\":<10}')\nfor ratio_name in ratios:\n    for t in ttests[ratio_name]:\n        print(f'{ratio_name:<10} {t[\"comparison\"]:<30} {t[\"delta_mmlu\"]:+.4f}   {t[\"p_mmlu\"]:.6f}  {t[\"delta_hellaswag\"]:+.4f}   {t[\"p_hellaswag\"]:.6f}')\n\nprint()\nprint('=== Table 3: Raw Data ===')\nprint(f'{\"Ratio\":<10} {\"Strategy\":<15} {\"Seed\":<5} {\"MMLU\":<10} {\"HellaSwag\":<10}')\nfor r in all_raw:\n    print(f'{r[\"ratio\"]:<10} {r[\"strategy\"]:<15} {r[\"seed\"]:<5} {r[\"mmlu\"]:.4f}    {r[\"hellaswag\"]:.4f}')\n\n# Save artifact\nos.makedirs('/root/autodl-tmp/gen-depth-contamination/artifacts', exist_ok=True)\noutput_summary = {}\nfor rn in ratios:\n    output_summary[rn] = {}\n    for st in strategies:\n        output_summary[rn][st] = {\n            'mmlu_mean': summary[rn][st]['mmlu_mean'],\n            'mmlu_std': summary[rn][st]['mmlu_std'],\n            'hellaswag_mean': summary[rn][st]['hellaswag_mean'],\n            'hellaswag_std': summary[rn][st]['hellaswag_std'],\n        }\n\noutput = {\n    'summary': output_summary,\n    'paired_ttests': ttests,\n    'raw_data': all_raw\n}\n\nwith open('/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_partial_10_30.json', 'w') as f:\n    json.dump(output, f, indent=2)\nprint()\nprint('Saved to artifacts/exp009_v3_partial_10_30.json')\nSCRIPT\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/analyze_exp009.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "48371579-9b3e-47ca-82fb-ef1e304c56b5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Th5J1f2ZLEHS1YwtTU7LBZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4037,
+                "cache_read_input_tokens": 31523,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4037
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T09:07:42.383Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EGexkPpFaA86vr69NoZSHY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Table 1: Mean +/- Std ===\\\\nRatio      Strategy        MMLU                 HellaSwag           \\\\nratio_10   no_filter       0.6058+/-0.0002  0.6689+/-0.0007\\\\nratio_10   binary_ours     0.6079+/-0.0005  0.6727+/-0.0008\\\\nratio_10   graduated       0.6066+/-0.0011  0.6700+/-0.0015\\\\nratio_30   no_filter       0.6069+/-0.0007  0.6664+/-0.0020\\\\nratio_30   binary_ours     0.6082+/-0.0012  0.6725+/-0.0007\\\\nratio_30   graduated       0.6072+/-0.0008  0.6665+/-0.0014\\\\n\\\\n=== Table 2: Paired t-tests ===\\\\nRatio      Comparison                     D_MMLU     p(MMLU)    D_Hella    p(Hella)  \\\\nratio_10   binary_ours vs no_filter       +0.0021   0.001026  +0.0038   0.001728\\\\nratio_10   graduated vs binary_ours       -0.0014   0.091719  -0.0027   0.039894\\\\nratio_10   graduated vs no_filter         +0.0008   0.270570  +0.0011   0.061053\\\\nratio_30   binary_ours vs no_filter       +0.0013   0.073907  +0.0061   0.003594\\\\nratio_30   graduated vs binary_ours       -0.0010   0.301792  -0.0060   0.000941\\\\nratio_30   graduated vs no_filter         +0.0003   0.663766  +0.0002   0.664634\\\\n\\\\n=== Table 3: Raw Data ===\\\\nRatio      Strategy        Seed  MMLU       HellaSwag \\\\nratio_10   no_filter       0     0.6060    0.6680\\\\nratio_10   no_filter       1     0.6059    0.6688\\\\nratio_10   no_filter       2     0.6055    0.6686\\\\nratio_10   no_filter       3     0.6056    0.6695\\\\nratio_10   no_filter       4     0.6060    0.6696\\\\nratio_10   binary_ours     0     0.6085    0.6733\\\\nratio_10   binary_ours     1     0.6073    0.6717\\\\nratio_10   binary_ours     2     0.6083    0.6731\\\\nratio_10   binary_ours     3     0.6077    0.6734\\\\nratio_10   binary_ours     4     0.6077    0.6721\\\\nratio_10   graduated       0     0.6048    0.6675\\\\nratio_10   graduated       1     0.6067    0.6708\\\\nratio_10   graduated       2     0.6078    0.6697\\\\nratio_10   graduated       3     0.6072    0.6713\\\\nratio_10   graduated       4     0.6062    0.6709\\\\nratio_30   no_filter       0     0.6058    0.6673\\\\nratio_30   no_filter       1     0.6077    0.6671\\\\nratio_30   no_filter       2     0.6070    0.6649\\\\nratio_30   no_filter       3     0.6068    0.6687\\\\nratio_30   no_filter       4     0.6072    0.6638\\\\nratio_30   binary_ours     0     0.6085    0.6727\\\\nratio_30   binary_ours     1     0.6097    0.6722\\\\nratio_30   binary_ours     2     0.6074    0.6717\\\\nratio_30   binary_ours     3     0.6065    0.6725\\\\nratio_30   binary_ours     4     0.6090    0.6735\\\\nratio_30   graduated       0     0.6079    0.6667\\\\nratio_30   graduated       1     0.6068    0.6673\\\\nratio_30   graduated       2     0.6078    0.6650\\\\nratio_30   graduated       3     0.6076    0.6683\\\\nratio_30   graduated       4     0.6059    0.6654\\\\n\\\\nSaved to artifacts/exp009_v3_partial_10_30.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "1856a80c-16e5-437f-9995-3a8c7b4cf51e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Table 1: Mean +/- Std ===\\\\nRatio      Strategy        MMLU                 HellaSwag           \\\\nratio_10   no_filter       0.6058+/-0.0002  0.6689+/-0.0007\\\\nratio_10   binary_ours     0.6079+/-0.0005  0.6727+/-0.0008\\\\nratio_10   graduated       0.6066+/-0.0011  0.6700+/-0.0015\\\\nratio_30   no_filter       0.6069+/-0.0007  0.6664+/-0.0020\\\\nratio_30   binary_ours     0.6082+/-0.0012  0.6725+/-0.0007\\\\nratio_30   graduated       0.6072+/-0.0008  0.6665+/-0.0014\\\\n\\\\n=== Table 2: Paired t-tests ===\\\\nRatio      Comparison                     D_MMLU     p(MMLU)    D_Hella    p(Hella)  \\\\nratio_10   binary_ours vs no_filter       +0.0021   0.001026  +0.0038   0.001728\\\\nratio_10   graduated vs binary_ours       -0.0014   0.091719  -0.0027   0.039894\\\\nratio_10   graduated vs no_filter         +0.0008   0.270570  +0.0011   0.061053\\\\nratio_30   binary_ours vs no_filter       +0.0013   0.073907  +0.0061   0.003594\\\\nratio_30   graduated vs binary_ours       -0.0010   0.301792  -0.0060   0.000941\\\\nratio_30   graduated vs no_filter         +0.0003   0.663766  +0.0002   0.664634\\\\n\\\\n=== Table 3: Raw Data ===\\\\nRatio      Strategy        Seed  MMLU       HellaSwag \\\\nratio_10   no_filter       0     0.6060    0.6680\\\\nratio_10   no_filter       1     0.6059    0.6688\\\\nratio_10   no_filter       2     0.6055    0.6686\\\\nratio_10   no_filter       3     0.6056    0.6695\\\\nratio_10   no_filter       4     0.6060    0.6696\\\\nratio_10   binary_ours     0     0.6085    0.6733\\\\nratio_10   binary_ours     1     0.6073    0.6717\\\\nratio_10   binary_ours     2     0.6083    0.6731\\\\nratio_10   binary_ours     3     0.6077    0.6734\\\\nratio_10   binary_ours     4     0.6077    0.6721\\\\nratio_10   graduated       0     0.6048    0.6675\\\\nratio_10   graduated       1     0.6067    0.6708\\\\nratio_10   graduated       2     0.6078    0.6697\\\\nratio_10   graduated       3     0.6072    0.6713\\\\nratio_10   graduated       4     0.6062    0.6709\\\\nratio_30   no_filter       0     0.6058    0.6673\\\\nratio_30   no_filter       1     0.6077    0.6671\\\\nratio_30   no_filter       2     0.6070    0.6649\\\\nratio_30   no_filter       3     0.6068    0.6687\\\\nratio_30   no_filter       4     0.6072    0.6638\\\\nratio_30   binary_ours     0     0.6085    0.6727\\\\nratio_30   binary_ours     1     0.6097    0.6722\\\\nratio_30   binary_ours     2     0.6074    0.6717\\\\nratio_30   binary_ours     3     0.6065    0.6725\\\\nratio_30   binary_ours     4     0.6090    0.6735\\\\nratio_30   graduated       0     0.6079    0.6667\\\\nratio_30   graduated       1     0.6068    0.6673\\\\nratio_30   graduated       2     0.6078    0.6650\\\\nratio_30   graduated       3     0.6076    0.6683\\\\nratio_30   graduated       4     0.6059    0.6654\\\\n\\\\nSaved to artifacts/exp009_v3_partial_10_30.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.74}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Table 1: Mean +/- Std ===\\nRatio      Strategy        MMLU                 HellaSwag           \\nratio_10   no_filter       0.6058+/-0.0002  0.6689+/-0.0007\\nratio_10   binary_ours     0.6079+/-0.0005  0.6727+/-0.0008\\nratio_10   graduated       0.6066+/-0.0011  0.6700+/-0.0015\\nratio_30   no_filter       0.6069+/-0.0007  0.6664+/-0.0020\\nratio_30   binary_ours     0.6082+/-0.0012  0.6725+/-0.0007\\nratio_30   graduated       0.6072+/-0.0008  0.6665+/-0.0014\\n\\n=== Table 2: Paired t-tests ===\\nRatio      Comparison                     D_MMLU     p(MMLU)    D_Hella    p(Hella)  \\nratio_10   binary_ours vs no_filter       +0.0021   0.001026  +0.0038   0.001728\\nratio_10   graduated vs binary_ours       -0.0014   0.091719  -0.0027   0.039894\\nratio_10   graduated vs no_filter         +0.0008   0.270570  +0.0011   0.061053\\nratio_30   binary_ours vs no_filter       +0.0013   0.073907  +0.0061   0.003594\\nratio_30   graduated vs binary_ours       -0.0010   0.301792  -0.0060   0.000941\\nratio_30   graduated vs no_filter         +0.0003   0.663766  +0.0002   0.664634\\n\\n=== Table 3: Raw Data ===\\nRatio      Strategy        Seed  MMLU       HellaSwag \\nratio_10   no_filter       0     0.6060    0.6680\\nratio_10   no_filter       1     0.6059    0.6688\\nratio_10   no_filter       2     0.6055    0.6686\\nratio_10   no_filter       3     0.6056    0.6695\\nratio_10   no_filter       4     0.6060    0.6696\\nratio_10   binary_ours     0     0.6085    0.6733\\nratio_10   binary_ours     1     0.6073    0.6717\\nratio_10   binary_ours     2     0.6083    0.6731\\nratio_10   binary_ours     3     0.6077    0.6734\\nratio_10   binary_ours     4     0.6077    0.6721\\nratio_10   graduated       0     0.6048    0.6675\\nratio_10   graduated       1     0.6067    0.6708\\nratio_10   graduated       2     0.6078    0.6697\\nratio_10   graduated       3     0.6072    0.6713\\nratio_10   graduated       4     0.6062    0.6709\\nratio_30   no_filter       0     0.6058    0.6673\\nratio_30   no_filter       1     0.6077    0.6671\\nratio_30   no_filter       2     0.6070    0.6649\\nratio_30   no_filter       3     0.6068    0.6687\\nratio_30   no_filter       4     0.6072    0.6638\\nratio_30   binary_ours     0     0.6085    0.6727\\nratio_30   binary_ours     1     0.6097    0.6722\\nratio_30   binary_ours     2     0.6074    0.6717\\nratio_30   binary_ours     3     0.6065    0.6725\\nratio_30   binary_ours     4     0.6090    0.6735\\nratio_30   graduated       0     0.6079    0.6667\\nratio_30   graduated       1     0.6068    0.6673\\nratio_30   graduated       2     0.6078    0.6650\\nratio_30   graduated       3     0.6076    0.6683\\nratio_30   graduated       4     0.6059    0.6654\\n\\nSaved to artifacts/exp009_v3_partial_10_30.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.74}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 文件完整性\n- **ratio_10**: 15/15 ✓\n- **ratio_30**: 15/15 ✓\n- **ratio_50**: 14/15 (进程运行中，PID 4409，快完成了)\n\n---\n\n### Table 1: Mean±Std\n\n| Ratio | Strategy | MMLU | HellaSwag |\n|-------|----------|------|-----------|\n| 10% | no_filter | 0.6058±0.0002 | 0.6689±0.0007 |\n| 10% | binary_ours | 0.6079±0.0005 | 0.6727±0.0008 |\n| 10% | graduated | 0.6066±0.0011 | 0.6700±0.0015 |\n| 30% | no_filter | 0.6069±0.0007 | 0.6664±0.0020 |\n| 30% | binary_ours | 0.6082±0.0012 | 0.6725±0.0007 |\n| 30% | graduated | 0.6072±0.0008 | 0.6665±0.0014 |\n\n---\n\n### Table 2: Paired t-tests\n\n| Ratio | Comparison | ΔMMLU | p(MMLU) | ΔHellaSwag | p(HellaSwag) |\n|-------|-----------|-------|---------|------------|--------------|\n| 10% | binary vs no_filter | +0.0021 | **0.0010** | +0.0038 | **0.0017** |\n| 10% | graduated vs binary | -0.0014 | 0.0917 | -0.0027 | *0.0399* |\n| 10% | graduated vs no_filter | +0.0008 | 0.2706 | +0.0011 | 0.0611 |\n| 30% | binary vs no_filter | +0.0013 | 0.0739 | +0.0061 | **0.0036** |\n| 30% | graduated vs binary | -0.0010 | 0.3018 | -0.0060 | **0.0009** |\n| 30% | graduated vs no_filter | +0.0003 | 0.6638 | +0.0002 | 0.6646 |\n\n---\n\n### Table 3: Raw Data (30 data points)\n\n| Ratio | Strategy | Seed | MMLU | HellaSwag |\n|-------|----------|------|------|-----------|\n| 10% | no_filter | 0 | 0.6060 | 0.6680 |\n| 10% | no_filter | 1 | 0.6059 | 0.6688 |\n| 10% | no_filter | 2 | 0.6055 | 0.6686 |\n| 10% | no_filter | 3 | 0.6056 | 0.6695 |\n| 10% | no_filter | 4 | 0.6060 | 0.6696 |\n| 10% | binary_ours | 0 | 0.6085 | 0.6733 |\n| 10% | binary_ours | 1 | 0.6073 | 0.6717 |\n| 10% | binary_ours | 2 | 0.6083 | 0.6731 |\n| 10% | binary_ours | 3 | 0.6077 | 0.6734 |\n| 10% | binary_ours | 4 | 0.6077 | 0.6721 |\n| 10% | graduated | 0 | 0.6048 | 0.6675 |\n| 10% | graduated | 1 | 0.6067 | 0.6708 |\n| 10% | graduated | 2 | 0.6078 | 0.6697 |\n| 10% | graduated | 3 | 0.6072 | 0.6713 |\n| 10% | graduated | 4 | 0.6062 | 0.6709 |\n| 30% | no_filter | 0 | 0.6058 | 0.6673 |\n| 30% | no_filter | 1 | 0.6077 | 0.6671 |\n| 30% | no_filter | 2 | 0.6070 | 0.6649 |\n| 30% | no_filter | 3 | 0.6068 | 0.6687 |\n| 30% | no_filter | 4 | 0.6072 | 0.6638 |\n| 30% | binary_ours | 0 | 0.6085 | 0.6727 |\n| 30% | binary_ours | 1 | 0.6097 | 0.6722 |\n| 30% | binary_ours | 2 | 0.6074 | 0.6717 |\n| 30% | binary_ours | 3 | 0.6065 | 0.6725 |\n| 30% | binary_ours | 4 | 0.6090 | 0.6735 |\n| 30% | graduated | 0 | 0.6079 | 0.6667 |\n| 30% | graduated | 1 | 0.6068 | 0.6673 |\n| 30% | graduated | 2 | 0.6078 | 0.6650 |\n| 30% | graduated | 3 | 0.6076 | 0.6683 |\n| 30% | graduated | 4 | 0.6059 | 0.6654 |\n\n---\n\n### 关键发现\n\n1. **binary_ours 在两个 ratio 下都是最佳策略**，尤其在 HellaSwag 上优势显著（10%: +0.38pp, p=0.0017; 30%: +0.61pp, p=0.0036）\n2. **graduated 表现不如 binary_ours**，在 30% HellaSwag 上甚至显著更差（-0.60pp, p=0.0009）\n3. graduated 与 no_filter 无显著差异，说明 graduated 策略在这两个 ratio 下基本无效\n\n结果已保存到 `/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_partial_10_30.json`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "uuid": "cb346661-ecbb-4ec8-b07f-1472348ddeb2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017ssES579yuveG2CPWA82ek",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3011,
+                "cache_read_input_tokens": 35560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3011
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 文件完整性\n- **ratio_10**: 15/15 ✓\n- **ratio_30**: 15/15 ✓\n- **ratio_50**: 14/15 (进程运行中，PID 4409，快完成了)\n\n---\n\n### Table 1: Mean±Std\n\n| Ratio | Strategy | MMLU | HellaSwag |\n|-------|----------|------|-----------|\n| 10% | no_filter | 0.6058±0.0002 | 0.6689±0.0007 |\n| 10% | binary_ours | 0.6079±0.0005 | 0.6727±0.0008 |\n| 10% | graduated | 0.6066±0.0011 | 0.6700±0.0015 |\n| 30% | no_filter | 0.6069±0.0007 | 0.6664±0.0020 |\n| 30% | binary_ours | 0.6082±0.0012 | 0.6725±0.0007 |\n| 30% | graduated | 0.6072±0.0008 | 0.6665±0.0014 |\n\n---\n\n### Table 2: Paired t-tests\n\n| Ratio | Comparison | ΔMMLU | p(MMLU) | ΔHellaSwag | p(HellaSwag) |\n|-------|-----------|-------|---------|------------|--------------|\n| 10% | binary vs no_filter | +0.0021 | **0.0010** | +0.0038 | **0.0017** |\n| 10% | graduated vs binary | -0.0014 | 0.0917 | -0.0027 | *0.0399* |\n| 10% | graduated vs no_filter | +0.0008 | 0.2706 | +0.0011 | 0.0611 |\n| 30% | binary vs no_filter | +0.0013 | 0.0739 | +0.0061 | **0.0036** |\n| 30% | graduated vs binary | -0.0010 | 0.3018 | -0.0060 | **0.0009** |\n| 30% | graduated vs no_filter | +0.0003 | 0.6638 | +0.0002 | 0.6646 |\n\n---\n\n### Table 3: Raw Data (30 data points)\n\n| Ratio | Strategy | Seed | MMLU | HellaSwag |\n|-------|----------|------|------|-----------|\n| 10% | no_filter | 0 | 0.6060 | 0.6680 |\n| 10% | no_filter | 1 | 0.6059 | 0.6688 |\n| 10% | no_filter | 2 | 0.6055 | 0.6686 |\n| 10% | no_filter | 3 | 0.6056 | 0.6695 |\n| 10% | no_filter | 4 | 0.6060 | 0.6696 |\n| 10% | binary_ours | 0 | 0.6085 | 0.6733 |\n| 10% | binary_ours | 1 | 0.6073 | 0.6717 |\n| 10% | binary_ours | 2 | 0.6083 | 0.6731 |\n| 10% | binary_ours | 3 | 0.6077 | 0.6734 |\n| 10% | binary_ours | 4 | 0.6077 | 0.6721 |\n| 10% | graduated | 0 | 0.6048 | 0.6675 |\n| 10% | graduated | 1 | 0.6067 | 0.6708 |\n| 10% | graduated | 2 | 0.6078 | 0.6697 |\n| 10% | graduated | 3 | 0.6072 | 0.6713 |\n| 10% | graduated | 4 | 0.6062 | 0.6709 |\n| 30% | no_filter | 0 | 0.6058 | 0.6673 |\n| 30% | no_filter | 1 | 0.6077 | 0.6671 |\n| 30% | no_filter | 2 | 0.6070 | 0.6649 |\n| 30% | no_filter | 3 | 0.6068 | 0.6687 |\n| 30% | no_filter | 4 | 0.6072 | 0.6638 |\n| 30% | binary_ours | 0 | 0.6085 | 0.6727 |\n| 30% | binary_ours | 1 | 0.6097 | 0.6722 |\n| 30% | binary_ours | 2 | 0.6074 | 0.6717 |\n| 30% | binary_ours | 3 | 0.6065 | 0.6725 |\n| 30% | binary_ours | 4 | 0.6090 | 0.6735 |\n| 30% | graduated | 0 | 0.6079 | 0.6667 |\n| 30% | graduated | 1 | 0.6068 | 0.6673 |\n| 30% | graduated | 2 | 0.6078 | 0.6650 |\n| 30% | graduated | 3 | 0.6076 | 0.6683 |\n| 30% | graduated | 4 | 0.6059 | 0.6654 |\n\n---\n\n### 关键发现\n\n1. **binary_ours 在两个 ratio 下都是最佳策略**，尤其在 HellaSwag 上优势显著（10%: +0.38pp, p=0.0017; 30%: +0.61pp, p=0.0036）\n2. **graduated 表现不如 binary_ours**，在 30% HellaSwag 上甚至显著更差（-0.60pp, p=0.0009）\n3. graduated 与 no_filter 无显著差异，说明 graduated 策略在这两个 ratio 下基本无效\n\n结果已保存到 `/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_partial_10_30.json`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 81935,
+            "duration_api_ms": 80446,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "50889262-56b2-4038-8a3c-992193a80ab8",
+            "total_cost_usd": 0.39145050000000003,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 26730,
+              "cache_read_input_tokens": 155562,
+              "output_tokens": 5796,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 26730,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1706,
+                  "cache_read_input_tokens": 35560,
+                  "cache_creation_input_tokens": 3011,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3011
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1522,
+                "outputTokens": 27,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016569999999999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 5796,
+                "cacheReadInputTokens": 155562,
+                "cacheCreationInputTokens": 26730,
+                "webSearchRequests": 0,
+                "costUSD": 0.3897935,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d5d9f5f8-450e-43a8-b406-27172cbca83a"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp-009-partial-10-30.md"
+}

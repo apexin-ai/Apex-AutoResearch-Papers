@@ -1,0 +1,707 @@
+{
+  "schema_version": "1.0",
+  "id": "f5cd6afbcc86088e38bf",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "writing related work completeness",
+  "task_key": "worker_writing_related-work-completeness_20260514T054916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_writing_related-work-completeness_20260514T054916.jsonl",
+    "occurrence": 1,
+    "bytes": 40610,
+    "sha256": "9a997c38e16a96fdfd445a15f2d474c345037559c8b46e5a5b3ab4b8ab147c9c"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T05:52:24.786468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T05:52:24.786851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/experiments_c1.tex\ndocs/paper/introduction.tex\ndocs/paper/conclusion.tex\ndocs/paper/related_work.tex\ndocs/paper/method.tex\ndocs/paper/appendix.tex\ndocs/paper/main.tex\ndocs/paper/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T05:52:24.787043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.bib",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T05:52:24.787182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T05:52:24.787306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\cite[pt]?\\{[^}]+\\}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-n": "True",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T05:52:24.787467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/related_work.tex:6:Shumailov et al.~\\cite{shumailov2024collapse} showed that iteratively training language models on their own outputs leads to irreversible tail-distribution degradation, with minority modes vanishing across generations.\ndocs/paper/related_work.tex:7:Alemohammad et al.~\\cite{alemohammad2024selfconsuming} formalized this for self-consuming generative models, proving convergence to a fixed point under mild regularity conditions.\ndocs/paper/related_work.tex:8:Dohmatob et al.~\\cite{dohmatob2024model} derived scaling laws for collapse, demonstrating that tail probability mass is lost at rates predictable from model and data scale.\ndocs/paper/related_work.tex:9:Schaeffer et al.~\\cite{schaeffer2025position} organized the fragmented literature into a taxonomy of eight definitions across three families.\ndocs/paper/related_work.tex:11:Kazdan et al.~\\cite{kazdan2025collapse} distinguished \\emph{replace} and \\emph{accumulate} regimes: in the replace regime each generation completely supplants its predecessor, producing faster collapse.\ndocs/paper/related_work.tex:13:Shi et al.~\\cite{shi2025generalization} identified a generalization-to-memorization transition in recursively trained models, providing cross-modal evidence that information loss is progressive.\ndocs/paper/related_work.tex:14:Gerstgrasser et al.~\\cite{gerstgrasser2024inevitable} proved that collapse is avoidable when sufficient original data is retained alongside synthetic samples, a condition that depth-aware curation can enforce by construction.\ndocs/paper/related_work.tex:19:Early statistical approaches such as GLTR~\\cite{gehrmann2019gltr} visualized per-token likelihood ranks to help human annotators spot generated text, establishing that token-level distributional cues are informative for detection.\ndocs/paper/related_work.tex:20:Zellers et al.~\\cite{zellers2019grover} demonstrated that the generating model itself is an effective detector, while Ippolito et al.~\\cite{ippolito2020dete\n…[truncated 6536 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T05:52:24.787622+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T05:52:24.787855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% === References for gen-depth-contamination ===\n2\t% Source: literature_map.yaml — verified 2026-05-14\n3\t\n4\t% === Must-Cite ===\n5\t\n6\t@inproceedings{drayson2025,\n7\t  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n8\t  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n9\t  booktitle={Proceedings of EMNLP},\n10\t  year={2025},\n11\t  url={https://arxiv.org/abs/2502.15654}\n12\t}\n13\t\n14\t@inproceedings{schaeffer2025position,\n15\t  title={Position: Model Collapse Does Not Mean What You Think},\n16\t  author={Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Anirudh and Koyejo, Sanmi},\n17\t  booktitle={Proceedings of ICML},\n18\t  year={2025},\n19\t  url={https://arxiv.org/abs/2503.03150}\n20\t}\n21\t\n22\t@inproceedings{kazdan2025collapse,\n23\t  title={Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World},\n24\t  author={Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David and Koyejo, Sanmi},\n25\t  booktitle={Proceedings of ICML},\n26\t  year={2025},\n27\t  url={https://arxiv.org/abs/2410.16713}\n28\t}\n29\t\n30\t@inproceedings{shi2025generalization,\n31\t  title={A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective},\n32\t  author={Shi, Lianghe and Wu, Meng and Zhang, Huijie and Zhang, Zekai and Tao, Molei and Qu, Qing},\n33\t  booktitle={Advances in NeurIPS},\n34\t  year={2025},\n35\t  note={Spotlight},\n36\t  url={https://arxiv.org/abs/2509.16499}\n37\t}\n38\t\n39\t@inproceedings{mitchell2023detectgpt,\n40\t  title={{DetectGPT}: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n41\t  author={Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n42\t  booktitle={Proceedings of ICML},\n43\t  year={2023}\n44\t}\n45\t\n46\t% === Should-Cite ===\n47\t\n48\t@article{basani2026diveye,\n49\t  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},\n50\t  author={Basani, Advik Raj and Chen, Pin-Yu}\n…[truncated 6933 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T05:52:24.788024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T05:52:24.788192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Model Collapse and Recursive Generation.}\n5\tTraining on model-generated data can cause progressive distribution shift known as \\emph{model collapse}.\n6\tShumailov et al.~\\cite{shumailov2024collapse} showed that iteratively training language models on their own outputs leads to irreversible tail-distribution degradation, with minority modes vanishing across generations.\n7\tAlemohammad et al.~\\cite{alemohammad2024selfconsuming} formalized this for self-consuming generative models, proving convergence to a fixed point under mild regularity conditions.\n8\tDohmatob et al.~\\cite{dohmatob2024model} derived scaling laws for collapse, demonstrating that tail probability mass is lost at rates predictable from model and data scale.\n9\tSchaeffer et al.~\\cite{schaeffer2025position} organized the fragmented literature into a taxonomy of eight definitions across three families.\n10\tOur $\\Kstar$ aligns with their Family~B (distributional deformation), specifically D4 (collapsing variance) and D6 (mode entanglement)---the features that degrade most rapidly in our experiments are precisely variance-based surprisal measures.\n11\tKazdan et al.~\\cite{kazdan2025collapse} distinguished \\emph{replace} and \\emph{accumulate} regimes: in the replace regime each generation completely supplants its predecessor, producing faster collapse.\n12\tOur prompt-chain protocol operates in the replace regime, so $\\Kempirical = 2$ is a conservative lower bound; the accumulate regime would yield slower degradation and higher $\\Kstar$.\n13\tShi et al.~\\cite{shi2025generalization} identified a generalization-to-memorization transition in recursively trained models, providing cross-modal evidence that information loss is progressive.\n14\tGerstgrasser et al.~\\cite{gerstgrasser2024inevitable} proved that collapse is avoidable when sufficient original data is retained alongside synthetic samples, a condition that depth-aware curation can enforce by constru\n…[truncated 6904 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T05:52:24.788374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T05:52:24.788500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T05:52:24.788617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "model collapse recursive LLM generation depth 2024 2025 2026"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T05:52:24.788732+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "synthetic text detection benchmark machine-generated text 2024 2025 2026"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T05:52:24.788898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "data contamination depth iterative paraphrase detection 2024 2025 2026"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T05:52:24.789024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "generational depth estimation recursive text generation detection 2024 2025"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T05:52:24.789165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"synthetic text detection benchmark machine-generated text 2024 2025 2026\"\n\nLinks: [{\"title\":\"Diversity Boosts AI-Generated Text Detection\",\"url\":\"https://arxiv.org/pdf/2509.18880\"},{\"title\":\"AI Text Detection Benchmarks 2025: Top Performance Metrics\",\"url\":\"https://hastewire.com/blog/ai-text-detection-benchmarks-2025-top-performance-metrics\"},{\"title\":\"DetectRL: Benchmarking LLM-Generated Text Detection in Real-World Scenarios | OpenReview\",\"url\":\"https://openreview.net/forum?id=ZGMkOikEyv\"},{\"title\":\"Beyond Easy Wins: A Text Hardness-Aware Benchmark for LLM-generated Text Detection\",\"url\":\"https://arxiv.org/html/2507.15286v1\"},{\"title\":\"Benchmarking AI Text Detection: Assessing Detectors ...\",\"url\":\"https://aclanthology.org/2025.genaidetect-1.4.pdf\"},{\"title\":\"MGTBench: Benchmarking Machine-Generated Text Detection | Proceedings of the 2024 on ACM SIGSAC Conference on Computer and Communications Security\",\"url\":\"https://dl.acm.org/doi/10.1145/3658644.3670344\"},{\"title\":\"Spotlights and Blindspots: Evaluating Machine-Generated Text Detection\",\"url\":\"https://arxiv.org/html/2604.16607v1\"},{\"title\":\"A Comprehensive Dataset for Human vs. AI Generated Text Detection\",\"url\":\"https://arxiv.org/html/2510.22874v1\"},{\"title\":\"DetectRL: Benchmarking LLM-Generated Text Detection in Real-World Scenarios\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/b61bdf7e9f64c04ec75a26e781e2ad51-Paper-Datasets_and_Benchmarks_Track.pdf\"},{\"title\":\"AI Detection Benchmark 2025: Top Accuracy Results\",\"url\":\"https://hastewire.com/blog/ai-detection-benchmark-2025-top-accuracy-results\"}]\n\nBased on the web search results, here's what I found about synthetic text detection benchmarks and machine-generated text detection from 2024-2026:\n\n## Key Benchmarks\n\nDetectRL is a new benchmark that includes popular LLMs, abuse-prone domains, well-designed attacks, and varying text lengths. Even state-of-the-art (SOTA) detection techniques still underperformed in \n…[truncated 1092 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T05:52:24.789349+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"model collapse recursive LLM generation depth 2024 2025 2026\"\n\nLinks: [{\"title\":\"AI models collapse when trained on recursively generated data | Nature\",\"url\":\"https://www.nature.com/articles/s41586-024-07566-y\"},{\"title\":\"AI models collapse when trained on recursively generated data - PubMed\",\"url\":\"https://pubmed.ncbi.nlm.nih.gov/39048682/\"},{\"title\":\"Model collapse - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Model_collapse\"},{\"title\":\"Future of AI Models: A Computational perspective on Model collapse\",\"url\":\"https://arxiv.org/pdf/2511.05535\"},{\"title\":\"The AI Model Collapse Risk is Not Solved in 2025\",\"url\":\"https://www.winssolutions.org/ai-model-collapse-2025-recursive-training/\"},{\"title\":\"AI models collapse when trained on recursively generated data\",\"url\":\"https://vittoriodublinoblog.org/wp-content/uploads/2025/07/ai-models-collapse-when-trained-on-recursively-generated-data.pdf\"},{\"title\":\"[2511.05535] Future of AI Models: A Computational perspective on Model collapse\",\"url\":\"https://arxiv.org/abs/2511.05535\"},{\"title\":\"BEYOND MODEL COLLAPSE: SCALING UP WITH SYN\",\"url\":\"https://openreview.net/pdf?id=MQXrTMonT1\"},{\"title\":\"[2305.17493] The Curse of Recursion: Training on Generated Data Makes Models Forget\",\"url\":\"https://arxiv.org/abs/2305.17493\"},{\"title\":\"Model Collapse Demystified: The Case of Regression\",\"url\":\"https://arxiv.org/html/2402.07712v1\"}]\n\nI've found comprehensive information about model collapse and recursive LLM generation. Here are the key findings:\n\n## What is Model Collapse?\n\nModel collapse can occur in LLMs as well as in variational autoencoders (VAEs) and Gaussian mixture models (GMMs). Training generative artificial intelligence on real and generated content can lead to a collapse in the ability of the models to generate diverse high-quality output.\n\n## How It Works\n\nModel collapse is a degenerative process whereby, over time, models forget the true underlying data distribution when learning indiscri\n…[truncated 1252 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T05:52:24.789524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"data contamination depth iterative paraphrase detection 2024 2025 2026\"\n\nLinks: [{\"title\":\"A Comprehensive Survey of Contamination Detection Methods in Large Language Models\",\"url\":\"https://arxiv.org/html/2404.00699v4\"},{\"title\":\"A Survey on Data Contamination for Large Language Models\",\"url\":\"https://arxiv.org/html/2502.14425v1\"},{\"title\":\"Perturb Your Data: Paraphrase-Guided Training Data Watermarking\",\"url\":\"https://arxiv.org/pdf/2512.17075\"},{\"title\":\"Detecting Data Contamination in LLMs via In-Context Learning\",\"url\":\"https://arxiv.org/html/2510.27055v1\"},{\"title\":\"Benchmarking Large Language Models Under Data Contamination: A Survey from Static to Dynamic Evaluation\",\"url\":\"https://arxiv.org/html/2502.17521v2\"},{\"title\":\"GitHub - lyy1994/awesome-data-contamination: The Paper List on Data Contamination for Large Language Models Evaluation. · GitHub\",\"url\":\"https://github.com/lyy1994/awesome-data-contamination\"},{\"title\":\"Evading Data Contamination Detection for Language Models is (too) Easy | OpenReview\",\"url\":\"https://openreview.net/forum?id=Nk1MegaPuG\"},{\"title\":\"A Survey on Data Contamination for Large Language Models\",\"url\":\"https://openreview.net/pdf?id=O3rnGt7DK7\"},{\"title\":\"A Deep Learning Approach for Paragraph-Level Paraphrase Generation for Plagiarism Detection | Neural Processing Letters | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s11063-025-11771-9\"},{\"title\":\"Published as a conference paper at ICLR 2024\",\"url\":\"https://openreview.net/pdf?id=zWqr3MQuNs\"}]\n\nI found several highly relevant research results on data contamination and paraphrase detection in Large Language Models from 2024-2026. Here are the key findings:\n\n## Recent Surveys and Comprehensive Reviews\n\nA comprehensive survey from early 2025 focuses on contamination detection methodologies in LLMs, providing an overview of current research in the field. Additionally, data contamination—the unintended overlap between training and te\n…[truncated 1330 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T05:52:24.789701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"generational depth estimation recursive text generation detection 2024 2025\"\n\nLinks: [{\"title\":\"Machine-generated text detection prevents language model collapse\",\"url\":\"https://arxiv.org/html/2502.15654\"},{\"title\":\"(PDF) Machine-generated text detection prevents language model collapse\",\"url\":\"https://www.researchgate.net/publication/397412242_Machine-generated_text_detection_prevents_language_model_collapse\"},{\"title\":\"Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection\",\"url\":\"https://arxiv.org/html/2604.13692v1\"},{\"title\":\"Diversity Boosts AI-Generated Text Detection\",\"url\":\"https://arxiv.org/pdf/2509.18880\"},{\"title\":\"GitHub - RUC-NLPIR/GenIR-Survey: [TOIS 2025] This is the official repository for the generative information retrieval survey. · GitHub\",\"url\":\"https://github.com/RUC-NLPIR/GenIR-Survey\"},{\"title\":\"Robust AI-Generated Text Detection by Restricted ...\",\"url\":\"https://aclanthology.org/2024.findings-emnlp.992.pdf\"},{\"title\":\"GitHub - 52CV/CVPR-2024-Papers · GitHub\",\"url\":\"https://github.com/52CV/CVPR-2024-Papers\"},{\"title\":\"Detecting AI-Generated Text: Factors Influencing Detectability with Current Methods\",\"url\":\"https://arxiv.org/html/2406.15583v1\"},{\"title\":\"GitHub - 52CV/CVPR-2025-Papers · GitHub\",\"url\":\"https://github.com/52CV/CVPR-2025-Papers\"},{\"title\":\"1 Retrieval-Augmented Generation for Large Language Models: A Survey\",\"url\":\"https://www.rivista.ai/wp-content/uploads/2025/09/2312.10997v5.pdf\"}]\n\nBased on the web search results, here are the key findings related to generational depth estimation, recursive text generation, and detection in 2024-2025:\n\n## Machine-Generated Text Detection and Model Collapse\n\nResearch in 2025 proposes methods for preventing model collapse by guided resampling of training data using confidence estimates from machine-generated text detectors. Model collapse is a degenerative process in which models recursively trained on generational data ex\n…[truncated 1416 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T05:52:24.789884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "MGTBench machine generated text detection benchmark 2024 ACM CCS"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T05:52:24.790007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "DetectRL benchmark LLM generated text detection NeurIPS 2024"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T05:52:24.790121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"beyond model collapse\" scaling synthetic data 2025 ICLR"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T05:52:24.790239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "intrinsic dimension AI text detection 2024 2025"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T05:52:24.790396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"MGTBench machine generated text detection benchmark 2024 ACM CCS\"\n\nLinks: [{\"title\":\"MGTBench: Benchmarking Machine-Generated Text Detection | Proceedings of the 2024 on ACM SIGSAC Conference on Computer and Communications Security\",\"url\":\"https://dl.acm.org/doi/10.1145/3658644.3670344\"},{\"title\":\"MGTBench: Benchmarking Machine-Generated Text Detection Xinlei He\",\"url\":\"https://xinyueshen.me/papers/CCS24-MGTBench.pdf\"},{\"title\":\"GitHub - xinleihe/MGTBench\",\"url\":\"https://github.com/xinleihe/MGTBench\"},{\"title\":\"MGTBench: Benchmarking Machine-Generated Text Detection | Proceedings of the 2024 on ACM SIGSAC Conference on Computer and Communications Security\",\"url\":\"https://doi.org/10.1145/3658644.3670344\"},{\"title\":\"[PDF] MGTBench: Benchmarking Machine-Generated Text Detection | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/MGTBench:-Benchmarking-Machine-Generated-Text-He-Shen/e7ba478aad9b9534a9f632b85ad87177f5587189\"},{\"title\":\"IMGTB: A Framework for Machine-Generated Text ...\",\"url\":\"https://aclanthology.org/2024.acl-demos.17.pdf\"},{\"title\":\"MGTBench: Benchmarking Machine-Generated Text Detection Xinlei He Xinyue Shen\",\"url\":\"https://arxiv.org/pdf/2303.14822\"},{\"title\":\"[2303.14822] MGTBench: Benchmarking Machine-Generated Text Detection\",\"url\":\"https://arxiv.org/abs/2303.14822\"},{\"title\":\"MGTBench: Benchmarking Machine-Generated Text Detection | Request PDF\",\"url\":\"https://www.researchgate.net/publication/386590289_MGTBench_Benchmarking_Machine-Generated_Text_Detection\"},{\"title\":\"(PDF) MGTBench: Benchmarking Machine-Generated Text Detection\",\"url\":\"https://www.researchgate.net/publication/369556294_MGTBench_Benchmarking_Machine-Generated_Text_Detection\"}]\n\nI've found comprehensive information about MGTBench. Here are the key findings:\n\n## MGTBench Overview\n\nMGTBench is the first benchmark framework for machine-generated text (MGT) detection against powerful LLMs. The paper was published in the Proceedings of the 2024\n…[truncated 1435 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T05:52:24.790571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"DetectRL benchmark LLM generated text detection NeurIPS 2024\"\n\nLinks: [{\"title\":\"GitHub - NLP2CT/DetectRL: [NeurIPS 2024 D&B] DetectRL: Benchmarking LLM-Generated Text Detection in Real-World Scenarios\",\"url\":\"https://github.com/NLP2CT/DetectRL\"},{\"title\":\"DetectRL: Benchmarking LLM-Generated Text Detection in Real-World Scenarios\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/b61bdf7e9f64c04ec75a26e781e2ad51-Paper-Datasets_and_Benchmarks_Track.pdf\"},{\"title\":\"DetectRL: Benchmarking LLM-Generated Text Detection in Real-World Scenarios | OpenReview\",\"url\":\"https://openreview.net/forum?id=ZGMkOikEyv\"},{\"title\":\"GitHub - junchaoIU/DetectRL: [NeurIPS 2024 D&B] DetectRL: Benchmarking LLM-Generated Text Detection in Real-World Scenarios\",\"url\":\"https://github.com/junchaoIU/DetectRL\"},{\"title\":\"NeurIPS Poster DetectRL: Benchmarking LLM-Generated Text Detection in Real-World Scenarios\",\"url\":\"https://neurips.cc/virtual/2024/poster/97633\"},{\"title\":\"[2410.23746] DetectRL: Benchmarking LLM-Generated Text Detection in Real-World Scenarios\",\"url\":\"https://arxiv.org/abs/2410.23746\"},{\"title\":\"DetectRL: Benchmarking LLM-Generated Text Detection in Real-World Scenarios\",\"url\":\"https://neurips.cc/media/neurips-2024/Slides/97633.pdf\"},{\"title\":\"GitHub - NLP2CT/LLM-generated-Text-Detection: A survey and reflection on the latest research breakthroughs in LLM-generated Text detection, including data, detectors, metrics, current issues and future directions. · GitHub\",\"url\":\"https://github.com/nlp2ct/llm-generated-text-detection\"},{\"title\":\"DetectRL: Benchmarking LLM-Generated Text Detection in Real-World Scenarios - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv241023746W/abstract\"},{\"title\":\"(PDF) DetectRL: Benchmarking LLM-Generated Text Detection in Real-World Scenarios\",\"url\":\"https://www.researchgate.net/publication/385443385_DetectRL_Benchmarking_LLM-Generated_Text_Detection_in_Real-World_Scenarios\"}]\n\nBased on the searc\n…[truncated 1489 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T05:52:24.790756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"beyond model collapse\" scaling synthetic data 2025 ICLR\"\n\nLinks: [{\"title\":\"Strong Model Collapse | OpenReview\",\"url\":\"https://openreview.net/forum?id=et5l9qPUhm\"},{\"title\":\"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification | OpenReview\",\"url\":\"https://openreview.net/forum?id=MQXrTMonT1\"},{\"title\":\"[2406.07515] Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\",\"url\":\"https://arxiv.org/abs/2406.07515\"},{\"title\":\"Published as a conference paper at ICLR 2025 STRONG MODEL COLLAPSE\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/284afdc2309f9667d2d4fb9290235b0c-Paper-Conference.pdf\"},{\"title\":\"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\",\"url\":\"https://iclr.cc/media/iclr-2025/Slides/29933.pdf\"},{\"title\":\"[PDF] Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/6404e954b18c3677c52937b0be2e12daba035c29\"},{\"title\":\"Published as a conference paper at ICLR 2025 STRONG MODEL COLLAPSE\",\"url\":\"https://par.nsf.gov/servlets/purl/10649434\"},{\"title\":\"GitHub - pengr/LLM-Synthetic-Data: A live reading list for LLM data synthesis (Updated to July, 2025). · GitHub\",\"url\":\"https://github.com/pengr/LLM-Synthetic-Data\"},{\"title\":\"ICML Beyond Model Collapse: Scaling Up with Synthesized Data Requires Reinforcement\",\"url\":\"https://icml.cc/virtual/2024/37844\"},{\"title\":\"ICLR Poster Strong Model Collapse\",\"url\":\"https://iclr.cc/virtual/2025/poster/32070\"}]\n\nBased on the search results, I found two relevant papers from ICLR 2025 that address scaling synthetic data and model collapse:\n\n## 1. \"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\"\n\nLarge Language Models are increasingly trained on data generated by other LLMs, raising concerns about model collapse—a drop in model performance when training sets include generated data. The paper in\n…[truncated 1428 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T05:52:24.791177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"intrinsic dimension AI text detection 2024 2025\"\n\nLinks: [{\"title\":\"NeurIPS Poster Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts\",\"url\":\"https://neurips.cc/virtual/2023/poster/72624\"},{\"title\":\"Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts | OpenReview\",\"url\":\"https://openreview.net/forum?id=8uOZ0kNji6\"},{\"title\":\"[2306.04723] Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts\",\"url\":\"https://arxiv.org/abs/2306.04723\"},{\"title\":\"[PDF] Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/a5fab19553e623e8787383cb3da76b8a3c42a8f4\"},{\"title\":\"[Quick Review] Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts\",\"url\":\"https://liner.com/review/intrinsic-dimension-estimation-for-robust-detection-of-aigenerated-texts\"},{\"title\":\"(PDF) Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts\",\"url\":\"https://www.researchgate.net/publication/371414255_Intrinsic_Dimension_Estimation_for_Robust_Detection_of_AI-Generated_Texts\"},{\"title\":\"Detecting AI-Generated Text: : Factors Influencing ...\",\"url\":\"https://dl.acm.org/doi/pdf/10.1613/jair.1.16665\"},{\"title\":\"Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts\",\"url\":\"https://openreview.net/pdf?id=8uOZ0kNji6\"},{\"title\":\"Enhancing the Robustness of AI-Generated Text Detectors: A Survey\",\"url\":\"https://www.mdpi.com/2227-7390/13/13/2145\"},{\"title\":\"Intrinsic dimension estimation for robust detection of AI-generated texts | Proceedings of the 37th International Conference on Neural Information Processing Systems\",\"url\":\"https://dl.acm.org/doi/10.5555/3666122.3667828\"}]\n\nBased on the search results, I found comprehensive information about intrinsic dimension as a method for AI-generated text detection. Here's what the research shows:\n\n## Key Findings\n\nResearchers proposed intrinsic d\n…[truncated 1626 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T05:52:24.791360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Fast-DetectGPT improved detection machine generated text ICLR 2024"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T05:52:24.791486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"strong model collapse\" Dohmatob ICLR 2025"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T05:52:24.791612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ordinal regression deep learning survey 2024 2025"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T05:52:24.791760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Fast-DetectGPT improved detection machine generated text ICLR 2024\"\n\nLinks: [{\"title\":\"GitHub - baoguangsheng/fast-detect-gpt: Code base for ICLR 2024 \\\"Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature\\\". · GitHub\",\"url\":\"https://github.com/baoguangsheng/fast-detect-gpt\"},{\"title\":\"Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature | OpenReview\",\"url\":\"https://openreview.net/forum?id=Bpcgcr8E8Z\"},{\"title\":\"Published as a conference paper at ICLR 2024\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/6b8c6f846c3575e1d1ad496abea28826-Paper-Conference.pdf\"},{\"title\":\"ICLR Poster Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature\",\"url\":\"https://iclr.cc/virtual/2024/poster/19201\"},{\"title\":\"(PDF) FAST-DETECTGPT: EFFICIENT ZERO-SHOT DETEC- TION OF MACHINE-GENERATED TEXT VIA CONDI- TIONAL PROBABILITY CURVATURE\",\"url\":\"https://www.researchgate.net/publication/388188914_FAST-DETECTGPT_EFFICIENT_ZERO-SHOT_DETEC-_TION_OF_MACHINE-GENERATED_TEXT_VIA_CONDI-_TIONAL_PROBABILITY_CURVATURE\"},{\"title\":\"[2310.05130] Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature\",\"url\":\"https://arxiv.org/abs/2310.05130\"},{\"title\":\"Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/hash/6b8c6f846c3575e1d1ad496abea28826-Abstract-Conference.html\"},{\"title\":\"TRAINING-FREE LLM-GENERATED TEXT DETECTION\",\"url\":\"https://openreview.net/pdf?id=vo4AHjowKi\"},{\"title\":\"Releases · baoguangsheng/fast-detect-gpt\",\"url\":\"https://github.com/baoguangsheng/fast-detect-gpt/releases\"},{\"title\":\"ICLR 2024 | Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text - YouTube\",\"url\":\"https://www.youtube.com/watch?v\n…[truncated 1396 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T05:52:24.791964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"strong model collapse\" Dohmatob ICLR 2025\"\n\nLinks: [{\"title\":\"Published as a conference paper at ICLR 2025 STRONG MODEL COLLAPSE\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/284afdc2309f9667d2d4fb9290235b0c-Paper-Conference.pdf\"},{\"title\":\"Strong Model Collapse | OpenReview\",\"url\":\"https://openreview.net/forum?id=et5l9qPUhm\"},{\"title\":\"Published as a conference paper at ICLR 2025 STRONG MODEL COLLAPSE\",\"url\":\"https://par.nsf.gov/servlets/purl/10649434\"},{\"title\":\"[2410.04840] Strong Model Collapse\",\"url\":\"https://arxiv.org/abs/2410.04840\"},{\"title\":\"ICLR Poster Strong Model Collapse\",\"url\":\"https://iclr.cc/virtual/2025/poster/32070\"},{\"title\":\"Published as a conference paper at ICLR 2025\",\"url\":\"https://openreview.net/pdf?id=MQXrTMonT1\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.\",\"url\":\"https://arxiv.org/html/2510.16657v1\"},{\"title\":\"Elvis DOHMATOB's Post\",\"url\":\"https://www.linkedin.com/posts/elvis-dohmatob-53bba979_papers-accepted-at-iclr-2025-an-effective-activity-7307242348252442624-vT2L\"},{\"title\":\"dblp: Elvis Dohmatob\",\"url\":\"https://dblp.org/pid/134/9794.html\"},{\"title\":\"Strong Model Collapse - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv241004840D/abstract\"}]\n\nI found the paper! Here are the search results for \"Strong Model Collapse\" by Dohmatob and colleagues, published at ICLR 2025:\n\n## Overview\n\nThe paper establishes a strong form of the model collapse phenomenon, a critical performance degradation due to synthetic data in the training corpus, within the scaling laws paradigm that underpins large neur\n…[truncated 1122 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T05:52:24.792155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ordinal regression deep learning survey 2024 2025\"\n\nLinks: [{\"title\":\"A Survey on Ordinal Regression: Applications, Advances, and Prospects\",\"url\":\"https://arxiv.org/html/2503.00952v1\"},{\"title\":\"A Deep Learning Ordinal Classifier\",\"url\":\"https://thesai.org/Downloads/Volume16No3/Paper_30-A_Deep_Learning_Ordinal_Classifier.pdf\"},{\"title\":\"[2503.00952] A Survey on Ordinal Regression: Applications, Advances and Prospects\",\"url\":\"https://arxiv.org/abs/2503.00952\"},{\"title\":\"Deep and interpretable regression models for ordinal outcomes - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S003132032100443X\"},{\"title\":\"1 Tackling Ordinal Regression Problem for Heterogeneous Data: Sparse and Deep\",\"url\":\"https://arxiv.org/pdf/1907.12508\"},{\"title\":\"A Survey on Ordinal Regression: Applications, Advances and Prospects | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/survey-ordinal-regression-applications-advances-prospects\"},{\"title\":\"A novel deep ordinal classification approach for aesthetic quality control classification | Neural Computing and Applications | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s00521-022-07050-6\"},{\"title\":\"[1901.07884] Rank consistent ordinal regression for neural networks with application to age estimation\",\"url\":\"https://arxiv.org/abs/1901.07884\"},{\"title\":\"GitHub - ayrna/orca: Ordinal Regression and Classification Algorithms · GitHub\",\"url\":\"https://github.com/ayrna/orca\"},{\"title\":\"Active learning for ordinal classification based on expected cost minimization | Scientific Reports\",\"url\":\"https://www.nature.com/articles/s41598-022-26844-1\"}]\n\nBased on the web search results, here are the key findings on ordinal regression and deep learning in 2024-2025:\n\n## Recent Survey (2025)\n\nA comprehensive survey on ordinal regression presents an examination of advances and applications, systematically classifying techniques into three categories: Con\n…[truncated 1691 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T05:52:24.792416+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 1. Cite-Bib 一致性\n\n**27 个 cite key，27 个 bib entry，完全匹配。**\n\n- 缺失的 bib entry：**无**\n- 孤立的 bib entry（未被引用）：**无**\n\n---\n\n## 2. 近期文献遗漏\n\n以下论文在搜索中被发现具有较高相关性，但未出现在 related_work.tex 中：\n\n| 论文 | Venue | Year | 与本工作的关系 |\n|------|-------|------|----------------|\n| **Fast-DetectGPT: Efficient Zero-Shot Detection via Conditional Probability Curvature** (Bao et al.) | ICLR | 2024 | 已引 DetectGPT 的直接后继，速度提升 340x、准确率相对提升 75%。作为 binary detection 段落的重要方法缺席 |\n| **Strong Model Collapse** (Dohmatob, Feng, Subramonian, Kempe) | ICLR | 2025 | 与已引的 dohmatob2024model 同一作者，证明即使极小比例（1/1000）合成数据也导致 collapse，且更大模型会放大 collapse。直接强化本文动机 |\n| **Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification** (Feng et al.) | ICLR | 2025 | 证明外部验证器可防止 collapse——depth estimation 本质上就是一种验证信号，与本文 curation 框架直接对接 |\n| **DetectRL: Benchmarking LLM-Generated Text Detection in Real-World Scenarios** (Wu et al.) | NeurIPS D&B | 2024 | 展示 SOTA 检测器在真实场景下性能显著下降，为本文 depth estimation 的实用价值提供背景支撑 |\n| **MGTBench: Benchmarking Machine-Generated Text Detection** (He et al.) | ACM CCS | 2024 | 首个系统性 MGT 检测基准，含 text attribution 任务（多类别归属），与 depth 分类有方法论交叉 |\n| **Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts** (Tulchinskii et al.) | NeurIPS | 2023 | 用内在维度作为 zero-shot 检测特征，AI 文本的内在维度系统性低于人类文本约 1.5，可作为 depth 特征的潜在补充 |\n\n**优先级建议**：Strong Model Collapse 和 Beyond Model Collapse 与本文动机最直接相关（model collapse + curation），建议优先补充。Fast-DetectGPT 作为 DetectGPT 的重要后继也应提及。\n\n---\n\n## 3. Bib 格式问题\n\n| 条目 | 问题 |\n|------|------|\n| `shumailov2024collapse` | Nature 文章缺少 `volume={631}` 和 `pages={755--759}`，应补全 |\n| `alain2017understanding` | 类型为 `@article`，journal 为 arXiv preprint，但该论文实际是 ICLR 2017 Workshop 论文。建议改为 `@inproceedings` 并注明 workshop，或保留 `@article` 但 year 与 arXiv ID (1610.01644, 2016年) 不完全对应 |\n| `shi2025generalization` | `note={Spotlight}` 为非标准字段，部分 citation style 会将其直接输出到正文中，建议删除或移入注释 |\n| Venue 命名 | NeurIPS 统一用 `Advances in NeurIPS`，其余用 `Proceedings of X` — 风格一致，可接受。但 `Advances in NeurIPS` 是非正式缩写（全称为 `Advances in Neural Information Processing Systems`），严格场合建议统一用全称或纯缩写 |\n| Author 格式 | 全部 `{Last, First and ...}` 格式，一致 ✓ |\n| Year 字段 | 全部完整 ✓ |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_related-work-completeness_20260514T054916"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/writing-related-work-completeness.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a3801f5bd7590b50138",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "exp 7b cross transfer v2",
+  "task_key": "worker_exp_7b-cross-transfer-v2_20260519T135346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_7b-cross-transfer-v2_20260519T135346_result.json",
+    "occurrence": 1,
+    "bytes": 1802,
+    "sha256": "951e33f9c7518492aa7e5793df021701b6128964f6a5067d18de1832eeb11d7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## C4 域 7B Cross-Model Transfer Matrix 结果\n\n数据：3 个 7B 模型 × C4 domain，每模型 30000 行（5000 docs × 6 depths），15 个共同特征。\n\n### 3×3 Transfer Matrix (mean_pairwise_auc)\n\n| Train \\ Test | Qwen2.5-7B | LLaMA-3.1-8B | Mistral-7B |\n|---|---|---|---|\n| **Qwen2.5-7B** | **0.6438** | 0.6117 | 0.6272 |\n| **LLaMA-3.1-8B** | 0.6299 | **0.6217** | 0.6169 |\n| **Mistral-7B** | 0.6341 | 0.6067 | **0.6321** |\n\n### Retention Rate\n\n| Model | Diagonal | Off-diag Mean | Retention |\n|---|---|---|---|\n| Qwen2.5-7B | 0.6438 | 0.6195 | **96.2%** |\n| LLaMA-3.1-8B | 0.6217 | 0.6234 | **100.3%** |\n| Mistral-7B | 0.6321 | 0.6204 | **98.2%** |\n\n### 1v2 AUC Transfer (early-depth, signal 最强的 pair)\n\n| Train \\ Test | Qwen2.5-7B | LLaMA-3.1-8B | Mistral-7B |\n|---|---|---|---|\n| Qwen2.5-7B | 0.6283 | 0.5959 | 0.5907 |\n| LLaMA-3.1-8B | 0.6034 | 0.6091 | 0.5859 |\n| Mistral-7B | 0.6054 | 0.5955 | 0.5919 |\n\n### 0v1 AUC Transfer (depth 0 vs 1，区分度最高)\n\n| Train \\ Test | Qwen2.5-7B | LLaMA-3.1-8B | Mistral-7B |\n|---|---|---|---|\n| Qwen2.5-7B | 0.9875 | 0.9225 | 0.9757 |\n| LLaMA-3.1-8B | 0.9917 | 0.9232 | 0.9492 |\n| Mistral-7B | 0.9834 | 0.8961 | 0.9846 |\n\n### vs 1.5B (80-92% retention) 对比\n\n7B cross-model retention 为 **96.2%–100.3%**，显著高于 1.5B 的 80–92%。这表明：\n- 更大模型的 contamination signature 更加 universal / model-agnostic\n- OBD 特征在 7B scale 下具备极强的跨模型迁移能力，甚至 off-diagonal 有时超过 diagonal（LLaMA-3.1-8B retention 100.3%）\n- 深层 depth pair（3v4, 4v5）AUC 接近 0.50（随机），transfer 退化可忽略，因为 signal 本身已消失\n\n结果已保存至 `results/exp_7b_cross_transfer/cross_transfer_7b_c4.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-7b-cross-transfer-v2.md"
+}

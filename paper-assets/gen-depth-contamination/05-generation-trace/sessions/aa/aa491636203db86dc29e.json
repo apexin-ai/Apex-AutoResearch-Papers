@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "aa491636203db86dc29e",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code exp 025 pythia filtering",
+  "task_key": "worker_code_exp_025_pythia_filtering_20260518T080547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_025_pythia_filtering_20260518T080547.log",
+    "occurrence": 1,
+    "bytes": 622907,
+    "sha256": "5e94428e2f5e6082eecaf2974cf97c78ab06245e5846925fd88a070ebe859cfa"
+  },
+  "statistics": {
+    "messages": 227,
+    "user_turns": 0,
+    "tool_calls": 85,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 85,
+      "tool_result": 85,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 227,
+      "chunks": [
+        {
+          "path": "aa491636203db86dc29e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "aa491636203db86dc29e-part-0002.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-025-pythia-filtering.md"
+}

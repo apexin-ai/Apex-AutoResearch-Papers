@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ead244d90587d0773e19",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops exp contamination rate sweep continue",
+  "task_key": "worker_ops_exp_contamination_rate_sweep_continue_20260520T175717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp_contamination_rate_sweep_continue_20260520T175717_result.json",
+    "occurrence": 1,
+    "bytes": 1270,
+    "sha256": "6d34ee34a6a1930e660378a98224d5165ac9ece14d31d7797941763f1d4f214d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。汇总如下：\n\n## exp_contamination_rate_sweep 最终结果\n\n| Rate | Strategy | MMLU | HellaSwag | ARC-C |\n|------|----------|------|-----------|-------|\n| 10% | no_filter | 0.5878 | 0.6652 | 0.4471 |\n| 10% | binary | 0.5868 | **0.6709** | 0.4462 |\n| 10% | graduated | 0.5873 | 0.6672 | 0.4428 |\n| 30% | no_filter | 0.5885 | 0.6625 | 0.4334 |\n| 30% | binary | 0.5867 | **0.6702** | **0.4480** |\n| 30% | graduated | 0.5873 | 0.6640 | 0.4334 |\n| 50% | no_filter | 0.5858 | 0.6582 | 0.4300 |\n| 50% | binary | **0.5913** | **0.6700** | **0.4505** |\n| 50% | graduated | 0.5848 | 0.6606 | 0.4292 |\n| 100% | no_filter | 0.5707 | 0.6217 | 0.3891 |\n| 100% | binary | N/A | N/A | N/A |\n| 100% | graduated | 0.5701 | 0.6215 | 0.3933 |\n\n**关键发现：**\n- Binary filtering 在 10-50% 污染率上的 HellaSwag 和 ARC-C 均优于 no_filter，效果随污染率增大而增强\n- 50% 时 binary 优势最大：HellaSwag +1.18pp，ARC-C +2.05pp\n- 100% 时 binary 不可用（所有数据被过滤掉，0 samples）\n- Graduated 介于 no_filter 和 binary 之间，但更靠近 no_filter\n- no_filter 有清晰的剂量反应：污染越高分数越低\n\n`summary.json` 已写入两台服务器，registry 已更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp-contamination-rate-sweep-continue.md"
+}

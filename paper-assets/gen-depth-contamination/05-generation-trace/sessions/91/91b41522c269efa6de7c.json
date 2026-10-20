@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91b41522c269efa6de7c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code arxiv bootstrap ci 3models",
+  "task_key": "worker_code_arxiv_bootstrap_ci_3models_20260523T030224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_arxiv_bootstrap_ci_3models_20260523T030224_result.json",
+    "occurrence": 1,
+    "bytes": 1589,
+    "sha256": "33b30a3042b421bea39777a9c2b825d74e26ef7ad626bfd2a6809a04138b5884"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved to `artifacts/arxiv_2v3_bootstrap_ci.json`. Here's the summary:\n\n## arXiv 2v3 Bootstrap CI Results (Crossscorer Features)\n\n| Model | 2v3 AUC (OOF) | 95% CI | Boot Std | CI lower > θ=0.60 | Perm p |\n|-------|---------------|--------|----------|-------------------|--------|\n| **LLaMA-8B** | 0.6202 | [0.6047, 0.6352] | 0.0077 | **PASS** | 0.001 |\n| **Mistral-7B** | 0.6075 | [0.5939, 0.6223] | 0.0072 | **FAIL** | 0.001 |\n| **Qwen-7B** | 0.5986 | [0.5829, 0.6145] | 0.0078 | **FAIL** | 0.001 |\n\n### K* (CI-based)\n- LLaMA-8B: **K*=3** (2v3 CI lower 0.6047 > 0.60)\n- Mistral-7B: **K*=2** (2v3 CI lower 0.5939 < 0.60)\n- Qwen-7B: **K*=2** (2v3 CI lower 0.5829 < 0.60)\n\n### Cross-check (0v1, 1v2 pairs — all PASS)\n| Model | 0v1 AUC | 1v2 AUC |\n|-------|---------|---------|\n| LLaMA-8B | 0.9627 | 0.8427 |\n| Mistral-7B | 0.9798 | 0.8138 |\n| Qwen-7B | 0.9573 | 0.8163 |\n\n### 关键发现\n\n**\"arXiv K\\*=3 across 3 families\" claim 无法在 95% CI 下成立** — 只有 LLaMA-8B 的 2v3 CI lower bound (0.6047) 超过 θ=0.60。Mistral-7B 和 Qwen-7B 在 crossscorer 设定下 2v3 的 CI lower bound 分别为 0.5939 和 0.5829。\n\n**注意**：这些结果基于 `data/exp_arXiv_*_crossscorer/features.csv` 中的现有特征。Pipeline 的 `--skip_generation` 模式检测到 features.csv 已存在后跳过了特征重新提取。域表中的自评 AUC（LLaMA 0.622, Mistral 0.628, Qwen 0.626）高于 crossscorer AUC，如果需要基于自评特征的 bootstrap CI，需要对 `data/exp_arXiv_*`（非 crossscorer）目录运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-arxiv-bootstrap-ci-3models.md"
+}

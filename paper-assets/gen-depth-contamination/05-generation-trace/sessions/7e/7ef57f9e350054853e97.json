@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "7ef57f9e350054853e97",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "urgent pythia69b nuc check and patch",
+  "task_key": "worker_urgent_pythia69b_nuc_check_and_patch_20260521T223210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_pythia69b_nuc_check_and_patch_20260521T223210.log",
+    "occurrence": 1,
+    "bytes": 1137073,
+    "sha256": "f80c4fdca6898665a4fa37e8431cff4362a5ffc1170cac5a88347c2ff01fa24a"
+  },
+  "statistics": {
+    "messages": 617,
+    "user_turns": 1,
+    "tool_calls": 253,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 103,
+      "tool_call": 253,
+      "tool_result": 253,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 527,
+      "chunks": [
+        {
+          "path": "7ef57f9e350054853e97-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ef57f9e350054853e97-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7ef57f9e350054853e97-part-0003.json",
+          "message_count": 167
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 90,
+      "chunks": [
+        {
+          "path": "7ef57f9e350054853e97-part-0003.json",
+          "message_count": 13
+        },
+        {
+          "path": "7ef57f9e350054853e97-part-0004.json",
+          "message_count": 77
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/urgent-pythia69b-nuc-check-and-patch.md"
+}

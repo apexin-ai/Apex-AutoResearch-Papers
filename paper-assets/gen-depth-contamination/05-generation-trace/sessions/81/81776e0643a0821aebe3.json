@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81776e0643a0821aebe3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp wiki llama8b prep",
+  "task_key": "worker_code_exp_wiki_llama8b_prep_20260517T132851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_wiki_llama8b_prep_20260517T132851_result.json",
+    "occurrence": 1,
+    "bytes": 213,
+    "sha256": "198fbb422afea18a2ac98f9d86f6b0afc80090d078d4006d37014cf816bec8db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪：\n\n- **Seed 数据**: `data/exp_wiki_llama8b/depth_0.jsonl` — 5000 行 ✓\n- **模型路径**: `/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B/config.json` 存在 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-wiki-llama8b-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96b9b55919a71d6c5e76",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code prep pythia retrain analysis",
+  "task_key": "worker_code_prep-pythia-retrain-analysis_20260519T034352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-pythia-retrain-analysis_20260519T034352_result.json",
+    "occurrence": 1,
+    "bytes": 786,
+    "sha256": "86f7b0a156a1b900af4d1b55a6cefc4710f086efeb008b75d2a23acb7957c49c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本就绪，dry-run 完全通过。核心结果：\n\n**两个模型均 K\\*=7（mean 和 CI-conservative 一致）**，确认 retrain K\\* >> prompt K\\* 跨模型成立。\n\n有意思的细节：Pythia 在 depth 1-3 的 AUC 衰减更慢（1v2: 0.947 vs Qwen 0.897），但在 depth 4-6 衰减更快（4v5: 0.691 vs 0.746），最终 6v7 两者接近（0.634 vs 0.641）。\n\n产出文件：\n- 脚本：`scripts/analyze_pythia_retrain_depth7.py`\n- JSON：`results/analysis_pythia_retrain_depth7/comparison.json`\n- LaTeX：`results/analysis_pythia_retrain_depth7/table_retrain_comparison.tex`\n\n实验完成后直接 `python3 scripts/analyze_pythia_retrain_depth7.py` 即可更新结果（Pythia 实验如果还在跑，当前输出的已经是最新数据）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-pythia-retrain-analysis.md"
+}

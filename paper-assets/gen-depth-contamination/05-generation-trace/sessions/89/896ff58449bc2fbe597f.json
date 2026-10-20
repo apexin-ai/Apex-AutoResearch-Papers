@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "896ff58449bc2fbe597f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp arXiv mistral7b crossscorer",
+  "task_key": "worker_analysis_exp_arXiv_mistral7b_crossscorer_20260518T030323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_arXiv_mistral7b_crossscorer_20260518T030323_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "20e2bc1386cddfaf6d1689c55a5576c138d9f05f5a652dbfaead968030de2c92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结果摘要\n\n**K\\* = 3，conclusion = success（scorer-independent）**\n\n### Pairwise AUC 对比\n\n| Depth Pair | Qwen-1.5B (原始) | Pythia-1.4B (cross) | Delta |\n|---|---|---|---|\n| 0v1 | 0.9848 | 0.9798 | -0.005 |\n| 1v2 | 0.8201 | 0.8141 | -0.006 |\n| **2v3** | **0.6275** | **0.6075** | **-0.020** |\n| 3v4 | 0.5295 | 0.5489 | +0.019 |\n| 4v5 | 0.5295 | 0.5391 | +0.010 |\n\n两个 scorer 在 2v3 均 >0.60（Qwen 0.6275, Pythia 0.6075），3v4 均 <0.55，K\\* 判定一致为 3。最大 AUC 差异仅 0.02。\n\n### 关键结论\n\n- **arXiv + Mistral-7B: K\\*=3 是 scorer-independent 的真实信号**\n- 与 Wikipedia 形成对比：Wiki 存在 scorer confound（Qwen→K\\*=2, Pythia→K\\*=1），arXiv 不存在\n- 解释：arXiv 的 depth 信号更强更鲁棒，不受 scorer family 选择影响\n\nRegistry 已更新完整 metrics、log_path、notes。报告已注册至 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-arxiv-mistral7b-crossscorer.md"
+}

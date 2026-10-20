@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8223e6e37c38487be58e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper fix robustness table push",
+  "task_key": "worker_paper_fix_robustness_table_push_20260522T145615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_robustness_table_push_20260522T145615_result.json",
+    "occurrence": 1,
+    "bytes": 656,
+    "sha256": "cef68ec60550f5dba73670ba57d54aa712e5d118b26842b953018418e65a480f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **overfull 修复完成**：76pt overfull hbox 已消失，`\\resizebox{\\columnwidth}{!}{...}` 已包裹 `tab:robustness_10k` 表格\n- **编译正常**：23 页，无新 overfull（仅剩 pre-existing 小 overfull）\n- **commit 成功**：`5eaf90d` — `fix: resizebox for robustness_10k table (76pt overfull hbox)`\n- **push 失败**：服务器 git 没有配置 remote。`.git/config` 中无 `[remote \"origin\"]`。需要你在服务器上 `git remote add origin <repo-url>` 后再 push，或者从本地 `git pull` 服务器的代码。\n- **PDF 路径**：`/root/autodl-tmp/gen-depth-contamination/docs/paper/main.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-robustness-table-push.md"
+}

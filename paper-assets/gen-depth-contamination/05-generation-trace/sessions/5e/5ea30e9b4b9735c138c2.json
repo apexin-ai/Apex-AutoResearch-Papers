@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ea30e9b4b9735c138c2",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp004 bootstrap ci",
+  "task_key": "worker_code_exp004_bootstrap_ci_20260515T231700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp004_bootstrap_ci_20260515T231700_result.json",
+    "occurrence": 1,
+    "bytes": 1036,
+    "sha256": "bc7b500ab43cc1dd476e5312540bf53cff74ddf4d4ac8bf1008dc44be41b7cf6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `artifacts/bootstrap_ci_7b.json`。\n\n## Bootstrap CI + Permutation Test (Qwen-7B, exp-004)\n\n| Pair | AUC | CI Lower | CI Upper | CI Width | Perm p |\n|------|-----|----------|----------|----------|--------|\n| 0v1 | 0.9638 | 0.9607 | 0.9665 | 0.0059 | <0.0001 |\n| 1v2 | 0.6168 | 0.6079 | 0.6261 | 0.0182 | <0.0001 |\n| 2v3 | 0.5492 | 0.5388 | 0.5594 | 0.0205 | <0.0001 |\n| 3v4 | 0.5276 | 0.5170 | 0.5375 | 0.0204 | <0.0001 |\n| 4v5 | 0.5085 | 0.4988 | 0.5191 | 0.0202 | 0.0676 |\n\n**关键发现**:\n- **1v2 CI lower = 0.6079 > 0.60** → K*=2 结论 robust，整个 CI 在 0.60 以上\n- **2v3 CI lower = 0.5388 < 0.56** → depth 2→3 区分力显著低于 1→2，符合 K*=2 的断点\n- **4v5 是唯一 p>0.05 的 pair**（p=0.0676），CI 跨过 0.50 → 该 pair 不显著区别于 chance\n- **0v1 CI 极窄（0.006）**，AUC ~0.96，depth 0→1 区分几乎完美\n- OOF AUC 与之前报告的轻微差异（如 0.9644→0.9638）是 GroupKFold 随机性导致的，在 CI 内"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp004-bootstrap-ci.md"
+}

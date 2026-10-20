@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c8da9f0284ff467ca2c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 fix and restart",
+  "task_key": "worker_infra_exp006_fix_and_restart_20260513T210046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006_fix_and_restart_20260513T210046_result.json",
+    "occurrence": 1,
+    "bytes": 911,
+    "sha256": "7f9017ed6269492484c301fa6a81fb2a98508b57bad16ae8681d4b1e6cefde7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "bc 安装成功，验证通过（`50*25/60 = 20.8`）。\n\n## 汇总\n\n| 项目 | 状态 |\n|------|------|\n| **崩溃原因** | `bc: command not found`，第 68 行 `est_hours=$(echo \"scale=1; $total_runs * 25 / 60\" \\| bc)` |\n| **bc 用途** | 仅用于打印预估 GPU 时间，不影响训练/评测逻辑 |\n| **已完成 run** | 1/50+（仅 base_model 评测，0 个 strategy run） |\n| **Resume 支持** | 有，脚本检查 `eval_results.json` 存在则跳过 |\n| **修复** | 已安装 bc，验证通过 |\n\n### 重启命令\n\n直接重新运行即可，base_model 会被自动跳过：\n\n```bash\ncd /root/autodl-tmp/gen-depth-contamination && \\\nnohup bash scripts/run_exp006.sh --strategy all --seeds \"42 123 456 789 1024\" \\\n  > ~/runs/gen-depth-contamination/exp_006_graduated_filtering.log 2>&1 &\n```\n\n不需要改脚本。预计 ~50 个 run × 25min ≈ 20.8h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-fix-and-restart.md"
+}

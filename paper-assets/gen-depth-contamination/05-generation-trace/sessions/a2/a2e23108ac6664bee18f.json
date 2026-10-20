@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2e23108ac6664bee18f",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "agent / loop_16_1779328541.md",
+  "task_key": "loop_16_1779328541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779328541.md",
+    "occurrence": 1,
+    "bytes": 3621,
+    "sha256": "717182ef457f8e627a68a908336f58a85f7ab9facd2f26e07aec682e8c482b07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-18T00:25:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：cqa1-22115 cuda:0-3（4×4090D），不得用其他服务器/GPU\n- GPU 编号脚本内始终从 0 开始（框架自动映射物理 GPU）\n- arXiv 实验用 2200 docs，C4/Wikipedia 实验用 5000 docs——不要混淆\n- scorer 统一用 Qwen2.5-1.5B，路径 `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B`\n- Wikipedia K*=1 结果不写正文主线，放 Appendix discussion（D054 决策）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-22115，工作目录 `/root/autodl-tmp/gen-depth-contamination`\n- Python：`/root/miniconda3/bin/python3.12`（绝对路径，不走 conda activate）\n- HF cache：`/root/autodl-tmp/.hf_cache/`\n- 模型路径格式：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B`（注意下划线转义）\n- 代码 commit：`0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5`\n- 活跃进程：exp_wiki_llama8b (PID 38142, cuda:2)、exp_wiki_mistral7b (PID 41845, cuda:1)\n- Cron 监控中：exp_wiki_llama8b、exp_wiki_mistral7b\n\n### 3. 📊 当前状态\n**刚做完**：收到 exp_arXiv_qwen7b 完成回调，已派 Worker（worker_analysis_exp_arXiv_qwen7b_20260517T163548）分析结果。Worker 进度：turn 10，已确认 K*=3，正在读详细结果文件。**尚未回调完成**。\n\n**Registry 状态**：\n- exp_arXiv_qwen7b: ANALYZING — Qwen2.5-7B arXiv K*验证，Worker 正在分析\n- exp_wiki_llama8b: RUNNING (cuda:2, PID 38142) — LLaMA-3.1-8B Wikipedia K*验证\n- exp_wiki_mistral7b: RUNNING (cuda:1, PID 41845) — Mistral-7B Wikipedia K*验证\n- exp_32b_c4 / exp_14b_c4 / exp_008_retrain_chain: PREPARING\n\n**等待中**：\n- Worker worker_analysis_exp_arXiv_qwen7b 完成回调\n- exp_wiki_llama8b / exp_wiki_mistral7b cron 完成回调\n- Group C 审稿 Round 2 最终报告\n\n### 4. 📋 待办\n- Worker 分析 exp_arXiv_qwen7b 回调 → 读 Worker 产出，确认 K*=3 → update_registry(DONE) → 汇报 Director（arXiv K*=3 现在有 4 模型交叉验证：Qwen-1.5B/7B + Pythia-1.4B + LLaMA-8B + Mistral-7B）\n- exp_wiki_llama8b cron 回调 → spawn 分析 Worker，对比 Pythia/OLMo Wikipedia K*=1\n- exp_wiki_mistral7b cron 回调 → spawn 分析 Worker，验证 Mistral Wikipedia K*\n- 两个 Wikipedia 实验全部完成 → 汇总 Wikipedia domain 结论，决定 Appendix 内容\n- cuda:0 和 cuda:3 当前空闲（exp_arXiv_qwen7b 已完成释放 cuda:0）→ 考虑提交 exp_14b_c4 / exp_32b_c4（需 Director 确认优先级，DDL 5/25 仅剩 8 天）\n- Group C 审稿最终报告到达 → 处理 reviewer 反馈，可能需补 self_BLEU ablation / theta sensitivity 实验\n\n### 5. 🎯 战略上下文\n- **核心发现**：K*∈{1,2,3}，domain-dependent bounded saturation。C4 web K*=2（7/8 configs），arXiv K*=3（已 4 模型验证），Mistral C4 K*=1（text-intrinsic one-wash，但 arXiv K*=3 推翻了\"one-wash 与 domain 无关\"——D056）\n- **DDL**：EMNLP 2026 ARR May 25，剩 8 天\n- **论文状态**：v4 PDF 已发用户，Paper Agent cross-reference patch 和 Reviewer 覆盖度评估已派单（上轮）\n- **易错点**：\n  - Mistral 的 one-wash 是 domain-specific 而非 model-intrinsic（D056），描述时不要说\"Mistral always K*=1\"\n  - Wikipedia 结果（K*=1）与预期不同（Qwen Wikipedia K*=2），已决定不入正文主线（D054），等 LLaMA/Mistral Wikipedia 数据再最终确认\n  - exp_008_retrain_chain PREPARING 但之前多次 failed，需要 Worker 先排查环境问题再提交\n  - 磁盘 `/autodl-pub` 已用 96%（287G 可用），提交新实验前必须检查\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779328541.md"
+}

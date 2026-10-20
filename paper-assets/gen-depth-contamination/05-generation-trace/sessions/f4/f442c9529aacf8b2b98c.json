@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f442c9529aacf8b2b98c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra check exp003 progress",
+  "task_key": "worker_infra_check_exp003_progress_20260513T075043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_exp003_progress_20260513T075043_result.json",
+    "occurrence": 1,
+    "bytes": 867,
+    "sha256": "ef08654b59d7ca04c81ad770d911e11983f4bee11a83bd47e383c9fc37eb978d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nConfig 1 (greedy):       进行中 — depth 0/1/2 完成, depth 3 进行中 (21/313 batches, 7%)\nConfig 2 (p=0.9/T=1.0):  未开始\nConfig 3 (p=0.95/T=0.7): 未开始\nConfig 4 (p=0.95/T=1.2): 未开始\n\nGPU: 45% utilization, 3919 MiB / 24564 MiB, 50°C\n```\n\n**Config 1 详情**：\n- `data_exp003_greedy/` 已有 depth_0 (4.6MB), depth_1 (6.8MB), depth_2 (6.9MB)\n- depth 3 刚开始 (~2min in)，每 depth ~31min（313 batches × ~6.1s/it）\n- `results_exp003_greedy/` 为空（pipeline 结束后才写评估结果）\n\n**时间估算**：\n- Config 1 剩余：depth 3 (~29min) + depth 4 (~31min) + depth 5 (~31min) ≈ **1.5h**\n- Config 2-4 各需 5 个生成 depth × ~31min ≈ **2.6h/config**\n- 总剩余：1.5 + 2.6×3 ≈ **9.3h**\n\n4 个 config 串行执行（`run_exp003_ablation.sh 1 && 2 && 3 && 4`），只用了 GPU 0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-exp003-progress.md"
+}

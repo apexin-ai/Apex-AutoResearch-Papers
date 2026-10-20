@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3c178897d16d20acebb",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check olmo bootstrap and code progress",
+  "task_key": "worker_check_olmo_bootstrap_and_code_progress_20260520T055154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_olmo_bootstrap_and_code_progress_20260520T055154_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "1dfdd08521c27bce7184b49d8be22f85f35760619b1fad14e77b655ee20042ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### OLMo 10k Bootstrap\n状态: **运行中**\n- Pipeline 今日 12:43 启动，配置: OLMo-1B, C4 continuation, 5000 samples, max depth 5\n- **Step 3 (Depth Chain) ✅ 完成** — 5 个 depth 全部生成完毕 (12:43→13:48, 每 depth ~13 min)\n- **Step 4 (Feature Extraction) 🔄 进行中** — 13:48 开始，当前在 VocabDiv d=1 (~5%)\n- 剩余: 完成 depths 1-5 的特征提取 (~20 min) + 后续 bootstrap 步骤\n- 预计完成: ~14:20-14:30 (北京时间)\n\n注意: 日志显示 `Samples: 5000`，不是 10000。如果需要 10k samples 需要确认配置是否正确（可能 \"10k\" 指的是 bootstrap iterations B=10000 而非 sample 数）。\n\n### Code DeBERTa (cuda:3)\n状态: **运行中**\n- PID 285392 存活，已运行 21h11m\n- 进度: **Fold 1/5, Epoch 1/3, Step 400/1650**\n  - Fold 0 已完成 (3 epochs)\n  - 每 200 steps ≈ 45s → 每 fold ≈ 18.5 min\n- 剩余: fold 1 剩余 ~17 min + folds 2-4 ~58 min = **~75 min**\n- 预计完成: ~15:07 (北京时间)\n- GPU: cuda:3 utilization **97%**, memory **19427/24564 MiB** (79%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-olmo-bootstrap-and-code-progress.md"
+}

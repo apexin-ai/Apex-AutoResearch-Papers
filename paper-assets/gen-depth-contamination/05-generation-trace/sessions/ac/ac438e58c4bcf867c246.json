@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac438e58c4bcf867c246",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "agent / loop_17_1779062371.md",
+  "task_key": "loop_17_1779062371",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779062371.md",
+    "occurrence": 1,
+    "bytes": 4283,
+    "sha256": "1e55aaa84e982f3b3a600d599c4b1950d413349331c102b165cdfac546aace51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-17T23:57:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cqa1-22115 cuda:0-3 (4×4090D 24GB), westd-42896 cuda:0-1 (2×RTX PRO 6000 96GB)。不得用白名单外的 GPU\n- 每个实验必须独立 data 目录——run_pipeline.py 有 skip-if-exists 逻辑，共享目录会静默复用前一个模型的生成数据（M002 教训）\n- 14B/32B 实验如果出 K*=1，需用 Qwen2.5-14B 作 scorer 做 contingency check（不是直接报 negative）。代码 `--scorer_path` 已参数化\n- EMNLP 2026 ARR DDL: **May 25**（距今 ~6 天），论文还需 comprehensive patch\n- exp_008_retrain_chain 状态 PREPARING 但 v2 版已完成（K*≥4, D051），这个 PREPARING 条目可能是残留，不要重复提交\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-22115**: 4×4090D 24GB, 工作目录 `/root/autodl-tmp/gen-depth-contamination`, Python `/root/miniconda3/bin/python`, account=root\n  - 活跃: exp_wiki_scorer_confound_1b5 (PID 180543, cuda:1) — Pythia scorer 重新评分 Qwen-1.5B Wiki 数据\n  - 空闲: cuda:0, cuda:2, cuda:3\n- **westd-42896**: 2×RTX PRO 6000 96GB, 同路径同 Python\n  - 活跃: exp_14b_c4 (PID 8586, cuda:0, 预计 ~May 18 15:30), exp_32b_c4 (PID 14637, cuda:1, 预计 ~May 20 07:00)\n- Scorer 模型: Qwen2.5-1.5B（默认），路径通常在 `/root/autodl-tmp/.hf_cache/`\n- W&B: 未广泛使用（pipeline 自带 JSON 结果）\n- Cron: 3 个活跃（分别监控上述 3 个 RUNNING 实验）\n\n### 3. 📊 当前状态\n**刚完成**: D060 scorer confound 确认（Qwen-7B Wiki K*=2 是 Qwen-1.5B scorer 的 family bias artifact, Pythia scorer 下 K*=1）。Wikipedia 全线统一为 K*=1。核心 matrix 现在是 arXiv(3) > C4(2) > Wiki(1)，干净的 domain hierarchy。\n\n**RUNNING 实验**:\n| exp_id | 服务器 | GPU | 内容 | 预计完成 |\n|--------|--------|-----|------|----------|\n| exp_wiki_scorer_confound_1b5 | cqa1 | cuda:1 | Pythia scorer 重评 Qwen-1.5B Wiki 数据（复验 D060） | 不确定 |\n| exp_14b_c4 | westd | cuda:0 | Qwen2.5-14B C4 K*=? (scale validation) | ~May 18 15:30 |\n| exp_32b_c4 | westd | cuda:1 | Qwen2.5-32B C4 K*=? (scale validation) | ~May 20 07:00 |\n\n**等待中**: 3 个 cron 回调。无待处理的 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- exp_wiki_scorer_confound_1b5 完成 → 如 K*=1 则 D060 双 scale 确认完毕，更新 paper；如 K*=2 则 1.5B scale 有 scorer confound 分歧，需向 Director 汇报\n- exp_14b_c4 完成 → K*=2 则确认 scale invariance (1.5B/7B/8B/14B 全 K*=2)；K*=1 则用 14B scorer 做 contingency（见红线 §1）\n- exp_32b_c4 完成 → 同上，32B 是 scale validation 最后一个数据点\n- 所有 scale experiments 完成 → 综合 paper patch：更新 domain×model table、加 scale column、Mistral case study、scorer confound disclosure、D060 narrative 调整\n- cqa1 cuda:0/2/3 空闲 → 可用于论文相关的计算任务（如绘图脚本、数据后处理）或 retrain-chain 补充实验\n- DDL May 25 逼近 → 论文 patch 是最高优先级，scale data 到手后立即启动 Paper Agent\n\n### 5. 🎯 战略上下文\n- **核心结论**: K* 是 bounded & domain-dependent。arXiv(3) > C4(2) > Wiki(1)。Domain structure 是 K* 的主导因素，model identity 是次要因素（少数 exception: Mistral C4 K*=1, OLMo 跨域 K*=1）\n- **D060 是关键转折**: Wikipedia Qwen K*=2 被证明是 scorer artifact，消解后 domain hierarchy 更 clean。论文 narrative 需要从 \"Qwen uniqueness on Wikipedia\" 转为 \"scorer confound caveat + clean domain ordering\"\n- **易错点 1**: 不要把 exp_008_retrain_chain (PREPARING) 当新任务——v2 版本已完成且结论入了 paper_framing (K*≥4, D051)\n- **易错点 2**: 14B/32B 出 K*=1 不直接是 negative——先做 scorer contingency check（用更大 scorer），因为 1.5B scorer 对 14B/32B 生成文本可能有 capacity mismatch\n- **易错点 3**: cqa1 服务器名在 config 里是 `cqa1-22115`，但 GPU constraint 里写的是 `autodl-4090d`——两者指同一台机器\n- **论文状态**: paper_framing.md 完整但论文 .tex 文件需要 comprehensive patch（D060 scorer confound、scale data、domain×model 完整 table）。距 ARR DDL 6 天，patch 是 critical path\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779062371.md"
+}

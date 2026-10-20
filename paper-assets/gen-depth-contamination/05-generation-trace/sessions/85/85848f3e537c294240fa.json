@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85848f3e537c294240fa",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "read exp E pvalues",
+  "task_key": "worker_read_exp_E_pvalues_20260515T142948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_read_exp_E_pvalues_20260515T142948_result.json",
+    "occurrence": 1,
+    "bytes": 360,
+    "sha256": "7b344a5385f17d7caa9a8d894d2d7a753e894a7cc57cd3b6a4c0ef319f78ba60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "从第一次读取的输出中已提取到两个值：\n\n```\ngraduated_a0.9 vs no-filter (MMLU): p_holm = 0.05229725677477214\nsurprisal vs dsir (MMLU): p_holm = 0.05229725677477214\n```\n\n两个 pair 的 Holm-Bonferroni 校正后 p 值相同（`corrected_p = 0.05229725677477214`），均未达到显著性阈值（`significant: false`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/read-exp-e-pvalues.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f49b9cc930c70b24a47b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper caption reference fix",
+  "task_key": "worker_paper_caption_reference_fix_20260517T080907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_caption_reference_fix_20260517T080907_result.json",
+    "occurrence": 1,
+    "bytes": 1315,
+    "sha256": "e4b8c8ffea55a0c2884cd9703f9f14588c8300984fa68e8e123543588a227cad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译无任何 undefined reference 或 error。\n\n## 修改总结\n\n### 必修 6 处\n\n| # | 文件 | 修改内容 |\n|---|------|---------|\n| 1 | `method.tex:59` | Table caption 补充了 Config/Model/Mode/N 各列含义 |\n| 2 | `experiments_c1.tex:102` | Neural probe caption 补充了 AUC 分类语义和 $K^*_{\\text{neural}}$ 定义 |\n| 3 | `experiments_c1.tex:128` | Cross-domain caption 补充了行语义和 arXiv $K^*{=}3$ 的含义 |\n| 4 | `experiments_c3.tex:11` | Filtering caption 明确了 6 种策略、Binary-ours 和 Graduated 的计算方式 |\n| 5 | `references.bib:basani2026diveye` | 确认已发表于 TMLR 2026，添加 `issn={2835-8856}` |\n| 6 | `references.bib` | `tirumala2023d4`、`xie2023doremi`、`krishna2023paraphrasing` 的 booktitle 统一为 `Advances in Neural Information Processing Systems` |\n\n### 可选 3 处\n\n| # | 文件 | 修改内容 |\n|---|------|---------|\n| 7 | `experiments_c1.tex:55` | $K^*$ vs $\\theta$ 图 caption 补充了 $K^*$ 和 $\\theta$ 符号定义 |\n| 8 | `experiments_c1.tex:69` | Transfer heatmap caption 补充了行列语义和 retention 计算方式 |\n| 9 | `appendix_extended.tex:100` | MMLU 表 caption 补充了 contamination ratio 含义 |\n\n编译结果：20 页 PDF，0 error，0 undefined reference/citation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-caption-reference-fix.md"
+}

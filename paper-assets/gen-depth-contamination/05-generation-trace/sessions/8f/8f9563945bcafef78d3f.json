@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f9563945bcafef78d3f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix related work additions",
+  "task_key": "worker_fix_related_work_additions_20260514T022133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_related_work_additions_20260514T022133_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "0247745b57a056b6697d3299189875789cc31dc44f21bef88414190da22129df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，无 undefined citation、无 missing reference。仅有预已存在的 hyperref PDF string 警告（与本次改动无关）。\n\n完成内容：\n- `related_work.tex`：Binary Detection 段新增 GLTR（早期统计检测）和 Binoculars（cross-perplexity ratio）引用；新增 Ordinal Classification 段落（6 行，含 CORAL 引用、ordinal 适配 depth 的论证、gap statement 指向 OBD）\n- `references.bib`：新增 `gehrmann2019gltr`、`hans2024binoculars`、`cao2020coral` 三个条目\n- PDF 编译成功，17 页，无新增 warning"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-related-work-additions.md"
+}

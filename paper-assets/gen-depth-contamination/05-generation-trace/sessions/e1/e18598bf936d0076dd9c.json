@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e18598bf936d0076dd9c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check wiki 1b5 results",
+  "task_key": "worker_check_wiki_1b5_results_20260518T002445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_wiki_1b5_results_20260518T002445_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "5cf28859cce2259091e0692f24cc33dc2343cecbb67aec55c0e115f52c358c24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验状态：仍在运行**\n\n- **当前阶段：** depth 4 生成中，65/313 batches (21%)\n- **已完成：** depth 1, 2, 3 生成（depth 0 是 seed data，已存在）\n- **剩余：** depth 4 剩 ~248 batches (~15min)，之后还需 depth 5 生成 (~20min) + scoring/分析阶段\n\n**进度概览：**\n\n| 阶段 | 状态 |\n|------|------|\n| depth 0 (seed) | done |\n| depth 1 generation | done |\n| depth 2 generation | done |\n| depth 3 generation | done (08:21) |\n| depth 4 generation | **running** 21% |\n| depth 5 generation | pending |\n| scoring + analysis | pending |\n\n预计 depth 4 在 ~08:37 完成，depth 5 ~08:57，加上 scoring 阶段，整体约 **40-50 分钟后出结果**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-wiki-1b5-results.md"
+}

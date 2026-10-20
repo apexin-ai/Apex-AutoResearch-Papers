@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5641d22a8882bd66d39e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix registry exp007 qwen cont",
+  "task_key": "worker_fix_registry_exp007_qwen_cont_20260513T234012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_registry_exp007_qwen_cont_20260513T234012_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "9b5c52ad905664bda936a7cb09a4be0f6f2d6220ee064368aa95b8c14b79b91e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已更新。修正了 `qwen_cont` 0v1 的两个字段：\n\n| 字段 | 修正前 | 修正后 | 来源 |\n|------|--------|--------|------|\n| `auc` | 0.9972 | 0.9971 | bootstrap mean_auc（之前误用了 exp-017 原始值） |\n| `perm_p` | 0 | 0.002 | perm_pvalue=0.0 + n_permutation=500 → 保守估计 (r+1)/(n+1)=1/501≈0.002，与其余三个模型惯例一致 |\n\n其余 4 个 depth pair（1v2~4v5）数据与源文件一致，未修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-registry-exp007-qwen-cont.md"
+}

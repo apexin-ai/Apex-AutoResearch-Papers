@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fae13c78b99c521e3d88",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "experiment exp 7b scorer ablation",
+  "task_key": "worker_experiment_exp_7b_scorer_ablation_20260520T112713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_exp_7b_scorer_ablation_20260520T112713_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "ed79a73dc4a817b8458b26845466a10131fc9eb0b3806a770eedecbfffda6a2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动并在 cuda:0 上运行。\n\n**确认状态：**\n- GPU 0: PID 316317, 4664MiB 占用, 51% util（Qwen2.5-1.5B Phase 1 正在提取 Pythia C4 depth 0 的 surprisal features，进度 ~35%）\n- 1.5B scorer batch_size=8, 约 8-9 it/s → 每个 depth 625 batches ~75s，6 depths ~7.5min，两个 generator ~15min 完成 Phase 1\n- Phase 2 (7B scorer) batch_size=4，约慢 3-4x，估计 ~45min\n- Bootstrap CI 10k 次 × 5 pairs × 4 configs ~5min\n- **总预估：~65-80min 完成**\n\n**输出目录：**\n- Features: `/root/autodl-tmp/gen-depth-contamination/data/exp_7b_scorer_ablation/{pythia_c4,olmo_c4}__{qwen1.5b,qwen7b}/features.csv`\n- Results: `/root/autodl-tmp/gen-depth-contamination/results/exp_7b_scorer_ablation/all_results.json + summary.txt`\n- Log: `/root/autodl-tmp/gen-depth-contamination/logs/exp_7b_scorer_ablation.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-exp-7b-scorer-ablation.md"
+}

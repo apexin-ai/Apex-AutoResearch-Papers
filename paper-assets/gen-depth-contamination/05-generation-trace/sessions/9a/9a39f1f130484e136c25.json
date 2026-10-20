@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a39f1f130484e136c25",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix deberta code oom",
+  "task_key": "worker_fix_deberta_code_oom_20260520T050814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_deberta_code_oom_20260520T050814_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "1b27d5e9eeab13edcafaaafc487bd404fb91f4369176a94bb81b51b5ff786e72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改已完成，清理已执行。\n\n### Diff\n\n```\n- line 97:  va_dl = DataLoader(DS(va_ids, va_masks, va_labels), batch_size=BS*2, collate_fn=collate, num_workers=2, pin_memory=True)\n+ line 97:  va_dl = DataLoader(DS(va_ids, va_masks, va_labels), batch_size=BS, collate_fn=collate, num_workers=2, pin_memory=True)\n```\n\nEval batch size: 32 → 16。训练 batch size、梯度累积等超参不变。\n\n### 推荐重启命令\n\n```bash\nCUDA_VISIBLE_DEVICES=2 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python scripts/run_deberta_code.py\n```\n\n- `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` 作为额外保险，减少碎片化 OOM\n- `CUDA_VISIBLE_DEVICES=2` 保持和之前一致（脚本内部用 `cuda:0` 是正确的，它映射到物理 GPU 2）\n\n不自行启动，等主 Agent 通过 `submit_training_job` 提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-deberta-code-oom.md"
+}

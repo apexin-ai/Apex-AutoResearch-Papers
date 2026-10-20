@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adab6e753ab21c1d88a4",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp017 bootstrap ci",
+  "task_key": "worker_analysis_exp017_bootstrap_ci_20260513T064414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp017_bootstrap_ci_20260513T064414_result.json",
+    "occurrence": 1,
+    "bytes": 1013,
+    "sha256": "a4f3fffe6861735d37d313f9ec18e7e71ffb88edd1d819405e5561d2e9fd67e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到本地。以下是 4-model bootstrap CI 汇总：\n\n---\n\n## exp-017 Qwen-1.5B-cont（关键结果）\n\n```\nQwen-cont 1v2: AUC=0.6112, CI=[0.6015, 0.6213], p<0.002\n  → CI lower 0.6015 > 0.60 → K*=2 ROBUST\n\nQwen-cont 2v3: AUC=0.5609, CI=[0.5511, 0.5712], p<0.002\nQwen-cont 3v4: AUC=0.5409, CI=[0.5308, 0.5508], p<0.002\nQwen-cont 4v5: AUC=0.5141, CI=[0.5035, 0.5255], p=0.006\n```\n\n**CI 下界 0.6015 刚好跨过 0.60 阈值，K\\*=2 统计稳健，但非常边缘（仅超 0.0015）。**\n\n## 4-model 对比（1v2 pair）\n\n| Model | AUC 1v2 | 95% CI | p-value | K\\*=2 |\n|-------|---------|--------|---------|-------|\n| Qwen-1.5B-rewrite | 0.6955 | [0.6859, 0.7041] | <0.002 | robust |\n| Pythia-1.4B | 0.6539 | [0.6454, 0.6630] | <0.002 | robust |\n| OLMo-1B | 0.6145 | [0.6045, 0.6247] | <0.002 | robust |\n| **Qwen-1.5B-cont** | **0.6112** | **[0.6015, 0.6213]** | **<0.002** | **robust (边缘)** |\n\nJSON 已存至 `artifacts/bootstrap_ci_4model.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp017-bootstrap-ci.md"
+}

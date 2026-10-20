@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad871586e89b3be0b1fd",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "cleanup exp D mcnemar",
+  "task_key": "worker_cleanup_exp_D_mcnemar_20260515T151153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_exp_D_mcnemar_20260515T151153_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "da7e6c729fe610d64af042ad0b22e0d94e3103ddeca101ef2d3b65ffc5d817c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "相关文件如下：\n\n**exp_D_mcnemar 系列：**\n- `exp_D_mcnemar.json` (788B, 5/15 19:26) — 初始版本\n- `exp_D_mcnemar_comprehensive.json` (1575B, 5/15 19:39) — 中间版本\n- `exp_D_mcnemar_final.json` (1437B, 5/15 19:45) — **final 版本，保留**\n- `exp_D_mcnemar_fixed.json` (1337B, 5/15 19:36) — 中间修复版本\n\n**exp_D_obd 系列：**\n- `exp_D_obd_n500.json` (648B, 5/15 18:28) — 旧版本\n- `exp_D_obd_n500_v2.json` (789B, 5/15 18:47) — **registry checkpoint，保留**\n\n**待删除清单（3 个文件）：**\n1. `exp_D_mcnemar.json`\n2. `exp_D_mcnemar_comprehensive.json`\n3. `exp_D_mcnemar_fixed.json`\n4. `exp_D_obd_n500.json`\n\n**保留（2 个文件）：**\n1. `exp_D_mcnemar_final.json`\n2. `exp_D_obd_n500_v2.json`\n\n确认删除这 4 个冗余文件？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-exp-d-mcnemar.md"
+}

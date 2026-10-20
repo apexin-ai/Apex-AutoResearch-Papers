@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "473f5e5809e60a44cea3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis theta sensitivity c4 wiki",
+  "task_key": "worker_analysis_theta_sensitivity_c4_wiki_20260520T035548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_theta_sensitivity_c4_wiki_20260520T035548_result.json",
+    "occurrence": 1,
+    "bytes": 1644,
+    "sha256": "f7f14f2cc75d72cba68d68360adcded7c76e87085fc55b0b2b35c10aee92a514"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已生成。汇总如下：\n\n### C4 DeBERTa vs OBD (Qwen-1.5B)\n\n| θ | DeBERTa K* | OBD K* | ΔK* | DeBERTa pivotal (margin) | OBD pivotal (margin) |\n|---|-----------|--------|-----|--------------------------|----------------------|\n| 0.55 | 4 | 3 | +1 | 3v4 (+0.0113) | 2v3 (+0.0041) |\n| 0.60 | 2 | 2 | 0 | 1v2 (+0.1120) | 1v2 (+0.0210) |\n| 0.625 | 2 | 1 | +1 | 1v2 (+0.0870) | 0v1 (+0.3651) |\n| 0.65 | 2 | 1 | +1 | 1v2 (+0.0620) | 0v1 (+0.3401) |\n| 0.70 | 2 | 1 | +1 | 1v2 (+0.0120) | 0v1 (+0.2901) |\n\n### Wiki DeBERTa vs OBD (Pythia)\n\n| θ | DeBERTa K* | OBD K* | ΔK* | DeBERTa pivotal (margin) | OBD pivotal (margin) |\n|---|-----------|--------|-----|--------------------------|----------------------|\n| 0.55 | 4 | 2 | +2 | 3v4 (+0.0159) | 1v2 (+0.0636) |\n| 0.60 | 3 | 2 | +1 | 2v3 (+0.0059) | 1v2 (+0.0136) |\n| 0.625 | 2 | 1 | +1 | 1v2 (+0.0920) | 0v1 (+0.3707) |\n| 0.65 | 2 | 1 | +1 | 1v2 (+0.0670) | 0v1 (+0.3457) |\n| 0.70 | 2 | 1 | +1 | 1v2 (+0.0170) | 0v1 (+0.2957) |\n\n**输出文件：**\n- C4: `results/exp_deberta_c4_1b5/theta_sensitivity.json`\n- Wiki: `results/exp_deberta_upperbound/theta_sensitivity_wiki_pythia.json`\n\n**要点：**\n- C4/Wiki 的 DeBERTa 在所有 θ 下都比 OBD 多检测 1-2 层深度\n- C4 DeBERTa K* 在 θ 从 0.55→0.60 时从 4 跳降到 2（2v3 ci_lower=0.587 是卡点）\n- Wiki DeBERTa K* 在 θ=0.60 时还能维持 3（2v3 ci_lower=0.6059，margin 仅 0.0059，非常 borderline）\n- OBD 在两个域中 θ≥0.625 时都退化到 K*=1（只能分辨 depth-0 vs depth-1）\n- OBD CI 由 5-fold per-fold AUC bootstrap 估计（10000 次重采样）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-theta-sensitivity-c4-wiki.md"
+}

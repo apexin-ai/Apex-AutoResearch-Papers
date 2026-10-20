@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8f024ec272152e244e4",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis surprisal vs binary",
+  "task_key": "worker_analysis_surprisal-vs-binary_20260515T060559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_surprisal-vs-binary_20260515T060559_result.json",
+    "occurrence": 1,
+    "bytes": 1662,
+    "sha256": "5f5a89e67171d0772f57c2c9721e31a9ccc4aadeaa3ab17609649840dce20d1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n### Summary (mean±std, 5 seeds)\n\n| Strategy | n | MMLU | HellaSwag |\n|---|---|---|---|\n| **base_model** | 1 | 0.6018 | 0.6821 |\n| no-filter | 5 | 0.5865±0.0010 | 0.6638±0.0008 |\n| **binary-ours** | 5 | **0.5941±0.0008** | **0.6701±0.0006** |\n| binary-drayson | 5 | 0.5913±0.0009 | 0.6691±0.0004 |\n| **surprisal** | 5 | 0.5894±0.0009 | 0.6641±0.0006 |\n| graduated_a0.1 | 5 | 0.5873±0.0019 | 0.6640±0.0009 |\n| graduated_a0.3 | 5 | 0.5877±0.0013 | 0.6669±0.0005 |\n| graduated_a0.5 | 5 | 0.5880±0.0013 | 0.6687±0.0008 |\n| graduated_a0.7 | 5 | 0.5892±0.0014 | 0.6695±0.0004 |\n| graduated_a0.9 | 5 | 0.5892±0.0008 | 0.6701±0.0007 |\n\n### Delta: surprisal - binary-ours\n\n| Metric | binary-ours | surprisal | Δ |\n|---|---|---|---|\n| MMLU | 0.5941 | 0.5894 | **-0.0047** |\n| HellaSwag | 0.6701 | 0.6641 | **-0.0061** |\n\n### Per-seed detail\n\n| Run | MMLU | HellaSwag |\n|---|---|---|\n| binary-ours_s42 | 0.5945 | 0.6701 |\n| binary-ours_s123 | 0.5929 | 0.6699 |\n| binary-ours_s456 | 0.5937 | 0.6709 |\n| binary-ours_s789 | 0.5942 | 0.6692 |\n| binary-ours_s1024 | 0.5953 | 0.6706 |\n| surprisal_s42 | 0.5898 | 0.6646 |\n| surprisal_s123 | 0.5889 | 0.6637 |\n| surprisal_s456 | 0.5895 | 0.6632 |\n| surprisal_s789 | 0.5908 | 0.6641 |\n| surprisal_s1024 | 0.5880 | 0.6647 |\n\n**binary-ours 在 MMLU 和 HellaSwag 上均优于 surprisal**，差距分别为 +0.47pp 和 +0.61pp。binary-ours 在所有 5 个 seed 上均一致领先，且是所有策略中最接近 base_model 的（能力保留最好）。graduated_a0.9 的 HellaSwag 与 binary-ours 持平（0.6701），但 MMLU 仍低 0.5pp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-surprisal-vs-binary.md"
+}

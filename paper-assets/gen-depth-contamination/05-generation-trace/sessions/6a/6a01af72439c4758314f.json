@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a01af72439c4758314f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops cqa1 status check and collect",
+  "task_key": "worker_ops_cqa1-status-check-and-collect_20260518T212956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-status-check-and-collect_20260518T212956_result.json",
+    "occurrence": 1,
+    "bytes": 2054,
+    "sha256": "40efafc61516c46414894d27348c8b4ed17247857b134d8107ddca899e76c31f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OLMo 僵尸已清理（PID 78990 已杀）。结果文件已写入。\n\n---\n\n## 实验状态汇总\n\n### 1. exp_qwen_retrain_chain (cuda:0, PID 86210)\n**状态：运行中** — bootstrap CI 阶段，4 对中已完成 2 对\n\n| Pair | 5-fold CV AUC | Bootstrap AUC | 95% CI |\n|------|--------------|---------------|--------|\n| 0v1  | 0.9838       | 0.9942        | [0.9933, 0.9950] |\n| 1v2  | 0.8969       | 0.9611        | [0.9580, 0.9640] |\n| 2v3  | 0.8100       | *running*     | — |\n| 3v4  | 0.7624       | *pending*     | — |\n\n- **K\\* = 4**（已确认）\n- **JSD**: 0v1=0.226, 1v2=0.105, 2v3=0.075, 3v4=0.065（单调递减）\n- 每对 bootstrap 约 30-34 分钟，预计 **~06:10 UTC** 全部完成（约 40 分钟后）\n- GPU 0: 3394MiB / 24564MiB, 0% util（CPU 密集型 bootstrap 阶段）\n\n### 2. exp_code_llama8b (cuda:2, PID 96340)\n**状态：运行中** — depth 1 生成阶段，506/1375 batches (37%)\n\n- 模型: LLaMA-3.1-8B, scorer: Qwen2.5-1.5B\n- 参数: 5000 samples, max_depth=5, batch_size=4, continuation mode\n- 当前速度: ~5.9 s/batch\n- **预估剩余时间**:\n  - depth 1 剩余: ~85 min\n  - depth 2-5: 每个 ~2.25 h, 共 ~9 h\n  - 加上 scoring + features + analysis: **总计 ~10-11 小时**（约 15:30-16:30 UTC）\n- GPU 2: 16052MiB / 24564MiB, 95% util\n\n### 3. OLMo 僵尸\n**已清理** — PID 78990 (tmux session `olmo_download`) 已杀。下载曾因网络超时失败（FileNotFoundError）。其余 PID（78429, 78613, 78940, 78997）此前已不存在。\n\n### GPU 分配\n| GPU | 占用 | 利用率 | 用途 |\n|-----|------|--------|------|\n| 0   | 3.4G/24.6G | 0% | qwen_retrain (bootstrap CPU phase) |\n| 1   | 空闲 | 0% | — |\n| 2   | 16.1G/24.6G | 95% | code_llama8b |\n| 3   | 空闲 | 0% | — |\n\n### 磁盘\n`/root/autodl-tmp`: 74G/250G used (30%)\n\n### 产出文件\n- `artifacts/exp_qwen_retrain_chain/final_results.json` — 已写入当前可用数据（AUC、JSD、已完成的 bootstrap CI），标记 bootstrap 未完成部分为 pending"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-status-check-and-collect.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58afd8a885fdfcba7516",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper proofread prep",
+  "task_key": "worker_paper_proofread_prep_20260522T212115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_proofread_prep_20260522T212115_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "64867a5d3ffdbacb5c743120f219c8f8ca8bea8ff0392d42e50e12a3351dcd52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成：`artifacts/proofread_report.md`\n\n**结果摘要：**\n\n| 类别 | 结果 |\n|------|------|\n| Undefined References | PASS（`sec:extended_decoding` 已修复，无残留问题） |\n| Table 1 vs Registry | Qwen-rw/Pythia/Qwen-cont PASS（≤0.0003 rounding）；**OLMo CRITICAL MISMATCH** |\n| Table robustness_10k | PASS（3个实验全部精确匹配） |\n| Transfer Matrix | PASS（所有值 3dp 内一致） |\n| Spelling/Grammar | PASS（无重复词、无破折号违规、无拼写错误） |\n\n**唯一 Critical Issue：** Registry `exp_002_olmo_depth` 记录 K\\*=2 / 1v2 AUC=0.6146，但论文全篇一致报告 OLMo K\\*=1 / 1v2 AUC=0.508。论文内部自洽，Registry 需要更新为最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-proofread-prep.md"
+}

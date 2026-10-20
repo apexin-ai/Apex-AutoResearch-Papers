@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5f9aa210507fc7f8ba7",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code create deberta code script",
+  "task_key": "worker_code_create_deberta_code_script_20260520T033648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_create_deberta_code_script_20260520T033648_result.json",
+    "occurrence": 1,
+    "bytes": 371,
+    "sha256": "03f88ee46882f4d36d4f80c01e89a30f65c2516e9d7807f1c8fe3f0f7330e1c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并验证完成。\n\n**关键配置行：**\n- L28: `RESULTS_DIR = ROOT / \"results\" / \"exp_deberta_code_qwen1b5\"`\n- L30-32: `EXPERIMENTS = {\"code_qwen1b5\": DATA_DIR / \"exp_code_qwen1b5\"}`\n- L34-36: `OBD_MAP = {\"code_qwen1b5\": ROOT / \"results\" / \"exp_code_qwen1b5\" / \"pairwise_auc.json\"}`\n\n**语法验证：** `SYNTAX_OK`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-create-deberta-code-script.md"
+}

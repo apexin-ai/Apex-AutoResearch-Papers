@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ab7cd55c805be843478",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops urgent check expanded eval",
+  "task_key": "worker_ops_urgent_check_expanded_eval_20260520T191844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_check_expanded_eval_20260520T191844_result.json",
+    "occurrence": 1,
+    "bytes": 1372,
+    "sha256": "6442772f9278186ef066ecfc48755cda80af846970ba3ba52778a6b01c6df5fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **仍在运行**，约完成 60%（6/10 evals done）。当前正在训练 graduated_seed1。GSM8K 所有结果均为 null。\n\n## 当前状态\n\n- **GPU 0**: 活跃运行（64% util, 327W, 11GB），PID 334631\n- **进度**: base + seed0×3 + seed1×2 = 6 evals 完成，剩余 graduated_seed1_eval + seed2×3 = 4 evals\n- **预估剩余时间**: ~80 min（每轮 ~20 min）\n- **GSM8K**: 所有结果为 null，可能评估失败\n\n## 已有结果（seed0 + seed1，部分数据）\n\n| Benchmark | Base | no_filter (2s) | binary (2s) | graduated (1s) | binary-nf delta |\n|-----------|------|----------------|-------------|----------------|-----------------|\n| PIQA | 0.7579 | 0.7514 | 0.7527 | 0.7514 | +0.13pp |\n| TruthfulQA | 0.4659 | 0.4230 | 0.4408 | 0.4225 | +1.78pp |\n| WinoGrande | 0.6456 | 0.6488 | 0.6405 | 0.6488 | -0.83pp |\n| ARC-C | 0.5486 | 0.5171 | 0.5192 | 0.5128 | +0.21pp |\n| GSM8K | null | null | null | null | - |\n\n初步趋势：binary 在 TruthfulQA 上有较明显优势（+1.78pp），其他 benchmark 差异很小。所有策略相比 base model 均有退化（尤其 TruthfulQA、ARC-C），说明 contaminated data 训练损害了通用能力。\n\n## 建议\n\n实验仍在运行，不更新 registry。GSM8K 全部为 null 需要排查——等实验完成后再统一处理结果收集和 registry 更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-check-expanded-eval.md"
+}

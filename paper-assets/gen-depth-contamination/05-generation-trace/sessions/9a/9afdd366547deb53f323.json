@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9afdd366547deb53f323",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops registry audit dream prep",
+  "task_key": "worker_ops_registry-audit-dream-prep_20260519T010327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry-audit-dream-prep_20260519T010327_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "e12001abf6bf4cde700b88c046df9d41e5a4d568f64eb8e7e324d05c335c7e8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册。关键发现：\n\n**Registry 异常**：\n- `exp_code_mistral7b` spec 缺 gpu/pid/log_path，无法验证进程\n- `exp_code_llama8b` 更新超 3h\n- `exp_32b_c4` 更新超 17h 且存在双 PID 冲突，需优先确认\n- ROADMAP 与 registry 存在不一致（`exp_code_pythia1b4` 在 ROADMAP 标 RUNNING 但 registry 无此条目）\n\n**Dream Simulation**：\n- 4 域 K* 值已确定，ROADMAP 已列入\n- 缺 experiment_plan 条目和 paper_framing section\n- 可用现有 Qwen-1.5B 4 域数据先跑 CPU 模拟原型，不阻塞"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-audit-dream-prep.md"
+}

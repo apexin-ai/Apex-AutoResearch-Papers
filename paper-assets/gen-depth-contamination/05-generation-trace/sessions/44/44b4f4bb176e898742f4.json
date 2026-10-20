@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44b4f4bb176e898742f4",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "prep 14b crossscorer ready",
+  "task_key": "worker_prep_14b_crossscorer_ready_20260518T042246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_14b_crossscorer_ready_20260518T042246_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "ab38753e976630b1ca15f36adadbdf1c0dfe4b48a225751b9874cdf84fa7fc0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 准备状态确认\n\n**全部就绪：**\n\n| 检查项 | 状态 |\n|--------|------|\n| 14B AWQ 模型 | 存在于 cqa1 (`/root/autodl-tmp/.hf_cache/Qwen2.5-14B-Instruct-AWQ/`) |\n| `score_14b_confound.py` | 存在，scorer path 正确指向 AWQ 模型 |\n| `exp_14b_scorer_confound.sh` | 存在，可执行，配置正确 |\n| `fetch_14b_data.sh` | 已创建于 cqa1，配置 westd 地址 `connect.westd.seetacloud.com:42896` |\n| cqa1 → westd SSH 连通性 | 已通（生成 ed25519 key 并添加到 westd authorized_keys） |\n| westd 数据进度 | depth_0~3 已完成，depth_4/5 生成中 |\n\n**执行计划**已写入 `artifacts/14b_scorer_contingency/execution_plan.md`。\n\nexp_14b_c4 完成后，三步执行：`fetch_14b_data.sh` 拉数据 → `exp_14b_scorer_confound.sh` 启动 scoring → 对比 K* 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-14b-crossscorer-ready.md"
+}

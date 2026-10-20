@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69a9339221239d5ecc29",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "audit narrative coherence",
+  "task_key": "worker_audit_narrative_coherence_20260514T012924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_narrative_coherence_20260514T012924_result.json",
+    "occurrence": 1,
+    "bytes": 3645,
+    "sha256": "10b20d11bd19a92fc20dcca6569e9fadaf5b6fe3be602a5b4d4d25e9126b360d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，只有预先存在的 hyperref PDF string warnings（section 标题中的数学符号导致），与本次修改无关。无 undefined reference 或新 warning。\n\n---\n\n## 修改清单\n\n### 1. 术语一致性修正\n\n| # | 文件 | 行号 | 原文 | 改后 | 原因 |\n|---|------|------|------|------|------|\n| 1 | `introduction.tex` | 30 | `Qwen-cont` | `Qwen-continuation` | 正文不用缩写 |\n| 2 | `experiments_c1.tex` | 30 | caption 中 `Qwen-cont` | `Qwen-continuation` | 同上 |\n| 3 | `experiments_c1.tex` | 81 | `Qwen-rw` | `Qwen-rewrite` | 同上 |\n| 4 | `experiments_c1.tex` | 82 | `Qwen-cont` | `Qwen-continuation` | 同上 |\n| 5 | `experiments_c1.tex` | 84 | `Qwen-rw`, `Qwen-cont` | `Qwen-rewrite`, `Qwen-continuation` | 同上 |\n| 6 | `experiments_c1.tex` | 89 | `Qwen-cont` | `Qwen-continuation` | 同上 |\n| 7 | `experiments_c1.tex` | 96 | `Qwen-rw`, `Qwen-cont` | `Qwen-rewrite`, `Qwen-continuation` | 同上 |\n| 8 | `experiments_c1.tex` | 98 | `Qwen-rw`, `Qwen-cont` | `Qwen-rewrite`, `Qwen-continuation` | 同上 |\n| 9 | `experiments_c1.tex` | 114 | `Qwen-cont` | `Qwen-continuation` | 同上 |\n| 10 | `experiments_c1.tex` | 173, 175 | `Qwen-cont` (×2) | `Qwen-continuation` | 同上 |\n| 11 | `experiments_c1.tex` | 182 | `Qwen-rw` | `Qwen-rewrite` | 同上 |\n| 12 | `experiments_c1.tex` | 185 | `Qwen-cont` | `Qwen-continuation` | 同上 |\n| 13 | `experiments_c1.tex` | 219 | caption 中 `Qwen-cont` (×2) | `Qwen-continuation` | 同上 |\n| 14 | `experiments_c1.tex` | 247–248 | `Qwen-cont` (×2) | `Qwen-continuation` | 同上 |\n| 15 | `experiments_c1.tex` | 273–274 | `Qwen-cont` (×2) | `Qwen-continuation` | 同上 |\n| 16 | `experiments_c1.tex` | 276–277 | `Qwen-rw` (×2) | `Qwen-rewrite` | 同上 |\n| 17 | `experiments_c1.tex` | 310, 313–314 | `Qwen-cont`, `Qwen-rw` | `Qwen-continuation`, `Qwen-rewrite` | 同上 |\n| 18 | `experiments_c1.tex` | 327 | `Qwen-cont` | `Qwen-continuation` | 同上 |\n| 19 | `experiments_c1.tex` | 335 | `Qwen-rw` | `Qwen-rewrite` | 同上 |\n| 20 | `experiments_c1.tex` | 338 | `Qwen-cont` | `Qwen-continuation` | 同上 |\n| 21 | `discussion.tex` | 25 | `discrimination horizon` | `discrimination boundary` | 全文其余均用 boundary |\n| 22 | `discussion.tex` | 46 | `Qwen-cont` | `Qwen-continuation` | 正文不用缩写 |\n| 23 | `discussion.tex` | 106–107 | `Qwen-cont`, `Qwen-rw` | `Qwen-continuation`, `Qwen-rewrite` | 同上 |\n| 24 | `conclusion.tex` | 17 | `Qwen-cont` | `Qwen-continuation` | 同上 |\n\n表格内 (tabular) 的 `Qwen-rw` / `Qwen-cont` 保留不变（共 5 处：method Tab.1、experiments Tab.3/4/5）。\n\n### 2. Story arc 检查结果\n\n- Introduction 三个 research gap → 均在后续章节回应 ✓\n- Contribution (a)(b)(c)(d) → 分别对应 §4.1–§4.4 ✓\n- Method 所有技术细节均在 Experiments 中使用，无 orphan 方法 ✓\n- Section cross-reference 均指向正确目标 ✓\n- \"8 conditions\" 计数 (4 model-mode + 4 decoding) 在 intro/discussion/conclusion 一致 ✓\n- 所有数值 claim (80–92%, 90–92%, ≥0.85, 0.96, 8.4pp 等) 前后一致 ✓\n- Claim 强度一致（intro 和 discussion 对同一结论的措辞力度匹配）✓\n\n### 3. 未修正项（需注意）\n\n| 位置 | 问题 |\n|------|------|\n| `discussion.tex` L119–120 | `\\paragraph{Graduated Filtering.}` 仅有 TODO 注释，无实质内容。Introduction L50 承诺的 secondary contribution 未兑现。需 exp-006 结果填充。 |\n| `conclusion.tex` L46–50 | 同上，graduated filtering 结论段为 TODO。 |\n| `main.tex` L33–35 | Abstract 为 TODO。 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-narrative-coherence.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4100252453b4baa76bf0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 final completion",
+  "task_key": "worker_infra_exp006-final-completion_20260515T091423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006-final-completion_20260515T091423_result.json",
+    "occurrence": 1,
+    "bytes": 1294,
+    "sha256": "2595b23188418c711a9e33096c8b65697345d4f63ebafe967b337167b3f89030"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇总如下：\n\n---\n\n## 1. exp-006 完成状态：**51/51** ✓\n\n## 2. 结果汇总（按 MMLU 降序）\n\n| Strategy | MMLU (mean±std) | HellaSwag (mean±std) |\n|---|---|---|\n| base_model | 0.6018±0.0000 | 0.6821±0.0000 |\n| binary-ours | 0.5941±0.0008 | 0.6701±0.0006 |\n| binary-drayson | 0.5913±0.0009 | 0.6691±0.0004 |\n| surprisal | 0.5894±0.0009 | 0.6641±0.0006 |\n| graduated_a0.7 | 0.5892±0.0014 | 0.6695±0.0004 |\n| graduated_a0.9 | 0.5892±0.0008 | 0.6701±0.0007 |\n| graduated_a0.5 | 0.5880±0.0013 | 0.6687±0.0008 |\n| graduated_a0.3 | 0.5877±0.0013 | 0.6669±0.0005 |\n| graduated_a0.1 | 0.5873±0.0019 | 0.6640±0.0009 |\n| dsir | 0.5869±0.0003 | 0.6631±0.0007 |\n| no-filter | 0.5865±0.0010 | 0.6638±0.0008 |\n\n注：实际为 10 个策略（no-filter, binary-ours, binary-drayson, graduated×5, surprisal, dsir）× 5 seeds + 1 base_model = 51 runs。所有策略 MMLU 都低于 base_model（0.6018），binary-ours 最接近（0.5941）。\n\n## 3. GPU 状态\n- 当前：83% 利用率，4251/24564 MiB 显存占用（exp-015 运行中）\n\n## 4. exp-015 已启动 ✓\n- tmux session `exp015` 运行中\n- 正在提取 pythia-1.4b embeddings（模型 1/3），~150 it/s\n- 日志：`logs/exp015_neural_probe_v3.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-final-completion.md"
+}

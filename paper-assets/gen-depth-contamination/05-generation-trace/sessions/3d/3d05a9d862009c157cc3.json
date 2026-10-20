@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d05a9d862009c157cc3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "experiment cross transfer missing pairs",
+  "task_key": "worker_experiment_cross-transfer-missing-pairs_20260520T005455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_cross-transfer-missing-pairs_20260520T005455_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "b9a6038bcfb2a31df8dc56d808f049fedc88bafdd0fcf83643b4c827d068b5de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务均已启动并运行中。\n\n| 实验 | exp_id | PID | GPU | 命令 |\n|------|--------|-----|-----|------|\n| qwen7b→llama8b | `exp_cross_transfer_qwen7b_to_llama8b` | 270054 | cuda:0 | `python scripts/run_deberta_cross_transfer.py --train_model wiki_qwen7b --test_model wiki_llama8b --gpu 0` |\n| llama8b→qwen7b | `exp_cross_transfer_llama8b_to_qwen7b` | 270133 | cuda:1 | `python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 1` |\n\n日志文件：\n- `~/runs/gen-depth-contamination/exp_cross_transfer_qwen7b_to_llama8b.log`\n- `~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log`\n\n预计约 25 分钟完成，结果会写入 `results/deberta_cross_transfer/wiki_qwen7b__to__wiki_llama8b.json` 和 `wiki_llama8b__to__wiki_qwen7b.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-cross-transfer-missing-pairs.md"
+}

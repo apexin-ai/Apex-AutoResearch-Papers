@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2defffc51cca0d28bf6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code arxiv multi source",
+  "task_key": "worker_code_arxiv_multi_source_20260524T084745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_arxiv_multi_source_20260524T084745_result.json",
+    "occurrence": 1,
+    "bytes": 1390,
+    "sha256": "f13ebd2e9e15e092a4669d87766585adfef3782f3c379111f05081b3f8984f8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 全部通过。汇总：\n\n---\n\n## 现状\n\n| Generator | arXiv 数据 | Cross-scored? | 已有 K* |\n|-----------|-----------|--------------|---------|\n| Qwen2.5-1.5B | ✅ 2200×6 depths | ✅ 自评=cross-score | K*=3 (exp-024) |\n| Pythia-1.4B | ✅ 2200×6 depths | ✅ 有缓存 | K*=3 (exp-025) |\n| OLMo-1B | ✅ 2200×6 depths | ❌ 仅自评(K*=1) | **需 cross-score** |\n\n## 脚本\n\n**路径**: `/root/autodl-tmp/gen-depth-contamination/scripts/run_arxiv_multi_source_1b5.py`\n\n功能：\n1. 加载 Qwen2.5-1.5B scorer\n2. 复用 Pythia cached cross-scored features（无需重新计算）\n3. Cross-score OLMo 2200×6=13,200 texts\n4. 每个模型单独跑 pairwise AUC + 10K bootstrap CI\n5. 三模型 pooled multi-source detection（with/without gen label）\n6. 输出到 `results/exp_arxiv_multi_source/`\n\n## GPU 需求\n\n- 4x RTX PRO 6000 (97GB each)，全空闲\n- Scorer (Qwen2.5-1.5B base) 需 ~3GB VRAM，1 卡即可\n- 无需多卡\n\n## 预估时间\n\n| 阶段 | 时间 |\n|------|------|\n| OLMo cross-scoring (13.2K texts) | ~10-15 min |\n| Per-model pairwise + bootstrap ×3 | ~15 min |\n| Pooled multi-source ×2 conditions | ~5 min |\n| **总计** | **~30-40 min** |\n\n## Seed data 确认\n\n三个 generator 共享同一批 arXiv seed data（depth_0 = exp-024 的 2200 篇 abstracts）。\n\n---\n\n需要启动运行吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-arxiv-multi-source.md"
+}

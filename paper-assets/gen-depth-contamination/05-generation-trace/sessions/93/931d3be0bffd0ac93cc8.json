@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "931d3be0bffd0ac93cc8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 011 llm zeroshot",
+  "task_key": "worker_code_exp_011_llm_zeroshot_20260513T085946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_011_llm_zeroshot_20260513T085946_result.json",
+    "occurrence": 1,
+    "bytes": 1274,
+    "sha256": "737472467e3a7bb6b006608c1c191b7ed0908ba13e480f3dac13a221c4024862"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"raw\": \"全部完成。汇报如下：\\n\\n### 1. 数据格式\\n- JSONL 文件，每行 `{\\\"text\\\": \\\"...\\\", \\\"doc_id\\\": N}`\\n- 按 depth 分文件：`depth_0.jsonl` ~ `depth_5.jsonl`，每个 5000 条\\n- Pythia 和 Qwen 目录结构相同\\n\\n### 2. 三个脚本路径\\n| 脚本 | 路径 |\\n|------|------|\\n| 采样 | `/root/autodl-tmp/gen-depth-contamination/scripts/exp011_sample_data.py` |\\n| LLM 推理 | `/root/autodl-tmp/gen-depth-contamination/scripts/exp011_llm_zeroshot.py` |\\n| 分析 | `/root/autodl-tmp/gen-depth-contamination/scripts/exp011_analyze.py` |\\n\\n### 3. Sampling dry-run 结果\\n- 成功采样 500 条（100 × 5 depths, depth 0-4），已写入 `artifacts/exp011_samples.jsonl`\\n- 数据已 shuffle，格式正确\\n\\n### 4. Python 包状态\\n所有依赖已安装，**无需额外安装**：\\n- `openai==2.24.0`, `anthropic==0.95.0`, `tqdm==4.67.3`, `scipy==1.17.1`\\n\\n### 5. 需要的 API Keys\\n- `OPENAI_API_KEY` — 运行 `--model gpt-4o`\\n- `ANTHROPIC_API_KEY` — 运行 `--model claude-3-5-sonnet`\\n\\n运行命令示例：\\n```bash\\nexport OPENAI_API_KEY=[REDACTED]\"sk-...\\\"\\npython3 scripts/exp011_llm_zeroshot.py --model gpt-4o\\npython3 scripts/exp011_llm_zeroshot.py --model claude-3-5-sonnet\\npython3 scripts/exp011_analyze.py\\n```\"\n}"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-011-llm-zeroshot.md"
+}

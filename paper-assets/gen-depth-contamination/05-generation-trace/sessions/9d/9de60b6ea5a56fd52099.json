@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9de60b6ea5a56fd52099",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix download code seed field",
+  "task_key": "worker_fix_download-code-seed-field_20260518T214551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_download-code-seed-field_20260518T214551_result.json",
+    "occurrence": 1,
+    "bytes": 128,
+    "sha256": "534cabba23d77a2915ade0f0de9b566ae6c7c0bbaaf788adfbc3f3676f5a3031"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。`download_code_seed.py` 中 JSONL 输出的 `'id'` 字段已改为 `'doc_id'`，语法验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-download-code-seed-field.md"
+}

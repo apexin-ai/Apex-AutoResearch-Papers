@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecdec45d8dfea755d416",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp014 independent metrics",
+  "task_key": "worker_code_exp014_independent_metrics_20260525T065633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp014_independent_metrics_20260525T065633_result.json",
+    "occurrence": 1,
+    "bytes": 1438,
+    "sha256": "6fba2fd34b44f58b70a8628f487527bb5cc0ae7c5dbd77586a0140ecef46b0a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交。任务 `exp_014_independent_metrics` 在 tmux session 中运行，会自动等待 v2 产出 `cc_predictions.csv` 后再开始计算。\n\n**已完成的工作：**\n\n1. **`scripts/exp014_independent_metrics.py`**（372行）— 计算 6 个与 OBD 15D 特征完全独立的质量指标：\n   - GPT-2 Large PPL（774M，非 Qwen scorer）\n   - MTLD + HD-D（lexical_diversity 库）\n   - 3-gram / 4-gram 重复率\n   - Zipf 系数\n   - MAUVE by depth bin（vs depth-0）\n   - 支持断点续跑（检查已有列）\n   - 每算完一个指标就增量保存\n\n2. **`scripts/exp014_independent_analysis.py`**（500行）— 独立相关性分析：\n   - Spearman ρ + Kendall τ + Bonferroni 校正（α=0.05/6=0.0083）\n   - Bootstrap CI（1000 resamples）\n   - 分层分析（depth bin 0/1/2/3+，含 mean/median/std/IQR）\n   - Kruskal-Wallis + Mann-Whitney U + Cliff's delta\n   - Length-controlled（按文本长度 quartile 分层做 correlation）\n   - OBD 特征 sanity check（明确标注 \"overlaps with OBD feature, reported as sanity check only\"）\n   - 可视化：violin plot (2x3 grid) + depth 分布直方图 + MAUVE bar chart\n\n3. **提交方式** — 由于 v2 还在运行，使用独立 exp_id `exp_014_independent_metrics`，包含等待逻辑：循环检测 `cc_predictions.csv` 存在后再启动。输出保存到 `results/exp014_v2/independent_analysis_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp014-independent-metrics.md"
+}

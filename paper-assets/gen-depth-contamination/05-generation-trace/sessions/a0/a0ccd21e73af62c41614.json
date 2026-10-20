@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "a0ccd21e73af62c41614",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "run exp 011 llm zeroshot",
+  "task_key": "worker_run_exp_011_llm_zeroshot_20260513T100408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp_011_llm_zeroshot_20260513T100408.log",
+    "occurrence": 1,
+    "bytes": 1142255,
+    "sha256": "581e7d8f8cf34cd357458187abc3709a42d26a5f072a910ad01677329fe72950"
+  },
+  "statistics": {
+    "messages": 834,
+    "user_turns": 1,
+    "tool_calls": 328,
+    "roles": {
+      "log": 1,
+      "system": 30,
+      "record": 1,
+      "assistant": 142,
+      "tool_call": 328,
+      "tool_result": 328,
+      "user": 1,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 796,
+      "chunks": [
+        {
+          "path": "a0ccd21e73af62c41614-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a0ccd21e73af62c41614-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a0ccd21e73af62c41614-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a0ccd21e73af62c41614-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "a0ccd21e73af62c41614-part-0005.json",
+          "message_count": 76
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "a0ccd21e73af62c41614-part-0005.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-exp-011-llm-zeroshot.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5fb938370099c04940d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops multi exp status check",
+  "task_key": "worker_ops_multi_exp_status_check_20260517T133246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_multi_exp_status_check_20260517T133246_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "09857a70ccedc4a249a0bb5d0047aebe276b56d8561f0ea583680849e25f7747"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 项目 | 状态 |\n|---|---|\n| **exp_arXiv_llama8b** (cuda:1) | 正在生成 depth 5，110/275 batches (~40%)。depth 4 已完成。~6.1s/it |\n| **exp_wiki_llama8b** (cuda:2) | 刚启动 depth 1，25/625 batches (~4%)。5000 samples，~6.4s/it |\n| **exp_arXiv_olmo** (cuda:0) | 进程在跑（tmux session `exp_arXiv_olmo`） |\n| **Qwen2.5-7B 下载** | 进行中，6/14 files fetched。目录已有 config/tokenizer 文件，模型权重正在下载 |\n| **Mistral-7B 路径** | `/root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3/`，含 3 个 safetensors 分片，完整可用 |\n| **Mistral arXiv 数据** | `data/exp_arXiv_mistral7b/depth_0.jsonl` 已就绪，2200 行 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-multi-exp-status-check.md"
+}

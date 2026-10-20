@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61f0c46b06b69d0eb00f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "audit exp 020 data integrity",
+  "task_key": "worker_audit_exp_020_data_integrity_20260516T150550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_exp_020_data_integrity_20260516T150550_result.json",
+    "occurrence": 1,
+    "bytes": 637,
+    "sha256": "952e6ce062a81d9171a3f4842a63ea80449728c5123429e5b55e83aaa305ae74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件最后一行均以 `\"doc_id\": 4999}` 正常闭合，JSON 完整。\n\n## exp-020 数据完整性矩阵\n\n| config \\ depth | 0 | 1 | 2 | 3 | 4 | 5 |\n|---|---|---|---|---|---|---|\n| **greedy** | 5000 | 5000 | 5000 | 5000 | 5000 | 5000 |\n| **nuc09** | 5000 | 5000 | 5000 | 5000 | 5000 | 5000 |\n| **t07** | 5000 | 5000 | 5000 | 5000 | 5000 | 5000 |\n| **t12** | 5000 | 5000 | 5000 | 5000 | 5000 | 5000 |\n\n**结论**：全部 24 个文件均为 5000 行，doc_id 范围 0-4999，无缺失。t07 和 t12 的 depth_5 最后一行 JSON 闭合正常，无截断。数据完整，可放心用于后续分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-exp-020-data-integrity.md"
+}

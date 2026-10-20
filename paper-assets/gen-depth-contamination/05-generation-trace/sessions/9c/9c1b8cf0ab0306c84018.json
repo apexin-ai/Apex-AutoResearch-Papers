@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c1b8cf0ab0306c84018",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code check pythia14b 10k status",
+  "task_key": "worker_code_check_pythia14b_10k_status_20260522T141304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_pythia14b_10k_status_20260522T141304_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "d61de57ce9c86183966fede5ea15b92f46d85a6913585e60469920cade26914c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验状态：SUCCESS**\n\n所有产出完整：\n\n| 检查项 | 结果 |\n|--------|------|\n| depth_0~5.jsonl | 各 10,000 行 ✓ |\n| features.csv | 60,001 行（含 header） ✓ |\n| results JSON | 4 个 JSON + summary.txt ✓ |\n| 错误日志 | 无 error/OOM/traceback ✓ |\n\n**关键 Metrics（Pythia-1.4B, C4, 10K samples）：**\n\n| Metric | 值 |\n|--------|-----|\n| **K\\*** | **2**（depth 0→1 AUC=0.97, depth 1→2 AUC=0.62, 之后 <0.60） |\n| AUC(0v1) | 0.9712 ± 0.0028 |\n| AUC(1v2) | 0.6175 ± 0.0035 |\n| AUC(2v3) | 0.5364 ± 0.0094 |\n| AUC(3v4) | 0.5134 ± 0.0066 |\n| AUC(4v5) | 0.5088 ± 0.0094 |\n| JSD(0v1) | 0.1368 |\n| JSD(1v2) | 0.0079 |\n| Ordinal MAE | 1.2846 |\n| Ordinal Acc | 0.3503 |\n| Top feature | freq_entropy |\n\n信号衰减模式清晰：depth 0→1 有极强区分度（AUC 0.97），depth 1→2 仍可区分（0.62），depth 2+ 接近随机。JSD 也呈指数衰减（0.137 → 0.008 → 0.003）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-pythia14b-10k-status.md"
+}

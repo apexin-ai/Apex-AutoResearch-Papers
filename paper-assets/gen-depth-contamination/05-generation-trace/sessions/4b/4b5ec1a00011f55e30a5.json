@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b5ec1a00011f55e30a5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code gemma27b filtering",
+  "task_key": "worker_code_gemma27b_filtering_20260524T093951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma27b_filtering_20260524T093951_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "56d285f2807ab2d699c70532ebff45a33e5ca39ce8fb7834eb7ea950a0641ef6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已开始（17:51:00）。MMLU + HellaSwag evaluation 通常需要 20-30 分钟。Pipeline 确认正常。\n\n实验概要：\n- **9 runs** (3 strategies × 3 seeds) 在 cuda:3 上串行执行\n- **Training**: ~3.5 min/run（79 steps × 2.6s）\n- **Eval** (MMLU + HellaSwag): ~25-30 min/run\n- **总预计时间**: ~4.5-5 小时\n- **PID**: 169724\n\n关键发现（from dry run）：\n- OBD classifier on Gemma-27B features: acc=0.8984, AUC=0.9184\n- Binary filter: 5000→1558 docs（removed 3442）\n- Filter precision=0.6970, recall=0.9596（高召回但误杀较多 clean docs）\n\n等第一个 eval 完成后（~18:20 左右）我可以再来检查结果。需要我定期检查进度吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gemma27b-filtering.md"
+}

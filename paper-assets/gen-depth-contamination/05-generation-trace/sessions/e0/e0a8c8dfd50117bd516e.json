@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0a8c8dfd50117bd516e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper audit tables 2 10",
+  "task_key": "worker_paper_audit_tables_2_10_20260523T110133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_audit_tables_2_10_20260523T110133_result.json",
+    "occurrence": 1,
+    "bytes": 1110,
+    "sha256": "a3170ef3dbeb4b5f771b8d92a5c14164bcf0e7deffc2a47bc3a1933a7971a787"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计总结\n\n**已修复**：\n- `experiments_c1.tex` line 49, 54 + `appendix_extended.tex` line 50：LLaMA-8B 0v1 从 `0.9225`（CV估计）改为 `0.9224`（bootstrap估计），与 Table 10 (.9224) 一致。\n\n**需要人工核实 — Mistral-7B**：\n论文 Table 10 中 Mistral-7B 的全部 5 个 AUC 值与 registry 中**所有** Mistral 实验都不匹配：\n\n| Pair | 论文 | exp_019 (self) | exp_019b (cross) |\n|------|------|----------------|------------------|\n| 0v1 | .9170 | .9843 | .9209 |\n| 1v2 | .5750 | .5935 | .5695 |\n| 2v3 | .5369 | .5402 | .5335 |\n| 3v4 | .5174 | .5232 | .5140 |\n| 4v5 | .5175 | .5181 | .5184 |\n\n这些值看起来介于 self-scored 和 cross-scored 之间，但不是简单平均。可能来自未注册的实验。请确认数据源。\n\n**Registry 需更新（非论文错误）**：\n- `exp_002_olmo_depth` 的 3v4 (0.5034) 和 4v5 (0.4971) 已过时，论文使用的是 `exp_olmo1b_c4_rerun` 的值 (0.5024, 0.4942)。\n\n**可忽略的精度差异**：Gemma-2B 3v4 (Δ=0.0003) 和 4v5 (Δ=0.0001)，在存储精度误差范围内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-audit-tables-2-10.md"
+}

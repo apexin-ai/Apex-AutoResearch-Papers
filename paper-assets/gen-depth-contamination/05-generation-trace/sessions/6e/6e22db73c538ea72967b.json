@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "6e22db73c538ea72967b",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "audit experiments tables",
+  "task_key": "worker_audit_experiments_tables_20260525T194345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_experiments_tables_20260525T194345.log",
+    "occurrence": 1,
+    "bytes": 682085,
+    "sha256": "1a96bc6087944526492bb0a981c46203eba34d88e9227cd94166e05becbd785f"
+  },
+  "statistics": {
+    "messages": 204,
+    "user_turns": 3,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 43,
+      "record": 1,
+      "assistant": 19,
+      "tool_call": 68,
+      "tool_result": 68,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 68,
+      "chunks": [
+        {
+          "path": "6e22db73c538ea72967b-part-0001.json",
+          "message_count": 68
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "6e22db73c538ea72967b-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 69,
+      "chunks": [
+        {
+          "path": "6e22db73c538ea72967b-part-0001.json",
+          "message_count": 69
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 58,
+      "chunks": [
+        {
+          "path": "6e22db73c538ea72967b-part-0001.json",
+          "message_count": 34
+        },
+        {
+          "path": "6e22db73c538ea72967b-part-0002.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-experiments-tables.md"
+}

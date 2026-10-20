@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8e396494901f0a3090d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper push anon repo p6fix",
+  "task_key": "worker_paper_push-anon-repo-p6fix_20260524T080738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_push-anon-repo-p6fix_20260524T080738_result.json",
+    "occurrence": 1,
+    "bytes": 54,
+    "sha256": "fff32673dd6226f443a50fde9125b0496713fededc26536af6ef5af7e030c6dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推送完成，临时目录已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-push-anon-repo-p6fix.md"
+}

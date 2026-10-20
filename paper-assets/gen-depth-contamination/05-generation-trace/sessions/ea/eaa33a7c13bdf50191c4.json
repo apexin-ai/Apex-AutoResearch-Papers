@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eaa33a7c13bdf50191c4",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra urgent status check",
+  "task_key": "worker_infra_urgent-status-check_20260520T004038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_urgent-status-check_20260520T004038_result.json",
+    "occurrence": 1,
+    "bytes": 1077,
+    "sha256": "61f630b890e6f5ac894cff4ec0fbb935244c2e0a75d98467cb91d592f0f5a233"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总如下：\n\n---\n\n## 状态汇总\n\n### qwen_cont256: **已完成** (success)\n| Pair | DeBERTa AUC | OBD Baseline | Delta |\n|------|------------|--------------|-------|\n| 0v1 | 0.9955 [0.9944, 0.9965] | 0.9914 | +0.0041 |\n| 1v2 | 0.7194 [0.7120, 0.7273] | 0.6282 | +0.0912 |\n| 2v3 | 0.5954 [0.5870, 0.6028] | 0.5556 | +0.0398 |\n| 3v4 | 0.5689 [0.5613, 0.5766] | 0.5298 | +0.0391 |\n| 4v5 | 0.5502 [0.5431, 0.5577] | 0.5137 | +0.0365 |\n\n**K\\* = 2** (theta=0.6)，假设确认：boundary 在 continuation 生成策略下保持一致。\n\n### cqa1 (4× 24GB GPU)\n- GPU 0-3: **全部空闲**（0% 利用率，0 MiB 显存占用）\n- 仅有一个 CPU 进程 `lofo_importance.py` 在运行（未占用 GPU）\n\n### westd (2× 98GB GPU)\n- GPU 0-1: **全部空闲**（0% 利用率，0 MiB 显存占用）\n- 有一个 `modelscope snapshot_download` 进程在下载 deberta-v3-base（CPU only）\n\n### 空闲 GPU 总览\n- **cqa1**: GPU 0, 1, 2, 3（4× 24GB）\n- **westd**: GPU 0, 1（2× 98GB）\n- **共 6 块 GPU 空闲**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-urgent-status-check.md"
+}

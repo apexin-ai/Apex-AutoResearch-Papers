@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f069b354419c34701b21",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "figure update 7b",
+  "task_key": "worker_figure_update_7b_20260515T234818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_update_7b_20260515T234818_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "19a5d0f74ba76c5144a6ef8d05603d29d536f08829864accfb84d7ddf2dc2846"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Fig 2 (auc_decay)\n- 路径: `artifacts/figures/auc_decay.pdf`\n- 文件大小: 21 KB (PDF), 108 KB (PNG)\n- 包含的模型线: Qwen-rewrite, Pythia-1.4B, OLMo-1B, Qwen-cont, **Qwen-7B** (紫色星号 `#7B2D8E` / `*`)\n\n## Fig kstar_theta\n- 路径: `artifacts/kstar_theta_curve.pdf`\n- 文件大小: 33 KB (PDF), 358 KB (PNG)\n- 包含的模型线: Qwen-rewrite, Pythia, OLMo, Qwen-cont, **Qwen-7B** (紫色星号)\n- Qwen-7B 的 K\\*(0.60) = 2，与其余 4 个模型一致\n- 加入 7B 后 unanimous K\\*=2 region 缩窄至 θ ∈ [0.580, 0.600]，K\\*∈{2,3} region 缩至 [0.535, 0.600]"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-update-7b.md"
+}

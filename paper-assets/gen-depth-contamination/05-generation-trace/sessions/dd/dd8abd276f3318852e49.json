@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd8abd276f3318852e49",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "audit bib verification",
+  "task_key": "worker_audit_bib_verification_20260514T022152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_bib_verification_20260514T022152_result.json",
+    "occurrence": 1,
+    "bytes": 2077,
+    "sha256": "a5bd2ad5d2ed791bf0494a4b86aeadf08317f7a340c487b2fbc8d1b40f5c3b04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修复已完成。验证报告如下：\n\n---\n\n## 验证报告\n\n### 4 篇可疑引用\n\n| # | bib key | 状态 | 问题 & 修复 |\n|---|---------|------|------------|\n| 1 | `shi2025generalization` | ✅ **真实** | arXiv:2509.16499 存在，NeurIPS 2025 Spotlight 确认。**作者 first name 全错**（LLM 幻觉）：Shiliang→Lianghe, Qiong→Meng, Zhen→Huijie, Jing→Zekai, Dacheng→Molei, Xiangyang→Qing。已修正。 |\n| 2 | `basani2026diveye` | ✅ **真实** | arXiv:2509.18880 存在，TMLR 2026 (02/2026) 确认。**作者 first name 全错**：Yash→Advik Raj, Liyan→Pin-Yu。已修正。 |\n| 3 | `zawalski2026codec` | ✅ **真实** | arXiv:2510.27055 存在，ICLR 2026 确认（OpenReview）。**作者名错且不完整**：Kacper→Michał，补全为 Zawalski/Boubdir/Bałazy/Nushi/Ribalta。已修正。 |\n| 4 | `gambetta2025surplexity` | ✅ **真实** | arXiv:2410.12341 存在（v1 标题不同，当前版本标题匹配）。**作者名错且不完整**：Lorenzo→Daniele，补全 6 位作者。已修正。 |\n\n### bib 格式修复\n\n| # | 修复项 | 操作 |\n|---|--------|------|\n| 5 | `amin2025escaping` 作者补全 | `{others}` → 完整 6 人列表（Amin/Babakniya/Bie/Kong/Syed/Vassilvitskii） |\n| 6 | `tirumala2024d4` key 年份不一致 | key 改为 `tirumala2023d4`，同步更新 `related_work.tex` + `introduction.tex` 中的 `\\cite{}` |\n| 7 | `xie2024doremi` key 年份不一致 | key 改为 `xie2023doremi`，同步更新 `related_work.tex` + `introduction.tex` 中的 `\\cite{}` |\n| 8 | PENDING 标记 | 删除 \"PENDING formal verification\" 注释，替换为 \"verified 2026-05-14\" |\n\n### 关键发现\n\n所有 4 篇论文均为真实存在的论文，arXiv ID、标题、venue 基本正确。但 **6 个 bib 条目的作者 first name 被 LLM 系统性地幻觉**（last name 正确但 first name 全部伪造）。这是典型的 LLM 引用生成问题——它能找到正确的论文但编造具体的名字细节。\n\n重新编译 LaTeX 即可更新 `.bbl`/`.aux`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-bib-verification.md"
+}

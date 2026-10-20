@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41f977606288b757a503",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp arXiv qwen1b5 crossscorer",
+  "task_key": "worker_analysis_exp_arXiv_qwen1b5_crossscorer_20260518T030331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_arXiv_qwen1b5_crossscorer_20260518T030331_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "6492652d01deea5873099e06c9c71e8bd6180a16bceabd2ecf0d7045ee05e243"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成并注册（`art_20260518_f5197e`）。核心结论：\n\n- **arXiv K\\*=3 scorer-independent confirmed.** Pythia-1.4B cross-scorer 下 K\\* 保持 3，关键 AUC(2v3)=0.6317 > theta=0.60，5 fold 全部达标（最低 0.6157）。\n- **与 Wikipedia 形成对照。** Wiki K\\*=2→1（scorer artifact），arXiv K\\*=3→3（genuine signal）。\n- **AUC 衰减集中在浅层边界**（0v1: -0.02, 1v2: -0.05），深层边界（3v4, 4v5）几乎无变化，说明 cross-family tokenizer mismatch 只影响绝对灵敏度，不改变结构模式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-arxiv-qwen1b5-crossscorer.md"
+}

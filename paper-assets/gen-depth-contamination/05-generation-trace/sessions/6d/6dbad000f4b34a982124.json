@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6dbad000f4b34a982124",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 completion check",
+  "task_key": "worker_infra_exp006-completion-check_20260515T073823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006-completion-check_20260515T073823_result.json",
+    "occurrence": 1,
+    "bytes": 819,
+    "sha256": "e6632ababa477673fb808002850b134045360050fb1e381099aec9fb331fdf75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-006 进度报告\n\n**48/51 runs 完成**\n\n### 当前状态\n- tmux session `exp_006_graduated_filtering` 仍在运行\n- 正在执行：`dsir_s456` 评估阶段（loglikelihood requests ~21%, 20250/96336）\n- 待完成：`dsir_s789`, `dsir_s1024`（训练+评估）\n\n### 已完成的 dsir 结果（2/5 seeds）\n\n| Run | MMLU | HellaSwag (acc_norm) |\n|-----|------|---------------------|\n| dsir_s42 | 0.5868 | 0.6641 |\n| dsir_s123 | 0.5865 | 0.6633 |\n\n### 时间估算\n- `dsir_s123` eval 完成于 14:56 CST，`dsir_s456` eval 开始于 15:33 CST（含训练约 37 分钟/run）\n- `dsir_s456` eval 已跑约 5 分钟，剩余约 10 分钟\n- 还需 2 个完整 run（训练+评估），每个约 40-45 分钟\n- **预计全部完成时间：约 17:10-17:30 CST（09:10-09:30 UTC）**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-completion-check.md"
+}

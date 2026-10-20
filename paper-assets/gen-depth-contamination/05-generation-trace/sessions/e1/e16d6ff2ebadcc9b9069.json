@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e16d6ff2ebadcc9b9069",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper bootstrap ci audit",
+  "task_key": "worker_paper_bootstrap-ci-audit_20260518T235735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bootstrap-ci-audit_20260518T235735_result.json",
+    "occurrence": 1,
+    "bytes": 829,
+    "sha256": "727f33389ec367838125630498fa8917eb3a128afe1900a55c6e80b9fa328a99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计报告已写入 `artifacts/bootstrap_audit_report.md`。\n\n**结果摘要：**\n- 论文 .tex 源文件中有 **13 处残留 bootstrap 引用**描述我们自己的方法，分布在 `method.tex`(2处)、`experiments_c1.tex`(2处)、`appendix.tex`(5处)、`appendix_extended.tex`(4处)\n- **3 处**引用他人方法（related_work.tex 和 references.bib 中的 \"importance resampling\"），无需修改\n- `main.aux` 中约 15 处为编译自动生成，修改源文件后重新编译即可\n- 最高优先级：`method.tex:25` 的核心方法论描述，需将 bootstrap resampling 机制改写为 fold-based CI 机制\n\n报告中包含每处的当前文本和建议替换文本。另外提醒：表格中的 CI **数值**和 Figure S1 的 error bars 也需确认已用 fold-based 方法重新计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-bootstrap-ci-audit.md"
+}

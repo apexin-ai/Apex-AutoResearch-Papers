@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eddf06884e4cead309ac",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "agent / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3.md",
+    "occurrence": 1,
+    "bytes": 5519,
+    "sha256": "891c7872c748af96015b903d9a54066c182861d165afc5d716091986bfd5cbf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-13T23:44:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: 仅 `cuda:0` on `westc-26893`（config 里写 `autodl-4090d:cuda:0`，但服务器已改名 `westc-26893`，SSH config 已同步）\n- **服务器别名已变**: `autodl-4090d` → `westc-26893`。所有 SSH/cron 必须用 `westc-26893`。autodl-4090d 会 SSH 失败（exp-003 已踩过）\n- **环境用 conda，不是 venv**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`。服务器上无 .venv\n- **submit 命令必须自带完整环境链**: `source conda + source /etc/network_turbo + export HF_HOME=/root/autodl-tmp/.hf_cache + export HF_HUB_DISABLE_XET=1 + SSL 证书变量`，否则 tmux session 里变量不生效\n- **OpenRouter 代理 Claude model ID 不加 anthropic/ 前缀**: 用 `claude-opus-4-6`（不是 `anthropic/claude-opus-4-6`），否则 503\n- **exp-006 占 cuda:0 至 ~05-15 11:00 UTC**: 这期间不能在 cuda:0 上启动其他 GPU 任务\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: `westc-26893`（AutoDL, RTX 4090D 24GB × 1）\n- **工作目录**: `/root/autodl-tmp/gen-depth-contamination`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，torch=2.10.0+cu128, transformers=4.57.6）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（根分区只 30GB，大文件全在 autodl-tmp）\n- **模型路径**: Qwen2.5-1.5B-Instruct → `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct`; Pythia-1.4B → `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b`; OLMo-1B → `/root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf`\n- **数据路径**: `data/`(mvp Qwen-rewrite), `data_exp001_pythia/`, `data_exp002_olmo/`, `data_exp017_qwen_cont/`, `data_exp003_*`(4 decoding configs)\n- **活跃进程**: exp_006_graduated_filtering PID 46129, tmux session, cron 监控中（reconcile 确认 alive）\n- **W&B**: 未配置（本项目实验为 CPU 分类 + 短 GPU 任务，metrics 直接写 JSON/registry）\n- **API 代理**: `http://47.94.22.126/v1`（OpenRouter 中转，exp-011 已验证可用）\n\n### 3. 📊 当前状态\n- **刚完成**: session-start 初始化，reconcile 确认 exp-006 存活\n- **RUNNING**: `exp_006_graduated_filtering` — 6 strategies × 5 seeds LoRA CPT + lm-eval，3/50 runs done (4%)，~46min/run，ETA 05-15 11:00 UTC。输出在 `/root/autodl-tmp/gen-depth-contamination/outputs/exp006/`\n- **PREPARING**: `exp_015_neural_probe` — frozen LLM → MLP probe，测 K*_neural vs K*_15D。代码 dry-run 已通过，等 exp-006 释放 GPU\n- **活跃 Worker**: `worker_code_exp009_dose_response_20260513T234043` (running) — 正在写 exp-009 dose-response 代码\n- **论文进度**: 4/6 章节初稿完成（Intro ✅ / Related Work ✅ / Method ✅ / Experiments C1' ✅），待写 Experiments C3（依赖 exp-006）+ Discussion & Conclusion\n- **全部 10 个 DONE 实验均 success，0 negative**\n\n### 4. 📋 待办（条件触发式）\n- **exp-006 cron 回调（DONE/success）** → spawn Worker 分析 6 策略 × 5 seeds 结果 → 更新 registry metrics → 写 Experiments C3 章节 → 汇报 Director\n- **exp-006 cron 回调（DONE/failed）** → 读 on-experiment-failed skill → 诊断 → 修复重跑（DDL 还有余量）\n- **exp-006 完成后** → 立即提交 exp-015 neural probe 到 cuda:0（预计 3h）\n- **worker_code_exp009 完成** → 审查代码 → 决定是否列入 experiment_plan（dose-response 不在当前 2+1 claim 结构中，属于 optional enrichment）\n- **exp-015 完成** → 若 K*_neural == K*_15D → 加强 \"information-theoretic impossibility\" 论证，strengthens C1'；若 K*_neural > K*_15D → 15D projection 是 K*=2 的部分原因，需调整 C1' 措辞\n- **全部实验完成后** → re-dream paper story → Discussion + Conclusion → 定稿 → Reviewer 审查\n\n### 5. 🎯 战略上下文\n- **论文结构 (D012)**: 2+1 claim — C1'(K* characterization, 4 子组件 a-d 全 ✅) + C3(graduated filtering, 依赖 exp-006) + supporting analysis (exp-011 LLM zero-shot)\n- **D016 叙事**: universality — K*=2 跨 8 条件不变（4 model-mode + 4 decoding configs）。θ=0.60 是论文采用的阈值，θ-sensitivity 分析已做\n- **D017 措辞策略**: Claim 强度分两层——4 model-mode 的结果 established consensus，decoding 的结果是 additional evidence\n- **C2 (degradation ordering) 已降级**: 不作为独立 claim，仅作为 C1' 支撑分析。Generation mode 贡献 60-70% 排序偏离，不能说 universal (D010/D011)\n- **exp-006 是单点依赖 (D013)**: C3 整个 claim 依赖此实验。如果 graduated filtering 无效 → fallback 到 pure characterization paper（只有 C1'），Director 已有预案\n- **exp-015 是 \"论文生死实验\" (D015)**: 如果 neural probe K* 显著高于 15D → 削弱 C1' \"impossibility\" 论证。但代码已 dry-run 通过，风险可控\n- **最易判断错的事**: (1) 不要把 Qwen-rewrite 和 continuation mode 的数字混着比——rewrite 的 AUC 系统性偏高 ~8pp；(2) exp-003 的 config4_t12 1v2 AUC=0.7039 是所有条件里最高的，但不能用来 claim \"高温度提升 K*\"——K* 仍然是 2；(3) cross-transfer (exp-013) 结论中 Qwen-rewrite 跨模型 catastrophic drop 是 style overfitting，continuation mode 才是 canonical condition\n- **DDL**: 05-25 ARR，11 天余量。关键路径：exp-006 (05-15) → exp-015 (05-15 下午) → C3 章节 + Discussion (05-16-17) → re-dream + 定稿 (05-17-22) → 提交\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-copy-2.md"
+}

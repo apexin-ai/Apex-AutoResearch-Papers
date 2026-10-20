@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43b853a34cedd91bb33b",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "reviewer / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_1.md",
+    "occurrence": 1,
+    "bytes": 4082,
+    "sha256": "f71b2201faa0e2e8cf7385fed06aad9dc864750a727644d38799f9ef78460af4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-12T15:00:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 `cuda:0`@`autodl-4090d`（仅 1 块 GPU，无越界可能，但须确认进程确实在 cuda:0）\n- AutoDL 环境变量必须写入 `run_*.sh` 脚本（`source /etc/network_turbo` + SSL 证书 + HF 配置），tmux session 不继承 shell env\n- HF 下载必须设 `HF_ENDPOINT=https://hf-mirror.com` + `HF_HUB_DISABLE_XET=1`，C4 用单 shard URL 不要用 `load_dataset(\"allenai/c4\")` 全量加载\n- 所有模型/数据/cache 放 `/root/autodl-tmp/`，根分区只有 30GB\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`autodl-4090d`（1×RTX 4090D 24GB），SSH 账号 `root`\n- 工作目录：`/root/autodl-tmp/gen-depth-contamination/`\n- 模型路径：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct`（双层嵌套是 HF cache 正常结构）\n- 数据目录：`/root/autodl-tmp/gen-depth-contamination/data/`（depth_0.jsonl 已生成 5000 docs）\n- 日志：`~/runs/gen-depth-contamination/mvp_pilot_sat_v1.log`\n- 活跃进程：`mvp_pilot_sat_v1`（PID 5922，tmux，cuda:0）— 正在跑 Step 3 depth chain 生成（上次检查在 depth 2 ~15%）\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/`\n- 无 W&B 配置\n\n### 3. 📊 当前状态\n**我是 Loop #1 的 Reviewer，项目刚启动半天。**\n\n已完成的审查：\n- MVP 设计审查（3 个 warning 已被 Director 采纳修复：K* 定义、生成方式、解码策略）\n- Pipeline 代码审查（发现 right-padding 问题，Director 确认 MVP 不中断、full study 修复）\n- Full study 实验计划审查（建议下游评估加多 seed，experiment_plan.yaml 未创建）\n- 引用验证审查（8 处 [需验证] 已全部补全）\n\nRegistry：`mvp_pilot_sat_v1` RUNNING（depth chain 生成中，预计还需 ~2-3h 完成全 pipeline）\n\n等待中：MVP 结果出来后需立即审查 K* 判定和 gate check 结论。\n\n### 4. 📋 待办\n- `mvp_pilot_sat_v1` 状态变 DONE → 立即读 registry conclusion + `results/summary.txt` + `results/pairwise_auc.json` → 核实 K* 计算是否与 AUC 数据一致，AUC(0v1) 是否 >0.70，gate 判定是否正确\n- K* ≥ 3 → 验证 Agent 是否走 Route A（depth estimation 主线），检查 ROADMAP 更新\n- K* = 2 → 验证 Agent 是否走 Route B（saturation characterization），检查 framing 调整提案（如有需按 negative-framing-review skill 四维度审）\n- K* ≤ 1 → 验证 kill decision，检查是否排除了实现 bug（right-padding 可能影响结果）\n- Full study 启动后 → 检查 experiment_plan.yaml 是否创建，首批实验 spec 是否完整\n- 下游评估实验出结果 → 重点检查是否有多 seed、bootstrap CI、paired significance test\n\n### 5. 🎯 战略上下文\n- **核心科学量是 K***（判别饱和边界）。MVP 的唯一目的是测量 K* 并决定走哪条论文路线。\n- **双路线已预备**：K*≥3 走 Route A（depth estimation + graduated filtering），K*=2 走 Route B（saturation characterization as contribution）。两条路线的 claim 结构、story arc、审稿人攻击面预演均已写好（`docs/claim_routes.md`）。\n- **最容易判断错的事**：如果 K* 在边界（如 K*=2 但某些配置 K*=3），不要急于判定——right-padding bug 可能压低了真实 K*，修复后重跑可能改变结果。在边界情况下应建议 Director 修复 padding 后重跑 MVP 确认。\n- **EMNLP ARR May 25 deadline 仅剩 13 天**（从 2026-05-12 起算）。MVP 必须今天出结果，否则 full study 时间不够。\n- **理论框架**（`docs/theory_framework.md`）将 K* 定位为 information-theoretic impossibility boundary（DPI），不是分类器能力问题。这个 framing 在 K*=2 时尤其关键——把 limitation 变成 contribution。\n- **已知代码问题**：(1) right-padding（full study 必修）；(2) batch_size 偏小（gen 16→64, feat 8→24）；(3) torch_dtype deprecation warning（cosmetic）。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-3.md"
+}

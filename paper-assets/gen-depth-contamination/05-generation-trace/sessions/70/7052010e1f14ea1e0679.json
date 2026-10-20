@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7052010e1f14ea1e0679",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops base model gsm8k cuda1",
+  "task_key": "worker_ops_base_model_gsm8k_cuda1_20260520T222842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_base_model_gsm8k_cuda1_20260520T222842_result.json",
+    "occurrence": 1,
+    "bytes": 721,
+    "sha256": "44acaf6946feb2bc82829263e0d58938b933eb06247c76b205fc690a8b2420d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进展比预期慢：**201/1319（15%），ETA ~77 分钟**。每个 batch 需 ~4.16s（GSM8K generate_until 需生成长推理链，max_new_tokens=2048）。\n\n总预计时间约 **90 分钟**。进程在后台稳定运行（PID 376350），会自动更新 `base_model_eval.json`。\n\n当前状态：\n- GPU 1：95% 利用率，4857 MiB 显存\n- 进度：201/1319，剩余 ~77 分钟\n- 日志：`/tmp/base_gsm8k_eval.log`\n\n可以用以下命令随时检查进度：\n```bash\nssh cqa1-22115 \"tail -1 /tmp/base_gsm8k_eval.log\"\n```\n\n完成后脚本会自动将 GSM8K 分数写入 `results/exp_expanded_downstream_eval/base_model_eval.json`。需要我继续轮询还是等完成后再来查看？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-base-model-gsm8k-cuda1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44f617bc0365cf26dd1b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check westd progress",
+  "task_key": "worker_check_westd_progress_20260518T040205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd_progress_20260518T040205_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "2114ca8d93f1243ebe7283e93b6071a5e9bbd326ec16797d383feffc2c4ed77c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度\n\n### exp_14b_c4 (GPU 0, Qwen2.5-14B)\n| 指标 | 值 |\n|---|---|\n| GPU 利用率 | 87%, 31GB/98GB VRAM |\n| 已完成 depth | 0, 1, 2, 3 |\n| 当前 depth | **depth 4**: 986/1250 (79%), ~8.4s/it |\n| depth 4 剩余 | 264 batches × 8.4s ≈ **37 min** |\n| depth 5 预计 | 1250 × 8.4s ≈ **2.9 h** |\n| **预计完成** | **~3.5 h 后** (约今天 15:30) |\n\n### exp_32b_c4 (GPU 1, Qwen2.5-32B)\n| 指标 | 值 |\n|---|---|\n| GPU 利用率 | 95%, 65GB/98GB VRAM |\n| 已完成 depth | 0 |\n| 当前 depth | **depth 1**: 2178/2500 (87%), ~14s/it |\n| depth 1 剩余 | 322 batches × 14s ≈ **1.3 h** |\n| depth 2-5 剩余 | 4 × 2500 × 14s ≈ **38.9 h** |\n| **预计完成** | **~40 h 后** (约 5月20日 04:00) |\n\n32B 因 batch_size=2（14B 用 4）且模型更大，速度慢约 1.7 倍，加上剩余 depth 更多，总耗时显著更长。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-progress.md"
+}

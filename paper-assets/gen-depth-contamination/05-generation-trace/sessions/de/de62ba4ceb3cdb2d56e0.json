@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de62ba4ceb3cdb2d56e0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops check pythia retrain progress",
+  "task_key": "worker_ops_check-pythia-retrain-progress_20260519T032117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-pythia-retrain-progress_20260519T032117_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "26d4ea7c717203710457149c2135d4ff48fc06fbeb9d8ab3e2e4d3c6ec2ed9e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_pythia_retrain_depth7 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **PID 115855** | 存活 (GPU 0, 4866MiB, 78% util) |\n| **当前阶段** | Evaluation / Feature extraction |\n| **具体进度** | depth 0-2 已完成; depth 3 surprisal 提取中 (115/625, 18.4%, ~10.5 it/s) |\n| **结果目录** | `results/exp_pythia_retrain_depth7/` 已创建但为空 (尚未写入最终结果) |\n\n**进展对比**：上次检查时还在 generation phase 26.2%，现在 generation + fine-tuning 均已完成，已进入 evaluation 阶段。\n\n**ETA 估算**：当前在 depth 3/7 的 surprisal 提取。每个 depth 的 vocab + surprisal 约 4-5 分钟，剩余 depth 3(82%) + 4-7 共约 5 个 depth，预计 **~20-25 分钟**完成全部 evaluation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-pythia-retrain-progress.md"
+}

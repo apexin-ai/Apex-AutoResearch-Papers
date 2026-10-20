@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e6a3d02a0f090f4b315",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "experiment exp code multi source",
+  "task_key": "worker_experiment_exp_code_multi_source_20260520T102719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_exp_code_multi_source_20260520T102719_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "b2db8c0d42c31bc5b11686318ac5d9cab58f1b65568ef0aabaf38b8a0d43cbf1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 占用 100% GPU、7793 MiB 显存。实验正常运行。\n\n**状态汇总：**\n- 脚本：`/root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_code.py`\n- PID: 308219，cuda:1，GPU 100% 利用\n- Vocab-only 已完成：\n  - no_label: K*=2 (0v1=0.7891, 1v2=0.6353, 2v3=0.5121)\n  - with_label: K*=2 (0v1=0.7900, 1v2=0.6440, 2v3=0.5118)\n- Unified scorer 正在 rescoring（Qwen-1.5B 重新计算 3 个 generator 的 surprisal），预计还需 ~30 分钟\n- 注册实验：exp_code_multi_source, status=RUNNING\n\nVocab-only 结果已经确认 code 域 multi-source K*=2，与三个单源的 K*=2 一致，也与 C4 multi-source K*=2 一致。unified scorer 结果待出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-exp-code-multi-source.md"
+}

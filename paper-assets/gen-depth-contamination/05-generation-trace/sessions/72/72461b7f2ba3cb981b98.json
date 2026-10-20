@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72461b7f2ba3cb981b98",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra p1 gpu check and pipeline verify",
+  "task_key": "worker_infra_p1_gpu_check_and_pipeline_verify_20260522T034831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_p1_gpu_check_and_pipeline_verify_20260522T034831_result.json",
+    "occurrence": 1,
+    "bytes": 4616,
+    "sha256": "b47da01e8874d0a0240fcb2bd19f4001c9d3f74af9c146e67c2ad4b1590b5177"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`--seed` 参数已就绪。现在输出完整报告。\n\n---\n\n## 产出汇总\n\n### 1. GPU 状态\n\n| GPU | 型号 | 显存占用 | 利用率 | 状态 |\n|-----|------|----------|--------|------|\n| cuda:0 | RTX PRO 6000 Blackwell | 0 / 96GB | 0% | **空闲** |\n| cuda:1 | RTX PRO 6000 Blackwell | 0 / 96GB | 0% | **空闲** |\n| cuda:2 | RTX PRO 6000 Blackwell | 0 / 96GB | 0% | **空闲** |\n| cuda:3 | RTX PRO 6000 Blackwell | 0 / 96GB | 0% | **空闲** |\n\nPID 443243 已不存在。4卡全空。\n\n### 2. `--seed` 支持\n\n已添加到 `scripts/run_pipeline.py:645-655`。解析后立即设置 `random/np/torch/cuda` 全部 seed。\n\n### 3. 数据/模型路径验证\n\n| 资源 | 路径 | 状态 |\n|------|------|------|\n| WikiText depth_0 | `data/exp_023_wiki/depth_0.jsonl` | ✓ 5000行 |\n| C4 depth_0 | `data/exp_pythia14b_c4_nuc/depth_0.jsonl` | ✓ 5000行 |\n| Pythia-1.4B | `.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79` | ✓ |\n| Qwen2.5-1.5B-Instruct | `.hf_cache/Qwen/Qwen2.5-1.5B-Instruct` | ✓ |\n| 输出目录 | `data/seed_robustness/seed_*` + `results/seed_*` | ✓ 已创建 |\n| depth_0 复制 | 3个输出目录已各含 5000行 depth_0.jsonl | ✓ |\n\n### 4. 精确运行命令\n\n**实验 1: seed_pythia14b_wiki_s123 (cuda:1) — 两阶段**\n\nPhase 1 (Pythia 生成):\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python3 scripts/run_pipeline.py \\\n  --model_path /root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 \\\n  --data_dir /root/autodl-tmp/gen-depth-contamination/data/seed_robustness/seed_pythia14b_wiki_s123 \\\n  --results_dir /root/autodl-tmp/gen-depth-contamination/results/seed_pythia14b_wiki_s123 \\\n  --generation_mode continuation \\\n  --top_p 0.95 --temperature 1.0 \\\n  --seed 123 --num_samples 5000 --max_depth 5 --batch_size 32 \\\n  && rm -f /root/autodl-tmp/gen-depth-contamination/data/seed_robustness/seed_pythia14b_wiki_s123/features.csv \\\n  && python3 scripts/run_pipeline.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct \\\n  --data_dir /root/autodl-tmp/gen-depth-contamination/data/seed_robustness/seed_pythia14b_wiki_s123 \\\n  --results_dir /root/autodl-tmp/gen-depth-contamination/results/seed_pythia14b_wiki_s123 \\\n  --skip_generation \\\n  --seed 123 --num_samples 5000 --max_depth 5\"\n```\n\n**实验 2: seed_qwen15b_wiki_s123 (cuda:2)**\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python3 scripts/run_pipeline.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct \\\n  --data_dir /root/autodl-tmp/gen-depth-contamination/data/seed_robustness/seed_qwen15b_wiki_s123 \\\n  --results_dir /root/autodl-tmp/gen-depth-contamination/results/seed_qwen15b_wiki_s123 \\\n  --generation_mode rewrite \\\n  --top_p 0.95 --temperature 1.0 \\\n  --seed 123 --num_samples 5000 --max_depth 5 --batch_size 16\"\n```\n\n**实验 3: seed_qwen15b_c4_s123 (cuda:3)**\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && source /etc/network_turbo 2>/dev/null; export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && python3 scripts/run_pipeline.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct \\\n  --data_dir /root/autodl-tmp/gen-depth-contamination/data/seed_robustness/seed_qwen15b_c4_s123 \\\n  --results_dir /root/autodl-tmp/gen-depth-contamination/results/seed_qwen15b_c4_s123 \\\n  --generation_mode rewrite \\\n  --top_p 0.95 --temperature 1.0 \\\n  --seed 123 --num_samples 5000 --max_depth 5 --batch_size 16\"\n```\n\n### 5. 预估时间\n\n| 实验 | 生成阶段 | 评分阶段 | 总计 |\n|------|----------|----------|------|\n| Pythia wiki (两阶段) | ~25 min (base model, continuation, batch 32) | ~20 min (Qwen rescore) | **~45 min** |\n| Qwen wiki | ~40 min (instruct rewrite, batch 16) | 同模型一次完成 | **~50 min** |\n| Qwen C4 | ~40 min (同上，depth_0 已就位无需下载) | 同上 | **~50 min** |\n\n注：RTX PRO 6000 Blackwell 96GB 跑 1.4-1.5B 模型极为宽裕，batch_size 可激进。Pythia 用 32，Qwen-Instruct 因 rewrite prompt 较长用 16。三个实验并行跑不同卡，约 50 分钟全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-p1-gpu-check-and-pipeline-verify.md"
+}

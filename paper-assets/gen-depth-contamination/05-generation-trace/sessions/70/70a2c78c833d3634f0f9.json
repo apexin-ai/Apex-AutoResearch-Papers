@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70a2c78c833d3634f0f9",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper fix eq1 ci definition",
+  "task_key": "worker_paper_fix-eq1-ci-definition_20260519T062703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-eq1-ci-definition_20260519T062703_result.json",
+    "occurrence": 1,
+    "bytes": 733,
+    "sha256": "8db1818d0445dde5451291b81791ae663dd7d15d403b48475474ffdb778e043b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 errors, 28 pages, two passes clean.\n\n修改总结：\n\n1. **method.tex Eq.1**：将 `\\auc_{k-1,k} > \\theta` 改为 `\\mathrm{CI}_{\\mathrm{low}}(\\auc_{k-1,k}) > \\theta`，定义说明从 \"point-estimate pairwise AUC\" 改为 \"lower bound of a 95% bootstrap confidence interval over the pairwise AUC\"。新增一句说明该准则确保 K* 反映统计上稳健的可区分性。非边界对的 CI upper bound 验证保留为独立检查。\n\n2. **experiments_c1.tex Table 1 caption**：将 \"requires 1v2 AUC > θ\" 改为 \"requires 1v2 CI lower bound > θ\"，并引用 Eq.1。\n\n3. **appendix_extended.tex code domain table footnote**：同步修改 K* 定义为 CI lower bound 形式，引用 Eq.1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-eq1-ci-definition.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "ae1b537b34928e867990",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "paper merge compile final pdf",
+  "task_key": "worker_paper_merge_compile_final_pdf_20260522T103634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_merge_compile_final_pdf_20260522T103634.log",
+    "occurrence": 1,
+    "bytes": 960706,
+    "sha256": "b1e927a2ff3e0f52a8262aa0bd742e5b4403009ce43345a4a8a797b4272b4c42"
+  },
+  "statistics": {
+    "messages": 313,
+    "user_turns": 1,
+    "tool_calls": 114,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 77,
+      "tool_call": 114,
+      "tool_result": 114,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 137,
+      "chunks": [
+        {
+          "path": "ae1b537b34928e867990-part-0001.json",
+          "message_count": 137
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 176,
+      "chunks": [
+        {
+          "path": "ae1b537b34928e867990-part-0001.json",
+          "message_count": 43
+        },
+        {
+          "path": "ae1b537b34928e867990-part-0002.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-merge-compile-final-pdf.md"
+}

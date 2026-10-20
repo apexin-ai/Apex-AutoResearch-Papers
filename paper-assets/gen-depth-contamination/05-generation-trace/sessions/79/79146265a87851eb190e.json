@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79146265a87851eb190e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops check mistral7b completion",
+  "task_key": "worker_ops_check-mistral7b-completion_20260519T111634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-mistral7b-completion_20260519T111634_result.json",
+    "occurrence": 1,
+    "bytes": 1059,
+    "sha256": "2a920f16a22b3328083e03554d4eb3f881a54bfc3354764e48275d292235518c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能之前已被清除）。\n\n## 汇报\n\n**进程状态**：PID 107037 已退出，实验实际成功完成（之前被 cron 误判为 failed）。\n\n**数据完整性**：全部 6 个 depth 各 5500 行，完整。\n\n**分析结果**：\n\n| Depth Pair | AUC | CI (±) | JSD |\n|---|---|---|---|\n| 0 vs 1 | **0.9191** | 0.0017 | 0.046984 |\n| 1 vs 2 | **0.6152** | 0.0120 | 0.011845 |\n| 2 vs 3 | 0.5293 | 0.0091 | 0.003717 |\n| 3 vs 4 | 0.5286 | 0.0104 | 0.003206 |\n| 4 vs 5 | 0.5099 | 0.0060 | 0.003083 |\n\n- **K\\* = 2**（AUC > 0.60 的最大 depth），与 Qwen/LLaMA 一致\n- Ordinal classification: MAE = 1.3191, Accuracy = 0.3243\n- Top features: freq_entropy, surp_d2_mean, surp_d1_mean\n\n**结论**：Mistral-7B 在 code domain 的 K\\*=2，与 Qwen/LLaMA 结果一致，说明 code domain 的 K\\* 是 domain-governed 而非 model-intrinsic。Mistral 的 one-wash (K\\*=1) 仅限 C4 domain。\n\n**Registry**：status=DONE, conclusion=success, metrics 已写入。Cron 已不存在，无需删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-mistral7b-completion.md"
+}

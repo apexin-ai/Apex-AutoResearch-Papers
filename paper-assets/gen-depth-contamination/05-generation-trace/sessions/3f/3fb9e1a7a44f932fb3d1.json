@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "3fb9e1a7a44f932fb3d1",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops pythia69b download and resubmit",
+  "task_key": "worker_ops_pythia69b_download_and_resubmit_20260521T024633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pythia69b_download_and_resubmit_20260521T024633.log",
+    "occurrence": 1,
+    "bytes": 1147825,
+    "sha256": "4ba0e564e0d840a8ade1ce97b4d2474e459beb3ad9f4ed9c2daac7c59f5386e1"
+  },
+  "statistics": {
+    "messages": 836,
+    "user_turns": 1,
+    "tool_calls": 326,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 176,
+      "tool_call": 326,
+      "tool_result": 326,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 754,
+      "chunks": [
+        {
+          "path": "3fb9e1a7a44f932fb3d1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3fb9e1a7a44f932fb3d1-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3fb9e1a7a44f932fb3d1-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3fb9e1a7a44f932fb3d1-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "3fb9e1a7a44f932fb3d1-part-0005.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 82,
+      "chunks": [
+        {
+          "path": "3fb9e1a7a44f932fb3d1-part-0005.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-pythia69b-download-and-resubmit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "685331526cf8e114db52",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp 018 bootstrap ci",
+  "task_key": "worker_analysis_exp_018_bootstrap_ci_20260516T161206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_018_bootstrap_ci_20260516T161206_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "f8f8bc0562edafeeea8f073577dfd6e4ee45eebf0f129e835626b6314c9a3568"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. 结果总结：\n\n**exp_018 LLaMA-3.1-8B Bootstrap CI (10000 resamples)**\n\n| Pair | AUC | 95% CI | Perm p |\n|------|-----|--------|--------|\n| 0v1 | 0.9224 | [0.9174, 0.9272] | <0.0001 |\n| **1v2** | **0.6123** | **[0.6028, 0.6216]** | **<0.0001** |\n| 2v3 | 0.5273 | [0.5169, 0.5378] | <0.0001 |\n| 3v4 | 0.5168 | [0.5062, 0.5275] | 0.0037 |\n| 4v5 | 0.5159 | [0.5052, 0.5268] | 0.0035 |\n\n**关键结论：1v2 CI lower = 0.6028 > θ=0.60 → PASS。** K\\*=2 对 LLaMA-3.1-8B robust，跨模型家族验证成功。所有 5 个 depth pair 的 permutation test 均显著（p < 0.004）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-018-bootstrap-ci.md"
+}

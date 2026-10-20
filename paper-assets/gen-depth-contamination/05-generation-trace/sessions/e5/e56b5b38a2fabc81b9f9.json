@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e56b5b38a2fabc81b9f9",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code mistral qwen phase2",
+  "task_key": "worker_code_mistral_qwen_phase2_20260523T012707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral_qwen_phase2_20260523T012707_result.json",
+    "occurrence": 1,
+    "bytes": 1385,
+    "sha256": "5493d1f61f00aa9a3146000a4224cfb8b112a490e27a64255250ee063ce574c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job complete. Here are the results:\n\n## Mistral-7B Qwen2.5-1.5B Cross-Scoring Results\n\n### Pairwise AUC (θ = 0.60)\n\n| Pair | Self-scored (Mistral) | Cross-scored (Qwen) | Δ |\n|------|----------------------|--------------------|----|\n| 0v1 | 0.9843 | **0.9170** | −0.0673 |\n| 1v2 | 0.5935 | **0.5750** | −0.0185 |\n| 2v3 | 0.5402 | **0.5369** | −0.0033 |\n| 3v4 | 0.5232 | **0.5174** | −0.0058 |\n| 4v5 | 0.5181 | **0.5175** | −0.0006 |\n\n### K* 判定\n\n**K\\* = 1**（与 self-scored 一致）。0v1 远超 θ=0.60，1v2 < 0.60，后续对均在 chance 附近。\n\n### Self-scored vs Cross-scored 对比\n\n- **0v1 Δ = −0.067**：cross-scored 下降明显但仍极高 (0.917)，说明 depth-0→1 的信号在 scorer 间高度稳健\n- **1v2 Δ = −0.019**：cross-scored 略降，两者都低于 θ，不影响 K* 判定\n- **深层 (2v3–4v5)**：Δ 趋近于 0，均在 chance 水平，scorer 无实质差异\n\n### Bootstrap CI\n\nPipeline 未输出 bootstrap CI，仅提供 5-fold CV std：0v1 ± 0.006, 1v2 ± 0.004, 2v3 ± 0.009, 3v4 ± 0.010, 4v5 ± 0.011。\n\n### 结论\n\nCross-scoring 统一修正后，Mistral-7B 的 K*=1 结论不变。0v1 AUC 从 0.984 降至 0.917（−6.7pp），符合预期——self-scoring 存在轻微膨胀。论文主表应更新 Mistral-7B 行为 cross-scored 值：**0v1 = 0.917, 1v2 = 0.575**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mistral-qwen-phase2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4b8af9a7b94724633e1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper fix global config count and gemma",
+  "task_key": "worker_paper_fix_global_config_count_and_gemma_20260522T042752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_global_config_count_and_gemma_20260522T042752_result.json",
+    "occurrence": 1,
+    "bytes": 1430,
+    "sha256": "eaf7a5824102782d0fce1b9163c3d945f1f438e29454663ef223b279da357ad0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 结果\n\n### Gemma-2-2B 数据（从 JSON 提取）\n| Pair | AUC | 95% CI | p |\n|------|-----|--------|---|\n| 0v1 | 0.953 | [0.949, 0.957] | <0.001 |\n| 1v2 | 0.598 | [0.588, 0.608] | <0.001 |\n| 2v3 | 0.534 | [0.523, 0.545] | <0.001 |\n| 3v4 | 0.503 | [0.492, 0.514] | 0.292 |\n| 4v5 | 0.503 | [0.492, 0.514] | 0.342 |\n\n**K\\*=1**（1v2 AUC=0.598 < θ=0.60）\n\n### 修改清单\n| 文件 | 修改 |\n|------|------|\n| **main.tex** (abstract) | 8→10 model configs, 5→6 architecture families, 6/8→6/10 |\n| **main.tex** (limitations) | 6/8→6/10, 5→6 families, K\\*=1 list +Gemma-2-2B +Pythia-6.9B |\n| **introduction.tex** | 8→10, 5→6 families, 6/8→6/10 |\n| **experiments_c1.tex** | nine→ten, five→six families, 6/9→6/10, model list +Gemma-2-2B, K\\*=1 list +Gemma-2-2B |\n| **discussion.tex** | 8→10 tested, 6/8→6/10, K\\*=1 列表加 Pythia-6.9B + Gemma-2-2B |\n| **conclusion.tex** | 6/8→6/10, 5→6 families |\n| **appendix.tex** (Table S2b) | 新增 Gemma-2B 列（10 data columns），caption 6/9→6/10, K\\*=1 list 更新 |\n| **appendix_extended.tex** | 8→10 configs, 5→6 families |\n\n### grep 验证\n- 零处 \"6/8\" 或 \"6/9\" 残留\n- 零处 \"8 model\" 或 \"9 model\" 残留\n- 零处 \"5 families\" 残留\n- Gemma-2-2B 出现在所有 K\\*=1 列表中\n\n### 编译\n`latexmk -pdf main.tex` 成功，20 pages，无错误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-global-config-count-and-gemma.md"
+}

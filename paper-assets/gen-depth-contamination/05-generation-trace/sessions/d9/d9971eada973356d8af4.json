@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9971eada973356d8af4",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops mistral download wait and submit",
+  "task_key": "worker_ops_mistral-download-wait-and-submit_20260518T230820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mistral-download-wait-and-submit_20260518T230820_result.json",
+    "occurrence": 1,
+    "bytes": 96,
+    "sha256": "c5831e12bb65b003be0100700859c80732c1713a5670ecb0a718c0ea96a28ebf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载进度约 1.8/15GB，PID 104116 仍在运行。4.5 分钟后自动检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mistral-download-wait-and-submit.md"
+}

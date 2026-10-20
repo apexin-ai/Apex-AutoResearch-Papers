@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "863d1b123b1e3c7c5b4f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "bugfix wiki kstar obd baseline",
+  "task_key": "worker_bugfix_wiki-kstar-obd-baseline_20260519T215703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_wiki-kstar-obd-baseline_20260519T215703_result.json",
+    "occurrence": 1,
+    "bytes": 1350,
+    "sha256": "2020883c0f74def582fc76639342adc508702115c3cbab6c2f3eb07434138513"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务全部完成。\n\n---\n\n## 报告\n\n### 任务 2：K* 修正\n\n所有5个 wiki JSON 的 kstar 原为 0-indexed，已全部修正为 1-indexed：\n\n| Config | 修正前 | 修正后 |\n|--------|--------|--------|\n| wiki_pythia | 2 | **3** |\n| wiki_olmo | 0 | **1** |\n| wiki_qwen7b | 2 | **3** |\n| wiki_llama8b | 2 | **3** |\n| wiki_mistral7b | 2 | **3** |\n\n### 任务 3：OBD baseline bug\n\n**根因**：`results/exp_wiki_olmo/` 的全部5个文件（pairwise_auc.json、feature_importance.json、jsd.json、ordinal_results.json、summary.txt）与 `results/exp_wiki_pythia/` 完全一致（md5 相同）。是整个目录被复制过去的，OBD pipeline 从未在 wiki_olmo 数据上运行过。注意：`data/exp_wiki_olmo/features.csv` 与 `data/exp_wiki_pythia/features.csv` md5 不同，数据源本身是正确的。\n\n**修复**：调用 `run_pipeline.run_analysis()` 在 wiki_olmo 的 features.csv 上重新运行了 OBD 分析。\n\n**修复后 wiki_olmo OBD baseline**：\n- 0v1: 0.9961 → **0.9933**\n- 1v2: 0.6193 → **0.4983**（从 >0.6 变为 ~随机）\n- 2v3: 0.5498 → **0.5041**\n- 3v4: 0.5231 → **0.4986**\n- 4v5: 0.5141 → **0.5089**\n\nOLMo 的 OBD baseline 现在显示 depth 1+ 几乎不可区分（AUC ≈ 0.5），与 DeBERTa 的 kstar=1 一致。summary.json 已同步更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-wiki-kstar-obd-baseline.md"
+}

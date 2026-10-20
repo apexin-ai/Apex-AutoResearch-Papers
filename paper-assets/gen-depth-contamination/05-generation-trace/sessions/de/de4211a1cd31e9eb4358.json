@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de4211a1cd31e9eb4358",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analyze exp 14b c4 bootstrap ci",
+  "task_key": "worker_analyze_exp_14b_c4_bootstrap_ci_20260518T083026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_14b_c4_bootstrap_ci_20260518T083026_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "deb27fb792f72a552240314cd1c034c45d72172f3c416b2775cab89ce91e3e03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bootstrap CI 分析完成。关键结果：\n\n| Pair | AUC | 95% CI | Perm p |\n|------|-----|--------|--------|\n| 0v1 | 0.9598 | [0.9564, 0.9630] | <0.001 |\n| **1v2** | **0.6210** | **[0.6119, 0.6304]** | <0.001 |\n| 2v3 | 0.5494 | [0.5392, 0.5594] | <0.001 |\n| 3v4 | 0.5243 | [0.5140, 0.5346] | <0.001 |\n| 4v5 | 0.5154 | [0.5045, 0.5265] | <0.001 |\n\n**K\\* = 2 统计显著确认**：\n- 1v2 CI lower (0.6119) > θ (0.60) ✓\n- 2v3 CI upper (0.5594) < θ (0.60) ✓\n\n所有 pair 的 permutation test p < 0.001，均显著高于 chance。结果已保存到 `bootstrap_ci_results.json`（远程）和 `artifacts/exp_14b_c4_bootstrap_ci/results_summary.md`（本地）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-14b-c4-bootstrap-ci.md"
+}

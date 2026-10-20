@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "471b43c6cca9a6a7c270",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing obd justification",
+  "task_key": "worker_writing_obd-justification_20260514T084302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_obd-justification_20260514T084302_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "2a839f5c49793bf379e205e4863e476824eaa6c61109a69b31fc398f4be41c5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "段落已插入 `experiments_c1.tex` 第 5.1 节末尾（K* boundary 与 Cross-Model Transfer 之间），约 130 词，覆盖了：\n\n- OBD 在 3 个 model families 上一致的 accuracy 优势（38.2–42.3%），对比 random baseline 16.7%（+21.5–25.6pp）和 LLM zero-shot ~33%（+5.2–9.3pp）\n- Ordinal-logreg MAE 最低但 pairwise AUC 近 chance（0.49 vs 0.61）——collapse to center 而非真正区分\n- Multiclass LightGBM pairwise AUC 与 OBD 持平但 accuracy 和 MAE 均差\n- OBD 三指标 balance 最优的结论\n- 交叉引用 Section method 和 Appendix Table S3（LLM zero-shot）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-obd-justification.md"
+}

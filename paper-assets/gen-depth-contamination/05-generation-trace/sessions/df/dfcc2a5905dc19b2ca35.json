@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfcc2a5905dc19b2ca35",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp 32b c4 launch",
+  "task_key": "worker_infra_exp_32b_c4_launch_20260517T193636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp_32b_c4_launch_20260517T193636_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "ac60cd7456de6a0d63022fd7d88a7c64822e9546af5d1e116d2e4e4f51330b65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**exp_32b_c4 已经在运行中**，无需重复启动。\n\n| 项目 | 状态 |\n|------|------|\n| 模型 Qwen2.5-32B | 完整下载（17 shards, ~65GB），已加载到 cuda:1（64.7GB VRAM） |\n| 磁盘空间 | 158GB 可用，充足 |\n| 数据 | `data/exp_32b_c4/` 就绪（seed_docs.jsonl 539MB, depth_0.jsonl 5MB） |\n| 实验进度 | PID 14642，depth 1 生成中（4/2500 batches, ~12s/batch, 预计 depth 1 需 ~8h） |\n| Scorer Qwen2.5-1.5B (base) | **正在下载**（PID 14794, .incomplete 4.1GB），预计几分钟内完成 |\n| Registry | 已更新 spec（补充 data_path, data_count, model_name, seed） |\n\n**注意事项**：Scorer 模型在生成全部完成后才会加载（pipeline line 702），当前下载应能在 depth 1 结束前完成，不影响实验。exp_14b_c4 也依赖同一 scorer 路径，下载完成后两个实验都能正常进入 scoring 阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp-32b-c4-launch.md"
+}

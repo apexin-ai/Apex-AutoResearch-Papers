@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfb0aa8e945879504aea",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper fill 10k appendix table",
+  "task_key": "worker_paper_fill_10k_appendix_table_20260522T180411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fill_10k_appendix_table_20260522T180411_result.json",
+    "occurrence": 1,
+    "bytes": 167,
+    "sha256": "454759bc07385710b25ec0765d36127e754619b782b51baf542f10d88f509d65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已填入 Qwen-1.5B cont 10K 数据（AUC 0v1=0.9875, 1v2=0.6346, 2v3=0.5616, K*=2）。Pythia-1.4B 10K 已确认正确，LLaMA-8B 10K 保持 pending。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fill-10k-appendix-table.md"
+}

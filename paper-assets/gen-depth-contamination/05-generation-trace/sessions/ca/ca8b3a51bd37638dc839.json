@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca8b3a51bd37638dc839",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research pythia integration template",
+  "task_key": "worker_research_pythia_integration_template_20260521T045034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_pythia_integration_template_20260521T045034_result.json",
+    "occurrence": 1,
+    "bytes": 1424,
+    "sha256": "b90662315a63540efbe727657cce5a54e70220cae25836fb3be1b649cf65bc60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报如下：\n\n---\n\n## 产出\n\n**1. 自动化脚本**: `scripts/patch_pythia_results.py`（已在服务器上验证通过）\n- 输入：`results/exp_pythia69b_c4/` 目录下的 `pairwise_auc.json` + 可选 `bootstrap_ci_results.json`\n- 输出：LaTeX 表格行（主表 + 扩展表）、setup 表行、分场景 claim 更新清单、JSON report\n\n**2. 整合方案文档**: `artifacts/pythia_integration_template.md`\n\n---\n\n## 关键发现\n\n**主表格式**：`tab:kstar_ci`（experiments_c1.tex:18）已有 5 列，空间有限。推荐 Pythia-6.9B 放入 `tab:kstar_ci_extended`（appendix.tex:101），正文引用。\n\n**需更新的 claim 共 14 处**，分布在 6 个文件：\n\n| 文件 | 更新点 |\n|------|--------|\n| main.tex (abstract) | config count × 2 |\n| introduction.tex | :19 config count, :21 ratio |\n| experiments_c1.tex | :4 text count, :5 model list, :43 ratio + AUC range, scale paragraph |\n| conclusion.tex | :5 ratio |\n| discussion.tex | boundary_cases paragraph × 2 |\n| appendix.tex | tab:kstar_ci_extended 新增列 |\n\n**场景概率**：K\\*=2 最可能（与 Qwen-7B/LLaMA-8B 一致）；K\\*=1 次之（Pythia 更大但 0v1 JSD 可能更低）；K\\*≥3 不太可能。\n\n**结果出来后执行**：\n```bash\ncd /root/autodl-tmp/gen-depth-contamination\npython scripts/patch_pythia_results.py --results_dir results/exp_pythia69b_c4\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-pythia-integration-template.md"
+}

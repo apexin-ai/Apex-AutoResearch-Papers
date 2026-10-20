@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8e5be4da06dba9b52c36",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "paper audit tables 3 4 inline",
+  "task_key": "worker_paper_audit_tables_3_4_inline_20260523T112128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_audit_tables_3_4_inline_20260523T112128.jsonl",
+    "occurrence": 1,
+    "bytes": 647770,
+    "sha256": "25f79d844f193353286dfda00f98f265d0ecabaf11ca97400dac21a9636b435c"
+  },
+  "statistics": {
+    "messages": 467,
+    "user_turns": 0,
+    "tool_calls": 233,
+    "roles": {
+      "tool_call": 233,
+      "tool_result": 233,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 467,
+      "chunks": [
+        {
+          "path": "8e5be4da06dba9b52c36-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8e5be4da06dba9b52c36-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8e5be4da06dba9b52c36-part-0003.json",
+          "message_count": 107
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/paper-audit-tables-3-4-inline.md"
+}

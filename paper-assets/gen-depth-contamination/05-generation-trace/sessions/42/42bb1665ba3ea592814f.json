@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42bb1665ba3ea592814f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code check gemma2b 10k done",
+  "task_key": "worker_code_check_gemma2b_10k_done_20260522T231455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_gemma2b_10k_done_20260522T231455_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "5dd3e8c3b4f835ad051256543904f21d9f089f77e21dc3683f8f270bcda1940e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## exp_gemma2b_10k 实验报告\n\n**状态**: 成功完成（2026-05-23 07:12 服务器时间）\n\n### Pairwise AUC\n\n| 对比 | 5K AUC | 10K AUC | 变化 |\n|------|--------|---------|------|\n| 0v1 | — | 0.9817 ± 0.0013 | — |\n| 1v2 | 0.5981 | **0.6430 ± 0.0061** | +0.045 |\n| 2v3 | — | 0.5550 ± 0.0073 | — |\n| 3v4 | — | 0.5173 ± 0.0050 | — |\n| 4v5 | — | 0.5101 ± 0.0123 | — |\n\n### K* 判定\n\n- **5K**: K\\*=1（1v2=0.5981，borderline < θ=0.60）\n- **10K**: **K\\*=2**（1v2=0.6430，明确 > θ=0.60）\n\n**关键发现**: 5K 的 borderline 判定 **不稳定**。增加到 10K 样本后，1v2 AUC 从 0.5981 跃升到 0.6430，跨过了 0.60 阈值，K\\* 从 1 变为 2。这说明 5K 样本量不足以对 Gemma-2-2B 做出稳定的 depth-1 vs depth-2 区分判定。\n\n**假设对比**: 原假设预期 K\\*=1 保持不变，实际 K\\*=2。Gemma-2-2B 的 distinguishable depth 比 5K 实验显示的更深。\n\nRegistry 已更新为 DONE/success，metrics 已记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-gemma2b-10k-done.md"
+}

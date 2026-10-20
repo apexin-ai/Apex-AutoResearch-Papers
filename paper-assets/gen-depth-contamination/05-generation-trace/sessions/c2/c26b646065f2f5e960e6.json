@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c26b646065f2f5e960e6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code kstar theta figure",
+  "task_key": "worker_code_kstar_theta_figure_20260515T124324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kstar_theta_figure_20260515T124324_result.json",
+    "occurrence": 1,
+    "bytes": 1141,
+    "sha256": "e89e58a8b368cb9eb7c51f468d6db8898cdca6ea861d822b650fb54d3df80dd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出完成。\n\n**文件路径：**\n- PDF: `/root/autodl-tmp/gen-depth-contamination/artifacts/kstar_theta_curve.pdf` (32 KB)\n- PNG: `/root/autodl-tmp/gen-depth-contamination/artifacts/kstar_theta_curve.png` (350 KB, 300 DPI)\n- 脚本: `/root/autodl-tmp/gen-depth-contamination/scripts/plot_kstar_theta.py`\n\n**图表内容：**\n\n**(a) Pairwise AUC profile** — 4 条模型曲线 + 95% CI shaded band，θ=0.60 水平虚线，K*=2 边界竖线标注在 1v2 和 2v3 之间。所有模型 1v2 AUC > 0.60，2v3 AUC < 0.60，清晰呈现饱和边界。\n\n**(b) K*(θ) sensitivity** — 4 条阶梯函数，两层灰色带标注：\n- 浅蓝带 `[0.590, 0.610]`：全部 4 个模型 K*=2（unanimous）\n- 灰色带 `[0.545, 0.610]`：全部模型 K*∈{2,3}\n- θ=0.60 竖虚线正好落在 unanimous 区域内\n\n**Rebuttal 论点支撑：**\n- θ=0.60 时 4/4 模型一致给出 K*=2\n- K* 在 θ∈[0.545, 0.610] 范围内仅在 {2, 3} 间波动，对阈值选择不敏感\n- θ > 0.61 后部分模型降至 K*=1（过于保守），θ < 0.55 后部分模型升至 K*=3（过于宽松），θ=0.60 是最优平衡点"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-kstar-theta-figure.md"
+}

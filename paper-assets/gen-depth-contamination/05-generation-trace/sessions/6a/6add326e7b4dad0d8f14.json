@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "6add326e7b4dad0d8f14",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ssh fix h5 tab s3c",
+  "task_key": "worker_ssh_fix_h5_tab_s3c_20260525T203719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_h5_tab_s3c_20260525T203719.log",
+    "occurrence": 1,
+    "bytes": 679185,
+    "sha256": "1abdb56b4b9ea62e39be12078234a4fa1c831f15d32f1d6ba0c083c6a5b0ec07"
+  },
+  "statistics": {
+    "messages": 281,
+    "user_turns": 1,
+    "tool_calls": 97,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 1,
+      "assistant": 71,
+      "tool_call": 97,
+      "tool_result": 97,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "6add326e7b4dad0d8f14-part-0001.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 271,
+      "chunks": [
+        {
+          "path": "6add326e7b4dad0d8f14-part-0001.json",
+          "message_count": 170
+        },
+        {
+          "path": "6add326e7b4dad0d8f14-part-0002.json",
+          "message_count": 101
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-fix-h5-tab-s3c.md"
+}

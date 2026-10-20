@@ -1,0 +1,252 @@
+{
+  "schema_version": "1.0",
+  "id": "f070233d3ef2e85d5820",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "code fix code analysis script",
+  "task_key": "worker_code_fix-code-analysis-script_20260519T025536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_fix-code-analysis-script_20260519T025536.jsonl",
+    "occurrence": 1,
+    "bytes": 15962,
+    "sha256": "d259f0dcc36ae83799efdb96c7d48d9691b3745734f70222554e66f77c170606"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T02:58:25.767856+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fix-code-analysis-script_20260519T025536",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T02:58:25.768227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fix-code-analysis-script_20260519T025536",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T02:58:25.768647+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fix-code-analysis-script_20260519T025536",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/analyze_code_crossmodel.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T02:58:25.769060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Analyze code-domain cross-model pairwise AUC results and generate LaTeX table + JSON.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nPROJ_ROOT = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination\\\\\\\")\\\\nRESULTS_DIR = PROJ_ROOT / \\\\\\\"results\\\\\\\"\\\\nARTIFACTS_DIR = PROJ_ROOT / \\\\\\\"artifacts\\\\\\\"\\\\nTHETA = 0.60\\\\n\\\\nEXPERIMENTS = {\\\\n    \\\\\\\"Qwen2.5-1.5B\\\\\\\": \\\\\\\"exp_code_qwen1b5\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-7B\\\\\\\": \\\\\\\"exp_code_qwen7b\\\\\\\",\\\\n    \\\\\\\"Llama-3.1-8B\\\\\\\": \\\\\\\"exp_code_llama8b\\\\\\\",\\\\n    \\\\\\\"Mistral-7B-v0.3\\\\\\\": \\\\\\\"exp_code_mistral7b\\\\\\\",\\\\n}\\\\n\\\\nPAIRS = [\\\\\\\"0v1\\\\\\\", \\\\\\\"1v2\\\\\\\", \\\\\\\"2v3\\\\\\\", \\\\\\\"3v4\\\\\\\", \\\\\\\"4v5\\\\\\\"]\\\\n\\\\n\\\\ndef load_experiment(exp_dir: Path) -> dict | None:\\\\n    auc_file = exp_dir / \\\\\\\"pairwise_auc.json\\\\\\\"\\\\n    if not auc_file.exists():\\\\n        return None\\\\n    with open(auc_file) as f:\\\\n        data = json.load(f)\\\\n    return data\\\\n\\\\n\\\\ndef compute_ci(fold_values: list[float]) -> tuple[float, float, float]:\\\\n    n = len(fold_values)\\\\n    mean = sum(fold_values) / n\\\\n    std = math.sqrt(sum((x - mean) ** 2 for x in fold_values) / (n - 1))\\\\n    ci = 1.96 * std / math.sqrt(n)\\\\n    return mean, std, ci\\\\n\\\\n\\\\ndef determine_kstar(mean_aucs: dict[str, float], theta: float = THETA) -> int:\\\\n    kstar = 0\\\\n    for pair in PAIRS:\\\\n        k = int(pair.split(\\\\\\\"v\\\\\\\")[1])\\\\n        if mean_aucs.get(pair, 0) > theta:\\\\n            kstar = max(kstar, k)\\\\n        else:\\\\n            break\\\\n    return kstar\\\\n\\\\n\\\\ndef build_results(experiments: dict[str, str]) -> dict:\\\\n    all_results = {}\\\\n    for model_name, exp_name in experiments.items():\\\\n        exp_dir = RESULTS_DIR / exp_name\\\\n        data = load_experiment(exp_dir)\\\\n        if data is None:\\\\n            print(f\\\\\\\"[WARN] {exp_name} not found or incomplete, skipping\\\\\\\", file=sys.stderr)\\\\n            all_results[model_name] \n…[truncated 4928 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fix-code-analysis-script_20260519T025536",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T02:58:25.769375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fix-code-analysis-script_20260519T025536",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T02:58:25.769577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"feature_importance.json\\\\njsd.json\\\\nordinal_results.json\\\\npairwise_auc.json\\\\nsummary.txt\\\\ntrain.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fix-code-analysis-script_20260519T025536",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T02:58:25.769833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fix-code-analysis-script_20260519T025536",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/analyze_code_crossmodel.py << 'SCRIPTEOF'\n#!/usr/bin/env python3\n\"\"\"Analyze code-domain cross-model pairwise AUC results and generate LaTeX table + JSON.\"\"\"\n\nimport json\nimport math\nimport os\nimport sys\nfrom pathlib import Path\n\nPROJ_ROOT = Path(\"/root/autodl-tmp/gen-depth-contamination\")\nRESULTS_DIR = PROJ_ROOT / \"results\"\nARTIFACTS_DIR = PROJ_ROOT / \"artifacts\"\nTHETA = 0.60\n\nEXPERIMENTS = {\n    \"Qwen2.5-1.5B\": \"exp_code_qwen1b5\",\n    \"Pythia-1.4B\": \"exp_code_pythia1b4\",\n    \"Qwen2.5-7B\": \"exp_code_qwen7b\",\n    \"Llama-3.1-8B\": \"exp_code_llama8b\",\n    \"Mistral-7B-v0.3\": \"exp_code_mistral7b\",\n}\n\nPAIRS = [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"]\n\n\ndef load_experiment(exp_dir: Path) -> dict | None:\n    auc_file = exp_dir / \"pairwise_auc.json\"\n    if not auc_file.exists():\n        return None\n    with open(auc_file) as f:\n        data = json.load(f)\n    return data\n\n\ndef compute_ci(fold_values: list[float]) -> tuple[float, float, float]:\n    n = len(fold_values)\n    mean = sum(fold_values) / n\n    std = math.sqrt(sum((x - mean) ** 2 for x in fold_values) / (n - 1))\n    ci = 1.96 * std / math.sqrt(n)\n    return mean, std, ci\n\n\ndef determine_kstar(mean_aucs: dict[str, float], theta: float = THETA) -> int:\n    kstar = 0\n    for pair in PAIRS:\n        k = int(pair.split(\"v\")[1])\n        if mean_aucs.get(pair, 0) > theta:\n            kstar = max(kstar, k)\n        else:\n            break\n    return kstar\n\n\ndef build_results(experiments: dict[str, str]) -> dict:\n    all_results = {}\n    for model_name, exp_name in experiments.items():\n        exp_dir = RESULTS_DIR / exp_name\n        data = load_experiment(exp_dir)\n        if data is None:\n            print(f\"[WARN] {exp_name} not found or incomplete, skipping\", file=sys.stderr)\n            all_results[model_name] = None\n            continue\n\n        model_result = {\"pairs\": {}}\n        for pair in PAIRS:\n            folds = data[\"per_fold\"][pair]\n            mean, std, ci = compute_ci(folds)\n            model_result[\"pairs\"][pair] = {\n                \"mean\": round(mean, 4),\n                \"std\": round(std, 4),\n                \"ci\": round(ci, 4),\n                \"folds\": folds,\n            }\n\n        mean_aucs = {p: model_result[\"pairs\"][p][\"mean\"] for p in PAIRS}\n        model_result[\"kstar\"] = determine_kstar(mean_aucs)\n        all_results[model_name] = model_result\n\n    return all_results\n\n\ndef generate_latex(all_results: dict) -> str:\n    model_names = list(EXPERIMENTS.keys())\n    n_models = len(model_names)\n\n    lines = []\n    lines.append(\"% Code Domain Cross-Model Pairwise AUC Results\")\n    lines.append(f\"% Generated: {__import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M')}\")\n    lines.append(f\"% Threshold theta = {THETA}\")\n    lines.append(\"\")\n    lines.append(\"\\\\begin{table}[t]\")\n    lines.append(\"\\\\centering\")\n    lines.append(\n        \"\\\\caption{Pairwise AUC ($k$ vs $k{+}1$) for code-domain contamination detection \"\n        \"across five generator models trained on the CodeSearchNet Python subset \"\n        \"\\\\citep{husain2019codesearchnet}. \"\n        \"CI columns show 95\\\\% confidence intervals from 5-fold CV. \"\n        \"Underlined values mark the $K^*$ boundary (last pair with AUC $> \\\\theta$).}\"\n    )\n    lines.append(\"\\\\label{tab:code_crossmodel_auc}\")\n    lines.append(\"\\\\resizebox{\\\\columnwidth}{!}{%\")\n\n    col_spec = \"l\" + \" cc\" * n_models\n    lines.append(f\"\\\\begin{{tabular}}{{{col_spec}}}\")\n    lines.append(\"\\\\toprule\")\n\n    header1_parts = [\"\"]\n    for name in model_names:\n        header1_parts.append(f\"\\\\multicolumn{{2}}{{c}}{{{name}}}\")\n    lines.append(\" & \".join(header1_parts) + \" \\\\\\\\\")\n\n    cmidrules = []\n    for i in range(n_models):\n        start = 2 + i * 2\n        end = start + 1\n        cmidrules.append(f\"\\\\cmidrule(lr){{{start}-{end}}}\")\n    lines.append(\" \".join(cmidrules))\n\n    header2 = \"Pair\"\n    for _ in model_names:\n        header2 += \" & AUC & CI\"\n    lines.append(header2 + \" \\\\\\\\\")\n    lines.append(\"\\\\midrule\")\n\n    for pair in PAIRS:\n        k_from, k_to = pair.split(\"v\")\n        row_label = f\"${k_from}{{\\\\to}}{k_to}$\"\n        row_parts = [row_label]\n\n        for model_name in model_names:\n            result = all_results.get(model_name)\n            if result is None:\n                row_parts.extend([\"TBD\", \"\"])\n            else:\n                pair_data = result[\"pairs\"][pair]\n                kstar = result[\"kstar\"]\n                k = int(k_from)\n                is_boundary = (k + 1 == kstar) and (pair_data[\"mean\"] > THETA)\n\n                auc_str = f\"{pair_data['mean']:.4f}\"\n                ci_str = f\"$\\\\pm${pair_data['ci']:.4f}\"\n\n                if is_boundary:\n                    auc_str = f\"\\\\underline{{{auc_str}}}\"\n                    ci_str = f\"\\\\underline{{{ci_str}}}\"\n\n                row_parts.extend([auc_str, ci_str])\n\n        lines.append(\" & \".join(row_parts) + \" \\\\\\\\\")\n\n    lines.append(\"\\\\midrule\")\n\n    kstar_parts = [\"$K^*$\"]\n    for model_name in model_names:\n        result = all_results.get(model_name)\n        if result is None:\n            kstar_parts.extend([\"TBD\", \"\"])\n        else:\n            kstar_parts.extend([str(result[\"kstar\"]), \"\"])\n    lines.append(\" & \".join(kstar_parts) + \" \\\\\\\\\")\n\n    lines.append(\"\\\\bottomrule\")\n    lines.append(\"\\\\end{tabular}}\")\n    lines.append(\"\")\n    lines.append(\"\\\\vspace{2pt}\")\n    lines.append(\n        f\"{{\\\\footnotesize $\\\\theta = {THETA}$; $K^*$ = max $k$ s.t.\\\\ \"\n        f\"AUC($k{{-}}1, k$) $> \\\\theta$. Domain: Code (CodeSearchNet Python subset). 5-fold CV.}}\"\n    )\n    lines.append(\"\\\\end{table}\")\n\n    return \"\\n\".join(lines)\n\n\ndef main():\n    all_results = build_results(EXPERIMENTS)\n\n    latex = generate_latex(all_results)\n    print(latex)\n    print()\n\n    json_out = {}\n    for model_name, result in all_results.items():\n        if result is None:\n            json_out[model_name] = None\n        else:\n            json_out[model_name] = {\n                \"kstar\": result[\"kstar\"],\n                \"pairs\": {\n                    p: {\"mean\": v[\"mean\"], \"ci\": v[\"ci\"]}\n                    for p, v in result[\"pairs\"].items()\n                },\n            }\n\n    os.makedirs(ARTIFACTS_DIR, exist_ok=True)\n    tex_path = ARTIFACTS_DIR / \"code_crossmodel_table.tex\"\n    json_path = ARTIFACTS_DIR / \"code_crossmodel_results.json\"\n\n    with open(tex_path, \"w\") as f:\n        f.write(latex + \"\\n\")\n    with open(json_path, \"w\") as f:\n        json.dump(json_out, f, indent=2)\n\n    print(f\"[INFO] LaTeX table written to {tex_path}\", file=sys.stderr)\n    print(f\"[INFO] JSON results written to {json_path}\", file=sys.stderr)\n\n    for model_name, result in all_results.items():\n        if result is not None:\n            print(f\"[CHECK] {model_name}: K*={result['kstar']}, 0v1 AUC={result['pairs']['0v1']['mean']:.4f}\", file=sys.stderr)\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPTEOF",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T02:58:25.770069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fix-code-analysis-script_20260519T025536",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T02:58:25.770244+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fix-code-analysis-script_20260519T025536",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cd /root/autodl-tmp/gen-depth-contamination && python3 scripts/analyze_code_crossmodel.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T02:58:25.770427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Code Domain Cross-Model Pairwise AUC Results\\\\n% Generated: 2026-05-19 10:58\\\\n% Threshold theta = 0.6\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Pairwise AUC ($k$ vs $k{+}1$) for code-domain contamination detection across five generator models trained on the CodeSearchNet Python subset \\\\\\\\citep{husain2019codesearchnet}. CI columns show 95\\\\\\\\% confidence intervals from 5-fold CV. Underlined values mark the $K^*$ boundary (last pair with AUC $> \\\\\\\\theta$).}\\\\n\\\\\\\\label{tab:code_crossmodel_auc}\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{l cc cc cc cc cc}\\\\n\\\\\\\\toprule\\\\n & \\\\\\\\multicolumn{2}{c}{Qwen2.5-1.5B} & \\\\\\\\multicolumn{2}{c}{Pythia-1.4B} & \\\\\\\\multicolumn{2}{c}{Qwen2.5-7B} & \\\\\\\\multicolumn{2}{c}{Llama-3.1-8B} & \\\\\\\\multicolumn{2}{c}{Mistral-7B-v0.3} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(lr){2-3} \\\\\\\\cmidrule(lr){4-5} \\\\\\\\cmidrule(lr){6-7} \\\\\\\\cmidrule(lr){8-9} \\\\\\\\cmidrule(lr){10-11}\\\\nPair & AUC & CI & AUC & CI & AUC & CI & AUC & CI & AUC & CI \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n$0{\\\\\\\\to}1$ & 0.9388 & $\\\\\\\\pm$0.0046 & \\\\\\\\underline{0.9592} & \\\\\\\\underline{$\\\\\\\\pm$0.0035} & TBD &  & TBD &  & TBD &  \\\\\\\\\\\\\\\\\\\\n$1{\\\\\\\\to}2$ & \\\\\\\\underline{0.7382} & \\\\\\\\underline{$\\\\\\\\pm$0.0130} & 0.5983 & $\\\\\\\\pm$0.0049 & TBD &  & TBD &  & TBD &  \\\\\\\\\\\\\\\\\\\\n$2{\\\\\\\\to}3$ & 0.5300 & $\\\\\\\\pm$0.0072 & 0.5215 & $\\\\\\\\pm$0.0125 & TBD &  & TBD &  & TBD &  \\\\\\\\\\\\\\\\\\\\n$3{\\\\\\\\to}4$ & 0.5022 & $\\\\\\\\pm$0.0072 & 0.5152 & $\\\\\\\\pm$0.0117 & TBD &  & TBD &  & TBD &  \\\\\\\\\\\\\\\\\\\\n$4{\\\\\\\\to}5$ & 0.5219 & $\\\\\\\\pm$0.0055 & 0.5046 & $\\\\\\\\pm$0.0134 & TBD &  & TBD &  & TBD &  \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n$K^*$ & 2 &  & 1 &  & TBD &  & TBD &  & TBD &  \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\n\\\\\\\\vspace{2pt}\\\\n{\\\\\\\\footnotesize $\\\\\\\\theta = 0.6$; $K^*$ = max $k$ s.t.\\\\\\\\ AUC($k{-}1, k$) $> \\\\\\\\theta$. Domain: Code (CodeSearchNet Python subset). 5-fold CV.}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"[WARN] exp_code_qwen7b not found or incom\n…[truncated 537 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fix-code-analysis-script_20260519T025536",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T02:58:25.770673+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n| 检查项 | 结果 |\n|--------|------|\n| Qwen-1.5B: K\\*=2, 0v1 AUC | K\\*=2, AUC=0.9388 |\n| Pythia-1.4B: K\\*=1, 0v1 AUC | K\\*=1, AUC=0.9592 |\n| 其他 3 模型 | TBD |\n| Caption 含 \"CodeSearchNet Python\" | 有 |\n| Caption 含 \"TheStack\" | 无 |\n| 表格列数 | `l cc cc cc cc cc` = 11 列 |\n| cmidrule 分组 | `{2-3} {4-5} {6-7} {8-9} {10-11}` |\n\nPythia-1.4B 的 K\\*=1 与预期一致，但 0v1 AUC 实际值为 0.9592（高于预估的 0.8952）。这是从 `exp_code_pythia1b4/pairwise_auc.json` 读出的真实数据。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_fix-code-analysis-script_20260519T025536"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/code-fix-code-analysis-script.md"
+}

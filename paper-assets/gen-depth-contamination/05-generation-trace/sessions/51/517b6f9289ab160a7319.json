@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "517b6f9289ab160a7319",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp 32b c4",
+  "task_key": "worker_analysis_exp_32b_c4_20260519T213424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_32b_c4_20260519T213424_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "0037e08919d2a7bb8caaeba3cbd06856398479a0dc1781b06916f219be50200d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验结果摘要：\n\n- **状态**: 成功完成\n- **K\\* = 2**，与 1.5B/7B/8B/14B 完全一致\n- 关键 AUC：0v1 = 0.9575, 1v2 = 0.6183 (>0.60), 2v3 = 0.5454 (<0.60)\n- JSD 同样显示 depth 1 之后快速饱和（0v1: 0.1149 → 1v2: 0.0101 → 2v3: 0.0054）\n- 无 W&B 记录\n\n**结论**: Scale invariance confirmed up to 32B。模型规模（至少到 32B）不影响 C4 上 K\\*=2 的结论，排除了 scale ceiling effect。报告已注册为 artifact `art_20260519_7b278e`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-32b-c4.md"
+}

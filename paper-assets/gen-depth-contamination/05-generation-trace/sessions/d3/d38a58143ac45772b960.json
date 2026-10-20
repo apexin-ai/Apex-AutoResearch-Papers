@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "d38a58143ac45772b960",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "analysis code wiki bootstrap ci",
+  "task_key": "worker_analysis_code_wiki_bootstrap_ci_20260524T095055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_code_wiki_bootstrap_ci_20260524T095055.log",
+    "occurrence": 1,
+    "bytes": 1192129,
+    "sha256": "766f0236f98235f187379ad2328c68bf1930a25b86d4f4019906ca29f0b3d80b"
+  },
+  "statistics": {
+    "messages": 609,
+    "user_turns": 1,
+    "tool_calls": 259,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 259,
+      "tool_result": 259,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 538,
+      "chunks": [
+        {
+          "path": "d38a58143ac45772b960-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d38a58143ac45772b960-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d38a58143ac45772b960-part-0003.json",
+          "message_count": 178
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 71,
+      "chunks": [
+        {
+          "path": "d38a58143ac45772b960-part-0003.json",
+          "message_count": 2
+        },
+        {
+          "path": "d38a58143ac45772b960-part-0004.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-code-wiki-bootstrap-ci.md"
+}

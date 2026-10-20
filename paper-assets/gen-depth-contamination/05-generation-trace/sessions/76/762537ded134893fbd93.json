@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "762537ded134893fbd93",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code model download dryrun",
+  "task_key": "worker_code_model_download_dryrun_20260512T200536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_model_download_dryrun_20260512T200536.log",
+    "occurrence": 1,
+    "bytes": 496225,
+    "sha256": "c062cf8e58121bbafa9dd204f5bf5d9ff1ec9a040475683d589645137579cb4d"
+  },
+  "statistics": {
+    "messages": 352,
+    "user_turns": 0,
+    "tool_calls": 143,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 143,
+      "tool_result": 143,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 352,
+      "chunks": [
+        {
+          "path": "762537ded134893fbd93-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "762537ded134893fbd93-part-0002.json",
+          "message_count": 172
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-model-download-dryrun.md"
+}

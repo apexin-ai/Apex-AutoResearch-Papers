@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae734a69845c251cf8f6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "urgent pythia69b nuc check and patch",
+  "task_key": "worker_urgent_pythia69b_nuc_check_and_patch_20260521T223210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_pythia69b_nuc_check_and_patch_20260521T223210_result.json",
+    "occurrence": 1,
+    "bytes": 806,
+    "sha256": "473876868cabfc372032b54388f56bbb7eb57dad76a0f568f6e08bff80a75a5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部任务完成。\n\n**结果摘要**:\n\n| 任务 | 状态 |\n|------|------|\n| Task 1: 实验状态 | Qwen-1.5B scorer 已完成，**K\\*=1 (negative)**。1v2 AUC=0.5955，仅差 0.0045 低于 θ=0.60 |\n| Task 2: 论文更新 | **不需要更新**。K\\*=1，\"6/8 configurations\" 维持不变 |\n| Task 3: cuda:0 未注册任务 | **无**。仅 PID 443243（已知 Pythia 管线）在运行 |\n| Task 4: 编译论文 | main.pdf 已是最新，无需重编译 |\n| 报告 | 已写入 `artifacts/pythia69b_nuc_final_report.md` 并注册 |\n\n**关键发现**: Pythia-6.9B 从 greedy (K\\*=2) 切换到 nucleus sampling 后降为 K\\*=1，确认 greedy decoding 确实高估了可区分性。1v2 边界极其接近（5 折中有 2 折超过 0.60），Pythia-6.9B 处于检测边界。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-pythia69b-nuc-check-and-patch.md"
+}

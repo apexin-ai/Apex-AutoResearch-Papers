@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "ff13e45f957f1ad92f24",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops cloud gpu setup westd42896",
+  "task_key": "worker_ops_cloud_gpu_setup_westd42896_20260517T151720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cloud_gpu_setup_westd42896_20260517T151720.log",
+    "occurrence": 1,
+    "bytes": 1395353,
+    "sha256": "811bc134190c14f2321d4153e53cbfccc75655d6a165a14c680b6142ed63c7ac"
+  },
+  "statistics": {
+    "messages": 665,
+    "user_turns": 2,
+    "tool_calls": 200,
+    "roles": {
+      "log": 1,
+      "system": 103,
+      "record": 1,
+      "assistant": 157,
+      "tool_call": 200,
+      "tool_result": 200,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "ff13e45f957f1ad92f24-part-0001.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 282,
+      "chunks": [
+        {
+          "path": "ff13e45f957f1ad92f24-part-0001.json",
+          "message_count": 169
+        },
+        {
+          "path": "ff13e45f957f1ad92f24-part-0002.json",
+          "message_count": 113
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 372,
+      "chunks": [
+        {
+          "path": "ff13e45f957f1ad92f24-part-0002.json",
+          "message_count": 67
+        },
+        {
+          "path": "ff13e45f957f1ad92f24-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ff13e45f957f1ad92f24-part-0004.json",
+          "message_count": 125
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-cloud-gpu-setup-westd42896.md"
+}

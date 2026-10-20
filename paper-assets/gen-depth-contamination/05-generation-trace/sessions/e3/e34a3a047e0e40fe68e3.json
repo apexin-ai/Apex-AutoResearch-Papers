@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e34a3a047e0e40fe68e3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing c3 method prewrite",
+  "task_key": "worker_writing_c3-method-prewrite_20260514T065632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_c3-method-prewrite_20260514T065632_result.json",
+    "occurrence": 1,
+    "bytes": 1427,
+    "sha256": "dbb7575b2218fcbb574b93d5281c546ecdc6cddb149cd40531b7b89b1433ca50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No existing `\\ref` to this label yet — the discussion.tex mentions graduated filtering inline but doesn't cross-reference the section. The `\\label` is ready for when those references are added. The `\\input{experiments_c3}` in `main.tex` line 50 is already commented out as required.\n\n`experiments_c3.tex` is written to `docs/paper/experiments_c3.tex`. Summary:\n\n- **Section label**: `\\label{sec:graduated-filtering}` — matches the convention expected by `discussion.tex`\n- **Motivation**: frames the experiment around the K\\*=2 trichotomy and whether soft depth-aware weighting beats binary filtering\n- **6 strategies**: each described with 1-2 sentences, matching the actual implementation in `exp006_filtering_strategies.py` (weight formulas, hyperparameters, baselines)\n- **Training setup**: LoRA config, hyperparameters, weighted sampling mechanism, seed/alpha sweep structure (~50 runs total)\n- **Evaluation**: MMLU + HellaSwag 0-shot via lm-eval-harness\n- **Two placeholder tables**: `tab:filtering_main` (6 strategies comparison) and `tab:alpha_sweep` (graduated α sensitivity), all numbers marked `XX.X`\n- **Analysis skeleton**: structured TODO comments outlining the planned narrative (graduated vs binary, optimal α interpretation, cross-seed stability, task-specific sensitivity)\n- `main.tex` `\\input{experiments_c3}` remains commented — ready to uncomment when results arrive"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-c3-method-prewrite.md"
+}

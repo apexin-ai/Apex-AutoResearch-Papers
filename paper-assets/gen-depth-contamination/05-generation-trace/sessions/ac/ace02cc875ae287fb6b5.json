@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ace02cc875ae287fb6b5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research feature audit",
+  "task_key": "worker_research_feature_audit_20260513T094245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_feature_audit_20260513T094245_result.json",
+    "occurrence": 1,
+    "bytes": 2705,
+    "sha256": "e712abb47009b66ea6cb34b31cfae5a6cb69e9bd783a619dd68f29c3c54d9fea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。\n\n---\n\n## FEATURE_COLS（来自 `exp006_filtering_strategies.py:26` 和 `run_exp005_degradation.py:27`，两处完全一致）\n\n共 **15 个**特征，分 4 组：\n\n### Surprisal 组（9维）— `compute_surprisal_features()` @ `run_pipeline.py:226-287`\n\n| # | 特征名 | 计算方式 |\n|---|--------|---------|\n| 1 | `surp_mean` | 每个 token 的 surprisal（-log p(x_t\\|x_{<t})）的均值 |\n| 2 | `surp_std` | token surprisal 序列的标准差 |\n| 3 | `surp_skew` | token surprisal 序列的偏度（scipy.stats.skew） |\n| 4 | `surp_kurt` | token surprisal 序列的峰度（scipy.stats.kurtosis） |\n| 5 | `surp_d1_mean` | surprisal 一阶差分（np.diff）的均值 |\n| 6 | `surp_d1_std` | surprisal 一阶差分的标准差 |\n| 7 | `surp_d1_skew` | surprisal 一阶差分的偏度（序列长度<3时为0） |\n| 8 | `surp_d2_mean` | surprisal 二阶差分的均值 |\n| 9 | `surp_d2_std` | surprisal 二阶差分的标准差 |\n\n### VocabDiv 组（3维）— `compute_vocab_diversity()` @ `run_pipeline.py:288-331`\n\n| # | 特征名 | 计算方式 |\n|---|--------|---------|\n| 10 | `ttr` | Type-Token Ratio = unique_words / total_words（空格分词） |\n| 11 | `hapax_ratio` | 只出现一次的词数 / 去重词数 |\n| 12 | `self_bleu` | 从同 depth 随机选100篇作 reference，计算 4-gram sentence BLEU 的均值 |\n\n### TailFreq 组（3维）— `compute_tail_features()` @ `run_pipeline.py:332-352`\n\n| # | 特征名 | 计算方式 |\n|---|--------|---------|\n| 13 | `freq_kurtosis` | 词频分布的峰度（scipy.stats.kurtosis，词数<4时为0） |\n| 14 | `freq_entropy` | 词频分布的 Shannon 熵（-Σ p·log₂p，空格分词） |\n| 15 | `low_freq_ratio` | 频次≤2的词类型数 / 总词类型数 |\n\n## 特征计算函数位置\n\n| 函数 | 文件:行范围 |\n|------|------------|\n| `compute_surprisal_features` | `run_pipeline.py:226-287` |\n| `compute_vocab_diversity` | `run_pipeline.py:288-331` |\n| `compute_tail_features` | `run_pipeline.py:332-352` |\n| `extract_all_features`（组装入口） | `run_pipeline.py:366-420` |\n\n## 列常量定义位置\n\n- `SURPRISAL_COLS` / `VOCAB_COLS` / `TAIL_COLS` / `ALL_FEAT_COLS` → `run_pipeline.py:354-364`\n- `FEATURE_COLS`（同一列表的副本）→ `exp006_filtering_strategies.py:26-32` 和 `run_exp005_degradation.py:27-33`\n\n## 其他文件\n\n`exp006_continued_pretraining.py:28` 直接 `from exp006_filtering_strategies import FEATURE_COLS`，无独立定义。`run_exp005_degradation.py` 另外定义了 `FEATURE_GROUPS` 分组字典（Surprisal / Surprisal-Δ / VocabDiv / TailFreq），特征列表与上述一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-feature-audit.md"
+}

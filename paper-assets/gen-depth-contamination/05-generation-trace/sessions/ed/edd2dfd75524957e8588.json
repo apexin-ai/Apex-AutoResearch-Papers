@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edd2dfd75524957e8588",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis arXiv crossscorer full results",
+  "task_key": "worker_analysis_arXiv_crossscorer_full_results_20260518T030420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_arXiv_crossscorer_full_results_20260518T030420_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "e0e4d79a94db48bc6f751a8df72d72fbc9b2eaeb1d44c2f088fdccab5c86648c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/arXiv_crossscorer_summary/full_results.md`。\n\n核心发现：\n- **Qwen-7B K\\*=2**，其余三个模型 K\\*=3（Qwen-7B 的 2v3 AUC=0.5989 刚好低于 0.60 阈值）\n- 所有模型 0v1 AUC 在 0.96-0.98，1v2 在 0.81-0.84，到 3v4 已接近随机（0.52-0.55）\n- LLaMA-8B 的 1v2 AUC 最高（0.8433），Qwen-1.5B 的 2v3 AUC 最高（0.6317）\n- Top feature importance 跨模型高度一致：freq_entropy 稳居第一，surp_std、surp_d1_skew 紧随其后\n- 结果文件中没有 bootstrap CI，只有 5-fold CV 的 per-fold 值和 population std"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-arxiv-crossscorer-full-results.md"
+}

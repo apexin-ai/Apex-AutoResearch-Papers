@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f673f11547653dce53ad",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops olmo1b c4 depth chain rerun",
+  "task_key": "worker_ops_olmo1b_c4_depth_chain_rerun_20260521T100518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_olmo1b_c4_depth_chain_rerun_20260521T100518_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "9393421344412af320d26d56a0855a788c468b7497faa857831e9b32a05ed2e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Step 7 结果报告：\n\n```\nMODEL: OLMo-1B\nSTATUS: completed\n1v2_AUC: 0.5080 (主表: 0.6145, Δ=-0.1065)\nALL_PAIRWISE_AUC: {0v1: 0.9860, 1v2: 0.5080, 2v3: 0.4973, 3v4: 0.5024, 4v5: 0.4942}\nK_STAR_AT_060: 1\nCONFIG_SAVED: yes\n```\n\n关键发现：1v2 AUC 从原始的 0.6145 降到了 0.5080（接近随机），差异显著（Δ=-0.1065）。0v1 仍然很高（0.9860），说明 depth 0→1 的区分度极好，但 depth 1 之后所有相邻对 AUC 全部在 0.50 附近（随机水平），说明从 depth 1 开始特征已经饱和，无法区分更深的生成层次。\n\n这与原始 0.6145 的差异可能来源于：原始实验可能使用了不同的 scorer、不同的 feature pipeline 版本、或不同的数据子集。当前 rerun 使用标准化 pipeline + Qwen2.5-1.5B scorer 的结果是 0.5080。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-olmo1b-c4-depth-chain-rerun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5708d260272ef77f731",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 009 dose response",
+  "task_key": "worker_code_exp_009_dose_response_20260516T221726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_009_dose_response_20260516T221726_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "99eaae422a0a83397ce74dd3cb32be43f2d864ce1087ba26091ae6fe159f852f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个任务全部正常运行：\n\n| Job | GPU | Ratio | Status |\n|-----|-----|-------|--------|\n| `exp_009_dose_10pct` | cuda:1 | 10% | 训练中 (seed 0, no_filter, ~1.94 it/s, 348 steps) |\n| `exp_009_dose_30pct` | cuda:2 | 30% | 训练中 |\n| `exp_009_dose_50pct` | cuda:3 | 50% | 训练中 |\n\n每个 ratio 需要跑 15 个 run（5 seeds × 3 strategies），每个 run 包含 continued pretraining + lm-eval (MMLU/HellaSwag)。预计 wall clock ~5-8h 完成全部。\n\n产出结构：\n- 数据: `data/exp_009_dose_response/ratio_{10,30,50}/`\n- 结果: `results/exp_009_dose_response/ratio_{10,30,50}/`（含 `statistical_analysis.json`）\n- 日志: `logs/exp_009_dose_response_{10,30,50}.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-009-dose-response.md"
+}

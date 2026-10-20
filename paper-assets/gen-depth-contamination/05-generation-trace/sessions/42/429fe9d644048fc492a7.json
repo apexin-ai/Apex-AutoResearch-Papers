@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "429fe9d644048fc492a7",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis runtime benchmark",
+  "task_key": "worker_analysis_runtime-benchmark_20260523T130755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_runtime-benchmark_20260523T130755_result.json",
+    "occurrence": 1,
+    "bytes": 483,
+    "sha256": "8a53ccdff2e3a5344f8f79c5adcb3bde38c7ca5fccee232253082bf00452868d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Benchmark 完成。结果：\n\n| Stage | Mean (ms/doc) | 占比 |\n|-------|--------------|------|\n| Scorer log-prob (GPU) | 20.6 ± 1.9 | 46.1% |\n| CPU 特征提取 | 23.4 ± 6.1 | 52.3% |\n| LightGBM 推理 | 0.74 ± 0.10 | 1.6% |\n| **Total** | **44.7 ± 7.7** | |\n\n**Throughput: 22.4 docs/sec**（单文档无 batch，RTX PRO 6000 Blackwell）。\n\n结果已保存到服务器 `results/runtime_benchmark/` 和本地 artifact `runtime_benchmark_results.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-runtime-benchmark.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d779a543dcef37cba24",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops verify analysis and llama progress",
+  "task_key": "worker_ops_verify-analysis-and-llama-progress_20260519T042911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-analysis-and-llama-progress_20260519T042911_result.json",
+    "occurrence": 1,
+    "bytes": 1438,
+    "sha256": "0d2a19fb75da7f3550859d4d4c09f5e8f7cd66eaa1f9fb74d5aa2df7ab9fa00b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务均完成，汇报如下。\n\n---\n\n## 任务 1: analyze_code_crossmodel.py 验证结果\n\n全部通过：\n\n| 检查项 | 状态 |\n|--------|------|\n| EXPERIMENTS 含 5 个模型 (Qwen2.5-1.5B, Pythia-1.4B, Qwen2.5-7B, Llama-3.1-8B, Mistral-7B-v0.3) | ✓ |\n| Caption 写 \"CodeSearchNet Python subset\" | ✓ |\n| Qwen2.5-1.5B K\\*=2 | ✓ |\n| Pythia-1.4B K\\*=1 | ✓ |\n| 其他 3 个模型显示 TBD（graceful skip） | ✓ |\n| LaTeX table 格式正确（5 模型 10 列 + cmidrule） | ✓ |\n| 输出文件写入 artifacts/ (tex + json) | ✓ |\n\n---\n\n## 任务 2: exp_code_llama8b 进度\n\n**当前状态：正在生成 depth 4，进度 717/1375 (52%)**\n\n- depth 0-3：已完成（各 5500 行）\n- depth 4：生成中，约 52%，速率 ~5.9s/it\n- depth 5：尚未开始\n- results/exp_code_llama8b/：空（pipeline 未跑到分析阶段）\n\n**预估剩余时间：**\n- depth 4 剩余：(1375 - 717) × 5.9s ≈ 64 min\n- depth 5 全量：1375 × 5.9s ≈ 135 min\n- 特征提取 + 分析：~10 min\n- **总计约 3.5 小时完成**\n\n**GPU 状态：**\n\n| GPU | 利用率 | 显存使用 |\n|-----|--------|----------|\n| 0 | 0% | 0 / 24564 MiB (空闲) |\n| 1 | 95% | 15117 / 24564 MiB |\n| 2 | 95% | 16007 / 24564 MiB |\n| 3 | 96% | 14463 / 24564 MiB |\n\nGPU 1-3 在满载运行。进程 PID 96340 使用 CUDA_VISIBLE_DEVICES=2，但实际可能跨卡。GPU 0 空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-analysis-and-llama-progress.md"
+}

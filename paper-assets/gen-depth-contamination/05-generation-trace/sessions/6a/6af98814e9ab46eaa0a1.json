@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6af98814e9ab46eaa0a1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp gemma2b depth",
+  "task_key": "worker_code_exp_gemma2b_depth_20260520T062049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_gemma2b_depth_20260520T062049_result.json",
+    "occurrence": 1,
+    "bytes": 920,
+    "sha256": "8ad3acd19f26f328021b177223129bb4e86fff11bd6841d05d39257852f68cf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务运行正常。状态汇总：\n\n| 项目 | 状态 |\n|------|------|\n| **模型就绪** | Gemma-2-2B 已通过 ModelScope 下载到 `/root/autodl-tmp/.hf_cache/gemma-2-2b-ms/google/gemma-2-2b/`，GPU 0 已加载（6.5GB 显存） |\n| **脚本创建** | `run_gemma2b_depth.py` 已部署到 `/root/autodl-tmp/gen-depth-contamination/scripts/` |\n| **训练提交** | tmux session `exp_gemma2b_depth` 运行中，PID 288886，GPU 利用率 75% |\n| **当前阶段** | Step 3: Depth Chain — depth 1 生成中（刚开始 ~1 min，313 batches，~5.5s/batch） |\n\n**预估时间线**（当前 14:52）：\n- Depth chain 生成（5 depths × ~29 min）：~2.4h → 约 17:15 完成\n- Feature extraction（Qwen2.5-1.5B scorer，30K docs）：~30-60 min\n- Analysis + Bootstrap CI（10K resamples + 10K permutations）：~15 min\n- **总计预估完成时间：约 18:00-18:30（服务器时间）**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-gemma2b-depth.md"
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "7d1d1d6c24ccd448327a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper fix pipeline figure",
+  "task_key": "worker_paper_fix-pipeline-figure_20260515T074705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-pipeline-figure_20260515T074705_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "65655272f198424c37147a7c10aac4e6567b01c7688be88df61d68721f7222e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Could not process image\"},\"request_id\":\"req_011Cb3zjZkJFpch9Q54VKNhY\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "Could not process image"
+              },
+              "request_id": "req_011Cb3zjZkJFpch9Q54VKNhY"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-pipeline-figure-copy-2.md"
+}

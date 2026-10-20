@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "840a1bfcfcb91ed39bc3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code quick gpu check 2",
+  "task_key": "worker_code_quick_gpu_check_2_20260522T162949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_quick_gpu_check_2_20260522T162949_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "f3a0579c0d6dda71abcf40a8aa95dc702ee5178cdbf64810c1a3f15ce7d68bc1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度\n\n### exp_llama8b_10k (GPU 0, 54GB/98GB, util 94%)\n| depth | 状态 | 文件大小 |\n|-------|------|---------|\n| 0 | 完成 | 9.0 MB |\n| 1 | 完成 | 7.8 MB |\n| 2 | 完成 | 8.0 MB |\n| 3 | 完成 | 8.3 MB |\n| 4 | **进行中** 1153/1250 (92%) | - |\n\n当前 depth 4, ~5.14s/it, 剩余 97 个 batch, 预计 **~8 分钟**完成。depth 4 完成后整个实验结束（假设 depth 0-4 共 5 层）。\n\n### exp_gemma27b_c4 (GPU 2, 16GB/98GB, util 89%)\n| depth | 状态 | 文件大小 |\n|-------|------|---------|\n| 0 | 完成 | 4.3 MB |\n| 1 | 完成 | 4.1 MB |\n| 2 | 完成 | 4.5 MB |\n| 3 | **进行中** 384/625 (61%) | - |\n\n当前 depth 3, ~14.14s/it, 剩余 241 个 batch, 预计 **~57 分钟**完成 depth 3。后续还有 depth 4, 预计额外 ~2.5 小时。\n\n### 总结\n- **Llama-8B**: 约 8 分钟内完成全部实验\n- **Gemma-27B**: 约 3.5 小时完成全部实验（depth 3 剩 ~57min + depth 4 ~2.5h）\n- GPU 1、3 空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-quick-gpu-check-2.md"
+}

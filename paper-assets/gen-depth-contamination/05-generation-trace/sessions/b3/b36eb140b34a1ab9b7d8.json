@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b36eb140b34a1ab9b7d8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops westd status check",
+  "task_key": "worker_ops_westd-status-check_20260518T071932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-status-check_20260518T071932_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "78b5ebd56584fe54b50a39c1ed185d6fa0f42bd0d3eb652f19d50ee3dfa7e2d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## nvidia-smi\n```\nGPU 0: RTX PRO 6000 Black | 49°C | 252W/600W | 31103/97887 MiB | 86% util | PID 39502 (14B)\nGPU 1: RTX PRO 6000 Black | 52°C | 299W/600W | 64775/97887 MiB | 95% util | PID 44720 (32B)\n```\n\n## exp_14b_c4\n- 进程: **存活** (PID 39502, CPU 100%, 运行 2h8m)\n- 进度: depth 5 生成中, **924/1250 batches (74%)**\n- 已完成 depth: depth_0 (5000), depth_1 (5000), depth_2 (5000), depth_3 (5000), depth_4 (5000)\n- results 目录: 空（尚无 pairwise_auc.json）\n- 日志最后关键行: `depth 5: 74%|███████▍ | 924/1250 [2:07:21<44:03, 8.11s/it]`\n- 预计完成: ~44 分钟后完成 depth 5 生成，之后进入 scoring 阶段\n\n## exp_32b_c4\n- 进程: **存活** (PID 44720, CPU 101%, 运行 16m)\n- 进度: depth 2 生成中, **67/2500 batches (3%)**\n- 已完成 depth: depth_0 (5000), depth_1 (5000)\n- 日志最后关键行: `depth 2: 3%|▎ | 67/2500 [15:13<9:42:40, 14.37s/it]`\n- 预计完成 depth 2: ~9.7 小时；depth 3-5 + scoring 还需额外约 30+ 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-status-check.md"
+}

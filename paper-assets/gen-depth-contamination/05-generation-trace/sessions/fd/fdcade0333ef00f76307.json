@@ -1,0 +1,733 @@
+{
+  "schema_version": "1.0",
+  "id": "fdcade0333ef00f76307",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "ops feat importance olmo1b",
+  "task_key": "worker_ops_feat_importance_olmo1b_20260521T073604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_feat_importance_olmo1b_20260521T073604.jsonl",
+    "occurrence": 1,
+    "bytes": 32130,
+    "sha256": "b6adc29842e09f920df52304097689d3d4f515064bfe0cc0bdd39caf881c5829"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T07:38:00.312613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T07:38:00.313114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T07:38:00.313394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -path \"*olmo*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T07:38:00.313624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -path \"*olmo*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T07:38:00.314030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/jsd.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/ordinal_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/feature_importance.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/summary.txt\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo/jsd.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo/ordinal_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo/feature_importance.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo/summary.txt\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2/jsd.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2/ordinal_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2/feature_importance.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2/summary.txt\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_olmo_retrain_chain/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_olmo_retrain_chain/jsd.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_olmo_retrain_chain/bootstrap_ci.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_olmo_retrain_chain/permutation_test.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_olmo_retrain_chain/summary.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/wiki_olmo.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_qwen7b.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/deb\n…[truncated 988 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T07:38:00.314265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T07:38:00.314472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_olmo_retrain_chain\\\\n/root/autodl-tmp/gen-depth-contamination/results/olmo_c4_cont\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T07:38:00.314679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "head -100 /root/autodl-tmp/gen-depth-contamination/scripts/feature_importance_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T07:38:00.314943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis_pythia_retrain_depth7\\\\nbootstrap_stability\\\\nc4_power_curve\\\\nc4_subsample_control.json\\\\ncontamination_sweep\\\\ncross_scorer_f1\\\\ndata_consistency_snapshot_corrected.json\\\\ndeberta_cross_transfer\\\\nexp_008_retrain_chain\\\\nexp_009_dose_response\\\\nexp_014_naturalistic\\\\nexp_014_naturalistic.log\\\\nexp_018_llama8b\\\\nexp_021_length_128\\\\nexp_021_length_256\\\\nexp_021_length_512\\\\nexp_023_wiki\\\\nexp_024_arxiv\\\\nexp_025_pythia_arxiv\\\\nexp_025_pythia_filtering\\\\nexp_026_arxiv_filtering\\\\nexp_027_latex_ablation\\\\nexp_028_power_curve\\\\nexp_028_power_curve.log\\\\nexp_14b_c4\\\\nexp_7b_cross_transfer\\\\nexp_7b_scorer_ablation\\\\nexp_7b_scorer_arxiv\\\\nexp_7b_scorer_arxiv.log\\\\nexp_arXiv_llama8b\\\\nexp_arXiv_llama8b_crossscorer\\\\nexp_arXiv_mistral7b\\\\nexp_arXiv_mistral7b_crossscorer\\\\nexp_arXiv_olmo\\\\nexp_arXiv_qwen1b5_crossscorer\\\\nexp_arXiv_qwen7b\\\\nexp_arXiv_qwen7b_crossscorer\\\\nexp_bootstrap_10k\\\\nexp_bootstrap_10k_log.txt\\\\nexp_changepoint_kstar\\\\nexp_code_llama8b\\\\nexp_code_mistral7b\\\\nexp_code_mistral7b.log\\\\nexp_code_multi_source\\\\nexp_code_multi_source.log\\\\nexp_code_pythia1b4\\\\nexp_code_qwen1b5\\\\nexp_code_qwen1b5_pythia_scorer\\\\nexp_code_qwen7b\\\\nexp_contamination_rate_sweep\\\\nexp_deberta_arxiv\\\\nexp_deberta_arxiv_qwen1b5\\\\nexp_deberta_c4_1b5\\\\nexp_deberta_code_qwen1b5\\\\nexp_deberta_filtering_comparison\\\\nexp_deberta_upperbound\\\\nexp_deberta_upperbound.log\\\\nexp_expanded_downstream_eval\\\\nexp_gemma2b_depth\\\\nexp_multi_source_arxiv\\\\nexp_multi_source_detection\\\\nexp_multi_source_detection_v2\\\\nexp_multi_source_unified_scorer\\\\nexp_olmo_retrain_chain\\\\nexp_pythia69b_c4\\\\nexp_pythia_retrain_depth7\\\\nexp_qwen_retrain_chain\\\\nexp_qwen_retrain_chain_ext\\\\nexp_wiki_llama8b\\\\nexp_wiki_mistral7b\\\\nexp_wiki_multi_source\\\\nexp_wiki_multi_source.log\\\\nexp_wiki_olmo\\\\nexp_wiki_olmo_v2\\\\nexp_wiki_pythia\\\\nexp_wiki_pythia_v2\\\\nexp_wiki_qwen7b\\\\nexp_wiki_scorer_confound\\\\nexp_wiki_scorer_confound_1b5\\\\nf1_optimal_threshold\\\\nfe\n…[truncated 280 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T07:38:00.315301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nPermutation Importance Analysis for 15D OBD Features\\\\nAnalyzes feature contributions to K*=2 boundary (0v1 vs 1v2 classification)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport csv\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nfrom sklearn.inspection import permutation_importance\\\\nfrom sklearn.metrics import roc_auc_score\\\\nfrom sklearn.model_selection import GroupKFold\\\\nimport lightgbm as lgb\\\\n\\\\nos.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = \\\\\\\"1\\\\\\\"\\\\nos.environ[\\\\\\\"OMP_NUM_THREADS\\\\\\\"] = \\\\\\\"4\\\\\\\"\\\\n\\\\nDATA_PATH = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_018_llama8b/features.csv\\\\\\\")\\\\nOUT_DIR = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/results/feature_importance\\\\\\\")\\\\nART_DIR = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/artifacts\\\\\\\")\\\\nOUT_DIR.mkdir(parents=True, exist_ok=True)\\\\nART_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\nALL_FEATURES = [\\\\n    \\\\\\\"surp_mean\\\\\\\", \\\\\\\"surp_std\\\\\\\", \\\\\\\"surp_skew\\\\\\\", \\\\\\\"surp_kurt\\\\\\\",\\\\n    \\\\\\\"surp_d1_mean\\\\\\\", \\\\\\\"surp_d1_std\\\\\\\", \\\\\\\"surp_d1_skew\\\\\\\",\\\\n    \\\\\\\"surp_d2_mean\\\\\\\", \\\\\\\"surp_d2_std\\\\\\\",\\\\n    \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"self_bleu\\\\\\\",\\\\n    \\\\\\\"freq_kurtosis\\\\\\\", \\\\\\\"freq_entropy\\\\\\\", \\\\\\\"low_freq_ratio\\\\\\\",\\\\n]\\\\n\\\\nFEATURE_GROUPS = {\\\\n    \\\\\\\"surp_mean\\\\\\\": \\\\\\\"surprisal_base\\\\\\\", \\\\\\\"surp_std\\\\\\\": \\\\\\\"surprisal_base\\\\\\\",\\\\n    \\\\\\\"surp_skew\\\\\\\": \\\\\\\"surprisal_base\\\\\\\", \\\\\\\"surp_kurt\\\\\\\": \\\\\\\"surprisal_base\\\\\\\",\\\\n    \\\\\\\"surp_d1_mean\\\\\\\": \\\\\\\"surprisal_deriv\\\\\\\", \\\\\\\"surp_d1_std\\\\\\\": \\\\\\\"surprisal_deriv\\\\\\\",\\\\n    \\\\\\\"surp_d1_skew\\\\\\\": \\\\\\\"surprisal_deriv\\\\\\\",\\\\n    \\\\\\\"surp_d2_mean\\\\\\\": \\\\\\\"surprisal_deriv\\\\\\\", \\\\\\\"surp_d2_std\\\\\\\": \\\\\\\"surprisal_deriv\\\\\\\",\\\\n    \\\\\\\"ttr\\\\\\\": \\\\\\\"lexical_diversity\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\": \\\\\\\"lexical_diversity\\\\\\\",\\\\n    \\\\\\\"self_bleu\\\\\\\": \\\\\\\"le\n…[truncated 2164 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T07:38:00.315613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/gen-depth-contamination/data/ -path \"*olmo*\" -name \"features.csv\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T07:38:00.315869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/features.csv\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_olmo/features.csv\\\\n/root/autodl-tmp/gen-depth-contamination/data/olmo_retrain_chain/features.csv\\\\n/root/autodl-tmp/gen-depth-contamination/data/olmo_c4_cont/features.csv\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_7b_scorer_ablation/olmo_c4__qwen1.5b/features.csv\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_7b_scorer_ablation/olmo_c4__qwen7b/features.csv\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_7b_scorer_arxiv/olmo_arxiv__qwen1.5b/features.csv\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_7b_scorer_arxiv/olmo_arxiv__qwen7b/features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T07:38:00.316088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/gen-depth-contamination/data/ -path \"*olmo*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T07:38:00.316288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_olmo\\\\n/root/autodl-tmp/gen-depth-contamination/data/olmo_retrain_chain\\\\n/root/autodl-tmp/gen-depth-contamination/data/olmo_c4_cont\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_7b_scorer_ablation/olmo_c4__qwen1.5b\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_7b_scorer_ablation/olmo_c4__qwen7b\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_7b_scorer_arxiv/olmo_arxiv__qwen1.5b\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_7b_scorer_arxiv/olmo_arxiv__qwen7b\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T07:38:00.316487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "tail -n +100 /root/autodl-tmp/gen-depth-contamination/scripts/feature_importance_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T07:38:00.316895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        X, y, ids = X[valid], y[valid], ids[valid]\\\\n    return ids, X, y\\\\n\\\\n\\\\ndef compute_permutation_importance(X, y, groups):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Train LightGBM with GroupKFold, compute permutation importance on held-out folds.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    gkf = GroupKFold(n_splits=N_FOLDS)\\\\n    all_importances = []\\\\n    fold_aucs = []\\\\n\\\\n    for train_idx, test_idx in gkf.split(X, y, groups):\\\\n        X_train, X_test = X[train_idx], X[test_idx]\\\\n        y_train, y_test = y[train_idx], y[test_idx]\\\\n\\\\n        model = lgb.LGBMClassifier(**LGB_PARAMS)\\\\n        model.fit(X_train, y_train)\\\\n\\\\n        baseline_auc = roc_auc_score(y_test, model.predict_proba(X_test)[:, 1])\\\\n        fold_aucs.append(baseline_auc)\\\\n\\\\n        result = permutation_importance(\\\\n            model, X_test, y_test,\\\\n            n_repeats=N_REPEATS,\\\\n            scoring=\\\\\\\"roc_auc\\\\\\\",\\\\n            random_state=42,\\\\n            n_jobs=4,\\\\n        )\\\\n        all_importances.append(result.importances)  # shape: (n_features, n_repeats)\\\\n\\\\n    # Average across folds\\\\n    stacked = np.stack(all_importances, axis=0)  # (n_folds, n_features, n_repeats)\\\\n    mean_imp = stacked.mean(axis=(0, 2))  # (n_features,)\\\\n    std_imp = stacked.mean(axis=2).std(axis=0)  # std across folds\\\\n    mean_auc = np.mean(fold_aucs)\\\\n\\\\n    return mean_imp, std_imp, mean_auc\\\\n\\\\n\\\\ndef make_barplot(results_0v1, results_1v2, filepath):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Horizontal bar chart comparing 0v1 and 1v2 importance.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    fig, axes = plt.subplots(1, 2, figsize=(12, 6), sharey=True)\\\\n\\\\n    # Sort by 0v1 importance\\\\n    order_0v1 = np.argsort(results_0v1[\\\\\\\"mean\\\\\\\"])[::-1]\\\\n    order_1v2 = np.argsort(results_1v2[\\\\\\\"mean\\\\\\\"])[::-1]\\\\n\\\\n    for ax, order, res, title in [\\\\n        (axes[0], order_0v1, results_0v1, \\\\\\\"0 vs 1 (distinguishable)\\\\\\\"),\\\\n        (axes[1], order_1v2, results_1v2, \\\\\\\"1 vs 2 (K* boundary)\\\\\\\"),\\\\n    ]:\\\\n        n\n…[truncated 7362 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T07:38:00.317134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "head -5 /root/autodl-tmp/gen-depth-contamination/data/olmo_c4_cont/features.csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T07:38:00.317292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\n0,0,2.2366733229719102,2.6309698081253545,2.4947952043223904,11.026745440612762,0.054473039215686275,3.585056463563804,0.7932031002828096,0.10320779000680277,5.9089578463249195,0.7182320441988951,0.8153846153846154,0.0002512986673621978,32.84599954971851,6.72451758445088,0.9230769230769231\\\\r\\\\n1,0,2.8951686285436153,2.734662704660925,1.739820970563017,5.500353452414261,0.06456035539215686,3.535911297358869,-0.09900527752489154,0.04200756643700788,6.018237932370326,0.694300518134715,0.8059701492537313,0.0,10.486046852634258,6.765095558557913,0.9029850746268657\\\\r\\\\n2,0,2.312308022286743,2.5664093938226165,1.7929683115354151,4.235766905295773,0.03324142156862745,3.546873752226389,0.10310985690319172,0.06163109005905512,5.971711839361135,0.64,0.7410714285714286,0.0,18.761368123720054,6.436231801840419,0.9107142857142857\\\\r\\\\n3,0,3.382187480657873,2.8112848978000766,0.9117053411206052,0.27178055620656716,-0.009544516509433961,3.785036960643812,-0.1006007917499593,0.029153398992890996,6.434801391298092,0.7823529411764706,0.8045112781954887,0.0,17.307093333053935,6.904835421176308,0.9548872180451128\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T07:38:00.317440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "python3 -c \"import csv; rows=list(csv.DictReader(open('/root/autodl-tmp/gen-depth-contamination/data/olmo_c4_cont/features.csv'))); depths=set(int(r['depth']) for r in rows); print('depths:', sorted(depths)); print('total rows:', len(rows)); from collections import Counter; c=Counter(int(r['depth']) for r in rows); print('counts:', dict(sorted(c.items())))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T07:38:00.317576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T07:38:00.317724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "python3 -c \"import csv; rows=list(csv.DictReader(open('/root/autodl-tmp/gen-depth-contamination/data/olmo_retrain_chain/features.csv'))); depths=set(int(r['depth']) for r in rows); print('depths:', sorted(depths)); print('total rows:', len(rows)); from collections import Counter; c=Counter(int(r['depth']) for r in rows); print('counts:', dict(sorted(c.items())))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T07:38:00.317937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T07:38:00.318076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/results/feature_importance_pythia/",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T07:38:00.318214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"importance_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T07:38:00.318354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cd /root/autodl-tmp/gen-depth-contamination && python3 -c \"\nimport csv\nfrom collections import Counter\nfor path in ['data/olmo_c4_cont/features.csv', 'data/olmo_retrain_chain/features.csv', 'data/exp_wiki_olmo/features.csv', 'data/exp_arXiv_olmo/features.csv']:\n    rows = list(csv.DictReader(open(path)))\n    c = Counter(int(r['depth']) for r in rows)\n    print(f'{path}: {len(rows)} rows, depths={dict(sorted(c.items()))}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T07:38:00.318480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results/feature_importance_pythia/importance_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T07:38:00.318611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"data/olmo_c4_cont/features.csv: 30000 rows, depths={0: 5000, 1: 5000, 2: 5000, 3: 5000, 4: 5000, 5: 5000}\\\\ndata/olmo_retrain_chain/features.csv: 25000 rows, depths={0: 5000, 1: 5000, 2: 5000, 3: 5000, 4: 5000}\\\\ndata/exp_wiki_olmo/features.csv: 30000 rows, depths={0: 5000, 1: 5000, 2: 5000, 3: 5000, 4: 5000, 5: 5000}\\\\ndata/exp_arXiv_olmo/features.csv: 13200 rows, depths={0: 2200, 1: 2200, 2: 2200, 3: 2200, 4: 2200, 5: 2200}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T07:38:00.318884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_pythia/features.csv\\\\\\\",\\\\n  \\\\\\\"n_repeats\\\\\\\": 10,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"lgb_params\\\\\\\": {\\\\n    \\\\\\\"n_estimators\\\\\\\": 200,\\\\n    \\\\\\\"max_depth\\\\\\\": 6,\\\\n    \\\\\\\"learning_rate\\\\\\\": 0.05,\\\\n    \\\\\\\"num_leaves\\\\\\\": 31,\\\\n    \\\\\\\"verbose\\\\\\\": -1,\\\\n    \\\\\\\"n_jobs\\\\\\\": 4\\\\n  },\\\\n  \\\\\\\"features\\\\\\\": [\\\\n    \\\\\\\"surp_mean\\\\\\\",\\\\n    \\\\\\\"surp_std\\\\\\\",\\\\n    \\\\\\\"surp_skew\\\\\\\",\\\\n    \\\\\\\"surp_kurt\\\\\\\",\\\\n    \\\\\\\"surp_d1_mean\\\\\\\",\\\\n    \\\\\\\"surp_d1_std\\\\\\\",\\\\n    \\\\\\\"surp_d1_skew\\\\\\\",\\\\n    \\\\\\\"surp_d2_mean\\\\\\\",\\\\n    \\\\\\\"surp_d2_std\\\\\\\",\\\\n    \\\\\\\"ttr\\\\\\\",\\\\n    \\\\\\\"hapax_ratio\\\\\\\",\\\\n    \\\\\\\"self_bleu\\\\\\\",\\\\n    \\\\\\\"freq_kurtosis\\\\\\\",\\\\n    \\\\\\\"freq_entropy\\\\\\\",\\\\n    \\\\\\\"low_freq_ratio\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"0v1\\\\\\\": {\\\\n    \\\\\\\"baseline_auc\\\\\\\": 0.9754,\\\\n    \\\\\\\"importance\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.122429,\\\\n        \\\\\\\"std\\\\\\\": 0.006148\\\\n      },\\\\n      \\\\\\\"surp_std\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.025353,\\\\n        \\\\\\\"std\\\\\\\": 0.002236\\\\n      },\\\\n      \\\\\\\"surp_skew\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.07247,\\\\n        \\\\\\\"std\\\\\\\": 0.013975\\\\n      },\\\\n      \\\\\\\"surp_kurt\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.034427,\\\\n        \\\\\\\"std\\\\\\\": 0.002235\\\\n      },\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.000245,\\\\n        \\\\\\\"std\\\\\\\": 0.000388\\\\n      },\\\\n      \\\\\\\"surp_d1_std\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.128249,\\\\n        \\\\\\\"std\\\\\\\": 0.005709\\\\n      },\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 2.3e-05,\\\\n        \\\\\\\"std\\\\\\\": 0.000131\\\\n      },\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.000763,\\\\n        \\\\\\\"std\\\\\\\": 0.000539\\\\n      },\\\\n      \\\\\\\"surp_d2_std\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.00045,\\\\n        \\\\\\\"std\\\\\\\": 0.00053\\\\n      },\\\\n      \\\\\\\"ttr\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.002723,\\\\n        \\\\\\\"std\\\\\\\": 0.000314\\\\n      },\\\\n  \n…[truncated 5443 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T07:38:00.319108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cd /root/autodl-tmp/gen-depth-contamination && cat > /tmp/run_fi_olmo.py << 'PYEOF'\nimport sys\nsys.path.insert(0, \"/root/autodl-tmp/gen-depth-contamination\")\nimport os\nos.environ[\"CUDA_VISIBLE_DEVICES\"] = \"2\"\nos.environ[\"OMP_NUM_THREADS\"] = \"4\"\n\nfrom pathlib import Path\nimport scripts.feature_importance_analysis as fi\n\nfi.DATA_PATH = Path(\"/root/autodl-tmp/gen-depth-contamination/data/olmo_c4_cont/features.csv\")\nfi.OUT_DIR = Path(\"/root/autodl-tmp/gen-depth-contamination/results/feature_importance_olmo\")\nfi.OUT_DIR.mkdir(parents=True, exist_ok=True)\n\nfi.main()\nPYEOF\necho \"wrapper created\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T07:38:00.319257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wrapper created\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T07:38:00.319402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=2 python /tmp/run_fi_olmo.py 2>&1",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T07:38:00.319618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\nLoading C4 feature data...\\\\n  Total samples: 30000, depths: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5)]\\\\n\\\\n=== 0 vs 1 (distinguishable pair) ===\\\\n  Samples: 9943 (class 0: 4943, class 1: 5000)\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have v\n…[truncated 6433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T07:38:00.319830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cd /root/autodl-tmp/gen-depth-contamination && cp artifacts/feature_importance_barplot.pdf artifacts/feature_importance_olmo_1b.pdf && cp artifacts/feature_importance_barplot.png artifacts/feature_importance_olmo_1b.png && cp artifacts/feature_importance_table.tex artifacts/feature_importance_olmo_1b.tex && ls -la results/feature_importance_olmo/ && ls -la artifacts/feature_importance_olmo*",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T07:38:00.319987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16\\\\ndrwxr-xr-x  2 root root   45 May 21 15:37 .\\\\ndrwxr-xr-x 80 root root 4096 May 21 15:37 ..\\\\n-rw-r--r--  1 root root 5415 May 21 15:37 importance_results.json\\\\n-rw-r--r-- 1 root root 29619 May 21 15:37 artifacts/feature_importance_olmo_1b.pdf\\\\n-rw-r--r-- 1 root root 92726 May 21 15:37 artifacts/feature_importance_olmo_1b.png\\\\n-rw-r--r-- 1 root root  1578 May 21 15:37 artifacts/feature_importance_olmo_1b.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T07:38:00.320161+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n```\nMODEL: OLMo-1B\nDOMAIN: C4 (olmo_c4_cont)\n0v1_BASELINE_AUC: 0.9987\n0v1_TOP3: surp_d1_std (0.0823), surp_mean (0.0094), surp_kurt (0.0052)\n1v2_BASELINE_AUC: 0.5070\n1v2_TOP3: surp_mean (0.0040), surp_d2_mean (0.0031), surp_d1_skew (0.0023)\n2v3_BASELINE_AUC: 0.5058\n2v3_TOP3: surp_d2_std (0.0071), surp_kurt (0.0036), ttr (0.0030)\n```\n\nOLMo-1B 的 K\\*=1 边界非常清晰：0v1 AUC 高达 0.9987（surp_d1_std 主导），1v2 和 2v3 均接近随机（~0.50），说明 depth ≥ 1 后特征几乎无法区分不同代数。产出文件：\n- `results/feature_importance_olmo/importance_results.json`\n- `artifacts/feature_importance_olmo_1b.pdf`\n- `artifacts/feature_importance_olmo_1b.tex`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_feat_importance_olmo1b_20260521T073604"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/ops-feat-importance-olmo1b.md"
+}

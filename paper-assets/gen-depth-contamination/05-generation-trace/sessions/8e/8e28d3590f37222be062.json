@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e28d3590f37222be062",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops base gsm8k monitor",
+  "task_key": "worker_ops_base_gsm8k_monitor_20260520T225200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_base_gsm8k_monitor_20260520T225200_result.json",
+    "occurrence": 1,
+    "bytes": 449,
+    "sha256": "b77837cc9438ade9f0dde3e1796e82b7d959e67a925553ec2c5644071977fe2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Base model GSM8K eval 完成。**\n\n结果：\n- **exact_match (strict-match): 0.6224** (62.24%)\n- exact_match (flexible-extract): 0.6262 (62.62%)\n- stderr: ±0.0134\n- 样本数: 1319\n- 总耗时: ~87 分钟\n\n其他已有 benchmark 分数供参考：\n| Benchmark | Score |\n|-----------|-------|\n| PIQA | 0.7579 |\n| TruthfulQA MC2 | 0.4659 |\n| WinoGrande | 0.6456 |\n| ARC Challenge | 0.5486 |\n| **GSM8K** | **0.6224** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-base-gsm8k-monitor.md"
+}

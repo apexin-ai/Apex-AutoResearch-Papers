@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d9c74b9ce7bc0f81669",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra c4 1b5 status check",
+  "task_key": "worker_infra_c4-1b5-status-check_20260520T001634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_c4-1b5-status-check_20260520T001634_result.json",
+    "occurrence": 1,
+    "bytes": 999,
+    "sha256": "9d514768eacb26ae98b2d3647277b47905f1111e5cfa28bc61d8e618463ca9f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总：\n\n## 结果\n\n### 1. westd-42896: `exp_deberta_c4_1b5_pythia` (pythia_greedy) — **已完成 ✓**\n\n| Pair | DeBERTa AUC | 95% CI | OBD Baseline | Δ |\n|------|------------|--------|-------------|---|\n| 0v1 | **0.9998** | [0.9996, 0.9999] | 0.9992 | +0.06pp |\n| 1v2 | **0.9284** | [0.9230, 0.9331] | 0.8838 | **+4.5pp** |\n| 2v3 | 0.5419 | [0.5354, 0.5486] | 0.5342 | +0.8pp |\n| 3v4 | 0.5163 | [0.5090, 0.5237] | 0.5228 | -0.7pp |\n| 4v5 | 0.5098 | [0.5037, 0.5160] | 0.5162 | -0.6pp |\n\n**K\\* = 2** (θ=0.6)，与 qwen_rw 一致。pythia_greedy 的 1v2 AUC 显著高于 qwen_rw (0.9284 vs 0.7052)，greedy decoding 产生的文本更容易区分，但 K* boundary 不变。\n\n### 2. cqa1-22115: `exp_deberta_c4_1b5_qwen_cont` (qwen_cont256) — **进行中**\n\n- **进度**: Fold 4/5 (最后一个fold), Epoch 3/3, step 600/1500\n- **GPU**: GPU 0/1/3 均 ~98-99% 利用率\n- **预计剩余**: ~3-5 分钟完成最后 900 steps + 评估"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-c4-1b5-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f48838286891374f0195",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code prep code qwen14b",
+  "task_key": "worker_code_prep-code-qwen14b_20260519T080334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-code-qwen14b_20260519T080334_result.json",
+    "occurrence": 1,
+    "bytes": 1616,
+    "sha256": "e721394cf175a6b1fa8fae81dadf3771a5876e4fe271e313e794e725424ee0eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建。以下是调查结果：\n\n## 报告\n\n### 1. 14B 模型：**不可用（阻塞）**\n- cqa1 上**没有 base Qwen2.5-14B** 缓存\n- 仅有 `Qwen2.5-14B-Instruct-AWQ`（4-bit 量化 Instruct 版本，9.4GB），不适合 K* 测量\n- exp_14b_c4 是在 `westd-42896` 上跑的，模型从未下载到 cqa1\n- **需要先下载 base 模型**（~28GB），下载命令：\n  ```bash\n  HF_ENDPOINT=https://hf-mirror.com huggingface-cli download Qwen/Qwen2.5-14B \\\n    --local-dir /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B\n  ```\n\n### 2. 磁盘空间：充足\n- `/root/autodl-tmp/` 总 250GB，已用 101GB，剩余 **150GB**（下载 28GB 模型没问题）\n\n### 3. 显存：**单卡不够，双卡可行**\n- 4x 4090D（24GB/卡）\n- GPU 0、2 空闲；GPU 1、3 被占用\n- 14B fp16 需 ~28GB，单卡 24GB 不够\n- **方案**：`CUDA_VISIBLE_DEVICES=0,2` + `device_map=\"auto\"` 跨双卡分片（48GB 总可用）\n- bitsandbytes 未安装，无法走 int8 量化路径\n\n### 4. Code seed data：可复用\n- `data/exp_code_qwen1b5/depth_0.jsonl`（5500 行，CodeSearchNet Python）\n- 脚本已设为 symlink 复用\n\n### 5. 启动脚本已就绪\n- `/root/autodl-tmp/gen-depth-contamination/scripts/run_code_qwen14b.sh`\n- `generation_mode=continuation`（base model）\n- `scorer_path=Qwen2.5-1.5B`\n- `batch_size=4`（14B 双卡，保守设置避免 OOM）\n- 脚本包含模型存在性检查，模型下载完成后即可启动\n\n### 下一步\n需要你确认是否**现在下载 base Qwen2.5-14B 模型**。下载约 28GB，取决于 hf-mirror 带宽。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-code-qwen14b.md"
+}

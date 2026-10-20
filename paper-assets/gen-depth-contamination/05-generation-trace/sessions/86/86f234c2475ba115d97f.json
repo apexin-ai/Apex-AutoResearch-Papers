@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "86f234c2475ba115d97f",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "exp multi source arxiv",
+  "task_key": "worker_exp_multi_source_arxiv_20260520T082239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_multi_source_arxiv_20260520T082239.log",
+    "occurrence": 1,
+    "bytes": 1122671,
+    "sha256": "7815ba93d714c8968a2f049764d624d27109e69aa7a5cd1121841b12adbbe9a2"
+  },
+  "statistics": {
+    "messages": 547,
+    "user_turns": 1,
+    "tool_calls": 228,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 228,
+      "tool_result": 228,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 469,
+      "chunks": [
+        {
+          "path": "86f234c2475ba115d97f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "86f234c2475ba115d97f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "86f234c2475ba115d97f-part-0003.json",
+          "message_count": 109
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 78,
+      "chunks": [
+        {
+          "path": "86f234c2475ba115d97f-part-0003.json",
+          "message_count": 71
+        },
+        {
+          "path": "86f234c2475ba115d97f-part-0004.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-multi-source-arxiv.md"
+}

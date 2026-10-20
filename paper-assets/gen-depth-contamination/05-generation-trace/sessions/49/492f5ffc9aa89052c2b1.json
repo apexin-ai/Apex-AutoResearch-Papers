@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "492f5ffc9aa89052c2b1",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "reviewer / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_3.md",
+    "occurrence": 1,
+    "bytes": 4158,
+    "sha256": "171fe6a0838787ee56e30507882c47e645ebc5b3de7cdc01f18dc7ad4c685cb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-13T21:05:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器名是 `westc-26893`（不是旧名 `autodl-4090d`，后者已失效会导致 SSH 失败）\n- 只有 1 块 GPU（RTX 4090 D, cuda:0），gpu_ids=[0]，不存在越界风险但也不能并行 GPU 实验\n- exp-006 是 C3 关键路径实验，正在 tmux 运行（PID 46129），**绝不能 kill 或干扰**\n- paper_framing.md 解码消融表有 4 个错误 AUC 值（我已 CRITICAL 报告，等 Agent 修正前不可引用该表写论文）\n- OBD 方向不一致已报告但未修复：代码用 P(Y>k)+argmax，论文写 P(depth≤k)+median，提交前必须统一\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westc-26893(root)`，工作目录 `/root/autodl-tmp/gen-depth-contamination`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2___5-1___5B-Instruct`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/`\n- 论文目录：`docs/paper/`（introduction.tex, method.tex, related_work.tex, experiments_c1.tex）\n- 活跃进程：exp-006 PID 46129（tmux, cuda:0），50 runs × ~25min ≈ 21h，[1/50] no-filter_s42 训练中\n- exp-015 neural probe：PREPARING 状态，脚本在远程 `scripts/run_exp015_neural_probe.py`，等 exp-006 完成后跑\n\n### 3. 📊 当前状态\n**刚完成**：\n- exp-003 全 4 config 完成审查（全部 K*=2，D016 universality 确认 8/8）\n- exp-006 `bc` 崩溃诊断 + 修复后重启确认（正常训练中）\n- paper_framing.md D016 更新审查（发现 CRITICAL 数值错误已报告）\n- OBD 方向审计（代码 vs 论文不一致已报告）\n- introduction.tex + method.tex 最终质量审查（2 warning 已报告）\n\n**Registry 状态**：\n- `exp_006_graduated_filtering`: ALLOCATED（实际 RUNNING，[1/50]）\n- `exp_015_neural_probe`: PREPARING\n- 其余 9 个实验全部 DONE\n\n**等待中**：\n- exp-006 完成回调（预计 ~21h 后）\n- Agent 修正 paper_framing.md 解码消融表数值\n- Agent 修正 registry config4_t12 的 null 值\n- Agent 修正 OBD 方向（论文或代码二选一）\n\n### 4. 📋 待办（条件触发式）\n- exp-006 cron 回调 → 审查全部 50 runs 结果：(1) 各策略 MMLU/HellaSwag 对比 base model，(2) graduated vs binary-ours 是否有统计显著差异，(3) α sensitivity，(4) 5 seeds 方差。C3 claim 成败在此\n- exp-006 失败/部分失败 → 检查 `${OUTPUT_BASE}/failures.log`，诊断 root cause\n- exp-015 注册+启动通知 → 审查脚本合规性（GroupKFold, cuda:0, 数据源）\n- exp-015 完成 → 审查 K*_neural vs K*_15D：若 K*_neural > 2 则论文 headline 需改为 \"feature-dependent K*\"\n- paper_framing.md 再次更新通知 → 验证解码消融表数值是否与 registry 一致\n- discussion.tex 写作完成 → 检查之前发现的 3 个错误是否修正（7B 模型名、dream data、He et al. 引用）\n- introduction.tex \"preliminary\" 措辞更新 → 确认改为正式结果描述\n\n### 5. 🎯 战略上下文\n- **核心结论**：K*_empirical = 2，在 8/8 configs 下 universal（D016）。这是论文 C1' 的承重墙\n- **决策链**：D003(K*=2锁定) → D004(K*_emp vs K*_theory区分) → D011(C2升级为qualified claim) → D012(2+1 claim结构) → D016(universality narrative)\n- **C3 是关键路径**：exp-006 是唯一实验。D013 已准备 fallback story（graduated ≈ binary → informative negative，纯 characterization paper）\n- **最易判断错的事**：\n  1. exp-003 的 4 个 ablation config 全部是 **rewrite 模式**（脚本未传 --generation_mode，默认 rewrite），不要误认为 continuation\n  2. \"8 个测试条件\" 不是 \"12 个\"——framing 中 \"4 architectures × 2 modes = 8\" 是 overcounting（只有 Qwen 有两种模式）\n  3. registry 的 exp_id filter 经常返回空（已知 bug），用 limit 参数 workaround\n  4. Qwen-cont CI_lower = 0.6015，仅高于 θ=0.60 **0.15 个百分点**——这是 K*=2 最脆弱的一环，审稿人会攻击\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-copy-3.md"
+}

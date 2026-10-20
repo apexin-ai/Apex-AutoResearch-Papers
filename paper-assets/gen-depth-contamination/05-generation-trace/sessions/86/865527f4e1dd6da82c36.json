@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "865527f4e1dd6da82c36",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "infra migrate exp016 to cqa1",
+  "task_key": "worker_infra_migrate_exp016_to_cqa1_20260516T032412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_migrate_exp016_to_cqa1_20260516T032412.log",
+    "occurrence": 1,
+    "bytes": 709951,
+    "sha256": "bb65b3c6b8d492c2c0061c6398b3cb0fe6b275f96f7618da6d981844771a6440"
+  },
+  "statistics": {
+    "messages": 471,
+    "user_turns": 0,
+    "tool_calls": 161,
+    "roles": {
+      "log": 1,
+      "system": 22,
+      "record": 2,
+      "assistant": 119,
+      "tool_call": 161,
+      "tool_result": 161,
+      "result": 5
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 471,
+      "chunks": [
+        {
+          "path": "865527f4e1dd6da82c36-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "865527f4e1dd6da82c36-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "865527f4e1dd6da82c36-part-0003.json",
+          "message_count": 111
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-migrate-exp016-to-cqa1.md"
+}

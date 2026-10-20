@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "539a21828f7a92317ee1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis theta sensitivity table",
+  "task_key": "worker_analysis_theta_sensitivity_table_20260517T110418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_theta_sensitivity_table_20260517T110418_result.json",
+    "occurrence": 1,
+    "bytes": 460,
+    "sha256": "b33381c278cf9880d0a2d66279c06a062d30a03cf64561685002490eb1a181b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件已生成并注册：\n\n- `theta_sensitivity_table.csv` — 11 configs × 6 θ 值的 K\\* 矩阵\n- `theta_sensitivity_table.tex` — booktabs 风格 LaTeX 表，θ=0.60 列加粗，按 domain 分组，含脚注标注\n\n核心结论在 θ∈[0.55, 0.70] 全范围内定性稳定：web text K\\*∈{1,2,3} 且主流为 2；arXiv K\\*∈{2,3,4} 且主流为 3；cross-scorer 始终 K\\*≤2 且 θ≥0.575 后固定为 1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-theta-sensitivity-table.md"
+}

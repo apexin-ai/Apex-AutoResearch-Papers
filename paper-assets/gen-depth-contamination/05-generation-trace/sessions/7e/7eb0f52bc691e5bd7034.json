@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7eb0f52bc691e5bd7034",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper appendix supplement",
+  "task_key": "worker_paper_appendix-supplement_20260514T070031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-supplement_20260514T070031_result.json",
+    "occurrence": 1,
+    "bytes": 711,
+    "sha256": "f301c06097f4a0d9e096789266b256391c6b9c380a2f30547a0566c533363c1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Table S3 已替换为完整的 5×5 confusion matrix 版本（从服务器 `exp011_analysis.json` 提取），包含两个 subtable（GPT-5.5 和 Claude Opus 4.6），对角线加粗，附 Recall 列和完整统计量（accuracy, MAE, Spearman ρ）。\n\n三个补充表格：\n- **Table S1** (`\\label{tab:s1_transfer}`)：Cross-model transfer matrix，含 transfer retention 公式和关键数值\n- **Table S2** (`\\label{tab:s2_decoding}`)：Decoding ablation 完整 pairwise AUC，含 2v3 列和 cross-config Spearman ρ\n- **Table S3** (`\\label{tab:s3_llm_zeroshot}`)：LLM zero-shot 5×5 confusion matrices，两个 subtable + caption 含 binary accuracy 和 OBD baseline 对比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-supplement.md"
+}

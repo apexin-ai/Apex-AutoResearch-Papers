@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c45b7458c7551a06736",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 025 pythia filtering",
+  "task_key": "worker_code_exp_025_pythia_filtering_20260518T080547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_025_pythia_filtering_20260518T080547_result.json",
+    "occurrence": 1,
+    "bytes": 1168,
+    "sha256": "53f22eff6410e1e59d9b036981bc127c5d491271090b595e92536b90f95ba0ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张卡全部在训练，每卡 ~5.4GB VRAM，~3.5 it/s。一切正常。\n\n**实验状态汇总：**\n\n| 项目 | 状态 |\n|---|---|\n| **脚本** | `scripts/exp025_pythia_filtering.py` + `scripts/run_exp025.sh` |\n| **模型** | Pythia-1.4B (已缓存，LoRA rank=8, alpha=16, target=`query_key_value`) |\n| **数据** | `data_exp020_pythia_greedy/depth_{0-5}.jsonl`, 每层 5000 docs |\n| **策略** | no_filter (30k), binary_ours K\\*=2 (15k), graduated_a09 (30k, w=0.9^d) |\n| **Seeds** | 42, 123, 456 |\n| **调度** | 3 batches × 4 GPU 并行，共 9 runs |\n| **评估** | lm-eval-harness MMLU + HellaSwag (5-shot) |\n\n**预估时间：**\n- 训练: no_filter ~9min, binary_ours ~4.5min per run\n- Eval: ~30-40min per run\n- 每 batch ~45min，总计 ~2-2.5h\n\n**监控命令：**\n```bash\n# 总体进度\ntail -20 logs/exp025/run_exp025_main.log\n# 单 run 进度\ntail -5 logs/exp025/<strategy>_seed<N>.log\n# GPU 状态\nnvidia-smi --query-gpu=index,memory.used --format=csv,noheader\n```\n\n结果输出在 `results/exp_025_pythia_filtering/<strategy>_seed<N>/eval_results.json`。训练完成后 launcher 脚本会打印汇总表。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-025-pythia-filtering.md"
+}

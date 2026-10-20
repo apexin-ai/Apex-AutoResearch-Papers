@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4782afc81c3dadd2f371",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing neural probe section",
+  "task_key": "worker_writing_neural-probe-section_20260514T083932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_neural-probe-section_20260514T083932_result.json",
+    "occurrence": 1,
+    "bytes": 960,
+    "sha256": "b42eb1b481515153f5c3e0970c688c72eb0d5da22b2124850234faee202eafcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。在 `experiments_c1.tex` 末尾（第 343–402 行）新增 `\\subsection{Representation Dependence of $\\Kempirical$}`（`\\label{sec:neural_probe}`），包含：\n\n- **Setup**: frozen Qwen-1.5B → MLP probe 架构描述\n- **Results**: 内联对比表（15D vs Neural 各 depth pair AUC），报告 K*(neural)=3（2v3 AUC=0.6195 > θ=0.60）\n- **K\\* hierarchy**: $K^*_{\\text{theory}} \\geq K^*_{\\text{neural}} \\geq K^*_{\\text{15D}}$\n- **Interpretability–discriminability tradeoff**: 15D (deployable, model-free) vs neural (theoretical exploration, 100x+ compute)\n- **Caveats**: 2v3 边界仅 +1.95pp 超 θ，措辞全用 \"preliminary\"\n- **3 个 TODO 占位符**：`% TODO(exp-015-rerun): Pythia/OLMo K*(neural) results here`、`bootstrap CIs`、`cross-model comparison table`\n\n与 discussion.tex 中已有的 neural probe 讨论（引用 `Table~\\ref{tab:s7_neural_probe}`、报告相同数值）保持一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-neural-probe-section-copy-2.md"
+}

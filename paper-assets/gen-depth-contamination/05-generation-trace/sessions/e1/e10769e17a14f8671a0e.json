@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e10769e17a14f8671a0e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops check 7b scorer c4",
+  "task_key": "worker_ops_check_7b_scorer_c4_20260520T125213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_7b_scorer_c4_20260520T125213_result.json",
+    "occurrence": 1,
+    "bytes": 757,
+    "sha256": "039e5d783a9a4fc7e838ec6cc317245f3c3506a28ffe30cfff5343e4588cd52b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success，cron 已无需清理（无活跃 job）。\n\n## 结果摘要\n\n**7B scorer 不改变 K*，与 1.5B scorer 完全一致。**\n\n| Generator | Scorer | K* | 1v2 AUC | 1v2 CI |\n|-----------|--------|---:|--------:|--------|\n| Pythia C4 | Qwen-1.5B | 2 | 0.8928 | [0.887, 0.899] |\n| Pythia C4 | Qwen-7B | 2 | 0.8943 | [0.888, 0.901] |\n| OLMo C4 | Qwen-1.5B | 1 | 0.4977 | [0.487, 0.509] |\n| OLMo C4 | Qwen-7B | 1 | 0.4965 | [0.485, 0.508] |\n\n- Pythia: K\\*=2（两个 scorer 均如此），1v2 AUC 几乎相同（0.893 vs 0.894）\n- OLMo: K\\*=1（两个 scorer 均如此），1v2 AUC 均为随机水平（~0.50）\n- 结论：K\\* 对 scorer 规模鲁棒，4.7x 参数量增加不影响检测结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-7b-scorer-c4.md"
+}

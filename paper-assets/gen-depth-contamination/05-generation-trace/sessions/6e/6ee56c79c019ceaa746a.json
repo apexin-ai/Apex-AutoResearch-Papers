@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ee56c79c019ceaa746a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops backup archive",
+  "task_key": "worker_ops_backup-archive_20260525T211032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_backup-archive_20260525T211032_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "d3df76f7c28915798dc5d513cdb2679810fe6ad59b17d57b7d6e1e0ae8712369"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "归档完成。汇总如下：\n\n---\n\n## 备份归档报告\n\n**Tarball**: `gen-depth-contamination-final-20260525T211159Z.tar.gz`\n**大小**: 1,972 MB (2,067,788,069 bytes)\n**S3 URI**: `s3://agent-ml-manager-backups-emnlp/manager-backup/backends/gen-depth-contamination/project-archive/gen-depth-contamination-final-20260525T211159Z.tar.gz`\n**上传速率**: 99.1 MB/s (耗时 19.9s)\n\n### 备份内容清单\n\n| 子目录 | 大小 | 文件数 | 说明 |\n|--------|------|--------|------|\n| `code/` | 2.8G | 2,314 | 完整项目代码含 .git 版本历史 |\n| `results/` | 259M | 703 | 实验结果 + artifacts |\n| `data/` | 1.9G | 334 | 56 个实验数据目录（含各模型/数据集组合） |\n| `paper/` | 11M | 68 | LaTeX 源码和 figures |\n\n已排除：`.venv`、`__pycache__`、`.pyc`、`.hf_cache`、>500M 的 `.bin`/`.safetensors` 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-backup-archive.md"
+}

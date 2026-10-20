@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5d4d5631b82b116e617",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper kstar theta figure",
+  "task_key": "worker_paper_kstar_theta_figure_20260515T110838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_kstar_theta_figure_20260515T110838_result.json",
+    "occurrence": 1,
+    "bytes": 428,
+    "sha256": "8c7097b92e7efac9a7cf44ac24e31aa297672598bd11c6ea80ef1c901ce06b33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成，输出到：\n- `docs/paper/figures/fig_kstar_theta.pdf`\n- `docs/paper/figures/fig_kstar_theta.png`\n\n关键观察：Qwen-rw（蓝色实线）在所有 θ 下 K* 最高，说明其 pairwise AUC 衰减最慢，contamination 信号可检测到更深的 epoch。OLMo 和 Pythia 衰减较快，在 θ≈0.55 时就降到 K*=2。θ=0.60 参考线处，Qwen-rw 的 K*=2，其余三者已降至 1–2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-kstar-theta-figure.md"
+}

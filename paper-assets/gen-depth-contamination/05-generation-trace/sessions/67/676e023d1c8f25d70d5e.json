@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "676e023d1c8f25d70d5e",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "fix multi source scorer confound",
+  "task_key": "worker_fix_multi_source_scorer_confound_20260520T071533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_multi_source_scorer_confound_20260520T071533.log",
+    "occurrence": 1,
+    "bytes": 953072,
+    "sha256": "5e4cc9e7b0ac342aac044f96648d2f60e43d8b8882a8f317266e966d321da6d0"
+  },
+  "statistics": {
+    "messages": 412,
+    "user_turns": 1,
+    "tool_calls": 162,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 78,
+      "tool_call": 162,
+      "tool_result": 162,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 379,
+      "chunks": [
+        {
+          "path": "676e023d1c8f25d70d5e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "676e023d1c8f25d70d5e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "676e023d1c8f25d70d5e-part-0003.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "676e023d1c8f25d70d5e-part-0003.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-multi-source-scorer-confound.md"
+}
