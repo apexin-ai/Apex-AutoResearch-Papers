@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **99 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **100 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -45,6 +45,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [ec_hte_codex_b](../paper-assets/ec_hte_codex_b/05-generation-trace/README.md) | 9 | 0 | 0 | 0 | 2,848 | [Read](../paper-assets/ec_hte_codex_b/05-generation-trace/readable/README.md) |
 | [ec_hte_codex_c](../paper-assets/ec_hte_codex_c/05-generation-trace/README.md) | 4 | 0 | 0 | 0 | 3,851 | [Read](../paper-assets/ec_hte_codex_c/05-generation-trace/readable/README.md) |
 | [ec_hte_llm_annotation](../paper-assets/ec_hte_llm_annotation/05-generation-trace/README.md) | 72 | 183 | 175 | 4 | 75,488 | [Read](../paper-assets/ec_hte_llm_annotation/05-generation-trace/readable/README.md) |
+| [ec_hte_llm_annotation--export-20260712](../research-snapshots/ec_hte_llm_annotation/2026-07-12/05-generation-trace/README.md) | 453 | 0 | 0 | 0 | 58,476 | [Read](../research-snapshots/ec_hte_llm_annotation/2026-07-12/05-generation-trace/readable/README.md) |
 | [eco_alpha_beta_diversity](../paper-assets/eco_alpha_beta_diversity/05-generation-trace/README.md) | 4 | 9 | 7 | 0 | 1,818 | [Read](../paper-assets/eco_alpha_beta_diversity/05-generation-trace/readable/README.md) |
 | [entrainment_gated_ft](../paper-assets/entrainment_gated_ft/05-generation-trace/README.md) | 99 | 266 | 223 | 11 | 80,801 | [Read](../paper-assets/entrainment_gated_ft/05-generation-trace/readable/README.md) |
 | [entrainment_gated_ft--export-20260712](../research-snapshots/entrainment_gated_ft/2026-07-12/05-generation-trace/README.md) | 1,538 | 0 | 0 | 0 | 207,007 | [Read](../research-snapshots/entrainment_gated_ft/2026-07-12/05-generation-trace/readable/README.md) |
@@ -108,6 +109,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**108,792 source records · 9,720,755 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**109,245 source records · 9,779,231 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

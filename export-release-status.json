@@ -111,6 +111,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1236
+        },
+        "ec_hte_llm_annotation": {
+          "status": "uploaded",
+          "project": "ec_hte_llm_annotation",
+          "collection": "ec_hte_llm_annotation--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "51e56de4264e74173b8f2fa21bc2f9768884c37b2f2935235b8e8c848cc36bd7",
+          "indexed_members": 458,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 453
         }
       },
       "status": "in_progress",

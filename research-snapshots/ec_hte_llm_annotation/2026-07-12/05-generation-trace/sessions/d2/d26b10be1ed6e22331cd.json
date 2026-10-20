@@ -1,0 +1,1169 @@
+{
+  "schema_version": "1.0",
+  "id": "d26b10be1ed6e22331cd",
+  "project": "ec_hte_llm_annotation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In /home/ubuntu/ec_hte_llm_annotation, find the confusion matrix / misclassification rate parameters used in exp-001, ex",
+  "task_key": "agent-a572c367cd941b852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a572c367cd941b852.jsonl",
+    "occurrence": 1,
+    "bytes": 120476,
+    "sha256": "1f86801ec5bce8d3bb6df9372e20a02a1962de85dc5c7d4c2fb98aea69352ca1"
+  },
+  "statistics": {
+    "messages": 24,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T14:37:48.284Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In /home/ubuntu/ec_hte_llm_annotation, find the confusion matrix / misclassification rate parameters used in exp-001, exp-003, and exp-013. These are simulation experiments, so I need to know:\n\n1. exp-001: What misclass rates were used? Symmetric or asymmetric? Per-subgroup or global? What was P(Z=1)? What K values?\n2. exp-003: What misclass rates (0.05-0.25 mentioned)? How mapped to FPR/FNR? P(Z=1)?\n3. exp-013: What CM parameters? P(Z=1)?\n\nSearch in .py files, config files, and markdown specs (e.g., exp003_dgp_spec.md). Report all numerical parameters verbatim."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "aeecb45f-e190-4fc9-9bb8-99f0f97968bf",
+            "agentId": "a572c367cd941b852",
+            "type": "user",
+            "uuid": "a67763e4-ac48-4f97-9e23-d9b3f968227e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T14:37:49.615Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for the confusion matrix and misclassification parameters for experiments 001, 003, and 013. Let me start by exploring the directory structure and then search for relevant files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a67763e4-ac48-4f97-9e23-d9b3f968227e",
+            "isSidechain": true,
+            "agentId": "a572c367cd941b852",
+            "requestId": "req_011CbFtEkie6gzC8BgzArWWi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "13242d03-aa4e-4e21-934d-1b0eadcb4e66",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01A3Y7itTPzgCNvDVvX77hK8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 608,
+                "cache_read_input_tokens": 17916,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 608,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T14:37:49.851Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M9o4TwcRe2XVi3bsQKADj1",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/ec_hte_llm_annotation -type f -name \"*exp*\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "13242d03-aa4e-4e21-934d-1b0eadcb4e66",
+            "isSidechain": true,
+            "agentId": "a572c367cd941b852",
+            "requestId": "req_011CbFtEkie6gzC8BgzArWWi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9ca8a942-8f6e-4ba7-b007-09e87d7c6d12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01A3Y7itTPzgCNvDVvX77hK8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 608,
+                "cache_read_input_tokens": 17916,
+                "output_tokens": 120,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 608
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 120,
+                    "cache_read_input_tokens": 17916,
+                    "cache_creation_input_tokens": 608,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 608,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T14:37:49.948Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M9o4TwcRe2XVi3bsQKADj1",
+              "type": "tool_result",
+              "content": "/home/ubuntu/ec_hte_llm_annotation/exp001_regularize.py\n/home/ubuntu/ec_hte_llm_annotation/scripts/explore_tweeteval.py\n/home/ubuntu/ec_hte_llm_annotation/exp015_semi_real_cm.py\n/home/ubuntu/ec_hte_llm_annotation/exp004_hate_speech.py\n/home/ubuntu/ec_hte_llm_annotation/exp017_rlearner.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/__pycache__/_explanation.cpython-314.pyc\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/_explanation.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/explainers/__pycache__/_explainer.cpython-314.pyc\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/explainers/_explainer.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/benchmark/__pycache__/experiments.cpython-314.pyc\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/benchmark/__pycache__/_explanation_error.cpython-314.pyc\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/benchmark/_explanation_error.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/shap/benchmark/experiments.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/statsmodels/othermod/tests/results/foodexpenditure.csv\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/statsmodels/tsa/holtwinters/_exponential_smoothers.cpython-314-x86_64-linux-gnu.so\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/statsmodels/tsa/statespace/__pycache__/exponential_smoothing.cpython-314.pyc\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/statsmodels/tsa/statespace/tests/test_exponential_smoothing.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/statsmodels/tsa/statespace/tests/__pycache__/test_exponential_smoothing.cpython-314.pyc\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/statsmodels/tsa/statespace/tests/results/exponential_smoothing_params.csv\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/statsmodels/tsa/statespace/tests/results/exponential_smoothing_states.csv",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ca8a942-8f6e-4ba7-b007-09e87d7c6d12",
+            "isSidechain": true,
+            "promptId": "aeecb45f-e190-4fc9-9bb8-99f0f97968bf",
+            "agentId": "a572c367cd941b852",
+            "type": "user",
+            "uuid": "b53f61f1-e147-4587-b706-06b2cf395ee0",
+            "sourceToolAssistantUUID": "9ca8a942-8f6e-4ba7-b007-09e87d7c6d12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T14:37:52.302Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search specifically for exp001, exp003, and exp013 files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b53f61f1-e147-4587-b706-06b2cf395ee0",
+            "isSidechain": true,
+            "agentId": "a572c367cd941b852",
+            "requestId": "req_011CbFtEsqm5T4sU2gCcqads",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fe4b6450-76f0-419b-931d-1005c1317121",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016k53RS2Mw5PLxDPZQTaXnp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1828,
+                "cache_read_input_tokens": 18524,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1828,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T14:37:52.504Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NcX8RN4uLA6SjNSfVoZYgA",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/exp001*",
+                "path": "/home/ubuntu/ec_hte_llm_annotation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe4b6450-76f0-419b-931d-1005c1317121",
+            "isSidechain": true,
+            "agentId": "a572c367cd941b852",
+            "requestId": "req_011CbFtEsqm5T4sU2gCcqads",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "48df1096-9351-4f19-b7ee-dbec0c041af3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016k53RS2Mw5PLxDPZQTaXnp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1828,
+                "cache_read_input_tokens": 18524,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1828,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T14:37:52.559Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NcX8RN4uLA6SjNSfVoZYgA",
+              "type": "tool_result",
+              "content": "results/exp001_full_run.log\nresults/exp001_hb_diagnostics.csv\nresults/exp001_hb_results.csv\nresults/exp001_reg_run.log\nexp001_regularize.py\nexp001_hyperprior_sensitivity.py\nresults/exp001_hb_results_v2.csv\nresults/exp001_reg_v2_run.log\nexp001_hb_synthetic.py\n__pycache__/exp001_hb_synthetic.cpython-314.pyc\nresults/exp001_hyperprior_sensitivity.csv\nresults/exp001_hyperprior_run.log"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48df1096-9351-4f19-b7ee-dbec0c041af3",
+            "isSidechain": true,
+            "promptId": "aeecb45f-e190-4fc9-9bb8-99f0f97968bf",
+            "agentId": "a572c367cd941b852",
+            "type": "user",
+            "uuid": "cf4ace8f-ba4b-4f4d-accd-1e94da0be659",
+            "sourceToolAssistantUUID": "48df1096-9351-4f19-b7ee-dbec0c041af3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T14:37:52.720Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011QinKPTnidhmrkJjcUPDtJ",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/exp003*",
+                "path": "/home/ubuntu/ec_hte_llm_annotation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf4ace8f-ba4b-4f4d-accd-1e94da0be659",
+            "isSidechain": true,
+            "agentId": "a572c367cd941b852",
+            "requestId": "req_011CbFtEsqm5T4sU2gCcqads",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d6960dbd-1cfb-4a2f-bd44-6396acc296c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016k53RS2Mw5PLxDPZQTaXnp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1828,
+                "cache_read_input_tokens": 18524,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1828,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T14:37:52.774Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011QinKPTnidhmrkJjcUPDtJ",
+              "type": "tool_result",
+              "content": "results/exp003_phase_a_raw.csv\nresults/exp003_phase_a.csv\nresults/exp003_run.log\nresults/exp003_phase_a_v2_raw.csv\nresults/exp003_phase_a_v2.csv\nresults/exp003_v2_run.log\nexp003_tweeteval.py\nresults/exp003_dgp_spec.md\nresults/exp003_phase_a_v3_raw.csv\nresults/exp003_phase_a_v3.csv\nresults/exp003_hb_rerun.log"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6960dbd-1cfb-4a2f-bd44-6396acc296c0",
+            "isSidechain": true,
+            "promptId": "aeecb45f-e190-4fc9-9bb8-99f0f97968bf",
+            "agentId": "a572c367cd941b852",
+            "type": "user",
+            "uuid": "6985ea7d-ff1d-44d8-bcdc-c239f879f308",
+            "sourceToolAssistantUUID": "d6960dbd-1cfb-4a2f-bd44-6396acc296c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T14:37:52.922Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RZc3XwieHafPe5jXm7a2Z3",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/exp013*",
+                "path": "/home/ubuntu/ec_hte_llm_annotation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6985ea7d-ff1d-44d8-bcdc-c239f879f308",
+            "isSidechain": true,
+            "agentId": "a572c367cd941b852",
+            "requestId": "req_011CbFtEsqm5T4sU2gCcqads",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "049a3708-388e-4e15-b815-4592a419c6b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016k53RS2Mw5PLxDPZQTaXnp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1828,
+                "cache_read_input_tokens": 18524,
+                "output_tokens": 243,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1828
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 243,
+                    "cache_read_input_tokens": 18524,
+                    "cache_creation_input_tokens": 1828,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1828,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T14:37:52.980Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RZc3XwieHafPe5jXm7a2Z3",
+              "type": "tool_result",
+              "content": "exp013_boundary_condition.py\nresults/exp013_boundary_condition.csv\nresults/exp013_boundary_summary.csv\nresults/exp013_boundary_analysis.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "049a3708-388e-4e15-b815-4592a419c6b0",
+            "isSidechain": true,
+            "promptId": "aeecb45f-e190-4fc9-9bb8-99f0f97968bf",
+            "agentId": "a572c367cd941b852",
+            "type": "user",
+            "uuid": "2ec5302f-4772-4687-b501-1edfb43e9898",
+            "sourceToolAssistantUUID": "049a3708-388e-4e15-b815-4592a419c6b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T14:37:54.746Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Great! Now let me search for misclassification, confusion matrix, and related parameters in these Python files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2ec5302f-4772-4687-b501-1edfb43e9898",
+            "isSidechain": true,
+            "agentId": "a572c367cd941b852",
+            "requestId": "req_011CbFtF6rquent8oVDtWMDY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "538e7fa0-a679-4de3-a384-133bb456cd2e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HMQR2w6jat1sNtWUt7nYrR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 658,
+                "cache_read_input_tokens": 20352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 658,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T14:37:54.987Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Fbobjw3XNJ7rNo2LuFBHvT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp001_regularize.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "538e7fa0-a679-4de3-a384-133bb456cd2e",
+            "isSidechain": true,
+            "agentId": "a572c367cd941b852",
+            "requestId": "req_011CbFtF6rquent8oVDtWMDY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "958bfcbc-0feb-4a51-b1a6-7945d543785e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HMQR2w6jat1sNtWUt7nYrR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 658,
+                "cache_read_input_tokens": 20352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 658,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T14:37:54.993Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Fbobjw3XNJ7rNo2LuFBHvT",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"exp001_regularize.py - Rerun affected cells with condition-number-guarded inversion.\"\"\"\n3\t\n4\timport argparse\n5\timport time\n6\timport numpy as np\n7\timport pandas as pd\n8\t\n9\tfrom exp001_hb_synthetic import (\n10\t    REGIMES, SUBGROUP_LABELS,\n11\t    generate_data, get_counts, build_mixing_matrix, diff_in_means,\n12\t    estimate_cm_mle, estimate_cm_hb_eb, estimate_cm_hb_gibbs,\n13\t    invert_mixing_safe, aggregate_results,\n14\t)\n15\t\n16\tAFFECTED_CELLS = [\n17\t    (4, 'extreme', 50),\n18\t    (4, 'extreme', 100),\n19\t    (4, 'moderate', 50),\n20\t    (4, 'moderate', 100),\n21\t    (4, 'homogeneous', 50),\n22\t    (4, 'homogeneous', 100),\n23\t]\n24\t\n25\t\n26\tdef run_one_mc_reg(regime_name, regime_params, n_expert, k, seed,\n27\t                   cond_threshold=100, n_chains=4, n_iter=4000, n_warmup=2000):\n28\t    data = generate_data(regime_params, n_expert, k, seed)\n29\t    Y, T, Z, Z_hat, S = data['Y'], data['T'], data['Z'], data['Z_hat'], data['S']\n30\t    em = data['expert_mask']\n31\t    labels = SUBGROUP_LABELS[k]\n32\t    tau_z0, tau_z1 = regime_params['tau_z0'], regime_params['tau_z1']\n33\t\n34\t    counts = get_counts(Z[em], Z_hat[em], S[em], labels)\n35\t    C_mle = estimate_cm_mle(counts, labels)\n36\t    C_hb, hb_diag = estimate_cm_hb_gibbs(counts, labels, seed=seed,\n37\t                                          n_chains=n_chains, n_iter=n_iter,\n38\t                                          n_warmup=n_warmup)\n39\t\n40\t    M_mle = {s: build_mixing_matrix(C_mle[s]) for s in labels}\n41\t    M_hb = {s: build_mixing_matrix(C_hb[s]) for s in labels}\n42\t\n43\t    base = {'regime': regime_name, 'n_expert': n_expert,\n44\t            'k_subgroups': k, 'mc_run': seed}\n45\t    rows = []\n46\t    guard_hb = 0\n47\t    guard_mle = 0\n48\t\n49\t    for s in labels:\n50\t        sm = S == s\n51\t        th0_n, se0_n = diff_in_means(Y, T, sm & (Z_hat == 0))\n52\t        th1_n, se1_n = diff_in_means(Y, T, sm & (Z_hat == 1))\n53\t\n54\t        tau_obs = np.array([th0_n, th1_n])\n55\t        se_obs = np.array([se0_n, se1_n])\n56\t        if np.any(np.isnan(tau_obs)):\n57\t            continue\n58\t\n59\t        cond_mle = np.linalg.cond(M_mle[s])\n60\t        cond_hb = np.linalg.cond(M_hb[s])\n61\t        if cond_mle > cond_threshold:\n62\t            guard_mle += 1\n63\t        if cond_hb > cond_threshold:\n64\t            guard_hb += 1\n65\t\n66\t        tml_r, sml_r = invert_mixing_safe(M_mle[s], tau_obs, se_obs, cond_threshold)\n67\t        thb_r, shb_r = invert_mixing_safe(M_hb[s], tau_obs, se_obs, cond_threshold)\n68\t\n69\t        def mr(method, th0, th1, se0, se1):\n70\t            return {**base, 'subgroup': s, 'method': method,\n71\t                    'tau_hat_z0': th0, 'tau_hat_z1': th1,\n72\t                    'se_z0': se0, 'se_z1': se1,\n73\t                    'tau_true_z0': tau_z0, 'tau_true_z1': tau_z1}\n74\t\n75\t        rows.append(mr('mle_laplace_reg', tml_r[0], tml_r[1], sml_r[0], sml_r[1]))\n76\t        rows.append(mr('hb_dirichlet_reg', thb_r[0], thb_r[1], shb_r[0], shb_r[1]))\n77\t\n78\t    return rows, hb_diag, guard_hb, guard_mle\n79\t\n80\t\n81\tif __name__ == '__main__':\n82\t    parser = argparse.ArgumentParser()\n83\t    parser.add_argument('--n-mc', type=int, default=100)\n84\t    parser.add_argument('--cond-threshold', type=float, default=100)\n85\t    args = parser.parse_args()\n86\t\n87\t    print(f\"exp-001 Regularization fix v2 | cond_threshold={args.cond_threshold}\")\n88\t    print(f\"Affected cells: {AFFECTED_CELLS}\")\n89\t    print(f\"n_mc={args.n_mc}\")\n90\t    print(f\"MCMC config: n_chains=4, n_iter=4000, n_warmup=2000\\n\")\n91\t\n92\t    # ── MCMC diagnostic comparison (before/after) ────────────────────────────\n93\t    print(\"Running MCMC diagnostic comparison (seed=0, per config)...\")\n94\t    diag_rows = []\n95\t    for k, regime, n_expert in AFFECTED_CELLS:\n96\t        rp = REGIMES[k][regime]\n97\t        d = generate_data(rp, n_expert, k, seed=0)\n98\t        em = d['expert_mask']\n99\t        labels = SUBGROUP_LABELS[k]\n100\t        counts = get_counts(d['Z'][em], d['Z_hat'][em], d['S'][em], labels)\n101\t\n102\t        _, diag_before = estimate_cm_hb_gibbs(counts, labels, seed=0,\n103\t                                               n_chains=2, n_iter=2000, n_warmup=1000)\n104\t        _, diag_after = estimate_cm_hb_gibbs(counts, labels, seed=0,\n105\t                                              n_chains=4, n_iter=4000, n_warmup=2000)\n106\t        diag_rows.append({\n107\t            'config': f\"K={k}/{regime}/n={n_expert}\",\n108\t            'rhat_before': diag_before['rhat_max'],\n109\t            'rhat_after': diag_after['rhat_max'],\n110\t            'ess_before': diag_before['ess_min'],\n111\t            'ess_after': diag_after['ess_min'],\n112\t        })\n113\t\n114\t    print(\"\\n\" + \"=\" * 100)\n115\t    print(\"MCMC Diagnostic Comparison (seed=0)\")\n116\t    print(f\"{'Config':>30s} | {'Rhat_max (2ch)':>14s} | {'Rhat_max (4ch)':>14s} | \"\n117\t          f\"{'ESS_min (2ch)':>14s} | {'ESS_min (4ch)':>14s}\")\n118\t    print(\"-\" * 100)\n119\t    for r in diag_rows:\n120\t        print(f\"{r['config']:>30s} | {r['rhat_before']:14.4f} | {r['rhat_after']:14.4f} | \"\n121\t              f\"{r['ess_before']:14.1f} | {r['ess_after']:14.1f}\")\n122\t    print(\"=\" * 100 + \"\\n\")\n123\t\n124\t    # ── Main MC loop ─────────────────────────────────────────────────────────\n125\t    all_rows = []\n126\t    guard_stats = {}\n127\t    diag_agg = {}\n128\t    total = len(AFFECTED_CELLS) * args.n_mc\n129\t    count = 0\n130\t    t0 = time.time()\n131\t\n132\t    for k, regime, n_expert in AFFECTED_CELLS:\n133\t        key = (k, regime, n_expert)\n134\t        guard_stats[key] = {'total': 0, 'guard_hb': 0, 'guard_mle': 0}\n135\t        diag_agg[key] = {'rhat_max': [], 'ess_min': []}\n136\t        rp = REGIMES[k][regime]\n137\t        for mc in range(args.n_mc):\n138\t            rows, hb_diag, g_hb, g_mle = run_one_mc_reg(\n139\t                regime, rp, n_expert, k, seed=mc,\n140\t                cond_threshold=args.cond_threshold,\n141\t                n_chains=4, n_iter=4000, n_warmup=2000)\n142\t            all_rows.extend(rows)\n143\t            guard_stats[key]['total'] += 1\n144\t            guard_stats[key]['guard_hb'] += g_hb\n145\t            guard_stats[key]['guard_mle'] += g_mle\n146\t            diag_agg[key]['rhat_max'].append(hb_diag['rhat_max'])\n147\t            diag_agg[key]['ess_min'].append(hb_diag['ess_min'])\n148\t            count += 1\n149\t            if count % 50 == 0:\n150\t                el = time.time() - t0\n151\t                print(f\"  [{count}/{total}] {el:.0f}s elapsed\")\n152\t\n153\t    print(f\"  Done: {time.time() - t0:.1f}s ({count} runs)\\n\")\n154\t\n155\t    # ── Singularity guard trigger stats ──────────────────────────────────────\n156\t    print(\"=\" * 90)\n157\t    print(\"Singularity Guard Trigger Statistics\")\n158\t    print(f\"{'Config':>30s} | {'Total MC':>8s} | {'Guard HB':>10s} | {'Guard MLE':>10s}\")\n159\t    print(\"-\" * 90)\n160\t    for key in guard_stats:\n161\t        k, regime, n_expert = key\n162\t        gs = guard_stats[key]\n163\t        config = f\"K={k}/{regime}/n={n_expert}\"\n164\t        print(f\"{config:>30s} | {gs['total']:8d} | {gs['guard_hb']:10d} | {gs['guard_mle']:10d}\")\n165\t    print(\"=\" * 90 + \"\\n\")\n166\t\n167\t    # ── Aggregated MCMC diagnostics across MC runs ───────────────────────────\n168\t    print(\"=\" * 100)\n169\t    print(\"Aggregated MCMC Diagnostics (4 chains, 4000 iter)\")\n170\t    print(f\"{'Config':>30s} | {'Rhat_max mean':>14s} | {'Rhat_max max':>14s} | \"\n171\t          f\"{'ESS_min mean':>14s} | {'ESS_min min':>14s}\")\n172\t    print(\"-\" * 100)\n173\t    for key in diag_agg:\n174\t        k, regime, n_expert = key\n175\t        config = f\"K={k}/{regime}/n={n_expert}\"\n176\t        rhats = diag_agg[key]['rhat_max']\n177\t        esss = diag_agg[key]['ess_min']\n178\t        print(f\"{config:>30s} | {np.mean(rhats):14.4f} | {np.max(rhats):14.4f} | \"\n179\t              f\"{np.mean(esss):14.1f} | {np.min(esss):14.1f}\")\n180\t    print(\"=\" * 100 + \"\\n\")\n181\t\n182\t    # ── Aggregate and write results ──────────────────────────────────────────\n183\t    df_raw = pd.DataFrame(all_rows)\n184\t    df_agg = aggregate_results(df_raw)\n185\t\n186\t    csv_orig = 'results/exp001_hb_results.csv'\n187\t    csv_v2 = 'results/exp001_hb_results_v2.csv'\n188\t    df_existing = pd.read_csv(csv_orig)\n189\t\n190\t    # Remove previously appended reg rows (keep original 540)\n191\t    reg_methods = ['hb_dirichlet_reg', 'mle_laplace_reg']\n192\t    df_base = df_existing[~df_existing['method'].isin(reg_methods)].copy()\n193\t\n194\t    agg_cols = list(df_base.columns)\n195\t    df_combined = pd.concat([df_base, df_agg[agg_cols]], ignore_index=True)\n196\t    df_combined.to_csv(csv_v2, index=False)\n197\t\n198\t    # ── RMSE comparison table ────────────────────────────────────────────────\n199\t    print(\"=\" * 120)\n200\t    print(\"RMSE Comparison (original vs regularized)\")\n201\t    print(f\"{'Config':>40s} | {'Method':>15s} | {'RMSE_z0 (orig)':>15s} | \"\n202\t          f\"{'RMSE_z0 (reg)':>14s} | {'RMSE_z1 (orig)':>15s} | {'RMSE_z1 (reg)':>14s}\")\n203\t    print(\"-\" * 120)\n204\t\n205\t    for k, regime, n_expert in AFFECTED_CELLS:\n206\t        for subgroup in SUBGROUP_LABELS[k]:\n207\t            mask_base = ((df_base['k_subgroups'] == k) &\n208\t                         (df_base['regime'] == regime) &\n209\t                         (df_base['n_expert'] == n_expert) &\n210\t                         (df_base['subgroup'] == subgroup))\n211\t\n212\t            for orig, reg in [('hb_dirichlet', 'hb_dirichlet_reg'),\n213\t                              ('mle_laplace', 'mle_laplace_reg')]:\n214\t                before = df_base[mask_base & (df_base['method'] == orig)]\n215\t                after = df_agg[(df_agg['k_subgroups'] == k) &\n216\t                               (df_agg['regime'] == regime) &\n217\t                               (df_agg['n_expert'] == n_expert) &\n218\t                               (df_agg['subgroup'] == subgroup) &\n219\t                               (df_agg['method'] == reg)]\n220\t\n221\t                if before.empty or after.empty:\n222\t                    continue\n223\t\n224\t                b_z0 = before['rmse_z0'].values[0]\n225\t                a_z0 = after['rmse_z0'].values[0]\n226\t                b_z1 = before['rmse_z1'].values[0]\n227\t                a_z1 = after['rmse_z1'].values[0]\n228\t\n229\t                config = f\"K={k}/{regime}/n={n_expert}/{subgroup}\"\n230\t                print(f\"{config:>40s} | {orig:>15s} | {b_z0:15.4f} | \"\n231\t                      f\"{a_z0:14.4f} | {b_z1:15.4f} | {a_z1:14.4f}\")\n232\t\n233\t    # Global method comparison\n234\t    print(\"-\" * 120)\n235\t    for method in ['diff_in_means', 'mle_laplace', 'hb_dirichlet']:\n236\t        mask = df_base['method'] == method\n237\t        if mask.any():\n238\t            r0 = df_base.loc[mask, 'rmse_z0'].mean()\n239\t            r1 = df_base.loc[mask, 'rmse_z1'].mean()\n240\t            print(f\"{'Global avg':>40s} | {method:>15s} | {r0:15.4f} | {'---':>14s} | {r1:15.4f} | {'---':>14s}\")\n241\t    for method in ['mle_laplace_reg', 'hb_dirichlet_reg']:\n242\t        mask = df_agg['method'] == method\n243\t        if mask.any():\n244\t            r0 = df_agg.loc[mask, 'rmse_z0'].mean()\n245\t            r1 = df_agg.loc[mask, 'rmse_z1'].mean()\n246\t            print(f\"{'Global avg (reg cells)':>40s} | {method:>15s} | {'---':>15s} | {r0:14.4f} | {'---':>15s} | {r1:14.4f}\")\n247\t\n248\t    print(\"=\" * 120)\n249\t    print(f\"\\nWrote {csv_v2}: {len(df_base)} original + {len(df_agg)} new = {len(df_combined)} rows\")\n250\t    print(f\"Original file {csv_orig} unchanged.\")\n251\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "958bfcbc-0feb-4a51-b1a6-7945d543785e",
+            "isSidechain": true,
+            "promptId": "aeecb45f-e190-4fc9-9bb8-99f0f97968bf",
+            "agentId": "a572c367cd941b852",
+            "type": "user",
+            "uuid": "77b75964-a90e-4907-bf9f-821f76fd1b50",
+            "sourceToolAssistantUUID": "958bfcbc-0feb-4a51-b1a6-7945d543785e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T14:37:55.181Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CuBxTxUEWeVsGZqMEc6Xb8",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77b75964-a90e-4907-bf9f-821f76fd1b50",
+            "isSidechain": true,
+            "agentId": "a572c367cd941b852",
+            "requestId": "req_011CbFtF6rquent8oVDtWMDY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2e52baba-897f-4905-a223-3500cfe857aa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HMQR2w6jat1sNtWUt7nYrR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 658,
+                "cache_read_input_tokens": 20352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 658,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T14:37:55.388Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EqZuVgtqU6i8RTKi89R2m8",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp003_tweeteval.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2e52baba-897f-4905-a223-3500cfe857aa",
+            "isSidechain": true,
+            "agentId": "a572c367cd941b852",
+            "requestId": "req_011CbFtF6rquent8oVDtWMDY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "12d5f48d-d74e-4452-86eb-b50cab73adf7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HMQR2w6jat1sNtWUt7nYrR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 658,
+                "cache_read_input_tokens": 20352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 658,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T14:37:55.550Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TgZ1FSPxFNB377WLrbsvSp",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp013_boundary_condition.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12d5f48d-d74e-4452-86eb-b50cab73adf7",
+            "isSidechain": true,
+            "agentId": "a572c367cd941b852",
+            "requestId": "req_011CbFtF6rquent8oVDtWMDY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c918c81b-aa9d-4ef6-a379-15fa8860f758",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HMQR2w6jat1sNtWUt7nYrR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 658,
+                "cache_read_input_tokens": 20352,
+                "output_tokens": 273,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 658
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 273,
+                    "cache_read_input_tokens": 20352,
+                    "cache_creation_input_tokens": 658,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 658,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T14:37:55.555Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TgZ1FSPxFNB377WLrbsvSp",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\texp013_boundary_condition.py - Boundary condition test: n_expert=50, K=4, extreme regime.\n4\t\n5\tWith only ~12.5 expert labels per subgroup, per-subgroup CM estimation is extremely noisy.\n6\tTests whether stratified methods degrade vs global correction under these conditions.\n7\t\"\"\"\n8\t\n9\timport argparse\n10\timport os\n11\timport time\n12\timport numpy as np\n13\timport pandas as pd\n14\t\n15\tfrom exp001_hb_synthetic import (\n16\t    generate_data, get_counts, estimate_cm_mle, estimate_cm_hb_eb,\n17\t    estimate_cm_hb_gibbs, build_mixing_matrix, invert_mixing_safe,\n18\t    diff_in_means, REGIMES, SUBGROUP_LABELS, N,\n19\t)\n20\t\n21\tK = 4\n22\tREGIME_NAME = 'extreme'\n23\tREGIME_PARAMS = REGIMES[K][REGIME_NAME]\n24\tN_EXPERT = 50\n25\tLABELS = SUBGROUP_LABELS[K]\n26\t\n27\t\n28\tdef run_one(seed, hb_method='eb'):\n29\t    data = generate_data(REGIME_PARAMS, N_EXPERT, K, seed)\n30\t    Y, T, Z, Z_hat, S = data['Y'], data['T'], data['Z'], data['Z_hat'], data['S']\n31\t    em = data['expert_mask']\n32\t    tau_z0, tau_z1 = REGIME_PARAMS['tau_z0'], REGIME_PARAMS['tau_z1']\n33\t\n34\t    counts = get_counts(Z[em], Z_hat[em], S[em], LABELS)\n35\t\n36\t    C_mle = estimate_cm_mle(counts, LABELS)\n37\t    if hb_method == 'gibbs':\n38\t        C_hb, _ = estimate_cm_hb_gibbs(counts, LABELS, seed=seed)\n39\t    else:\n40\t        C_hb, _ = estimate_cm_hb_eb(counts, LABELS)\n41\t\n42\t    cg = counts.sum(axis=0)\n43\t    C_gl = np.zeros((2, 2))\n44\t    for z in [0, 1]:\n45\t        n = cg[z, :].sum()\n46\t        for zh in [0, 1]:\n47\t            C_gl[z, zh] = (cg[z, zh] + 1) / (n + 2) if n > 0 else 0.5\n48\t\n49\t    M_gl = build_mixing_matrix(C_gl)\n50\t    M_mle = {s: build_mixing_matrix(C_mle[s]) for s in LABELS}\n51\t    M_hb = {s: build_mixing_matrix(C_hb[s]) for s in LABELS}\n52\t\n53\t    rows = []\n54\t    for s in LABELS:\n55\t        sm = S == s\n56\t        th0_n, se0_n = diff_in_means(Y, T, sm & (Z_hat == 0))\n57\t        th1_n, se1_n = diff_in_means(Y, T, sm & (Z_hat == 1))\n58\t        tau_obs = np.array([th0_n, th1_n])\n59\t        se_obs = np.array([se0_n, se1_n])\n60\t        if np.any(np.isnan(tau_obs)):\n61\t            continue\n62\t\n63\t        tgc, sgc = invert_mixing_safe(M_gl, tau_obs, se_obs)\n64\t        tml, sml = invert_mixing_safe(M_mle[s], tau_obs, se_obs)\n65\t        thb, shb = invert_mixing_safe(M_hb[s], tau_obs, se_obs)\n66\t\n67\t        for method, t0, t1, s0, s1 in [\n68\t            ('naive',            th0_n, th1_n, se0_n, se1_n),\n69\t            ('global_corrected', tgc[0], tgc[1], sgc[0], sgc[1]),\n70\t            ('mle_laplace',      tml[0], tml[1], sml[0], sml[1]),\n71\t            ('hb_eb',            thb[0], thb[1], shb[0], shb[1]),\n72\t        ]:\n73\t            for z_label, tau_c, se_c, tau_true in [\n74\t                ('z0', t0, s0, tau_z0), ('z1', t1, s1, tau_z1)\n75\t            ]:\n76\t                lo = tau_c - 1.96 * se_c\n77\t                hi = tau_c + 1.96 * se_c\n78\t                rows.append({\n79\t                    'mc_run': seed, 'subgroup': s, 'method': method,\n80\t                    'z_level': z_label,\n81\t                    'tau_corrected': tau_c, 'tau_true': tau_true,\n82\t                    'se_corrected': se_c,\n83\t                    'coverage': int(lo <= tau_true <= hi),\n84\t                })\n85\t    return rows\n86\t\n87\t\n88\tdef summarize(df):\n89\t    rows = []\n90\t    for (sg, method, z), grp in df.groupby(['subgroup', 'method', 'z_level']):\n91\t        err = grp['tau_corrected'].values - grp['tau_true'].values\n92\t        n_mc = len(grp)\n93\t        bias = err.mean()\n94\t        rmse = np.sqrt((err ** 2).mean())\n95\t        cov = grp['coverage'].mean()\n96\t        rows.append({\n97\t            'subgroup': sg, 'method': method, 'z_level': z,\n98\t            'bias': bias, 'abs_bias': abs(bias), 'rmse': rmse, 'coverage': cov,\n99\t            'bias_se': err.std() / np.sqrt(n_mc),\n100\t            'rmse_se': (err ** 2).std() / np.sqrt(n_mc) / (2 * rmse) if rmse > 1e-10 else np.nan,\n101\t            'coverage_se': np.sqrt(cov * (1 - cov) / n_mc),\n102\t            'n_mc': n_mc,\n103\t        })\n104\t    return pd.DataFrame(rows)\n105\t\n106\t\n107\tdef write_analysis(df_summary):\n108\t    methods = ['naive', 'global_corrected', 'mle_laplace', 'hb_eb']\n109\t    subgroups = list(LABELS)\n110\t    misclass = dict(zip(LABELS, REGIME_PARAMS['misclass']))\n111\t\n112\t    lines = [\n113\t        '# exp-013: Boundary Condition Analysis',\n114\t        f'',\n115\t        f'**Config**: K={K}, regime={REGIME_NAME}, n_expert={N_EXPERT}, '\n116\t        f'N={N}, misclass={REGIME_PARAMS[\"misclass\"]}',\n117\t        f'',\n118\t        f'Each subgroup gets ~{N_EXPERT / K:.0f} expert labels.',\n119\t        '',\n120\t        '## Per-subgroup Results',\n121\t        '',\n122\t    ]\n123\t\n124\t    header = '| Subgroup (pi) | Method | |Bias|_z0 | RMSE_z0 | Cov_z0 | |Bias|_z1 | RMSE_z1 | Cov_z1 |'\n125\t    sep =    '|---|---|---|---|---|---|---|---|'\n126\t    lines += [header, sep]\n127\t\n128\t    for s in subgroups:\n129\t        for m in methods:\n130\t            r0 = df_summary[(df_summary['subgroup'] == s) & (df_summary['method'] == m) & (df_summary['z_level'] == 'z0')]\n131\t            r1 = df_summary[(df_summary['subgroup'] == s) & (df_summary['method'] == m) & (df_summary['z_level'] == 'z1')]\n132\t            if r0.empty or r1.empty:\n133\t                continue\n134\t            r0, r1 = r0.iloc[0], r1.iloc[0]\n135\t            lines.append(\n136\t                f'| {s} ({misclass[s]:.2f}) | {m} | '\n137\t                f'{r0[\"abs_bias\"]:.4f} | {r0[\"rmse\"]:.4f} | {r0[\"coverage\"]:.2f} | '\n138\t                f'{r1[\"abs_bias\"]:.4f} | {r1[\"rmse\"]:.4f} | {r1[\"coverage\"]:.2f} |'\n139\t            )\n140\t\n141\t    lines += ['', '## Average Across Subgroups', '']\n142\t    lines += [\n143\t        '| Method | |Bias|_z0 | RMSE_z0 | Cov_z0 | |Bias|_z1 | RMSE_z1 | Cov_z1 |',\n144\t        '|---|---|---|---|---|---|---|',\n145\t    ]\n146\t    for m in methods:\n147\t        msub = df_summary[df_summary['method'] == m]\n148\t        r0 = msub[msub['z_level'] == 'z0']\n149\t        r1 = msub[msub['z_level'] == 'z1']\n150\t        if r0.empty or r1.empty:\n151\t            continue\n152\t        lines.append(\n153\t            f'| {m} | '\n154\t            f'{r0[\"abs_bias\"].mean():.4f} | {r0[\"rmse\"].mean():.4f} | {r0[\"coverage\"].mean():.2f} | '\n155\t            f'{r1[\"abs_bias\"].mean():.4f} | {r1[\"rmse\"].mean():.4f} | {r1[\"coverage\"].mean():.2f} |'\n156\t        )\n157\t\n158\t    lines += ['', '## RMSE Amplification (stratified vs global)', '']\n159\t    gl_rmse = {}\n160\t    for z in ['z0', 'z1']:\n161\t        r = df_summary[(df_summary['method'] == 'global_corrected') & (df_summary['z_level'] == z)]\n162\t        gl_rmse[z] = r['rmse'].mean() if not r.empty else np.nan\n163\t\n164\t    lines += ['| Subgroup | Method | RMSE_z0 / Global | RMSE_z1 / Global |', '|---|---|---|---|']\n165\t    for s in subgroups:\n166\t        for m in ['mle_laplace', 'hb_eb']:\n167\t            r0 = df_summary[(df_summary['subgroup'] == s) & (df_summary['method'] == m) & (df_summary['z_level'] == 'z0')]\n168\t            r1 = df_summary[(df_summary['subgroup'] == s) & (df_summary['method'] == m) & (df_summary['z_level'] == 'z1')]\n169\t            if r0.empty or r1.empty:\n170\t                continue\n171\t            amp0 = r0.iloc[0]['rmse'] / gl_rmse['z0'] if gl_rmse['z0'] > 1e-10 else np.nan\n172\t            amp1 = r1.iloc[0]['rmse'] / gl_rmse['z1'] if gl_rmse['z1'] > 1e-10 else np.nan\n173\t            lines.append(f'| {s} ({misclass[s]:.2f}) | {m} | {amp0:.2f}x | {amp1:.2f}x |')\n174\t\n175\t    # Analysis\n176\t    worst_sg = None\n177\t    worst_rmse = 0\n178\t    for s in subgroups:\n179\t        for m in ['mle_laplace', 'hb_eb']:\n180\t            for z in ['z0', 'z1']:\n181\t                r = df_summary[(df_summary['subgroup'] == s) & (df_summary['method'] == m) & (df_summary['z_level'] == z)]\n182\t                if not r.empty and r.iloc[0]['rmse'] > worst_rmse:\n183\t                    worst_rmse = r.iloc[0]['rmse']\n184\t                    worst_sg = (s, m, z)\n185\t\n186\t    lines += ['', '## Key Findings', '']\n187\t    if worst_sg:\n188\t        lines.append(f'1. **Worst degradation**: subgroup {worst_sg[0]} ({worst_sg[1]}, {worst_sg[2]}) '\n189\t                      f'with RMSE={worst_rmse:.4f}')\n190\t\n191\t    avg_strat_rmse_z0 = df_summary[(df_summary['method'].isin(['mle_laplace', 'hb_eb'])) & (df_summary['z_level'] == 'z0')]['rmse'].mean()\n192\t    avg_strat_rmse_z1 = df_summary[(df_summary['method'].isin(['mle_laplace', 'hb_eb'])) & (df_summary['z_level'] == 'z1')]['rmse'].mean()\n193\t    lines.append(f'2. **Average stratified RMSE**: z0={avg_strat_rmse_z0:.4f}, z1={avg_strat_rmse_z1:.4f} '\n194\t                 f'vs global z0={gl_rmse[\"z0\"]:.4f}, z1={gl_rmse[\"z1\"]:.4f}')\n195\t    amp_z0 = avg_strat_rmse_z0 / gl_rmse['z0'] if gl_rmse['z0'] > 1e-10 else np.nan\n196\t    amp_z1 = avg_strat_rmse_z1 / gl_rmse['z1'] if gl_rmse['z1'] > 1e-10 else np.nan\n197\t    lines.append(f'3. **Amplification factor**: {amp_z0:.2f}x (z0), {amp_z1:.2f}x (z1)')\n198\t\n199\t    threshold_met = N_EXPERT / K >= 25\n200\t    lines.append(f'4. **n_expert/K = {N_EXPERT / K:.1f}** {\">=25 threshold met\" if threshold_met else \"< 25 threshold NOT met\"}. '\n201\t                 f'{\"Stratified methods should be usable.\" if threshold_met else \"Below recommended minimum — expect high variance in per-subgroup estimates.\"}')\n202\t\n203\t    # EB vs MLE comparison\n204\t    eb_rmse = df_summary[df_summary['method'] == 'hb_eb']['rmse'].mean()\n205\t    mle_rmse = df_summary[df_summary['method'] == 'mle_laplace']['rmse'].mean()\n206\t    if mle_rmse > 1e-10:\n207\t        pct = (mle_rmse - eb_rmse) / mle_rmse * 100\n208\t        lines.append(f'5. **EB vs MLE**: EB RMSE {pct:+.1f}% relative to MLE '\n209\t                     f'({\"EB helps with shrinkage\" if pct > 0 else \"MLE competitive\"})')\n210\t\n211\t    lines.append('')\n212\t    return '\\n'.join(lines)\n213\t\n214\t\n215\tdef main():\n216\t    parser = argparse.ArgumentParser()\n217\t    parser.add_argument('--n-mc', type=int, default=100)\n218\t    parser.add_argument('--dry-run', action='store_true')\n219\t    parser.add_argument('--hb-method', choices=['eb', 'gibbs'], default='eb')\n220\t    args = parser.parse_args()\n221\t\n222\t    n_mc = 5 if args.dry_run else args.n_mc\n223\t    tag = ' (DRY RUN)' if args.dry_run else ''\n224\t    print(f'exp-013 Boundary Condition{tag} | K={K} {REGIME_NAME} n_expert={N_EXPERT} n_mc={n_mc} hb={args.hb_method}')\n225\t\n226\t    all_rows = []\n227\t    t0 = time.time()\n228\t    for mc in range(n_mc):\n229\t        rows = run_one(mc, hb_method=args.hb_method)\n230\t        all_rows.extend(rows)\n231\t        if (mc + 1) % max(1, n_mc // 10) == 0:\n232\t            el = time.time() - t0\n233\t            print(f'  [{mc + 1}/{n_mc}] {el:.1f}s elapsed')\n234\t\n235\t    print(f'  Done: {time.time() - t0:.1f}s ({len(all_rows)} rows)')\n236\t\n237\t    df = pd.DataFrame(all_rows)\n238\t    df_summary = summarize(df)\n239\t\n240\t    os.makedirs('results', exist_ok=True)\n241\t    df.to_csv('results/exp013_boundary_condition.csv', index=False)\n242\t    df_summary.to_csv('results/exp013_boundary_summary.csv', index=False)\n243\t    print(f'Saved: results/exp013_boundary_condition.csv ({len(df)} rows)')\n244\t    print(f'Saved: results/exp013_boundary_summary.csv ({len(df_summary)} rows)')\n245\t\n246\t    analysis = write_analysis(df_summary)\n247\t    with open('results/exp013_boundary_analysis.md', 'w') as f:\n248\t        f.write(analysis)\n249\t    print(f'Saved: results/exp013_boundary_analysis.md')\n250\t\n251\t    print('\\n' + analysis)\n252\t\n253\t\n254\tif __name__ == '__main__':\n255\t    main()\n256\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c918c81b-aa9d-4ef6-a379-15fa8860f758",
+            "isSidechain": true,
+            "promptId": "aeecb45f-e190-4fc9-9bb8-99f0f97968bf",
+            "agentId": "a572c367cd941b852",
+            "type": "user",
+            "uuid": "e783f84d-9ce2-476a-9288-2e17705c7509",
+            "sourceToolAssistantUUID": "c918c81b-aa9d-4ef6-a379-15fa8860f758",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T14:37:55.726Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CuBxTxUEWeVsGZqMEc6Xb8",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\texp001_hb_synthetic.py - Hierarchical Bayesian EC-HTE Synthetic Validation (exp-001)\n4\t\n5\tCompares confusion matrix estimators for CATE correction under heterogeneous\n6\tmisclassification across subgroups:\n7\t  Oracle, Naive, Global-corrected, MLE (Laplace), HB Dirichlet (partial pooling)\n8\t\n9\tInput: Synthetic DGP parameters (regimes, expert budgets, subgroup counts)\n10\tOutput: results/exp001_hb_results.csv, results/exp001_hb_diagnostics.csv\n11\t\"\"\"\n12\t\n13\timport argparse\n14\timport os\n15\timport sys\n16\timport time\n17\timport warnings\n18\timport numpy as np\n19\timport pandas as pd\n20\tfrom scipy.special import gammaln\n21\tfrom scipy.optimize import minimize_scalar\n22\t\n23\twarnings.filterwarnings('ignore')\n24\t\n25\ttry:\n26\t    import pymc as pm\n27\t    import pytensor.tensor as pt\n28\t    import arviz as az\n29\t    HAS_PYMC = True\n30\texcept ImportError:\n31\t    HAS_PYMC = False\n32\t\n33\tN = 5000\n34\tSUBGROUP_LABELS = {2: ['A', 'B'], 4: ['A', 'B', 'C', 'D']}\n35\t\n36\tREGIMES = {\n37\t    2: {\n38\t        'extreme':     {'misclass': [0.25, 0.05], 'tau_z1': 0.5, 'tau_z0': 0.1},\n39\t        'moderate':    {'misclass': [0.15, 0.10], 'tau_z1': 0.3, 'tau_z0': 0.15},\n40\t        'homogeneous': {'misclass': [0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\n41\t    },\n42\t    4: {\n43\t        'extreme':     {'misclass': [0.30, 0.20, 0.10, 0.03], 'tau_z1': 0.5, 'tau_z0': 0.1},\n44\t        'moderate':    {'misclass': [0.20, 0.15, 0.10, 0.05], 'tau_z1': 0.3, 'tau_z0': 0.15},\n45\t        'homogeneous': {'misclass': [0.12, 0.12, 0.12, 0.12], 'tau_z1': 0.25, 'tau_z0': 0.20},\n46\t    },\n47\t}\n48\t\n49\tDEFAULT_N_EXPERTS = [50, 100, 250, 500, 1000, 2000]\n50\tDEFAULT_K_LIST = [2, 4]\n51\t\n52\t\n53\t# ── DGP ───────────────────────────────────────────────────────────────────────\n54\t\n55\tdef generate_data(regime_params, n_expert, k, seed):\n56\t    rng = np.random.RandomState(seed)\n57\t    labels = SUBGROUP_LABELS[k]\n58\t    T = rng.binomial(1, 0.5, N)\n59\t    Z = rng.binomial(1, 0.5, N)\n60\t    S = rng.choice(labels, N, p=[1.0 / k] * k)\n61\t    X = rng.randn(N, 5)\n62\t    tau = np.where(Z == 1, regime_params['tau_z1'], regime_params['tau_z0'])\n63\t    Y = 1 + tau * T + 0.5 * X[:, 0] + rng.randn(N)\n64\t    mc_rates = np.zeros(N)\n65\t    for i, s in enumerate(labels):\n66\t        mc_rates[S == s] = regime_params['misclass'][i]\n67\t    Z_hat = np.where(rng.rand(N) < mc_rates, 1 - Z, Z)\n68\t    idx = rng.choice(N, min(n_expert, N), replace=False)\n69\t    expert_mask = np.zeros(N, dtype=bool)\n70\t    expert_mask[idx] = True\n71\t    return dict(T=T, Z=Z, Z_hat=Z_hat, S=S, X=X, Y=Y, tau=tau, expert_mask=expert_mask)\n72\t\n73\t\n74\t# ── Helpers ───────────────────────────────────────────────────────────────────\n75\t\n76\tdef diff_in_means(Y, T, mask):\n77\t    t1, t0 = mask & (T == 1), mask & (T == 0)\n78\t    n1, n0 = t1.sum(), t0.sum()\n79\t    if n1 < 2 or n0 < 2:\n80\t        return np.nan, np.nan\n81\t    y1, y0 = Y[t1], Y[t0]\n82\t    return y1.mean() - y0.mean(), np.sqrt(y1.var(ddof=1) / n1 + y0.var(ddof=1) / n0)\n83\t\n84\t\n85\tdef get_counts(z_true, z_hat, subgroups, labels):\n86\t    \"\"\"Confusion matrix counts per subgroup: (k, 2, 2) = [subgroup, true_z, z_hat].\"\"\"\n87\t    k = len(labels)\n88\t    counts = np.zeros((k, 2, 2), dtype=int)\n89\t    for i, s in enumerate(labels):\n90\t        ms = subgroups == s\n91\t        for z in [0, 1]:\n92\t            mz = ms & (z_true == z)\n93\t            counts[i, z, 0] = (z_hat[mz] == 0).sum()\n94\t            counts[i, z, 1] = (z_hat[mz] == 1).sum()\n95\t    return counts\n96\t\n97\t\n98\tdef build_mixing_matrix(C):\n99\t    \"\"\"C[z, z_hat] → M[z_hat, z] via Bayes rule (assuming P(Z=0)=P(Z=1)=0.5).\n100\t\n101\t    NOTE: This assumes P(Z=0)=P(Z=1)=0.5, which is correct for this experiment's\n102\t    DGP. For general P(Z), use the version in exp007 that takes p_z and p_z_hat.\n103\t    \"\"\"\n104\t    M = np.zeros((2, 2))\n105\t    for zh in [0, 1]:\n106\t        cs = C[0, zh] + C[1, zh]\n107\t        if cs > 0:\n108\t            M[zh, 0] = C[0, zh] / cs\n109\t            M[zh, 1] = C[1, zh] / cs\n110\t        else:\n111\t            M[zh, :] = 0.5\n112\t    return M\n113\t\n114\t\n115\tdef invert_mixing(M, tau_obs, se_obs):\n116\t    det = np.linalg.det(M)\n117\t    if abs(det) < 1e-10:\n118\t        return tau_obs.copy(), se_obs.copy()\n119\t    Mi = np.linalg.inv(M)\n120\t    tau_c = Mi @ tau_obs\n121\t    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n122\t    return tau_c, se_c\n123\t\n124\t\n125\tdef safe_invert_correction(M_s, tau_obs, cond_threshold=100, fallback='naive'):\n126\t    \"\"\"Invert mixing matrix with condition number guard.\n127\t\n128\t    When cond(M_s) > threshold, matrix inversion is numerically unstable.\n129\t    Falls back to naive (no correction) to avoid catastrophic amplification.\n130\t    \"\"\"\n131\t    cond = np.linalg.cond(M_s)\n132\t    if cond > cond_threshold:\n133\t        return tau_obs.copy()\n134\t    return np.linalg.solve(M_s, tau_obs)\n135\t\n136\t\n137\tdef invert_mixing_safe(M, tau_obs, se_obs, cond_threshold=100):\n138\t    \"\"\"Like invert_mixing but with condition number guard.\"\"\"\n139\t    cond = np.linalg.cond(M)\n140\t    if cond > cond_threshold:\n141\t        return tau_obs.copy(), se_obs.copy()\n142\t    det = np.linalg.det(M)\n143\t    if abs(det) < 1e-10:\n144\t        return tau_obs.copy(), se_obs.copy()\n145\t    Mi = np.linalg.inv(M)\n146\t    tau_c = Mi @ tau_obs\n147\t    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n148\t    return tau_c, se_c\n149\t\n150\t\n151\t# ── Confusion Matrix Estimators ───────────────────────────────────────────────\n152\t\n153\tdef estimate_cm_mle(counts, labels):\n154\t    \"\"\"Per-subgroup MLE with Laplace smoothing (add-1).\"\"\"\n155\t    C = {}\n156\t    for i, s in enumerate(labels):\n157\t        C_s = np.zeros((2, 2))\n158\t        for z in [0, 1]:\n159\t            n = counts[i, z, :].sum()\n160\t            for zh in [0, 1]:\n161\t                C_s[z, zh] = (counts[i, z, zh] + 1) / (n + 2) if n > 0 else 0.5\n162\t        C[s] = C_s\n163\t    return C\n164\t\n165\t\n166\tdef _dirmult_neg_ll(alpha, counts_z):\n167\t    \"\"\"Negative log marginal likelihood for Dirichlet-Multinomial.\"\"\"\n168\t    a = alpha / 2.0\n169\t    if a < 1e-10:\n170\t        return 1e10\n171\t    ll = 0.0\n172\t    for c0, c1 in counts_z:\n173\t        n = c0 + c1\n174\t        if n == 0:\n175\t            continue\n176\t        ll += gammaln(c0 + a) + gammaln(c1 + a) - gammaln(n + 2 * a)\n177\t        ll -= 2 * gammaln(a) - gammaln(2 * a)\n178\t    return -ll\n179\t\n180\t\n181\tdef estimate_cm_hb_eb(counts, labels):\n182\t    \"\"\"Empirical Bayes HB: optimize shared Dirichlet concentration, posterior mean.\"\"\"\n183\t    k = len(labels)\n184\t    alpha_opt = np.zeros(2)\n185\t    for z in [0, 1]:\n186\t        cl = [(int(counts[i, z, 0]), int(counts[i, z, 1])) for i in range(k)]\n187\t        total = sum(c0 + c1 for c0, c1 in cl)\n188\t        if total == 0:\n189\t            alpha_opt[z] = 2.0\n190\t            continue\n191\t        res = minimize_scalar(\n192\t            lambda a: _dirmult_neg_ll(a, cl), bounds=(0.01, 500), method='bounded')\n193\t        alpha_opt[z] = res.x\n194\t\n195\t    C = {}\n196\t    for i, s in enumerate(labels):\n197\t        C_s = np.zeros((2, 2))\n198\t        for z in [0, 1]:\n199\t            a = alpha_opt[z] / 2.0\n200\t            n = counts[i, z, :].sum()\n201\t            d = n + 2 * a\n202\t            C_s[z, 0] = (counts[i, z, 0] + a) / d if d > 0 else 0.5\n203\t            C_s[z, 1] = (counts[i, z, 1] + a) / d if d > 0 else 0.5\n204\t        C[s] = C_s\n205\t\n206\t    diag = {'rhat_max': np.nan, 'ess_min': np.nan, 'divergent_count': 0,\n207\t            'runtime_seconds': 0.0, 'hb_method': 'eb',\n208\t            'alpha_0_z0': alpha_opt[0], 'alpha_0_z1': alpha_opt[1]}\n209\t    return C, diag\n210\t\n211\t\n212\tdef _split_rhat(chains):\n213\t    \"\"\"Split R-hat for a scalar parameter. chains: (n_chains, n_draws).\"\"\"\n214\t    parts = []\n215\t    for c in range(chains.shape[0]):\n216\t        half = chains.shape[1] // 2\n217\t        parts.append(chains[c, :half])\n218\t        parts.append(chains[c, half:2 * half])\n219\t    parts = np.array(parts)\n220\t    m = parts.shape[0]\n221\t    n = parts.shape[1]\n222\t    chain_means = parts.mean(axis=1)\n223\t    W = np.mean(np.var(parts, axis=1, ddof=1))\n224\t    B = n * np.var(chain_means, ddof=1)\n225\t    if W < 1e-20:\n226\t        return 1.0\n227\t    var_hat = (1 - 1.0 / n) * W + B / n\n228\t    return float(np.sqrt(var_hat / W))\n229\t\n230\t\n231\tdef _bulk_ess(chains):\n232\t    \"\"\"Approximate bulk ESS via initial positive sequence. chains: (n_chains, n_draws).\"\"\"\n233\t    x = chains.ravel()\n234\t    n = len(x)\n235\t    mu = x.mean()\n236\t    xc = x - mu\n237\t    max_lag = min(n // 2, 300)\n238\t    c0 = np.dot(xc, xc)\n239\t    if c0 < 1e-20:\n240\t        return float(n)\n241\t    tau = 1.0\n242\t    for lag in range(1, max_lag - 1, 2):\n243\t        r1 = np.dot(xc[:n - lag], xc[lag:]) / c0\n244\t        r2 = np.dot(xc[:n - lag - 1], xc[lag + 1:]) / c0 if lag + 1 < n else 0\n245\t        pair = r1 + r2\n246\t        if pair < 0:\n247\t            break\n248\t        tau += 2 * pair\n249\t    return float(n / tau)\n250\t\n251\t\n252\tdef _fast_diagnostics(alpha_arr, theta_arr, labels):\n253\t    \"\"\"Compute R-hat and ESS over all parameters without arviz.\"\"\"\n254\t    rhats, esss = [], []\n255\t    for d in range(alpha_arr.shape[2]):\n256\t        rhats.append(_split_rhat(alpha_arr[:, :, d]))\n257\t        esss.append(_bulk_ess(alpha_arr[:, :, d]))\n258\t    k = len(labels)\n259\t    for i in range(k):\n260\t        for z in [0, 1]:\n261\t            for zh in range(theta_arr.shape[4]):\n262\t                ch = theta_arr[:, :, i, z, zh]\n263\t                rhats.append(_split_rhat(ch))\n264\t                esss.append(_bulk_ess(ch))\n265\t    return max(rhats), min(esss)\n266\t\n267\t\n268\tdef _log_target_alpha(alpha, theta_z, hp_a0=3.0, hp_b0=1.0):\n269\t    \"\"\"Log posterior for alpha_0[z] in log-alpha space (includes Jacobian).\"\"\"\n270\t    if alpha < 1e-10:\n271\t        return -1e10\n272\t    a = alpha / 2.0\n273\t    k = theta_z.shape[0]\n274\t    lp = (hp_a0 - 1.0) * np.log(alpha) - hp_b0 * alpha\n275\t    lp += k * (gammaln(alpha) - 2.0 * gammaln(a))\n276\t    lp += (a - 1.0) * np.sum(np.log(np.clip(theta_z, 1e-300, None)))\n277\t    return lp\n278\t\n279\t\n280\tdef estimate_cm_hb_gibbs(counts, labels, seed=42, n_iter=4000, n_warmup=2000, n_chains=4,\n281\t                         hp_a0=3.0, hp_b0=1.0):\n282\t    \"\"\"Gibbs sampler for HB Dirichlet-Multinomial (conjugate + adaptive MH for alpha_0).\n283\t\n284\t    hp_a0, hp_b0: Gamma hyperprior shape/rate on alpha_0 (default Gamma(3,1)).\n285\t    \"\"\"\n286\t    k = len(labels)\n287\t    chain_inits_pool = [np.array([1.0, 1.0]), np.array([5.0, 5.0]),\n288\t                        np.array([0.5, 0.5]), np.array([10.0, 10.0])]\n289\t    chain_inits = chain_inits_pool[:n_chains]\n290\t    all_alpha, all_theta = [], []\n291\t    t0 = time.time()\n292\t\n293\t    for chain in range(n_chains):\n294\t        rng = np.random.RandomState(seed * 31 + chain * 7919 + 1)\n295\t        alpha = chain_inits[chain].copy()\n296\t        theta = np.ones((k, 2, 2)) * 0.5\n297\t        mh_scale = np.array([0.3, 0.3])\n298\t        accept_ct = np.array([0, 0])\n299\t        attempt_ct = np.array([0, 0])\n300\t\n301\t        alpha_samples = np.zeros((n_iter, 2))\n302\t        theta_samples = np.zeros((n_iter, k, 2, 2))\n303\t\n304\t        for it in range(n_warmup + n_iter):\n305\t            for z in [0, 1]:\n306\t                post_a = counts[:, z, :].astype(float) + alpha[z] / 2.0\n307\t                post_a = np.maximum(post_a, 1e-6)\n308\t                g = rng.gamma(post_a)\n309\t                g_sum = g.sum(axis=1, keepdims=True)\n310\t                theta[:, z, :] = g / np.maximum(g_sum, 1e-300)\n311\t\n312\t            for z in [0, 1]:\n313\t                x_prop = np.log(alpha[z]) + rng.normal(0, mh_scale[z])\n314\t                a_prop = np.exp(x_prop)\n315\t                log_r = (_log_target_alpha(a_prop, theta[:, z, :], hp_a0, hp_b0) -\n316\t                         _log_target_alpha(alpha[z], theta[:, z, :], hp_a0, hp_b0))\n317\t                accepted = np.log(rng.rand()) < log_r\n318\t                if accepted:\n319\t                    alpha[z] = a_prop\n320\t                if it < n_warmup:\n321\t                    accept_ct[z] += int(accepted)\n322\t                    attempt_ct[z] += 1\n323\t\n324\t            if it < n_warmup and it > 0 and it % 100 == 0:\n325\t                for z in [0, 1]:\n326\t                    rate = accept_ct[z] / max(attempt_ct[z], 1)\n327\t                    if rate < 0.2:\n328\t                        mh_scale[z] *= 0.7\n329\t                    elif rate > 0.5:\n330\t                        mh_scale[z] *= 1.3\n331\t                    accept_ct[z] = 0\n332\t                    attempt_ct[z] = 0\n333\t\n334\t            if it >= n_warmup:\n335\t                idx = it - n_warmup\n336\t                alpha_samples[idx] = alpha.copy()\n337\t                theta_samples[idx] = theta.copy()\n338\t\n339\t        all_alpha.append(alpha_samples)\n340\t        all_theta.append(theta_samples)\n341\t\n342\t    runtime = time.time() - t0\n343\t    alpha_arr = np.stack(all_alpha)\n344\t    theta_arr = np.stack(all_theta)\n345\t\n346\t    C = {}\n347\t    for i, s in enumerate(labels):\n348\t        C[s] = theta_arr[:, :, i, :, :].mean(axis=(0, 1))\n349\t\n350\t    rhat_max, ess_min = _fast_diagnostics(alpha_arr, theta_arr, labels)\n351\t\n352\t    diag = {'rhat_max': rhat_max, 'ess_min': ess_min, 'divergent_count': 0,\n353\t            'runtime_seconds': runtime, 'hb_method': 'gibbs'}\n354\t    return C, diag\n355\t\n356\t\n357\tdef estimate_cm_hb_mcmc(counts, labels, seed=42, draws=1000, tune=500, chains=2):\n358\t    \"\"\"Full Bayesian HB with PyMC MCMC.\"\"\"\n359\t    k = len(labels)\n360\t    n_per_sz = counts.sum(axis=2)\n361\t\n362\t    with pm.Model():\n363\t        alpha_0 = pm.Gamma('alpha_0', alpha=2, beta=1, shape=2)\n364\t        for z in [0, 1]:\n365\t            for i, s in enumerate(labels):\n366\t                nsz = int(n_per_sz[i, z])\n367\t                if nsz == 0:\n368\t                    continue\n369\t                a = pt.stack([alpha_0[z] / 2, alpha_0[z] / 2])\n370\t                theta = pm.Dirichlet(f'theta_{s}_z{z}', a=a)\n371\t                pm.Multinomial(f'obs_{s}_z{z}', n=nsz, p=theta,\n372\t                               observed=counts[i, z, :].astype('int32'))\n373\t        t0 = time.time()\n374\t        trace = pm.sample(draws=draws, tune=tune, chains=chains,\n375\t                          random_seed=seed, progressbar=False)\n376\t        runtime = time.time() - t0\n377\t\n378\t    C = {}\n379\t    for i, s in enumerate(labels):\n380\t        C_s = np.zeros((2, 2))\n381\t        for z in [0, 1]:\n382\t            vn = f'theta_{s}_z{z}'\n383\t            if vn in trace.posterior:\n384\t                C_s[z, :] = trace.posterior[vn].values.mean(axis=(0, 1))\n385\t            else:\n386\t                C_s[z, :] = 0.5\n387\t        C[s] = C_s\n388\t\n389\t    all_vars = list(trace.posterior.data_vars)\n390\t    try:\n391\t        summ = az.summary(trace, var_names=all_vars)\n392\t        rhat_max = float(summ['r_hat'].max())\n393\t        ess_min = float(summ['ess_bulk'].min())\n394\t    except Exception:\n395\t        rhat_max = ess_min = np.nan\n396\t    try:\n397\t        divergent = int(trace.sample_stats['diverging'].values.sum())\n398\t    except Exception:\n399\t        divergent = -1\n400\t\n401\t    diag = {'rhat_max': rhat_max, 'ess_min': ess_min,\n402\t            'divergent_count': divergent, 'runtime_seconds': runtime,\n403\t            'hb_method': 'mcmc'}\n404\t    return C, diag\n405\t\n406\t\n407\t# ── Single MC Run ─────────────────────────────────────────────────────────────\n408\t\n409\tdef run_one_mc(regime_name, regime_params, n_expert, k, seed, hb_method='eb'):\n410\t    data = generate_data(regime_params, n_expert, k, seed)\n411\t    Y, T, Z, Z_hat, S = data['Y'], data['T'], data['Z'], data['Z_hat'], data['S']\n412\t    em = data['expert_mask']\n413\t    labels = SUBGROUP_LABELS[k]\n414\t    tau_z0, tau_z1 = regime_params['tau_z0'], regime_params['tau_z1']\n415\t\n416\t    counts = get_counts(Z[em], Z_hat[em], S[em], labels)\n417\t\n418\t    C_mle = estimate_cm_mle(counts, labels)\n419\t\n420\t    if hb_method == 'gibbs':\n421\t        C_hb, hb_diag = estimate_cm_hb_gibbs(counts, labels, seed=seed)\n422\t    elif hb_method == 'mcmc' and HAS_PYMC:\n423\t        try:\n424\t            C_hb, hb_diag = estimate_cm_hb_mcmc(counts, labels, seed=seed)\n425\t        except Exception:\n426\t            C_hb, hb_diag = estimate_cm_hb_eb(counts, labels)\n427\t            hb_diag['hb_method'] = 'eb_fallback'\n428\t    else:\n429\t        C_hb, hb_diag = estimate_cm_hb_eb(counts, labels)\n430\t\n431\t    # Global CM (pool all expert labels, Laplace)\n432\t    cg = counts.sum(axis=0)\n433\t    C_gl = np.zeros((2, 2))\n434\t    for z in [0, 1]:\n435\t        n = cg[z, :].sum()\n436\t        for zh in [0, 1]:\n437\t            C_gl[z, zh] = (cg[z, zh] + 1) / (n + 2) if n > 0 else 0.5\n438\t\n439\t    M_gl = build_mixing_matrix(C_gl)\n440\t    M_mle = {s: build_mixing_matrix(C_mle[s]) for s in labels}\n441\t    M_hb = {s: build_mixing_matrix(C_hb[s]) for s in labels}\n442\t\n443\t    base = {'regime': regime_name, 'n_expert': n_expert, 'k_subgroups': k, 'mc_run': seed}\n444\t    rows = []\n445\t\n446\t    for s in labels:\n447\t        sm = S == s\n448\t        th0_or, se0_or = diff_in_means(Y, T, sm & (Z == 0))\n449\t        th1_or, se1_or = diff_in_means(Y, T, sm & (Z == 1))\n450\t        th0_n, se0_n = diff_in_means(Y, T, sm & (Z_hat == 0))\n451\t        th1_n, se1_n = diff_in_means(Y, T, sm & (Z_hat == 1))\n452\t\n453\t        tau_obs = np.array([th0_n, th1_n])\n454\t        se_obs = np.array([se0_n, se1_n])\n455\t        if np.any(np.isnan(tau_obs)):\n456\t            continue\n457\t\n458\t        tgc, sgc = invert_mixing(M_gl, tau_obs, se_obs)\n459\t        tml, sml = invert_mixing(M_mle[s], tau_obs, se_obs)\n460\t        thb, shb = invert_mixing(M_hb[s], tau_obs, se_obs)\n461\t\n462\t        def mr(method, th0, th1, se0, se1):\n463\t            return {**base, 'subgroup': s, 'method': method,\n464\t                    'tau_hat_z0': th0, 'tau_hat_z1': th1,\n465\t                    'se_z0': se0, 'se_z1': se1,\n466\t                    'tau_true_z0': tau_z0, 'tau_true_z1': tau_z1}\n467\t\n468\t        rows.append(mr('oracle', th0_or, th1_or, se0_or, se1_or))\n469\t        rows.append(mr('naive', th0_n, th1_n, se0_n, se1_n))\n470\t        rows.append(mr('global_corrected', tgc[0], tgc[1], sgc[0], sgc[1]))\n471\t        rows.append(mr('mle_laplace', tml[0], tml[1], sml[0], sml[1]))\n472\t        rows.append(mr('hb_dirichlet', thb[0], thb[1], shb[0], shb[1]))\n473\t\n474\t    return rows, {**base, **hb_diag}\n475\t\n476\t\n477\t# ── Aggregation ───────────────────────────────────────────────────────────────\n478\t\n479\tdef aggregate_results(df):\n480\t    rows = []\n481\t    grp_cols = ['regime', 'n_expert', 'k_subgroups', 'subgroup', 'method']\n482\t    for keys, grp in df.groupby(grp_cols):\n483\t        regime, n_expert, k, subgroup, method = keys\n484\t        row = {'regime': regime, 'n_expert': int(n_expert), 'k_subgroups': int(k),\n485\t               'subgroup': subgroup, 'method': method}\n486\t        n_mc = len(grp)\n487\t        for z in ['z0', 'z1']:\n488\t            err = grp[f'tau_hat_{z}'].values - grp[f'tau_true_{z}'].values\n489\t            bias = err.mean()\n490\t            mse = (err ** 2).mean()\n491\t            rmse = np.sqrt(mse)\n492\t            ci_lo = grp[f'tau_hat_{z}'].values - 1.96 * grp[f'se_{z}'].values\n493\t            ci_hi = grp[f'tau_hat_{z}'].values + 1.96 * grp[f'se_{z}'].values\n494\t            cov = ((ci_lo <= grp[f'tau_true_{z}'].values) &\n495\t                   (grp[f'tau_true_{z}'].values <= ci_hi)).mean()\n496\t            row[f'bias_{z}'] = bias\n497\t            row[f'rmse_{z}'] = rmse\n498\t            row[f'coverage_{z}'] = cov\n499\t            row[f'bias_{z}_se'] = err.std() / np.sqrt(n_mc)\n500\t            mse_se = (err ** 2).std() / np.sqrt(n_mc)\n501\t            row[f'rmse_{z}_se'] = mse_se / (2 * rmse) if rmse > 1e-10 else np.nan\n502\t        rows.append(row)\n503\t    return pd.DataFrame(rows)\n504\t\n505\t\n506\t# ── Output ────────────────────────────────────────────────────────────────────\n507\t\n508\tdef print_summary(df_agg, df_diag):\n509\t    pd.set_option('display.float_format', '{:.4f}'.format)\n510\t\n511\t    # MCMC / Gibbs diagnostics\n512\t    if 'hb_method' in df_diag.columns:\n513\t        for method_label in ['gibbs', 'mcmc']:\n514\t            mrows = df_diag[df_diag['hb_method'] == method_label]\n515\t            if mrows.empty:\n516\t                continue\n517\t            print(f\"\\n── {method_label.upper()} Diagnostics ──────────────────────────────\")\n518\t            print(f\"  Runs:           {len(mrows)}\")\n519\t            rh = mrows['rhat_max'].dropna()\n520\t            es = mrows['ess_min'].dropna()\n521\t            if not rh.empty:\n522\t                print(f\"  R-hat max:      {rh.max():.4f} (target < 1.01)\")\n523\t            if not es.empty:\n524\t                print(f\"  ESS min:        {es.min():.0f} (target > 200)\")\n525\t            print(f\"  Divergent total:{int(mrows['divergent_count'].sum())}\")\n526\t            print(f\"  Runtime median: {mrows['runtime_seconds'].median():.2f}s\")\n527\t\n528\t    # Per-config HB vs MLE comparison\n529\t    print(\"\\n── HB vs MLE RMSE Comparison (subgroup-level, averaged) ──\")\n530\t    for k in sorted(df_agg['k_subgroups'].unique()):\n531\t        print(f\"\\n  K = {int(k)} subgroups\")\n532\t        for regime in ['extreme', 'moderate', 'homogeneous']:\n533\t            sub = df_agg[(df_agg['k_subgroups'] == k) & (df_agg['regime'] == regime)]\n534\t            if sub.empty:\n535\t                continue\n536\t            print(f\"    {regime}:\")\n537\t            print(f\"    {'n_exp':>6s}  {'oracle':>8s}  {'naive':>8s}  {'global':>8s}  \"\n538\t                  f\"{'mle':>8s}  {'hb':>8s}  {'HB vs MLE':>10s}\")\n539\t            for ne in sorted(sub['n_expert'].unique()):\n540\t                vals = {}\n541\t                for m in ['oracle', 'naive', 'global_corrected', 'mle_laplace', 'hb_dirichlet']:\n542\t                    ms = sub[(sub['method'] == m) & (sub['n_expert'] == ne)]\n543\t                    if ms.empty:\n544\t                        vals[m] = np.nan\n545\t                    else:\n546\t                        vals[m] = np.sqrt((ms['rmse_z0'].values ** 2 +\n547\t                                           ms['rmse_z1'].values ** 2).mean())\n548\t                mle_v, hb_v = vals['mle_laplace'], vals['hb_dirichlet']\n549\t                pct = (mle_v - hb_v) / mle_v * 100 if mle_v > 1e-10 else 0\n550\t                tag = f\"{pct:+.1f}%\"\n551\t                print(f\"    {int(ne):6d}  {vals['oracle']:8.4f}  {vals['naive']:8.4f}  \"\n552\t                      f\"{vals['global_corrected']:8.4f}  {mle_v:8.4f}  {hb_v:8.4f}  {tag:>10s}\")\n553\t\n554\t\n555\t# ── Sweep ─────────────────────────────────────────────────────────────────────\n556\t\n557\tdef run_sweep(regime_names, n_experts, k_list, n_mc,\n558\t              hb_method='eb', mcmc_diag_runs=5, verbose=True):\n559\t    all_rows, all_diag = [], []\n560\t    total = sum(1 for k in k_list for r in regime_names if r in REGIMES[k]) * len(n_experts) * n_mc\n561\t    count = 0\n562\t    t0 = time.time()\n563\t\n564\t    for k in k_list:\n565\t        for rn in regime_names:\n566\t            if rn not in REGIMES[k]:\n567\t                continue\n568\t            rp = REGIMES[k][rn]\n569\t            for ne in n_experts:\n570\t                for mc in range(n_mc):\n571\t                    use = hb_method\n572\t                    if hb_method == 'auto':\n573\t                        use = 'mcmc' if mc < mcmc_diag_runs else 'eb'\n574\t                    try:\n575\t                        rows, diag = run_one_mc(rn, rp, ne, k, seed=mc, hb_method=use)\n576\t                        all_rows.extend(rows)\n577\t                        all_diag.append(diag)\n578\t                    except Exception as e:\n579\t                        if verbose:\n580\t                            print(f\"  WARN: k={k} {rn} ne={ne} mc={mc} failed: {e}\")\n581\t                        all_diag.append({\n582\t                            'regime': rn, 'n_expert': ne, 'k_subgroups': k,\n583\t                            'mc_run': mc, 'hb_method': 'error',\n584\t                            'rhat_max': np.nan, 'ess_min': np.nan,\n585\t                            'divergent_count': -1, 'runtime_seconds': 0.0})\n586\t                    count += 1\n587\t                    if verbose and count % max(1, total // 20) == 0:\n588\t                        el = time.time() - t0\n589\t                        eta = el / count * (total - count)\n590\t                        print(f\"  [{count}/{total}] {el:.0f}s elapsed, ETA {eta:.0f}s | \"\n591\t                              f\"k={k} {rn} ne={ne} mc={mc}\")\n592\t\n593\t    if verbose:\n594\t        print(f\"  Sweep done: {time.time() - t0:.1f}s ({count} runs)\")\n595\t    return pd.DataFrame(all_rows), pd.DataFrame(all_diag)\n596\t\n597\t\n598\t# ── Main ──────────────────────────────────────────────────────────────────────\n599\t\n600\tif __name__ == '__main__':\n601\t    parser = argparse.ArgumentParser()\n602\t    parser.add_argument('--n-mc', type=int, default=100)\n603\t    parser.add_argument('--dry-run', action='store_true')\n604\t    parser.add_argument('--hb-method', choices=['auto', 'mcmc', 'gibbs', 'eb'], default='auto')\n605\t    parser.add_argument('--mcmc-diag-runs', type=int, default=5)\n606\t    args = parser.parse_args()\n607\t\n608\t    n_mc = 5 if args.dry_run else args.n_mc\n609\t    regime_names = ['moderate'] if args.dry_run else ['extreme', 'moderate', 'homogeneous']\n610\t    n_experts = [100] if args.dry_run else DEFAULT_N_EXPERTS\n611\t    k_list = [2] if args.dry_run else DEFAULT_K_LIST\n612\t\n613\t    print(f\"exp-001 HB Synthetic Validation | PyMC={HAS_PYMC}\")\n614\t    print(f\"N={N} n_mc={n_mc} hb={args.hb_method}\")\n615\t    print(f\"Regimes={regime_names} n_experts={n_experts} K={k_list}\\n\")\n616\t\n617\t    # Timing test\n618\t    effective_method = args.hb_method\n619\t    d = generate_data(REGIMES[2]['moderate'], 100, 2, seed=9999)\n620\t    em = d['expert_mask']\n621\t    tc = get_counts(d['Z'][em], d['Z_hat'][em], d['S'][em], ['A', 'B'])\n622\t\n623\t    if args.hb_method == 'auto':\n624\t        print(\"Timing Gibbs sampler...\")\n625\t        t0 = time.time()\n626\t        _, dg = estimate_cm_hb_gibbs(tc, ['A', 'B'], seed=9999)\n627\t        gt = time.time() - t0\n628\t        print(f\"  Gibbs: {gt:.2f}s | rhat={dg['rhat_max']:.3f} \"\n629\t              f\"ess={dg['ess_min']:.0f}\")\n630\t        if gt < 5:\n631\t            effective_method = 'gibbs'\n632\t            print(f\"  Fast enough → using Gibbs for all runs\")\n633\t        else:\n634\t            effective_method = 'eb'\n635\t            print(f\"  Slow → using EB\")\n636\t    elif args.hb_method == 'mcmc' and HAS_PYMC:\n637\t        print(\"Timing PyMC MCMC...\")\n638\t        t0 = time.time()\n639\t        try:\n640\t            _, dg = estimate_cm_hb_mcmc(tc, ['A', 'B'], seed=9999)\n641\t            mt = time.time() - t0\n642\t            print(f\"  MCMC: {mt:.1f}s | rhat={dg['rhat_max']:.3f} \"\n643\t                  f\"ess={dg['ess_min']:.0f} div={dg['divergent_count']}\")\n644\t        except Exception as e:\n645\t            print(f\"  MCMC failed: {e} → falling back to Gibbs\")\n646\t            effective_method = 'gibbs'\n647\t\n648\t    print(f\"\\nEffective method: {effective_method}\\n\")\n649\t\n650\t    df_raw, df_diag = run_sweep(\n651\t        regime_names, n_experts, k_list, n_mc,\n652\t        hb_method=effective_method, mcmc_diag_runs=args.mcmc_diag_runs)\n653\t\n654\t    df_agg = aggregate_results(df_raw)\n655\t\n656\t    os.makedirs('results', exist_ok=True)\n657\t    agg_cols = ['regime', 'n_expert', 'k_subgroups', 'subgroup', 'method',\n658\t                'bias_z0', 'rmse_z0', 'coverage_z0', 'bias_z1', 'rmse_z1', 'coverage_z1',\n659\t                'bias_z0_se', 'rmse_z0_se', 'bias_z1_se', 'rmse_z1_se']\n660\t    df_agg[agg_cols].to_csv('results/exp001_hb_results.csv', index=False)\n661\t\n662\t    diag_cols = ['regime', 'n_expert', 'k_subgroups', 'mc_run',\n663\t                 'rhat_max', 'ess_min', 'divergent_count', 'runtime_seconds']\n664\t    save_cols = [c for c in diag_cols if c in df_diag.columns]\n665\t    if 'hb_method' in df_diag.columns:\n666\t        save_cols.insert(4, 'hb_method')\n667\t    df_diag[save_cols].to_csv('results/exp001_hb_diagnostics.csv', index=False)\n668\t\n669\t    print_summary(df_agg, df_diag)\n670\t\n671\t    print(f\"\\nSaved: results/exp001_hb_results.csv ({len(df_agg)} rows)\")\n672\t    print(f\"Saved: results/exp001_hb_diagnostics.csv ({len(df_diag)} rows)\")\n673\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2e52baba-897f-4905-a223-3500cfe857aa",
+            "isSidechain": true,
+            "promptId": "aeecb45f-e190-4fc9-9bb8-99f0f97968bf",
+            "agentId": "a572c367cd941b852",
+            "type": "user",
+            "uuid": "031dd767-5ba5-47bc-b05d-f54e3bce7286",
+            "sourceToolAssistantUUID": "2e52baba-897f-4905-a223-3500cfe857aa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T14:37:55.744Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EqZuVgtqU6i8RTKi89R2m8",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\texp-003 Phase A v3: Semi-synthetic benchmark on TweetEval sentiment.\n3\tUses real text data with simulated LLM misclassification to validate EC-HTE\n4\ton realistic subgroup structures.\n5\t\n6\tv3: Added HB Dirichlet (partial pooling) confusion matrix estimator from exp-001\n7\t    Gibbs sampler alongside stratified MLE to validate Claim 2.\n8\t\n9\tInput: TweetEval sentiment (cardiffnlp/tweet_eval, sentiment split)\n10\tOutput: results/exp003_phase_a_v3.csv, results/exp003_phase_a_v3_raw.csv, results/exp003_dgp_spec.md\n11\t\"\"\"\n12\t\n13\timport sys\n14\timport time\n15\timport warnings\n16\timport numpy as np\n17\timport pandas as pd\n18\tfrom datasets import load_dataset\n19\tfrom scipy.special import gammaln\n20\t\n21\twarnings.filterwarnings('ignore')\n22\t\n23\t# === Config ===\n24\t\n25\tN = 5000\n26\tN_MC = 100\n27\tN_EXPERTS = [50, 100, 250, 500]\n28\tSEED_BASE = 42\n29\t\n30\tMISCLASS_RATES = {\n31\t    'extreme': {'S0': 0.05, 'S1': 0.10, 'S2': 0.15, 'S3': 0.25},\n32\t    'moderate': {'S0': 0.08, 'S1': 0.10, 'S2': 0.12, 'S3': 0.15},\n33\t    'homogeneous': {'S0': 0.10, 'S1': 0.10, 'S2': 0.10, 'S3': 0.10},\n34\t}\n35\t\n36\tDELTA_S = {'S0': 0.4, 'S1': 0.3, 'S2': 0.2, 'S3': 0.1}\n37\tTAU_Z0 = 0.1\n38\tALPHA = 1.0\n39\tBETA_LENGTH = 0.3\n40\tBETA_MENTION = 0.2\n41\tSUBGROUP_LABELS = ['S0', 'S1', 'S2', 'S3']\n42\t\n43\t\n44\t# === Data Loading ===\n45\t\n46\tdef load_tweeteval_pool():\n47\t    \"\"\"Load and merge TweetEval sentiment train+test into a single pool.\"\"\"\n48\t    ds = load_dataset('cardiffnlp/tweet_eval', 'sentiment')\n49\t    texts, labels = [], []\n50\t    for split in ['train', 'test']:\n51\t        for row in ds[split]:\n52\t            texts.append(row['text'])\n53\t            labels.append(row['label'])\n54\t    return texts, np.array(labels)\n55\t\n56\t\n57\tdef extract_features(texts):\n58\t    \"\"\"Extract subgroup features from tweet texts.\"\"\"\n59\t    has_hashtag = np.array(['#' in t for t in texts], dtype=int)\n60\t    text_lengths = np.array([len(t) for t in texts])\n61\t    has_mention = np.array(['@' in t for t in texts], dtype=int)\n62\t    return has_hashtag, text_lengths, has_mention\n63\t\n64\t\n65\tdef assign_subgroups(has_hashtag, text_length_bin):\n66\t    \"\"\"Assign K=4 subgroups based on hashtag × text_length_bin.\"\"\"\n67\t    S = np.empty(len(has_hashtag), dtype='U2')\n68\t    S[(has_hashtag == 0) & (text_length_bin == 0)] = 'S0'\n69\t    S[(has_hashtag == 0) & (text_length_bin == 1)] = 'S1'\n70\t    S[(has_hashtag == 1) & (text_length_bin == 0)] = 'S2'\n71\t    S[(has_hashtag == 1) & (text_length_bin == 1)] = 'S3'\n72\t    return S\n73\t\n74\t\n75\t# === Core Estimators (reused from MVP) ===\n76\t\n77\tdef diff_in_means(Y, T, mask):\n78\t    t1 = mask & (T == 1)\n79\t    t0 = mask & (T == 0)\n80\t    n1, n0 = t1.sum(), t0.sum()\n81\t    if n1 < 2 or n0 < 2:\n82\t        return np.nan, np.nan\n83\t    y1, y0 = Y[t1], Y[t0]\n84\t    tau_hat = y1.mean() - y0.mean()\n85\t    se = np.sqrt(y1.var(ddof=1) / n1 + y0.var(ddof=1) / n0)\n86\t    return tau_hat, se\n87\t\n88\t\n89\tdef estimate_confusion_matrix(z_true, z_hat):\n90\t    C = np.zeros((2, 2))\n91\t    for zt in [0, 1]:\n92\t        mask = z_true == zt\n93\t        n = mask.sum()\n94\t        for zh in [0, 1]:\n95\t            C[zt, zh] = ((z_hat[mask] == zh).sum() + 1) / (n + 2) if n > 0 else 0.5\n96\t    return C\n97\t\n98\t\n99\tdef build_mixing_matrix(C, p_z, p_z_hat):\n100\t    \"\"\"M[z_hat, z] = P(Z=z | Z_hat=z_hat) via Bayes' rule.\n101\t\n102\t    Args:\n103\t        C: 2x2 confusion matrix, C[z, z_hat] = P(Z_hat=z_hat | Z=z)\n104\t        p_z: array [P(Z=0), P(Z=1)] - marginal distribution of true Z\n105\t        p_z_hat: array [P(Z_hat=0), P(Z_hat=1)] - marginal distribution of Z_hat\n106\t    \"\"\"\n107\t    M = np.zeros((2, 2))\n108\t    for zh in [0, 1]:\n109\t        for z in [0, 1]:\n110\t            M[zh, z] = C[z, zh] * p_z[z] / p_z_hat[zh] if p_z_hat[zh] > 0 else 0.5\n111\t    return M\n112\t\n113\t\n114\tdef invert_mixing_safe(M, tau_obs, se_obs, cond_threshold=100):\n115\t    \"\"\"Like invert_mixing but with condition number guard.\"\"\"\n116\t    cond = np.linalg.cond(M)\n117\t    if cond > cond_threshold:\n118\t        return tau_obs.copy(), se_obs.copy()\n119\t    det = np.linalg.det(M)\n120\t    if abs(det) < 1e-10:\n121\t        return tau_obs.copy(), se_obs.copy()\n122\t    Mi = np.linalg.inv(M)\n123\t    tau_c = Mi @ tau_obs\n124\t    se_c = np.sqrt(np.maximum(np.diag(Mi @ np.diag(se_obs ** 2) @ Mi.T), 0))\n125\t    return tau_c, se_c\n126\t\n127\t\n128\t# === HB Gibbs Sampler (from exp-001) ===\n129\t\n130\tdef get_counts(z_true, z_hat, subgroups, labels):\n131\t    k = len(labels)\n132\t    counts = np.zeros((k, 2, 2), dtype=int)\n133\t    for i, s in enumerate(labels):\n134\t        ms = subgroups == s\n135\t        for z in [0, 1]:\n136\t            mz = ms & (z_true == z)\n137\t            counts[i, z, 0] = (z_hat[mz] == 0).sum()\n138\t            counts[i, z, 1] = (z_hat[mz] == 1).sum()\n139\t    return counts\n140\t\n141\t\n142\tdef _split_rhat(chains):\n143\t    parts = []\n144\t    for c in range(chains.shape[0]):\n145\t        half = chains.shape[1] // 2\n146\t        parts.append(chains[c, :half])\n147\t        parts.append(chains[c, half:2 * half])\n148\t    parts = np.array(parts)\n149\t    m = parts.shape[0]\n150\t    n = parts.shape[1]\n151\t    chain_means = parts.mean(axis=1)\n152\t    W = np.mean(np.var(parts, axis=1, ddof=1))\n153\t    B = n * np.var(chain_means, ddof=1)\n154\t    if W < 1e-20:\n155\t        return 1.0\n156\t    var_hat = (1 - 1.0 / n) * W + B / n\n157\t    return float(np.sqrt(var_hat / W))\n158\t\n159\t\n160\tdef _bulk_ess(chains):\n161\t    x = chains.ravel()\n162\t    n = len(x)\n163\t    mu = x.mean()\n164\t    xc = x - mu\n165\t    max_lag = min(n // 2, 300)\n166\t    c0 = np.dot(xc, xc)\n167\t    if c0 < 1e-20:\n168\t        return float(n)\n169\t    tau = 1.0\n170\t    for lag in range(1, max_lag - 1, 2):\n171\t        r1 = np.dot(xc[:n - lag], xc[lag:]) / c0\n172\t        r2 = np.dot(xc[:n - lag - 1], xc[lag + 1:]) / c0 if lag + 1 < n else 0\n173\t        pair = r1 + r2\n174\t        if pair < 0:\n175\t            break\n176\t        tau += 2 * pair\n177\t    return float(n / tau)\n178\t\n179\t\n180\tdef _fast_diagnostics(alpha_arr, theta_arr, labels):\n181\t    rhats, esss = [], []\n182\t    for d in range(alpha_arr.shape[2]):\n183\t        rhats.append(_split_rhat(alpha_arr[:, :, d]))\n184\t        esss.append(_bulk_ess(alpha_arr[:, :, d]))\n185\t    k = len(labels)\n186\t    for i in range(k):\n187\t        for z in [0, 1]:\n188\t            for zh in range(theta_arr.shape[4]):\n189\t                ch = theta_arr[:, :, i, z, zh]\n190\t                rhats.append(_split_rhat(ch))\n191\t                esss.append(_bulk_ess(ch))\n192\t    return max(rhats), min(esss)\n193\t\n194\t\n195\tdef _log_target_alpha(alpha, theta_z, hp_a0=3.0, hp_b0=1.0):\n196\t    if alpha < 1e-10:\n197\t        return -1e10\n198\t    a = alpha / 2.0\n199\t    k = theta_z.shape[0]\n200\t    lp = (hp_a0 - 1.0) * np.log(alpha) - hp_b0 * alpha\n201\t    lp += k * (gammaln(alpha) - 2.0 * gammaln(a))\n202\t    lp += (a - 1.0) * np.sum(np.log(np.clip(theta_z, 1e-300, None)))\n203\t    return lp\n204\t\n205\t\n206\tdef estimate_cm_hb_gibbs(counts, labels, seed=42, n_iter=4000, n_warmup=2000, n_chains=4,\n207\t                         hp_a0=3.0, hp_b0=1.0):\n208\t    k = len(labels)\n209\t    chain_inits_pool = [np.array([1.0, 1.0]), np.array([5.0, 5.0]),\n210\t                        np.array([0.5, 0.5]), np.array([10.0, 10.0])]\n211\t    chain_inits = chain_inits_pool[:n_chains]\n212\t    all_alpha, all_theta = [], []\n213\t    t0 = time.time()\n214\t\n215\t    for chain in range(n_chains):\n216\t        rng = np.random.RandomState(seed * 31 + chain * 7919 + 1)\n217\t        alpha = chain_inits[chain].copy()\n218\t        theta = np.ones((k, 2, 2)) * 0.5\n219\t        mh_scale = np.array([0.3, 0.3])\n220\t        accept_ct = np.array([0, 0])\n221\t        attempt_ct = np.array([0, 0])\n222\t\n223\t        alpha_samples = np.zeros((n_iter, 2))\n224\t        theta_samples = np.zeros((n_iter, k, 2, 2))\n225\t\n226\t        for it in range(n_warmup + n_iter):\n227\t            for z in [0, 1]:\n228\t                post_a = counts[:, z, :].astype(float) + alpha[z] / 2.0\n229\t                post_a = np.maximum(post_a, 1e-6)\n230\t                g = rng.gamma(post_a)\n231\t                g_sum = g.sum(axis=1, keepdims=True)\n232\t                theta[:, z, :] = g / np.maximum(g_sum, 1e-300)\n233\t\n234\t            for z in [0, 1]:\n235\t                x_prop = np.log(alpha[z]) + rng.normal(0, mh_scale[z])\n236\t                a_prop = np.exp(x_prop)\n237\t                log_r = (_log_target_alpha(a_prop, theta[:, z, :], hp_a0, hp_b0) -\n238\t                         _log_target_alpha(alpha[z], theta[:, z, :], hp_a0, hp_b0))\n239\t                accepted = np.log(rng.rand()) < log_r\n240\t                if accepted:\n241\t                    alpha[z] = a_prop\n242\t                if it < n_warmup:\n243\t                    accept_ct[z] += int(accepted)\n244\t                    attempt_ct[z] += 1\n245\t\n246\t            if it < n_warmup and it > 0 and it % 100 == 0:\n247\t                for z in [0, 1]:\n248\t                    rate = accept_ct[z] / max(attempt_ct[z], 1)\n249\t                    if rate < 0.2:\n250\t                        mh_scale[z] *= 0.7\n251\t                    elif rate > 0.5:\n252\t                        mh_scale[z] *= 1.3\n253\t                    accept_ct[z] = 0\n254\t                    attempt_ct[z] = 0\n255\t\n256\t            if it >= n_warmup:\n257\t                idx = it - n_warmup\n258\t                alpha_samples[idx] = alpha.copy()\n259\t                theta_samples[idx] = theta.copy()\n260\t\n261\t        all_alpha.append(alpha_samples)\n262\t        all_theta.append(theta_samples)\n263\t\n264\t    runtime = time.time() - t0\n265\t    alpha_arr = np.stack(all_alpha)\n266\t    theta_arr = np.stack(all_theta)\n267\t\n268\t    C = {}\n269\t    for i, s in enumerate(labels):\n270\t        C[s] = theta_arr[:, :, i, :, :].mean(axis=(0, 1))\n271\t\n272\t    rhat_max, ess_min = _fast_diagnostics(alpha_arr, theta_arr, labels)\n273\t\n274\t    diag = {'rhat_max': rhat_max, 'ess_min': ess_min, 'divergent_count': 0,\n275\t            'runtime_seconds': runtime, 'hb_method': 'gibbs'}\n276\t    return C, diag\n277\t\n278\t\n279\t# === DGP ===\n280\t\n281\tdef sample_from_pool(pool_texts, pool_labels, pool_has_hashtag, pool_text_lengths,\n282\t                     pool_has_mention, n, rng):\n283\t    \"\"\"Sample n observations with approximate label balance from the pool.\"\"\"\n284\t    idx_neg = np.where(pool_labels == 0)[0]\n285\t    idx_neu = np.where(pool_labels == 1)[0]\n286\t    idx_pos = np.where(pool_labels == 2)[0]\n287\t\n288\t    per_class = n // 3\n289\t    remainder = n - 3 * per_class\n290\t\n291\t    chosen_neg = rng.choice(idx_neg, per_class, replace=len(idx_neg) < per_class)\n292\t    chosen_neu = rng.choice(idx_neu, per_class, replace=len(idx_neu) < per_class)\n293\t    chosen_pos = rng.choice(idx_pos, per_class + remainder, replace=len(idx_pos) < per_class + remainder)\n294\t    idx = np.concatenate([chosen_neg, chosen_neu, chosen_pos])\n295\t    rng.shuffle(idx)\n296\t\n297\t    return (\n298\t        [pool_texts[i] for i in idx],\n299\t        pool_labels[idx],\n300\t        pool_has_hashtag[idx],\n301\t        pool_text_lengths[idx],\n302\t        pool_has_mention[idx],\n303\t    )\n304\t\n305\t\n306\tdef generate_data(pool_texts, pool_labels, pool_has_hashtag, pool_text_lengths,\n307\t                  pool_has_mention, misclass_config, n_expert, seed):\n308\t    \"\"\"Generate one MC dataset: sample tweets, assign Z, simulate misclass + outcome.\"\"\"\n309\t    rng = np.random.RandomState(seed)\n310\t\n311\t    texts, labels, has_hashtag, text_lengths, has_mention = sample_from_pool(\n312\t        pool_texts, pool_labels, pool_has_hashtag, pool_text_lengths,\n313\t        pool_has_mention, N, rng\n314\t    )\n315\t\n316\t    median_len = np.median(text_lengths)\n317\t    text_length_bin = (text_lengths > median_len).astype(int)\n318\t\n319\t    S = assign_subgroups(has_hashtag, text_length_bin)\n320\t\n321\t    # Z: effect modifier from sentiment\n322\t    Z = (np.array(labels) == 2).astype(int)  # positive=1, else=0\n323\t\n324\t    # Misclassification\n325\t    mc_rates = np.array([misclass_config[s] for s in S])\n326\t    flip = rng.rand(N) < mc_rates\n327\t    Z_hat = np.where(flip, 1 - Z, Z)\n328\t\n329\t    # Treatment assignment (RCT)\n330\t    T = rng.binomial(1, 0.5, N)\n331\t\n332\t    # Outcome\n333\t    text_length_norm = (text_lengths - text_lengths.mean()) / (text_lengths.std() + 1e-8)\n334\t    delta_s = np.array([DELTA_S[s] for s in S])\n335\t    tau = np.where(Z == 1, TAU_Z0 + delta_s, TAU_Z0)\n336\t    eps = rng.randn(N)\n337\t    Y = ALPHA + tau * T + BETA_LENGTH * text_length_norm + BETA_MENTION * has_mention + eps\n338\t\n339\t    # Expert mask\n340\t    expert_idx = rng.choice(N, n_expert, replace=False)\n341\t    expert_mask = np.zeros(N, dtype=bool)\n342\t    expert_mask[expert_idx] = True\n343\t\n344\t    return {\n345\t        'T': T, 'Z': Z, 'Z_hat': Z_hat, 'S': S, 'Y': Y, 'tau': tau,\n346\t        'expert_mask': expert_mask, 'has_hashtag': has_hashtag,\n347\t        'text_length_bin': text_length_bin, 'text_lengths': text_lengths,\n348\t        'has_mention': has_mention, 'labels': np.array(labels),\n349\t    }\n350\t\n351\t\n352\t# === MC Runner ===\n353\t\n354\tdef run_one_mc(data, regime_name, n_expert, seed):\n355\t    \"\"\"Run one MC iteration: all methods × all subgroups + marginal.\"\"\"\n356\t    Y, T, Z, Z_hat, S = data['Y'], data['T'], data['Z'], data['Z_hat'], data['S']\n357\t    expert_mask = data['expert_mask']\n358\t\n359\t    z_exp = Z[expert_mask]\n360\t    zh_exp = Z_hat[expert_mask]\n361\t    s_exp = S[expert_mask]\n362\t\n363\t    # Global marginals for mixing matrix\n364\t    p_z_global = np.array([(z_exp == 0).mean(), (z_exp == 1).mean()])\n365\t    p_zh_global = np.array([(Z_hat == 0).mean(), (Z_hat == 1).mean()])\n366\t\n367\t    # Global confusion matrix\n368\t    C_global = estimate_confusion_matrix(z_exp, zh_exp)\n369\t    M_global = build_mixing_matrix(C_global, p_z_global, p_zh_global)\n370\t\n371\t    # Per-subgroup confusion matrices\n372\t    C_sub, M_sub = {}, {}\n373\t    for s_val in SUBGROUP_LABELS:\n374\t        sm_exp = (s_exp == s_val)\n375\t        sm_all = (S == s_val)\n376\t        if sm_exp.sum() >= 4:\n377\t            C_sub[s_val] = estimate_confusion_matrix(z_exp[sm_exp], zh_exp[sm_exp])\n378\t            p_z_s = np.array([(z_exp[sm_exp] == 0).mean(), (z_exp[sm_exp] == 1).mean()])\n379\t        else:\n380\t            C_sub[s_val] = C_global\n381\t            p_z_s = p_z_global\n382\t        p_zh_s = np.array([(Z_hat[sm_all] == 0).mean(), (Z_hat[sm_all] == 1).mean()])\n383\t        M_sub[s_val] = build_mixing_matrix(C_sub[s_val], p_z_s, p_zh_s)\n384\t\n385\t    # HB Dirichlet confusion matrices (partial pooling via Gibbs sampler)\n386\t    counts = get_counts(z_exp, zh_exp, s_exp, SUBGROUP_LABELS)\n387\t    C_hb, _ = estimate_cm_hb_gibbs(counts, SUBGROUP_LABELS, seed=seed)\n388\t\n389\t    M_hb_sub = {}\n390\t    for s_val in SUBGROUP_LABELS:\n391\t        sm_exp = (s_exp == s_val)\n392\t        sm_all = (S == s_val)\n393\t        if sm_exp.sum() >= 4:\n394\t            p_z_s = np.array([(z_exp[sm_exp] == 0).mean(), (z_exp[sm_exp] == 1).mean()])\n395\t        else:\n396\t            p_z_s = p_z_global\n397\t        p_zh_s = np.array([(Z_hat[sm_all] == 0).mean(), (Z_hat[sm_all] == 1).mean()])\n398\t        M_hb_sub[s_val] = build_mixing_matrix(C_hb[s_val], p_z_s, p_zh_s)\n399\t\n400\t    # True tau per subgroup\n401\t    true_tau = {}\n402\t    for s_val in SUBGROUP_LABELS:\n403\t        true_tau[s_val] = {\n404\t            'z0': TAU_Z0,\n405\t            'z1': TAU_Z0 + DELTA_S[s_val],\n406\t        }\n407\t\n408\t    base = {'regime': regime_name, 'n_expert': n_expert, 'mc_run': seed}\n409\t    rows = []\n410\t\n411\t    def make_row(method, level, th0, th1, se0, se1, true_z0, true_z1):\n412\t        ci_lo0 = th0 - 1.96 * se0 if not np.isnan(se0) else np.nan\n413\t        ci_hi0 = th0 + 1.96 * se0 if not np.isnan(se0) else np.nan\n414\t        ci_lo1 = th1 - 1.96 * se1 if not np.isnan(se1) else np.nan\n415\t        ci_hi1 = th1 + 1.96 * se1 if not np.isnan(se1) else np.nan\n416\t        return {\n417\t            **base, 'method': method, 'level': level,\n418\t            'tau_hat_z0': th0, 'tau_hat_z1': th1,\n419\t            'tau_true_z0': true_z0, 'tau_true_z1': true_z1,\n420\t            'ci_lower_z0': ci_lo0, 'ci_upper_z0': ci_hi0,\n421\t            'ci_lower_z1': ci_lo1, 'ci_upper_z1': ci_hi1,\n422\t        }\n423\t\n424\t    # --- Subgroup-level estimates ---\n425\t    sub_obs, sub_se_obs = {}, {}\n426\t    sub_corrected_strat, sub_se_strat = {}, {}\n427\t    sub_corrected_hb, sub_se_hb = {}, {}\n428\t    sub_n = {}\n429\t\n430\t    for s_val in SUBGROUP_LABELS:\n431\t        s_mask = S == s_val\n432\t        sub_n[s_val] = s_mask.sum()\n433\t\n434\t        th0_obs, se0_obs = diff_in_means(Y, T, s_mask & (Z_hat == 0))\n435\t        th1_obs, se1_obs = diff_in_means(Y, T, s_mask & (Z_hat == 1))\n436\t        sub_obs[s_val] = np.array([th0_obs, th1_obs])\n437\t        sub_se_obs[s_val] = np.array([se0_obs, se1_obs])\n438\t\n439\t        tau_strat, se_strat = invert_mixing_safe(M_sub[s_val], sub_obs[s_val], sub_se_obs[s_val])\n440\t        sub_corrected_strat[s_val] = tau_strat\n441\t        sub_se_strat[s_val] = se_strat\n442\t\n443\t        tz0 = true_tau[s_val]['z0']\n444\t        tz1 = true_tau[s_val]['z1']\n445\t\n446\t        # Oracle\n447\t        th0_or, se0_or = diff_in_means(Y, T, s_mask & (Z == 0))\n448\t        th1_or, se1_or = diff_in_means(Y, T, s_mask & (Z == 1))\n449\t        rows.append(make_row('oracle', s_val, th0_or, th1_or, se0_or, se1_or, tz0, tz1))\n450\t\n451\t        # Naive\n452\t        rows.append(make_row('naive', s_val, th0_obs, th1_obs, se0_obs, se1_obs, tz0, tz1))\n453\t\n454\t        # Global-corrected\n455\t        if not np.any(np.isnan(sub_obs[s_val])):\n456\t            tau_gc, se_gc = invert_mixing_safe(M_global, sub_obs[s_val], sub_se_obs[s_val])\n457\t            rows.append(make_row('global_corrected', s_val, tau_gc[0], tau_gc[1], se_gc[0], se_gc[1], tz0, tz1))\n458\t        else:\n459\t            rows.append(make_row('global_corrected', s_val, np.nan, np.nan, np.nan, np.nan, tz0, tz1))\n460\t\n461\t        # Stratified MLE (= ec_hte placeholder)\n462\t        rows.append(make_row('stratified_mle', s_val, tau_strat[0], tau_strat[1], se_strat[0], se_strat[1], tz0, tz1))\n463\t\n464\t        # HB EC-HTE (partial pooling)\n465\t        tau_hb, se_hb = invert_mixing_safe(M_hb_sub[s_val], sub_obs[s_val], sub_se_obs[s_val])\n466\t        sub_corrected_hb[s_val] = tau_hb\n467\t        sub_se_hb[s_val] = se_hb\n468\t        rows.append(make_row('hb_ec_hte', s_val, tau_hb[0], tau_hb[1], se_hb[0], se_hb[1], tz0, tz1))\n469\t\n470\t    # --- Marginal-level estimates ---\n471\t    # True marginal tau: weighted average across subgroups\n472\t    total_n = sum(sub_n.values())\n473\t    w = {s: sub_n[s] / total_n for s in SUBGROUP_LABELS}\n474\t\n475\t    true_z0_marg = TAU_Z0\n476\t    true_z1_marg = TAU_Z0 + sum(w[s] * DELTA_S[s] for s in SUBGROUP_LABELS)\n477\t\n478\t    # Oracle marginal\n479\t    th0_or, se0_or = diff_in_means(Y, T, Z == 0)\n480\t    th1_or, se1_or = diff_in_means(Y, T, Z == 1)\n481\t    rows.append(make_row('oracle', 'marginal', th0_or, th1_or, se0_or, se1_or, true_z0_marg, true_z1_marg))\n482\t\n483\t    # Naive marginal\n484\t    th0_naive, se0_naive = diff_in_means(Y, T, Z_hat == 0)\n485\t    th1_naive, se1_naive = diff_in_means(Y, T, Z_hat == 1)\n486\t    rows.append(make_row('naive', 'marginal', th0_naive, th1_naive, se0_naive, se1_naive, true_z0_marg, true_z1_marg))\n487\t\n488\t    # Global-corrected marginal\n489\t    tau_gc_m, se_gc_m = invert_mixing_safe(M_global, np.array([th0_naive, th1_naive]), np.array([se0_naive, se1_naive]))\n490\t    rows.append(make_row('global_corrected', 'marginal', tau_gc_m[0], tau_gc_m[1], se_gc_m[0], se_gc_m[1], true_z0_marg, true_z1_marg))\n491\t\n492\t    # Stratified MLE marginal: weighted average of subgroup-corrected\n493\t    tau_strat_m = sum(w[s] * sub_corrected_strat[s] for s in SUBGROUP_LABELS)\n494\t    se_strat_m = np.sqrt(sum((w[s] * sub_se_strat[s]) ** 2 for s in SUBGROUP_LABELS))\n495\t    rows.append(make_row('stratified_mle', 'marginal', tau_strat_m[0], tau_strat_m[1], se_strat_m[0], se_strat_m[1], true_z0_marg, true_z1_marg))\n496\t\n497\t    # HB EC-HTE marginal: weighted average of subgroup-corrected (HB)\n498\t    tau_hb_m = sum(w[s] * sub_corrected_hb[s] for s in SUBGROUP_LABELS)\n499\t    se_hb_m = np.sqrt(sum((w[s] * sub_se_hb[s]) ** 2 for s in SUBGROUP_LABELS))\n500\t    rows.append(make_row('hb_ec_hte', 'marginal', tau_hb_m[0], tau_hb_m[1], se_hb_m[0], se_hb_m[1], true_z0_marg, true_z1_marg))\n501\t\n502\t    return rows\n503\t\n504\t\n505\tdef aggregate_results(df):\n506\t    rows = []\n507\t    group_cols = ['regime', 'n_expert', 'method', 'level']\n508\t    for keys, grp in df.groupby(group_cols):\n509\t        row = dict(zip(group_cols, keys))\n510\t        for z in ['z0', 'z1']:\n511\t            err = grp[f'tau_hat_{z}'] - grp[f'tau_true_{z}']\n512\t            valid = err.dropna()\n513\t            if len(valid) == 0:\n514\t                row.update({f'bias_{z}': np.nan, f'rmse_{z}': np.nan, f'coverage_{z}': np.nan})\n515\t                continue\n516\t            row[f'bias_{z}'] = valid.mean()\n517\t            row[f'rmse_{z}'] = np.sqrt((valid ** 2).mean())\n518\t            covered = ((grp[f'ci_lower_{z}'] <= grp[f'tau_true_{z}']) &\n519\t                       (grp[f'tau_true_{z}'] <= grp[f'ci_upper_{z}'])).mean()\n520\t            row[f'coverage_{z}'] = covered\n521\t            row[f'bias_{z}_se'] = valid.std() / np.sqrt(len(valid))\n522\t        rows.append(row)\n523\t    return pd.DataFrame(rows)\n524\t\n525\t\n526\tdef write_dgp_spec(pool_texts, pool_labels, pool_has_hashtag, pool_text_lengths):\n527\t    \"\"\"Write DGP specification document.\"\"\"\n528\t    n_total = len(pool_labels)\n529\t    n_neg = (pool_labels == 0).sum()\n530\t    n_neu = (pool_labels == 1).sum()\n531\t    n_pos = (pool_labels == 2).sum()\n532\t    pct_hashtag = pool_has_hashtag.mean() * 100\n533\t    median_len = np.median(pool_text_lengths)\n534\t\n535\t    spec = f\"\"\"# exp-003 Phase A: DGP Specification\n536\t\n537\t## Data Source\n538\t- **Dataset**: TweetEval sentiment (cardiffnlp/tweet_eval, sentiment split)\n539\t- **Reference**: Barbieri et al. (2020)\n540\t- **Pool size**: {n_total} tweets (train + test merged)\n541\t- **Label distribution**: negative={n_neg} ({n_neg/n_total*100:.1f}%), neutral={n_neu} ({n_neu/n_total*100:.1f}%), positive={n_pos} ({n_pos/n_total*100:.1f}%)\n542\t\n543\t## Sampling Strategy\n544\t- Each MC run samples N={N} tweets with approximate label balance (~{N//3} per class)\n545\t- Sampling with replacement from pool (pool size >> N, minimal collision)\n546\t\n547\t## Subgroup Definition (K=4)\n548\t\n549\tTwo binary features define 4 subgroups:\n550\t\n551\t| Feature | Definition | Rationale |\n552\t|---------|-----------|-----------|\n553\t| `has_hashtag` | Text contains '#' | Hashtags shift LLM attention; informal/emphatic language may increase misclassification |\n554\t| `text_length_bin` | Above/below median length ({median_len:.0f} chars) | Longer texts provide more context but also more noise for sentiment classification |\n555\t\n556\t| Subgroup | has_hashtag | text_length_bin | Approx. proportion |\n557\t|----------|-------------|-----------------|---------------------|\n558\t| S0 | 0 (no) | 0 (short) | ~{(1-pool_has_hashtag.mean())*(pool_text_lengths<=median_len).mean()*100:.0f}% |\n559\t| S1 | 0 (no) | 1 (long) | ~{(1-pool_has_hashtag.mean())*(pool_text_lengths>median_len).mean()*100:.0f}% |\n560\t| S2 | 1 (yes) | 0 (short) | ~{pool_has_hashtag.mean()*(pool_text_lengths<=median_len).mean()*100:.0f}% |\n561\t| S3 | 1 (yes) | 1 (long) | ~{pool_has_hashtag.mean()*(pool_text_lengths>median_len).mean()*100:.0f}% |\n562\t\n563\tPrevalence of hashtag: {pct_hashtag:.1f}%\n564\t\n565\t## Effect Modifier Z\n566\t- Z=1 if sentiment == positive (label 2)\n567\t- Z=0 if sentiment != positive (label 0 or 1)\n568\t- P(Z=1) ≈ {n_pos/n_total*100:.1f}%\n569\t\n570\t## Misclassification Rates (Symmetric, A2 Assumption)\n571\t\n572\tP(Z_hat ≠ Z | S=s) = π_s\n573\t\n574\t| Regime | S0 | S1 | S2 | S3 | Rationale |\n575\t|--------|----|----|----|----|-----------|\n576\t| extreme | 0.05 | 0.10 | 0.15 | 0.25 | Large heterogeneity; hashtag texts are harder |\n577\t| moderate | 0.08 | 0.10 | 0.12 | 0.15 | Modest gradient |\n578\t| homogeneous | 0.10 | 0.10 | 0.10 | 0.10 | Null hypothesis (no heterogeneity) |\n579\t\n580\tRates are informed by typical LLM sentiment accuracy on tweets (85-95% in literature),\n581\twith the gradient reflecting empirical findings that informal/hashtag-heavy text\n582\tdegrades classifier performance.\n583\t\n584\t## Outcome Model\n585\t\n586\tY = α + τ(Z, S) · T + β₁ · text_length_normalized + β₂ · has_mention + ε\n587\t\n588\t| Parameter | Value | Rationale |\n589\t|-----------|-------|-----------|\n590\t| α | {ALPHA} | Intercept |\n591\t| τ(Z=0, all S) | {TAU_Z0} | Baseline treatment effect |\n592\t| δ_S0 | {DELTA_S['S0']} | Additional effect for Z=1 in S0 |\n593\t| δ_S1 | {DELTA_S['S1']} | Additional effect for Z=1 in S1 |\n594\t| δ_S2 | {DELTA_S['S2']} | Additional effect for Z=1 in S2 |\n595\t| δ_S3 | {DELTA_S['S3']} | Additional effect for Z=1 in S3 |\n596\t| β₁ | {BETA_LENGTH} | Text length effect (normalized) |\n597\t| β₂ | {BETA_MENTION} | Mention (@) effect |\n598\t| ε | N(0, 1) | Noise |\n599\t| T | Bernoulli(0.5) | RCT |\n600\t\n601\tτ(Z=1, S=s) = {TAU_Z0} + δ_s, so treatment effects range from {TAU_Z0 + DELTA_S['S3']} (S3) to {TAU_Z0 + DELTA_S['S0']} (S0).\n602\t\n603\t## Expert Annotation\n604\t- n_expert ∈ {{{', '.join(str(x) for x in N_EXPERTS)}}}\n605\t- Randomly selected observations with both Z and Z_hat observed\n606\t\n607\t## Difference from Pure Synthetic DGP (MVP/exp-001/exp-002)\n608\t1. **Real text features**: Subgroups come from actual tweet characteristics, not random assignment\n609\t2. **Correlated subgroup sizes**: Subgroup proportions are data-driven and unbalanced\n610\t3. **Real covariates in outcome model**: text_length and has_mention are real text features\n611\t4. **Non-uniform Z prevalence**: P(Z=1) ≈ {n_pos/n_total*100:.1f}%, not 50%\n612\t5. **Subgroup-covariate correlation**: Text length correlates with hashtag presence and sentiment\n613\t\"\"\"\n614\t    with open('results/exp003_dgp_spec.md', 'w') as f:\n615\t        f.write(spec)\n616\t    print(\"Wrote results/exp003_dgp_spec.md\")\n617\t\n618\t\n619\t# === Main ===\n620\t\n621\tif __name__ == '__main__':\n622\t    n_mc = int(sys.argv[1]) if len(sys.argv) > 1 else N_MC\n623\t\n624\t    print(f\"exp-003 Phase A: Semi-synthetic benchmark on TweetEval sentiment\")\n625\t    print(f\"N={N}, N_MC={n_mc}, N_EXPERTS={N_EXPERTS}\")\n626\t    print(f\"Regimes: {list(MISCLASS_RATES.keys())}\")\n627\t    print(f\"Methods: oracle, naive, global_corrected, stratified_mle, hb_ec_hte\")\n628\t    print()\n629\t\n630\t    # Load pool once\n631\t    print(\"Loading TweetEval sentiment dataset...\")\n632\t    t_load = time.time()\n633\t    pool_texts, pool_labels = load_tweeteval_pool()\n634\t    pool_has_hashtag, pool_text_lengths, pool_has_mention = extract_features(pool_texts)\n635\t    print(f\"  Pool size: {len(pool_texts)}, loaded in {time.time()-t_load:.1f}s\")\n636\t    print(f\"  Labels: neg={sum(pool_labels==0)}, neu={sum(pool_labels==1)}, pos={sum(pool_labels==2)}\")\n637\t    print(f\"  Hashtag prevalence: {pool_has_hashtag.mean()*100:.1f}%\")\n638\t    print(f\"  Median text length: {np.median(pool_text_lengths):.0f}\")\n639\t    print()\n640\t\n641\t    # Write DGP spec\n642\t    write_dgp_spec(pool_texts, pool_labels, pool_has_hashtag, pool_text_lengths)\n643\t\n644\t    # Run MC simulation\n645\t    results = []\n646\t    configs = []\n647\t    for regime_name in MISCLASS_RATES:\n648\t        for ne in N_EXPERTS:\n649\t            configs.append((regime_name, ne))\n650\t\n651\t    total = len(configs) * n_mc\n652\t    count = 0\n653\t    t0 = time.time()\n654\t\n655\t    for regime_name, ne in configs:\n656\t        misclass_config = MISCLASS_RATES[regime_name]\n657\t        for mc in range(n_mc):\n658\t            seed = SEED_BASE + mc\n659\t            data = generate_data(\n660\t                pool_texts, pool_labels, pool_has_hashtag, pool_text_lengths,\n661\t                pool_has_mention, misclass_config, ne, seed\n662\t            )\n663\t            mc_rows = run_one_mc(data, regime_name, ne, seed)\n664\t            results.extend(mc_rows)\n665\t            count += 1\n666\t            if count % max(1, total // 20) == 0:\n667\t                elapsed = time.time() - t0\n668\t                eta = elapsed / count * (total - count)\n669\t                print(f\"  [{count}/{total}] {elapsed:.0f}s elapsed, ETA {eta:.0f}s | {regime_name} ne={ne}\")\n670\t\n671\t    elapsed = time.time() - t0\n672\t    print(f\"\\nTotal MC time: {elapsed:.1f}s\")\n673\t\n674\t    df_raw = pd.DataFrame(results)\n675\t    df_agg = aggregate_results(df_raw)\n676\t\n677\t    # Save\n678\t    raw_path = 'results/exp003_phase_a_v3_raw.csv'\n679\t    agg_path = 'results/exp003_phase_a_v3.csv'\n680\t    df_raw.to_csv(raw_path, index=False)\n681\t    df_agg.to_csv(agg_path, index=False)\n682\t    print(f\"Saved: {raw_path} ({len(df_raw)} rows)\")\n683\t    print(f\"Saved: {agg_path} ({len(df_agg)} rows)\")\n684\t\n685\t    # Print summary\n686\t    pd.set_option('display.max_columns', 20)\n687\t    pd.set_option('display.width', 260)\n688\t    pd.set_option('display.float_format', '{:.4f}'.format)\n689\t\n690\t    for regime in MISCLASS_RATES:\n691\t        print(f\"\\n{'='*180}\")\n692\t        pi = MISCLASS_RATES[regime]\n693\t        print(f\"Regime: {regime} | misclass: S0={pi['S0']}, S1={pi['S1']}, S2={pi['S2']}, S3={pi['S3']}\")\n694\t        print(f\"{'='*180}\")\n695\t        for level in ['marginal'] + SUBGROUP_LABELS:\n696\t            sub = df_agg[(df_agg['regime'] == regime) & (df_agg['level'] == level)]\n697\t            if sub.empty:\n698\t                continue\n699\t            sub = sub.sort_values(['n_expert', 'method'])\n700\t            cols = ['n_expert', 'method', 'level', 'bias_z0', 'rmse_z0', 'coverage_z0', 'bias_z1', 'rmse_z1', 'coverage_z1']\n701\t            print(sub[cols].to_string(index=False))\n702\t            print()\n703\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12d5f48d-d74e-4452-86eb-b50cab73adf7",
+            "isSidechain": true,
+            "promptId": "aeecb45f-e190-4fc9-9bb8-99f0f97968bf",
+            "agentId": "a572c367cd941b852",
+            "type": "user",
+            "uuid": "64aa34c6-add5-485d-b0a2-6bd0e11c6891",
+            "sourceToolAssistantUUID": "12d5f48d-d74e-4452-86eb-b50cab73adf7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T14:37:58.217Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me also check the markdown spec file for exp003 that was mentioned:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "64aa34c6-add5-485d-b0a2-6bd0e11c6891",
+            "isSidechain": true,
+            "agentId": "a572c367cd941b852",
+            "requestId": "req_011CbFtFJbnW2HgZ1RJ2sa76",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "48190531-0324-4c2c-8c64-791512e914e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017FwFbz8vCyprPgvtRybgDe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4798,
+                "cache_creation_input_tokens": 29038,
+                "cache_read_input_tokens": 21010,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 29038,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T14:37:58.672Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A6ASpX1XsrpfGXfWZqeZqo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/results/exp003_dgp_spec.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48190531-0324-4c2c-8c64-791512e914e3",
+            "isSidechain": true,
+            "agentId": "a572c367cd941b852",
+            "requestId": "req_011CbFtFJbnW2HgZ1RJ2sa76",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d6169b0d-0881-4880-a7b7-3bd728867c89",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017FwFbz8vCyprPgvtRybgDe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4798,
+                "cache_creation_input_tokens": 29038,
+                "cache_read_input_tokens": 21010,
+                "output_tokens": 98,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 29038
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4798,
+                    "output_tokens": 98,
+                    "cache_read_input_tokens": 21010,
+                    "cache_creation_input_tokens": 29038,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 29038,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T14:37:58.676Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A6ASpX1XsrpfGXfWZqeZqo",
+              "type": "tool_result",
+              "content": "1\t# exp-003 Phase A: DGP Specification\n2\t\n3\t## Data Source\n4\t- **Dataset**: TweetEval sentiment (cardiffnlp/tweet_eval, sentiment split)\n5\t- **Reference**: Barbieri et al. (2020)\n6\t- **Pool size**: 57899 tweets (train + test merged)\n7\t- **Label distribution**: negative=11065 (19.1%), neutral=26610 (46.0%), positive=20224 (34.9%)\n8\t\n9\t## Sampling Strategy\n10\t- Each MC run samples N=5000 tweets with approximate label balance (~1666 per class)\n11\t- Sampling with replacement from pool (pool size >> N, minimal collision)\n12\t\n13\t## Subgroup Definition (K=4)\n14\t\n15\tTwo binary features define 4 subgroups:\n16\t\n17\t| Feature | Definition | Rationale |\n18\t|---------|-----------|-----------|\n19\t| `has_hashtag` | Text contains '#' | Hashtags shift LLM attention; informal/emphatic language may increase misclassification |\n20\t| `text_length_bin` | Above/below median length (110 chars) | Longer texts provide more context but also more noise for sentiment classification |\n21\t\n22\t| Subgroup | has_hashtag | text_length_bin | Approx. proportion |\n23\t|----------|-------------|-----------------|---------------------|\n24\t| S0 | 0 (no) | 0 (short) | ~39% |\n25\t| S1 | 0 (no) | 1 (long) | ~38% |\n26\t| S2 | 1 (yes) | 0 (short) | ~12% |\n27\t| S3 | 1 (yes) | 1 (long) | ~11% |\n28\t\n29\tPrevalence of hashtag: 23.1%\n30\t\n31\t## Effect Modifier Z\n32\t- Z=1 if sentiment == positive (label 2)\n33\t- Z=0 if sentiment != positive (label 0 or 1)\n34\t- P(Z=1) ≈ 34.9%\n35\t\n36\t## Misclassification Rates (Symmetric, A2 Assumption)\n37\t\n38\tP(Z_hat ≠ Z | S=s) = π_s\n39\t\n40\t| Regime | S0 | S1 | S2 | S3 | Rationale |\n41\t|--------|----|----|----|----|-----------|\n42\t| extreme | 0.05 | 0.10 | 0.15 | 0.25 | Large heterogeneity; hashtag texts are harder |\n43\t| moderate | 0.08 | 0.10 | 0.12 | 0.15 | Modest gradient |\n44\t| homogeneous | 0.10 | 0.10 | 0.10 | 0.10 | Null hypothesis (no heterogeneity) |\n45\t\n46\tRates are informed by typical LLM sentiment accuracy on tweets (85-95% in literature),\n47\twith the gradient reflecting empirical findings that informal/hashtag-heavy text\n48\tdegrades classifier performance.\n49\t\n50\t## Outcome Model\n51\t\n52\tY = α + τ(Z, S) · T + β₁ · text_length_normalized + β₂ · has_mention + ε\n53\t\n54\t| Parameter | Value | Rationale |\n55\t|-----------|-------|-----------|\n56\t| α | 1.0 | Intercept |\n57\t| τ(Z=0, all S) | 0.1 | Baseline treatment effect |\n58\t| δ_S0 | 0.4 | Additional effect for Z=1 in S0 |\n59\t| δ_S1 | 0.3 | Additional effect for Z=1 in S1 |\n60\t| δ_S2 | 0.2 | Additional effect for Z=1 in S2 |\n61\t| δ_S3 | 0.1 | Additional effect for Z=1 in S3 |\n62\t| β₁ | 0.3 | Text length effect (normalized) |\n63\t| β₂ | 0.2 | Mention (@) effect |\n64\t| ε | N(0, 1) | Noise |\n65\t| T | Bernoulli(0.5) | RCT |\n66\t\n67\tτ(Z=1, S=s) = 0.1 + δ_s, so treatment effects range from 0.2 (S3) to 0.5 (S0).\n68\t\n69\t## Expert Annotation\n70\t- n_expert ∈ {50, 100, 250, 500}\n71\t- Randomly selected observations with both Z and Z_hat observed\n72\t\n73\t## Difference from Pure Synthetic DGP (MVP/exp-001/exp-002)\n74\t1. **Real text features**: Subgroups come from actual tweet characteristics, not random assignment\n75\t2. **Correlated subgroup sizes**: Subgroup proportions are data-driven and unbalanced\n76\t3. **Real covariates in outcome model**: text_length and has_mention are real text features\n77\t4. **Non-uniform Z prevalence**: P(Z=1) ≈ 34.9%, not 50%\n78\t5. **Subgroup-covariate correlation**: Text length correlates with hashtag presence and sentiment\n79\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6169b0d-0881-4880-a7b7-3bd728867c89",
+            "isSidechain": true,
+            "promptId": "aeecb45f-e190-4fc9-9bb8-99f0f97968bf",
+            "agentId": "a572c367cd941b852",
+            "type": "user",
+            "uuid": "87ca2537-eeb8-4076-b0de-950cef011bd8",
+            "sourceToolAssistantUUID": "d6169b0d-0881-4880-a7b7-3bd728867c89",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T14:38:14.345Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now I have all the information needed. Let me compile the confusion matrix parameters for all three experiments.\n\n## Summary of Confusion Matrix / Misclassification Parameters\n\nBased on my search of the codebase, here are the exact parameters used in the three simulation experiments:\n\n---\n\n### **EXP-001: Hierarchical Bayesian Synthetic Validation**\n\n**Source**: `/home/ubuntu/ec_hte_llm_annotation/exp001_hb_synthetic.py`\n\n**Misclassification Rates (Symmetric, A2 Assumption)**:\n- **Per-subgroup** (asymmetric across subgroups, symmetric within each)\n- **Regime: extreme (K=2)**\n  - Subgroup A: 0.25\n  - Subgroup B: 0.05\n  \n- **Regime: moderate (K=2)**\n  - Subgroup A: 0.15\n  - Subgroup B: 0.10\n  \n- **Regime: homogeneous (K=2)**\n  - Subgroup A: 0.12\n  - Subgroup B: 0.12\n\n- **Regime: extreme (K=4)**\n  - Subgroup A: 0.30\n  - Subgroup B: 0.20\n  - Subgroup C: 0.10\n  - Subgroup D: 0.03\n  \n- **Regime: moderate (K=4)**\n  - Subgroup A: 0.20\n  - Subgroup B: 0.15\n  - Subgroup C: 0.10\n  - Subgroup D: 0.05\n  \n- **Regime: homogeneous (K=4)**\n  - Subgroup A: 0.12\n  - Subgroup B: 0.12\n  - Subgroup C: 0.12\n  - Subgroup D: 0.12\n\n**P(Z=1)**: 0.5 (uniform, from `Z = rng.binomial(1, 0.5, N)` at line 59)\n\n**K values**: 2, 4 (K=subgroups; see `DEFAULT_K_LIST = [2, 4]` at line 50)\n\n**Confusion Matrix Structure**:\n- Estimated per-subgroup (stratified), not global\n- Confusion matrix definition: `C[z, z_hat]` = P(Z_hat=z_hat | Z=z)\n- Estimated via MLE with Laplace smoothing (add-1) and HB Dirichlet (partial pooling via Gibbs sampler)\n- Mixing matrix computed as: `M[z_hat, z] = C[z, z_hat] / sum_z(C[z, z_hat])` (assuming P(Z=0)=P(Z=1)=0.5)\n\n---\n\n### **EXP-003: Semi-synthetic Benchmark on TweetEval Sentiment**\n\n**Source**: `/home/ubuntu/ec_hte_llm_annotation/exp003_tweeteval.py` and `/home/ubuntu/ec_hte_llm_annotation/results/exp003_dgp_spec.md`\n\n**Misclassification Rates (Symmetric, A2 Assumption)**:\n- **Per-subgroup** (asymmetric across subgroups)\n- **Regime: extreme**\n  - S0: 0.05\n  - S1: 0.10\n  - S2: 0.15\n  - S3: 0.25\n  \n- **Regime: moderate**\n  - S0: 0.08\n  - S1: 0.10\n  - S2: 0.12\n  - S3: 0.15\n  \n- **Regime: homogeneous**\n  - S0: 0.10\n  - S1: 0.10\n  - S2: 0.10\n  - S3: 0.10\n\n**P(Z=1)**: 0.349 (34.9%, computed from pool: Z=1 if sentiment == positive; `P(Z=1) ≈ 34.9%` per spec)\n\n**K values**: 4 (subgroups defined by hashtag presence × text length binary features)\n\n**Confusion Matrix Structure**:\n- Estimated per-subgroup (stratified)\n- Confusion matrix definition: `C[zt, zh]` = P(Z_hat=zh | Z=zt) with add-1 Laplace smoothing\n- Mixing matrix computed with general Bayes rule: `M[zh, z] = C[z, zh] * P(Z=z) / P(Z_hat=zh)` (handling non-uniform Z)\n- Estimated via MLE (stratified per-subgroup) and HB Dirichlet (Gibbs sampler for partial pooling)\n\n---\n\n### **EXP-013: Boundary Condition Test**\n\n**Source**: `/home/ubuntu/ec_hte_llm_annotation/exp013_boundary_condition.py`\n\n**Config**:\n- **K**: 4 (subgroups)\n- **Regime**: extreme\n- **Regime parameters** (from exp001 REGIMES[4]['extreme']):\n  - Misclass: [0.30, 0.20, 0.10, 0.03]\n  - Subgroup A: 0.30\n  - Subgroup B: 0.20\n  - Subgroup C: 0.10\n  - Subgroup D: 0.03\n\n**P(Z=1)**: 0.5 (uniform, from synthetic DGP: `Z = rng.binomial(1, 0.5, N)`)\n\n**Confusion Matrix Structure**:\n- Per-subgroup (stratified)\n- Same structure as exp-001: `C[z, z_hat]` with `M[z_hat, z]` computed assuming P(Z=0)=P(Z=1)=0.5\n- Estimated via MLE (Laplace smoothing) and HB EB (Empirical Bayes with Dirichlet-Multinomial)\n- Note: boundary condition = n_expert=50 with K=4, so ~12.5 labels per subgroup (high variance regime)\n\n---\n\n**Key Differences Across Experiments**:\n\n| Aspect | exp-001 | exp-003 | exp-013 |\n|--------|---------|---------|---------|\n| **Data** | Pure synthetic | Semi-synthetic (real TweetEval text) | Pure synthetic |\n| **Rates** | Asymmetric per-subgroup, K∈{2,4} | Asymmetric per-subgroup, K=4 | Asymmetric per-subgroup, K=4 |\n| **P(Z=1)** | 0.5 (uniform) | 0.349 (non-uniform) | 0.5 (uniform) |\n| **CM Estimators** | MLE, HB Dirichlet Gibbs, HB EB | MLE (stratified), HB Dirichlet Gibbs | MLE, HB EB |\n| **Expert labels** | 50, 100, 250, 500, 1000, 2000 | 50, 100, 250, 500 | 50 (boundary condition) |"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87ca2537-eeb8-4076-b0de-950cef011bd8",
+            "isSidechain": true,
+            "agentId": "a572c367cd941b852",
+            "requestId": "req_011CbFtFXp2nPUdeXW3hMHRf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fe2ac380-f401-409b-9ce9-8155ee048433",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "59df5acf-1bd1-4ab3-a49d-fb4a8872a123",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01EvX4m3nq6uJEEL9g2JhRv6",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 6288,
+                "cache_read_input_tokens": 50048,
+                "output_tokens": 1775,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6288
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 1775,
+                    "cache_read_input_tokens": 50048,
+                    "cache_creation_input_tokens": 6288,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6288,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        }
+      ],
+      "message_count": 24
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-home-ubuntu-ec-hte-llm-annotation-find-the-confusion-matrix-misclassificati.md"
+}

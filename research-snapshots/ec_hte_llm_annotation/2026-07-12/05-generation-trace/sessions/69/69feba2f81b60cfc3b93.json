@@ -1,0 +1,1917 @@
+{
+  "schema_version": "1.0",
+  "id": "69feba2f81b60cfc3b93",
+  "project": "ec_hte_llm_annotation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In /home/ubuntu/ec_hte_llm_annotation/, find the code that generates: 1. results/exp002_bias_bound.csv - what does `anal",
+  "task_key": "agent-a4d132eb27dac2f24",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a4d132eb27dac2f24.jsonl",
+    "occurrence": 1,
+    "bytes": 97658,
+    "sha256": "26ab4d8c5dc10e3822f0e9228d899c6ff52b0f2bc483072657d8d9963a10177c"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 1,
+    "tool_calls": 14,
+    "roles": {
+      "user": 1,
+      "assistant": 10,
+      "tool_call": 14,
+      "tool_result": 14
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T14:59:57.179Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In /home/ubuntu/ec_hte_llm_annotation/, find the code that generates:\n1. results/exp002_bias_bound.csv - what does `analytic_bias` column represent? Is it naive estimator bias or global correction bias?\n2. results/exp002_debiasing_hurts.csv - how is this generated from the bias_bound data?\n\nSearch for files that write these CSVs. Look in scripts/, notebooks/, src/ etc. I need to understand whether exp002_bias_bound.csv has enough info to compute naive vs global bias comparison, or if it only has one estimator's bias. Search breadth: medium."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "28dd6811-b910-4b28-aaf4-d8fbde4ba1c3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T14:59:58.460Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find and understand how these CSV files are generated. Let me start by exploring the directory structure and searching for the files that write these CSVs."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "28dd6811-b910-4b28-aaf4-d8fbde4ba1c3",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhYYc7LaK5yRKK9aLim",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0512109e-1fe7-439a-8e3e-9ff17d2e2de3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01T4jxAzGZzGuSHmFDZkubY6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17677,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17677,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T14:59:58.772Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CtnSPcM7HmhstTwGcaLPFz",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/ec_hte_llm_annotation -type f -name \"*.py\" -o -name \"*.ipynb\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0512109e-1fe7-439a-8e3e-9ff17d2e2de3",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhYYc7LaK5yRKK9aLim",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "126a64c9-97ce-4f5d-b1f1-f177727348b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01T4jxAzGZzGuSHmFDZkubY6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17677,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 123,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17677
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 123,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 17677,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17677,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T14:59:58.854Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CtnSPcM7HmhstTwGcaLPFz",
+              "type": "tool_result",
+              "content": "/home/ubuntu/ec_hte_llm_annotation/exp001_regularize.py\n/home/ubuntu/ec_hte_llm_annotation/exp037_calibration.py\n/home/ubuntu/ec_hte_llm_annotation/exp027b_cf_oracle_k2.py\n/home/ubuntu/ec_hte_llm_annotation/scripts/plot_applicability_frontier.py\n/home/ubuntu/ec_hte_llm_annotation/scripts/explore_tweeteval.py\n/home/ubuntu/ec_hte_llm_annotation/scripts/cross_llm_heatmap.py\n/home/ubuntu/ec_hte_llm_annotation/scripts/fig1_bias_mechanism.py\n/home/ubuntu/ec_hte_llm_annotation/exp015_semi_real_cm.py\n/home/ubuntu/ec_hte_llm_annotation/compute_fl_for_table1.py\n/home/ubuntu/ec_hte_llm_annotation/exp033_k8_adaptive.py\n/home/ubuntu/ec_hte_llm_annotation/exp004_hate_speech.py\n/home/ubuntu/ec_hte_llm_annotation/exp017_rlearner.py\n/home/ubuntu/ec_hte_llm_annotation/exp031_confounded_dgp.py\n/home/ubuntu/ec_hte_llm_annotation/exp025_positive_scenario.py\n/home/ubuntu/ec_hte_llm_annotation/exp035_asymmetric_cm.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/aiohappyeyeballs/utils.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/aiohappyeyeballs/impl.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/aiohappyeyeballs/_staggered.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/aiohappyeyeballs/__init__.py\n/home/ubuntu/ec_hte_llm_annotation/.venv/lib/python3.14/site-packages/aiohappyeyeballs/types.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "126a64c9-97ce-4f5d-b1f1-f177727348b0",
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "049915f5-1c32-4a92-b875-affa68e39678",
+            "sourceToolAssistantUUID": "126a64c9-97ce-4f5d-b1f1-f177727348b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T15:00:00.051Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for files that write to these CSV files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "049915f5-1c32-4a92-b875-affa68e39678",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhYfkjCD31DSZDmWaHR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "23b39171-4c0b-466a-8a07-3f80527b77fe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HPXNWMRtRUU1tBzf3LMK1d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1555,
+                "cache_read_input_tokens": 17677,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1555,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T15:00:00.467Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X8bhTDm6EHZCU4sG9Xn7qH",
+              "name": "Grep",
+              "input": {
+                "pattern": "exp002_bias_bound\\.csv",
+                "path": "/home/ubuntu/ec_hte_llm_annotation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23b39171-4c0b-466a-8a07-3f80527b77fe",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhYfkjCD31DSZDmWaHR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "773adcf3-c459-4a62-bf9c-c3f663c29b30",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HPXNWMRtRUU1tBzf3LMK1d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1555,
+                "cache_read_input_tokens": 17677,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1555,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T15:00:00.645Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018GCgbo5cphAXm1LtZ949Kk",
+              "name": "Grep",
+              "input": {
+                "pattern": "exp002_debiasing_hurts\\.csv",
+                "path": "/home/ubuntu/ec_hte_llm_annotation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "773adcf3-c459-4a62-bf9c-c3f663c29b30",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhYfkjCD31DSZDmWaHR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "39e41b0c-311b-4884-9df7-d33f6b4755b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HPXNWMRtRUU1tBzf3LMK1d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1555,
+                "cache_read_input_tokens": 17677,
+                "output_tokens": 178,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1555
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 178,
+                    "cache_read_input_tokens": 17677,
+                    "cache_creation_input_tokens": 1555,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1555,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T15:00:01.526Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X8bhTDm6EHZCU4sG9Xn7qH",
+              "type": "tool_result",
+              "content": "Found 3 files\nsign_reversal_analysis.py\nresults/exp002_run.log\nexp002_bias_bound.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "773adcf3-c459-4a62-bf9c-c3f663c29b30",
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "34dead52-5aa9-4429-a264-d3eee2b740a5",
+            "sourceToolAssistantUUID": "773adcf3-c459-4a62-bf9c-c3f663c29b30",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T15:00:01.651Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018GCgbo5cphAXm1LtZ949Kk",
+              "type": "tool_result",
+              "content": "Found 2 files\nresults/exp002_run.log\nexp002_bias_bound.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39e41b0c-311b-4884-9df7-d33f6b4755b7",
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "1a4dc0af-bb3a-4c2d-be04-3bdac28a9edd",
+            "sourceToolAssistantUUID": "39e41b0c-311b-4884-9df7-d33f6b4755b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T15:00:03.055Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Great! Let me examine the main files involved:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a4dc0af-bb3a-4c2d-be04-3bdac28a9edd",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhYssz196xEATg1aVbj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f51e4358-ccf0-4e49-a0b5-20b795e117df",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017FbKwjsh4mmfqz5tqk5uhF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 293,
+                "cache_read_input_tokens": 19232,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 293,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T15:00:03.262Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015nXG7tAX7ohFsuRszyN3Qh",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/exp002_bias_bound.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f51e4358-ccf0-4e49-a0b5-20b795e117df",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhYssz196xEATg1aVbj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "97fed77b-fbc8-464b-a62f-d5a572af6e5f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017FbKwjsh4mmfqz5tqk5uhF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 293,
+                "cache_read_input_tokens": 19232,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 293,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T15:00:03.288Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015nXG7tAX7ohFsuRszyN3Qh",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\texp002_bias_bound.py — Formal Bias Bound Verification (exp-002)\n3\t\n4\tVerifies the exact identity under A1-A4:\n5\t  bias_global(z=0, s) = +δ_s · Δτ / (1 - 2π̄)\n6\t  bias_global(z=1, s) = -δ_s · Δτ / (1 - 2π̄)\n7\t\n8\twhere δ_s = π_s - π̄, Δτ = τ(Z=1) - τ(Z=0).\n9\t\n10\tParts:\n11\t  1. Derivation (see results/exp002_derivation.md)\n12\t  2. K=2 systematic parameter grid validation\n13\t  3. \"Debiasing can hurt\" analysis\n14\t  4. K=4 extension\n15\t\"\"\"\n16\t\n17\timport numpy as np\n18\timport pandas as pd\n19\timport time\n20\timport os\n21\t\n22\tN = 5000\n23\tN_MC = 1000\n24\tBASE_MISCLASS = 0.15\n25\tTAU_Z0 = 0.1\n26\tRESULTS_DIR = 'results'\n27\tos.makedirs(RESULTS_DIR, exist_ok=True)\n28\t\n29\t\n30\t# ============================================================\n31\t# Analytic formulas (exact under A1-A4)\n32\t# ============================================================\n33\t\n34\tdef analytic_bias_global(pi_s, pi_bar, delta_tau):\n35\t    \"\"\"bias[z=0] = +δ_s·Δτ/(1-2π̄), bias[z=1] = -δ_s·Δτ/(1-2π̄).\"\"\"\n36\t    delta_s = pi_s - pi_bar\n37\t    denom = 1.0 - 2.0 * pi_bar\n38\t    if abs(denom) < 1e-12:\n39\t        return 0.0, 0.0\n40\t    b = delta_s * delta_tau / denom\n41\t    return b, -b\n42\t\n43\t\n44\tdef analytic_bias_naive(pi_s, delta_tau):\n45\t    \"\"\"bias[z=0] = +π_s·Δτ, bias[z=1] = -π_s·Δτ.\"\"\"\n46\t    return pi_s * delta_tau, -pi_s * delta_tau\n47\t\n48\t\n49\tdef bias_ratio(pi_s, pi_bar):\n50\t    \"\"\"Ratio |bias_global|/|bias_naive| (independent of Δτ).\"\"\"\n51\t    denom = (1.0 - 2.0 * pi_bar) * pi_s\n52\t    if abs(denom) < 1e-12:\n53\t        return np.nan\n54\t    return abs(pi_s - pi_bar) / denom\n55\t\n56\t\n57\t# ============================================================\n58\t# MC simulation — vectorized K=2\n59\t# ============================================================\n60\t\n61\tdef mc_simulate_k2(pi_A, pi_B, tau_z0, tau_z1, n, n_mc, seed=0):\n62\t    \"\"\"Run n_mc Monte Carlo simulations with known global confusion matrix.\"\"\"\n63\t    pi_bar = 0.5 * (pi_A + pi_B)\n64\t    denom = 1.0 - 2.0 * pi_bar\n65\t    M_inv = np.array([[1 - pi_bar, -pi_bar],\n66\t                       [-pi_bar, 1 - pi_bar]]) / denom\n67\t    tau_true = np.array([tau_z0, tau_z1])\n68\t\n69\t    rng = np.random.RandomState(seed)\n70\t    T = rng.binomial(1, 0.5, (n_mc, n))\n71\t    Z = rng.binomial(1, 0.5, (n_mc, n))\n72\t    S = rng.binomial(1, 0.5, (n_mc, n))  # 0=A, 1=B\n73\t\n74\t    tau = np.where(Z == 1, tau_z1, tau_z0)\n75\t    Y = 1.0 + tau * T + 0.5 * rng.randn(n_mc, n) + rng.randn(n_mc, n)\n76\t\n77\t    mc_rates = np.where(S == 0, pi_A, pi_B)\n78\t    Z_hat = np.where(rng.rand(n_mc, n) < mc_rates, 1 - Z, Z)\n79\t\n80\t    # Group index: S*4 + Z_hat*2 + T → 8 groups\n81\t    group = (S * 4 + Z_hat * 2 + T).ravel()\n82\t    mc_idx = np.repeat(np.arange(n_mc), n)\n83\t    combined = mc_idx * 8 + group\n84\t\n85\t    sums = np.bincount(combined, weights=Y.ravel(), minlength=n_mc * 8).reshape(n_mc, 8)\n86\t    counts = np.bincount(combined, minlength=n_mc * 8).reshape(n_mc, 8)\n87\t    means = sums / np.maximum(counts, 1)\n88\t\n89\t    # Diff-in-means: group = S*4 + Zh*2 + T\n90\t    # A(S=0): (zh=0,T=0)→0, (zh=0,T=1)→1, (zh=1,T=0)→2, (zh=1,T=1)→3\n91\t    # B(S=1): (zh=0,T=0)→4, (zh=0,T=1)→5, (zh=1,T=0)→6, (zh=1,T=1)→7\n92\t    tau_obs_A = np.column_stack([means[:, 1] - means[:, 0],\n93\t                                  means[:, 3] - means[:, 2]])\n94\t    tau_obs_B = np.column_stack([means[:, 5] - means[:, 4],\n95\t                                  means[:, 7] - means[:, 6]])\n96\t\n97\t    # M_inv is symmetric, so tau_obs @ M_inv == (M_inv @ tau_obs.T).T\n98\t    return {\n99\t        'A': {'global': tau_obs_A @ M_inv - tau_true,\n100\t               'naive':  tau_obs_A - tau_true},\n101\t        'B': {'global': tau_obs_B @ M_inv - tau_true,\n102\t               'naive':  tau_obs_B - tau_true},\n103\t    }\n104\t\n105\t\n106\t# ============================================================\n107\t# MC simulation — vectorized K=4\n108\t# ============================================================\n109\t\n110\tdef mc_simulate_k4(pi_values, tau_z0, tau_z1, n, n_mc, seed=0):\n111\t    \"\"\"Run n_mc Monte Carlo simulations for K=4 subgroups with known global CM.\"\"\"\n112\t    K = len(pi_values)\n113\t    pi_bar = np.mean(pi_values)\n114\t    denom = 1.0 - 2.0 * pi_bar\n115\t    M_inv = np.array([[1 - pi_bar, -pi_bar],\n116\t                       [-pi_bar, 1 - pi_bar]]) / denom\n117\t    tau_true = np.array([tau_z0, tau_z1])\n118\t\n119\t    rng = np.random.RandomState(seed)\n120\t    T = rng.binomial(1, 0.5, (n_mc, n))\n121\t    Z = rng.binomial(1, 0.5, (n_mc, n))\n122\t    S = rng.choice(K, (n_mc, n))\n123\t\n124\t    tau = np.where(Z == 1, tau_z1, tau_z0)\n125\t    Y = 1.0 + tau * T + 0.5 * rng.randn(n_mc, n) + rng.randn(n_mc, n)\n126\t\n127\t    pi_arr = np.array(pi_values)\n128\t    mc_rates = pi_arr[S]\n129\t    Z_hat = np.where(rng.rand(n_mc, n) < mc_rates, 1 - Z, Z)\n130\t\n131\t    n_groups = K * 4\n132\t    group = (S * 4 + Z_hat * 2 + T).ravel()\n133\t    mc_idx = np.repeat(np.arange(n_mc), n)\n134\t    combined = mc_idx * n_groups + group\n135\t\n136\t    sums = np.bincount(combined, weights=Y.ravel(),\n137\t                        minlength=n_mc * n_groups).reshape(n_mc, n_groups)\n138\t    counts = np.bincount(combined, minlength=n_mc * n_groups).reshape(n_mc, n_groups)\n139\t    means = sums / np.maximum(counts, 1)\n140\t\n141\t    results = {}\n142\t    for s in range(K):\n143\t        base = s * 4\n144\t        tau_obs = np.column_stack([means[:, base + 1] - means[:, base + 0],\n145\t                                    means[:, base + 3] - means[:, base + 2]])\n146\t        results[s] = {\n147\t            'global': tau_obs @ M_inv - tau_true,\n148\t            'naive':  tau_obs - tau_true,\n149\t        }\n150\t    return results\n151\t\n152\t\n153\t# ============================================================\n154\t# Part 2: K=2 parameter grid\n155\t# ============================================================\n156\t\n157\tdef run_k2_grid(dm_vals, dc_vals, n_mc, label=\"\"):\n158\t    \"\"\"Run K=2 grid and return DataFrame of results.\"\"\"\n159\t    rows = []\n160\t    t0 = time.time()\n161\t    total = len(dm_vals) * len(dc_vals)\n162\t    count = 0\n163\t\n164\t    for i, dm in enumerate(dm_vals):\n165\t        pi_A = BASE_MISCLASS + dm / 2.0\n166\t        pi_B = BASE_MISCLASS - dm / 2.0\n167\t        if pi_B < 0.001:\n168\t            continue\n169\t        pi_bar = 0.5 * (pi_A + pi_B)  # = BASE_MISCLASS\n170\t\n171\t        for j, dc in enumerate(dc_vals):\n172\t            tau_z1 = TAU_Z0 + dc\n173\t            seed = i * 10000 + j\n174\t            mc = mc_simulate_k2(pi_A, pi_B, TAU_Z0, tau_z1, N, n_mc, seed=seed)\n175\t\n176\t            for s_val, pi_s in [('A', pi_A), ('B', pi_B)]:\n177\t                ab0, ab1 = analytic_bias_global(pi_s, pi_bar, dc)\n178\t                mc_g = mc[s_val]['global']\n179\t\n180\t                for z, ab in [(0, ab0), (1, ab1)]:\n181\t                    mc_vals = mc_g[:, z]\n182\t                    mc_mean = np.mean(mc_vals)\n183\t                    mc_se = np.std(mc_vals, ddof=1) / np.sqrt(n_mc)\n184\t                    tr = abs(mc_mean) / abs(ab) if abs(ab) > 1e-8 else np.nan\n185\t\n186\t                    rows.append({\n187\t                        'delta_misclass': round(dm, 4),\n188\t                        'delta_cate': round(dc, 4),\n189\t                        'subgroup': s_val,\n190\t                        'z_value': z,\n191\t                        'analytic_bias': ab,\n192\t                        'mc_bias': mc_mean,\n193\t                        'mc_bias_se': mc_se,\n194\t                        'tightness_ratio': tr,\n195\t                    })\n196\t\n197\t            count += 1\n198\t            if label and count % max(1, total // 10) == 0:\n199\t                elapsed = time.time() - t0\n200\t                eta = elapsed / count * (total - count)\n201\t                print(f\"  {label} [{count}/{total}] elapsed={elapsed:.0f}s ETA={eta:.0f}s\")\n202\t\n203\t    elapsed = time.time() - t0\n204\t    if label:\n205\t        print(f\"  {label} done in {elapsed:.1f}s ({total} grid points, {n_mc} MC each)\")\n206\t    return pd.DataFrame(rows)\n207\t\n208\t\n209\tdef report_k2_results(df):\n210\t    \"\"\"Print K=2 grid summary statistics.\"\"\"\n211\t    valid = df[df['analytic_bias'].abs() > 1e-8].copy()\n212\t    if len(valid) == 0:\n213\t        print(\"  No valid (non-zero bias) points.\")\n214\t        return\n215\t\n216\t    ss_res = ((valid['mc_bias'] - valid['analytic_bias']) ** 2).sum()\n217\t    ss_tot = ((valid['mc_bias'] - valid['mc_bias'].mean()) ** 2).sum()\n218\t    r2 = 1.0 - ss_res / ss_tot if ss_tot > 0 else np.nan\n219\t\n220\t    tr = valid['tightness_ratio'].dropna()\n221\t    print(f\"  R² (analytic vs MC): {r2:.6f}\")\n222\t    print(f\"  Tightness ratio: mean={tr.mean():.4f} median={tr.median():.4f} \"\n223\t          f\"std={tr.std():.4f} [{tr.min():.4f}, {tr.max():.4f}]\")\n224\t\n225\t    # By regime\n226\t    regimes = {\n227\t        'extreme':     (0.20, 0.40),\n228\t        'moderate':    (0.05, 0.15),\n229\t        'homogeneous': (0.00, 0.05),\n230\t    }\n231\t    print(\"\\n  Tightness by regime:\")\n232\t    for name, (dm_t, dc_t) in regimes.items():\n233\t        sub = df[(abs(df['delta_misclass'] - dm_t) < 0.005) &\n234\t                  (abs(df['delta_cate'] - dc_t) < 0.013)]\n235\t        if len(sub) == 0:\n236\t            print(f\"    {name}: no matching grid point\")\n237\t            continue\n238\t        ab_max = sub['analytic_bias'].abs().max()\n239\t        mc_sub = sub['mc_bias']\n240\t        mc_se_sub = sub['mc_bias_se']\n241\t        if ab_max < 1e-8:\n242\t            # Homogeneous: report MC bias magnitude vs 0\n243\t            print(f\"    {name}: analytic_bias=0, MC bias mean={mc_sub.abs().mean():.6f}, \"\n244\t                  f\"max SE={mc_se_sub.max():.6f} (consistent with 0)\")\n245\t        else:\n246\t            tr_sub = sub['tightness_ratio'].dropna()\n247\t            if len(tr_sub) > 0:\n248\t                print(f\"    {name}: tightness mean={tr_sub.mean():.4f} \"\n249\t                      f\"[{tr_sub.min():.4f}, {tr_sub.max():.4f}] (n={len(tr_sub)})\")\n250\t\n251\t    # Approximation quality note\n252\t    print(\"\\n  Note: A2 (symmetric misclassification) is exact in our DGP.\")\n253\t    print(\"  In practice, FPR ≠ FNR introduces O(|FPR-FNR|) additional bias.\")\n254\t    print(\"  The tightness ratio deviates from 1.0 only due to MC sampling noise.\")\n255\t\n256\t\n257\t# ============================================================\n258\t# Part 3: \"Debiasing can hurt\"\n259\t# ============================================================\n260\t\n261\tdef run_debiasing_hurts():\n262\t    \"\"\"Analytic analysis of when global correction increases bias.\"\"\"\n263\t    dm_vals = np.arange(0, 0.26, 0.01)\n264\t    dc_vals = np.arange(0, 0.525, 0.025)\n265\t\n266\t    heatmap_rows = []\n267\t    for dm in dm_vals:\n268\t        pi_A = BASE_MISCLASS + dm / 2.0\n269\t        pi_B = BASE_MISCLASS - dm / 2.0\n270\t        if pi_B < 0.001:\n271\t            continue\n272\t        pi_bar = BASE_MISCLASS\n273\t\n274\t        ratio_A = bias_ratio(pi_A, pi_bar)\n275\t        ratio_B = bias_ratio(pi_B, pi_bar)\n276\t\n277\t        for dc in dc_vals:\n278\t            hurts_A = (ratio_A > 1.0) and (dc > 0) if not np.isnan(ratio_A) else False\n279\t            hurts_B = (ratio_B > 1.0) and (dc > 0) if not np.isnan(ratio_B) else False\n280\t\n281\t            heatmap_rows.append({\n282\t                'delta_misclass': round(dm, 4),\n283\t                'delta_cate': round(dc, 4),\n284\t                'debiasing_hurts_A': hurts_A,\n285\t                'debiasing_hurts_B': hurts_B,\n286\t                'max_bias_ratio_A': ratio_A,\n287\t                'max_bias_ratio_B': ratio_B,\n288\t            })\n289\t\n290\t    df_heat = pd.DataFrame(heatmap_rows)\n291\t    df_heat.to_csv(f'{RESULTS_DIR}/exp002_bias_heatmap.csv', index=False)\n292\t\n293\t    # Statistics\n294\t    active = df_heat[df_heat['delta_cate'] > 0]\n295\t    n_total = len(active)\n296\t    n_hurts_A = active['debiasing_hurts_A'].sum()\n297\t    n_hurts_B = active['debiasing_hurts_B'].sum()\n298\t    n_hurts_any = (active['debiasing_hurts_A'] | active['debiasing_hurts_B']).sum()\n299\t\n300\t    print(f\"  Grid points with Δτ > 0: {n_total}\")\n301\t    print(f\"  'Debiasing hurts' subgroup A: {n_hurts_A}/{n_total} = {n_hurts_A/max(n_total,1)*100:.1f}%\")\n302\t    print(f\"  'Debiasing hurts' subgroup B: {n_hurts_B}/{n_total} = {n_hurts_B/max(n_total,1)*100:.1f}%\")\n303\t    print(f\"  'Debiasing hurts' any:        {n_hurts_any}/{n_total} = {n_hurts_any/max(n_total,1)*100:.1f}%\")\n304\t\n305\t    # Threshold\n306\t    # Condition for B: (π̄ - π_B)/((1-2π̄)·π_B) > 1\n307\t    # With π̄ = BASE, π_B = BASE - Δ/2:\n308\t    # Δ/(2·(1-2·BASE)) > BASE - Δ/2\n309\t    # Δ·(1/(2·(1-2·BASE)) + 1/2) > BASE\n310\t    # Δ > BASE / (1/(2·(1-2·BASE)) + 1/2)\n311\t    coeff = 1.0 / (2.0 * (1.0 - 2.0 * BASE_MISCLASS)) + 0.5\n312\t    threshold = BASE_MISCLASS / coeff\n313\t    print(f\"\\n  Analytic threshold: debiasing hurts B when Δ_misclass > {threshold:.4f}\")\n314\t    print(f\"  (Independent of Δτ as long as Δτ > 0)\")\n315\t\n316\t    # Constructive example\n317\t    print(f\"\\n  Constructive example (K=2):\")\n318\t    pi_A, pi_B = 0.25, 0.05\n319\t    tau_z0_ex, tau_z1_ex = 0.1, 0.5\n320\t    pi_bar_ex = 0.5 * (pi_A + pi_B)\n321\t    delta_tau_ex = tau_z1_ex - tau_z0_ex\n322\t\n323\t    example_rows = []\n324\t    print(f\"    π_A={pi_A}, π_B={pi_B}, π̄={pi_bar_ex}, τ(0)={tau_z0_ex}, τ(1)={tau_z1_ex}\")\n325\t    for s_val, pi_s in [('A', pi_A), ('B', pi_B)]:\n326\t        bg0, bg1 = analytic_bias_global(pi_s, pi_bar_ex, delta_tau_ex)\n327\t        bn0, bn1 = analytic_bias_naive(pi_s, delta_tau_ex)\n328\t        ratio = abs(bg0) / abs(bn0) if abs(bn0) > 1e-12 else np.nan\n329\t        hurts = \"|bias_global| > |bias_naive|\" if ratio > 1.0 else \"|bias_global| < |bias_naive|\"\n330\t        print(f\"    Subgroup {s_val}: bias_naive(z=0)={bn0:+.4f}, bias_global(z=0)={bg0:+.4f}, \"\n331\t              f\"ratio={ratio:.3f} → {hurts}\")\n332\t\n333\t        for z, bg, bn in [(0, bg0, bn0), (1, bg1, bn1)]:\n334\t            r = abs(bg) / abs(bn) if abs(bn) > 1e-12 else np.nan\n335\t            example_rows.append({\n336\t                'k_subgroups': 2, 'example_name': 'extreme_k2',\n337\t                'pi_values': f'[{pi_A},{pi_B}]',\n338\t                'tau_z0': tau_z0_ex, 'tau_z1': tau_z1_ex,\n339\t                'subgroup': s_val, 'z_value': z,\n340\t                'bias_naive': bn, 'bias_global': bg, 'ratio': r,\n341\t            })\n342\t\n343\t    df_ex = pd.DataFrame(example_rows)\n344\t    df_ex.to_csv(f'{RESULTS_DIR}/exp002_debiasing_hurts.csv', index=False)\n345\t\n346\t    return df_heat, df_ex\n347\t\n348\t\n349\t# ============================================================\n350\t# Part 4: K=4 extension\n351\t# ============================================================\n352\t\n353\tdef run_k4_validation():\n354\t    \"\"\"Validate the bias formula for K=4 subgroups.\"\"\"\n355\t    PI_BASE = [0.25, 0.15, 0.10, 0.05]\n356\t    pi_bar_base = np.mean(PI_BASE)\n357\t    delta_base = np.array(PI_BASE) - pi_bar_base\n358\t\n359\t    # Spread factors: scale deviations from mean\n360\t    spread_factors = [0.0, 0.25, 0.50, 0.75, 1.0]\n361\t    dc_vals = np.arange(0, 0.525, 0.05)\n362\t\n363\t    rows = []\n364\t    k4_example_rows = []\n365\t    t0 = time.time()\n366\t\n367\t    for fi, f in enumerate(spread_factors):\n368\t        pi_values = list(pi_bar_base + f * delta_base)\n369\t        pi_bar = np.mean(pi_values)\n370\t        dm_label = round(f * (max(PI_BASE) - min(PI_BASE)), 4)\n371\t        print(f\"  f={f:.2f}: π={[round(p,4) for p in pi_values]}, \"\n372\t              f\"π̄={pi_bar:.4f}, spread={dm_label}\")\n373\t\n374\t        for ji, dc in enumerate(dc_vals):\n375\t            tau_z1 = TAU_Z0 + dc\n376\t            seed = fi * 100000 + ji * 100\n377\t            mc = mc_simulate_k4(pi_values, TAU_Z0, tau_z1, N, N_MC, seed=seed)\n378\t\n379\t            for s in range(4):\n380\t                pi_s = pi_values[s]\n381\t                ab0, ab1 = analytic_bias_global(pi_s, pi_bar, dc)\n382\t                mc_g = mc[s]['global']\n383\t\n384\t                for z, ab in [(0, ab0), (1, ab1)]:\n385\t                    mc_mean = np.mean(mc_g[:, z])\n386\t                    mc_se = np.std(mc_g[:, z], ddof=1) / np.sqrt(N_MC)\n387\t                    tr = abs(mc_mean) / abs(ab) if abs(ab) > 1e-8 else np.nan\n388\t\n389\t                    rows.append({\n390\t                        'delta_misclass': dm_label,\n391\t                        'delta_cate': round(dc, 4),\n392\t                        'subgroup': s,\n393\t                        'pi_s': round(pi_s, 4),\n394\t                        'analytic_bias': ab,\n395\t                        'mc_bias': mc_mean,\n396\t                        'mc_bias_se': mc_se,\n397\t                        'tightness_ratio': tr,\n398\t                    })\n399\t\n400\t                # Debiasing hurts examples at dc=0.40, full spread\n401\t                if f == 1.0 and abs(dc - 0.40) < 0.001:\n402\t                    bn0, bn1 = analytic_bias_naive(pi_s, dc)\n403\t                    for z_val, bg, bn in [(0, ab0, bn0), (1, ab1, bn1)]:\n404\t                        r = abs(bg) / abs(bn) if abs(bn) > 1e-12 else np.nan\n405\t                        k4_example_rows.append({\n406\t                            'k_subgroups': 4, 'example_name': 'base_k4',\n407\t                            'pi_values': str([round(p, 4) for p in pi_values]),\n408\t                            'tau_z0': TAU_Z0, 'tau_z1': TAU_Z0 + dc,\n409\t                            'subgroup': s, 'z_value': z_val,\n410\t                            'bias_naive': bn, 'bias_global': bg, 'ratio': r,\n411\t                        })\n412\t\n413\t    elapsed = time.time() - t0\n414\t    print(f\"  K=4 grid done in {elapsed:.1f}s\")\n415\t\n416\t    df_k4 = pd.DataFrame(rows)\n417\t    df_k4.to_csv(f'{RESULTS_DIR}/exp002_k4_validation.csv', index=False)\n418\t\n419\t    # R² and tightness\n420\t    valid = df_k4[df_k4['analytic_bias'].abs() > 1e-8].copy()\n421\t    if len(valid) > 0:\n422\t        ss_res = ((valid['mc_bias'] - valid['analytic_bias']) ** 2).sum()\n423\t        ss_tot = ((valid['mc_bias'] - valid['mc_bias'].mean()) ** 2).sum()\n424\t        r2 = 1.0 - ss_res / ss_tot if ss_tot > 0 else np.nan\n425\t        tr = valid['tightness_ratio'].dropna()\n426\t        print(f\"\\n  R² (K=4): {r2:.6f}\")\n427\t        print(f\"  Tightness: mean={tr.mean():.4f} median={tr.median():.4f} \"\n428\t              f\"std={tr.std():.4f} [{tr.min():.4f}, {tr.max():.4f}]\")\n429\t\n430\t    # Debiasing hurts in K=4 at full spread\n431\t    pi_bar_full = np.mean(PI_BASE)\n432\t    denom_full = 1.0 - 2.0 * pi_bar_full\n433\t    threshold_k4 = pi_bar_full / (2.0 * (1.0 - pi_bar_full))\n434\t    print(f\"\\n  K=4 'debiasing hurts' condition: π_s < π̄/(2(1-π̄)) = {threshold_k4:.4f}\")\n435\t    print(f\"  K=4 base config: π = {PI_BASE}\")\n436\t    for s, pi_s in enumerate(PI_BASE):\n437\t        r = bias_ratio(pi_s, pi_bar_full)\n438\t        hurts = \"YES\" if r > 1.0 else \"no\"\n439\t        print(f\"    Subgroup {s} (π={pi_s:.2f}): ratio={r:.3f} → {hurts}\")\n440\t\n441\t    # Compare K=2 vs K=4 debiasing hurts fractions\n442\t    # K=2 at matched spread (Δ=0.20): hurts for B only (1/2 = 50%)\n443\t    # K=4 at full spread: hurts for subgroup 3 only (1/4 = 25%)\n444\t    print(f\"\\n  K=2 (Δ=0.20): 1/2 subgroups affected = 50%\")\n445\t    n_hurts_k4 = sum(1 for pi_s in PI_BASE\n446\t                      if bias_ratio(pi_s, pi_bar_full) > 1.0)\n447\t    print(f\"  K=4 (spread=0.20): {n_hurts_k4}/4 subgroups affected = {n_hurts_k4/4*100:.0f}%\")\n448\t    print(f\"  Remark: formula applies to binary Z ∈ {{0,1}} with arbitrary K subgroups.\")\n449\t\n450\t    # Append K=4 examples to debiasing_hurts.csv\n451\t    if k4_example_rows:\n452\t        df_k4_ex = pd.DataFrame(k4_example_rows)\n453\t        existing_path = f'{RESULTS_DIR}/exp002_debiasing_hurts.csv'\n454\t        if os.path.exists(existing_path):\n455\t            df_old = pd.read_csv(existing_path)\n456\t            pd.concat([df_old, df_k4_ex], ignore_index=True).to_csv(\n457\t                existing_path, index=False)\n458\t        else:\n459\t            df_k4_ex.to_csv(existing_path, index=False)\n460\t\n461\t    return df_k4\n462\t\n463\t\n464\t# ============================================================\n465\t# Quick test (5x5 grid, 100 MC)\n466\t# ============================================================\n467\t\n468\tdef quick_test():\n469\t    \"\"\"Validate code correctness on a small grid.\"\"\"\n470\t    dm_vals = np.array([0.0, 0.05, 0.10, 0.15, 0.20])\n471\t    dc_vals = np.array([0.0, 0.10, 0.20, 0.30, 0.40])\n472\t\n473\t    df = run_k2_grid(dm_vals, dc_vals, n_mc=100)\n474\t    valid = df[df['analytic_bias'].abs() > 1e-8]\n475\t\n476\t    max_abs_err = (valid['mc_bias'] - valid['analytic_bias']).abs().max()\n477\t    mean_abs_err = (valid['mc_bias'] - valid['analytic_bias']).abs().mean()\n478\t\n479\t    print(f\"  Quick test: {len(valid)} non-zero-bias points\")\n480\t    print(f\"  Max |MC - analytic|  = {max_abs_err:.6f}\")\n481\t    print(f\"  Mean |MC - analytic| = {mean_abs_err:.6f}\")\n482\t\n483\t    # With 100 MC and N=5000, SE of MC mean ≈ 0.003.\n484\t    # Max error should be < ~0.02 (6 SE) for all points.\n485\t    if max_abs_err > 0.05:\n486\t        print(f\"  WARNING: max error {max_abs_err:.4f} exceeds threshold 0.05\")\n487\t    else:\n488\t        print(f\"  Quick test passed (max error < 0.05).\")\n489\t    return df\n490\t\n491\t\n492\t# ============================================================\n493\t# Main\n494\t# ============================================================\n495\t\n496\tif __name__ == '__main__':\n497\t    print(\"=\" * 80)\n498\t    print(\"exp002_bias_bound: Formal Bias Bound Verification\")\n499\t    print(f\"N={N}, N_MC={N_MC}, base_misclass={BASE_MISCLASS}, τ(Z=0)={TAU_Z0}\")\n500\t    print(\"=\" * 80)\n501\t\n502\t    # Step 1: Quick test\n503\t    print(\"\\n--- Quick test (5x5, 100 MC) ---\")\n504\t    quick_test()\n505\t\n506\t    # Step 2: Full K=2 grid\n507\t    print(\"\\n--- Part 2: K=2 full grid ---\")\n508\t    dm_full = np.arange(0, 0.26, 0.01)\n509\t    dc_full = np.arange(0, 0.525, 0.025)\n510\t    df_k2 = run_k2_grid(dm_full, dc_full, n_mc=N_MC, label=\"K=2\")\n511\t    df_k2.to_csv(f'{RESULTS_DIR}/exp002_bias_bound.csv', index=False)\n512\t    print()\n513\t    report_k2_results(df_k2)\n514\t\n515\t    # Step 3: Debiasing hurts\n516\t    print(\"\\n--- Part 3: 'Debiasing can hurt' ---\")\n517\t    df_heat, df_ex = run_debiasing_hurts()\n518\t\n519\t    # Step 4: K=4 extension\n520\t    print(\"\\n--- Part 4: K=4 extension ---\")\n521\t    df_k4 = run_k4_validation()\n522\t\n523\t    # Final summary\n524\t    print(\"\\n\" + \"=\" * 80)\n525\t    print(\"SUMMARY\")\n526\t    print(\"=\" * 80)\n527\t\n528\t    valid_k2 = df_k2[df_k2['analytic_bias'].abs() > 1e-8]\n529\t    ss_res = ((valid_k2['mc_bias'] - valid_k2['analytic_bias']) ** 2).sum()\n530\t    ss_tot = ((valid_k2['mc_bias'] - valid_k2['mc_bias'].mean()) ** 2).sum()\n531\t    r2_k2 = 1.0 - ss_res / ss_tot if ss_tot > 0 else np.nan\n532\t    tr_k2 = valid_k2['tightness_ratio'].dropna()\n533\t\n534\t    print(f\"  K=2 R²: {r2_k2:.6f}\")\n535\t    print(f\"  K=2 tightness: {tr_k2.mean():.4f} ± {tr_k2.std():.4f}\")\n536\t\n537\t    valid_k4 = df_k4[df_k4['analytic_bias'].abs() > 1e-8]\n538\t    ss_res4 = ((valid_k4['mc_bias'] - valid_k4['analytic_bias']) ** 2).sum()\n539\t    ss_tot4 = ((valid_k4['mc_bias'] - valid_k4['mc_bias'].mean()) ** 2).sum()\n540\t    r2_k4 = 1.0 - ss_res4 / ss_tot4 if ss_tot4 > 0 else np.nan\n541\t    tr_k4 = valid_k4['tightness_ratio'].dropna()\n542\t\n543\t    print(f\"  K=4 R²: {r2_k4:.6f}\")\n544\t    print(f\"  K=4 tightness: {tr_k4.mean():.4f} ± {tr_k4.std():.4f}\")\n545\t\n546\t    active = df_heat[df_heat['delta_cate'] > 0]\n547\t    n_hurts = (active['debiasing_hurts_A'] | active['debiasing_hurts_B']).sum()\n548\t    print(f\"  'Debiasing hurts' fraction: {n_hurts}/{len(active)} = {n_hurts/max(len(active),1)*100:.1f}%\")\n549\t\n550\t    print(f\"\\nOutput files:\")\n551\t    for f in ['exp002_bias_bound.csv', 'exp002_bias_heatmap.csv',\n552\t              'exp002_debiasing_hurts.csv', 'exp002_k4_validation.csv',\n553\t              'exp002_derivation.md']:\n554\t        path = f'{RESULTS_DIR}/{f}'\n555\t        size = os.path.getsize(path) if os.path.exists(path) else 0\n556\t        print(f\"  {path} ({size:,} bytes)\")\n557\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "97fed77b-fbc8-464b-a62f-d5a572af6e5f",
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "3527daaf-0377-40f9-979a-12eb68c92c0d",
+            "sourceToolAssistantUUID": "97fed77b-fbc8-464b-a62f-d5a572af6e5f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T15:00:03.458Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AtkJU8kUW2WpaeDvxfGoPQ",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/exp002*.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3527daaf-0377-40f9-979a-12eb68c92c0d",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhYssz196xEATg1aVbj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d024bd0c-2e7a-4600-98c0-b14399afe208",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017FbKwjsh4mmfqz5tqk5uhF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 293,
+                "cache_read_input_tokens": 19232,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 293,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T15:00:03.691Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AtkJU8kUW2WpaeDvxfGoPQ",
+              "type": "tool_result",
+              "content": "exp002_bias_bound.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d024bd0c-2e7a-4600-98c0-b14399afe208",
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "a4ca0937-4667-4fd8-9b03-add4a33e1977",
+            "sourceToolAssistantUUID": "d024bd0c-2e7a-4600-98c0-b14399afe208",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T15:00:05.170Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check if there are any actual CSV files to verify the structure:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4ca0937-4667-4fd8-9b03-add4a33e1977",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZ2YdAG4fGjNTxk6sZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b903e227-32ee-4803-bbf9-2f0810832cf4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HNBm17GvVwYU5aefFR4VVJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 10203,
+                "cache_read_input_tokens": 19525,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10203,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T15:00:05.522Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RabUVEaKGgn8FNzdHeRrmD",
+              "name": "Bash",
+              "input": {
+                "command": "ls -lh /home/ubuntu/ec_hte_llm_annotation/results/exp002* 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b903e227-32ee-4803-bbf9-2f0810832cf4",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZ2YdAG4fGjNTxk6sZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5017b3d6-4a29-4572-b23d-df96fb1fb850",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HNBm17GvVwYU5aefFR4VVJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 10203,
+                "cache_read_input_tokens": 19525,
+                "output_tokens": 102,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10203
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 102,
+                    "cache_read_input_tokens": 19525,
+                    "cache_creation_input_tokens": 10203,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10203,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T15:00:05.594Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RabUVEaKGgn8FNzdHeRrmD",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu 201K May 20 20:51 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv\n-rw-r--r-- 1 ubuntu ubuntu  32K May 20 20:51 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_heatmap.csv\n-rw-r--r-- 1 ubuntu ubuntu 1.6K May 20 20:53 /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv\n-rw-r--r-- 1 ubuntu ubuntu 5.9K May 20 20:17 /home/ubuntu/ec_hte_llm_annotation/results/exp002_derivation.md\n-rw-r--r-- 1 ubuntu ubuntu  40K May 20 20:53 /home/ubuntu/ec_hte_llm_annotation/results/exp002_k4_validation.csv\n-rw-r--r-- 1 ubuntu ubuntu 3.8K May 20 20:53 /home/ubuntu/ec_hte_llm_annotation/results/exp002_run.log",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5017b3d6-4a29-4572-b23d-df96fb1fb850",
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "ecb96bb7-e69d-462e-a716-da675dfee2d7",
+            "sourceToolAssistantUUID": "5017b3d6-4a29-4572-b23d-df96fb1fb850",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T15:00:06.522Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me examine the actual CSV files to see what columns they contain:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ecb96bb7-e69d-462e-a716-da675dfee2d7",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZAVcYDtZfBZdoHy8x",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f9bd7b2e-0e2f-46d7-a584-6245f20d5825",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XF8gSAxzJusQkMvBsqg9u5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 527,
+                "cache_read_input_tokens": 29728,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 527,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T15:00:06.757Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012aeVRdpxbLRrsWvhkyJqMY",
+              "name": "Bash",
+              "input": {
+                "command": "head -3 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f9bd7b2e-0e2f-46d7-a584-6245f20d5825",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZAVcYDtZfBZdoHy8x",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1709a3c5-4cc2-49bf-b79e-9162d195a86d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XF8gSAxzJusQkMvBsqg9u5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 527,
+                "cache_read_input_tokens": 29728,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 527,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T15:00:06.824Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012aeVRdpxbLRrsWvhkyJqMY",
+              "type": "tool_result",
+              "content": "delta_misclass,delta_cate,subgroup,z_value,analytic_bias,mc_bias,mc_bias_se,tightness_ratio\n0.0,0.0,A,0,0.0,-0.0037363400640839407,0.00246404340627477,\n0.0,0.0,A,1,-0.0,0.0018923876410683975,0.002426830740922833,",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1709a3c5-4cc2-49bf-b79e-9162d195a86d",
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "9b6e321e-5871-46c7-81c0-d67178f13a4f",
+            "sourceToolAssistantUUID": "1709a3c5-4cc2-49bf-b79e-9162d195a86d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T15:00:06.971Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BWSVShUw1E4CDcVKxFqMmP",
+              "name": "Bash",
+              "input": {
+                "command": "head -3 /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b6e321e-5871-46c7-81c0-d67178f13a4f",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZAVcYDtZfBZdoHy8x",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a595f926-1479-42ca-b642-772a434a7a51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XF8gSAxzJusQkMvBsqg9u5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 527,
+                "cache_read_input_tokens": 29728,
+                "output_tokens": 164,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 527
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 164,
+                    "cache_read_input_tokens": 29728,
+                    "cache_creation_input_tokens": 527,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 527,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T15:00:07.034Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BWSVShUw1E4CDcVKxFqMmP",
+              "type": "tool_result",
+              "content": "k_subgroups,example_name,pi_values,tau_z0,tau_z1,subgroup,z_value,bias_naive,bias_global,ratio\n2,extreme_k2,\"[0.25,0.05]\",0.1,0.5,A,0,0.1,0.0571428571428571,0.5714285714285715\n2,extreme_k2,\"[0.25,0.05]\",0.1,0.5,A,1,-0.1,-0.0571428571428571,0.5714285714285715",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a595f926-1479-42ca-b642-772a434a7a51",
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "d8470c37-1ce1-41bd-a2e8-7550a7b9c7cb",
+            "sourceToolAssistantUUID": "a595f926-1479-42ca-b642-772a434a7a51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T15:00:08.168Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me look at sign_reversal_analysis.py to understand how it uses these files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8470c37-1ce1-41bd-a2e8-7550a7b9c7cb",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZGdTQPZRtuhsP5ogP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e532c6cb-bf0e-4893-95cd-4acbf6cac387",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JXBT9aNBcFHnsCnnS9vXtt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 475,
+                "cache_read_input_tokens": 30255,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 475,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T15:00:08.344Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AoxrxJ93YM2NeCXaNgG8Kb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/sign_reversal_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e532c6cb-bf0e-4893-95cd-4acbf6cac387",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZGdTQPZRtuhsP5ogP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bd68b5e2-654a-40d2-8c38-663218e19834",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JXBT9aNBcFHnsCnnS9vXtt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 475,
+                "cache_read_input_tokens": 30255,
+                "output_tokens": 100,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 475
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 100,
+                    "cache_read_input_tokens": 30255,
+                    "cache_creation_input_tokens": 475,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 475,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T15:00:08.350Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AoxrxJ93YM2NeCXaNgG8Kb",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\tSign-Reversal Analysis: Extract cases where global correction flips bias sign,\n3\tand generate a 3-panel academic figure.\n4\t\"\"\"\n5\t\n6\timport numpy as np\n7\timport pandas as pd\n8\timport matplotlib\n9\tmatplotlib.use('Agg')\n10\timport matplotlib.pyplot as plt\n11\tfrom matplotlib.ticker import AutoMinorLocator\n12\timport os\n13\t\n14\tRESULTS_DIR = 'results'\n15\tARTIFACTS_DIR = '/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/artifacts'\n16\tos.makedirs(ARTIFACTS_DIR, exist_ok=True)\n17\t\n18\tBASE_MISCLASS = 0.15\n19\tTAU_Z0 = 0.1\n20\t\n21\t# ============================================================\n22\t# Step 1: Synthetic data sign-reversal extraction\n23\t# ============================================================\n24\t\n25\tdf = pd.read_csv(f'{RESULTS_DIR}/exp002_bias_bound.csv')\n26\t\n27\t# Compute naive bias for each row\n28\t# pi_A = 0.15 + dm/2, pi_B = 0.15 - dm/2\n29\t# bias_naive(z=0) = +pi_s * dc, bias_naive(z=1) = -pi_s * dc\n30\tdf['pi_s'] = np.where(\n31\t    df['subgroup'] == 'A',\n32\t    BASE_MISCLASS + df['delta_misclass'] / 2.0,\n33\t    BASE_MISCLASS - df['delta_misclass'] / 2.0\n34\t)\n35\tdf['bias_naive'] = np.where(\n36\t    df['z_value'] == 0,\n37\t    df['pi_s'] * df['delta_cate'],\n38\t    -df['pi_s'] * df['delta_cate']\n39\t)\n40\tdf['bias_global'] = df['analytic_bias']\n41\t\n42\t# True CATE for each row\n43\tdf['true_cate'] = np.where(df['z_value'] == 0, TAU_Z0, TAU_Z0 + df['delta_cate'])\n44\t\n45\t# Sign reversal: naive and global bias have opposite signs (exclude both-zero)\n46\tnonzero = (df['bias_naive'].abs() > 1e-12) & (df['bias_global'].abs() > 1e-12)\n47\tdf['sign_flip'] = nonzero & (np.sign(df['bias_naive']) != np.sign(df['bias_global']))\n48\tdf['sign_flip_magnitude'] = np.where(df['sign_flip'], (df['bias_naive'] - df['bias_global']).abs(), 0.0)\n49\t\n50\tn_total = nonzero.sum()\n51\tn_flip = df['sign_flip'].sum()\n52\tn_configs = len(df[['delta_misclass', 'delta_cate']].drop_duplicates())\n53\tflip_pct = n_flip / n_total * 100 if n_total > 0 else 0\n54\t\n55\tprint(f\"Total rows with non-zero bias: {n_total}\")\n56\tprint(f\"Sign-flip rows: {n_flip} ({flip_pct:.1f}%)\")\n57\tprint(f\"Total configs: {n_configs}\")\n58\t\n59\t# Count configs (dm, dc pairs) that have at least one sign flip\n60\tflip_configs = df[df['sign_flip']][['delta_misclass', 'delta_cate']].drop_duplicates()\n61\tn_flip_configs = len(flip_configs)\n62\tpct_flip_configs = n_flip_configs / n_configs * 100\n63\tprint(f\"Configs with sign flip: {n_flip_configs}/{n_configs} ({pct_flip_configs:.1f}%)\")\n64\t\n65\t# Top 5 most extreme\n66\ttop5 = df[df['sign_flip']].nlargest(5, 'sign_flip_magnitude')\n67\tprint(\"\\nTop 5 most extreme sign-reversal cases:\")\n68\tfor _, row in top5.iterrows():\n69\t    print(f\"  dm={row['delta_misclass']:.2f}, dc={row['delta_cate']:.3f}, \"\n70\t          f\"sub={row['subgroup']}, z={int(row['z_value'])}, \"\n71\t          f\"pi_s={row['pi_s']:.4f}, true_CATE={row['true_cate']:.3f}, \"\n72\t          f\"bias_naive={row['bias_naive']:+.6f}, bias_global={row['bias_global']:+.6f}, \"\n73\t          f\"flip_mag={row['sign_flip_magnitude']:.6f}\")\n74\t\n75\t# ============================================================\n76\t# Step 2: Real LLM sign-reversal extraction\n77\t# ============================================================\n78\t\n79\t# Reconstruct naive bias for real LLM data using the same approach as exp024\n80\timport json\n81\t\n82\tdef mixing_matrix(fpr, fnr, p_z1=0.5):\n83\t    p0, p1 = 1.0 - p_z1, p_z1\n84\t    p_zh0 = (1 - fpr) * p0 + fnr * p1\n85\t    p_zh1 = fpr * p0 + (1 - fnr) * p1\n86\t    return np.array([\n87\t        [(1 - fpr) * p0 / p_zh0, fnr * p1 / p_zh0],\n88\t        [fpr * p0 / p_zh1, (1 - fnr) * p1 / p_zh1],\n89\t    ])\n90\t\n91\tdef load_llm_configs():\n92\t    configs = {}\n93\t    json_path = os.path.join(RESULTS_DIR, 'exp023_confusion_matrices.json')\n94\t    if os.path.exists(json_path):\n95\t        with open(json_path) as f:\n96\t            cm = json.load(f)\n97\t        for model in ['gpt-4o', 'gpt-4o-mini', 'gpt-3.5-turbo']:\n98\t            if model not in cm:\n99\t                continue\n100\t            md = cm[model]\n101\t            subs = sorted(k for k in md if not k.startswith('_'))\n102\t            total_n = sum(md[s]['n'] for s in subs)\n103\t            total_pos = sum(md[s]['n_pos'] for s in subs)\n104\t            configs[f'{model}_civil'] = {\n105\t                'llm': model, 'dataset': 'CivilComments',\n106\t                'p_z1': total_pos / total_n,\n107\t                'subgroups': subs,\n108\t                'weights': [md[s]['n'] / total_n for s in subs],\n109\t                'fpr': [md[s]['fpr'] for s in subs],\n110\t                'fnr': [md[s]['fnr'] for s in subs],\n111\t            }\n112\t    csv_path = os.path.join(RESULTS_DIR, 'exp008_multi_llm_comparison.csv')\n113\t    if os.path.exists(csv_path):\n114\t        dfx = pd.read_csv(csv_path)\n115\t        dfx = dfx[~dfx['subgroup'].str.contains('long')]\n116\t        p_z1_tweet = 0.652\n117\t        for model in dfx['model'].unique():\n118\t            mdf = dfx[dfx['model'] == model].sort_values('subgroup')\n119\t            total_n = mdf['n'].sum()\n120\t            if total_n < 50:\n121\t                continue\n122\t            configs[f'{model}_tweet'] = {\n123\t                'llm': model, 'dataset': 'TweetEval',\n124\t                'p_z1': p_z1_tweet,\n125\t                'subgroups': mdf['subgroup'].tolist(),\n126\t                'weights': (mdf['n'] / total_n).tolist(),\n127\t                'fpr': mdf['FPR'].tolist(),\n128\t                'fnr': mdf['FNR'].tolist(),\n129\t            }\n130\t    configs['gemma-2-9b_tweet'] = {\n131\t        'llm': 'Gemma-2-9B', 'dataset': 'TweetEval', 'p_z1': 0.652,\n132\t        'subgroups': ['False_medium', 'False_short', 'True_medium', 'True_short'],\n133\t        'weights': [0.382, 0.222, 0.255, 0.141],\n134\t        'fpr': [0.110, 0.138, 0.033, 0.091],\n135\t        'fnr': [0.437, 0.300, 0.263, 0.207],\n136\t    }\n137\t    configs['mistral-7b_tweet'] = {\n138\t        'llm': 'Mistral-7B', 'dataset': 'TweetEval', 'p_z1': 0.652,\n139\t        'subgroups': ['False_medium', 'False_short', 'True_medium', 'True_short'],\n140\t        'weights': [0.382, 0.222, 0.255, 0.141],\n141\t        'fpr': [0.180, 0.241, 0.233, 0.091],\n142\t        'fnr': [0.299, 0.188, 0.168, 0.121],\n143\t    }\n144\t    configs['qwen-2.5-7b_tweet'] = {\n145\t        'llm': 'Qwen2.5-7B', 'dataset': 'TweetEval', 'p_z1': 0.652,\n146\t        'subgroups': ['False_medium', 'False_short', 'True_medium', 'True_short'],\n147\t        'weights': [0.3816, 0.2224, 0.2551, 0.1408],\n148\t        'fpr': [0.1800, 0.2414, 0.2333, 0.0000],\n149\t        'fnr': [0.2874, 0.1750, 0.2105, 0.1379],\n150\t    }\n151\t    return configs\n152\t\n153\tdf_real = pd.read_csv(f'{RESULTS_DIR}/exp_realcm_bias_identity.csv')\n154\tconfigs = load_llm_configs()\n155\t\n156\t# Compute naive bias for each real LLM row\n157\treal_rows = []\n158\tfor cfg_key, cfg in configs.items():\n159\t    llm = cfg['llm']\n160\t    dataset = cfg['dataset']\n161\t    p_z1 = cfg['p_z1']\n162\t    K = len(cfg['subgroups'])\n163\t    Ms = [mixing_matrix(cfg['fpr'][s], cfg['fnr'][s], p_z1) for s in range(K)]\n164\t\n165\t    for s in range(K):\n166\t        subgroup_name = cfg['subgroups'][s]\n167\t        for dt in [0.1, 0.2, 0.3, 0.4, 0.5]:\n168\t            tau_z0, tau_z1 = 0.0, dt\n169\t            tau = np.array([tau_z0, tau_z1])\n170\t            # Naive bias: (M_s - I) @ tau\n171\t            bias_naive_vec = (Ms[s] - np.eye(2)) @ tau\n172\t            for z in range(2):\n173\t                bias_naive_val = bias_naive_vec[z]\n174\t                # Find matching row in df_real\n175\t                mask = (\n176\t                    (df_real['llm'] == llm) &\n177\t                    (df_real['dataset'] == dataset) &\n178\t                    (df_real['subgroup'] == subgroup_name) &\n179\t                    (df_real['z'] == z) &\n180\t                    (np.abs(df_real['delta_tau'] - dt) < 0.01)\n181\t                )\n182\t                matched = df_real[mask]\n183\t                if len(matched) == 0:\n184\t                    continue\n185\t                row = matched.iloc[0]\n186\t                bias_global_val = row['predicted_bias']\n187\t                real_rows.append({\n188\t                    'llm': llm, 'dataset': dataset, 'subgroup': subgroup_name,\n189\t                    'z': z, 'delta_tau': dt,\n190\t                    'bias_naive': bias_naive_val,\n191\t                    'bias_global': bias_global_val,\n192\t                    'observed_bias': row['observed_bias'],\n193\t                    'se': row['se'],\n194\t                })\n195\t\n196\tdf_real_ext = pd.DataFrame(real_rows)\n197\tnonzero_real = (df_real_ext['bias_naive'].abs() > 1e-12) & (df_real_ext['bias_global'].abs() > 1e-12)\n198\tdf_real_ext['sign_flip'] = nonzero_real & (np.sign(df_real_ext['bias_naive']) != np.sign(df_real_ext['bias_global']))\n199\tdf_real_ext['sign_flip_magnitude'] = np.where(\n200\t    df_real_ext['sign_flip'],\n201\t    (df_real_ext['bias_naive'] - df_real_ext['bias_global']).abs(),\n202\t    0.0\n203\t)\n204\t\n205\tn_real_flip = df_real_ext['sign_flip'].sum()\n206\tn_real_total = nonzero_real.sum()\n207\tprint(f\"\\nReal LLM sign-flip cases: {n_real_flip}/{n_real_total}\")\n208\tif n_real_flip > 0:\n209\t    print(\"Real LLM sign-flip details:\")\n210\t    for _, row in df_real_ext[df_real_ext['sign_flip']].iterrows():\n211\t        print(f\"  {row['llm']} / {row['dataset']} / {row['subgroup']} / z={int(row['z'])} / \"\n212\t              f\"dt={row['delta_tau']:.1f}: naive={row['bias_naive']:+.6f}, global={row['bias_global']:+.6f}\")\n213\t\n214\t# ============================================================\n215\t# Save sign-flip summary CSV\n216\t# ============================================================\n217\t\n218\t# Synthetic sign-flip cases\n219\tsynth_flip = df[df['sign_flip']].copy()\n220\tsynth_flip['source'] = 'synthetic'\n221\tsynth_flip_out = synth_flip[['source', 'delta_misclass', 'delta_cate', 'subgroup', 'z_value',\n222\t                              'pi_s', 'true_cate', 'bias_naive', 'bias_global', 'sign_flip_magnitude']].copy()\n223\tsynth_flip_out.columns = ['source', 'delta_misclass', 'delta_cate', 'subgroup', 'z_value',\n224\t                           'pi_s', 'true_cate', 'bias_naive', 'bias_global', 'sign_flip_magnitude']\n225\t\n226\t# Real sign-flip cases\n227\treal_flip = df_real_ext[df_real_ext['sign_flip']].copy()\n228\tif len(real_flip) > 0:\n229\t    real_flip_out = real_flip[['llm', 'dataset', 'subgroup', 'z', 'delta_tau',\n230\t                                'bias_naive', 'bias_global', 'sign_flip_magnitude']].copy()\n231\t    real_flip_out['source'] = 'real_llm'\n232\t    real_flip_out.rename(columns={'z': 'z_value', 'delta_tau': 'delta_cate'}, inplace=True)\n233\t    real_flip_out['delta_misclass'] = np.nan\n234\t    real_flip_out['pi_s'] = np.nan\n235\t    real_flip_out['true_cate'] = np.nan\n236\telse:\n237\t    real_flip_out = pd.DataFrame()\n238\t\n239\tsummary_csv = pd.concat([synth_flip_out, real_flip_out], ignore_index=True)\n240\tsummary_csv.to_csv(f'{ARTIFACTS_DIR}/sign_reversal_summary.csv', index=False)\n241\tprint(f\"\\nSaved sign_reversal_summary.csv: {len(summary_csv)} rows\")\n242\t\n243\t# ============================================================\n244\t# Step 3: Visualization (3-panel figure)\n245\t# ============================================================\n246\t\n247\tplt.rcParams.update({\n248\t    'font.family': 'serif',\n249\t    'font.serif': ['Times New Roman', 'DejaVu Serif'],\n250\t    'font.size': 12,\n251\t    'axes.linewidth': 0.8,\n252\t    'xtick.major.width': 0.8,\n253\t    'ytick.major.width': 0.8,\n254\t    'xtick.minor.width': 0.5,\n255\t    'ytick.minor.width': 0.5,\n256\t})\n257\t\n258\tfig, axes = plt.subplots(1, 3, figsize=(16, 4.8), gridspec_kw={'width_ratios': [1, 1.1, 0.7]})\n259\tfig.subplots_adjust(wspace=0.35, left=0.06, right=0.97, top=0.88, bottom=0.15)\n260\t\n261\t# ----- Panel A: Scatter -----\n262\tax = axes[0]\n263\tmask_flip = df['sign_flip']\n264\tmask_normal = ~mask_flip & nonzero\n265\t\n266\tax.scatter(df.loc[mask_normal, 'bias_naive'], df.loc[mask_normal, 'bias_global'],\n267\t           c='#BBBBBB', s=12, alpha=0.5, edgecolors='none', label='Same sign', zorder=2)\n268\tax.scatter(df.loc[mask_flip, 'bias_naive'], df.loc[mask_flip, 'bias_global'],\n269\t           c='#D62728', s=18, alpha=0.7, edgecolors='none', label='Sign reversal', zorder=3)\n270\t\n271\txlim = ax.get_xlim()\n272\tylim = ax.get_ylim()\n273\tlim = max(abs(xlim[0]), abs(xlim[1]), abs(ylim[0]), abs(ylim[1]))\n274\tax.set_xlim(-lim * 1.05, lim * 1.05)\n275\tax.set_ylim(-lim * 1.05, lim * 1.05)\n276\t\n277\tax.axhline(0, color='k', linewidth=0.5, zorder=1)\n278\tax.axvline(0, color='k', linewidth=0.5, zorder=1)\n279\t\n280\t# Shade sign-reversal quadrants (II and IV)\n281\tax.fill_between([-lim*1.05, 0], 0, lim*1.05, color='#D62728', alpha=0.04, zorder=0)\n282\tax.fill_between([0, lim*1.05], -lim*1.05, 0, color='#D62728', alpha=0.04, zorder=0)\n283\t\n284\tax.set_xlabel('Naive bias', fontsize=12)\n285\tax.set_ylabel('Global-corrected bias', fontsize=12)\n286\tax.set_title('A', fontsize=14, fontweight='bold', loc='left')\n287\tax.legend(fontsize=9, loc='upper left', framealpha=0.9)\n288\tax.xaxis.set_minor_locator(AutoMinorLocator(2))\n289\tax.yaxis.set_minor_locator(AutoMinorLocator(2))\n290\t\n291\t# ----- Panel B: Bar chart -----\n292\tax = axes[1]\n293\t\n294\t# Select 3 diverse sign-reversal cases: pick from different (dm, dc) combos\n295\tflip_df = df[df['sign_flip']].copy()\n296\tflip_df['config_key'] = flip_df['delta_misclass'].astype(str) + '_' + flip_df['delta_cate'].astype(str)\n297\t# Pick top from distinct configs, only z=0 for cleaner display\n298\tflip_z0 = flip_df[flip_df['z_value'] == 0].copy()\n299\tflip_z0_sorted = flip_z0.sort_values('sign_flip_magnitude', ascending=False)\n300\tselected = []\n301\tseen_dc = set()\n302\tfor _, row in flip_z0_sorted.iterrows():\n303\t    dc_key = row['delta_cate']\n304\t    if dc_key not in seen_dc:\n305\t        selected.append(row)\n306\t        seen_dc.add(dc_key)\n307\t    if len(selected) == 3:\n308\t        break\n309\ttop3 = pd.DataFrame(selected)\n310\t\n311\tx_positions = np.arange(len(top3))\n312\tbar_width = 0.22\n313\tcolors_bar = ['#4C72B0', '#DD8452', '#55A868']\n314\tlabels_bar = ['Naive', 'Global-corrected', 'EC-HTE']\n315\t\n316\tfor idx, (_, row) in enumerate(top3.iterrows()):\n317\t    true_cate = row['true_cate']\n318\t    naive_est = true_cate + row['bias_naive']\n319\t    global_est = true_cate + row['bias_global']\n320\t    echte_est = true_cate  # unbiased\n321\t\n322\t    vals = [naive_est, global_est, echte_est]\n323\t    for j, v in enumerate(vals):\n324\t        ax.bar(idx + (j - 1) * bar_width, v, bar_width * 0.88,\n325\t               color=colors_bar[j], edgecolor='white', linewidth=0.5,\n326\t               label=labels_bar[j] if idx == 0 else None, zorder=3)\n327\t\n328\t    # True CATE horizontal line\n329\t    ax.plot([idx - 1.8 * bar_width, idx + 1.8 * bar_width],\n330\t            [true_cate, true_cate], color='#333333', linestyle='--',\n331\t            linewidth=1.5, zorder=4)\n332\t    if idx == 0:\n333\t        ax.plot([], [], color='#333333', linestyle='--', linewidth=1.5, label='True CATE')\n334\t\n335\t    # Arrow showing sign reversal\n336\t    ax.annotate('', xy=(idx, global_est),\n337\t                xytext=(idx, naive_est),\n338\t                arrowprops=dict(arrowstyle='->', color='#D62728',\n339\t                                lw=1.5, connectionstyle='arc3,rad=0.3'),\n340\t                zorder=5)\n341\t\n342\t# X-axis labels\n343\tcase_labels = []\n344\tfor _, row in top3.iterrows():\n345\t    case_labels.append(\n346\t        f\"$\\\\delta_{{\\\\pi}}$={row['delta_misclass']:.2f}, \"\n347\t        f\"$\\\\Delta\\\\tau$={row['delta_cate']:.2f}\\n\"\n348\t        f\"$\\\\pi_B$={row['pi_s']:.3f}\"\n349\t    )\n350\tax.set_xticks(x_positions)\n351\tax.set_xticklabels(case_labels, fontsize=9)\n352\tax.set_ylabel('CATE estimate', fontsize=12)\n353\tax.set_title('B', fontsize=14, fontweight='bold', loc='left')\n354\tax.legend(fontsize=8.5, loc='upper left', framealpha=0.9, ncol=2)\n355\tax.yaxis.set_minor_locator(AutoMinorLocator(2))\n356\tax.axhline(0, color='k', linewidth=0.3, zorder=1)\n357\t\n358\t# ----- Panel C: Text annotation -----\n359\tax = axes[2]\n360\tax.axis('off')\n361\t\n362\t# Count unique LLMs with sign flips\n363\tn_llm_flip = df_real_ext[df_real_ext['sign_flip']]['llm'].nunique()\n364\tn_llm_total = df_real_ext['llm'].nunique()\n365\treal_flip_pct = n_real_flip / n_real_total * 100 if n_real_total > 0 else 0\n366\t\n367\ttext_lines = [\n368\t    r\"$\\bf{Sign\\ Reversal\\ Summary}$\",\n369\t    \"\",\n370\t    f\"Synthetic (K=2 grid):\",\n371\t    f\"  {n_flip}/{n_total} subgroup-rows\",\n372\t    f\"  with sign reversal ({flip_pct:.0f}%)\",\n373\t    f\"  {n_flip_configs}/{n_configs} configs\",\n374\t    f\"  affected ({pct_flip_configs:.0f}%)\",\n375\t    \"\",\n376\t    f\"Real LLM data:\",\n377\t    f\"  {n_real_flip}/{n_real_total} subgroup-rows\",\n378\t    f\"  ({real_flip_pct:.0f}%)\",\n379\t    f\"  {n_llm_flip}/{n_llm_total} LLMs affected\",\n380\t    \"\",\n381\t    r\"$\\bf{EC\\text{-}HTE:\\ 0\\%\\ sign\\ reversals}$\",\n382\t    r\"(per-subgroup correction\",\n383\t    r\"is analytically unbiased)\",\n384\t]\n385\t\n386\tax.text(0.05, 0.95, '\\n'.join(text_lines),\n387\t        transform=ax.transAxes, fontsize=10,\n388\t        verticalalignment='top', fontfamily='serif',\n389\t        bbox=dict(boxstyle='round,pad=0.5', facecolor='#FAFAFA',\n390\t                  edgecolor='#AAAAAA', linewidth=0.8))\n391\t\n392\tax.set_title('C', fontsize=14, fontweight='bold', loc='left')\n393\t\n394\t# Save\n395\tfig.savefig(f'{ARTIFACTS_DIR}/sign_reversal_figure.pdf', dpi=300, bbox_inches='tight')\n396\tfig.savefig(f'{ARTIFACTS_DIR}/sign_reversal_figure.png', dpi=300, bbox_inches='tight')\n397\tprint(f\"\\nFigure saved to {ARTIFACTS_DIR}/sign_reversal_figure.pdf and .png\")\n398\tplt.close()\n399\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd68b5e2-654a-40d2-8c38-663218e19834",
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "56a63165-d563-422d-b35e-1582175f58c9",
+            "sourceToolAssistantUUID": "bd68b5e2-654a-40d2-8c38-663218e19834",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T15:00:10.184Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me verify the understanding by looking at a few more rows from the CSV files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56a63165-d563-422d-b35e-1582175f58c9",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZNRi2fbAq6ntXhNUN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3bcb9c8c-8a9a-4261-ade8-28e1bdf64df9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MyFqfzyJDvUR4wT7JfqXKT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 7194,
+                "cache_read_input_tokens": 30730,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7194,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T15:00:10.820Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NoyYRNjyFb6ycjkbV1AVM5",
+              "name": "Bash",
+              "input": {
+                "command": "head -10 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv | tail -8"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3bcb9c8c-8a9a-4261-ade8-28e1bdf64df9",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZNRi2fbAq6ntXhNUN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "915a67f1-6d44-42c8-9242-190d406f4cd2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MyFqfzyJDvUR4wT7JfqXKT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 7194,
+                "cache_read_input_tokens": 30730,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7194,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T15:00:10.886Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NoyYRNjyFb6ycjkbV1AVM5",
+              "type": "tool_result",
+              "content": "0.0,0.0,A,1,-0.0,0.0018923876410683975,0.002426830740922833,\n0.0,0.0,B,0,0.0,0.004333920230851034,0.0024682308570266923,\n0.0,0.0,B,1,-0.0,-0.00235868204834078,0.00248272401349006,\n0.0,0.025,A,0,0.0,-0.0025570799162762787,0.002517424838459963,\n0.0,0.025,A,1,-0.0,-0.003436946511211173,0.0025377076467012014,\n0.0,0.025,B,0,0.0,0.0014870087516374482,0.0023952273337157033,\n0.0,0.025,B,1,-0.0,0.0004088365536445468,0.0024446128487949216,\n0.0,0.05,A,0,0.0,0.0008105694735568052,0.0025109914239363974,",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "915a67f1-6d44-42c8-9242-190d406f4cd2",
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "f7829863-46cb-4b0b-8129-bbe6bcca8b6c",
+            "sourceToolAssistantUUID": "915a67f1-6d44-42c8-9242-190d406f4cd2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T15:00:11.044Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TmyKujt55gML736aeXWfK6",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f7829863-46cb-4b0b-8129-bbe6bcca8b6c",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZNRi2fbAq6ntXhNUN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "73d62a1d-405a-46e5-8207-a9385356b049",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MyFqfzyJDvUR4wT7JfqXKT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 7194,
+                "cache_read_input_tokens": 30730,
+                "output_tokens": 196,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7194
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 196,
+                    "cache_read_input_tokens": 30730,
+                    "cache_creation_input_tokens": 7194,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7194,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T15:00:11.107Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TmyKujt55gML736aeXWfK6",
+              "type": "tool_result",
+              "content": "  2185 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv\n    13 /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv\n  2198 total",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73d62a1d-405a-46e5-8207-a9385356b049",
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "ee8e1cf9-6948-4ca3-94d3-d2055f6dca0e",
+            "sourceToolAssistantUUID": "73d62a1d-405a-46e5-8207-a9385356b049",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T15:00:12.318Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me look at the actual derivation document to understand the mathematical context better:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee8e1cf9-6948-4ca3-94d3-d2055f6dca0e",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZaFrdzhf2UMpUHMmq",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a29bee32-0831-4af5-b417-b300d1186800",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01D1iq9Fs5YH5LaJPcQ49t2e",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 612,
+                "cache_read_input_tokens": 37924,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 612,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T15:00:12.400Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EjHrrXpobkfsr6pV2n7oT5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/ec_hte_llm_annotation/results/exp002_derivation.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a29bee32-0831-4af5-b417-b300d1186800",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZaFrdzhf2UMpUHMmq",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "03aae1b3-7a7d-40d2-a1a3-5d623613e2a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01D1iq9Fs5YH5LaJPcQ49t2e",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 612,
+                "cache_read_input_tokens": 37924,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 612,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T15:00:12.407Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EjHrrXpobkfsr6pV2n7oT5",
+              "type": "tool_result",
+              "content": "1\t# Formal Bias Bound Derivation (exp-002)\n2\t\n3\t## Assumptions\n4\t\n5\t- **(A1)** Known confusion matrix (not estimated from data)\n6\t- **(A2)** Symmetric misclassification per subgroup: P(Ẑ=1|Z=0,S=s) = P(Ẑ=0|Z=1,S=s) = π_s\n7\t- **(A3)** Balanced effect modifier: P(Z=0) = P(Z=1) = 0.5\n8\t- **(A4)** Known subgroup weights w_s with Σ_s w_s = 1\n9\t\n10\t## Step 1: Subgroup Confusion Matrix\n11\t\n12\tUnder A2, the confusion matrix for subgroup s (rows = true Z, cols = Ẑ):\n13\t\n14\t```\n15\tC_s = [[1 - π_s,  π_s    ],\n16\t       [π_s,      1 - π_s ]]\n17\t```\n18\t\n19\twhere C_s[z, ẑ] = P(Ẑ = ẑ | Z = z, S = s).\n20\t\n21\t## Step 2: Mixing Matrix\n22\t\n23\tThe mixing matrix M_s[ẑ, z] = P(Z = z | Ẑ = ẑ, S = s).\n24\t\n25\tBy Bayes' rule:\n26\t\n27\t```\n28\tP(Z=z | Ẑ=ẑ, S=s) = P(Ẑ=ẑ | Z=z, S=s) · P(Z=z) / P(Ẑ=ẑ | S=s)\n29\t```\n30\t\n31\tUnder A3, P(Z=z) = 0.5 for z ∈ {0,1}. The marginal:\n32\t\n33\t```\n34\tP(Ẑ=ẑ | S=s) = Σ_z P(Ẑ=ẑ | Z=z, S=s) · P(Z=z)\n35\t             = 0.5 · [C_s[0,ẑ] + C_s[1,ẑ]]\n36\t```\n37\t\n38\tFor ẑ=0: P(Ẑ=0|S=s) = 0.5·[(1-π_s) + π_s] = 0.5\n39\tFor ẑ=1: P(Ẑ=1|S=s) = 0.5·[π_s + (1-π_s)] = 0.5\n40\t\n41\tTherefore:\n42\t\n43\t```\n44\tM_s[ẑ, z] = C_s[z, ẑ] · 0.5 / 0.5 = C_s[z, ẑ]\n45\t```\n46\t\n47\tSince C_s is symmetric under A2:\n48\t\n49\t```\n50\tM_s = [[1 - π_s,  π_s    ],\n51\t       [π_s,      1 - π_s ]]\n52\t```\n53\t\n54\t## Step 3: Global Confusion/Mixing Matrix\n55\t\n56\tThe global confusion matrix is the weight-averaged subgroup matrix:\n57\t\n58\t```\n59\tC_global = Σ_s w_s · C_s\n60\t```\n61\t\n62\tUnder A2, each C_s has the same symmetric structure, so:\n63\t\n64\t```\n65\tC_global = [[1 - π̄,  π̄    ],\n66\t            [π̄,      1 - π̄ ]]\n67\t```\n68\t\n69\twhere **π̄ = Σ_s w_s · π_s** is the weighted average misclassification rate.\n70\t\n71\tBy the same Bayes' rule argument: M_global = C_global (under A2+A3).\n72\t\n73\t## Step 4: Observed CATE Under Misclassification\n74\t\n75\tThe observed CATE in subgroup s, conditioning on Ẑ:\n76\t\n77\t```\n78\tτ_obs(Ẑ=ẑ, S=s) = E[Y(1) - Y(0) | Ẑ=ẑ, S=s]\n79\t                 = Σ_z P(Z=z | Ẑ=ẑ, S=s) · τ(Z=z)\n80\t                 = Σ_z M_s[ẑ, z] · τ(z)\n81\t```\n82\t\n83\tIn vector form: **τ_obs(·, s) = M_s · τ_true**\n84\t\n85\twhere τ_true = [τ(Z=0), τ(Z=1)]ᵀ.\n86\t\n87\t## Step 5: Global Correction Applied to Subgroup\n88\t\n89\tGlobal correction inverts M_global and applies it to the observed CATEs:\n90\t\n91\t```\n92\tτ̂_global(·, s) = M_global⁻¹ · τ_obs(·, s)\n93\t               = M_global⁻¹ · M_s · τ_true\n94\t```\n95\t\n96\tThe **bias** of global correction in subgroup s:\n97\t\n98\t```\n99\tbias_global(·, s) = τ̂_global(·, s) - τ_true\n100\t                  = (M_global⁻¹ · M_s - I) · τ_true\n101\t```\n102\t\n103\t## Step 6: Computing M_global⁻¹ · M_s - I\n104\t\n105\tThe inverse of M_global:\n106\t\n107\t```\n108\tdet(M_global) = (1-π̄)² - π̄² = 1 - 2π̄\n109\t\n110\tM_global⁻¹ = (1/(1-2π̄)) · [[1-π̄, -π̄], [-π̄, 1-π̄]]\n111\t```\n112\t\n113\tComputing the product M_global⁻¹ · M_s:\n114\t\n115\t```\n116\tM_global⁻¹ · M_s = (1/(1-2π̄)) · [[1-π̄-π_s,  π_s-π̄  ],\n117\t                                     [π_s-π̄,    1-π̄-π_s]]\n118\t```\n119\t\n120\tSubtracting the identity:\n121\t\n122\t```\n123\tM_global⁻¹ · M_s - I = (1/(1-2π̄)) · [[-δ_s,  δ_s ],\n124\t                                         [δ_s,  -δ_s]]\n125\t```\n126\t\n127\twhere **δ_s = π_s - π̄** is the subgroup's deviation from the mean misclassification rate.\n128\t\n129\t## Step 7: Exact Bias Identity\n130\t\n131\t```\n132\tbias_global(·, s) = (δ_s / (1-2π̄)) · [[-1, 1], [1, -1]] · [τ(0), τ(1)]ᵀ\n133\t                  = (δ_s / (1-2π̄)) · [Δτ, -Δτ]\n134\t```\n135\t\n136\twhere **Δτ = τ(Z=1) - τ(Z=0)**.\n137\t\n138\t### Result (Exact Identity under A1–A4):\n139\t\n140\t```\n141\tbias_global(z=0, s) = +δ_s · Δτ / (1 - 2π̄)\n142\tbias_global(z=1, s) = -δ_s · Δτ / (1 - 2π̄)\n143\t```\n144\t\n145\t**Interpretation**: The bias is the product of three factors:\n146\t1. **δ_s**: how much subgroup s deviates from the average misclassification rate\n147\t2. **Δτ**: treatment effect heterogeneity across Z\n148\t3. **1/(1-2π̄)**: amplification from the correction inversion\n149\t\n150\t## Naive Bias (No Correction)\n151\t\n152\tThe naive estimator uses Ẑ as if it were Z:\n153\t\n154\t```\n155\tbias_naive(·, s) = (M_s - I) · τ_true\n156\t                 = [[-π_s, π_s], [π_s, -π_s]] · [τ(0), τ(1)]ᵀ\n157\t```\n158\t\n159\t```\n160\tbias_naive(z=0, s) = +π_s · Δτ\n161\tbias_naive(z=1, s) = -π_s · Δτ\n162\t```\n163\t\n164\t## \"Debiasing Can Hurt\" Condition\n165\t\n166\tGlobal correction increases bias (|bias_global| > |bias_naive|) iff:\n167\t\n168\t```\n169\t|δ_s| / (1 - 2π̄) > π_s\n170\t```\n171\t\n172\t**For high-misclassification subgroups** (π_s > π̄, δ_s > 0):\n173\t\n174\t```\n175\t(π_s - π̄) / ((1-2π̄) · π_s) > 1\n176\t⟹ π_s - π̄ > π_s - 2π̄·π_s\n177\t⟹ π̄(2π_s - 1) > 0\n178\t⟹ π_s > 0.5\n179\t```\n180\t\n181\tSince π_s < 0.5 always, **debiasing never hurts the high-misclassification subgroup**.\n182\t\n183\t**For low-misclassification subgroups** (π_s < π̄, δ_s < 0):\n184\t\n185\t```\n186\t(π̄ - π_s) / ((1-2π̄) · π_s) > 1\n187\t⟹ π_s < π̄ / (2(1 - π̄))\n188\t```\n189\t\n190\tThis is a non-trivial condition satisfied when π_s is sufficiently small relative to π̄.\n191\t\n192\t**Intuition**: Global correction applies a uniform inverse that is calibrated for the average misclassification rate. It under-corrects high-misclass subgroups (reducing but not eliminating bias) and over-corrects low-misclass subgroups (reversing the bias sign and potentially increasing magnitude).\n193\t\n194\t## (a) vs (b): Known vs Estimated Matrices\n195\t\n196\t**(a) Known matrix** (A1 holds): The bias identity above is exact. No approximation.\n197\t\n198\t**(b) Estimated matrix**: When M_global is estimated from n_expert expert labels:\n199\t- M̂_global = M_global + O(1/√n_expert) random perturbation\n200\t- M̂_global⁻¹ = M_global⁻¹ + O(1/√n_expert) correction\n201\t- Expected bias acquires an additional O(1/√n_expert) term\n202\t- The exact identity remains the dominant bias for moderate-to-large δ_s and Δτ\n203\t\n204\t## K ≥ 2 Extension\n205\t\n206\tThe derivation above holds for **arbitrary K subgroups** with arbitrary weights. The formula:\n207\t\n208\t```\n209\tbias_global(z=0, s) = +δ_s · Δτ / (1 - 2π̄)\n210\tbias_global(z=1, s) = -δ_s · Δτ / (1 - 2π̄)\n211\t```\n212\t\n213\tis an exact identity under A1–A4, where:\n214\t- δ_s = π_s - π̄\n215\t- π̄ = Σ_s w_s · π_s (weighted by subgroup sizes)\n216\t- Σ_s w_s · δ_s = 0 (deviations sum to zero)\n217\t\n218\t**Scope**: Binary effect modifier Z ∈ {0,1} with arbitrary K subgroups. The formula does not extend to multi-valued Z without analogous matrix algebra.\n219\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "03aae1b3-7a7d-40d2-a1a3-5d623613e2a3",
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "ac6c0a14-5793-44a0-97b5-eaea82176b70",
+            "sourceToolAssistantUUID": "03aae1b3-7a7d-40d2-a1a3-5d623613e2a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T15:00:13.775Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have a complete understanding. Let me also check the actual column values to be 100% certain:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac6c0a14-5793-44a0-97b5-eaea82176b70",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZfytdmHAkPHBUwNbn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "caa4cd07-b2a2-4e04-87ef-492525b08698",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011ziSpMRjXA5C2S8gU8BDjG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3465,
+                "cache_read_input_tokens": 38536,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3465,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T15:00:14.576Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018DcYALz5dUab9hbHN7c1Qm",
+              "name": "Bash",
+              "input": {
+                "command": "tail -5 /home/ubuntu/ec_hte_llm_annotation/results/exp002_bias_bound.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "caa4cd07-b2a2-4e04-87ef-492525b08698",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZfytdmHAkPHBUwNbn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3aeca603-c0bc-459e-865d-140120450efa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011ziSpMRjXA5C2S8gU8BDjG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3465,
+                "cache_read_input_tokens": 38536,
+                "output_tokens": 171,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3465
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 171,
+                    "cache_read_input_tokens": 38536,
+                    "cache_creation_input_tokens": 3465,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3465,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T15:00:14.583Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K619CZjWnvyTKhxNn62BQr",
+              "name": "Bash",
+              "input": {
+                "command": "tail -5 /home/ubuntu/ec_hte_llm_annotation/results/exp002_debiasing_hurts.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3aeca603-c0bc-459e-865d-140120450efa",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZfytdmHAkPHBUwNbn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9e6bb70b-65d1-42aa-9f5f-f86de610b54d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011ziSpMRjXA5C2S8gU8BDjG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3465,
+                "cache_read_input_tokens": 38536,
+                "output_tokens": 171,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3465
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 171,
+                    "cache_read_input_tokens": 38536,
+                    "cache_creation_input_tokens": 3465,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3465,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T15:00:14.654Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K619CZjWnvyTKhxNn62BQr",
+              "type": "tool_result",
+              "content": "4,base_k4,\"[np.float64(0.25), np.float64(0.15), np.float64(0.1), np.float64(0.05)]\",0.1,0.5,1,1,-0.06,-0.006896551724137923,0.11494252873563206\n4,base_k4,\"[np.float64(0.25), np.float64(0.15), np.float64(0.1), np.float64(0.05)]\",0.1,0.5,2,0,0.04000000000000001,-0.020689655172413796,0.5172413793103449\n4,base_k4,\"[np.float64(0.25), np.float64(0.15), np.float64(0.1), np.float64(0.05)]\",0.1,0.5,2,1,-0.04000000000000001,0.020689655172413796,0.5172413793103449\n4,base_k4,\"[np.float64(0.25), np.float64(0.15), np.float64(0.1), np.float64(0.05)]\",0.1,0.5,3,0,0.020000000000000004,-0.048275862068965524,2.413793103448276\n4,base_k4,\"[np.float64(0.25), np.float64(0.15), np.float64(0.1), np.float64(0.05)]\",0.1,0.5,3,1,-0.020000000000000004,0.048275862068965524,2.413793103448276",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e6bb70b-65d1-42aa-9f5f-f86de610b54d",
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "95a1dcc6-a3ab-4832-a01b-50368f77a92c",
+            "sourceToolAssistantUUID": "9e6bb70b-65d1-42aa-9f5f-f86de610b54d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T15:00:14.664Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018DcYALz5dUab9hbHN7c1Qm",
+              "type": "tool_result",
+              "content": "0.25,0.475,B,1,0.0848214285714286,0.08579757535805496,0.0023869536239870303,1.0115082568528582\n0.25,0.5,A,0,0.08928571428571429,0.09308627726451098,0.0024199028320792742,1.042566305362523\n0.25,0.5,A,1,-0.08928571428571429,-0.09268058390287817,0.002461985349328366,1.0380225397122356\n0.25,0.5,B,0,-0.08928571428571432,-0.09384657181771552,0.00246944118194608,1.0510816043584135\n0.25,0.5,B,1,0.08928571428571432,0.09371657712124132,0.0024235583147952516,1.0496256637579024",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3aeca603-c0bc-459e-865d-140120450efa",
+            "isSidechain": true,
+            "promptId": "67b70691-39fb-4821-a6dd-26948aa378d9",
+            "agentId": "a4d132eb27dac2f24",
+            "type": "user",
+            "uuid": "94d1781d-d287-432f-bb01-84fe4ad11d52",
+            "sourceToolAssistantUUID": "3aeca603-c0bc-459e-865d-140120450efa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T15:00:28.816Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now I have all the information I need. Let me create a comprehensive summary.\n\n## Summary: Understanding exp002_bias_bound.csv and exp002_debiasing_hurts.csv\n\n### 1. **exp002_bias_bound.csv** - What `analytic_bias` Represents\n\nThe `analytic_bias` column in **exp002_bias_bound.csv** represents **global-corrected bias**, NOT naive estimator bias. \n\n**Specifically:**\n- It stores the **global correction bias** defined as: `bias_global(z, s) = δ_s · Δτ / (1 - 2π̄)`\n  - Where: δ_s = π_s - π̄ (subgroup's deviation from mean misclassification)\n  - Δτ = τ(Z=1) - τ(Z=0) (treatment effect heterogeneity)\n  - π̄ = weighted average misclassification rate\n  \n- This is computed analytically from the formula in lines 34-41 of exp002_bias_bound.py (the `analytic_bias_global()` function)\n\n**File structure (2185 rows):**\n- Columns: `delta_misclass, delta_cate, subgroup, z_value, analytic_bias, mc_bias, mc_bias_se, tightness_ratio`\n- Each row represents one (parameter configuration, subgroup, Z-value) point from a K=2 grid sweep\n- `delta_misclass`: controls π_A and π_B (deviation from base 0.15 misclass rate)\n- `delta_cate`: controls Δτ (τ(Z=1) = 0.1 + delta_cate)\n- Rows cover all combinations with delta_misclass ∈ [0, 0.25] (step 0.01) and delta_cate ∈ [0, 0.525] (step 0.025)\n\n---\n\n### 2. **exp002_debiasing_hurts.csv** - How It's Generated\n\n**exp002_debiasing_hurts.csv** contains **constructive examples** of when global correction increases bias magnitude (|bias_global| > |bias_naive|), NOT derived computations from bias_bound.csv.\n\n**Generation process (lines 261-346):**\n1. Analytically computes the **ratio condition**: `|δ_s| / (1 - 2π̄) > π_s` \n   - This determines when debiasing hurts for each subgroup\n2. Creates a **heatmap of these boolean conditions** and saves to exp002_bias_heatmap.csv (which has `debiasing_hurts_A` and `debiasing_hurts_B` flags)\n3. Constructs **two concrete examples**:\n   - **K=2 extreme example**: π_A=0.25, π_B=0.05, τ(0)=0.1, τ(1)=0.5\n   - **K=4 base example**: π=[0.25, 0.15, 0.10, 0.05], τ(0)=0.1, τ(1)=0.5\n4. For each example, computes **both naive and global bias** and stores them\n\n**File structure (13 rows total):**\n- Columns: `k_subgroups, example_name, pi_values, tau_z0, tau_z1, subgroup, z_value, bias_naive, bias_global, ratio`\n- **Key insight**: Contains BOTH `bias_naive` and `bias_global` for the same example cases\n- `ratio = |bias_global| / |bias_naive|` (where ratio > 1.0 means debiasing hurts)\n- Two example scenarios: \"extreme_k2\" (6 rows) and \"base_k4\" (7 rows)\n\n---\n\n### 3. **Can You Compare Naive vs Global Bias?**\n\n**YES, exp002_bias_bound.csv has sufficient information**, but requires reconstruction:\n\nThe `analytic_bias` column only stores **global correction bias**. To compute the naive bias for any row, you reconstruct it using:\n\n```\npi_s = BASE_MISCLASS + (delta_misclass/2) if subgroup=='A' else BASE_MISCLASS - (delta_misclass/2)\nbias_naive(z=0) = +pi_s * delta_cate\nbias_naive(z=1) = -pi_s * delta_cate\n```\n\nThis is exactly what **sign_reversal_analysis.py does** (lines 25-48):\n- Reads exp002_bias_bound.csv\n- Reconstructs π_s and bias_naive from the parameters\n- Computes sign-flip cases where: sign(bias_naive) ≠ sign(bias_global)\n- Identifies that **~24% of parameter configurations** show sign reversals\n\n---\n\n### Key Files and Locations\n\n- **Code that writes the CSVs**: `/home/ubuntu/ec_hte_llm_annotation/exp002_bias_bound.py`\n  - Lines 510-511: writes exp002_bias_bound.csv\n  - Lines 344: writes exp002_debiasing_hurts.csv (initial K=2)\n  - Lines 456-457: appends K=4 examples to exp002_debiasing_hurts.csv\n  \n- **Analysis that uses both CSVs**: `/home/ubuntu/ec_hte_llm_annotation/sign_reversal_analysis.py`\n  - Lines 25-40: loads and augments exp002_bias_bound.csv with naive bias reconstruction\n  - Lines 261-346: produces the visualization comparing both estimators"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94d1781d-d287-432f-bb01-84fe4ad11d52",
+            "isSidechain": true,
+            "agentId": "a4d132eb27dac2f24",
+            "requestId": "req_011CbKhZqJyepENTy2hWpCTH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "244817a6-1052-49cb-a87b-68a08de35e6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/ec_hte_llm_annotation",
+            "sessionId": "79a5239d-de6a-4f36-b3a7-9400f8341aae",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ChkYGB4a5txuKwMDevWiHL",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 440,
+                "cache_creation_input_tokens": 448,
+                "cache_read_input_tokens": 42001,
+                "output_tokens": 1376,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 448
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 440,
+                    "output_tokens": 1376,
+                    "cache_read_input_tokens": 42001,
+                    "cache_creation_input_tokens": 448,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 448,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-home-ubuntu-ec-hte-llm-annotation-find-the-code-that-generates-1-results-ex.md"
+}

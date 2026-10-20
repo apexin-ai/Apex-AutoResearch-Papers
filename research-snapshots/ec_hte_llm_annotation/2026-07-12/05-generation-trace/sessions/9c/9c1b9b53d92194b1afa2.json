@@ -1,0 +1,164 @@
+{
+  "schema_version": "1.0",
+  "id": "9c1b9b53d92194b1afa2",
+  "project": "ec_hte_llm_annotation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: ec_hte_llm_annotation - 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec",
+  "task_key": "cd2cbd86-dd02-45a2-b6d1-2257db8ef667",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/cd2cbd86-dd02-45a2-b6d1-2257db8ef667.jsonl",
+    "occurrence": 1,
+    "bytes": 587293,
+    "sha256": "be40796bd5b0a2add145e2f2f7f4c161c87e843b6168f98270763ca908a10352"
+  },
+  "statistics": {
+    "messages": 149,
+    "user_turns": 11,
+    "tool_calls": 31,
+    "roles": {
+      "record": 45,
+      "user": 11,
+      "assistant": 31,
+      "tool_call": 31,
+      "tool_result": 31
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9c1b9b53d92194b1afa2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 35,
+      "chunks": [
+        {
+          "path": "9c1b9b53d92194b1afa2-part-0001.json",
+          "message_count": 35
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 46,
+      "chunks": [
+        {
+          "path": "9c1b9b53d92194b1afa2-part-0001.json",
+          "message_count": 46
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9c1b9b53d92194b1afa2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "9c1b9b53d92194b1afa2-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "9c1b9b53d92194b1afa2-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "9c1b9b53d92194b1afa2-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9c1b9b53d92194b1afa2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "9c1b9b53d92194b1afa2-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "9c1b9b53d92194b1afa2-part-0001.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9c1b9b53d92194b1afa2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "9c1b9b53d92194b1afa2-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-ec-hte-llm-annotation-home-ubuntu-agent-ml-research-idea-gen-0520-projects-ec-copy-3.md"
+}

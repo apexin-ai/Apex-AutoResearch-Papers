@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "79002829955fdcf5da91",
+  "project": "ec_hte_llm_annotation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: ec_hte_llm_annotation ## 运行环境 - 服务器名: local-cpu - SSH 账户: ubuntu（调用 ssh_execute / submit_trainin",
+  "task_key": "50cc3240-e129-4c25-9b11-3d83f93955d7",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/50cc3240-e129-4c25-9b11-3d83f93955d7.jsonl",
+    "occurrence": 1,
+    "bytes": 1615704,
+    "sha256": "50c959f8df630eebac2f8b9d4dbfbe53e78795d8bfc9b6f2d096fe722c09fd00"
+  },
+  "statistics": {
+    "messages": 820,
+    "user_turns": 2,
+    "tool_calls": 205,
+    "roles": {
+      "record": 253,
+      "user": 2,
+      "assistant": 154,
+      "tool_call": 205,
+      "tool_result": 205,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "79002829955fdcf5da91-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 547,
+      "chunks": [
+        {
+          "path": "79002829955fdcf5da91-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "79002829955fdcf5da91-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "79002829955fdcf5da91-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "79002829955fdcf5da91-part-0004.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 271,
+      "chunks": [
+        {
+          "path": "79002829955fdcf5da91-part-0004.json",
+          "message_count": 171
+        },
+        {
+          "path": "79002829955fdcf5da91-part-0005.json",
+          "message_count": 100
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-ec-hte-llm-annotation-local-cpu-ssh-ubuntu-ssh-execute-submit.md"
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "id": "fa354ea8724df5af9e8f",
+  "project": "ec_hte_llm_annotation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: ec_hte_llm_annotation ## 运行环境 - 服务器名: local-cpu - SSH 账户: ubuntu（调用 ssh_execute / submit_trainin",
+  "task_key": "aea14a81-cbb7-4823-93aa-654fe45be3ec",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/aea14a81-cbb7-4823-93aa-654fe45be3ec.jsonl",
+    "occurrence": 1,
+    "bytes": 1860249,
+    "sha256": "9e7214136bab72fbaa8fbcc8e2c355c4e16c4ed135ac522697b8cc812ef7177d"
+  },
+  "statistics": {
+    "messages": 1563,
+    "user_turns": 3,
+    "tool_calls": 664,
+    "roles": {
+      "record": 188,
+      "user": 3,
+      "assistant": 43,
+      "tool_call": 664,
+      "tool_result": 664,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "fa354ea8724df5af9e8f-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1532,
+      "chunks": [
+        {
+          "path": "fa354ea8724df5af9e8f-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "fa354ea8724df5af9e8f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa354ea8724df5af9e8f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa354ea8724df5af9e8f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa354ea8724df5af9e8f-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa354ea8724df5af9e8f-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa354ea8724df5af9e8f-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa354ea8724df5af9e8f-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa354ea8724df5af9e8f-part-0009.json",
+          "message_count": 94
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "fa354ea8724df5af9e8f-part-0009.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "fa354ea8724df5af9e8f-part-0009.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-ec-hte-llm-annotation-local-cpu-ssh-ubuntu-ssh-execute-submit-copy-27.md"
+}

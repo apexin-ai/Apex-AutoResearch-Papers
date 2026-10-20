@@ -520,6 +520,19 @@
       }
     },
     {
+      "project": "ec_hte_llm_annotation--export-20260712",
+      "title": "When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects (July export snapshot)",
+      "catalog": "../research-snapshots/ec_hte_llm_annotation/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 453,
+        "messages": 58476,
+        "user_turns": 1635,
+        "tool_calls": 16110,
+        "unparsed_lines": 0,
+        "conversation": 453
+      }
+    },
+    {
       "project": "eco_alpha_beta_diversity",
       "title": "eco alpha beta diversity",
       "catalog": "../paper-assets/eco_alpha_beta_diversity/05-generation-trace/catalog.json",

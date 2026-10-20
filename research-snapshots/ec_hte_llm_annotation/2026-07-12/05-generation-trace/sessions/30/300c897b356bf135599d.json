@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "300c897b356bf135599d",
+  "project": "ec_hte_llm_annotation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: ec_hte_llm_annotation ## 运行环境 - 服务器名: local-cpu - SSH 账户: root（调用 ssh_execute / submit_training_",
+  "task_key": "1f3383c3-b5f6-4a61-9011-b56e71ca4c5d",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/1f3383c3-b5f6-4a61-9011-b56e71ca4c5d.jsonl",
+    "occurrence": 1,
+    "bytes": 851279,
+    "sha256": "c258954832cfc2dc787b1552a3284e662e8d1aad8c98025c78bd5dc82ae155ed"
+  },
+  "statistics": {
+    "messages": 267,
+    "user_turns": 1,
+    "tool_calls": 88,
+    "roles": {
+      "record": 61,
+      "user": 1,
+      "assistant": 29,
+      "tool_call": 88,
+      "tool_result": 88
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "300c897b356bf135599d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 265,
+      "chunks": [
+        {
+          "path": "300c897b356bf135599d-part-0001.json",
+          "message_count": 167
+        },
+        {
+          "path": "300c897b356bf135599d-part-0002.json",
+          "message_count": 98
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-ec-hte-llm-annotation-local-cpu-ssh-root-ssh-execute-submit-tr-copy-14.md"
+}

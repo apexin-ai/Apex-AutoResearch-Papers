@@ -1,0 +1,129 @@
+experiments:
+  # === P0: Must-run for submission ===
+
+  - id: exp-001
+    claim: 2
+    description: "Hierarchical Bayesian EC-HTE on synthetic data: implement HB Dirichlet-prior confusion matrix estimator with partial pooling, compare against MLE/Laplace on full regime sweep (extreme/moderate/homogeneous × n_expert 100-2000 × k=2,4 subgroups). Primary validation of Claim 2. MUST report full MCMC diagnostics: sampler (PyMC NUTS), chains (≥4), warmup (≥1000), R̂ (<1.01), ESS (>200), runtime vs MLE. Report SEs/CIs for all metrics from MC runs. Monitor coverage calibration — if systematic undercoverage, diagnose cause."
+    priority: P0
+    gpu_budget_hours: 0
+    compute: CPU (PyMC + econml)
+    estimated_time: "12-24h (coding + 1000 MC runs)"
+    deps: []
+    status: planned
+
+  - id: exp-002
+    claim: 1
+    description: "Formal bias bound verification: derive bias = f(misclass_heterogeneity, CATE_heterogeneity) analytically, then verify empirically across systematic parameter grid. Produce the 'debiasing can hurt' proposition with constructive two-subgroup example. MUST include K>2 extension: verify bias formula empirically for K=4 subgroups; add Remark after Proposition 1 discussing general-K case (sum-of-products form). Report R² of analytic prediction vs MC, bound tightness ratio, and CIs on all bias estimates."
+    priority: P0
+    gpu_budget_hours: 0
+    compute: CPU
+    estimated_time: "8-12h"
+    deps: []
+    status: planned
+
+  - id: exp-003
+    claim: "1,2,3"
+    description: "Semi-synthetic benchmark: use real CSS tweet corpus — TweetEval sentiment (N=45K, primary) for exp-003. Framing broadened from 'political-science' to 'CSS' per D004b (stance tasks N<1000 unusable). Inject known CATE heterogeneity structure, annotate with GPT-4.1 (API) and optionally Qwen3-235B-A22B (GPU), measure subgroup-specific misclassification rates, apply EC-HTE vs baselines. Subgroup variables: text features (has_hashtag, text_length) for semi-synthetic; demographic subgroups reserved for exp-004. MUST fully specify DGP in paper: (a) outcome generation model, (b) treatment assignment mechanism, (c) how true CATEs are injected. MUST run LLM annotation pilot (~1000 samples) before committing to verify per-subgroup misclassification heterogeneity exists."
+    priority: P0
+    gpu_budget_hours: 20
+    compute: GPU (LLM inference for annotation)
+    estimated_time: "24-36h"
+    deps: [exp-001]
+    status: planned
+
+  - id: exp-004
+    claim: "1,2"
+    description: "Real-data case study (pattern consistency, NOT ground-truth validation): apply EC-HTE to real CSS dataset with subgroup-varying LLM misclassification. Show: (a) global vs EC-HTE produce qualitatively different CATE distributions, (b) EC-HTE results consistent with domain knowledge (demographic effect direction), (c) bootstrap CIs on point estimate differences. Frame as 'illustrative application' not 'ground-truth benchmark'. Reviewer confirmed: real data has no ground truth CATE, CV-based ground truth is circular. PRIMARY: UC Berkeley Measuring Hate Speech corpus (public, rich demographic subgroups). NICE-TO-HAVE: Ashwin et al. (2025) if obtainable (requires author email + IRB, not feasible within 5-day DDL)."
+    priority: P0
+    gpu_budget_hours: 10
+    compute: GPU (LLM inference) or API
+    estimated_time: "24h"
+    deps: [exp-001]
+    status: planned
+    risk: "UC Berkeley dataset causal framework (T,Y,Z,S) mapping needs design"
+
+  - id: exp-005
+    claim: 3
+    description: "Diagnostic criterion validation: compute misclass_heterogeneity × CATE_heterogeneity product from pilot data across all experimental settings, show it predicts when global correction fails. ROC analysis of threshold. MUST use cross-validation or held-out evaluation (NOT in-sample AUC on own experiments). Dream Round 2 flagged in-sample AUC as methodological weakness across best and median tiers."
+    priority: P0
+    gpu_budget_hours: 0
+    compute: CPU
+    estimated_time: "4-8h"
+    deps: [exp-001, exp-003]
+    status: planned
+
+  # === P1: Strongly desired ===
+
+  - id: exp-006
+    claim: 2
+    description: "Expert label budget sensitivity: systematic sweep n_expert ∈ {50, 100, 250, 500, 1000, 2000} × k ∈ {2, 4, 8} subgroups. Find crossover point where EC-HTE > Global. Validate HB partial pooling value at small n."
+    priority: P1
+    gpu_budget_hours: 0
+    compute: CPU
+    estimated_time: "8h"
+    deps: [exp-001]
+    status: planned
+
+  - id: exp-007
+    claim: "1,2"
+    description: "PPCI + DSL baseline comparison: (a) PPCI kernel-based conditional correction vs EC-HTE on covariate-side vs outcome-side error; (b) per-subgroup DSL as additional baseline (DSL applied independently per subgroup, no cross-subgroup shrinkage — shows EC-HTE's partial pooling advantage); (c) EC-HTE+PPCI composition for simultaneous covariate+outcome error; (d) CRITICAL: include 'pure covariate-error, zero outcome-error' control condition to demonstrate EC-HTE advantage when covariate-side error dominates (PPCI should be ineffective here). Paper framing: DSL per-subgroup is a valid baseline but lacks cross-subgroup shrinkage and operates at estimand level rather than measurement model level."
+    priority: P0
+    gpu_budget_hours: 0
+    compute: CPU
+    estimated_time: "16h"
+    deps: [exp-001, exp-003]
+    status: planned
+
+  - id: exp-008
+    claim: 2
+    description: "Multiple LLM annotator comparison: GPT-4.1 vs Qwen3-235B-A22B vs Claude Sonnet 4.6 — measure misclassification heterogeneity patterns, show EC-HTE benefit varies by LLM quality."
+    priority: P1
+    gpu_budget_hours: 15
+    compute: GPU
+    estimated_time: "12h"
+    deps: [exp-003]
+    status: planned
+
+  # === P2: Nice-to-have ===
+
+  - id: exp-009
+    claim: 2
+    description: "Adaptive expert annotation allocation (Stage 3): implement CATE-weighted allocation targeting high-CATE × high-error subgroups, compare against uniform and uncertainty-only allocation."
+    priority: P2
+    gpu_budget_hours: 0
+    compute: CPU
+    estimated_time: "16h"
+    deps: [exp-001, exp-006]
+    status: planned
+
+  - id: exp-010
+    claim: 2
+    description: "Robustness to misspecified subgroup structure: test EC-HTE when subgroups are noisy/overlapping or when the true subgroup structure doesn't align with the conditioning variable."
+    priority: P2
+    gpu_budget_hours: 0
+    compute: CPU
+    estimated_time: "8h"
+    deps: [exp-001]
+    status: planned
+
+  - id: exp-011
+    claim: 2
+    description: "Causal forest integration: apply EC-HTE post-hoc correction to CausalForestDML subgroup CATE estimates + leaf-level corrected pseudo-outcomes with variance-adjusted CIs. Compare against naive forest and globally-corrected forest. ELEVATED TO P0: Claim 2 explicitly states CausalForestDML but no experiment validates this — claim-evidence gap is reviewer killshot."
+    priority: P0
+    gpu_budget_hours: 0
+    compute: CPU
+    estimated_time: "16h"
+    deps: [exp-001]
+    status: planned
+
+# Cross-cutting requirements (Dream Round 1 feedback):
+# - ALL experiments must report SEs/CIs from MC runs for all key metrics
+# - ALL comparisons (EC-HTE vs Global, EC-HTE vs PPCI, etc.) must include significance tests or bootstrap CIs
+# - Paper must include 4+ key figures (bias mechanism schematic, amplification heatmap, ROC, budget curves)
+# - P2 experiments (exp-008, exp-009) move to appendix in paper; P1 exp-010 also appendix-candidate
+#
+# Resource summary:
+# P0 total: ~30 GPU·h, ~100h wall-clock (parallelizable) [exp-007 promoted to P0]
+# P1 total: ~15 GPU·h, ~36h wall-clock
+# P2 total: ~0 GPU·h, ~24h wall-clock
+# Grand total: ~45 GPU·h (within 60-90h budget)

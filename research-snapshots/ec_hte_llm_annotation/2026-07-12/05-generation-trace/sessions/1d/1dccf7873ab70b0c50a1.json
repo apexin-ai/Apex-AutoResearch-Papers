@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "1dccf7873ab70b0c50a1",
+  "project": "ec_hte_llm_annotation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 执行项目轨迹扫描，将报告写入 /home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotation/scan_reports/layer2_20260531",
+  "task_key": "58b4c5d3-8d81-401d-9109-d28c3a7170ff",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/58b4c5d3-8d81-401d-9109-d28c3a7170ff.jsonl",
+    "occurrence": 1,
+    "bytes": 1005536,
+    "sha256": "9539704e4a4c96cb6e65b20a145260249bc68a49ffddbe0013a820b59da33974"
+  },
+  "statistics": {
+    "messages": 149,
+    "user_turns": 1,
+    "tool_calls": 55,
+    "roles": {
+      "record": 28,
+      "user": 1,
+      "assistant": 10,
+      "tool_call": 55,
+      "tool_result": 55
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1dccf7873ab70b0c50a1-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 147,
+      "chunks": [
+        {
+          "path": "1dccf7873ab70b0c50a1-part-0001.json",
+          "message_count": 79
+        },
+        {
+          "path": "1dccf7873ab70b0c50a1-part-0002.json",
+          "message_count": 68
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-home-ubuntu-agent-ml-research-idea-gen-0520-projects-ec-hte-llm-annotation-sca.md"
+}

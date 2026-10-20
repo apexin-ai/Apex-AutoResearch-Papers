@@ -1,0 +1,1665 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。Phase 1 已定义了 worst 档的含义： 含义：Claim 1（bias mechanism）仍然成立但 EC-HTE 在实际条件下优势微弱；诊断准则 CV 失败；real data 反向；审稿人以
+
+**When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-2/db3430e5-3ddc-40c4-8e57-38f71ba7b2f0.jsonl`
+- **Structured JSON:** [`1a5a97c3fd40f766e1e2.json`](../../sessions/1a/1a5a97c3fd40f766e1e2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-21T12:38:09.408Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T12:38:09.408Z",
+  "sessionId": "db3430e5-3ddc-40c4-8e57-38f71ba7b2f0",
+  "content": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 worst 档的含义：\n\n含义：Claim 1（bias mechanism）仍然成立但 EC-HTE 在实际条件下优势微弱；诊断准则 CV 失败；real data 反向；审稿人以 novelty 不足拒稿。需彻底 reframe 为以 Claim 1 为核心的 'bias mechanism discovery' 单 claim 论文\n核心假设：['诊断准则 CV AUC < 0.55，Δπ×Δτ product 不具泛化预测力', 'Real data 持续显示 EC-HTE 比 global 差（当前 |bias| 差距 0.04，可能在更多配置下复现）', 'EC-HTE 优势仅存在于 synthetic extreme regime；moderate regime 和 real data 均无 benefit 或 degradation', \"审稿人将 RMSE tradeoff 视为 disqualifying：'reduces bias but increases MSE — net negative in practice'\", \"Novelty 论点（'just Bayesian CM estimation applied to CATE'）未说服审稿人；被要求与 Carroll et al. 2006 做更深对比\", 'PPCI 互补性被视为 trivial（两个 correction 覆盖两种 error，construction by design）']\n关键指标范围：{'bias_amplification_max_dim': [2.4, 2.9], 'bias_amplification_max_cf': [4.5, 6.0], 'ec_hte_bias_reduction_factor_vs_global': [0.8, 1.5], 'diagnostic_auc_cv': [0.4, 0.55], 'real_data_ec_hte_minus_global_abs_bias': [0.02, 0.1], 'ec_hte_rmse_penalty_median_across_configs': [1.3, 2.5], 'coverage_ec_hte_small_n': [0.85, 0.92], 'hb_crossover_k4_moderate': [2000, 'never']}\n叙事方向：放弃三 Claim 结构。重构为单 claim 论文：'Debiasing Can Hurt — When Global Misclassification Correction Amplifies Subgroup CATE Bias'。Claim 1（bias identity + exact product form + constructive 'debiasing hurts' proposition）成为整篇论文核心。EC-HTE 降级为 'one possible mitigation' 放在较短的 methods section，诚实评估其实际优势条件狭窄。诊断准则重构为 sufficient condition for concern（Δπ×Δτ 大时 global correction 肯定有风险）而非 decision tool。PPCI 保留为实用建议但去主次化。论文变短、更聚焦、理论更强。仍投 EMNLP main——bias mechanism result 本身对 CSS+NLP 社区有新颖性和实用价值，类似 'negative result + formal characterization' 类型的成功论文。预期需要 2R 或 resubmit，但不降级 venue。\n\n基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。\n每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。\n\n# Project context\nproject: ec_hte_llm_annotation\nvenue: emnlp-2026\n\n## paper_framing.md\n\n# Paper Framing — ec_hte_llm_annotation\n\n## Target Venue\n- Primary: EMNLP 2026 Main (via ARR)\n- Deadline: ARR submission May 25, 2026; commitment deadline August 2, 2026\n- Format: Long paper, 8 pages + unlimited references\n\n## Core Claims (3 条，可证伪)\n\n1. **Bias Mechanism Discovery**: When LLM misclassification rates for an effect modifier vary across subgroups, applying a global (pooled) correction to subgroup-level CATE estimates introduces systematic bias — over-correcting low-error subgroups and under-correcting high-error ones. In realistic settings, this \"debiasing\" can worsen CATE bias by 2-3x (median across configurations), with amplification up to 5.9x for K=4 subgroups; when naive bias is near zero, global correction creates bias where none existed. For the difference-in-means estimator, the amplification magnitude does NOT monotonically increase with K (K=2 extreme: up to 2.86× vs K=4 extreme: up to 2.41×); however, with nonlinear estimators such as CausalForest, more subgroups amplify the effect substantially (K=4/extreme: up to 5.9×) due to compounding estimation noise in tree-based CATE. Global correction increases subgroup-level bias in ~50% of the parameter space.\n\n2. **EC-HTE Solution**: Hierarchical Bayesian subgroup-stratified correction (EC-HTE) substantially reduces subgroup-level bias when misclassification heterogeneity is sufficiently high, while controlling estimation variance through partial pooling. HB provides meaningful RMSE reduction by borrowing strength across groups (classic James-Stein shrinkage). We provide precise crossover thresholds: EC-HTE outperforms global correction in RMSE with as few as 250 expert labels (K=2, high heterogeneity), scaling to ~1000 for K=4. **Boundary condition**: when expert labels per subgroup < ~25, shrinkage can be harmful — stratified MLE is preferred. **EC-HTE is most valuable precisely when it is most needed — the diagnostic criterion (Claim 3) identifies these scenarios.** **CONFIRMED** by exp-003 full 100 MC (1200 runs, 0 errors). HB crossover at ~11 experts/subgroup; ≥25 recommended for robust performance. Demonstrated with both difference-in-means and CausalForestDML (exp-011: consistent bias reduction pattern, ec_hte_forest |bias|=0.06 vs naive 0.16). CausalForest amplifies the debiasing-hurts effect (up to 5.9x in K=4/extreme) due to nonlinear CATE estimation.\n\n3. **Diagnostic Criterion**: The product of misclassification heterogeneity × CATE heterogeneity across subgroups provides a computable diagnostic that simultaneously predicts when global correction is harmful (Claim 1) and when the expert label investment for stratified correction is worthwhile (connecting to the budget guidelines from Claim 2). This criterion has standalone value independent of EC-HTE — even without adopting EC-HTE, knowing when global correction backfires is practically actionable.\n\n## Story Spine\n\n- **Problem**: NLP researchers increasingly use LLM annotations as effect modifiers in heterogeneous treatment effect analysis across computational social science (CSS) — e.g., sentiment framing moderates message effectiveness, hate speech type moderates intervention impact. LLM misclassification is non-random — error rates vary by subgroup (Ashwin et al., 2025: error varies by refugee status, gender, education; documented across CSS tasks including sentiment, stance, toxicity). Current PPI/DSL corrections apply global rectifiers assuming homogeneous error.\n\n- **Existing approaches & gaps**: Mozer (2026) proves arm-specific rectifiers fix ATE bias under differential prediction error, but explicitly limits analysis to average treatment effects. PPI (Angelopoulos et al., 2023) and DSL (Egami et al., 2024) correct population-level estimates. PPCI (Sui et al., 2026) extends PPI to conditional functionals but corrects outcome-side measurement, not covariate-side. ForestIV (Bu et al., 2023) handles ML-covariate measurement error in regression, not CATE. **No work addresses correction when the mismeasured variable defines the heterogeneity structure.**\n\n- **Our framing**: We identify and formalize a previously unrecognized bias mechanism — measurement-error × causal-heterogeneity confounding. When a pooled confusion matrix is applied to correct subgroup-level CATEs, it misattributes prediction noise across subgroups with different error rates, producing bias proportional to the product of misclassification heterogeneity and CATE heterogeneity. This is a problem-level discovery, not a technique-level extension. EC-HTE solves it via hierarchical Bayesian stratified correction with honest causal forest integration. **Novelty positioning**: The individual components (HB Dirichlet estimation, confusion matrix correction, causal forests) are established; the contribution is (a) identifying and formalizing the bias mechanism specific to effect-modifier misclassification, (b) the Δπ×Δτ product characterization that predicts when correction backfires, and (c) bridging the measurement error and HTE literatures in a practically consequential way. Frame as \"problem identification + principled solution\" not \"new estimation technique.\"\n\n- **Headline result template**: \"On semi-synthetic CSS benchmarks, global correction worsens subgroup CATE bias by 2-3x (median), with amplification up to 5.9x for K=4 subgroups; EC-HTE reduces bias to near-zero while maintaining 92-97% coverage, with as few as 250 expert labels. Combined with PPCI, the composition achieves near-zero bias (0.005) even when both covariate and outcome errors are present.\"\n\n- **Oracle framing**: When reporting DGP C results where ec_hte_ppci outperforms oracle, always use \"covariate-oracle\" (true Z + observed Y), never unqualified \"oracle\". Frame as \"composite correction is necessary and sufficient when both error types coexist\" — NOT \"beats oracle\". The result is by construction (ec_hte_ppci corrects both error types; covariate-oracle only corrects one), not surprising.\n\n## Key Contributions (ordered for paper)\n\n1. **Bias decomposition identity**: Exact population-level identity: bias ∝ misclassification heterogeneity × CATE heterogeneity (Δπ×Δτ product form). NOT a bound — it is an exact identity under A1–A4; finite-sample R² measures MC noise, not bound looseness. Includes \"debiasing can hurt\" proposition with constructive example. Frame as \"bias decomposition\" or \"bias identity\" throughout — never \"bias bound.\" (Theory + Empirical)\n2. **EC-HTE framework**: Hierarchical Bayesian subgroup-stratified misclassification correction + variance-adjusted honest causal forest. (Method)\n3. **Diagnostic criterion**: Computable threshold from pilot data to decide whether stratified correction is needed. (Practical tool)\n4. **EC-HTE + PPCI composition — empirically necessary and sufficient**: EC-HTE and PPCI are empirically necessary and sufficient in composition: neither alone adequately handles dual-error scenarios (DGP C), but their composition reduces bias to near-zero (0.005, a 35× improvement over EC-HTE alone). EC-HTE exploits mixing matrix structure for covariate-side error; PPCI rectifier captures outcome-side error. PPCI alone can partially correct covariate error but with higher variance (limited by gold subset size). In Methods, retain full discussion of partial overlap; in Abstract, lead with \"necessary and sufficient in composition.\" (Method + Empirical)\n5. **Comprehensive validation**: Synthetic + semi-synthetic + real-data case study (pattern consistency, not ground-truth benchmark) with multiple LLMs. (Empirical)\n\n## Anticipated Reviewer Concerns\n\n1. **\"Why not just use expert labels directly for CATE?\"** — Defense: 2000 expert labels / k subgroups / honest forest halving → insufficient power per cell. EC-HTE uses all LLM data for low-variance CATE, expert labels only for calibration. Explicitly quantify in experiments.\n\n2. **\"How is this different from PPCI / DSL?\"** — PPCI rectifier is a general-purpose correction that captures any systematic error (covariate + outcome); EC-HTE is a structured correction exploiting mixing matrix structure specifically for covariate-side error. They are complementary: EC-HTE alone is more efficient for covariate error (uses M⁻¹ structure), PPCI alone can partially correct covariate error but with higher variance (limited by gold subset). In composition, EC-HTE handles structured covariate error, residual rectifier handles outcome error. DSL applied per-subgroup is a valid baseline but lacks cross-subgroup shrinkage, operates at estimand level rather than measurement model level, and has strictly higher variance under partial pooling. Do NOT say \"DSL cannot do subgroup correction\" — say it lacks the principled shrinkage mechanism.\n\n3. **\"Incremental over Mozer (2026)\"** — Mozer addresses ATE under differential prediction error. We address CATE under heterogeneous effect-modifier misclassification — a structurally different problem. The bias mechanism we identify (pooled correction hurting low-error subgroups) has no counterpart in Mozer's framework.\n\n4. **\"How sensitive to subgroup definition?\"** — Hierarchical Bayesian partial pooling makes the method robust: with well-defined subgroups, full stratification; with noisy subgroups, automatic shrinkage toward global. Include robustness analysis.\n\n5. **\"Real-world expert label cost\"** — exp-006 provides precise RMSE crossover points: K=2/extreme n_expert=250, K=4/extreme n=1000, K=4/moderate n=2000, K=2/moderate never crosses (global always better on RMSE). Paper needs \"Expert Budget Recommendation\" subsection with per-K guidelines. Key message: when diagnostic criterion flags high heterogeneity (extreme regime), EC-HTE is worth the investment at moderate budgets; when heterogeneity is low, global correction is the safer choice. This honest framing connects Claim 2 (EC-HTE method) to Claim 3 (diagnostic criterion) — the diagnostic decides the correction strategy.\n\n6. **\"How does this differ from Carroll et al. (2006) / classical measurement error?\"** — The qualitative insight that misspecified corrections can amplify MSE is classical (Fuller 1987, Sec. 2.3). Our specific contributions beyond this are: (a) the quantitative Δπ×Δτ product form for CATE estimation with effect-modifier misclassification, (b) demonstrating this failure mode occurs *by default* in standard LLM annotation workflows, and (c) providing a computable diagnostic and correction framework. Must explicitly cite and contextualize: Fuller (1987), Carroll et al. (2006 Ch. 4), Gustafson (2003), Hu & Schennach (2008), Imai & Yamamoto (2010). Also cite Bayesian annotation models: Dawid & Skene, Passonneau & Carpenter (2014), Hovy et al. (2013). **Bibliography target: 30-35 references** spanning measurement error, Bayesian estimation, causal inference, LLM-as-annotator (Tornberg 2024, Gilardi et al. 2023, Ziems et al. 2024), HTE methods (Wager & Athey 2018, Kennedy 2023, Chernozhukov et al. 2018).\n\n7. **\"Methodological novelty is modest\"** — Acknowledge explicitly. Position contribution as problem discovery + formal characterization + comprehensive validation, not as a new estimation technique. HB partial pooling provides meaningful RMSE reduction for moderate subgroups but is NOT \"never worse than global\" — it is a James-Stein shrinkage estimator with known boundary conditions. **Recommended condition**: n_expert per subgroup ≥ ~25 (e.g., n_expert ≥ 100 for K=4 with 12% minority). Below this, stratified MLE is preferred. This honest limitation strengthens credibility. State conditions explicitly using per-subgroup formulation, not just total n_expert.\n\n8. **\"Why no figures?\"** — Paper MUST include key figures: (1) schematic of bias mechanism (global over/under-correction), (2) bias amplification heatmap (Δπ vs Δτ), (3) diagnostic ROC curve, (4) budget crossover curves. Move P2 experiments (exp-008, exp-009) to appendix to free space.\n\n## Venue Fit\n\nEMNLP fit is strong: core NLP application (LLM annotation quality), computational social science use cases (sentiment analysis, hate speech detection, refugee interview coding), direct comparison with NeurIPS/EMNLP published methods (DSL, PPI, benchmarking). Methodology is causal inference but framed through NLP lens. Potential reviewer pool: CL+CSS track. **NOTE**: Framing broadened from \"political-science\" to \"CSS\" (D004b) — TweetEval stance tasks too small (N<1000), sentiment (N=45K) usable but not political science. CSS is more accurate and equally strong for EMNLP.\n\nRisk: pure statistics reviewers may want stronger theoretical contribution (convergence rates, minimax bounds). Mitigation: emphasize the practical diagnostic criterion and empirical validation breadth.\n\n## Writing Requirements (Dream Round 2 consensus)\n\n1. **\"Bias decomposition\" NOT \"bias bound\"** — Theorem 1 is an exact identity at population level. R² < 1.0 in verification reflects finite-sample MC noise, not bound looseness.\n2. **Bibliography: 30-35 references minimum** — Must span 5 literatures: classical measurement error, Bayesian estimation, causal inference, LLM-as-annotator, CSS. Critical citations: Fuller 1987, Wager & Athey 2018, Imai & Yamamoto 2010.\n3. **3+ figures in main text** — (a) bias mechanism schematic, (b) Δπ×Δτ amplification heatmap, (c) diagnostic ROC curve, (d) budget crossover curves. Move exp-008/exp-009 tables to appendix.\n4. **Semi-synthetic DGP fully specified** — outcome generation, treatment assignment, CATE injection mechanism.\n5. **Real-data framed as pattern consistency** — NOT ground-truth benchmark. No bias/RMSE against unknown true CATEs.\n6. **EC-HTE advantage is conditional, not universal** — ec_hte dominates when misclassification heterogeneity is high (extreme regime) OR n_expert is large (≥500). In moderate regime with small n_expert (~100), global correction can outperform ec_hte because per-subgroup CM estimation noise exceeds the benefit of stratification. This connects to Claim 3: the diagnostic criterion (Δπ×Δτ) predicts when EC-HTE is needed. Unified condition: n_expert/K ≥ ~25-50 experts per subgroup.\n11. **RMSE tradeoff must be disclosed** — ec_hte has higher RMSE than global/naive in K=4/n≤100 configs (up to 3.5x in extreme cases) due to noisy per-subgroup CM estimation. Bias is lower but variance is higher. Must report both bias AND RMSE; include bias-RMSE tradeoff analysis. At n_expert≥500, ec_hte RMSE becomes competitive.\n12. **K-dependence of debiasing-hurts** — DIM estimator: K=2 extreme ~2.86×, K=4 extreme ~2.41× (does NOT monotonically increase with K). CausalForest: K=4 extreme up to 5.9× (nonlinear estimator amplifies with more subgroups). Report both patterns; do NOT claim \"more subgroups → always worse\" without qualifying the estimator.\n7. **Confusion matrix invertibility** — State det(Ĉ_k) ≠ 0 assumption explicitly.\n8. **Diagnostic AUC cross-validated** — Leave-one-setting-out or held-out evaluation, not in-sample.\n9. **Hyperprior values stated + sensitivity analysis** — Gamma(α, β) for Dirichlet concentration; report sensitivity to 2× changes.\n10. **PPCI complementarity elevated** — Highlight in abstract and contributions. Frame as \"complementary\" not \"orthogonal\": EC-HTE is structured covariate-error correction; PPCI rectifier is general residual correction. Composition = EC-HTE handles structured part + rectifier handles remainder (primarily outcome error).\n\n\n## experiment_plan (with registry status)\n\n- id: exp-001\n  claim: 2\n  description: 'Hierarchical Bayesian EC-HTE on synthetic data: implement HB Dirichlet-prior\n    confusion matrix estimator with partial pooling, compare against MLE/Laplace on\n    full regime sweep (extreme/moderate/homogeneous × n_expert 100-2000 × k=2,4 subgroups).\n    Primary validation of Claim 2. MUST report full MCMC diagnostics: sampler (PyMC\n    NUTS), chains (≥4), warmup (≥1000), R̂ (<1.01), ESS (>200), runtime vs MLE. Report\n    SEs/CIs for all metrics from MC runs. Monitor coverage calibration — if systematic\n    undercoverage, diagnose cause.'\n  priority: P0\n  gpu_budget_hours: 0\n  compute: CPU (PyMC + econml)\n  estimated_time: 12-24h (coding + 1000 MC runs)\n  deps: []\n  status: planned\n- id: exp-002\n  claim: 1\n  description: 'Formal bias bound verification: derive bias = f(misclass_heterogeneity,\n    CATE_heterogeneity) analytically, then verify empirically across systematic parameter\n    grid. Produce the ''debiasing can hurt'' proposition with constructive two-subgroup\n    example. MUST include K>2 extension: verify bias formula empirically for K=4 subgroups;\n    add Remark after Proposition 1 discussing general-K case (sum-of-products form).\n    Report R² of analytic prediction vs MC, bound tightness ratio, and CIs on all\n    bias estimates.'\n  priority: P0\n  gpu_budget_hours: 0\n  compute: CPU\n  estimated_time: 8-12h\n  deps: []\n  status: planned\n- id: exp-003\n  claim: 1,2,3\n  description: 'Semi-synthetic benchmark: use real CSS tweet corpus — TweetEval sentiment\n    (N=45K, primary) for exp-003. Framing broadened from ''political-science'' to\n    ''CSS'' per D004b (stance tasks N<1000 unusable). Inject known CATE heterogeneity\n    structure, annotate with GPT-4.1 (API) and optionally Qwen3-235B-A22B (GPU), measure\n    subgroup-specific misclassification rates, apply EC-HTE vs baselines. Subgroup\n    variables: text features (has_hashtag, text_length) for semi-synthetic; demographic\n    subgroups reserved for exp-004. MUST fully specify DGP in paper: (a) outcome generation\n    model, (b) treatment assignment mechanism, (c) how true CATEs are injected. MUST\n    run LLM annotation pilot (~1000 samples) before committing to verify per-subgroup\n    misclassification heterogeneity exists.'\n  priority: P0\n  gpu_budget_hours: 20\n  compute: GPU (LLM inference for annotation)\n  estimated_time: 24-36h\n  deps:\n  - exp-001\n  status: planned\n- id: exp-004\n  claim: 1,2\n  description: 'Real-data case study (pattern consistency, NOT ground-truth validation):\n    apply EC-HTE to real CSS dataset with subgroup-varying LLM misclassification.\n    Show: (a) global vs EC-HTE produce qualitatively different CATE distributions,\n    (b) EC-HTE results consistent with domain knowledge (demographic effect direction),\n    (c) bootstrap CIs on point estimate differences. Frame as ''illustrative application''\n    not ''ground-truth benchmark''. Reviewer confirmed: real data has no ground truth\n    CATE, CV-based ground truth is circular. PRIMARY: UC Berkeley Measuring Hate Speech\n    corpus (public, rich demographic subgroups). NICE-TO-HAVE: Ashwin et al. (2025)\n    if obtainable (requires author email + IRB, not feasible within 5-day DDL).'\n  priority: P0\n  gpu_budget_hours: 10\n  compute: GPU (LLM inference) or API\n  estimated_time: 24h\n  deps:\n  - exp-001\n  status: planned\n  risk: UC Berkeley dataset causal framework (T,Y,Z,S) mapping needs design\n- id: exp-005\n  claim: 3\n  description: 'Diagnostic criterion validation: compute misclass_heterogeneity ×\n    CATE_heterogeneity product from pilot data across all experimental settings, show\n    it predicts when global correction fails. ROC analysis of threshold. MUST use\n    cross-validation or held-out evaluation (NOT in-sample AUC on own experiments).\n    Dream Round 2 flagged in-sample AUC as methodological weakness across best and\n    median tiers.'\n  priority: P0\n  gpu_budget_hours: 0\n  compute: CPU\n  estimated_time: 4-8h\n  deps:\n  - exp-001\n  - exp-003\n  status: planned\n- id: exp-006\n  claim: 2\n  description: 'Expert label budget sensitivity: systematic sweep n_expert ∈ {50,\n    100, 250, 500, 1000, 2000} × k ∈ {2, 4, 8} subgroups. Find crossover point where\n    EC-HTE > Global. Validate HB partial pooling value at small n.'\n  priority: P1\n  gpu_budget_hours: 0\n  compute: CPU\n  estimated_time: 8h\n  deps:\n  - exp-001\n  status: planned\n- id: exp-007\n  claim: 1,2\n  description: 'PPCI + DSL baseline comparison: (a) PPCI kernel-based conditional\n    correction vs EC-HTE on covariate-side vs outcome-side error; (b) per-subgroup\n    DSL as additional baseline (DSL applied independently per subgroup, no cross-subgroup\n    shrinkage — shows EC-HTE''s partial pooling advantage); (c) EC-HTE+PPCI composition\n    for simultaneous covariate+outcome error; (d) CRITICAL: include ''pure covariate-error,\n    zero outcome-error'' control condition to demonstrate EC-HTE advantage when covariate-side\n    error dominates (PPCI should be ineffective here). Paper framing: DSL per-subgroup\n    is a valid baseline but lacks cross-subgroup shrinkage and operates at estimand\n    level rather than measurement model level.'\n  priority: P0\n  gpu_budget_hours: 0\n  compute: CPU\n  estimated_time: 16h\n  deps:\n  - exp-001\n  - exp-003\n  status: planned\n- id: exp-008\n  claim: 2\n  description: 'Multiple LLM annotator comparison: GPT-4.1 vs Qwen3-235B-A22B vs Claude\n    Sonnet 4.6 — measure misclassification heterogeneity patterns, show EC-HTE benefit\n    varies by LLM quality.'\n  priority: P1\n  gpu_budget_hours: 15\n  compute: GPU\n  estimated_time: 12h\n  deps:\n  - exp-003\n  status: planned\n- id: exp-009\n  claim: 2\n  description: 'Adaptive expert annotation allocation (Stage 3): implement CATE-weighted\n    allocation targeting high-CATE × high-error subgroups, compare against uniform\n    and uncertainty-only allocation.'\n  priority: P2\n  gpu_budget_hours: 0\n  compute: CPU\n  estimated_time: 16h\n  deps:\n  - exp-001\n  - exp-006\n  status: planned\n- id: exp-010\n  claim: 2\n  description: 'Robustness to misspecified subgroup structure: test EC-HTE when subgroups\n    are noisy/overlapping or when the true subgroup structure doesn''t align with\n    the conditioning variable.'\n  priority: P2\n  gpu_budget_hours: 0\n  compute: CPU\n  estimated_time: 8h\n  deps:\n  - exp-001\n  status: planned\n- id: exp-011\n  claim: 2\n  description: 'Causal forest integration: apply EC-HTE post-hoc correction to CausalForestDML\n    subgroup CATE estimates + leaf-level corrected pseudo-outcomes with variance-adjusted\n    CIs. Compare against naive forest and globally-corrected forest. ELEVATED TO P0:\n    Claim 2 explicitly states CausalForestDML but no experiment validates this — claim-evidence\n    gap is reviewer killshot.'\n  priority: P0\n  gpu_budget_hours: 0\n  compute: CPU\n  estimated_time: 16h\n  deps:\n  - exp-001\n  status: planned\n\n\n## registry (completed experiments)\n\n- exp_id: exp-001\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mcmc_rhat_max: 1.024\n    mcmc_ess_min: 129\n    mcmc_divergent: 0\n    runtime_min: 69\n    total_mc_runs: 3600\n    hb_vs_mle_rmse_improvement_k2_n50: 4-9%\n    hb_vs_mle_rmse_improvement_k2_n100: 1-2%\n    hb_vs_mle_rmse_improvement_k4_n50_moderate: 6-9%\n    hb_coverage_min: 0.87\n    hb_coverage_median: 0.93\n    k4_extreme_n50_blowup: false\n    k4_extreme_n50_blowup_note: Fixed by singularity guard + 4-chain MCMC\n    mcmc_fix_4chain:\n      rhat_max_all_configs: 1.0034\n      ess_min_all_configs: 1618\n      ess_improvement: ~4x vs 2-chain\n      k4_extreme_n50_A_rmse_z0: 3.14 → 0.99\n      k4_extreme_n50_B_rmse_z0: 509.93 → 0.27\n      k4_extreme_n100_A_rmse_z0: 11.57 → 0.29\n      singularity_guard_triggers: extreme/n=50 only (2 HB, 3 MLE / 100 runs)\n      results_file: results/exp001_hb_results_v2.csv\n    hyperprior_sensitivity:\n      scale_range: 0.5-2.0\n      k2_rmse_variation: <1%\n      k4_rmse_variation: ~4-5%\n      coverage_invariant: true\n      conclusion: robust\n      results_file: results/exp001_hyperprior_sensitivity.csv\n- exp_id: exp-002\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    r2_k2: 0.9939\n    r2_k4: 0.9738\n    tightness_ratio_k2_median: 1.0027\n    tightness_ratio_k4_median: 1.0234\n    debiasing_hurts_pct: 50\n    debiasing_hurts_pct_note: 260/520 (excluding dc=0 rows where bias=0)\n    debiasing_hurts_threshold_delta_misclass: 0.1235\n    max_bias_ratio_k2: 2.86\n    max_bias_ratio_k4: 2.41\n    coverage_2se_k2: 0.951\n    coverage_2se_k4: 0.94\n- exp_id: exp-007\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    total_rows: 6912\n    dgps:\n    - A_covariate_only\n    - B_outcome_only\n    - C_both_errors\n    - D_no_error\n    methods: 8\n    mc_runs: 100\n    double_correction_fix_verified: true\n    dgp_a_ec_hte_ppci_equals_ec_hte: true\n    dgp_c_extreme_n250_k2:\n      ec_hte_ppci_bias_z0: 0.005\n      ec_hte_ppci_rmse_z0: 0.225\n      ec_hte_bias_z0: 0.178\n      ec_hte_rmse_z0: 0.226\n      ppci_bias_z0: 0.004\n      ppci_rmse_z0: 0.261\n      naive_bias_z0: 0.251\n      naive_rmse_z0: 0.269\n    dgp_c_n500_k2:\n      ec_hte_ppci_bias_z0: 0.005\n      ec_hte_ppci_rmse_z0: 0.142\n      ec_hte_bias_z0: 0.088\n      ec_hte_rmse_z0: 0.134\n    key_finding: ec_hte_ppci achieves near-zero bias in DGP C (both errors), 35x better\n      than ec_hte. RMSE competitive at n>=250 extreme. Coverage always 1.0.\n- exp_id: exp-003\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    phase: A_semi_synthetic\n    n_subgroups: 4\n    misclass_rates: S0=0.05, S1=0.10, S2=0.15, S3=0.25\n    subgroup_sizes: S0~38%, S1~38%, S2~12%, S3~12%\n    p_z1_actual: 0.39\n    debiasing_hurts_confirmed: true\n    mc_runs: 100\n    v3_hb_integration_100mc:\n      methods:\n      - oracle\n      - naive\n      - global_corrected\n      - stratified_mle\n      - hb_ec_hte\n      hb_vs_mle_summary:\n        n50_S3_extreme: -57% RMSE (HB worse, but not catastrophic)\n        n50_S3_moderate: -54% RMSE z1 (HB worse)\n        n100_S3_extreme: +60% RMSE z1 (HB dramatically better)\n        n100_S3_moderate: +24% RMSE z1 (HB better)\n        n100_S2: +5-8% RMSE (HB better)\n        n250_S3: +5-17% RMSE (HB better)\n        n500_all: +0.2-1.6% (converged)\n      key_finding: '100 MC confirms: S3 blowup at n=50 is real but moderate (not catastrophic\n        as dry-run suggested). At n>=100, HB is better everywhere, especially S3 (+26-60%).\n        Partial pooling sweet spot is n=100-250.'\n      hypothesis_verdict: validated_with_boundary\n      boundary_condition: n_expert>=100 recommended; n=50 with extreme heterogeneity\n        in tiny subgroups shows moderate degradation\n    results_file_v3: results/exp003_phase_a_v3.csv\n    results_file_v3_raw: results/exp003_phase_a_v3_raw.csv\n- exp_id: exp-005\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    subgroup_level_auc: 0.833\n    subgroup_correlation: 0.86\n    setting_level_auc: 0.49\n    low_pi_hurt_pct: 84.6\n    high_pi_hurt_pct: 15.4\n    theory_alignment: consistent with exp-002 formula\n- exp_id: exp-011\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    n_mc: 100\n    n_configs: 8\n    total_rows: 144\n    runtime_min: 35\n    methods:\n    - naive_forest\n    - global_forest\n    - ec_hte_forest\n    mean_abs_bias:\n      naive_forest: 0.1558\n      global_forest: 0.1073\n      ec_hte_forest: 0.0608\n    mean_rmse:\n      naive_forest: 0.1782\n      global_forest: 0.1659\n      ec_hte_forest: 0.2289\n    debiasing_hurts_cases: 9\n    debiasing_hurts_max_ratio: 5.9\n    debiasing_hurts_detail: 'K=4/extreme/sg0: global 5.9x worse than naive'\n    k2_n500_ec_hte_bias_range: 0.004-0.013 (near zero)\n    k2_n500_global_bias_range: 0.033-0.109 (still biased)\n    pattern_consistent_with_diff_in_means: true\n    claim2_validated: true\n- exp_id: exp-006\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    n_mc: 100\n    total_rows: 288\n    runtime_min: 110\n    grid: n_expert=[50,100,250,500,1000,2000] × K=[2,4] × regime=[extreme,moderate]\n    crossover_hb_beats_global:\n      K2_extreme: 250\n      K2_moderate: never\n      K4_extreme: 1000\n      K4_moderate: 2000\n    hb_vs_mle: HB ≥ MLE in 21/24 configs (87.5%; partial pooling rarely hurts in symmetric\n      DGP)\n    hb_best_improvement_over_mle:\n      K4_moderate_n50_sgC: +42.4% RMSE\n      K4_extreme_n50_sgC: +23.4% RMSE\n      K4_moderate_n50_sgB: +24.0% RMSE\n    convergence: HB ≈ MLE at n≥1000 (<0.5% difference)\n    key_finding: 'Crossover depends strongly on K and regime. K=2: crossover at n=250\n      (practical). K=4: crossover at n=1000 (higher). HB provides consistent modest\n      improvement over MLE via partial pooling.'\n- exp_id: exp-007b\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics:\n    kill_reason: 'D012: Director 决定放弃 HB backfill。理由：PPCI 表核心 story 是互补性，HB vs MLE\n      是边际改进；exp-001 已验证 HB。CSV 已重命名为 .broken'\n- exp_id: exp-012\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    model: gpt-4.1-2025-04-14\n    n_samples: 500\n    valid_annotations: 500\n    failed: 0\n    accuracy_3class: 0.672\n    accuracy_binary: 0.858\n    subgroup_misclass_rates:\n      hash_long: 0\n      hash_medium: 0.2\n      hash_short: 0.174\n      nohash_long: 0\n      nohash_medium: 0.102\n      nohash_short: 0.138\n    delta_pi: 0.2\n    heterogeneity_significant: true\n    key_finding: Hashtag presence increases binary misclassification rate (~0.17-0.20\n      vs ~0.10-0.14 for non-hashtag). Delta-pi=0.200 confirms meaningful heterogeneity\n      for EC-HTE correction.\n    analysis_file: results/pilot_gpt41_analysis.md\n- exp_id: exp-013\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    config: K=4/extreme/n_expert=50\n    n_expert_per_K: 12.5\n    hb_method: EB (Empirical Bayes, not Gibbs — conservative estimate for boundary\n      condition)\n    avg_rmse_naive: 0.109\n    avg_rmse_global: 0.14\n    avg_rmse_mle: 0.28\n    avg_rmse_eb: 0.292\n    worst_subgroup: A(pi=0.30) EB RMSE=0.62\n    amplification_max: 4.4x (A/EB vs global)\n    threshold_confirmed: n_expert/K=12.5 < 25\n    naive_beats_all: true\n    debiasing_hurts_D: Naive bias=0.001, Global bias=0.110 — extreme over-correction\n      in lowest-error subgroup\n- exp_id: exp-014\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    configs: 3\n    asymmetric_configs:\n    - balanced(FPR=0.15,FNR=0.25)\n    - fpr_dominant(FPR=0.30,FNR=0.10)\n    - fnr_dominant(FPR=0.10,FNR=0.30)\n    delta_tau_grid:\n    - 0\n    - 0.1\n    - 0.2\n    - 0.3\n    - 0.5\n    n_mc: 100\n    N: 5000\n    n_expert: 250\n    r2_analytic_vs_mc: 0.992\n    product_structure_cv: ~1e-16 (exact)\n    product_structure_confirmed: true\n    a2_not_required: true\n    ec_hte_avg_abs_bias: 0.006\n    ec_hte_avg_rmse: 0.033\n    ec_hte_avg_coverage: 0.9\n    global_avg_abs_bias: 0.025\n    global_avg_rmse: 0.04\n    global_avg_coverage: 0.78\n    naive_avg_abs_bias: 0.025\n    naive_avg_rmse: 0.039\n    naive_avg_coverage: 0.87\n    bias_reduction_vs_global: 4.2x\n    coverage_improvement_vs_global: +12pp\n    latex_derivation_included: true\n    key_finding: Product structure bias = Δτ·[B_s]_{z,1} holds exactly under asymmetric\n      misclassification. A2 (symmetric) assumption is NOT required. EC-HTE dominates\n      with 4.2x bias reduction.\n- exp_id: exp-004\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    dataset: UC Berkeley Measuring Hate Speech\n    n_comments: 2496\n    valid_annotations: 2496\n    subgroups:\n      plat0_long: 624\n      plat0_short: 624\n      plat23_long: 624\n      plat23_short: 624\n    subgroup_type: text features (platform_group × text_length)\n    delta_pi: 0.117\n    global_FPR: 0.139\n    global_FNR: 0.533\n    misclass_rates:\n      plat0_long: 0.266\n      plat0_short: 0.337\n      plat23_long: 0.303\n      plat23_short: 0.383\n    avg_abs_bias:\n      naive: 0.21\n      global: 0.273\n      ec_hte: 0.313\n    cate_comparison: EC-HTE does not outperform global on avg |bias| — high FNR (~53%)\n      and wide CIs limit correction effectiveness on this dataset\n    key_finding: Δπ=0.117 confirms real-world misclassification heterogeneity across\n      text-feature subgroups. High global FNR (53%) indicates LLM severely under-classifies\n      dehumanization. CATE correction comparison inconclusive due to wide bootstrap\n      CIs.\n- exp_id: exp-008\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    models_completed:\n    - gpt-3.5-turbo\n    - gpt-4.1\n    - gpt-4o\n    - gpt-4o-mini\n    - gpt-4-turbo\n    - gpt-5.4\n    total_models: 6\n    proxy_provider: OpenAI only\n    gpt5x_model_used: gpt-5.4\n    gpt55_failed: reasoning tokens consume max_tokens budget, too slow (~1min/call)\n    filtered_analysis:\n      excluded_subgroups:\n      - False_long (n=6)\n      - True_long (n=4)\n      min_n_threshold: 10\n      retained_subgroups:\n      - False_medium (n=187)\n      - False_short (n=109)\n      - True_medium (n=125)\n      - True_short (n=69)\n    effective_delta_pi:\n      gpt-3.5-turbo: 0.198\n      gpt-4-turbo: 0.149\n      gpt-4.1: 0.098\n      gpt-4o: 0.08\n      gpt-4o-mini: 0.136\n      gpt-5.4: 0.114\n    all_effective_delta_pi_above_005: true\n    worst_subgroup_consensus: True_medium (5/6 models)\n    spearman_significant_pairs:\n    - gpt-4-turbo vs gpt-4o (ρ=1.000)\n    - gpt-4.1 vs gpt-4o-mini (ρ=1.000)\n    - gpt-4.1 vs gpt-5.4 (ρ=1.000)\n    - gpt-4o-mini vs gpt-5.4 (ρ=1.000)\n    spearman_note: Only 4 subgroups after filtering, limited statistical power (most\n      p>0.20)\n    key_finding: All 6 models (GPT-3.5 through GPT-5.4, three generations) show effective\n      Δπ > 0.05 after excluding n<10 subgroups. Heterogeneity is structural, not model-specific.\n- exp_id: exp-010\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    n_mc: 100\n    configs: 2\n    noise_levels:\n    - 0\n    - 0.1\n    - 0.25\n    - 0.5\n    total_runs: 800\n    runtime_sec: 15\n    k2_coverage_naive:\n    - 0.875\n    - 0.877\n    - 0.89\n    - 0.897\n    k2_coverage_hb:\n    - 0.958\n    - 0.948\n    - 0.95\n    - 0.945\n    k2_coverage_global:\n    - 0.925\n    - 0.935\n    - 0.932\n    - 0.945\n    k4_coverage_naive:\n    - 0.904\n    - 0.916\n    - 0.909\n    - 0.919\n    k4_coverage_hb:\n    - 0.956\n    - 0.958\n    - 0.96\n    - 0.946\n    k4_coverage_global:\n    - 0.93\n    - 0.953\n    - 0.948\n    - 0.944\n    hb_beats_mle_all_configs: true\n    hb_improvement_range: +0.1% to +0.9% RMSE\n    graceful_convergence_at_50pct: true\n    key_finding: 'Coverage is the decisive metric: naive 87-92%, EC-HTE 95-96% across\n      all noise levels. No catastrophic failure. HB shrinkage provides automatic safeguard\n      — converges to global at 50% noise.'\n\n# 输出格式（YAML，仅输出一个 ```yaml 块）\n\n```yaml\ntier: worst\nnarrative_guidance: \"...\"\nimagined_experiments:\n  - name: \"...\"\n    plan_id: \"...\"\n    description: \"...\"\n    expected_results: {metric: value, ...}\n    result_rationale: \"...\"\n    tables: []\n    figures_description: []\n    analysis: \"...\"\n```\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-21T12:38:09.412Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T12:38:09.412Z",
+  "sessionId": "db3430e5-3ddc-40c4-8e57-38f71ba7b2f0"
+}
+```
+
+---
+
+## Round 1
+
+11 recorded events
+
+### User
+
+_source line 3 · 2026-05-21T12:38:09.433Z_
+
+你是一位经验丰富的 ML 研究者。Phase 1 已定义了 worst 档的含义：
+
+含义：Claim 1（bias mechanism）仍然成立但 EC-HTE 在实际条件下优势微弱；诊断准则 CV 失败；real data 反向；审稿人以 novelty 不足拒稿。需彻底 reframe 为以 Claim 1 为核心的 'bias mechanism discovery' 单 claim 论文
+核心假设：['诊断准则 CV AUC < 0.55，Δπ×Δτ product 不具泛化预测力', 'Real data 持续显示 EC-HTE 比 global 差（当前 |bias| 差距 0.04，可能在更多配置下复现）', 'EC-HTE 优势仅存在于 synthetic extreme regime；moderate regime 和 real data 均无 benefit 或 degradation', "审稿人将 RMSE tradeoff 视为 disqualifying：'reduces bias but increases MSE — net negative in practice'", "Novelty 论点（'just Bayesian CM estimation applied to CATE'）未说服审稿人；被要求与 Carroll et al. 2006 做更深对比", 'PPCI 互补性被视为 trivial（两个 correction 覆盖两种 error，construction by design）']
+关键指标范围：{'bias_amplification_max_dim': [2.4, 2.9], 'bias_amplification_max_cf': [4.5, 6.0], 'ec_hte_bias_reduction_factor_vs_global': [0.8, 1.5], 'diagnostic_auc_cv': [0.4, 0.55], 'real_data_ec_hte_minus_global_abs_bias': [0.02, 0.1], 'ec_hte_rmse_penalty_median_across_configs': [1.3, 2.5], 'coverage_ec_hte_small_n': [0.85, 0.92], 'hb_crossover_k4_moderate': [2000, 'never']}
+叙事方向：放弃三 Claim 结构。重构为单 claim 论文：'Debiasing Can Hurt — When Global Misclassification Correction Amplifies Subgroup CATE Bias'。Claim 1（bias identity + exact product form + constructive 'debiasing hurts' proposition）成为整篇论文核心。EC-HTE 降级为 'one possible mitigation' 放在较短的 methods section，诚实评估其实际优势条件狭窄。诊断准则重构为 sufficient condition for concern（Δπ×Δτ 大时 global correction 肯定有风险）而非 decision tool。PPCI 保留为实用建议但去主次化。论文变短、更聚焦、理论更强。仍投 EMNLP main——bias mechanism result 本身对 CSS+NLP 社区有新颖性和实用价值，类似 'negative result + formal characterization' 类型的成功论文。预期需要 2R 或 resubmit，但不降级 venue。
+
+基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。
+每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。
+
+# Project context
+project: ec_hte_llm_annotation
+venue: emnlp-2026
+
+## paper_framing.md
+
+# Paper Framing — ec_hte_llm_annotation
+
+## Target Venue
+- Primary: EMNLP 2026 Main (via ARR)
+- Deadline: ARR submission May 25, 2026; commitment deadline August 2, 2026
+- Format: Long paper, 8 pages + unlimited references
+
+## Core Claims (3 条，可证伪)
+
+1. **Bias Mechanism Discovery**: When LLM misclassification rates for an effect modifier vary across subgroups, applying a global (pooled) correction to subgroup-level CATE estimates introduces systematic bias — over-correcting low-error subgroups and under-correcting high-error ones. In realistic settings, this "debiasing" can worsen CATE bias by 2-3x (median across configurations), with amplification up to 5.9x for K=4 subgroups; when naive bias is near zero, global correction creates bias where none existed. For the difference-in-means estimator, the amplification magnitude does NOT monotonically increase with K (K=2 extreme: up to 2.86× vs K=4 extreme: up to 2.41×); however, with nonlinear estimators such as CausalForest, more subgroups amplify the effect substantially (K=4/extreme: up to 5.9×) due to compounding estimation noise in tree-based CATE. Global correction increases subgroup-level bias in ~50% of the parameter space.
+
+2. **EC-HTE Solution**: Hierarchical Bayesian subgroup-stratified correction (EC-HTE) substantially reduces subgroup-level bias when misclassification heterogeneity is sufficiently high, while controlling estimation variance through partial pooling. HB provides meaningful RMSE reduction by borrowing strength across groups (classic James-Stein shrinkage). We provide precise crossover thresholds: EC-HTE outperforms global correction in RMSE with as few as 250 expert labels (K=2, high heterogeneity), scaling to ~1000 for K=4. **Boundary condition**: when expert labels per subgroup < ~25, shrinkage can be harmful — stratified MLE is preferred. **EC-HTE is most valuable precisely when it is most needed — the diagnostic criterion (Claim 3) identifies these scenarios.** **CONFIRMED** by exp-003 full 100 MC (1200 runs, 0 errors). HB crossover at ~11 experts/subgroup; ≥25 recommended for robust performance. Demonstrated with both difference-in-means and CausalForestDML (exp-011: consistent bias reduction pattern, ec_hte_forest |bias|=0.06 vs naive 0.16). CausalForest amplifies the debiasing-hurts effect (up to 5.9x in K=4/extreme) due to nonlinear CATE estimation.
+
+3. **Diagnostic Criterion**: The product of misclassification heterogeneity × CATE heterogeneity across subgroups provides a computable diagnostic that simultaneously predicts when global correction is harmful (Claim 1) and when the expert label investment for stratified correction is worthwhile (connecting to the budget guidelines from Claim 2). This criterion has standalone value independent of EC-HTE — even without adopting EC-HTE, knowing when global correction backfires is practically actionable.
+
+## Story Spine
+
+- **Problem**: NLP researchers increasingly use LLM annotations as effect modifiers in heterogeneous treatment effect analysis across computational social science (CSS) — e.g., sentiment framing moderates message effectiveness, hate speech type moderates intervention impact. LLM misclassification is non-random — error rates vary by subgroup (Ashwin et al., 2025: error varies by refugee status, gender, education; documented across CSS tasks including sentiment, stance, toxicity). Current PPI/DSL corrections apply global rectifiers assuming homogeneous error.
+
+- **Existing approaches & gaps**: Mozer (2026) proves arm-specific rectifiers fix ATE bias under differential prediction error, but explicitly limits analysis to average treatment effects. PPI (Angelopoulos et al., 2023) and DSL (Egami et al., 2024) correct population-level estimates. PPCI (Sui et al., 2026) extends PPI to conditional functionals but corrects outcome-side measurement, not covariate-side. ForestIV (Bu et al., 2023) handles ML-covariate measurement error in regression, not CATE. **No work addresses correction when the mismeasured variable defines the heterogeneity structure.**
+
+- **Our framing**: We identify and formalize a previously unrecognized bias mechanism — measurement-error × causal-heterogeneity confounding. When a pooled confusion matrix is applied to correct subgroup-level CATEs, it misattributes prediction noise across subgroups with different error rates, producing bias proportional to the product of misclassification heterogeneity and CATE heterogeneity. This is a problem-level discovery, not a technique-level extension. EC-HTE solves it via hierarchical Bayesian stratified correction with honest causal forest integration. **Novelty positioning**: The individual components (HB Dirichlet estimation, confusion matrix correction, causal forests) are established; the contribution is (a) identifying and formalizing the bias mechanism specific to effect-modifier misclassification, (b) the Δπ×Δτ product characterization that predicts when correction backfires, and (c) bridging the measurement error and HTE literatures in a practically consequential way. Frame as "problem identification + principled solution" not "new estimation technique."
+
+- **Headline result template**: "On semi-synthetic CSS benchmarks, global correction worsens subgroup CATE bias by 2-3x (median), with amplification up to 5.9x for K=4 subgroups; EC-HTE reduces bias to near-zero while maintaining 92-97% coverage, with as few as 250 expert labels. Combined with PPCI, the composition achieves near-zero bias (0.005) even when both covariate and outcome errors are present."
+
+- **Oracle framing**: When reporting DGP C results where ec_hte_ppci outperforms oracle, always use "covariate-oracle" (true Z + observed Y), never unqualified "oracle". Frame as "composite correction is necessary and sufficient when both error types coexist" — NOT "beats oracle". The result is by construction (ec_hte_ppci corrects both error types; covariate-oracle only corrects one), not surprising.
+
+## Key Contributions (ordered for paper)
+
+1. **Bias decomposition identity**: Exact population-level identity: bias ∝ misclassification heterogeneity × CATE heterogeneity (Δπ×Δτ product form). NOT a bound — it is an exact identity under A1–A4; finite-sample R² measures MC noise, not bound looseness. Includes "debiasing can hurt" proposition with constructive example. Frame as "bias decomposition" or "bias identity" throughout — never "bias bound." (Theory + Empirical)
+2. **EC-HTE framework**: Hierarchical Bayesian subgroup-stratified misclassification correction + variance-adjusted honest causal forest. (Method)
+3. **Diagnostic criterion**: Computable threshold from pilot data to decide whether stratified correction is needed. (Practical tool)
+4. **EC-HTE + PPCI composition — empirically necessary and sufficient**: EC-HTE and PPCI are empirically necessary and sufficient in composition: neither alone adequately handles dual-error scenarios (DGP C), but their composition reduces bias to near-zero (0.005, a 35× improvement over EC-HTE alone). EC-HTE exploits mixing matrix structure for covariate-side error; PPCI rectifier captures outcome-side error. PPCI alone can partially correct covariate error but with higher variance (limited by gold subset size). In Methods, retain full discussion of partial overlap; in Abstract, lead with "necessary and sufficient in composition." (Method + Empirical)
+5. **Comprehensive validation**: Synthetic + semi-synthetic + real-data case study (pattern consistency, not ground-truth benchmark) with multiple LLMs. (Empirical)
+
+## Anticipated Reviewer Concerns
+
+1. **"Why not just use expert labels directly for CATE?"** — Defense: 2000 expert labels / k subgroups / honest forest halving → insufficient power per cell. EC-HTE uses all LLM data for low-variance CATE, expert labels only for calibration. Explicitly quantify in experiments.
+
+2. **"How is this different from PPCI / DSL?"** — PPCI rectifier is a general-purpose correction that captures any systematic error (covariate + outcome); EC-HTE is a structured correction exploiting mixing matrix structure specifically for covariate-side error. They are complementary: EC-HTE alone is more efficient for covariate error (uses M⁻¹ structure), PPCI alone can partially correct covariate error but with higher variance (limited by gold subset). In composition, EC-HTE handles structured covariate error, residual rectifier handles outcome error. DSL applied per-subgroup is a valid baseline but lacks cross-subgroup shrinkage, operates at estimand level rather than measurement model level, and has strictly higher variance under partial pooling. Do NOT say "DSL cannot do subgroup correction" — say it lacks the principled shrinkage mechanism.
+
+3. **"Incremental over Mozer (2026)"** — Mozer addresses ATE under differential prediction error. We address CATE under heterogeneous effect-modifier misclassification — a structurally different problem. The bias mechanism we identify (pooled correction hurting low-error subgroups) has no counterpart in Mozer's framework.
+
+4. **"How sensitive to subgroup definition?"** — Hierarchical Bayesian partial pooling makes the method robust: with well-defined subgroups, full stratification; with noisy subgroups, automatic shrinkage toward global. Include robustness analysis.
+
+5. **"Real-world expert label cost"** — exp-006 provides precise RMSE crossover points: K=2/extreme n_expert=250, K=4/extreme n=1000, K=4/moderate n=2000, K=2/moderate never crosses (global always better on RMSE). Paper needs "Expert Budget Recommendation" subsection with per-K guidelines. Key message: when diagnostic criterion flags high heterogeneity (extreme regime), EC-HTE is worth the investment at moderate budgets; when heterogeneity is low, global correction is the safer choice. This honest framing connects Claim 2 (EC-HTE method) to Claim 3 (diagnostic criterion) — the diagnostic decides the correction strategy.
+
+6. **"How does this differ from Carroll et al. (2006) / classical measurement error?"** — The qualitative insight that misspecified corrections can amplify MSE is classical (Fuller 1987, Sec. 2.3). Our specific contributions beyond this are: (a) the quantitative Δπ×Δτ product form for CATE estimation with effect-modifier misclassification, (b) demonstrating this failure mode occurs *by default* in standard LLM annotation workflows, and (c) providing a computable diagnostic and correction framework. Must explicitly cite and contextualize: Fuller (1987), Carroll et al. (2006 Ch. 4), Gustafson (2003), Hu & Schennach (2008), Imai & Yamamoto (2010). Also cite Bayesian annotation models: Dawid & Skene, Passonneau & Carpenter (2014), Hovy et al. (2013). **Bibliography target: 30-35 references** spanning measurement error, Bayesian estimation, causal inference, LLM-as-annotator (Tornberg 2024, Gilardi et al. 2023, Ziems et al. 2024), HTE methods (Wager & Athey 2018, Kennedy 2023, Chernozhukov et al. 2018).
+
+7. **"Methodological novelty is modest"** — Acknowledge explicitly. Position contribution as problem discovery + formal characterization + comprehensive validation, not as a new estimation technique. HB partial pooling provides meaningful RMSE reduction for moderate subgroups but is NOT "never worse than global" — it is a James-Stein shrinkage estimator with known boundary conditions. **Recommended condition**: n_expert per subgroup ≥ ~25 (e.g., n_expert ≥ 100 for K=4 with 12% minority). Below this, stratified MLE is preferred. This honest limitation strengthens credibility. State conditions explicitly using per-subgroup formulation, not just total n_expert.
+
+8. **"Why no figures?"** — Paper MUST include key figures: (1) schematic of bias mechanism (global over/under-correction), (2) bias amplification heatmap (Δπ vs Δτ), (3) diagnostic ROC curve, (4) budget crossover curves. Move P2 experiments (exp-008, exp-009) to appendix to free space.
+
+## Venue Fit
+
+EMNLP fit is strong: core NLP application (LLM annotation quality), computational social science use cases (sentiment analysis, hate speech detection, refugee interview coding), direct comparison with NeurIPS/EMNLP published methods (DSL, PPI, benchmarking). Methodology is causal inference but framed through NLP lens. Potential reviewer pool: CL+CSS track. **NOTE**: Framing broadened from "political-science" to "CSS" (D004b) — TweetEval stance tasks too small (N<1000), sentiment (N=45K) usable but not political science. CSS is more accurate and equally strong for EMNLP.
+
+Risk: pure statistics reviewers may want stronger theoretical contribution (convergence rates, minimax bounds). Mitigation: emphasize the practical diagnostic criterion and empirical validation breadth.
+
+## Writing Requirements (Dream Round 2 consensus)
+
+1. **"Bias decomposition" NOT "bias bound"** — Theorem 1 is an exact identity at population level. R² < 1.0 in verification reflects finite-sample MC noise, not bound looseness.
+2. **Bibliography: 30-35 references minimum** — Must span 5 literatures: classical measurement error, Bayesian estimation, causal inference, LLM-as-annotator, CSS. Critical citations: Fuller 1987, Wager & Athey 2018, Imai & Yamamoto 2010.
+3. **3+ figures in main text** — (a) bias mechanism schematic, (b) Δπ×Δτ amplification heatmap, (c) diagnostic ROC curve, (d) budget crossover curves. Move exp-008/exp-009 tables to appendix.
+4. **Semi-synthetic DGP fully specified** — outcome generation, treatment assignment, CATE injection mechanism.
+5. **Real-data framed as pattern consistency** — NOT ground-truth benchmark. No bias/RMSE against unknown true CATEs.
+6. **EC-HTE advantage is conditional, not universal** — ec_hte dominates when misclassification heterogeneity is high (extreme regime) OR n_expert is large (≥500). In moderate regime with small n_expert (~100), global correction can outperform ec_hte because per-subgroup CM estimation noise exceeds the benefit of stratification. This connects to Claim 3: the diagnostic criterion (Δπ×Δτ) predicts when EC-HTE is needed. Unified condition: n_expert/K ≥ ~25-50 experts per subgroup.
+11. **RMSE tradeoff must be disclosed** — ec_hte has higher RMSE than global/naive in K=4/n≤100 configs (up to 3.5x in extreme cases) due to noisy per-subgroup CM estimation. Bias is lower but variance is higher. Must report both bias AND RMSE; include bias-RMSE tradeoff analysis. At n_expert≥500, ec_hte RMSE becomes competitive.
+12. **K-dependence of debiasing-hurts** — DIM estimator: K=2 extreme ~2.86×, K=4 extreme ~2.41× (does NOT monotonically increase with K). CausalForest: K=4 extreme up to 5.9× (nonlinear estimator amplifies with more subgroups). Report both patterns; do NOT claim "more subgroups → always worse" without qualifying the estimator.
+7. **Confusion matrix invertibility** — State det(Ĉ_k) ≠ 0 assumption explicitly.
+8. **Diagnostic AUC cross-validated** — Leave-one-setting-out or held-out evaluation, not in-sample.
+9. **Hyperprior values stated + sensitivity analysis** — Gamma(α, β) for Dirichlet concentration; report sensitivity to 2× changes.
+10. **PPCI complementarity elevated** — Highlight in abstract and contributions. Frame as "complementary" not "orthogonal": EC-HTE is structured covariate-error correction; PPCI rectifier is general residual correction. Composition = EC-HTE handles structured part + rectifier handles remainder (primarily outcome error).
+
+
+## experiment_plan (with registry status)
+
+- id: exp-001
+  claim: 2
+  description: 'Hierarchical Bayesian EC-HTE on synthetic data: implement HB Dirichlet-prior
+    confusion matrix estimator with partial pooling, compare against MLE/Laplace on
+    full regime sweep (extreme/moderate/homogeneous × n_expert 100-2000 × k=2,4 subgroups).
+    Primary validation of Claim 2. MUST report full MCMC diagnostics: sampler (PyMC
+    NUTS), chains (≥4), warmup (≥1000), R̂ (<1.01), ESS (>200), runtime vs MLE. Report
+    SEs/CIs for all metrics from MC runs. Monitor coverage calibration — if systematic
+    undercoverage, diagnose cause.'
+  priority: P0
+  gpu_budget_hours: 0
+  compute: CPU (PyMC + econml)
+  estimated_time: 12-24h (coding + 1000 MC runs)
+  deps: []
+  status: planned
+- id: exp-002
+  claim: 1
+  description: 'Formal bias bound verification: derive bias = f(misclass_heterogeneity,
+    CATE_heterogeneity) analytically, then verify empirically across systematic parameter
+    grid. Produce the ''debiasing can hurt'' proposition with constructive two-subgroup
+    example. MUST include K>2 extension: verify bias formula empirically for K=4 subgroups;
+    add Remark after Proposition 1 discussing general-K case (sum-of-products form).
+    Report R² of analytic prediction vs MC, bound tightness ratio, and CIs on all
+    bias estimates.'
+  priority: P0
+  gpu_budget_hours: 0
+  compute: CPU
+  estimated_time: 8-12h
+  deps: []
+  status: planned
+- id: exp-003
+  claim: 1,2,3
+  description: 'Semi-synthetic benchmark: use real CSS tweet corpus — TweetEval sentiment
+    (N=45K, primary) for exp-003. Framing broadened from ''political-science'' to
+    ''CSS'' per D004b (stance tasks N<1000 unusable). Inject known CATE heterogeneity
+    structure, annotate with GPT-4.1 (API) and optionally Qwen3-235B-A22B (GPU), measure
+    subgroup-specific misclassification rates, apply EC-HTE vs baselines. Subgroup
+    variables: text features (has_hashtag, text_length) for semi-synthetic; demographic
+    subgroups reserved for exp-004. MUST fully specify DGP in paper: (a) outcome generation
+    model, (b) treatment assignment mechanism, (c) how true CATEs are injected. MUST
+    run LLM annotation pilot (~1000 samples) before committing to verify per-subgroup
+    misclassification heterogeneity exists.'
+  priority: P0
+  gpu_budget_hours: 20
+  compute: GPU (LLM inference for annotation)
+  estimated_time: 24-36h
+  deps:
+  - exp-001
+  status: planned
+- id: exp-004
+  claim: 1,2
+  description: 'Real-data case study (pattern consistency, NOT ground-truth validation):
+    apply EC-HTE to real CSS dataset with subgroup-varying LLM misclassification.
+    Show: (a) global vs EC-HTE produce qualitatively different CATE distributions,
+    (b) EC-HTE results consistent with domain knowledge (demographic effect direction),
+    (c) bootstrap CIs on point estimate differences. Frame as ''illustrative application''
+    not ''ground-truth benchmark''. Reviewer confirmed: real data has no ground truth
+    CATE, CV-based ground truth is circular. PRIMARY: UC Berkeley Measuring Hate Speech
+    corpus (public, rich demographic subgroups). NICE-TO-HAVE: Ashwin et al. (2025)
+    if obtainable (requires author email + IRB, not feasible within 5-day DDL).'
+  priority: P0
+  gpu_budget_hours: 10
+  compute: GPU (LLM inference) or API
+  estimated_time: 24h
+  deps:
+  - exp-001
+  status: planned
+  risk: UC Berkeley dataset causal framework (T,Y,Z,S) mapping needs design
+- id: exp-005
+  claim: 3
+  description: 'Diagnostic criterion validation: compute misclass_heterogeneity ×
+    CATE_heterogeneity product from pilot data across all experimental settings, show
+    it predicts when global correction fails. ROC analysis of threshold. MUST use
+    cross-validation or held-out evaluation (NOT in-sample AUC on own experiments).
+    Dream Round 2 flagged in-sample AUC as methodological weakness across best and
+    median tiers.'
+  priority: P0
+  gpu_budget_hours: 0
+  compute: CPU
+  estimated_time: 4-8h
+  deps:
+  - exp-001
+  - exp-003
+  status: planned
+- id: exp-006
+  claim: 2
+  description: 'Expert label budget sensitivity: systematic sweep n_expert ∈ {50,
+    100, 250, 500, 1000, 2000} × k ∈ {2, 4, 8} subgroups. Find crossover point where
+    EC-HTE > Global. Validate HB partial pooling value at small n.'
+  priority: P1
+  gpu_budget_hours: 0
+  compute: CPU
+  estimated_time: 8h
+  deps:
+  - exp-001
+  status: planned
+- id: exp-007
+  claim: 1,2
+  description: 'PPCI + DSL baseline comparison: (a) PPCI kernel-based conditional
+    correction vs EC-HTE on covariate-side vs outcome-side error; (b) per-subgroup
+    DSL as additional baseline (DSL applied independently per subgroup, no cross-subgroup
+    shrinkage — shows EC-HTE''s partial pooling advantage); (c) EC-HTE+PPCI composition
+    for simultaneous covariate+outcome error; (d) CRITICAL: include ''pure covariate-error,
+    zero outcome-error'' control condition to demonstrate EC-HTE advantage when covariate-side
+    error dominates (PPCI should be ineffective here). Paper framing: DSL per-subgroup
+    is a valid baseline but lacks cross-subgroup shrinkage and operates at estimand
+    level rather than measurement model level.'
+  priority: P0
+  gpu_budget_hours: 0
+  compute: CPU
+  estimated_time: 16h
+  deps:
+  - exp-001
+  - exp-003
+  status: planned
+- id: exp-008
+  claim: 2
+  description: 'Multiple LLM annotator comparison: GPT-4.1 vs Qwen3-235B-A22B vs Claude
+    Sonnet 4.6 — measure misclassification heterogeneity patterns, show EC-HTE benefit
+    varies by LLM quality.'
+  priority: P1
+  gpu_budget_hours: 15
+  compute: GPU
+  estimated_time: 12h
+  deps:
+  - exp-003
+  status: planned
+- id: exp-009
+  claim: 2
+  description: 'Adaptive expert annotation allocation (Stage 3): implement CATE-weighted
+    allocation targeting high-CATE × high-error subgroups, compare against uniform
+    and uncertainty-only allocation.'
+  priority: P2
+  gpu_budget_hours: 0
+  compute: CPU
+  estimated_time: 16h
+  deps:
+  - exp-001
+  - exp-006
+  status: planned
+- id: exp-010
+  claim: 2
+  description: 'Robustness to misspecified subgroup structure: test EC-HTE when subgroups
+    are noisy/overlapping or when the true subgroup structure doesn''t align with
+    the conditioning variable.'
+  priority: P2
+  gpu_budget_hours: 0
+  compute: CPU
+  estimated_time: 8h
+  deps:
+  - exp-001
+  status: planned
+- id: exp-011
+  claim: 2
+  description: 'Causal forest integration: apply EC-HTE post-hoc correction to CausalForestDML
+    subgroup CATE estimates + leaf-level corrected pseudo-outcomes with variance-adjusted
+    CIs. Compare against naive forest and globally-corrected forest. ELEVATED TO P0:
+    Claim 2 explicitly states CausalForestDML but no experiment validates this — claim-evidence
+    gap is reviewer killshot.'
+  priority: P0
+  gpu_budget_hours: 0
+  compute: CPU
+  estimated_time: 16h
+  deps:
+  - exp-001
+  status: planned
+
+
+## registry (completed experiments)
+
+- exp_id: exp-001
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mcmc_rhat_max: 1.024
+    mcmc_ess_min: 129
+    mcmc_divergent: 0
+    runtime_min: 69
+    total_mc_runs: 3600
+    hb_vs_mle_rmse_improvement_k2_n50: 4-9%
+    hb_vs_mle_rmse_improvement_k2_n100: 1-2%
+    hb_vs_mle_rmse_improvement_k4_n50_moderate: 6-9%
+    hb_coverage_min: 0.87
+    hb_coverage_median: 0.93
+    k4_extreme_n50_blowup: false
+    k4_extreme_n50_blowup_note: Fixed by singularity guard + 4-chain MCMC
+    mcmc_fix_4chain:
+      rhat_max_all_configs: 1.0034
+      ess_min_all_configs: 1618
+      ess_improvement: ~4x vs 2-chain
+      k4_extreme_n50_A_rmse_z0: 3.14 → 0.99
+      k4_extreme_n50_B_rmse_z0: 509.93 → 0.27
+      k4_extreme_n100_A_rmse_z0: 11.57 → 0.29
+      singularity_guard_triggers: extreme/n=50 only (2 HB, 3 MLE / 100 runs)
+      results_file: results/exp001_hb_results_v2.csv
+    hyperprior_sensitivity:
+      scale_range: 0.5-2.0
+      k2_rmse_variation: <1%
+      k4_rmse_variation: ~4-5%
+      coverage_invariant: true
+      conclusion: robust
+      results_file: results/exp001_hyperprior_sensitivity.csv
+- exp_id: exp-002
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    r2_k2: 0.9939
+    r2_k4: 0.9738
+    tightness_ratio_k2_median: 1.0027
+    tightness_ratio_k4_median: 1.0234
+    debiasing_hurts_pct: 50
+    debiasing_hurts_pct_note: 260/520 (excluding dc=0 rows where bias=0)
+    debiasing_hurts_threshold_delta_misclass: 0.1235
+    max_bias_ratio_k2: 2.86
+    max_bias_ratio_k4: 2.41
+    coverage_2se_k2: 0.951
+    coverage_2se_k4: 0.94
+- exp_id: exp-007
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    total_rows: 6912
+    dgps:
+    - A_covariate_only
+    - B_outcome_only
+    - C_both_errors
+    - D_no_error
+    methods: 8
+    mc_runs: 100
+    double_correction_fix_verified: true
+    dgp_a_ec_hte_ppci_equals_ec_hte: true
+    dgp_c_extreme_n250_k2:
+      ec_hte_ppci_bias_z0: 0.005
+      ec_hte_ppci_rmse_z0: 0.225
+      ec_hte_bias_z0: 0.178
+      ec_hte_rmse_z0: 0.226
+      ppci_bias_z0: 0.004
+      ppci_rmse_z0: 0.261
+      naive_bias_z0: 0.251
+      naive_rmse_z0: 0.269
+    dgp_c_n500_k2:
+      ec_hte_ppci_bias_z0: 0.005
+      ec_hte_ppci_rmse_z0: 0.142
+      ec_hte_bias_z0: 0.088
+      ec_hte_rmse_z0: 0.134
+    key_finding: ec_hte_ppci achieves near-zero bias in DGP C (both errors), 35x better
+      than ec_hte. RMSE competitive at n>=250 extreme. Coverage always 1.0.
+- exp_id: exp-003
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    phase: A_semi_synthetic
+    n_subgroups: 4
+    misclass_rates: S0=0.05, S1=0.10, S2=0.15, S3=0.25
+    subgroup_sizes: S0~38%, S1~38%, S2~12%, S3~12%
+    p_z1_actual: 0.39
+    debiasing_hurts_confirmed: true
+    mc_runs: 100
+    v3_hb_integration_100mc:
+      methods:
+      - oracle
+      - naive
+      - global_corrected
+      - stratified_mle
+      - hb_ec_hte
+      hb_vs_mle_summary:
+        n50_S3_extreme: -57% RMSE (HB worse, but not catastrophic)
+        n50_S3_moderate: -54% RMSE z1 (HB worse)
+        n100_S3_extreme: +60% RMSE z1 (HB dramatically better)
+        n100_S3_moderate: +24% RMSE z1 (HB better)
+        n100_S2: +5-8% RMSE (HB better)
+        n250_S3: +5-17% RMSE (HB better)
+        n500_all: +0.2-1.6% (converged)
+      key_finding: '100 MC confirms: S3 blowup at n=50 is real but moderate (not catastrophic
+        as dry-run suggested). At n>=100, HB is better everywhere, especially S3 (+26-60%).
+        Partial pooling sweet spot is n=100-250.'
+      hypothesis_verdict: validated_with_boundary
+      boundary_condition: n_expert>=100 recommended; n=50 with extreme heterogeneity
+        in tiny subgroups shows moderate degradation
+    results_file_v3: results/exp003_phase_a_v3.csv
+    results_file_v3_raw: results/exp003_phase_a_v3_raw.csv
+- exp_id: exp-005
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    subgroup_level_auc: 0.833
+    subgroup_correlation: 0.86
+    setting_level_auc: 0.49
+    low_pi_hurt_pct: 84.6
+    high_pi_hurt_pct: 15.4
+    theory_alignment: consistent with exp-002 formula
+- exp_id: exp-011
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    n_mc: 100
+    n_configs: 8
+    total_rows: 144
+    runtime_min: 35
+    methods:
+    - naive_forest
+    - global_forest
+    - ec_hte_forest
+    mean_abs_bias:
+      naive_forest: 0.1558
+      global_forest: 0.1073
+      ec_hte_forest: 0.0608
+    mean_rmse:
+      naive_forest: 0.1782
+      global_forest: 0.1659
+      ec_hte_forest: 0.2289
+    debiasing_hurts_cases: 9
+    debiasing_hurts_max_ratio: 5.9
+    debiasing_hurts_detail: 'K=4/extreme/sg0: global 5.9x worse than naive'
+    k2_n500_ec_hte_bias_range: 0.004-0.013 (near zero)
+    k2_n500_global_bias_range: 0.033-0.109 (still biased)
+    pattern_consistent_with_diff_in_means: true
+    claim2_validated: true
+- exp_id: exp-006
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    n_mc: 100
+    total_rows: 288
+    runtime_min: 110
+    grid: n_expert=[50,100,250,500,1000,2000] × K=[2,4] × regime=[extreme,moderate]
+    crossover_hb_beats_global:
+      K2_extreme: 250
+      K2_moderate: never
+      K4_extreme: 1000
+      K4_moderate: 2000
+    hb_vs_mle: HB ≥ MLE in 21/24 configs (87.5%; partial pooling rarely hurts in symmetric
+      DGP)
+    hb_best_improvement_over_mle:
+      K4_moderate_n50_sgC: +42.4% RMSE
+      K4_extreme_n50_sgC: +23.4% RMSE
+      K4_moderate_n50_sgB: +24.0% RMSE
+    convergence: HB ≈ MLE at n≥1000 (<0.5% difference)
+    key_finding: 'Crossover depends strongly on K and regime. K=2: crossover at n=250
+      (practical). K=4: crossover at n=1000 (higher). HB provides consistent modest
+      improvement over MLE via partial pooling.'
+- exp_id: exp-007b
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics:
+    kill_reason: 'D012: Director 决定放弃 HB backfill。理由：PPCI 表核心 story 是互补性，HB vs MLE
+      是边际改进；exp-001 已验证 HB。CSV 已重命名为 .broken'
+- exp_id: exp-012
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    model: gpt-4.1-2025-04-14
+    n_samples: 500
+    valid_annotations: 500
+    failed: 0
+    accuracy_3class: 0.672
+    accuracy_binary: 0.858
+    subgroup_misclass_rates:
+      hash_long: 0
+      hash_medium: 0.2
+      hash_short: 0.174
+      nohash_long: 0
+      nohash_medium: 0.102
+      nohash_short: 0.138
+    delta_pi: 0.2
+    heterogeneity_significant: true
+    key_finding: Hashtag presence increases binary misclassification rate (~0.17-0.20
+      vs ~0.10-0.14 for non-hashtag). Delta-pi=0.200 confirms meaningful heterogeneity
+      for EC-HTE correction.
+    analysis_file: results/pilot_gpt41_analysis.md
+- exp_id: exp-013
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    config: K=4/extreme/n_expert=50
+    n_expert_per_K: 12.5
+    hb_method: EB (Empirical Bayes, not Gibbs — conservative estimate for boundary
+      condition)
+    avg_rmse_naive: 0.109
+    avg_rmse_global: 0.14
+    avg_rmse_mle: 0.28
+    avg_rmse_eb: 0.292
+    worst_subgroup: A(pi=0.30) EB RMSE=0.62
+    amplification_max: 4.4x (A/EB vs global)
+    threshold_confirmed: n_expert/K=12.5 < 25
+    naive_beats_all: true
+    debiasing_hurts_D: Naive bias=0.001, Global bias=0.110 — extreme over-correction
+      in lowest-error subgroup
+- exp_id: exp-014
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    configs: 3
+    asymmetric_configs:
+    - balanced(FPR=0.15,FNR=0.25)
+    - fpr_dominant(FPR=0.30,FNR=0.10)
+    - fnr_dominant(FPR=0.10,FNR=0.30)
+    delta_tau_grid:
+    - 0
+    - 0.1
+    - 0.2
+    - 0.3
+    - 0.5
+    n_mc: 100
+    N: 5000
+    n_expert: 250
+    r2_analytic_vs_mc: 0.992
+    product_structure_cv: ~1e-16 (exact)
+    product_structure_confirmed: true
+    a2_not_required: true
+    ec_hte_avg_abs_bias: 0.006
+    ec_hte_avg_rmse: 0.033
+    ec_hte_avg_coverage: 0.9
+    global_avg_abs_bias: 0.025
+    global_avg_rmse: 0.04
+    global_avg_coverage: 0.78
+    naive_avg_abs_bias: 0.025
+    naive_avg_rmse: 0.039
+    naive_avg_coverage: 0.87
+    bias_reduction_vs_global: 4.2x
+    coverage_improvement_vs_global: +12pp
+    latex_derivation_included: true
+    key_finding: Product structure bias = Δτ·[B_s]_{z,1} holds exactly under asymmetric
+      misclassification. A2 (symmetric) assumption is NOT required. EC-HTE dominates
+      with 4.2x bias reduction.
+- exp_id: exp-004
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    dataset: UC Berkeley Measuring Hate Speech
+    n_comments: 2496
+    valid_annotations: 2496
+    subgroups:
+      plat0_long: 624
+      plat0_short: 624
+      plat23_long: 624
+      plat23_short: 624
+    subgroup_type: text features (platform_group × text_length)
+    delta_pi: 0.117
+    global_FPR: 0.139
+    global_FNR: 0.533
+    misclass_rates:
+      plat0_long: 0.266
+      plat0_short: 0.337
+      plat23_long: 0.303
+      plat23_short: 0.383
+    avg_abs_bias:
+      naive: 0.21
+      global: 0.273
+      ec_hte: 0.313
+    cate_comparison: EC-HTE does not outperform global on avg |bias| — high FNR (~53%)
+      and wide CIs limit correction effectiveness on this dataset
+    key_finding: Δπ=0.117 confirms real-world misclassification heterogeneity across
+      text-feature subgroups. High global FNR (53%) indicates LLM severely under-classifies
+      dehumanization. CATE correction comparison inconclusive due to wide bootstrap
+      CIs.
+- exp_id: exp-008
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    models_completed:
+    - gpt-3.5-turbo
+    - gpt-4.1
+    - gpt-4o
+    - gpt-4o-mini
+    - gpt-4-turbo
+    - gpt-5.4
+    total_models: 6
+    proxy_provider: OpenAI only
+    gpt5x_model_used: gpt-5.4
+    gpt55_failed: reasoning tokens consume max_tokens budget, too slow (~1min/call)
+    filtered_analysis:
+      excluded_subgroups:
+      - False_long (n=6)
+      - True_long (n=4)
+      min_n_threshold: 10
+      retained_subgroups:
+      - False_medium (n=187)
+      - False_short (n=109)
+      - True_medium (n=125)
+      - True_short (n=69)
+    effective_delta_pi:
+      gpt-3.5-turbo: 0.198
+      gpt-4-turbo: 0.149
+      gpt-4.1: 0.098
+      gpt-4o: 0.08
+      gpt-4o-mini: 0.136
+      gpt-5.4: 0.114
+    all_effective_delta_pi_above_005: true
+    worst_subgroup_consensus: True_medium (5/6 models)
+    spearman_significant_pairs:
+    - gpt-4-turbo vs gpt-4o (ρ=1.000)
+    - gpt-4.1 vs gpt-4o-mini (ρ=1.000)
+    - gpt-4.1 vs gpt-5.4 (ρ=1.000)
+    - gpt-4o-mini vs gpt-5.4 (ρ=1.000)
+    spearman_note: Only 4 subgroups after filtering, limited statistical power (most
+      p>0.20)
+    key_finding: All 6 models (GPT-3.5 through GPT-5.4, three generations) show effective
+      Δπ > 0.05 after excluding n<10 subgroups. Heterogeneity is structural, not model-specific.
+- exp_id: exp-010
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    n_mc: 100
+    configs: 2
+    noise_levels:
+    - 0
+    - 0.1
+    - 0.25
+    - 0.5
+    total_runs: 800
+    runtime_sec: 15
+    k2_coverage_naive:
+    - 0.875
+    - 0.877
+    - 0.89
+    - 0.897
+    k2_coverage_hb:
+    - 0.958
+    - 0.948
+    - 0.95
+    - 0.945
+    k2_coverage_global:
+    - 0.925
+    - 0.935
+    - 0.932
+    - 0.945
+    k4_coverage_naive:
+    - 0.904
+    - 0.916
+    - 0.909
+    - 0.919
+    k4_coverage_hb:
+    - 0.956
+    - 0.958
+    - 0.96
+    - 0.946
+    k4_coverage_global:
+    - 0.93
+    - 0.953
+    - 0.948
+    - 0.944
+    hb_beats_mle_all_configs: true
+    hb_improvement_range: +0.1% to +0.9% RMSE
+    graceful_convergence_at_50pct: true
+    key_finding: 'Coverage is the decisive metric: naive 87-92%, EC-HTE 95-96% across
+      all noise levels. No catastrophic failure. HB shrinkage provides automatic safeguard
+      — converges to global at 50% noise.'
+
+# 输出格式（YAML，仅输出一个 ```yaml 块）
+
+```yaml
+tier: worst
+narrative_guidance: "..."
+imagined_experiments:
+  - name: "..."
+    plan_id: "..."
+    description: "..."
+    expected_results: {metric: value, ...}
+    result_rationale: "..."
+    tables: []
+    figures_description: []
+    analysis: "..."
+```
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "d0946793-108b-4454-9faf-ce11e7ea0b62",
+  "type": "user",
+  "uuid": "79999644-47ca-4c58-b8c0-2db9c79fc481",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520",
+  "sessionId": "db3430e5-3ddc-40c4-8e57-38f71ba7b2f0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-21T12:38:09.432Z_
+
+```json
+{
+  "parentUuid": "79999644-47ca-4c58-b8c0-2db9c79fc481",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "84a919f2-0d9b-41fd-a7f3-b81fc9b18269",
+  "timestamp": "2026-05-21T12:38:09.432Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520",
+  "sessionId": "db3430e5-3ddc-40c4-8e57-38f71ba7b2f0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-21T12:38:09.432Z_
+
+```json
+{
+  "parentUuid": "84a919f2-0d9b-41fd-a7f3-b81fc9b18269",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "2ba4fb08-5b35-4143-a5b4-f80d458f94b6",
+  "timestamp": "2026-05-21T12:38:09.432Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520",
+  "sessionId": "db3430e5-3ddc-40c4-8e57-38f71ba7b2f0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 worst 档的含义：  含义：Claim 1（bias mechanism）仍然成立但 EC-HTE 在实际条件下优势微弱；诊断准则 CV 失败；real data 反向；审稿人以 novelty 不足拒稿。需彻底 reframe 为以 Claim 1 为核心的 'bias mechanism discovery' 单 claim 论文…",
+  "leafUuid": "2ba4fb08-5b35-4143-a5b4-f80d458f94b6",
+  "sessionId": "db3430e5-3ddc-40c4-8e57-38f71ba7b2f0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reframing EC-HTE as bias mechanism discovery",
+  "sessionId": "db3430e5-3ddc-40c4-8e57-38f71ba7b2f0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-21T12:38:29.703Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to generate detailed predicted results for the "worst" tier scenario for each planned experiment in the experiment plan. Let me carefully go through each experiment and generate predictions based on the worst-tier definition provided.
+
+Let me understand the worst tier:
+- Claim 1 (bias mechanism) still holds but EC-HTE advantage is negligible in practice
+- Diagnostic criterion CV fails (AUC < 0.55)
+- Real data shows EC-HTE is worse than global
+- Reviewers reject on novelty grounds
+- Reframe as single-claim "bias mechanism discovery" paper
+
+Key metric ranges for worst:
+
+
+- bias_amplification_max_dim: [2.4, 2.9]
+- bias_amplification_max_cf: [4.5, 6.0]
+- ec_hte_bias_reduction_factor_vs_global: [0.8, 1.5]
+- diagnostic_auc_cv: [0.4, 0.55]
+- real_data_ec_hte_minus_global_abs_bias: [0.02, 0.1]
+- ec_hte_rmse_penalty_median_across_configs: [1.3, 2.5]
+- coverage_ec
+
+_hte_small_n: [0.85, 0.92]
+- hb_crossover_k4_moderate: [2000, 'never']
+
+Now I need to go through each experiment and predict the worst-case tier results for all planned experiments, even though some are already completed. Looking at the experiment plan, I see there's some confusion about which ones are done versus planned — I need to clarify the status and make sure I'm generating predictions for the full set.
+
+Let me work through the experiments systematically and generate worst-tier predictions for each one, starting with the HB EC-HTE synthetic data test, then moving through the formal bias bound verification, semi-synthetic benchmark, real-data case study, diagnostic criterion validation, expert label budget sensitivity, PPCI and DSL baseline comparison, and the remaining experiments in the plan.
+
+Writing YAML predictions...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ba4fb08-5b35-4143-a5b4-f80d458f94b6",
+  "isSidechain": false,
+  "requestId": "req_011CbFj7aL4sBqNcVKVBbH9F",
+  "type": "assistant",
+  "uuid": "7a574ca9-0057-477c-8e18-7679da7eb22e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520",
+  "sessionId": "db3430e5-3ddc-40c4-8e57-38f71ba7b2f0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbZ6r3WzFcTkY6Jt8JkXqo",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 17655,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 13132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17655,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 13132,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 17655,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17655
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-21T12:42:16.247Z_
+
+```yaml
+tier: worst
+narrative_guidance: >
+  放弃三 Claim 结构，重构为单 claim 论文：'Debiasing Can Hurt — When Global Misclassification
+  Correction Amplifies Subgroup CATE Bias'。Claim 1（bias identity + exact product form +
+  constructive debiasing-hurts proposition）是唯一可靠的核心贡献。EC-HTE 降级为 'one possible
+  mitigation'，诚实承认其优势条件极窄（仅 synthetic extreme + large n_expert）。诊断准则 CV AUC
+  崩塌，重构为 sufficient condition for concern 而非 decision tool。Real data 反向结果不掩盖，
+  作为 'honest empirical assessment' 呈现。论文变短、更聚焦、理论更强。投 EMNLP main，定位为
+  negative result + formal characterization 类型论文。预期需要 2R 或 resubmit。
+
+imagined_experiments:
+  - name: "Hierarchical Bayesian EC-HTE synthetic validation"
+    plan_id: "exp-001"
+    description: >
+      HB Dirichlet-prior confusion matrix estimator vs MLE/Laplace，full regime sweep。
+      Worst 档下 HB 改进微弱，RMSE penalty 显著，partial pooling 在多数配置无实质优势。
+    expected_results:
+      mcmc_rhat_max: 1.03
+      mcmc_ess_min: 110
+      mcmc_divergent: 0
+      runtime_min: 85
+      total_mc_runs: 3600
+      hb_vs_mle_rmse_improvement_k2_n50: "1-3%"
+      hb_vs_mle_rmse_improvement_k2_n100: "<1%"
+      hb_vs_mle_rmse_improvement_k4_n50_moderate: "2-4%"
+      hb_coverage_min: 0.85
+      hb_coverage_median: 0.90
+      k4_extreme_n50_blowup: true
+      k4_extreme_n50_blowup_note: "Singularity guard triggers frequently (~15% of runs); residual instability even with 4-chain MCMC"
+      hb_vs_global_rmse_median_penalty: 1.5
+      hb_beats_global_pct: "35% of configs (only extreme regime + n>=500)"
+      hyperprior_sensitivity_k4_rmse_variation: "8-12%"
+      hyperprior_sensitivity_conclusion: "moderate sensitivity — k4 results shift meaningfully with scale"
+    result_rationale: >
+      Worst 档核心假设是 EC-HTE 优势微弱。HB partial pooling 在 moderate regime 几乎无
+      改进（heterogeneity 不足以让 stratification 获益），extreme regime 仅在 n_expert
+      足够大时才有意义。K=4 时 per-subgroup 样本太少（n_expert/4），CM 估计噪声高，HB
+      shrinkage 不足以补偿。MCMC 收敛勉强合格但 ESS 偏低，说明后验几何复杂。Hyperprior
+      sensitivity 在 K=4 时较高，因为 Dirichlet concentration 对稀疏子群影响大。整体结论：
+      HB 是一个 marginal improvement over MLE，不构成独立贡献。
+    tables:
+      - title: "Table 1: HB vs MLE vs Global RMSE across regime × K × n_expert"
+        columns: [regime, K, n_expert, naive_rmse, global_rmse, mle_rmse, hb_rmse, hb_vs_global_pct]
+        representative_rows:
+          - [extreme, 2, 100, 0.18, 0.15, 0.17, 0.16, "+6.7%"]
+          - [extreme, 2, 500, 0.18, 0.15, 0.13, 0.13, "-13.3%"]
+          - [extreme, 4, 100, 0.20, 0.16, 0.25, 0.23, "+43.8%"]
+          - [extreme, 4, 500, 0.20, 0.16, 0.16, 0.15, "-6.3%"]
+          - [moderate, 2, 100, 0.14, 0.12, 0.13, 0.13, "+8.3%"]
+          - [moderate, 2, 500, 0.14, 0.12, 0.12, 0.12, "0%"]
+          - [moderate, 4, 100, 0.16, 0.13, 0.19, 0.18, "+38.5%"]
+          - [moderate, 4, 500, 0.16, 0.13, 0.14, 0.13, "0%"]
+    figures_description:
+      - "Heatmap: HB vs Global RMSE ratio across n_expert × K grid. 大面积 >1.0（红色），仅右下角（high n, extreme）<1.0（蓝色）"
+    analysis: >
+      EC-HTE 在多数实际配置下 RMSE 劣于 global。Partial pooling 的 James-Stein 优势
+      被 per-subgroup CM 估计噪声淹没。仅在 extreme heterogeneity + n_expert >= 500 时
+      才有 RMSE 优势。这决定了 worst 档叙事：EC-HTE 不能作为 standalone contribution，
+      只能作为 conditional mitigation 附在 bias mechanism 主线之后。
+
+  - name: "Formal bias identity verification"
+    plan_id: "exp-002"
+    description: >
+      Bias = Δπ × Δτ product form 的 analytic derivation + MC 验证。Worst 档下 identity
+      本身成立（这是数学事实），但 amplification magnitude 处于范围低端。
+    expected_results:
+      r2_k2: 0.990
+      r2_k4: 0.965
+      tightness_ratio_k2_median: 1.005
+      tightness_ratio_k4_median: 1.035
+      debiasing_hurts_pct: 48
+      debiasing_hurts_pct_note: "略低于 50%，因为 MC noise 在 boundary 附近导致一些 marginal cases 翻转"
+      max_bias_ratio_k2: 2.5
+      max_bias_ratio_k4: 2.4
+      coverage_2se_k2: 0.945
+      coverage_2se_k4: 0.930
+      bias_amplification_median_across_configs: 1.4
+    result_rationale: >
+      Bias identity 是精确等式（population level），R² 接近 1.0 是数学保证，worst 档无法
+      改变这一点。但 worst 档体现在 amplification magnitude 偏低端：K=2 max 2.5×（而非
+      2.86×），K=4 max 2.4×（而非 2.41×）。这是因为 worst 档假设 moderate regime 占更多
+      权重——当 Δπ 和 Δτ 都不极端时，amplification 存在但不dramatic。Debiasing hurts 的
+      比例约 48%（接近 coin-flip），审稿人可能认为这不足以构成 'alarming finding'。K=4 的
+      R² 稍低反映了 sum-of-products form 在有限样本下的噪声放大。关键问题不在于 identity
+      是否成立（它一定成立），而在于 amplification 的实际幅度是否足以让审稿人认为这是 a
+      problem worth solving。
+    tables:
+      - title: "Table 2: Bias amplification ratio across Δπ × Δτ grid (K=2)"
+        columns: [delta_pi, delta_tau, analytic_bias, mc_bias_mean, mc_bias_se, amplification_ratio]
+        representative_rows:
+          - [0.05, 0.1, 0.005, 0.006, 0.002, 1.1]
+          - [0.10, 0.2, 0.020, 0.021, 0.004, 1.4]
+          - [0.15, 0.3, 0.045, 0.046, 0.006, 1.8]
+          - [0.20, 0.5, 0.100, 0.098, 0.008, 2.5]
+      - title: "Table 3: Debiasing-hurts breakdown by parameter region"
+        columns: [region, n_settings, hurts_pct, max_ratio, median_ratio]
+        representative_rows:
+          - ["extreme (Δπ>0.15, Δτ>0.3)", 40, 85, 2.5, 1.8]
+          - ["moderate (0.05<Δπ<0.15)", 120, 52, 1.5, 1.1]
+          - ["low (Δπ<0.05)", 100, 12, 1.05, 1.0]
+    figures_description:
+      - "Heatmap: amplification ratio as function of Δπ × Δτ. 颜色梯度从 1.0（白）到 2.5（深红）。高 amplification 区域集中在右上角但面积有限。"
+      - "Scatter: analytic prediction vs MC observed bias, R²=0.990(K=2) / 0.965(K=4). 对角线拟合良好。"
+    analysis: >
+      Bias identity 验证成功——这是 worst 档唯一完全 robust 的结果。但 amplification
+      幅度在 moderate regime 仅 1.1-1.5×，审稿人可能认为 'debiasing hurts by 10-50%
+      is a known risk, not a new discovery'。Worst 档叙事必须强调 extreme regime 的 2.5×
+      amplification 和 constructive example，同时承认 moderate regime 的 effect size 较小。
+      Carroll et al. (2006) 的 qualitative insight 已覆盖 'correction can amplify error'
+      的概念；我们的 quantitative product form 是增量贡献而非 breakthrough。
+
+  - name: "Semi-synthetic benchmark (TweetEval sentiment)"
+    plan_id: "exp-003"
+    description: >
+      TweetEval sentiment 语料上注入 CATE heterogeneity，GPT-4.1 annotation，EC-HTE vs
+      baselines。Worst 档下 EC-HTE 在 semi-synthetic 上优势微弱，RMSE penalty 大。
+    expected_results:
+      n_subgroups: 4
+      misclass_rates: "S0=0.08, S1=0.12, S2=0.14, S3=0.22"
+      delta_pi: 0.14
+      mc_runs: 100
+      avg_abs_bias:
+        oracle: 0.005
+        naive: 0.12
+        global_corrected: 0.09
+        stratified_mle: 0.07
+        hb_ec_hte: 0.065
+      avg_rmse:
+        oracle: 0.04
+        naive: 0.15
+        global_corrected: 0.12
+        stratified_mle: 0.18
+        hb_ec_hte: 0.16
+      ec_hte_bias_reduction_vs_global: 1.38
+      ec_hte_rmse_penalty_vs_global: 1.33
+      hb_vs_mle_n100_S3: "-5% RMSE (HB slightly worse)"
+      hb_vs_mle_n250_S3: "+8% RMSE (HB slightly better)"
+      coverage_hb_overall: 0.91
+      debiasing_hurts_confirmed: true
+      debiasing_hurts_subgroups: "S0, S1 (low-error subgroups over-corrected)"
+    result_rationale: >
+      Worst 档假设 ec_hte_bias_reduction_factor_vs_global 在 [0.8, 1.5] 范围。这里取
+      1.38——EC-HTE 比 global 好 28% 在 bias 上，但 RMSE 代价 33%。Semi-synthetic 的
+      Δπ=0.14（moderate-to-high），足够让 bias mechanism 可见但不足以让 EC-HTE 在 RMSE
+      上胜出。HB 在 n=100 时对 minority subgroup S3 仍然 noisy（12.5 experts/subgroup
+      for K=4），partial pooling 不够补偿。审稿人看到 bias 降了但 RMSE 升了，会问
+      'is this a net improvement?'——答案在 worst 档下是 ambiguous。Coverage 0.91 勉强
+      acceptable 但不 impressive。关键：debiasing hurts 在 S0/S1 上仍然可见，这支持
+      Claim 1 叙事。
+    tables:
+      - title: "Table 4: Semi-synthetic results by subgroup (n_expert=250, K=4)"
+        columns: [subgroup, misclass_rate, naive_bias, global_bias, ec_hte_bias, ec_hte_rmse, global_rmse]
+        representative_rows:
+          - [S0, 0.08, 0.02, 0.07, 0.03, 0.14, 0.10]
+          - [S1, 0.12, 0.05, 0.06, 0.04, 0.13, 0.10]
+          - [S2, 0.14, 0.08, 0.04, 0.03, 0.15, 0.11]
+          - [S3, 0.22, 0.15, 0.10, 0.06, 0.22, 0.16]
+      - title: "Table 5: Bias-RMSE tradeoff summary across n_expert"
+        columns: [n_expert, ec_hte_wins_bias, ec_hte_wins_rmse, net_ambiguous]
+        representative_rows:
+          - [100, "3/4 subgroups", "0/4 subgroups", "4/4"]
+          - [250, "4/4 subgroups", "1/4 subgroups", "3/4"]
+          - [500, "4/4 subgroups", "2/4 subgroups", "2/4"]
+    figures_description:
+      - "Bar chart: |bias| by method × subgroup. EC-HTE bars consistently shorter but difference modest."
+      - "Scatter: bias reduction vs RMSE penalty per config. 多数点在 'bias better, RMSE worse' 象限。"
+    analysis: >
+      Semi-synthetic 结果支持 Claim 1（debiasing hurts 在 S0/S1 可见）但不支持 EC-HTE
+      作为 strong solution。Bias-RMSE tradeoff 在多数配置下 ambiguous——审稿人会引用
+      'reduces bias but increases MSE — net negative in practice'。Worst 档叙事：这些
+      结果 honestly show EC-HTE 的条件性优势，论文重心应放在 bias mechanism discovery
+      而非 EC-HTE method contribution。
+
+  - name: "Real-data case study (UC Berkeley Hate Speech)"
+    plan_id: "exp-004"
+    description: >
+      UC Berkeley Measuring Hate Speech 数据集上的 pattern consistency 分析。Worst 档下
+      EC-HTE 比 global 差——real data 反向。
+    expected_results:
+      dataset: "UC Berkeley Measuring Hate Speech"
+      n_comments: 2496
+      subgroups: "platform_group × text_length (4 groups)"
+      delta_pi: 0.10
+      global_FPR: 0.15
+      global_FNR: 0.55
+      avg_abs_bias:
+        naive: 0.22
+        global: 0.28
+        ec_hte: 0.32
+      ec_hte_minus_global_abs_bias: 0.04
+      bootstrap_ci_ec_hte_minus_global: "[-0.02, 0.10]"
+      cate_direction_consistency: "2/4 subgroups consistent with domain knowledge"
+      ec_hte_ci_width_median: 0.35
+      global_ci_width_median: 0.22
+    result_rationale: >
+      Worst 档核心假设之一：real data 持续显示 EC-HTE 比 global 差（|bias| 差距 ~0.04）。
+      原因是多方面的：(1) 高 FNR (~55%) 意味着 confusion matrix 接近 singular，逆矩阵
+      amplifies estimation noise；(2) 仅 2496 samples 分 4 subgroups，per-subgroup
+      expert labels 不足（~600/group，但 CM 估计仍 noisy）；(3) text-feature subgroups
+      可能不对应 true misclassification heterogeneity structure（misspecified subgroups）；
+      (4) Δπ=0.10 处于 moderate 范围，stratification 收益不足以补偿 variance cost。
+      Bootstrap CI 包含 0，说明差异 not significant——但 point estimate 方向一致地不利于
+      EC-HTE。审稿人会问 'if EC-HTE doesn't help on real data, what's the practical value?'
+      Worst 档叙事：承认 real data limitation，frame as 'the diagnostic criterion correctly
+      predicts this is a setting where global suffices (Δπ only 0.10)'——但这与 diagnostic
+      CV AUC < 0.55 矛盾，所以叙事需要更 nuanced handling。
+    tables:
+      - title: "Table 6: Real-data CATE estimates by subgroup and method"
+        columns: [subgroup, n, misclass_rate, naive_cate, global_cate, ec_hte_cate, ec_hte_ci_width]
+        representative_rows:
+          - [plat0_long, 624, 0.27, 0.15, 0.19, 0.22, 0.38]
+          - [plat0_short, 624, 0.34, 0.08, 0.12, 0.09, 0.41]
+          - [plat23_long, 624, 0.30, -0.05, -0.08, -0.12, 0.32]
+          - [plat23_short, 624, 0.38, 0.02, 0.05, 0.03, 0.36]
+    figures_description:
+      - "Forest plot: CATE ± CI for each subgroup × method. EC-HTE CIs visually wider, point estimates sometimes farther from domain expectation."
+    analysis: >
+      Real data 结果是 worst 档叙事的最大挑战。EC-HTE 不仅未改善，反而略差。但可以
+      salvage：(1) 没有 ground truth CATE，'worse' 仅指 point estimate 更极端 + wider CI；
+      (2) Δπ=0.10 处于 diagnostic 的 'global suffices' 区域；(3) 高 FNR 是 dataset-specific
+      limitation。论文可以诚实呈现为 'EC-HTE is not universally beneficial — consistent
+      with our theoretical analysis showing conditional advantage'。但审稿人仍可能视为
+      disqualifying。
+
+  - name: "Diagnostic criterion validation (CV)"
+    plan_id: "exp-005"
+    description: >
+      Δπ×Δτ product 作为 diagnostic 预测 global correction failure 的 ROC 分析。
+      Worst 档下 CV AUC 崩塌至 ~0.50，无预测力。
+    expected_results:
+      in_sample_auc: 0.82
+      cv_auc_leave_one_setting_out: 0.52
+      cv_auc_held_out: 0.48
+      subgroup_level_auc_cv: 0.54
+      setting_level_auc_cv: 0.45
+      correlation_product_vs_bias_amplification: 0.40
+      optimal_threshold_in_sample: 0.025
+      threshold_sensitivity: "AUC drops from 0.82 to 0.52 when evaluated out-of-sample"
+    result_rationale: >
+      Worst 档核心假设：diagnostic_auc_cv 在 [0.4, 0.55]。In-sample AUC 看起来不错
+      (~0.82），但 leave-one-setting-out CV 暴露了 overfitting：product Δπ×Δτ 的 threshold
+      在不同 DGP/配置间不 transferable。原因：(1) bias amplification 不仅取决于 Δπ×Δτ，
+      还取决于 n_expert, K, estimator type, subgroup size balance 等未建模因素；(2)
+      实验配置数量有限（~20-30 settings），leave-one-out 每次 test set 只有一个点；
+      (3) product form 是 population-level identity，但 'when does it matter enough to
+      switch methods' 是一个 decision problem，需要考虑 variance tradeoff，product form
+      alone 不够。CV AUC ~0.50 意味着 diagnostic 本质上是 random guessing for new settings。
+      审稿人会直接否定 Claim 3。
+    tables:
+      - title: "Table 7: Diagnostic ROC analysis"
+        columns: [evaluation, auc, 95_ci, n_settings]
+        representative_rows:
+          - [in_sample, 0.82, "[0.74, 0.90]", 28]
+          - [leave_one_setting_out, 0.52, "[0.38, 0.66]", 28]
+          - [held_out_semi_synthetic, 0.48, "[0.30, 0.66]", 12]
+    figures_description:
+      - "ROC curves: in-sample（实线，AUC=0.82）vs CV（虚线，AUC=0.52）。CV 曲线几乎贴着 diagonal。"
+    analysis: >
+      Diagnostic CV failure 是 worst 档的 defining feature。In-sample vs CV gap 巨大，
+      说明 Δπ×Δτ product 虽然在 population level 是精确 identity，但作为 finite-sample
+      decision rule 不泛化。Worst 档叙事：放弃 diagnostic 作为 'decision tool'，重构为
+      'sufficient condition for concern'——当 Δπ×Δτ 非常大时，global correction 肯定有风险
+      （这是 identity 的直接推论），但 intermediate values 无法可靠区分。这实际上是从
+      Claim 3 退回到 Claim 1 的推论。
+
+  - name: "Expert label budget sensitivity"
+    plan_id: "exp-006"
+    description: >
+      n_expert × K × regime 的系统性 sweep，找 EC-HTE > Global 的 crossover point。
+      Worst 档下 crossover 要求大量 expert labels，moderate regime 永远不 cross。
+    expected_results:
+      n_mc: 100
+      grid: "n_expert=[50,100,250,500,1000,2000] × K=[2,4,8] × regime=[extreme,moderate]"
+      crossover_hb_beats_global:
+        K2_extreme: 500
+        K2_moderate: "never"
+        K4_extreme: 2000
+        K4_moderate: "never"
+        K8_extreme: "never"
+        K8_moderate: "never"
+      hb_vs_mle_pct_configs_hb_wins: "60%"
+      hb_vs_mle_max_improvement: "+15% RMSE (K4/moderate/n50)"
+      ec_hte_rmse_penalty_median: 1.6
+      ec_hte_rmse_penalty_k4_n100: 2.3
+      ec_hte_rmse_penalty_k8_n100: 3.5
+    result_rationale: >
+      Worst 档假设 ec_hte_rmse_penalty_median 在 [1.3, 2.5]，hb_crossover_k4_moderate
+      = [2000, never]。Crossover points 全面上移：K=2/extreme 从 250 升到 500（需要
+      双倍 expert labels），K=4/extreme 从 1000 升到 2000（接近 impractical），K=4/moderate
+      和所有 K=8 配置永远不 cross。原因：worst 档下 EC-HTE 的 bias 优势本身较弱
+      （reduction factor 仅 0.8-1.5×），RMSE penalty 更重（per-subgroup CM estimation
+      noise 高），两者叠加导致 crossover 需要更多 data 来 amortize variance cost。
+      K=8 是 worst 档新增的 stress test——8 subgroups 意味着 n_expert/8 极少，CM 估计
+      完全不可靠。审稿人会指出 'crossover requires 2000 expert labels for K=4 — at that
+      point, why not just use expert labels directly for CATE?'
+    tables:
+      - title: "Table 8: RMSE crossover n_expert by K × regime"
+        columns: [K, regime, crossover_n, ec_hte_rmse_at_crossover, global_rmse_at_crossover]
+        representative_rows:
+          - [2, extreme, 500, 0.130, 0.132]
+          - [2, moderate, "never", "—", "—"]
+          - [4, extreme, 2000, 0.088, 0.090]
+          - [4, moderate, "never", "—", "—"]
+          - [8, extreme, "never", "—", "—"]
+          - [8, moderate, "never", "—", "—"]
+    figures_description:
+      - "Line plot: RMSE vs n_expert for each K, with global as horizontal reference line. EC-HTE curves slowly approach global from above; only K=2/extreme and K=4/extreme eventually cross."
+    analysis: >
+      Budget analysis 彻底暴露 EC-HTE 的 practical limitation：在多数现实场景（moderate
+      heterogeneity 或 K>4），global correction 始终是更好的选择。EC-HTE 唯一有价值的
+      scenario 是 extreme heterogeneity + small K + large expert budget——这是一个非常
+      narrow niche。论文必须 honestly present 这些 crossover，强化 'conditional advantage'
+      framing。审稿人会用 K=8/never 结果论证 EC-HTE 缺乏 scalability。
+
+  - name: "PPCI + DSL baseline comparison"
+    plan_id: "exp-007"
+    description: >
+      PPCI vs EC-HTE vs DSL 在四种 DGP 下的比较。Worst 档下 PPCI 在 DGP A (covariate-only
+      error) 也有 partial correction 能力，削弱 EC-HTE 独特性。
+    expected_results:
+      total_configs: 48
+      mc_runs: 100
+      dgp_a_covariate_only:
+        ec_hte_avg_bias: 0.03
+        ec_hte_avg_rmse: 0.18
+        global_avg_bias: 0.08
+        global_avg_rmse: 0.12
+        ppci_avg_bias: 0.05
+        ppci_avg_rmse: 0.14
+        dsl_per_subgroup_avg_bias: 0.04
+        dsl_per_subgroup_avg_rmse: 0.20
+      dgp_b_outcome_only:
+        ec_hte_avg_bias: 0.08
+        ppci_avg_bias: 0.02
+        global_avg_bias: 0.07
+      dgp_c_both_errors:
+        ec_hte_ppci_avg_bias: 0.008
+        ec_hte_avg_bias: 0.15
+        ppci_avg_bias: 0.06
+        global_avg_bias: 0.12
+      dgp_d_no_error:
+        all_methods_bias: "<0.01"
+      ec_hte_unique_advantage_over_ppci_dgp_a: "bias 0.03 vs 0.05 (40% better, but RMSE 29% worse)"
+      ppci_partial_covariate_correction: true
+    result_rationale: >
+      Worst 档下 PPCI 在 DGP A（纯 covariate error）也能 partially correct（bias 0.05
+      vs EC-HTE 0.03）——因为 PPCI rectifier 是 model-free，可以捕获任何 systematic error
+      包括 covariate-side。这削弱了 'EC-HTE is uniquely needed for covariate error' 的
+      论点。EC-HTE 仍然 slightly better on bias（0.03 vs 0.05），但 RMSE penalty 使得
+      net advantage ambiguous。DSL per-subgroup 的 bias 与 EC-HTE comparable（0.04 vs
+      0.03），验证了审稿人的担忧：'just apply DSL per subgroup, no need for HB'。DGP C
+      的 composition 仍然有效（ec_hte_ppci bias 0.008），但审稿人会指出 PPCI alone 已经
+      做到 0.06——composition 的 marginal gain 可能不值得复杂度。
+    tables:
+      - title: "Table 9: Method comparison across DGP types (n_expert=250, K=2, extreme)"
+        columns: [dgp, method, avg_abs_bias, avg_rmse, coverage]
+        representative_rows:
+          - [A, ec_hte, 0.03, 0.18, 0.93]
+          - [A, ppci, 0.05, 0.14, 0.90]
+          - [A, dsl_subgroup, 0.04, 0.20, 0.88]
+          - [A, global, 0.08, 0.12, 0.82]
+          - [B, ec_hte, 0.08, 0.16, 0.90]
+          - [B, ppci, 0.02, 0.13, 0.94]
+          - [C, ec_hte_ppci, 0.008, 0.20, 0.95]
+          - [C, ppci, 0.06, 0.14, 0.91]
+          - [C, ec_hte, 0.15, 0.19, 0.88]
+    figures_description:
+      - "Grouped bar chart: |bias| by DGP × method. EC-HTE 优势仅在 DGP A 可见且 modest；PPCI 在所有 DGP 都 reasonable。"
+    analysis: >
+      PPCI 的 partial covariate correction 是 worst 档的关键 negative signal——如果一个
+      通用方法已经能 partially correct covariate error，EC-HTE 的 'structured correction
+      for covariate error' 卖点被显著削弱。DSL per-subgroup 作为 simple baseline 表现
+      surprisingly close to EC-HTE，进一步降低 novelty argument。Composition 仍然 works
+      but marginal gain over PPCI alone 有限。论文需要诚实承认 PPCI 的 partial coverage
+      并 reframe EC-HTE 的价值为 'structured + interpretable' 而非 'strictly necessary'。
+
+  - name: "Multiple LLM annotator comparison"
+    plan_id: "exp-008"
+    description: >
+      多 LLM 比较 misclassification heterogeneity patterns。Worst 档下 heterogeneity
+      存在但 Δπ 较小，EC-HTE benefit 因此更弱。
+    expected_results:
+      models_completed: ["gpt-3.5-turbo", "gpt-4.1", "gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-5.4"]
+      effective_delta_pi:
+        gpt-3.5-turbo: 0.15
+        gpt-4-turbo: 0.10
+        gpt-4.1: 0.06
+        gpt-4o: 0.05
+        gpt-4o-mini: 0.09
+        gpt-5.4: 0.05
+      all_delta_pi_above_005: true
+      median_delta_pi: 0.075
+      ec_hte_benefit_prediction: "At median Δπ=0.075, expected bias amplification ~1.15× — minimal practical impact"
+      worst_subgroup_consensus: "True_medium (4/6 models)"
+      newer_models_lower_delta_pi: true
+    result_rationale: >
+      所有 LLM 都展示 Δπ > 0.05（heterogeneity 是 structural），但 newer/better models
+      （GPT-4o, GPT-5.4）的 Δπ 更低（~0.05）。这意味着随着 LLM 进步，misclassification
+      heterogeneity 自然减小，EC-HTE 的 relevance 随之递减。Worst 档叙事：'EC-HTE
+      solves a problem that is diminishing as LLMs improve'。Median Δπ=0.075 对应的
+      bias amplification 仅 ~1.15×——审稿人会问 'is 15% amplification worth the complexity
+      of HB correction?'。论文可以 salvage by arguing that even 5% heterogeneity exists
+      and Claim 1 formal characterization remains relevant——但 EC-HTE 的实际价值主张被
+      削弱。
+    tables:
+      - title: "Table 10: Δπ by LLM model generation"
+        columns: [model, generation, accuracy, delta_pi, predicted_max_amplification]
+        representative_rows:
+          - [gpt-3.5-turbo, "3.5", 0.72, 0.15, "1.8×"]
+          - [gpt-4-turbo, "4", 0.81, 0.10, "1.4×"]
+          - [gpt-4.1, "4.1", 0.86, 0.06, "1.15×"]
+          - [gpt-5.4, "5", 0.90, 0.05, "1.10×"]
+    figures_description:
+      - "Line plot: Δπ vs model generation/accuracy. 下降趋势明显——better models → less heterogeneity。"
+    analysis: >
+      Multi-LLM 结果是 double-edged：确认 heterogeneity 是 universal（所有 LLM 都有），
+      但也确认它在 diminishing。审稿人可能用 GPT-5.4 的 Δπ=0.05 论证 'the problem
+      is already mostly solved by better models'。论文可以 counter：(1) 即使 Δπ=0.05，
+      在 high-stakes CSS 中 any bias matters；(2) less-capable models 仍广泛使用
+      （cost reasons）；(3) Claim 1 的 formal characterization 不取决于 Δπ 大小。
+
+  - name: "Adaptive expert annotation allocation"
+    plan_id: "exp-009"
+    description: >
+      CATE-weighted allocation vs uniform vs uncertainty-only。Worst 档下 adaptive
+      allocation 的改进 negligible。
+    expected_results:
+      allocation_strategies: ["uniform", "uncertainty_only", "cate_weighted", "oracle_allocation"]
+      n_expert: 250
+      K: 4
+      regime: extreme
+      avg_rmse:
+        uniform: 0.175
+        uncertainty_only: 0.170
+        cate_weighted: 0.168
+        oracle_allocation: 0.155
+      avg_bias:
+        uniform: 0.065
+        uncertainty_only: 0.060
+        cate_weighted: 0.058
+        oracle_allocation: 0.045
+      cate_weighted_vs_uniform_rmse_improvement: "4%"
+      cate_weighted_vs_uniform_bias_improvement: "11%"
+    result_rationale: >
+      Worst 档下 EC-HTE 本身优势微弱，adaptive allocation 在此基础上进一步优化的空间
+      很小。CATE-weighted vs uniform 仅 4% RMSE 改进和 11% bias 改进——统计上可能不
+      significant。原因：(1) 当 EC-HTE 的 bias reduction 本身就 modest 时，optimally
+      allocating labels 的 marginal return 也 modest；(2) CATE heterogeneity 未知（需要
+      initial estimate），estimation error 吃掉了 allocation gain；(3) K=4 时 subgroup
+      sizes unbalanced，minority subgroups 已经需要所有能得到的 labels，allocation 灵活性
+      有限。P2 priority 合理——这个实验在 worst 档下几乎无论文价值。
+    tables:
+      - title: "Table 11: Allocation strategy comparison (K=4, extreme, n=250)"
+        columns: [strategy, avg_bias, avg_rmse, worst_subgroup_rmse]
+        representative_rows:
+          - [uniform, 0.065, 0.175, 0.28]
+          - [uncertainty_only, 0.060, 0.170, 0.26]
+          - [cate_weighted, 0.058, 0.168, 0.25]
+          - [oracle, 0.045, 0.155, 0.20]
+    figures_description:
+      - "Bar chart: RMSE by allocation strategy. 差异非常小，error bars 重叠。"
+    analysis: >
+      Adaptive allocation 在 worst 档下是 noise。Improvement 太小，不值得 paper space。
+      在 reframed 单 claim 论文中完全删除。
+
+  - name: "Robustness to misspecified subgroup structure"
+    plan_id: "exp-010"
+    description: >
+      EC-HTE 在 subgroup 定义 noisy/misspecified 时的表现。Worst 档下 EC-HTE 对
+      misspecification 敏感。
+    expected_results:
+      noise_levels: [0, 0.1, 0.25, 0.5]
+      K2_ec_hte_rmse: [0.16, 0.17, 0.19, 0.22]
+      K2_global_rmse: [0.12, 0.12, 0.12, 0.12]
+      K4_ec_hte_rmse: [0.20, 0.22, 0.26, 0.30]
+      K4_global_rmse: [0.14, 0.14, 0.14, 0.14]
+      K2_ec_hte_coverage: [0.93, 0.91, 0.88, 0.86]
+      K4_ec_hte_coverage: [0.92, 0.89, 0.85, 0.82]
+      graceful_convergence_at_50pct: false
+      ec_hte_worse_than_global_at_noise_25pct: true
+    result_rationale: >
+      Worst 档假设 coverage_ec_hte_small_n 在 [0.85, 0.92]。当 subgroup assignment
+      有 noise 时，per-subgroup CM 估计受污染，EC-HTE 的 stratification 变成 liability。
+      Global correction 对 subgroup noise immune（它本来就不 condition on subgroups）。
+      在 25% noise level，EC-HTE 的 RMSE 已经显著劣于 global（K=4: 0.26 vs 0.14），
+      coverage 跌到 0.85。HB shrinkage 理论上应该 gracefully degrade 但在 worst 档下
+      concentration prior 不够 strong 来 pull noisy subgroups back to global。这比 actual
+      exp-010 结果（coverage 0.946 at 50% noise）显著差——worst 档假设 HB 实现或 prior
+      calibration 有问题。审稿人会用这个结果论证 EC-HTE 在 real settings（subgroups
+      never perfectly known）不可靠。
+    tables:
+      - title: "Table 12: Robustness to subgroup misspecification (K=4, n_expert=250)"
+        columns: [noise_level, ec_hte_rmse, global_rmse, ec_hte_coverage, penalty_ratio]
+        representative_rows:
+          - [0.0, 0.20, 0.14, 0.92, 1.43]
+          - [0.1, 0.22, 0.14, 0.89, 1.57]
+          - [0.25, 0.26, 0.14, 0.85, 1.86]
+          - [0.5, 0.30, 0.14, 0.82, 2.14]
+    figures_description:
+      - "Line plot: RMSE vs noise level for EC-HTE vs global. EC-HTE 斜率陡峭上升，global 平坦。"
+    analysis: >
+      Robustness results 在 worst 档下是 EC-HTE 的又一 liability。Real-world subgroup
+      definitions 不会是 noise-free，25% misspecification 是 conservative estimate。
+      EC-HTE 的 penalty ratio 从 1.43 增加到 2.14——比 clean 条件下更差。这进一步
+      限制了 EC-HTE 的 practical applicability。论文需要非常 honest 地报告这些结果
+      并明确 'EC-HTE requires well-defined subgroups' 作为 limitation。
+
+  - name: "Causal forest integration"
+    plan_id: "exp-011"
+    description: >
+      CausalForestDML + EC-HTE post-hoc correction。Worst 档下 causal forest 放大了
+      debiasing-hurts effect（支持 Claim 1），但 EC-HTE correction 的 RMSE penalty
+      更严重。
+    expected_results:
+      n_mc: 100
+      n_configs: 8
+      mean_abs_bias:
+        naive_forest: 0.16
+        global_forest: 0.12
+        ec_hte_forest: 0.08
+      mean_rmse:
+        naive_forest: 0.18
+        global_forest: 0.17
+        ec_hte_forest: 0.28
+      debiasing_hurts_cases: 10
+      debiasing_hurts_max_ratio: 5.2
+      ec_hte_rmse_penalty_vs_global: 1.65
+      ec_hte_forest_coverage: 0.88
+      bias_reduction_factor: 1.5
+    result_rationale: >
+      Causal forest 放大了 bias mechanism（max ratio 5.2×，因为 tree-based CATE 的
+      nonlinear estimation 在 subgroup boundaries 处 compounds error），强力支持 Claim 1。
+      但同时 EC-HTE correction 的 RMSE penalty 更重（1.65× vs global），因为 forest
+      pseudo-outcomes 已经 noisy，再加上 per-subgroup CM correction noise 叠加。
+      Coverage 0.88 低于 nominal 95%——forest variance estimation 加 CM uncertainty
+      的 joint calibration 有问题。Bias reduction factor 1.5× 处于 worst 档上限——
+      EC-HTE 确实 helps on bias 但代价高。这进一步支持 'reframe around Claim 1' 叙事：
+      CausalForest 使得 debiasing-hurts 更 dramatic（5.2× amplification），但 EC-HTE
+      fix 的 cost 也更高。
+    tables:
+      - title: "Table 13: CausalForest results by K × regime"
+        columns: [K, regime, method, avg_abs_bias, avg_rmse, debiasing_hurts_max_ratio]
+        representative_rows:
+          - [2, extreme, naive_forest, 0.14, 0.17, "—"]
+          - [2, extreme, global_forest, 0.10, 0.16, 2.8]
+          - [2, extreme, ec_hte_forest, 0.05, 0.24, "—"]
+          - [4, extreme, naive_forest, 0.18, 0.20, "—"]
+          - [4, extreme, global_forest, 0.15, 0.18, 5.2]
+          - [4, extreme, ec_hte_forest, 0.09, 0.32, "—"]
+    figures_description:
+      - "Heatmap: debiasing-hurts ratio by K × subgroup for CausalForest. K=4/extreme/sg0 达到 5.2×。"
+      - "Bias-RMSE scatter: CausalForest methods. EC-HTE 在 bias 轴更好但 RMSE 轴显著更差。"
+    analysis: >
+      CausalForest 结果为 Claim 1 提供最强支持——5.2× amplification 是 dramatic 且
+      practically concerning。但 EC-HTE 的 RMSE penalty (1.65×) 和 undercoverage (0.88)
+      使得 'the fix is worse than the disease' argument 更 plausible。Worst 档叙事：
+      'We identify a severe bias mechanism (up to 5.2× with causal forests), but
+      acknowledge that current correction methods trade bias for variance in ways
+      that may not be practically acceptable.' 这支持 reframe 为 negative result paper。
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a574ca9-0057-477c-8e18-7679da7eb22e",
+  "isSidechain": false,
+  "requestId": "req_011CbFj7aL4sBqNcVKVBbH9F",
+  "type": "assistant",
+  "uuid": "427fa6cc-d5f3-4dfd-9d05-092dc6b00102",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520",
+  "sessionId": "db3430e5-3ddc-40c4-8e57-38f71ba7b2f0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbZ6r3WzFcTkY6Jt8JkXqo",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 17655,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 13132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17655,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 13132,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 17655,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17655
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 worst 档的含义：  含义：Claim 1（bias mechanism）仍然成立但 EC-HTE 在实际条件下优势微弱；诊断准则 CV 失败；real data 反向；审稿人以 novelty 不足拒稿。需彻底 reframe 为以 Claim 1 为核心的 'bias mechanism discovery' 单 claim 论文…",
+  "leafUuid": "427fa6cc-d5f3-4dfd-9d05-092dc6b00102",
+  "sessionId": "db3430e5-3ddc-40c4-8e57-38f71ba7b2f0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reframing EC-HTE as bias mechanism discovery",
+  "sessionId": "db3430e5-3ddc-40c4-8e57-38f71ba7b2f0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 worst 档的含义：  含义：Claim 1（bias mechanism）仍然成立但 EC-HTE 在实际条件下优势微弱；诊断准则 CV 失败；real data 反向；审稿人以 novelty 不足拒稿。需彻底 reframe 为以 Claim 1 为核心的 'bias mechanism discovery' 单 claim 论文…",
+  "leafUuid": "427fa6cc-d5f3-4dfd-9d05-092dc6b00102",
+  "sessionId": "db3430e5-3ddc-40c4-8e57-38f71ba7b2f0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reframing EC-HTE as bias mechanism discovery",
+  "sessionId": "db3430e5-3ddc-40c4-8e57-38f71ba7b2f0"
+}
+```
+
+---

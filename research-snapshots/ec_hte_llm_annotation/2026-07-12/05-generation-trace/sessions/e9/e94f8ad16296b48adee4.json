@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "id": "e94f8ad16296b48adee4",
+  "project": "ec_hte_llm_annotation--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 项目：ec_hte_llm_annotation Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-idea_gen_0520/projects/ec_hte_llm_annotat",
+  "task_key": "02008b6a-4e0c-4c6d-80e1-e25dfe4bbd43",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/02008b6a-4e0c-4c6d-80e1-e25dfe4bbd43.jsonl",
+    "occurrence": 1,
+    "bytes": 743297,
+    "sha256": "9d8b3f53220b8af9a3fda534739164d2fa51037d35cf41ce2c05f1f30e13898e"
+  },
+  "statistics": {
+    "messages": 226,
+    "user_turns": 6,
+    "tool_calls": 57,
+    "roles": {
+      "record": 61,
+      "user": 6,
+      "assistant": 45,
+      "tool_call": 57,
+      "tool_result": 57
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e94f8ad16296b48adee4-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "e94f8ad16296b48adee4-part-0001.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 50,
+      "chunks": [
+        {
+          "path": "e94f8ad16296b48adee4-part-0001.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 112,
+      "chunks": [
+        {
+          "path": "e94f8ad16296b48adee4-part-0001.json",
+          "message_count": 81
+        },
+        {
+          "path": "e94f8ad16296b48adee4-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "e94f8ad16296b48adee4-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "e94f8ad16296b48adee4-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "e94f8ad16296b48adee4-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-ec-hte-llm-annotation-venue-emnlp-2026-home-ubuntu-agent-ml-research-idea-gen-copy-6.md"
+}
