@@ -19,13 +19,13 @@ class FinalizationTests(unittest.TestCase):
                 (remote/'traces/projects.json').write_text('{"projects":[]}')
                 archive=root/'workspace.tar.gz';code=b'print(1)\n'
                 with tarfile.open(archive,'w:gz') as handle:
-                    records={'scripts/analyze.py':code,'logs/chats/task.jsonl':b'{"role":"user","text":"Inspect results"}\n{"role":"assistant","text":"Recorded results inspected."}\n'}
+                    records={'scripts/analyze.py':code,'scripts/.hf_cache/known.bin':b'present','logs/chats/task.jsonl':b'{"role":"user","text":"Inspect results"}\n{"role":"assistant","text":"Recorded results inspected."}\n'}
                     for name,data in records.items():
                         member=tarfile.TarInfo('workspace/projects/known/'+name);member.size=len(data);handle.addfile(member,io.BytesIO(data))
                 key='known/workspace.tar.gz';result=rules.collect(archive,remote,key)
                 with patch.object(browser,'ROOT',remote),contextlib.redirect_stdout(io.StringIO()):entry,_=browser.build_project(remote/'paper-assets/known')
                 (remote/'traces/projects.json').write_text(json.dumps({'projects':[entry]}))
-                expected={'workspace_archives':[{'key':key,'bytes':archive.stat().st_size}],'streamed_exports':[],'document_bundles':[],'supplementary_collections':[],'decompressed_mirror_audit':{'excluded_cache_candidate_objects':0,'excluded_cache_candidate_bytes':0}}
+                expected={'workspace_archives':[{'key':key,'bytes':archive.stat().st_size}],'streamed_exports':[],'document_bundles':[],'supplementary_collections':[],'decompressed_mirror_audit':{'excluded_cache_candidate_objects':1,'excluded_cache_candidate_bytes':5}}
                 (remote/'release-sources.json').write_text(json.dumps(expected))
                 (remote/'release-source-mirror-supplements.json').write_text('{"objects":[]}')
                 (remote/'batch-release-status.json').write_text(json.dumps({'archives':{key:{'status':'uploaded','source':{'bytes':archive.stat().st_size},'archive_sha256':result['archive_sha256'],'projects':['known']}}}))
@@ -35,6 +35,8 @@ class FinalizationTests(unittest.TestCase):
                 with gzip.open(remote/'release-source-mirrors.csv.gz','wt',newline='') as handle:
                     writer=csv.DictWriter(handle,fieldnames=['archive_key','project','relative_path','source_bytes','s3_key']);writer.writeheader()
                     writer.writerow({'archive_key':key,'project':'known','relative_path':'scripts/missing.py' if unmatched else 'scripts/analyze.py','source_bytes':len(code),'s3_key':'unpacked/known/workspace/scripts/analyze.py'})
+                    writer.writerow({'archive_key':key,'project':'known','relative_path':'scripts/.hf_cache/known.bin','source_bytes':7,'s3_key':'unpacked/known/workspace/scripts/.hf_cache/known.bin'})
+                    writer.writerow({'archive_key':key,'project':'known','relative_path':'scripts/.hf_cache/missing.bin','source_bytes':5,'s3_key':'unpacked/known/workspace/scripts/.hf_cache/missing.bin'})
                 tracked=[p.relative_to(remote).as_posix() for p in remote.rglob('*') if p.is_file()]
                 runner=root/'runner';runner.mkdir();commits=[]
                 def checkout(path):shutil.copytree(remote,path);(path/'.git/info').mkdir(parents=True)
@@ -61,7 +63,8 @@ class FinalizationTests(unittest.TestCase):
                     self.assertEqual(len(commits),1)
                     summary=json.loads((remote/'release-summary.json').read_text())
                     self.assertEqual(summary['workspace_archives'],1)
-                    self.assertEqual(summary['mirror_objects_matched_by_original_path_and_size'],1)
+                    self.assertEqual(summary['mirror_objects_matched_by_original_path_and_size'],2)
+                    self.assertEqual(summary['mirror_cache_objects_excluded'],1)
                     self.assertEqual(summary['recorded_events'],2)
                     guide=(remote/'paper-assets/known/README.md').read_text()
                     self.assertIn('scripts/analyze.py',guide)
