@@ -1,0 +1,1552 @@
+{
+  "schema_version": "1.0",
+  "session_id": "24eeb1e33cd13490ee7f",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-21T19:47:43.983Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XfsYjADbsAxFMnvJ6RhCuc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Test set inference for DocRED - generates predictions + CodaLab submission.\\\\n\\\\nUsage (from /root/autodl-tmp/):\\\\n  python -m freige.eval.test_inference \\\\\\\\\\\\n    --model_path /root/autodl-tmp/rsft_output_s43 \\\\\\\\\\\\n    --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n    --sft_adapter /root/autodl-tmp/sft_output \\\\\\\\\\\\n    --data_path /root/autodl-tmp/data/docred \\\\\\\\\\\\n    --output_dir /root/autodl-tmp/eval_results/test_rsft_s43 \\\\\\\\\\\\n    --no-quantize --batch_size 16 --max_new_tokens 1024\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\n\\\\nfrom freige.eval.inference import (\\\\n    load_model_and_tokenizer,\\\\n    build_prompt,\\\\n    run_inference,\\\\n    evaluate,\\\\n    SYSTEM_PROMPT,\\\\n    NO_EVIDENCE_SYSTEM_PROMPT,\\\\n)\\\\nfrom freige.eval.evaluator import gold_from_docred\\\\nfrom freige.data.docred_processor import DocREDProcessor, SPLIT_FILENAMES, DOCRED_REL_INFO\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nREL_NAME_TO_CODE = {v.lower().strip(): k for k, v in DOCRED_REL_INFO.items()}\\\\n\\\\n\\\\ndef prepare_test_data(data_dir, tokenizer, split=\\\\\\\"test\\\\\\\", include_evidence=True, system_prompt=SYSTEM_PROMPT):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build inference prompts from a test split.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    processor = DocREDProcessor(data_dir=data_dir)\\\\n    split_file = Path(data_dir) / SPLIT_FILENAMES[split]\\\\n    with open(split_file) as f:\\\\n        raw_docs = json.load(f)\\\\n\\\\n    eval_items = []\\\\n    for doc in raw_docs:\\\\n        doc_id = doc.get(\\\\\\\"title\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        sents = [processor._tokens_to_text(s) for s in doc[\\\\\\\"sents\\\\\\\"]]\\\\n        numbered_sents = \\\\\\\"\\\\\\\\n\\\\\\\".join(f\\\\\\\"[{i}] {s}\\\\\\\" for i, s in enumerate(sents))\\\\n\\\\n        entity_list = set()\\\\n        for entity_mentions in doc[\\\\\\\"vertexSet\\\\\\\"]:\\\\n            name = entity_mentions[0][\\\\\\\"name\\\\\\\"]\\\\n            entity_type = entity_mentions[0].get(\\\\\\\"type\\\\\\\", \\\\\\\"UNK\\\\\\\")\\\\n            entity_list.add(f\\\\\\\"{name} ({entity_type})\\\\\\\")\\\\n        entity_str = \\\\\\\", \\\\\\\".join(sorted(entity_list))\\\\n\\\\n        if include_evidence:\\\\n            instruction = (\\\\n                \\\\\\\"Extract all relation triples from the document. \\\\\\\"\\\\n                \\\\\\\"For each triple, provide the head entity, relation, tail entity, \\\\\\\"\\\\n                \\\\\\\"and the sentence IDs that serve as evidence. \\\\\\\"\\\\n                \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n            )\\\\n        else:\\\\n            instruction = (\\\\n                \\\\\\\"Extract all relation triples from the document. \\\\\\\"\\\\n                \\\\\\\"For each triple, provide the head entity, relation, and tail entity. \\\\\\\"\\\\n                \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n            )\\\\n\\\\n        input_text = f\\\\\\\"Document:\\\\\\\\n{numbered_sents}\\\\\\\\n\\\\\\\\nEntities: {entity_str}\\\\\\\"\\\\n        prompt = build_prompt(tokenizer, instruction, input_text, system_prompt=system_prompt)\\\\n        eval_items.append({\\\\\\\"doc_id\\\\\\\": doc_id, \\\\\\\"prompt\\\\\\\": prompt})\\\\n\\\\n    logger.info(\\\\\\\"Prepared %d test documents\\\\\\\", len(eval_items))\\\\n    return eval_items, raw_docs\\\\n\\\\n\\\\ndef build_entity_name_to_idx(doc):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Map entity name -> vertexSet index (case-insensitive).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    name_to_idx = {}\\\\n    for idx, entity_mentions in enumerate(doc[\\\\\\\"vertexSet\\\\\\\"]):\\\\n        for mention in entity_mentions:\\\\n            name = mention[\\\\\\\"name\\\\\\\"].lower().strip()\\\\n            if name not in name_to_idx:\\\\n                name_to_idx[name] = idx\\\\n    return name_to_idx\\\\n\\\\n\\\\ndef to_codalab_format(predictions_by_doc, raw_docs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Convert predictions to CodaLab submission format.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    doc_map = {doc.get(\\\\\\\"title\\\\\\\", \\\\\\\"\\\\\\\"): doc for doc in raw_docs}\\\\n    submission = {}\\\\n    stats = {\\\\\\\"converted\\\\\\\": 0, \\\\\\\"skipped_rel\\\\\\\": 0, \\\\\\\"skipped_entity\\\\\\\": 0}\\\\n\\\\n    for doc_pred in predictions_by_doc:\\\\n        doc_id = doc_pred[\\\\\\\"doc_id\\\\\\\"]\\\\n        raw_doc = doc_map.get(doc_id)\\\\n        if raw_doc is None:\\\\n            continue\\\\n\\\\n        name_to_idx = build_entity_name_to_idx(raw_doc)\\\\n        doc_triples = []\\\\n        seen = set()\\\\n\\\\n        for triple in doc_pred.get(\\\\\\\"parsed_triples\\\\\\\", []):\\\\n            rel_name = triple.get(\\\\\\\"relation\\\\\\\", \\\\\\\"\\\\\\\").lower().strip()\\\\n            rel_code = REL_NAME_TO_CODE.get(rel_name)\\\\n            if rel_code is None:\\\\n               \\\\n\\\\n... [截断: 输出过长，省略 2063 字符] ...\\\\n\\\\nath\\\\n        logger.info(\\\\\\\"Detected adapter at %s, base: %s\\\\\\\", adapter_path, base_model_path)\\\\n    else:\\\\n        base_model_path = args.model_path\\\\n        adapter_path = None\\\\n        logger.info(\\\\\\\"Full model: %s\\\\\\\", base_model_path)\\\\n\\\\n    model, tokenizer = load_model_and_tokenizer(\\\\n        base_model_path, adapter_path, sft_adapter_path=args.sft_adapter,\\\\n        quantize=args.quantize,\\\\n    )\\\\n\\\\n    sys_prompt = NO_EVIDENCE_SYSTEM_PROMPT if args.no_evidence else SYSTEM_PROMPT\\\\n    include_evi = not args.no_evidence\\\\n    eval_items, raw_docs = prepare_test_data(\\\\n        args.data_path, tokenizer, split=args.split,\\\\n        include_evidence=include_evi, system_prompt=sys_prompt,\\\\n    )\\\\n\\\\n    t0 = time.time()\\\\n    raw_results = run_inference(model, tokenizer, eval_items, args.batch_size, args.max_new_tokens)\\\\n    elapsed = time.time() - t0\\\\n    logger.info(\\\\\\\"Inference: %.1fs (%.2f s/doc)\\\\\\\", elapsed, elapsed / max(len(eval_items), 1))\\\\n\\\\n    all_predictions = []\\\\n    raw_outputs_for_eval = []\\\\n    detailed = []\\\\n    for r in raw_results:\\\\n        doc_id = r[\\\\\\\"doc_id\\\\\\\"]\\\\n        for triple in r[\\\\\\\"parsed_triples\\\\\\\"]:\\\\n            all_predictions.append({\\\\n                \\\\\\\"doc_id\\\\\\\": doc_id,\\\\n                \\\\\\\"head\\\\\\\": triple[\\\\\\\"head\\\\\\\"],\\\\n                \\\\\\\"tail\\\\\\\": triple[\\\\\\\"tail\\\\\\\"],\\\\n                \\\\\\\"relation\\\\\\\": triple[\\\\\\\"relation\\\\\\\"],\\\\n                \\\\\\\"evidence\\\\\\\": triple.get(\\\\\\\"evidence\\\\\\\", []),\\\\n            })\\\\n        raw_outputs_for_eval.append({\\\\\\\"doc_id\\\\\\\": doc_id, \\\\\\\"raw_text\\\\\\\": r[\\\\\\\"raw_output\\\\\\\"]})\\\\n        detailed.append({\\\\n            \\\\\\\"doc_id\\\\\\\": doc_id,\\\\n            \\\\\\\"raw_output\\\\\\\": r[\\\\\\\"raw_output\\\\\\\"],\\\\n            \\\\\\\"parsed_triples\\\\\\\": r[\\\\\\\"parsed_triples\\\\\\\"],\\\\n            \\\\\\\"truncated\\\\\\\": r[\\\\\\\"truncated\\\\\\\"],\\\\n            \\\\\\\"format_ok\\\\\\\": r[\\\\\\\"format_ok\\\\\\\"],\\\\n        })\\\\n\\\\n    pred_path = output_dir / \\\\\\\"predictions.json\\\\\\\"\\\\n    with open(pred_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(detailed, f, indent=2, ensure_ascii=False)\\\\n    logger.info(\\\\\\\"Predictions -> %s\\\\\\\", pred_path)\\\\n\\\\n    has_labels = any(\\\\\\\"labels\\\\\\\" in doc and doc[\\\\\\\"labels\\\\\\\"] for doc in raw_docs)\\\\n\\\\n    if has_labels:\\\\n        gold = gold_from_docred(raw_docs)\\\\n        metrics = evaluate(all_predictions, gold, raw_outputs_for_eval, args.data_path, args.split)\\\\n    else:\\\\n        metrics = {\\\\\\\"note\\\\\\\": \\\\\\\"test split has no labels - submit to CodaLab for evaluation\\\\\\\"}\\\\n\\\\n    submission, stats = to_codalab_format(detailed, raw_docs)\\\\n    codalab_path = output_dir / \\\\\\\"codalab_submission.json\\\\\\\"\\\\n    with open(codalab_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(submission, f)\\\\n    logger.info(\\\\\\\"CodaLab submission -> %s\\\\\\\", codalab_path)\\\\n\\\\n    n_truncated = sum(1 for r in raw_results if r[\\\\\\\"truncated\\\\\\\"])\\\\n    n_format_ok = sum(1 for r in raw_results if r[\\\\\\\"format_ok\\\\\\\"])\\\\n    n_preds = len(all_predictions)\\\\n\\\\n    summary = {\\\\n        \\\\\\\"n_documents\\\\\\\": len(raw_results),\\\\n        \\\\\\\"n_predictions\\\\\\\": n_preds,\\\\n        \\\\\\\"n_truncated\\\\\\\": n_truncated,\\\\n        \\\\\\\"n_format_ok\\\\\\\": n_format_ok,\\\\n        \\\\\\\"format_ok_rate\\\\\\\": n_format_ok / len(raw_results) if raw_results else 0,\\\\n        \\\\\\\"inference_time_seconds\\\\\\\": round(elapsed, 1),\\\\n        \\\\\\\"codalab_stats\\\\\\\": stats,\\\\n        \\\\\\\"config\\\\\\\": vars(args),\\\\n    }\\\\n    if has_labels:\\\\n        summary[\\\\\\\"metrics\\\\\\\"] = metrics\\\\n    with open(output_dir / \\\\\\\"test_summary.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 50)\\\\n    if has_labels:\\\\n        print(f\\\\\\\"  F1:          {metrics['f1']:.4f}\\\\\\\")\\\\n        print(f\\\\\\\"  Ign-F1:      {metrics['ign_f1']:.4f}\\\\\\\")\\\\n        print(f\\\\\\\"  Evi-F1(DREEAM): {metrics.get('evi_f1_joint', 0):.4f}\\\\\\\")\\\\n        print(f\\\\\\\"  Evi-F1(TP):     {metrics['evi_f1']:.4f}\\\\\\\")\\\\n        print(f\\\\\\\"  EDCR:        {metrics.get('edcr', 0):.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Documents:   {len(raw_results)}\\\\\\\")\\\\n    print(f\\\\\\\"  Predictions: {n_preds}\\\\\\\")\\\\n    print(f\\\\\\\"  Format OK:   {n_format_ok}/{len(raw_results)}\\\\\\\")\\\\n    print(f\\\\\\\"  Truncated:   {n_truncated}/{len(raw_results)}\\\\\\\")\\\\n    print(f\\\\\\\"  CodaLab:     {stats['converted']} converted, \\\\\\\"\\\\n          f\\\\\\\"{stats['skipped_rel']} skipped (rel), \\\\\\\"\\\\n          f\\\\\\\"{stats['skipped_entity']} skipped (entity)\\\\\\\")\\\\n    print(f\\\\\\\"  Output:      {codalab_path}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 50)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2ccb36fb-3142-41a3-8ab5-dc99e74bddb0",
+            "isSidechain": false,
+            "promptId": "65982792-96cf-4043-9ec8-84591566554e",
+            "type": "user",
+            "uuid": "618ac3f1-6eb6-4e89-9611-77b07ced57fd",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Test set inference for DocRED - generates predictions + CodaLab submission.\\\\n\\\\nUsage (from /root/autodl-tmp/):\\\\n  python -m freige.eval.test_inference \\\\\\\\\\\\n    --model_path /root/autodl-tmp/rsft_output_s43 \\\\\\\\\\\\n    --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n    --sft_adapter /root/autodl-tmp/sft_output \\\\\\\\\\\\n    --data_path /root/autodl-tmp/data/docred \\\\\\\\\\\\n    --output_dir /root/autodl-tmp/eval_results/test_rsft_s43 \\\\\\\\\\\\n    --no-quantize --batch_size 16 --max_new_tokens 1024\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\n\\\\nfrom freige.eval.inference import (\\\\n    load_model_and_tokenizer,\\\\n    build_prompt,\\\\n    run_inference,\\\\n    evaluate,\\\\n    SYSTEM_PROMPT,\\\\n    NO_EVIDENCE_SYSTEM_PROMPT,\\\\n)\\\\nfrom freige.eval.evaluator import gold_from_docred\\\\nfrom freige.data.docred_processor import DocREDProcessor, SPLIT_FILENAMES, DOCRED_REL_INFO\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nREL_NAME_TO_CODE = {v.lower().strip(): k for k, v in DOCRED_REL_INFO.items()}\\\\n\\\\n\\\\ndef prepare_test_data(data_dir, tokenizer, split=\\\\\\\"test\\\\\\\", include_evidence=True, system_prompt=SYSTEM_PROMPT):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build inference prompts from a test split.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    processor = DocREDProcessor(data_dir=data_dir)\\\\n    split_file = Path(data_dir) / SPLIT_FILENAMES[split]\\\\n    with open(split_file) as f:\\\\n        raw_docs = json.load(f)\\\\n\\\\n    eval_items = []\\\\n    for doc in raw_docs:\\\\n        doc_id = doc.get(\\\\\\\"title\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        sents = [processor._tokens_to_text(s) for s in doc[\\\\\\\"sents\\\\\\\"]]\\\\n        numbered_sents = \\\\\\\"\\\\\\\\n\\\\\\\".join(f\\\\\\\"[{i}] {s}\\\\\\\" for i, s in enumerate(sents))\\\\n\\\\n        entity_list = set()\\\\n        for entity_mentions in doc[\\\\\\\"vertexSet\\\\\\\"]:\\\\n            name = entity_mentions[0][\\\\\\\"name\\\\\\\"]\\\\n            entity_type = entity_mentions[0].get(\\\\\\\"type\\\\\\\", \\\\\\\"UNK\\\\\\\")\\\\n            entity_list.add(f\\\\\\\"{name} ({entity_type})\\\\\\\")\\\\n        entity_str = \\\\\\\", \\\\\\\".join(sorted(entity_list))\\\\n\\\\n        if include_evidence:\\\\n            instruction = (\\\\n                \\\\\\\"Extract all relation triples from the document. \\\\\\\"\\\\n                \\\\\\\"For each triple, provide the head entity, relation, tail entity, \\\\\\\"\\\\n                \\\\\\\"and the sentence IDs that serve as evidence. \\\\\\\"\\\\n                \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n            )\\\\n        else:\\\\n            instruction = (\\\\n                \\\\\\\"Extract all relation triples from the document. \\\\\\\"\\\\n                \\\\\\\"For each triple, provide the head entity, relation, and tail entity. \\\\\\\"\\\\n                \\\\\\\"Output as a JSON list.\\\\\\\"\\\\n            )\\\\n\\\\n        input_text = f\\\\\\\"Document:\\\\\\\\n{numbered_sents}\\\\\\\\n\\\\\\\\nEntities: {entity_str}\\\\\\\"\\\\n        prompt = build_prompt(tokenizer, instruction, input_text, system_prompt=system_prompt)\\\\n        eval_items.append({\\\\\\\"doc_id\\\\\\\": doc_id, \\\\\\\"prompt\\\\\\\": prompt})\\\\n\\\\n    logger.info(\\\\\\\"Prepared %d test documents\\\\\\\", len(eval_items))\\\\n    return eval_items, raw_docs\\\\n\\\\n\\\\ndef build_entity_name_to_idx(doc):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Map entity name -> vertexSet index (case-insensitive).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    name_to_idx = {}\\\\n    for idx, entity_mentions in enumerate(doc[\\\\\\\"vertexSet\\\\\\\"]):\\\\n        for mention in entity_mentions:\\\\n            name = mention[\\\\\\\"name\\\\\\\"].lower().strip()\\\\n            if name not in name_to_idx:\\\\n                name_to_idx[name] = idx\\\\n    return name_to_idx\\\\n\\\\n\\\\ndef to_codalab_format(predictions_by_doc, raw_docs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Convert predictions to CodaLab submission format.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    doc_map = {doc.get(\\\\\\\"title\\\\\\\", \\\\\\\"\\\\\\\"): doc for doc in raw_docs}\\\\n    submission = {}\\\\n    stats = {\\\\\\\"converted\\\\\\\": 0, \\\\\\\"skipped_rel\\\\\\\": 0, \\\\\\\"skipped_entity\\\\\\\": 0}\\\\n\\\\n    for doc_pred in predictions_by_doc:\\\\n        doc_id = doc_pred[\\\\\\\"doc_id\\\\\\\"]\\\\n        raw_doc = doc_map.get(doc_id)\\\\n        if raw_doc is None:\\\\n            continue\\\\n\\\\n        name_to_idx = build_entity_name_to_idx(raw_doc)\\\\n        doc_triples = []\\\\n        seen = set()\\\\n\\\\n        for triple in doc_pred.get(\\\\\\\"parsed_triples\\\\\\\", []):\\\\n            rel_name = triple.get(\\\\\\\"relation\\\\\\\", \\\\\\\"\\\\\\\").lower().strip()\\\\n            rel_code = REL_NAME_TO_CODE.get(rel_name)\\\\n            if rel_code is None:\\\\n               \\\\n\\\\n... [截断: 输出过长，省略 2063 字符] ...\\\\n\\\\nath\\\\n        logger.info(\\\\\\\"Detected adapter at %s, base: %s\\\\\\\", adapter_path, base_model_path)\\\\n    else:\\\\n        base_model_path = args.model_path\\\\n        adapter_path = None\\\\n        logger.info(\\\\\\\"Full model: %s\\\\\\\", base_model_path)\\\\n\\\\n    model, tokenizer = load_model_and_tokenizer(\\\\n        base_model_path, adapter_path, sft_adapter_path=args.sft_adapter,\\\\n        quantize=args.quantize,\\\\n    )\\\\n\\\\n    sys_prompt = NO_EVIDENCE_SYSTEM_PROMPT if args.no_evidence else SYSTEM_PROMPT\\\\n    include_evi = not args.no_evidence\\\\n    eval_items, raw_docs = prepare_test_data(\\\\n        args.data_path, tokenizer, split=args.split,\\\\n        include_evidence=include_evi, system_prompt=sys_prompt,\\\\n    )\\\\n\\\\n    t0 = time.time()\\\\n    raw_results = run_inference(model, tokenizer, eval_items, args.batch_size, args.max_new_tokens)\\\\n    elapsed = time.time() - t0\\\\n    logger.info(\\\\\\\"Inference: %.1fs (%.2f s/doc)\\\\\\\", elapsed, elapsed / max(len(eval_items), 1))\\\\n\\\\n    all_predictions = []\\\\n    raw_outputs_for_eval = []\\\\n    detailed = []\\\\n    for r in raw_results:\\\\n        doc_id = r[\\\\\\\"doc_id\\\\\\\"]\\\\n        for triple in r[\\\\\\\"parsed_triples\\\\\\\"]:\\\\n            all_predictions.append({\\\\n                \\\\\\\"doc_id\\\\\\\": doc_id,\\\\n                \\\\\\\"head\\\\\\\": triple[\\\\\\\"head\\\\\\\"],\\\\n                \\\\\\\"tail\\\\\\\": triple[\\\\\\\"tail\\\\\\\"],\\\\n                \\\\\\\"relation\\\\\\\": triple[\\\\\\\"relation\\\\\\\"],\\\\n                \\\\\\\"evidence\\\\\\\": triple.get(\\\\\\\"evidence\\\\\\\", []),\\\\n            })\\\\n        raw_outputs_for_eval.append({\\\\\\\"doc_id\\\\\\\": doc_id, \\\\\\\"raw_text\\\\\\\": r[\\\\\\\"raw_output\\\\\\\"]})\\\\n        detailed.append({\\\\n            \\\\\\\"doc_id\\\\\\\": doc_id,\\\\n            \\\\\\\"raw_output\\\\\\\": r[\\\\\\\"raw_output\\\\\\\"],\\\\n            \\\\\\\"parsed_triples\\\\\\\": r[\\\\\\\"parsed_triples\\\\\\\"],\\\\n            \\\\\\\"truncated\\\\\\\": r[\\\\\\\"truncated\\\\\\\"],\\\\n            \\\\\\\"format_ok\\\\\\\": r[\\\\\\\"format_ok\\\\\\\"],\\\\n        })\\\\n\\\\n    pred_path = output_dir / \\\\\\\"predictions.json\\\\\\\"\\\\n    with open(pred_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(detailed, f, indent=2, ensure_ascii=False)\\\\n    logger.info(\\\\\\\"Predictions -> %s\\\\\\\", pred_path)\\\\n\\\\n    has_labels = any(\\\\\\\"labels\\\\\\\" in doc and doc[\\\\\\\"labels\\\\\\\"] for doc in raw_docs)\\\\n\\\\n    if has_labels:\\\\n        gold = gold_from_docred(raw_docs)\\\\n        metrics = evaluate(all_predictions, gold, raw_outputs_for_eval, args.data_path, args.split)\\\\n    else:\\\\n        metrics = {\\\\\\\"note\\\\\\\": \\\\\\\"test split has no labels - submit to CodaLab for evaluation\\\\\\\"}\\\\n\\\\n    submission, stats = to_codalab_format(detailed, raw_docs)\\\\n    codalab_path = output_dir / \\\\\\\"codalab_submission.json\\\\\\\"\\\\n    with open(codalab_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(submission, f)\\\\n    logger.info(\\\\\\\"CodaLab submission -> %s\\\\\\\", codalab_path)\\\\n\\\\n    n_truncated = sum(1 for r in raw_results if r[\\\\\\\"truncated\\\\\\\"])\\\\n    n_format_ok = sum(1 for r in raw_results if r[\\\\\\\"format_ok\\\\\\\"])\\\\n    n_preds = len(all_predictions)\\\\n\\\\n    summary = {\\\\n        \\\\\\\"n_documents\\\\\\\": len(raw_results),\\\\n        \\\\\\\"n_predictions\\\\\\\": n_preds,\\\\n        \\\\\\\"n_truncated\\\\\\\": n_truncated,\\\\n        \\\\\\\"n_format_ok\\\\\\\": n_format_ok,\\\\n        \\\\\\\"format_ok_rate\\\\\\\": n_format_ok / len(raw_results) if raw_results else 0,\\\\n        \\\\\\\"inference_time_seconds\\\\\\\": round(elapsed, 1),\\\\n        \\\\\\\"codalab_stats\\\\\\\": stats,\\\\n        \\\\\\\"config\\\\\\\": vars(args),\\\\n    }\\\\n    if has_labels:\\\\n        summary[\\\\\\\"metrics\\\\\\\"] = metrics\\\\n    with open(output_dir / \\\\\\\"test_summary.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 50)\\\\n    if has_labels:\\\\n        print(f\\\\\\\"  F1:          {metrics['f1']:.4f}\\\\\\\")\\\\n        print(f\\\\\\\"  Ign-F1:      {metrics['ign_f1']:.4f}\\\\\\\")\\\\n        print(f\\\\\\\"  Evi-F1(DREEAM): {metrics.get('evi_f1_joint', 0):.4f}\\\\\\\")\\\\n        print(f\\\\\\\"  Evi-F1(TP):     {metrics['evi_f1']:.4f}\\\\\\\")\\\\n        print(f\\\\\\\"  EDCR:        {metrics.get('edcr', 0):.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Documents:   {len(raw_results)}\\\\\\\")\\\\n    print(f\\\\\\\"  Predictions: {n_preds}\\\\\\\")\\\\n    print(f\\\\\\\"  Format OK:   {n_format_ok}/{len(raw_results)}\\\\\\\")\\\\n    print(f\\\\\\\"  Truncated:   {n_truncated}/{len(raw_results)}\\\\\\\")\\\\n    print(f\\\\\\\"  CodaLab:     {stats['converted']} converted, \\\\\\\"\\\\n          f\\\\\\\"{stats['skipped_rel']} skipped (rel), \\\\\\\"\\\\n          f\\\\\\\"{stats['skipped_entity']} skipped (entity)\\\\\\\")\\\\n    print(f\\\\\\\"  Output:      {codalab_path}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 50)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Test set inference for DocRED - generates predictions + CodaLab submission.\\n\\nUsage (from /root/autodl-tmp/):\\n  python -m freige.eval.test_inference \\\\\\n    --model_path /root/autodl-tmp/rsft_output_s43 \\\\\\n    --base_model /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --sft_adapter /root/autodl-tmp/sft_output \\\\\\n    --data_path /root/autodl-tmp/data/docred \\\\\\n    --output_dir /root/autodl-tmp/eval_results/test_rsft_s43 \\\\\\n    --no-quantize --batch_size 16 --max_new_tokens 1024\\n\\\"\\\"\\\"\\nimport argparse\\nimport json\\nimport logging\\nimport time\\nfrom pathlib import Path\\n\\nimport torch\\n\\nfrom freige.eval.inference import (\\n    load_model_and_tokenizer,\\n    build_prompt,\\n    run_inference,\\n    evaluate,\\n    SYSTEM_PROMPT,\\n    NO_EVIDENCE_SYSTEM_PROMPT,\\n)\\nfrom freige.eval.evaluator import gold_from_docred\\nfrom freige.data.docred_processor import DocREDProcessor, SPLIT_FILENAMES, DOCRED_REL_INFO\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\nREL_NAME_TO_CODE = {v.lower().strip(): k for k, v in DOCRED_REL_INFO.items()}\\n\\n\\ndef prepare_test_data(data_dir, tokenizer, split=\\\"test\\\", include_evidence=True, system_prompt=SYSTEM_PROMPT):\\n    \\\"\\\"\\\"Build inference prompts from a test split.\\\"\\\"\\\"\\n    processor = DocREDProcessor(data_dir=data_dir)\\n    split_file = Path(data_dir) / SPLIT_FILENAMES[split]\\n    with open(split_file) as f:\\n        raw_docs = json.load(f)\\n\\n    eval_items = []\\n    for doc in raw_docs:\\n        doc_id = doc.get(\\\"title\\\", \\\"\\\")\\n        sents = [processor._tokens_to_text(s) for s in doc[\\\"sents\\\"]]\\n        numbered_sents = \\\"\\\\n\\\".join(f\\\"[{i}] {s}\\\" for i, s in enumerate(sents))\\n\\n        entity_list = set()\\n        for entity_mentions in doc[\\\"vertexSet\\\"]:\\n            name = entity_mentions[0][\\\"name\\\"]\\n            entity_type = entity_mentions[0].get(\\\"type\\\", \\\"UNK\\\")\\n            entity_list.add(f\\\"{name} ({entity_type})\\\")\\n        entity_str = \\\", \\\".join(sorted(entity_list))\\n\\n        if include_evidence:\\n            instruction = (\\n                \\\"Extract all relation triples from the document. \\\"\\n                \\\"For each triple, provide the head entity, relation, tail entity, \\\"\\n                \\\"and the sentence IDs that serve as evidence. \\\"\\n                \\\"Output as a JSON list.\\\"\\n            )\\n        else:\\n            instruction = (\\n                \\\"Extract all relation triples from the document. \\\"\\n                \\\"For each triple, provide the head entity, relation, and tail entity. \\\"\\n                \\\"Output as a JSON list.\\\"\\n            )\\n\\n        input_text = f\\\"Document:\\\\n{numbered_sents}\\\\n\\\\nEntities: {entity_str}\\\"\\n        prompt = build_prompt(tokenizer, instruction, input_text, system_prompt=system_prompt)\\n        eval_items.append({\\\"doc_id\\\": doc_id, \\\"prompt\\\": prompt})\\n\\n    logger.info(\\\"Prepared %d test documents\\\", len(eval_items))\\n    return eval_items, raw_docs\\n\\n\\ndef build_entity_name_to_idx(doc):\\n    \\\"\\\"\\\"Map entity name -> vertexSet index (case-insensitive).\\\"\\\"\\\"\\n    name_to_idx = {}\\n    for idx, entity_mentions in enumerate(doc[\\\"vertexSet\\\"]):\\n        for mention in entity_mentions:\\n            name = mention[\\\"name\\\"].lower().strip()\\n            if name not in name_to_idx:\\n                name_to_idx[name] = idx\\n    return name_to_idx\\n\\n\\ndef to_codalab_format(predictions_by_doc, raw_docs):\\n    \\\"\\\"\\\"Convert predictions to CodaLab submission format.\\\"\\\"\\\"\\n    doc_map = {doc.get(\\\"title\\\", \\\"\\\"): doc for doc in raw_docs}\\n    submission = {}\\n    stats = {\\\"converted\\\": 0, \\\"skipped_rel\\\": 0, \\\"skipped_entity\\\": 0}\\n\\n    for doc_pred in predictions_by_doc:\\n        doc_id = doc_pred[\\\"doc_id\\\"]\\n        raw_doc = doc_map.get(doc_id)\\n        if raw_doc is None:\\n            continue\\n\\n        name_to_idx = build_entity_name_to_idx(raw_doc)\\n        doc_triples = []\\n        seen = set()\\n\\n        for triple in doc_pred.get(\\\"parsed_triples\\\", []):\\n            rel_name = triple.get(\\\"relation\\\", \\\"\\\").lower().strip()\\n            rel_code = REL_NAME_TO_CODE.get(rel_name)\\n            if rel_code is None:\\n               \\n\\n... [截断: 输出过长，省略 2063 字符] ...\\n\\nath\\n        logger.info(\\\"Detected adapter at %s, base: %s\\\", adapter_path, base_model_path)\\n    else:\\n        base_model_path = args.model_path\\n        adapter_path = None\\n        logger.info(\\\"Full model: %s\\\", base_model_path)\\n\\n    model, tokenizer = load_model_and_tokenizer(\\n        base_model_path, adapter_path, sft_adapter_path=args.sft_adapter,\\n        quantize=args.quantize,\\n    )\\n\\n    sys_prompt = NO_EVIDENCE_SYSTEM_PROMPT if args.no_evidence else SYSTEM_PROMPT\\n    include_evi = not args.no_evidence\\n    eval_items, raw_docs = prepare_test_data(\\n        args.data_path, tokenizer, split=args.split,\\n        include_evidence=include_evi, system_prompt=sys_prompt,\\n    )\\n\\n    t0 = time.time()\\n    raw_results = run_inference(model, tokenizer, eval_items, args.batch_size, args.max_new_tokens)\\n    elapsed = time.time() - t0\\n    logger.info(\\\"Inference: %.1fs (%.2f s/doc)\\\", elapsed, elapsed / max(len(eval_items), 1))\\n\\n    all_predictions = []\\n    raw_outputs_for_eval = []\\n    detailed = []\\n    for r in raw_results:\\n        doc_id = r[\\\"doc_id\\\"]\\n        for triple in r[\\\"parsed_triples\\\"]:\\n            all_predictions.append({\\n                \\\"doc_id\\\": doc_id,\\n                \\\"head\\\": triple[\\\"head\\\"],\\n                \\\"tail\\\": triple[\\\"tail\\\"],\\n                \\\"relation\\\": triple[\\\"relation\\\"],\\n                \\\"evidence\\\": triple.get(\\\"evidence\\\", []),\\n            })\\n        raw_outputs_for_eval.append({\\\"doc_id\\\": doc_id, \\\"raw_text\\\": r[\\\"raw_output\\\"]})\\n        detailed.append({\\n            \\\"doc_id\\\": doc_id,\\n            \\\"raw_output\\\": r[\\\"raw_output\\\"],\\n            \\\"parsed_triples\\\": r[\\\"parsed_triples\\\"],\\n            \\\"truncated\\\": r[\\\"truncated\\\"],\\n            \\\"format_ok\\\": r[\\\"format_ok\\\"],\\n        })\\n\\n    pred_path = output_dir / \\\"predictions.json\\\"\\n    with open(pred_path, \\\"w\\\") as f:\\n        json.dump(detailed, f, indent=2, ensure_ascii=False)\\n    logger.info(\\\"Predictions -> %s\\\", pred_path)\\n\\n    has_labels = any(\\\"labels\\\" in doc and doc[\\\"labels\\\"] for doc in raw_docs)\\n\\n    if has_labels:\\n        gold = gold_from_docred(raw_docs)\\n        metrics = evaluate(all_predictions, gold, raw_outputs_for_eval, args.data_path, args.split)\\n    else:\\n        metrics = {\\\"note\\\": \\\"test split has no labels - submit to CodaLab for evaluation\\\"}\\n\\n    submission, stats = to_codalab_format(detailed, raw_docs)\\n    codalab_path = output_dir / \\\"codalab_submission.json\\\"\\n    with open(codalab_path, \\\"w\\\") as f:\\n        json.dump(submission, f)\\n    logger.info(\\\"CodaLab submission -> %s\\\", codalab_path)\\n\\n    n_truncated = sum(1 for r in raw_results if r[\\\"truncated\\\"])\\n    n_format_ok = sum(1 for r in raw_results if r[\\\"format_ok\\\"])\\n    n_preds = len(all_predictions)\\n\\n    summary = {\\n        \\\"n_documents\\\": len(raw_results),\\n        \\\"n_predictions\\\": n_preds,\\n        \\\"n_truncated\\\": n_truncated,\\n        \\\"n_format_ok\\\": n_format_ok,\\n        \\\"format_ok_rate\\\": n_format_ok / len(raw_results) if raw_results else 0,\\n        \\\"inference_time_seconds\\\": round(elapsed, 1),\\n        \\\"codalab_stats\\\": stats,\\n        \\\"config\\\": vars(args),\\n    }\\n    if has_labels:\\n        summary[\\\"metrics\\\"] = metrics\\n    with open(output_dir / \\\"test_summary.json\\\", \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 50)\\n    if has_labels:\\n        print(f\\\"  F1:          {metrics['f1']:.4f}\\\")\\n        print(f\\\"  Ign-F1:      {metrics['ign_f1']:.4f}\\\")\\n        print(f\\\"  Evi-F1(DREEAM): {metrics.get('evi_f1_joint', 0):.4f}\\\")\\n        print(f\\\"  Evi-F1(TP):     {metrics['evi_f1']:.4f}\\\")\\n        print(f\\\"  EDCR:        {metrics.get('edcr', 0):.4f}\\\")\\n    print(f\\\"  Documents:   {len(raw_results)}\\\")\\n    print(f\\\"  Predictions: {n_preds}\\\")\\n    print(f\\\"  Format OK:   {n_format_ok}/{len(raw_results)}\\\")\\n    print(f\\\"  Truncated:   {n_truncated}/{len(raw_results)}\\\")\\n    print(f\\\"  CodaLab:     {stats['converted']} converted, \\\"\\n          f\\\"{stats['skipped_rel']} skipped (rel), \\\"\\n          f\\\"{stats['skipped_entity']} skipped (entity)\\\")\\n    print(f\\\"  Output:      {codalab_path}\\\")\\n    print(\\\"=\\\" * 50)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            },
+            "sourceToolAssistantUUID": "2ccb36fb-3142-41a3-8ab5-dc99e74bddb0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-21T19:47:48.158Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture. Let me check if the currently running SFT test evals (4b, 8b, 14b, llama) are still running. The log output shows them at around 20-27% progress with timestamps from 2026-05-22 02:32-02:35. Let me check if they're still running.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "618ac3f1-6eb6-4e89-9611-77b07ced57fd",
+            "isSidechain": false,
+            "requestId": "req_011CbGHsXLBzu9scYYEuTkCf",
+            "type": "assistant",
+            "uuid": "39ed58b1-3d5c-4c59-810b-3334ced1f166",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DtyTPEgtwxhRDK5LgZjNRR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18455,
+                "cache_read_input_tokens": 48443,
+                "output_tokens": 365,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 18455,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 365,
+                    "cache_read_input_tokens": 48443,
+                    "cache_creation_input_tokens": 18455,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 18455
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-21T19:47:49.553Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4B/8B/14B/Llama SFT test eval 正在进行中（log 显示 ~20% 进度）。检查是否仍在运行。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39ed58b1-3d5c-4c59-810b-3334ced1f166",
+            "isSidechain": false,
+            "requestId": "req_011CbGHsXLBzu9scYYEuTkCf",
+            "type": "assistant",
+            "uuid": "a30c2504-0188-4584-9341-62c4c7746f38",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DtyTPEgtwxhRDK5LgZjNRR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18455,
+                "cache_read_input_tokens": 48443,
+                "output_tokens": 365,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 18455,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 365,
+                    "cache_read_input_tokens": 48443,
+                    "cache_creation_input_tokens": 18455,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 18455
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-21T19:47:51.126Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017uAo62rbYFQzWHxKGdhNbL",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a30c2504-0188-4584-9341-62c4c7746f38",
+            "isSidechain": false,
+            "requestId": "req_011CbGHsXLBzu9scYYEuTkCf",
+            "type": "assistant",
+            "uuid": "85c94381-e9c5-4683-a335-d20c76ff8ec0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DtyTPEgtwxhRDK5LgZjNRR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18455,
+                "cache_read_input_tokens": 48443,
+                "output_tokens": 365,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 18455,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 365,
+                    "cache_read_input_tokens": 48443,
+                    "cache_creation_input_tokens": 18455,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 18455
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-21T19:47:51.348Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CiXZt3b73PTB5uM436NDL9",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ps aux --sort=-%mem",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85c94381-e9c5-4683-a335-d20c76ff8ec0",
+            "isSidechain": false,
+            "requestId": "req_011CbGHsXLBzu9scYYEuTkCf",
+            "type": "assistant",
+            "uuid": "6084f4d3-0c1e-42b4-abb6-b737bb8c49e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DtyTPEgtwxhRDK5LgZjNRR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18455,
+                "cache_read_input_tokens": 48443,
+                "output_tokens": 365,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 18455,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 365,
+                    "cache_read_input_tokens": 48443,
+                    "cache_creation_input_tokens": 18455,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 18455
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "6084f4d3-0c1e-42b4-abb6-b737bb8c49e8",
+                "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb"
+              }
+            }
+          ],
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Prepare test eval commands and assess 4B RSFT",
+                "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb"
+              }
+            }
+          ],
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-21T19:47:51.656Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017uAo62rbYFQzWHxKGdhNbL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 9409 MiB, 97887 MiB\\\\n1, 32503 MiB, 97887 MiB\\\\n2, 19599 MiB, 97887 MiB\\\\n3, 18879 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85c94381-e9c5-4683-a335-d20c76ff8ec0",
+            "isSidechain": false,
+            "promptId": "65982792-96cf-4043-9ec8-84591566554e",
+            "type": "user",
+            "uuid": "d0868134-9f20-4708-a856-79a85aeae827",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 9409 MiB, 97887 MiB\\\\n1, 32503 MiB, 97887 MiB\\\\n2, 19599 MiB, 97887 MiB\\\\n3, 18879 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 9409 MiB, 97887 MiB\\n1, 32503 MiB, 97887 MiB\\n2, 19599 MiB, 97887 MiB\\n3, 18879 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            },
+            "sourceToolAssistantUUID": "85c94381-e9c5-4683-a335-d20c76ff8ec0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-21T19:47:52.195Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CiXZt3b73PTB5uM436NDL9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot     125323  103  0.1 63954820 2109448 ?    Rl   02:32  77:48 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_14b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\\nroot     125617  102  0.1 50007132 2023936 ?    Rl   02:33  76:42 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_8b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\\nroot     130451  126  0.1 49505216 2018744 ?    Rl   03:40   8:50 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_llama_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\\nroot     126054  102  0.1 39223016 1929376 ?    Rl   02:35  73:55 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_4b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\\nroot       1241  0.2  0.0 6821840 106080 ?      Sl   May20   5:01 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot       1239  0.0  0.0 182296 97936 ?        S    May20   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1237  0.0  0.0 4146592 76252 ?       Sl   May20   1:22 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot       1218  2.3  0.0 717984 23456 ?        Sl   May20  51:59 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot       1243  0.0  0.0 2721532 20216 ?       Sl   May20   1:27 proxy -c /init/proxy/proxy.ini\\\\nroot       1234  0.0  0.0 2573300 20068 ?       Sl   May20   0:29 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1352  0.0  0.0 28341192 12448 ?      Sl   May20   2:13 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_lit0j4pl/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_lit0j4pl/startup_error\\\\nroot     131062  0.0  0.0  16692 10836 ?        Ss   03:46   0:00 sshd: root@notty\\\\nroot     130823  0.0  0.0  16692 10792 ?        Ss   03:42   0:00 sshd: root@notty\\\\nroot       9274  0.0  0.0  16760 10784 ?        Ss   May20   0:30 sshd: root@notty\\\\nroot     130759  0.0  0.0  16692 10528 ?        Ss   03:41   0:00 sshd: root@notty\\\\nroot       1242  0.0  0.0  15444  9432 ?        S    May20   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot          1  0.0  0.0   4476  3324 ?        Ss   May20   0:00 bash /init/boot/boot.sh\\\\nroot     126048  0.0  0.0   4364  2148 ?        S    02:35   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && mkdir -p /root/autodl-tmp/eval_results/test_eval_4b_sft_s42 && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_4b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised' > /root/autodl-tmp/eval_results/test_eval_4b_sft_s42/run.log 2>&1 & echo PID=$!\\\\nroot     130446  0.0  0.0   4364  2000 ?        S    03:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=3 nohup python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_llama_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised > /root/autodl-tmp/eval_results/test_eval_llama_sft_s42.log 2>&1 & echo PID=$!\\\\nroot     125321  0.0  0.0   4364  1756 ?        S    02:32   0:00 bash -c mkdir -p /root/autodl-tmp/eval_results/test_eval_14b_sft_s42 && nohup bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_14b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\\\\\" > /root/autodl-tmp/eval_results/test_eval_14b_sft_s42/log.txt 2>&1 & echo $!\\\\nroot     125615  0.0  0.0   4364  1608 ?        S    02:33   0:00 bash -c mkdir -p /root/autodl-tmp/eval_results/test_eval_8b_sft_s42 && nohup bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=2 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_8b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\\\\\" > /root/autodl-tmp/eval_results/test_eval_8b_sft_s42/log.txt 2>&1 & echo $!\\\\nroot     131220  0.0  0.0   7064  1552 ?        Rs   03:47   0:00 ps aux --sort=-%mem\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6084f4d3-0c1e-42b4-abb6-b737bb8c49e8",
+            "isSidechain": false,
+            "promptId": "65982792-96cf-4043-9ec8-84591566554e",
+            "type": "user",
+            "uuid": "e5c6b7dd-5631-45e5-93ed-7ff699f2db70",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot     125323  103  0.1 63954820 2109448 ?    Rl   02:32  77:48 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_14b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\\nroot     125617  102  0.1 50007132 2023936 ?    Rl   02:33  76:42 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_8b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\\nroot     130451  126  0.1 49505216 2018744 ?    Rl   03:40   8:50 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_llama_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\\nroot     126054  102  0.1 39223016 1929376 ?    Rl   02:35  73:55 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_4b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\\nroot       1241  0.2  0.0 6821840 106080 ?      Sl   May20   5:01 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot       1239  0.0  0.0 182296 97936 ?        S    May20   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1237  0.0  0.0 4146592 76252 ?       Sl   May20   1:22 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot       1218  2.3  0.0 717984 23456 ?        Sl   May20  51:59 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot       1243  0.0  0.0 2721532 20216 ?       Sl   May20   1:27 proxy -c /init/proxy/proxy.ini\\\\nroot       1234  0.0  0.0 2573300 20068 ?       Sl   May20   0:29 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1352  0.0  0.0 28341192 12448 ?      Sl   May20   2:13 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_lit0j4pl/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_lit0j4pl/startup_error\\\\nroot     131062  0.0  0.0  16692 10836 ?        Ss   03:46   0:00 sshd: root@notty\\\\nroot     130823  0.0  0.0  16692 10792 ?        Ss   03:42   0:00 sshd: root@notty\\\\nroot       9274  0.0  0.0  16760 10784 ?        Ss   May20   0:30 sshd: root@notty\\\\nroot     130759  0.0  0.0  16692 10528 ?        Ss   03:41   0:00 sshd: root@notty\\\\nroot       1242  0.0  0.0  15444  9432 ?        S    May20   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot          1  0.0  0.0   4476  3324 ?        Ss   May20   0:00 bash /init/boot/boot.sh\\\\nroot     126048  0.0  0.0   4364  2148 ?        S    02:35   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && mkdir -p /root/autodl-tmp/eval_results/test_eval_4b_sft_s42 && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_4b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised' > /root/autodl-tmp/eval_results/test_eval_4b_sft_s42/run.log 2>&1 & echo PID=$!\\\\nroot     130446  0.0  0.0   4364  2000 ?        S    03:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=3 nohup python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_llama_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised > /root/autodl-tmp/eval_results/test_eval_llama_sft_s42.log 2>&1 & echo PID=$!\\\\nroot     125321  0.0  0.0   4364  1756 ?        S    02:32   0:00 bash -c mkdir -p /root/autodl-tmp/eval_results/test_eval_14b_sft_s42 && nohup bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_14b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\\\\\" > /root/autodl-tmp/eval_results/test_eval_14b_sft_s42/log.txt 2>&1 & echo $!\\\\nroot     125615  0.0  0.0   4364  1608 ?        S    02:33   0:00 bash -c mkdir -p /root/autodl-tmp/eval_results/test_eval_8b_sft_s42 && nohup bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=2 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_8b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\\\\\" > /root/autodl-tmp/eval_results/test_eval_8b_sft_s42/log.txt 2>&1 & echo $!\\\\nroot     131220  0.0  0.0   7064  1552 ?        Rs   03:47   0:00 ps aux --sort=-%mem\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot     125323  103  0.1 63954820 2109448 ?    Rl   02:32  77:48 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_14b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\nroot     125617  102  0.1 50007132 2023936 ?    Rl   02:33  76:42 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_8b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\nroot     130451  126  0.1 49505216 2018744 ?    Rl   03:40   8:50 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_llama_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\nroot     126054  102  0.1 39223016 1929376 ?    Rl   02:35  73:55 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_4b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\nroot       1241  0.2  0.0 6821840 106080 ?      Sl   May20   5:01 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1239  0.0  0.0 182296 97936 ?        S    May20   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1237  0.0  0.0 4146592 76252 ?       Sl   May20   1:22 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot       1218  2.3  0.0 717984 23456 ?        Sl   May20  51:59 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1243  0.0  0.0 2721532 20216 ?       Sl   May20   1:27 proxy -c /init/proxy/proxy.ini\\nroot       1234  0.0  0.0 2573300 20068 ?       Sl   May20   0:29 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1352  0.0  0.0 28341192 12448 ?      Sl   May20   2:13 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_lit0j4pl/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_lit0j4pl/startup_error\\nroot     131062  0.0  0.0  16692 10836 ?        Ss   03:46   0:00 sshd: root@notty\\nroot     130823  0.0  0.0  16692 10792 ?        Ss   03:42   0:00 sshd: root@notty\\nroot       9274  0.0  0.0  16760 10784 ?        Ss   May20   0:30 sshd: root@notty\\nroot     130759  0.0  0.0  16692 10528 ?        Ss   03:41   0:00 sshd: root@notty\\nroot       1242  0.0  0.0  15444  9432 ?        S    May20   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot          1  0.0  0.0   4476  3324 ?        Ss   May20   0:00 bash /init/boot/boot.sh\\nroot     126048  0.0  0.0   4364  2148 ?        S    02:35   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && mkdir -p /root/autodl-tmp/eval_results/test_eval_4b_sft_s42 && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_4b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised' > /root/autodl-tmp/eval_results/test_eval_4b_sft_s42/run.log 2>&1 & echo PID=$!\\nroot     130446  0.0  0.0   4364  2000 ?        S    03:40   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=3 nohup python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_llama_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised > /root/autodl-tmp/eval_results/test_eval_llama_sft_s42.log 2>&1 & echo PID=$!\\nroot     125321  0.0  0.0   4364  1756 ?        S    02:32   0:00 bash -c mkdir -p /root/autodl-tmp/eval_results/test_eval_14b_sft_s42 && nohup bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_14b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\" > /root/autodl-tmp/eval_results/test_eval_14b_sft_s42/log.txt 2>&1 & echo $!\\nroot     125615  0.0  0.0   4364  1608 ?        S    02:33   0:00 bash -c mkdir -p /root/autodl-tmp/eval_results/test_eval_8b_sft_s42 && nohup bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=2 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_8b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\\\" > /root/autodl-tmp/eval_results/test_eval_8b_sft_s42/log.txt 2>&1 & echo $!\\nroot     131220  0.0  0.0   7064  1552 ?        Rs   03:47   0:00 ps aux --sort=-%mem\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            },
+            "sourceToolAssistantUUID": "6084f4d3-0c1e-42b4-abb6-b737bb8c49e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-21T19:48:28.510Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the full picture:\n\n### Currently running SFT test evals (all 4 GPUs occupied):\n- **GPU 0**: 4B SFT test (PID 126054) - `/root/autodl-tmp/models/Qwen3-4B` + `/root/autodl-tmp/sft_output` → `test_eval_4b_sft_s42`\n- **GPU 1**: 14B SFT test (PID 125323) - `/root/autodl-tmp/models/Qwen/Qwen3-14B` + `/root/autodl-tmp/sft_output_14b/checkpoint-144` → `test_eval_14b_sft_s42`  \n\n\n- **GPU 2**: 8B SFT test (PID 125617) - `/root/autodl-tmp/models/Qwen/Qwen3-8B` + `/root/autodl-tmp/sft_output_qwen3_8b_bf16` → `test_eval_8b_sft_s42`\n- **GPU 3**: Llama SFT test (PID 130451) - `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B` + `/root/autodl-tmp/sft_output_llama_3_1_8b` → `test_eval_llama_`\n\nLooking at the GPU memory distribution, the 14B model is taking up the most at 32GB while the smaller models are using between 18-19GB each, leaving GPU 0 with plenty of headroom. The RSFT tests have all completed successfully except for the 4B model, and now I'm tracking the SFT evaluations running on GPUs 2 and 3. Looking at the available checkpoints, the original 4B RSFT adapter at `/root/autodl-tmp/rsft_output/checkpoint-510` is gone, but I can see there's an empty `rsft_output_ced_s42` directory that might have been the intended location for seed 42 — the other available checkpoints are from different seeds (43 and 44) so they won't work as direct replacements. Looking at the test_inference script for the 1.7B model, I'm checking what arguments were passed—it's loading the RSFT output as the model path, using the base Qwen3-1.7B model, and applying the SFT adapter on top, then running evaluation on the re-docred dataset with specific batch size and token limits. I'm noticing the pattern in how these commands are structured—SFT-only evaluations use the base model with an SFT adapter, while RSFT evaluations add a base model parameter alongside the RSFT adapter, so the 1.7B SFT test should follow that first pattern.\n\nNow I need to verify the exact model path for the 1.7B variant since I'm seeing different naming conventions across the 4B and 8B versions—it could be `/root/autodl-tmp/models/Qwen3-1.7B` or something similar under the Qwen directory. I need to verify which base model path actually exists, then determine the correct arguments for the SFT-only evaluation—whether to pass the base model and adapter separately or use a combined path depending on the presence of an adapter_config.json file.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e5c6b7dd-5631-45e5-93ed-7ff699f2db70",
+            "isSidechain": false,
+            "requestId": "req_011CbGHt8RKGRgHFX4YEdVSL",
+            "type": "assistant",
+            "uuid": "c2074f11-5ca9-4dd0-86ad-0c176f57fe64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HtPNhQFJggG6Q8PxtzPkty",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3543,
+                "cache_read_input_tokens": 66898,
+                "output_tokens": 2830,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3543,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2830,
+                    "cache_read_input_tokens": 66898,
+                    "cache_creation_input_tokens": 3543,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3543
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-21T19:48:28.513Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 个 GPU 都在跑 SFT test eval。`test_eval_1_7b_sft_s42` 是唯一缺失且未运行的。让我确认 1.7B 模型路径。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c2074f11-5ca9-4dd0-86ad-0c176f57fe64",
+            "isSidechain": false,
+            "requestId": "req_011CbGHt8RKGRgHFX4YEdVSL",
+            "type": "assistant",
+            "uuid": "b9d82ab4-6157-4440-a699-2c3747a5ec2e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HtPNhQFJggG6Q8PxtzPkty",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3543,
+                "cache_read_input_tokens": 66898,
+                "output_tokens": 2830,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3543,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2830,
+                    "cache_read_input_tokens": 66898,
+                    "cache_creation_input_tokens": 3543,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3543
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-21T19:48:29.046Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UfqfWiHDCsGWPPs3bouYN1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls -d /root/autodl-tmp/models/Qwen3-1.7B /root/autodl-tmp/models/Qwen/Qwen3-1.7B",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b9d82ab4-6157-4440-a699-2c3747a5ec2e",
+            "isSidechain": false,
+            "requestId": "req_011CbGHt8RKGRgHFX4YEdVSL",
+            "type": "assistant",
+            "uuid": "73dc571b-a6c8-4119-b100-6f743275a34b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HtPNhQFJggG6Q8PxtzPkty",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3543,
+                "cache_read_input_tokens": 66898,
+                "output_tokens": 2830,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3543,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2830,
+                    "cache_read_input_tokens": 66898,
+                    "cache_creation_input_tokens": 3543,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3543
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-21T19:48:29.508Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UfqfWiHDCsGWPPs3bouYN1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/models/Qwen3-1.7B': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73dc571b-a6c8-4119-b100-6f743275a34b",
+            "isSidechain": false,
+            "promptId": "65982792-96cf-4043-9ec8-84591566554e",
+            "type": "user",
+            "uuid": "ad9aecad-df64-4677-8f73-96ed1daa2d0e",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/models/Qwen3-1.7B': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\\n\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/models/Qwen3-1.7B': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            },
+            "sourceToolAssistantUUID": "73dc571b-a6c8-4119-b100-6f743275a34b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-21T19:48:29.836Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015sMLL1BWqNkZzeR49t1TxQ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/rsft_output_ced_s43/adapter_config.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad9aecad-df64-4677-8f73-96ed1daa2d0e",
+            "isSidechain": false,
+            "requestId": "req_011CbGHt8RKGRgHFX4YEdVSL",
+            "type": "assistant",
+            "uuid": "d69745a5-f890-47ad-9bbf-658d5f5a241c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HtPNhQFJggG6Q8PxtzPkty",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3543,
+                "cache_read_input_tokens": 66898,
+                "output_tokens": 2830,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3543,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2830,
+                    "cache_read_input_tokens": 66898,
+                    "cache_creation_input_tokens": 3543,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3543
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "d69745a5-f890-47ad-9bbf-658d5f5a241c",
+                "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb"
+              }
+            }
+          ],
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Prepare test eval commands and assess 4B RSFT",
+                "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb"
+              }
+            }
+          ],
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-21T19:48:30.291Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015sMLL1BWqNkZzeR49t1TxQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"alora_invocation_tokens\\\\\\\": null,\\\\n  \\\\\\\"alpha_pattern\\\\\\\": {},\\\\n  \\\\\\\"arrow_config\\\\\\\": null,\\\\n  \\\\\\\"auto_mapping\\\\\\\": null,\\\\n  \\\\\\\"base_model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n  \\\\\\\"bias\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"corda_config\\\\\\\": null,\\\\n  \\\\\\\"ensure_weight_tying\\\\\\\": false,\\\\n  \\\\\\\"eva_config\\\\\\\": null,\\\\n  \\\\\\\"exclude_modules\\\\\\\": null,\\\\n  \\\\\\\"fan_in_fan_out\\\\\\\": false,\\\\n  \\\\\\\"inference_mode\\\\\\\": true,\\\\n  \\\\\\\"init_lora_weights\\\\\\\": true,\\\\n  \\\\\\\"layer_replication\\\\\\\": null,\\\\n  \\\\\\\"layers_pattern\\\\\\\": null,\\\\n  \\\\\\\"layers_to_transform\\\\\\\": null,\\\\n  \\\\\\\"loftq_config\\\\\\\": {},\\\\n  \\\\\\\"lora_alpha\\\\\\\": 128,\\\\n  \\\\\\\"lora_bias\\\\\\\": false,\\\\n  \\\\\\\"lora_dropout\\\\\\\": 0.05,\\\\n  \\\\\\\"lora_ga_config\\\\\\\": null,\\\\n  \\\\\\\"megatron_config\\\\\\\": null,\\\\n  \\\\\\\"megatron_core\\\\\\\": \\\\\\\"megatron.core\\\\\\\",\\\\n  \\\\\\\"modules_to_save\\\\\\\": null,\\\\n  \\\\\\\"peft_type\\\\\\\": \\\\\\\"LORA\\\\\\\",\\\\n  \\\\\\\"peft_version\\\\\\\": \\\\\\\"0.19.0\\\\\\\",\\\\n  \\\\\\\"qalora_group_size\\\\\\\": 16,\\\\n  \\\\\\\"r\\\\\\\": 64,\\\\n  \\\\\\\"rank_pattern\\\\\\\": {},\\\\n  \\\\\\\"revision\\\\\\\": null,\\\\n  \\\\\\\"target_modules\\\\\\\": [\\\\n    \\\\\\\"k_proj\\\\\\\",\\\\n    \\\\\\\"v_proj\\\\\\\",\\\\n    \\\\\\\"o_proj\\\\\\\",\\\\n    \\\\\\\"down_proj\\\\\\\",\\\\n    \\\\\\\"gate_proj\\\\\\\",\\\\n    \\\\\\\"up_proj\\\\\\\",\\\\n    \\\\\\\"q_proj\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"target_parameters\\\\\\\": null,\\\\n  \\\\\\\"task_type\\\\\\\": \\\\\\\"CAUSAL_LM\\\\\\\",\\\\n  \\\\\\\"trainable_token_indices\\\\\\\": null,\\\\n  \\\\\\\"use_bdlora\\\\\\\": null,\\\\n  \\\\\\\"use_dora\\\\\\\": false,\\\\n  \\\\\\\"use_qalora\\\\\\\": false,\\\\n  \\\\\\\"use_rslora\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d69745a5-f890-47ad-9bbf-658d5f5a241c",
+            "isSidechain": false,
+            "promptId": "65982792-96cf-4043-9ec8-84591566554e",
+            "type": "user",
+            "uuid": "b619a7ce-61f7-4941-8fc2-c0565af8f8e6",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"alora_invocation_tokens\\\\\\\": null,\\\\n  \\\\\\\"alpha_pattern\\\\\\\": {},\\\\n  \\\\\\\"arrow_config\\\\\\\": null,\\\\n  \\\\\\\"auto_mapping\\\\\\\": null,\\\\n  \\\\\\\"base_model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n  \\\\\\\"bias\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"corda_config\\\\\\\": null,\\\\n  \\\\\\\"ensure_weight_tying\\\\\\\": false,\\\\n  \\\\\\\"eva_config\\\\\\\": null,\\\\n  \\\\\\\"exclude_modules\\\\\\\": null,\\\\n  \\\\\\\"fan_in_fan_out\\\\\\\": false,\\\\n  \\\\\\\"inference_mode\\\\\\\": true,\\\\n  \\\\\\\"init_lora_weights\\\\\\\": true,\\\\n  \\\\\\\"layer_replication\\\\\\\": null,\\\\n  \\\\\\\"layers_pattern\\\\\\\": null,\\\\n  \\\\\\\"layers_to_transform\\\\\\\": null,\\\\n  \\\\\\\"loftq_config\\\\\\\": {},\\\\n  \\\\\\\"lora_alpha\\\\\\\": 128,\\\\n  \\\\\\\"lora_bias\\\\\\\": false,\\\\n  \\\\\\\"lora_dropout\\\\\\\": 0.05,\\\\n  \\\\\\\"lora_ga_config\\\\\\\": null,\\\\n  \\\\\\\"megatron_config\\\\\\\": null,\\\\n  \\\\\\\"megatron_core\\\\\\\": \\\\\\\"megatron.core\\\\\\\",\\\\n  \\\\\\\"modules_to_save\\\\\\\": null,\\\\n  \\\\\\\"peft_type\\\\\\\": \\\\\\\"LORA\\\\\\\",\\\\n  \\\\\\\"peft_version\\\\\\\": \\\\\\\"0.19.0\\\\\\\",\\\\n  \\\\\\\"qalora_group_size\\\\\\\": 16,\\\\n  \\\\\\\"r\\\\\\\": 64,\\\\n  \\\\\\\"rank_pattern\\\\\\\": {},\\\\n  \\\\\\\"revision\\\\\\\": null,\\\\n  \\\\\\\"target_modules\\\\\\\": [\\\\n    \\\\\\\"k_proj\\\\\\\",\\\\n    \\\\\\\"v_proj\\\\\\\",\\\\n    \\\\\\\"o_proj\\\\\\\",\\\\n    \\\\\\\"down_proj\\\\\\\",\\\\n    \\\\\\\"gate_proj\\\\\\\",\\\\n    \\\\\\\"up_proj\\\\\\\",\\\\n    \\\\\\\"q_proj\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"target_parameters\\\\\\\": null,\\\\n  \\\\\\\"task_type\\\\\\\": \\\\\\\"CAUSAL_LM\\\\\\\",\\\\n  \\\\\\\"trainable_token_indices\\\\\\\": null,\\\\n  \\\\\\\"use_bdlora\\\\\\\": null,\\\\n  \\\\\\\"use_dora\\\\\\\": false,\\\\n  \\\\\\\"use_qalora\\\\\\\": false,\\\\n  \\\\\\\"use_rslora\\\\\\\": false\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"alora_invocation_tokens\\\": null,\\n  \\\"alpha_pattern\\\": {},\\n  \\\"arrow_config\\\": null,\\n  \\\"auto_mapping\\\": null,\\n  \\\"base_model_name_or_path\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n  \\\"bias\\\": \\\"none\\\",\\n  \\\"corda_config\\\": null,\\n  \\\"ensure_weight_tying\\\": false,\\n  \\\"eva_config\\\": null,\\n  \\\"exclude_modules\\\": null,\\n  \\\"fan_in_fan_out\\\": false,\\n  \\\"inference_mode\\\": true,\\n  \\\"init_lora_weights\\\": true,\\n  \\\"layer_replication\\\": null,\\n  \\\"layers_pattern\\\": null,\\n  \\\"layers_to_transform\\\": null,\\n  \\\"loftq_config\\\": {},\\n  \\\"lora_alpha\\\": 128,\\n  \\\"lora_bias\\\": false,\\n  \\\"lora_dropout\\\": 0.05,\\n  \\\"lora_ga_config\\\": null,\\n  \\\"megatron_config\\\": null,\\n  \\\"megatron_core\\\": \\\"megatron.core\\\",\\n  \\\"modules_to_save\\\": null,\\n  \\\"peft_type\\\": \\\"LORA\\\",\\n  \\\"peft_version\\\": \\\"0.19.0\\\",\\n  \\\"qalora_group_size\\\": 16,\\n  \\\"r\\\": 64,\\n  \\\"rank_pattern\\\": {},\\n  \\\"revision\\\": null,\\n  \\\"target_modules\\\": [\\n    \\\"k_proj\\\",\\n    \\\"v_proj\\\",\\n    \\\"o_proj\\\",\\n    \\\"down_proj\\\",\\n    \\\"gate_proj\\\",\\n    \\\"up_proj\\\",\\n    \\\"q_proj\\\"\\n  ],\\n  \\\"target_parameters\\\": null,\\n  \\\"task_type\\\": \\\"CAUSAL_LM\\\",\\n  \\\"trainable_token_indices\\\": null,\\n  \\\"use_bdlora\\\": null,\\n  \\\"use_dora\\\": false,\\n  \\\"use_qalora\\\": false,\\n  \\\"use_rslora\\\": false\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            },
+            "sourceToolAssistantUUID": "d69745a5-f890-47ad-9bbf-658d5f5a241c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-21T19:48:30.295Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "b619a7ce-61f7-4941-8fc2-c0565af8f8e6",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "d1cfff62-c9bc-48fd-8d19-bf6b25daf490",
+                "timestamp": "2026-05-21T19:48:30.295Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-21T19:48:46.577Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good. Now I have all the information I need:\n\n1. **1.7B model path**: `/root/autodl-tmp/models/Qwen/Qwen3-1.7B` (not `/root/autodl-tmp/models/Qwen3-1.7B`)\n2. **1.7B SFT adapter**: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\n3. **rsft_output_ced_s43**: base model is Qwen3-4B (this is a 4B RSFT adapter, CED method, seed 43)\n\n\n4. **4B RSFT adapters**: The original checkpoint was deleted, but I have `rsft_output_ced_s43` (CED method, seed 43), an empty `rsft_output_ced_s42`, and `rsft_output_4b_sft_s44` with its bf16 variant, which likely uses an SFT seed 44 base.\n\nSo the 4B RSFT adapter for seed 42 with CED is missing and needs retraining. But looking at the full test eval grid, I'm realizing I should check whether a 4B RSFT seed 42 eval is actually necessary. I have RSFT test evals completed for 1.7B, 8B, 14B, and Llama (all seed 42), but the 4B one failed. Meanwhile, SFT test evals are running for 4B, 8B, 14B, and Llama seed 42, but 1.7B SFT seed 42 is still missing.\n\nNow I'm setting up the 1.7B SFT test eval command with the proper environment setup, working directory, and model/adapter paths.\n\nCompleting the eval command...\n\nThe 1.7B model should fit comfortably on any available GPU since it's only around 3.4GB, so I just need to wait for one to become free. Then I'll update the memory file with these findings and the prepared commands.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d1cfff62-c9bc-48fd-8d19-bf6b25daf490",
+            "isSidechain": false,
+            "requestId": "req_011CbGHvwNPGgnkECmT6Wj3o",
+            "type": "assistant",
+            "uuid": "b21832c7-dec0-4f15-98b8-eb45a92e971d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RDcVWJASgi4ZhqAAP6tQsx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3929,
+                "cache_read_input_tokens": 70441,
+                "output_tokens": 1069,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3929,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1069,
+                    "cache_read_input_tokens": 70441,
+                    "cache_creation_input_tokens": 3929,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3929
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-21T19:48:46.578Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全貌已清楚。现在读取 memory.md 并追加准备段落。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b21832c7-dec0-4f15-98b8-eb45a92e971d",
+            "isSidechain": false,
+            "requestId": "req_011CbGHvwNPGgnkECmT6Wj3o",
+            "type": "assistant",
+            "uuid": "209ff6ea-13f3-4ce4-b8c1-c3fcea64cfd9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RDcVWJASgi4ZhqAAP6tQsx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3929,
+                "cache_read_input_tokens": 70441,
+                "output_tokens": 1069,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3929,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1069,
+                    "cache_read_input_tokens": 70441,
+                    "cache_creation_input_tokens": 3929,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3929
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-21T19:48:46.763Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012RevBjX1PGyn5zWxvVhHev",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "faith-evidence-ie",
+                "file": "memory.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "209ff6ea-13f3-4ce4-b8c1-c3fcea64cfd9",
+            "isSidechain": false,
+            "requestId": "req_011CbGHvwNPGgnkECmT6Wj3o",
+            "type": "assistant",
+            "uuid": "ddf66f4a-8859-4ca6-9214-1a82658cee52",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RDcVWJASgi4ZhqAAP6tQsx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3929,
+                "cache_read_input_tokens": 70441,
+                "output_tokens": 1069,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3929,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1069,
+                    "cache_read_input_tokens": 70441,
+                    "cache_creation_input_tokens": 3929,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3929
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-21T19:48:46.798Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012RevBjX1PGyn5zWxvVhHev",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"content\\\": \\\"# faith-evidence-ie Memory\\\\n\\\\n## 服务器架构（2026-05-20 更新）\\\\n\\\\n- **主服务器 westd-37389**: 4× RTX PRO 6000 Blackwell, 98GB VRAM/卡, 350GB 数据盘 (46% used, 190GB free)\\\\n  - SSH: `rtx5090-4x` (connect.westd.seetacloud.com:37389)\\\\n  - 环境: conda base, Python 3.12, PyTorch 2.8.0+cu128, transformers 5.8.1, flash-attn 2.8.3\\\\n- **数据源 bjb2-12179**: 全部 208G 数据完好，rsync 迁移主体完成，SFT adapter 补传中\\\\n  - SSH: `bjb2-12179` (connect.bjb2.seetacloud.com:12179)\\\\n- **废弃 bjb1-49673**: AutoDL 重启导致数据清空，已关停\\\\n\\\\n## GPU 分配教训（2026-05-20）\\\\n\\\\nLLaMA SFT 脚本里有 `export CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-0}}`，会覆盖 submit_training_job 注入的 CUDA_VISIBLE_DEVICES。**必须通过 `GPU=X` 环境变量传物理 GPU 编号**，不能依赖框架注入。\\\\n\\\\n## 🔴 Adapter 路径教训（2026-05-21 — 严重）\\\\n\\\\n**D140 全尺度 no-evi eval 全部用错了 adapter**。错误：用了 plan_014 训练的 \\\\\\\"no-evidence training regime\\\\\\\" adapter（训练数据本身不含 evidence），而非标准 SFT adapter + `--no_evidence` inference flag。\\\\n\\\\n**铁证**：trainer_state.json 中 tokens/step 差 ~18%（no_evidence adapter: 119,651 vs standard: 141,227）。\\\\n\\\\n**正确做法**：evidence tax = 同一个标准 SFT adapter，分别有/无 `--no_evidence` 参数，对比 ign_f1。\\\\n\\\\n**Qwen 各 scale 标准 SFT adapter 路径**：\\\\n- 1.7B: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\\\\n- 8B: `/root/autodl-tmp/sft_output_qwen3_8b_bf16`\\\\n- 4B: `/root/autodl-tmp/sft_output`（标准 SFT，非 plan_014）\\\\n- 14B: `/root/autodl-tmp/sft_output_14b/checkpoint-144`\\\\n\\\\n**错误 adapter 路径（plan_014，不可用于 evidence tax）**：\\\\n- `sft_output_qwen3_1_7b_no_evidence`\\\\n- `sft_output_qwen3_8b_no_evidence`\\\\n- `sft_no_evidence_output`（4B）\\\\n\\\\n## 🔴 4B RSFT s42 checkpoint 丢失（2026-05-21）\\\\n\\\\n4B RSFT s42 adapter（rsft_output, rsft_output_r2b）在 rtx5090-4x 和 bjb2-12179 上均不存在，已永久丢失。需走正规流程重训。未经审批的 retrain_4b_rsft_ced_s42 被 kill 并记录 M028 违规。\\\\n\\\\n## submit_training_job timeout 教训（2026-05-20 更新）\\\\n\\\\nLLaMA 8B no-evidence eval timeout 参考：\\\\n- **max_new_tokens=1024**: ~2h+，至少 14400s (4h)\\\\n- **max_new_tokens=2048 + 高截断 seed (s43)**: ~4.5h+，4h 仍不够（237/247, 96%，末段 ~70s/batch）。**至少 21600s (6h)**。s43 原 1024 版 truncation=38.4%，2048 版生成更长输出导致每 batch 耗时远超 s42/s44\\\\n\\\\n## LLaMA 完整统计（2026-05-20 更新）\\\\n\\\\n### SFT 3-seed\\\\n| Seed | ign_f1 | rel_f1 | edcr |\\\\n|------|--------|--------|------|\\\\n| s42 | 0.5384 | 0.5514 | — |\\\\n| s43 | 0.5142 | 0.5308 | 0.5866 |\\\\n| s44 | 0.4802 | 0.4902 | 0.6579 |\\\\n| **Mean** | **0.5109** | — | — |\\\\n| **Std** | **0.0238** | — | — |\\\\n\\\\ns44 异常低（较 s42 低 5.8pp），拉大了 SFT 方差。这恰好强化了 RSFT variance compression 的价值。\\\\n\\\\n### RSFT 3-seed (k=1)\\\\n| Seed | ign_f1 | rel_f1 | edcr |\\\\n|------|--------|--------|------|\\\\n| s42 | 0.5714 | 0.5839 | 0.5799 |\\\\n| s43 | 0.5662 | 0.5780 | 0.5783 |\\\\n| s44 | 0.5587 | 0.5706 | 0.5829 |\\\\n| **Mean** | **0.5654** | — | — |\\\\n| **Std** | **0.0052** | — | — |\\\\n\\\\n### 跨方法对比\\\\n- **SFT→RSFT Δ**: +5.45pp\\\\n- **方差压缩**: 4.58× (0.0238→0.0052)\\\\n- RSFT 在最弱 SFT seed (s44) 上仍显著提升：0.4802→0.5587 (+7.85pp)\\\\n\\\\n## 🚨 Evidence Tax 方法论（D134/D137/D140 决策）\\\\n\\\\n**论文报告标准**：用 fair comparison（format-OK 子集），不修 parser。与 1.7B D083 方法论一致。\\\\n\\\\n**D137 追加**：所有 evidence tax 必须在 matched token budget (max_new_tokens=2048) 下计算，@1024 受截断伪影影响。\\\\n\\\\n**D140 追加**：Qwen 全尺度 @1024 截断率 14-48%，必须全面 @2048 重跑。Pilot-first 策略：每个 scale 先跑 s42，delta >1pp 则扩 3-seed。\\\\n\\\\n**Fair comparison 脚本**：`/root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py`，接受 `--with-evi` 和 `--no-evi` predictions.json 路径。\\\\n\\\\n**⚠️ fair_tax 计算教训（2026-05-21）**：Worker 调 fair_evidence_tax.py 时，必须确保 --with-evi 和 --no-evi 都指向 @2048 predictions。第一次 Worker 误用了 @1024 with-evi 文件导致结果无效。**验证方法**：检查 predictions 所在目录的 metrics.json 的 ign_f1 与已知 @2048 值匹配。\\\\n\\\\n### Evidence Tax (LLaMA) — Matched@2048 Fair Tax（最终版）\\\\n\\\\n**SFT 3-seed matched fair tax @2048（2026-05-21 完成）**：\\\\n| Seed | fair_subset | fair_with_evi@2048 | fair_no_evi@2048 | matched_fair_tax (pp) |\\\\n|------|------------|-------------------|-----------------|----------------------|\\\\n| s42 | 873 docs | 0.5716 | 0.5564 | **-1.53** |\\\\n| s43 | 834 docs | 0.4910 | 0.3789 | **-11.20** |\\\\n| s44 | 977 docs | 0.4679 | 0.4395 | **-2.83** |\\\\n| **Mean±Std** | 895 | 0.5102 | 0.4583 | **-5.19 ± 5.25** |\\\\n\\\\n3-seed 全部为负（evidence helps）。s43 是离群值（no-evi 输出过度冗长，即使 @2048 format_ok 仅 84.7%）。\\\\n\\\\n**关键发现**：s42 fair_tax 从 @1024 mismatched 的 +1.20pp（evidence 有害）翻转为 matched@2048 的 -1.53pp（evidence 有帮助）。证明 @1024 截断伪影能翻转 evidence tax 符号。\\\\n\\\\n**RSFT 3-seed（@1024，fair≈full）**：\\\\n- s42: tax=-1.88pp, s43: tax=-1.16pp, s44: tax=-0.37pp\\\\n- **Mean: -1.14pp ± 0.76pp**（一致负向，方差远小于 SFT）\\\\n- RSFT format compliance: 984/985 (99.9%)\\\\n\\\\n**Variance compression in evidence tax**：SFT fair_tax std=5.25pp → RSFT tax std=0.76pp → **6.9× compression**。\\\\n\\\\n## Matched@2048 Evidence Tax 数据编译（2026-05-21 更新）\\\\n\\\\n### LLaMA 8B SFT — @2048 原始指标（全部完成）\\\\n\\\\n| Seed | Config | ign_f1 | truncated | format_ok | status |\\\\n|------|--------|--------|-----------|-----------|--------|\\\\n| s42 | no-evi@2048 | 0.5210 | 201 (20.4%) | 874 (88.7%) | ✅ |\\\\n| s42 | with-evi@2048 | 0.5649 | 147 (14.9%) | 976 (99.1%) | ✅ |\\\\n| s43 | no-evi@2048 | 0.3389 | 359 (36.4%) | 834 (84.7%) | ✅ |\\\\n| s43 | with-evi@2048 | 0.4954 | 242 (24.6%) | 985 (100%) | ✅ |\\\\n| s44 | no-evi@2048 | 0.4373 | 246 (25.0%) | 977 (99.2%) | ✅ |\\\\n| s44 | with-evi@2048 | 0.4655 | 177 (18.0%) | 985 (100%) | ✅ |\\\\n\\\\n### LLaMA 8B RSFT — @2048\\\\n\\\\n| Seed | Config | @1024 ign_f1 | @2048 ign_f1 | delta | status |\\\\n|------|--------|-------------|-------------|-------|--------|\\\\n| s42 | with-evi | 0.5714 | **0.5774** | +0.60pp | ✅ 完成 |\\\\n| s42 | no-evi | 0.5526 | **0.5559** | +0.33pp | ✅ 完成 |\\\\n\\\\n**结论**：RSFT @2048 delta=+0.60pp <1pp，@1024 可靠。truncated=90/985 (9.1%)，format_ok=984/985。\\\\n\\\\n### Qwen3-14B RSFT — @2048（完成）\\\\n\\\\n| Config | @1024 ign_f1 | @1024 truncated | @2048 ign_f1 | delta | status |\\\\n|--------|-------------|-----------------|-------------|-------|--------|\\\\n| with-evi | 0.5886 | 105 (10.7%) | **0.5896** | +0.10pp | ✅ 完成 |\\\\n| no-evi | 0.5432 | 106 (10.8%) | 待提交 | — | — |\\\\n\\\\n### D140/D145 Qwen SFT Matched@2048 Evidence Tax（3-seed 完成）\\\\n\\\\n⚠️ **M027 adapter 错误已修复。**\\\\n\\\\n| Scale | Seed | with-evi ign_f1 | no-evi ign_f1 | fair_tax (pp) | fair_subset |\\\\n|-------|------|----------------|---------------|---------------|-------------|\\\\n| **1.7B** | s42 | 0.4838 | 0.4275 | **-5.63** | 971 |\\\\n| **4B** | s42 | 0.3951 | 0.4024 | **+0.73** | 981 |\\\\n| **4B** | s43 | 0.4375 | 0.4355 | **-0.20** | 982 |\\\\n| **4B** | s44 | 0.4667 | 0.4688 | **+0.21** | 982 |\\\\n| **4B mean±std** | — | — | — | **+0.25 ± 0.47** | — |\\\\n| **8B** | s42 | 0.5015 | 0.5019 | **+0.04** | 984 |\\\\n\\\\n**4B 3-seed 结论（2026-05-21）**：evidence tax 不显著（mean=+0.25pp, std=0.47pp > mean），方向不稳定（s43 为负）。4B 是 Qwen family 内 evidence benefit 消失的 transition point：1.7B=-5.63pp（evidence 显著帮助）→ 4B≈0 → 8B≈0。\\\\n\\\\n### Cross-scale @2048 Delta Pattern（2026-05-21 发现）\\\\n\\\\n@2048 vs @1024 的 ign_f1 delta 随模型增大而缩小：\\\\n\\\\n| Scale | @2048 Δ_ign_f1 | Truncation Δ | 解读 |\\\\n|-------|---------------|--------------|------|\\\\n| 1.7B SFT | +0.96pp (s42 only: 0.4710→0.4806) | 31.9%→27.1% (-4.8pp) | 截断率高但 delta 仍有限 |\\\\n| 8B SFT | +0.40pp (matched s42) | 31.8%→24.0% (-7.8pp) | 截断率降更多但 F1 delta 更小 |\\\\n| 14B RSFT | +0.10pp | 10.7%→~0% | @1024 已几乎不截断 |\\\\n| LLaMA RSFT | +0.60pp | 9.1%→? | @1024 已较可靠 |\\\\n\\\\n**含义**: 截断率高 ≠ 性能瓶颈。@1024 结果对所有 scale 基本可靠，matched@2048 主要用于消除截断伪影对 evidence tax 的干扰（见 D140 s42 翻转案例）。\\\\n\\\\n### Seed-dependent token budget 效应（2026-05-21 发现）\\\\n\\\\ns42 with-evi@1024→2048 delta=**+2.65pp**（大幅提升），s44 with-evi@1024→2048 delta=**-1.47pp**（反向下降），s43 delta=**-1.88pp**。Token budget 效应本身是 seed-dependent 的。\\\\n\\\\n## 🔴 Test Set Scaling Table Status（2026-05-21 编译）\\\\n\\\\n### 综合表格\\\\n\\\\n| Scale | Dev ign_f1 (RSFT) | SFT test ign_f1 | RSFT test ign_f1 | RSFT test evi_f1 | RSFT test edcr | Dev→Test Gap |\\\\n|-------|-------------------|-----------------|------------------|------------------|----------------|-------------|\\\\n| **1.7B** | 0.5119 | ❌ P1 | **0.2933** | 0.2320 | 0.8169 | -21.9pp |\\\\n| **4B** | 0.4423 | 🔄 运行中 | ❌ 需重训 | — | — | — |\\\\n| **8B** | 0.5433 | 🔄 运行中 | **0.3353** | 0.2526 | 0.7993 | -20.8pp |\\\\n| **14B** | 0.5886 | 🔄 运行中 | **0.3849** | 0.2688 | 0.7865 | -20.4pp |\\\\n| **LLaMA-8B** | 0.5654 | 🔄 提交中 | **0.3599** | 0.2509 | 0.8391 | -20.6pp |\\\\n\\\\n### 关键观察\\\\n\\\\n1. **Dev→Test gap 惊人一致**：所有完成的 scale 均为 ~20-22pp，与 scale 无关\\\\n2. **Scaling 趋势在 test 上保持**：1.7B < 8B < LLaMA < 14B 的排序与 dev 一致\\\\n3. **LLaMA vs Qwen-8B**：test 上 LLaMA (0.3599) > Qwen-8B (0.3353)，与 dev 一致（0.5654 > 0.5433）\\\\n4. **4B RSFT test 是唯一缺口**：checkpoint 丢失，需重训后再 eval\\\\n\\\\n## RSFT inference 架构（2026-05-20 确认）\\\\n\\\\nRSFT 是 nested LoRA：inference.py 先 merge SFT adapter 到 base model，再加载 RSFT adapter。**eval 时必须传 `--sft_adapter` 参数**，否则代码报错。\\\\n\\\\n## 14B Pipeline 状态（2026-05-21 更新）\\\\n\\\\n- Generation: r4 完成, 24216 candidates from 3027 docs\\\\n- **CED Scoring 完成** (plan017_14b_ced_scoring)：\\\\n  - 输出: `/root/autodl-tmp/rsft_scored_14b/rsft_train.jsonl` (3015 条, 9.1MB)\\\\n  - Selected F1=0.730, CED=0.690, Combined=0.768\\\\n- **RSFT Training 完成** (plan017_14b_rsft_train): train_loss=0.5005, token_acc=0.8783, 1131 steps, 66min, LoRA r=64/α=128, bf16, single GPU 38GB\\\\n- **Eval @1024 完成**: with-evi ign_f1=0.5886 (全项目最高), no-evi ign_f1=0.5432, tax=-4.54pp\\\\n- **Eval @2048 完成**: with-evi ign_f1=0.5896 (+0.10pp vs @1024), 确认 @1024 可靠\\\\n- **Test set eval 完成**: test ign_f1=0.3849, codalab 已生成\\\\n\\\\n## Qwen3-8B RSFT Evidence Tax 确认（2026-05-20）\\\\n\\\\n- no-evi ign_f1 = 0.5336, with-evi ign_f1 = 0.5414\\\\n- D127 tax = -0.78pp（evidence helps，微弱）\\\\n- 与 LLaMA RSFT (-1.14pp) 方向一致，跨家族均为负\\\\n\\\\n## Reviewer 发现（2026-05-20）\\\\n\\\\n- SFT evidence tax 方法论不一致：应该用同一模型加 `--no_evidence` flag，而非对比独立训练的 no-evidence 模型\\\\n- LLaMA eval configs 的 base_model 指向 Qwen3-4B（不影响结果，model_path 正确）\\\\n\\\\n## 竞品实验参考\\\\n\\\\n（待填充——首次进入新方向时从 literature_map 提取）\\\\n\\\", \\\"total_chars\\\": 9230, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ddf66f4a-8859-4ca6-9214-1a82658cee52",
+            "isSidechain": false,
+            "promptId": "65982792-96cf-4043-9ec8-84591566554e",
+            "type": "user",
+            "uuid": "8b216a8a-0d2c-4a57-8d62-74b88cae7f48",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"content\\\": \\\"# faith-evidence-ie Memory\\\\n\\\\n## 服务器架构（2026-05-20 更新）\\\\n\\\\n- **主服务器 westd-37389**: 4× RTX PRO 6000 Blackwell, 98GB VRAM/卡, 350GB 数据盘 (46% used, 190GB free)\\\\n  - SSH: `rtx5090-4x` (connect.westd.seetacloud.com:37389)\\\\n  - 环境: conda base, Python 3.12, PyTorch 2.8.0+cu128, transformers 5.8.1, flash-attn 2.8.3\\\\n- **数据源 bjb2-12179**: 全部 208G 数据完好，rsync 迁移主体完成，SFT adapter 补传中\\\\n  - SSH: `bjb2-12179` (connect.bjb2.seetacloud.com:12179)\\\\n- **废弃 bjb1-49673**: AutoDL 重启导致数据清空，已关停\\\\n\\\\n## GPU 分配教训（2026-05-20）\\\\n\\\\nLLaMA SFT 脚本里有 `export CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-0}}`，会覆盖 submit_training_job 注入的 CUDA_VISIBLE_DEVICES。**必须通过 `GPU=X` 环境变量传物理 GPU 编号**，不能依赖框架注入。\\\\n\\\\n## 🔴 Adapter 路径教训（2026-05-21 — 严重）\\\\n\\\\n**D140 全尺度 no-evi eval 全部用错了 adapter**。错误：用了 plan_014 训练的 \\\\\\\"no-evidence training regime\\\\\\\" adapter（训练数据本身不含 evidence），而非标准 SFT adapter + `--no_evidence` inference flag。\\\\n\\\\n**铁证**：trainer_state.json 中 tokens/step 差 ~18%（no_evidence adapter: 119,651 vs standard: 141,227）。\\\\n\\\\n**正确做法**：evidence tax = 同一个标准 SFT adapter，分别有/无 `--no_evidence` 参数，对比 ign_f1。\\\\n\\\\n**Qwen 各 scale 标准 SFT adapter 路径**：\\\\n- 1.7B: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\\\\n- 8B: `/root/autodl-tmp/sft_output_qwen3_8b_bf16`\\\\n- 4B: `/root/autodl-tmp/sft_output`（标准 SFT，非 plan_014）\\\\n- 14B: `/root/autodl-tmp/sft_output_14b/checkpoint-144`\\\\n\\\\n**错误 adapter 路径（plan_014，不可用于 evidence tax）**：\\\\n- `sft_output_qwen3_1_7b_no_evidence`\\\\n- `sft_output_qwen3_8b_no_evidence`\\\\n- `sft_no_evidence_output`（4B）\\\\n\\\\n## 🔴 4B RSFT s42 checkpoint 丢失（2026-05-21）\\\\n\\\\n4B RSFT s42 adapter（rsft_output, rsft_output_r2b）在 rtx5090-4x 和 bjb2-12179 上均不存在，已永久丢失。需走正规流程重训。未经审批的 retrain_4b_rsft_ced_s42 被 kill 并记录 M028 违规。\\\\n\\\\n## submit_training_job timeout 教训（2026-05-20 更新）\\\\n\\\\nLLaMA 8B no-evidence eval timeout 参考：\\\\n- **max_new_tokens=1024**: ~2h+，至少 14400s (4h)\\\\n- **max_new_tokens=2048 + 高截断 seed (s43)**: ~4.5h+，4h 仍不够（237/247, 96%，末段 ~70s/batch）。**至少 21600s (6h)**。s43 原 1024 版 truncation=38.4%，2048 版生成更长输出导致每 batch 耗时远超 s42/s44\\\\n\\\\n## LLaMA 完整统计（2026-05-20 更新）\\\\n\\\\n### SFT 3-seed\\\\n| Seed | ign_f1 | rel_f1 | edcr |\\\\n|------|--------|--------|------|\\\\n| s42 | 0.5384 | 0.5514 | — |\\\\n| s43 | 0.5142 | 0.5308 | 0.5866 |\\\\n| s44 | 0.4802 | 0.4902 | 0.6579 |\\\\n| **Mean** | **0.5109** | — | — |\\\\n| **Std** | **0.0238** | — | — |\\\\n\\\\ns44 异常低（较 s42 低 5.8pp），拉大了 SFT 方差。这恰好强化了 RSFT variance compression 的价值。\\\\n\\\\n### RSFT 3-seed (k=1)\\\\n| Seed | ign_f1 | rel_f1 | edcr |\\\\n|------|--------|--------|------|\\\\n| s42 | 0.5714 | 0.5839 | 0.5799 |\\\\n| s43 | 0.5662 | 0.5780 | 0.5783 |\\\\n| s44 | 0.5587 | 0.5706 | 0.5829 |\\\\n| **Mean** | **0.5654** | — | — |\\\\n| **Std** | **0.0052** | — | — |\\\\n\\\\n### 跨方法对比\\\\n- **SFT→RSFT Δ**: +5.45pp\\\\n- **方差压缩**: 4.58× (0.0238→0.0052)\\\\n- RSFT 在最弱 SFT seed (s44) 上仍显著提升：0.4802→0.5587 (+7.85pp)\\\\n\\\\n## 🚨 Evidence Tax 方法论（D134/D137/D140 决策）\\\\n\\\\n**论文报告标准**：用 fair comparison（format-OK 子集），不修 parser。与 1.7B D083 方法论一致。\\\\n\\\\n**D137 追加**：所有 evidence tax 必须在 matched token budget (max_new_tokens=2048) 下计算，@1024 受截断伪影影响。\\\\n\\\\n**D140 追加**：Qwen 全尺度 @1024 截断率 14-48%，必须全面 @2048 重跑。Pilot-first 策略：每个 scale 先跑 s42，delta >1pp 则扩 3-seed。\\\\n\\\\n**Fair comparison 脚本**：`/root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py`，接受 `--with-evi` 和 `--no-evi` predictions.json 路径。\\\\n\\\\n**⚠️ fair_tax 计算教训（2026-05-21）**：Worker 调 fair_evidence_tax.py 时，必须确保 --with-evi 和 --no-evi 都指向 @2048 predictions。第一次 Worker 误用了 @1024 with-evi 文件导致结果无效。**验证方法**：检查 predictions 所在目录的 metrics.json 的 ign_f1 与已知 @2048 值匹配。\\\\n\\\\n### Evidence Tax (LLaMA) — Matched@2048 Fair Tax（最终版）\\\\n\\\\n**SFT 3-seed matched fair tax @2048（2026-05-21 完成）**：\\\\n| Seed | fair_subset | fair_with_evi@2048 | fair_no_evi@2048 | matched_fair_tax (pp) |\\\\n|------|------------|-------------------|-----------------|----------------------|\\\\n| s42 | 873 docs | 0.5716 | 0.5564 | **-1.53** |\\\\n| s43 | 834 docs | 0.4910 | 0.3789 | **-11.20** |\\\\n| s44 | 977 docs | 0.4679 | 0.4395 | **-2.83** |\\\\n| **Mean±Std** | 895 | 0.5102 | 0.4583 | **-5.19 ± 5.25** |\\\\n\\\\n3-seed 全部为负（evidence helps）。s43 是离群值（no-evi 输出过度冗长，即使 @2048 format_ok 仅 84.7%）。\\\\n\\\\n**关键发现**：s42 fair_tax 从 @1024 mismatched 的 +1.20pp（evidence 有害）翻转为 matched@2048 的 -1.53pp（evidence 有帮助）。证明 @1024 截断伪影能翻转 evidence tax 符号。\\\\n\\\\n**RSFT 3-seed（@1024，fair≈full）**：\\\\n- s42: tax=-1.88pp, s43: tax=-1.16pp, s44: tax=-0.37pp\\\\n- **Mean: -1.14pp ± 0.76pp**（一致负向，方差远小于 SFT）\\\\n- RSFT format compliance: 984/985 (99.9%)\\\\n\\\\n**Variance compression in evidence tax**：SFT fair_tax std=5.25pp → RSFT tax std=0.76pp → **6.9× compression**。\\\\n\\\\n## Matched@2048 Evidence Tax 数据编译（2026-05-21 更新）\\\\n\\\\n### LLaMA 8B SFT — @2048 原始指标（全部完成）\\\\n\\\\n| Seed | Config | ign_f1 | truncated | format_ok | status |\\\\n|------|--------|--------|-----------|-----------|--------|\\\\n| s42 | no-evi@2048 | 0.5210 | 201 (20.4%) | 874 (88.7%) | ✅ |\\\\n| s42 | with-evi@2048 | 0.5649 | 147 (14.9%) | 976 (99.1%) | ✅ |\\\\n| s43 | no-evi@2048 | 0.3389 | 359 (36.4%) | 834 (84.7%) | ✅ |\\\\n| s43 | with-evi@2048 | 0.4954 | 242 (24.6%) | 985 (100%) | ✅ |\\\\n| s44 | no-evi@2048 | 0.4373 | 246 (25.0%) | 977 (99.2%) | ✅ |\\\\n| s44 | with-evi@2048 | 0.4655 | 177 (18.0%) | 985 (100%) | ✅ |\\\\n\\\\n### LLaMA 8B RSFT — @2048\\\\n\\\\n| Seed | Config | @1024 ign_f1 | @2048 ign_f1 | delta | status |\\\\n|------|--------|-------------|-------------|-------|--------|\\\\n| s42 | with-evi | 0.5714 | **0.5774** | +0.60pp | ✅ 完成 |\\\\n| s42 | no-evi | 0.5526 | **0.5559** | +0.33pp | ✅ 完成 |\\\\n\\\\n**结论**：RSFT @2048 delta=+0.60pp <1pp，@1024 可靠。truncated=90/985 (9.1%)，format_ok=984/985。\\\\n\\\\n### Qwen3-14B RSFT — @2048（完成）\\\\n\\\\n| Config | @1024 ign_f1 | @1024 truncated | @2048 ign_f1 | delta | status |\\\\n|--------|-------------|-----------------|-------------|-------|--------|\\\\n| with-evi | 0.5886 | 105 (10.7%) | **0.5896** | +0.10pp | ✅ 完成 |\\\\n| no-evi | 0.5432 | 106 (10.8%) | 待提交 | — | — |\\\\n\\\\n### D140/D145 Qwen SFT Matched@2048 Evidence Tax（3-seed 完成）\\\\n\\\\n⚠️ **M027 adapter 错误已修复。**\\\\n\\\\n| Scale | Seed | with-evi ign_f1 | no-evi ign_f1 | fair_tax (pp) | fair_subset |\\\\n|-------|------|----------------|---------------|---------------|-------------|\\\\n| **1.7B** | s42 | 0.4838 | 0.4275 | **-5.63** | 971 |\\\\n| **4B** | s42 | 0.3951 | 0.4024 | **+0.73** | 981 |\\\\n| **4B** | s43 | 0.4375 | 0.4355 | **-0.20** | 982 |\\\\n| **4B** | s44 | 0.4667 | 0.4688 | **+0.21** | 982 |\\\\n| **4B mean±std** | — | — | — | **+0.25 ± 0.47** | — |\\\\n| **8B** | s42 | 0.5015 | 0.5019 | **+0.04** | 984 |\\\\n\\\\n**4B 3-seed 结论（2026-05-21）**：evidence tax 不显著（mean=+0.25pp, std=0.47pp > mean），方向不稳定（s43 为负）。4B 是 Qwen family 内 evidence benefit 消失的 transition point：1.7B=-5.63pp（evidence 显著帮助）→ 4B≈0 → 8B≈0。\\\\n\\\\n### Cross-scale @2048 Delta Pattern（2026-05-21 发现）\\\\n\\\\n@2048 vs @1024 的 ign_f1 delta 随模型增大而缩小：\\\\n\\\\n| Scale | @2048 Δ_ign_f1 | Truncation Δ | 解读 |\\\\n|-------|---------------|--------------|------|\\\\n| 1.7B SFT | +0.96pp (s42 only: 0.4710→0.4806) | 31.9%→27.1% (-4.8pp) | 截断率高但 delta 仍有限 |\\\\n| 8B SFT | +0.40pp (matched s42) | 31.8%→24.0% (-7.8pp) | 截断率降更多但 F1 delta 更小 |\\\\n| 14B RSFT | +0.10pp | 10.7%→~0% | @1024 已几乎不截断 |\\\\n| LLaMA RSFT | +0.60pp | 9.1%→? | @1024 已较可靠 |\\\\n\\\\n**含义**: 截断率高 ≠ 性能瓶颈。@1024 结果对所有 scale 基本可靠，matched@2048 主要用于消除截断伪影对 evidence tax 的干扰（见 D140 s42 翻转案例）。\\\\n\\\\n### Seed-dependent token budget 效应（2026-05-21 发现）\\\\n\\\\ns42 with-evi@1024→2048 delta=**+2.65pp**（大幅提升），s44 with-evi@1024→2048 delta=**-1.47pp**（反向下降），s43 delta=**-1.88pp**。Token budget 效应本身是 seed-dependent 的。\\\\n\\\\n## 🔴 Test Set Scaling Table Status（2026-05-21 编译）\\\\n\\\\n### 综合表格\\\\n\\\\n| Scale | Dev ign_f1 (RSFT) | SFT test ign_f1 | RSFT test ign_f1 | RSFT test evi_f1 | RSFT test edcr | Dev→Test Gap |\\\\n|-------|-------------------|-----------------|------------------|------------------|----------------|-------------|\\\\n| **1.7B** | 0.5119 | ❌ P1 | **0.2933** | 0.2320 | 0.8169 | -21.9pp |\\\\n| **4B** | 0.4423 | 🔄 运行中 | ❌ 需重训 | — | — | — |\\\\n| **8B** | 0.5433 | 🔄 运行中 | **0.3353** | 0.2526 | 0.7993 | -20.8pp |\\\\n| **14B** | 0.5886 | 🔄 运行中 | **0.3849** | 0.2688 | 0.7865 | -20.4pp |\\\\n| **LLaMA-8B** | 0.5654 | 🔄 提交中 | **0.3599** | 0.2509 | 0.8391 | -20.6pp |\\\\n\\\\n### 关键观察\\\\n\\\\n1. **Dev→Test gap 惊人一致**：所有完成的 scale 均为 ~20-22pp，与 scale 无关\\\\n2. **Scaling 趋势在 test 上保持**：1.7B < 8B < LLaMA < 14B 的排序与 dev 一致\\\\n3. **LLaMA vs Qwen-8B**：test 上 LLaMA (0.3599) > Qwen-8B (0.3353)，与 dev 一致（0.5654 > 0.5433）\\\\n4. **4B RSFT test 是唯一缺口**：checkpoint 丢失，需重训后再 eval\\\\n\\\\n## RSFT inference 架构（2026-05-20 确认）\\\\n\\\\nRSFT 是 nested LoRA：inference.py 先 merge SFT adapter 到 base model，再加载 RSFT adapter。**eval 时必须传 `--sft_adapter` 参数**，否则代码报错。\\\\n\\\\n## 14B Pipeline 状态（2026-05-21 更新）\\\\n\\\\n- Generation: r4 完成, 24216 candidates from 3027 docs\\\\n- **CED Scoring 完成** (plan017_14b_ced_scoring)：\\\\n  - 输出: `/root/autodl-tmp/rsft_scored_14b/rsft_train.jsonl` (3015 条, 9.1MB)\\\\n  - Selected F1=0.730, CED=0.690, Combined=0.768\\\\n- **RSFT Training 完成** (plan017_14b_rsft_train): train_loss=0.5005, token_acc=0.8783, 1131 steps, 66min, LoRA r=64/α=128, bf16, single GPU 38GB\\\\n- **Eval @1024 完成**: with-evi ign_f1=0.5886 (全项目最高), no-evi ign_f1=0.5432, tax=-4.54pp\\\\n- **Eval @2048 完成**: with-evi ign_f1=0.5896 (+0.10pp vs @1024), 确认 @1024 可靠\\\\n- **Test set eval 完成**: test ign_f1=0.3849, codalab 已生成\\\\n\\\\n## Qwen3-8B RSFT Evidence Tax 确认（2026-05-20）\\\\n\\\\n- no-evi ign_f1 = 0.5336, with-evi ign_f1 = 0.5414\\\\n- D127 tax = -0.78pp（evidence helps，微弱）\\\\n- 与 LLaMA RSFT (-1.14pp) 方向一致，跨家族均为负\\\\n\\\\n## Reviewer 发现（2026-05-20）\\\\n\\\\n- SFT evidence tax 方法论不一致：应该用同一模型加 `--no_evidence` flag，而非对比独立训练的 no-evidence 模型\\\\n- LLaMA eval configs 的 base_model 指向 Qwen3-4B（不影响结果，model_path 正确）\\\\n\\\\n## 竞品实验参考\\\\n\\\\n（待填充——首次进入新方向时从 literature_map 提取）\\\\n\\\", \\\"total_chars\\\": 9230, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# faith-evidence-ie Memory\\n\\n## 服务器架构（2026-05-20 更新）\\n\\n- **主服务器 westd-37389**: 4× RTX PRO 6000 Blackwell, 98GB VRAM/卡, 350GB 数据盘 (46% used, 190GB free)\\n  - SSH: `rtx5090-4x` (connect.westd.seetacloud.com:37389)\\n  - 环境: conda base, Python 3.12, PyTorch 2.8.0+cu128, transformers 5.8.1, flash-attn 2.8.3\\n- **数据源 bjb2-12179**: 全部 208G 数据完好，rsync 迁移主体完成，SFT adapter 补传中\\n  - SSH: `bjb2-12179` (connect.bjb2.seetacloud.com:12179)\\n- **废弃 bjb1-49673**: AutoDL 重启导致数据清空，已关停\\n\\n## GPU 分配教训（2026-05-20）\\n\\nLLaMA SFT 脚本里有 `export CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-0}}`，会覆盖 submit_training_job 注入的 CUDA_VISIBLE_DEVICES。**必须通过 `GPU=X` 环境变量传物理 GPU 编号**，不能依赖框架注入。\\n\\n## 🔴 Adapter 路径教训（2026-05-21 — 严重）\\n\\n**D140 全尺度 no-evi eval 全部用错了 adapter**。错误：用了 plan_014 训练的 \\\"no-evidence training regime\\\" adapter（训练数据本身不含 evidence），而非标准 SFT adapter + `--no_evidence` inference flag。\\n\\n**铁证**：trainer_state.json 中 tokens/step 差 ~18%（no_evidence adapter: 119,651 vs standard: 141,227）。\\n\\n**正确做法**：evidence tax = 同一个标准 SFT adapter，分别有/无 `--no_evidence` 参数，对比 ign_f1。\\n\\n**Qwen 各 scale 标准 SFT adapter 路径**：\\n- 1.7B: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\\n- 8B: `/root/autodl-tmp/sft_output_qwen3_8b_bf16`\\n- 4B: `/root/autodl-tmp/sft_output`（标准 SFT，非 plan_014）\\n- 14B: `/root/autodl-tmp/sft_output_14b/checkpoint-144`\\n\\n**错误 adapter 路径（plan_014，不可用于 evidence tax）**：\\n- `sft_output_qwen3_1_7b_no_evidence`\\n- `sft_output_qwen3_8b_no_evidence`\\n- `sft_no_evidence_output`（4B）\\n\\n## 🔴 4B RSFT s42 checkpoint 丢失（2026-05-21）\\n\\n4B RSFT s42 adapter（rsft_output, rsft_output_r2b）在 rtx5090-4x 和 bjb2-12179 上均不存在，已永久丢失。需走正规流程重训。未经审批的 retrain_4b_rsft_ced_s42 被 kill 并记录 M028 违规。\\n\\n## submit_training_job timeout 教训（2026-05-20 更新）\\n\\nLLaMA 8B no-evidence eval timeout 参考：\\n- **max_new_tokens=1024**: ~2h+，至少 14400s (4h)\\n- **max_new_tokens=2048 + 高截断 seed (s43)**: ~4.5h+，4h 仍不够（237/247, 96%，末段 ~70s/batch）。**至少 21600s (6h)**。s43 原 1024 版 truncation=38.4%，2048 版生成更长输出导致每 batch 耗时远超 s42/s44\\n\\n## LLaMA 完整统计（2026-05-20 更新）\\n\\n### SFT 3-seed\\n| Seed | ign_f1 | rel_f1 | edcr |\\n|------|--------|--------|------|\\n| s42 | 0.5384 | 0.5514 | — |\\n| s43 | 0.5142 | 0.5308 | 0.5866 |\\n| s44 | 0.4802 | 0.4902 | 0.6579 |\\n| **Mean** | **0.5109** | — | — |\\n| **Std** | **0.0238** | — | — |\\n\\ns44 异常低（较 s42 低 5.8pp），拉大了 SFT 方差。这恰好强化了 RSFT variance compression 的价值。\\n\\n### RSFT 3-seed (k=1)\\n| Seed | ign_f1 | rel_f1 | edcr |\\n|------|--------|--------|------|\\n| s42 | 0.5714 | 0.5839 | 0.5799 |\\n| s43 | 0.5662 | 0.5780 | 0.5783 |\\n| s44 | 0.5587 | 0.5706 | 0.5829 |\\n| **Mean** | **0.5654** | — | — |\\n| **Std** | **0.0052** | — | — |\\n\\n### 跨方法对比\\n- **SFT→RSFT Δ**: +5.45pp\\n- **方差压缩**: 4.58× (0.0238→0.0052)\\n- RSFT 在最弱 SFT seed (s44) 上仍显著提升：0.4802→0.5587 (+7.85pp)\\n\\n## 🚨 Evidence Tax 方法论（D134/D137/D140 决策）\\n\\n**论文报告标准**：用 fair comparison（format-OK 子集），不修 parser。与 1.7B D083 方法论一致。\\n\\n**D137 追加**：所有 evidence tax 必须在 matched token budget (max_new_tokens=2048) 下计算，@1024 受截断伪影影响。\\n\\n**D140 追加**：Qwen 全尺度 @1024 截断率 14-48%，必须全面 @2048 重跑。Pilot-first 策略：每个 scale 先跑 s42，delta >1pp 则扩 3-seed。\\n\\n**Fair comparison 脚本**：`/root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py`，接受 `--with-evi` 和 `--no-evi` predictions.json 路径。\\n\\n**⚠️ fair_tax 计算教训（2026-05-21）**：Worker 调 fair_evidence_tax.py 时，必须确保 --with-evi 和 --no-evi 都指向 @2048 predictions。第一次 Worker 误用了 @1024 with-evi 文件导致结果无效。**验证方法**：检查 predictions 所在目录的 metrics.json 的 ign_f1 与已知 @2048 值匹配。\\n\\n### Evidence Tax (LLaMA) — Matched@2048 Fair Tax（最终版）\\n\\n**SFT 3-seed matched fair tax @2048（2026-05-21 完成）**：\\n| Seed | fair_subset | fair_with_evi@2048 | fair_no_evi@2048 | matched_fair_tax (pp) |\\n|------|------------|-------------------|-----------------|----------------------|\\n| s42 | 873 docs | 0.5716 | 0.5564 | **-1.53** |\\n| s43 | 834 docs | 0.4910 | 0.3789 | **-11.20** |\\n| s44 | 977 docs | 0.4679 | 0.4395 | **-2.83** |\\n| **Mean±Std** | 895 | 0.5102 | 0.4583 | **-5.19 ± 5.25** |\\n\\n3-seed 全部为负（evidence helps）。s43 是离群值（no-evi 输出过度冗长，即使 @2048 format_ok 仅 84.7%）。\\n\\n**关键发现**：s42 fair_tax 从 @1024 mismatched 的 +1.20pp（evidence 有害）翻转为 matched@2048 的 -1.53pp（evidence 有帮助）。证明 @1024 截断伪影能翻转 evidence tax 符号。\\n\\n**RSFT 3-seed（@1024，fair≈full）**：\\n- s42: tax=-1.88pp, s43: tax=-1.16pp, s44: tax=-0.37pp\\n- **Mean: -1.14pp ± 0.76pp**（一致负向，方差远小于 SFT）\\n- RSFT format compliance: 984/985 (99.9%)\\n\\n**Variance compression in evidence tax**：SFT fair_tax std=5.25pp → RSFT tax std=0.76pp → **6.9× compression**。\\n\\n## Matched@2048 Evidence Tax 数据编译（2026-05-21 更新）\\n\\n### LLaMA 8B SFT — @2048 原始指标（全部完成）\\n\\n| Seed | Config | ign_f1 | truncated | format_ok | status |\\n|------|--------|--------|-----------|-----------|--------|\\n| s42 | no-evi@2048 | 0.5210 | 201 (20.4%) | 874 (88.7%) | ✅ |\\n| s42 | with-evi@2048 | 0.5649 | 147 (14.9%) | 976 (99.1%) | ✅ |\\n| s43 | no-evi@2048 | 0.3389 | 359 (36.4%) | 834 (84.7%) | ✅ |\\n| s43 | with-evi@2048 | 0.4954 | 242 (24.6%) | 985 (100%) | ✅ |\\n| s44 | no-evi@2048 | 0.4373 | 246 (25.0%) | 977 (99.2%) | ✅ |\\n| s44 | with-evi@2048 | 0.4655 | 177 (18.0%) | 985 (100%) | ✅ |\\n\\n### LLaMA 8B RSFT — @2048\\n\\n| Seed | Config | @1024 ign_f1 | @2048 ign_f1 | delta | status |\\n|------|--------|-------------|-------------|-------|--------|\\n| s42 | with-evi | 0.5714 | **0.5774** | +0.60pp | ✅ 完成 |\\n| s42 | no-evi | 0.5526 | **0.5559** | +0.33pp | ✅ 完成 |\\n\\n**结论**：RSFT @2048 delta=+0.60pp <1pp，@1024 可靠。truncated=90/985 (9.1%)，format_ok=984/985。\\n\\n### Qwen3-14B RSFT — @2048（完成）\\n\\n| Config | @1024 ign_f1 | @1024 truncated | @2048 ign_f1 | delta | status |\\n|--------|-------------|-----------------|-------------|-------|--------|\\n| with-evi | 0.5886 | 105 (10.7%) | **0.5896** | +0.10pp | ✅ 完成 |\\n| no-evi | 0.5432 | 106 (10.8%) | 待提交 | — | — |\\n\\n### D140/D145 Qwen SFT Matched@2048 Evidence Tax（3-seed 完成）\\n\\n⚠️ **M027 adapter 错误已修复。**\\n\\n| Scale | Seed | with-evi ign_f1 | no-evi ign_f1 | fair_tax (pp) | fair_subset |\\n|-------|------|----------------|---------------|---------------|-------------|\\n| **1.7B** | s42 | 0.4838 | 0.4275 | **-5.63** | 971 |\\n| **4B** | s42 | 0.3951 | 0.4024 | **+0.73** | 981 |\\n| **4B** | s43 | 0.4375 | 0.4355 | **-0.20** | 982 |\\n| **4B** | s44 | 0.4667 | 0.4688 | **+0.21** | 982 |\\n| **4B mean±std** | — | — | — | **+0.25 ± 0.47** | — |\\n| **8B** | s42 | 0.5015 | 0.5019 | **+0.04** | 984 |\\n\\n**4B 3-seed 结论（2026-05-21）**：evidence tax 不显著（mean=+0.25pp, std=0.47pp > mean），方向不稳定（s43 为负）。4B 是 Qwen family 内 evidence benefit 消失的 transition point：1.7B=-5.63pp（evidence 显著帮助）→ 4B≈0 → 8B≈0。\\n\\n### Cross-scale @2048 Delta Pattern（2026-05-21 发现）\\n\\n@2048 vs @1024 的 ign_f1 delta 随模型增大而缩小：\\n\\n| Scale | @2048 Δ_ign_f1 | Truncation Δ | 解读 |\\n|-------|---------------|--------------|------|\\n| 1.7B SFT | +0.96pp (s42 only: 0.4710→0.4806) | 31.9%→27.1% (-4.8pp) | 截断率高但 delta 仍有限 |\\n| 8B SFT | +0.40pp (matched s42) | 31.8%→24.0% (-7.8pp) | 截断率降更多但 F1 delta 更小 |\\n| 14B RSFT | +0.10pp | 10.7%→~0% | @1024 已几乎不截断 |\\n| LLaMA RSFT | +0.60pp | 9.1%→? | @1024 已较可靠 |\\n\\n**含义**: 截断率高 ≠ 性能瓶颈。@1024 结果对所有 scale 基本可靠，matched@2048 主要用于消除截断伪影对 evidence tax 的干扰（见 D140 s42 翻转案例）。\\n\\n### Seed-dependent token budget 效应（2026-05-21 发现）\\n\\ns42 with-evi@1024→2048 delta=**+2.65pp**（大幅提升），s44 with-evi@1024→2048 delta=**-1.47pp**（反向下降），s43 delta=**-1.88pp**。Token budget 效应本身是 seed-dependent 的。\\n\\n## 🔴 Test Set Scaling Table Status（2026-05-21 编译）\\n\\n### 综合表格\\n\\n| Scale | Dev ign_f1 (RSFT) | SFT test ign_f1 | RSFT test ign_f1 | RSFT test evi_f1 | RSFT test edcr | Dev→Test Gap |\\n|-------|-------------------|-----------------|------------------|------------------|----------------|-------------|\\n| **1.7B** | 0.5119 | ❌ P1 | **0.2933** | 0.2320 | 0.8169 | -21.9pp |\\n| **4B** | 0.4423 | 🔄 运行中 | ❌ 需重训 | — | — | — |\\n| **8B** | 0.5433 | 🔄 运行中 | **0.3353** | 0.2526 | 0.7993 | -20.8pp |\\n| **14B** | 0.5886 | 🔄 运行中 | **0.3849** | 0.2688 | 0.7865 | -20.4pp |\\n| **LLaMA-8B** | 0.5654 | 🔄 提交中 | **0.3599** | 0.2509 | 0.8391 | -20.6pp |\\n\\n### 关键观察\\n\\n1. **Dev→Test gap 惊人一致**：所有完成的 scale 均为 ~20-22pp，与 scale 无关\\n2. **Scaling 趋势在 test 上保持**：1.7B < 8B < LLaMA < 14B 的排序与 dev 一致\\n3. **LLaMA vs Qwen-8B**：test 上 LLaMA (0.3599) > Qwen-8B (0.3353)，与 dev 一致（0.5654 > 0.5433）\\n4. **4B RSFT test 是唯一缺口**：checkpoint 丢失，需重训后再 eval\\n\\n## RSFT inference 架构（2026-05-20 确认）\\n\\nRSFT 是 nested LoRA：inference.py 先 merge SFT adapter 到 base model，再加载 RSFT adapter。**eval 时必须传 `--sft_adapter` 参数**，否则代码报错。\\n\\n## 14B Pipeline 状态（2026-05-21 更新）\\n\\n- Generation: r4 完成, 24216 candidates from 3027 docs\\n- **CED Scoring 完成** (plan017_14b_ced_scoring)：\\n  - 输出: `/root/autodl-tmp/rsft_scored_14b/rsft_train.jsonl` (3015 条, 9.1MB)\\n  - Selected F1=0.730, CED=0.690, Combined=0.768\\n- **RSFT Training 完成** (plan017_14b_rsft_train): train_loss=0.5005, token_acc=0.8783, 1131 steps, 66min, LoRA r=64/α=128, bf16, single GPU 38GB\\n- **Eval @1024 完成**: with-evi ign_f1=0.5886 (全项目最高), no-evi ign_f1=0.5432, tax=-4.54pp\\n- **Eval @2048 完成**: with-evi ign_f1=0.5896 (+0.10pp vs @1024), 确认 @1024 可靠\\n- **Test set eval 完成**: test ign_f1=0.3849, codalab 已生成\\n\\n## Qwen3-8B RSFT Evidence Tax 确认（2026-05-20）\\n\\n- no-evi ign_f1 = 0.5336, with-evi ign_f1 = 0.5414\\n- D127 tax = -0.78pp（evidence helps，微弱）\\n- 与 LLaMA RSFT (-1.14pp) 方向一致，跨家族均为负\\n\\n## Reviewer 发现（2026-05-20）\\n\\n- SFT evidence tax 方法论不一致：应该用同一模型加 `--no_evidence` flag，而非对比独立训练的 no-evidence 模型\\n- LLaMA eval configs 的 base_model 指向 Qwen3-4B（不影响结果，model_path 正确）\\n\\n## 竞品实验参考\\n\\n（待填充——首次进入新方向时从 literature_map 提取）\\n\", \"total_chars\": 9230, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "ddf66f4a-8859-4ca6-9214-1a82658cee52",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "8b216a8a-0d2c-4a57-8d62-74b88cae7f48",
+                "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb"
+              }
+            }
+          ],
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Prepare test eval commands and assess 4B RSFT",
+                "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb"
+              }
+            }
+          ],
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-21T19:49:05.138Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the full picture. Let me prepare the update for memory.md.\n\nSummary of findings:\n\n### 1.7B SFT test eval command (ready to submit when GPU free):\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES={GPU} python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/re-docred --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\n```\n\n### 4B RSFT adapter status:\nThe original checkpoint at `/root/autodl-tmp/rsft_output/checkpoint-510` has been deleted, and while `/root/autodl-tmp/rsft_output_ced_s42/` exists, it contains no adapter files. There are alternative adapters available but they use different seeds and configurations.\n\nI need to retrain the 4B RSFT CED model with seed 42, and I haven't found any RSFT candidate data at the expected location.\n\n### Current GPU status (all 4 occupied):\n- GPU 0: 4B SFT test eval (PID 126054, ~9.4GB)\n- GPU 1: 14B SFT test eval (PID 125323, ~32.5GB)\n- GPU 2: 8B SFT test eval (PID 125617, ~19.6GB)\n- GPU 3: Llama SFT test eval (PID 130451, ~18.9GB)\n\n### Missing test eval data points:\n1. **test_eval_1_7b_sft_s42** —\n\nI'm waiting for a GPU to free up to run the command, and I need to retrain the 4B RSFT model since the adapter was deleted. Let me update the memory file with the current test set scaling status and prepare notes for the next batch of evaluations.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8b216a8a-0d2c-4a57-8d62-74b88cae7f48",
+            "isSidechain": false,
+            "requestId": "req_011CbGHx9wDHHuHemQXHpY5b",
+            "type": "assistant",
+            "uuid": "cc531257-b8ed-4e3d-9d40-110d1e2d8b49",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FnyKw9zeF8GRP3zMe7ZQQ7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6797,
+                "cache_read_input_tokens": 74370,
+                "output_tokens": 814,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6797,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 814,
+                    "cache_read_input_tokens": 74370,
+                    "cache_creation_input_tokens": 6797,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6797
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-21T19:49:05.146Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。现在更新 memory.md。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc531257-b8ed-4e3d-9d40-110d1e2d8b49",
+            "isSidechain": false,
+            "requestId": "req_011CbGHx9wDHHuHemQXHpY5b",
+            "type": "assistant",
+            "uuid": "97e57b6a-4b91-4171-9042-a3e2e47d5e8a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FnyKw9zeF8GRP3zMe7ZQQ7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6797,
+                "cache_read_input_tokens": 74370,
+                "output_tokens": 814,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6797,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 814,
+                    "cache_read_input_tokens": 74370,
+                    "cache_creation_input_tokens": 6797,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6797
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-21T19:49:05.155Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SMFrzUfaJBJquENH1jFhhZ",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__save_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "97e57b6a-4b91-4171-9042-a3e2e47d5e8a",
+            "isSidechain": false,
+            "requestId": "req_011CbGHx9wDHHuHemQXHpY5b",
+            "type": "assistant",
+            "uuid": "5f0a3139-a468-401f-944c-6cbd8c32eccf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FnyKw9zeF8GRP3zMe7ZQQ7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6797,
+                "cache_read_input_tokens": 74370,
+                "output_tokens": 814,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6797,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 814,
+                    "cache_read_input_tokens": 74370,
+                    "cache_creation_input_tokens": 6797,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6797
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-21T19:49:05.158Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01SMFrzUfaJBJquENH1jFhhZ",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5f0a3139-a468-401f-944c-6cbd8c32eccf",
+            "isSidechain": false,
+            "promptId": "65982792-96cf-4043-9ec8-84591566554e",
+            "type": "user",
+            "uuid": "29cc6a62-5bab-4935-9c6a-b04b3e226463",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "total_deferred_tools": 29
+            },
+            "sourceToolAssistantUUID": "5f0a3139-a468-401f-944c-6cbd8c32eccf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-21T19:50:46.140Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011gDzk7n9FjFRfdGW7kkDx3",
+              "name": "mcp__agent-ml-research__save_project_file",
+              "input": {
+                "project": "faith-evidence-ie",
+                "file": "memory.md",
+                "content": "# faith-evidence-ie Memory\n\n## 服务器架构（2026-05-20 更新）\n\n- **主服务器 westd-37389**: 4× RTX PRO 6000 Blackwell, 98GB VRAM/卡, 350GB 数据盘 (46% used, 190GB free)\n  - SSH: `rtx5090-4x` (connect.westd.seetacloud.com:37389)\n  - 环境: conda base, Python 3.12, PyTorch 2.8.0+cu128, transformers 5.8.1, flash-attn 2.8.3\n- **数据源 bjb2-12179**: 全部 208G 数据完好，rsync 迁移主体完成，SFT adapter 补传中\n  - SSH: `bjb2-12179` (connect.bjb2.seetacloud.com:12179)\n- **废弃 bjb1-49673**: AutoDL 重启导致数据清空，已关停\n\n## GPU 分配教训（2026-05-20）\n\nLLaMA SFT 脚本里有 `export CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-0}}`，会覆盖 submit_training_job 注入的 CUDA_VISIBLE_DEVICES。**必须通过 `GPU=X` 环境变量传物理 GPU 编号**，不能依赖框架注入。\n\n## 🔴 Adapter 路径教训（2026-05-21 — 严重）\n\n**D140 全尺度 no-evi eval 全部用错了 adapter**。错误：用了 plan_014 训练的 \"no-evidence training regime\" adapter（训练数据本身不含 evidence），而非标准 SFT adapter + `--no_evidence` inference flag。\n\n**铁证**：trainer_state.json 中 tokens/step 差 ~18%（no_evidence adapter: 119,651 vs standard: 141,227）。\n\n**正确做法**：evidence tax = 同一个标准 SFT adapter，分别有/无 `--no_evidence` 参数，对比 ign_f1。\n\n**Qwen 各 scale 标准 SFT adapter 路径**：\n- 1.7B: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16`\n- 8B: `/root/autodl-tmp/sft_output_qwen3_8b_bf16`\n- 4B: `/root/autodl-tmp/sft_output`（标准 SFT，非 plan_014）\n- 14B: `/root/autodl-tmp/sft_output_14b/checkpoint-144`\n\n**错误 adapter 路径（plan_014，不可用于 evidence tax）**：\n- `sft_output_qwen3_1_7b_no_evidence`\n- `sft_output_qwen3_8b_no_evidence`\n- `sft_no_evidence_output`（4B）\n\n## 🔴 4B RSFT s42 checkpoint 丢失（2026-05-21）\n\n4B RSFT s42 adapter（rsft_output, rsft_output_r2b）在 rtx5090-4x 和 bjb2-12179 上均不存在，已永久丢失。需走正规流程重训。未经审批的 retrain_4b_rsft_ced_s42 被 kill 并记录 M028 违规。\n\n## submit_training_job timeout 教训（2026-05-20 更新）\n\nLLaMA 8B no-evidence eval timeout 参考：\n- **max_new_tokens=1024**: ~2h+，至少 14400s (4h)\n- **max_new_tokens=2048 + 高截断 seed (s43)**: ~4.5h+，4h 仍不够（237/247, 96%，末段 ~70s/batch）。**至少 21600s (6h)**。s43 原 1024 版 truncation=38.4%，2048 版生成更长输出导致每 batch 耗时远超 s42/s44\n\n## LLaMA 完整统计（2026-05-20 更新）\n\n### SFT 3-seed\n| Seed | ign_f1 | rel_f1 | edcr |\n|------|--------|--------|------|\n| s42 | 0.5384 | 0.5514 | — |\n| s43 | 0.5142 | 0.5308 | 0.5866 |\n| s44 | 0.4802 | 0.4902 | 0.6579 |\n| **Mean** | **0.5109** | — | — |\n| **Std** | **0.0238** | — | — |\n\ns44 异常低（较 s42 低 5.8pp），拉大了 SFT 方差。这恰好强化了 RSFT variance compression 的价值。\n\n### RSFT 3-seed (k=1)\n| Seed | ign_f1 | rel_f1 | edcr |\n|------|--------|--------|------|\n| s42 | 0.5714 | 0.5839 | 0.5799 |\n| s43 | 0.5662 | 0.5780 | 0.5783 |\n| s44 | 0.5587 | 0.5706 | 0.5829 |\n| **Mean** | **0.5654** | — | — |\n| **Std** | **0.0052** | — | — |\n\n### 跨方法对比\n- **SFT→RSFT Δ**: +5.45pp\n- **方差压缩**: 4.58× (0.0238→0.0052)\n- RSFT 在最弱 SFT seed (s44) 上仍显著提升：0.4802→0.5587 (+7.85pp)\n\n## 🚨 Evidence Tax 方法论（D134/D137/D140 决策）\n\n**论文报告标准**：用 fair comparison（format-OK 子集），不修 parser。与 1.7B D083 方法论一致。\n\n**D137 追加**：所有 evidence tax 必须在 matched token budget (max_new_tokens=2048) 下计算，@1024 受截断伪影影响。\n\n**D140 追加**：Qwen 全尺度 @1024 截断率 14-48%，必须全面 @2048 重跑。Pilot-first 策略：每个 scale 先跑 s42，delta >1pp 则扩 3-seed。\n\n**Fair comparison 脚本**：`/root/autodl-tmp/freige/scripts/analysis/fair_evidence_tax.py`，接受 `--with-evi` 和 `--no-evi` predictions.json 路径。\n\n**⚠️ fair_tax 计算教训（2026-05-21）**：Worker 调 fair_evidence_tax.py 时，必须确保 --with-evi 和 --no-evi 都指向 @2048 predictions。第一次 Worker 误用了 @1024 with-evi 文件导致结果无效。**验证方法**：检查 predictions 所在目录的 metrics.json 的 ign_f1 与已知 @2048 值匹配。\n\n### Evidence Tax (LLaMA) — Matched@2048 Fair Tax（最终版）\n\n**SFT 3-seed matched fair tax @2048（2026-05-21 完成）**：\n| Seed | fair_subset | fair_with_evi@2048 | fair_no_evi@2048 | matched_fair_tax (pp) |\n|------|------------|-------------------|-----------------|----------------------|\n| s42 | 873 docs | 0.5716 | 0.5564 | **-1.53** |\n| s43 | 834 docs | 0.4910 | 0.3789 | **-11.20** |\n| s44 | 977 docs | 0.4679 | 0.4395 | **-2.83** |\n| **Mean±Std** | 895 | 0.5102 | 0.4583 | **-5.19 ± 5.25** |\n\n3-seed 全部为负（evidence helps）。s43 是离群值（no-evi 输出过度冗长，即使 @2048 format_ok 仅 84.7%）。\n\n**关键发现**：s42 fair_tax 从 @1024 mismatched 的 +1.20pp（evidence 有害）翻转为 matched@2048 的 -1.53pp（evidence 有帮助）。证明 @1024 截断伪影能翻转 evidence tax 符号。\n\n**RSFT 3-seed（@1024，fair≈full）**：\n- s42: tax=-1.88pp, s43: tax=-1.16pp, s44: tax=-0.37pp\n- **Mean: -1.14pp ± 0.76pp**（一致负向，方差远小于 SFT）\n- RSFT format compliance: 984/985 (99.9%)\n\n**Variance compression in evidence tax**：SFT fair_tax std=5.25pp → RSFT tax std=0.76pp → **6.9× compression**。\n\n## Matched@2048 Evidence Tax 数据编译（2026-05-21 更新）\n\n### LLaMA 8B SFT — @2048 原始指标（全部完成）\n\n| Seed | Config | ign_f1 | truncated | format_ok | status |\n|------|--------|--------|-----------|-----------|--------|\n| s42 | no-evi@2048 | 0.5210 | 201 (20.4%) | 874 (88.7%) | ✅ |\n| s42 | with-evi@2048 | 0.5649 | 147 (14.9%) | 976 (99.1%) | ✅ |\n| s43 | no-evi@2048 | 0.3389 | 359 (36.4%) | 834 (84.7%) | ✅ |\n| s43 | with-evi@2048 | 0.4954 | 242 (24.6%) | 985 (100%) | ✅ |\n| s44 | no-evi@2048 | 0.4373 | 246 (25.0%) | 977 (99.2%) | ✅ |\n| s44 | with-evi@2048 | 0.4655 | 177 (18.0%) | 985 (100%) | ✅ |\n\n### LLaMA 8B RSFT — @2048\n\n| Seed | Config | @1024 ign_f1 | @2048 ign_f1 | delta | status |\n|------|--------|-------------|-------------|-------|--------|\n| s42 | with-evi | 0.5714 | **0.5774** | +0.60pp | ✅ 完成 |\n| s42 | no-evi | 0.5526 | **0.5559** | +0.33pp | ✅ 完成 |\n\n**结论**：RSFT @2048 delta=+0.60pp <1pp，@1024 可靠。truncated=90/985 (9.1%)，format_ok=984/985。\n\n### Qwen3-14B RSFT — @2048（完成）\n\n| Config | @1024 ign_f1 | @1024 truncated | @2048 ign_f1 | delta | status |\n|--------|-------------|-----------------|-------------|-------|--------|\n| with-evi | 0.5886 | 105 (10.7%) | **0.5896** | +0.10pp | ✅ 完成 |\n| no-evi | 0.5432 | 106 (10.8%) | 待提交 | — | — |\n\n### D140/D145 Qwen SFT Matched@2048 Evidence Tax（3-seed 完成）\n\n⚠️ **M027 adapter 错误已修复。**\n\n| Scale | Seed | with-evi ign_f1 | no-evi ign_f1 | fair_tax (pp) | fair_subset |\n|-------|------|----------------|---------------|---------------|-------------|\n| **1.7B** | s42 | 0.4838 | 0.4275 | **-5.63** | 971 |\n| **4B** | s42 | 0.3951 | 0.4024 | **+0.73** | 981 |\n| **4B** | s43 | 0.4375 | 0.4355 | **-0.20** | 982 |\n| **4B** | s44 | 0.4667 | 0.4688 | **+0.21** | 982 |\n| **4B mean±std** | — | — | — | **+0.25 ± 0.47** | — |\n| **8B** | s42 | 0.5015 | 0.5019 | **+0.04** | 984 |\n\n**4B 3-seed 结论（2026-05-21）**：evidence tax 不显著（mean=+0.25pp, std=0.47pp > mean），方向不稳定（s43 为负）。4B 是 Qwen family 内 evidence benefit 消失的 transition point：1.7B=-5.63pp（evidence 显著帮助）→ 4B≈0 → 8B≈0。\n\n### Cross-scale @2048 Delta Pattern（2026-05-21 发现）\n\n@2048 vs @1024 的 ign_f1 delta 随模型增大而缩小：\n\n| Scale | @2048 Δ_ign_f1 | Truncation Δ | 解读 |\n|-------|---------------|--------------|------|\n| 1.7B SFT | +0.96pp (s42 only: 0.4710→0.4806) | 31.9%→27.1% (-4.8pp) | 截断率高但 delta 仍有限 |\n| 8B SFT | +0.40pp (matched s42) | 31.8%→24.0% (-7.8pp) | 截断率降更多但 F1 delta 更小 |\n| 14B RSFT | +0.10pp | 10.7%→~0% | @1024 已几乎不截断 |\n| LLaMA RSFT | +0.60pp | 9.1%→? | @1024 已较可靠 |\n\n**含义**: 截断率高 ≠ 性能瓶颈。@1024 结果对所有 scale 基本可靠，matched@2048 主要用于消除截断伪影对 evidence tax 的干扰（见 D140 s42 翻转案例）。\n\n### Seed-dependent token budget 效应（2026-05-21 发现）\n\ns42 with-evi@1024→2048 delta=**+2.65pp**（大幅提升），s44 with-evi@1024→2048 delta=**-1.47pp**（反向下降），s43 delta=**-1.88pp**。Token budget 效应本身是 seed-dependent 的。\n\n## 🔴 Test Set Scaling Table Status（2026-05-22 更新）\n\n### 综合表格\n\n| Scale | Dev ign_f1 (RSFT) | SFT test ign_f1 | RSFT test ign_f1 | RSFT test evi_f1 | RSFT test edcr | Dev→Test Gap |\n|-------|-------------------|-----------------|------------------|------------------|----------------|-------------|\n| **1.7B** | 0.5119 | ❌ 待提交 | **0.2933** | 0.2320 | 0.8169 | -21.9pp |\n| **4B** | 0.4423 | 🔄 运行中 | ❌ 需重训 adapter | — | — | — |\n| **8B** | 0.5433 | 🔄 运行中 | **0.3353** | 0.2526 | 0.7993 | -20.8pp |\n| **14B** | 0.5886 | 🔄 运行中 | **0.3849** | 0.2688 | 0.7865 | -20.4pp |\n| **LLaMA-8B** | 0.5654 | 🔄 运行中 | **0.3599** | 0.2509 | 0.8391 | -20.6pp |\n\n### 关键观察\n\n1. **Dev→Test gap 惊人一致**：所有完成的 scale 均为 ~20-22pp，与 scale 无关\n2. **Scaling 趋势在 test 上保持**：1.7B < 8B < LLaMA < 14B 的排序与 dev 一致\n3. **LLaMA vs Qwen-8B**：test 上 LLaMA (0.3599) > Qwen-8B (0.3353)，与 dev 一致（0.5654 > 0.5433）\n4. **4B RSFT test 是唯一缺口**：checkpoint 丢失，需重训后再 eval\n\n## 下批 Test Eval 准备（2026-05-22）\n\n### 当前 GPU 占用（所有 4 卡被占）\n\n| GPU | 任务 | PID | 模型 | 进度 |\n|-----|------|-----|------|------|\n| 0 | test_eval_4b_sft_s42 | 126054 | Qwen3-4B + SFT | ~20% |\n| 1 | test_eval_14b_sft_s42 | 125323 | Qwen3-14B + SFT | ~20% |\n| 2 | test_eval_8b_sft_s42 | 125617 | Qwen3-8B + SFT | ~27% |\n| 3 | test_eval_llama_sft_s42 | 130451 | LLaMA-3.1-8B + SFT | 刚启动 |\n\n### 1.7B SFT test eval 完整命令（GPU 释放后立即提交）\n\n1.7B 模型仅 ~3.4GB VRAM，GPU 0（4B 完成后）最先释放。\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/re-docred-repo/data --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42 --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\"\n```\n\n**路径已验证**：\n- ✅ 模型: `/root/autodl-tmp/models/Qwen/Qwen3-1.7B`\n- ✅ SFT adapter: `/root/autodl-tmp/sft_output_qwen3_1_7b_bf16/` (adapter_model.safetensors 278MB)\n- ✅ 脚本: `/root/autodl-tmp/freige/freige/eval/test_inference.py`\n- ✅ 数据: `/root/autodl-tmp/data/re-docred-repo/data` (test_revised.json, 500 docs)\n\n### 4B RSFT adapter 状态\n\n- 原路径 `/root/autodl-tmp/rsft_output/checkpoint-510` → **已删除**\n- `/root/autodl-tmp/rsft_output_ced_s42/` → **空目录**（无 adapter 文件）\n- **需重训 4B RSFT CED s42**\n- 无 `rsft_candidates*` 训练数据残留，需从 generation→scoring→training 完整流程重做\n- 可用的其他 4B RSFT adapter（非 s42，不可替代）：\n  - `rsft_output_ced_s43` (seed 43, checkpoint-510)\n  - `rsft_output_4b_sft_s44` / `_bf16` (seed 44)\n\n### 缺失 Test Eval 完整清单\n\n| 缺失项 | 阻塞原因 | 优先级 |\n|--------|---------|--------|\n| test_eval_1_7b_sft_s42 | 无空闲 GPU（预计 GPU 0 最先释放） | P1 — 命令已就绪 |\n| test_eval_4b_rsft_s42 | adapter 丢失，需完整重训流程 | P2 — 需用户审批重训 |\n\n## RSFT inference 架构（2026-05-20 确认）\n\nRSFT 是 nested LoRA：inference.py 先 merge SFT adapter 到 base model，再加载 RSFT adapter。**eval 时必须传 `--sft_adapter` 参数**，否则代码报错。\n\n## 14B Pipeline 状态（2026-05-21 更新）\n\n- Generation: r4 完成, 24216 candidates from 3027 docs\n- **CED Scoring 完成** (plan017_14b_ced_scoring)：\n  - 输出: `/root/autodl-tmp/rsft_scored_14b/rsft_train.jsonl` (3015 条, 9.1MB)\n  - Selected F1=0.730, CED=0.690, Combined=0.768\n- **RSFT Training 完成** (plan017_14b_rsft_train): train_loss=0.5005, token_acc=0.8783, 1131 steps, 66min, LoRA r=64/α=128, bf16, single GPU 38GB\n- **Eval @1024 完成**: with-evi ign_f1=0.5886 (全项目最高), no-evi ign_f1=0.5432, tax=-4.54pp\n- **Eval @2048 完成**: with-evi ign_f1=0.5896 (+0.10pp vs @1024), 确认 @1024 可靠\n- **Test set eval 完成**: test ign_f1=0.3849, codalab 已生成\n\n## Qwen3-8B RSFT Evidence Tax 确认（2026-05-20）\n\n- no-evi ign_f1 = 0.5336, with-evi ign_f1 = 0.5414\n- D127 tax = -0.78pp（evidence helps，微弱）\n- 与 LLaMA RSFT (-1.14pp) 方向一致，跨家族均为负\n\n## Reviewer 发现（2026-05-20）\n\n- SFT evidence tax 方法论不一致：应该用同一模型加 `--no_evidence` flag，而非对比独立训练的 no-evidence 模型\n- LLaMA eval configs 的 base_model 指向 Qwen3-4B（不影响结果，model_path 正确）\n\n## 竞品实验参考\n\n（待填充——首次进入新方向时从 literature_map 提取）\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29cc6a62-5bab-4935-9c6a-b04b3e226463",
+            "isSidechain": false,
+            "requestId": "req_011CbGHyWZiQGBARE1w27zDi",
+            "type": "assistant",
+            "uuid": "731e213a-7b34-45bc-9b6a-e4060acbedae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YaemEwcQByKEZ3M5NT7F32",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1089,
+                "cache_read_input_tokens": 81167,
+                "output_tokens": 6541,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1089,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 6541,
+                    "cache_read_input_tokens": 81167,
+                    "cache_creation_input_tokens": 1089,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1089
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-21T19:50:46.167Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011gDzk7n9FjFRfdGW7kkDx3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "731e213a-7b34-45bc-9b6a-e4060acbedae",
+            "isSidechain": false,
+            "promptId": "65982792-96cf-4043-9ec8-84591566554e",
+            "type": "user",
+            "uuid": "0d9975df-43d1-48cf-a311-fc8fe038adc1",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "731e213a-7b34-45bc-9b6a-e4060acbedae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-21T19:50:55.421Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总如下：\n\n### 当前状态\n\n**4 个 GPU 全部被 SFT test eval 占用**（4B/8B/14B/Llama，均约 20% 进度）。\n\n### 1.7B SFT test eval\n\n命令已就绪，所有路径已验证。GPU 0（4B eval）预计最先完成释放，届时直接提交：\n\n```bash\nCUDA_VISIBLE_DEVICES=0 python -m freige.eval.test_inference \\\n  --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B \\\n  --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 \\\n  --data_path /root/autodl-tmp/data/re-docred-repo/data \\\n  --output_dir /root/autodl-tmp/eval_results/test_eval_1_7b_sft_s42 \\\n  --batch_size 1 --max_new_tokens 2048 --no-quantize --seed 42 --split test_revised\n```\n\n### 4B RSFT adapter 状态\n\n**需重训**。原 checkpoint `/root/autodl-tmp/rsft_output/checkpoint-510` 已删除，`rsft_output_ced_s42/` 为空目录。无 `rsft_candidates*` 训练数据残留，需 generation→scoring→training 完整流程。其他 seed 的 4B RSFT adapter 存在（s43/s44）但不可替代 s42。\n\n### 缺失 test eval 清单\n\n| 缺失项 | 阻塞 | 优先级 |\n|--------|------|--------|\n| test_eval_1_7b_sft_s42 | GPU 占满 | P1 — 命令就绪 |\n| test_eval_4b_rsft_s42 | adapter 丢失 | P2 — 需审批重训 |"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0d9975df-43d1-48cf-a311-fc8fe038adc1",
+            "isSidechain": false,
+            "requestId": "req_011CbGJ6xU97rnzcQzeVyrvu",
+            "type": "assistant",
+            "uuid": "94efbfd8-c4c7-420b-8318-e7401e76a68f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CAHZYAfHsfYzsHg3RjjtDq",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6626,
+                "cache_read_input_tokens": 82256,
+                "output_tokens": 539,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6626,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 539,
+                    "cache_read_input_tokens": 82256,
+                    "cache_creation_input_tokens": 6626,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6626
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "94efbfd8-c4c7-420b-8318-e7401e76a68f",
+                "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb"
+              }
+            }
+          ],
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Prepare test eval commands and assess 4B RSFT",
+                "sessionId": "1bd60c5d-da12-46bb-b9a8-e1f132c902bb"
+              }
+            }
+          ],
+          "id": "event-000138"
+        }
+      ]
+    }
+  ]
+}

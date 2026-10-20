@@ -1,0 +1,291 @@
+{
+  "schema_version": "1.0",
+  "id": "30dd7472213c7e4ee62f",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read lines 250-491 of /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/app",
+  "task_key": "agent-a6464752dec190ef4",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a6464752dec190ef4.jsonl",
+    "occurrence": 1,
+    "bytes": 44945,
+    "sha256": "7bdfc404b160baef09d57b789d13d546f488687dd5d0a241c0661c587fa48511"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 1,
+    "tool_calls": 1,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 1,
+      "tool_result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T19:42:10.620Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read lines 250-491 of /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex and extract EVERY numerical value that appears. For each number, report:\n- The exact value as it appears in the text\n- The line number\n- Whether it's in a table, figure caption, or body text\n- What it represents (metric name, statistic type, etc.)\n\nBe exhaustive - include percentages, counts, p-values, correlation coefficients, ratios, standard deviations, everything. Group them by table/section for clarity."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "00884a06-3250-4c87-b491-3b7baf3c5516",
+            "agentId": "a6464752dec190ef4",
+            "type": "user",
+            "uuid": "12eae469-ac55-438d-8494-8ef025d9b750",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "7a362cc0-08ac-4cf8-8958-672775de0ebd",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "sprightly-popping-church"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T19:42:12.324Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the specified lines from the appendix and extract all numerical values."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12eae469-ac55-438d-8494-8ef025d9b750",
+            "isSidechain": true,
+            "agentId": "a6464752dec190ef4",
+            "requestId": "req_011CbPrgcgTutfBDquoxJ4eS",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "49c44471-9464-4a38-8e0d-1b5d49370a50",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "7a362cc0-08ac-4cf8-8958-672775de0ebd",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "sprightly-popping-church",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NMNnuaLpnwReCzC8JXZK75",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 567,
+                "cache_read_input_tokens": 39102,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 567,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T19:42:12.878Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VxAdfoqHUVUrX4Nx86AcrD",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/sections/appendix.tex",
+                "offset": 250,
+                "limit": 242
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "49c44471-9464-4a38-8e0d-1b5d49370a50",
+            "isSidechain": true,
+            "agentId": "a6464752dec190ef4",
+            "requestId": "req_011CbPrgcgTutfBDquoxJ4eS",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "42576876-71b3-474d-8ee3-46e54282c77f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "7a362cc0-08ac-4cf8-8958-672775de0ebd",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "sprightly-popping-church",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NMNnuaLpnwReCzC8JXZK75",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 567,
+                "cache_read_input_tokens": 39102,
+                "output_tokens": 141,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 567
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 141,
+                    "cache_read_input_tokens": 39102,
+                    "cache_creation_input_tokens": 567,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 567,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T19:42:12.890Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VxAdfoqHUVUrX4Nx86AcrD",
+              "type": "tool_result",
+              "content": "250\t\\label{tab:test_tax}\n251\t\\small\n252\t\\resizebox{\\columnwidth}{!}{%\n253\t\\begin{tabular}{lcccc}\n254\t\\toprule\n255\t\\textbf{Model} & \\textbf{With-evi} & \\textbf{No-evi} & \\textbf{Test Tax} & \\textbf{Dev Tax} \\\\\n256\t\\midrule\n257\tQwen3-1.7B & 25.79 & 20.93 & $-$4.86 & $-$5.63 \\\\\n258\tQwen3-4B & 22.32 & 22.19 & $-$0.13 & +0.25 \\\\\n259\tQwen3-8B & 31.06 & 29.35 & $-$1.71 & +0.04 \\\\\n260\tQwen3-14B & 38.86 & 38.54 & $-$0.32 & +0.03 \\\\\n261\tLLaMA-3.1-8B & 34.20 & 29.26 & $-$4.94 & $-$5.19 \\\\\n262\t\\bottomrule\n263\t\\end{tabular}%\n264\t}\n265\t\\end{table}\n266\t\n267\t\\paragraph{RSFT test-set evidence tax.}\n268\tTable~\\ref{tab:rsft_test_tax} reports the inference-time evidence tax for RSFT models on the Re-DocRED test set (same RSFT model evaluated with vs.\\ without evidence output; per-seed s42 values). Figure~\\ref{fig:evidence_tax} presents multi-seed means with error bars where $\\geq$2 seeds are available. At 1.7B, RSFT preserves a strong evidence benefit ($-$5.01$\\pm$0.59pp, two-seed mean), comparable to the SFT tax ($-$4.86pp). At 4B, the tax is mildly positive (+1.65$\\pm$0.29pp, three-seed mean; s42: +1.51pp), the Qwen3 scale with the largest positive RSFT test tax; this contrasts with the near-neutral SFT tax at 4B ($-$0.13pp). At 8B, RSFT compresses the tax magnitude relative to SFT ($-$0.91$\\pm$0.74pp, three-seed mean, vs.\\ SFT $-$1.71pp). At 14B, the three-seed mean tax is +0.12$\\pm$0.64pp (s42: +0.77pp, s43: +0.08pp, s44: $-$0.50pp), reversing sign relative to dev ($-$1.53$\\pm$2.79pp, three-seed mean); the small test magnitude and high inter-seed variance may reflect noise or evaluation protocol differences given the 2.82$\\times$ annotation density gap between dev and test. LLaMA-3.1-8B shows partial compression from SFT ($-$4.94pp $\\to$ $-$1.46$\\pm$0.40pp, two-seed mean).\n269\t\n270\t\\begin{table}[t]\n271\t\\centering\n272\t\\caption{RSFT inference-time evidence tax on Re-DocRED test set (Ign-F1 \\%). Tax $=$ no-evi $-$ with-evi; positive $=$ cost. Per-seed s42 except where noted.}\n273\t\\label{tab:rsft_test_tax}\n274\t\\small\n275\t\\resizebox{\\columnwidth}{!}{%\n276\t\\begin{tabular}{lccc}\n277\t\\toprule\n278\t\\textbf{Model} & \\textbf{RSFT w/ evi} & \\textbf{RSFT no-evi} & \\textbf{RSFT Tax} \\\\\n279\t\\midrule\n280\tQwen3-1.7B & 29.02{\\scriptsize$\\pm$0.45}$^{(2)}$ & 24.00{\\scriptsize$\\pm$0.14}$^{(2)}$ & $-$5.01{\\scriptsize$\\pm$0.59}$^{(2)}$ \\\\\n281\tQwen3-4B & 25.01 & 26.52 & +1.51 \\\\\n282\tQwen3-8B & 33.53 & 33.19 & $-$0.34 \\\\\n283\tQwen3-14B & 38.49 & 39.26 & +0.77$^\\dagger$ \\\\\n284\tLLaMA-3.1-8B & 35.54 & 33.80 & $-$1.74 \\\\\n285\t\\bottomrule\n286\t\\end{tabular}%\n287\t}\n288\t\\vspace{1mm}\n289\t{\\raggedright\\footnotesize $^{(2)}$Two-seed mean$\\pm$std (s42, s43). $^\\dagger$14B shows dev-test sign reversal (dev tax $-$1.53$\\pm$2.79pp, three-seed mean); three-seed test mean +0.12$\\pm$0.64pp. All other scales preserve dev-test direction consistency.\\par}\n290\t\\end{table}\n291\t\n292\t\\paragraph{Comparison to supervised methods.}\n293\tTable~\\ref{tab:encoder_comparison} directly compares encoder-based methods with our LLM-based approach. Encoder methods achieve substantially higher extraction performance (Rel-F1 63--65 vs.\\ our 46--60), reflecting decades of architecture-specific optimization for the classification formulation. However, their evidence identification operates as binary sentence classification, producing Evi-F1 of 52--56 under a joint evaluation protocol. Our TP-only Evi-F1 exceeds 80\\%, indicating that when the model correctly identifies a triple, it produces higher-quality evidence than encoder methods. The joint Evi-F1 gap (36.1 vs.\\ 54.15) is driven primarily by extraction performance rather than evidence quality: false-positive and false-negative triples dilute the denominator. The extraction gap varies with scale (16--18pp Ign-F1 at 4B, narrowing to $<$5pp at 14B), reflecting the rapid scaling of generative approaches relative to encoder methods. Further closing this gap at smaller scales requires improving extraction capability of LLM-based methods, an orthogonal direction to the evidence faithfulness problem we address.\n294\t\n295\t\\begin{table}[t]\n296\t\\centering\n297\t\\caption{Comparison with encoder-based methods on DocRED dev set. Encoder methods use RoBERTa-large; LLM methods use Qwen3. Evi-F1 for encoder methods uses joint evaluation (all triples in denominator); our joint Evi-F1 follows the same protocol for fair comparison. TP-only Evi-F1 conditions on correctly predicted triples. Rel-F1 is reported in percentage for all methods.}\n298\t\\label{tab:encoder_comparison}\n299\t\\small\n300\t\\resizebox{\\columnwidth}{!}{%\n301\t\\begin{tabular}{llcccc}\n302\t\\toprule\n303\t\\textbf{Method} & \\textbf{Type} & \\textbf{Ign-F1} & \\textbf{Rel-F1} & \\textbf{Evi-F1 (joint)} & \\textbf{Evi-F1 (TP)} \\\\\n304\t\\midrule\n305\tATLOP & Encoder & 61.32 & 63.18 & -- & -- \\\\\n306\tEIDER & Encoder & 62.34 & 64.27 & 52.54 & -- \\\\\n307\tSAIS & Encoder & 62.23 & 65.17 & 55.84 & -- \\\\\n308\tDREEAM & Encoder & 61.71 & 63.49 & 54.15 & -- \\\\\n309\t\\midrule\n310\tOurs (4B RSFT) & LLM & 44.82 & 45.80 & 36.1 & 80.96 \\\\\n311\tOurs (8B RSFT) & LLM & 54.33 & 56.07 & -- & 81.54 \\\\\n312\tOurs (14B RSFT) & LLM & 57.85 & 59.17 & 48.57 & 83.37 \\\\\n313\t\\bottomrule\n314\t\\end{tabular}%\n315\t}\n316\t\\end{table}\n317\t\n318\t\n319\t\\section{Decoupling Spectrum Data}\n320\t\\label{sec:spectrum_data}\n321\t\n322\tTable~\\ref{tab:spectrum} presents the full decoupling spectrum across all optimization paradigms evaluated on Qwen3-4B, quantified by EDCR and severity classification.\n323\t\n324\t\\begin{table}[t]\n325\t\\centering\n326\t\\caption{Evidence-extraction decoupling across RL paradigms (Qwen3-4B). Severity indicates the degree of extraction collapse relative to evidence improvement.}\n327\t\\label{tab:spectrum}\n328\t\\small\n329\t\\resizebox{\\columnwidth}{!}{%\n330\t\\begin{tabular}{llcccc}\n331\t\\toprule\n332\t\\textbf{Paradigm} & \\textbf{Config} & \\textbf{Rel-F1} & \\textbf{Evi-F1} & \\textbf{EDCR} & \\textbf{Severity} \\\\\n333\t\\midrule\n334\tGRPO & QLoRA $G{=}4$ & 1.38 & 85.04 & 0.9876 & Catastrophic \\\\\n335\tGRPO & bf16 $G{=}8$ & 45.49 & 80.86 & 0.6318 & Mild \\\\\n336\tDPO & bf16 1ep & 33.37 & 80.90 & 0.8123 & Gradual \\\\\n337\tDPO & bf16 3ep & 31.45 & 84.84 & 0.7503 & Gradual \\\\\n338\t\\midrule\n339\tSFT & baseline$^\\ddagger$ & 44.39 & 79.61 & 0.6797 & None \\\\\n340\tRSFT & CED$^\\ddagger$ & 45.80 & 80.96 & 0.6487 & None \\\\\n341\t\\bottomrule\n342\t\\end{tabular}%\n343\t}\n344\t\\vspace{1mm}\n345\t{\\raggedright\\footnotesize $^\\ddagger$Three-seed mean. DPO at @2048 (matched); others at @1024. Severity reflects training trajectory stability, not final EDCR.\\par}\n346\t\\end{table}\n347\t\n348\t\n349\t\\section{GRPO Training Dynamics}\n350\t\\label{sec:grpo_dynamics}\n351\t\n352\tFigure~\\ref{fig:grpo_dynamics} traces Rel-F1, Evi-F1, and EDCR across training checkpoints for two GRPO configurations, illustrating how catastrophic decoupling emerges under constrained optimization (G=4 QLoRA) but not under full-precision training (G=8 bf16).\n353\t\n354\t\\begin{figure*}[t]\n355\t\\centering\n356\t\\includegraphics[width=\\linewidth]{fig_grpo_dynamics.pdf}\n357\t\\caption{Training dynamics of GRPO under different configurations. (a)~Relation F1 across checkpoints: G=4 QLoRA suffers catastrophic collapse at step~10, while G=8 bf16 remains stable. (b)~Evidence F1 stays intact for G=8 bf16, confirming the generation mechanism itself does not fail. (c)~Evidence-Decoupling Ratio (EDCR) reveals near-total decoupling in G=4 QLoRA (extraction collapses to Rel-F1 1.4), while G=8 bf16 maintains healthy ratios.}\n358\t\\label{fig:grpo_dynamics}\n359\t\\end{figure*}\n360\t\n361\t\n362\t\\section{Error Analysis: SFT vs.\\ RSFT}\n363\t\\label{sec:error_analysis}\n364\t\n365\tTable~\\ref{tab:error_analysis} decomposes the extraction improvements from RSFT into error categories across three scales. Three mechanisms drive the gains consistently:\n366\t\n367\t\\paragraph{Truncation false negatives.} SFT models frequently hit the generation length limit, producing incomplete outputs that miss triples. RSFT training on compact, high-quality outputs reduces this truncation rate. The effect is strongest at 1.7B ($-841$ truncation FN, $-22$\\%), where the SFT model's output length is least controlled.\n368\t\n369\t\\paragraph{Hallucinated false positives.} CED-based filtering removes training examples with unfaithful predictions, reducing the rate of hallucinated triples at inference. LLaMA benefits most ($-593$ hallucinated FP, $-11.8$\\%), suggesting cross-architecture variation in hallucination susceptibility.\n370\t\n371\t\\paragraph{Duplicate predictions.} RSFT training data, selected for quality, contains fewer repetitive patterns. This propagates to inference, reducing duplicate triples by $11$--$20$\\% across scales, with 1.7B showing the largest reduction ($-20.2$\\%).\n372\t\n373\t\\paragraph{Evidence quality unchanged.} Despite substantial extraction improvements, evidence exact-match F1 changes by less than 0.4pp at every scale. RSFT selects for joint extraction-evidence quality, but the evidence signal in CED scoring does not translate into measurable evidence improvement. This suggests that evidence grounding requires targeted optimization (e.g., evidence-specific rewards in RL) rather than data selection alone.\n374\t\n375\t\\paragraph{Residual difficulty.} The proportion of ``other'' false negatives (triples missed for reasons beyond truncation or formatting) increases by 13--15\\% in relative terms after RSFT. As easy errors (truncation, duplication) are eliminated, the remaining error distribution shifts toward harder cases: cross-sentence reasoning, implicit relations, and long-tail entity pairs. The relation types with the largest RSFT gains (participant, conflict, league, screenwriter, operator, contains\\_administrative\\_territory) involve cross-sentence reasoning or long-tail entities, consistent with RSFT's selection pressure toward diverse, high-quality outputs.\n376\t\n377\t\\begin{table}[t]\n378\t\\centering\n379\t\\caption{Error pattern changes from SFT to RSFT across scales. $\\Delta$\\% shows relative change. Truncation FN, hallucinated FP, and duplicates all decrease; evidence quality and residual FN difficulty are unchanged.}\n380\t\\label{tab:error_analysis}\n381\t\\small\n382\t\\resizebox{\\columnwidth}{!}{%\n383\t\\begin{tabular}{llccc}\n384\t\\toprule\n385\t\\textbf{Error Category} & \\textbf{Direction} & \\textbf{1.7B} & \\textbf{4B} & \\textbf{8B / LLaMA} \\\\\n386\t\\midrule\n387\tTruncation FN & $\\downarrow$ & $-$22\\% & $-$16\\% & $-$18\\% \\\\\n388\tHallucinated FP & $\\downarrow$ & $-$8\\% & $-$6\\% & $-$12\\% \\\\\n389\tDuplicates & $\\downarrow$ & $-$20\\% & $-$11\\% & $-$14\\% \\\\\n390\tEvidence (exact) & $\\approx$ & $<$0.4pp & $<$0.4pp & $<$0.4pp \\\\\n391\tFN: other & $\\uparrow$ & +13\\% & +15\\% & +14\\% \\\\\n392\t\\bottomrule\n393\t\\end{tabular}%\n394\t}\n395\t\\end{table}\n396\t\n397\t\n398\t\\section{Per-Relation EDCR Distribution}\n399\t\\label{sec:edcr_per_relation}\n400\t\n401\tComputing EDCR for each of the 76 relation types with $\\geq$5 evaluation samples (from the RSFT CED s42 model) reveals that per-relation EDCR correlates strongly with per-relation Rel-F1 ($\\rho = -0.79$, $n = 76$, $p < 0.001$), confirming its utility as a difficulty indicator. Filtering to types with $\\geq$5 predictions strengthens the correlation ($\\rho = -0.85$, $n = 74$, $p < 0.001$). Per-relation EDCR is statistically independent of Evi-F1 ($\\rho = -0.06$, $p = 0.58$), and Evi-F1 itself shows no association with Rel-F1 ($\\rho = -0.01$, $p = 0.91$). These null correlations establish that evidence quality and extraction ability are fully decoupled across relation types. Extreme cases illustrate the diagnostic power: \\texttt{date\\_of\\_birth} has EDCR $= 0.118$ (highly faithful, with extraction and evidence tightly coupled), while \\texttt{head\\_of\\_government} reaches $0.956$ (highly decoupled). This per-relation analysis avoids the shared-component concern present in cross-method EDCR-vs-Rel-F1 correlation, providing independent validation of EDCR's diagnostic utility. A permutation test (10,000 iterations) on the per-relation correlation yields $p < 0.0001$, confirming that the association is not an artifact of the shared TP component.\n402\t\n403\t\\paragraph{Partial correlations controlling for TP.}\n404\tBecause EDCR shares TP (true positives) in both numerator and denominator with Rel-F1, we report partial correlations controlling for Evi-Recall$_\\text{TP}$. At the cross-method level ($n = 17$ seed-specific configurations), the partial Spearman $\\rho = -0.8541$ ($p = 0.000025$), virtually unchanged from the raw $\\rho = -0.8554$ (0.15\\% reduction). Removing the GRPO QLoRA outlier yields partial $\\rho = -0.8681$ ($n = 16$, $p = 0.000027$). Aggregating to $n = 7$ unique methods: raw $\\rho = -0.9643$, partial $\\rho = -0.9617$. These results confirm that the EDCR--Rel-F1 association is not driven by the shared TP component. Note that seed-level configurations ($n = 17$) are not fully independent; the $n = 7$ unique-method analysis provides a conservative estimate.\n405\t\n406\t\\paragraph{Similar-TP, different-EDCR pairs.}\n407\tTo further validate that EDCR captures information beyond what TP alone provides, we identify configuration pairs with similar Evi-Recall$_\\text{TP}$ ($|\\Delta| < 5$pp) but substantially different EDCR ($|\\Delta| > 5$pp). Forty-eight such pairs exist across all configurations. The most illustrative: DPO-CED 1-epoch (Evi-Recall$_\\text{TP} = 0.833$) vs.\\ RSFT CED LLaMA s43 (Evi-Recall$_\\text{TP} = 0.829$) differ by only 2.4pp in TP-conditioned evidence recall but 13.6pp in EDCR, reflecting the substantial extraction gap between these methods. This pattern demonstrates that EDCR captures extraction-evidence alignment that aggregate TP metrics miss.\n408\t\n409\t\\begin{figure}[t]\n410\t\\centering\n411\t\\includegraphics[width=\\linewidth]{fig_edcr_relations.pdf}\n412\t\\caption{Per-relation EDCR distribution across all 93 relation types observed in the development set (of 96 defined in DocRED). The correlation analysis in the text uses the 76 types with $\\geq$5 samples for statistical reliability. Red bars indicate EDCR $\\geq$ 0.70 (severe decoupling), green bars indicate EDCR $<$ 0.30 (healthy evidence grounding). Seven types exhibit EDCR = 1.0.}\n413\t\\label{fig:edcr_relations}\n414\t\\end{figure}\n415\t\n416\t\n417\t\\section{Qualitative Analysis}\n418\t\\label{sec:qualitative}\n419\t\n420\tWe present representative examples illustrating three phenomena: evidence quality differences between SFT and RSFT, GRPO format gaming under catastrophic collapse, and per-relation EDCR diagnostics.\n421\t\n422\t\\paragraph{Case 1: Evidence quality.}\n423\tTable~\\ref{tab:case_evidence} compares evidence citations from SFT and RSFT on three documents. SFT tends to cite many sentences indiscriminately, including distractors unrelated to the target triple, while RSFT selects precisely the gold evidence sentences. For \\emph{America's Sweetheart}, SFT cites 6 sentences (precision 0.17) whereas RSFT cites only the single correct sentence (precision 1.00). The pattern is consistent: SFT achieves evidence precision of 0.00--0.20 across these examples, while RSFT achieves 1.00 in all three cases.\n424\t\n425\t\\begin{table}[t]\n426\t\\centering\n427\t\\caption{Evidence citation comparison between SFT and RSFT. Precision measures the fraction of cited sentences that match gold evidence.}\n428\t\\label{tab:case_evidence}\n429\t\\small\n430\t\\resizebox{\\columnwidth}{!}{%\n431\t\\begin{tabular}{llccc}\n432\t\\toprule\n433\t\\textbf{Document} & \\textbf{Triple} & \\textbf{SFT Prec.} & \\textbf{RSFT Prec.} & \\textbf{SFT \\#Cited} \\\\\n434\t\\midrule\n435\tOleg Tinkov & (Oleg Tinkov, country of citizenship, Russia) & 0.00 & 1.00 & 3 \\\\\n436\tAmerica's Sweetheart & (record label, country, United States) & 0.17 & 1.00 & 6 \\\\\n437\tJade (Mortal Kombat) & (Jade, present in work, Mortal Kombat) & 0.20 & 1.00 & 5 \\\\\n438\t\\bottomrule\n439\t\\end{tabular}%\n440\t}\n441\t\\end{table}\n442\t\n443\t\\paragraph{Case 2: GRPO format gaming.}\n444\tUnder catastrophic collapse (GRPO QLoRA $G{=}4$), the model abandons the DocRED 96-type relation ontology and generates free-text relation labels. On the document \\emph{Something to Believe In}, the model produces 35 predicted triples with relations such as ``is a'', ``honor'', and ``location'', none of which belong to the target ontology. All 35 predictions are incorrect. Similarly, for \\emph{J\\'{o}zef Pi\\l{}sudski Monument}, 28 predictions use non-standard relations with 0 correct matches. The model retains the structural format of triple-with-evidence output but fills it with fabricated relation types. The model produces well-formed evidence for these non-existent relations.\n445\t\n446\t\\paragraph{Case 3: EDCR diagnostics.}\n447\tPer-relation EDCR identifies specific relation types where extraction and evidence are misaligned. For \\texttt{date\\_of\\_birth} (EDCR $= 0.118$), the model's evidence consistently matches gold annotations: both extraction and evidence point to the same biographical sentence. In contrast, \\texttt{notable\\_work} (EDCR $= 0.941$) exhibits severe decoupling: the model cites sentence [0] (a general introduction) instead of the gold evidence sentence [3] (which contains the actual work attribution). High-EDCR relations tend to involve indirect or multi-hop reasoning where surface-level context misleads the evidence generator.\n448\t\n449\t\n450\t\\section{Inference Efficiency Analysis}\n451\t\\label{sec:inference_efficiency}\n452\t\n453\tTable~\\ref{tab:inference_efficiency} reports wall-clock inference time for SFT models with and without evidence output under matched evaluation settings (batch size 4, \\texttt{max\\_new\\_tokens}$=$2048, DocRED dev, 985 documents, single RTX 5090 GPU).\n454\t\n455\t\\begin{table}[t]\n456\t\\centering\n457\t\\caption{Inference time (seconds) for SFT with vs.\\ without evidence output. Overhead $=$ (with-evi $-$ no-evi) / no-evi; negative means with-evidence is faster. 1.7B--8B use batch size 4; 14B uses batch size 1.}\n458\t\\label{tab:inference_efficiency}\n459\t\\small\n460\t\\resizebox{\\columnwidth}{!}{%\n461\t\\begin{tabular}{lcccc}\n462\t\\toprule\n463\t\\textbf{Model} & \\textbf{With-evi} & \\textbf{No-evi} & \\textbf{Overhead} & \\textbf{\\#Pred (w/no)} \\\\\n464\t\\midrule\n465\tQwen3-1.7B & 6,424 & 7,438 & $-$13.6\\% & 25.5k / 44.6k \\\\\n466\tQwen3-4B & 8,887 & 7,606 & +16.8\\% & 24.7k / 25.6k \\\\\n467\tQwen3-8B & 10,486 & 10,901 & $-$3.8\\% & 25.0k / 31.1k \\\\\n468\t\\midrule\n469\tQwen3-14B & 18,011 & 14,498 & +24.2\\% & --- \\\\\n470\t\\bottomrule\n471\t\\end{tabular}}\n472\t\\end{table}\n473\t\n474\tThe evidence overhead is scale-dependent and non-monotonic. At 1.7B, removing evidence \\emph{increases} inference time by 13.6\\%: without the structural constraint of evidence fields, the model generates 1.75$\\times$ more predictions (44.6k vs.\\ 25.5k), producing verbose output that takes longer to decode. At 14B, evidence generation adds 24.2\\% overhead, consistent with the expected cost of generating additional tokens. The crossover occurs around 4B--8B, where the prediction count differential narrows and the costs approximately balance.\n475\t\n476\tInference time scales sub-linearly with model size: 1.7B$\\to$8B (4.7$\\times$ parameters) increases wall-clock time by only 1.63$\\times$ at batch size 4, reflecting the memory-bound nature of autoregressive generation. Test-set inference is 2--3$\\times$ slower per document than dev (e.g., 24--42 s/doc test vs.\\ 7--18 s/doc dev at batch size 1), attributable to the 2.82$\\times$ higher annotation density in Re-DocRED test requiring longer generated outputs.\n477\t\n478\t\n479\t\\section{Use of AI Assistants}\n480\t\\label{app:ai-assistants}\n481\t\n482\tWe used Claude (Anthropic) as an AI coding and writing assistant\n483\tthroughout this work. Specifically:\n484\t\\begin{itemize}\n485\t    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n486\t    pipelines, and analysis utilities; debugging and refactoring.\n487\t    \\item \\textbf{Writing:} drafting and revising paper sections,\n488\t    polishing prose, and reformatting LaTeX.\n489\t    \\item \\textbf{Literature:} summarizing related papers to inform\n490\t    the related-work section.\n491\t\\end{itemize}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "42576876-71b3-474d-8ee3-46e54282c77f",
+            "isSidechain": true,
+            "promptId": "00884a06-3250-4c87-b491-3b7baf3c5516",
+            "agentId": "a6464752dec190ef4",
+            "type": "user",
+            "uuid": "9430bcdb-a179-4721-8c89-13a921effaf6",
+            "sourceToolAssistantUUID": "42576876-71b3-474d-8ee3-46e54282c77f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "7a362cc0-08ac-4cf8-8958-672775de0ebd",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "sprightly-popping-church"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T19:43:03.238Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I now have the complete section (lines 250-491). Let me extract all numerical values systematically.\n\n## Extracted Numerical Values from Lines 250-491\n\n### Table 1: SFT Test-Set Evidence Tax (Lines 250-265)\n**Location:** Table tab:test_tax (Lines 250-265)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 257 | 25.79 | Qwen3-1.7B With-evi (F1 %) | Table cell |\n| 257 | 20.93 | Qwen3-1.7B No-evi (F1 %) | Table cell |\n| 257 | -4.86 | Qwen3-1.7B Test Tax | Table cell |\n| 257 | -5.63 | Qwen3-1.7B Dev Tax | Table cell |\n| 258 | 22.32 | Qwen3-4B With-evi (F1 %) | Table cell |\n| 258 | 22.19 | Qwen3-4B No-evi (F1 %) | Table cell |\n| 258 | -0.13 | Qwen3-4B Test Tax | Table cell |\n| 258 | +0.25 | Qwen3-4B Dev Tax | Table cell |\n| 259 | 31.06 | Qwen3-8B With-evi (F1 %) | Table cell |\n| 259 | 29.35 | Qwen3-8B No-evi (F1 %) | Table cell |\n| 259 | -1.71 | Qwen3-8B Test Tax | Table cell |\n| 259 | +0.04 | Qwen3-8B Dev Tax | Table cell |\n| 260 | 38.86 | Qwen3-14B With-evi (F1 %) | Table cell |\n| 260 | 38.54 | Qwen3-14B No-evi (F1 %) | Table cell |\n| 260 | -0.32 | Qwen3-14B Test Tax | Table cell |\n| 260 | +0.03 | Qwen3-14B Dev Tax | Table cell |\n| 261 | 34.20 | LLaMA-3.1-8B With-evi (F1 %) | Table cell |\n| 261 | 29.26 | LLaMA-3.1-8B No-evi (F1 %) | Table cell |\n| 261 | -4.94 | LLaMA-3.1-8B Test Tax | Table cell |\n| 261 | -5.19 | LLaMA-3.1-8B Dev Tax | Table cell |\n\n### Body Text - RSFT Test Tax Analysis (Lines 267-268)\n**Location:** Paragraph titled \"RSFT test-set evidence tax\" (body text, lines 267-268)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 268 | 5.01 ± 0.59 | Qwen3-1.7B RSFT tax with mean ± std (pp) | Body text statistic |\n| 268 | 2 | Number of seeds (Qwen3-1.7B) | Body text |\n| 268 | -4.86 | Qwen3-1.7B SFT tax reference | Body text |\n| 268 | 1.65 ± 0.29 | Qwen3-4B RSFT tax, three-seed mean (pp) | Body text statistic |\n| 268 | 3 | Number of seeds (Qwen3-4B) | Body text |\n| 268 | 1.51 | Qwen3-4B RSFT tax s42 value (pp) | Body text |\n| 268 | -0.13 | Qwen3-4B SFT tax | Body text |\n| 268 | 0.91 ± 0.74 | Qwen3-8B RSFT tax, three-seed mean (pp) | Body text statistic |\n| 268 | -1.71 | Qwen3-8B SFT tax | Body text |\n| 268 | 0.12 ± 0.64 | Qwen3-14B three-seed mean test tax (pp) | Body text statistic |\n| 268 | 0.77 | Qwen3-14B s42 tax | Body text |\n| 268 | 0.08 | Qwen3-14B s43 tax | Body text |\n| 268 | -0.50 | Qwen3-14B s44 tax | Body text |\n| 268 | -1.53 ± 2.79 | Qwen3-14B dev tax, three-seed mean (pp) | Body text statistic |\n| 268 | 2.82 | Annotation density ratio (test/dev) | Body text |\n| 268 | -4.94 | LLaMA-3.1-8B SFT tax | Body text |\n| 268 | -1.46 ± 0.40 | LLaMA-3.1-8B RSFT tax, two-seed mean (pp) | Body text statistic |\n| 268 | 2 | Number of seeds (LLaMA) | Body text |\n\n### Table 2: RSFT Inference-Time Evidence Tax (Lines 270-290)\n**Location:** Table tab:rsft_test_tax (Lines 280-284)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 280 | 29.02 ± 0.45 | Qwen3-1.7B RSFT w/ evi (Ign-F1 %) ± std | Table cell |\n| 280 | 2 | Superscript: seed count | Table cell |\n| 280 | 24.00 ± 0.14 | Qwen3-1.7B RSFT no-evi ± std | Table cell |\n| 280 | -5.01 ± 0.59 | Qwen3-1.7B RSFT Tax ± std | Table cell |\n| 281 | 25.01 | Qwen3-4B RSFT w/ evi (Ign-F1 %) | Table cell |\n| 281 | 26.52 | Qwen3-4B RSFT no-evi | Table cell |\n| 281 | +1.51 | Qwen3-4B RSFT Tax | Table cell |\n| 282 | 33.53 | Qwen3-8B RSFT w/ evi (Ign-F1 %) | Table cell |\n| 282 | 33.19 | Qwen3-8B RSFT no-evi | Table cell |\n| 282 | -0.34 | Qwen3-8B RSFT Tax | Table cell |\n| 283 | 38.49 | Qwen3-14B RSFT w/ evi (Ign-F1 %) | Table cell |\n| 283 | 39.26 | Qwen3-14B RSFT no-evi | Table cell |\n| 283 | +0.77 | Qwen3-14B RSFT Tax (dagger notation) | Table cell |\n| 284 | 35.54 | LLaMA-3.1-8B RSFT w/ evi (Ign-F1 %) | Table cell |\n| 284 | 33.80 | LLaMA-3.1-8B RSFT no-evi | Table cell |\n| 284 | -1.74 | LLaMA-3.1-8B RSFT Tax | Table cell |\n\n### Footnote to Table 2 (Line 289)\n**Location:** Table footnote (body text, line 289)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 289 | 2 | Two-seed mean reference | Footnote |\n| 289 | -1.53 ± 2.79 | 14B dev tax, three-seed mean (pp) | Footnote |\n| 289 | 0.12 ± 0.64 | 14B three-seed test mean (pp) | Footnote |\n\n### Comparison to Supervised Methods - Body Text (Line 293)\n**Location:** Paragraph body text (lines 292-293)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 293 | 63–65 | Rel-F1 range for encoder methods (%) | Body text |\n| 293 | 46–60 | Rel-F1 range for our LLM approach (%) | Body text |\n| 293 | 52–56 | Evi-F1 range for encoder methods (%) | Body text |\n| 293 | 80 | Our TP-only Evi-F1 threshold (%) | Body text |\n| 293 | 36.1 | Joint Evi-F1 for our method (%) | Body text |\n| 293 | 54.15 | Encoder joint Evi-F1 (%) | Body text |\n| 293 | 16–18 | Ign-F1 gap at 4B (pp) | Body text |\n| 293 | 5 | Ign-F1 gap threshold at 14B (pp) | Body text |\n\n### Table 3: Encoder Comparison (Lines 305-312)\n**Location:** Table tab:encoder_comparison\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 305 | 61.32 | ATLOP Ign-F1 (%) | Table cell |\n| 305 | 63.18 | ATLOP Rel-F1 (%) | Table cell |\n| 306 | 62.34 | EIDER Ign-F1 (%) | Table cell |\n| 306 | 64.27 | EIDER Rel-F1 (%) | Table cell |\n| 306 | 52.54 | EIDER Evi-F1 (joint) (%) | Table cell |\n| 307 | 62.23 | SAIS Ign-F1 (%) | Table cell |\n| 307 | 65.17 | SAIS Rel-F1 (%) | Table cell |\n| 307 | 55.84 | SAIS Evi-F1 (joint) (%) | Table cell |\n| 308 | 61.71 | DREEAM Ign-F1 (%) | Table cell |\n| 308 | 63.49 | DREEAM Rel-F1 (%) | Table cell |\n| 308 | 54.15 | DREEAM Evi-F1 (joint) (%) | Table cell |\n| 310 | 44.82 | Ours 4B RSFT Ign-F1 (%) | Table cell |\n| 310 | 45.80 | Ours 4B RSFT Rel-F1 (%) | Table cell |\n| 310 | 36.1 | Ours 4B RSFT Evi-F1 (joint) (%) | Table cell |\n| 310 | 80.96 | Ours 4B RSFT Evi-F1 (TP) (%) | Table cell |\n| 311 | 54.33 | Ours 8B RSFT Ign-F1 (%) | Table cell |\n| 311 | 56.07 | Ours 8B RSFT Rel-F1 (%) | Table cell |\n| 311 | 81.54 | Ours 8B RSFT Evi-F1 (TP) (%) | Table cell |\n| 312 | 57.85 | Ours 14B RSFT Ign-F1 (%) | Table cell |\n| 312 | 59.17 | Ours 14B RSFT Rel-F1 (%) | Table cell |\n| 312 | 48.57 | Ours 14B RSFT Evi-F1 (joint) (%) | Table cell |\n| 312 | 83.37 | Ours 14B RSFT Evi-F1 (TP) (%) | Table cell |\n\n### Decoupling Spectrum Section - Body Text (Line 322)\n**Location:** Body text (lines 319-322)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 322 | 4 | Qwen3-4B scale being evaluated | Body text |\n| 322 | 76 | Number of relation types with ≥5 samples | Body text |\n\n### Table 4: Decoupling Spectrum (Lines 334-340)\n**Location:** Table tab:spectrum (lines 334-340)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 334 | 1.38 | GRPO QLoRA G=4 Rel-F1 (%) | Table cell |\n| 334 | 85.04 | GRPO QLoRA G=4 Evi-F1 (%) | Table cell |\n| 334 | 0.9876 | GRPO QLoRA G=4 EDCR | Table cell |\n| 335 | 45.49 | GRPO bf16 G=8 Rel-F1 (%) | Table cell |\n| 335 | 80.86 | GRPO bf16 G=8 Evi-F1 (%) | Table cell |\n| 335 | 0.6318 | GRPO bf16 G=8 EDCR | Table cell |\n| 336 | 33.37 | DPO bf16 1ep Rel-F1 (%) | Table cell |\n| 336 | 80.90 | DPO bf16 1ep Evi-F1 (%) | Table cell |\n| 336 | 0.8123 | DPO bf16 1ep EDCR | Table cell |\n| 337 | 31.45 | DPO bf16 3ep Rel-F1 (%) | Table cell |\n| 337 | 84.84 | DPO bf16 3ep Evi-F1 (%) | Table cell |\n| 337 | 0.7503 | DPO bf16 3ep EDCR | Table cell |\n| 339 | 44.39 | SFT baseline Rel-F1 (%) | Table cell |\n| 339 | 79.61 | SFT baseline Evi-F1 (%) | Table cell |\n| 339 | 0.6797 | SFT baseline EDCR | Table cell |\n| 340 | 45.80 | RSFT CED Rel-F1 (%) | Table cell |\n| 340 | 80.96 | RSFT CED Evi-F1 (%) | Table cell |\n| 340 | 0.6487 | RSFT CED EDCR | Table cell |\n\n### Footnote to Table 4 (Line 345)\n**Location:** Table footnote (line 345)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 345 | 2048 | Token count for DPO (matched) | Footnote |\n| 345 | 1024 | Token count for others | Footnote |\n\n### GRPO Training Dynamics - Body Text (Line 352)\n**Location:** Section body text (line 352)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 352 | 4 | GRPO G=4 QLoRA parameter | Body text |\n| 352 | 8 | GRPO G=8 bf16 parameter | Body text |\n\n### Figure Caption (Lines 356-358)\n**Location:** Figure fig_grpo_dynamics caption (lines 356-358)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 357 | 10 | Training step where G=4 QLoRA collapses | Figure caption |\n| 357 | 1.4 | Rel-F1 collapse value for G=4 QLoRA | Figure caption |\n\n### Error Analysis - Body Text (Lines 365-375)\n**Location:** Paragraph sections (lines 365-375)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 367 | 841 | Truncation FN reduction at 1.7B | Body text |\n| 367 | 22 | Percentage truncation FN reduction at 1.7B (%) | Body text |\n| 369 | 593 | Hallucinated FP reduction for LLaMA | Body text |\n| 369 | 11.8 | Percentage hallucinated FP reduction (%) | Body text |\n| 371 | 11–20 | Duplicate prediction reduction range (%) | Body text |\n| 371 | 20.2 | Largest duplicate reduction at 1.7B (%) | Body text |\n| 373 | 0.4 | Evidence exact-match F1 change threshold (pp) | Body text |\n| 375 | 13–15 | Relative increase in \"other\" FN (%) | Body text |\n\n### Table 5: Error Pattern Analysis (Lines 387-391)\n**Location:** Table tab:error_analysis (lines 387-391)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 387 | 22 | Truncation FN change at 1.7B (%) | Table cell |\n| 387 | 16 | Truncation FN change at 4B (%) | Table cell |\n| 387 | 18 | Truncation FN change at 8B/LLaMA (%) | Table cell |\n| 388 | 8 | Hallucinated FP change at 1.7B (%) | Table cell |\n| 388 | 6 | Hallucinated FP change at 4B (%) | Table cell |\n| 388 | 12 | Hallucinated FP change at 8B/LLaMA (%) | Table cell |\n| 389 | 20 | Duplicate change at 1.7B (%) | Table cell |\n| 389 | 11 | Duplicate change at 4B (%) | Table cell |\n| 389 | 14 | Duplicate change at 8B/LLaMA (%) | Table cell |\n| 390 | 0.4 | Evidence exact-match threshold (pp) | Table cell |\n| 391 | 13 | FN: other change at 1.7B (%) | Table cell |\n| 391 | 15 | FN: other change at 4B (%) | Table cell |\n| 391 | 14 | FN: other change at 8B/LLaMA (%) | Table cell |\n\n### Per-Relation EDCR Distribution - Body Text (Lines 401-408)\n**Location:** Section body text (lines 401-408)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 401 | 76 | Relation types with ≥5 evaluation samples | Body text |\n| 401 | -0.79 | Spearman correlation (EDCR vs Rel-F1) | Body text statistic |\n| 401 | 76 | Sample count (n) | Body text |\n| 401 | 0.001 | P-value significance threshold | Body text |\n| 401 | 74 | Relation types with ≥5 predictions | Body text |\n| 401 | -0.85 | Spearman correlation (filtered) | Body text statistic |\n| 401 | -0.06 | EDCR vs Evi-F1 correlation | Body text statistic |\n| 401 | 0.58 | P-value for EDCR-Evi-F1 correlation | Body text |\n| 401 | -0.01 | Evi-F1 vs Rel-F1 correlation | Body text statistic |\n| 401 | 0.91 | P-value for Evi-F1-Rel-F1 correlation | Body text |\n| 401 | 0.118 | EDCR for date_of_birth | Body text |\n| 401 | 0.956 | EDCR for head_of_government | Body text |\n| 401 | 10000 | Permutation test iterations | Body text |\n| 401 | 0.0001 | P-value threshold for permutation test | Body text |\n| 404 | 17 | Cross-method configurations (n) | Body text |\n| 404 | -0.8541 | Partial Spearman correlation (raw ρ) | Body text statistic |\n| 404 | 0.000025 | P-value for partial correlation | Body text |\n| 404 | -0.8554 | Raw Spearman correlation for comparison | Body text statistic |\n| 404 | 0.15 | Percentage reduction from raw to partial (%) | Body text |\n| 404 | 16 | Sample count after removing outlier | Body text |\n| 404 | 0.000027 | P-value after removing outlier | Body text |\n| 404 | 7 | Unique methods count | Body text |\n| 404 | -0.9643 | Raw correlation at method level | Body text statistic |\n| 404 | -0.9617 | Partial correlation at method level | Body text statistic |\n| 407 | 5 | TP difference threshold (pp) | Body text |\n| 407 | 5 | EDCR difference threshold (pp) | Body text |\n| 407 | 48 | Number of similar-TP, different-EDCR pairs | Body text |\n| 407 | 0.833 | DPO-CED Evi-Recall_TP | Body text |\n| 407 | 0.829 | RSFT CED LLaMA s43 Evi-Recall_TP | Body text |\n| 407 | 2.4 | TP-conditioned evidence recall difference (pp) | Body text |\n| 407 | 13.6 | EDCR difference (pp) | Body text |\n\n### Figure Caption (Lines 410-413)\n**Location:** Figure fig_edcr_relations caption (lines 410-413)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 413 | 93 | Total relation types in development set | Figure caption |\n| 413 | 96 | Defined relation types in DocRED | Figure caption |\n| 413 | 76 | Relation types with ≥5 samples (for analysis) | Figure caption |\n| 413 | 0.70 | EDCR threshold for severe decoupling | Figure caption |\n| 413 | 0.30 | EDCR threshold for healthy grounding | Figure caption |\n| 413 | 7 | Relation types with EDCR = 1.0 | Figure caption |\n\n### Qualitative Analysis - Evidence Quality (Lines 422-423)\n**Location:** Body text (lines 422-423)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 423 | 6 | SFT cited sentences for America's Sweetheart | Body text |\n| 423 | 0.17 | SFT citation precision for America's Sweetheart | Body text |\n| 423 | 1 | RSFT cited sentence for America's Sweetheart | Body text |\n| 423 | 1.00 | RSFT citation precision for America's Sweetheart | Body text |\n| 423 | 0.00–0.20 | SFT evidence precision range across examples | Body text |\n\n### Table 6: Case Evidence (Lines 435-437)\n**Location:** Table tab:case_evidence\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 435 | 0.00 | SFT Precision for Oleg Tinkov | Table cell |\n| 435 | 1.00 | RSFT Precision for Oleg Tinkov | Table cell |\n| 435 | 3 | SFT #Cited for Oleg Tinkov | Table cell |\n| 436 | 0.17 | SFT Precision for America's Sweetheart | Table cell |\n| 436 | 1.00 | RSFT Precision for America's Sweetheart | Table cell |\n| 436 | 6 | SFT #Cited for America's Sweetheart | Table cell |\n| 437 | 0.20 | SFT Precision for Jade (Mortal Kombat) | Table cell |\n| 437 | 1.00 | RSFT Precision for Jade (Mortal Kombat) | Table cell |\n| 437 | 5 | SFT #Cited for Jade (Mortal Kombat) | Table cell |\n\n### Format Gaming Analysis - Body Text (Lines 443-444)\n**Location:** Paragraph body text (lines 443-444)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 444 | 35 | Predicted triples for \"Something to Believe In\" | Body text |\n| 444 | 0 | Correct matches for \"Something to Believe In\" | Body text |\n| 444 | 28 | Predicted triples for \"Józef Piłsudski Monument\" | Body text |\n| 444 | 0 | Correct matches for \"Józef Piłsudski Monument\" | Body text |\n\n### EDCR Diagnostics - Body Text (Lines 446-447)\n**Location:** Paragraph body text (lines 446-447)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 447 | 0.118 | EDCR for date_of_birth | Body text |\n| 447 | 0.941 | EDCR for notable_work | Body text |\n\n### Inference Efficiency Analysis - Body Text (Lines 450-476)\n**Location:** Section body text (lines 450-476)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 453 | 4 | Batch size for inference | Body text |\n| 453 | 2048 | max_new_tokens | Body text |\n| 453 | 985 | Number of documents in DocRED dev | Body text |\n| 453 | 1 | GPU count (RTX 5090) | Body text |\n| 457 | 4 | Batch size for 1.7B–8B models | Body text |\n| 457 | 1 | Batch size for 14B model | Body text |\n\n### Table 7: Inference Efficiency (Lines 465-469)\n**Location:** Table tab:inference_efficiency\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 465 | 6424 | Qwen3-1.7B With-evi inference time (seconds) | Table cell |\n| 465 | 7438 | Qwen3-1.7B No-evi inference time (seconds) | Table cell |\n| 465 | -13.6 | Qwen3-1.7B Overhead (%) | Table cell |\n| 465 | 25.5 | Qwen3-1.7B Predictions with-evi (k) | Table cell |\n| 465 | 44.6 | Qwen3-1.7B Predictions no-evi (k) | Table cell |\n| 466 | 8887 | Qwen3-4B With-evi inference time (seconds) | Table cell |\n| 466 | 7606 | Qwen3-4B No-evi inference time (seconds) | Table cell |\n| 466 | 16.8 | Qwen3-4B Overhead (%) | Table cell |\n| 466 | 24.7 | Qwen3-4B Predictions with-evi (k) | Table cell |\n| 466 | 25.6 | Qwen3-4B Predictions no-evi (k) | Table cell |\n| 467 | 10486 | Qwen3-8B With-evi inference time (seconds) | Table cell |\n| 467 | 10901 | Qwen3-8B No-evi inference time (seconds) | Table cell |\n| 467 | -3.8 | Qwen3-8B Overhead (%) | Table cell |\n| 467 | 25.0 | Qwen3-8B Predictions with-evi (k) | Table cell |\n| 467 | 31.1 | Qwen3-8B Predictions no-evi (k) | Table cell |\n| 469 | 18011 | Qwen3-14B With-evi inference time (seconds) | Table cell |\n| 469 | 14498 | Qwen3-14B No-evi inference time (seconds) | Table cell |\n| 469 | 24.2 | Qwen3-14B Overhead (%) | Table cell |\n\n### Inference Efficiency Analysis Continued - Body Text (Lines 474-476)\n**Location:** Body text (lines 474-476)\n\n| Line | Value | Represents | Type |\n|------|-------|-----------|------|\n| 474 | 13.6 | 1.7B inference time increase without evidence (%) | Body text |\n| 474 | 1.75 | Prediction count multiplier (44.6k vs 25.5k) | Body text |\n| 474 | 44.6 | Predictions without evidence at 1.7B (k) | Body text |\n| 474 | 25.5 | Predictions with evidence at 1.7B (k) | Body text |\n| 474 | 24.2 | 14B overhead when adding evidence (%) | Body text |\n| 474 | 4.7 | Parameter multiplier (1.7B to 8B) | Body text |\n| 474 | 1.63 | Wall-clock time increase (1.7B to 8B) | Body text |\n| 475 | 2–3 | Slowdown factor for test vs dev inference (x) | Body text |\n| 475 | 24–42 | Test inference time per document (s/doc, batch size 1) | Body text |\n| 475 | 7–18 | Dev inference time per document (s/doc, batch size 4) | Body text |\n| 476 | 2.82 | Annotation density ratio (test vs dev) | Body text |"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9430bcdb-a179-4721-8c89-13a921effaf6",
+            "isSidechain": true,
+            "agentId": "a6464752dec190ef4",
+            "requestId": "req_011CbPrgnDhFLcEwTqsUn72C",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d471cd0b-b8f4-4a7f-a15a-d2bde58a9c67",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/director_5afd7c17",
+            "sessionId": "7a362cc0-08ac-4cf8-8958-672775de0ebd",
+            "version": "2.1.126",
+            "gitBranch": "main",
+            "slug": "sprightly-popping-church",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014bjXnAPX1Eu5pazoD4MpVu",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 8147,
+                "cache_read_input_tokens": 39669,
+                "output_tokens": 7843,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8147
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 7843,
+                    "cache_read_input_tokens": 39669,
+                    "cache_creation_input_tokens": 8147,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8147,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-lines-250-491-of-home-ubuntu-agent-ml-research-idea-gen-0513-6-projects-f.md"
+}

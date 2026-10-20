@@ -1,0 +1,10632 @@
+# Research conversation: [WORKER DONE] Worker worker_eval_qwen3_8b_rsft_eval_20260517T115854 已完成（status=done）。用 `get_worker_status('worker_eval_q — Part 3 of 4
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction (July export snapshot)** · Conversation logs
+
+[← Part 2](part-002.md) · [Transcript overview](../research-conversation-worker-done-worker-worker-eval-qwen3-8b-rsft-eval-20260517t115854-status-done.md) · [Part 4 →](part-004.md) · [Structured JSON](../../../sessions/49/4993e6301481f40a8e97.json)
+
+## Round 61
+
+### Tool result
+
+_source line 550 · 2026-05-17T15:32:29.588Z_
+
+<details><summary>↩ Tool result · `toolu_01PWTQCWYaVvh5YtazBJTDku`</summary>
+
+```text
+Error: result (349,713 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-4b8948bb/3fa02456-769c-4f82-88f1-dc1e0de1d842/tool-results/mcp-agent-ml-research-read_registry-1779031949563.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-4b8948bb/3fa02456-769c-4f82-88f1-dc1e0de1d842/tool-results/mcp-agent-ml-research-read_registry-1779031949563.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-4b8948bb/3fa02456-769c-4f82-88f1-dc1e0de1d842/tool-results/mcp-agent-ml-research-read_registry-1779031949563.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b42ea78a-67d1-49c5-8961-70ae9fca757f",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "e07d9cb6-7886-48c7-b6d5-52f7c670a3f8",
+  "toolUseResult": "Error: result (349,713 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-4b8948bb/3fa02456-769c-4f82-88f1-dc1e0de1d842/tool-results/mcp-agent-ml-research-read_registry-1779031949563.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-4b8948bb/3fa02456-769c-4f82-88f1-dc1e0de1d842/tool-results/mcp-agent-ml-research-read_registry-1779031949563.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-4b8948bb/3fa02456-769c-4f82-88f1-dc1e0de1d842/tool-results/mcp-agent-ml-research-read_registry-1779031949563.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan_006_llama_rsft_test\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T15:30:42.159Z\", \"updated_at\": \"2026-05-17T15:31:44.586Z\", \"hypothesis\": \"Generate LLaMA-8B RSFT test set predictions for CodaLab submission. LLaMA-8B RSFT dev rel_f1=0.5674, expect similar performance on test.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_r3/checkpoint-3312 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_test\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred/test.json\", \"data_count\": 0, \"model_name\": \"LLaMA-3.1-8B-RSFT-r3-ckpt3312\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_llama_3_1_8b_r3/checkpoint-3312\", \"eval_data\": \"docred-test\", \"pid\": 460159, \"gpu\": \"cuda:3\"}}, \"plan_006_qwen3_8b_rsft_test\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T15:30:36.092Z\", \"updated_at\": \"2026-05-17T15:31:34.671Z\", \"hypothesis\": \"Generate 8B RSFT test set predictions for CodaLab submission. 8B RSFT dev rel_f1=0.5606, expect similar performance on test.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b/checkpoint-3393 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred/test.json\", \"data_count\": 1000, \"model_name\": \"Qwen3-8B-RSFT-checkpoint-3393\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_8b/checkpoint-3393\", \"eval_data\": \"docred-test\"}}, \"lead2_ckpt20_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T12:31:32.202Z\", \"updated_at\": \"2026-05-17T15:27:15.598Z\", \"hypothesis\": \"Evaluate GRPO checkpoint-20 from RSFT base (lead2_rsft_grpo_ced_r2) on DocRED dev. If RSFT→GRPO preserves/improves rel_f1 over RSFT baseline (0.4601), it validates the RSFT→GRPO training pipeline as viable.\", \"parent\": \"lead2_rsft_grpo_ced_r2\", \"spec\": {\"server\": \"rtx5090-4x\", \"gpu\": 1, \"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_from_rsft_lead2_r2/checkpoint-20 --base_model /root/autodl-tmp/merged_sft_rsft_ced_s43 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_outputs/lead2_ckpt20_eval\", \"model_name\": \"Qwen3-4B (SFT+RSFT_CED_s43 merged + GRPO ckpt-20)\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_from_rsft_lead2_r2/checkpoint-20\", \"eval_data\": \"docred_dev\", \"pid\": 446829, \"log_path\": \"/root/autodl-tmp/logs/lead2_ckpt20_eval.log\"}, \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4617, \"ign_f1\": 0.4533, \"evi_f1\": 0.8103, \"evi_f1_joint\": 0.3642, \"edcr\": 0.6465, \"precision\": 0.476, \"recall\": 0.4482, \"format_ok\": \"985/985\", \"truncated\": \"187/985\", \"predictions\": 14998}, \"checkpoint_path\": \"/root/autodl-tmp/grpo_from_rsft_lead2_r2/checkpoint-20\", \"log_path\": \"/root/autodl-tmp/logs/lead2_ckpt20_eval.log\", \"completed_at\": \"2026-05-17T15:27:15.598Z\"}, \"plan_006_qwen3_8b_rsft_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T12:00:05.493Z\", \"updated_at\": \"2026-05-17T14:59:23.644Z\", \"hypothesis\": \"Evaluate Qwen3-8B RSFT (CED-scored data, 9041 samples) on DocRED dev. At 8B scale with near-zero evidence tax, CED-RSFT should achieve highest absolute Ign-F1 in the scaling study.\", \"parent\": \"plan_006_qwen3_8b_rsft_train_r2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_qwen3_8b/checkpoint-3393 --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_eval\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 1000, \"eval_data\": \"DocRED dev\", \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_8b/checkpoint-3393\", \"pid\": 442383, \"gpu\": \"cuda:3\"}, \"conclusion\": \"success\", \"metrics\": {\"f1\": 0.5606, \"ign_f1\": 0.5433, \"evi_f1\": 0.8052, \"evi_f1_joint\": 0.4413, \"edcr\": 0.6377, \"precision\": 0.5553, \"recall\": 0.566, \"format_ok\": \"985/985\", \"truncated\": \"267/985\", \"predictions\": 16831}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_8b/checkpoint-3393\", \"log_path\": \"/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_eval.log\", \"completed_at\": \"2026-05-17T14:59:23.644Z\"}, \"plan_006_qwen3_1_7b_rsft_seed43_eval\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T14:26:15.446Z\", \"updated_at\": \"2026-05-17T14:27:40.284Z\", \"hypothesis\": \"Evaluate 1.7B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5219. If seed 43 gives similar result (±1pp, i.e., 0.51-0.53), the 1.7B scaling study datapoint is robust.\", \"parent\": \"plan_006_qwen3_1_7b_rsft_seed43\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b_seed43/checkpoint-1698 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_seed43_eval\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 998, \"model_name\": \"Qwen3-1.7B\", \"seed\": 43, \"checkpoint_source\": \"plan_006_qwen3_1_7b_rsft_seed43\", \"eval_data\": \"docred-dev\", \"pid\": 455632, \"gpu\": \"cuda:2\"}}, \"plan_006_qwen3_1_7b_rsft_seed43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:01:14.254Z\", \"updated_at\": \"2026-05-17T14:25:12.839Z\", \"hypothesis\": \"RSFT with seed 43 on Qwen3-1.7B will produce comparable performance to other seeds, validating seed robustness for the scaling study\", \"parent\": \"plan_006_qwen3_1_7b_rsft_eval_r2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --rsft_data_path /root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_qwen3_1_7b_seed43 --num_epochs 3 --seed 43 --bf16 --wandb_run_name plan_006_qwen3_1_7b_rsft_seed43\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"pid\": 449282, \"data_path\": \"/root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_train.jsonl\", \"data_count\": 9042, \"model_name\": \"Qwen/Qwen3-1.7B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\", \"eval_data\": \"N/A - training experiment (seed variance replication)\", \"log_path\": \"/root/runs/faith-evidence-ie/plan_006_qwen3_1_7b_rsft_seed43.log\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b_seed43\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T14:25:10.190Z\", \"notes\": \"Training completed in 4795.7s (~1h20m). 1698 steps, 3 epochs. Final: train_loss=0.523, mean_token_accuracy=0.879, entropy=0.519. Final checkpoint: checkpoint-1698. Needs eval.\"}, \"plan_006_llama_rsft_seed43\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:07:02.215Z\", \"updated_at\": \"2026-05-17T13:08:13.883Z\", \"hypothesis\": \"Validate LLaMA-8B RSFT robustness across seeds. Seed 42 gave rel_f1=0.5674 (+1.6pp over SFT baseline 0.5514). If seed 43 gives similar result, the cross-architecture RSFT claim is robust against seed variance.\", \"parent\": \"plan_016_llama_rsft_train_r3\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --rsft_data_path /root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl --num_epochs 3 --output_dir /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43 --per_device_batch_size 1 --gradient_accumulation_steps 8 --seed 43 --bf16 --wandb_run_name plan_006_llama_rsft_seed43\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl\", \"data_count\": 8829, \"model_name\": \"Meta-Llama-3.1-8B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43\", \"log_path\": \"/root/runs/faith-evidence-ie/plan_006_llama_rsft_seed43.log\", \"gpu\": \"cuda:0\", \"pid\": 450239, \"submitted_at\": \"2026-05-17T21:07:00Z\", \"backend\": \"tmux\", \"account\": \"root\", \"bf16\": true, \"quantize\": false, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 8, \"effective_batch_size\": 8, \"total_steps\": 3312, \"eval_data\": \"N/A - training experiment\"}}, \"post_hoc_bm25_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:01:00.344Z\", \"updated_at\": \"2026-05-17T13:02:03.821Z\", \"hypothesis\": \"Post-hoc BM25 evidence retrieval on SFT-no-evidence predictions: if retrieving evidence after RE produces comparable joint Evi-F1 and EDCR to jointly trained RSFT, then joint generation is unnecessary. Expect RSFT to have better evidence quality (lower EDCR) due to training-time evidence grounding.\", \"parent\": \"plan_014_sft_no_evidence\", \"spec\": {\"command\": \"python -m freige.eval.post_hoc_retrieval --predictions_dir /root/autodl-tmp/eval_results/reeval_sft_baseline_d076 --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/post_hoc_bm25\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"BM25 retrieval on SFT-no-evidence predictions\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/eval_results/post_hoc_bm25/\", \"log_path\": \"/root/autodl-tmp/eval_results/post_hoc_bm25/\", \"checkpoint_source\": \"reeval_sft_baseline_d076\", \"eval_data\": \"docred_dev\"}, \"conclusion\": \"success\", \"metrics\": {\"bm25_entity_k2_rel_f1\": 0.4876, \"bm25_entity_k2_evi_f1_joint\": 0.3473, \"bm25_entity_k2_edcr\": 0.7664, \"bm25_entity_k3_evi_f1_joint\": 0.2989, \"bm25_entity_k3_edcr\": 0.8256, \"bm25_oracle_k_evi_f1_joint\": 0.3834, \"bm25_oracle_k_edcr\": 0.7334, \"rsft_ced_s43_rel_f1\": 0.4601, \"rsft_ced_s43_evi_f1_joint\": 0.3605, \"rsft_ced_s43_edcr\": 0.6542, \"sft_joint_rel_f1\": 0.4049, \"sft_joint_evi_f1_joint\": 0.3147, \"sft_joint_edcr\": 0.6982, \"verdict\": \"RSFT joint generation beats BM25 post-hoc on evi_f1_joint (-1.3pp) and EDCR (-11.2pp). Even oracle-k post-hoc has 7.9pp worse EDCR than RSFT.\"}, \"completed_at\": \"2026-05-17T13:02:03.821Z\"}, \"lead1_ced_evidence_filter\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:54:50.206Z\", \"updated_at\": \"2026-05-17T12:57:03.964Z\", \"spec\": {\"command\": \"python -m eval.ced_evidence_filter --predictions_path /root/autodl-tmp/eval_results/rsft_s43_dev_eval_preds/predictions.json --tau_values 0.3 0.5 0.7 --output_dir /root/autodl-tmp/lead1_ced_filter_results\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"441954\", \"log_path\": \"/root/autodl-tmp/lead1_ced_filter_results/summary.json\", \"submitted_at\": \"2026-05-17T11:54:49.626Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"rsft_s43_dev_eval_preds\", \"checkpoint_path\": \"/root/autodl-tmp/lead1_ced_filter_results/\", \"model_name\": \"NLI-filter-on-rsft_s43\", \"data_path\": \"/root/autodl-tmp/eval_results/rsft_s43_dev_eval_preds/predictions.json\", \"data_count\": 14976, \"seed\": 42, \"wall_clock_seconds\": 3664.6, \"gpu_hours\": 1.02}, \"conclusion\": \"negative\", \"hypothesis\": \"Post-hoc CED-based evidence filtering on RSFT predictions: removing low-NLI-score evidence sentences at inference time should improve Evi-F1 and EDCR by eliminating distractor citations, without affecting rel_f1.\", \"completed_at\": \"2026-05-17T12:55:54.239Z\", \"metrics\": {\"baseline_f1\": 0.4601, \"baseline_ign_f1\": 0.4512, \"baseline_evi_f1\": 0.8063, \"baseline_edcr\": 0.6542, \"tau_0.3_evi_f1\": 0.7301, \"tau_0.3_edcr\": 0.5797, \"tau_0.5_evi_f1\": 0.7297, \"tau_0.5_edcr\": 0.5784, \"tau_0.7_evi_f1\": 0.7287, \"tau_0.7_edcr\": 0.5776, \"evidence_kept_pct_tau_0.5\": 61.9, \"verdict\": \"CED filter removes ~38% evidence but drops Evi-F1 by 7.7pp and EDCR by 7.6pp\"}}, \"plan_006_qwen3_8b_rsft_train_r2\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:35:51.553Z\", \"updated_at\": \"2026-05-17T12:11:23.281Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/freige && python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --rsft_data_path /root/autodl-tmp/rsft_scored_qwen3_8b/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_qwen3_8b --num_epochs 3 --bf16 --per_device_batch_size 1 --gradient_accumulation_steps 8 --resume_from_checkpoint /root/autodl-tmp/rsft_output_qwen3_8b/checkpoint-750\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"431780\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_8b_rsft_train_r2.log\", \"submitted_at\": \"2026-05-17T08:38:54.918Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/rsft_scored_qwen3_8b/rsft_train.jsonl\", \"data_count\": 9041, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_8b_bf16\"}, \"hypothesis\": \"RSFT with CED-scored data (9041 samples) on Qwen3-8B, resume from checkpoint-750 after disk-full crash. At 8B scale, CED-filtered RSFT should achieve highest absolute performance in scaling study.\", \"parent\": \"plan_006_qwen3_8b_rsft_train\", \"metrics\": {\"train_loss\": 0.3008, \"mean_token_accuracy\": 0.9172, \"epochs\": 3, \"runtime_seconds\": 8983}, \"reproduce\": {\"finished_at\": \"2026-05-17T12:11:22.362Z\"}}, \"plan_006_llama_rsft_r3_eval\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:35:48.098Z\", \"updated_at\": \"2026-05-17T12:11:20.322Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/freige && python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_r3/checkpoint-3312 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_r3_eval\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"432665\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_llama_rsft_r3_eval.log\", \"submitted_at\": \"2026-05-17T08:40:35.462Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"LLaMA-3.1-8B-Instruct + SFT + RSFT-r3\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_llama_3_1_8b_r3/checkpoint-3312\", \"eval_data\": \"docred_dev\"}, \"hypothesis\": \"Evaluate LLaMA-3.1-8B RSFT r3 (checkpoint-3312, final) on DocRED dev. Cross-architecture validation: if CED-RSFT works on both Qwen and LLaMA, the method is architecture-agnostic.\", \"metrics\": {\"ign_f1\": 0.5563, \"f1\": 0.5674, \"evi_f1\": 0.8255, \"edcr\": 0.5856, \"evi_f1_joint\": 0.4571, \"format_compliance_rate\": 0.997, \"field_compliance_rate\": 0.807, \"n_truncated\": 187, \"inference_time_seconds\": 8650}, \"reproduce\": {\"finished_at\": \"2026-05-17T12:11:19.290Z\"}}, \"plan_006_qwen3_1_7b_rsft_eval_r2\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:35:45.455Z\", \"updated_at\": \"2026-05-17T12:11:17.083Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/freige && python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b/checkpoint-1698 --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_eval_r2\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"431380\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_rsft_eval_r2.log\", \"submitted_at\": \"2026-05-17T08:38:48.805Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen/Qwen3-1.7B + SFT + RSFT\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b/checkpoint-1698\", \"eval_data\": \"docred_dev\"}, \"hypothesis\": \"Evaluate 1.7B RSFT model (checkpoint-1698) on DocRED dev. Retry after disk-full crash. Validates CED-filtered RSFT at smallest model scale in scaling study.\", \"parent\": \"plan_006_qwen3_1_7b_rsft_train\", \"metrics\": {\"ign_f1\": 0.505, \"f1\": 0.5219, \"evi_f1\": 0.8309, \"edcr\": 0.6297, \"evi_f1_joint\": 0.4223, \"format_compliance_rate\": 0.999, \"field_compliance_rate\": 0.732, \"n_truncated\": 258, \"inference_time_seconds\": 9464}, \"reproduce\": {\"finished_at\": \"2026-05-17T12:11:16.096Z\"}}, \"rsft_s43_dev_eval_preds\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:35:42.135Z\", \"updated_at\": \"2026-05-17T12:11:13.906Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/freige && python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/rsft_s43_dev_eval_preds\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"431303\", \"log_path\": \"~/runs/faith-evidence-ie/rsft_s43_dev_eval_preds.log\", \"submitted_at\": \"2026-05-17T08:38:45.685Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT-s43(CED)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\", \"eval_data\": \"docred_dev\"}, \"hypothesis\": \"Eval RSFT-s43 (CED-scored) on DocRED dev with predictions saved. Prerequisite for Lead 1 CED evidence filtering: per-sentence NLI scoring requires full prediction outputs.\", \"metrics\": {\"ign_f1\": 0.4512, \"f1\": 0.4601, \"evi_f1\": 0.8063, \"edcr\": 0.6542, \"evi_f1_joint\": 0.3605, \"format_compliance_rate\": 1, \"field_compliance_rate\": 0.809, \"n_truncated\": 184, \"inference_time_seconds\": 10982}, \"reproduce\": {\"finished_at\": \"2026-05-17T12:11:12.913Z\"}}, \"plan_006_qwen3_8b_rsft_train\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T05:57:56.689Z\", \"updated_at\": \"2026-05-17T08:25:26.201Z\", \"spec\": {\"command\": \"python -m freige.training.rsft_trainer --base_model Qwen3-8B --sft_adapter sft_output_qwen3_8b_bf16 --rsft_data_path rsft_scored_qwen3_8b/rsft_train.jsonl --num_epochs 3 --bf16 --gradient_checkpointing --per_device_batch_size 1 --gradient_accumulation_steps 8\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 418278, \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_8b_rsft_train.log\", \"submitted_at\": \"2026-05-17T05:57:56.172Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/rsft_scored_qwen3_8b/rsft_train.jsonl\", \"data_count\": 9041, \"model_name\": \"Qwen/Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_8b_bf16\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_8b/checkpoint-1000\", \"failure_reason\": \"Disk full - RuntimeError unexpected pos at step 1000/3393\", \"wall_clock_seconds\": 8850.0, \"gpu_hours\": 2.46}, \"hypothesis\": \"RSFT with CED-scored data (9041 samples) on Qwen3-8B will improve rel_f1 over SFT baseline. At 8B scale with near-zero evidence tax, CED-filtered RSFT should achieve the highest absolute performance in the model scaling study.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T08:25:26.201Z\"}, \"plan_006_qwen3_1_7b_rsft_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:12:11.998Z\", \"updated_at\": \"2026-05-17T08:25:24.429Z\", \"hypothesis\": \"Evaluate 1.7B RSFT model on DocRED dev to measure rel_f1 improvement over SFT baseline. Validates that CED-filtered RSFT generalizes to smallest model scale (1.7B) in the scaling study.\", \"parent\": \"plan_006_qwen3_1_7b_rsft_train\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_eval\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"pid\": 420013, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen/Qwen3-1.7B + SFT + RSFT\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b\", \"eval_data\": \"docred_dev\", \"checkpoint_path\": \"N/A (eval)\", \"log_path\": \"N/A\", \"failure_reason\": \"Disk full - EXIT_CODE=124 at 74% progress\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T08:25:24.429Z\"}, \"rsft_s44_dev_eval_preds\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T05:02:50.832Z\", \"updated_at\": \"2026-05-17T08:25:22.846Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/rsft_s44_dev_with_preds\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"pid\": 414832, \"log_path\": \"~/runs/faith-evidence-ie/rsft_s44_dev_eval_preds.log\", \"submitted_at\": \"2026-05-17T05:02:50.357Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT-s44\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_s44/checkpoint-510\", \"eval_data\": \"docred_dev\", \"checkpoint_path\": \"N/A (eval)\", \"failure_reason\": \"Disk full - EXIT_CODE=124 timeout at 97% progress\", \"wall_clock_seconds\": 12152.5, \"gpu_hours\": 3.38}, \"hypothesis\": \"Re-run RSFT s44 dev eval with predictions saved, as prerequisite for CED evidence filtering experiment (线索1: inference-time distractor citation removal). Predictions needed for per-sentence NLI scoring.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T08:25:22.846Z\"}, \"lead2_rsft_grpo_ced_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:23:56.474Z\", \"updated_at\": \"2026-05-17T08:25:20.510Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --model_name merged_sft_rsft_ced_s43 --data_dir /root/autodl-tmp/data/docred --stage 3 --max_steps 50 --lr 1e-6 --G 8 --kl 0.01 --bf16 --ced=1.0 --f1=0.0 --format=0.5 --save_steps 10\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"pid\": 421806, \"log_path\": \"~/runs/faith-evidence-ie/lead2_rsft_grpo_ced_r2.log\", \"submitted_at\": \"2026-05-17T06:24:47.600Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-4B (merged SFT+RSFT-s43)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/merged_sft_rsft_ced_s43\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_from_rsft_lead2/checkpoint-30\", \"failure_reason\": \"No space left on device at step 30/50 during checkpoint save\", \"wall_clock_seconds\": 7232.9, \"gpu_hours\": 2.01}, \"hypothesis\": \"RSFT→bf16 GRPO two-stage (retry with --data_dir fix): starting from merged RSFT-s43 checkpoint (rel_f1=0.46), short-range GRPO (50 steps, lr=1e-6) with CED-only reward should improve evidence quality (EDCR) while preserving rel_f1.\", \"parent\": \"lead2_rsft_grpo_ced\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T08:25:20.510Z\"}, \"plan_016_llama_rsft_train_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T03:26:03.945Z\", \"updated_at\": \"2026-05-17T06:26:30.916Z\", \"hypothesis\": \"bf16 full-precision training with gradient checkpointing and batch_size=1 will fit within single RTX 5090 32GB VRAM while maintaining training quality comparable to QLoRA, resolving the OOM issues seen in r1/r2 attempts\", \"parent\": \"plan_016_llama_rsft_train_r2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --rsft_data_path /root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl --num_epochs 3 --output_dir /root/autodl-tmp/rsft_output_llama_3_1_8b_r3 --per_device_batch_size 1 --gradient_accumulation_steps 8 --seed 42 --bf16 --wandb_run_name plan_016_llama_rsft_train_r3\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"pid\": 409565, \"data_path\": \"/root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl\", \"data_count\": 8829, \"model_name\": \"Meta-Llama-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"sft_output_llama_3_1_8b (SFT LoRA adapter from plan_016 stage 1)\", \"eval_data\": \"N/A - this is a training experiment (retry of r2 with bf16 instead of QLoRA)\", \"mode\": \"bf16 + gradient_checkpointing\", \"effective_batch_size\": 8, \"total_steps\": 3312, \"log_path\": \"/root/runs/faith-evidence-ie/plan_016_llama_rsft_train_r3.log\", \"bf16\": true, \"gradient_checkpointing\": true, \"quantize\": false, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_llama_3_1_8b_r3\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T06:26:29.275Z\", \"metrics\": {\"train_loss\": 0.3724, \"mean_token_accuracy\": 0.929, \"total_steps\": 3312, \"epochs\": 3, \"runtime_seconds\": 10231}}, \"plan006_1_7b_rsft_eval\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:10:39.978Z\", \"updated_at\": \"2026-05-17T06:10:39.978Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python3 -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_qwen3_1_7b --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_eval\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"420013\", \"log_path\": \"~/runs/faith-evidence-ie/plan006_1_7b_rsft_eval.log\", \"submitted_at\": \"2026-05-17T06:10:39.457Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"lead2_rsft_grpo_ced\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T05:57:53.951Z\", \"updated_at\": \"2026-05-17T06:06:36.130Z\", \"spec\": {\"command\": \"merge_sft_rsft.py then grpo_trainer --model_name merged_sft_rsft_ced_s43 --stage 3 --max_steps 50 --lr 1e-6 --G 8 --kl 0.01 --bf16 --ced=1.0 --f1=0.0 --format=0.5 --save_steps 10\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"pid\": 418198, \"log_path\": \"~/runs/faith-evidence-ie/lead2_rsft_grpo_ced.log\", \"submitted_at\": \"2026-05-17T05:57:53.332Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-4B (merged SFT+RSFT-s43)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/merged_sft_rsft_ced_s43\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"docred_processor.py:129 load_dataset('thunlp/docred') failed - server offline\", \"wall_clock_seconds\": 522.8, \"gpu_hours\": 0.15}, \"hypothesis\": \"RSFT→bf16 GRPO two-stage: starting from RSFT best checkpoint (s43, rel_f1=0.46), short-range GRPO (50 steps, lr=1e-6) with CED-only reward should further improve evidence quality (EDCR) while preserving rel_f1, because RSFT provides stable base preventing catastrophic forgetting seen in SFT→GRPO.\", \"parent\": \"mvp2_rsft_train_r1_s43\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T06:06:36.130Z\"}, \"plan_006_qwen3_8b_ced_scoring\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T03:27:03.641Z\", \"updated_at\": \"2026-05-17T06:00:52.969Z\", \"hypothesis\": \"CED scoring on Qwen3-8B RSFT candidates (24216 gens from 3027 docs) will produce high-quality filtered training data. At 8B scale with near-zero evidence tax, CED-filtered RSFT should yield further gains over an already strong SFT baseline.\", \"parent\": \"plan_006_qwen3_8b_rsft_candidates_r2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b --output_path /root/autodl-tmp/rsft_scored_qwen3_8b --nli_model_path /root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7 --nli_device cuda:0 --scoring_mode ced --tau 0.5 --selection_strategy top_k --top_k 3\", \"server\": \"rtx5090-4x\", \"gpu_ids\": [\"cuda:3\"], \"data_path\": \"/root/autodl-tmp/freige/outputs/rsft_candidates_8b\", \"data_count\": 24216, \"model_name\": \"cross-encoder/nli-deberta-v3-base\", \"seed\": 42, \"checkpoint_source\": \"rsft_candidates_8b (Qwen3-8B generations)\", \"eval_data\": \"24216 candidates from 3027 docs\", \"pid\": 411027, \"checkpoint_path\": \"/root/autodl-tmp/rsft_scored_qwen3_8b\", \"log_path\": \"N/A\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T05:59:49.723Z\", \"metrics\": {\"output_samples\": 9041, \"input_candidates\": 24216, \"scoring_mode\": \"ced\", \"tau\": 0.5, \"top_k\": 3}}, \"plan_006_qwen3_1_7b_rsft_train\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T03:03:05.036Z\", \"updated_at\": \"2026-05-17T06:00:51.477Z\", \"hypothesis\": \"RSFT with CED-scored data on Qwen3-1.7B will improve relation extraction F1 over SFT baseline by selectively reinforcing high-quality extraction patterns, similar to gains seen on 4B model\", \"parent\": \"plan_006_qwen3_1_7b_ced_scoring\", \"spec\": {\"command\": \"python -m freige.training.rsft_trainer --base_model Qwen3-1.7B --sft_adapter sft_output_qwen3_1_7b_bf16 --rsft_data_path rsft_scored_1_7b/rsft_train.jsonl --output_dir rsft_output_qwen3_1_7b --num_epochs 3 --seed 42 --bf16\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"pid\": 406515, \"data_path\": \"/root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_train.jsonl\", \"data_count\": 9042, \"model_name\": \"Qwen/Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_qwen3_1_7b\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_rsft_train.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T05:59:47.994Z\", \"metrics\": {\"train_loss\": 0.5234, \"eval_loss\": 0.8725, \"eval_mean_token_accuracy\": 0.8185, \"total_steps\": 1698, \"epochs\": 3, \"runtime_hours\": 2.25}}, \"plan_002_test_rsft_s44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T01:05:59.263Z\", \"updated_at\": \"2026-05-17T04:57:25.850Z\", \"hypothesis\": \"RSFT-CED s44 (best dev config, rel_f1=0.4655) maintains improvement over SFT on held-out test set, confirming CED-filtered rejection sampling gains are not dev-set overfitting. Test Ign-F1 should exceed SFT test baseline.\", \"parent\": \"mvp2_rsft_train_r1_s44\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_002_test_rsft_s44\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"396333\", \"log_path\": \"~/runs/faith-evidence-ie/plan_002_test_rsft_s44.log\", \"submitted_at\": \"2026-05-17T01:06:16.686Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 0, \"model_name\": \"Qwen3-4B + SFT + RSFT-s44\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_s44/checkpoint-510\", \"eval_data\": \"docred_test\", \"loading_mode\": \"3-param (base→SFT→RSFT)\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/plan_002_test_rsft_s44\", \"metrics_note\": \"Test set - no local gold labels. 1000 docs, 26925 predictions, 626 truncated, format_ok=99.6%. Needs CodaLab submission for official scores.\", \"inference_time_s\": 12494, \"wall_clock_seconds\": 13869.2, \"gpu_hours\": 3.85}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T04:57:25.850Z\"}, \"plan_006_qwen3_8b_rsft_candidates_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T01:54:26.118Z\", \"updated_at\": \"2026-05-17T04:08:25.446Z\", \"hypothesis\": \"Resuming 8B candidate generation from idx 2701 will complete the full RSFT candidate set needed for reward-based filtering and RSFT training\", \"parent\": \"plan_006_qwen3_8b_rsft_candidates\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --num_generations 8 --temperature 0.7 --batch_size 1 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b --start_idx 2701\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": 400132, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 326, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/freige/outputs/rsft_candidates_8b\", \"log_path\": \"/root/runs/faith-evidence-ie/plan_006_qwen3_8b_rsft_candidates_r2.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T04:08:25.446Z\"}, \"plan_016_llama_rsft_train_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T03:10:57.585Z\", \"updated_at\": \"2026-05-17T03:26:02.383Z\", \"hypothesis\": \"LLaMA-3.1-8B RSFT training retry with OOM fix: --no-quantize (bf16) + gradient_checkpointing. R1 OOM due to missing bf16 flag causing fp32 loading on 32GB card. 8829 CED-filtered samples, 3 epochs.\", \"parent\": \"plan_016_llama_rsft_train\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --rsft_data_path /root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl --num_epochs 3 --output_dir /root/autodl-tmp/rsft_output_llama_3_1_8b --seed 42 --quantize --bf16 --per_device_batch_size 2 --gradient_accumulation_steps 8 --wandb_project faith-evidence-ie --wandb_run_name plan_016_llama_rsft_train_r2\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": 405397, \"log_path\": \"/root/runs/faith-evidence-ie/plan_016_llama_rsft_train_r2.log\", \"data_path\": \"/root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl\", \"data_count\": 8829, \"model_name\": \"Meta-Llama-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"eval_data\": \"rsft_scored_llama_3_1_8b\", \"fix\": \"added --quantize --bf16 --per_device_batch_size 2 --gradient_accumulation_steps 8 (R1 OOM due to fp32 loading without quantize flag)\", \"total_steps\": 1656, \"estimated_hours\": 4.4}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T03:26:02.383Z\"}, \"plan_016_llama_rsft_train\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T03:03:03.349Z\", \"updated_at\": \"2026-05-17T03:10:51.973Z\", \"hypothesis\": \"LLaMA-3.1-8B RSFT training on CED-filtered candidates (8829 samples, top_k=1) should improve rel_f1 over SFT baseline (0.5514), validating that the CED-RSFT pipeline generalizes across model families (Qwen→LLaMA).\", \"parent\": \"plan_016_llama_ced_scoring\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --rsft_data_path /root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl --num_epochs 3 --output_dir /root/autodl-tmp/rsft_output_llama_3_1_8b --seed 42 --wandb_run_name plan_016_llama_rsft_train\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": 404050, \"data_path\": \"/root/autodl-tmp/rsft_scored_llama_3_1_8b\", \"data_count\": 8829, \"model_name\": \"Meta-Llama-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"eval_data\": \"rsft_scored_llama_3_1_8b\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T03:10:51.973Z\"}, \"plan_016_llama_ced_scoring\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T01:38:57.773Z\", \"updated_at\": \"2026-05-17T03:05:35.479Z\", \"hypothesis\": \"CED scoring (NLI-based contrastive discrimination) on LLaMA-3.1-8B RSFT candidates will produce filtered training data that improves RSFT quality, consistent with Qwen3-4B CED results.\", \"parent\": \"plan_016_llama_rsft_candidates_r3\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_candidates_llama_3_1_8b --output_path /root/autodl-tmp/rsft_scored_llama_3_1_8b --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --scoring_mode ced --tau 0.5 --selection_strategy top_k --top_k 3\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"398949\", \"data_path\": \"/root/autodl-tmp/rsft_candidates_llama_3_1_8b\", \"data_count\": 23704, \"model_name\": \"cross-encoder/nli-deberta-v3-base\", \"seed\": 42, \"log_path\": \"/root/autodl-tmp/plan_016_llama_ced_scoring.log\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_scored_llama_3_1_8b\", \"checkpoint_source\": \"/root/autodl-tmp/rsft_candidates_llama_3_1_8b\", \"eval_data\": \"docred_train_candidates_llama_8b\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T03:05:35.479Z\"}, \"plan_006_qwen3_1_7b_ced_scoring\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T00:59:40.455Z\", \"updated_at\": \"2026-05-17T02:59:29.871Z\", \"hypothesis\": \"CED scoring (NLI contrastive discrimination) can effectively filter 1.7B model candidates despite lower generation quality: NLI-based selection should identify high-quality evidence samples even from a capacity-limited generator.\", \"parent\": \"plan_006_qwen3_1_7b_rsft_candidates\", \"spec\": {\"command\": \"python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_1_7b --output_path /root/autodl-tmp/freige/outputs/rsft_scored_1_7b --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --scoring_mode ced --tau 0.5 --selection_strategy top_k --top_k 3\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"pid\": 395619, \"data_path\": \"/root/autodl-tmp/freige/outputs/rsft_candidates_1_7b\", \"data_count\": 24216, \"model_name\": \"cross-encoder/nli-deberta-v3-base\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/freige/outputs/rsft_candidates_1_7b\", \"eval_data\": \"docred train candidates\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_ced_scoring.log\", \"checkpoint_path\": \"/root/autodl-tmp/freige/outputs/rsft_scored_1_7b\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T02:59:28.237Z\", \"metrics\": {\"total_records\": 24216, \"selected\": 9042, \"unique_docs\": 3021, \"selection_rate\": 0.373, \"mean_f1_reward\": 0.592, \"mean_ced_reward\": 0.559, \"mean_combined_score\": 0.66, \"truncated_count\": 2920, \"truncated_mean_f1\": 0.439, \"non_truncated_mean_f1\": 0.613}}, \"plan_007_redocred_rsft_eval_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T16:25:37.094Z\", \"updated_at\": \"2026-05-17T02:56:32.555Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r2\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"pid\": 363317, \"data_path\": \"/root/autodl-tmp/data/re-docred\", \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\", \"eval_data\": \"re-docred/dev\", \"hypothesis\": \"Re-DocRED RSFT eval r2: verify CED-RSFT improvement transfers cross-dataset. Compare vs SFT baseline Ign-F1=0.3659 (D080).\", \"plan_id\": \"plan_007\", \"parent\": \"plan_007_redocred_4b_sft_eval_r2\", \"log_path\": \"/tmp/plan_007_redocred_rsft_eval_r2.log\"}, \"pid\": 363317, \"metrics\": {\"F1\": 0.0025, \"Ign-F1\": 0.0026, \"Evi-F1\": 0.8837, \"EDCR\": 0.9978, \"format_ok\": \"489/493\", \"truncated\": \"117/493\", \"predictions\": 8461}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r2\", \"completed_at\": \"2026-05-16T17:33:20.838Z\", \"notes\": \"⚠️ NEGATIVE: F1=0.0025 (catastrophic), Evi-F1=0.8837, EDCR=0.9978. SFT baseline on same data = 0.3659 (normal). Framing 调整提案已提交 Director (2026-05-16). 大概率 pipeline bug (adapter loading / prompt format / relation label mapping). Diagnostic Worker dispatched. 等 Director 选 A/B/C narrative 再决定下一步。\", \"hypothesis\": \"CED-RSFT improvements on DocRED should transfer to Re-DocRED: RSFT model should outperform SFT baseline on Re-DocRED Ign-F1, demonstrating cross-dataset generalization of rejection sampling gains.\"}, \"plan_006_qwen3_1_7b_rsft_candidates\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:51:15.410Z\", \"updated_at\": \"2026-05-17T02:56:30.210Z\", \"hypothesis\": \"Qwen3-1.7B RSFT candidate generation (N=8, T=0.7). Scale ablation: smallest model RSFT candidates for CED scoring. plan_006 claim=3.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"spec\": {\"model_name\": \"Qwen3-1.7B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"seed\": 42, \"output_dir\": \"/root/autodl-tmp/freige/outputs/rsft_candidates_1_7b\", \"config\": {\"num_generations\": 8, \"temperature\": 0.7, \"batch_size\": 1, \"split\": \"train\"}, \"command\": \"RSFT candidate generation N=8, T=0.7 for Qwen3-1.7B\", \"server\": \"rtx5090-4x\", \"checkpoint_path\": \"/root/autodl-tmp/freige/outputs/rsft_candidates_1_7b\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_rsft_candidates.log\"}, \"conclusion\": \"success\", \"reproduce\": {\"finished_at\": \"2026-05-17T00:59:21.916Z\"}, \"metrics\": {\"docs_completed\": 3027, \"total_generations\": 24216, \"lines\": 24216, \"runtime_h\": 11, \"truncation_rate\": 0.104, \"mean_diversity\": 7.4}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T00:59:26.947779+00:00\"}]}, \"completed_at\": \"2026-05-17T00:59:31.249Z\", \"parent\": \"plan_006_qwen3_1_7b_sft_bf16\"}, \"plan_002_test_eval_s44_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:14:36.494Z\", \"updated_at\": \"2026-05-17T02:56:29.283Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/test_rsft_ced_s44 --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu_id\": 1, \"pid\": 319632, \"data_path\": \"/root/autodl-tmp/data/docred/test.json\", \"data_count\": 1000, \"model_name\": \"Qwen3-4B + SFT + RSFT-CED-s44-ckpt510\", \"seed\": 42, \"hypothesis\": \"DocRED test set evaluation with RSFT CED s44 (best config). D076 协议. plan_id=plan_002, claim=1.\", \"parent\": \"mvp2_rsft_train_r1_s44\", \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_s44/checkpoint-510\", \"eval_data\": \"/root/autodl-tmp/data/docred/test.json\", \"log_path\": \"/root/autodl-tmp/eval_results/test_rsft_ced_s44/eval.log\", \"metrics\": {\"n_documents\": 1000, \"n_predictions\": 26925, \"n_codalab_entries\": 25553, \"format_ok_rate\": 0.996, \"n_truncated\": 626, \"inference_time_s\": 13850.5}, \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_rsft_ced_s44\", \"notes\": \"Test set eval complete. No local F1 (need CodaLab submission). File: codalab_submission.json (25553 entries).\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T12:06:04.702Z\", \"hypothesis\": \"DocRED test set evaluation for RSFT-CED s44 (best dev config). Final benchmark numbers for paper submission; test set performance confirms dev set gains are not overfitting artifacts.\"}, \"plan_006_qwen3_8b_no_evidence_sft\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:30:57.988Z\", \"updated_at\": \"2026-05-17T02:56:26.471Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --no_evidence --no-quantize --seed 42 --wandb_run_name qwen3_8b_no_evidence_sft\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"plan_id\": \"plan_006\", \"hypothesis\": \"8B no-evidence SFT ablation (bf16 LoRA). 与 plan_006_qwen3_8b_sft_bf16 对比量化 evidence generation cost on 8B model. claim=1.\", \"quantize\": \"none (bf16 LoRA)\", \"lora_rank\": 64, \"lora_alpha\": 128, \"output_dir\": \"/root/autodl-tmp/sft_output_qwen3_8b_no_evidence\", \"log_path\": \"/root/autodl-tmp/logs/plan_006_qwen3_8b_no_evidence_sft.log\", \"pid\": 325491, \"wandb_run_name\": \"qwen3_8b_no_evidence_sft\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_qwen3_8b_no_evidence\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T10:34:35.201Z\", \"metrics\": {\"train_loss\": 0.6509, \"eval_loss\": 0.8153, \"eval_mean_token_accuracy\": 0.8174, \"eval_entropy\": 0.6275, \"train_runtime_sec\": 3656, \"epoch\": 3}, \"hypothesis\": \"Qwen3-8B no-evidence SFT baseline for evidence tax measurement at 8B scale. If 8B no-evi rel_f1 ≈ 8B evidence-SFT rel_f1, confirms that 8B absorbs evidence cost (tax≈0).\"}, \"plan_006_qwen3_1_7b_no_evidence_sft\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T07:32:23.806Z\", \"updated_at\": \"2026-05-17T02:56:15.512Z\", \"spec\": {\"hypothesis\": \"Qwen3-1.7B no-evidence SFT ablation（复现 plan_014），验证 evidence generation 代价在小模型上是否成立。plan_id=plan_006, claim=1。\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --seed 42 --wandb_run_name qwen3_1_7b_no_evidence_sft --no-quantize --no_evidence\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"account\": \"root\", \"model_name\": \"Qwen3-1.7B\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"seed\": 42, \"plan_id\": \"plan_006\", \"lora_rank\": 64, \"lora_alpha\": 128, \"quantize\": \"none (bf16 LoRA)\", \"num_epochs\": 3, \"batch_size\": 1, \"gradient_accumulation_steps\": 16, \"learning_rate\": 0.0002, \"output_dir\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_no_evidence_sft.log\", \"pid\": \"321094\", \"backend\": \"nohup\", \"notes\": \"r1 (PID 317798) 完成 570 steps，最终模型保存于 16:32:46。r2 (PID 321094/321100) 冗余重复，已 kill 释放 cuda:2\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T09:05:18.259Z\", \"hypothesis\": \"Qwen3-1.7B no-evidence SFT baseline for evidence tax measurement at 1.7B scale. Paired with evidence-SFT to quantify whether evidence generation constrains or helps small model RE performance.\"}, \"plan_006_qwen3_1_7b_sft_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T06:36:26.212Z\", \"updated_at\": \"2026-05-17T02:56:13.858Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_1_7b_bf16 --seed 42 --wandb_run_name qwen3_1_7b_sft_bf16 --no-quantize\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"pid\": \"310381\", \"gpu\": [\"cuda:3\"], \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_sft_bf16.log\", \"backend\": \"tmux\", \"account\": \"root\", \"lora_rank\": 64, \"lora_alpha\": 128, \"target_modules\": 7, \"quantize\": \"none (bf16 LoRA)\", \"trainable_params\": \"69.7M / 1.79B (3.89%)\", \"num_epochs\": 3, \"batch_size\": 1, \"gradient_accumulation_steps\": 16, \"learning_rate\": 0.0002, \"output_dir\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16\", \"hypothesis\": \"Model size ablation: Qwen3-1.7B bf16 LoRA SFT（与 4B 训练 regime 一致），验证 evidence tax 在小模型上的表现。plan_id=plan_006, claim=1。\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_bf16/checkpoint-570\"}, \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.6884, \"eval_loss\": 0.8031, \"eval_mean_token_accuracy\": 0.8238, \"eval_entropy\": 0.682, \"train_runtime_sec\": 2473, \"train_samples_per_second\": 3.672, \"epochs\": 3, \"total_steps\": 570}, \"completed_at\": \"2026-05-16T08:33:12.198Z\", \"hypothesis\": \"Qwen3-1.7B bf16 LoRA SFT training for evidence-grounded DocRE. Scale ablation: smallest model expected to show highest evidence tax due to capacity-constrained multi-task optimization.\"}, \"plan_006_qwen3_8b_sft_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T07:50:55.793Z\", \"updated_at\": \"2026-05-17T02:56:12.064Z\", \"spec\": {\"hypothesis\": \"Model size ablation: Qwen3-8B bf16 LoRA SFT（与 4B/1.7B 训练 regime 一致），验证 evidence generation pipeline 在大模型上的表现。plan_id=plan_006, claim=1。\", \"model_name\": \"Qwen3-8B\", \"server\": \"rtx5090-4x\", \"plan_id\": \"plan_006\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_8b_bf16 --no-quantize --seed 42 --wandb_run_name qwen3_8b_sft_bf16\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"seed\": 42, \"pid\": \"317310\", \"gpu\": [\"cuda:3\"], \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_8b_sft_bf16.log\", \"backend\": \"tmux\", \"account\": \"root\", \"lora_rank\": 64, \"lora_alpha\": 128, \"target_modules\": 7, \"quantize\": \"none (bf16 LoRA)\", \"trainable_params\": \"174.6M / 8.37B (2.09%)\", \"num_epochs\": 3, \"batch_size\": 1, \"gradient_accumulation_steps\": 16, \"learning_rate\": 0.0002, \"output_dir\": \"/root/autodl-tmp/sft_output_qwen3_8b_bf16\", \"checkpoint_path\": \"N/A\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T09:09:26.703Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T09:09:27.373Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T09:09:32.119544+00:00\"}]}, \"metrics\": {\"train_loss\": 0.5705, \"eval_loss\": 0.7186, \"eval_mean_token_accuracy\": 0.8377, \"eval_entropy\": 0.5614, \"train_runtime_s\": 3932, \"epoch\": 3}, \"notes\": \"训练正常完成，cron 误判(无W&B/sentinel)。Qwen3-8B bf16 LoRA SFT 3ep, train_loss=0.5705, eval_acc=0.8377。checkpoint: /root/autodl-tmp/sft_output_qwen3_8b_bf16。下一步: RSFT + eval。\", \"hypothesis\": \"Qwen3-8B bf16 LoRA SFT training for evidence-grounded DocRE. Scale ablation: larger model should achieve higher rel_f1 than 4B (0.4057) and 1.7B baselines, with lower evidence tax due to greater capacity.\"}, \"reeval_sft_baseline_d076\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:26:37.542Z\", \"updated_at\": \"2026-05-17T02:56:09.813Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_baseline_d076_reeval --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"303065\", \"log_path\": \"~/runs/faith-evidence-ie/reeval_sft_baseline_d076.log\", \"submitted_at\": \"2026-05-16T05:26:46.170Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT baseline (no RSFT)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"docred dev (985 docs)\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output\", \"output_dir\": \"/root/autodl-tmp/eval_results/sft_baseline_d076_reeval\", \"wall_clock_seconds\": 11187.5, \"gpu_hours\": 3.11}, \"reproduce\": {\"finished_at\": \"2026-05-16T07:25:48.637Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T07:25:54.520626+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4049, \"ign_f1\": 0.3974, \"evi_f1\": 0.7986, \"edcr\": 0.6982, \"evi_f1_joint\": 0.3147, \"format_compliance_rate\": 0.998, \"n_truncated\": 288, \"n_documents\": 985, \"n_predictions\": 16880, \"inference_time_sec\": 7056.5}, \"completed_at\": \"2026-05-16T08:33:13.622Z\", \"hypothesis\": \"Re-eval Qwen3-4B SFT baseline under D076 unified protocol (batch_size=4, no-quantize, max_new_tokens=1024, seed=42). Required as canonical comparison point for all RSFT/GRPO experiments and evidence tax computation.\"}, \"plan_006_qwen3_1_7b_sft_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:14:26.923Z\", \"updated_at\": \"2026-05-17T02:56:02.886Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/eval_results/qwen3_1_7b_sft_eval\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_sft_eval.log\"}, \"conclusion\": \"success\", \"metrics\": {\"f1\": 0.4945, \"ign_f1\": 0.4786, \"evi_f1\": 0.8316, \"edcr\": 0.6704, \"precision\": 0.5085, \"recall\": 0.4813, \"ign_precision\": 0.483, \"ign_recall\": 0.4743, \"evi_precision\": 0.8203, \"evi_recall\": 0.8432, \"evi_f1_joint\": 0.3958, \"format_compliance_rate\": 1, \"n_predictions\": 17184, \"n_truncated\": 314, \"inference_time_seconds\": 6848.7}, \"completed_at\": \"2026-05-16T10:08:26.496Z\", \"hypothesis\": \"Qwen3-1.7B evidence-SFT eval under D076 protocol. Establishes smallest-scale SFT baseline; evidence tax at 1.7B predicted negative (evidence helps small models by constraining over-prediction).\", \"parent\": \"plan_006_qwen3_1_7b_sft_bf16\"}, \"plan_006_qwen3_8b_sft_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:03:35.743Z\", \"updated_at\": \"2026-05-17T02:56:01.221Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_8b_sft_eval --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 12275, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_8b_bf16\", \"eval_data\": \"docred-dev\", \"hypothesis\": \"Model size ablation: Qwen3-8B SFT eval on dev set. plan_006 claim=1.\", \"plan_id\": \"plan_006\", \"parent\": \"plan_006_qwen3_8b_sft_bf16\", \"pid\": 322966, \"log_path\": \"/root/autodl-tmp/eval_results/qwen3_8b_sft_eval.log\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_qwen3_8b_bf16\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T11:05:48.273Z\", \"metrics\": {\"ign_f1\": 0.5051, \"f1\": 0.5262, \"evi_f1\": 0.8188, \"edcr\": 0.651, \"format_ok_rate\": 0.999, \"n_truncated\": 313, \"n_predictions\": 17401, \"inference_time_s\": 7206}, \"hypothesis\": \"Qwen3-8B evidence-SFT eval under D076 unified protocol. Establishes 8B-scale SFT baseline for evidence tax measurement (paired with no-evidence eval) and RSFT improvement quantification.\", \"parent\": \"plan_006_qwen3_8b_sft_bf16\"}, \"plan_016_llama_3_1_8b_no_evidence_sft\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T11:06:47.006Z\", \"updated_at\": \"2026-05-17T02:55:47.936Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence --no-quantize --no_evidence --seed 42 --wandb_run_name llama_3_1_8b_no_evidence_sft\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Meta-Llama-3.1-8B\", \"seed\": 42, \"plan_id\": \"plan_016\", \"hypothesis\": \"Cross-family no-evidence SFT: LLaMA-3.1-8B bf16 LoRA. Evidence tax cross-family validation. claim=1.\", \"quantize\": \"none (bf16 LoRA)\", \"lora_rank\": 64, \"lora_alpha\": 128, \"output_dir\": \"/root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence\", \"log_path\": \"/root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence/checkpoint-570/trainer_state.json\", \"pid\": 333911, \"checkpoint_path\": \"/root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence\", \"metrics\": {\"train_loss\": 0.456, \"train_token_accuracy\": 0.8816, \"eval_loss\": 0.8412, \"eval_token_accuracy\": 0.815, \"epochs\": 3, \"total_steps\": 570, \"final_lr\": 3.697e-07}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T12:05:08.263Z\", \"hypothesis\": \"LLaMA-3.1-8B no-evidence SFT baseline for cross-family evidence tax measurement. Paired with evidence-SFT to quantify evidence generation cost on a non-Qwen architecture at 8B scale.\"}, \"plan_016_llama_3_1_8b_sft\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T10:35:41.618Z\", \"updated_at\": \"2026-05-17T02:55:46.226Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_llama_3_1_8b --no-quantize --seed 42 --wandb_run_name llama_3_1_8b_sft\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Meta-Llama-3.1-8B\", \"seed\": 42, \"plan_id\": \"plan_016\", \"hypothesis\": \"Cross-family SFT: LLaMA-3.1-8B bf16 LoRA with-evidence SFT. 验证 evidence pipeline 跨模型家族泛化性. claim=1/2.\", \"quantize\": \"none (bf16 LoRA)\", \"lora_rank\": 64, \"lora_alpha\": 128, \"output_dir\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"log_path\": \"/root/autodl-tmp/logs/plan_016_llama_3_1_8b_sft.log\", \"pid\": 331871, \"wandb_run_name\": \"llama_3_1_8b_sft\", \"metrics\": {\"train_loss\": 0.5246, \"eval_loss\": 0.7363, \"token_acc\": 0.8361}, \"checkpoint_path\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T11:40:36.505Z\", \"hypothesis\": \"LLaMA-3.1-8B can be SFT-trained for evidence-grounded DocRE with the same pipeline as Qwen3 family, enabling cross-family generalization claims for the FREIGE framework.\"}, \"plan_007_redocred_4b_sft_eval_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:36:01.717Z\", \"updated_at\": \"2026-05-17T02:55:43.842Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_4b_sft_eval\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"342711\", \"log_path\": \"~/runs/faith-evidence-ie/plan_007_redocred_4b_sft_eval_r2.log\", \"submitted_at\": \"2026-05-16T12:36:27.149Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 3698.9, \"gpu_hours\": 1.03}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"pid\": \"342711\", \"log_path\": \"~/runs/faith-evidence-ie/plan_007_redocred_4b_sft_eval_r2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_4b_sft_eval\\\"\", \"finished_at\": \"2026-05-16T13:31:53.985Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T13:31:58.248381+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.3659, \"f1\": 0.3706, \"evi_f1\": 0.817, \"edcr\": 0.6674, \"format_compliance_rate\": 0.996, \"n_truncated\": 139, \"n_total\": 493, \"inference_time_seconds\": 3281.7, \"precision\": 0.4316, \"recall\": 0.3247, \"ign_precision\": 0.4134, \"ign_recall\": 0.3282, \"evi_precision\": 0.8208, \"evi_recall\": 0.8131, \"n_predictions\": 8191}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/plan_007_redocred_4b_sft_eval\", \"completed_at\": \"2026-05-16T13:38:06.043Z\", \"hypothesis\": \"FREIGE SFT model trained on DocRED transfers to Re-DocRED without re-training: if Ign-F1 drop <5pp and Evi-F1 maintains, the learned evidence grounding generalizes across annotation schemes.\", \"parent\": \"reeval_sft_baseline_d076\"}, \"plan_006_qwen3_8b_no_evidence_eval_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T11:17:39.361Z\", \"updated_at\": \"2026-05-17T02:55:34.661Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": 335357, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 12275, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_8b_no_evidence\", \"eval_data\": \"docred-dev\", \"log_path\": \"/root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval_v2.log\", \"hypothesis\": \"8B no-evidence SFT eval v2 (with --no_evidence flag). Fix v1 prompt mismatch bug. plan_006 claim=1.\", \"plan_id\": \"plan_006\", \"parent\": \"plan_006_qwen3_8b_no_evidence_sft\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_qwen3_8b_no_evidence\", \"metrics\": {\"ign_f1\": 0.5079, \"rel_f1\": 0.5283, \"evi_f1\": 0, \"edcr\": 0, \"format_compliance_rate\": 0.9949, \"n_total\": 985, \"n_parseable\": 980, \"n_truncated\": 225, \"inference_time_seconds\": 6402.2}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T13:06:41.968Z\", \"hypothesis\": \"8B model capacity absorbs evidence generation cost: no-evidence SFT and evidence-SFT should produce near-identical rel_f1, demonstrating evidence tax≈0 at 8B scale (contrasting with 4B where tax=-7.5pp).\", \"parent\": \"plan_006_qwen3_8b_no_evidence_sft\"}, \"plan_016_llama_3_1_8b_no_evidence_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:05:53.861Z\", \"updated_at\": \"2026-05-17T02:55:31.810Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"339687\", \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_no_evidence_eval.log\", \"submitted_at\": \"2026-05-16T12:06:19.840Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 5374.3, \"gpu_hours\": 1.49}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": \"339687\", \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_no_evidence_eval.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval\\\"\", \"finished_at\": \"2026-05-16T13:26:57.202Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T13:27:03.265903+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.5452, \"rel_f1\": 0.5624, \"evi_f1\": 0, \"edcr\": 0}, \"checkpoint_path\": \"/root/autodl-tmp/eval_results/llama_3_1_8b_no_evidence_eval\", \"completed_at\": \"2026-05-16T13:35:54.177Z\", \"hypothesis\": \"LLaMA-3.1-8B no-evidence SFT should achieve similar rel_f1 to evidence-SFT (tax≈0), cross-family validating the 8B-scale evidence absorption pattern observed in Qwen3-8B.\", \"parent\": \"plan_016_llama_3_1_8b_no_evidence_sft\"}, \"plan_006_qwen3_1_7b_no_evidence_eval_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T11:45:02.749Z\", \"updated_at\": \"2026-05-17T02:55:24.084Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v3\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 12275, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\", \"eval_data\": \"docred-dev\", \"hypothesis\": \"Model size ablation: Qwen3-1.7B no-evidence SFT eval (v3, fix bash-c wrapping). plan_006 claim=1.\", \"plan_id\": \"plan_006\", \"parent\": \"plan_006_qwen3_1_7b_no_evidence_sft\", \"pid\": 337839}, \"reproduce\": {\"finished_at\": \"2026-05-16T13:51:46.819Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T13:51:51.769349+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.3982, \"rel_f1\": 0.4103, \"evi_f1\": 0, \"edcr\": 0, \"precision\": 0.4464, \"recall\": 0.3796, \"format_compliance_rate\": 1, \"n_truncated\": 501, \"inference_time_seconds\": 7465.3, \"evidence_tax\": 0.0804}, \"checkpoint_path\": \"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v3\", \"log_path\": \"N/A\", \"completed_at\": \"2026-05-16T13:54:19.362Z\", \"hypothesis\": \"1.7B model capacity is insufficient to jointly optimize RE and evidence generation: no-evidence SFT should outperform evidence-SFT on rel_f1, revealing positive evidence tax at small scale (opposite to 8B where tax≈0).\", \"parent\": \"plan_006_qwen3_1_7b_no_evidence_sft\"}, \"plan_016_llama_3_1_8b_sft_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:06:49.282Z\", \"updated_at\": \"2026-05-17T02:55:20.475Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"340111\", \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_sft_eval.log\", \"submitted_at\": \"2026-05-16T12:07:11.141Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7873.8, \"gpu_hours\": 2.19}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"pid\": \"340111\", \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_3_1_8b_sft_eval.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/llama_3_1_8b_sft_eval\\\"\", \"finished_at\": \"2026-05-16T14:10:43.158Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T14:10:47.089855+00:00\"}]}, \"metrics\": {\"ign_f1\": 0.5384, \"rel_f1\": 0.5514, \"evi_f1\": 0.8151, \"edcr\": 0.628, \"precision\": 0.5464, \"recall\": 0.5565, \"evi_f1_joint\": 0.4317, \"format_compliance_rate\": 0.9949, \"n_truncated\": 197, \"n_predictions\": 15325, \"inference_time_seconds\": 7331.3, \"evidence_tax_ign_f1\": 0.0068, \"evidence_tax_rel_f1\": 0.011}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"completed_at\": \"2026-05-16T14:18:24.910Z\", \"hypothesis\": \"LLaMA-3.1-8B SFT with evidence generation should achieve comparable rel_f1 to Qwen3-8B SFT, establishing cross-family baseline for evidence tax measurement. Evidence tax at 8B scale predicted near-zero based on Qwen3-8B pattern.\", \"parent\": \"plan_016_llama_3_1_8b_sft\"}, \"plan_016_llama_grpo_qlora\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:14:37.199Z\", \"updated_at\": \"2026-05-17T02:55:08.871Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 TRANSFORMERS_OFFLINE=1 python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/grpo_output_llama_3_1_8b_qlora --stage 3 --num_generations 4 --lora_rank 64 --per_device_batch_size 1 --gradient_accumulation_steps 16 --max_length 4096 --max_new_tokens 1024 --kl_coef 0 --bf16 --seed 42 --wandb_run_name plan_016_llama_grpo_qlora --nli_model /root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"pid\": 346621, \"model_name\": \"Meta-Llama-3.1-8B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"seed\": 42, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"output_dir\": \"/root/autodl-tmp/grpo_output_llama_3_1_8b_qlora\", \"hypothesis\": \"LLaMA-3.1-8B GRPO QLoRA (4-bit, G=4, CED reward, kl_coef=0). Cross-family RL decoupling experiment. plan_016 claim=2.\", \"config\": {\"stage\": 3, \"num_generations\": 4, \"lora_rank\": 64, \"quantize\": true, \"kl_coef\": 0, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"max_length\": 4096, \"max_new_tokens\": 1024, \"total_steps\": 757}, \"checkpoint_path\": \"/root/autodl-tmp/grpo_output_llama_3_1_8b_qlora\", \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_grpo_qlora.log\"}, \"conclusion\": \"success\", \"metrics\": {\"format_reward\": 1, \"f1_reward\": 0, \"ced_reward\": 0, \"entropy\": 0.28, \"final_step\": 60, \"grad_norm\": 0, \"loss\": 0, \"frac_reward_zero_std\": 1, \"output_length_final\": 172, \"conclusion_note\": \"C2 cross-family validated: LLaMA QLoRA GRPO shows same catastrophic decoupling as Qwen (format gaming, zero IE ability)\"}, \"completed_at\": \"2026-05-16T15:51:16.213Z\", \"hypothesis\": \"QLoRA GRPO catastrophic decoupling (format gaming + zero IE ability) is not Qwen-specific: LLaMA-3.1-8B under identical QLoRA GRPO training should exhibit the same failure mode (grad_norm→0, loss→0, rel_f1→0). Cross-family validation of C2.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\"}, \"plan_006_qwen3_8b_rsft_candidates\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T13:49:52.476Z\", \"updated_at\": \"2026-05-17T01:54:20.630Z\", \"hypothesis\": \"Qwen3-8B RSFT candidate generation (N=8, T=0.7). Generates rejection sampling candidates for subsequent CED scoring and filtering. plan_006 claim=3.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"model_name\": \"Qwen3-8B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output_qwen3_8b_bf16\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"seed\": 42, \"output_dir\": \"/root/autodl-tmp/freige/outputs/rsft_candidates_8b\", \"config\": {\"num_generations\": 8, \"temperature\": 0.7, \"batch_size\": 1, \"split\": \"train\"}}, \"pid\": \"349382\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_8b_rsft_candidates.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_bf16 --num_generations 8 --temperature 0.7 --batch_size 1 --data_path /root/autodl-tmp/data/docred --split train --seed 42 --output_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b\\\"\", \"finished_at\": \"2026-05-17T01:51:04.422Z\"}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T01:51:08.747Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T01:51:14.925166+00:00\"}]}}, \"plan_016_llama_rsft_candidates_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T15:49:40.224Z\", \"updated_at\": \"2026-05-17T01:34:30.186Z\", \"spec\": {\"command\": \"python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --num_generations 8 --temperature 0.7 --batch_size 1 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/rsft_candidates_llama_3_1_8b --start_idx 64\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"model_name\": \"meta-llama/Meta-Llama-3.1-8B\", \"pid\": 360970, \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_rsft_candidates_r3.log\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_candidates_llama_3_1_8b\"}, \"hypothesis\": \"LLaMA-3.1-8B RSFT candidate gen r3 (N=8, T=0.7, start_idx=64 resume). Exclusive cuda:2 after GRPO kill.\", \"plan_id\": \"plan_016\", \"parent\": \"plan_016_llama_3_1_8b_sft\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T01:34:30.186Z\"}, \"plan_007_redocred_rsft_eval_r5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T22:04:18.834Z\", \"updated_at\": \"2026-05-17T00:51:25.706Z\", \"hypothesis\": \"CED-RSFT gains transfer to Re-DocRED (r5, correct 3-param loading: base→SFT→RSFT)\", \"parent\": \"plan_007_redocred_rsft_eval_r4\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r4\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"pid\": 384691, \"data_path\": \"/root/autodl-tmp/data/re-docred\", \"data_count\": -1, \"model_name\": \"Qwen3-4B + SFT + RSFT-CED-s43-ckpt510\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\", \"eval_data\": \"re-docred dev\", \"log_path\": \"~/runs/faith-evidence-ie/plan_007_redocred_rsft_eval_r4.log\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\"}, \"conclusion\": \"success\", \"metrics\": {\"f1\": 0.4234, \"ign_f1\": 0.4145, \"evi_f1\": 0.8182, \"edcr\": 0.621, \"evi_joint_f1\": 0.3306, \"format_compliance\": 1, \"field_compliance\": 0.8134, \"n_documents\": 493, \"n_truncated\": 90, \"inference_time_s\": 5655.5}, \"completed_at\": \"2026-05-17T00:51:25.707Z\"}, \"plan_007_redocred_rsft_eval_r4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T18:00:41.999Z\", \"updated_at\": \"2026-05-16T22:04:01.953Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r4\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/re-docred\", \"data_count\": -1, \"model_name\": \"Qwen3-4B RSFT ced_s43 checkpoint-510\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\", \"eval_data\": \"re-docred\", \"pid\": 370793}, \"hypothesis\": \"CED-RSFT gains transfer to Re-DocRED (r4, correct 3-param loading: base→SFT→RSFT)\", \"plan_id\": \"plan_007\", \"parent\": \"plan_007_redocred_4b_sft_eval_r2\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T21:07:21.170Z\"}, \"plan_002_test_rsft_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T17:45:04.744Z\", \"updated_at\": \"2026-05-16T21:07:17.492Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_002_test_rsft_s43\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": null, \"model_name\": \"Qwen3-4B + RSFT s43 ckpt-510\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\", \"eval_data\": \"docred/test.json\", \"parent\": \"rsft_ced_s43\"}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T21:07:17.492Z\"}, \"plan_007_redocred_rsft_eval_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T17:38:09.825Z\", \"updated_at\": \"2026-05-16T21:07:14.348Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/redocred_rsft_eval_r3\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/re-docred\", \"data_count\": null, \"model_name\": \"Qwen3-4B (CED-RSFT)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\", \"eval_data\": \"re-docred-dev\"}, \"hypothesis\": \"Re-DocRED RSFT eval r3 (config fix: model_path=base, sft_adapter=RSFT ckpt). Verify CED-RSFT gains transfer cross-dataset.\", \"plan_id\": \"plan_007\", \"parent\": \"plan_007_redocred_4b_sft_eval_r2\", \"gpu\": \"cuda:1\", \"pid\": 368363, \"conclusion\": \"failed\", \"failure_reason\": \"startup recovery: process dead, no active cron monitor\", \"completed_at\": \"2026-05-16T21:07:14.348Z\"}, \"plan_007_redocred_rsft_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T14:23:56.999Z\", \"updated_at\": \"2026-05-16T17:49:00.578Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --output_dir /root/autodl-tmp/eval_results/redocred_rsft_eval --batch_size 4 --max_new_tokens 1024 --split dev --seed 42 --no-quantize\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/re-docred\", \"data_count\": 500, \"model_name\": \"Qwen3-4B + SFT + CED-RSFT(s43)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\", \"eval_data\": \"re-docred/dev\", \"hypothesis\": \"CED-RSFT gains (rel_f1 improvement over SFT) transfer to Re-DocRED cross-dataset eval\", \"parent\": \"plan_007_redocred_4b_sft_eval_r2\", \"plan_id\": \"plan_007\", \"pid\": 352684, \"gpu\": \"cuda:1\", \"log_path\": \"/root/runs/faith-evidence-ie/plan_007_redocred_rsft_eval.log\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T14:48:19.318Z\", \"metrics\": {\"failure_reason\": \"OOM + pipeline bug: --model_path and --sft_adapter args in wrong order. RSFT LoRA merged to bare Qwen3-4B without SFT base, causing ontology collapse. Fix: match DocRED eval param ordering.\"}}, \"plan_014_no_evidence_eval_d076\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T14:26:29.748Z\", \"updated_at\": \"2026-05-16T17:37:09.823Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_no_evidence_output/ --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/plan_014_no_evidence_eval_d076\\\"\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B (no-evidence SFT)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_no_evidence_output/\", \"eval_data\": \"docred-dev\"}, \"hypothesis\": \"4B no-evidence SFT eval under D076 unified protocol (batch_size=4, max_new_tokens=1024, seed=42, no-quantize). Required for clean scaling comparison across 1.7B/4B/8B.\", \"plan_id\": \"plan_014\", \"parent\": \"plan_014_sft_no_evidence\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"pid\": 353322, \"metrics\": {\"ign_f1\": 0.4721, \"f1\": 0.4876, \"precision\": 0.4901, \"recall\": 0.4851, \"format_compliance_rate\": 0.9929, \"n_truncated\": 307, \"inference_time_seconds\": 6903.9}, \"checkpoint_path\": \"/root/autodl-tmp/eval_results/plan_014_no_evidence_eval_d076\", \"log_path\": \"/root/runs/faith-evidence-ie/eval_plan_014_no_evidence_r2.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T16:22:20.324Z\"}, \"plan_016_llama_rsft_candidates_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T14:25:55.343Z\", \"updated_at\": \"2026-05-16T14:56:53.198Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --num_generations 8 --temperature 0.7 --batch_size 1 --data_path /root/autodl-tmp/data/docred --split train --seed 42 --output_dir /root/autodl-tmp/freige/outputs/rsft_candidates_llama_8b\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Meta-Llama-3.1-8B\", \"seed\": 42}, \"hypothesis\": \"LLaMA-3.1-8B RSFT candidate generation (N=8, T=0.7) for cross-family CED-RSFT validation\", \"gpu\": \"cuda:1\", \"pid\": 353179, \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_rsft_candidates.log\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T14:56:50.729Z\", \"metrics\": {\"docs_completed\": 64, \"docs_total\": 3027, \"lines_generated\": 512, \"output_path\": \"/root/autodl-tmp/freige/outputs/rsft_candidates_llama_8b/generations.jsonl\", \"failure_reason\": \"Process killed externally (no traceback/error in log). Likely OOM on cuda:1. Completed 64/3027 docs (2.1%) in ~23min before termination.\"}}, \"plan_016_llama_rsft_candidates\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T14:15:59.880Z\", \"updated_at\": \"2026-05-16T14:25:29.851Z\", \"spec\": {\"model_name\": \"Meta-Llama-3.1-8B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"seed\": 42, \"n_candidates\": 8, \"temperature\": 0.7, \"output_dir\": \"/root/autodl-tmp/rsft_candidates_llama_3_1_8b\", \"hypothesis\": \"LLaMA-3.1-8B RSFT candidate generation (N=8, T=0.7). Cross-family RSFT pipeline validation. plan_016 claim=1/2.\", \"plan_id\": \"plan_016\", \"parent\": \"plan_016_llama_3_1_8b_sft\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.rsft_generate --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --n_candidates 8 --temperature 0.7 --no-quantize --output_dir /root/autodl-tmp/rsft_candidates_llama_3_1_8b --seed 42\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"351871\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"eval_data\": \"docred-train (generation, not eval)\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T14:25:09.831Z\", \"hypothesis\": \"LLaMA-3.1-8B RSFT candidate generation (N=8, T=0.7) for cross-family CED-RSFT validation\", \"pid\": 353179, \"log_path\": \"~/runs/faith-evidence-ie/plan_016_llama_rsft_candidates.log\"}, \"plan_007_redocred_4b_sft_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:30:55.473Z\", \"updated_at\": \"2026-05-16T12:34:54.050Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output_qwen3_4b --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_4b_sft_eval\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"342069\", \"log_path\": \"~/runs/faith-evidence-ie/plan_007_redocred_4b_sft_eval.log\", \"submitted_at\": \"2026-05-16T12:31:28.959Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 28.3, \"gpu_hours\": 0.01}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"pid\": \"342069\", \"log_path\": \"~/runs/faith-evidence-ie/plan_007_redocred_4b_sft_eval.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output_qwen3_4b --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_4b_sft_eval\\\"\", \"finished_at\": \"2026-05-16T12:31:52.934Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T12:31:57.243Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T12:32:01.036672+00:00\"}]}, \"notes\": \"诊断: 两个路径均不存在——(1) 基座模型 /root/autodl-tmp/models/Qwen/Qwen3-4B/ 未下载（服务器只有 Qwen3-1.7B 和 Qwen3-8B）；(2) SFT adapter /root/autodl-tmp/sft_output_qwen3_4b/ 不存在（4B 模型未训练过）。inference.py 加载 tokenizer 时因本地路径不存在回退到 HF Hub 查找，触发 HFValidationError。\\n修复: (1) 先下载 Qwen3-4B 模型到 /root/autodl-tmp/models/Qwen/Qwen3-4B/；(2) 用该模型完成 SFT 训练生成 adapter；(3) 再重新提交 eval。\"}, \"plan_006_qwen3_1_7b_no_evidence_eval_v2r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:02:28.162Z\", \"updated_at\": \"2026-05-16T12:28:44.616Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v2\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"339089\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_no_evidence_eval_v2r2.log\", \"submitted_at\": \"2026-05-16T12:03:19.347Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 891.3, \"gpu_hours\": 0.25, \"notes\": \"Killed by Director - duplicate of v3 on cuda:1. GPU 释放给其他任务.\", \"checkpoint_path\": \"N/A\"}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"pid\": \"339089\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_no_evidence_eval_v2r2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v2\\\"\", \"finished_at\": \"2026-05-16T12:18:08.217Z\"}, \"conclusion\": \"failed\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-16T12:18:10.679Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T12:18:13.450876+00:00\"}]}}, \"plan_006_qwen3_1_7b_no_evidence_eval_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T11:40:29.706Z\", \"updated_at\": \"2026-05-16T11:44:58.762Z\", \"spec\": {\"command\": \"cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v2\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_no_evidence_eval_v2.log\", \"submitted_at\": \"2026-05-16T11:41:21.922Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 14.3, \"gpu_hours\": 0.0}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"pid\": \"unknown\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_no_evidence_eval_v2.log\", \"reproduce\": {\"command\": \"cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval_v2\", \"finished_at\": \"2026-05-16T11:41:33.375Z\"}, \"failure_reason\": \"EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T11:41:36.224Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T11:41:40.025368+00:00\"}]}, \"notes\": \"失败原因: tmux 用 sh 执行命令, python 不在 PATH (需 bash -c 包装 conda activate). wall_clock=14s, 未产出任何数据. 已自动重提交为 v3.\"}, \"plan_006_qwen3_1_7b_no_evidence_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:25:53.604Z\", \"updated_at\": \"2026-05-16T11:17:18.299Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-1.7B --sft_adapter /root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": 324679, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 12275, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\", \"eval_data\": \"docred-dev\", \"log_path\": \"/root/autodl-tmp/eval_results/qwen3_1_7b_no_evidence_eval.log\", \"hypothesis\": \"Model size ablation: Qwen3-1.7B no-evidence SFT eval. plan_006 claim=1.\", \"plan_id\": \"plan_006\", \"parent\": \"plan_006_qwen3_1_7b_no_evidence_sft\", \"checkpoint_path\": \"/root/autodl-tmp/sft_output_qwen3_1_7b_no_evidence\", \"notes\": \"INVALID: missing --no_evidence flag in eval, prompt mismatch with training template. Ign-F1=0.3786 is invalid data.\"}, \"conclusion\": \"failed\", \"metrics\": {\"f1\": 0.3884, \"ign_f1\": 0.3786, \"evi_f1\": 0.0007, \"edcr\": 0.9848, \"precision\": 0.4282, \"recall\": 0.3553, \"pred_count\": 27049, \"n_truncated\": 531, \"format_ok_rate\": 0.999}, \"completed_at\": \"2026-05-16T11:11:04.903Z\"}, \"plan_006_qwen3_8b_no_evidence_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T11:12:04.565Z\", \"updated_at\": \"2026-05-16T11:16:54.766Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen/Qwen3-8B --sft_adapter /root/autodl-tmp/sft_output_qwen3_8b_no_evidence --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": 334598, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 12275, \"model_name\": \"Qwen3-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_qwen3_8b_no_evidence\", \"eval_data\": \"docred-dev\", \"log_path\": \"/root/autodl-tmp/eval_results/qwen3_8b_no_evidence_eval.log\", \"hypothesis\": \"8B no-evidence SFT eval. 与 plan_006_qwen3_8b_sft_eval (Ign-F1=0.5051) 对比量化 8B evidence tax. plan_006 claim=1.\", \"plan_id\": \"plan_006\", \"parent\": \"plan_006_qwen3_8b_no_evidence_sft\", \"notes\": \"INVALID: same --no_evidence flag bug as 1.7B eval, killed before completion. Prompt mismatch with training template.\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T11:16:54.766Z\"}, \"reeval_flat_nli_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:38:03.120Z\", \"updated_at\": \"2026-05-16T10:14:04.270Z\", \"hypothesis\": \"Re-eval flat-NLI RSFT s42 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + max_new_tokens=1024. 原 eval_plan_001_flat_nli 用了 batch_size=16。Paired t-test 关键路径。\", \"parent\": \"plan_001_rsft_flat_nli\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"296732\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval/metrics.json\", \"submitted_at\": \"2026-05-16T04:16:19.584Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + flat-NLI RSFT s42\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_flat_nli/checkpoint-507\", \"eval_data\": \"docred dev (985 docs)\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval\", \"wall_clock_seconds\": 21464.7, \"gpu_hours\": 5.96}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"pid\": 296732, \"account\": \"root\", \"log_path\": \"~/runs/faith-evidence-ie/reeval_flat_nli_s42.log\", \"reproduce\": {\"finished_at\": \"2026-05-16T07:59:30.990Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T07:59:34.675689+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.4448, \"rel_f1\": 0.4535, \"evi_f1\": 0.8039, \"evi_f1_joint\": 0.3558, \"edcr\": 0.6458, \"format_compliance_rate\": 1, \"field_compliance_rate\": 0.7787, \"n_truncated\": 205, \"inference_time_seconds\": 13253.1}, \"completed_at\": \"2026-05-16T10:14:04.270Z\"}, \"reeval_ced_s44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:38:00.052Z\", \"updated_at\": \"2026-05-16T10:14:02.479Z\", \"hypothesis\": \"Re-eval CED RSFT s44 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + max_new_tokens=1024 + seed=44. 原 eval 用了 batch_size≈16 且 seed=42（错误）。Paired t-test 关键路径。\", \"parent\": \"mvp2_rsft_train_r1_s44\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 44 --output_dir /root/autodl-tmp/eval_results/rsft_ced_s44_reeval --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"297190\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_ced_s44_reeval/metrics.json\", \"submitted_at\": \"2026-05-16T04:18:28.117Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/rsft_ced_s44_reeval\", \"wall_clock_seconds\": 21334.4, \"gpu_hours\": 5.93}, \"notes\": \"正确 checkpoint: /root/autodl-tmp/rsft_output_s44/checkpoint-510。旧 eval 路径一致但可能用了根目录 adapter 而非 checkpoint-510 子目录。\", \"gpu\": \"cuda:0\", \"server\": \"rtx5090-4x\", \"pid\": \"297190\", \"log_path\": \"~/runs/faith-evidence-ie/reeval_ced_s44.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 44 --output_dir /root/autodl-tmp/eval_results/rsft_ced_s44_reeval --no-quantize\\\"\", \"finished_at\": \"2026-05-16T07:56:51.068Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T07:56:54.613393+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.4511, \"rel_f1\": 0.4621, \"evi_f1\": 0.805, \"evi_f1_joint\": 0.3677, \"edcr\": 0.635, \"format_compliance_rate\": 1, \"field_compliance_rate\": 0.802, \"n_truncated\": 190, \"inference_time_seconds\": 13077.6}, \"completed_at\": \"2026-05-16T10:14:02.479Z\"}, \"reeval_ced_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:37:58.498Z\", \"updated_at\": \"2026-05-16T10:14:00.520Z\", \"hypothesis\": \"Re-eval CED RSFT s42 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + max_new_tokens=1024. 原 mvp2_eval_rsft_r2b_maxtok1536_r2 用了 batch_size=8 + max_new_tokens=1536。Paired t-test 关键路径。\", \"parent\": \"mvp2_rsft_train_r1\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_ced_s42_reeval --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"298018\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_ced_s42_reeval/metrics.json\", \"submitted_at\": \"2026-05-16T04:24:05.849Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/rsft_ced_s42_reeval\", \"wall_clock_seconds\": 20994.7, \"gpu_hours\": 5.83}, \"notes\": \"旧 eval (rsft_r2b_maxtok1536_r2) 不仅协议不一致，而且用了错误 checkpoint (rsft_output_r2b: lora_alpha=32, 仅 160 步)。正确 checkpoint: /root/autodl-tmp/rsft_output/checkpoint-510 (seed=42, lora_alpha=128, 510 步，与 s43/s44/s45 配置一致)。\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"pid\": \"298018\", \"log_path\": \"~/runs/faith-evidence-ie/reeval_ced_s42.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_ced_s42_reeval --no-quantize\\\"\", \"finished_at\": \"2026-05-16T07:25:16.570Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T07:25:21.431476+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.4423, \"rel_f1\": 0.4517, \"evi_f1\": 0.8175, \"evi_f1_joint\": 0.3518, \"edcr\": 0.6569, \"format_compliance_rate\": 1, \"field_compliance_rate\": 0.7756, \"n_truncated\": 214, \"inference_time_seconds\": 10815.5}, \"completed_at\": \"2026-05-16T10:14:00.520Z\"}, \"reeval_flat_nli_s44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:56:36.565Z\", \"updated_at\": \"2026-05-16T09:26:04.920Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 44 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s44_reeval --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu_id\": 0, \"pid\": 322215, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": null, \"model_name\": \"Qwen3-4B + sft_adapter + rsft_flat_nli_s44/checkpoint-507\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507\", \"eval_data\": \"docred dev\", \"log_path\": \"/root/autodl-tmp/logs/reeval_flat_nli_s44.log\", \"parent\": \"plan_001_flat_nli_seed44\", \"hypothesis\": \"Re-eval flat-NLI RSFT s44 with D076 unified protocol. 之前 eval_flat_nli_seed44 被 killed。Paired t-test 最后一块拼图。\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T09:26:04.920Z\"}, \"plan_006_qwen3_1_7b_sft\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T06:13:52.388Z\", \"updated_at\": \"2026-05-16T06:33:46.578Z\", \"spec\": {\"hypothesis\": \"Model size ablation: Qwen3-1.7B SFT baseline，验证 evidence tax 和 RSFT 增益在小模型上是否成立。应对 RC4 (scale sensitivity)。plan_id=plan_006, claim=1。\", \"model_name\": \"Qwen3-1.7B\", \"server\": \"rtx5090-4x\", \"plan_id\": \"plan_006\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output_qwen3_1_7b --seed 42 --wandb_run_name qwen3_1_7b_sft\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"seed\": 42, \"pid\": \"308118\", \"gpu\": [\"cuda:3\"], \"log_path\": \"~/runs/faith-evidence-ie/plan_006_qwen3_1_7b_sft.log\", \"backend\": \"tmux\", \"account\": \"root\", \"lora_rank\": 64, \"lora_alpha\": 128, \"target_modules\": 7, \"quantize\": \"4-bit QLoRA\", \"trainable_params\": \"69.7M / 1.79B (3.89%)\", \"num_epochs\": 3, \"batch_size\": 1, \"gradient_accumulation_steps\": 16, \"learning_rate\": 0.0002, \"output_dir\": \"/root/autodl-tmp/sft_output_qwen3_1_7b\", \"kill_reason\": \"QLoRA 4-bit confound: 4B SFT/RSFT 用 bf16 LoRA，1.7B 必须一致\", \"checkpoint_path\": \"N/A\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T06:33:46.578Z\"}, \"reeval_flat_nli_s43_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:32:45.507Z\", \"updated_at\": \"2026-05-16T06:10:14.112Z\", \"hypothesis\": \"Re-eval flat-NLI RSFT s43 with unified protocol: batch_size=4 + --no-quantize + --sft_adapter + --max_new_tokens 1024. 原 reeval_flat_nli_s43 用了 batch_size=16 导致协议不一致。C3 paired t-test 关键路径。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2 --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"291003\", \"log_path\": \"~/runs/faith-evidence-ie/reeval_flat_nli_s43_r2.log\", \"submitted_at\": \"2026-05-16T03:05:10.815Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 11103.3, \"gpu_hours\": 3.08}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": \"291003\", \"log_path\": \"~/runs/faith-evidence-ie/reeval_flat_nli_s43_r2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2 --no-quantize\\\"\", \"finished_at\": \"2026-05-16T06:07:10.034Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T06:07:13.554397+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4586, \"rel_precision\": 0.4732, \"rel_recall\": 0.4449, \"ign_f1\": 0.4503, \"evi_f1\": 0.8113, \"evi_precision\": 0.8035, \"evi_recall\": 0.8192, \"evi_f1_joint\": 0.358, \"edcr\": 0.6552, \"format_ok_rate\": 0.999, \"n_truncated\": 184, \"n_predictions\": 15015}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507\", \"completed_at\": \"2026-05-16T06:10:14.112Z\"}, \"eval_rsft_ced_s45\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T01:30:34.036Z\", \"updated_at\": \"2026-05-16T05:43:12.975Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s45/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 45 --output_dir /root/autodl-tmp/eval_results/rsft_ced_s45 --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"283838\", \"log_path\": \"/root/runs/faith-evidence-ie/eval_rsft_ced_s45.log\", \"submitted_at\": \"2026-05-16T01:30:48.081Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 10350.6, \"gpu_hours\": 2.88, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_ced_s45/checkpoint-510\"}, \"hypothesis\": \"Full dev eval of CED RSFT seed=45 with --sft_adapter + --no-quantize. Paired t-test 关键路径：CED 第 3 个 seed（s42/s44 已有，s43 训练中）。对比 flat-NLI RSFT seeds。plan_id=plan_mvp2_rsft, claim=3。\", \"parent\": \"rsft_ced_s45_train_r4\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-16T01:30:45.945Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s45/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 45 --output_dir /root/autodl-tmp/eval_results/rsft_ced_s45 --no-quantize\\\"\", \"finished_at\": \"2026-05-16T04:21:18.743Z\", \"training_hours\": 2.84}, \"pid\": \"283838\", \"log_path\": \"~/runs/faith-evidence-ie/eval_rsft_ced_s45.log\", \"notes\": \"[2026-05-16 02:18 UTC] 69/247 batches (28%), ~2h remaining. ETA ~04:18 UTC. Running normally at ~41s/it avg.\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T04:21:24.317065+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4514, \"ign_f1\": 0.4416, \"evi_f1\": 0.8174, \"rel_p\": 0.4718, \"rel_r\": 0.4326, \"edcr\": 0.655, \"evi_f1_joint\": 0.3558, \"n_truncated\": 206, \"format_ok_rate\": 1}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_ced_s45/checkpoint-510\", \"completed_at\": \"2026-05-16T04:23:18.660Z\"}, \"eval_rsft_ced_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T01:30:37.978Z\", \"updated_at\": \"2026-05-16T05:18:59.781Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --output_dir /root/autodl-tmp/eval_results/rsft_ced_s43 --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"286587\", \"log_path\": \"~/runs/faith-evidence-ie/eval_rsft_ced_s43.log\", \"submitted_at\": \"2026-05-16T02:13:11.138Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\", \"wall_clock_seconds\": 11076.6, \"gpu_hours\": 3.08}, \"hypothesis\": \"Full dev eval of CED RSFT seed=43 with --sft_adapter + --no-quantize. Paired t-test 关键路径：CED 第 4 个 seed。对比 flat-NLI RSFT seeds。plan_id=plan_mvp2_rsft, claim=3。\", \"parent\": \"rsft_ced_s43_train_r3\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-16T02:12:19.128Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --output_dir /root/autodl-tmp/eval_results/rsft_ced_s43 --no-quantize\\\"\", \"finished_at\": \"2026-05-16T05:13:49.642Z\", \"training_hours\": 3.03}, \"pid\": \"286587\", \"log_path\": \"~/runs/faith-evidence-ie/eval_rsft_ced_s43.log\", \"notes\": \"[2026-05-16 02:18 UTC] 5/247 batches (2%), ~3h remaining. ETA ~05:19 UTC. Just started, running normally at ~45s/it avg.\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T05:13:52.707434+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4601, \"ign_f1\": 0.4512, \"precision\": 0.4696, \"recall\": 0.4509, \"evi_f1\": 0.8063, \"evi_precision\": 0.8025, \"evi_recall\": 0.8101, \"edcr\": 0.6542, \"evi_f1_joint\": 0.3605, \"format_ok_rate\": 1, \"n_truncated\": 184, \"n_predictions\": 15051, \"inference_time_seconds\": 10768.2}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T05:17:47.763Z\"}, \"eval_plan_014_no_evidence_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T01:34:45.302Z\", \"updated_at\": \"2026-05-16T04:20:13.358Z\", \"hypothesis\": \"Retry of eval_plan_014_no_evidence with corrected command: --model_path 传底座 Qwen3-4B, --sft_adapter 传 SFT no-evidence adapter。修复 adapter 检测逻辑冲突。plan_id=plan_014, claim=1。\", \"parent\": \"plan_014_sft_no_evidence\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_no_evidence_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence_noquant --no-quantize --no_evidence\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"288109\", \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_014_no_evidence_r2.log\", \"submitted_at\": \"2026-05-16T02:27:53.107Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/sft_no_evidence_output\", \"wall_clock_seconds\": 6547.0, \"gpu_hours\": 1.82}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"288109\", \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_014_no_evidence_r2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_no_evidence_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence_noquant --no-quantize --no_evidence\\\"\", \"finished_at\": \"2026-05-16T04:13:27.499Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T04:13:31.947315+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4876, \"ign_f1\": 0.4721, \"evi_f1\": 0, \"edcr\": 0, \"evi_f1_joint\": 0, \"precision\": 0.4901, \"recall\": 0.4851, \"ign_precision\": 0.4654, \"ign_recall\": 0.4791, \"format_compliance\": 0.993, \"truncation_rate\": 0.312, \"n_predictions\": 21181, \"n_documents\": 985}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T04:17:00.079Z\"}, \"mvp2_ced_reranker_poc\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:55:03.414Z\", \"updated_at\": \"2026-05-16T03:49:41.385Z\", \"hypothesis\": \"CED-as-reranker: no fine-tuning, use CED to select best of N=8 SFT candidates at inference time. If rel_f1 > 0.4057 (SFT greedy), CED adds value without training risk. Oracle reranker as upper bound.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"spec\": {\"command\": \"python /root/autodl-tmp/freige/eval/ced_reranker.py (N=8, CED scoring, 985 docs)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT (greedy N=8 + CED reranker)\", \"seed\": 42, \"pid\": \"178050\", \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_ced_reranker_poc.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:47:24.899Z\", \"metrics\": {\"ced_reranker_rel_f1\": 0.486367, \"ced_reranker_ign_f1\": 0.473634, \"ced_reranker_evi_f1\": 0.8188, \"oracle_rel_f1\": 0.623746, \"oracle_ign_f1\": 0.612518, \"random_rel_f1\": 0.453783, \"random_ign_f1\": 0.439677}, \"notes\": \"CED reranker (N=8, no training) rel_f1=0.4864, 超过 SFT greedy (+8.07pp) 和 RSFT 3-seed mean (+2.68pp)。Oracle 上界 rel_f1=0.6237 (+21.8pp vs SFT)，CED reranker 实现了 oracle ceiling 的 37% (0.0807/0.218)。CED-F1 Spearman r=0.3235 (p≈0)，相关性显著但中等——说明 CED 不是完美的 proxy 但有信号。Random baseline rel_f1=0.4538 说明 sampling diversity 本身就有 +4.8pp 收益，CED 在此基础上再加 +3.3pp。EDCR 下降 (0.6156 vs SFT 0.7118)，N=8 sampling 引入更多 distractor citations。推理耗时 5.8h (N=8 生成主导)。结论：CED 作为 inference-time reranker 有明确论文价值——零训练成本超越 RSFT，且 oracle ceiling 表明更好的 reward model 还有大幅空间。\"}, \"eval_flat_nli_seed45\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:12:39.186Z\", \"updated_at\": \"2026-05-16T03:49:36.608Z\", \"hypothesis\": \"Full dev eval of flat-NLI RSFT seed=45 checkpoint WITH --sft_adapter。seed45 中间 eval rel_f1=0.4876（待全量确认）。对比 CED RSFT mean (0.4596)。三 seed 全量 eval 出齐后汇报 flat-NLI vs CED RSFT 完整 seed-level 对比。\", \"parent\": \"plan_001_flat_nli_seed45\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s45/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 45 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s45 --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 272164, \"log_path\": \"~/runs/faith-evidence-ie/eval_flat_nli_seed45.log\", \"submitted_at\": \"2026-05-15T23:44:54.114Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 12275, \"model_name\": \"Qwen3-4B\", \"seed\": 45, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_flat_nli_s45/checkpoint-507\", \"eval_data\": \"docred-dev\", \"wall_clock_seconds\": 12094.9, \"gpu_hours\": 3.36}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"notes\": \"[2026-05-16 02:18 UTC] 196/247 batches (79%), ~45min remaining. ETA ~03:03 UTC. Running normally at ~47s/it avg.\", \"reproduce\": {\"finished_at\": \"2026-05-16T03:03:01.591Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T03:03:05.615685+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.455052, \"ign_f1\": 0.446181, \"evi_f1\": 0.815399, \"edcr\": 0.652133, \"evi_f1_joint\": 0.355612}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_flat_nli_s45/checkpoint-507\", \"log_path\": \"~/runs/faith-evidence-ie/eval_flat_nli_seed45.log\", \"completed_at\": \"2026-05-16T03:06:29.033Z\"}, \"eval_flat_nli_s44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:14:05.010Z\", \"updated_at\": \"2026-05-16T03:49:35.610Z\", \"hypothesis\": \"Full dev eval of flat-NLI RSFT seed=44 with --sft_adapter + --no-quantize. C3 统计显著性数据点 (s42=0.4539, s43 pending, s44 本次, s45 pending)。\", \"parent\": \"plan_001_flat_nli_seed44\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 44 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s44 --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"270462\", \"log_path\": \"~/runs/faith-evidence-ie/eval_flat_nli_s44.log\", \"submitted_at\": \"2026-05-15T23:27:39.718Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507\", \"wall_clock_seconds\": 11069.8, \"gpu_hours\": 3.07}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"270462\", \"log_path\": \"~/runs/faith-evidence-ie/eval_flat_nli_s44.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 44 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s44 --no-quantize\\\"\", \"finished_at\": \"2026-05-16T02:24:33.081Z\"}, \"notes\": \"[2026-05-16 02:18 UTC] 238/247 batches (96%), ~7min remaining. ETA ~02:25 UTC. Running normally at ~45s/it avg.\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:24:37.198824+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.461506, \"ign_f1\": 0.452126, \"evi_f1\": 0.813123, \"edcr\": 0.645808, \"evi_f1_joint\": 0.359673}, \"completed_at\": \"2026-05-16T02:32:09.485Z\"}, \"seed_comparison_prep\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T02:35:52.694Z\", \"updated_at\": \"2026-05-16T02:35:52.694Z\", \"notes\": \"## Seed Comparison Pre-Analysis (2026-05-16)\\n\\n### Available Results (3/4 seeds each, s45 pending for both):\\n\\n**flat-NLI RSFT:**\\n- s42: rel_f1=0.4539 (dir: rsft_flat_nli)\\n- s43: rel_f1=0.4523 (dir: rsft_flat_nli_s43_reeval; original rsft_flat_nli_s43 was broken f1=0.002)\\n- s44: rel_f1=0.4615 (dir: rsft_flat_nli_s44; NOTE: only metrics.json, no metrics_v2.json with fixed Ign-F1)\\n- s45: PENDING (empty dir)\\n- Mean: 0.4559 ± 0.0049\\n\\n**CED RSFT:**\\n- s42: rel_f1=0.4504 (dir: rsft_r2b_maxtok1536)\\n- s43: rel_f1=0.4683 (dir: rsft_s43)\\n- s44: rel_f1=0.4655 (dir: rsft_s44)\\n- s45: PENDING (empty dir)\\n- Mean: 0.4614 ± 0.0096\\n\\n### Pre-comparison (N=3):\\n- rel_f1 Delta (fNLI - CED): -0.0055 (CED slightly better)\\n- Paired t-test: t=0.967, p=0.4357 (NOT significant)\\n- 95% CI for delta: [-0.0299, +0.0189] (crosses zero)\\n- Cohen's d: -0.558\\n\\n### seed_comparison.py status: WORKING\\n- Auto-discovers all seeds, handles fallback dirs, filters broken results (f1<0.01)\\n- Outputs to /root/autodl-tmp/eval_results/seed_comparison.{md,json}\\n- Supports --watch mode for polling\"}, \"rsft_ced_s45_train_r4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:33:12.797Z\", \"updated_at\": \"2026-05-16T02:15:34.043Z\", \"hypothesis\": \"CED RSFT seed=45 训练（r4 重试，r3 因 cuda:2 orphan PID 276148 OOM 失败）。补全 paired t-test 所需的第 3 个 CED seed（现有 s42/s44，s43 在 cuda:1 训练中）。训练数据 2718 samples，3 epochs，~2h。plan_id=plan_mvp2_rsft, claim=3。\", \"parent\": \"\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/rsft_output_ced_s45/checkpoint-510\", \"log_path\": \"/tmp/rsft_ced_s45_r4.log\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_ced_s45/checkpoint-510\", \"log_path\": \"/tmp/rsft_ced_s45_r4.log\", \"metrics\": {\"training_completed\": true, \"checkpoint\": \"checkpoint-510\", \"note\": \"Training metrics not captured (r4 retry after OOM). Eval running as eval_rsft_ced_s45.\"}, \"completed_at\": \"2026-05-16T02:15:34.043Z\"}, \"rsft_ced_s43_train_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:20:57.272Z\", \"updated_at\": \"2026-05-16T02:14:46.064Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\", \"log_path\": \"~/runs/faith-evidence-ie/rsft_ced_s43_train_r3.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T02:10:56.984Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:11:00.631057+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.6151, \"eval_loss\": 0.7618, \"task_eval_f1\": 0.5026, \"task_eval_ign_f1\": 0.4932, \"task_eval_evi_f1\": 0.7624, \"task_eval_edcr\": 0.6516, \"total_steps\": 510, \"epochs\": 3, \"training_hours\": 1.82}, \"completed_at\": \"2026-05-16T02:14:46.064Z\"}, \"eval_plan_014_no_evidence\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:17:32.011Z\", \"updated_at\": \"2026-05-16T01:34:06.402Z\", \"hypothesis\": \"Dev set eval of SFT-no-evidence model (plan_014). 核心目标：对比标准 SFT rel_f1=0.4057 vs 不输出 evidence 的 SFT rel_f1（隔离 evidence generation 代价）。只评估 rel_f1，不评估 evi_f1（输出无 evidence）。plan_id=plan_014, claim=1。\", \"parent\": \"plan_014_sft_no_evidence\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_no_evidence_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence_noquant --no-quantize --no_evidence\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"283455\", \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_014_no_evidence.log\", \"submitted_at\": \"2026-05-16T01:27:16.251Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 33.8, \"gpu_hours\": 0.01}, \"conclusion\": \"failed\", \"notes\": \"FAILED: ValueError — model_path 含 adapter_config.json 触发 adapter 检测逻辑，要求 --sft_adapter。诊断(Worker diagnose_eval_plan_014): SFT adapter 本身就是 model_path，不应走 adapter stacking 路径。修复：--model_path 改传底座 Qwen3-4B，--sft_adapter 传 /root/autodl-tmp/sft_no_evidence_output。待 GPU 空闲后以 corrected command 重试。\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-16T01:27:14.109Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_no_evidence_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/sft_no_evidence_noquant --no-quantize --no_evidence\\\"\", \"finished_at\": \"2026-05-16T01:27:46.702Z\", \"training_hours\": 0.01}, \"pid\": \"283455\", \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_014_no_evidence.log\", \"failure_reason\": \"Traceback → is a LoRA adapter (adapter_config.json found), but --sft_adapter is not set. RSFT/DPO/GRPO adapters are trained on SFT-merged model and MUST be evaluated with --sft_adapter pointing to the SFT adapter directory. Add: --sft_adapter /path/to/sft_output\", \"completed_at\": \"2026-05-16T01:27:50.023Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T01:27:53.542593+00:00\"}]}}, \"rsft_ced_s45_train_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:21:01.099Z\", \"updated_at\": \"2026-05-16T00:31:23.730Z\", \"spec\": {\"command\": \"python -m freige.training.rsft_trainer --seed 45 --data_path rsft_filtered --output_dir rsft_output_ced_s45 --batch_size 4 --gradient_accumulation_steps 4 --weighted_sampling\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"277407\", \"log_path\": \"~/runs/faith-evidence-ie/rsft_ced_s45_train_r3.log\", \"submitted_at\": \"2026-05-16T00:21:15.972Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"rsft_filtered\", \"data_count\": 2718, \"model_name\": \"sft_base + ced_rsft\", \"seed\": 45, \"wall_clock_seconds\": 368.8, \"gpu_hours\": 0.1, \"notes\": \"CUDA OOM — GPU 2 被 orphan 进程 PID 276148 占用 31.6GB。Worker 正在清理，将创建 r4 重提交。\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T00:27:24.802Z\", \"notes\": \"CUDA OOM at launch: cuda:2 occupied by orphan PID 276148 (31.6GB). Need to kill orphan and resubmit as r4.\"}, \"rsft_ced_s45_train_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:09:11.100Z\", \"updated_at\": \"2026-05-16T00:25:40.284Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_ced_s45 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-s45-r2 --seed 45\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"276143\", \"log_path\": \"~/runs/faith-evidence-ie/rsft_ced_s45_train_r2.log\", \"submitted_at\": \"2026-05-16T00:16:52.439Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 225.7, \"gpu_hours\": 0.06}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"pid\": \"276143\", \"log_path\": \"~/runs/faith-evidence-ie/rsft_ced_s45_train_r2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_ced_s45 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-s45-r2 --seed 45\\\"\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:20:38.182Z\", \"notes\": \"Director 下令终止——错误套用 flat-NLI 超参(batch=1/grad_accum=16)，需用 CED 正确模板(batch=4/grad_accum=4)重跑，已由 r3 替代。\"}, \"rsft_ced_s43_train_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:09:34.266Z\", \"updated_at\": \"2026-05-16T00:25:38.818Z\", \"spec\": {\"data_path\": \"/root/autodl-tmp/rsft_filtered/rsft_train.jsonl\", \"data_count\": 2718, \"model_name\": \"Qwen3-4B + LoRA on SFT adapter\", \"seed\": 43, \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"account\": \"root\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_ced_s43 --lr 2e-5 --epochs 3 --batch 1 --grad_accum 16 --lora_rank 64 --lora_alpha 128 --seed 43 --weighted_sampling\\\"\", \"pid\": 275269, \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"N/A (training, not eval)\", \"log_path\": \"~/runs/faith-evidence-ie/rsft_ced_s43_train_r2.log\", \"output_dir\": \"/root/autodl-tmp/rsft_output_ced_s43\", \"hyperparams\": {\"lr\": \"2e-5\", \"epochs\": 3, \"batch\": 1, \"grad_accum\": 16, \"lora_rank\": 64, \"lora_alpha\": 128, \"bf16\": true, \"weighted_sampling\": true}}, \"hypothesis\": \"CED RSFT seed=43 训练（r2 重试，修正 cwd 错误）。补全 paired t-test 所需的第 3 个 CED seed（现有 s42/s44）。训练数据 2718 samples，3 epochs，~2h。plan_id=plan_mvp2_rsft, claim=3。\", \"parent\": \"rsft_ced_s43_train\", \"reproduce\": {\"finished_at\": \"2026-05-16T00:20:20.177Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T00:20:24.299Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T00:20:28.707019+00:00\"}]}, \"notes\": \"Director 下令终止——错误套用 flat-NLI 超参(batch=1/grad_accum=16)，需用 CED 正确模板(batch=4/grad_accum=4)重跑，已由 r3 替代。实际 argparse 无 --batch/--grad_accum 参数，静默忽略后用了默认值(batch=4/grad_accum=4)，实际配置恰好正确，但命令不规范。\"}, \"reeval_rsft_topk3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:00:34.722Z\", \"updated_at\": \"2026-05-16T00:24:22.091Z\", \"hypothesis\": \"Re-eval RSFT top_k=3 WITH --sft_adapter (D064 bug fix). 原 eval_plan_008_rsft_topk3 因缺 --sft_adapter 被 killed。对比 CED RSFT top_k=1 (rel_f1≈0.46) 和 SFT baseline (0.4057)。\", \"parent\": \"plan_008_rsft_topk3\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_topk3_output/checkpoint-1509 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_topk3_reeval --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"268485\", \"log_path\": \"~/runs/faith-evidence-ie/reeval_rsft_topk3.log\", \"submitted_at\": \"2026-05-15T23:10:49.243Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"RSFT top_k=3 + SFT adapter\", \"seed\": 42, \"checkpoint_source\": \"rsft_topk3_output/checkpoint-1509\", \"eval_data\": \"docred dev\", \"wall_clock_seconds\": 3798.3, \"gpu_hours\": 1.06}, \"reproduce\": {\"finished_at\": \"2026-05-16T00:10:43.871Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T00:10:53.138391+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4454, \"rel_precision\": 0.4512, \"rel_recall\": 0.4398, \"ign_f1\": 0.4364, \"evi_f1\": 0.8088, \"edcr\": 0.6635, \"format_ok_rate\": 0.999, \"n_truncated\": 214, \"n_predictions\": 16020, \"inference_time_seconds\": 3546.4, \"ign_f1_corrected\": true}, \"conclusion\": \"negative\", \"notes\": \"RSFT top_k=3 rel_f1=0.4454，优于 SFT baseline (0.4057) 但劣于 CED RSFT top_k=1 (~0.46)。top_k=3 引入更多噪声训练样本，反而降低关系抽取精度。evi_f1=0.8088 较好。214/985 truncated。\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_topk3_output/checkpoint-1509\", \"completed_at\": \"2026-05-16T00:14:07.521Z\"}, \"rsft_ced_s43_train\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:05:46.635Z\", \"updated_at\": \"2026-05-16T00:10:42.131Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.rsft_trainer --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_ced_s43 --seed 43 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --wandb_run_name rsft_ced_s43 --bf16\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/faith-evidence-ie/rsft_ced_s43_train.log\", \"submitted_at\": \"2026-05-16T00:06:16.826Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 34.8, \"gpu_hours\": 0.01}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"pid\": \"unknown\", \"log_path\": \"~/runs/faith-evidence-ie/rsft_ced_s43_train.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.rsft_trainer --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_ced_s43 --seed 43 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --wandb_run_name rsft_ced_s43 --bf16\\\"\", \"finished_at\": \"2026-05-16T00:06:49.264Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T00:06:51.674Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T00:06:55.376318+00:00\"}]}, \"notes\": \"失败原因: No module named freige.training.rsft_trainer — 命令 cd /root/autodl-tmp/freige 导致 cwd 错误。已修正为 cd /root/autodl-tmp，重提交为 rsft_ced_s43_train_r2 (PID=275264)\"}, \"rsft_ced_s45_train\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:03:17.851Z\", \"updated_at\": \"2026-05-16T00:05:24.862Z\", \"spec\": {\"hypothesis\": \"CED RSFT seed=45 训练，补全 paired t-test 所需的第 3 个 CED seed（现有 s42/s43/s44）。训练数据 2718 samples，3 epochs，~2h。plan_id=plan_mvp2_rsft, claim=3。\", \"plan_id\": \"plan_mvp2_rsft\", \"model_name\": \"Qwen3-4B + LoRA on SFT adapter\", \"data_path\": \"/root/autodl-tmp/rsft_filtered/rsft_train.jsonl\", \"data_count\": 2718, \"seed\": 45, \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"account\": \"root\", \"checkpoint_path\": \"N/A\", \"log_path\": \"N/A\", \"kill_reason\": \"Director 重排优先级: CED s43 先于 s45, cuda:1 改分配给 rsft_ced_s43_train\"}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:05:24.862Z\"}, \"reeval_flat_nli_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:00:33.691Z\", \"updated_at\": \"2026-05-15T23:59:33.440Z\", \"hypothesis\": \"Re-eval flat-NLI RSFT seed=43 WITH --sft_adapter (D064 bug fix). 原 eval_plan_001_flat_nli_s43 因缺 --sft_adapter 导致 rel_f1=0.0022 无效。对比 flat-NLI s42 (rel_f1=0.4539) 和 CED RSFT mean (0.4596)。\", \"parent\": \"plan_001_flat_nli_seed43\", \"spec\": {\"command\": \"Re-eval flat-NLI RSFT seed=43 with --sft_adapter (D064 fix)\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"pid\": 266178, \"log_path\": \"/root/runs/faith-evidence-ie/reeval_flat_nli_s43.log\", \"submitted_at\": \"2026-05-15T22:57:10.223Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 0, \"model_name\": \"Qwen3-4B + SFT + flat-NLI RSFT s43\", \"seed\": 43, \"checkpoint_source\": \"plan_001_flat_nli_s43\", \"eval_data\": \"docred_dev\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507\", \"eval_output_dir\": \"/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval\", \"sft_adapter\": \"/root/autodl-tmp/sft_output\", \"base_model\": \"/root/autodl-tmp/models/Qwen3-4B\", \"wall_clock_seconds\": 3743.2, \"gpu_hours\": 1.04}, \"reproduce\": {\"finished_at\": \"2026-05-15T23:56:41.649Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:56:45.572465+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4523, \"ign_f1\": 0.4523, \"evi_f1\": 0.8158, \"edcr\": 0.6505, \"num_preds\": 15357, \"format_ok\": \"984/985\", \"truncated\": \"211/985\", \"inference_time_s\": 3515.8}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T23:59:33.440Z\"}, \"plan_003_edcr_diagnostic\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:12:40.174Z\", \"updated_at\": \"2026-05-15T23:52:05.506Z\", \"hypothesis\": \"EDCR cross-method diagnostic table: 计算所有 evidence-producing 方法（SFT baseline, RSFT-CED best, RSFT-flatNLI best, CED-reranker）的 EDCR，验证 EDCR 作为独立评估指标的诊断能力。plan_id=plan_003, claim=4。GPU 预算 2h。\", \"server\": \"rtx5090-4x\", \"gpu\": null, \"account\": \"root\", \"spec\": {\"gpu\": null, \"server\": \"rtx5090-4x\", \"notes\": \"CPU-only task, GPU allocation removed to free cuda:3\"}, \"conclusion\": \"success\", \"metrics\": {\"methods_evaluated\": 15, \"edcr_vs_rel_f1_spearman\": -0.9648, \"edcr_vs_rel_f1_pvalue\": 0.0001, \"edcr_vs_evi_f1_spearman\": 0.0022, \"edcr_vs_evi_f1_pvalue\": 0.9941, \"edcr_range\": \"0.63-0.99\", \"unique_diagnostic_value\": \"identifies pathological models (GRPO QLoRA) with high evi_f1 but catastrophically low rel_f1\"}, \"checkpoint_path\": \"/root/autodl-tmp/eval_results/edcr_diagnostic.json\", \"log_path\": \"/root/autodl-tmp/eval_results/edcr_diagnostic.tex\", \"completed_at\": \"2026-05-15T23:45:26.064Z\"}, \"eval_flat_nli_seed44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:12:38.199Z\", \"updated_at\": \"2026-05-15T23:48:28.074Z\", \"hypothesis\": \"Full dev eval of flat-NLI RSFT seed=44 with --sft_adapter + --no-quantize. C3 seed-level comparison.\", \"parent\": \"plan_001_flat_nli_seed44\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 44 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s44 --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"270056\", \"log_path\": \"~/runs/faith-evidence-ie/eval_flat_nli_seed44.log\", \"submitted_at\": \"2026-05-15T23:27:04.263Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1283.8, \"gpu_hours\": 0.36}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T23:48:28.074Z\"}, \"eval_plan_012_dpo_1ep_fixed_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:58:52.440Z\", \"updated_at\": \"2026-05-15T23:44:56.586Z\", \"spec\": {\"command\": \"DPO 1ep re-eval with --sft_adapter (D064 fix)\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 262075, \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_012_dpo_1ep_fixed_r2.log\", \"submitted_at\": \"2026-05-15T21:58:52.150Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 0, \"model_name\": \"Qwen3-4B + SFT + DPO 1ep\", \"seed\": 42, \"checkpoint_source\": \"plan_012_dpo_ced_3ep\", \"eval_data\": \"docred_dev\", \"checkpoint_path\": \"/root/autodl-tmp/dpo_ced_output/checkpoint-167\", \"wall_clock_seconds\": 6197.9, \"gpu_hours\": 1.72}, \"reproduce\": {\"finished_at\": \"2026-05-15T23:36:34.758Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:36:37.754401+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.4034, \"evi_f1\": 0.8088, \"edcr\": 0.7139, \"format_ok_rate\": 0.999, \"truncated_rate\": 0.343, \"predictions\": 19107, \"ign_f1\": 0.4034, \"precision\": 0.3809, \"recall\": 0.4287, \"vs_sft_delta\": -0.0023, \"note\": \"DPO 1ep matches SFT baseline. 1ep→3ep trajectory shows gradual decoupling (rel_f1↓ evi_f1↑), consistent with GRPO pattern. Ign-F1=F1 exact match needs investigation.\"}, \"completed_at\": \"2026-05-15T23:42:10.085Z\"}, \"plan_001_flat_nli_seed44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:38:26.174Z\", \"updated_at\": \"2026-05-15T23:25:30.719Z\", \"spec\": {\"command\": \"rsft train flat_nli seed=44\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"pid\": 258503, \"log_path\": \"~/runs/faith-evidence-ie/plan_001_flat_nli_seed44.log\", \"submitted_at\": \"2026-05-15T21:38:25.857Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl\", \"data_count\": 2691, \"model_name\": \"Qwen3-4B + SFT adapter\", \"seed\": 44, \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_flat_nli_s44\", \"wall_clock_seconds\": 6424.9, \"gpu_hours\": 1.78}, \"reproduce\": {\"finished_at\": \"2026-05-15T23:22:24.600Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:22:27.640280+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.6247, \"eval_loss\": 0.7564, \"eval_mean_token_accuracy\": 0.8299, \"task_eval_f1_ep1\": 0.4306, \"task_eval_f1_ep2\": 0.4884, \"task_eval_f1_ep3\": 0.4897, \"task_eval_evi_f1_ep3\": 0.78, \"task_eval_edcr_ep3\": 0.6596, \"task_eval_ign_f1_ep3\": 0.4897, \"train_runtime_sec\": 6197, \"num_epochs\": 3, \"total_steps\": 507}, \"completed_at\": \"2026-05-15T23:25:30.719Z\"}, \"plan_009_dynamics_figure\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:17:30.987Z\", \"updated_at\": \"2026-05-15T23:19:12.282Z\", \"hypothesis\": \"GRPO forgetting dynamics 3-panel figure: QLoRA vs BF16 GRPO 的 rel_f1/evi_f1/EDCR 训练轨迹对比。支撑 Claim 3 (task decoupling 是 QLoRA-specific)。plan_id=plan_009。\", \"conclusion\": \"success\", \"spec\": {\"command\": \"GRPO forgetting dynamics figure generation (CPU-only, matplotlib)\", \"server\": \"rtx5090-4x\", \"data_path\": \"W&B metrics + registry checkpoint data\", \"data_count\": 42, \"model_name\": \"N/A (visualization task)\", \"seed\": 0, \"checkpoint_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/plan_009_grpo_forgetting/grpo_forgetting_dynamics_v5.pdf\", \"log_path\": \"N/A\"}, \"completed_at\": \"2026-05-15T23:19:12.282Z\"}, \"plan_001_flat_nli_seed45\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:09:05.195Z\", \"updated_at\": \"2026-05-15T23:17:29.971Z\", \"spec\": {\"command\": \"flat-NLI RSFT training seed=45\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"pid\": 257187, \"log_path\": \"~/runs/faith-evidence-ie/plan_001_flat_nli_seed45.log\", \"submitted_at\": \"2026-05-15T21:26:10.157Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl\", \"data_count\": 0, \"model_name\": \"Qwen3-4B + SFT adapter\", \"seed\": 45, \"wall_clock_seconds\": 6240.8, \"gpu_hours\": 1.73}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-15T21:26:08.091Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_flat_nli_s45 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 1 --gradient_accumulation_steps 16 --lora_rank 64 --lora_alpha 128 --eval_data_dir /root/autodl-tmp/data/docred --wandb_run_name plan_001_flat_nli_seed45 --seed 45\\\"\", \"finished_at\": \"2026-05-15T23:07:49.718Z\", \"training_hours\": 1.69}, \"pid\": \"257187\", \"log_path\": \"~/runs/faith-evidence-ie/plan_001_flat_nli_seed45.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:07:54.004372+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"task_eval_rel_f1\": 0.4876, \"task_eval_evi_f1\": 0.7927, \"task_eval_edcr\": 0.6517, \"train_loss\": 0.6245, \"runtime_hours\": 1.69, \"note\": \"task-eval on 50 docs only, full dev eval needed\"}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_flat_nli_s45/checkpoint-507\", \"completed_at\": \"2026-05-15T23:10:11.004Z\"}, \"plan_011_bf16_g8_step_eval\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-15T19:04:51.538Z\", \"updated_at\": \"2026-05-15T23:01:09.970Z\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && bash /root/autodl-tmp/freige/scripts/eval_plan_011_steps.sh\\\"\", \"finished_at\": \"2026-05-15T22:54:30.133Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"completed_at\": \"2026-05-15T19:47:17.272Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T19:47:19.581918+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T19:53:37.646506+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:54:32.686556+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"诊断确认：SIGTERM (EXIT_CODE=143)。device_map=\\\"auto\\\" 无 CUDA_VISIBLE_DEVICES 限制，模型加载到 GPU 0（plan_001 占用 16.3GB），双进程共 31.4/32.6GB 后被 kill。两次重试均失败（retry_count=2）。修复：CUDA_VISIBLE_DEVICES=1 重提交到空闲 cuda:1。\"}}, \"notes\": \"诊断确认：SIGTERM (EXIT_CODE=143)。device_map=\\\"auto\\\" 无 CUDA_VISIBLE_DEVICES 限制，模型加载到 GPU 0（plan_001 占用 16.3GB），双进程共 31.4/32.6GB 后被 kill。两次重试均失败（retry_count=2）。修复：CUDA_VISIBLE_DEVICES=1 重提交到空闲 cuda:1。\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/eval_results/grpo_ced_g8_bf16_step30/ + step50/ + step70/\", \"log_path\": \"~/runs/faith-evidence-ie/plan_011_bf16_g8_step_eval.log\"}, \"conclusion\": \"success\", \"metrics\": {\"step_30\": {\"rel_f1\": 0.434, \"evi_f1\": 0.8063, \"edcr\": 0.6807}, \"step_50\": {\"rel_f1\": 0.4276, \"evi_f1\": 0.8024, \"edcr\": 0.6855}, \"step_70\": {\"rel_f1\": 0.4341, \"evi_f1\": 0.8099, \"edcr\": 0.6685}, \"best_step\": \"step_70\", \"trend\": \"non-monotonic, all < ckpt-100 (0.4549)\"}, \"checkpoint_path\": \"N/A (eval-only, source checkpoints at /root/autodl-tmp/grpo_bf16_g8_output/checkpoint-{30,50,70})\"}, \"plan_011_eval_g8_bf16_ckpt100\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:43:24.143Z\", \"updated_at\": \"2026-05-15T22:06:28.981Z\", \"spec\": {\"command\": \"STALE - killed\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"215276\", \"log_path\": \"~/runs/faith-evidence-ie/plan_011_eval_g8_bf16_ckpt100.log\", \"submitted_at\": \"2026-05-15T14:43:23.832Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"grpo_g8_bf16 ckpt100\", \"seed\": 42, \"checkpoint_source\": \"grpo_ced_g8_bf16\", \"eval_data\": \"docred dev\", \"wall_clock_seconds\": 26585.1, \"gpu_hours\": 7.38}, \"conclusion\": \"killed\", \"notes\": \"STALE: 该 eval 已由 eval_grpo_g8_bf16 完成并 success (rel_f1=0.4549)。此条目为残留，不需要执行。\", \"completed_at\": \"2026-05-15T22:06:28.981Z\"}, \"mvp2_eval_rsft_s44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:35:23.934Z\", \"updated_at\": \"2026-05-15T22:06:28.059Z\", \"hypothesis\": \"Full dev eval of RSFT seed=44 checkpoint. First MVP-2 judgement data point. Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798 (SFT baseline).\", \"parent\": \"mvp2_rsft_train_r1_s44\", \"conclusion\": \"killed\", \"notes\": \"STALE: s44 全量 eval 已由 mvp2_eval_rsft_r2b_maxtok1536 等系列完成。s44 rel_f1=0.4655 已入库。此条目为残留。\", \"spec\": {\"command\": \"STALE - killed\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"261617\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_s44.log\", \"submitted_at\": \"2026-05-15T21:57:22.401Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"N/A\", \"data_count\": 0, \"model_name\": \"RSFT s44\", \"seed\": 44, \"checkpoint_source\": \"rsft_output_s44\", \"eval_data\": \"docred dev\", \"wall_clock_seconds\": 545.7, \"gpu_hours\": 0.15}, \"completed_at\": \"2026-05-15T22:06:28.059Z\"}, \"eval_plan_008_topk3_fixed\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T21:52:00.000Z\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:39:34.632Z\", \"updated_at\": \"2026-05-15T21:39:34.632Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_topk3_output --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_topk3_fixed --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"259032\", \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_008_topk3_fixed.log\", \"submitted_at\": \"2026-05-15T21:39:34.183Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"eval_plan_012_dpo_1ep_fixed\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T21:52:00.000Z\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:39:31.570Z\", \"updated_at\": \"2026-05-15T21:39:31.570Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_1ep/ --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_ced_1ep_fixed --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"258955\", \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_012_dpo_1ep_fixed.log\", \"submitted_at\": \"2026-05-15T21:39:31.197Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"eval_plan_008_rsft_topk3\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T21:38:00.000Z\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:09:51.464Z\", \"updated_at\": \"2026-05-15T21:38:00.000Z\", \"metrics\": {\"note\": \"INVALID — missing --sft_adapter, killed by Director instruction\"}, \"hypothesis\": \"RSFT top_k=3 dev eval: 对比 top_k=1 RSFT (rel_f1≈0.46) 和 SFT baseline (rel_f1≈0.4057)。验证更多候选是否提升证据质量。\", \"parent\": \"plan_008_rsft_topk3\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_topk3_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_topk3 --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"255523\", \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_008_rsft_topk3.log\", \"submitted_at\": \"2026-05-15T21:10:11Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"RSFT top_k=3 dev eval: 对比 top_k=5 RSFT (rel_f1≈0.46) 和 SFT baseline (rel_f1=0.4106)。top_k=3 训练 50-doc subset 显示 F1=0.50 但 Evi-F1 下降到 0.68。\", \"parent\": \"plan_008_rsft_topk3\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT top_k=3\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_topk3_output\", \"eval_data\": \"docred-dev (985 docs)\"}}, \"plan_012_dpo_ced\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:54:03.324Z\", \"updated_at\": \"2026-05-15T21:37:44.232Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/dpo_output\", \"data_path\": \"/root/autodl-tmp/dpo_data/dpo_pairs.jsonl\", \"data_count\": 2666, \"model_name\": \"Qwen3-4B + SFT + CED-DPO\", \"seed\": 42, \"beta\": 0.1, \"num_epochs\": 3, \"loss_type\": \"sigmoid\", \"base_model\": \"/root/autodl-tmp/models/Qwen3-4B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output\", \"pairs\": 2666}, \"hypothesis\": \"DPO+CED preference learning: 用 CED 构造 preference pairs (CED top-1 = chosen, CED bottom-1 = rejected)，DPO 训练。验证 offline preference optimization 能否替代 online GRPO 避免 catastrophic forgetting，同时利用 CED 信号。对比 RSFT (rel_f1=0.46) 和 SFT baseline (rel_f1=0.4057)。\", \"reproduce\": {\"finished_at\": \"2026-05-15T17:38:15.433Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T17:38:17.857458+00:00\"}]}, \"conclusion\": \"negative\", \"notes\": \"⚠️ Reviewer WARNING: 严重过拟合。3 epochs, rewards accuracy=1.0, margins 9x 膨胀, entropy 崩塌。checkpoint-501 是最过拟合版本，结果有 confound。需补 eval checkpoint-400 对比 + 重训 epochs=1。\", \"metrics\": {\"rel_f1\": 0.3429, \"evi_f1\": 0.8403, \"edcr\": 0.7294, \"format_ok_rate\": 0.995, \"checkpoint\": \"checkpoint-501\", \"rewards_accuracy\": 1, \"margins\": 9.01}, \"log_path\": \"~/runs/faith-evidence-ie/plan_012_dpo_ced.log\", \"completed_at\": \"2026-05-15T21:37:44.232Z\"}, \"plan_012_dpo_ced_1ep\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:50:44.852Z\", \"updated_at\": \"2026-05-15T21:36:34.720Z\", \"spec\": {\"hypothesis\": \"DPO+CED 1-epoch 重训：修复 3-epoch 过拟合问题。epochs=1 (~167 steps, <10min)，其余超参不变（β=0.1, lr=5e-7, loss=sigmoid, seed=42, pairs=2666）。让 DPO 数据点可用于论文。\", \"parent\": \"plan_012_dpo_ced\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 WANDB_PROJECT=freige-dpo PYTHONUNBUFFERED=1 python -m freige.training.dpo_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --dpo_data_path /root/autodl-tmp/dpo_data/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_1ep --beta 0.1 --num_epochs 1 --seed 42 --loss_type sigmoid --per_device_batch_size 1 --gradient_accumulation_steps 16 --wandb_run_name plan_012_dpo_ced_1ep\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"245103\", \"log_path\": \"~/runs/faith-evidence-ie/plan_012_dpo_ced_1ep.log\", \"submitted_at\": \"2026-05-15T19:43:02.707Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/dpo_data/dpo_pairs.jsonl\", \"data_count\": 2666, \"model_name\": \"Qwen3-4B + SFT + CED-DPO (1ep)\", \"seed\": 42, \"base_model\": \"/root/autodl-tmp/models/Qwen3-4B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output\", \"beta\": 0.1, \"num_epochs\": 1, \"loss_type\": \"sigmoid\", \"checkpoint_path\": \"/root/autodl-tmp/dpo_output_1ep\", \"wall_clock_seconds\": 6812.0, \"gpu_hours\": 1.89}, \"gpu_ids\": [3], \"hypothesis\": \"DPO+CED 1 epoch retraining: plan_012_dpo_ced 3 epochs 严重过拟合 (rewards_accuracy=1.0, margins 9x膨胀, entropy崩塌)。重训 1 epoch 验证 early stopping 是否消除 overfitting confound。对比 plan_012 3ep + RSFT (rel_f1=0.46) + SFT baseline (rel_f1=0.4057)。\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"notes\": \"DPO+CED 完全失败。1ep eval: rel_f1=0.0022 (34 TPs / 19265 preds)，比 3ep (0.3429) 更差。训练指标正常 (accuracy=0.82, margins=0.86)，但模型输出几乎无法匹配正确 relation。evi_f1=0.75 说明模型仍生成 evidence，但 relation extraction 崩溃。358/985 truncated (36%)。DPO 对 evidence-grounded DocRE 完全不适用——不是过拟合问题，是方法本身失效。D061 已关闭 DPO 实验线。\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:17:44.285Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:17:46.894275+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"n_preds\": 19265, \"inference_time_s\": 3643, \"train_loss_final\": 0.59, \"rewards_accuracy\": 0.82, \"rewards_margins\": 0.86, \"total_steps\": 167, \"training_time_min\": 33}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T21:36:34.720Z\"}, \"eval_plan_001_flat_nli_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:29:54.486Z\", \"updated_at\": \"2026-05-15T21:35:00.000Z\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T21:34:00.000Z\", \"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.8533, \"edcr\": 0.9982, \"num_preds\": 17285, \"format_ok\": \"981/985\", \"truncated\": \"251/985\", \"tp\": 32, \"note\": \"INVALID — missing --sft_adapter, same bug as DPO 1ep eval\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli_s43 --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 43 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli_s43 --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"252179\", \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_001_flat_nli_s43.log\", \"submitted_at\": \"2026-05-15T20:30:26.563Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + flat-NLI RSFT s43 adapter\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_flat_nli_s43\", \"eval_data\": \"docred dev (985 docs)\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T21:33:03.903Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:33:07.578617+00:00\"}]}}, \"eval_plan_012_dpo_ced_1ep\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:22:11.752Z\", \"updated_at\": \"2026-05-15T21:27:30.000Z\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T21:25:00.000Z\", \"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"num_preds\": 19265, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"inference_time_s\": 3643}, \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_1ep/ --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_ced_1ep --no-quantize\", \"server\": \"rtx5090-4x\", \"data_path\": \"docred-dev\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + DPO-CED-1ep LoRA\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/dpo_output_1ep/ (final, 167 steps = 1 epoch)\", \"eval_data\": \"docred-dev\", \"gpu_id\": 2, \"parent\": \"plan_012_dpo_ced_1ep\", \"hypothesis\": \"DPO+CED 1ep checkpoint dev set evaluation: 验证 1ep 是否消除 3ep 过拟合 (rewards_acc=1.0, margins=9x), 对比 SFT baseline rel_f1=0.4057\"}}, \"plan_008_rsft_topk3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:01:33.773Z\", \"updated_at\": \"2026-05-15T21:11:35.509Z\", \"spec\": {\"command\": \"python -m freige.train.rsft_train --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_topk3_output\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"234489\", \"log_path\": \"/root/runs/faith-evidence-ie/plan_008_rsft_topk3.log\", \"submitted_at\": \"2026-05-15T18:03:03.593Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl\", \"data_count\": 8037, \"model_name\": \"Qwen3-4B + SFT adapter + RSFT top_k=3\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/rsft_topk3_output\", \"wall_clock_seconds\": 11199.8, \"gpu_hours\": 3.11}, \"reproduce\": {\"finished_at\": \"2026-05-15T21:06:30.938Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T21:06:37.059207+00:00\"}]}, \"hypothesis\": \"RSFT top_k=3 训练：用 CED-filtered 的 top-3 候选进行 rejection sampling fine-tuning，验证更多候选是否比 top_k=1 (rel_f1≈0.46) 带来更好的证据质量。\", \"metrics\": {\"train_loss\": 0.5543, \"eval_loss\": 0.8297, \"eval_mean_token_accuracy\": 0.8228, \"eval_entropy\": 0.6001, \"train_runtime_sec\": 10916, \"total_steps\": 1509, \"epochs\": 3, \"trainable_params_pct\": 3.18, \"rsft_samples\": 8037, \"ced_score_mean\": 0.621, \"task_eval_f1_ep1\": 0.4848, \"task_eval_f1_ep2\": 0.4824, \"task_eval_f1_ep3\": 0.5012, \"task_eval_evi_f1_ep1\": 0.745, \"task_eval_evi_f1_ep2\": 0.6997, \"task_eval_evi_f1_ep3\": 0.6816, \"task_eval_edcr_ep1\": 0.6525, \"task_eval_edcr_ep2\": 0.6529, \"task_eval_edcr_ep3\": 0.5963, \"task_eval_note\": \"50-doc subset, not full dev\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T21:09:43.432Z\", \"notes\": \"RSFT top_k=3 训练正常完成。3 epochs, 1509 steps, 3h02m。8037 RSFT 样本 (CED mean=0.621)。Task eval (50-doc subset): F1 从 ep1=0.4848 升至 ep3=0.5012，但 Evi-F1 从 0.745 降至 0.6816，EDCR 从 0.6525 降至 0.5963，呈现 relation extraction 提升但证据质量下降的 trade-off。与 CED RSFT top_k=5 baseline (rel_f1=0.4596) 相比，subset F1=0.5012 看起来更高，但需 full dev eval 确认。无 W&B run。下一步：提交 eval_plan_008_rsft_topk3 做 full dev eval。\"}, \"plan_001_flat_nli_seed43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:22:55.521Z\", \"updated_at\": \"2026-05-15T20:35:05.452Z\", \"spec\": {\"hypothesis\": \"flat-NLI RSFT seed=43 补跑。验证 seed=42 的 rel_f1=0.4539 是否在噪声范围内（CED RSFT 3-seed mean=0.4596, σ=0.0127）。\", \"parent\": \"plan_001_rsft_flat_nli\", \"command\": \"python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_flat_nli_s43 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 1 --gradient_accumulation_steps 16 --lora_rank 64 --lora_alpha 128 --eval_data_dir /root/autodl-tmp/data/docred --wandb_run_name plan_001_flat_nli_seed43 --seed 43\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl\", \"data_count\": 2691, \"model_name\": \"Qwen3-4B + SFT adapter\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"N/A (training)\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_flat_nli_s43\", \"log_path\": \"~/runs/faith-evidence-ie/plan_001_flat_nli_seed43.log\", \"pid\": \"236774\", \"submitted_at\": \"2026-05-15T18:22:00Z\", \"submitted_via\": \"worker_direct\", \"backend\": \"nohup\", \"wall_clock_seconds\": 7600.2, \"gpu_hours\": 2.11}, \"reproduce\": {\"finished_at\": \"2026-05-15T20:20:10.574Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:20:13.016730+00:00\"}]}, \"metrics\": {\"train_loss_final\": 0.6257, \"train_loss_min\": 0.5895, \"eval_loss_epoch3\": 0.7567, \"eval_accuracy_epoch3\": 0.8298, \"total_steps\": 507, \"epochs\": 3, \"train_runtime_seconds\": 6880, \"task_eval_f1_ep1\": 0.4825, \"task_eval_f1_ep2\": 0.4542, \"task_eval_f1_ep3\": 0.4866, \"task_eval_evi_f1_ep3\": 0.7834, \"task_eval_edcr_ep3\": 0.6402, \"task_eval_note\": \"50-doc subset, not full dev\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_flat_nli_s43\", \"log_path\": \"~/runs/faith-evidence-ie/plan_001_flat_nli_seed43.log\", \"completed_at\": \"2026-05-15T20:28:40.191Z\", \"notes\": \"训练正常完成 (EXIT_CODE=0)。507 steps, 3 epochs, eval_loss 三 epoch 持平 (0.753-0.757) 无过拟合。与 seed42 高度一致 (train_loss 0.6248 vs 0.6238, accuracy ~0.855 vs 0.853)。Checkpoint: /root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507。下一步: dev eval 提取 rel_f1/evi_f1。\"}, \"plan_009_flatnli_reward_eval_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:54:58.033Z\", \"updated_at\": \"2026-05-15T20:32:33.464Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_flatnli_r3 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_flatnli_r3 --no-quantize --max_new_tokens 1024\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"246974\", \"log_path\": \"~/runs/faith-evidence-ie/plan_009_flatnli_reward_eval.log\", \"submitted_at\": \"2026-05-16T03:54:00Z\", \"submitted_via\": \"ssh_execute+tmux\", \"backend\": \"tmux\", \"tmux_session\": \"plan_009_flatnli_reward_eval\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + QLoRA GRPO (flatNLI reward)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_flatnli_r3 (checkpoints 20,40,60,80,100)\", \"eval_data\": \"docred dev (985 docs, 12275 triples)\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/grpo_flatnli_r3\", \"parent\": \"plan_009_flatnli_reward_eval\", \"notes\": \"Retry. Batch eval 5 flatNLI-reward GRPO checkpoints (step 20-100) for forgetting dynamics figure.\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T20:32:29.383Z\", \"notes\": \"OOM 失败。--no-quantize + batch_size 16 + max_new_tokens 1024 在单卡 RTX 5090 (32GB) 上 OOM。全部 5 个 checkpoint (20-100) 均未完成 eval。checkpoint-20 仅完成 1/62 batches 即被 kill (-9)。修复方案：降 batch_size 至 4 或 2 后重提交。\"}, \"plan_009_extract_reward_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:04:55.707Z\", \"updated_at\": \"2026-05-15T19:58:37.870Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 bash /root/autodl-tmp/freige/scripts/eval_extract_reward_steps.sh\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"247778\", \"log_path\": \"~/runs/faith-evidence-ie/plan_009_extract_reward_eval.log\", \"submitted_at\": \"2026-05-15T19:55:11.304Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T19:06:27.578Z\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T19:54:17.758Z\", \"notes\": \"OOM: Worker 提交到了 GPU 0（被 plan_001 占用 16 GiB），而非目标 cuda:1。需在 cuda:0 释放后重提交。\"}, \"eval_sft_baseline_noquant\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:38:33.128Z\", \"updated_at\": \"2026-05-15T19:45:42.147Z\", \"spec\": {\"command\": \"python eval.py --model_path /root/autodl-tmp/sft_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/sft_baseline_noquant --batch_size 16 --max_new_tokens 1024 --split dev --seed 42\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"237912\", \"log_path\": \"~/runs/faith-evidence-ie/eval_sft_baseline_noquant.log\", \"submitted_at\": \"2026-05-15T18:38:45.042Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT LoRA (no quantization)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"docred/dev (985 docs, 12275 triples)\", \"wall_clock_seconds\": 3916.2, \"gpu_hours\": 1.09, \"checkpoint_path\": \"/root/autodl-tmp/eval_results/sft_baseline_noquant/\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T19:41:54.062Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T19:41:59.716746+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4106, \"rel_precision\": 0.4198, \"rel_recall\": 0.4019, \"evi_f1\": 0.8013, \"evi_precision\": 0.8005, \"evi_recall\": 0.8022, \"evi_f1_joint\": 0.3216, \"edcr\": 0.7039, \"format_ok_rate\": 0.998, \"field_compliance_rate\": 0.7066, \"n_predictions\": 16774, \"n_truncated\": 288, \"n_documents\": 985, \"inference_time_seconds\": 3677.9}, \"checkpoint_path\": \"/root/autodl-tmp/eval_results/sft_baseline_noquant/metrics.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T19:44:01.274Z\", \"notes\": \"[2026-05-16] 无量化 SFT baseline eval 完成。rel_f1=0.4106 vs 量化版 0.4057 (+0.49pp), evi_f1=0.8013 vs 0.7979 (+0.34pp)。差异 <1pp，确认量化 confound 不显著（D058 排除）。所有基于量化 baseline 的对比结论仍然成立。无量化版推理时间 3678s vs 量化版 6139s（快 40%，因无量化用满 GPU 内存）。\"}, \"plan_009_flatnli_reward_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:04:57.991Z\", \"updated_at\": \"2026-05-15T19:39:02.187Z\", \"spec\": {\"hypothesis\": \"FlatNLI reward GRPO checkpoint eval。用已有 checkpoint 补充 forgetting dynamics 图的 flatNLI reward 变体数据，实现三种 reward 对比。\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + QLoRA GRPO (flatNLI reward)\", \"seed\": 42, \"eval_data\": \"docred dev (985 docs)\", \"checkpoint_source\": \"grpo_flatnli_r3/r4/r5/r6 checkpoints\"}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-15T19:06:33.944Z\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T19:39:02.187Z\"}, \"eval_plan_012_dpo_ced_ckpt400\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T19:32:55.398Z\", \"updated_at\": \"2026-05-15T19:37:31.477Z\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output/checkpoint-400 --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_ced_ckpt400 --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 242796, \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_012_dpo_ced_ckpt400.log\", \"submitted_at\": \"2026-05-15T19:32:55.107Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + DPO-CED LoRA (checkpoint-400)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/dpo_output/checkpoint-400\", \"eval_data\": \"docred-dev\", \"log_file\": \"~/runs/faith-evidence-ie/eval_plan_012_dpo_ced_ckpt400.log\", \"parent\": \"plan_012_dpo_ced\", \"wall_clock_seconds\": 248.7, \"gpu_hours\": 0.07}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T19:37:03.842Z\", \"notes\": \"OOM: cuda:3 被 plan_008 占用 19.6 GiB，仅完成 15% batch，结果不可信。需在 cuda:2 重跑。\"}, \"plan_009_forgetting_figure\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:56:56.840Z\", \"updated_at\": \"2026-05-15T18:57:17.531Z\", \"spec\": {\"hypothesis\": \"GRPO forgetting dynamics 可视化：整理 QLoRA vs bf16 GRPO 训练轨迹，绘制论文核心 figure。\", \"server\": \"rtx5090-4x\", \"command\": \"python /root/autodl-tmp/freige/scripts/plot_forgetting_dynamics.py\", \"data_path\": \"trainer_state.json + registry eval metrics\", \"data_count\": 0, \"model_name\": \"N/A (visualization)\", \"seed\": 0, \"checkpoint_path\": \"/root/autodl-tmp/freige/figures/\", \"log_path\": \"N/A\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:57:10.563Z\", \"notes\": \"3-panel figure: (a) Training Reward—bf16 1.5-3.0 vs QLoRA 0.1-1.2; (b) Rel-F1—QLoRA暴跌至0.01(lr5e-6)/0.22(lr5e-5), bf16稳定0.45+; (c) Evi-F1—QLoRA lr5e-6反升至0.85, bf16稳定0.81。Artifacts: art_20260515_eace0b (PNG), art_20260515_319233 (PDF)。\"}, \"eval_plan_014_sft_no_evidence\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T17:20:25.574Z\", \"updated_at\": \"2026-05-15T18:42:46.665Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/eval_results/sft_no_evidence\", \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_014_sft_no_evidence.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T18:29:34.790Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T18:29:37.278008+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4893, \"rel_ign_f1\": 0.4893, \"rel_precision\": 0.4884, \"rel_recall\": 0.4902, \"evi_f1\": 0, \"evi_precision\": 0, \"evi_recall\": 0, \"edcr\": 0, \"format_ok_rate\": 0.9919, \"n_truncated\": 298, \"n_predictions\": 21064, \"n_documents\": 985, \"n_parseable\": 977, \"inference_time_seconds\": 4103.8}, \"conclusion\": \"success\", \"notes\": \"No-evidence SFT rel_f1=0.4893 vs baseline with-evidence rel_f1=0.4057 (+0.0836, +20.6%). Evidence generation significantly hurts relation extraction. evi_f1=0 as expected. Format compliance 99.2%. 298/985 truncated. Inference 4103.8s.\", \"completed_at\": \"2026-05-15T18:42:46.665Z\"}, \"plan_014_sft_no_evidence\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:55:43.710Z\", \"updated_at\": \"2026-05-15T18:42:28.216Z\", \"hypothesis\": \"SFT-without-evidence ablation: 训练只输出 relation triples（不含 evidence sentences）的 SFT 模型。量化 joint evidence generation 对 extraction 的代价（当前 rel_f1=0.4057 vs 只抽关系的 LMRC 60.7 的 gap 有多少来自 evidence 负担）。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.sft_trainer --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_no_evidence_output --no_evidence --wandb_run_name plan_014_sft_no_evidence --seed 42\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"222207\", \"log_path\": \"~/runs/faith-evidence-ie/plan_014_sft_no_evidence.log\", \"submitted_at\": \"2026-05-15T15:56:13Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"Qwen3-4B (QLoRA 4-bit)\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/sft_no_evidence_output\", \"wall_clock_seconds\": 9975.2, \"gpu_hours\": 2.77}, \"reproduce\": {\"finished_at\": \"2026-05-15T17:01:44.197Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T17:01:46.586830+00:00\"}]}, \"metrics\": {\"train_loss\": 0.7077, \"eval_loss\": 0.8781, \"eval_token_accuracy\": 0.8086, \"epochs\": 3, \"total_steps\": 570, \"train_runtime_min\": 64, \"samples\": 3027, \"trainable_params\": \"132M/4.15B (3.18%)\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T18:42:28.216Z\"}, \"plan_002_test_eval_s44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:05:47.701Z\", \"updated_at\": \"2026-05-15T18:20:17.405Z\", \"spec\": {\"hypothesis\": \"RSFT s44 checkpoint on DocRED test set should achieve similar or better performance than dev set results, validating generalization of the faithfulness-evidence approach.\", \"task_type\": \"eval\", \"eval_data\": \"docred_test\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 1000, \"model_name\": \"Qwen3-4B + SFT + RSFT-s44\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_s44\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s44 --sft_adapter /root/autodl-tmp/sft_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split test --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/test_rsft_s44 --no-quantize\", \"log_path\": \"/root/autodl-tmp/eval_results/test_rsft_s44.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/test_rsft_s44\", \"tmux_session\": \"plan_002_test_eval_s44\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T18:20:14.596Z\", \"notes\": \"DocRED test split 无 gold labels，inference.py 不支持 enumerate_all_pairs 模式。推迟到论文终稿阶段（需改造 inference.py + CodaLab submission）。Director 指令标记 failed。\"}, \"plan_001_rsft_flat_nli\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:40:01.021Z\", \"updated_at\": \"2026-05-15T18:04:14.547Z\", \"hypothesis\": \"flat-NLI RSFT ablation: 用 flat-NLI scoring（p_pos 概率，无 contrastive margin）筛选的 2691 样本做 RSFT。对比 CED scoring RSFT（2718 样本）。验证 CED 的对比性 margin 是否是关键因素。如 flat-NLI RSFT ≈ CED RSFT → CED 无增益；如 CED RSFT 显著优于 → contrastive margin 关键。\", \"parent\": \"plan_001_flat_nli_scoring\", \"spec\": {\"gpu\": [\"cuda:0\"], \"command\": \"python rsft_train.py (flat-NLI scoring)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl\", \"data_count\": 2691, \"model_name\": \"Qwen3-4B + SFT adapter\", \"seed\": null, \"pid\": \"219556\", \"log_path\": \"/root/runs/faith-evidence-ie/plan_001_rsft_flat_nli.log\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"N/A (training, not eval)\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_flat_nli/\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T16:30:34.306Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T16:30:42.223143+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.6238, \"train_loss_min\": 0.5803, \"mean_token_accuracy\": 0.8528, \"train_runtime_sec\": 2946, \"epochs\": 3, \"total_steps\": 507, \"samples\": 2691}, \"completed_at\": \"2026-05-15T18:04:14.547Z\"}, \"eval_plan_001_flat_nli\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T16:57:09.693Z\", \"updated_at\": \"2026-05-15T18:04:13.598Z\", \"hypothesis\": \"Dev eval of flat-NLI RSFT (plan_001). 对比 CED RSFT (3-seed mean rel_f1=0.4596). flat-NLI ≈ CED → CED contrastive margin 无增益; CED >> flat-NLI → margin 关键。\", \"parent\": \"plan_001_rsft_flat_nli\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_flat_nli --sft_adapter /root/autodl-tmp/sft_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_flat_nli --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"228508\", \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_001_flat_nli.log\", \"submitted_at\": \"2026-05-15T16:57:46.175Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT-flat-NLI\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_flat_nli\", \"eval_data\": \"docred dev (985 docs)\", \"wall_clock_seconds\": 3987.4, \"gpu_hours\": 1.11}, \"reproduce\": {\"finished_at\": \"2026-05-15T17:58:40.529Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T17:58:48.797356+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4539, \"ign_f1\": 0.4539, \"evi_f1\": 0.8043, \"edcr\": 0.6431, \"precision\": 0.4671, \"recall\": 0.4414, \"evi_precision\": 0.8143, \"evi_recall\": 0.7945, \"format_ok_rate\": 1, \"n_truncated\": 199, \"n_documents\": 985, \"n_predictions\": 15294, \"inference_time_seconds\": 3631}, \"checkpoint_path\": \"/root/autodl-tmp/eval_results/rsft_flat_nli\", \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_001_flat_nli.log\", \"conclusion\": \"success\", \"notes\": \"flat-NLI RSFT dev eval 完成 (985 docs, EXIT_CODE=0)。rel_f1=0.4539, evi_f1=0.8043, edcr=0.6431。与 CED RSFT 3-seed mean 对比: rel_f1 -0.57pp (0.4539 vs 0.4596), evi_f1 -1.00pp (0.8043 vs 0.8143), edcr 差异极小。flat-NLI 接近但略低于 CED，差异在 CED 3-seed 标准差范围内 (σ=0.0127)。注意此为 single seed (42)，与 CED seed=42 的 0.4449 比反而高 +0.90pp。结论：CED contrastive margin 相对 flat p_pos 的增益极小（<1pp rel_f1），不构成显著优势。论文 claim 应聚焦 CED 的其他价值（reranker、GRPO reward）而非 RSFT filtering 的 contrastive margin。199/985 truncated（高于 CED 的 ~170），format 100% OK。\", \"completed_at\": \"2026-05-15T18:04:13.598Z\"}, \"eval_grpo_g8_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:41:07.474Z\", \"updated_at\": \"2026-05-15T17:57:46.573Z\", \"spec\": {\"command\": \"python -m freige.eval.batch_eval --exp_dir grpo_ced_g8_bf16 --sft_adapter sft_output --checkpoints 80,90,100 --no-quantize --max_new_tokens 1024\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"214552\", \"log_path\": \"~/runs/faith-evidence-ie/eval_grpo_g8_bf16.log\", \"submitted_at\": \"2026-05-15T14:41:06.626Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO-G8-bf16\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_g8_bf16\", \"eval_data\": \"docred dev (985 docs)\", \"parent\": \"plan_011_grpo_g8_bf16\", \"wall_clock_seconds\": 11785.0, \"gpu_hours\": 3.27}, \"hypothesis\": \"Eval GRPO G=8 bf16 checkpoints 80/90/100 on full dev set (985 docs). 验证 catastrophic forgetting 是否在 bf16 LoRA 下复现。rel_f1>0.30 → forgetting 不复现 (QLoRA-specific); rel_f1<0.05 → 复现 (C2 加强)。对比: SFT rel_f1=0.4057, QLoRA GRPO rel_f1=0.2167 (catastrophic).\", \"metrics\": {\"ckpt80_rel_f1\": 0.4456, \"ckpt80_ign_f1\": 0.4456, \"ckpt80_evi_f1\": 0.8034, \"ckpt80_edcr\": 0.6409, \"ckpt80_format_ok\": \"984/985\", \"ckpt80_truncated\": 50, \"ckpt90_rel_f1\": 0.4523, \"ckpt90_ign_f1\": 0.4523, \"ckpt90_evi_f1\": 0.8052, \"ckpt90_edcr\": 0.6414, \"ckpt90_format_ok\": \"983/985\", \"ckpt90_truncated\": 61, \"ckpt100_rel_f1\": 0.4549, \"ckpt100_ign_f1\": 0.4549, \"ckpt100_evi_f1\": 0.8086, \"ckpt100_edcr\": 0.6318, \"ckpt100_format_ok\": \"985/985\", \"ckpt100_truncated\": 61, \"best_checkpoint\": \"ckpt-100\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T17:55:03.372Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T17:55:12.125002+00:00\"}]}, \"conclusion\": \"success\", \"notes\": \"3 checkpoints 全部评测完成。rel_f1 单调递增 (0.4456→0.4523→0.4549)，evi_f1 同步上升 (0.8034→0.8052→0.8086)。全部 checkpoint 均大幅超过 SFT baseline (0.4057) 和 QLoRA GRPO (0.2167 catastrophic forgetting)。bf16 LoRA GRPO 无 forgetting，且持续改善至 step 100。Best checkpoint: 100 (rel_f1=0.4549, +12.1% over SFT).\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/grpo_g8_bf16\", \"completed_at\": \"2026-05-15T17:57:31.658Z\"}, \"plan_015_grpo_g4_bf16_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T16:27:09.496Z\", \"updated_at\": \"2026-05-15T16:54:54.376Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_g4_bf16_kl001 --num_generations 4 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --no-quantize --wandb_run_name plan_015_grpo_g4_bf16_v3\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"226476\", \"log_path\": \"~/runs/faith-evidence-ie/plan_015_grpo_g4_bf16_v3.log\", \"submitted_at\": \"2026-05-15T16:32:42.980Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-4B + SFT adapter\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"N/A (training)\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_g4_bf16_kl001\", \"notes\": \"D052: plan_011 vs mvp2_grpo_ced_kl001_r4 已是 clean ablation。v3 取消，cuda:0 腾给 plan_001 eval。\", \"wall_clock_seconds\": 1331.4, \"gpu_hours\": 0.37}, \"notes\": \"Robustness check, 非 single-variable ablation。lr=5e-6 与对照组 (mvp2_grpo_ced_kl001_r4, lr=5e-5) 不一致。D052 确认 plan_011 (bf16 G=8 kl=0.01 lr=5e-5) vs mvp2_grpo_ced_kl001_r4 (QLoRA G=8 kl=0.01 lr=5e-5) 才是 clean ablation。v3 仅作为额外 robustness data point。\", \"hypothesis\": \"P2 robustness check: bf16 LoRA GRPO G=4, kl=0.01, lr=5e-6。D052 确认 plan_011 vs mvp2_grpo_ced_kl001_r4 已是 clean single-variable quantization ablation (Δ=+23.8pp)。v3 仅为 robustness data point，lr=5e-6 与对照组 lr=5e-5 不一致。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T16:54:54.376Z\"}, \"plan_015_grpo_g4_bf16_v2\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-15T16:06:43.308Z\", \"updated_at\": \"2026-05-15T16:54:42.310Z\", \"hypothesis\": \"Robustness check: bf16 LoRA GRPO 在 G=4, kl=0, lr=5e-6 条件下是否也防止 catastrophic forgetting。非 single-variable ablation（kl/lr/G 均与 QLoRA 对照组不同）。D052 确认 plan_011 vs mvp2_grpo_ced_kl001_r4 已是 clean quantization ablation。\", \"parent\": \"plan_011_grpo_g8_bf16\", \"completed_at\": \"2026-05-15T16:25:20.634Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"killed\"}}, \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --model_name Qwen3-4B --sft_adapter sft_output --data_dir data/docred --output_dir grpo_g4_bf16_control --stage 3 --num_generations 4 --kl_coef 0 --learning_rate 5e-6 --max_steps 100 --no-quantize --wandb_run_name plan_015_grpo_g4_bf16_v2\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"222942\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-4B + SFT adapter\", \"seed\": 42, \"notes\": \"kl_coef=0 配置错误最终确认 kill。Director 指令以 plan_015_v3 (kl=0.01) 替代。\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"N/A (training)\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_g4_bf16_control\", \"log_path\": \"~/runs/faith-evidence-ie/plan_015_grpo_g4_bf16_v2.log\"}, \"conclusion\": \"killed\"}, \"plan_015_grpo_g4_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:58:43.784Z\", \"updated_at\": \"2026-05-15T16:03:08.279Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --model_name Qwen3-4B --sft_adapter sft_output --data_dir data/docred --output_dir grpo_ced_g4_bf16 --stage 3 --num_generations 4 --kl_coef 0 --learning_rate 5e-5 --max_steps 100 --no-quantize --wandb_run_name plan_015_grpo_g4_bf16\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"222937\", \"log_path\": \"~/runs/faith-evidence-ie/plan_015_grpo_g4_bf16.log\", \"submitted_at\": \"2026-05-15T15:58:43.532Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3027, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"wall_clock_seconds\": 264.7, \"gpu_hours\": 0.07}, \"hypothesis\": \"bf16 LoRA GRPO clean control: 与原始 QLoRA GRPO 仅改 quantization（4-bit → bf16），保持 G=4, kl=0, CED reward 不变。验证 catastrophic forgetting 是否由 QLoRA quantization 导致。\", \"conclusion\": \"killed\", \"notes\": \"cuda:0 冲突，与 plan_001_rsft_flat_nli (PID 219556) 冲突。plan_001 先到先得，plan_015 被终止。待 plan_001 完成后重新提交 plan_015。\", \"completed_at\": \"2026-05-15T16:03:08.279Z\"}, \"plan_011_grpo_g8_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T13:59:50.014Z\", \"updated_at\": \"2026-05-15T15:55:53.725Z\", \"hypothesis\": \"GRPO G=8 bf16 LoRA: 验证 catastrophic forgetting 是否在 bf16（非 QLoRA 4-bit）下仍复现。CED reward + kl_coef=0.01, 100 steps。如仍 fail → 加强 Claim 3\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=3 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/grpo_ced_g8_bf16 --stage 3 --num_generations 8 --kl_coef 0.01 --learning_rate 5e-5 --max_steps 100 --save_steps 10 --save_total_limit 10 --per_device_batch_size 1 --gradient_accumulation_steps 1 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --no-quantize --wandb_run_name plan_011_grpo_g8_bf16\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"210099\", \"log_path\": \"~/runs/faith-evidence-ie/plan_011_grpo_g8_bf16.log\", \"submitted_at\": \"2026-05-15T14:00:10.122Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 6943.6, \"gpu_hours\": 1.93}, \"log_path\": \"/root/runs/faith-evidence-ie/plan_011_grpo_g8_bf16.log\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_g8_bf16\", \"reproduce\": {\"finished_at\": \"2026-05-15T14:35:19.476Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:35:23.573303+00:00\"}]}, \"metrics\": {\"final_step\": 100, \"train_runtime_s\": 554, \"reward_final\": 1.795, \"f1_reward_final\": 1.002, \"ced_reward_final\": 0.494, \"format_reward_final\": 0.3, \"frac_zero_std_final\": 0, \"kl_final\": 0.022, \"best_reward_step\": 85, \"best_reward\": 2.858, \"best_f1_reward\": 1.85, \"mode_collapse\": false, \"lora_config\": \"r=64, alpha=128, dropout=0.05, bf16\", \"checkpoints\": \"10 checkpoints (step 10-100)\"}, \"notes\": \"训练完成 (100/100 steps, EXIT_CODE=0, 554s/9.2min)。无 mode collapse (frac_zero_std=0.0 全程)。KL 极低 (0.005-0.052)。训练 metrics 比 QLoRA 更好 (reward 1.795 vs 1.195, 无 frac_zero_std 升高)。但 QLoRA 训练 metrics 也不差，问题在 eval。必须 eval 才能判断 catastrophic forgetting 是算法层面还是量化问题。\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T15:55:53.725Z\"}, \"plan_011_grpo_g8_bf16_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:43:48.481Z\", \"updated_at\": \"2026-05-15T15:55:52.592Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_g8_bf16/checkpoint-100 --sft_adapter /root/autodl-tmp/sft_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100 --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"216356\", \"log_path\": \"~/runs/faith-evidence-ie/plan_011_grpo_g8_bf16_eval.log\", \"submitted_at\": \"2026-05-15T14:47:35.396Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 4097.2, \"gpu_hours\": 1.14}, \"reproduce\": {\"finished_at\": \"2026-05-15T15:51:35.239Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T15:51:38.162514+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4549, \"ign_f1\": 0.4549, \"evi_f1\": 0.8086, \"edcr\": 0.6318, \"format_ok_rate\": 1, \"n_truncated\": 61, \"n_total\": 985, \"n_predictions\": 10701, \"checkpoint\": \"checkpoint-100\", \"model\": \"Qwen3-4B + SFT merged + GRPO bf16 LoRA ckpt-100\", \"inference_time_s\": 3170.3}, \"checkpoint_path\": \"/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100\", \"log_path\": \"~/runs/faith-evidence-ie/plan_011_grpo_g8_bf16_eval.log\", \"notes\": \"bf16 GRPO G=8 checkpoint-100 full dev eval (985 docs). F1=0.4549 (+4.92pp vs SFT 0.4057), Evi-F1=0.8086 (+1.07pp vs SFT 0.7979), EDCR=0.6318. Catastrophic forgetting 不复现——bf16 LoRA 下 GRPO 性能甚至超过 SFT baseline。与 QLoRA GRPO (rel_f1=0.2167) 形成鲜明对比。61/985 truncated, 100% format OK. 关键结论: forgetting 是 QLoRA 4-bit 量化导致, 非 GRPO 算法本身问题。但注意此实验同时改了 quantization(bf16 vs 4bit) + group_size(8 vs 4), 需 plan_015 隔离变量。\", \"completed_at\": \"2026-05-15T15:55:52.592Z\"}, \"plan_004_dreeam_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T13:47:01.947Z\", \"updated_at\": \"2026-05-15T15:44:24.920Z\", \"hypothesis\": \"Phase A: 复现 DREEAM fully-supervised teacher (RoBERTa-large) DocRED dev Evi-F1≈54.15, RE-F1≈63.49。论文报告的57.34是student model在test set的结果，需4阶段self-training pipeline。\", \"spec\": {\"command\": \"cd /root/autodl-tmp/baselines/dreeam && python run.py --do_train --data_dir dataset/docred --transformer_type roberta --model_name_or_path roberta-large --train_file train_annotated.json --dev_file dev.json --save_path checkpoints/teacher_roberta --train_batch_size 4 --test_batch_size 8 --num_train_epochs 30 --num_class 97 --seed 66\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"213006\", \"log_path\": \"~/runs/faith-evidence-ie/plan_004_dreeam_baseline.log\", \"submitted_at\": \"2026-05-15T14:29:38.364Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"roberta-large\", \"data_path\": \"/root/autodl-tmp/baselines/dreeam/dataset/docred\", \"data_count\": 3053, \"seed\": 66, \"checkpoint_path\": \"/root/autodl-tmp/baselines/dreeam/checkpoints/teacher_roberta/2026-05-15_22:29:42.720935/last.ckpt\", \"wall_clock_seconds\": 4486.6, \"gpu_hours\": 1.25}, \"reproduce\": {\"finished_at\": \"2026-05-15T15:42:51.417Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T15:42:53.896000+00:00\"}]}, \"metrics\": {\"dev_rel_f1\": 63.57, \"dev_rel_ign_f1\": 61.72, \"dev_evi_f1\": 54.01, \"dev_rel_p\": 66.95, \"dev_rel_r\": 60.51, \"dev_evi_p\": 60.53, \"dev_evi_r\": 48.76}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T15:44:24.920Z\"}, \"mvp2_eval_rsft_r2b_maxtok1536_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:54:57.156Z\", \"updated_at\": \"2026-05-15T15:21:13.816Z\", \"hypothesis\": \"Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). Retry with correct model stack (Base+SFT+RSFT). If EDCR improves significantly (from 0.6609 toward 0.71+), truncation is the cause. If unchanged, distractor citation is genuine RSFT behavior.\", \"parent\": \"mvp2_eval_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T11:55:17.608Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\"\", \"finished_at\": \"2026-05-15T14:55:32.781Z\", \"training_hours\": 3.0}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"197381\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log\", \"submitted_at\": \"2026-05-15T11:55:18.697Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 12352.2, \"gpu_hours\": 3.43}, \"pid\": \"197381\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:55:34.874453+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4504, \"ign_f1\": 0.4504, \"evi_f1\": 0.8102, \"edcr\": 0.674, \"precision\": 0.4488, \"recall\": 0.4519, \"evi_precision\": 0.8162, \"evi_recall\": 0.8044, \"n_truncated\": 146, \"n_total\": 985, \"n_predictions\": 17188, \"n_distractor_citations\": 19589, \"n_total_citations\": 29063, \"format_ok_rate\": 0.998}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/\", \"completed_at\": \"2026-05-15T15:21:10.917Z\", \"notes\": \"max_new_tokens 1536 vs 1024: truncated 179→146 (-33), EDCR 0.6609→0.6740 (+0.0131), rel_f1 0.4493→0.4504, evi_f1 0.8128→0.8102。截断只是 EDCR 偏低的次要因素，distractor citation 是 RSFT 的真实行为。\"}, \"plan_001_flat_nli_scoring\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:36:56.213Z\", \"updated_at\": \"2026-05-15T15:21:03.475Z\", \"hypothesis\": \"flat-NLI scoring 前置步骤：用 flat_nli 模式（p_pos 概率，无 contrastive margin）对 RSFT 生成候选打分并筛选训练数据。\", \"spec\": {\"command\": \"python -m freige.training.rsft_score_filter --scoring_mode flat_nli --top_k 3 --f1_threshold 0.1\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"208155\", \"model_name\": \"DeBERTa-v3-large-mnli-fever-anli-ling-wanli\", \"data_path\": \"/root/autodl-tmp/rsft_generations\", \"data_count\": 21728, \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-15T15:16:35.698Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T15:16:36.841Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T15:16:38.717977+00:00\"}]}, \"metrics\": {\"total_scored\": 21728, \"selected_samples\": 2691, \"selection_rate\": 0.124, \"selection_strategy\": \"top_k=1\", \"f1_threshold\": 0.1, \"output_path\": \"/root/autodl-tmp/rsft_filtered_flat_nli/rsft_train.jsonl\"}, \"notes\": \"Scoring 实际用 top_k=1（非 spec 中的 top_k=3），与 CED scoring 的 top_k=1 (2718 samples) 公平对比。选出 2691 samples。Cron 误报 failed（假阴性），Reviewer 确认输出完整。\"}, \"mvp2_eval_rsft_s43_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:29:17.551Z\", \"updated_at\": \"2026-05-15T13:54:26.023Z\", \"hypothesis\": \"Full dev eval of RSFT s43 (seed=43). 3rd seed for variance estimation. r1: rel_f1=0.4449, s44: rel_f1=0.4655. Pass: rel_f1 > 0.4057, evi_f1 > 0.798. Retry of mvp2_eval_rsft_s43 (fixed arg names).\", \"parent\": \"mvp2_rsft_train_r1_s43\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s43 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"194837\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43_r2.log\", \"submitted_at\": \"2026-05-15T11:29:48.250Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7213.0, \"gpu_hours\": 2.0}, \"pid\": \"194837\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43_r2.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_s43 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize\\\"\", \"finished_at\": \"2026-05-15T13:16:38.318Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:16:41.689788+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4683, \"ign_f1\": 0.4683, \"evi_f1\": 0.8156, \"evi_f1_joint\": 0.3711, \"evi_f1_joint_P\": 0.3747, \"evi_f1_joint_R\": 0.3675, \"edcr\": 0.6388, \"precision\": 0.4817, \"recall\": 0.4556, \"evi_precision\": 0.8142, \"evi_recall\": 0.817, \"n_predictions\": 14970, \"n_truncated\": 171, \"format_ok_rate\": 1, \"inference_time_s\": 6316.7, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0626, \"delta_evi_f1\": 0.0177, \"delta_evi_f1_joint\": 0.0594, \"mvp2_pass\": true}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/rsft_s43\", \"notes\": \"3rd seed PASS. rel_f1=0.4683 (+6.26pp vs SFT), evi_f1=0.8156 (+1.77pp), EDCR=0.6388. 3-seed 完整表: mean rel_f1=0.4596±0.0127, mean evi_f1=0.8143±0.0051. 三个 seed 均稳定超过 SFT baseline。cuda:2 已释放。\", \"completed_at\": \"2026-05-15T13:30:01.258Z\"}, \"mvp2_rsft_ced_scoring_topk3_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:12:38.363Z\", \"updated_at\": \"2026-05-15T13:53:08.461Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Retry with HF_HUB_OFFLINE=1 (NLI model cached locally).\", \"parent\": \"mvp2_rsft_ced_scoring\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T12:13:02.778Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"finished_at\": \"2026-05-15T13:19:15.077Z\", \"training_hours\": 1.1}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/rsft_filtered_topk3/* && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"submitted_at\": \"2026-05-15T12:13:03.900Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 4584.8, \"gpu_hours\": 1.27, \"note\": \"NLI 推理实际跑在 cuda:0 (--nli_device cuda:0)，非 cuda:3。Registry gpu 字段已修正。\"}, \"pid\": \"198997\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:19:17.812206+00:00\"}]}, \"metrics\": {\"input_generations\": 21728, \"selected_samples\": 8037, \"unique_docs\": 2691, \"selection_rate\": 0.37, \"mean_f1\": 0.5761, \"mean_ced\": 0.6205, \"mean_combined\": 0.6787, \"f1_range_p25\": 0.444, \"f1_range_p75\": 0.717, \"ced_range_p25\": 0.487, \"ced_range_p75\": 0.774, \"truncated_samples\": 1924, \"truncated_pct\": 8.9, \"selection_strategy\": \"top_k=3\", \"f1_threshold\": 0.1, \"topk1_samples\": 2718, \"data_multiplier\": 2.96}, \"conclusion\": \"success\", \"notes\": \"top_k=3 scoring 完成。8037 samples (vs top_k=1 的 2718, 2.96x)。质量下降可控: mean_f1 -0.04, mean_ced -0.048。输出: /root/autodl-tmp/rsft_filtered_topk3/rsft_train.jsonl (24.8MB)。可用于 plan_008 RSFT 训练 ablation。\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_filtered_topk3\", \"completed_at\": \"2026-05-15T13:29:28.749Z\"}, \"mvp2_rsft_train_r1_s44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:36:26.321Z\", \"updated_at\": \"2026-05-15T13:27:38.819Z\", \"hypothesis\": \"RSFT training seed=44 variance estimate. Same params as r1 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, CED-filtered 2718 samples). Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-15T05:38:32.212Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s44 --seed 44\\\"\", \"wandb_run_id\": \"rsft-ced-r1-s44\", \"finished_at\": \"2026-05-15T07:32:40.691Z\", \"training_hours\": 1.9}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s44 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s44 --seed 44\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"165672\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s44.log\", \"submitted_at\": \"2026-05-15T05:39:22.747Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_s44\", \"wall_clock_seconds\": 27283.5, \"gpu_hours\": 7.58}, \"pid\": \"165672\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s44.log\", \"wandb_run_id\": \"rsft-ced-r1-s44\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:32:43.021519+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4655, \"evi_f1\": 0.8087, \"evi_f1_joint\": 0.3713, \"evi_f1_joint_P\": 0.3775, \"evi_f1_joint_R\": 0.3653, \"edcr\": 0.635, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0598, \"delta_evi_f1\": 0.0108, \"delta_evi_f1_joint\": 0.0596, \"mvp2_pass\": true}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T13:14:06.295Z\"}, \"mvp2_eval_rsft_r2b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:58.437Z\", \"updated_at\": \"2026-05-15T13:27:35.580Z\", \"hypothesis\": \"Full dev eval of r2b (1 epoch, alpha=32, lr=1e-5, clean data). Ablation: conservative LoRA scaling vs r2a/r1. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2b checkpoint on cuda:3)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2b\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"189855\"}, \"metrics\": {\"rel_f1\": 0.4493, \"ign_f1\": 0.4493, \"evi_f1\": 0.8128, \"evi_f1_joint\": 0.349, \"evi_f1_joint_P\": 0.3455, \"evi_f1_joint_R\": 0.3526, \"edcr\": 0.6609, \"precision\": 0.4566, \"recall\": 0.4424, \"evi_precision\": 0.8201, \"evi_recall\": 0.8056, \"pred_count\": 14829, \"format_ok\": \"983/985\", \"truncated\": 179, \"inference_time_s\": 5862, \"delta_evi_f1_joint\": 0.0373}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2b\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_r2b/eval.log\", \"completed_at\": \"2026-05-15T11:44:36.428Z\"}, \"mvp2_eval_rsft_r2a\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:42:57.684Z\", \"updated_at\": \"2026-05-15T13:27:32.756Z\", \"hypothesis\": \"Full dev eval of r2a (1 epoch, alpha=128, clean data). Ablation: 1 epoch vs 3 epoch (r1). Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_r2a\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r2a checkpoint on cuda:1)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r2a\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2a\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4494, \"ign_f1\": 0.4494, \"evi_f1\": 0.8108, \"evi_f1_joint\": 0.3509, \"evi_f1_joint_P\": 0.3423, \"evi_f1_joint_R\": 0.3599, \"edcr\": 0.6641, \"precision\": 0.4512, \"recall\": 0.4475, \"evi_precision\": 0.8143, \"evi_recall\": 0.8073, \"format_ok_rate\": 1, \"n_predictions\": 15482, \"n_truncated\": 208, \"inference_time_s\": 5967.2, \"delta_evi_f1_joint\": 0.0392}, \"notes\": \"RSFT r2a (1ep, alpha=128/r=64, lr=2e-5, clean 2548 samples). rel_f1=0.4494 (+0.0045 vs r1, +0.0001 vs r2b), evi_f1=0.8108 (-0.0079 vs r1, -0.0020 vs r2b), edcr=0.6641 (+0.0032 vs r2b). 1 epoch with clean data matches r1's 3-epoch rel_f1 while being cheaper. r2a vs r2b (alpha=128 vs 32): nearly identical rel_f1, marginal edcr advantage for higher alpha. All RSFT variants beat SFT baseline on rel_f1/evi_f1 but lose on edcr (0.66-0.66 vs 0.71).\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/rsft_r2a\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_r2a/eval.log\", \"completed_at\": \"2026-05-15T11:46:56.410Z\"}, \"mvp2_eval_rsft_r1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T09:40:47.529Z\", \"updated_at\": \"2026-05-15T13:27:31.402Z\", \"hypothesis\": \"Full dev eval of RSFT r1 (seed=42). Same pipeline as s44 eval (985 docs, no-quantize). Need 3-seed data for complete_mvp. s44 PASS: rel_f1=0.4655, evi_f1=0.8087.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"spec\": {\"command\": \"python -m freige.eval.inference --no-quantize (r1 checkpoint on cuda:2)\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + RSFT r1\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"pid\": \"186329\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output\", \"log_path\": \"/root/autodl-tmp/eval_results/rsft_r1/eval.log\"}, \"metrics\": {\"rel_f1\": 0.4449, \"evi_f1\": 0.8187, \"evi_f1_joint\": 0.3468, \"evi_f1_joint_P\": 0.3515, \"evi_f1_joint_R\": 0.3423, \"edcr\": 0.6565, \"num_preds\": 15307, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0392, \"delta_evi_f1\": 0.0208, \"delta_evi_f1_joint\": 0.0351, \"mvp2_pass\": true}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T11:30:26.893Z\"}, \"mvp2_eval_sft_baseline\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T21:47:41.356Z\", \"updated_at\": \"2026-05-15T13:27:26.236Z\", \"hypothesis\": \"SFT baseline eval using identical eval protocol as GRPO evals (eval_lr5e6_ckpt20.sh). Required for MVP-2 core comparison: CED_Evi-F1 − SFT_Evi-F1 ≥ 2pp. Prior SFT eval (r3) used different eval path; this ensures apple-to-apple comparison.\", \"parent\": \"mvp2_sft_warmup\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T21:49:57.466Z\"}, \"notes\": \"[2026-05-15 07:39] Eval 正常完成。结果与 r2/r3 完全一致 (rel_f1=0.4057, evi_f1=0.7979)，apple-to-apple 对比协议复现成功。结果路径: /root/autodl-tmp/sft_baseline_eval_results/metrics.json。cuda:3 已释放。\", \"completed_at\": \"2026-05-14T22:10:34.104Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"[2026-05-15 06:05] RUNNING on cuda:3, PID 104979. Progress: 4/62 batches (6.5%). Shares GPU 3 with mvp2_eval_lr5e6_rp_r2_ckpt20 (PID 103831). ~146s/batch, ETA ~2h20m. Log: tee failed (logs dir missing), output in tmux only. Output dir: /root/autodl-tmp/sft_baseline_eval_results/\"}}, \"spec\": {\"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"account\": \"root\", \"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/sft_baseline_eval_results --quantize\", \"pid\": \"104979\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT LoRA adapter\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"docred dev split\", \"checkpoint_path\": \"/root/autodl-tmp/sft_baseline_eval_results/metrics.json\", \"log_path\": \"N/A - tmux output only\"}, \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4057, \"evi_f1\": 0.7979, \"evi_f1_joint\": 0.3117, \"evi_f1_joint_P\": 0.3037, \"evi_f1_joint_R\": 0.32, \"edcr\": 0.7118, \"pred_count\": 12234, \"gold_count\": 12151, \"format_ok_rate\": 0.998, \"format_compliance_rate\": 0.998, \"field_compliance_rate\": 0.6264, \"n_truncated\": 367, \"inference_time_seconds\": 6138.5}}, \"mvp2_eval_rsft_r2b_maxtok1536\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:49:48.849Z\", \"updated_at\": \"2026-05-15T13:23:59.642Z\", \"hypothesis\": \"Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). If EDCR improves significantly (from 0.6609 toward 0.71+), current EDCR gap is truncation artifact, not model issue. If EDCR unchanged, distractor citation is genuine RSFT behavior.\", \"parent\": \"mvp2_eval_rsft_r2b\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"196700\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536.log\", \"submitted_at\": \"2026-05-15T11:51:37.717Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B+SFT+RSFT r2b\", \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_r2b\", \"eval_data\": \"docred dev (985 docs)\", \"seed\": 42, \"purpose\": \"诊断 EDCR 下降是否因 max_new_tokens=1024 截断导致，179/985 docs 被截断，改用 1536 重跑\", \"wall_clock_seconds\": 5541.9, \"gpu_hours\": 1.54}, \"conclusion\": \"killed\", \"notes\": \"Reviewer CRITICAL: 命令缺少 --base_model 和 --sft_adapter，模型 stack 是 Base+RSFT LoRA 而非 Base+SFT+RSFT LoRA，结果不可用。PID 196700 已 kill。重试为 mvp2_eval_rsft_r2b_maxtok1536_r2。\", \"completed_at\": \"2026-05-15T13:23:59.642Z\"}, \"mvp2_rsft_ced_scoring_topk3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:35:23.225Z\", \"updated_at\": \"2026-05-15T13:20:42.443Z\", \"hypothesis\": \"CED scoring ablation: top_k=3 (vs top_k=1). More training data (~8000 samples) vs stricter selection (2718 samples). Answers: does CED filtering strictness affect RSFT training quality?\", \"spec\": {\"command\": \"python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered_topk3 --nli_model_path cross-encoder/nli-deberta-v3-base --nli_device cuda:0 --selection_strategy top_k --top_k 3 --f1_threshold 0.1 --tau 0.5\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"198680\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_ced_scoring_topk3.log\", \"submitted_at\": \"2026-05-15T12:09:41.690Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/rsft_generations/generations.jsonl\", \"data_count\": 21952, \"model_name\": \"cross-encoder/nli-deberta-v3-base\", \"seed\": 42, \"wall_clock_seconds\": 4260.8, \"gpu_hours\": 1.18}, \"conclusion\": \"killed\", \"notes\": \"NLI 模型加载失败 (HuggingFace Network unreachable)。命令缺少 HF_HOME/HF_HUB_OFFLINE/TRANSFORMERS_OFFLINE 环境变量。重试为 mvp2_rsft_ced_scoring_topk3_r2。\", \"completed_at\": \"2026-05-15T13:20:42.443Z\"}, \"mvp2_rsft_r2b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:57:46.813Z\", \"updated_at\": \"2026-05-15T13:14:23.368Z\", \"hypothesis\": \"RSFT r2b: data fix + training dynamics fix (1 epoch + filter truncated + LoRA alpha=32/r=64 scaling 0.5 + lr=1e-5). Isolates: is conservative LoRA scaling the key factor? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-15T08:58:45.465Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2b --learning_rate 1e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 32 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2b --seed 42\\\"\", \"wandb_run_id\": \"rsft-r2b\", \"finished_at\": \"2026-05-15T09:35:56.802Z\", \"training_hours\": 0.62}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2b --learning_rate 1e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 32 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2b --seed 42\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"183587\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_r2b.log\", \"submitted_at\": \"2026-05-15T09:00:01.270Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2b\", \"wall_clock_seconds\": 15262.1, \"gpu_hours\": 4.24}, \"pid\": \"183587\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_r2b.log\", \"wandb_run_id\": \"rsft-r2b\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T09:35:58.776100+00:00\"}]}, \"notes\": \"训练完成 (160 steps, 33.7min, eval_loss=0.7545)。TaskEvalCallback rel_f1=0.0504 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4493, \"evi_f1\": 0.8128, \"edcr\": 0.6609, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0436, \"delta_evi_f1\": 0.0149, \"mvp2_pass\": true}, \"completed_at\": \"2026-05-15T13:14:23.368Z\"}, \"mvp2_rsft_r2a\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:57:46.140Z\", \"updated_at\": \"2026-05-15T13:14:22.509Z\", \"hypothesis\": \"RSFT r2a: data fix only (1 epoch + filter 170 truncated JSON → 2548 samples). Same LoRA alpha=128/r=64, lr=2e-5 as r1. Isolates: does 1 epoch + clean data alone fix the ontology collapse? Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T08:58:44.826Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2a --learning_rate 2e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2a --seed 42\\\"\", \"wandb_run_id\": \"rsft-r2a\", \"finished_at\": \"2026-05-15T09:36:15.752Z\", \"training_hours\": 0.63}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train_clean.jsonl --output_dir /root/autodl-tmp/rsft_output_r2a --learning_rate 2e-5 --num_epochs 1 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --save_steps 50 --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-r2a --seed 42\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"183504\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_r2a.log\", \"submitted_at\": \"2026-05-15T08:59:58.168Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_r2a\", \"wall_clock_seconds\": 15264.3, \"gpu_hours\": 4.24}, \"pid\": \"183504\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_r2a.log\", \"wandb_run_id\": \"rsft-r2a\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T09:36:20.493042+00:00\"}]}, \"notes\": \"训练完成 (160 steps, 35.5min, eval_loss=0.7547)。TaskEvalCallback rel_f1=0.0509 是已知 bug (D038: gold triples 分母不匹配)，不代表真实性能。需全量 dev eval 确认实际指标。\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4494, \"evi_f1\": 0.8108, \"edcr\": 0.6641, \"sft_baseline_rel_f1\": 0.4057, \"sft_baseline_evi_f1\": 0.7979, \"delta_rel_f1\": 0.0437, \"delta_evi_f1\": 0.0129, \"mvp2_pass\": true}, \"completed_at\": \"2026-05-15T13:14:22.510Z\"}, \"mvp2_rsft_diagnosis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T07:55:04.100Z\", \"updated_at\": \"2026-05-15T12:09:32.257Z\", \"hypothesis\": \"RSFT failure root cause: rel_f1=0.0483 vs SFT 0.4057. Diagnose: training data distribution (relation count), step-170 checkpoint output analysis, SFT vs RSFT data comparison.\", \"conclusion\": \"success\", \"metrics\": {\"root_cause\": \"overfitting_plus_sft_knowledge_overwrite\", \"truncated_json_samples\": 170, \"truncated_pct\": 6.3, \"epoch1_eval_loss\": 0.756, \"epoch2_eval_loss\": 0.759, \"lora_scaling\": 2, \"rsft_zero_relation_samples\": 170, \"sft_zero_relation_docs\": 26, \"rsft_mean_relations\": 11.2, \"sft_mean_relations\": 12.5}, \"checkpoint_path\": \"N/A (diagnosis task, no checkpoint)\", \"log_path\": \"N/A (diagnosis task)\", \"completed_at\": \"2026-05-15T12:09:32.257Z\"}, \"mvp2_eval_ced_kl001_r4_last\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:10:05.820Z\", \"updated_at\": \"2026-05-15T12:09:21.004Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && cd /root/autodl-tmp/freige && CUDA_VISIBLE_DEVICES=0 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 90,100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_last.log\", \"submitted_at\": \"2026-05-14T18:10:05.342Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 64755.7, \"gpu_hours\": 17.99}, \"notes\": \"已被拆分为独立 eval：ckpt-90 → mvp2_eval_ced_kl001_r4_ckpt90 (cuda:3)，ckpt-100 → mvp2_eval_ced_kl001_r4_step100 (cuda:0)。此条目作废。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:09:21.004Z\"}, \"mvp2_grpo_ced_kl001_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:25:06.729Z\", \"updated_at\": \"2026-05-15T12:09:20.252Z\", \"hypothesis\": \"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr + bash -c wrapping)\", \"parent\": \"mvp2_grpo_ced_kl001\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.01 --num_iterations 1 --save_steps 20 --save_total_limit 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --learning_rate 5e-5 --gradient_accumulation_steps 16 --num_generations 4\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"65740\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r3.log\", \"submitted_at\": \"2026-05-14T15:25:17.200Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 74643.1, \"gpu_hours\": 20.73}, \"notes\": \"失败原因: datasets 库不支持 thunlp/docred 自定义脚本 (RuntimeError: Dataset scripts are no longer supported)。命令缺少 --data_dir /root/autodl-tmp/data/docred 参数，触发 HF 远程下载失败。需要补全所有必要参数后重新提交。error_type: infrastructure | can_auto_fix: true\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:09:20.252Z\"}, \"mvp2_grpo_ced_kl001_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:23:16.518Z\", \"updated_at\": \"2026-05-15T12:09:19.263Z\", \"hypothesis\": \"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary (retry: fix --lr → --learning_rate)\", \"parent\": \"mvp2_grpo_ced_kl001\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.01 --num_iterations 1 --save_steps 20 --save_total_limit 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --learning_rate 5e-5 --gradient_accumulation_steps 16 --num_generations 4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r2.log\", \"submitted_at\": \"2026-05-14T15:23:31.047Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 74748.2, \"gpu_hours\": 20.76}, \"conclusion\": \"killed\", \"notes\": \"失败原因: 命令未用 bash -c 包裹，tmux 以 sh 执行导致 source 命令失败。error_type: infrastructure | can_auto_fix: true\", \"completed_at\": \"2026-05-15T12:09:19.263Z\"}, \"mvp2_rsft_train_r2_fix\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:38:03.815Z\", \"updated_at\": \"2026-05-15T12:09:18.298Z\", \"hypothesis\": \"RSFT r2 fix: 4 fixes based on r1 diagnosis. 1) 1 epoch (vs 3), 2) LoRA alpha=32/r=64 (scaling 0.5 vs 2.0), 3) filtered truncated JSON (~2548 vs 2718 samples), 4) lr=1e-5 (vs 2e-5). Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:09:18.298Z\"}, \"mvp2_rsft_train_r1_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:36:25.275Z\", \"updated_at\": \"2026-05-15T11:31:48.727Z\", \"hypothesis\": \"RSFT training seed=43 variance estimate. Same params as r1 (bf16 LoRA r=64/α=128, lr=2e-5, 3 epochs, weighted sampling, CED-filtered 2718 samples). Pass: rel_f1 > 0.4057 AND evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T05:38:31.664Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s43 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s43 --seed 43\\\"\", \"wandb_run_id\": \"rsft-ced-r1-s43\", \"finished_at\": \"2026-05-15T07:37:49.819Z\", \"training_hours\": 1.99}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output_s43 --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1-s43 --seed 43\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"165590\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s43.log\", \"submitted_at\": \"2026-05-15T05:39:20.307Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 21148.4, \"gpu_hours\": 5.87}, \"pid\": \"165590\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1_s43.log\", \"wandb_run_id\": \"rsft-ced-r1-s43\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:37:52.173054+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_s43\", \"metrics\": {\"eval_loss\": 0.7622, \"train_loss\": 0.6148, \"eval_entropy\": 0.6724, \"mean_token_accuracy\": 0.8291, \"total_steps\": 510, \"epochs\": 3, \"training_hours\": 1.99}, \"conclusion\": \"success\", \"notes\": \"训练正常完成 (510 steps, 1.99h, eval_loss=0.7622, train_loss=0.6148)。与 s44 (eval_loss=未记录) 和 r1 相近。TaskEvalCallback rel_f1 是已知 bug，需全量 eval。全量 eval 重试 mvp2_eval_rsft_s43_r2 正在运行中。\", \"completed_at\": \"2026-05-15T11:31:48.727Z\"}, \"mvp2_eval_rsft_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:25:26.268Z\", \"updated_at\": \"2026-05-15T11:29:11.205Z\", \"hypothesis\": \"Full dev eval of RSFT s43 (seed=43). 3rd seed for variance estimation. r1: rel_f1=0.4449, s44: rel_f1=0.4655. Pass: rel_f1 > 0.4057, evi_f1 > 0.798.\", \"parent\": \"mvp2_rsft_train_r1_s43\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_adapter /root/autodl-tmp/rsft_output_s43 --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize --gpu 0\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"194296\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43.log\", \"submitted_at\": \"2026-05-15T11:26:15.318Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 18.9, \"gpu_hours\": 0.01}, \"pid\": \"194296\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_s43.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_adapter /root/autodl-tmp/rsft_output_s43 --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/rsft_s43 --no-quantize --gpu 0\\\"\", \"finished_at\": \"2026-05-15T11:26:32.872Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T11:26:34.235Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:26:36.157796+00:00\"}]}, \"notes\": \"参数名错误导致失败: --rsft_adapter 应为 --model_path, --data_dir 应为 --data_path, --gpu 0 不存在。重试为 mvp2_eval_rsft_s43_r2。\"}, \"mvp2_rsft_train_r1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:27:39.073Z\", \"updated_at\": \"2026-05-15T09:40:39.078Z\", \"hypothesis\": \"RSFT training on CED-filtered data (2718 samples, mean CED=0.668). SFT warmup baseline: rel_f1=0.4057, evi_f1=0.798. Pass criteria: rel_f1 > 0.4057 AND evi_f1 > 0.798.\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1 --seed 42\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"165130\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1.log\", \"submitted_at\": \"2026-05-15T05:37:57.880Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7210.1, \"gpu_hours\": 2.0}, \"pid\": \"165130\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_train_r1.log\", \"wandb_run_id\": \"rsft-ced-r1\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --rsft_data_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --output_dir /root/autodl-tmp/rsft_output --learning_rate 2e-5 --num_epochs 3 --per_device_batch_size 4 --gradient_accumulation_steps 4 --lora_rank 64 --lora_alpha 128 --weighted_sampling --eval_data_dir /root/autodl-tmp/data/docred --eval_max_docs 50 --wandb_run_name rsft-ced-r1 --seed 42\\\"\", \"wandb_run_id\": \"rsft-ced-r1\", \"finished_at\": \"2026-05-15T07:35:10.628Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T07:35:13.068974+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output\", \"metrics\": {\"rel_f1\": 0.0483, \"num_preds\": 848, \"sft_baseline_rel_f1\": 0.4057, \"failure_mode\": \"relation_ontology_collapse_to_freetext\", \"epoch1_eval_loss\": 0.756, \"epoch2_eval_loss\": 0.759}, \"completed_at\": \"2026-05-15T07:38:07.936Z\", \"notes\": \"D037 修正: TaskEvalCallback 的 rel_f1=0.0483 是 eval bug（gold triples 未限制为 eval_max_docs 子集）。全量 eval 待跑。s44 全量 eval 已 PASS: rel_f1=0.4655, evi_f1=0.8087。\"}, \"mvp2_rsft_ced_scoring\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T05:27:32.788Z\", \"updated_at\": \"2026-05-15T05:33:16.769Z\", \"hypothesis\": \"CED scoring + filtering on 4 shard RSFT generations. top_k=1, f1_threshold=0.1. 21952 → 2718 selected (12.4%).\", \"spec\": {\"command\": \"python -m freige.training.rsft_score_filter --input_dir /root/autodl-tmp/rsft_generations --output_path /root/autodl-tmp/rsft_filtered/rsft_train.jsonl --selection_strategy top_k --top_k 1 --f1_threshold 0.1\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/rsft_generations/\", \"data_count\": 21952, \"model_name\": \"cross-encoder/nli-deberta-v3-base\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/rsft_filtered/rsft_train.jsonl\", \"log_path\": \"/root/autodl-tmp/rsft_filtered/rsft_combined_report.json\"}, \"conclusion\": \"success\", \"metrics\": {\"input_generations\": 21952, \"selected_samples\": 2718, \"unique_docs\": 2691, \"selection_rate\": 0.124, \"mean_f1\": 0.6157, \"mean_ced\": 0.6683, \"f1_range\": [0.1026, 1], \"zero_f1_samples\": 0, \"selection_strategy\": \"top_k=1\", \"f1_threshold\": 0.1}, \"completed_at\": \"2026-05-15T05:33:16.769Z\"}, \"mvp2_rsft_gen_s0\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:39:26.572Z\", \"updated_at\": \"2026-05-15T05:21:50.725Z\", \"spec\": {\"pid\": \"135867\"}, \"hypothesis\": \"RSFT generation shard 0/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\", \"parent\": \"mvp2_sft_warmup\", \"reproduce\": {\"finished_at\": \"2026-05-15T04:54:30.317Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:54:31.450Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T04:54:36.643913+00:00\"}]}, \"notes\": \"[2026-05-15 05:01] 生成完成 682/682 docs (100%)。EXIT_CODE=143 是正常完成后的清理 SIGTERM。format_ok 99.6%, truncation_rate 10.1%, diversity 7.6/8。\"}, \"mvp2_rsft_gen_s3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:39:34.645Z\", \"updated_at\": \"2026-05-15T05:01:10.955Z\", \"spec\": {\"pid\": \"137985\"}, \"hypothesis\": \"RSFT generation shard 3/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\", \"parent\": \"mvp2_sft_warmup\", \"reproduce\": {\"finished_at\": \"2026-05-15T04:49:43.444Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T04:49:45.523884+00:00\"}]}, \"conclusion\": \"success\", \"log_path\": \"/root/runs/faith-evidence-ie/mvp2_rsft_gen_s3.log\", \"metrics\": {\"generation_count\": 5288, \"unique_docs\": 659, \"format_compliance\": 0.998, \"diversity_range\": \"7.5-7.8/8\", \"exit_code\": 0}, \"checkpoint_path\": \"/root/autodl-tmp/rsft_generations/shard_3/generations.jsonl\", \"completed_at\": \"2026-05-15T05:00:41.430Z\"}, \"mvp2_rsft_gen_s2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:39:32.299Z\", \"updated_at\": \"2026-05-15T04:37:31.632Z\", \"spec\": {\"pid\": \"136649\"}, \"hypothesis\": \"RSFT generation shard 2/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\", \"parent\": \"mvp2_sft_warmup\", \"reproduce\": {\"finished_at\": \"2026-05-15T04:36:43.615Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:36:45.294Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T04:36:48.376664+00:00\"}]}}, \"mvp2_rsft_gen_s1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T01:39:29.894Z\", \"updated_at\": \"2026-05-15T04:37:14.926Z\", \"spec\": {\"pid\": \"136270\"}, \"hypothesis\": \"RSFT generation shard 1/4: N=8 generations at T=0.7 with generation_config override (top_k=0). OOM fix: batch_size=1.\", \"parent\": \"mvp2_sft_warmup\", \"reproduce\": {\"finished_at\": \"2026-05-15T04:34:07.774Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T04:34:08.880Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T04:34:14.011538+00:00\"}]}}, \"mvp2_rsft_generate\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T00:09:41.289Z\", \"updated_at\": \"2026-05-15T01:32:10.047Z\", \"hypothesis\": \"RSFT generation phase: SFT model generates N=8 candidate outputs per training sample at T=0.7. CED scoring + filtering后作为 RSFT 训练数据。D031 pivot 方向。\", \"parent\": \"mvp2_sft_warmup\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T00:09:52.157Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp && python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split train_annotated --output_dir /root/autodl-tmp/rsft_generations --num_generations 8 --temperature 0.7 --batch_size 2 --max_new_tokens 1024 --seed 42\\\"\", \"finished_at\": \"2026-05-15T01:32:08.718Z\", \"training_hours\": 1.37}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp && python -m freige.training.rsft_generate --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split train_annotated --output_dir /root/autodl-tmp/rsft_generations --num_generations 8 --temperature 0.7 --batch_size 2 --max_new_tokens 1024 --seed 42\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"122144\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_generate.log\", \"submitted_at\": \"2026-05-15T00:09:53.637Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 4936.4, \"gpu_hours\": 1.37}, \"pid\": \"122144\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_rsft_generate.log\", \"failure_reason\": \"EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T01:32:10.047Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:32:15.807942+00:00\"}]}}, \"mvp2_diversity_probe\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T00:02:19.966Z\", \"updated_at\": \"2026-05-15T01:31:34.495Z\", \"hypothesis\": \"RSFT viability check: SFT model output diversity at T=0.7/1.0 with N=8 generations. Pass criteria: unique triple-sets >= 5/8.\", \"conclusion\": \"success\", \"metrics\": {\"unique_triples_t07\": 5, \"unique_triples_t10\": 8, \"jaccard_t07\": 0.17, \"jaccard_t10\": 0.051, \"format_ok_rate_t07\": 0.5, \"format_ok_rate_t10\": 0.438, \"n_samples\": 3, \"n_generations\": 8, \"note\": \"unique_triples_t07 corrected from 7 to 5.0 (mean). Reviewer: format_ok ~34% after fix, 'diversity' was JSON key name variants not semantic diversity\"}, \"notes\": \"[2026-05-15 01:35] D034 独立验证结果: 200 docs 实际 diversity=7.11/8 (median=8.0), evidence diversity=5.43/8, format parse rate=90.2%。61.5% 文档达到 8/8 完全不同。之前监控报告的 mean_diversity=1.0/8 是监控计算 bug，非生成质量问题。diversity_probe 早期观察(7/8)是准确的。RSFT 前提成立。\", \"spec\": {\"command\": \"python diversity_probe.py (已完成, 状态修正)\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3, \"model_name\": \"Qwen3-4B + SFT adapter\", \"seed\": 42, \"checkpoint_path\": \"N/A (probe only)\", \"log_path\": \"N/A (probe only)\"}, \"completed_at\": \"2026-05-15T01:03:18.175Z\", \"checkpoint_path\": \"N/A (validation probe, no checkpoint)\", \"log_path\": \"N/A (validation probe)\"}, \"mvp2_eval_lr5e6_r1_ckpt100\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:00:57.035Z\", \"updated_at\": \"2026-05-15T01:30:01.493Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"submitted_at\": \"2026-05-14T23:39:51.199Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 6160.9, \"gpu_hours\": 1.71}, \"hypothesis\": \"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T23:39:49.461Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"finished_at\": \"2026-05-15T01:19:34.927Z\", \"training_hours\": 1.66}, \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:19:36.799167+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\", \"completed_at\": \"2026-05-15T01:22:32.071Z\"}, \"mvp2_grpo_ced_lr5e6_r1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:21:08.231Z\", \"updated_at\": \"2026-05-15T01:29:06.862Z\", \"hypothesis\": \"D030/P0: lr=5e-6 (10x lower than ced_kl001_r4) prevents catastrophic forgetting while maintaining CED reward improvement. Community consensus GRPO+QLoRA lr=5e-6~1e-5. Pass criteria: ckpt-20 rel_f1 > 0.30. Extra monitoring: pred_count + recall trend.\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_lr5e6 --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --wandb_run_name grpo-s3-ced-lr5e6-r1\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"90080\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3053, \"model_name\": \"Qwen3-4B + SFT adapter\", \"seed\": 42, \"hyperparams\": {\"learning_rate\": 5e-06, \"kl_coef\": 0.01, \"num_generations\": 8, \"gradient_accumulation_steps\": 16, \"max_steps\": 200, \"save_steps\": 20, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 1, \"tau_start\": 0.3, \"tau_end\": 0.5}}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:0\", \"pid\": \"90080\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_r1.log\", \"wandb_run_id\": \"grpo-s3-ced-lr5e6-r1\", \"reproduce\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_lr5e6 --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --wandb_run_name grpo-s3-ced-lr5e6-r1\\\"\", \"wandb_run_id\": \"grpo-s3-ced-lr5e6-r1\"}, \"notes\": \"[2026-05-15 01:08] D032 执行: PID 90080 killed (force_killed=true)。训练 step ~113/200。完整 lr5e-6 轨迹: ckpt-20→40→60→80 rel_f1 = 0.008/0.007/0.009/0.012，无恢复信号。GRPO+QLoRA 方向判死 (D031)，GPU 释放给 RSFT 流水线。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T01:07:56.366Z\"}, \"mvp2_eval_lr5e6_r1_ckpt80\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:25:45.043Z\", \"updated_at\": \"2026-05-15T01:02:32.508Z\", \"spec\": {\"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO lr5e6 ckpt-80\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-80\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"command\": \"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-80 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80 --quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"111731\", \"account\": \"root\", \"log_path\": \"/tmp/eval_lr5e6_ckpt80.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/\"}, \"hypothesis\": \"P0 ckpt-80 eval: lr=5e-6 GRPO at step 80. 训练轨迹继续——ckpt-20 FAIL (0.0077), ckpt-40/60 待出. Step 80 reward=0.283 (回升), format_reward=0.249. Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"notes\": \"[2026-05-15 08:56] 正常完成。rel_f1=0.0116，延续 ckpt-20/40/60 的平坦趋势 (0.007-0.012)。evi_f1=0.828 继续上升。lr5e6 轨迹: step 20→40→60→80 rel_f1 = 0.008/0.007/0.009/0.012，无恢复信号。cuda:2 已释放。\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.0116, \"ign_f1\": 0.0116, \"precision\": 0.0109, \"recall\": 0.0124, \"evi_f1\": 0.828, \"evi_precision\": 0.928, \"evi_recall\": 0.748, \"edcr\": 0.993, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.788, \"pred_count\": 13828, \"gold_count\": 12151, \"n_truncated\": 210, \"inference_time_seconds\": 6099}, \"completed_at\": \"2026-05-15T00:56:43.952Z\"}, \"mvp2_eval_lr5e6_r1_ckpt60_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:27:56.124Z\", \"updated_at\": \"2026-05-15T00:07:56.895Z\", \"hypothesis\": \"P0 ckpt-60 eval retry: 原 submit_on_allocated 失败 (pid=unknown). 手动 SSH 启动 /root/autodl-tmp/scripts/eval_lr5e6_ckpt60.sh. Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"spec\": {\"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO lr5e6 ckpt-60\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-60\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-60 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60 --quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"108185\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt60_r2.log\", \"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json\"}, \"conclusion\": \"negative\", \"notes\": \"[2026-05-15 08:07] 正常完成。rel_f1=0.0093，与 ckpt-20 (0.0077) / ckpt-40 (0.0071) 同一量级，无恢复信号。evi_f1=0.81 持续上升（ckpt-20: 0.628, ckpt-40: 0.758），证据抽取在改善但关系能力完全崩塌。结果路径: /root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json。cuda:1 已释放。\", \"metrics\": {\"rel_f1\": 0.0093, \"precision\": 0.0085, \"recall\": 0.0103, \"evi_f1\": 0.81, \"edcr\": 0.993, \"format_ok_rate\": 0.998, \"pred_count\": 14626, \"gold_count\": 12151, \"tp\": 125, \"inference_time_seconds\": 6152}, \"completed_at\": \"2026-05-15T00:07:56.895Z\"}, \"mvp2_eval_lr5e6_r1_ckpt60\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T22:13:47.936Z\", \"updated_at\": \"2026-05-14T23:25:25.584Z\", \"hypothesis\": \"P0 ckpt-60 eval: lr=5e-6 GRPO at step 60. 训练轨迹数据点——ckpt-20 catastrophic forgetting (rel_f1=0.0077)，需看后续 checkpoint 是否恢复。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_lr5e6 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt60 --checkpoints 60 --quantize\\\"\", \"finished_at\": \"2026-05-14T22:25:13.602Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-14T22:25:14.773Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T22:25:16.365584+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"[2026-05-15 07:28] 手动 SSH 启动成功. PID=108025, cuda:1, log=/tmp/eval_lr5e6_ckpt60.log\"}}, \"notes\": \"[2026-05-15 07:24] D031 清理: PID 108025 因 cd path 问题从未产出有效结果。已被 _r2 (PID 108185) 取代。标记 failed 关闭。\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 bash /root/autodl-tmp/scripts/eval_lr5e6_ckpt60.sh\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"108025\", \"log_path\": \"/tmp/eval_lr5e6_ckpt60.log\", \"submitted_at\": \"2026-05-14T22:29:00Z\", \"submitted_via\": \"manual_ssh\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/grpo_ced_lr5e6\", \"data_count\": 0, \"model_name\": \"grpo_ced_lr5e6_ckpt60\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-60\", \"eval_data\": \"batch_eval\", \"checkpoint_path\": \"N/A - process had wrong Python path, never produced valid output\", \"log_path_note\": \"PID 108025 had cd path issue, replaced by _r2 (PID 108185)\", \"wall_clock_seconds\": 3385.6, \"gpu_hours\": 0.94}, \"conclusion\": \"failed\"}, \"mvp2_eval_lr5e6_r1_ckpt40_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:41:34.558Z\", \"updated_at\": \"2026-05-14T23:11:56.267Z\", \"hypothesis\": \"Re-tracking orphan PID 101842 for P0 ckpt-40 eval (lr=5e-6 GRPO step 40). Original exp auto-failed due to cron/PID mismatch. Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"spec\": {\"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"account\": \"root\", \"command\": \"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference\", \"pid\": \"101842\", \"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO lr5e6 ckpt-40\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-40\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"log_path\": \"/tmp/eval_lr5e6_ckpt40.log\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-40\", \"conclusion\": \"negative\", \"metrics\": {\"f1\": 0.007146887342486364, \"ign_f1\": 0.007146887342486364, \"precision\": 0.0065816821393931, \"recall\": 0.007818286560776891, \"evi_f1\": 0.7583892617449665, \"edcr\": 0.9942045337983383, \"format_ok_rate\": 0.9939086294416244, \"tp\": 95, \"pred_count\": 14434, \"gold_count\": 12151, \"n_truncated\": 424, \"inference_time_seconds\": 6152.4}, \"result_dir\": \"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40\"}, \"notes\": \"[2026-05-15 06:50] 全面状态检查: PID 101842 存活 (Rl, uptime 1:25), GPU 2: 10644 MiB/74% util. tmux mvp2_eval_lr5e6_r1_ckpt40 alive (创建于 05:25 UTC). 按 92s/batch 估算约 55/62 (89%), ETA ~10min (约UTC 07:00).\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.0071, \"precision\": 0.0066, \"recall\": 0.0078, \"evi_f1\": 0.7584, \"evi_precision\": 0.9113, \"evi_recall\": 0.6494, \"edcr\": 0.9942, \"format_ok_rate\": 0.9939, \"field_compliance_rate\": 0.5675, \"pred_count\": 14434, \"gold_count\": 12151, \"tp\": 95, \"n_truncated\": 424, \"inference_time_seconds\": 6152}, \"completed_at\": \"2026-05-14T23:11:48.225Z\"}, \"mvp2_eval_lr5e6_r1_ckpt20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T20:44:21.167Z\", \"updated_at\": \"2026-05-14T22:12:16.372Z\", \"spec\": {\"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"account\": \"root\", \"command\": \"bash /root/autodl-tmp/scripts/eval_lr5e6_ckpt20.sh\", \"pid\": \"96500\", \"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO lr5e6 ckpt-20\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-20\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"log_path\": \"/tmp/eval_lr5e6_ckpt20.log\"}, \"hypothesis\": \"P0 ckpt-20 early eval: lr=5e-6 GRPO at step 20. Pass criteria: rel_f1 > 0.30 (no catastrophic forgetting). Key MVP gate for P0.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.0077, \"rel_precision\": 0.0071, \"rel_recall\": 0.0084, \"evi_f1\": 0.628, \"evi_precision\": 0.855, \"evi_recall\": 0.496, \"edcr\": 0.993, \"format_ok_rate\": 0.991, \"field_compliance_rate\": 0.399, \"pred_count\": 14440, \"gold_count\": 12151, \"tp\": 102, \"n_truncated\": 587, \"inference_time_seconds\": 6370.4}, \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-20\", \"log_path\": \"/tmp/eval_lr5e6_ckpt20.log\", \"completed_at\": \"2026-05-14T22:12:16.372Z\"}, \"mvp2_eval_lr5e6_rp_r2_ckpt20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:44:56.448Z\", \"updated_at\": \"2026-05-14T22:06:40.812Z\", \"hypothesis\": \"P0+P1 ckpt-20 eval: lr=5e-6 + recall_penalty GRPO at step 20. Director killed rp_r2 training (loss divergence), but ckpt-20 eval needed to close P0+P1 comparison line. Pass criteria: rel_f1 > 0.30 AND pred_count >= 9720.\", \"parent\": \"mvp2_grpo_ced_lr5e6_rp_r2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python eval rp_r2 ckpt-20\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"103825\", \"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO lr5e6+recall_penalty ckpt-20\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6_rp/checkpoint-20\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T22:06:39.146Z\", \"notes\": \"Director 指令 kill: 让 sft_baseline 独占 cuda:3。rp_r2 eval 优先级低，后面补。进度 11/62 (18%)。\"}, \"mvp2_eval_lr5e6_r1_ckpt40\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:25:00.579Z\", \"updated_at\": \"2026-05-14T21:43:33.438Z\", \"spec\": {\"command\": \"bash /root/autodl-tmp/scripts/eval_lr5e6_ckpt40.sh\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"101842\", \"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO lr5e6 ckpt-40\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-40\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"log_path\": \"/tmp/eval_lr5e6_ckpt40.log\", \"account\": \"root\"}, \"hypothesis\": \"P0 ckpt-40 eval: lr=5e-6 GRPO at step 40 (where f1_reward first rises to 0.038). Director 新判定框架: ckpt-20 FAIL + ckpt-40 PASS → P0 判 PASS。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"reproduce\": {\"finished_at\": \"2026-05-14T21:36:46.425Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T21:36:47.089Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T21:36:48.294849+00:00\"}]}, \"notes\": \"Reviewer 确认 PID 101842 在 cuda:2 正常运行中（inference 5/62, 8%），占用 9710 MiB。原误判原因：kill 旧 PID 100555 后 cron 检测旧 PID 导致 5× dead 误判。实际进程未中断。由 _r2 条目接续追踪。\"}, \"mvp2_grpo_ced_lr5e6_rp_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T20:04:55.831Z\", \"updated_at\": \"2026-05-14T21:40:50.174Z\", \"hypothesis\": \"D032/P0+P1 retry: lr=5e-6 + --ced_recall_penalty fixes both catastrophic forgetting (lr) and CED recall shortcut (penalty). Pass criteria: ckpt-20 rel_f1 > 0.30 AND pred_count >= 9720 (SFT 80%). Comparing vs P0 (lr5e6_r1) isolates CED shortcut fix contribution. Retry of rp_r1 which failed due to bash quoting.\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_lr5e6_rp --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --ced_recall_penalty --wandb_run_name grpo-s3-ced-lr5e6-rp-r2\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"94753\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_lr5e6_rp_r2.log\", \"submitted_at\": \"2026-05-14T20:05:27.371Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3053, \"model_name\": \"Qwen3-4B + SFT adapter\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from SFT adapter)\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"hyperparams\": {\"learning_rate\": 5e-06, \"kl_coef\": 0.01, \"num_generations\": 8, \"gradient_accumulation_steps\": 16, \"max_steps\": 200, \"save_steps\": 20, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 1, \"tau_start\": 0.3, \"tau_end\": 0.5, \"ced_recall_penalty\": true}, \"wall_clock_seconds\": 5716.8, \"gpu_hours\": 1.59}, \"wandb_run_id\": \"grpo-s3-ced-lr5e6-rp-r2\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T21:40:44.215Z\", \"notes\": \"Director 决策 kill: loss 持续指数 divergence (step 10: 908 → step 15: 24,650 → step 20: 1.34e7)。根因: recall penalty 产生 5-10x 更强梯度，在 QLoRA 4-bit 下加剧 KL 爆炸，kl_coef=0.01 × KL=1.42e9 = 1.42e7 完全主导 loss。训练 step 39 被 kill。ckpt-20 将用于 eval 关闭 P0+P1 对比线。\"}, \"mvp2_eval_ced_kl001_r4_multi\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:59:22.291Z\", \"updated_at\": \"2026-05-14T21:27:25.338Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 10,20,30,40,60,70,80 --quantize --resume\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"78850\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_multi.log\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Multi-checkpoint eval of ced_kl001_r4 (steps 10-80) to get full reward→eval correlation and identify best checkpoint for MVP-2 judgment\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_kl001\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"notes\": \"Director 指令: ckpt-30 评完即停。进程在 ckpt-40 推理 3% 时被 kill，非异常崩溃。已完成 6/9 个 ckpt eval: 10,20,30,50,60,90（ckpt-40 中断，ckpt-70/80 未执行）。F1 随 step 单调上升: 0.003→0.009→0.034→0.156→0.147→0.211。best=ckpt-90 (F1=0.211)。Evi-F1 稳定在 0.42-0.72，EDCR 随 step 下降（0.998→0.858）。结果路径: /root/autodl-tmp/eval_results/grpo_ced_kl001/\", \"conclusion\": \"killed\", \"reproduce\": {\"finished_at\": \"2026-05-14T21:18:34.133Z\"}, \"failure_reason\": \"进程在 ckpt-30 eval 完成后继续执行 ckpt-40，推理 3% 时被外部 kill（符合 Director 指令：ckpt-30 评完即停）。监控系统检测 5 次 dead process 后 auto-resolved as failed。非异常崩溃。\", \"completed_at\": \"2026-05-14T21:18:34.860Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T21:18:36.087981+00:00\"}]}, \"metrics\": {\"checkpoint-10\": {\"f1\": 0.003, \"ign_f1\": 0.003, \"evi_f1\": 0.72, \"edcr\": 0.9983, \"format_ok_rate\": 0.999}, \"checkpoint-20\": {\"f1\": 0.0088, \"ign_f1\": 0.0088, \"evi_f1\": 0.423, \"edcr\": 0.9954, \"format_ok_rate\": 0.999}, \"checkpoint-30\": {\"f1\": 0.0338, \"ign_f1\": 0.0338, \"evi_f1\": 0.5889, \"edcr\": 0.9798, \"format_ok_rate\": 1}, \"checkpoint-50\": {\"f1\": 0.1563, \"ign_f1\": 0.1563, \"evi_f1\": 0.5643, \"edcr\": 0.8858, \"format_ok_rate\": 0.999}, \"checkpoint-60\": {\"f1\": 0.1467, \"ign_f1\": 0.1467, \"evi_f1\": 0.5763, \"edcr\": 0.9062, \"format_ok_rate\": 1}, \"checkpoint-90\": {\"f1\": 0.2108, \"ign_f1\": 0.2108, \"evi_f1\": 0.5666, \"edcr\": 0.8584, \"format_ok_rate\": 1}}}, \"mvp2_grpo_ced_lr5e6_rp_r1\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-14T19:44:15.272Z\", \"updated_at\": \"2026-05-14T20:44:07.125Z\", \"hypothesis\": \"D032/P0+P1: lr=5e-6 + --ced_recall_penalty fixes both catastrophic forgetting (lr) and CED recall shortcut (penalty). Pass criteria: ckpt-20 rel_f1 > 0.30 AND pred_count >= 9720 (SFT 80%). Comparing vs P0 isolates CED shortcut fix contribution.\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T19:59:16.121Z\", \"command\": \"bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_lr5e6_rp --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-6 --seed 42 --kl_coef 0.01 --save_steps 20 --save_total_limit 20 --max_steps 200 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --ced_recall_penalty --wandb_run_name grpo-s3-ced-lr5e6-rp-r1\", \"wandb_run_id\": \"grpo-s3-ced-lr5e6-rp-r1\", \"finished_at\": \"2026-05-14T20:44:01.103Z\", \"training_hours\": 0.75}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"completed_at\": \"2026-05-14T19:59:43.146Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T19:59:44.524953+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T20:44:03.547281+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"诊断结果：bash 引号不匹配（unexpected EOF while looking for matching '\\\"'），命令未到达 Python。EXIT_CODE=2。原因：submit_training_job 的 bash -c \\\"...\\\" 外层双引号与命令内部双引号冲突。--ced_recall_penalty 参数在 grpo_trainer.py:406 有定义，参数本身无问题。GPU 1/3 空闲可用。修复方案：用单引号包裹 bash -c '...' 或修复引号转义。需要以 rp_r2 重新提交。\"}}, \"notes\": \"Director D-URGENT: 与 rp_r2 冲突，同 GPU(cuda:3) 同 output_dir(/root/autodl-tmp/grpo_ced_lr5e6_rp/)。PID 94055 killed，保留 rp_r2 (PID 94758) 因其有标准化 submit_training_job 记录。\", \"spec\": {\"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"account\": \"root\", \"pid\": \"94055\", \"command\": \"bash /root/autodl-tmp/scripts/train_ced_lr5e6_rp.sh\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 3053, \"model_name\": \"Qwen3-4B + SFT adapter\", \"seed\": 42, \"checkpoint_source\": \"SFT from scratch (no GRPO checkpoint)\", \"eval_data\": \"N/A - training experiment\"}, \"conclusion\": \"failed\"}, \"mvp2_grpo_ced_lr5e6_p1_r1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:28:59.245Z\", \"updated_at\": \"2026-05-14T20:31:06.969Z\", \"hypothesis\": \"D031/P0+P1: lr=5e-6 + --ced_recall_penalty fixes both catastrophic forgetting (lr) and CED recall shortcut (penalty). Pass criteria: ckpt-20 rel_f1 > 0.30 AND pred_count >= 15000 (SFT 80%). Comparing vs P0 isolates CED shortcut fix contribution.\", \"spec\": {\"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"account\": \"root\"}, \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"conclusion\": \"killed\", \"notes\": \"Superseded by mvp2_grpo_ced_lr5e6_rp_r1 per Director D032. Never submitted.\", \"completed_at\": \"2026-05-14T20:31:06.969Z\"}, \"mvp2_eval_ced_kl001_r4_step90\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:19:58.623Z\", \"updated_at\": \"2026-05-14T20:01:45.201Z\", \"hypothesis\": \"Eval true best checkpoint (step 90, reward=1.370). Critical after ckpt-50 showed reward hacking (rel_f1 -24.9pp). If step 90 also fails, CED reward design has fundamental issue.\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && ... && python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 90 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"83207\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO ced_kl001 step-90\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-90\", \"eval_data\": \"DocRED dev set\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-90\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step90.log\"}, \"notes\": \"2026-05-15 03:20 UTC: ckpt-90 inference 31/62 (50%), ~45 min remaining. Started 02:32 UTC.\", \"reproduce\": {\"finished_at\": \"2026-05-14T19:57:37.435Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T19:57:39.702949+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.2108, \"ign_f1\": 0.2108, \"evi_f1\": 0.5666, \"edcr\": 0.8584, \"pred_count\": 11160, \"n_truncated\": 22, \"format_ok_rate\": 1, \"n_documents\": 985}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T20:01:45.201Z\"}, \"mvp2_eval_ced_kl001_r4_ckpt7080\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:50:04.595Z\", \"updated_at\": \"2026-05-14T19:58:46.631Z\", \"hypothesis\": \"Re-run failed ckpt-70/80 eval from crashed high eval (cuda:3 OOM). Completes 10-checkpoint trajectory for paper negative result analysis.\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T19:50:27.696Z\", \"command\": \"bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && PYTHONUNBUFFERED=1 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 70,80 --quantize --resume\\\"\"}, \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && PYTHONUNBUFFERED=1 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 70,80 --quantize --resume\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"91681\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_ckpt7080.log\", \"submitted_at\": \"2026-05-14T19:50:29.033Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 497.6, \"gpu_hours\": 0.14}, \"pid\": \"91681\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_ckpt7080.log\", \"conclusion\": \"failed\", \"notes\": \"Process died shortly after start - likely OOM on cuda:3 (same issue as high eval crash during ckpt-70). cuda:3 may have insufficient free VRAM for eval. ckpt-70/80 will be covered by multi eval on cuda:2.\", \"completed_at\": \"2026-05-14T19:58:46.631Z\"}, \"mvp2_eval_ced_kl001_r4_high\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:19:07.637Z\", \"updated_at\": \"2026-05-14T19:47:58.282Z\", \"hypothesis\": \"High-end checkpoint eval (60,70,80,90) on cuda:3, complementing cuda:2 low-end eval. Step 90 is true best checkpoint (reward=1.370). D024 directive.\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"spec\": {\"command\": \"python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 60,70,80,90 --quantize --resume\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"81962\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO ced_kl001\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_kl001\", \"eval_data\": \"DocRED dev set\"}, \"notes\": \"1/4 checkpoints completed (ckpt-60). Process crashed during ckpt-70 inference at 8% - likely OOM or killed. cuda:3 still has 9503 MiB residual. ckpt-90 eval running separately on cuda:1 (mvp2_eval_ced_kl001_r4_step90).\", \"reproduce\": {\"finished_at\": \"2026-05-14T19:45:42.328Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T19:45:43.350Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T19:45:48.432665+00:00\"}]}, \"metrics\": {\"checkpoint_60\": {\"rel_f1\": 0.1467, \"ign_f1\": 0.1467, \"precision\": 0.1909, \"recall\": 0.1192, \"evi_f1\": 0.5763, \"edcr\": 0.9062, \"pred_count\": 10041, \"gold_count\": 12151, \"n_truncated\": 16, \"format_ok_rate\": 1}, \"note\": \"Only ckpt-60 completed. Process died during ckpt-70 inference at 8% (5/62 batch). ckpt-80/90 never started.\"}}, \"mvp2_eval_ced_kl001_r4_step100\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:08:31.821Z\", \"updated_at\": \"2026-05-14T19:41:30.318Z\", \"hypothesis\": \"Eval ced_kl001_r4 last checkpoint (step 100) to compare with best-reward checkpoint (step 50). If best ≠ last, the gap measures training stability under batch_size=1 GRPO variance.\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"spec\": {\"command\": \"python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001_step100 --checkpoints 100 --quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"80789\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step100.log\", \"submitted_at\": \"2026-05-14T18:09:02.064Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"model_name\": \"Qwen3-4B + SFT adapter + GRPO ced_kl001 step-100\", \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-100\", \"eval_data\": \"DocRED dev set\", \"data_count\": 998, \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-100\", \"wall_clock_seconds\": 5458.4, \"gpu_hours\": 1.52}, \"notes\": \"2026-05-15 03:20 UTC: ckpt-100 inference 48/62 (77%), ~20 min remaining. Started 02:09 UTC.\", \"reproduce\": {\"finished_at\": \"2026-05-14T19:35:23.622Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T19:35:25.057156+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.2167, \"ign_f1\": 0.2167, \"precision\": 0.2849, \"recall\": 0.1749, \"evi_f1\": 0.5746, \"evi_precision\": 0.5244, \"evi_recall\": 0.6353, \"edcr\": 0.8539, \"pred_count\": 7460, \"gold_count\": 12151, \"tp\": 2125, \"n_truncated\": 21, \"format_ok_rate\": 1}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T19:40:00.432Z\"}, \"mvp2_eval_ced_kl001_r4_ckpt90\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:18:13.270Z\", \"updated_at\": \"2026-05-14T19:17:36.777Z\", \"spec\": {\"command\": \"python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --checkpoints 90 --quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_ckpt90.log\", \"submitted_at\": \"2026-05-14T18:18:20.407Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO ced_kl001 step-90\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-90\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"wall_clock_seconds\": 3556.4, \"gpu_hours\": 0.99}, \"hypothesis\": \"Eval ced_kl001_r4 best-reward checkpoint (step 90, reward=1.370, f1=0.720) — this is the primary MVP-2 judgment checkpoint. If evi_f1 ≥ SFT baseline (0.7979) + 2pp = 0.8179, MVP-2 passes.\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"conclusion\": \"killed\", \"notes\": \"重复条目，被 mvp2_eval_ced_kl001_r4_step90 (cuda:1, PID 83207, 有 cron 监控) 取代。本条目无 cron、无独立进程。\", \"completed_at\": \"2026-05-14T19:17:36.777Z\"}, \"mvp2_eval_ced_kl001_r4_ckpt10\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:59:08.638Z\", \"updated_at\": \"2026-05-14T19:14:08.763Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 10 --quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"78857\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_ckpt10.log\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Early checkpoint eval (step 10) of ced_kl001_r4 — part of multi-checkpoint trend analysis for MVP-2 judgment\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-10\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"notes\": \"Eval 完成（由 multi eval 执行）。ckpt-10 rel_f1=0.003 catastrophic — 模型几乎丧失 relation 抽取能力 (34 TP / 10839 pred)，但 evi_f1=0.72 和 edcr=0.998 反而高。GRPO 训练极早期就严重损害 relation 能力。\", \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.00296, \"rel_precision\": 0.00314, \"rel_recall\": 0.0028, \"evi_f1\": 0.72, \"evi_precision\": 0.6429, \"evi_recall\": 0.8182, \"edcr\": 0.9983, \"n_parseable\": 984, \"n_truncated\": 24, \"n_predictions\": 11621, \"tp\": 34, \"pred_count\": 10839, \"gold_count\": 12151, \"inference_time_seconds\": 5211.4}, \"checkpoint_path\": \"/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10\", \"log_path\": \"/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10/metrics.json\", \"completed_at\": \"2026-05-14T19:13:58.921Z\"}, \"mvp2_eval_ced_kl001_r4_early\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:12:53.581Z\", \"updated_at\": \"2026-05-14T18:31:18.065Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 50 --quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"75581\", \"log_path\": \"/tmp/eval_ced_kl001_ckpt50.log\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Early eval of ced_kl001_r4 best-reward checkpoint (step 50, reward=1.1009) to get early signal on CED vs SFT baseline\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-50\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"notes\": \"**Checkpoint-50 eval 完成，结果极差——MVP-2 双指标均 FAIL：**\\\\n\\\\n- rel_f1: 0.1563 vs SFT 0.4057 (Δ=-24.9pp)，远低于 -5pp 阈值\\\\n- evi_f1: 0.5643 vs SFT 0.7979 (Δ=-23.4pp)，需 +2pp 却暴跌\\\\n- EDCR: 0.8858 vs SFT 0.7118 (Δ=+17.4pp)，唯一改善项\\\\n- recall 崩塌 (0.117 vs gold 12151)，precision 也低 (0.236)\\\\n\\\\n**诊断**: training reward 上升 (1.101) 但 eval F1 崩塌，说明 GRPO 训练在优化 reward proxy 而非实际任务表现。模型学会了高 EDCR（少引用 distractor）但牺牲了大量 recall。pred_count=6032 vs gold=12151，预测数量严重不足。\\\\n\\\\n仍需等待 step-90 (reward=1.37) 的 eval 结果——如果 step-90 也崩塌，则 CED reward 设计需要根本性修改。\", \"conclusion\": \"negative\", \"metrics\": {\"f1\": 0.1563, \"ign_f1\": 0.1563, \"evi_f1\": 0.5643, \"edcr\": 0.8858, \"precision\": 0.2356, \"recall\": 0.1169, \"evi_precision\": 0.4864, \"evi_recall\": 0.6721, \"format_ok_rate\": 0.999, \"n_parseable\": 984, \"n_truncated\": 11, \"n_predictions\": 9250, \"tp\": 1421, \"pred_count\": 6032, \"gold_count\": 12151}, \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-50\", \"log_path\": \"/tmp/eval_ced_kl001_ckpt50.log\", \"completed_at\": \"2026-05-14T18:31:06.454Z\"}, \"mvp2_grpo_flatnli_r6\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:25:07.083Z\", \"updated_at\": \"2026-05-14T18:17:52.909Z\", \"hypothesis\": \"Flat-NLI reward with kl_coef=0.01 + num_generations=8 from SFT scratch (not resume). 100-step probe to verify stability. Same D020 config as ced_kl001_r4 (which is healthy). Tests whether flat-NLI reward type works under stable training config.\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && ... && PYTHONUNBUFFERED=1 python -m freige.training.grpo_trainer --stage 2 --kl_coef 0.01 --num_generations 8 --max_steps 100 --wandb_run_name grpo-s2-flatnli-r6\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"76958\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r6.log\", \"submitted_at\": \"2026-05-14T17:25:30.099Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"wall_clock_seconds\": 3061.0, \"gpu_hours\": 0.85}, \"parent\": \"mvp2_grpo_flatnli_r5\", \"notes\": \"D020 配置：kl_coef=0.01 + num_generations=8 + save_steps=10 + max_steps=100。从 SFT 全新训练。\\n\\n**D024 Kill — Mode Collapse Confirmed (step 25)**:\\n- frac_zero_std: 0.1→0.4→0.6→0.7→0.9 (单调上升，破 0.8 阈值)\\n- f1_reward=0, flat_nli_reward=0 — 抽取和 NLI 完全死亡\\n- reward 100% format hacking (0.293)\\n- completion_length 缩短 773→586→399\\n- KL step 5 爆炸至 1.23 亿后回落\\n\\n**科学结论**: D020 配置下 flat-NLI reward 信号不足以维持 GRPO 多样性。与 extract_r4 (step 10 collapse) 模式一致。CED 是三种 reward type 中唯一能稳定训练的。\", \"conclusion\": \"negative\", \"metrics\": {\"steps_completed\": 25, \"final_frac_zero_std\": 0.9, \"final_f1_reward\": 0, \"final_flat_nli_reward\": 0, \"final_format_reward\": 0.293, \"collapse_step\": 25}, \"checkpoint_path\": \"N/A (killed at step 25, mode collapse)\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r6.log\", \"completed_at\": \"2026-05-14T18:16:31.087Z\"}, \"mvp2_grpo_ced_kl001_r4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:32:32.529Z\", \"updated_at\": \"2026-05-14T18:11:53.975Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_ced_kl001 --num_generations 8 --reward_device cuda --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-5 --seed 42 --kl_coef 0.01 --save_steps 10 --save_total_limit 20 --max_steps 100 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 1 --wandb_run_name grpo-s3-ced-kl001-r4\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"68084\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001_r4.log\", \"submitted_at\": \"2026-05-14T15:32:32.454Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"kl_coef=0.01 + num_generations=8 prevents mode collapse (vs r5 kl=0/gen=4 which collapsed at step 250). 100-step probe to verify KL stability before full run.\", \"parent\": \"mvp2_grpo_ced_r5\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0.01, \"save_steps\": 10, \"save_total_limit\": 20, \"max_steps\": 100, \"num_iterations\": 1, \"num_generations\": 8, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 1, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"quantization\": \"QLoRA 4-bit NF4\", \"reward_device\": \"cuda\"}, \"wall_clock_seconds\": 9550.2, \"gpu_hours\": 2.65}, \"notes\": \"D020 配置：kl_coef=0.01 + num_generations=8 + save_steps=10 + max_steps=100 探测。✅ F1 门控已包含。\\n\\n**训练完成 (100/100 steps, EXIT_CODE=0, 2h31m)**:\\n- Final (step 100): reward=1.195, f1=0.573, ced=0.328, frac_zero_std=0.2, KL=0.118\\n- **True best: step 90** (reward=1.370, f1=0.720, ced=0.353) — 比 step 50 (1.101) 高 24%\\n- Reward trajectory: 0.22→1.37 (~5x 提升)，batch_size=1 方差大但整体上升\\n- 无 mode collapse（frac_zero_std 从早期 0.3-0.8 降至后半程 0.0-0.2）\\n- KL 稳定（0.10-0.15 range，kl_coef=0.01 控制有效）\\n- 所有 10 个 checkpoint 可用 (10-100)\\n\\n**Eval 覆盖**:\\n- cuda:1: ckpt-50 eval (mvp2_eval_ced_kl001_r4_early)\\n- cuda:2: ckpt 10-80 multi eval (mvp2_eval_ced_kl001_r4_multi)\\n- cuda:0: ckpt 90+100 eval (mvp2_eval_ced_kl001_r4_last)\", \"reproduce\": {\"finished_at\": \"2026-05-14T18:05:49.446Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T18:05:50.777825+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_kl001/\", \"metrics\": {\"final_step\": 100, \"train_runtime_s\": 9069.88, \"reward_final\": 1.195, \"f1_reward_final\": 0.573, \"ced_reward_final\": 0.328, \"format_reward_final\": 0.293, \"frac_zero_std_final\": 0.2, \"kl_final\": 0.118, \"loss_final\": -0.009, \"grad_norm_final\": 0.14, \"entropy_final\": 0.067, \"completion_length_mean_final\": 520.8, \"best_reward_step\": 90, \"best_reward\": 1.37, \"best_f1_reward\": 0.72, \"best_ced_reward\": 0.353}, \"completed_at\": \"2026-05-14T18:11:42.680Z\"}, \"mvp2_grpo_extract_r4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:54:59.403Z\", \"updated_at\": \"2026-05-14T17:40:25.731Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && ... && python -m freige.training.grpo_trainer --stage 1 --kl_coef 0.01 --num_generations 8 --max_steps 100 ...\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"73264\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_extract_r4.log\", \"submitted_at\": \"2026-05-14T16:55:57.491Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"wall_clock_seconds\": 2668.2, \"gpu_hours\": 0.74}, \"hypothesis\": \"Extraction-only reward (format×0.3, f1×3.0, ced=0) with kl_coef=0.01 + num_generations=8 trains stably. 100-step probe parallel ablation with ced_kl001_r4 (CED reward) to compare reward type impact under identical stability config.\", \"parent\": \"mvp2_grpo_extract_r3\", \"notes\": \"D020 配置：kl_coef=0.01 + num_generations=8 + save_steps=10 + max_steps=100 探测。与 ced_kl001_r4 (cuda:0) 构成并行 ablation——相同稳定配置、不同 reward type (extract-only vs CED)。\\n\\n**Mode collapse confirmed → KILLED at step ~30**:\\n- step 5: frac_zero_std=0.2, f1=0.016（初始信号）\\n- step 10-30: frac_zero_std=0.7-0.8, f1_reward=0（完全 collapse）\\n- reward 全部来自 format_reward (~0.29)，模型放弃 extraction\\n- 对比 ced_kl001_r4 同期在 step 20-40 恢复（frac→0.0, f1→0.240），extract_r4 无恢复信号\\n\\n**科学价值**：证明 extraction-only reward（format+f1, 无 CED）在 D020 配置下无法维持 GRPO 多样性。CED reward 通道可能是帮助 ced_kl001_r4 摆脱初期 mode collapse 的关键因素。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T17:40:25.733Z\"}, \"mvp2_grpo_flatnli_r5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T16:55:02.197Z\", \"updated_at\": \"2026-05-14T17:26:55.692Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && ... && python -m freige.training.grpo_trainer --stage 2 --kl_coef 0.01 --num_generations 8 --max_steps 200 --resume_from_checkpoint /root/autodl-tmp/grpo_flatnli_r3/checkpoint-100 ...\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"73407\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r5.log\", \"submitted_at\": \"2026-05-14T16:56:01.219Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"wall_clock_seconds\": 1854.5, \"gpu_hours\": 0.52}, \"hypothesis\": \"Flat-NLI reward with kl_coef=0.01 + num_generations=8 prevents mode collapse. Resume from flatnli_r3 checkpoint-100 (healthy). 100-step probe (steps 100→200) to verify stability before full run.\", \"parent\": \"mvp2_grpo_flatnli_r4\", \"notes\": \"Director 决策 kill：从 r3 (kl_coef=0) checkpoint-100 恢复后立即崩溃。frac_zero_std: 0.0(r3)→0.9(step 105)→0.7→0.5→0.8(step 120)，0.5-0.9 震荡无收敛。KL 全程 0.44-0.49 高位。根因：kl_coef=0 累积的 policy 漂移 + kl_coef=0.01 penalty 形成对抗。教训：不能从 kl_coef=0 的 checkpoint 恢复加 KL penalty。flatnli_r6 从 SFT 全新训练。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T17:26:55.692Z\"}, \"mvp2_sft_eval_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:52:38.174Z\", \"updated_at\": \"2026-05-14T17:06:57.010Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --quantize --output_dir /root/autodl-tmp/sft_eval_r3_results --seed 42\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"62352\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_sft_eval_r3.log\", \"submitted_at\": \"2026-05-14T14:53:52.360Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"SFT baseline eval with unified eval code (consolidated parse_model_output) for fair comparison with r2\", \"parent\": \"mvp2_sft_warmup\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"wall_clock_seconds\": 7718.1, \"gpu_hours\": 2.14}, \"reproduce\": {\"finished_at\": \"2026-05-14T16:42:11.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T16:42:12.047698+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4057, \"ign_f1\": 0.4057, \"evi_f1\": 0.7979, \"edcr\": 0.7118, \"precision\": 0.4043, \"recall\": 0.407, \"evi_precision\": 0.8035, \"evi_recall\": 0.7924, \"format_ok_rate\": 0.998, \"format_compliance_rate\": 0.626, \"n_parseable\": 617, \"n_truncated\": 367, \"n_predictions\": 18815}, \"checkpoint_path\": \"/root/autodl-tmp/sft_eval_r3_results/\", \"completed_at\": \"2026-05-14T17:02:30.442Z\", \"notes\": \"统一 eval 代码验证：r3 与 r2 所有指标完全一致（差异=0.00pp），含 _repair_truncated_json 的统一 eval 脚本未引入任何偏差。SFT baseline 可靠确认：rel_f1=0.4057, evi_f1=0.7979, edcr=0.7118。983 parseable / 617 field_complete / 367 truncated / 18815 predictions。\"}, \"mvp2_grpo_extract_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:31:48.781Z\", \"updated_at\": \"2026-05-14T16:59:20.304Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 1 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 0.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"53149\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_extract_r3.log\", \"submitted_at\": \"2026-05-14T12:31:48.738Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Extraction-only reward (format×0.3, f1×3.0, ced=0) with kl_coef=0 establishes stable GRPO baseline\", \"parent\": \"mvp2_grpo_extract\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0, \"save_steps\": 20, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 0, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"num_generations\": 4, \"quantization\": \"QLoRA 4-bit NF4\"}, \"wall_clock_seconds\": 12041.2, \"gpu_hours\": 3.34}, \"notes\": \"Negative result (756/756 steps completed). 两阶段行为：(1) step 1-520 f1_reward 在 0.02-0.49 波动，completion length ~43 tokens 稳定，看似健康；(2) 实际最后 100+ 步 grad_norm=0, frac_reward_zero_std=1.0, loss=0.0, entropy≈0.005。f1 波动是 SFT 初始化残留，非 GRPO 学习。停滞机制：kl_coef=0 + num_generations=4 → 4 个相同输出 → reward_std=0 → GRPO advantage=0 → 梯度为零。与 ced_r5 的差异：无 CED reward 通道，模型没 drift 到短输出（保持在 SFT 水平），但也完全停止学习。科学价值：证明 num_generations=4 不足以维持 GRPO 多样性，kl_coef=0 下 extraction-only 停滞而 CED collapse 更严重。\", \"reproduce\": {\"finished_at\": \"2026-05-14T15:52:29.058Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T15:52:29.969Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T15:52:31.006940+00:00\"}]}}, \"mvp2_grpo_flatnli_r4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:32:31.804Z\", \"updated_at\": \"2026-05-14T16:56:12.080Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -m freige.training.grpo_trainer --stage 2 --reward_device cuda --resume_from_checkpoint /root/autodl-tmp/grpo_flatnli_r3/checkpoint-100 --save_total_limit 40 --wandb_run_name grpo-s2-flatnli-r4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"67050\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r4.log\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"resume_from\": \"/root/autodl-tmp/grpo_flatnli_r3/checkpoint-100\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 1, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"num_generations\": 4, \"reward_device\": \"cuda\", \"quantization\": \"QLoRA 4-bit NF4\"}}, \"pid\": 67050, \"notes\": \"Director 指令 kill: kl=0+gen=4 配置已在 ced_r5/extract_r3/flatnli_r3 三个实验崩塌，统一切到 kl=0.01+gen=8。flatnli_r4 运行 step 104→~130（~30 min），step_time ~34s/step。用 flatnli_r5 从 checkpoint-100 重启。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T16:54:43.884Z\"}, \"mvp2_grpo_ced_kl001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:32:53.111Z\", \"updated_at\": \"2026-05-14T15:33:06.208Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.01 --num_iterations 1 --save_steps 20 --save_total_limit 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"64981\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_kl001.log\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary\", \"parent\": \"mvp2_grpo_ced_r5\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0.01, \"save_steps\": 20, \"save_total_limit\": 20, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 1, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"num_generations\": 4, \"quantization\": \"QLoRA 4-bit NF4\"}}, \"notes\": \"三次失败：r1 --lr 不识别 (EXIT_CODE=2)，r2 conda 未激活 python not found (EXIT_CODE=127)，r3 缺 --data_dir。已在 r4 修正所有问题。\", \"hypothesis\": \"kl_coef=0.01 (vs r5 kl_coef=0.0) prevents CED mode collapse while keeping QLoRA 4-bit compatible — answers whether KL regularization is necessary\", \"reproduce\": {\"finished_at\": \"2026-05-14T15:20:19.022Z\"}, \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T15:20:19.862Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T15:20:20.950140+00:00\"}]}}, \"mvp2_grpo_ced_r5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:31:45.606Z\", \"updated_at\": \"2026-05-14T15:32:21.817Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"53071\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_r5.log\", \"submitted_at\": \"2026-05-14T12:31:45.554Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"CED reward (format×0.3, f1×3.0, ced×1.0) with kl_coef=0 trains stably and improves Evi-F1 over SFT baseline\", \"parent\": \"mvp2_grpo_ced_r4\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0, \"save_steps\": 20, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 1, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"num_generations\": 4, \"quantization\": \"QLoRA 4-bit NF4\"}, \"wall_clock_seconds\": 9887.5, \"gpu_hours\": 2.75}, \"notes\": \"⚠️ Mode collapse confirmed: step 250+ f1_reward=0, completion length collapsed to fixed 34 tokens, frac_reward_zero_std=0.9-1.0. Model learned to produce short fixed-format output maximizing ced_reward (0.99) + format_reward (0.3) while abandoning relation extraction (f1=0). Early checkpoints (pre-collapse) lost due to save_total_limit=5 — only steps 400-480 remain, all post-collapse. Current checkpoints likely unusable for eval.\", \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A (all checkpoints post-collapse, unusable)\", \"completed_at\": \"2026-05-14T15:29:18.460Z\"}, \"mvp2_grpo_flatnli_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:31:52.782Z\", \"updated_at\": \"2026-05-14T15:27:55.267Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 2 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"53292\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r3.log\", \"submitted_at\": \"2026-05-14T12:31:52.703Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Flat-NLI reward (format×0.3, f1×3.0, ced×1.0) with kl_coef=0 validates non-contrastive evidence baseline\", \"parent\": \"mvp2_grpo_flatnli\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0, \"save_steps\": 20, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 1, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"num_generations\": 4, \"quantization\": \"QLoRA 4-bit NF4\"}, \"wall_clock_seconds\": 9527.7, \"gpu_hours\": 2.65, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints_backup/flatnli_r3_healthy/\"}, \"notes\": \"Director 指令 kill：NLI 推理在 CPU 导致 10x 减速（~100-125s/step vs 应有 ~12s/step）。训练本身健康——step 104/756, grad_norm=0.37, f1 从 step 84 起出现, flat_nli_reward=0.52, entropy=0.046。Checkpoint 已备份。修复 --reward_device cuda 后以 flatnli_r4 重启。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T15:27:48.503Z\"}, \"mvp2_sft_eval_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:45:46.160Z\", \"updated_at\": \"2026-05-14T14:54:07.338Z\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --quantize --output_dir /root/autodl-tmp/sft_eval_results --seed 42\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"55410\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_sft_eval_r2.log\", \"submitted_at\": \"2026-05-14T12:45:45.981Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"SFT baseline eval on DocRED dev set (batch_size=16 accelerated)\", \"parent\": \"mvp2_sft_warmup\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"wall_clock_seconds\": 7701.4, \"gpu_hours\": 2.14}, \"reproduce\": {\"finished_at\": \"2026-05-14T14:52:20.498Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T14:52:21.560816+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"rel_f1\": 0.4057, \"ign_f1\": 0.4057, \"evi_f1\": 0.7979, \"edcr\": 0.7118, \"precision\": 0.4043, \"recall\": 0.407, \"evi_precision\": 0.8035, \"evi_recall\": 0.7924, \"format_ok_rate\": 0.998, \"format_compliance_rate\": 0.626, \"n_parseable\": 617, \"n_truncated\": 367, \"n_predictions\": 18815, \"inference_time_seconds\": 6484.7}, \"checkpoint_path\": \"/root/autodl-tmp/sft_eval_results/\", \"completed_at\": \"2026-05-14T14:54:07.338Z\"}, \"mvp2_sft_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:10:37.449Z\", \"updated_at\": \"2026-05-14T12:46:04.523Z\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path sft_output --base_model Qwen3-4B --split dev\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"47293\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_sft_eval.log\", \"submitted_at\": \"2026-05-14T11:48:46.335Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"SFT baseline eval on DocRED dev set\", \"parent\": \"mvp2_sft_warmup\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"wall_clock_seconds\": 3416.3, \"gpu_hours\": 0.95}, \"conclusion\": \"killed\", \"reproduce\": {\"finished_at\": \"2026-05-14T12:45:42.027Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-14T12:45:42.659Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T12:45:43.534491+00:00\"}]}, \"notes\": \"Killed intentionally to restart with batch_size=16 (was batch_size=4, ~6h → ~1.5h). Director approved.\"}, \"mvp2_grpo_flatnli_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:10:23.287Z\", \"updated_at\": \"2026-05-14T12:30:08.865Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 2 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"50941\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r2.log\", \"submitted_at\": \"2026-05-14T12:10:23.256Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Flat-NLI reward (format×0.3, f1×3.0, ced×1.0) with kl_coef=0 validates non-contrastive evidence baseline\", \"parent\": \"mvp2_grpo_flatnli\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0, \"save_steps\": 20, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 1, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"num_generations\": 4, \"quantization\": \"QLoRA 4-bit NF4\"}, \"wall_clock_seconds\": 1174.2, \"gpu_hours\": 0.33}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T12:29:57.408Z\", \"notes\": \"Killed: Director 指令暂不提交 r2，等原始 flatnli 分析完再决定配置。\"}, \"mvp2_grpo_extract_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:10:19.532Z\", \"updated_at\": \"2026-05-14T12:30:08.099Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 1 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 0.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"50670\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_extract_r2.log\", \"submitted_at\": \"2026-05-14T12:10:19.491Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Extraction-only reward (format×0.3, f1×3.0, ced=0) with kl_coef=0 establishes stable GRPO baseline\", \"parent\": \"mvp2_grpo_extract\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0, \"save_steps\": 20, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 0, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"num_generations\": 4, \"quantization\": \"QLoRA 4-bit NF4\"}, \"wall_clock_seconds\": 1166.7, \"gpu_hours\": 0.32}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T12:29:46.151Z\", \"notes\": \"Killed: Director 指令暂不提交 r2，等原始 extract 分析完再决定配置。\"}, \"mvp2_grpo_ced_r4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:10:15.698Z\", \"updated_at\": \"2026-05-14T12:30:06.177Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"50529\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_r4.log\", \"submitted_at\": \"2026-05-14T12:10:15.624Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"CED reward (format×0.3, f1×3.0, ced×1.0) with kl_coef=0 (D008 fix) achieves Evi-F1 improvement over SFT baseline\", \"parent\": \"mvp2_grpo_ced_r3\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0, \"save_steps\": 20, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 1, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"num_generations\": 4, \"quantization\": \"QLoRA 4-bit NF4\"}, \"wall_clock_seconds\": 1169.5, \"gpu_hours\": 0.32}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T12:29:45.113Z\", \"notes\": \"Killed: 上一 session 使用 kl_coef=0.0/lr=5e-5 启动，但 Director 要求 D009 配置 (kl_coef=0.5, lr=5e-6, warmup_steps=200)。需等 extract/flatnli 分析完再用正确配置重新提交。\"}, \"mvp2_grpo_extract\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:10:35.796Z\", \"updated_at\": \"2026-05-14T12:25:32.094Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 1 --ced_reward_weight 0.0 --format_reward_weight 0.3 --f1_reward_weight 3.0 --num_iterations 1 --kl_coef 0.05 --lr 5e-5\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"47561\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_extract.log\", \"submitted_at\": \"2026-05-14T11:48:50.108Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred/train_annotated.json\", \"data_count\": 3027, \"model_name\": \"Qwen3-4B (QLoRA from SFT warmup)\", \"seed\": 42, \"hypothesis\": \"Extraction-only reward (format+F1, no CED) establishes GRPO baseline\", \"parent\": \"mvp2_sft_warmup\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0.05, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 0}, \"wall_clock_seconds\": 1479.2, \"gpu_hours\": 0.41}, \"hypothesis\": \"Extraction-only reward (format+F1, no CED) establishes GRPO baseline — CED r3 should exceed this on Evi-F1\", \"reproduce\": {\"finished_at\": \"2026-05-14T12:03:50.563Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T12:03:51.381207+00:00\"}]}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T12:13:29.284Z\", \"notes\": \"KL divergence explosion at step 5 due to kl_coef=0.05 + QLoRA 4-bit incompatibility (D008). QLoRA quantization noise makes ref/policy log-prob divergence unreliable, causing KL values to reach 10^8-10^11. Same root cause as r3 and flatnli. Fix: kl_coef=0.0 in r2 retries.\"}, \"mvp2_grpo_flatnli\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:10:33.848Z\", \"updated_at\": \"2026-05-14T12:13:34.747Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 2 --ced_reward_weight 1.0 --format_reward_weight 0.3 --f1_reward_weight 3.0 --num_iterations 1 --kl_coef 0.05 --lr 5e-5\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"47722\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_flatnli.log\", \"submitted_at\": \"2026-05-14T11:48:54.086Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Flat-NLI reward improves Evi-F1 over extraction-only but less than CED\", \"parent\": \"mvp2_sft_warmup\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0.05, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 1}, \"wall_clock_seconds\": 1188.0, \"gpu_hours\": 0.33}, \"hypothesis\": \"Flat-NLI reward (non-contrastive) improves Evi-F1 over extraction-only but less than CED — validates contrastive component's incremental value\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T12:08:42.058Z\", \"notes\": \"KL divergence explosion at step 5 due to kl_coef=0.05 + QLoRA 4-bit incompatibility (D008). QLoRA quantization noise makes ref/policy log-prob divergence unreliable. Same root cause as r3 and extract. Fix: kl_coef=0.0 in r2 retries.\"}, \"mvp2_grpo_ced_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T11:47:53.099Z\", \"updated_at\": \"2026-05-14T12:09:23.005Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 3 --num_iterations 1 --kl_coef 0.05 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --max_kl 100 --lr 5e-5\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"47136\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_r3.log\", \"submitted_at\": \"2026-05-14T11:48:42.598Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Reward weighting (format×0.3, f1×3.0, ced×1.0) with stable training (num_iterations=1, KL early stop) improves Evi-F1\", \"parent\": \"mvp2_grpo_ced_r1\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0.05, \"save_steps\": 20, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 1, \"max_kl\": 100}, \"wall_clock_seconds\": 1061.5, \"gpu_hours\": 0.29}, \"hypothesis\": \"CED reward with balanced weights (format×0.3, f1×3.0, ced×1.0) + stable training (num_iterations=1, KL early stop at 100) + kl_coef=0.05 improves Evi-F1 over SFT baseline\", \"reproduce\": {\"finished_at\": \"2026-05-14T12:06:23.600Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T12:06:24.147Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T12:06:25.189118+00:00\"}]}, \"notes\": \"KL divergence explosion at step 5: first pass KL=4.4M, second pass KL=69.5B (threshold=100). KL early stopping correctly triggered, model saved but no useful training occurred.\\n\\nRoot cause: single-GPU training without --gradient_accumulation_steps (effective batch=1) → extremely noisy gradients → policy diverged from reference in 5 steps. Combined with QLoRA merge rounding amplifying initial policy-reference gap.\\n\\nKey metrics at step 5: loss=269987, kl=4.4M, entropy=0.084 (near 0), format_reward=0.10, f1_reward=0.05, ced_reward=0.15, grad_norm=0.16. EXIT_CODE=129 is artifact of KL early stop exit path.\\n\\nerror_type: hyperparameter | can_auto_fix: false\\nFix options: (1) add --gradient_accumulation_steps 16 for effective batch ~16; (2) reduce lr from 5e-5 to 5e-6; (3) increase kl_coef from 0.05 to 0.5; (4) lr warmup steps\"}, \"mvp2_grpo_ced_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T10:58:11.663Z\", \"updated_at\": \"2026-05-14T11:31:49.724Z\", \"spec\": {\"command\": \"accelerate launch --config_file freige/configs/accelerate_4gpu.yaml -m freige.training.grpo_trainer --model_name Qwen3-4B --learning_rate 2e-5 --kl_coef 0.05 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --num_iterations 2\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"CED reward with balanced weights (format×0.3, f1×3.0, ced×1.0) + KL=0.05 + save_steps=20 + num_iterations=2 prevents mode collapse and improves Evi-F1\", \"parent\": \"mvp2_grpo_ced_r1\", \"hyperparams\": {\"learning_rate\": \"2e-5\", \"kl_coef\": 0.05, \"save_steps\": 20, \"num_iterations\": 2, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 1, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"num_generations\": 4}}, \"reproduce\": {\"finished_at\": \"2026-05-14T11:26:47.993Z\"}, \"failure_reason\": \"EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T11:26:48.502Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T11:26:49.285684+00:00\"}]}}, \"mvp2_grpo_ced_r1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T08:02:41.858Z\", \"updated_at\": \"2026-05-14T10:37:23.856Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && accelerate launch --config_file freige/configs/accelerate_4gpu.yaml -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_s3 --num_generations 4 --reward_device cpu --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-5 --seed 42 --wandb_run_name grpo-s3-ced-r1\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": \"24122\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_r1.log\", \"submitted_at\": \"2026-05-14T08:02:41.839Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"CED reward improves Evi-F1 over flat-NLI and extraction-only baselines\", \"wall_clock_seconds\": 8641.6, \"gpu_hours\": 9.6}, \"conclusion\": \"killed\", \"notes\": \"Mode collapse diagnosed at step 80/189 (F1=0.001, format reward hacking). Root causes and fixes applied to grpo_trainer.py:\\n\\n(A) Checkpoint: save_strategy was \\\"epoch\\\" → now supports --save_steps/--save_total_limit CLI args, defaults to steps-based saving. Validated: checkpoint-1/2 saved in dry-run.\\n\\n(B) Reward weighting: all 3 rewards (format/f1/ced) were equally summed by TRL → added WeightedRewardFn wrapper + --format_reward_weight/--f1_reward_weight/--ced_reward_weight CLI args. Dry-run confirmed weighting works (format raw=0.1 × w=0.3 → 0.03).\\n\\n(C) Clip ratio: num_iterations=1 (default) meant single pass, ratio≡1, clipping never activated → added --num_iterations CLI arg (set to 2 in r2). Also added --max_steps, --kl_coef (beta). Dry-run clip_ratio=0 expected (zero reward variance → zero advantage → no update needed).\\n\\n(D) Added --save_total_limit CLI arg (previously hardcoded to 2, now configurable).\\n\\nDry-run validated: 2 steps completed, checkpoints saved, no OOM with num_iterations=2 on 4xRTX5090. completions/clipped_ratio=1.0 (all hit max_completion_length=1024) — expected for cold-start without warmup.\", \"completed_at\": \"2026-05-14T10:26:43.488Z\"}, \"mvp2_grpo_ced\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:10:31.165Z\", \"updated_at\": \"2026-05-14T08:00:02.874Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && accelerate launch --config_file freige/configs/accelerate_4gpu.yaml -m freige.training.grpo_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end 0.5 --output_dir /root/autodl-tmp/grpo_s3 --num_generations 4 --reward_device cpu --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs 1 --learning_rate 5e-5 --seed 42 --wandb_run_name grpo-s3-ced\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": \"20973\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced.log\", \"submitted_at\": \"2026-05-14T07:19:59.045Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 2189.9, \"gpu_hours\": 2.43}, \"reproduce\": {\"finished_at\": \"2026-05-14T07:56:28.316Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T07:56:28.916Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T07:56:29.797308+00:00\"}]}, \"notes\": \"失败原因: grpo_trainer.py:109 f1_reward_fn 中 p.get(\\\"tail\\\", \\\"\\\").lower() 报 AttributeError: 'NoneType' — 某些 parsed triple 的 \\\"tail\\\" 字段为 None，dict.get 有 key 时不返回 default | 运行 ~36min 后崩溃 | 修复方案: 用 (p.get(\\\"tail\\\") or \\\"\\\") 模式处理 None | error_type: infrastructure | can_auto_fix: true\"}, \"precompute_nli_train\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:05:48.887Z\", \"updated_at\": \"2026-05-14T07:35:24.549Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python precompute_nli.py\\\"\", \"server\": \"gpu-5090-4x-1\", \"gpu\": [\"cuda:0\"], \"pid\": \"19212\", \"log_path\": \"~/runs/faith-evidence-ie/precompute_nli_train.log\", \"submitted_at\": \"2026-05-14T07:05:58.458Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/nli_cache/\", \"wall_clock_seconds\": 1766.1, \"gpu_hours\": 0.49}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T07:35:24.549Z\"}, \"mvp2_sft_warmup\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:09:47.819Z\", \"updated_at\": \"2026-05-14T07:10:19.285Z\", \"spec\": {\"command\": \"accelerate launch --config_file freige/configs/accelerate_4gpu.yaml -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen3-4B --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output --deepspeed freige/configs/deepspeed_zero2.json --num_epochs 3 --per_device_batch_size 1 --gradient_accumulation_steps 16 --learning_rate 2e-4 --max_length 4096 --seed 42\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": \"16221\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_sft_warmup.log\", \"submitted_at\": \"2026-05-14T06:22:10.453Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"gpu_model\": \"RTX 5090 32GB x4\", \"lora_rank\": 64, \"lora_alpha\": 128, \"quantization\": \"4-bit NF4 QLoRA\", \"deepspeed\": \"ZeRO-2 + CPU offload\", \"effective_batch_size\": 64, \"checkpoint_path\": \"/root/autodl-tmp/sft_output\", \"wall_clock_seconds\": 2888.8, \"gpu_hours\": 3.21}, \"conclusion\": \"success\", \"metrics\": {\"eval_loss\": 0.72, \"accuracy\": 0.835}, \"completed_at\": \"2026-05-14T07:10:19.285Z\"}, \"smoke_test_grpo\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:20:00.970Z\", \"updated_at\": \"2026-05-14T06:09:18.626Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && accelerate launch --num_processes 4 --mixed_precision bf16 -m freige.training.smoke_test\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": \"9823\", \"log_path\": \"~/runs/faith-evidence-ie/smoke_test_grpo.log\", \"submitted_at\": \"2026-05-14T05:54:45.178Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (smoke test)\", \"wall_clock_seconds\": 873.4, \"gpu_hours\": 0.97}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T06:09:18.626Z\"}, \"mvp1_ced_signal\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:48:46.220Z\", \"updated_at\": \"2026-05-14T05:48:05.545Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES='' python -m freige.analysis.ced_signal_validation --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/mvp1_results --split dev --nli_model cross-encoder/nli-deberta-v3-base --tau 0.5 --batch_size 32\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"4491\", \"log_path\": \"~/runs/faith-evidence-ie/mvp1_ced_signal.log\", \"submitted_at\": \"2026-05-14T05:21:30.878Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_count\": 6830, \"model_name\": \"cross-encoder/nli-deberta-v3-base\", \"data_path\": \"/root/autodl-tmp/data/docred/\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/mvp1_results/\", \"wall_clock_seconds\": 1594.7, \"gpu_hours\": 0.44}, \"conclusion\": \"success\", \"metrics\": {\"mean_margin\": 0.48, \"discrimination_accuracy\": 0.815, \"pearson_r_margin_jaccard\": 0.34, \"pass\": true}, \"completed_at\": \"2026-05-14T05:48:05.545Z\"}}, \"count\": 193, \"total\": 193, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9816}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b42ea78a-67d1-49c5-8961-70ae9fca757f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 551_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] D095 已记录。Lead 2 结论：pipeline 可行但增益在噪声范围，定位 future work，不追加投资。  **cuda:1 和 cuda:3 空闲，分配新任务**：  1. **cuda:1**: 生成 8B RSFT 的 test set predictions（用于 CodaLab 提交）。模型路径 `rsft_output_qwen3_8b/ch…",
+  "leafUuid": "e07d9cb6-7886-48c7-b6d5-52f7c670a3f8",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 552_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 553 · 2026-05-17T15:32:36.178Z_
+
+<details><summary>↩ Tool result · `toolu_01VHCdLpRFiCLRaNfMQSXM61`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"plan_006_llama_rsft_seed43\", \"success\": true, \"actions\": [\"Job still running (pid=450239)\"]}, {\"exp_id\": \"plan_006_qwen3_1_7b_rsft_seed43_eval\", \"success\": true, \"actions\": [\"Job still running (pid=455632)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e2b2ebb7-9d17-4538-b132-3394963e327b",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "5d34c9b0-1a3a-48d5-88a5-08a7f94ea18e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 2, \\\"results\\\": [{\\\"exp_id\\\": \\\"plan_006_llama_rsft_seed43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=450239)\\\"]}, {\\\"exp_id\\\": \\\"plan_006_qwen3_1_7b_rsft_seed43_eval\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=455632)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"plan_006_llama_rsft_seed43\", \"success\": true, \"actions\": [\"Job still running (pid=450239)\"]}, {\"exp_id\": \"plan_006_qwen3_1_7b_rsft_seed43_eval\", \"success\": true, \"actions\": [\"Job still running (pid=455632)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e2b2ebb7-9d17-4538-b132-3394963e327b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 554 · 2026-05-17T15:32:36.228Z_
+
+<details><summary>↩ Tool result · `toolu_012w5AB3ZbXYG4nGiQdknT17`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan_006_llama_rsft_test | Generate LLaMA-8B RSFT test set predictions for CodaLab submission. LLaMA-8B RSFT dev rel_f1=0.5674, expect similar performance on test. | — | — | — |\\n| plan_006_qwen3_8b_rsft_test | Generate 8B RSFT test set predictions for CodaLab submission. 8B RSFT dev rel_f1=0.5606, expect similar performance on test. | — | — | — |\\n| plan_006_qwen3_1_7b_rsft_seed43_eval | Evaluate 1.7B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5219. If seed 43 gives similar result (±1pp, i.e., 0.51-0.53), the 1.7B scaling study datapoint is robust. | — | — | — |\\n\\n## 待处理\\n- plan006_1_7b_rsft_eval（准备中）\\n- seed_comparison_prep（准备中）\\n\\n## 近期结论\\n- **lead2_ckpt20_eval** (success): Evaluate GRPO checkpoint-20 from RSFT base (lead2_rsft_grpo_ced_r2) on DocRED dev. If RSFT→GRPO preserves/improves rel_f1 over RSFT baseline (0.4601), it validates the RSFT→GRPO training pipeline as viable. ← 基于 lead2_rsft_grpo_ced_r2\\n- **plan_006_qwen3_8b_rsft_eval** (success): Evaluate Qwen3-8B RSFT (CED-scored data, 9041 samples) on DocRED dev. At 8B scale with near-zero evidence tax, CED-RSFT should achieve highest absolute Ign-F1 in the scaling study. ← 基于 plan_006_qwen3_8b_rsft_train_r2\\n- **plan_006_qwen3_1_7b_rsft_seed43** (success): RSFT with seed 43 on Qwen3-1.7B will produce comparable performance to other seeds, validating seed robustness for the scaling study ← 基于 plan_006_qwen3_1_7b_rsft_eval_r2\\n\\n## 趋势\\n成功 88 / 负向 19 / 失败 40 / 共 183\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nrtx5090-4x: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\n\\n## 告警\\n- mvp2_grpo_ced: 训练失败 — unknown\\n- mvp2_grpo_flatnli: 训练失败 — unknown\\n- mvp2_grpo_extract: 训练失败 — unknown\\n- mvp2_sft_eval: 已被终止 — unknown\\n- mvp2_grpo_ced_r1: 已被终止 — unknown\\n- mvp2_grpo_ced_r2: 已被终止 — unknown\\n- mvp2_grpo_ced_r3: 训练失败 — unknown\\n- mvp2_grpo_ced_r4: 已被终止 — unknown\\n- mvp2_grpo_extract_r2: 已被终止 — unknown\\n- mvp2_grpo_flatnli_r2: 已被终止 — unknown\\n- mvp2_grpo_flatnli_r3: 已被终止 — unknown\\n- mvp2_grpo_ced_kl001: 训练失败 — unknown\\n- mvp2_grpo_ced_kl001_r2: 已被终止 — unknown\\n- mvp2_grpo_ced_kl001_r3: 已被终止 — unknown\\n- mvp2_grpo_flatnli_r4: 已被终止 — unknown\\n- mvp2_grpo_extract_r4: 已被终止 — unknown\\n- mvp2_grpo_flatnli_r5: 已被终止 — unknown\\n- mvp2_eval_ced_kl001_r4_multi: 已被终止 — unknown\\n- mvp2_eval_ced_kl001_r4_last: 已被终止 — unknown\\n- mvp2_eval_ced_kl001_r4_ckpt90: 已被终止 — unknown\\n- mvp2_eval_ced_kl001_r4_high: 训练失败 — unknown\\n- mvp2_grpo_ced_lr5e6_r1: 已被终止 — unknown\\n- mvp2_grpo_ced_lr5e6_p1_r1: 已被终止 — unknown\\n- mvp2_grpo_ced_lr5e6_rp_r1: 训练失败 — unknown\\n- mvp2_eval_ced_kl001_r4_ckpt7080: 训练失败 — unknown\\n- mvp2_grpo_ced_lr5e6_rp_r2: 已被终止 — unknown\\n- mvp2_eval_lr5e6_r1_ckpt40: 训练失败 — unknown\\n- mvp2_eval_lr5e6_rp_r2_ckpt20: 已被终止 — unknown\\n- mvp2_eval_lr5e6_r1_ckpt60: 训练失败 — unknown\\n- mvp2_rsft_generate: 训练失败 — unknown\\n- mvp2_rsft_ced_scoring_topk3: 已被终止 — unknown\\n- mvp2_eval_rsft_s44: 已被终止 — unknown\\n- mvp2_rsft_train_r2_fix: 已被终止 — unknown\\n- mvp2_eval_rsft_s43: 训练失败 — unknown\\n- mvp2_eval_rsft_r2b_maxtok1536: 已被终止 — unknown\\n- plan_011_eval_g8_bf16_ckpt100: 已被终止 — unknown\\n- plan_015_grpo_g4_bf16: 已被终止 — unknown\\n- plan_015_grpo_g4_bf16_v2: 已被终止 — unknown\\n- plan_015_grpo_g4_bf16_v3: 已被终止 — unknown\\n- plan_002_test_eval_s44: 训练失败 — unknown\\n- plan_009_extract_reward_eval: 训练失败 — unknown\\n- plan_009_flatnli_reward_eval: 训练失败 — unknown\\n- eval_plan_012_dpo_ced_ckpt400: 训练失败 — unknown\\n- plan_009_flatnli_reward_eval_r2: 训练失败 — unknown\\n- eval_plan_001_flat_nli_s43: 训练失败 — unknown\\n- eval_plan_008_rsft_topk3: 已被终止 — unknown\\n- eval_plan_012_dpo_1ep_fixed: 已被终止 — unknown\\n- eval_plan_008_topk3_fixed: 已被终止 — unknown\\n- eval_flat_nli_seed44: 已被终止 — unknown\\n- eval_plan_014_no_evidence: 训练失败 — unknown\\n- rsft_ced_s45_train: 已被终止 — unknown\\n- rsft_ced_s43_train: 训练失败 — unknown\\n- rsft_ced_s45_train_r2: 已被终止 — unknown\\n- rsft_ced_s43_train_r2: 训练失败 — unknown\\n- rsft_ced_s45_train_r3: 训练失败 — unknown\\n- plan_006_qwen3_1_7b_sft: 已被终止 — unknown\\n- reeval_flat_nli_s44: 已被终止 — unknown\\n- plan_006_qwen3_1_7b_no_evidence_eval: 训练失败 — unknown\\n- plan_006_qwen3_8b_no_evidence_eval: 已被终止 — unknown\\n- plan_006_qwen3_1_7b_no_evidence_eval_v2: 训练失败 — unknown\\n- plan_006_qwen3_1_7b_no_evidence_eval_v2r2: 训练失败 — unknown\\n- plan_007_redocred_4b_sft_eval: 训练失败 — unknown\\n- plan_006_qwen3_8b_rsft_candidates: 训练失败 — unknown\\n- plan_016_llama_rsft_candidates: 训练失败 — unknown\\n- plan_007_redocred_rsft_eval: 训练失败 — unknown\\n- plan_016_llama_rsft_candidates_r2: 训练失败 — unknown\\n- plan_007_redocred_rsft_eval_r3: 训练失败 — unknown\\n- plan_002_test_rsft_s43: 训练失败 — unknown\\n- plan_007_redocred_rsft_eval_r4: 训练失败 — unknown\\n- plan_016_llama_rsft_train: 训练失败 — unknown\\n- plan_016_llama_rsft_train_r2: 训练失败 — unknown\\n- rsft_s44_dev_eval_preds: 训练失败 — unknown\\n- lead2_rsft_grpo_ced: 训练失败 — unknown\\n- plan_006_qwen3_8b_rsft_train: 训练失败 — unknown\\n- plan_006_qwen3_1_7b_rsft_eval: 训练失败 — unknown\\n- lead2_rsft_grpo_ced_r2: 训练失败 — unknown\\n\", \"total_chars\": 4964, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6674222-54ae-4d45-8845-491e4ba10611",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "0ae112da-4187-44c9-a181-3630ebab31e2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-17\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| plan_006_llama_rsft_test | Generate LLaMA-8B RSFT test set predictions for CodaLab submission. LLaMA-8B RSFT dev rel_f1=0.5674, expect similar performance on test. | — | — | — |\\\\n| plan_006_qwen3_8b_rsft_test | Generate 8B RSFT test set predictions for CodaLab submission. 8B RSFT dev rel_f1=0.5606, expect similar performance on test. | — | — | — |\\\\n| plan_006_qwen3_1_7b_rsft_seed43_eval | Evaluate 1.7B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5219. If seed 43 gives similar result (±1pp, i.e., 0.51-0.53), the 1.7B scaling study datapoint is robust. | — | — | — |\\\\n\\\\n## 待处理\\\\n- plan006_1_7b_rsft_eval（准备中）\\\\n- seed_comparison_prep（准备中）\\\\n\\\\n## 近期结论\\\\n- **lead2_ckpt20_eval** (success): Evaluate GRPO checkpoint-20 from RSFT base (lead2_rsft_grpo_ced_r2) on DocRED dev. If RSFT→GRPO preserves/improves rel_f1 over RSFT baseline (0.4601), it validates the RSFT→GRPO training pipeline as viable. ← 基于 lead2_rsft_grpo_ced_r2\\\\n- **plan_006_qwen3_8b_rsft_eval** (success): Evaluate Qwen3-8B RSFT (CED-scored data, 9041 samples) on DocRED dev. At 8B scale with near-zero evidence tax, CED-RSFT should achieve highest absolute Ign-F1 in the scaling study. ← 基于 plan_006_qwen3_8b_rsft_train_r2\\\\n- **plan_006_qwen3_1_7b_rsft_seed43** (success): RSFT with seed 43 on Qwen3-1.7B will produce comparable performance to other seeds, validating seed robustness for the scaling study ← 基于 plan_006_qwen3_1_7b_rsft_eval_r2\\\\n\\\\n## 趋势\\\\n成功 88 / 负向 19 / 失败 40 / 共 183\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nrtx5090-4x: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\\\n\\\\n## 告警\\\\n- mvp2_grpo_ced: 训练失败 — unknown\\\\n- mvp2_grpo_flatnli: 训练失败 — unknown\\\\n- mvp2_grpo_extract: 训练失败 — unknown\\\\n- mvp2_sft_eval: 已被终止 — unknown\\\\n- mvp2_grpo_ced_r1: 已被终止 — unknown\\\\n- mvp2_grpo_ced_r2: 已被终止 — unknown\\\\n- mvp2_grpo_ced_r3: 训练失败 — unknown\\\\n- mvp2_grpo_ced_r4: 已被终止 — unknown\\\\n- mvp2_grpo_extract_r2: 已被终止 — unknown\\\\n- mvp2_grpo_flatnli_r2: 已被终止 — unknown\\\\n- mvp2_grpo_flatnli_r3: 已被终止 — unknown\\\\n- mvp2_grpo_ced_kl001: 训练失败 — unknown\\\\n- mvp2_grpo_ced_kl001_r2: 已被终止 — unknown\\\\n- mvp2_grpo_ced_kl001_r3: 已被终止 — unknown\\\\n- mvp2_grpo_flatnli_r4: 已被终止 — unknown\\\\n- mvp2_grpo_extract_r4: 已被终止 — unknown\\\\n- mvp2_grpo_flatnli_r5: 已被终止 — unknown\\\\n- mvp2_eval_ced_kl001_r4_multi: 已被终止 — unknown\\\\n- mvp2_eval_ced_kl001_r4_last: 已被终止 — unknown\\\\n- mvp2_eval_ced_kl001_r4_ckpt90: 已被终止 — unknown\\\\n- mvp2_eval_ced_kl001_r4_high: 训练失败 — unknown\\\\n- mvp2_grpo_ced_lr5e6_r1: 已被终止 — unknown\\\\n- mvp2_grpo_ced_lr5e6_p1_r1: 已被终止 — unknown\\\\n- mvp2_grpo_ced_lr5e6_rp_r1: 训练失败 — unknown\\\\n- mvp2_eval_ced_kl001_r4_ckpt7080: 训练失败 — unknown\\\\n- mvp2_grpo_ced_lr5e6_rp_r2: 已被终止 — unknown\\\\n- mvp2_eval_lr5e6_r1_ckpt40: 训练失败 — unknown\\\\n- mvp2_eval_lr5e6_rp_r2_ckpt20: 已被终止 — unknown\\\\n- mvp2_eval_lr5e6_r1_ckpt60: 训练失败 — unknown\\\\n- mvp2_rsft_generate: 训练失败 — unknown\\\\n- mvp2_rsft_ced_scoring_topk3: 已被终止 — unknown\\\\n- mvp2_eval_rsft_s44: 已被终止 — unknown\\\\n- mvp2_rsft_train_r2_fix: 已被终止 — unknown\\\\n- mvp2_eval_rsft_s43: 训练失败 — unknown\\\\n- mvp2_eval_rsft_r2b_maxtok1536: 已被终止 — unknown\\\\n- plan_011_eval_g8_bf16_ckpt100: 已被终止 — unknown\\\\n- plan_015_grpo_g4_bf16: 已被终止 — unknown\\\\n- plan_015_grpo_g4_bf16_v2: 已被终止 — unknown\\\\n- plan_015_grpo_g4_bf16_v3: 已被终止 — unknown\\\\n- plan_002_test_eval_s44: 训练失败 — unknown\\\\n- plan_009_extract_reward_eval: 训练失败 — unknown\\\\n- plan_009_flatnli_reward_eval: 训练失败 — unknown\\\\n- eval_plan_012_dpo_ced_ckpt400: 训练失败 — unknown\\\\n- plan_009_flatnli_reward_eval_r2: 训练失败 — unknown\\\\n- eval_plan_001_flat_nli_s43: 训练失败 — unknown\\\\n- eval_plan_008_rsft_topk3: 已被终止 — unknown\\\\n- eval_plan_012_dpo_1ep_fixed: 已被终止 — unknown\\\\n- eval_plan_008_topk3_fixed: 已被终止 — unknown\\\\n- eval_flat_nli_seed44: 已被终止 — unknown\\\\n- eval_plan_014_no_evidence: 训练失败 — unknown\\\\n- rsft_ced_s45_train: 已被终止 — unknown\\\\n- rsft_ced_s43_train: 训练失败 — unknown\\\\n- rsft_ced_s45_train_r2: 已被终止 — unknown\\\\n- rsft_ced_s43_train_r2: 训练失败 — unknown\\\\n- rsft_ced_s45_train_r3: 训练失败 — unknown\\\\n- plan_006_qwen3_1_7b_sft: 已被终止 — unknown\\\\n- reeval_flat_nli_s44: 已被终止 — unknown\\\\n- plan_006_qwen3_1_7b_no_evidence_eval: 训练失败 — unknown\\\\n- plan_006_qwen3_8b_no_evidence_eval: 已被终止 — unknown\\\\n- plan_006_qwen3_1_7b_no_evidence_eval_v2: 训练失败 — unknown\\\\n- plan_006_qwen3_1_7b_no_evidence_eval_v2r2: 训练失败 — unknown\\\\n- plan_007_redocred_4b_sft_eval: 训练失败 — unknown\\\\n- plan_006_qwen3_8b_rsft_candidates: 训练失败 — unknown\\\\n- plan_016_llama_rsft_candidates: 训练失败 — unknown\\\\n- plan_007_redocred_rsft_eval: 训练失败 — unknown\\\\n- plan_016_llama_rsft_candidates_r2: 训练失败 — unknown\\\\n- plan_007_redocred_rsft_eval_r3: 训练失败 — unknown\\\\n- plan_002_test_rsft_s43: 训练失败 — unknown\\\\n- plan_007_redocred_rsft_eval_r4: 训练失败 — unknown\\\\n- plan_016_llama_rsft_train: 训练失败 — unknown\\\\n- plan_016_llama_rsft_train_r2: 训练失败 — unknown\\\\n- rsft_s44_dev_eval_preds: 训练失败 — unknown\\\\n- lead2_rsft_grpo_ced: 训练失败 — unknown\\\\n- plan_006_qwen3_8b_rsft_train: 训练失败 — unknown\\\\n- plan_006_qwen3_1_7b_rsft_eval: 训练失败 — unknown\\\\n- lead2_rsft_grpo_ced_r2: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 4964, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| plan_006_llama_rsft_test | Generate LLaMA-8B RSFT test set predictions for CodaLab submission. LLaMA-8B RSFT dev rel_f1=0.5674, expect similar performance on test. | — | — | — |\\n| plan_006_qwen3_8b_rsft_test | Generate 8B RSFT test set predictions for CodaLab submission. 8B RSFT dev rel_f1=0.5606, expect similar performance on test. | — | — | — |\\n| plan_006_qwen3_1_7b_rsft_seed43_eval | Evaluate 1.7B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5219. If seed 43 gives similar result (±1pp, i.e., 0.51-0.53), the 1.7B scaling study datapoint is robust. | — | — | — |\\n\\n## 待处理\\n- plan006_1_7b_rsft_eval（准备中）\\n- seed_comparison_prep（准备中）\\n\\n## 近期结论\\n- **lead2_ckpt20_eval** (success): Evaluate GRPO checkpoint-20 from RSFT base (lead2_rsft_grpo_ced_r2) on DocRED dev. If RSFT→GRPO preserves/improves rel_f1 over RSFT baseline (0.4601), it validates the RSFT→GRPO training pipeline as viable. ← 基于 lead2_rsft_grpo_ced_r2\\n- **plan_006_qwen3_8b_rsft_eval** (success): Evaluate Qwen3-8B RSFT (CED-scored data, 9041 samples) on DocRED dev. At 8B scale with near-zero evidence tax, CED-RSFT should achieve highest absolute Ign-F1 in the scaling study. ← 基于 plan_006_qwen3_8b_rsft_train_r2\\n- **plan_006_qwen3_1_7b_rsft_seed43** (success): RSFT with seed 43 on Qwen3-1.7B will produce comparable performance to other seeds, validating seed robustness for the scaling study ← 基于 plan_006_qwen3_1_7b_rsft_eval_r2\\n\\n## 趋势\\n成功 88 / 负向 19 / 失败 40 / 共 183\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nrtx5090-4x: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\n\\n## 告警\\n- mvp2_grpo_ced: 训练失败 — unknown\\n- mvp2_grpo_flatnli: 训练失败 — unknown\\n- mvp2_grpo_extract: 训练失败 — unknown\\n- mvp2_sft_eval: 已被终止 — unknown\\n- mvp2_grpo_ced_r1: 已被终止 — unknown\\n- mvp2_grpo_ced_r2: 已被终止 — unknown\\n- mvp2_grpo_ced_r3: 训练失败 — unknown\\n- mvp2_grpo_ced_r4: 已被终止 — unknown\\n- mvp2_grpo_extract_r2: 已被终止 — unknown\\n- mvp2_grpo_flatnli_r2: 已被终止 — unknown\\n- mvp2_grpo_flatnli_r3: 已被终止 — unknown\\n- mvp2_grpo_ced_kl001: 训练失败 — unknown\\n- mvp2_grpo_ced_kl001_r2: 已被终止 — unknown\\n- mvp2_grpo_ced_kl001_r3: 已被终止 — unknown\\n- mvp2_grpo_flatnli_r4: 已被终止 — unknown\\n- mvp2_grpo_extract_r4: 已被终止 — unknown\\n- mvp2_grpo_flatnli_r5: 已被终止 — unknown\\n- mvp2_eval_ced_kl001_r4_multi: 已被终止 — unknown\\n- mvp2_eval_ced_kl001_r4_last: 已被终止 — unknown\\n- mvp2_eval_ced_kl001_r4_ckpt90: 已被终止 — unknown\\n- mvp2_eval_ced_kl001_r4_high: 训练失败 — unknown\\n- mvp2_grpo_ced_lr5e6_r1: 已被终止 — unknown\\n- mvp2_grpo_ced_lr5e6_p1_r1: 已被终止 — unknown\\n- mvp2_grpo_ced_lr5e6_rp_r1: 训练失败 — unknown\\n- mvp2_eval_ced_kl001_r4_ckpt7080: 训练失败 — unknown\\n- mvp2_grpo_ced_lr5e6_rp_r2: 已被终止 — unknown\\n- mvp2_eval_lr5e6_r1_ckpt40: 训练失败 — unknown\\n- mvp2_eval_lr5e6_rp_r2_ckpt20: 已被终止 — unknown\\n- mvp2_eval_lr5e6_r1_ckpt60: 训练失败 — unknown\\n- mvp2_rsft_generate: 训练失败 — unknown\\n- mvp2_rsft_ced_scoring_topk3: 已被终止 — unknown\\n- mvp2_eval_rsft_s44: 已被终止 — unknown\\n- mvp2_rsft_train_r2_fix: 已被终止 — unknown\\n- mvp2_eval_rsft_s43: 训练失败 — unknown\\n- mvp2_eval_rsft_r2b_maxtok1536: 已被终止 — unknown\\n- plan_011_eval_g8_bf16_ckpt100: 已被终止 — unknown\\n- plan_015_grpo_g4_bf16: 已被终止 — unknown\\n- plan_015_grpo_g4_bf16_v2: 已被终止 — unknown\\n- plan_015_grpo_g4_bf16_v3: 已被终止 — unknown\\n- plan_002_test_eval_s44: 训练失败 — unknown\\n- plan_009_extract_reward_eval: 训练失败 — unknown\\n- plan_009_flatnli_reward_eval: 训练失败 — unknown\\n- eval_plan_012_dpo_ced_ckpt400: 训练失败 — unknown\\n- plan_009_flatnli_reward_eval_r2: 训练失败 — unknown\\n- eval_plan_001_flat_nli_s43: 训练失败 — unknown\\n- eval_plan_008_rsft_topk3: 已被终止 — unknown\\n- eval_plan_012_dpo_1ep_fixed: 已被终止 — unknown\\n- eval_plan_008_topk3_fixed: 已被终止 — unknown\\n- eval_flat_nli_seed44: 已被终止 — unknown\\n- eval_plan_014_no_evidence: 训练失败 — unknown\\n- rsft_ced_s45_train: 已被终止 — unknown\\n- rsft_ced_s43_train: 训练失败 — unknown\\n- rsft_ced_s45_train_r2: 已被终止 — unknown\\n- rsft_ced_s43_train_r2: 训练失败 — unknown\\n- rsft_ced_s45_train_r3: 训练失败 — unknown\\n- plan_006_qwen3_1_7b_sft: 已被终止 — unknown\\n- reeval_flat_nli_s44: 已被终止 — unknown\\n- plan_006_qwen3_1_7b_no_evidence_eval: 训练失败 — unknown\\n- plan_006_qwen3_8b_no_evidence_eval: 已被终止 — unknown\\n- plan_006_qwen3_1_7b_no_evidence_eval_v2: 训练失败 — unknown\\n- plan_006_qwen3_1_7b_no_evidence_eval_v2r2: 训练失败 — unknown\\n- plan_007_redocred_4b_sft_eval: 训练失败 — unknown\\n- plan_006_qwen3_8b_rsft_candidates: 训练失败 — unknown\\n- plan_016_llama_rsft_candidates: 训练失败 — unknown\\n- plan_007_redocred_rsft_eval: 训练失败 — unknown\\n- plan_016_llama_rsft_candidates_r2: 训练失败 — unknown\\n- plan_007_redocred_rsft_eval_r3: 训练失败 — unknown\\n- plan_002_test_rsft_s43: 训练失败 — unknown\\n- plan_007_redocred_rsft_eval_r4: 训练失败 — unknown\\n- plan_016_llama_rsft_train: 训练失败 — unknown\\n- plan_016_llama_rsft_train_r2: 训练失败 — unknown\\n- rsft_s44_dev_eval_preds: 训练失败 — unknown\\n- lead2_rsft_grpo_ced: 训练失败 — unknown\\n- plan_006_qwen3_8b_rsft_train: 训练失败 — unknown\\n- plan_006_qwen3_1_7b_rsft_eval: 训练失败 — unknown\\n- lead2_rsft_grpo_ced_r2: 训练失败 — unknown\\n\", \"total_chars\": 4964, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d6674222-54ae-4d45-8845-491e4ba10611",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 555 · 2026-05-17T15:32:43.537Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the current status of the running experiments. The reconcile shows:
+1. `plan_006_llama_rsft_seed43` - still running (PID 450239)
+2. `plan_006_qwen3_1_7b_rsft_seed43_eval` - still running (PID 455632)
+
+The report.md shows running:
+- plan_006_llama_rsft_test
+- plan_006_qwen3_8b_rsft_test
+- plan_006_qwen3_1_7b_rsft_seed43_eval
+
+Let me check the registry for the specific running experiments to understand current state. 
+
+Now I'm filtering the registry to isolate just the active experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ae112da-4187-44c9-a181-3630ebab31e2",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PBTxqFc1uskqJUG7Um",
+  "type": "assistant",
+  "uuid": "7541d714-4dc3-4585-b179-37e50460d274",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017QXD2qi7LfArsCKK3BdhQ8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3869,
+      "cache_read_input_tokens": 41756,
+      "output_tokens": 586,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3869,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 586,
+          "cache_read_input_tokens": 41756,
+          "cache_creation_input_tokens": 3869,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3869
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 556 · 2026-05-17T15:32:52.118Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PzNoQ3R9vBKyjVQhDFqcXD`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-4b8948bb/3fa02456-769c-4f82-88f1-dc1e0de1d842/tool-results/mcp-agent-ml-research-read_registry-1779031949563.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry.get('data', {}).get('experiments', [])\n# Filter for RUNNING or recent DONE experiments\nfor e in exps:\n    if e.get('status') in ('RUNNING', 'ANALYZING') or (e.get('status') == 'DONE' and 'seed43' in e.get('exp_id','')) or 'test' in e.get('exp_id','') and '8b_rsft_test' in e.get('exp_id','') or 'llama_rsft_test' in e.get('exp_id',''):\n        print(json.dumps({k: e.get(k) for k in ['exp_id','status','conclusion','hypothesis','metrics','spec','gpu_id','server']}, indent=2))\n        print('---')\n\"\n",
+  "description": "Extract running and relevant experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7541d714-4dc3-4585-b179-37e50460d274",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PBTxqFc1uskqJUG7Um",
+  "type": "assistant",
+  "uuid": "e5ef974a-963e-44f6-999c-f61bcc6003ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017QXD2qi7LfArsCKK3BdhQ8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3869,
+      "cache_read_input_tokens": 41756,
+      "output_tokens": 586,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3869,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 586,
+          "cache_read_input_tokens": 41756,
+          "cache_creation_input_tokens": 3869,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3869
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 557 · 2026-05-17T15:32:52.521Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01PzNoQ3R9vBKyjVQhDFqcXD`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 8, in &lt;module>
+    if e.get('status') in ('RUNNING', 'ANALYZING') or (e.get('status') == 'DONE' and 'seed43' in e.get('exp_id','')) or 'test' in e.get('exp_id','') and '8b_rsft_test' in e.get('exp_id','') or 'llama_rsft_test' in e.get('exp_id',''):
+       ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e5ef974a-963e-44f6-999c-f61bcc6003ae",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "9b2309e9-0409-4e4b-8ea9-8ffe0f90e81a",
+  "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 8, in &lt;module>\n    if e.get('status') in ('RUNNING', 'ANALYZING') or (e.get('status') == 'DONE' and 'seed43' in e.get('exp_id','')) or 'test' in e.get('exp_id','') and '8b_rsft_test' in e.get('exp_id','') or 'llama_rsft_test' in e.get('exp_id',''):\n       ^^^^^\nAttributeError: 'str' object has no attribute 'get'",
+  "sourceToolAssistantUUID": "e5ef974a-963e-44f6-999c-f61bcc6003ae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 558 · 2026-05-17T15:32:58.893Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LRbYfP6LFkCHQtGiLSg1V8`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-4b8948bb/3fa02456-769c-4f82-88f1-dc1e0de1d842/tool-results/mcp-agent-ml-research-read_registry-1779031949563.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\n# Check structure\nparsed = json.loads(result_str) if isinstance(result_str, str) else result_str\nprint(type(parsed))\nif isinstance(parsed, dict):\n    print(list(parsed.keys())[:5])\n    d = parsed.get('data', parsed)\n    if isinstance(d, dict):\n        print(list(d.keys())[:5])\n        exps = d.get('experiments', [])\n        if exps:\n            if isinstance(exps[0], str):\n                print('experiments are strings, first:', exps[0][:200])\n            else:\n                print('experiments are dicts, first keys:', list(exps[0].keys())[:10])\n\" 2>&1 | head -20\n",
+  "description": "Probe registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b2309e9-0409-4e4b-8ea9-8ffe0f90e81a",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PCfPTLW4isCu66sY9m",
+  "type": "assistant",
+  "uuid": "98498428-a03f-41d8-a8ac-e69793f714d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SisaiMVnz1ka9iUWHjfe8i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 45625,
+      "output_tokens": 385,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 760,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 385,
+          "cache_read_input_tokens": 45625,
+          "cache_creation_input_tokens": 760,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 760
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 559 · 2026-05-17T15:32:59.188Z_
+
+<details><summary>↩ Tool result · `toolu_01LRbYfP6LFkCHQtGiLSg1V8`</summary>
+
+```text
+Traceback (most recent call last):
+  File "&lt;string>", line 15, in &lt;module>
+    if isinstance(exps[0], str):
+                  ~~~~^^^
+KeyError: 0
+&lt;class 'dict'>
+['success', 'data', 'error', 'metadata']
+['experiments', 'count', 'total', 'baseline']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98498428-a03f-41d8-a8ac-e69793f714d8",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "63ef9f10-8fbe-4e74-be4f-4b0b9fb2aff2",
+  "toolUseResult": {
+    "stdout": "Traceback (most recent call last):\n  File \"&lt;string>\", line 15, in &lt;module>\n    if isinstance(exps[0], str):\n                  ~~~~^^^\nKeyError: 0\n&lt;class 'dict'>\n['success', 'data', 'error', 'metadata']\n['experiments', 'count', 'total', 'baseline']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "98498428-a03f-41d8-a8ac-e69793f714d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 560 · 2026-05-17T15:33:05.009Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NwxYN6vPyjp7ZM3bXYTGGA`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie--claude-sessions-agent-4b8948bb/3fa02456-769c-4f82-88f1-dc1e0de1d842/tool-results/mcp-agent-ml-research-read_registry-1779031949563.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nparsed = json.loads(data['result'])\nexps = parsed['data']['experiments']\nprint('type:', type(exps))\nif isinstance(exps, dict):\n    # dict keyed by exp_id\n    for eid, e in exps.items():\n        status = e.get('status','') if isinstance(e, dict) else ''\n        if status in ('RUNNING', 'ANALYZING'):\n            print(json.dumps({'exp_id': eid, **{k: e.get(k) for k in ['status','conclusion','hypothesis','gpu_id','server','metrics']}}, indent=2))\n            print('---')\nelif isinstance(exps, list):\n    for e in exps:\n        if e.get('status') in ('RUNNING', 'ANALYZING'):\n            print(json.dumps({k: e.get(k) for k in ['exp_id','status','conclusion','hypothesis','gpu_id','server','metrics']}, indent=2))\n            print('---')\n\" 2>&1",
+  "description": "Extract RUNNING experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63ef9f10-8fbe-4e74-be4f-4b0b9fb2aff2",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PD9si3jWRitfaUEkCL",
+  "type": "assistant",
+  "uuid": "f6fc499f-7f8f-43fb-8608-e714c9b1b4d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0192ip1zWbRiSn5EfKBQUFjL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 484,
+      "cache_read_input_tokens": 46385,
+      "output_tokens": 441,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 484,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 441,
+          "cache_read_input_tokens": 46385,
+          "cache_creation_input_tokens": 484,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 484
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 561 · 2026-05-17T15:33:05.111Z_
+
+<details><summary>↩ Tool result · `toolu_01NwxYN6vPyjp7ZM3bXYTGGA`</summary>
+
+```text
+type: &lt;class 'dict'>
+{
+  "exp_id": "plan_006_llama_rsft_test",
+  "status": "RUNNING",
+  "conclusion": null,
+  "hypothesis": "Generate LLaMA-8B RSFT test set predictions for CodaLab submission. LLaMA-8B RSFT dev rel_f1=0.5674, expect similar performance on test.",
+  "gpu_id": null,
+  "server": null,
+  "metrics": null
+}
+---
+{
+  "exp_id": "plan_006_qwen3_8b_rsft_test",
+  "status": "RUNNING",
+  "conclusion": null,
+  "hypothesis": "Generate 8B RSFT test set predictions for CodaLab submission. 8B RSFT dev rel_f1=0.5606, expect similar performance on test.",
+  "gpu_id": null,
+  "server": null,
+  "metrics": null
+}
+---
+{
+  "exp_id": "plan_006_qwen3_1_7b_rsft_seed43_eval",
+  "status": "RUNNING",
+  "conclusion": null,
+  "hypothesis": "Evaluate 1.7B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5219. If seed 43 gives similar result (\u00b11pp, i.e., 0.51-0.53), the 1.7B scaling study datapoint is robust.",
+  "gpu_id": null,
+  "server": null,
+  "metrics": null
+}
+---
+{
+  "exp_id": "plan_006_llama_rsft_seed43",
+  "status": "RUNNING",
+  "conclusion": null,
+  "hypothesis": "Validate LLaMA-8B RSFT robustness across seeds. Seed 42 gave rel_f1=0.5674 (+1.6pp over SFT baseline 0.5514). If seed 43 gives similar result, the cross-architecture RSFT claim is robust against seed variance.",
+  "gpu_id": null,
+  "server": null,
+  "metrics": null
+}
+---
+{
+  "exp_id": "plan_006_qwen3_8b_rsft_train_r2",
+  "status": "ANALYZING",
+  "conclusion": null,
+  "hypothesis": "RSFT with CED-scored data (9041 samples) on Qwen3-8B, resume from checkpoint-750 after disk-full crash. At 8B scale, CED-filtered RSFT should achieve highest absolute performance in scaling study.",
+  "gpu_id": null,
+  "server": null,
+  "metrics": {
+    "train_loss": 0.3008,
+    "mean_token_accuracy": 0.9172,
+    "epochs": 3,
+    "runtime_seconds": 8983
+  }
+}
+---
+{
+  "exp_id": "plan_006_llama_rsft_r3_eval",
+  "status": "ANALYZING",
+  "conclusion": null,
+  "hypothesis": "Evaluate LLaMA-3.1-8B RSFT r3 (checkpoint-3312, final) on DocRED dev. Cross-architecture validation: if CED-RSFT works on both Qwen and LLaMA, the method is architecture-agnostic.",
+  "gpu_id": null,
+  "server": null,
+  "metrics": {
+    "ign_f1": 0.5563,
+    "f1": 0.5674,
+    "evi_f1": 0.8255,
+    "edcr": 0.5856,
+    "evi_f1_joint": 0.4571,
+    "format_compliance_rate": 0.997,
+    "field_compliance_rate": 0.807,
+    "n_truncated": 187,
+    "inference_time_seconds": 8650
+  }
+}
+---
+{
+  "exp_id": "plan_006_qwen3_1_7b_rsft_eval_r2",
+  "status": "ANALYZING",
+  "conclusion": null,
+  "hypothesis": "Evaluate 1.7B RSFT model (checkpoint-1698) on DocRED dev. Retry after disk-full crash. Validates CED-filtered RSFT at smallest model scale in scaling study.",
+  "gpu_id": null,
+  "server": null,
+  "metrics": {
+    "ign_f1": 0.505,
+    "f1": 0.5219,
+    "evi_f1": 0.8309,
+    "edcr": 0.6297,
+    "evi_f1_joint": 0.4223,
+    "format_compliance_rate": 0.999,
+    "field_compliance_rate": 0.732,
+    "n_truncated": 258,
+    "inference_time_seconds": 9464
+  }
+}
+---
+{
+  "exp_id": "rsft_s43_dev_eval_preds",
+  "status": "ANALYZING",
+  "conclusion": null,
+  "hypothesis": "Eval RSFT-s43 (CED-scored) on DocRED dev with predictions saved. Prerequisite for Lead 1 CED evidence filtering: per-sentence NLI scoring requires full prediction outputs.",
+  "gpu_id": null,
+  "server": null,
+  "metrics": {
+    "ign_f1": 0.4512,
+    "f1": 0.4601,
+    "evi_f1": 0.8063,
+    "edcr": 0.6542,
+    "evi_f1_joint": 0.3605,
+    "format_compliance_rate": 1,
+    "field_compliance_rate": 0.809,
+    "n_truncated": 184,
+    "inference_time_seconds": 10982
+  }
+}
+---
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f6fc499f-7f8f-43fb-8608-e714c9b1b4d3",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "e5662c47-305e-4208-8916-2fa4ef07d2a8",
+  "toolUseResult": {
+    "stdout": "type: &lt;class 'dict'>\n{\n  \"exp_id\": \"plan_006_llama_rsft_test\",\n  \"status\": \"RUNNING\",\n  \"conclusion\": null,\n  \"hypothesis\": \"Generate LLaMA-8B RSFT test set predictions for CodaLab submission. LLaMA-8B RSFT dev rel_f1=0.5674, expect similar performance on test.\",\n  \"gpu_id\": null,\n  \"server\": null,\n  \"metrics\": null\n}\n---\n{\n  \"exp_id\": \"plan_006_qwen3_8b_rsft_test\",\n  \"status\": \"RUNNING\",\n  \"conclusion\": null,\n  \"hypothesis\": \"Generate 8B RSFT test set predictions for CodaLab submission. 8B RSFT dev rel_f1=0.5606, expect similar performance on test.\",\n  \"gpu_id\": null,\n  \"server\": null,\n  \"metrics\": null\n}\n---\n{\n  \"exp_id\": \"plan_006_qwen3_1_7b_rsft_seed43_eval\",\n  \"status\": \"RUNNING\",\n  \"conclusion\": null,\n  \"hypothesis\": \"Evaluate 1.7B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5219. If seed 43 gives similar result (\\u00b11pp, i.e., 0.51-0.53), the 1.7B scaling study datapoint is robust.\",\n  \"gpu_id\": null,\n  \"server\": null,\n  \"metrics\": null\n}\n---\n{\n  \"exp_id\": \"plan_006_llama_rsft_seed43\",\n  \"status\": \"RUNNING\",\n  \"conclusion\": null,\n  \"hypothesis\": \"Validate LLaMA-8B RSFT robustness across seeds. Seed 42 gave rel_f1=0.5674 (+1.6pp over SFT baseline 0.5514). If seed 43 gives similar result, the cross-architecture RSFT claim is robust against seed variance.\",\n  \"gpu_id\": null,\n  \"server\": null,\n  \"metrics\": null\n}\n---\n{\n  \"exp_id\": \"plan_006_qwen3_8b_rsft_train_r2\",\n  \"status\": \"ANALYZING\",\n  \"conclusion\": null,\n  \"hypothesis\": \"RSFT with CED-scored data (9041 samples) on Qwen3-8B, resume from checkpoint-750 after disk-full crash. At 8B scale, CED-filtered RSFT should achieve highest absolute performance in scaling study.\",\n  \"gpu_id\": null,\n  \"server\": null,\n  \"metrics\": {\n    \"train_loss\": 0.3008,\n    \"mean_token_accuracy\": 0.9172,\n    \"epochs\": 3,\n    \"runtime_seconds\": 8983\n  }\n}\n---\n{\n  \"exp_id\": \"plan_006_llama_rsft_r3_eval\",\n  \"status\": \"ANALYZING\",\n  \"conclusion\": null,\n  \"hypothesis\": \"Evaluate LLaMA-3.1-8B RSFT r3 (checkpoint-3312, final) on DocRED dev. Cross-architecture validation: if CED-RSFT works on both Qwen and LLaMA, the method is architecture-agnostic.\",\n  \"gpu_id\": null,\n  \"server\": null,\n  \"metrics\": {\n    \"ign_f1\": 0.5563,\n    \"f1\": 0.5674,\n    \"evi_f1\": 0.8255,\n    \"edcr\": 0.5856,\n    \"evi_f1_joint\": 0.4571,\n    \"format_compliance_rate\": 0.997,\n    \"field_compliance_rate\": 0.807,\n    \"n_truncated\": 187,\n    \"inference_time_seconds\": 8650\n  }\n}\n---\n{\n  \"exp_id\": \"plan_006_qwen3_1_7b_rsft_eval_r2\",\n  \"status\": \"ANALYZING\",\n  \"conclusion\": null,\n  \"hypothesis\": \"Evaluate 1.7B RSFT model (checkpoint-1698) on DocRED dev. Retry after disk-full crash. Validates CED-filtered RSFT at smallest model scale in scaling study.\",\n  \"gpu_id\": null,\n  \"server\": null,\n  \"metrics\": {\n    \"ign_f1\": 0.505,\n    \"f1\": 0.5219,\n    \"evi_f1\": 0.8309,\n    \"edcr\": 0.6297,\n    \"evi_f1_joint\": 0.4223,\n    \"format_compliance_rate\": 0.999,\n    \"field_compliance_rate\": 0.732,\n    \"n_truncated\": 258,\n    \"inference_time_seconds\": 9464\n  }\n}\n---\n{\n  \"exp_id\": \"rsft_s43_dev_eval_preds\",\n  \"status\": \"ANALYZING\",\n  \"conclusion\": null,\n  \"hypothesis\": \"Eval RSFT-s43 (CED-scored) on DocRED dev with predictions saved. Prerequisite for Lead 1 CED evidence filtering: per-sentence NLI scoring requires full prediction outputs.\",\n  \"gpu_id\": null,\n  \"server\": null,\n  \"metrics\": {\n    \"ign_f1\": 0.4512,\n    \"f1\": 0.4601,\n    \"evi_f1\": 0.8063,\n    \"edcr\": 0.6542,\n    \"evi_f1_joint\": 0.3605,\n    \"format_compliance_rate\": 1,\n    \"field_compliance_rate\": 0.809,\n    \"n_truncated\": 184,\n    \"inference_time_seconds\": 10982\n  }\n}\n---",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "f6fc499f-7f8f-43fb-8608-e714c9b1b4d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 562_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] D095 已记录。Lead 2 结论：pipeline 可行但增益在噪声范围，定位 future work，不追加投资。  **cuda:1 和 cuda:3 空闲，分配新任务**：  1. **cuda:1**: 生成 8B RSFT 的 test set predictions（用于 CodaLab 提交）。模型路径 `rsft_output_qwen3_8b/ch…",
+  "leafUuid": "e5662c47-305e-4208-8916-2fa4ef07d2a8",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 563_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 564 · 2026-05-17T15:33:16.167Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Current state:
+- 4 RUNNING experiments:
+  1. `plan_006_llama_rsft_test` - test predictions on cuda:3
+  2. `plan_006_qwen3_8b_rsft_test` - test predictions on cuda:1
+  3. `plan_006_qwen3_1_7b_rsft_seed43_eval` - eval on cuda:2 (PID 455632, still running per reconcile)
+  4. `plan_006_llama_rsft_seed43` - training on cuda:0 (PID 450239, still running per reconcile)
+
+
+- Some experiments are stuck in ANALYZING that should've moved to DONE. The reconcile confirms crons are active for the two seed43 experiments, but I don't see cron registrations for the test prediction jobs that workers submitted—I need to verify if those crons were actually set up and check whether the workers have finished their test runs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5662c47-305e-4208-8916-2fa4ef07d2a8",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PDbUagLTAsFMaqe2CC",
+  "type": "assistant",
+  "uuid": "8d1b3332-fa41-4792-a714-e3748fa03feb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Er1zrCBnj7VyUxdZhpiARM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1941,
+      "cache_read_input_tokens": 46869,
+      "output_tokens": 383,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 383,
+          "cache_read_input_tokens": 46869,
+          "cache_creation_input_tokens": 1941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 565 · 2026-05-17T15:33:16.178Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XjnggdMMaedcsy3Q1qopDE`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d1b3332-fa41-4792-a714-e3748fa03feb",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PDbUagLTAsFMaqe2CC",
+  "type": "assistant",
+  "uuid": "5ed57c1f-f9e2-4386-ae1e-a3f223e74e8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Er1zrCBnj7VyUxdZhpiARM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1941,
+      "cache_read_input_tokens": 46869,
+      "output_tokens": 383,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 383,
+          "cache_read_input_tokens": 46869,
+          "cache_creation_input_tokens": 1941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 566 · 2026-05-17T15:33:16.187Z_
+
+<details><summary>↩ Tool result · `toolu_01XjnggdMMaedcsy3Q1qopDE`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_worker_status"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ed57c1f-f9e2-4386-ae1e-a3f223e74e8e",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "c669181d-8519-45b2-8e1c-be5d508be619",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__get_worker_status"
+    ],
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+    "total_deferred_tools": 80
+  },
+  "sourceToolAssistantUUID": "5ed57c1f-f9e2-4386-ae1e-a3f223e74e8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 567 · 2026-05-17T15:33:20.220Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_0118Hvg3f9fFbBtrF7obE2r2`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "status": "running",
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c669181d-8519-45b2-8e1c-be5d508be619",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PEQjSvo8xUng7dCBvq",
+  "type": "assistant",
+  "uuid": "ac45b133-e3fa-4624-8ca0-60655479d617",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XSTNQkQGUhytXZzcYMXoUT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 48810,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 831,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 48810,
+          "cache_creation_input_tokens": 831,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 831
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 568 · 2026-05-17T15:33:20.326Z_
+
+<details><summary>↩ Tool result · `toolu_0118Hvg3f9fFbBtrF7obE2r2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac45b133-e3fa-4624-8ca0-60655479d617",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "f8a48d78-b866-4c6f-9e64-1689ec9325e5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ac45b133-e3fa-4624-8ca0-60655479d617",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 569 · 2026-05-17T15:33:25.342Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No workers running. That means the test prediction workers (worker_eval_8b_rsft_test_predictions and worker_eval_llama_rsft_test_predictions) have completed. Let me check the most recent done workers to see their results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8a48d78-b866-4c6f-9e64-1689ec9325e5",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PEiEAQZC6LKMUq9jpi",
+  "type": "assistant",
+  "uuid": "7bfcafd2-0f80-4cfa-8dfb-e6b6800f298d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fh1MPey6WPF1uZUdnd5fuP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 154,
+      "cache_read_input_tokens": 49641,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 154,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 49641,
+          "cache_creation_input_tokens": 154,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 154
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 570 · 2026-05-17T15:33:25.566Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_015z55tfADoJqX7PXPZWMiRN`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "status": "done",
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7bfcafd2-0f80-4cfa-8dfb-e6b6800f298d",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PEiEAQZC6LKMUq9jpi",
+  "type": "assistant",
+  "uuid": "712ef00e-45ef-4ca7-b967-08869570f87d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fh1MPey6WPF1uZUdnd5fuP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 154,
+      "cache_read_input_tokens": 49641,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 154,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 49641,
+          "cache_creation_input_tokens": 154,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 154
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 571 · 2026-05-17T15:33:25.631Z_
+
+<details><summary>↩ Tool result · `toolu_015z55tfADoJqX7PXPZWMiRN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_investigate_8b_no_evi_base_model_field_20260517T143505\", \"task_type\": \"investigate:8b_no_evi_base_model_field\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T14:35:05.585536+00:00\", \"ended_at\": \"2026-05-17T14:35:55.004574+00:00\"}, {\"worker_id\": \"worker_paper_figure_fig_overview_20260517T144242\", \"task_type\": \"paper_figure:fig_overview\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T14:42:43.056456+00:00\", \"ended_at\": \"2026-05-17T14:45:56.066934+00:00\"}, {\"worker_id\": \"worker_ops_check_all_4gpu_results_20260517T145145\", \"task_type\": \"ops:check_all_4gpu_results\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T14:51:45.814660+00:00\", \"ended_at\": \"2026-05-17T14:54:28.537371+00:00\"}, {\"worker_id\": \"worker_ops_check_8b_rsft_eval_result_20260517T145810\", \"task_type\": \"ops:check_8b_rsft_eval_result\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T14:58:10.719436+00:00\", \"ended_at\": \"2026-05-17T14:59:59.275318+00:00\"}, {\"worker_id\": \"worker_paper_research_docre_methods_20260517T150401\", \"task_type\": \"paper_research:docre_methods\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T15:04:01.497107+00:00\", \"ended_at\": \"2026-05-17T15:08:12.122163+00:00\"}, {\"worker_id\": \"worker_eval_8b_rsft_evi_f1_joint_20260517T150447\", \"task_type\": \"eval:8b_rsft_evi_f1_joint\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T15:04:48.160449+00:00\", \"ended_at\": \"2026-05-17T15:06:00.586117+00:00\"}, {\"worker_id\": \"worker_paper_research_evidence_docre_20260517T152414\", \"task_type\": \"paper_research:evidence_docre\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T15:24:14.660544+00:00\", \"ended_at\": \"2026-05-17T15:26:55.251183+00:00\"}, {\"worker_id\": \"worker_ops_check_lead2_ckpt20_result_20260517T152546\", \"task_type\": \"ops:check_lead2_ckpt20_result\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T15:25:46.479353+00:00\", \"ended_at\": \"2026-05-17T15:27:33.992099+00:00\"}, {\"worker_id\": \"worker_eval_8b_rsft_test_predictions_20260517T152958\", \"task_type\": \"eval:8b_rsft_test_predictions\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T15:29:59.033820+00:00\", \"ended_at\": \"2026-05-17T15:32:28.055762+00:00\"}, {\"worker_id\": \"worker_eval_llama_rsft_test_predictions_20260517T153005\", \"task_type\": \"eval:llama_rsft_test_predictions\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T15:30:06.105667+00:00\", \"ended_at\": \"2026-05-17T15:31:51.822207+00:00\"}], \"count\": 10}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "712ef00e-45ef-4ca7-b967-08869570f87d",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "106917c1-f682-4016-a80a-304fd5d1333f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_investigate_8b_no_evi_base_model_field_20260517T143505\\\", \\\"task_type\\\": \\\"investigate:8b_no_evi_base_model_field\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T14:35:05.585536+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T14:35:55.004574+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_paper_figure_fig_overview_20260517T144242\\\", \\\"task_type\\\": \\\"paper_figure:fig_overview\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T14:42:43.056456+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T14:45:56.066934+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_check_all_4gpu_results_20260517T145145\\\", \\\"task_type\\\": \\\"ops:check_all_4gpu_results\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T14:51:45.814660+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T14:54:28.537371+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_check_8b_rsft_eval_result_20260517T145810\\\", \\\"task_type\\\": \\\"ops:check_8b_rsft_eval_result\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T14:58:10.719436+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T14:59:59.275318+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_paper_research_docre_methods_20260517T150401\\\", \\\"task_type\\\": \\\"paper_research:docre_methods\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T15:04:01.497107+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T15:08:12.122163+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_eval_8b_rsft_evi_f1_joint_20260517T150447\\\", \\\"task_type\\\": \\\"eval:8b_rsft_evi_f1_joint\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T15:04:48.160449+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T15:06:00.586117+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_paper_research_evidence_docre_20260517T152414\\\", \\\"task_type\\\": \\\"paper_research:evidence_docre\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T15:24:14.660544+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T15:26:55.251183+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_check_lead2_ckpt20_result_20260517T152546\\\", \\\"task_type\\\": \\\"ops:check_lead2_ckpt20_result\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T15:25:46.479353+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T15:27:33.992099+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_eval_8b_rsft_test_predictions_20260517T152958\\\", \\\"task_type\\\": \\\"eval:8b_rsft_test_predictions\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T15:29:59.033820+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T15:32:28.055762+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_eval_llama_rsft_test_predictions_20260517T153005\\\", \\\"task_type\\\": \\\"eval:llama_rsft_test_predictions\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T15:30:06.105667+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T15:31:51.822207+00:00\\\"}], \\\"count\\\": 10}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_investigate_8b_no_evi_base_model_field_20260517T143505\", \"task_type\": \"investigate:8b_no_evi_base_model_field\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T14:35:05.585536+00:00\", \"ended_at\": \"2026-05-17T14:35:55.004574+00:00\"}, {\"worker_id\": \"worker_paper_figure_fig_overview_20260517T144242\", \"task_type\": \"paper_figure:fig_overview\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T14:42:43.056456+00:00\", \"ended_at\": \"2026-05-17T14:45:56.066934+00:00\"}, {\"worker_id\": \"worker_ops_check_all_4gpu_results_20260517T145145\", \"task_type\": \"ops:check_all_4gpu_results\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T14:51:45.814660+00:00\", \"ended_at\": \"2026-05-17T14:54:28.537371+00:00\"}, {\"worker_id\": \"worker_ops_check_8b_rsft_eval_result_20260517T145810\", \"task_type\": \"ops:check_8b_rsft_eval_result\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T14:58:10.719436+00:00\", \"ended_at\": \"2026-05-17T14:59:59.275318+00:00\"}, {\"worker_id\": \"worker_paper_research_docre_methods_20260517T150401\", \"task_type\": \"paper_research:docre_methods\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T15:04:01.497107+00:00\", \"ended_at\": \"2026-05-17T15:08:12.122163+00:00\"}, {\"worker_id\": \"worker_eval_8b_rsft_evi_f1_joint_20260517T150447\", \"task_type\": \"eval:8b_rsft_evi_f1_joint\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T15:04:48.160449+00:00\", \"ended_at\": \"2026-05-17T15:06:00.586117+00:00\"}, {\"worker_id\": \"worker_paper_research_evidence_docre_20260517T152414\", \"task_type\": \"paper_research:evidence_docre\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T15:24:14.660544+00:00\", \"ended_at\": \"2026-05-17T15:26:55.251183+00:00\"}, {\"worker_id\": \"worker_ops_check_lead2_ckpt20_result_20260517T152546\", \"task_type\": \"ops:check_lead2_ckpt20_result\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T15:25:46.479353+00:00\", \"ended_at\": \"2026-05-17T15:27:33.992099+00:00\"}, {\"worker_id\": \"worker_eval_8b_rsft_test_predictions_20260517T152958\", \"task_type\": \"eval:8b_rsft_test_predictions\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T15:29:59.033820+00:00\", \"ended_at\": \"2026-05-17T15:32:28.055762+00:00\"}, {\"worker_id\": \"worker_eval_llama_rsft_test_predictions_20260517T153005\", \"task_type\": \"eval:llama_rsft_test_predictions\", \"project\": \"faith-evidence-ie\", \"status\": \"done\", \"started_at\": \"2026-05-17T15:30:06.105667+00:00\", \"ended_at\": \"2026-05-17T15:31:51.822207+00:00\"}], \"count\": 10}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "712ef00e-45ef-4ca7-b967-08869570f87d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 572 · 2026-05-17T15:33:25.635Z_
+
+```json
+{
+  "parentUuid": "106917c1-f682-4016-a80a-304fd5d1333f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1b9db6cc-c45d-4c07-9bb2-9d21cc314e9c",
+  "timestamp": "2026-05-17T15:33:25.635Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 573 · 2026-05-17T15:33:34.035Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both test prediction workers completed:
+- `worker_eval_8b_rsft_test_predictions_20260517T152958` - done at 15:32
+- `worker_eval_llama_rsft_test_predictions_20260517T153005` - done at 15:31
+
+I need to check their results. These workers were supposed to submit training jobs (inference on test set). Let me check their output to see if they registered crons. But since they're "done" and didn't fail, they probably successfully submitted the jobs. The fact that reconcile_crons only shows 2 active crons (llama_seed43 training and 1.7b seed43 eval) means either:
+
+
+The test prediction jobs haven't registered crons yet, or they've already finished. Let me look at the worker outputs to figure out what happened.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b9db6cc-c45d-4c07-9bb2-9d21cc314e9c",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PF7Pwg4HF4Q81HRqB6",
+  "type": "assistant",
+  "uuid": "a2309bd2-5de5-4a55-b2c9-178e82f42b96",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aw3m75PrZKjqqeYno7T8Be",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1587,
+      "cache_read_input_tokens": 49795,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1587,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 49795,
+          "cache_creation_input_tokens": 1587,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1587
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 574 · 2026-05-17T15:33:34.047Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01S6yZqHKeFDbZPBBQKp9xNB`</summary>
+
+```json
+{
+  "worker_id": "worker_eval_8b_rsft_test_predictions_20260517T152958"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2309bd2-5de5-4a55-b2c9-178e82f42b96",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PF7Pwg4HF4Q81HRqB6",
+  "type": "assistant",
+  "uuid": "183d9555-b96a-42a8-b967-0d191caf8aa2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aw3m75PrZKjqqeYno7T8Be",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1587,
+      "cache_read_input_tokens": 49795,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1587,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 49795,
+          "cache_creation_input_tokens": 1587,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1587
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 575 · 2026-05-17T15:33:34.087Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01Dg6ftTkj9ssZehWRoe8L5o`</summary>
+
+```json
+{
+  "worker_id": "worker_eval_llama_rsft_test_predictions_20260517T153005"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "183d9555-b96a-42a8-b967-0d191caf8aa2",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PF7Pwg4HF4Q81HRqB6",
+  "type": "assistant",
+  "uuid": "f620d5a6-4b14-4fc7-b4c2-ff94de3d2a69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Aw3m75PrZKjqqeYno7T8Be",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1587,
+      "cache_read_input_tokens": 49795,
+      "output_tokens": 357,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1587,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 357,
+          "cache_read_input_tokens": 49795,
+          "cache_creation_input_tokens": 1587,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1587
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 576 · 2026-05-17T15:33:34.145Z_
+
+<details><summary>↩ Tool result · `toolu_01S6yZqHKeFDbZPBBQKp9xNB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_8b_rsft_test_predictions_20260517T152958\", \"status\": \"done\", \"task_type\": \"eval:8b_rsft_test_predictions\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T15:29:59.033820+00:00\", \"ended_at\": \"2026-05-17T15:32:28.055762+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"任务正常运行中。\\n\\n- **exp_id**: `plan_006_qwen3_8b_rsft_test`\\n- **PID**: 460585\\n- **GPU**: cuda:1\\n- **状态**: 模型已加载，正在推理（1000 docs, 250 batches）\\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test.log`\\n- **输出目录**: `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test/`\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "183d9555-b96a-42a8-b967-0d191caf8aa2",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "89bd624a-25c2-423b-85cc-932929d5f63d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_8b_rsft_test_predictions_20260517T152958\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"eval:8b_rsft_test_predictions\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"started_at\\\": \\\"2026-05-17T15:29:59.033820+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T15:32:28.055762+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"任务正常运行中。\\\\n\\\\n- **exp_id**: `plan_006_qwen3_8b_rsft_test`\\\\n- **PID**: 460585\\\\n- **GPU**: cuda:1\\\\n- **状态**: 模型已加载，正在推理（1000 docs, 250 batches）\\\\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test.log`\\\\n- **输出目录**: `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test/`\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_8b_rsft_test_predictions_20260517T152958\", \"status\": \"done\", \"task_type\": \"eval:8b_rsft_test_predictions\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T15:29:59.033820+00:00\", \"ended_at\": \"2026-05-17T15:32:28.055762+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"任务正常运行中。\\n\\n- **exp_id**: `plan_006_qwen3_8b_rsft_test`\\n- **PID**: 460585\\n- **GPU**: cuda:1\\n- **状态**: 模型已加载，正在推理（1000 docs, 250 batches）\\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test.log`\\n- **输出目录**: `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test/`\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "183d9555-b96a-42a8-b967-0d191caf8aa2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 577_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] D095 已记录。Lead 2 结论：pipeline 可行但增益在噪声范围，定位 future work，不追加投资。  **cuda:1 和 cuda:3 空闲，分配新任务**：  1. **cuda:1**: 生成 8B RSFT 的 test set predictions（用于 CodaLab 提交）。模型路径 `rsft_output_qwen3_8b/ch…",
+  "leafUuid": "89bd624a-25c2-423b-85cc-932929d5f63d",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 578_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 579 · 2026-05-17T15:33:34.240Z_
+
+<details><summary>↩ Tool result · `toolu_01Dg6ftTkj9ssZehWRoe8L5o`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_llama_rsft_test_predictions_20260517T153005\", \"status\": \"done\", \"task_type\": \"eval:llama_rsft_test_predictions\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T15:30:06.105667+00:00\", \"ended_at\": \"2026-05-17T15:31:51.822207+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"已提交：\\n\\n- **exp_id**: `plan_006_llama_rsft_test`\\n- **PID**: 460159\\n- **GPU**: cuda:3（rtx5090-4x）\\n- **输出目录**: `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test`\\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test.log`\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f620d5a6-4b14-4fc7-b4c2-ff94de3d2a69",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "d79c18ab-d334-4620-aa33-fc3a23a15b47",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_llama_rsft_test_predictions_20260517T153005\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"eval:llama_rsft_test_predictions\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"started_at\\\": \\\"2026-05-17T15:30:06.105667+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T15:31:51.822207+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"已提交：\\\\n\\\\n- **exp_id**: `plan_006_llama_rsft_test`\\\\n- **PID**: 460159\\\\n- **GPU**: cuda:3（rtx5090-4x）\\\\n- **输出目录**: `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test`\\\\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test.log`\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_llama_rsft_test_predictions_20260517T153005\", \"status\": \"done\", \"task_type\": \"eval:llama_rsft_test_predictions\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T15:30:06.105667+00:00\", \"ended_at\": \"2026-05-17T15:31:51.822207+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"已提交：\\n\\n- **exp_id**: `plan_006_llama_rsft_test`\\n- **PID**: 460159\\n- **GPU**: cuda:3（rtx5090-4x）\\n- **输出目录**: `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test`\\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test.log`\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f620d5a6-4b14-4fc7-b4c2-ff94de3d2a69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 580 · 2026-05-17T15:33:41.893Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both test prediction workers successfully submitted the jobs:
+- 8B RSFT test: PID 460585, cuda:1
+- LLaMA RSFT test: PID 460159, cuda:3
+
+But I notice that reconcile_crons only found 2 crons (llama_seed43 training on cuda:0 and 1.7b_seed43_eval on cuda:2). The test prediction jobs (on cuda:1 and cuda:3) don't have crons registered. I need to register crons for them.
+
+Also I need to check if the workers used `submit_training_job` (which auto-registers crons) or just ran the commands via SSH. 
+
+Since the reconcile only showed those 2 crons, the test prediction experiments need cron registration.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d79c18ab-d334-4620-aa33-fc3a23a15b47",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PFjhVabZrdcmakzD2d",
+  "type": "assistant",
+  "uuid": "1f861c4c-0c6e-4625-a5a3-75521d3fea96",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017N4Qv7HkrP42SjgiHtv9MD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1096,
+      "cache_read_input_tokens": 51382,
+      "output_tokens": 363,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1096,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 363,
+          "cache_read_input_tokens": 51382,
+          "cache_creation_input_tokens": 1096,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1096
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 581 · 2026-05-17T15:33:41.910Z_
+
+需要为两个 test prediction 实验注册 cron 监控。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f861c4c-0c6e-4625-a5a3-75521d3fea96",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PFjhVabZrdcmakzD2d",
+  "type": "assistant",
+  "uuid": "48490da5-df12-45a0-a50b-1129b6a1d1cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017N4Qv7HkrP42SjgiHtv9MD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1096,
+      "cache_read_input_tokens": 51382,
+      "output_tokens": 363,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1096,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 363,
+          "cache_read_input_tokens": 51382,
+          "cache_creation_input_tokens": 1096,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1096
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 582 · 2026-05-17T15:33:42.542Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Jr5nUBuJsn2xhFEcG1ajFd`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_cron,mcp__agent-ml-research__update_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48490da5-df12-45a0-a50b-1129b6a1d1cf",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PFjhVabZrdcmakzD2d",
+  "type": "assistant",
+  "uuid": "8e2b8f8d-4701-42f4-b064-00e1516e17c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017N4Qv7HkrP42SjgiHtv9MD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1096,
+      "cache_read_input_tokens": 51382,
+      "output_tokens": 363,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1096,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 363,
+          "cache_read_input_tokens": 51382,
+          "cache_creation_input_tokens": 1096,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1096
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 583 · 2026-05-17T15:33:42.545Z_
+
+<details><summary>↩ Tool result · `toolu_01Jr5nUBuJsn2xhFEcG1ajFd`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_cron"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8e2b8f8d-4701-42f4-b064-00e1516e17c9",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "87cedcbe-07e2-4dcb-8bc1-8b4100e1848f",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__register_cron,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 80
+  },
+  "sourceToolAssistantUUID": "8e2b8f8d-4701-42f4-b064-00e1516e17c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 584 · 2026-05-17T15:33:47.102Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01MUEBjDfU5bhxB6H6646vwt`</summary>
+
+```json
+{
+  "exp_id": "plan_006_qwen3_8b_rsft_test",
+  "server": "rtx5090-4x",
+  "pid": "460585",
+  "log_path": "/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test.log",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87cedcbe-07e2-4dcb-8bc1-8b4100e1848f",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PGMM7RyULt8xWdP12k",
+  "type": "assistant",
+  "uuid": "0022c722-db74-4028-910b-708a887e0d88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Go4VuooTVLm5MLxTHmAJnY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1265,
+      "cache_read_input_tokens": 52478,
+      "output_tokens": 352,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1265,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 352,
+          "cache_read_input_tokens": 52478,
+          "cache_creation_input_tokens": 1265,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1265
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 585 · 2026-05-17T15:33:47.247Z_
+
+<details><summary>↩ Tool result · `toolu_01MUEBjDfU5bhxB6H6646vwt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"plan_006_qwen3_8b_rsft_test\", \"server\": \"rtx5090-4x\", \"pid\": \"460585\", \"wandb_run_id\": null, \"log_path\": \"/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test.log\", \"interval_seconds\": 120, \"project\": \"faith-evidence-ie\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-17T15:33:47.160Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0022c722-db74-4028-910b-708a887e0d88",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "3395dce7-cce4-4d7c-ae5e-773314e25fc3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_8b_rsft_test\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"pid\\\": \\\"460585\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-17T15:33:47.160Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"plan_006_qwen3_8b_rsft_test\", \"server\": \"rtx5090-4x\", \"pid\": \"460585\", \"wandb_run_id\": null, \"log_path\": \"/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test.log\", \"interval_seconds\": 120, \"project\": \"faith-evidence-ie\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-17T15:33:47.160Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0022c722-db74-4028-910b-708a887e0d88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 586 · 2026-05-17T15:33:47.929Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01KyFLGcrQVqoS9GJKFXpDpa`</summary>
+
+```json
+{
+  "exp_id": "plan_006_llama_rsft_test",
+  "server": "rtx5090-4x",
+  "pid": "460159",
+  "log_path": "/root/autodl-tmp/eval_results/plan_006_llama_rsft_test.log",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3395dce7-cce4-4d7c-ae5e-773314e25fc3",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PGMM7RyULt8xWdP12k",
+  "type": "assistant",
+  "uuid": "cd140849-8aba-49f4-8926-d9c9dce2675f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Go4VuooTVLm5MLxTHmAJnY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1265,
+      "cache_read_input_tokens": 52478,
+      "output_tokens": 352,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1265,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 352,
+          "cache_read_input_tokens": 52478,
+          "cache_creation_input_tokens": 1265,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1265
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 587 · 2026-05-17T15:33:48.082Z_
+
+<details><summary>↩ Tool result · `toolu_01KyFLGcrQVqoS9GJKFXpDpa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"plan_006_llama_rsft_test\", \"server\": \"rtx5090-4x\", \"pid\": \"460159\", \"wandb_run_id\": null, \"log_path\": \"/root/autodl-tmp/eval_results/plan_006_llama_rsft_test.log\", \"interval_seconds\": 120, \"project\": \"faith-evidence-ie\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-17T15:33:47.990Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cd140849-8aba-49f4-8926-d9c9dce2675f",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "50f43a44-5e29-49e1-bca6-009b0c697837",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"plan_006_llama_rsft_test\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"pid\\\": \\\"460159\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/plan_006_llama_rsft_test.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-17T15:33:47.990Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"plan_006_llama_rsft_test\", \"server\": \"rtx5090-4x\", \"pid\": \"460159\", \"wandb_run_id\": null, \"log_path\": \"/root/autodl-tmp/eval_results/plan_006_llama_rsft_test.log\", \"interval_seconds\": 120, \"project\": \"faith-evidence-ie\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-17T15:33:47.990Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cd140849-8aba-49f4-8926-d9c9dce2675f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 588 · 2026-05-17T15:33:56.630Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, crons registered for both test prediction experiments. Now I have 4 active crons:
+1. plan_006_llama_rsft_seed43 (cuda:0, PID 450239) - training
+2. plan_006_qwen3_1_7b_rsft_seed43_eval (cuda:2, PID 455632) - eval
+3. plan_006_qwen3_8b_rsft_test (cuda:1, PID 460585) - test predictions
+4. plan_006_llama_rsft_test (cuda:3, PID 460159) - test predictions
+
+
+All GPUs are now occupied. I need to update the registry entries for the test prediction experiments since they're running but missing gpu_id and server info, then notify the Director about the resumed status.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50f43a44-5e29-49e1-bca6-009b0c697837",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PGkvwPoqQYzhjQBbq7",
+  "type": "assistant",
+  "uuid": "8d8f2386-d134-430b-a37e-60075132c808",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DXEZo1wzuTq3gfy7dmPX4b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 53743,
+      "output_tokens": 934,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 837,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 934,
+          "cache_read_input_tokens": 53743,
+          "cache_creation_input_tokens": 837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 837
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 589 · 2026-05-17T15:34:00.645Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_016eTVNaAamZkzwrqththSjp`</summary>
+
+```json
+{
+  "exp_id": "plan_006_qwen3_8b_rsft_test",
+  "field": "spec",
+  "value": {
+    "command": "python inference.py --model_path /root/autodl-tmp/freige/rsft_output_qwen3_8b/checkpoint-3393 --base_model /root/autodl-tmp/models/Qwen3-8B --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize",
+    "server": "rtx5090-4x",
+    "gpu_id": "1",
+    "pid": 460585,
+    "data_path": "DocRED test set",
+    "model_name": "Qwen3-8B RSFT checkpoint-3393",
+    "seed": 42,
+    "checkpoint_source": "plan_006_qwen3_8b_rsft_train_r2",
+    "eval_data": "DocRED test"
+  },
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d8f2386-d134-430b-a37e-60075132c808",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PGkvwPoqQYzhjQBbq7",
+  "type": "assistant",
+  "uuid": "764cd1fd-e0d3-4e52-a763-ef72a850eebe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DXEZo1wzuTq3gfy7dmPX4b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 53743,
+      "output_tokens": 934,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 837,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 934,
+          "cache_read_input_tokens": 53743,
+          "cache_creation_input_tokens": 837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 837
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 590 · 2026-05-17T15:34:01.753Z_
+
+<details><summary>↩ Tool result · `toolu_016eTVNaAamZkzwrqththSjp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_8b_rsft_test\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T15:30:36.092Z\", \"updated_at\": \"2026-05-17T15:34:01.315Z\", \"hypothesis\": \"Generate 8B RSFT test set predictions for CodaLab submission. 8B RSFT dev rel_f1=0.5606, expect similar performance on test.\", \"spec\": {\"command\": \"python inference.py --model_path /root/autodl-tmp/freige/rsft_output_qwen3_8b/checkpoint-3393 --base_model /root/autodl-tmp/models/Qwen3-8B --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu_id\": \"1\", \"pid\": 460585, \"data_path\": \"DocRED test set\", \"model_name\": \"Qwen3-8B RSFT checkpoint-3393\", \"seed\": 42, \"checkpoint_source\": \"plan_006_qwen3_8b_rsft_train_r2\", \"eval_data\": \"DocRED test\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0888}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "764cd1fd-e0d3-4e52-a763-ef72a850eebe",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "5ef13bc5-dfec-4edc-8f3f-6a49885956aa",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_qwen3_8b_rsft_test\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T15:30:36.092Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:34:01.315Z\\\", \\\"hypothesis\\\": \\\"Generate 8B RSFT test set predictions for CodaLab submission. 8B RSFT dev rel_f1=0.5606, expect similar performance on test.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python inference.py --model_path /root/autodl-tmp/freige/rsft_output_qwen3_8b/checkpoint-3393 --base_model /root/autodl-tmp/models/Qwen3-8B --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu_id\\\": \\\"1\\\", \\\"pid\\\": 460585, \\\"data_path\\\": \\\"DocRED test set\\\", \\\"model_name\\\": \\\"Qwen3-8B RSFT checkpoint-3393\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"plan_006_qwen3_8b_rsft_train_r2\\\", \\\"eval_data\\\": \\\"DocRED test\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0888}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_qwen3_8b_rsft_test\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T15:30:36.092Z\", \"updated_at\": \"2026-05-17T15:34:01.315Z\", \"hypothesis\": \"Generate 8B RSFT test set predictions for CodaLab submission. 8B RSFT dev rel_f1=0.5606, expect similar performance on test.\", \"spec\": {\"command\": \"python inference.py --model_path /root/autodl-tmp/freige/rsft_output_qwen3_8b/checkpoint-3393 --base_model /root/autodl-tmp/models/Qwen3-8B --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu_id\": \"1\", \"pid\": 460585, \"data_path\": \"DocRED test set\", \"model_name\": \"Qwen3-8B RSFT checkpoint-3393\", \"seed\": 42, \"checkpoint_source\": \"plan_006_qwen3_8b_rsft_train_r2\", \"eval_data\": \"DocRED test\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0888}}"
+    }
+  },
+  "sourceToolAssistantUUID": "764cd1fd-e0d3-4e52-a763-ef72a850eebe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 591 · 2026-05-17T15:34:03.481Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01ELhNYo57fsnPByoRUvQiq3`</summary>
+
+```json
+{
+  "exp_id": "plan_006_llama_rsft_test",
+  "field": "spec",
+  "value": {
+    "command": "python inference.py --model_path /root/autodl-tmp/freige/rsft_output_llama_3_1_8b_r3/checkpoint-3312 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_test --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize",
+    "server": "rtx5090-4x",
+    "gpu_id": "3",
+    "pid": 460159,
+    "data_path": "DocRED test set",
+    "model_name": "LLaMA-3.1-8B RSFT checkpoint-3312",
+    "seed": 42,
+    "checkpoint_source": "plan_006_llama_rsft_r3_train",
+    "eval_data": "DocRED test"
+  },
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ef13bc5-dfec-4edc-8f3f-6a49885956aa",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PGkvwPoqQYzhjQBbq7",
+  "type": "assistant",
+  "uuid": "de0a869d-ab02-44b8-8187-03c7e243095d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DXEZo1wzuTq3gfy7dmPX4b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 53743,
+      "output_tokens": 934,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 837,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 934,
+          "cache_read_input_tokens": 53743,
+          "cache_creation_input_tokens": 837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 837
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 592 · 2026-05-17T15:34:04.702Z_
+
+<details><summary>↩ Tool result · `toolu_01ELhNYo57fsnPByoRUvQiq3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_llama_rsft_test\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T15:30:42.159Z\", \"updated_at\": \"2026-05-17T15:34:04.255Z\", \"hypothesis\": \"Generate LLaMA-8B RSFT test set predictions for CodaLab submission. LLaMA-8B RSFT dev rel_f1=0.5674, expect similar performance on test.\", \"spec\": {\"command\": \"python inference.py --model_path /root/autodl-tmp/freige/rsft_output_llama_3_1_8b_r3/checkpoint-3312 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_test --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu_id\": \"3\", \"pid\": 460159, \"data_path\": \"DocRED test set\", \"model_name\": \"LLaMA-3.1-8B RSFT checkpoint-3312\", \"seed\": 42, \"checkpoint_source\": \"plan_006_llama_rsft_r3_train\", \"eval_data\": \"DocRED test\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2068}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "de0a869d-ab02-44b8-8187-03c7e243095d",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "b9ddaad6-9f8d-4262-b3b0-c6c4d41ca0c1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_llama_rsft_test\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T15:30:42.159Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:34:04.255Z\\\", \\\"hypothesis\\\": \\\"Generate LLaMA-8B RSFT test set predictions for CodaLab submission. LLaMA-8B RSFT dev rel_f1=0.5674, expect similar performance on test.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python inference.py --model_path /root/autodl-tmp/freige/rsft_output_llama_3_1_8b_r3/checkpoint-3312 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_test --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu_id\\\": \\\"3\\\", \\\"pid\\\": 460159, \\\"data_path\\\": \\\"DocRED test set\\\", \\\"model_name\\\": \\\"LLaMA-3.1-8B RSFT checkpoint-3312\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"plan_006_llama_rsft_r3_train\\\", \\\"eval_data\\\": \\\"DocRED test\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2068}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_llama_rsft_test\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T15:30:42.159Z\", \"updated_at\": \"2026-05-17T15:34:04.255Z\", \"hypothesis\": \"Generate LLaMA-8B RSFT test set predictions for CodaLab submission. LLaMA-8B RSFT dev rel_f1=0.5674, expect similar performance on test.\", \"spec\": {\"command\": \"python inference.py --model_path /root/autodl-tmp/freige/rsft_output_llama_3_1_8b_r3/checkpoint-3312 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_test --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize\", \"server\": \"rtx5090-4x\", \"gpu_id\": \"3\", \"pid\": 460159, \"data_path\": \"DocRED test set\", \"model_name\": \"LLaMA-3.1-8B RSFT checkpoint-3312\", \"seed\": 42, \"checkpoint_source\": \"plan_006_llama_rsft_r3_train\", \"eval_data\": \"DocRED test\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2068}}"
+    }
+  },
+  "sourceToolAssistantUUID": "de0a869d-ab02-44b8-8187-03c7e243095d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 593_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] D095 已记录。Lead 2 结论：pipeline 可行但增益在噪声范围，定位 future work，不追加投资。  **cuda:1 和 cuda:3 空闲，分配新任务**：  1. **cuda:1**: 生成 8B RSFT 的 test set predictions（用于 CodaLab 提交）。模型路径 `rsft_output_qwen3_8b/ch…",
+  "leafUuid": "b9ddaad6-9f8d-4262-b3b0-c6c4d41ca0c1",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 594_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 595 · 2026-05-17T15:34:12.086Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now let me report to Director the current status. All 4 GPUs are saturated, crons registered for all 4 running experiments.
+
+Summary:
+- cuda:0: LLaMA RSFT seed 43 training (PID 450239) - was at ~62%
+- cuda:1: Qwen3-8B RSFT test predictions (PID 460585) - just started
+
+
+- cuda:2: 1.7B RSFT seed 43 eval (PID 455632) - was at ~20%
+- cuda:3: LLaMA RSFT test predictions (PID 460159) - just started
+
+D095 has been executed with test prediction workers now running on cuda:1 and cuda:3, so all GPUs are fully saturated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9ddaad6-9f8d-4262-b3b0-c6c4d41ca0c1",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PHyxJ3p58j8rPVtQWz",
+  "type": "assistant",
+  "uuid": "0e95347d-206c-4af2-a6b5-059cb19b8382",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018XccNe2QKhVcjsDUVafddu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1882,
+      "cache_read_input_tokens": 54580,
+      "output_tokens": 774,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1882,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 774,
+          "cache_read_input_tokens": 54580,
+          "cache_creation_input_tokens": 1882,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1882
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 596 · 2026-05-17T15:34:21.031Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_01TQPucy6juaL27M28W9E3uD`</summary>
+
+```json
+{
+  "text": "[资源] GPU 4/4 | Worker 0 (全部已提交，等回调) | 磁盘: rtx5090-4x / 未检\n\nD095 执行完毕。4 GPU 全部在跑，cron 已注册：\n\n| GPU | exp_id | PID | 任务 |\n|-----|--------|-----|------|\n| cuda:0 | plan_006_llama_rsft_seed43 | 450239 | LLaMA-8B RSFT seed 43 训练 (~62%) |\n| cuda:1 | plan_006_qwen3_8b_rsft_test | 460585 | 8B RSFT test predictions (CodaLab) |\n| cuda:2 | plan_006_qwen3_1_7b_rsft_seed43_eval | 455632 | 1.7B RSFT seed 43 eval (~20%) |\n| cuda:3 | plan_006_llama_rsft_test | 460159 | LLaMA RSFT test predictions (CodaLab) |\n\n预计完成顺序：\n1. cuda:1/cuda:3 test predictions → ~1-2h（1000 docs, batch_size 4）\n2. cuda:2 1.7B seed 43 eval → ~1.5h（剩余 ~80%）\n3. cuda:0 LLaMA seed 43 training → ~2-3h（剩余 ~38%）\n\n后续：\n- test predictions 完成后，4B/8B/LLaMA predictions 都就绪，可手动提交 CodaLab\n- 1.7B seed 43 eval 完成后对比 seed 42 (rel_f1=0.5219)\n- LLaMA seed 43 训练完成后 → spawn eval on freed GPU",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e95347d-206c-4af2-a6b5-059cb19b8382",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PHyxJ3p58j8rPVtQWz",
+  "type": "assistant",
+  "uuid": "15d3df05-191c-42e2-b520-05e99c7307a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018XccNe2QKhVcjsDUVafddu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1882,
+      "cache_read_input_tokens": 54580,
+      "output_tokens": 774,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1882,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 774,
+          "cache_read_input_tokens": 54580,
+          "cache_creation_input_tokens": 1882,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1882
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 597 · 2026-05-17T15:34:22.154Z_
+
+<details><summary>↩ Tool result · `toolu_01TQPucy6juaL27M28W9E3uD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "15d3df05-191c-42e2-b520-05e99c7307a6",
+  "isSidechain": false,
+  "promptId": "e04c9644-4b6d-4f1d-8aea-dd3bae082816",
+  "type": "user",
+  "uuid": "0a3d34b1-df3a-4a33-bfd4-6d0b41d301d1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "15d3df05-191c-42e2-b520-05e99c7307a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 598_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 599 · 2026-05-17T15:34:30.454Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T15:34:30.454Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[WORKER DONE] Worker worker_eval_llama_rsft_test_predictions_20260517T153005 已完成（status=done）。用 `get_worker_status('worker_eval_llama_rsft_test_predictions_20260517T153005')` 读取结果，然后处理。\n\n- worker_id: worker_eval_llama_rsft_test_predictions_20260517T153005\n- project: faith-evidence-ie\n- status: done"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 600 · 2026-05-17T15:34:30.454Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T15:34:30.454Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 62
+
+## Round 62
+
+2 recorded events
+
+
+### User
+
+_source line 601 · 2026-05-17T15:34:30.445Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a3d34b1-df3a-4a33-bfd4-6d0b41d301d1",
+  "isSidechain": false,
+  "promptId": "8995ea46-e3c0-4c03-9e06-8ac37d9ceecc",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "6b6f2fdf-bc7f-44fd-bc4b-14158fcb4c61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 602 · 2026-05-17T15:34:30.445Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b6f2fdf-bc7f-44fd-bc4b-14158fcb4c61",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "fce899c3-9264-4bbb-9bf8-856b98e87827",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "a6a795b0-4fa8-471c-91f3-55f0529b16df",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 63
+
+## Round 63
+
+5 recorded events
+
+
+### User
+
+_source line 603 · 2026-05-17T15:34:30.607Z_
+
+[WORKER DONE] Worker worker_eval_llama_rsft_test_predictions_20260517T153005 已完成（status=done）。用 `get_worker_status('worker_eval_llama_rsft_test_predictions_20260517T153005')` 读取结果，然后处理。
+
+- worker_id: worker_eval_llama_rsft_test_predictions_20260517T153005
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fce899c3-9264-4bbb-9bf8-856b98e87827",
+  "isSidechain": false,
+  "promptId": "8995ea46-e3c0-4c03-9e06-8ac37d9ceecc",
+  "type": "user",
+  "uuid": "ea01934e-8088-4351-acf4-7c7f59977a12",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 604 · 2026-05-17T15:34:30.607Z_
+
+```json
+{
+  "parentUuid": "ea01934e-8088-4351-acf4-7c7f59977a12",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "a1d3ff88-8407-4132-8311-d18fb68629d2",
+  "timestamp": "2026-05-17T15:34:30.607Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 605_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 606 · 2026-05-17T15:34:39.924Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T15:34:39.924Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[WORKER DONE] Worker worker_eval_8b_rsft_test_predictions_20260517T152958 已完成（status=done）。用 `get_worker_status('worker_eval_8b_rsft_test_predictions_20260517T152958')` 读取结果，然后处理。\n\n- worker_id: worker_eval_8b_rsft_test_predictions_20260517T152958\n- project: faith-evidence-ie\n- status: done"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 607 · 2026-05-17T15:34:39.925Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T15:34:39.925Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 64
+
+## Round 64
+
+2 recorded events
+
+
+### User
+
+_source line 608 · 2026-05-17T15:34:39.909Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1d3ff88-8407-4132-8311-d18fb68629d2",
+  "isSidechain": false,
+  "promptId": "0dec921f-deaf-496c-8f41-d8f59185af29",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "25b982ba-0d21-4825-9cd0-58e307398c87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 609 · 2026-05-17T15:34:39.909Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25b982ba-0d21-4825-9cd0-58e307398c87",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "96dae7fb-b0a6-4bce-954c-4738b540b18c",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "2798d132-ea0a-4d36-a981-e93d8dbda62d",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 65
+
+## Round 65
+
+10 recorded events
+
+
+### User
+
+_source line 610 · 2026-05-17T15:34:40.140Z_
+
+[WORKER DONE] Worker worker_eval_8b_rsft_test_predictions_20260517T152958 已完成（status=done）。用 `get_worker_status('worker_eval_8b_rsft_test_predictions_20260517T152958')` 读取结果，然后处理。
+
+- worker_id: worker_eval_8b_rsft_test_predictions_20260517T152958
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "96dae7fb-b0a6-4bce-954c-4738b540b18c",
+  "isSidechain": false,
+  "promptId": "0dec921f-deaf-496c-8f41-d8f59185af29",
+  "type": "user",
+  "uuid": "504c74e6-63b4-432b-9a13-f2d41bed2432",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 611 · 2026-05-17T15:34:40.139Z_
+
+```json
+{
+  "parentUuid": "504c74e6-63b4-432b-9a13-f2d41bed2432",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "77a4cfc5-aef8-4716-b5b4-0dcb5723fd45",
+  "timestamp": "2026-05-17T15:34:40.139Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 612 · 2026-05-17T15:34:43.287Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both test prediction workers have completed. Let me check their results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77a4cfc5-aef8-4716-b5b4-0dcb5723fd45",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PLbYzeb9FMmvWqz9MG",
+  "type": "assistant",
+  "uuid": "333fe297-dd8e-47f9-9f35-959e34436003",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vh6HHmAfEEZMEy1iQZEfpX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 45656,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 182,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 45656,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 182,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 45656,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 45656
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 32580
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 613 · 2026-05-17T15:34:43.784Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01UvGMsWBEVHk3fZN5w9mc4W`</summary>
+
+```json
+{
+  "worker_id": "worker_eval_8b_rsft_test_predictions_20260517T152958"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "333fe297-dd8e-47f9-9f35-959e34436003",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PLbYzeb9FMmvWqz9MG",
+  "type": "assistant",
+  "uuid": "13e0a00f-29b8-40f7-ae11-ae93c5dc7e2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vh6HHmAfEEZMEy1iQZEfpX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 45656,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 182,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 45656,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 182,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 45656,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 45656
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 32580
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 614 · 2026-05-17T15:34:43.901Z_
+
+<details><summary>↩ Tool result · `toolu_01UvGMsWBEVHk3fZN5w9mc4W`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_8b_rsft_test_predictions_20260517T152958\", \"status\": \"done\", \"task_type\": \"eval:8b_rsft_test_predictions\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T15:29:59.033820+00:00\", \"ended_at\": \"2026-05-17T15:32:28.055762+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"任务正常运行中。\\n\\n- **exp_id**: `plan_006_qwen3_8b_rsft_test`\\n- **PID**: 460585\\n- **GPU**: cuda:1\\n- **状态**: 模型已加载，正在推理（1000 docs, 250 batches）\\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test.log`\\n- **输出目录**: `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test/`\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "13e0a00f-29b8-40f7-ae11-ae93c5dc7e2a",
+  "isSidechain": false,
+  "promptId": "0dec921f-deaf-496c-8f41-d8f59185af29",
+  "type": "user",
+  "uuid": "f1ce5558-450e-498c-9e2d-a58abb1f3fcf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_8b_rsft_test_predictions_20260517T152958\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"eval:8b_rsft_test_predictions\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"started_at\\\": \\\"2026-05-17T15:29:59.033820+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T15:32:28.055762+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"任务正常运行中。\\\\n\\\\n- **exp_id**: `plan_006_qwen3_8b_rsft_test`\\\\n- **PID**: 460585\\\\n- **GPU**: cuda:1\\\\n- **状态**: 模型已加载，正在推理（1000 docs, 250 batches）\\\\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test.log`\\\\n- **输出目录**: `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test/`\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_8b_rsft_test_predictions_20260517T152958\", \"status\": \"done\", \"task_type\": \"eval:8b_rsft_test_predictions\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T15:29:59.033820+00:00\", \"ended_at\": \"2026-05-17T15:32:28.055762+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"任务正常运行中。\\n\\n- **exp_id**: `plan_006_qwen3_8b_rsft_test`\\n- **PID**: 460585\\n- **GPU**: cuda:1\\n- **状态**: 模型已加载，正在推理（1000 docs, 250 batches）\\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test.log`\\n- **输出目录**: `/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_test/`\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "13e0a00f-29b8-40f7-ae11-ae93c5dc7e2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 615 · 2026-05-17T15:34:43.961Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_015HdyKUbPWiU6ZLXe3Fos9X`</summary>
+
+```json
+{
+  "worker_id": "worker_eval_llama_rsft_test_predictions_20260517T153005"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1ce5558-450e-498c-9e2d-a58abb1f3fcf",
+  "isSidechain": false,
+  "requestId": "req_011Cb8PLbYzeb9FMmvWqz9MG",
+  "type": "assistant",
+  "uuid": "2dee4c46-ff60-4e40-9a37-84070d345259",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vh6HHmAfEEZMEy1iQZEfpX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 45656,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 182,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 45656,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 182,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 45656,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 45656
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 32580
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 616 · 2026-05-17T15:34:44.085Z_
+
+<details><summary>↩ Tool result · `toolu_015HdyKUbPWiU6ZLXe3Fos9X`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_llama_rsft_test_predictions_20260517T153005\", \"status\": \"done\", \"task_type\": \"eval:llama_rsft_test_predictions\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T15:30:06.105667+00:00\", \"ended_at\": \"2026-05-17T15:31:51.822207+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"已提交：\\n\\n- **exp_id**: `plan_006_llama_rsft_test`\\n- **PID**: 460159\\n- **GPU**: cuda:3（rtx5090-4x）\\n- **输出目录**: `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test`\\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test.log`\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2dee4c46-ff60-4e40-9a37-84070d345259",
+  "isSidechain": false,
+  "promptId": "0dec921f-deaf-496c-8f41-d8f59185af29",
+  "type": "user",
+  "uuid": "69a8b64e-a235-4384-bc21-5dbf53c58ca8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_llama_rsft_test_predictions_20260517T153005\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"eval:llama_rsft_test_predictions\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"started_at\\\": \\\"2026-05-17T15:30:06.105667+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T15:31:51.822207+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"已提交：\\\\n\\\\n- **exp_id**: `plan_006_llama_rsft_test`\\\\n- **PID**: 460159\\\\n- **GPU**: cuda:3（rtx5090-4x）\\\\n- **输出目录**: `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test`\\\\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test.log`\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_llama_rsft_test_predictions_20260517T153005\", \"status\": \"done\", \"task_type\": \"eval:llama_rsft_test_predictions\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T15:30:06.105667+00:00\", \"ended_at\": \"2026-05-17T15:31:51.822207+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"已提交：\\n\\n- **exp_id**: `plan_006_llama_rsft_test`\\n- **PID**: 460159\\n- **GPU**: cuda:3（rtx5090-4x）\\n- **输出目录**: `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test`\\n- **日志**: `/root/autodl-tmp/eval_results/plan_006_llama_rsft_test.log`\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2dee4c46-ff60-4e40-9a37-84070d345259",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 617_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 618 · 2026-05-17T15:45:19.775Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T15:45:19.775Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[WORKER DONE] Worker worker_paper_research_rl_alignment_20260517T154253 已完成（status=done）。用 `get_worker_status('worker_paper_research_rl_alignment_20260517T154253')` 读取结果，然后处理。\n\n- worker_id: worker_paper_research_rl_alignment_20260517T154253\n- project: faith-evidence-ie\n- status: done"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 619 · 2026-05-17T15:45:19.775Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T15:45:19.775Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 66
+
+## Round 66
+
+2 recorded events
+
+
+### User
+
+_source line 620 · 2026-05-17T15:45:19.756Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "69a8b64e-a235-4384-bc21-5dbf53c58ca8",
+  "isSidechain": false,
+  "promptId": "54833500-5209-495e-af39-cdac9afd57fe",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "e3491945-92e4-4e10-b691-7f708e735aff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 621 · 2026-05-17T15:45:19.756Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3491945-92e4-4e10-b691-7f708e735aff",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "46b7540d-4924-4e15-a6d4-53578bffb717",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "7c41d482-e49e-4a17-9a4d-6185ecc56739",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 67
+
+## Round 67
+
+17 recorded events
+
+
+### User
+
+_source line 622 · 2026-05-17T15:45:19.985Z_
+
+[WORKER DONE] Worker worker_paper_research_rl_alignment_20260517T154253 已完成（status=done）。用 `get_worker_status('worker_paper_research_rl_alignment_20260517T154253')` 读取结果，然后处理。
+
+- worker_id: worker_paper_research_rl_alignment_20260517T154253
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "46b7540d-4924-4e15-a6d4-53578bffb717",
+  "isSidechain": false,
+  "promptId": "54833500-5209-495e-af39-cdac9afd57fe",
+  "type": "user",
+  "uuid": "df748403-7ff3-47e7-928c-60daf0f198ff",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 623 · 2026-05-17T15:45:23.213Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_017iwRSH8oeKgBCciKmZ66qV`</summary>
+
+```json
+{
+  "worker_id": "worker_paper_research_rl_alignment_20260517T154253"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df748403-7ff3-47e7-928c-60daf0f198ff",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Q9mCjJYBc9FkRkXcF8",
+  "type": "assistant",
+  "uuid": "a7f92b87-6ed6-4456-be53-91d0c19fce03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LZ8pH4UysS8RNf3jTg3nzv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 130,
+      "cache_read_input_tokens": 58023,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 130,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 58023,
+          "cache_creation_input_tokens": 130,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 130
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 624 · 2026-05-17T15:45:23.303Z_
+
+<details><summary>↩ Tool result · `toolu_017iwRSH8oeKgBCciKmZ66qV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_research_rl_alignment_20260517T154253\", \"status\": \"done\", \"task_type\": \"paper_research:rl_alignment\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T15:42:53.959500+00:00\", \"ended_at\": \"2026-05-17T15:45:12.519015+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"所有 8 篇论文验证完成。以下是结果：\\n\\n---\\n\\n## Must-cite 论文（3篇）\\n\\n## [GRPO / DeepSeekMath]\\n- title: DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\\n- authors: Shao et al. (Zhihong Shao)\\n- venue: arXiv preprint (2024)\\n- year: 2024\\n- arxiv: 2402.03300\\n- doi: —\\n- bibtex_key: shao2024deepseekmath\\n- verified: true\\n- relevance: 提出 GRPO 算法，本论文直接使用 GRPO 训练 DocRE 模型\\n- verification_note: 确认 GRPO 在此论文中首次提出，作为 PPO 的变体用于数学推理。title/authors/arXiv ID 均与预期一致。\\n\\n## [DPO]\\n- title: Direct Preference Optimization: Your Language Model is Secretly a Reward Model\\n- authors: Rafailov et al. (Rafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher D. Manning, Chelsea Finn)\\n- venue: NeurIPS 2023\\n- year: 2023\\n- arxiv: 2305.18290\\n- doi: 10.5555/3666122.3668460\\n- bibtex_key: rafailov2023dpo\\n- verified: true\\n- relevance: 本论文使用 DPO 作为对比方法训练 DocRE 模型，发现渐进退化现象\\n- verification_note: 确认 NeurIPS 2023（非 2024）。arXiv ID 2305.18290。\\n\\n## [Gao et al. 2023 — Reward Overoptimization]\\n- title: Scaling Laws for Reward Model Overoptimization\\n- authors: Gao et al. (Leo Gao, John Schulman, Jacob Hilton)\\n- venue: ICML 2023\\n- year: 2023\\n- arxiv: 2210.10760\\n- doi: 10.5555/3618408.3618845\\n- bibtex_key: gao2023scaling\\n- verified: true\\n- relevance: 本论文发现 GRPO QLoRA catastrophic decoupling 与 reward hacking 相关，此文提供 reward overoptimization 理论基础\\n- verification_note: 确认 ICML 2023 (40th ICML)。arXiv 提交于 2022-10，发表于 2023。\\n\\n---\\n\\n## Gap-fill 论文（5篇）\\n\\n## [Adjali et al. 2026 — GRPO for Event Extraction]\\n- title: Aligning Instruction-Tuned LLMs for Event Extraction with Multi-objective Reinforcement Learning\\n- authors: Adjali et al. (O. Adjali, S. Liang, O.S. Bhatti, D. Sonntag)\\n- venue: ECIR 2026 (Advances in Information Retrieval)\\n- year: 2026\\n- arxiv: —（无 arXiv 预印本）\\n- doi: 10.1007/978-3-032-21300-6_50\\n- bibtex_key: adjali2026aligning\\n- verified: true\\n- relevance: 直接使用 GRPO + 多目标 reward（format/BM25/task-specific）做 IE 任务，与本论文方法高度相似\\n- verification_note: 仅在 Springer 发表，无 arXiv 版本。ECIR 2026 确认。\\n\\n## [R1-RE — RLVR for Relation Extraction]\\n- title: R1-RE: Cross-Domain Relation Extraction with RLVR\\n- authors: Dai et al. (Runpeng Dai, Tong Zheng, Run Yang, Kaixian Yu, Hongtu Zhu)\\n- venue: arXiv preprint (2025)\\n- year: 2025\\n- arxiv: 2507.04642\\n- doi: —\\n- bibtex_key: dai2025r1re\\n- verified: true\\n- relevance: 首个将 RLVR 用于关系抽取的工作，证明 RL 可提升 RE 跨域泛化能力，与本论文 GRPO-for-DocRE 直接可比\\n- verification_note: arXiv 2025-07-07。标题中 \\\"Relation Extraction\\\" 有时显示为 \\\"Relationship Extraction\\\"，同一论文。\\n\\n## [Jin et al. 2025 — RL vs SFT Analysis]\\n- title: RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs\\n- authors: Jin et al. (Hangzhan Jin, Sicheng Lv, Sifan Wu, Mohammad Hamdaqa)\\n- venue: arXiv preprint (2025)\\n- year: 2025\\n- arxiv: 2508.16546\\n- doi: —\\n- bibtex_key: jin2025rl_panacea\\n- verified: true\\n- relevance: 分析 SFT→RL 时表征变化与 OOD 性能，为本论文 catastrophic decoupling 分析提供理论支撑（SFT 严重过拟合时 RL 无法完全恢复）\\n- verification_note: Polytechnique Montreal / Mila。2025-08-22 提交。\\n\\n## [E-GRPO — Entity-Aware Rewards in GRPO]\\n- title: Repurposing Synthetic Data for Fine-grained Search Agent Supervision\\n- authors: Zhao et al. (Yida Zhao, Kuan Li, Xixi Wu, Liwen Zhang, et al.)\\n- venue: arXiv preprint (2025)\\n- year: 2025\\n- arxiv: 2510.24694\\n- doi: —\\n- bibtex_key: zhao2025egrpo\\n- verified: true\\n- relevance: 提出 E-GRPO（entity-aware dense reward in GRPO），用实体匹配作为细粒度 reward，与本论文 evidence-level reward 设计思路一致\\n- verification_note: 论文主题为搜索代理，但核心贡献 E-GRPO 的 entity-aware reward 机制对本论文有直接参考价值。阿里巴巴团队。\\n\\n## [Moskovitz et al. 2024 — Constrained RLHF]\\n- title: Confronting Reward Model Overoptimization with Constrained RLHF\\n- authors: Moskovitz et al. (Ted Moskovitz, Aaditya Singh, DJ Strouse, Tuomas Sandholm, Ruslan Salakhutdinov, Anca Dragan, Stephen McAleer)\\n- venue: ICLR 2024\\n- year: 2024\\n- arxiv: 2310.04373\\n- doi: —\\n- bibtex_key: moskovitz2024constrained\\n- verified: true\\n- relevance: 研究 composite RM 的 overoptimization 及约束方法，为本论文多维度 reward (faithfulness + evidence + format) 的平衡问题提供理论支撑\\n- verification_note: 确认 ICLR 2024 poster。OpenReview ID: gkfUvn0fLU。\\n\\n---\\n\\n**总结**: 8/8 全部验证通过。3 篇 must-cite 信息与预期一致（DPO 是 NeurIPS 2023 非 2024）。5 篇 gap-fill 覆盖了 GRPO-for-IE (Adjali, R1-RE)、RL 理论分析 (Jin)、entity-aware reward (E-GRPO)、multi-objective reward hacking (Moskovitz) 四个维度。\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a7f92b87-6ed6-4456-be53-91d0c19fce03",
+  "isSidechain": false,
+  "promptId": "54833500-5209-495e-af39-cdac9afd57fe",
+  "type": "user",
+  "uuid": "c6c3174d-0b94-4a4d-8b5d-37555c88eec6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_research_rl_alignment_20260517T154253\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"paper_research:rl_alignment\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"started_at\\\": \\\"2026-05-17T15:42:53.959500+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T15:45:12.519015+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"所有 8 篇论文验证完成。以下是结果：\\\\n\\\\n---\\\\n\\\\n## Must-cite 论文（3篇）\\\\n\\\\n## [GRPO / DeepSeekMath]\\\\n- title: DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\\\\n- authors: Shao et al. (Zhihong Shao)\\\\n- venue: arXiv preprint (2024)\\\\n- year: 2024\\\\n- arxiv: 2402.03300\\\\n- doi: —\\\\n- bibtex_key: shao2024deepseekmath\\\\n- verified: true\\\\n- relevance: 提出 GRPO 算法，本论文直接使用 GRPO 训练 DocRE 模型\\\\n- verification_note: 确认 GRPO 在此论文中首次提出，作为 PPO 的变体用于数学推理。title/authors/arXiv ID 均与预期一致。\\\\n\\\\n## [DPO]\\\\n- title: Direct Preference Optimization: Your Language Model is Secretly a Reward Model\\\\n- authors: Rafailov et al. (Rafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher D. Manning, Chelsea Finn)\\\\n- venue: NeurIPS 2023\\\\n- year: 2023\\\\n- arxiv: 2305.18290\\\\n- doi: 10.5555/3666122.3668460\\\\n- bibtex_key: rafailov2023dpo\\\\n- verified: true\\\\n- relevance: 本论文使用 DPO 作为对比方法训练 DocRE 模型，发现渐进退化现象\\\\n- verification_note: 确认 NeurIPS 2023（非 2024）。arXiv ID 2305.18290。\\\\n\\\\n## [Gao et al. 2023 — Reward Overoptimization]\\\\n- title: Scaling Laws for Reward Model Overoptimization\\\\n- authors: Gao et al. (Leo Gao, John Schulman, Jacob Hilton)\\\\n- venue: ICML 2023\\\\n- year: 2023\\\\n- arxiv: 2210.10760\\\\n- doi: 10.5555/3618408.3618845\\\\n- bibtex_key: gao2023scaling\\\\n- verified: true\\\\n- relevance: 本论文发现 GRPO QLoRA catastrophic decoupling 与 reward hacking 相关，此文提供 reward overoptimization 理论基础\\\\n- verification_note: 确认 ICML 2023 (40th ICML)。arXiv 提交于 2022-10，发表于 2023。\\\\n\\\\n---\\\\n\\\\n## Gap-fill 论文（5篇）\\\\n\\\\n## [Adjali et al. 2026 — GRPO for Event Extraction]\\\\n- title: Aligning Instruction-Tuned LLMs for Event Extraction with Multi-objective Reinforcement Learning\\\\n- authors: Adjali et al. (O. Adjali, S. Liang, O.S. Bhatti, D. Sonntag)\\\\n- venue: ECIR 2026 (Advances in Information Retrieval)\\\\n- year: 2026\\\\n- arxiv: —（无 arXiv 预印本）\\\\n- doi: 10.1007/978-3-032-21300-6_50\\\\n- bibtex_key: adjali2026aligning\\\\n- verified: true\\\\n- relevance: 直接使用 GRPO + 多目标 reward（format/BM25/task-specific）做 IE 任务，与本论文方法高度相似\\\\n- verification_note: 仅在 Springer 发表，无 arXiv 版本。ECIR 2026 确认。\\\\n\\\\n## [R1-RE — RLVR for Relation Extraction]\\\\n- title: R1-RE: Cross-Domain Relation Extraction with RLVR\\\\n- authors: Dai et al. (Runpeng Dai, Tong Zheng, Run Yang, Kaixian Yu, Hongtu Zhu)\\\\n- venue: arXiv preprint (2025)\\\\n- year: 2025\\\\n- arxiv: 2507.04642\\\\n- doi: —\\\\n- bibtex_key: dai2025r1re\\\\n- verified: true\\\\n- relevance: 首个将 RLVR 用于关系抽取的工作，证明 RL 可提升 RE 跨域泛化能力，与本论文 GRPO-for-DocRE 直接可比\\\\n- verification_note: arXiv 2025-07-07。标题中 \\\\\\\"Relation Extraction\\\\\\\" 有时显示为 \\\\\\\"Relationship Extraction\\\\\\\"，同一论文。\\\\n\\\\n## [Jin et al. 2025 — RL vs SFT Analysis]\\\\n- title: RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs\\\\n- authors: Jin et al. (Hangzhan Jin, Sicheng Lv, Sifan Wu, Mohammad Hamdaqa)\\\\n- venue: arXiv preprint (2025)\\\\n- year: 2025\\\\n- arxiv: 2508.16546\\\\n- doi: —\\\\n- bibtex_key: jin2025rl_panacea\\\\n- verified: true\\\\n- relevance: 分析 SFT→RL 时表征变化与 OOD 性能，为本论文 catastrophic decoupling 分析提供理论支撑（SFT 严重过拟合时 RL 无法完全恢复）\\\\n- verification_note: Polytechnique Montreal / Mila。2025-08-22 提交。\\\\n\\\\n## [E-GRPO — Entity-Aware Rewards in GRPO]\\\\n- title: Repurposing Synthetic Data for Fine-grained Search Agent Supervision\\\\n- authors: Zhao et al. (Yida Zhao, Kuan Li, Xixi Wu, Liwen Zhang, et al.)\\\\n- venue: arXiv preprint (2025)\\\\n- year: 2025\\\\n- arxiv: 2510.24694\\\\n- doi: —\\\\n- bibtex_key: zhao2025egrpo\\\\n- verified: true\\\\n- relevance: 提出 E-GRPO（entity-aware dense reward in GRPO），用实体匹配作为细粒度 reward，与本论文 evidence-level reward 设计思路一致\\\\n- verification_note: 论文主题为搜索代理，但核心贡献 E-GRPO 的 entity-aware reward 机制对本论文有直接参考价值。阿里巴巴团队。\\\\n\\\\n## [Moskovitz et al. 2024 — Constrained RLHF]\\\\n- title: Confronting Reward Model Overoptimization with Constrained RLHF\\\\n- authors: Moskovitz et al. (Ted Moskovitz, Aaditya Singh, DJ Strouse, Tuomas Sandholm, Ruslan Salakhutdinov, Anca Dragan, Stephen McAleer)\\\\n- venue: ICLR 2024\\\\n- year: 2024\\\\n- arxiv: 2310.04373\\\\n- doi: —\\\\n- bibtex_key: moskovitz2024constrained\\\\n- verified: true\\\\n- relevance: 研究 composite RM 的 overoptimization 及约束方法，为本论文多维度 reward (faithfulness + evidence + format) 的平衡问题提供理论支撑\\\\n- verification_note: 确认 ICLR 2024 poster。OpenReview ID: gkfUvn0fLU。\\\\n\\\\n---\\\\n\\\\n**总结**: 8/8 全部验证通过。3 篇 must-cite 信息与预期一致（DPO 是 NeurIPS 2023 非 2024）。5 篇 gap-fill 覆盖了 GRPO-for-IE (Adjali, R1-RE)、RL 理论分析 (Jin)、entity-aware reward (E-GRPO)、multi-objective reward hacking (Moskovitz) 四个维度。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_research_rl_alignment_20260517T154253\", \"status\": \"done\", \"task_type\": \"paper_research:rl_alignment\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T15:42:53.959500+00:00\", \"ended_at\": \"2026-05-17T15:45:12.519015+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"所有 8 篇论文验证完成。以下是结果：\\n\\n---\\n\\n## Must-cite 论文（3篇）\\n\\n## [GRPO / DeepSeekMath]\\n- title: DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\\n- authors: Shao et al. (Zhihong Shao)\\n- venue: arXiv preprint (2024)\\n- year: 2024\\n- arxiv: 2402.03300\\n- doi: —\\n- bibtex_key: shao2024deepseekmath\\n- verified: true\\n- relevance: 提出 GRPO 算法，本论文直接使用 GRPO 训练 DocRE 模型\\n- verification_note: 确认 GRPO 在此论文中首次提出，作为 PPO 的变体用于数学推理。title/authors/arXiv ID 均与预期一致。\\n\\n## [DPO]\\n- title: Direct Preference Optimization: Your Language Model is Secretly a Reward Model\\n- authors: Rafailov et al. (Rafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher D. Manning, Chelsea Finn)\\n- venue: NeurIPS 2023\\n- year: 2023\\n- arxiv: 2305.18290\\n- doi: 10.5555/3666122.3668460\\n- bibtex_key: rafailov2023dpo\\n- verified: true\\n- relevance: 本论文使用 DPO 作为对比方法训练 DocRE 模型，发现渐进退化现象\\n- verification_note: 确认 NeurIPS 2023（非 2024）。arXiv ID 2305.18290。\\n\\n## [Gao et al. 2023 — Reward Overoptimization]\\n- title: Scaling Laws for Reward Model Overoptimization\\n- authors: Gao et al. (Leo Gao, John Schulman, Jacob Hilton)\\n- venue: ICML 2023\\n- year: 2023\\n- arxiv: 2210.10760\\n- doi: 10.5555/3618408.3618845\\n- bibtex_key: gao2023scaling\\n- verified: true\\n- relevance: 本论文发现 GRPO QLoRA catastrophic decoupling 与 reward hacking 相关，此文提供 reward overoptimization 理论基础\\n- verification_note: 确认 ICML 2023 (40th ICML)。arXiv 提交于 2022-10，发表于 2023。\\n\\n---\\n\\n## Gap-fill 论文（5篇）\\n\\n## [Adjali et al. 2026 — GRPO for Event Extraction]\\n- title: Aligning Instruction-Tuned LLMs for Event Extraction with Multi-objective Reinforcement Learning\\n- authors: Adjali et al. (O. Adjali, S. Liang, O.S. Bhatti, D. Sonntag)\\n- venue: ECIR 2026 (Advances in Information Retrieval)\\n- year: 2026\\n- arxiv: —（无 arXiv 预印本）\\n- doi: 10.1007/978-3-032-21300-6_50\\n- bibtex_key: adjali2026aligning\\n- verified: true\\n- relevance: 直接使用 GRPO + 多目标 reward（format/BM25/task-specific）做 IE 任务，与本论文方法高度相似\\n- verification_note: 仅在 Springer 发表，无 arXiv 版本。ECIR 2026 确认。\\n\\n## [R1-RE — RLVR for Relation Extraction]\\n- title: R1-RE: Cross-Domain Relation Extraction with RLVR\\n- authors: Dai et al. (Runpeng Dai, Tong Zheng, Run Yang, Kaixian Yu, Hongtu Zhu)\\n- venue: arXiv preprint (2025)\\n- year: 2025\\n- arxiv: 2507.04642\\n- doi: —\\n- bibtex_key: dai2025r1re\\n- verified: true\\n- relevance: 首个将 RLVR 用于关系抽取的工作，证明 RL 可提升 RE 跨域泛化能力，与本论文 GRPO-for-DocRE 直接可比\\n- verification_note: arXiv 2025-07-07。标题中 \\\"Relation Extraction\\\" 有时显示为 \\\"Relationship Extraction\\\"，同一论文。\\n\\n## [Jin et al. 2025 — RL vs SFT Analysis]\\n- title: RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs\\n- authors: Jin et al. (Hangzhan Jin, Sicheng Lv, Sifan Wu, Mohammad Hamdaqa)\\n- venue: arXiv preprint (2025)\\n- year: 2025\\n- arxiv: 2508.16546\\n- doi: —\\n- bibtex_key: jin2025rl_panacea\\n- verified: true\\n- relevance: 分析 SFT→RL 时表征变化与 OOD 性能，为本论文 catastrophic decoupling 分析提供理论支撑（SFT 严重过拟合时 RL 无法完全恢复）\\n- verification_note: Polytechnique Montreal / Mila。2025-08-22 提交。\\n\\n## [E-GRPO — Entity-Aware Rewards in GRPO]\\n- title: Repurposing Synthetic Data for Fine-grained Search Agent Supervision\\n- authors: Zhao et al. (Yida Zhao, Kuan Li, Xixi Wu, Liwen Zhang, et al.)\\n- venue: arXiv preprint (2025)\\n- year: 2025\\n- arxiv: 2510.24694\\n- doi: —\\n- bibtex_key: zhao2025egrpo\\n- verified: true\\n- relevance: 提出 E-GRPO（entity-aware dense reward in GRPO），用实体匹配作为细粒度 reward，与本论文 evidence-level reward 设计思路一致\\n- verification_note: 论文主题为搜索代理，但核心贡献 E-GRPO 的 entity-aware reward 机制对本论文有直接参考价值。阿里巴巴团队。\\n\\n## [Moskovitz et al. 2024 — Constrained RLHF]\\n- title: Confronting Reward Model Overoptimization with Constrained RLHF\\n- authors: Moskovitz et al. (Ted Moskovitz, Aaditya Singh, DJ Strouse, Tuomas Sandholm, Ruslan Salakhutdinov, Anca Dragan, Stephen McAleer)\\n- venue: ICLR 2024\\n- year: 2024\\n- arxiv: 2310.04373\\n- doi: —\\n- bibtex_key: moskovitz2024constrained\\n- verified: true\\n- relevance: 研究 composite RM 的 overoptimization 及约束方法，为本论文多维度 reward (faithfulness + evidence + format) 的平衡问题提供理论支撑\\n- verification_note: 确认 ICLR 2024 poster。OpenReview ID: gkfUvn0fLU。\\n\\n---\\n\\n**总结**: 8/8 全部验证通过。3 篇 must-cite 信息与预期一致（DPO 是 NeurIPS 2023 非 2024）。5 篇 gap-fill 覆盖了 GRPO-for-IE (Adjali, R1-RE)、RL 理论分析 (Jin)、entity-aware reward (E-GRPO)、multi-objective reward hacking (Moskovitz) 四个维度。\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a7f92b87-6ed6-4456-be53-91d0c19fce03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 625 · 2026-05-17T15:45:36.790Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a citation verification worker that found 8 papers - 3 must-cite and 5 gap-fill. I need to:
+1. Save these findings to literature_map.yaml (or at least report them)
+2. Report to Director
+
+The key findings:
+- All 8 papers verified (8/8)
+- DPO confirmed NeurIPS 2023 (not 2024)
+- 5 new gap-fill papers found:
+  - Adjali et al. 2026 (GRPO for Event Extraction, ECIR 2026)
+  - R1-RE (RLVR for Relation Extraction, arXiv 2025)
+  - Jin et al. 2025 (RL vs SFT Analysis)
+  - E-GRPO (Entity-Aware Rewards in GRPO)
+  - Moskovitz et al. 2024 (Constrained RLHF, ICLR 2024)
+
+These gap-fill papers strengthen our Related Work section, so I should report them to the Director and add them to the literature map.
+
+I'm debating whether to update the literature map myself or just report the findings. Since the worker already verified these papers, I could use a lightweight file operation to save them, but that's really the executor's job. The key actionable items are the DPO citation correction, these five new papers for the discussion, and noting that R1-RE is a direct competitor. This is lower priority than the running GPU experiments, so I'll flag it for the Director and keep moving.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6c3174d-0b94-4a4d-8b5d-37555c88eec6",
+  "isSidechain": false,
+  "requestId": "req_011Cb8QA1mL9V8aV6dcpFrSW",
+  "type": "assistant",
+  "uuid": "b74590d3-403c-4bc3-b10b-93c854825fd3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019QLn7RNrzToZaSZ5kD9ETD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2486,
+      "cache_read_input_tokens": 58153,
+      "output_tokens": 652,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2486,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 652,
+          "cache_read_input_tokens": 58153,
+          "cache_creation_input_tokens": 2486,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2486
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 626 · 2026-05-17T15:45:36.804Z_
+
+文献验证完成：8/8 通过，发现 5 篇 gap-fill 论文。关键发现包括 R1-RE（首个 RLVR for RE，直接竞品）和 Adjali et al.（GRPO for IE，ECIR 2026）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b74590d3-403c-4bc3-b10b-93c854825fd3",
+  "isSidechain": false,
+  "requestId": "req_011Cb8QA1mL9V8aV6dcpFrSW",
+  "type": "assistant",
+  "uuid": "098e7c63-93b1-4565-b43f-488bfcbc7bb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019QLn7RNrzToZaSZ5kD9ETD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2486,
+      "cache_read_input_tokens": 58153,
+      "output_tokens": 652,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2486,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 652,
+          "cache_read_input_tokens": 58153,
+          "cache_creation_input_tokens": 2486,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2486
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 627 · 2026-05-17T15:45:36.818Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01P8eaG7KeFNuUTsrUbMJbQm`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "098e7c63-93b1-4565-b43f-488bfcbc7bb9",
+  "isSidechain": false,
+  "requestId": "req_011Cb8QA1mL9V8aV6dcpFrSW",
+  "type": "assistant",
+  "uuid": "a716ccf5-8491-4605-879f-68458b6720be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019QLn7RNrzToZaSZ5kD9ETD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2486,
+      "cache_read_input_tokens": 58153,
+      "output_tokens": 652,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2486,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 652,
+          "cache_read_input_tokens": 58153,
+          "cache_creation_input_tokens": 2486,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2486
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 628 · 2026-05-17T15:45:36.823Z_
+
+<details><summary>↩ Tool result · `toolu_01P8eaG7KeFNuUTsrUbMJbQm`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a716ccf5-8491-4605-879f-68458b6720be",
+  "isSidechain": false,
+  "promptId": "54833500-5209-495e-af39-cdac9afd57fe",
+  "type": "user",
+  "uuid": "d428f0de-206e-45ef-b5cf-47614a19e011",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 80
+  },
+  "sourceToolAssistantUUID": "a716ccf5-8491-4605-879f-68458b6720be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 629 · 2026-05-17T15:45:40.239Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01U9wQpNg4q3RkKahbpvnGGa`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "max_chars": 20000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d428f0de-206e-45ef-b5cf-47614a19e011",
+  "isSidechain": false,
+  "requestId": "req_011Cb8QB1zW3MRtSGYzc6NoP",
+  "type": "assistant",
+  "uuid": "7a6ea722-4850-4636-b237-d4e1926660ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ENhmYocg7JZYWzgCQ8s6C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 926,
+      "cache_read_input_tokens": 60639,
+      "output_tokens": 108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 926,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 108,
+          "cache_read_input_tokens": 60639,
+          "cache_creation_input_tokens": 926,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 926
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 630 · 2026-05-17T15:45:40.257Z_
+
+<details><summary>↩ Tool result · `toolu_01U9wQpNg4q3RkKahbpvnGGa`</summary>
+
+````text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# RSFT Scoring Commands\\n\\n## 验证结果\\n\\n- **脚本路径**: `/root/autodl-tmp/freige/training/rsft_score_filter.py`\\n- **模块导入**: `from freige.training.rsft_score_filter import main` ✅ OK\\n- **NLI 模型**: `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7`\\n\\n## Argparse 参数列表\\n\\n| 参数 | 必填 | 默认值 | 说明 |\\n|------|------|--------|------|\\n| `--input_dir` | ✅ | - | rsft_generate 输出目录（含 generations.jsonl） |\\n| `--output_path` | ✅ | - | 筛选结果输出目录 |\\n| `--nli_model_path` | ❌ | (内置默认) | NLI 模型路径 |\\n| `--nli_device` | ❌ | auto | NLI 模型运行设备 |\\n| `--tau` | ❌ | 0.5 | CED tau 阈值 |\\n| `--scoring_mode` | ❌ | ced | {ced, flat_nli} |\\n| `--format_weight` | ❌ | 0.2 | combined_score 中 format_reward 权重 |\\n| `--f1_weight` | ❌ | 0.4 | combined_score 中 f1_reward 权重 |\\n| `--ced_weight` | ❌ | 0.4 | combined_score 中 ced_reward 权重 |\\n| `--format_threshold` | ❌ | 0.5 | format_reward 最低阈值 |\\n| `--f1_threshold` | ❌ | 0.1 | f1_reward 最低阈值 |\\n| `--ced_threshold` | ❌ | 0.0 | ced_reward 最低阈值 |\\n| `--selection_strategy` | ❌ | top_pct | {threshold, top_k, top_pct} |\\n| `--top_k` | ❌ | 2 | top_k 策略: 每个文档取 top-K |\\n| `--top_pct` | ❌ | 25 | top_pct 策略: 每个文档取 top N% |\\n\\n## Candidate Generation 进度 (更新: 2026-05-17 ~00:00)\\n\\n| 模型 | lines | docs | 进度 | GPU | 输出路径 | 预计完成 |\\n|------|-------|------|------|-----|----------|----------|\\n| Qwen3-1.7B | 8616 | ~1077 | 35.6% | 0 | `freige/outputs/rsft_candidates_1_7b` | ~May 17 08:00 |\\n| Qwen3-8B | 6952 | ~869 | 28.7% | 3 | `freige/outputs/rsft_candidates_8b` | ~May 17 11:00 |\\n| LLaMA-3.1-8B | ~4456 | ~557 | 18.4% | 1→2(r3) | `/root/autodl-tmp/rsft_candidates_llama_3_1_8b` | ~May 17 15:00 |\\n\\n总目标: 3027 docs × 8 candidates each = 24216 lines\\n\\n## CED Scoring 命令模板\\n\\n基于 4B 历史参数（rsft_filtered_topk3: top_k=3, tau=0.5, weights 0.2/0.4/0.4）\\n\\n### 1.7B CED Scoring\\n\\n```bash\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\ncd /root/autodl-tmp && \\\\\\nCUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\npython -m freige.training.rsft_score_filter \\\\\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_1_7b \\\\\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_1_7b \\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\n    --nli_device cuda:0 \\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\n    --selection_strategy top_k --top_k 3\\n```\\n\\n### 8B CED Scoring\\n\\n```bash\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\ncd /root/autodl-tmp && \\\\\\nCUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\npython -m freige.training.rsft_score_filter \\\\\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b \\\\\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_8b \\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\n    --nli_device cuda:0 \\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\n    --selection_strategy top_k --top_k 3\\n```\\n\\n### LLaMA-3.1-8B CED Scoring\\n\\n```bash\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\ncd /root/autodl-tmp && \\\\\\nCUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\npython -m freige.training.rsft_score_filter \\\\\\n    --input_dir /root/autodl-tmp/rsft_candidates_llama_3_1_8b \\\\\\n    --output_path /root/autodl-tmp/rsft_scored_llama_3_1_8b \\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\n    --nli_device cuda:0 \\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\n    --selection_strategy top_k --top_k 3\\n```\\n\\n### 备选: flat_nli 模式（作为对比实验）\\n\\n将 `--scoring_mode ced` 替换为 `--scoring_mode flat_nli`，输出路径改为 `*_flat_nli`。\\n\\n## GPU 需求\\n\\n- CED scoring 使用 DeBERTa-v3-base NLI 模型，~400MB 显存，**任意一张卡即可**\\n- 3 个 scoring 作业可在不同 GPU 上并行跑，不影响进行中的 generation\\n- 计算量主要在 CPU 侧\\n\\n## 历史 4B Scoring 产出\\n\\n已有多轮 4B scoring 结果供参考：\\n- `/root/autodl-tmp/rsft_scored_s0~s3/` — 分 split 的中间结果\\n- `/root/autodl-tmp/rsft_filtered_topk3/` — top_k=3, 21728→8037 records (37.0%), 2691/2716 docs\\n- `/root/autodl-tmp/rsft_filtered_flat_nli/` — flat_nli 模式对比\\n- `/root/autodl-tmp/rsft_filtered_topk3_ced_filtered/` — 额外 CED 过滤\\n\\n## Evidence Tax Scaling Pattern (2026-05-16)\\n\\n**核心发现**：evidence tax 不是单调的，呈非线性 pattern：\\n- 1.7B: +6.2pp benefit（公平子集分析，442 docs 无截断）— evidence 起隐式正则化作用，抑制过度预测\\n- 4B: -7.9pp cost — 标准 evidence generation 负担\\n- 8B Qwen: ≈0 — 模型容量足够 absorb\\n- 8B LLaMA: -0.7pp — 跨家族确认大模型趋势\\n\\n**机制解释**：1.7B 模型容量不足时，evidence 约束减少幻觉（no-evi 输出 4513 triples vs with-evi 3991），precision 差 9.4pp。中等模型有足够容量生成正确 relations 但 evidence 成为额外负担。大模型容量冗余足以覆盖 evidence 生成。\\n\\n## rsft_generate CLI 正确参数 (2026-05-16)\\n\\n**模块**: `freige.training.rsft_generate`（不是 freige.rsft.generate_candidates）\\n\\n正确参数名：\\n- `--base_model`（不是 --model_path）\\n- `--num_generations`（不是 --n_candidates）\\n- 不加 --no-quantize（默认不量化）\\n- `--data_path` 指向文件（如 train_annotated.json），不是目录\\n- `--start_idx N` 支持断点续传\\n\\n## inference.py 正确参数（RSFT eval 三层加载）(2026-05-16)\\n\\n**模块**: `freige.eval.inference`\\n\\nRSFT 模型 eval 需要三个模型参数：\\n- `--base_model`: 基础模型路径（如 `/root/autodl-tmp/models/Qwen3-4B`）\\n- `--sft_adapter`: SFT adapter 路径（如 `/root/autodl-tmp/sft_output`）\\n- `--model_path`: RSFT checkpoint 路径（如 `/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510`）\\n\\n**加载顺序**: base_model → merge SFT adapter → load RSFT LoRA on top\\n\\n### Re-DocRED RSFT eval r4 命令（Director 确认）\\n```bash\\nbash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r4\\\"\\n```\\n\\n### plan_002 DocRED test eval 命令（Director 确认）\\n```bash\\nbash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_002_test_rsft_s43\\\"\\n```\\n\", \"total_chars\": 6356, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "7a6ea722-4850-4636-b237-d4e1926660ff",
+  "isSidechain": false,
+  "promptId": "54833500-5209-495e-af39-cdac9afd57fe",
+  "type": "user",
+  "uuid": "ec5ff7fe-564f-472d-a67e-a71dfd8aee65",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"content\\\": \\\"# RSFT Scoring Commands\\\\n\\\\n## 验证结果\\\\n\\\\n- **脚本路径**: `/root/autodl-tmp/freige/training/rsft_score_filter.py`\\\\n- **模块导入**: `from freige.training.rsft_score_filter import main` ✅ OK\\\\n- **NLI 模型**: `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7`\\\\n\\\\n## Argparse 参数列表\\\\n\\\\n| 参数 | 必填 | 默认值 | 说明 |\\\\n|------|------|--------|------|\\\\n| `--input_dir` | ✅ | - | rsft_generate 输出目录（含 generations.jsonl） |\\\\n| `--output_path` | ✅ | - | 筛选结果输出目录 |\\\\n| `--nli_model_path` | ❌ | (内置默认) | NLI 模型路径 |\\\\n| `--nli_device` | ❌ | auto | NLI 模型运行设备 |\\\\n| `--tau` | ❌ | 0.5 | CED tau 阈值 |\\\\n| `--scoring_mode` | ❌ | ced | {ced, flat_nli} |\\\\n| `--format_weight` | ❌ | 0.2 | combined_score 中 format_reward 权重 |\\\\n| `--f1_weight` | ❌ | 0.4 | combined_score 中 f1_reward 权重 |\\\\n| `--ced_weight` | ❌ | 0.4 | combined_score 中 ced_reward 权重 |\\\\n| `--format_threshold` | ❌ | 0.5 | format_reward 最低阈值 |\\\\n| `--f1_threshold` | ❌ | 0.1 | f1_reward 最低阈值 |\\\\n| `--ced_threshold` | ❌ | 0.0 | ced_reward 最低阈值 |\\\\n| `--selection_strategy` | ❌ | top_pct | {threshold, top_k, top_pct} |\\\\n| `--top_k` | ❌ | 2 | top_k 策略: 每个文档取 top-K |\\\\n| `--top_pct` | ❌ | 25 | top_pct 策略: 每个文档取 top N% |\\\\n\\\\n## Candidate Generation 进度 (更新: 2026-05-17 ~00:00)\\\\n\\\\n| 模型 | lines | docs | 进度 | GPU | 输出路径 | 预计完成 |\\\\n|------|-------|------|------|-----|----------|----------|\\\\n| Qwen3-1.7B | 8616 | ~1077 | 35.6% | 0 | `freige/outputs/rsft_candidates_1_7b` | ~May 17 08:00 |\\\\n| Qwen3-8B | 6952 | ~869 | 28.7% | 3 | `freige/outputs/rsft_candidates_8b` | ~May 17 11:00 |\\\\n| LLaMA-3.1-8B | ~4456 | ~557 | 18.4% | 1→2(r3) | `/root/autodl-tmp/rsft_candidates_llama_3_1_8b` | ~May 17 15:00 |\\\\n\\\\n总目标: 3027 docs × 8 candidates each = 24216 lines\\\\n\\\\n## CED Scoring 命令模板\\\\n\\\\n基于 4B 历史参数（rsft_filtered_topk3: top_k=3, tau=0.5, weights 0.2/0.4/0.4）\\\\n\\\\n### 1.7B CED Scoring\\\\n\\\\n```bash\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\\\\\\\ncd /root/autodl-tmp && \\\\\\\\\\\\nCUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\\\\\\\npython -m freige.training.rsft_score_filter \\\\\\\\\\\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_1_7b \\\\\\\\\\\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_1_7b \\\\\\\\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\\\\\\\n    --nli_device cuda:0 \\\\\\\\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\\\\\\\n    --selection_strategy top_k --top_k 3\\\\n```\\\\n\\\\n### 8B CED Scoring\\\\n\\\\n```bash\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\\\\\\\ncd /root/autodl-tmp && \\\\\\\\\\\\nCUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\\\\\\\npython -m freige.training.rsft_score_filter \\\\\\\\\\\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b \\\\\\\\\\\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_8b \\\\\\\\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\\\\\\\n    --nli_device cuda:0 \\\\\\\\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\\\\\\\n    --selection_strategy top_k --top_k 3\\\\n```\\\\n\\\\n### LLaMA-3.1-8B CED Scoring\\\\n\\\\n```bash\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\\\\\\\ncd /root/autodl-tmp && \\\\\\\\\\\\nCUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\\\\\\\npython -m freige.training.rsft_score_filter \\\\\\\\\\\\n    --input_dir /root/autodl-tmp/rsft_candidates_llama_3_1_8b \\\\\\\\\\\\n    --output_path /root/autodl-tmp/rsft_scored_llama_3_1_8b \\\\\\\\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\\\\\\\n    --nli_device cuda:0 \\\\\\\\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\\\\\\\n    --selection_strategy top_k --top_k 3\\\\n```\\\\n\\\\n### 备选: flat_nli 模式（作为对比实验）\\\\n\\\\n将 `--scoring_mode ced` 替换为 `--scoring_mode flat_nli`，输出路径改为 `*_flat_nli`。\\\\n\\\\n## GPU 需求\\\\n\\\\n- CED scoring 使用 DeBERTa-v3-base NLI 模型，~400MB 显存，**任意一张卡即可**\\\\n- 3 个 scoring 作业可在不同 GPU 上并行跑，不影响进行中的 generation\\\\n- 计算量主要在 CPU 侧\\\\n\\\\n## 历史 4B Scoring 产出\\\\n\\\\n已有多轮 4B scoring 结果供参考：\\\\n- `/root/autodl-tmp/rsft_scored_s0~s3/` — 分 split 的中间结果\\\\n- `/root/autodl-tmp/rsft_filtered_topk3/` — top_k=3, 21728→8037 records (37.0%), 2691/2716 docs\\\\n- `/root/autodl-tmp/rsft_filtered_flat_nli/` — flat_nli 模式对比\\\\n- `/root/autodl-tmp/rsft_filtered_topk3_ced_filtered/` — 额外 CED 过滤\\\\n\\\\n## Evidence Tax Scaling Pattern (2026-05-16)\\\\n\\\\n**核心发现**：evidence tax 不是单调的，呈非线性 pattern：\\\\n- 1.7B: +6.2pp benefit（公平子集分析，442 docs 无截断）— evidence 起隐式正则化作用，抑制过度预测\\\\n- 4B: -7.9pp cost — 标准 evidence generation 负担\\\\n- 8B Qwen: ≈0 — 模型容量足够 absorb\\\\n- 8B LLaMA: -0.7pp — 跨家族确认大模型趋势\\\\n\\\\n**机制解释**：1.7B 模型容量不足时，evidence 约束减少幻觉（no-evi 输出 4513 triples vs with-evi 3991），precision 差 9.4pp。中等模型有足够容量生成正确 relations 但 evidence 成为额外负担。大模型容量冗余足以覆盖 evidence 生成。\\\\n\\\\n## rsft_generate CLI 正确参数 (2026-05-16)\\\\n\\\\n**模块**: `freige.training.rsft_generate`（不是 freige.rsft.generate_candidates）\\\\n\\\\n正确参数名：\\\\n- `--base_model`（不是 --model_path）\\\\n- `--num_generations`（不是 --n_candidates）\\\\n- 不加 --no-quantize（默认不量化）\\\\n- `--data_path` 指向文件（如 train_annotated.json），不是目录\\\\n- `--start_idx N` 支持断点续传\\\\n\\\\n## inference.py 正确参数（RSFT eval 三层加载）(2026-05-16)\\\\n\\\\n**模块**: `freige.eval.inference`\\\\n\\\\nRSFT 模型 eval 需要三个模型参数：\\\\n- `--base_model`: 基础模型路径（如 `/root/autodl-tmp/models/Qwen3-4B`）\\\\n- `--sft_adapter`: SFT adapter 路径（如 `/root/autodl-tmp/sft_output`）\\\\n- `--model_path`: RSFT checkpoint 路径（如 `/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510`）\\\\n\\\\n**加载顺序**: base_model → merge SFT adapter → load RSFT LoRA on top\\\\n\\\\n### Re-DocRED RSFT eval r4 命令（Director 确认）\\\\n```bash\\\\nbash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r4\\\\\\\"\\\\n```\\\\n\\\\n### plan_002 DocRED test eval 命令（Director 确认）\\\\n```bash\\\\nbash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_002_test_rsft_s43\\\\\\\"\\\\n```\\\\n\\\", \\\"total_chars\\\": 6356, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# RSFT Scoring Commands\\n\\n## 验证结果\\n\\n- **脚本路径**: `/root/autodl-tmp/freige/training/rsft_score_filter.py`\\n- **模块导入**: `from freige.training.rsft_score_filter import main` ✅ OK\\n- **NLI 模型**: `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7`\\n\\n## Argparse 参数列表\\n\\n| 参数 | 必填 | 默认值 | 说明 |\\n|------|------|--------|------|\\n| `--input_dir` | ✅ | - | rsft_generate 输出目录（含 generations.jsonl） |\\n| `--output_path` | ✅ | - | 筛选结果输出目录 |\\n| `--nli_model_path` | ❌ | (内置默认) | NLI 模型路径 |\\n| `--nli_device` | ❌ | auto | NLI 模型运行设备 |\\n| `--tau` | ❌ | 0.5 | CED tau 阈值 |\\n| `--scoring_mode` | ❌ | ced | {ced, flat_nli} |\\n| `--format_weight` | ❌ | 0.2 | combined_score 中 format_reward 权重 |\\n| `--f1_weight` | ❌ | 0.4 | combined_score 中 f1_reward 权重 |\\n| `--ced_weight` | ❌ | 0.4 | combined_score 中 ced_reward 权重 |\\n| `--format_threshold` | ❌ | 0.5 | format_reward 最低阈值 |\\n| `--f1_threshold` | ❌ | 0.1 | f1_reward 最低阈值 |\\n| `--ced_threshold` | ❌ | 0.0 | ced_reward 最低阈值 |\\n| `--selection_strategy` | ❌ | top_pct | {threshold, top_k, top_pct} |\\n| `--top_k` | ❌ | 2 | top_k 策略: 每个文档取 top-K |\\n| `--top_pct` | ❌ | 25 | top_pct 策略: 每个文档取 top N% |\\n\\n## Candidate Generation 进度 (更新: 2026-05-17 ~00:00)\\n\\n| 模型 | lines | docs | 进度 | GPU | 输出路径 | 预计完成 |\\n|------|-------|------|------|-----|----------|----------|\\n| Qwen3-1.7B | 8616 | ~1077 | 35.6% | 0 | `freige/outputs/rsft_candidates_1_7b` | ~May 17 08:00 |\\n| Qwen3-8B | 6952 | ~869 | 28.7% | 3 | `freige/outputs/rsft_candidates_8b` | ~May 17 11:00 |\\n| LLaMA-3.1-8B | ~4456 | ~557 | 18.4% | 1→2(r3) | `/root/autodl-tmp/rsft_candidates_llama_3_1_8b` | ~May 17 15:00 |\\n\\n总目标: 3027 docs × 8 candidates each = 24216 lines\\n\\n## CED Scoring 命令模板\\n\\n基于 4B 历史参数（rsft_filtered_topk3: top_k=3, tau=0.5, weights 0.2/0.4/0.4）\\n\\n### 1.7B CED Scoring\\n\\n```bash\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\ncd /root/autodl-tmp && \\\\\\nCUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\npython -m freige.training.rsft_score_filter \\\\\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_1_7b \\\\\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_1_7b \\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\n    --nli_device cuda:0 \\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\n    --selection_strategy top_k --top_k 3\\n```\\n\\n### 8B CED Scoring\\n\\n```bash\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\ncd /root/autodl-tmp && \\\\\\nCUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\npython -m freige.training.rsft_score_filter \\\\\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b \\\\\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_8b \\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\n    --nli_device cuda:0 \\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\n    --selection_strategy top_k --top_k 3\\n```\\n\\n### LLaMA-3.1-8B CED Scoring\\n\\n```bash\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\ncd /root/autodl-tmp && \\\\\\nCUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\npython -m freige.training.rsft_score_filter \\\\\\n    --input_dir /root/autodl-tmp/rsft_candidates_llama_3_1_8b \\\\\\n    --output_path /root/autodl-tmp/rsft_scored_llama_3_1_8b \\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\n    --nli_device cuda:0 \\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\n    --selection_strategy top_k --top_k 3\\n```\\n\\n### 备选: flat_nli 模式（作为对比实验）\\n\\n将 `--scoring_mode ced` 替换为 `--scoring_mode flat_nli`，输出路径改为 `*_flat_nli`。\\n\\n## GPU 需求\\n\\n- CED scoring 使用 DeBERTa-v3-base NLI 模型，~400MB 显存，**任意一张卡即可**\\n- 3 个 scoring 作业可在不同 GPU 上并行跑，不影响进行中的 generation\\n- 计算量主要在 CPU 侧\\n\\n## 历史 4B Scoring 产出\\n\\n已有多轮 4B scoring 结果供参考：\\n- `/root/autodl-tmp/rsft_scored_s0~s3/` — 分 split 的中间结果\\n- `/root/autodl-tmp/rsft_filtered_topk3/` — top_k=3, 21728→8037 records (37.0%), 2691/2716 docs\\n- `/root/autodl-tmp/rsft_filtered_flat_nli/` — flat_nli 模式对比\\n- `/root/autodl-tmp/rsft_filtered_topk3_ced_filtered/` — 额外 CED 过滤\\n\\n## Evidence Tax Scaling Pattern (2026-05-16)\\n\\n**核心发现**：evidence tax 不是单调的，呈非线性 pattern：\\n- 1.7B: +6.2pp benefit（公平子集分析，442 docs 无截断）— evidence 起隐式正则化作用，抑制过度预测\\n- 4B: -7.9pp cost — 标准 evidence generation 负担\\n- 8B Qwen: ≈0 — 模型容量足够 absorb\\n- 8B LLaMA: -0.7pp — 跨家族确认大模型趋势\\n\\n**机制解释**：1.7B 模型容量不足时，evidence 约束减少幻觉（no-evi 输出 4513 triples vs with-evi 3991），precision 差 9.4pp。中等模型有足够容量生成正确 relations 但 evidence 成为额外负担。大模型容量冗余足以覆盖 evidence 生成。\\n\\n## rsft_generate CLI 正确参数 (2026-05-16)\\n\\n**模块**: `freige.training.rsft_generate`（不是 freige.rsft.generate_candidates）\\n\\n正确参数名：\\n- `--base_model`（不是 --model_path）\\n- `--num_generations`（不是 --n_candidates）\\n- 不加 --no-quantize（默认不量化）\\n- `--data_path` 指向文件（如 train_annotated.json），不是目录\\n- `--start_idx N` 支持断点续传\\n\\n## inference.py 正确参数（RSFT eval 三层加载）(2026-05-16)\\n\\n**模块**: `freige.eval.inference`\\n\\nRSFT 模型 eval 需要三个模型参数：\\n- `--base_model`: 基础模型路径（如 `/root/autodl-tmp/models/Qwen3-4B`）\\n- `--sft_adapter`: SFT adapter 路径（如 `/root/autodl-tmp/sft_output`）\\n- `--model_path`: RSFT checkpoint 路径（如 `/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510`）\\n\\n**加载顺序**: base_model → merge SFT adapter → load RSFT LoRA on top\\n\\n### Re-DocRED RSFT eval r4 命令（Director 确认）\\n```bash\\nbash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r4\\\"\\n```\\n\\n### plan_002 DocRED test eval 命令（Director 确认）\\n```bash\\nbash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_002_test_rsft_s43\\\"\\n```\\n\", \"total_chars\": 6356, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7a6ea722-4850-4636-b237-d4e1926660ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+````
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 631_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[WORKER DONE] Worker worker_paper_research_rl_alignment_20260517T154253 已完成（status=done）。用 `get_worker_status('worker_paper_research_rl_alignment_20260517T154253')` 读取结果，然后处理。  - worker_id: worker_pap…",
+  "leafUuid": "ec5ff7fe-564f-472d-a67e-a71dfd8aee65",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 632_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 633 · 2026-05-17T15:45:52.917Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I should append the citation verification results to memory.md. Let me add the key findings from this literature verification worker. The important items:
+
+1. 3 must-cite papers verified (GRPO/DeepSeekMath, DPO, Reward Overoptimization)
+2. 5 gap-fill papers found, especially:
+   - R1-RE (Dai et al. 2025) - first RLVR for RE, direct competitor
+   - Adjali et al. 2026 - GRPO for Event Extraction (ECIR 2026)
+   - Jin et al. 2025 - RL vs SFT analysis providing theoretical support for catastrophic decoupling
+   - E-GRPO (Zhao et al. 2025) - entity-aware rewards in GRPO
+   - Moskovitz et al. 2024 - Constrained RLHF from ICLR 2024
+
+I realize literature_map.yaml would be the ideal place for this, but since save_project_file only allows memory.md, writing_plan.yaml, and paper_framing.md, I'll need to work within those constraints.
+
+The worker also surfaced some important direct competitors like R1-RE and Adjali that should shape how we position our Related Work section. Let me capture the key insights in memory.md for now, with a note that the full details should eventually go into literature_map.yaml through a separate process.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec5ff7fe-564f-472d-a67e-a71dfd8aee65",
+  "isSidechain": false,
+  "requestId": "req_011Cb8QBGGFDGmxGMzpH4C92",
+  "type": "assistant",
+  "uuid": "99e9f8bc-726b-4696-bfe1-e29875b83d96",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FSrjHKcec5fd2K1NL7bGum",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3623,
+      "cache_read_input_tokens": 61565,
+      "output_tokens": 4126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3623,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4126,
+          "cache_read_input_tokens": 61565,
+          "cache_creation_input_tokens": 3623,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3623
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 634 · 2026-05-17T15:46:23.845Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01KSR9gamHgf5BVdQvwXUrMa`</summary>
+
+````json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "content": "# RSFT Scoring Commands\n\n## 验证结果\n\n- **脚本路径**: `/root/autodl-tmp/freige/training/rsft_score_filter.py`\n- **模块导入**: `from freige.training.rsft_score_filter import main` ✅ OK\n- **NLI 模型**: `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7`\n\n## Argparse 参数列表\n\n| 参数 | 必填 | 默认值 | 说明 |\n|------|------|--------|------|\n| `--input_dir` | ✅ | - | rsft_generate 输出目录（含 generations.jsonl） |\n| `--output_path` | ✅ | - | 筛选结果输出目录 |\n| `--nli_model_path` | ❌ | (内置默认) | NLI 模型路径 |\n| `--nli_device` | ❌ | auto | NLI 模型运行设备 |\n| `--tau` | ❌ | 0.5 | CED tau 阈值 |\n| `--scoring_mode` | ❌ | ced | {ced, flat_nli} |\n| `--format_weight` | ❌ | 0.2 | combined_score 中 format_reward 权重 |\n| `--f1_weight` | ❌ | 0.4 | combined_score 中 f1_reward 权重 |\n| `--ced_weight` | ❌ | 0.4 | combined_score 中 ced_reward 权重 |\n| `--format_threshold` | ❌ | 0.5 | format_reward 最低阈值 |\n| `--f1_threshold` | ❌ | 0.1 | f1_reward 最低阈值 |\n| `--ced_threshold` | ❌ | 0.0 | ced_reward 最低阈值 |\n| `--selection_strategy` | ❌ | top_pct | {threshold, top_k, top_pct} |\n| `--top_k` | ❌ | 2 | top_k 策略: 每个文档取 top-K |\n| `--top_pct` | ❌ | 25 | top_pct 策略: 每个文档取 top N% |\n\n## Candidate Generation 进度 (更新: 2026-05-17 ~00:00)\n\n| 模型 | lines | docs | 进度 | GPU | 输出路径 | 预计完成 |\n|------|-------|------|------|-----|----------|----------|\n| Qwen3-1.7B | 8616 | ~1077 | 35.6% | 0 | `freige/outputs/rsft_candidates_1_7b` | ~May 17 08:00 |\n| Qwen3-8B | 6952 | ~869 | 28.7% | 3 | `freige/outputs/rsft_candidates_8b` | ~May 17 11:00 |\n| LLaMA-3.1-8B | ~4456 | ~557 | 18.4% | 1→2(r3) | `/root/autodl-tmp/rsft_candidates_llama_3_1_8b` | ~May 17 15:00 |\n\n总目标: 3027 docs × 8 candidates each = 24216 lines\n\n## CED Scoring 命令模板\n\n基于 4B 历史参数（rsft_filtered_topk3: top_k=3, tau=0.5, weights 0.2/0.4/0.4）\n\n### 1.7B CED Scoring\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp && \\\nCUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache \\\npython -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_1_7b \\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_1_7b \\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\n    --nli_device cuda:0 \\\n    --scoring_mode ced --tau 0.5 \\\n    --selection_strategy top_k --top_k 3\n```\n\n### 8B CED Scoring\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp && \\\nCUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache \\\npython -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b \\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_8b \\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\n    --nli_device cuda:0 \\\n    --scoring_mode ced --tau 0.5 \\\n    --selection_strategy top_k --top_k 3\n```\n\n### LLaMA-3.1-8B CED Scoring\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp && \\\nCUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache \\\npython -m freige.training.rsft_score_filter \\\n    --input_dir /root/autodl-tmp/rsft_candidates_llama_3_1_8b \\\n    --output_path /root/autodl-tmp/rsft_scored_llama_3_1_8b \\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\n    --nli_device cuda:0 \\\n    --scoring_mode ced --tau 0.5 \\\n    --selection_strategy top_k --top_k 3\n```\n\n### 备选: flat_nli 模式（作为对比实验）\n\n将 `--scoring_mode ced` 替换为 `--scoring_mode flat_nli`，输出路径改为 `*_flat_nli`。\n\n## GPU 需求\n\n- CED scoring 使用 DeBERTa-v3-base NLI 模型，~400MB 显存，**任意一张卡即可**\n- 3 个 scoring 作业可在不同 GPU 上并行跑，不影响进行中的 generation\n- 计算量主要在 CPU 侧\n\n## 历史 4B Scoring 产出\n\n已有多轮 4B scoring 结果供参考：\n- `/root/autodl-tmp/rsft_scored_s0~s3/` — 分 split 的中间结果\n- `/root/autodl-tmp/rsft_filtered_topk3/` — top_k=3, 21728→8037 records (37.0%), 2691/2716 docs\n- `/root/autodl-tmp/rsft_filtered_flat_nli/` — flat_nli 模式对比\n- `/root/autodl-tmp/rsft_filtered_topk3_ced_filtered/` — 额外 CED 过滤\n\n## Evidence Tax Scaling Pattern (2026-05-16)\n\n**核心发现**：evidence tax 不是单调的，呈非线性 pattern：\n- 1.7B: +6.2pp benefit（公平子集分析，442 docs 无截断）— evidence 起隐式正则化作用，抑制过度预测\n- 4B: -7.9pp cost — 标准 evidence generation 负担\n- 8B Qwen: ≈0 — 模型容量足够 absorb\n- 8B LLaMA: -0.7pp — 跨家族确认大模型趋势\n\n**机制解释**：1.7B 模型容量不足时，evidence 约束减少幻觉（no-evi 输出 4513 triples vs with-evi 3991），precision 差 9.4pp。中等模型有足够容量生成正确 relations 但 evidence 成为额外负担。大模型容量冗余足以覆盖 evidence 生成。\n\n## rsft_generate CLI 正确参数 (2026-05-16)\n\n**模块**: `freige.training.rsft_generate`（不是 freige.rsft.generate_candidates）\n\n正确参数名：\n- `--base_model`（不是 --model_path）\n- `--num_generations`（不是 --n_candidates）\n- 不加 --no-quantize（默认不量化）\n- `--data_path` 指向文件（如 train_annotated.json），不是目录\n- `--start_idx N` 支持断点续传\n\n## inference.py 正确参数（RSFT eval 三层加载）(2026-05-16)\n\n**模块**: `freige.eval.inference`\n\nRSFT 模型 eval 需要三个模型参数：\n- `--base_model`: 基础模型路径（如 `/root/autodl-tmp/models/Qwen3-4B`）\n- `--sft_adapter`: SFT adapter 路径（如 `/root/autodl-tmp/sft_output`）\n- `--model_path`: RSFT checkpoint 路径（如 `/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510`）\n\n**加载顺序**: base_model → merge SFT adapter → load RSFT LoRA on top\n\n### Re-DocRED RSFT eval r4 命令（Director 确认）\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r4\"\n```\n\n### plan_002 DocRED test eval 命令（Director 确认）\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_002_test_rsft_s43\"\n```\n\n## 文献验证 — RL/Alignment 方向 (2026-05-17)\n\n**Must-cite 确认** (3/3 verified):\n- DeepSeekMath (Shao et al. 2024, arXiv 2402.03300) — GRPO 算法来源\n- DPO (Rafailov et al. **NeurIPS 2023**, arXiv 2305.18290) — 注意年份是 2023 非 2024\n- Scaling Laws for Reward Overoptimization (Gao et al. ICML 2023, arXiv 2210.10760) — reward hacking 理论基础\n\n**Gap-fill 论文** (5 篇, 需加入 Related Work):\n- **R1-RE** (Dai et al. 2025, arXiv 2507.04642) — 首个 RLVR for RE，**直接竞品**，需在 Related Work 中定位\n- **Adjali et al. 2026** (ECIR 2026) — GRPO + 多目标 reward 做 Event Extraction，方法高度相似\n- **Jin et al. 2025** (arXiv 2508.16546) — RL vs SFT 表征分析，为 catastrophic decoupling 提供理论支撑\n- **E-GRPO** (Zhao et al. 2025, arXiv 2510.24694) — entity-aware dense reward in GRPO，reward 设计参考\n- **Moskovitz et al. 2024** (ICLR 2024, arXiv 2310.04373) — constrained RLHF，多维度 reward 平衡理论\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99e9f8bc-726b-4696-bfe1-e29875b83d96",
+  "isSidechain": false,
+  "requestId": "req_011Cb8QBGGFDGmxGMzpH4C92",
+  "type": "assistant",
+  "uuid": "333c4f71-9d3c-4573-84ff-e9e25fa34f2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FSrjHKcec5fd2K1NL7bGum",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3623,
+      "cache_read_input_tokens": 61565,
+      "output_tokens": 4126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3623,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4126,
+          "cache_read_input_tokens": 61565,
+          "cache_creation_input_tokens": 3623,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3623
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 635 · 2026-05-17T15:46:23.893Z_
+
+<details><summary>↩ Tool result · `toolu_01KSR9gamHgf5BVdQvwXUrMa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "333c4f71-9d3c-4573-84ff-e9e25fa34f2d",
+  "isSidechain": false,
+  "promptId": "54833500-5209-495e-af39-cdac9afd57fe",
+  "type": "user",
+  "uuid": "ea8c7f06-58f6-4ea0-9368-059321d6ce14",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "333c4f71-9d3c-4573-84ff-e9e25fa34f2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 636_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 637 · 2026-05-17T15:57:38.025Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T15:57:38.025Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[CRON 需要判断] 实验 **plan_006_llama_rsft_seed43** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 rtx5090-4x 检查日志 `/root/runs/faith-evidence-ie/plan_006_llama_rsft_seed43.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('plan_006_llama_rsft_seed43')` 清除监控。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 638 · 2026-05-17T15:57:38.025Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T15:57:38.025Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 68
+
+## Round 68
+
+2 recorded events
+
+
+### User
+
+_source line 639 · 2026-05-17T15:57:38.014Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ea8c7f06-58f6-4ea0-9368-059321d6ce14",
+  "isSidechain": false,
+  "promptId": "24e479d8-0cc1-4cf8-816d-8ab0954d2a48",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "7a0e990e-8aa2-476d-b1c1-150cee5228fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 640 · 2026-05-17T15:57:38.015Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a0e990e-8aa2-476d-b1c1-150cee5228fa",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "71fdc215-549f-4efc-bdb6-3d10c9565080",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "bcbdf39d-064c-410b-babb-c57a16cfc2b8",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 69
+
+## Round 69
+
+9 recorded events
+
+
+### User
+
+_source line 641 · 2026-05-17T15:57:38.200Z_
+
+[CRON 需要判断] 实验 **plan_006_llama_rsft_seed43** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
+
+请派 Worker SSH 到 rtx5090-4x 检查日志 `/root/runs/faith-evidence-ie/plan_006_llama_rsft_seed43.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('plan_006_llama_rsft_seed43')` 清除监控。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "71fdc215-549f-4efc-bdb6-3d10c9565080",
+  "isSidechain": false,
+  "promptId": "24e479d8-0cc1-4cf8-816d-8ab0954d2a48",
+  "type": "user",
+  "uuid": "ded584ed-abed-4c74-b2b0-910a917f1077",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 642 · 2026-05-17T15:57:42.740Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VdoRXFoiNxL6T2fLGvbch6`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ded584ed-abed-4c74-b2b0-910a917f1077",
+  "isSidechain": false,
+  "requestId": "req_011Cb8R6BawE4nLu8sNrubNJ",
+  "type": "assistant",
+  "uuid": "ff7a2693-0397-4471-b0b7-1371a378a9f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XiWJXuALK4V6hh2dw1d7tx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 180,
+      "cache_read_input_tokens": 69397,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 180,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 69397,
+          "cache_creation_input_tokens": 180,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 180
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 643 · 2026-05-17T15:57:42.750Z_
+
+<details><summary>↩ Tool result · `toolu_01VdoRXFoiNxL6T2fLGvbch6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff7a2693-0397-4471-b0b7-1371a378a9f4",
+  "isSidechain": false,
+  "promptId": "24e479d8-0cc1-4cf8-816d-8ab0954d2a48",
+  "type": "user",
+  "uuid": "dc63d45d-0307-4093-aae5-97bd36562f02",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__spawn_worker"
+    ],
+    "query": "select:mcp__agent-ml-research__spawn_worker",
+    "total_deferred_tools": 80
+  },
+  "sourceToolAssistantUUID": "ff7a2693-0397-4471-b0b7-1371a378a9f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 644 · 2026-05-17T15:57:42.812Z_
+
+```json
+{
+  "parentUuid": "dc63d45d-0307-4093-aae5-97bd36562f02",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1d7f66c0-fdd2-488e-a00c-b9c5f3a8bcfc",
+  "timestamp": "2026-05-17T15:57:42.812Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 645 · 2026-05-17T15:57:58.393Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01SDCAAsut2WssZiXw1CeSJo`</summary>
+
+````json
+{
+  "task_type": "ops:check_llama_seed43_result",
+  "project": "faith-evidence-ie",
+  "task_prompt": "LLaMA-3.1-8B RSFT seed 43 训练进程已退出，需要确认成功/失败。\n\n## 任务\n\n1. SSH 到 rtx5090-4x，检查训练日志：\n   ```bash\n   tail -50 /root/runs/faith-evidence-ie/plan_006_llama_rsft_seed43.log\n   ```\n\n2. 检查 checkpoint 是否生成：\n   ```bash\n   ls -la /root/autodl-tmp/freige/rsft_output_llama_3_1_8b_r3_seed43/\n   ```\n   （如果路径不对，搜索可能的输出目录：`find /root/autodl-tmp -maxdepth 2 -name \"*llama*seed43*\" -type d 2>/dev/null`）\n\n3. 根据结果判断：\n   - 如果日志显示训练正常完成（有 \"Training completed\" 或 final loss 等）且 checkpoint 存在 → success\n   - 如果日志显示 OOM / error / crash → failed，记录失败原因\n\n4. 更新 registry：\n   - 成功：`update_registry(exp_id=\"plan_006_llama_rsft_seed43\", field=\"conclusion\", value=\"success\", project=\"faith-evidence-ie\")` 并设 metrics（final loss、epochs、checkpoint 路径）\n   - 失败：`update_registry(exp_id=\"plan_006_llama_rsft_seed43\", field=\"conclusion\", value=\"failed\", project=\"faith-evidence-ie\")`\n\n5. 删除 cron：`delete_cron(\"plan_006_llama_rsft_seed43\")`\n\n6. 汇报：checkpoint 路径、final metrics、是否可以开始 eval\n",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ],
+  "tools": [
+    "delete_cron"
+  ]
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d7f66c0-fdd2-488e-a00c-b9c5f3a8bcfc",
+  "isSidechain": false,
+  "requestId": "req_011Cb8R6XegmTWNauXSRw9HR",
+  "type": "assistant",
+  "uuid": "fabb1933-ac40-4408-b7c1-f53236f9373c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014WjDjcwDpnsTHZEvzCJt9f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1387,
+      "cache_read_input_tokens": 69577,
+      "output_tokens": 627,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1387,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 627,
+          "cache_read_input_tokens": 69577,
+          "cache_creation_input_tokens": 1387,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1387
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 646 · 2026-05-17T15:58:05.028Z_
+
+<details><summary>↩ Tool result · `toolu_01SDCAAsut2WssZiXw1CeSJo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_llama_seed43_result_20260517T155759\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_check_llama_seed43_result_20260517T155759.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_check_llama_seed43_result_20260517T155759 started. Use get_worker_status('worker_ops_check_llama_seed43_result_20260517T155759') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fabb1933-ac40-4408-b7c1-f53236f9373c",
+  "isSidechain": false,
+  "promptId": "24e479d8-0cc1-4cf8-816d-8ab0954d2a48",
+  "type": "user",
+  "uuid": "18adc87f-95c4-45a9-8e75-4fee4c425681",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_check_llama_seed43_result_20260517T155759\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_check_llama_seed43_result_20260517T155759.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ops_check_llama_seed43_result_20260517T155759 started. Use get_worker_status('worker_ops_check_llama_seed43_result_20260517T155759') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_llama_seed43_result_20260517T155759\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_check_llama_seed43_result_20260517T155759.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_check_llama_seed43_result_20260517T155759 started. Use get_worker_status('worker_ops_check_llama_seed43_result_20260517T155759') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fabb1933-ac40-4408-b7c1-f53236f9373c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 647_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 648 · 2026-05-17T15:59:15.293Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T15:59:15.293Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[WORKER DONE] Worker worker_ops_check_llama_seed43_result_20260517T155759 已完成（status=done）。用 `get_worker_status('worker_ops_check_llama_seed43_result_20260517T155759')` 读取结果，然后处理。\n\n- worker_id: worker_ops_check_llama_seed43_result_20260517T155759\n- project: faith-evidence-ie\n- status: done"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 649 · 2026-05-17T15:59:15.293Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T15:59:15.293Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 70
+
+## Round 70
+
+2 recorded events
+
+
+### User
+
+_source line 650 · 2026-05-17T15:59:15.283Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18adc87f-95c4-45a9-8e75-4fee4c425681",
+  "isSidechain": false,
+  "promptId": "5f3d17d0-2df0-47d4-9442-2659a9ec38a4",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "2ecc831c-3847-4f39-bcef-34612d08d382",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 651 · 2026-05-17T15:59:15.283Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ecc831c-3847-4f39-bcef-34612d08d382",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "fbe64c41-f174-41b7-896f-178522709c8d",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "d543ae05-a19f-4174-83de-4b2132c47cc2",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 71
+
+## Round 71
+
+10 recorded events
+
+
+### User
+
+_source line 652 · 2026-05-17T15:59:15.444Z_
+
+[WORKER DONE] Worker worker_ops_check_llama_seed43_result_20260517T155759 已完成（status=done）。用 `get_worker_status('worker_ops_check_llama_seed43_result_20260517T155759')` 读取结果，然后处理。
+
+- worker_id: worker_ops_check_llama_seed43_result_20260517T155759
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fbe64c41-f174-41b7-896f-178522709c8d",
+  "isSidechain": false,
+  "promptId": "5f3d17d0-2df0-47d4-9442-2659a9ec38a4",
+  "type": "user",
+  "uuid": "16a10210-aedc-445a-85f8-4bdf371b9a51",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 653 · 2026-05-17T15:59:17.865Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_0195ugPgv3jJyF5RgFHLMceg`</summary>
+
+```json
+{
+  "worker_id": "worker_ops_check_llama_seed43_result_20260517T155759"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16a10210-aedc-445a-85f8-4bdf371b9a51",
+  "isSidechain": false,
+  "requestId": "req_011Cb8RDM2uktWbpDxqFbXTH",
+  "type": "assistant",
+  "uuid": "8f330f43-f8ba-4aa0-99fb-4f5dcaba7b2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0164QeaTdYGPdR6ccML5Q5k8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 139,
+      "cache_read_input_tokens": 71803,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 139,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 71803,
+          "cache_creation_input_tokens": 139,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 139
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 654 · 2026-05-17T15:59:17.952Z_
+
+<details><summary>↩ Tool result · `toolu_0195ugPgv3jJyF5RgFHLMceg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_llama_seed43_result_20260517T155759\", \"status\": \"done\", \"task_type\": \"ops:check_llama_seed43_result\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T15:57:59.202211+00:00\", \"ended_at\": \"2026-05-17T15:59:09.285532+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"**结果：训练成功完成。**\\n\\n| 指标 | 值 |\\n|------|-----|\\n| Final loss | 0.3715 |\\n| Mean token accuracy | 94.18% |\\n| 训练时长 | 2h 49m |\\n| Epochs | 3 (3312 steps) |\\n| Checkpoint | `/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/` |\\n\\nRegistry 已更新为 success，cron 已删除。可以开始 eval。\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f330f43-f8ba-4aa0-99fb-4f5dcaba7b2d",
+  "isSidechain": false,
+  "promptId": "5f3d17d0-2df0-47d4-9442-2659a9ec38a4",
+  "type": "user",
+  "uuid": "2e373162-7112-4c9d-b41b-ce657fe359cb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_check_llama_seed43_result_20260517T155759\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:check_llama_seed43_result\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"started_at\\\": \\\"2026-05-17T15:57:59.202211+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T15:59:09.285532+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"**结果：训练成功完成。**\\\\n\\\\n| 指标 | 值 |\\\\n|------|-----|\\\\n| Final loss | 0.3715 |\\\\n| Mean token accuracy | 94.18% |\\\\n| 训练时长 | 2h 49m |\\\\n| Epochs | 3 (3312 steps) |\\\\n| Checkpoint | `/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/` |\\\\n\\\\nRegistry 已更新为 success，cron 已删除。可以开始 eval。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_llama_seed43_result_20260517T155759\", \"status\": \"done\", \"task_type\": \"ops:check_llama_seed43_result\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T15:57:59.202211+00:00\", \"ended_at\": \"2026-05-17T15:59:09.285532+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"**结果：训练成功完成。**\\n\\n| 指标 | 值 |\\n|------|-----|\\n| Final loss | 0.3715 |\\n| Mean token accuracy | 94.18% |\\n| 训练时长 | 2h 49m |\\n| Epochs | 3 (3312 steps) |\\n| Checkpoint | `/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/` |\\n\\nRegistry 已更新为 success，cron 已删除。可以开始 eval。\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8f330f43-f8ba-4aa0-99fb-4f5dcaba7b2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 655 · 2026-05-17T15:59:26.213Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+LLaMA seed 43 training completed successfully. Key metrics:
+- Final loss: 0.3715
+- Mean token accuracy: 94.18%
+- Duration: 2h 49m
+- 3 epochs, 3312 steps
+- Checkpoint: `/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/`
+
+Now I need to:
+1. Spawn eval worker on cuda:0 (freed from this training)
+2. Update report.md
+3. Check current GPU state - cuda:0 is now free, need to start LLaMA seed 43 eval
+
+
+4. With cuda:0 now available, I can immediately launch the LLaMA seed 43 evaluation while the other jobs continue running on the remaining GPUs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e373162-7112-4c9d-b41b-ce657fe359cb",
+  "isSidechain": false,
+  "requestId": "req_011Cb8RDXp3onSRTCUcQhCMu",
+  "type": "assistant",
+  "uuid": "7ae7a2b7-7a1e-41d4-89e0-5787447c2efc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CEUn4PruH5pPU1QKCR4VgM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 439,
+      "cache_read_input_tokens": 71942,
+      "output_tokens": 1465,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 439,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1465,
+          "cache_read_input_tokens": 71942,
+          "cache_creation_input_tokens": 439,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 439
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 656 · 2026-05-17T15:59:26.264Z_
+
+LLaMA seed 43 训练成功。cuda:0 空闲，立即启动 eval。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ae7a2b7-7a1e-41d4-89e0-5787447c2efc",
+  "isSidechain": false,
+  "requestId": "req_011Cb8RDXp3onSRTCUcQhCMu",
+  "type": "assistant",
+  "uuid": "6a31fd24-61ec-4381-9f60-7588f9b26f14",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CEUn4PruH5pPU1QKCR4VgM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 439,
+      "cache_read_input_tokens": 71942,
+      "output_tokens": 1465,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 439,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1465,
+          "cache_read_input_tokens": 71942,
+          "cache_creation_input_tokens": 439,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 439
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 657 · 2026-05-17T15:59:44.266Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_011YUs294cY6Z2cquifcYeAo`</summary>
+
+````json
+{
+  "task_type": "eval:llama_rsft_seed43_eval",
+  "project": "faith-evidence-ie",
+  "task_prompt": "启动 LLaMA-3.1-8B RSFT seed 43 模型的 DocRED dev 评估。\n\n## 实验信息\n- exp_id: plan_006_llama_rsft_seed43_eval\n- parent: plan_006_llama_rsft_seed43\n- hypothesis: \"Evaluate LLaMA-8B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5674. If seed 43 gives similar result (±1.5pp, i.e., 0.55-0.58), the cross-architecture RSFT claim is robust against seed variance.\"\n\n## 步骤\n\n1. 先在 registry 中创建实验并推进到 RUNNING：\n   ```\n   update_registry(exp_id=\"plan_006_llama_rsft_seed43_eval\", field=\"hypothesis\", value=\"Evaluate LLaMA-8B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5674. If seed 43 gives similar result (±1.5pp), the cross-architecture RSFT claim is robust against seed variance.\", project=\"faith-evidence-ie\")\n   update_registry(exp_id=\"plan_006_llama_rsft_seed43_eval\", field=\"parent\", value=\"plan_006_llama_rsft_seed43\", project=\"faith-evidence-ie\")\n   ```\n\n2. SSH 到 rtx5090-4x，确认 checkpoint 存在：\n   ```bash\n   ls /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/\n   ```\n\n3. 确认 SFT adapter 路径（LLaMA 的 SFT adapter）：\n   ```bash\n   ls /root/autodl-tmp/sft_output_llama_3_1_8b/\n   ```\n\n4. 用 submit_training_job 提交评估（三层加载：base → SFT adapter → RSFT LoRA）：\n   - 服务器: rtx5090-4x\n   - GPU: 0\n   - 命令模板:\n   ```bash\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_seed43_eval\n   ```\n   注意：checkpoint 名称可能不是 checkpoint-3312，先 ls 确认实际 checkpoint 名称再用。\n\n5. 提交后汇报 PID 和日志路径。\n\n## 注意事项\n- LLaMA 模型的 SFT adapter 路径是 `/root/autodl-tmp/sft_output_llama_3_1_8b`（不是 Qwen 的 `/root/autodl-tmp/sft_output`）\n- 如果 SFT adapter 路径不存在，用 find 搜索：`find /root/autodl-tmp -maxdepth 2 -name \"*sft*llama*\" -type d`\n- base_model 是 `/root/autodl-tmp/models/Meta-Llama-3.1-8B`\n",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ],
+  "tools": [
+    "submit_training_job"
+  ]
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a31fd24-61ec-4381-9f60-7588f9b26f14",
+  "isSidechain": false,
+  "requestId": "req_011Cb8RDXp3onSRTCUcQhCMu",
+  "type": "assistant",
+  "uuid": "8c8003a3-9db6-4549-a421-104bdc7ee4ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CEUn4PruH5pPU1QKCR4VgM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 439,
+      "cache_read_input_tokens": 71942,
+      "output_tokens": 1465,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 439,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1465,
+          "cache_read_input_tokens": 71942,
+          "cache_creation_input_tokens": 439,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 439
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 658 · 2026-05-17T15:59:50.657Z_
+
+<details><summary>↩ Tool result · `toolu_011YUs294cY6Z2cquifcYeAo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_llama_rsft_seed43_eval_20260517T155945\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_eval_llama_rsft_seed43_eval_20260517T155945.log\", \"setup_data\": {}, \"message\": \"Worker worker_eval_llama_rsft_seed43_eval_20260517T155945 started. Use get_worker_status('worker_eval_llama_rsft_seed43_eval_20260517T155945') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c8003a3-9db6-4549-a421-104bdc7ee4ef",
+  "isSidechain": false,
+  "promptId": "5f3d17d0-2df0-47d4-9442-2659a9ec38a4",
+  "type": "user",
+  "uuid": "116a61fc-0b3b-4ca4-affb-5c6e688ec970",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_llama_rsft_seed43_eval_20260517T155945\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_eval_llama_rsft_seed43_eval_20260517T155945.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_eval_llama_rsft_seed43_eval_20260517T155945 started. Use get_worker_status('worker_eval_llama_rsft_seed43_eval_20260517T155945') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_llama_rsft_seed43_eval_20260517T155945\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_eval_llama_rsft_seed43_eval_20260517T155945.log\", \"setup_data\": {}, \"message\": \"Worker worker_eval_llama_rsft_seed43_eval_20260517T155945 started. Use get_worker_status('worker_eval_llama_rsft_seed43_eval_20260517T155945') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8c8003a3-9db6-4549-a421-104bdc7ee4ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 659_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 660 · 2026-05-17T16:01:15.595Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T16:01:15.595Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[WORKER DONE] Worker worker_eval_llama_rsft_seed43_eval_20260517T155945 已完成（status=done）。用 `get_worker_status('worker_eval_llama_rsft_seed43_eval_20260517T155945')` 读取结果，然后处理。\n\n- worker_id: worker_eval_llama_rsft_seed43_eval_20260517T155945\n- project: faith-evidence-ie\n- status: done"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 661 · 2026-05-17T16:01:15.596Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T16:01:15.596Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 72
+
+## Round 72
+
+2 recorded events
+
+
+### User
+
+_source line 662 · 2026-05-17T16:01:15.578Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "116a61fc-0b3b-4ca4-affb-5c6e688ec970",
+  "isSidechain": false,
+  "promptId": "33df5b7c-144a-40f9-94e4-0d6a185fce31",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "8375e426-47f4-4eaf-88d3-995862c0e224",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 663 · 2026-05-17T16:01:15.579Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8375e426-47f4-4eaf-88d3-995862c0e224",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "9c3eb79a-6774-43c9-9fab-3bc1b050af45",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "d09392fb-2b93-444d-80e7-e123abf4d38e",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 73
+
+## Round 73
+
+6 recorded events
+
+
+### User
+
+_source line 664 · 2026-05-17T16:01:15.797Z_
+
+[WORKER DONE] Worker worker_eval_llama_rsft_seed43_eval_20260517T155945 已完成（status=done）。用 `get_worker_status('worker_eval_llama_rsft_seed43_eval_20260517T155945')` 读取结果，然后处理。
+
+- worker_id: worker_eval_llama_rsft_seed43_eval_20260517T155945
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c3eb79a-6774-43c9-9fab-3bc1b050af45",
+  "isSidechain": false,
+  "promptId": "33df5b7c-144a-40f9-94e4-0d6a185fce31",
+  "type": "user",
+  "uuid": "c8d09406-7028-42cb-b063-65c0e020ae5f",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 665 · 2026-05-17T16:01:19.214Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01JcGZatFnSuaKKTpXPHyXgx`</summary>
+
+```json
+{
+  "worker_id": "worker_eval_llama_rsft_seed43_eval_20260517T155945"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8d09406-7028-42cb-b063-65c0e020ae5f",
+  "isSidechain": false,
+  "requestId": "req_011Cb8RNDef5r1jgiLFyxzKS",
+  "type": "assistant",
+  "uuid": "c3de8ec4-f16d-432e-9e58-17a9d9042106",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WjwqNU8JEUgK4XhYQuSjnM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 142,
+      "cache_read_input_tokens": 74059,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 142,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 74059,
+          "cache_creation_input_tokens": 142,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 142
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 666 · 2026-05-17T16:01:19.382Z_
+
+<details><summary>↩ Tool result · `toolu_01JcGZatFnSuaKKTpXPHyXgx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_llama_rsft_seed43_eval_20260517T155945\", \"status\": \"done\", \"task_type\": \"eval:llama_rsft_seed43_eval\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T15:59:45.259750+00:00\", \"ended_at\": \"2026-05-17T16:01:09.766966+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"评估已提交并进入 RUNNING 状态。\\n\\n- **exp_id**: `plan_006_llama_rsft_seed43_eval`\\n- **PID**: 462707\\n- **GPU**: cuda:0（显存 0MB，空闲）\\n- **日志**: `~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval.log`\\n- **Checkpoint**: `/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312`\\n- **三层加载**: base (Meta-Llama-3.1-8B) → SFT adapter → RSFT-seed43 LoRA\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3de8ec4-f16d-432e-9e58-17a9d9042106",
+  "isSidechain": false,
+  "promptId": "33df5b7c-144a-40f9-94e4-0d6a185fce31",
+  "type": "user",
+  "uuid": "6cc9aeaa-e661-4d16-8221-0ddd83153bc6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_llama_rsft_seed43_eval_20260517T155945\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"eval:llama_rsft_seed43_eval\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"started_at\\\": \\\"2026-05-17T15:59:45.259750+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T16:01:09.766966+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"评估已提交并进入 RUNNING 状态。\\\\n\\\\n- **exp_id**: `plan_006_llama_rsft_seed43_eval`\\\\n- **PID**: 462707\\\\n- **GPU**: cuda:0（显存 0MB，空闲）\\\\n- **日志**: `~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval.log`\\\\n- **Checkpoint**: `/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312`\\\\n- **三层加载**: base (Meta-Llama-3.1-8B) → SFT adapter → RSFT-seed43 LoRA\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_llama_rsft_seed43_eval_20260517T155945\", \"status\": \"done\", \"task_type\": \"eval:llama_rsft_seed43_eval\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T15:59:45.259750+00:00\", \"ended_at\": \"2026-05-17T16:01:09.766966+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"评估已提交并进入 RUNNING 状态。\\n\\n- **exp_id**: `plan_006_llama_rsft_seed43_eval`\\n- **PID**: 462707\\n- **GPU**: cuda:0（显存 0MB，空闲）\\n- **日志**: `~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval.log`\\n- **Checkpoint**: `/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312`\\n- **三层加载**: base (Meta-Llama-3.1-8B) → SFT adapter → RSFT-seed43 LoRA\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c3de8ec4-f16d-432e-9e58-17a9d9042106",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 667_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 668 · 2026-05-17T16:02:54.543Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T16:02:54.543Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[Director 指令] **[紧急] LLaMA seed43 eval 路径错误已崩溃，GPU 0 空闲**\n\nReviewer 发现 `plan_006_llama_rsft_seed43_eval` 启动即崩溃（EXIT_CODE=1），原因：\n- 错误路径：`--base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B`\n- 正确路径：`--base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`\n\n立即执行：\n1. Registry 标记 `plan_006_llama_rsft_seed43_eval` 为 FAILED\n2. 用正确路径重新提交 eval（cuda:0）：\n   - model_path: LLaMA seed43 训练产出的 checkpoint（检查 `rsft_output_llama_3_1_8b_seed43/` 下最终 checkpoint）\n   - base_model: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`\n   - D076 协议参数\n3. 确认启动成功（检查 nvidia-smi GPU 0 有显存占用）"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 669 · 2026-05-17T16:02:54.543Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T16:02:54.543Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 74
+
+## Round 74
+
+2 recorded events
+
+
+### User
+
+_source line 670 · 2026-05-17T16:02:54.529Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6cc9aeaa-e661-4d16-8221-0ddd83153bc6",
+  "isSidechain": false,
+  "promptId": "945252cb-eca7-45eb-8535-3d32768b47a0",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "05c91e92-bce9-412a-b5ef-6fb08b1135b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 671 · 2026-05-17T16:02:54.529Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "05c91e92-bce9-412a-b5ef-6fb08b1135b5",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "e8a98195-9f32-4b59-9dee-4af8eb953d91",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "7275d90a-62c7-46b4-9bb7-817542b7679d",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 75
+
+## Round 75
+
+9 recorded events
+
+
+### User
+
+_source line 672 · 2026-05-17T16:02:54.751Z_
+
+[Director 指令] **[紧急] LLaMA seed43 eval 路径错误已崩溃，GPU 0 空闲**
+
+Reviewer 发现 `plan_006_llama_rsft_seed43_eval` 启动即崩溃（EXIT_CODE=1），原因：
+- 错误路径：`--base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B`
+- 正确路径：`--base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`
+
+立即执行：
+1. Registry 标记 `plan_006_llama_rsft_seed43_eval` 为 FAILED
+2. 用正确路径重新提交 eval（cuda:0）：
+   - model_path: LLaMA seed43 训练产出的 checkpoint（检查 `rsft_output_llama_3_1_8b_seed43/` 下最终 checkpoint）
+   - base_model: `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`
+   - D076 协议参数
+3. 确认启动成功（检查 nvidia-smi GPU 0 有显存占用）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e8a98195-9f32-4b59-9dee-4af8eb953d91",
+  "isSidechain": false,
+  "promptId": "945252cb-eca7-45eb-8535-3d32768b47a0",
+  "type": "user",
+  "uuid": "dd696953-44df-42ed-a6bd-c925de650419",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 673 · 2026-05-17T16:02:57.935Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01RyxLvMueea8XVYJ3TJjCwq`</summary>
+
+```json
+{
+  "exp_id": "plan_006_llama_rsft_seed43_eval",
+  "field": "conclusion",
+  "value": "failed",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd696953-44df-42ed-a6bd-c925de650419",
+  "isSidechain": false,
+  "requestId": "req_011Cb8RVWnjKcTsTKvwjnZn5",
+  "type": "assistant",
+  "uuid": "0ac97af0-cdb6-4916-aecc-0c63e954e91c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0144DuxPkgnidDpYkefVBuJU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 358,
+      "cache_read_input_tokens": 74673,
+      "output_tokens": 133,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 133,
+          "cache_read_input_tokens": 74673,
+          "cache_creation_input_tokens": 358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 674 · 2026-05-17T16:02:59.095Z_
+
+<details><summary>↩ Tool result · `toolu_01RyxLvMueea8XVYJ3TJjCwq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_llama_rsft_seed43_eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T16:00:04.294Z\", \"updated_at\": \"2026-05-17T16:02:58.587Z\", \"hypothesis\": \"Evaluate LLaMA-8B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5674. If seed 43 gives similar result (±1.5pp, i.e., 0.55-0.58), the cross-architecture RSFT claim is robust against seed variance.\", \"parent\": \"plan_006_llama_rsft_seed43\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_seed43_eval\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"462707\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval.log\", \"submitted_at\": \"2026-05-17T16:00:21.066Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": \"docred-dev-full\", \"model_name\": \"Meta-Llama-3.1-8B + SFT + RSFT-seed43\", \"seed\": 43, \"checkpoint_source\": \"plan_006_llama_rsft_seed43\", \"eval_data\": \"docred-dev\"}, \"conclusion\": \"failed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1368}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0ac97af0-cdb6-4916-aecc-0c63e954e91c",
+  "isSidechain": false,
+  "promptId": "945252cb-eca7-45eb-8535-3d32768b47a0",
+  "type": "user",
+  "uuid": "641c70d8-0853-470c-9d87-afc840692163",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_llama_rsft_seed43_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T16:00:04.294Z\\\", \\\"updated_at\\\": \\\"2026-05-17T16:02:58.587Z\\\", \\\"hypothesis\\\": \\\"Evaluate LLaMA-8B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5674. If seed 43 gives similar result (±1.5pp, i.e., 0.55-0.58), the cross-architecture RSFT claim is robust against seed variance.\\\", \\\"parent\\\": \\\"plan_006_llama_rsft_seed43\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_seed43_eval\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"462707\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T16:00:21.066Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": \\\"docred-dev-full\\\", \\\"model_name\\\": \\\"Meta-Llama-3.1-8B + SFT + RSFT-seed43\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"plan_006_llama_rsft_seed43\\\", \\\"eval_data\\\": \\\"docred-dev\\\"}, \\\"conclusion\\\": \\\"failed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1368}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_llama_rsft_seed43_eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T16:00:04.294Z\", \"updated_at\": \"2026-05-17T16:02:58.587Z\", \"hypothesis\": \"Evaluate LLaMA-8B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5674. If seed 43 gives similar result (±1.5pp, i.e., 0.55-0.58), the cross-architecture RSFT claim is robust against seed variance.\", \"parent\": \"plan_006_llama_rsft_seed43\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_seed43_eval\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"462707\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval.log\", \"submitted_at\": \"2026-05-17T16:00:21.066Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": \"docred-dev-full\", \"model_name\": \"Meta-Llama-3.1-8B + SFT + RSFT-seed43\", \"seed\": 43, \"checkpoint_source\": \"plan_006_llama_rsft_seed43\", \"eval_data\": \"docred-dev\"}, \"conclusion\": \"failed\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1368}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0ac97af0-cdb6-4916-aecc-0c63e954e91c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 675 · 2026-05-17T16:03:17.531Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01UMitRmNoBjyQgrPNEyABNg`</summary>
+
+````json
+{
+  "task_type": "eval:llama_rsft_seed43_eval_r2",
+  "project": "faith-evidence-ie",
+  "task_prompt": "重新提交 LLaMA-3.1-8B RSFT seed 43 eval，上次因 base_model 路径错误崩溃。\n\n## 错误原因\n上次用了 `--base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B`（不存在）\n正确路径：`--base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`\n\n## 实验信息\n- exp_id: plan_006_llama_rsft_seed43_eval_r2\n- parent: plan_006_llama_rsft_seed43\n- hypothesis: \"Evaluate LLaMA-8B RSFT seed 43 on DocRED dev (retry with correct base_model path). Seed 42 gave rel_f1=0.5674. If seed 43 gives similar result (±1.5pp), the cross-architecture RSFT claim is robust against seed variance.\"\n\n## 步骤\n\n1. 创建实验并设置 hypothesis + parent：\n   ```\n   update_registry(exp_id=\"plan_006_llama_rsft_seed43_eval_r2\", field=\"hypothesis\", value=\"Evaluate LLaMA-8B RSFT seed 43 on DocRED dev (retry with correct base_model path). Seed 42 gave rel_f1=0.5674. If seed 43 gives similar result (±1.5pp), the cross-architecture RSFT claim is robust against seed variance.\", project=\"faith-evidence-ie\")\n   update_registry(exp_id=\"plan_006_llama_rsft_seed43_eval_r2\", field=\"parent\", value=\"plan_006_llama_rsft_seed43\", project=\"faith-evidence-ie\")\n   ```\n\n2. SSH 到 rtx5090-4x，确认路径存在：\n   ```bash\n   ls /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B/\n   ls /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312/\n   ls /root/autodl-tmp/sft_output_llama_3_1_8b/\n   ```\n\n3. 用 submit_training_job 提交（cuda:0）：\n   - server: rtx5090-4x\n   - gpu_ids: [0]\n   - exp_id: plan_006_llama_rsft_seed43_eval_r2\n   - 命令：\n   ```bash\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_seed43_eval_r2\n   ```\n\n4. **提交后必须验证启动成功**：等 15-20 秒后检查：\n   ```bash\n   nvidia-smi | grep -A 5 \"cuda:0\"\n   ```\n   或：\n   ```bash\n   nvidia-smi\n   ```\n   确认 GPU 0 有显存占用（应该 > 15GB for LLaMA-8B）。如果没有，检查日志：\n   ```bash\n   tail -20 ~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval_r2.log\n   ```\n\n5. 汇报 PID、GPU 显存占用确认。\n",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ],
+  "tools": [
+    "submit_training_job"
+  ]
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "641c70d8-0853-470c-9d87-afc840692163",
+  "isSidechain": false,
+  "requestId": "req_011Cb8RVqGj4dugbFyV1oLsp",
+  "type": "assistant",
+  "uuid": "2766005d-2784-4549-a4b5-5338afd92c6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TSZ2qERivsQCRhtqhKun24",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 811,
+      "cache_read_input_tokens": 75031,
+      "output_tokens": 1244,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 811,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1244,
+          "cache_read_input_tokens": 75031,
+          "cache_creation_input_tokens": 811,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 811
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 676 · 2026-05-17T16:03:24.679Z_
+
+<details><summary>↩ Tool result · `toolu_01UMitRmNoBjyQgrPNEyABNg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_llama_rsft_seed43_eval_r2_20260517T160318\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_eval_llama_rsft_seed43_eval_r2_20260517T160318.log\", \"setup_data\": {}, \"message\": \"Worker worker_eval_llama_rsft_seed43_eval_r2_20260517T160318 started. Use get_worker_status('worker_eval_llama_rsft_seed43_eval_r2_20260517T160318') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2766005d-2784-4549-a4b5-5338afd92c6f",
+  "isSidechain": false,
+  "promptId": "945252cb-eca7-45eb-8535-3d32768b47a0",
+  "type": "user",
+  "uuid": "156e632d-9482-4a11-802c-a2a2ce0d7b46",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_llama_rsft_seed43_eval_r2_20260517T160318\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_eval_llama_rsft_seed43_eval_r2_20260517T160318.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_eval_llama_rsft_seed43_eval_r2_20260517T160318 started. Use get_worker_status('worker_eval_llama_rsft_seed43_eval_r2_20260517T160318') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_llama_rsft_seed43_eval_r2_20260517T160318\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_eval_llama_rsft_seed43_eval_r2_20260517T160318.log\", \"setup_data\": {}, \"message\": \"Worker worker_eval_llama_rsft_seed43_eval_r2_20260517T160318 started. Use get_worker_status('worker_eval_llama_rsft_seed43_eval_r2_20260517T160318') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2766005d-2784-4549-a4b5-5338afd92c6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 677 · 2026-05-17T16:03:24.685Z_
+
+```json
+{
+  "parentUuid": "156e632d-9482-4a11-802c-a2a2ce0d7b46",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "12a4e20f-2dec-4480-9114-2e3fa3d58bee",
+  "timestamp": "2026-05-17T16:03:24.685Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 678_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 679 · 2026-05-17T16:04:45.998Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T16:04:45.998Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[WORKER DONE] Worker worker_eval_llama_rsft_seed43_eval_r2_20260517T160318 已完成（status=done）。用 `get_worker_status('worker_eval_llama_rsft_seed43_eval_r2_20260517T160318')` 读取结果，然后处理。\n\n- worker_id: worker_eval_llama_rsft_seed43_eval_r2_20260517T160318\n- project: faith-evidence-ie\n- status: done"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 680 · 2026-05-17T16:04:45.999Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T16:04:45.999Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 76
+
+## Round 76
+
+2 recorded events
+
+
+### User
+
+_source line 681 · 2026-05-17T16:04:45.980Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12a4e20f-2dec-4480-9114-2e3fa3d58bee",
+  "isSidechain": false,
+  "promptId": "3fb477e3-a3f3-43d2-b56b-5ada8ae889d9",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "62d28c00-1d44-4d87-9da1-62e7af341a54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 682 · 2026-05-17T16:04:45.981Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62d28c00-1d44-4d87-9da1-62e7af341a54",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "5aaa27f5-0e2d-487f-92e8-100c696f6b19",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "eddb65a5-0069-462b-b96c-aa0d90f11902",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 77
+
+## Round 77
+
+11 recorded events
+
+
+### User
+
+_source line 683 · 2026-05-17T16:04:46.203Z_
+
+[WORKER DONE] Worker worker_eval_llama_rsft_seed43_eval_r2_20260517T160318 已完成（status=done）。用 `get_worker_status('worker_eval_llama_rsft_seed43_eval_r2_20260517T160318')` 读取结果，然后处理。
+
+- worker_id: worker_eval_llama_rsft_seed43_eval_r2_20260517T160318
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5aaa27f5-0e2d-487f-92e8-100c696f6b19",
+  "isSidechain": false,
+  "promptId": "3fb477e3-a3f3-43d2-b56b-5ada8ae889d9",
+  "type": "user",
+  "uuid": "8391a9c3-3fac-4cbe-bdf9-35234d569d55",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 684 · 2026-05-17T16:04:49.820Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_0149rrPKANcZgfK359X8y7bm`</summary>
+
+```json
+{
+  "worker_id": "worker_eval_llama_rsft_seed43_eval_r2_20260517T160318"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8391a9c3-3fac-4cbe-bdf9-35234d569d55",
+  "isSidechain": false,
+  "requestId": "req_011Cb8RdjCaEAbonKn56EDDP",
+  "type": "assistant",
+  "uuid": "8c57d274-7288-4d40-9222-251a935f272d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JMcezhwk2VMJ4uAWvQwMo5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 151,
+      "cache_read_input_tokens": 77416,
+      "output_tokens": 90,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 151,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 90,
+          "cache_read_input_tokens": 77416,
+          "cache_creation_input_tokens": 151,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 151
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 685 · 2026-05-17T16:04:49.907Z_
+
+<details><summary>↩ Tool result · `toolu_0149rrPKANcZgfK359X8y7bm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_llama_rsft_seed43_eval_r2_20260517T160318\", \"status\": \"done\", \"task_type\": \"eval:llama_rsft_seed43_eval_r2\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T16:03:18.676082+00:00\", \"ended_at\": \"2026-05-17T16:04:40.355684+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"启动成功确认：\\n\\n- **PID**: 463080\\n- **GPU 0 显存占用**: 17883 MiB（符合 LLaMA-8B 预期）\\n- **tmux session**: `plan_006_llama_rsft_seed43_eval_r2`\\n- **日志**: `~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval_r2.log`\\n\\neval 正在运行，修正了 `base_model` 路径为 `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`。\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c57d274-7288-4d40-9222-251a935f272d",
+  "isSidechain": false,
+  "promptId": "3fb477e3-a3f3-43d2-b56b-5ada8ae889d9",
+  "type": "user",
+  "uuid": "241f6a60-a8cf-4d7e-b012-05936ae18257",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_llama_rsft_seed43_eval_r2_20260517T160318\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"eval:llama_rsft_seed43_eval_r2\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"started_at\\\": \\\"2026-05-17T16:03:18.676082+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T16:04:40.355684+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"启动成功确认：\\\\n\\\\n- **PID**: 463080\\\\n- **GPU 0 显存占用**: 17883 MiB（符合 LLaMA-8B 预期）\\\\n- **tmux session**: `plan_006_llama_rsft_seed43_eval_r2`\\\\n- **日志**: `~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval_r2.log`\\\\n\\\\neval 正在运行，修正了 `base_model` 路径为 `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_llama_rsft_seed43_eval_r2_20260517T160318\", \"status\": \"done\", \"task_type\": \"eval:llama_rsft_seed43_eval_r2\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T16:03:18.676082+00:00\", \"ended_at\": \"2026-05-17T16:04:40.355684+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"启动成功确认：\\n\\n- **PID**: 463080\\n- **GPU 0 显存占用**: 17883 MiB（符合 LLaMA-8B 预期）\\n- **tmux session**: `plan_006_llama_rsft_seed43_eval_r2`\\n- **日志**: `~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval_r2.log`\\n\\neval 正在运行，修正了 `base_model` 路径为 `/root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B`。\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8c57d274-7288-4d40-9222-251a935f272d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 686 · 2026-05-17T16:04:56.469Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+LLaMA seed 43 eval r2 successfully launched on cuda:0 with 17883 MiB GPU memory usage. PID 463080. I need to register a cron for it, then report to Director.
+
+Current GPU state:
+- cuda:0: LLaMA seed 43 eval r2 (PID 463080) ✅ confirmed running
+- cuda:1: 8B RSFT test predictions (PID 460585)
+- cuda:2: 1.7B RSFT seed 43 eval (PID 455632)
+
+
+- cuda:3: LLaMA RSFT test predictions (PID 460159)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "241f6a60-a8cf-4d7e-b012-05936ae18257",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Re18XZmZqGBEPAqaDP",
+  "type": "assistant",
+  "uuid": "a916f06b-6e4d-4060-886e-0e1dbe51244d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gr3gay8E4dPKkUXQF6ZhcM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 77567,
+      "output_tokens": 361,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 470,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 361,
+          "cache_read_input_tokens": 77567,
+          "cache_creation_input_tokens": 470,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 470
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 687 · 2026-05-17T16:04:57.165Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_cron · `toolu_01RRuGr8paPmotAykXFpwc22`</summary>
+
+```json
+{
+  "exp_id": "plan_006_llama_rsft_seed43_eval_r2",
+  "server": "rtx5090-4x",
+  "pid": "463080",
+  "log_path": "~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval_r2.log",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a916f06b-6e4d-4060-886e-0e1dbe51244d",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Re18XZmZqGBEPAqaDP",
+  "type": "assistant",
+  "uuid": "92ab0e01-2d18-4aed-99af-997c20b12ff4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gr3gay8E4dPKkUXQF6ZhcM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 77567,
+      "output_tokens": 361,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 470,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 361,
+          "cache_read_input_tokens": 77567,
+          "cache_creation_input_tokens": 470,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 470
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 688 · 2026-05-17T16:04:57.365Z_
+
+<details><summary>↩ Tool result · `toolu_01RRuGr8paPmotAykXFpwc22`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"plan_006_llama_rsft_seed43_eval_r2\", \"server\": \"rtx5090-4x\", \"pid\": \"463080\", \"wandb_run_id\": null, \"log_path\": \"~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval_r2.log\", \"interval_seconds\": 120, \"project\": \"faith-evidence-ie\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-17T16:04:57.224Z\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "92ab0e01-2d18-4aed-99af-997c20b12ff4",
+  "isSidechain": false,
+  "promptId": "3fb477e3-a3f3-43d2-b56b-5ada8ae889d9",
+  "type": "user",
+  "uuid": "eae80915-4ad2-4aa1-88d4-53fd4833fa7b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"plan_006_llama_rsft_seed43_eval_r2\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"pid\\\": \\\"463080\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval_r2.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-17T16:04:57.224Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"registered\": {\"exp_id\": \"plan_006_llama_rsft_seed43_eval_r2\", \"server\": \"rtx5090-4x\", \"pid\": \"463080\", \"wandb_run_id\": null, \"log_path\": \"~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval_r2.log\", \"interval_seconds\": 120, \"project\": \"faith-evidence-ie\", \"tracked_metrics\": null, \"chat_id\": null, \"hooks\": null, \"last_checked\": null, \"created_at\": \"2026-05-17T16:04:57.224Z\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "92ab0e01-2d18-4aed-99af-997c20b12ff4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 689 · 2026-05-17T16:05:06.958Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_01M8BfvJHMW1jXJ82qWm11AR`</summary>
+
+```json
+{
+  "text": "[资源] GPU 4/4 | Worker 0 (等回调) | 磁盘: rtx5090-4x / 未检\n\n已修复 LLaMA seed43 eval 路径错误：\n- `plan_006_llama_rsft_seed43_eval` → FAILED（base_model 路径缺少 `meta-llama/` 前缀）\n- `plan_006_llama_rsft_seed43_eval_r2` → RUNNING，PID 463080，cuda:0，显存 17883 MiB ✅\n\n当前 4 GPU 状态：\n| GPU | exp_id | 任务 |\n|-----|--------|------|\n| cuda:0 | plan_006_llama_rsft_seed43_eval_r2 | LLaMA seed 43 eval (刚启动) |\n| cuda:1 | plan_006_qwen3_8b_rsft_test | 8B test predictions |\n| cuda:2 | plan_006_qwen3_1_7b_rsft_seed43_eval | 1.7B seed 43 eval |\n| cuda:3 | plan_006_llama_rsft_test | LLaMA test predictions |",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eae80915-4ad2-4aa1-88d4-53fd4833fa7b",
+  "isSidechain": false,
+  "requestId": "req_011Cb8ReZ9cWAKmCz2WNLHLt",
+  "type": "assistant",
+  "uuid": "c7df07a4-c014-4547-944f-8211440fb01a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0145c8AEUTogqy56f4XF4buG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 578,
+      "cache_read_input_tokens": 78037,
+      "output_tokens": 404,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 578,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 404,
+          "cache_read_input_tokens": 78037,
+          "cache_creation_input_tokens": 578,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 578
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 690 · 2026-05-17T16:05:10.740Z_
+
+<details><summary>↩ Tool result · `toolu_01M8BfvJHMW1jXJ82qWm11AR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c7df07a4-c014-4547-944f-8211440fb01a",
+  "isSidechain": false,
+  "promptId": "3fb477e3-a3f3-43d2-b56b-5ada8ae889d9",
+  "type": "user",
+  "uuid": "9d861ea1-d8cf-4da5-a01b-92cc66eb8528",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "c7df07a4-c014-4547-944f-8211440fb01a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 691_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 692 · 2026-05-17T16:09:08.739Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T16:09:08.739Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[WORKER DONE] Worker worker_paper_writing_experiments_20260517T160613 已完成（status=done）。用 `get_worker_status('worker_paper_writing_experiments_20260517T160613')` 读取结果，然后处理。\n\n- worker_id: worker_paper_writing_experiments_20260517T160613\n- project: faith-evidence-ie\n- status: done"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 693 · 2026-05-17T16:09:08.739Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T16:09:08.739Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 78
+
+## Round 78
+
+2 recorded events
+
+
+### User
+
+_source line 694 · 2026-05-17T16:09:08.728Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9d861ea1-d8cf-4da5-a01b-92cc66eb8528",
+  "isSidechain": false,
+  "promptId": "03f44b79-92e3-4695-b443-207a2ed1a4c7",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "47e11c10-bedf-4d99-b217-6ed9519a977e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 695 · 2026-05-17T16:09:08.728Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47e11c10-bedf-4d99-b217-6ed9519a977e",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "ba38714e-2694-452d-9664-c97a59a1cd10",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "0acace1c-a25b-42f6-b34a-d730dc5b4258",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 79
+
+## Round 79
+
+6 recorded events
+
+
+### User
+
+_source line 696 · 2026-05-17T16:09:08.932Z_
+
+[WORKER DONE] Worker worker_paper_writing_experiments_20260517T160613 已完成（status=done）。用 `get_worker_status('worker_paper_writing_experiments_20260517T160613')` 读取结果，然后处理。
+
+- worker_id: worker_paper_writing_experiments_20260517T160613
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba38714e-2694-452d-9664-c97a59a1cd10",
+  "isSidechain": false,
+  "promptId": "03f44b79-92e3-4695-b443-207a2ed1a4c7",
+  "type": "user",
+  "uuid": "216ded98-2920-4994-a1e6-c6851bd2ab98",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 697 · 2026-05-17T16:09:11.846Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01UWzTXBZKawGLMkEA1CHJhg`</summary>
+
+```json
+{
+  "worker_id": "worker_paper_writing_experiments_20260517T160613"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "216ded98-2920-4994-a1e6-c6851bd2ab98",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Ry6VmagXhy55ZU2WT8",
+  "type": "assistant",
+  "uuid": "7fd9f5bb-fa71-41e9-920d-2d94463cc134",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014b49GR8U6LCQgKo6BYCe73",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 121,
+      "cache_read_input_tokens": 79094,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 121,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 79094,
+          "cache_creation_input_tokens": 121,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 121
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 698 · 2026-05-17T16:09:11.930Z_
+
+<details><summary>↩ Tool result · `toolu_01UWzTXBZKawGLMkEA1CHJhg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_writing_experiments_20260517T160613\", \"status\": \"done\", \"task_type\": \"paper_writing:experiments\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T16:06:13.498809+00:00\", \"ended_at\": \"2026-05-17T16:09:03.006624+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完成。`experiments.tex` 已写入并注册（`art_20260517_2f5e45`）。\\n\\n结构概要：\\n- **5.1 Setup**: 数据集/模型/训练/指标定义（含两版 Evi-F1 区分）\\n- **5.2 Main Results**: Table 1, RSFT CED +4.92pp, evidence tax 量化\\n- **5.3 Decoupling Spectrum**: Table 2 + fig:spectrum, GRPO QLoRA 灾难性/bf16 温和/DPO 渐进/RSFT 无解耦\\n- **5.4 Scaling**: Table 3 + fig:scaling, 1.7B 反向受益/4B 重税/8B 吸收, RSFT 全尺度有效\\n- **5.5 Evidence Strategy**: Table 4, joint vs post-hoc vs rerank 对比\\n- **5.6 Generalization**: 跨架构/跨数据集/与 DREEAM 对比\\n\\n待填数据：LLaMA RSFT 和 CED reranker 用 `\\\\texttt{TBD}` 占位。\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7fd9f5bb-fa71-41e9-920d-2d94463cc134",
+  "isSidechain": false,
+  "promptId": "03f44b79-92e3-4695-b443-207a2ed1a4c7",
+  "type": "user",
+  "uuid": "eedcc1c8-04af-41d4-a295-f9a78598982b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_writing_experiments_20260517T160613\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"paper_writing:experiments\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"started_at\\\": \\\"2026-05-17T16:06:13.498809+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T16:09:03.006624+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"完成。`experiments.tex` 已写入并注册（`art_20260517_2f5e45`）。\\\\n\\\\n结构概要：\\\\n- **5.1 Setup**: 数据集/模型/训练/指标定义（含两版 Evi-F1 区分）\\\\n- **5.2 Main Results**: Table 1, RSFT CED +4.92pp, evidence tax 量化\\\\n- **5.3 Decoupling Spectrum**: Table 2 + fig:spectrum, GRPO QLoRA 灾难性/bf16 温和/DPO 渐进/RSFT 无解耦\\\\n- **5.4 Scaling**: Table 3 + fig:scaling, 1.7B 反向受益/4B 重税/8B 吸收, RSFT 全尺度有效\\\\n- **5.5 Evidence Strategy**: Table 4, joint vs post-hoc vs rerank 对比\\\\n- **5.6 Generalization**: 跨架构/跨数据集/与 DREEAM 对比\\\\n\\\\n待填数据：LLaMA RSFT 和 CED reranker 用 `\\\\\\\\texttt{TBD}` 占位。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_writing_experiments_20260517T160613\", \"status\": \"done\", \"task_type\": \"paper_writing:experiments\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T16:06:13.498809+00:00\", \"ended_at\": \"2026-05-17T16:09:03.006624+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"完成。`experiments.tex` 已写入并注册（`art_20260517_2f5e45`）。\\n\\n结构概要：\\n- **5.1 Setup**: 数据集/模型/训练/指标定义（含两版 Evi-F1 区分）\\n- **5.2 Main Results**: Table 1, RSFT CED +4.92pp, evidence tax 量化\\n- **5.3 Decoupling Spectrum**: Table 2 + fig:spectrum, GRPO QLoRA 灾难性/bf16 温和/DPO 渐进/RSFT 无解耦\\n- **5.4 Scaling**: Table 3 + fig:scaling, 1.7B 反向受益/4B 重税/8B 吸收, RSFT 全尺度有效\\n- **5.5 Evidence Strategy**: Table 4, joint vs post-hoc vs rerank 对比\\n- **5.6 Generalization**: 跨架构/跨数据集/与 DREEAM 对比\\n\\n待填数据：LLaMA RSFT 和 CED reranker 用 `\\\\texttt{TBD}` 占位。\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7fd9f5bb-fa71-41e9-920d-2d94463cc134",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 699_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 700 · 2026-05-17T16:30:05.616Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T16:30:05.616Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[WORKER DONE] Worker worker_paper_writing_method_20260517T162426 已完成（status=done）。用 `get_worker_status('worker_paper_writing_method_20260517T162426')` 读取结果，然后处理。\n\n- worker_id: worker_paper_writing_method_20260517T162426\n- project: faith-evidence-ie\n- status: done"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 701 · 2026-05-17T16:30:05.617Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T16:30:05.617Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 80
+
+## Round 80
+
+2 recorded events
+
+
+### User
+
+_source line 702 · 2026-05-17T16:30:05.608Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eedcc1c8-04af-41d4-a295-f9a78598982b",
+  "isSidechain": false,
+  "promptId": "57e15187-a013-42dc-8b72-510c453697d1",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "dd1da844-1d4f-4f26-b965-14582ccd5274",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 703 · 2026-05-17T16:30:05.608Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd1da844-1d4f-4f26-b965-14582ccd5274",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "7c4d457b-6aaa-4eb8-abb4-27ac95938f09",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "aa907c66-a1c4-44e0-85e8-7b293c8e7902",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 81
+
+## Round 81
+
+6 recorded events
+
+
+### User
+
+_source line 704 · 2026-05-17T16:30:05.760Z_
+
+[WORKER DONE] Worker worker_paper_writing_method_20260517T162426 已完成（status=done）。用 `get_worker_status('worker_paper_writing_method_20260517T162426')` 读取结果，然后处理。
+
+- worker_id: worker_paper_writing_method_20260517T162426
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c4d457b-6aaa-4eb8-abb4-27ac95938f09",
+  "isSidechain": false,
+  "promptId": "57e15187-a013-42dc-8b72-510c453697d1",
+  "type": "user",
+  "uuid": "9c5612ed-4f5f-4696-b1f5-463a47b147ab",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 705 · 2026-05-17T16:30:08.940Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01BbD7is5SLhe8qr2U1xUAtd`</summary>
+
+```json
+{
+  "worker_id": "worker_paper_writing_method_20260517T162426"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c5612ed-4f5f-4696-b1f5-463a47b147ab",
+  "isSidechain": false,
+  "requestId": "req_011Cb8TZjxLjpavu5nA2Vg2H",
+  "type": "assistant",
+  "uuid": "fa77762a-0120-4370-ac95-f15579f62774",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A4pvDbrXTSizwb2cK1QJ6N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 121,
+      "cache_read_input_tokens": 79808,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 121,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 79808,
+          "cache_creation_input_tokens": 121,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 121
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 706 · 2026-05-17T16:30:09.034Z_
+
+<details><summary>↩ Tool result · `toolu_01BbD7is5SLhe8qr2U1xUAtd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_writing_method_20260517T162426\", \"status\": \"done\", \"task_type\": \"paper_writing:method\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T16:24:26.273631+00:00\", \"ended_at\": \"2026-05-17T16:29:59.590257+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"Method section 写入 `docs/paper/sections/method.tex`，~1243 words，5 个子节：\\n\\n- **3.1 Task** — 形式化定义 evidence-grounded DocRE，区分 encoder-based 方法（SAIS/DREEAM 无生成开销）与 LLM 生成式方法（scale-dependent cost）\\n- **3.2 SFT Baseline** — LoRA r=64/α=128，含 no-evidence upper bound 变体\\n- **3.3 Optimization Paradigms** — GRPO (QLoRA G=4, bf16 G=8)、DPO (1ep/3ep)、RSFT (N=8, top-k=1, 9042/24216=37.3%)\\n- **3.4 CED** — NLI entailment + entity-sharing hard negatives 对比评分，含 flat-NLI baseline 对比（p=0.44），`\\\\label{sec:ced}` 已设置\\n- **3.5 EDCR** — 诊断指标定义 Evi-Recall\\\\_TP / Rel-Recall，method-level ρ=-0.965，per-relation ρ=-0.064，阈值 0.70/0.65\\n\\n所有参数与 experiments.tex 一致。无 em-dash、无 -ing 短语结尾、无黑名单词。\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa77762a-0120-4370-ac95-f15579f62774",
+  "isSidechain": false,
+  "promptId": "57e15187-a013-42dc-8b72-510c453697d1",
+  "type": "user",
+  "uuid": "f6443229-7f55-412b-8c2f-d9baea25db81",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_writing_method_20260517T162426\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"paper_writing:method\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"started_at\\\": \\\"2026-05-17T16:24:26.273631+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T16:29:59.590257+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Method section 写入 `docs/paper/sections/method.tex`，~1243 words，5 个子节：\\\\n\\\\n- **3.1 Task** — 形式化定义 evidence-grounded DocRE，区分 encoder-based 方法（SAIS/DREEAM 无生成开销）与 LLM 生成式方法（scale-dependent cost）\\\\n- **3.2 SFT Baseline** — LoRA r=64/α=128，含 no-evidence upper bound 变体\\\\n- **3.3 Optimization Paradigms** — GRPO (QLoRA G=4, bf16 G=8)、DPO (1ep/3ep)、RSFT (N=8, top-k=1, 9042/24216=37.3%)\\\\n- **3.4 CED** — NLI entailment + entity-sharing hard negatives 对比评分，含 flat-NLI baseline 对比（p=0.44），`\\\\\\\\label{sec:ced}` 已设置\\\\n- **3.5 EDCR** — 诊断指标定义 Evi-Recall\\\\\\\\_TP / Rel-Recall，method-level ρ=-0.965，per-relation ρ=-0.064，阈值 0.70/0.65\\\\n\\\\n所有参数与 experiments.tex 一致。无 em-dash、无 -ing 短语结尾、无黑名单词。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_writing_method_20260517T162426\", \"status\": \"done\", \"task_type\": \"paper_writing:method\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T16:24:26.273631+00:00\", \"ended_at\": \"2026-05-17T16:29:59.590257+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"Method section 写入 `docs/paper/sections/method.tex`，~1243 words，5 个子节：\\n\\n- **3.1 Task** — 形式化定义 evidence-grounded DocRE，区分 encoder-based 方法（SAIS/DREEAM 无生成开销）与 LLM 生成式方法（scale-dependent cost）\\n- **3.2 SFT Baseline** — LoRA r=64/α=128，含 no-evidence upper bound 变体\\n- **3.3 Optimization Paradigms** — GRPO (QLoRA G=4, bf16 G=8)、DPO (1ep/3ep)、RSFT (N=8, top-k=1, 9042/24216=37.3%)\\n- **3.4 CED** — NLI entailment + entity-sharing hard negatives 对比评分，含 flat-NLI baseline 对比（p=0.44），`\\\\label{sec:ced}` 已设置\\n- **3.5 EDCR** — 诊断指标定义 Evi-Recall\\\\_TP / Rel-Recall，method-level ρ=-0.965，per-relation ρ=-0.064，阈值 0.70/0.65\\n\\n所有参数与 experiments.tex 一致。无 em-dash、无 -ing 短语结尾、无黑名单词。\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fa77762a-0120-4370-ac95-f15579f62774",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 707_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 708 · 2026-05-17T16:44:59.551Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T16:44:59.551Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[WORKER DONE] Worker worker_paper_writing_introduction_20260517T164308 已完成（status=done）。用 `get_worker_status('worker_paper_writing_introduction_20260517T164308')` 读取结果，然后处理。\n\n- worker_id: worker_paper_writing_introduction_20260517T164308\n- project: faith-evidence-ie\n- status: done"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 709 · 2026-05-17T16:44:59.551Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T16:44:59.551Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 82
+
+## Round 82
+
+2 recorded events
+
+
+### User
+
+_source line 710 · 2026-05-17T16:44:59.538Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f6443229-7f55-412b-8c2f-d9baea25db81",
+  "isSidechain": false,
+  "promptId": "0dc08a8d-5640-4193-8a88-6a178edeac6b",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "2e4bf639-9c06-4e71-943d-ffbe1bc88c79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 711 · 2026-05-17T16:44:59.539Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e4bf639-9c06-4e71-943d-ffbe1bc88c79",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "af188606-2c1d-43ad-a625-185224c62760",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "f00b775b-b92c-4d58-a473-9841a1f7ffd3",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 83
+
+## Round 83
+
+7 recorded events
+
+
+### User
+
+_source line 712 · 2026-05-17T16:44:59.712Z_
+
+[WORKER DONE] Worker worker_paper_writing_introduction_20260517T164308 已完成（status=done）。用 `get_worker_status('worker_paper_writing_introduction_20260517T164308')` 读取结果，然后处理。
+
+- worker_id: worker_paper_writing_introduction_20260517T164308
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af188606-2c1d-43ad-a625-185224c62760",
+  "isSidechain": false,
+  "promptId": "0dc08a8d-5640-4193-8a88-6a178edeac6b",
+  "type": "user",
+  "uuid": "4dd12e73-629e-45ca-9411-9d4095a94fc0",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 713 · 2026-05-17T16:45:02.635Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01BBodFC4Zyyc9NjmYpqoK9h`</summary>
+
+```json
+{
+  "worker_id": "worker_paper_writing_introduction_20260517T164308"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4dd12e73-629e-45ca-9411-9d4095a94fc0",
+  "isSidechain": false,
+  "requestId": "req_011Cb8Uhdy1yizV47w3dB5e1",
+  "type": "assistant",
+  "uuid": "1bced115-7146-44ab-8b49-1d11800682cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XjoFcRtBvfSeKvD7yjnZDw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 121,
+      "cache_read_input_tokens": 80582,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 121,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 80582,
+          "cache_creation_input_tokens": 121,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 121
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 714 · 2026-05-17T16:45:02.724Z_
+
+<details><summary>↩ Tool result · `toolu_01BBodFC4Zyyc9NjmYpqoK9h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_writing_introduction_20260517T164308\", \"status\": \"done\", \"task_type\": \"paper_writing:introduction\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T16:43:08.653957+00:00\", \"ended_at\": \"2026-05-17T16:44:54.639604+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"Introduction 已写入 `docs/paper/sections/introduction.tex`，约 1200 words，5 段结构：\\n\\n1. **P1** — LLM DocRE 进展但无证据：GenRES/LMRC/DocKS-RAG 逼近 encoder SOTA，但只输出裸三元组，部署场景无法验证\\n2. **P2** — 可验证证据的必要性：RE 输出进入 KG 和决策流程，encoder 方法 (SAIS/DREEAM) 有证据但精度已落后\\n3. **P3** — Encoder retrieval ≠ generative production：encoder 证据是辅助信号（helps extraction），生成式证据是额外负担（costs capacity）\\n4. **P4** — 核心发现：decoupling spectrum、scale-dependent evidence tax、RSFT+CED 方案\\n5. **P5** — 5 条贡献列表（enumerate 格式）\\n\\n风格检查通过：无 em-dash、无解释性 en-dash、无 -ing 短语结尾、无连续过渡词、无黑名单用词。\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1bced115-7146-44ab-8b49-1d11800682cb",
+  "isSidechain": false,
+  "promptId": "0dc08a8d-5640-4193-8a88-6a178edeac6b",
+  "type": "user",
+  "uuid": "33d67fb2-0dc3-41b4-a92f-2f25f34210ee",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_writing_introduction_20260517T164308\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"paper_writing:introduction\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"started_at\\\": \\\"2026-05-17T16:43:08.653957+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T16:44:54.639604+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Introduction 已写入 `docs/paper/sections/introduction.tex`，约 1200 words，5 段结构：\\\\n\\\\n1. **P1** — LLM DocRE 进展但无证据：GenRES/LMRC/DocKS-RAG 逼近 encoder SOTA，但只输出裸三元组，部署场景无法验证\\\\n2. **P2** — 可验证证据的必要性：RE 输出进入 KG 和决策流程，encoder 方法 (SAIS/DREEAM) 有证据但精度已落后\\\\n3. **P3** — Encoder retrieval ≠ generative production：encoder 证据是辅助信号（helps extraction），生成式证据是额外负担（costs capacity）\\\\n4. **P4** — 核心发现：decoupling spectrum、scale-dependent evidence tax、RSFT+CED 方案\\\\n5. **P5** — 5 条贡献列表（enumerate 格式）\\\\n\\\\n风格检查通过：无 em-dash、无解释性 en-dash、无 -ing 短语结尾、无连续过渡词、无黑名单用词。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_writing_introduction_20260517T164308\", \"status\": \"done\", \"task_type\": \"paper_writing:introduction\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T16:43:08.653957+00:00\", \"ended_at\": \"2026-05-17T16:44:54.639604+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"Introduction 已写入 `docs/paper/sections/introduction.tex`，约 1200 words，5 段结构：\\n\\n1. **P1** — LLM DocRE 进展但无证据：GenRES/LMRC/DocKS-RAG 逼近 encoder SOTA，但只输出裸三元组，部署场景无法验证\\n2. **P2** — 可验证证据的必要性：RE 输出进入 KG 和决策流程，encoder 方法 (SAIS/DREEAM) 有证据但精度已落后\\n3. **P3** — Encoder retrieval ≠ generative production：encoder 证据是辅助信号（helps extraction），生成式证据是额外负担（costs capacity）\\n4. **P4** — 核心发现：decoupling spectrum、scale-dependent evidence tax、RSFT+CED 方案\\n5. **P5** — 5 条贡献列表（enumerate 格式）\\n\\n风格检查通过：无 em-dash、无解释性 en-dash、无 -ing 短语结尾、无连续过渡词、无黑名单用词。\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1bced115-7146-44ab-8b49-1d11800682cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 715 · 2026-05-17T16:45:02.731Z_
+
+```json
+{
+  "parentUuid": "33d67fb2-0dc3-41b4-a92f-2f25f34210ee",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "cf86ef2b-daa0-42ac-beec-8742ee35e6b5",
+  "timestamp": "2026-05-17T16:45:02.731Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 716_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 717 · 2026-05-17T16:47:13.732Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T16:47:13.732Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[CRON 需要判断] 实验 **plan_006_qwen3_1_7b_rsft_seed43_eval** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 rtx5090-4x 检查日志 `/root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_seed43_eval.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('plan_006_qwen3_1_7b_rsft_seed43_eval')` 清除监控。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 718 · 2026-05-17T16:47:13.733Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T16:47:13.733Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 84
+
+## Round 84
+
+2 recorded events
+
+
+### User
+
+_source line 719 · 2026-05-17T16:47:13.722Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cf86ef2b-daa0-42ac-beec-8742ee35e6b5",
+  "isSidechain": false,
+  "promptId": "345085e4-f695-4f46-89af-a43211247e93",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "54e9a4d0-7b8b-46d4-8688-5907bea2f8a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 720 · 2026-05-17T16:47:13.722Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54e9a4d0-7b8b-46d4-8688-5907bea2f8a1",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "ea565ae4-d177-481e-9414-dc46508ee151",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "0081ffd2-43b5-4503-a303-1e001cfb672a",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 85
+
+## Round 85
+
+6 recorded events
+
+
+### User
+
+_source line 721 · 2026-05-17T16:47:13.889Z_
+
+[CRON 需要判断] 实验 **plan_006_qwen3_1_7b_rsft_seed43_eval** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。
+
+请派 Worker SSH 到 rtx5090-4x 检查日志 `/root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_seed43_eval.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('plan_006_qwen3_1_7b_rsft_seed43_eval')` 清除监控。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ea565ae4-d177-481e-9414-dc46508ee151",
+  "isSidechain": false,
+  "promptId": "345085e4-f695-4f46-89af-a43211247e93",
+  "type": "user",
+  "uuid": "a352b350-e86a-48d0-a7e3-0f2aa3ff03f7",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 722 · 2026-05-17T16:47:30.631Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01R6ixa39wUV5F9v1eU1SNHY`</summary>
+
+````json
+{
+  "task_type": "ops:check_1_7b_seed43_eval_result",
+  "project": "faith-evidence-ie",
+  "task_prompt": "1.7B RSFT seed 43 eval 进程已退出，需确认结果。\n\n## 任务\n\n1. SSH 到 rtx5090-4x，检查日志：\n   ```bash\n   tail -50 /root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_seed43_eval.log\n   ```\n\n2. 检查 metrics.json 是否生成：\n   ```bash\n   cat /root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_seed43_eval/metrics.json\n   ```\n\n3. 根据结果判断：\n   - 成功：有 metrics.json 且包含 ign_f1/f1/evi_f1 等指标\n   - 失败：日志有 error/traceback\n\n4. 更新 registry：\n   - 成功时：\n     ```\n     update_registry(exp_id=\"plan_006_qwen3_1_7b_rsft_seed43_eval\", field=\"conclusion\", value=\"success\", project=\"faith-evidence-ie\")\n     update_registry(exp_id=\"plan_006_qwen3_1_7b_rsft_seed43_eval\", field=\"metrics\", value={...从metrics.json提取...}, project=\"faith-evidence-ie\")\n     ```\n   - 失败时：\n     ```\n     update_registry(exp_id=\"plan_006_qwen3_1_7b_rsft_seed43_eval\", field=\"conclusion\", value=\"failed\", project=\"faith-evidence-ie\")\n     ```\n\n5. 删除 cron：`delete_cron(\"plan_006_qwen3_1_7b_rsft_seed43_eval\")`\n\n6. 汇报：metrics（特别是 rel_f1 / ign_f1），与 seed 42 对比（seed 42: rel_f1=0.5219, ign_f1=0.505）\n",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ],
+  "tools": [
+    "delete_cron"
+  ]
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a352b350-e86a-48d0-a7e3-0f2aa3ff03f7",
+  "isSidechain": false,
+  "requestId": "req_011Cb8UsXeYAiaZuZfLny1Au",
+  "type": "assistant",
+  "uuid": "66acb0f5-bf33-416b-8d94-cf8edb32d128",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F6uZ188tWdp4X4JdzTQQDm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 205,
+      "cache_read_input_tokens": 81395,
+      "output_tokens": 667,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 205,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 667,
+          "cache_read_input_tokens": 81395,
+          "cache_creation_input_tokens": 205,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 205
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 723 · 2026-05-17T16:47:36.967Z_
+
+<details><summary>↩ Tool result · `toolu_01R6ixa39wUV5F9v1eU1SNHY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_1_7b_seed43_eval_result_20260517T164731\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_check_1_7b_seed43_eval_result_20260517T164731.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_check_1_7b_seed43_eval_result_20260517T164731 started. Use get_worker_status('worker_ops_check_1_7b_seed43_eval_result_20260517T164731') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "66acb0f5-bf33-416b-8d94-cf8edb32d128",
+  "isSidechain": false,
+  "promptId": "345085e4-f695-4f46-89af-a43211247e93",
+  "type": "user",
+  "uuid": "dea60c66-4f70-471e-a604-52a0ac0e4573",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_check_1_7b_seed43_eval_result_20260517T164731\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_check_1_7b_seed43_eval_result_20260517T164731.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ops_check_1_7b_seed43_eval_result_20260517T164731 started. Use get_worker_status('worker_ops_check_1_7b_seed43_eval_result_20260517T164731') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_1_7b_seed43_eval_result_20260517T164731\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_ops_check_1_7b_seed43_eval_result_20260517T164731.log\", \"setup_data\": {}, \"message\": \"Worker worker_ops_check_1_7b_seed43_eval_result_20260517T164731 started. Use get_worker_status('worker_ops_check_1_7b_seed43_eval_result_20260517T164731') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "66acb0f5-bf33-416b-8d94-cf8edb32d128",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 724_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 725 · 2026-05-17T16:48:04.364Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T16:48:04.364Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[Director 指令] 两件事：\n\n**1. Registry 清理（立即）**\nReviewer 发现 2 处不一致，请修复：\n- `plan_006_llama_rsft_seed43_eval`: 标 DONE/failed，为 r2（PID 463080, cuda:0）建独立 registry 条目 `plan_006_llama_rsft_seed43_eval_r2`\n- `plan_006_llama_rsft_seed43`: 训练已完成（final_loss=0.3715），status 改 DONE/success\n\n**2. cuda:2 空闲 → 计算 8B RSFT evi_f1_joint（paper 需要）**\n用 8B RSFT dev predictions 计算 evi_f1_joint（与 DREEAM 54.01% 可比的 joint 协议）。这是 evidence strategy table 需要的数据。如果 8B dev predictions 文件已有，直接算；没有就用 8B RSFT checkpoint 先跑 dev eval 再算。cuda:2 可用。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 726 · 2026-05-17T16:48:04.365Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T16:48:04.365Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 86
+
+## Round 86
+
+2 recorded events
+
+
+### User
+
+_source line 727 · 2026-05-17T16:48:04.354Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dea60c66-4f70-471e-a604-52a0ac0e4573",
+  "isSidechain": false,
+  "promptId": "c12056c0-b69e-47fb-ad98-df9b724670bf",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "14271d17-176c-4e1a-a3aa-80ffb0cf2f9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 728 · 2026-05-17T16:48:04.354Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14271d17-176c-4e1a-a3aa-80ffb0cf2f9f",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "5b986e40-4f8d-4977-b639-e5b0fe55c064",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "5668b0f2-b8c4-4765-8187-8d1481bf24ae",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 87
+
+## Round 87
+
+16 recorded events
+
+
+### User
+
+_source line 729 · 2026-05-17T16:48:04.529Z_
+
+[Director 指令] 两件事：
+
+**1. Registry 清理（立即）**
+Reviewer 发现 2 处不一致，请修复：
+- `plan_006_llama_rsft_seed43_eval`: 标 DONE/failed，为 r2（PID 463080, cuda:0）建独立 registry 条目 `plan_006_llama_rsft_seed43_eval_r2`
+- `plan_006_llama_rsft_seed43`: 训练已完成（final_loss=0.3715），status 改 DONE/success
+
+**2. cuda:2 空闲 → 计算 8B RSFT evi_f1_joint（paper 需要）**
+用 8B RSFT dev predictions 计算 evi_f1_joint（与 DREEAM 54.01% 可比的 joint 协议）。这是 evidence strategy table 需要的数据。如果 8B dev predictions 文件已有，直接算；没有就用 8B RSFT checkpoint 先跑 dev eval 再算。cuda:2 可用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b986e40-4f8d-4977-b639-e5b0fe55c064",
+  "isSidechain": false,
+  "promptId": "c12056c0-b69e-47fb-ad98-df9b724670bf",
+  "type": "user",
+  "uuid": "5185b84d-e00c-411e-85db-113f5d3a5ad3",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 730 · 2026-05-17T16:48:24.066Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me handle both tasks from the Director:
+
+1. Registry cleanup:
+   - `plan_006_llama_rsft_seed43_eval`: Set status to DONE/failed
+   - `plan_006_llama_rsft_seed43`: Set status to DONE/success
+   - Create registry entry for `plan_006_llama_rsft_seed43_eval_r2`
+
+2. cuda:2 → compute 8B RSFT evi_f1_joint
+
+Let me first fix the registry issues. The `plan_006_llama_rsft_seed43_eval` already has conclusion=failed but status might still be RUNNING. 
+
+I need to verify the current state of these entries - the eval plan needs its status updated to DONE, the main plan already has conclusion=success from the worker but might still be in RUNNING status, and the r2 entry should already exist from when the worker called update_registry.
+
+For the 8B evi_f1_joint metric, I'm seeing we already have this value (0.4413) from the earlier eval run, so I'm wondering if the Director needs it recalculated or if they're just asking for confirmation of what we already computed. I've got the evi_f1_joint score of 0.4413 for the 8B RSFT model, so I'll clean up the registry first and then report back with both results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5185b84d-e00c-411e-85db-113f5d3a5ad3",
+  "isSidechain": false,
+  "requestId": "req_011Cb8UwG9zQXmfUzzX7s7b8",
+  "type": "assistant",
+  "uuid": "f4a7e0c4-54de-4a95-ad2e-314a8ca2271d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013yUGpDWK5oprUdKbizwRMv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 310,
+      "cache_read_input_tokens": 82495,
+      "output_tokens": 1175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 310,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1175,
+          "cache_read_input_tokens": 82495,
+          "cache_creation_input_tokens": 310,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 310
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 731 · 2026-05-17T16:48:24.125Z_
+
+处理两件事。先修 registry，再处理 cuda:2。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4a7e0c4-54de-4a95-ad2e-314a8ca2271d",
+  "isSidechain": false,
+  "requestId": "req_011Cb8UwG9zQXmfUzzX7s7b8",
+  "type": "assistant",
+  "uuid": "e5b3a45a-2ade-4351-8500-ace6a4d14c9a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013yUGpDWK5oprUdKbizwRMv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 310,
+      "cache_read_input_tokens": 82495,
+      "output_tokens": 1175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 310,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1175,
+          "cache_read_input_tokens": 82495,
+          "cache_creation_input_tokens": 310,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 310
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 732 · 2026-05-17T16:48:26.143Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_015914fZpLMk9zRRePA6hpc4`</summary>
+
+```json
+{
+  "exp_id": "plan_006_llama_rsft_seed43_eval",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie",
+  "spec": {
+    "checkpoint_path": "N/A (failed)",
+    "log_path": "~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5b3a45a-2ade-4351-8500-ace6a4d14c9a",
+  "isSidechain": false,
+  "requestId": "req_011Cb8UwG9zQXmfUzzX7s7b8",
+  "type": "assistant",
+  "uuid": "d6ec2954-b454-4f3b-9ee9-3001113c55dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013yUGpDWK5oprUdKbizwRMv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 310,
+      "cache_read_input_tokens": 82495,
+      "output_tokens": 1175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 310,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1175,
+          "cache_read_input_tokens": 82495,
+          "cache_creation_input_tokens": 310,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 310
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 733 · 2026-05-17T16:48:27.988Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Fqf8zTyRzTvmzjX6AJgN1G`</summary>
+
+```json
+{
+  "exp_id": "plan_006_llama_rsft_seed43",
+  "field": "status",
+  "value": "DONE",
+  "project": "faith-evidence-ie",
+  "spec": {
+    "checkpoint_path": "/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312",
+    "log_path": "~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43.log"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6ec2954-b454-4f3b-9ee9-3001113c55dd",
+  "isSidechain": false,
+  "requestId": "req_011Cb8UwG9zQXmfUzzX7s7b8",
+  "type": "assistant",
+  "uuid": "df129a86-f89f-4b21-8528-3a75b637f8c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013yUGpDWK5oprUdKbizwRMv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 310,
+      "cache_read_input_tokens": 82495,
+      "output_tokens": 1175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 310,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1175,
+          "cache_read_input_tokens": 82495,
+          "cache_creation_input_tokens": 310,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 310
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 734 · 2026-05-17T16:48:28.629Z_
+
+<details><summary>↩ Tool result · `toolu_015914fZpLMk9zRRePA6hpc4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_llama_rsft_seed43_eval\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T16:00:04.294Z\", \"updated_at\": \"2026-05-17T16:48:26.809Z\", \"hypothesis\": \"Evaluate LLaMA-8B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5674. If seed 43 gives similar result (±1.5pp, i.e., 0.55-0.58), the cross-architecture RSFT claim is robust against seed variance.\", \"parent\": \"plan_006_llama_rsft_seed43\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_seed43_eval\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"462707\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval.log\", \"submitted_at\": \"2026-05-17T16:00:21.066Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": \"docred-dev-full\", \"model_name\": \"Meta-Llama-3.1-8B + SFT + RSFT-seed43\", \"seed\": 43, \"checkpoint_source\": \"plan_006_llama_rsft_seed43\", \"eval_data\": \"docred-dev\", \"checkpoint_path\": \"N/A (failed)\", \"wall_clock_seconds\": 2885.7, \"gpu_hours\": 0.8}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T16:48:26.809Z\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4438}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6ec2954-b454-4f3b-9ee9-3001113c55dd",
+  "isSidechain": false,
+  "promptId": "c12056c0-b69e-47fb-ad98-df9b724670bf",
+  "type": "user",
+  "uuid": "7699b21f-2d76-48d7-906b-d723bdd21d70",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_llama_rsft_seed43_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T16:00:04.294Z\\\", \\\"updated_at\\\": \\\"2026-05-17T16:48:26.809Z\\\", \\\"hypothesis\\\": \\\"Evaluate LLaMA-8B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5674. If seed 43 gives similar result (±1.5pp, i.e., 0.55-0.58), the cross-architecture RSFT claim is robust against seed variance.\\\", \\\"parent\\\": \\\"plan_006_llama_rsft_seed43\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_seed43_eval\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"462707\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T16:00:21.066Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": \\\"docred-dev-full\\\", \\\"model_name\\\": \\\"Meta-Llama-3.1-8B + SFT + RSFT-seed43\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"plan_006_llama_rsft_seed43\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"checkpoint_path\\\": \\\"N/A (failed)\\\", \\\"wall_clock_seconds\\\": 2885.7, \\\"gpu_hours\\\": 0.8}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-17T16:48:26.809Z\\\"}, \\\"hint\\\": \\\"💡 建议将故障原因写入 memory.md（如何避免再犯）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4438}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_llama_rsft_seed43_eval\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T16:00:04.294Z\", \"updated_at\": \"2026-05-17T16:48:26.809Z\", \"hypothesis\": \"Evaluate LLaMA-8B RSFT seed 43 on DocRED dev. Seed 42 gave rel_f1=0.5674. If seed 43 gives similar result (±1.5pp, i.e., 0.55-0.58), the cross-architecture RSFT claim is robust against seed variance.\", \"parent\": \"plan_006_llama_rsft_seed43\", \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312 --base_model /root/autodl-tmp/models/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 43 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_llama_rsft_seed43_eval\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"462707\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43_eval.log\", \"submitted_at\": \"2026-05-17T16:00:21.066Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": \"docred-dev-full\", \"model_name\": \"Meta-Llama-3.1-8B + SFT + RSFT-seed43\", \"seed\": 43, \"checkpoint_source\": \"plan_006_llama_rsft_seed43\", \"eval_data\": \"docred-dev\", \"checkpoint_path\": \"N/A (failed)\", \"wall_clock_seconds\": 2885.7, \"gpu_hours\": 0.8}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T16:48:26.809Z\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4438}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d6ec2954-b454-4f3b-9ee9-3001113c55dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 735 · 2026-05-17T16:48:31.554Z_
+
+<details><summary>↩ Tool result · `toolu_01Fqf8zTyRzTvmzjX6AJgN1G`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan_006_llama_rsft_seed43\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:07:02.215Z\", \"updated_at\": \"2026-05-17T16:48:29.803Z\", \"hypothesis\": \"Validate LLaMA-8B RSFT robustness across seeds. Seed 42 gave rel_f1=0.5674 (+1.6pp over SFT baseline 0.5514). If seed 43 gives similar result, the cross-architecture RSFT claim is robust against seed variance.\", \"parent\": \"plan_016_llama_rsft_train_r3\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --rsft_data_path /root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl --num_epochs 3 --output_dir /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43 --per_device_batch_size 1 --gradient_accumulation_steps 8 --seed 43 --bf16 --wandb_run_name plan_006_llama_rsft_seed43\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl\", \"data_count\": 8829, \"model_name\": \"Meta-Llama-3.1-8B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43.log\", \"gpu\": \"cuda:0\", \"pid\": 450239, \"submitted_at\": \"2026-05-17T21:07:00Z\", \"backend\": \"tmux\", \"account\": \"root\", \"bf16\": true, \"quantize\": false, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 8, \"effective_batch_size\": 8, \"total_steps\": 3312, \"eval_data\": \"N/A - training experiment\", \"final_loss\": 0.3715, \"mean_token_accuracy\": 0.9418, \"train_runtime_seconds\": 10136, \"epochs\": 3}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T16:48:29.804Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.8619}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "df129a86-f89f-4b21-8528-3a75b637f8c4",
+  "isSidechain": false,
+  "promptId": "c12056c0-b69e-47fb-ad98-df9b724670bf",
+  "type": "user",
+  "uuid": "c1001ad6-cf4e-4fef-b01b-d7fca0bd9a75",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_006_llama_rsft_seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:07:02.215Z\\\", \\\"updated_at\\\": \\\"2026-05-17T16:48:29.803Z\\\", \\\"hypothesis\\\": \\\"Validate LLaMA-8B RSFT robustness across seeds. Seed 42 gave rel_f1=0.5674 (+1.6pp over SFT baseline 0.5514). If seed 43 gives similar result, the cross-architecture RSFT claim is robust against seed variance.\\\", \\\"parent\\\": \\\"plan_016_llama_rsft_train_r3\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --rsft_data_path /root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl --num_epochs 3 --output_dir /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43 --per_device_batch_size 1 --gradient_accumulation_steps 8 --seed 43 --bf16 --wandb_run_name plan_006_llama_rsft_seed43\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl\\\", \\\"data_count\\\": 8829, \\\"model_name\\\": \\\"Meta-Llama-3.1-8B\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_llama_3_1_8b\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43.log\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 450239, \\\"submitted_at\\\": \\\"2026-05-17T21:07:00Z\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"bf16\\\": true, \\\"quantize\\\": false, \\\"per_device_batch_size\\\": 1, \\\"gradient_accumulation_steps\\\": 8, \\\"effective_batch_size\\\": 8, \\\"total_steps\\\": 3312, \\\"eval_data\\\": \\\"N/A - training experiment\\\", \\\"final_loss\\\": 0.3715, \\\"mean_token_accuracy\\\": 0.9418, \\\"train_runtime_seconds\\\": 10136, \\\"epochs\\\": 3}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-17T16:48:29.804Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8619}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan_006_llama_rsft_seed43\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:07:02.215Z\", \"updated_at\": \"2026-05-17T16:48:29.803Z\", \"hypothesis\": \"Validate LLaMA-8B RSFT robustness across seeds. Seed 42 gave rel_f1=0.5674 (+1.6pp over SFT baseline 0.5514). If seed 43 gives similar result, the cross-architecture RSFT claim is robust against seed variance.\", \"parent\": \"plan_016_llama_rsft_train_r3\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -m freige.training.rsft_trainer --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b --rsft_data_path /root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl --num_epochs 3 --output_dir /root/autodl-tmp/rsft_output_llama_3_1_8b_seed43 --per_device_batch_size 1 --gradient_accumulation_steps 8 --seed 43 --bf16 --wandb_run_name plan_006_llama_rsft_seed43\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/rsft_scored_llama_3_1_8b/rsft_train.jsonl\", \"data_count\": 8829, \"model_name\": \"Meta-Llama-3.1-8B\", \"seed\": 43, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_llama_3_1_8b\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_output_llama_3_1_8b_seed43/checkpoint-3312\", \"log_path\": \"~/runs/faith-evidence-ie/plan_006_llama_rsft_seed43.log\", \"gpu\": \"cuda:0\", \"pid\": 450239, \"submitted_at\": \"2026-05-17T21:07:00Z\", \"backend\": \"tmux\", \"account\": \"root\", \"bf16\": true, \"quantize\": false, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 8, \"effective_batch_size\": 8, \"total_steps\": 3312, \"eval_data\": \"N/A - training experiment\", \"final_loss\": 0.3715, \"mean_token_accuracy\": 0.9418, \"train_runtime_seconds\": 10136, \"epochs\": 3}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T16:48:29.804Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.8619}}"
+    }
+  },
+  "sourceToolAssistantUUID": "df129a86-f89f-4b21-8528-3a75b637f8c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 736 · 2026-05-17T16:48:42.650Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both registry entries updated. Now for task 2:
+
+The Director wants 8B RSFT evi_f1_joint for the evidence strategy table. We already have this from earlier work:
+- plan_006_qwen3_8b_rsft_eval: evi_f1_joint=0.4413 (44.13%)
+
+So I don't need to re-run anything. The data is already available. Let me report to Director that:
+1. Registry cleanup done
+2. 8B RSFT evi_f1_joint already computed: 0.4413 (44.13%), vs DREEAM 54.01%
+
+
+3. cuda:2 is now free since no new runs are needed
+
+I'll report back with the existing results and check if there are other priority tasks to run on the available GPU.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1001ad6-cf4e-4fef-b01b-d7fca0bd9a75",
+  "isSidechain": false,
+  "requestId": "req_011Cb8UyFgmZZf5EjaG4nGJU",
+  "type": "assistant",
+  "uuid": "c81b1bf5-c163-4c0f-badf-38ea339033a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9aLTkD58ha7mZXoXWp2XU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2865,
+      "cache_read_input_tokens": 82805,
+      "output_tokens": 857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 857,
+          "cache_read_input_tokens": 82805,
+          "cache_creation_input_tokens": 2865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 737 · 2026-05-17T16:48:42.654Z_
+
+Registry 已修复。关于 8B evi_f1_joint——我们已有该数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c81b1bf5-c163-4c0f-badf-38ea339033a8",
+  "isSidechain": false,
+  "requestId": "req_011Cb8UyFgmZZf5EjaG4nGJU",
+  "type": "assistant",
+  "uuid": "79aa7bc2-3427-4540-ae15-baa3feddc757",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9aLTkD58ha7mZXoXWp2XU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2865,
+      "cache_read_input_tokens": 82805,
+      "output_tokens": 857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 857,
+          "cache_read_input_tokens": 82805,
+          "cache_creation_input_tokens": 2865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 738 · 2026-05-17T16:48:53.955Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_01L7H39pwfEePbGnrpHyUTys`</summary>
+
+```json
+{
+  "text": "[资源] GPU 3/4 (cuda:2 空闲) | Worker 1 (ops:check_1_7b_seed43_eval_result) | 磁盘: rtx5090-4x / 未检\n\n**1. Registry 清理 ✅**\n- `plan_006_llama_rsft_seed43_eval` → DONE/failed（base_model 路径错误）\n- `plan_006_llama_rsft_seed43` → DONE/success（loss=0.3715, checkpoint-3312）\n- `plan_006_llama_rsft_seed43_eval_r2` → RUNNING（PID 463080, cuda:0）\n\n**2. 8B RSFT evi_f1_joint 已有数据，无需重跑**\nplan_006_qwen3_8b_rsft_eval 的 metrics 中已包含 evi_f1_joint=**0.4413 (44.13%)**，此前 worker_eval_8b_rsft_evi_f1_joint 已确认。\n\n对比 DREEAM: 54.01% → 差距 9.88pp，但 DREEAM 是 encoder-based retrieval（非生成式），且 RSFT 的 EDCR=0.5856 远优于 post-hoc BM25。\n\n**cuda:2 空闲，等待分配。** 1.7B seed43 eval 已退出，Worker 正在检查结果。\n\n当前 GPU：\n| GPU | 状态 |\n|-----|------|\n| cuda:0 | LLaMA seed43 eval r2 (RUNNING) |\n| cuda:1 | 8B test predictions (RUNNING) |\n| cuda:2 | **空闲** |\n| cuda:3 | LLaMA test predictions (RUNNING) |",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79aa7bc2-3427-4540-ae15-baa3feddc757",
+  "isSidechain": false,
+  "requestId": "req_011Cb8UyFgmZZf5EjaG4nGJU",
+  "type": "assistant",
+  "uuid": "08d5d0d6-9d4a-4aed-9523-fca0ac8ca53a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9aLTkD58ha7mZXoXWp2XU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2865,
+      "cache_read_input_tokens": 82805,
+      "output_tokens": 857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 857,
+          "cache_read_input_tokens": 82805,
+          "cache_creation_input_tokens": 2865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 739_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Director 指令] 两件事：  **1. Registry 清理（立即）** Reviewer 发现 2 处不一致，请修复： - `plan_006_llama_rsft_seed43_eval`: 标 DONE/failed，为 r2（PID 463080, cuda:0）建独立 registry 条目 `plan_006_llama_rsft_seed43_eval_r2` - `pl…",
+  "leafUuid": "08d5d0d6-9d4a-4aed-9523-fca0ac8ca53a",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 740_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 741 · 2026-05-17T16:48:58.004Z_
+
+<details><summary>↩ Tool result · `toolu_01L7H39pwfEePbGnrpHyUTys`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "08d5d0d6-9d4a-4aed-9523-fca0ac8ca53a",
+  "isSidechain": false,
+  "promptId": "c12056c0-b69e-47fb-ad98-df9b724670bf",
+  "type": "user",
+  "uuid": "fb2b8ad7-a442-4ee5-9052-aec0df5433d1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "08d5d0d6-9d4a-4aed-9523-fca0ac8ca53a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 742_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 743 · 2026-05-17T16:49:04.308Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T16:49:04.308Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[WORKER DONE] Worker worker_ops_check_1_7b_seed43_eval_result_20260517T164731 已完成（status=done）。用 `get_worker_status('worker_ops_check_1_7b_seed43_eval_result_20260517T164731')` 读取结果，然后处理。\n\n- worker_id: worker_ops_check_1_7b_seed43_eval_result_20260517T164731\n- project: faith-evidence-ie\n- status: done"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 744 · 2026-05-17T16:49:04.309Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T16:49:04.309Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 88
+
+## Round 88
+
+2 recorded events
+
+
+### User
+
+_source line 745 · 2026-05-17T16:49:04.299Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb2b8ad7-a442-4ee5-9052-aec0df5433d1",
+  "isSidechain": false,
+  "promptId": "19c6df21-2e3e-45bb-ade1-5bce69e21207",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "b24e50e7-5c53-4661-926d-d7968f91a226",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 746 · 2026-05-17T16:49:04.299Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b24e50e7-5c53-4661-926d-d7968f91a226",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "62776bc8-6313-453f-8c5d-c735a77d764d",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "663d2d88-5373-4c37-a16c-e4bea77cc994",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 89
+
+## Round 89
+
+11 recorded events
+
+
+### User
+
+_source line 747 · 2026-05-17T16:49:04.455Z_
+
+[WORKER DONE] Worker worker_ops_check_1_7b_seed43_eval_result_20260517T164731 已完成（status=done）。用 `get_worker_status('worker_ops_check_1_7b_seed43_eval_result_20260517T164731')` 读取结果，然后处理。
+
+- worker_id: worker_ops_check_1_7b_seed43_eval_result_20260517T164731
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "62776bc8-6313-453f-8c5d-c735a77d764d",
+  "isSidechain": false,
+  "promptId": "19c6df21-2e3e-45bb-ade1-5bce69e21207",
+  "type": "user",
+  "uuid": "cd8b898e-0704-438d-adc5-046c0886e21e",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 748 · 2026-05-17T16:49:08.491Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01PmVrvFGWhNzd4B9frC8HFj`</summary>
+
+```json
+{
+  "worker_id": "worker_ops_check_1_7b_seed43_eval_result_20260517T164731"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd8b898e-0704-438d-adc5-046c0886e21e",
+  "isSidechain": false,
+  "requestId": "req_011Cb8V1gT6AEnDspyG3u4ka",
+  "type": "assistant",
+  "uuid": "50660408-f4e6-4923-8ece-3139b8f6ced8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PduPj6JN9keVgGcHMhC654",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2945,
+      "cache_read_input_tokens": 82805,
+      "output_tokens": 90,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2945,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 90,
+          "cache_read_input_tokens": 82805,
+          "cache_creation_input_tokens": 2945,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2945
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 51474
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 749 · 2026-05-17T16:49:08.570Z_
+
+<details><summary>↩ Tool result · `toolu_01PmVrvFGWhNzd4B9frC8HFj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_1_7b_seed43_eval_result_20260517T164731\", \"status\": \"done\", \"task_type\": \"ops:check_1_7b_seed43_eval_result\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T16:47:31.458062+00:00\", \"ended_at\": \"2026-05-17T16:48:18.205211+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## 1.7B RSFT Seed 43 Eval 结果\\n\\n| 指标 | Seed 42 | Seed 43 | Δ |\\n|------|---------|---------|---|\\n| **F1** | 0.5219 | 0.5180 | -0.39pp |\\n| **Ign-F1** | 0.5050 | 0.5024 | -0.26pp |\\n| Evi-F1 (DREEAM) | — | 0.4201 | — |\\n| Evi-F1 (TP) | — | 0.8341 | — |\\n| EDCR | — | 0.6246 | — |\\n| Format OK | — | 984/985 (99.9%) | — |\\n\\n两个 seed 的 rel_f1 差距 0.39pp、ign_f1 差距 0.26pp，均在 ±1pp 以内，1.7B RSFT 数据点稳定。Registry 已更新，cron 已删除。\"}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50660408-f4e6-4923-8ece-3139b8f6ced8",
+  "isSidechain": false,
+  "promptId": "19c6df21-2e3e-45bb-ade1-5bce69e21207",
+  "type": "user",
+  "uuid": "24df0358-3308-45e2-ad11-56c8c1e945d2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_check_1_7b_seed43_eval_result_20260517T164731\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:check_1_7b_seed43_eval_result\\\", \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"started_at\\\": \\\"2026-05-17T16:47:31.458062+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T16:48:18.205211+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## 1.7B RSFT Seed 43 Eval 结果\\\\n\\\\n| 指标 | Seed 42 | Seed 43 | Δ |\\\\n|------|---------|---------|---|\\\\n| **F1** | 0.5219 | 0.5180 | -0.39pp |\\\\n| **Ign-F1** | 0.5050 | 0.5024 | -0.26pp |\\\\n| Evi-F1 (DREEAM) | — | 0.4201 | — |\\\\n| Evi-F1 (TP) | — | 0.8341 | — |\\\\n| EDCR | — | 0.6246 | — |\\\\n| Format OK | — | 984/985 (99.9%) | — |\\\\n\\\\n两个 seed 的 rel_f1 差距 0.39pp、ign_f1 差距 0.26pp，均在 ±1pp 以内，1.7B RSFT 数据点稳定。Registry 已更新，cron 已删除。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_ops_check_1_7b_seed43_eval_result_20260517T164731\", \"status\": \"done\", \"task_type\": \"ops:check_1_7b_seed43_eval_result\", \"project\": \"faith-evidence-ie\", \"started_at\": \"2026-05-17T16:47:31.458062+00:00\", \"ended_at\": \"2026-05-17T16:48:18.205211+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## 1.7B RSFT Seed 43 Eval 结果\\n\\n| 指标 | Seed 42 | Seed 43 | Δ |\\n|------|---------|---------|---|\\n| **F1** | 0.5219 | 0.5180 | -0.39pp |\\n| **Ign-F1** | 0.5050 | 0.5024 | -0.26pp |\\n| Evi-F1 (DREEAM) | — | 0.4201 | — |\\n| Evi-F1 (TP) | — | 0.8341 | — |\\n| EDCR | — | 0.6246 | — |\\n| Format OK | — | 984/985 (99.9%) | — |\\n\\n两个 seed 的 rel_f1 差距 0.39pp、ign_f1 差距 0.26pp，均在 ±1pp 以内，1.7B RSFT 数据点稳定。Registry 已更新，cron 已删除。\"}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "50660408-f4e6-4923-8ece-3139b8f6ced8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 750 · 2026-05-17T16:49:19.119Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+1.7B seed 43 eval completed successfully:
+- Seed 42: rel_f1=0.5219, ign_f1=0.505
+- Seed 43: rel_f1=0.5180, ign_f1=0.5024
+- Δ: -0.39pp rel_f1, -0.26pp ign_f1 → within ±1pp → robust
+
+This is a success result. The 1.7B scaling study datapoint is confirmed robust across seeds.
+
+Now I need to:
+1. Report to Director (on-experiment-done protocol for success)
+
+
+2. Update report.md with the confirmed results
+3. Decide what to run next on cuda:2 since it's now available
+
+The variance looks good across both seeds—the 1.7B model is holding steady, and I'm waiting on the LLaMA seed 43 eval to finish on cuda:0 before I can compare those results. Let me get the Director update out first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24df0358-3308-45e2-ad11-56c8c1e945d2",
+  "isSidechain": false,
+  "requestId": "req_011Cb8V1z2WkLRSTM5sjmUrn",
+  "type": "assistant",
+  "uuid": "b8f10905-1e48-43e7-bccb-46f227c50f1f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ChpemRduEwBbBbkQxnsbhk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 584,
+      "cache_read_input_tokens": 85750,
+      "output_tokens": 746,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 584,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 746,
+          "cache_read_input_tokens": 85750,
+          "cache_creation_input_tokens": 584,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 584
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 751 · 2026-05-17T16:49:19.121Z_
+
+1.7B seed 43 eval 成功，种子稳定性验证通过（Δ=0.39pp）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8f10905-1e48-43e7-bccb-46f227c50f1f",
+  "isSidechain": false,
+  "requestId": "req_011Cb8V1z2WkLRSTM5sjmUrn",
+  "type": "assistant",
+  "uuid": "9f6a067c-4ad1-4ff7-a3ca-50418a480538",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ChpemRduEwBbBbkQxnsbhk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 584,
+      "cache_read_input_tokens": 85750,
+      "output_tokens": 746,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 584,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 746,
+          "cache_read_input_tokens": 85750,
+          "cache_creation_input_tokens": 584,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 584
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 752 · 2026-05-17T16:49:24.884Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_01HoC8MJ4YkpmawFvXfYXY6t`</summary>
+
+```json
+{
+  "text": "[资源] GPU 3/4 (cuda:2 空闲) | Worker 0 (等回调) | 磁盘: rtx5090-4x / 未检\n\n**[成功] plan_006_qwen3_1_7b_rsft_seed43_eval — 1.7B 种子稳定性验证通过**\n\n| 指标 | Seed 42 | Seed 43 | Δ |\n|------|---------|---------|---|\n| rel_f1 | 0.5219 | 0.5180 | -0.39pp |\n| ign_f1 | 0.5050 | 0.5024 | -0.26pp |\n| evi_f1_joint | 0.4223 | 0.4201 | -0.22pp |\n| EDCR | 0.6297 | 0.6246 | -0.51pp |\n\n两个 seed 差距均在 ±0.5pp 以内，1.7B RSFT 数据点稳定可靠。\n\n**种子验证进度**：\n- 1.7B: ✅ 完成（Δ=0.39pp）\n- LLaMA-8B: ⏳ eval r2 运行中（cuda:0）\n\n**cuda:2 空闲，等待分配。**",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f6a067c-4ad1-4ff7-a3ca-50418a480538",
+  "isSidechain": false,
+  "requestId": "req_011Cb8V1z2WkLRSTM5sjmUrn",
+  "type": "assistant",
+  "uuid": "80a645fc-152c-4292-82be-f7adce479ab0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ChpemRduEwBbBbkQxnsbhk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 584,
+      "cache_read_input_tokens": 85750,
+      "output_tokens": 746,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 584,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 746,
+          "cache_read_input_tokens": 85750,
+          "cache_creation_input_tokens": 584,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 584
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 753 · 2026-05-17T16:49:28.806Z_
+
+<details><summary>↩ Tool result · `toolu_01HoC8MJ4YkpmawFvXfYXY6t`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "80a645fc-152c-4292-82be-f7adce479ab0",
+  "isSidechain": false,
+  "promptId": "19c6df21-2e3e-45bb-ade1-5bce69e21207",
+  "type": "user",
+  "uuid": "991eaf6b-fbc6-48d2-8162-4df646ca1af7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "80a645fc-152c-4292-82be-f7adce479ab0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 754 · 2026-05-17T16:49:28.811Z_
+
+```json
+{
+  "parentUuid": "991eaf6b-fbc6-48d2-8162-4df646ca1af7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "347b7ad4-2ad0-4005-b771-1dc8d1d8a178",
+  "timestamp": "2026-05-17T16:49:28.811Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 755_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 756 · 2026-05-17T16:49:37.094Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T16:49:37.094Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[Director 指令] cuda:2 空闲 → 跑 **Qwen3-1.7B RSFT test set predictions**。\n\n用 1.7B RSFT best checkpoint（`rsft_output_qwen3_1_7b/checkpoint-1698`）在 DocRED test set 上生成 predictions，格式与 4B test predictions 一致（CodaLab 提交格式）。cuda:2 可用。\n\n这样 4 个模型的 test predictions 全部并行：4B 已完成，8B cuda:1，LLaMA cuda:3，1.7B cuda:2。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 757 · 2026-05-17T16:49:37.094Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T16:49:37.094Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 90
+
+## Round 90
+
+2 recorded events
+
+
+### User
+
+_source line 758 · 2026-05-17T16:49:37.085Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "347b7ad4-2ad0-4005-b771-1dc8d1d8a178",
+  "isSidechain": false,
+  "promptId": "5623569c-6e43-4bd3-b484-36cc27b7ed79",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "3c6702f2-df28-462d-82fb-fe7b4311ccda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 759 · 2026-05-17T16:49:37.085Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c6702f2-df28-462d-82fb-fe7b4311ccda",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "e798434c-6146-4079-98ad-1936949a999a",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "f9411c0b-3aee-4e31-8947-943f43d5d76e",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 91
+
+## Round 91
+
+8 recorded events
+
+
+### User
+
+_source line 760 · 2026-05-17T16:49:37.224Z_
+
+[Director 指令] cuda:2 空闲 → 跑 **Qwen3-1.7B RSFT test set predictions**。
+
+用 1.7B RSFT best checkpoint（`rsft_output_qwen3_1_7b/checkpoint-1698`）在 DocRED test set 上生成 predictions，格式与 4B test predictions 一致（CodaLab 提交格式）。cuda:2 可用。
+
+这样 4 个模型的 test predictions 全部并行：4B 已完成，8B cuda:1，LLaMA cuda:3，1.7B cuda:2。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e798434c-6146-4079-98ad-1936949a999a",
+  "isSidechain": false,
+  "promptId": "5623569c-6e43-4bd3-b484-36cc27b7ed79",
+  "type": "user",
+  "uuid": "984e89e6-0247-49d8-b89e-e9fcd4586c5f",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 761 · 2026-05-17T16:49:55.880Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_017zsnT1siTMGFbvtCWmwyd2`</summary>
+
+````json
+{
+  "task_type": "eval:1_7b_rsft_test_predictions",
+  "project": "faith-evidence-ie",
+  "task_prompt": "生成 Qwen3-1.7B RSFT test set predictions，用于 CodaLab 提交。\n\n## 实验信息\n- exp_id: plan_006_qwen3_1_7b_rsft_test\n- hypothesis: \"Generate 1.7B RSFT test set predictions for CodaLab submission. 1.7B RSFT dev rel_f1=0.5219, expect similar performance on test.\"\n\n## 步骤\n\n1. 创建 registry 条目：\n   ```\n   update_registry(exp_id=\"plan_006_qwen3_1_7b_rsft_test\", field=\"hypothesis\", value=\"Generate 1.7B RSFT test set predictions for CodaLab submission. 1.7B RSFT dev rel_f1=0.5219, expect similar performance on test.\", project=\"faith-evidence-ie\")\n   update_registry(exp_id=\"plan_006_qwen3_1_7b_rsft_test\", field=\"parent\", value=\"plan_006_qwen3_1_7b_rsft_eval_r2\", project=\"faith-evidence-ie\")\n   ```\n\n2. SSH 到 rtx5090-4x，确认路径：\n   ```bash\n   ls /root/autodl-tmp/freige/rsft_output_qwen3_1_7b/checkpoint-1698/\n   ls /root/autodl-tmp/models/Qwen3-1.7B/\n   ls /root/autodl-tmp/sft_output_qwen3_1_7b/\n   ```\n   注意：1.7B 的 SFT adapter 路径可能不同，如果不存在则搜索：\n   ```bash\n   find /root/autodl-tmp -maxdepth 2 -name \"*sft*1_7b*\" -o -name \"*sft*1.7*\" | head -10\n   ```\n\n3. 用 submit_training_job 提交（cuda:2）：\n   - server: rtx5090-4x\n   - gpu_ids: [2]\n   - exp_id: plan_006_qwen3_1_7b_rsft_test\n   - 命令（三层加载：base → SFT adapter → RSFT LoRA）：\n   ```bash\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/freige/rsft_output_qwen3_1_7b/checkpoint-1698 --base_model /root/autodl-tmp/models/Qwen3-1.7B --sft_adapter &lt;SFT_ADAPTER_PATH> --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_006_qwen3_1_7b_rsft_test\n   ```\n   替换 &lt;SFT_ADAPTER_PATH> 为实际路径。\n\n4. 提交后验证启动（等 15 秒后 nvidia-smi 检查 GPU 2 显存占用）。\n\n5. 汇报 PID、GPU 显存确认。\n",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ],
+  "tools": [
+    "submit_training_job"
+  ]
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "984e89e6-0247-49d8-b89e-e9fcd4586c5f",
+  "isSidechain": false,
+  "requestId": "req_011Cb8V46UmLc8PNjfzfoJ29",
+  "type": "assistant",
+  "uuid": "4cff3f8c-8786-4070-98fa-b9e77b90ca7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Si6W6hcZH4EWNNjhDZW5ci",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 184,
+      "cache_read_input_tokens": 87259,
+      "output_tokens": 1054,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 184,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1054,
+          "cache_read_input_tokens": 87259,
+          "cache_creation_input_tokens": 184,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 184
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 762 · 2026-05-17T16:50:02.260Z_
+
+<details><summary>↩ Tool result · `toolu_017zsnT1siTMGFbvtCWmwyd2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_1_7b_rsft_test_predictions_20260517T164956\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_eval_1_7b_rsft_test_predictions_20260517T164956.log\", \"setup_data\": {}, \"message\": \"Worker worker_eval_1_7b_rsft_test_predictions_20260517T164956 started. Use get_worker_status('worker_eval_1_7b_rsft_test_predictions_20260517T164956') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4cff3f8c-8786-4070-98fa-b9e77b90ca7f",
+  "isSidechain": false,
+  "promptId": "5623569c-6e43-4bd3-b484-36cc27b7ed79",
+  "type": "user",
+  "uuid": "60b9c1ce-57e6-4dc0-a139-e6235c4af5fd",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_1_7b_rsft_test_predictions_20260517T164956\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_eval_1_7b_rsft_test_predictions_20260517T164956.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_eval_1_7b_rsft_test_predictions_20260517T164956 started. Use get_worker_status('worker_eval_1_7b_rsft_test_predictions_20260517T164956') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_1_7b_rsft_test_predictions_20260517T164956\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_eval_1_7b_rsft_test_predictions_20260517T164956.log\", \"setup_data\": {}, \"message\": \"Worker worker_eval_1_7b_rsft_test_predictions_20260517T164956 started. Use get_worker_status('worker_eval_1_7b_rsft_test_predictions_20260517T164956') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4cff3f8c-8786-4070-98fa-b9e77b90ca7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 763 · 2026-05-17T16:50:13.356Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_01VkSTWUKMsGgAURQxk9MKY4`</summary>
+
+```json
+{
+  "text": "[资源] GPU 4/4 | Worker 1 (eval:1_7b_rsft_test_predictions) | 磁盘: rtx5090-4x / 未检\n\n已派 Worker 在 cuda:2 提交 1.7B RSFT test predictions。4 GPU 全满：\n\n| GPU | exp_id | 任务 |\n|-----|--------|------|\n| cuda:0 | plan_006_llama_rsft_seed43_eval_r2 | LLaMA seed 43 eval |\n| cuda:1 | plan_006_qwen3_8b_rsft_test | 8B test predictions |\n| cuda:2 | plan_006_qwen3_1_7b_rsft_test | 1.7B test predictions (提交中) |\n| cuda:3 | plan_006_llama_rsft_test | LLaMA test predictions |\n\nCodaLab test predictions 进度：4B ✅ → 1.7B/8B/LLaMA 并行中",
+  "project": "faith-evidence-ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60b9c1ce-57e6-4dc0-a139-e6235c4af5fd",
+  "isSidechain": false,
+  "requestId": "req_011Cb8V5wV5aMhsvBBHb8X7z",
+  "type": "assistant",
+  "uuid": "7a9f63a0-7780-4ab1-a809-3a5a8bdec243",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T4ZMos6xG3UR5hhcfYT3ox",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1274,
+      "cache_read_input_tokens": 87443,
+      "output_tokens": 354,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1274,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 354,
+          "cache_read_input_tokens": 87443,
+          "cache_creation_input_tokens": 1274,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1274
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 764 · 2026-05-17T16:50:14.461Z_
+
+<details><summary>↩ Tool result · `toolu_01VkSTWUKMsGgAURQxk9MKY4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7a9f63a0-7780-4ab1-a809-3a5a8bdec243",
+  "isSidechain": false,
+  "promptId": "5623569c-6e43-4bd3-b484-36cc27b7ed79",
+  "type": "user",
+  "uuid": "f0b8aee5-c005-4219-bb2c-c12c578c946e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_84537e1e2f9ef71a90742c2db859c6f2:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "7a9f63a0-7780-4ab1-a809-3a5a8bdec243",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 765_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check worker evaluation results for Qwen model",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 766 · 2026-05-17T16:52:23.260Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T16:52:23.260Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "content": "[WORKER DONE] Worker worker_eval_1_7b_rsft_test_predictions_20260517T164956 已完成（status=done）。用 `get_worker_status('worker_eval_1_7b_rsft_test_predictions_20260517T164956')` 读取结果，然后处理。\n\n- worker_id: worker_eval_1_7b_rsft_test_predictions_20260517T164956\n- project: faith-evidence-ie\n- status: done"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 767 · 2026-05-17T16:52:23.261Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T16:52:23.261Z",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842"
+}
+```
+
+---
+
+
+## Round 92
+
+## Round 92
+
+2 recorded events
+
+
+### User
+
+_source line 768 · 2026-05-17T16:52:23.251Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f0b8aee5-c005-4219-bb2c-c12c578c946e",
+  "isSidechain": false,
+  "promptId": "b974b133-7b45-43d0-a02f-099c9badc501",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "315fc9e5-d44f-4df7-af80-877ccd8d1ba3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 769 · 2026-05-17T16:52:23.251Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "315fc9e5-d44f-4df7-af80-877ccd8d1ba3",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "bab9afe7-9f0a-45ef-8e79-5b17723fe2e7",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "id": "dd0dcda5-18c4-448f-aeb2-eb18fa8c4c76",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 93
+
+## Round 93
+
+9 recorded events
+
+
+### User
+
+_source line 770 · 2026-05-17T16:52:23.432Z_
+
+[WORKER DONE] Worker worker_eval_1_7b_rsft_test_predictions_20260517T164956 已完成（status=done）。用 `get_worker_status('worker_eval_1_7b_rsft_test_predictions_20260517T164956')` 读取结果，然后处理。
+
+- worker_id: worker_eval_1_7b_rsft_test_predictions_20260517T164956
+- project: faith-evidence-ie
+- status: done
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bab9afe7-9f0a-45ef-8e79-5b17723fe2e7",
+  "isSidechain": false,
+  "promptId": "b974b133-7b45-43d0-a02f-099c9badc501",
+  "type": "user",
+  "uuid": "7335b481-cb9e-4fae-81c1-b3666283c7ea",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 771 · 2026-05-17T16:52:26.342Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01LmnuaazieSvpsHYCTC46rT`</summary>
+
+```json
+{
+  "worker_id": "worker_eval_1_7b_rsft_test_predictions_20260517T164956"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7335b481-cb9e-4fae-81c1-b3666283c7ea",
+  "isSidechain": false,
+  "requestId": "req_011Cb8VGM7AnuEeE2u5jbPRL",
+  "type": "assistant",
+  "uuid": "b91a5626-b63b-415e-9f3e-2d0327532a2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_4b8948bb",
+  "sessionId": "3fa02456-769c-4f82-88f1-dc1e0de1d842",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "slug": "spicy-cuddling-creek",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J4xvbGvT9R8LZza3swoeKK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 145,
+      "cache_read_input_tokens": 89146,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 145,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 89146,
+          "cache_creation_input_tokens": 145,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 145
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

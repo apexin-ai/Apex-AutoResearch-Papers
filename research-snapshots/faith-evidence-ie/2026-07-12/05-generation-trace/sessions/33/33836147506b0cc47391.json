@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "33836147506b0cc47391",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目 faith-evidence-ie. 监控代码在 /root/autodl-tmp/freige/ 下某处。实际 diversity=7.11/8 (median=8.0), 但监控报 mean_div",
+  "task_key": "e7c94d54-5332-4aa9-9e73-5f443a7586ae",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/e7c94d54-5332-4aa9-9e73-5f443a7586ae.jsonl",
+    "occurrence": 1,
+    "bytes": 771091,
+    "sha256": "7d59ce670aede2d696e022c80619eab81fafdb00737c2df0c510cd21972a3a9b"
+  },
+  "statistics": {
+    "messages": 254,
+    "user_turns": 1,
+    "tool_calls": 69,
+    "roles": {
+      "record": 59,
+      "user": 1,
+      "assistant": 56,
+      "tool_call": 69,
+      "tool_result": 69
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "33836147506b0cc47391-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 252,
+      "chunks": [
+        {
+          "path": "33836147506b0cc47391-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "33836147506b0cc47391-part-0002.json",
+          "message_count": 74
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-faith-evidence-ie-root-autodl-tmp-freige-diversity-7-11-8-median.md"
+}

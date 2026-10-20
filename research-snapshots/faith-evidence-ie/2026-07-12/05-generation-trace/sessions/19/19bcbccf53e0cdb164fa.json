@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "19bcbccf53e0cdb164fa",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> draw-paper-figure skill 在 .claude/skills/draw-paper-figure.skill.md，请先 Read 获取画图规范。wandb-guide skill 在 .",
+  "task_key": "5f137dfa-b7f5-4268-bf25-d9a18b19f63e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/5f137dfa-b7f5-4268-bf25-d9a18b19f63e.jsonl",
+    "occurrence": 1,
+    "bytes": 694950,
+    "sha256": "c49405eb47616a2edf7e989758675803da593fd3066b20633a866b236b70bfab"
+  },
+  "statistics": {
+    "messages": 201,
+    "user_turns": 1,
+    "tool_calls": 63,
+    "roles": {
+      "record": 42,
+      "user": 1,
+      "assistant": 32,
+      "tool_call": 63,
+      "tool_result": 63
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "19bcbccf53e0cdb164fa-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 199,
+      "chunks": [
+        {
+          "path": "19bcbccf53e0cdb164fa-part-0001.json",
+          "message_count": 149
+        },
+        {
+          "path": "19bcbccf53e0cdb164fa-part-0002.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-draw-paper-figure-skill-claude-skills-draw-paper-figure-skill-md.md"
+}

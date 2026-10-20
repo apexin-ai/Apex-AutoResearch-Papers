@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "271360cb455ceee2945a",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> RSFT pipeline 验证。rsft_generate 正在 cuda:1 上运行（PID 122144），已产出部分 generations.jsonl。本次在 cuda:0 上用已有数据跑 scor",
+  "task_key": "efd45b2b-f476-4bd6-a8e4-4d1dd1339110",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/efd45b2b-f476-4bd6-a8e4-4d1dd1339110.jsonl",
+    "occurrence": 1,
+    "bytes": 723831,
+    "sha256": "e5712fff442fd60b1114231c84dedf357e662e48ae662a824931875a5fd86543"
+  },
+  "statistics": {
+    "messages": 272,
+    "user_turns": 1,
+    "tool_calls": 84,
+    "roles": {
+      "record": 48,
+      "user": 1,
+      "assistant": 55,
+      "tool_call": 84,
+      "tool_result": 84
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "271360cb455ceee2945a-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 270,
+      "chunks": [
+        {
+          "path": "271360cb455ceee2945a-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "271360cb455ceee2945a-part-0002.json",
+          "message_count": 92
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-rsft-pipeline-rsft-generate-cuda-1-pid-122144-generations-jsonl.md"
+}

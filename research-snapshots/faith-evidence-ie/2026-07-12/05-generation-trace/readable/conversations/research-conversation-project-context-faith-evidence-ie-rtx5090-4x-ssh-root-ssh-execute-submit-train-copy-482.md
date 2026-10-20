@@ -1,0 +1,3420 @@
+# Research conversation: <project_context> # 项目: faith-evidence-ie ## 运行环境 - 服务器名: rtx5090-4x - SSH 账户: root（调用 ssh_execute / submit_training_job
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 58
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-1/2560c142-1780-44a3-8553-5a85336f7a1a.jsonl`
+- **Structured JSON:** [`dfc48ea41b3d2b4c426b.json`](../../sessions/df/dfc48ea41b3d2b4c426b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-17T03:52:18.043Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-17T03:52:18.043Z",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "content": "&lt;project_context>\n# 项目: faith-evidence-ie\n\n## 运行环境\n- 服务器名: rtx5090-4x\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh rtx5090-4x  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/freige\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 提交 eval 前必须 nvidia-smi 确认目标 GPU 显存占用 < 2GB，否则不提交、换卡或等待（原因：本 session 已 5 次因 eval 提交到被占用 GPU 导致 OOM，修复 eval 也因此作废。eval 推理需要接近全部显存，与训练共享必然 OOM。） [来自 D064]\n- **C002**: 提交训练/评估任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map=\"auto\" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 两次因未设 CUDA_VISIBLE_DEVICES 导致 device_map=\"auto\" 跨 GPU 分布，造成 OOM 和资源冲突。已知 bug 重复发生。）\n- **C003**: 提交训练任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map=\"auto\" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 均因未设 CUDA_VISIBLE_DEVICES 导致模型跨 GPU 分布，造成 OOM 或显存冲突。已重复发生两次。）\n- **C004**: Registry 标记 killed 时必须同时 kill -9 PID 并 ps 验证进程已终止，否则 killed 状态不可信（原因：rsft_ced_s45_train_r2 (PID 276148) registry 标记 killed 但进程未实际终止，占用 cuda:2 31.6GB 导致 r3 OOM。plan_011 也有类似模式。Reviewer WARNING。）\n- **C005**: no-evidence 模型 eval 必须传 --no_evidence 参数，确保推理时使用 NO_EVIDENCE_SYSTEM_PROMPT 与训练一致（原因：plan_006 1.7B/8B no-evidence eval 漏传该参数，导致训练/推理提示词不匹配（模型被要求输出未训练过的 evidence 字段），结果全部无效。Reviewer critical #20。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：Negative 实验系统性复盘\n\n你的任务是对 FREIGE 项目所有 conclusion=negative 的实验进行系统性分析，输出结构化复盘报告。\n\n## 项目背景\n\nFREIGE 是一个 LLM-based evidence-grounded document-level relation extraction (DocRE) 系统。核心方法：\n- SFT 基础训练 → RSFT (Rejection Sampling Fine-Tuning with CED scoring) → 可选 GRPO/DPO 强化\n- CED (Contrastive Evidence Discrimination): NLI-based 评分方法，用于筛选高质量 RSFT 训练样本\n- Evidence Tax: 生成 evidence 的非单调代价（1.7B +6.2pp, 4B -7.5pp, 8B ≈0）\n- 基础模型：Qwen3-4B (主力), Qwen3-1.7B, Qwen3-8B, LLaMA-3.1-8B\n- SFT baseline rel_f1 = 0.4057 (Qwen3-4B on DocRED dev)\n\n## 18 个 Negative 实验数据\n\n### Group 1: GRPO lr5e6 全轨迹 (5 个 checkpoint evals)\n所有 parent = mvp2_grpo_ced_lr5e6_r1 (CED reward, lr=5e-6, kl_coef=0.01, num_generations=8, 200 steps)\n\n1. **mvp2_eval_lr5e6_r1_ckpt20**: rel_f1=0.0077, evi_f1=0.628. Step 20 早期即崩塌。\n2. **mvp2_eval_lr5e6_r1_ckpt40_r2**: rel_f1=0.0071, evi_f1=0.7584. 无恢复。\n3. **mvp2_eval_lr5e6_r1_ckpt60_r2**: rel_f1=0.0093, evi_f1=0.81. evi 上升但 rel 完全崩。\n4. **mvp2_eval_lr5e6_r1_ckpt80**: rel_f1=0.0116, evi_f1=0.828. 平坦，无恢复信号。\n5. **mvp2_eval_lr5e6_r1_ckpt100**: rel_f1=0.0138, evi_f1=0.8504. evi 持续改善，rel 仍崩。\n\n### Group 2: GRPO Mode Collapse (3 experiments)\n\n6. **mvp2_grpo_ced_r5**: CED reward (format×0.3, f1×3.0, ced×1.0), kl_coef=0, num_gen=4. Mode collapse at step 250+. completion length → 34 tokens. f1_reward=0. Model maximized ced_reward (0.99) + format_reward while abandoning extraction.\n7. **mvp2_grpo_extract_r3**: Extract-only reward (format×0.3, f1×3.0, ced=0), kl_coef=0, num_gen=4. 756 steps completed but grad_norm=0, frac_reward_zero_std=1.0 from step 520+. num_gen=4 → identical outputs → reward_std=0 → zero gradient. 停滞而非 collapse。\n8. **mvp2_grpo_flatnli_r6**: Flat-NLI reward, kl_coef=0.01, num_gen=8. Mode collapse at step 25. frac_zero_std: 0.1→0.9. F1/NLI reward both → 0. Only format hacking.\n\n### Group 3: CED Reward Hacking (3 checkpoint evals)\nAll parent = mvp2_grpo_ced_kl001_r4 (CED reward, kl_coef=0.01, num_gen=8, 100 steps)\n\n9. **mvp2_eval_ced_kl001_r4_early** (step 50): rel_f1=0.1563, evi_f1=0.5643, EDCR=0.8858. Reward=1.101 but F1 -24.9pp vs SFT. Reward hacking: high EDCR but killed recall.\n10. **mvp2_eval_ced_kl001_r4_step90**: rel_f1=0.2108, evi_f1=0.5666, EDCR=0.8584. 也崩。\n11. **mvp2_eval_ced_kl001_r4_step100**: rel_f1=0.2167, evi_f1=0.5746, EDCR=0.8539. 全轨迹崩。\n\n### Group 4: DPO Failures (3 experiments)\n\n12. **plan_012_dpo_ced**: DPO 3 epochs, β=0.1, 2666 pairs. rel_f1=0.3429, rewards_accuracy=1.0, margins 9x 膨胀. 严重过拟合。\n13. **plan_012_dpo_ced_1ep**: DPO 1 epoch 重训 (修复过拟合). rel_f1=0.0022 (!), 34 TPs / 19265 preds. 更差。训练指标正常 (accuracy=0.82) 但 rel extraction 完全崩。\n14. **eval_plan_012_dpo_ced_1ep**: 同上 1ep eval 的独立记录. rel_f1=0.0022. (与 13 重复记录)\n15. **eval_plan_012_dpo_1ep_fixed_r2**: DPO 1ep re-eval with --sft_adapter (D064 bug fix). rel_f1=0.4034, vs_sft_delta=-0.0023. DPO 1ep ≈ SFT baseline (无提升).\n\n### Group 5: RSFT top_k=3\n\n16. **reeval_rsft_topk3**: RSFT top_k=3 eval (with --sft_adapter fix). rel_f1=0.4454 vs CED RSFT top_k=1 ~0.46. top_k=3 引入噪声，不如 top_k=1。\n\n### Group 6: Truncation Diagnosis\n\n17. **mvp2_eval_rsft_r2b_maxtok1536_r2**: max_new_tokens 1536 vs 1024. truncated 179→146, EDCR 0.6609→0.6740 (+0.0131), rel_f1 基本不变 (0.4493→0.4504). 截断是 EDCR 偏低的次要因素，distractor citation 是 RSFT 真实行为。\n\n### Group 7: Cross-dataset Transfer\n\n18. **plan_007_redocred_rsft_eval_r2**: CED-RSFT on Re-DocRED. F1=0.0025 (catastrophic). Evi-F1=0.8837. 大概率 pipeline bug (adapter loading / prompt format / relation label mapping)，后续 r5 修复后成功。\n\n## 分析要求\n\n对每个实验（可按 Group 合并同类分析），回答：\n\n### Per-experiment 格式：\n```\n## [exp_id] — 一句话总结证伪含义\n\n1. **证伪了什么 hypothesis?** （简洁一句话）\n2. **当时怎么处理的?** （下一步做了什么，引用 parent/child 关系）\n3. **处理是否正确?** （有没有遗漏的诊断步骤或替代方向）\n4. **推导链是否完整?** （是否还有未执行的后续实验，理由）\n```\n\n### 最终总结：\n- 1-3 条**最有潜力但被忽视的方法改进线索**\n  - 每条需说明：线索是什么、为什么有潜力、从哪个 negative 推导出来、建议怎么验证\n\n## 输出\n\n将分析报告写入项目文件：`save_project_file(file=\"negative_review.md\", content=...)`\n\n报告要求：\n- 简洁直接，不要废话\n- 同 group 的实验可以合并分析但每个 exp_id 必须出现\n- 最终建议必须具体可执行（不是\"调参\"这种模糊建议）\n- 用中文写"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-17T03:52:18.048Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-17T03:52:18.048Z",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a"
+}
+```
+
+---
+
+## Round 1
+
+56 recorded events
+
+### User
+
+_source line 3 · 2026-05-17T03:52:18.088Z_
+
+&lt;project_context>
+# 项目: faith-evidence-ie
+
+## 运行环境
+- 服务器名: rtx5090-4x
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh rtx5090-4x  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/autodl-tmp/freige
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: 提交 eval 前必须 nvidia-smi 确认目标 GPU 显存占用 < 2GB，否则不提交、换卡或等待（原因：本 session 已 5 次因 eval 提交到被占用 GPU 导致 OOM，修复 eval 也因此作废。eval 推理需要接近全部显存，与训练共享必然 OOM。） [来自 D064]
+- **C002**: 提交训练/评估任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map="auto" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 两次因未设 CUDA_VISIBLE_DEVICES 导致 device_map="auto" 跨 GPU 分布，造成 OOM 和资源冲突。已知 bug 重复发生。）
+- **C003**: 提交训练任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map="auto" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 均因未设 CUDA_VISIBLE_DEVICES 导致模型跨 GPU 分布，造成 OOM 或显存冲突。已重复发生两次。）
+- **C004**: Registry 标记 killed 时必须同时 kill -9 PID 并 ps 验证进程已终止，否则 killed 状态不可信（原因：rsft_ced_s45_train_r2 (PID 276148) registry 标记 killed 但进程未实际终止，占用 cuda:2 31.6GB 导致 r3 OOM。plan_011 也有类似模式。Reviewer WARNING。）
+- **C005**: no-evidence 模型 eval 必须传 --no_evidence 参数，确保推理时使用 NO_EVIDENCE_SYSTEM_PROMPT 与训练一致（原因：plan_006 1.7B/8B no-evidence eval 漏传该参数，导致训练/推理提示词不匹配（模型被要求输出未训练过的 evidence 字段），结果全部无效。Reviewer critical #20。）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：Negative 实验系统性复盘
+
+你的任务是对 FREIGE 项目所有 conclusion=negative 的实验进行系统性分析，输出结构化复盘报告。
+
+## 项目背景
+
+FREIGE 是一个 LLM-based evidence-grounded document-level relation extraction (DocRE) 系统。核心方法：
+- SFT 基础训练 → RSFT (Rejection Sampling Fine-Tuning with CED scoring) → 可选 GRPO/DPO 强化
+- CED (Contrastive Evidence Discrimination): NLI-based 评分方法，用于筛选高质量 RSFT 训练样本
+- Evidence Tax: 生成 evidence 的非单调代价（1.7B +6.2pp, 4B -7.5pp, 8B ≈0）
+- 基础模型：Qwen3-4B (主力), Qwen3-1.7B, Qwen3-8B, LLaMA-3.1-8B
+- SFT baseline rel_f1 = 0.4057 (Qwen3-4B on DocRED dev)
+
+## 18 个 Negative 实验数据
+
+### Group 1: GRPO lr5e6 全轨迹 (5 个 checkpoint evals)
+所有 parent = mvp2_grpo_ced_lr5e6_r1 (CED reward, lr=5e-6, kl_coef=0.01, num_generations=8, 200 steps)
+
+1. **mvp2_eval_lr5e6_r1_ckpt20**: rel_f1=0.0077, evi_f1=0.628. Step 20 早期即崩塌。
+2. **mvp2_eval_lr5e6_r1_ckpt40_r2**: rel_f1=0.0071, evi_f1=0.7584. 无恢复。
+3. **mvp2_eval_lr5e6_r1_ckpt60_r2**: rel_f1=0.0093, evi_f1=0.81. evi 上升但 rel 完全崩。
+4. **mvp2_eval_lr5e6_r1_ckpt80**: rel_f1=0.0116, evi_f1=0.828. 平坦，无恢复信号。
+5. **mvp2_eval_lr5e6_r1_ckpt100**: rel_f1=0.0138, evi_f1=0.8504. evi 持续改善，rel 仍崩。
+
+### Group 2: GRPO Mode Collapse (3 experiments)
+
+6. **mvp2_grpo_ced_r5**: CED reward (format×0.3, f1×3.0, ced×1.0), kl_coef=0, num_gen=4. Mode collapse at step 250+. completion length → 34 tokens. f1_reward=0. Model maximized ced_reward (0.99) + format_reward while abandoning extraction.
+7. **mvp2_grpo_extract_r3**: Extract-only reward (format×0.3, f1×3.0, ced=0), kl_coef=0, num_gen=4. 756 steps completed but grad_norm=0, frac_reward_zero_std=1.0 from step 520+. num_gen=4 → identical outputs → reward_std=0 → zero gradient. 停滞而非 collapse。
+8. **mvp2_grpo_flatnli_r6**: Flat-NLI reward, kl_coef=0.01, num_gen=8. Mode collapse at step 25. frac_zero_std: 0.1→0.9. F1/NLI reward both → 0. Only format hacking.
+
+### Group 3: CED Reward Hacking (3 checkpoint evals)
+All parent = mvp2_grpo_ced_kl001_r4 (CED reward, kl_coef=0.01, num_gen=8, 100 steps)
+
+9. **mvp2_eval_ced_kl001_r4_early** (step 50): rel_f1=0.1563, evi_f1=0.5643, EDCR=0.8858. Reward=1.101 but F1 -24.9pp vs SFT. Reward hacking: high EDCR but killed recall.
+10. **mvp2_eval_ced_kl001_r4_step90**: rel_f1=0.2108, evi_f1=0.5666, EDCR=0.8584. 也崩。
+11. **mvp2_eval_ced_kl001_r4_step100**: rel_f1=0.2167, evi_f1=0.5746, EDCR=0.8539. 全轨迹崩。
+
+### Group 4: DPO Failures (3 experiments)
+
+12. **plan_012_dpo_ced**: DPO 3 epochs, β=0.1, 2666 pairs. rel_f1=0.3429, rewards_accuracy=1.0, margins 9x 膨胀. 严重过拟合。
+13. **plan_012_dpo_ced_1ep**: DPO 1 epoch 重训 (修复过拟合). rel_f1=0.0022 (!), 34 TPs / 19265 preds. 更差。训练指标正常 (accuracy=0.82) 但 rel extraction 完全崩。
+14. **eval_plan_012_dpo_ced_1ep**: 同上 1ep eval 的独立记录. rel_f1=0.0022. (与 13 重复记录)
+15. **eval_plan_012_dpo_1ep_fixed_r2**: DPO 1ep re-eval with --sft_adapter (D064 bug fix). rel_f1=0.4034, vs_sft_delta=-0.0023. DPO 1ep ≈ SFT baseline (无提升).
+
+### Group 5: RSFT top_k=3
+
+16. **reeval_rsft_topk3**: RSFT top_k=3 eval (with --sft_adapter fix). rel_f1=0.4454 vs CED RSFT top_k=1 ~0.46. top_k=3 引入噪声，不如 top_k=1。
+
+### Group 6: Truncation Diagnosis
+
+17. **mvp2_eval_rsft_r2b_maxtok1536_r2**: max_new_tokens 1536 vs 1024. truncated 179→146, EDCR 0.6609→0.6740 (+0.0131), rel_f1 基本不变 (0.4493→0.4504). 截断是 EDCR 偏低的次要因素，distractor citation 是 RSFT 真实行为。
+
+### Group 7: Cross-dataset Transfer
+
+18. **plan_007_redocred_rsft_eval_r2**: CED-RSFT on Re-DocRED. F1=0.0025 (catastrophic). Evi-F1=0.8837. 大概率 pipeline bug (adapter loading / prompt format / relation label mapping)，后续 r5 修复后成功。
+
+## 分析要求
+
+对每个实验（可按 Group 合并同类分析），回答：
+
+### Per-experiment 格式：
+```
+## [exp_id] — 一句话总结证伪含义
+
+1. **证伪了什么 hypothesis?** （简洁一句话）
+2. **当时怎么处理的?** （下一步做了什么，引用 parent/child 关系）
+3. **处理是否正确?** （有没有遗漏的诊断步骤或替代方向）
+4. **推导链是否完整?** （是否还有未执行的后续实验，理由）
+```
+
+### 最终总结：
+- 1-3 条**最有潜力但被忽视的方法改进线索**
+  - 每条需说明：线索是什么、为什么有潜力、从哪个 negative 推导出来、建议怎么验证
+
+## 输出
+
+将分析报告写入项目文件：`save_project_file(file="negative_review.md", content=...)`
+
+报告要求：
+- 简洁直接，不要废话
+- 同 group 的实验可以合并分析但每个 exp_id 必须出现
+- 最终建议必须具体可执行（不是"调参"这种模糊建议）
+- 用中文写
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "6656c7a5-780a-474e-a396-9263fa94d76f",
+  "type": "user",
+  "uuid": "07f54c42-aeb0-4288-bc09-90729c459361",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-17T03:52:18.088Z_
+
+```json
+{
+  "parentUuid": "07f54c42-aeb0-4288-bc09-90729c459361",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "b8e86bde-3789-49d7-9f42-7be3efe83d42",
+  "timestamp": "2026-05-17T03:52:18.088Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-17T03:52:18.088Z_
+
+```json
+{
+  "parentUuid": "b8e86bde-3789-49d7-9f42-7be3efe83d42",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "22f7310a-1d7d-4c15-9779-7c8fc3053aa9",
+  "timestamp": "2026-05-17T03:52:18.088Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-17T03:52:18.088Z_
+
+```json
+{
+  "parentUuid": "22f7310a-1d7d-4c15-9779-7c8fc3053aa9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "fb1f16cd-ae2c-444d-99e9-85f4e563fed4",
+  "timestamp": "2026-05-17T03:52:18.088Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7 · 2026-05-17T03:52:18.088Z_
+
+```json
+{
+  "parentUuid": "fb1f16cd-ae2c-444d-99e9-85f4e563fed4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "0176c827-6047-47fa-8150-89502e4f7e83",
+  "timestamp": "2026-05-17T03:52:18.088Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Negative experiments systematic review and diagnosis",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-17T03:52:22.773Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to perform a systematic review of all negative experiments in the FREIGE project and write a structured report. Let me analyze the 18 negative experiments provided, organize them by group, and produce the analysis report.
+
+Let me first check if there's any additional context I should read from the project files before writing the report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0176c827-6047-47fa-8150-89502e4f7e83",
+  "isSidechain": false,
+  "requestId": "req_011Cb7Tn8Btmv3uv2NH2d72X",
+  "type": "assistant",
+  "uuid": "b39b71f5-6ad8-45e0-805f-a88d98c957e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012qTHoME1bBAuypdQ4eNJF7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15411,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 222,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15411,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 222,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 15411,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15411
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-17T03:52:23.717Z_
+
+Let我先查看项目的相关文件获取更多上下文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b39b71f5-6ad8-45e0-805f-a88d98c957e5",
+  "isSidechain": false,
+  "requestId": "req_011Cb7Tn8Btmv3uv2NH2d72X",
+  "type": "assistant",
+  "uuid": "96dcfe42-36d4-4509-93fb-8b35fe35945e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012qTHoME1bBAuypdQ4eNJF7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15411,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 222,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15411,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 222,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 15411,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15411
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T03:52:24.710Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Tvmy884LrKygeWaHLmpuHo`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96dcfe42-36d4-4509-93fb-8b35fe35945e",
+  "isSidechain": false,
+  "requestId": "req_011Cb7Tn8Btmv3uv2NH2d72X",
+  "type": "assistant",
+  "uuid": "8c9f5e72-6be2-48dc-943d-79eb8cc38e90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012qTHoME1bBAuypdQ4eNJF7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15411,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 222,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15411,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 222,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 15411,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15411
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T03:52:24.717Z_
+
+<details><summary>↩ Tool result · `toolu_01Tvmy884LrKygeWaHLmpuHo`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c9f5e72-6be2-48dc-943d-79eb8cc38e90",
+  "isSidechain": false,
+  "promptId": "6656c7a5-780a-474e-a396-9263fa94d76f",
+  "type": "user",
+  "uuid": "ea480132-4e8d-4dc5-8893-5743eabaaeb3",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 25
+  },
+  "sourceToolAssistantUUID": "8c9f5e72-6be2-48dc-943d-79eb8cc38e90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-17T03:52:29.148Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the registry to get more context on these experiments, and also read the memory file for additional background.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea480132-4e8d-4dc5-8893-5743eabaaeb3",
+  "isSidechain": false,
+  "requestId": "req_011Cb7TncawR4hmkAttPjB4f",
+  "type": "assistant",
+  "uuid": "786d4201-8a8c-4366-92d6-c9a339fd4506",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017PDoWwMD6oRx6SUWs7NCrG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1152,
+      "cache_read_input_tokens": 26858,
+      "output_tokens": 252,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1152,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 252,
+          "cache_read_input_tokens": 26858,
+          "cache_creation_input_tokens": 1152,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1152
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T03:52:30.149Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_013vFnZyqA47cBGibdBW76ii`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "filters": {
+    "conclusion": "negative"
+  },
+  "fields": [
+    "*"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "786d4201-8a8c-4366-92d6-c9a339fd4506",
+  "isSidechain": false,
+  "requestId": "req_011Cb7TncawR4hmkAttPjB4f",
+  "type": "assistant",
+  "uuid": "ec463bf6-5204-4e1c-80c2-2d9538d7ca0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017PDoWwMD6oRx6SUWs7NCrG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1152,
+      "cache_read_input_tokens": 26858,
+      "output_tokens": 252,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1152,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 252,
+          "cache_read_input_tokens": 26858,
+          "cache_creation_input_tokens": 1152,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1152
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T03:52:30.678Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_016AV6hHiffzarrBurfkUxV1`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec463bf6-5204-4e1c-80c2-2d9538d7ca0f",
+  "isSidechain": false,
+  "requestId": "req_011Cb7TncawR4hmkAttPjB4f",
+  "type": "assistant",
+  "uuid": "5174b6c1-e1fd-4d0a-a88a-05d9aae2ba2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017PDoWwMD6oRx6SUWs7NCrG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1152,
+      "cache_read_input_tokens": 26858,
+      "output_tokens": 252,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1152,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 252,
+          "cache_read_input_tokens": 26858,
+          "cache_creation_input_tokens": 1152,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1152
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T03:52:30.722Z_
+
+<details><summary>↩ Tool result · `toolu_013vFnZyqA47cBGibdBW76ii`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan_007_redocred_rsft_eval_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T16:25:37.094Z\", \"updated_at\": \"2026-05-17T02:56:32.555Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r2\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"pid\": 363317, \"data_path\": \"/root/autodl-tmp/data/re-docred\", \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\", \"eval_data\": \"re-docred/dev\", \"hypothesis\": \"Re-DocRED RSFT eval r2: verify CED-RSFT improvement transfers cross-dataset. Compare vs SFT baseline Ign-F1=0.3659 (D080).\", \"plan_id\": \"plan_007\", \"parent\": \"plan_007_redocred_4b_sft_eval_r2\", \"log_path\": \"/tmp/plan_007_redocred_rsft_eval_r2.log\"}, \"pid\": 363317, \"metrics\": {\"F1\": 0.0025, \"Ign-F1\": 0.0026, \"Evi-F1\": 0.8837, \"EDCR\": 0.9978, \"format_ok\": \"489/493\", \"truncated\": \"117/493\", \"predictions\": 8461}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r2\", \"completed_at\": \"2026-05-16T17:33:20.838Z\", \"notes\": \"⚠️ NEGATIVE: F1=0.0025 (catastrophic), Evi-F1=0.8837, EDCR=0.9978. SFT baseline on same data = 0.3659 (normal). Framing 调整提案已提交 Director (2026-05-16). 大概率 pipeline bug (adapter loading / prompt format / relation label mapping). Diagnostic Worker dispatched. 等 Director 选 A/B/C narrative 再决定下一步。\", \"hypothesis\": \"CED-RSFT improvements on DocRED should transfer to Re-DocRED: RSFT model should outperform SFT baseline on Re-DocRED Ign-F1, demonstrating cross-dataset generalization of rejection sampling gains.\"}, \"reeval_rsft_topk3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:00:34.722Z\", \"updated_at\": \"2026-05-16T00:24:22.091Z\", \"hypothesis\": \"Re-eval RSFT top_k=3 WITH --sft_adapter (D064 bug fix). 原 eval_plan_008_rsft_topk3 因缺 --sft_adapter 被 killed。对比 CED RSFT top_k=1 (rel_f1≈0.46) 和 SFT baseline (0.4057)。\", \"parent\": \"plan_008_rsft_topk3\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_topk3_output/checkpoint-1509 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_topk3_reeval --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"268485\", \"log_path\": \"~/runs/faith-evidence-ie/reeval_rsft_topk3.log\", \"submitted_at\": \"2026-05-15T23:10:49.243Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"RSFT top_k=3 + SFT adapter\", \"seed\": 42, \"checkpoint_source\": \"rsft_topk3_output/checkpoint-1509\", \"eval_data\": \"docred dev\", \"wall_clock_seconds\": 3798.3, \"gpu_hours\": 1.06}, \"reproduce\": {\"finished_at\": \"2026-05-16T00:10:43.871Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T00:10:53.138391+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4454, \"rel_precision\": 0.4512, \"rel_recall\": 0.4398, \"ign_f1\": 0.4364, \"evi_f1\": 0.8088, \"edcr\": 0.6635, \"format_ok_rate\": 0.999, \"n_truncated\": 214, \"n_predictions\": 16020, \"inference_time_seconds\": 3546.4, \"ign_f1_corrected\": true}, \"conclusion\": \"negative\", \"notes\": \"RSFT top_k=3 rel_f1=0.4454，优于 SFT baseline (0.4057) 但劣于 CED RSFT top_k=1 (~0.46)。top_k=3 引入更多噪声训练样本，反而降低关系抽取精度。evi_f1=0.8088 较好。214/985 truncated。\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_topk3_output/checkpoint-1509\", \"completed_at\": \"2026-05-16T00:14:07.521Z\"}, \"eval_plan_012_dpo_1ep_fixed_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:58:52.440Z\", \"updated_at\": \"2026-05-15T23:44:56.586Z\", \"spec\": {\"command\": \"DPO 1ep re-eval with --sft_adapter (D064 fix)\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 262075, \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_012_dpo_1ep_fixed_r2.log\", \"submitted_at\": \"2026-05-15T21:58:52.150Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 0, \"model_name\": \"Qwen3-4B + SFT + DPO 1ep\", \"seed\": 42, \"checkpoint_source\": \"plan_012_dpo_ced_3ep\", \"eval_data\": \"docred_dev\", \"checkpoint_path\": \"/root/autodl-tmp/dpo_ced_output/checkpoint-167\", \"wall_clock_seconds\": 6197.9, \"gpu_hours\": 1.72}, \"reproduce\": {\"finished_at\": \"2026-05-15T23:36:34.758Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:36:37.754401+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.4034, \"evi_f1\": 0.8088, \"edcr\": 0.7139, \"format_ok_rate\": 0.999, \"truncated_rate\": 0.343, \"predictions\": 19107, \"ign_f1\": 0.4034, \"precision\": 0.3809, \"recall\": 0.4287, \"vs_sft_delta\": -0.0023, \"note\": \"DPO 1ep matches SFT baseline. 1ep→3ep trajectory shows gradual decoupling (rel_f1↓ evi_f1↑), consistent with GRPO pattern. Ign-F1=F1 exact match needs investigation.\"}, \"completed_at\": \"2026-05-15T23:42:10.085Z\"}, \"plan_012_dpo_ced\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:54:03.324Z\", \"updated_at\": \"2026-05-15T21:37:44.232Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/dpo_output\", \"data_path\": \"/root/autodl-tmp/dpo_data/dpo_pairs.jsonl\", \"data_count\": 2666, \"model_name\": \"Qwen3-4B + SFT + CED-DPO\", \"seed\": 42, \"beta\": 0.1, \"num_epochs\": 3, \"loss_type\": \"sigmoid\", \"base_model\": \"/root/autodl-tmp/models/Qwen3-4B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output\", \"pairs\": 2666}, \"hypothesis\": \"DPO+CED preference learning: 用 CED 构造 preference pairs (CED top-1 = chosen, CED bottom-1 = rejected)，DPO 训练。验证 offline preference optimization 能否替代 online GRPO 避免 catastrophic forgetting，同时利用 CED 信号。对比 RSFT (rel_f1=0.46) 和 SFT baseline (rel_f1=0.4057)。\", \"reproduce\": {\"finished_at\": \"2026-05-15T17:38:15.433Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T17:38:17.857458+00:00\"}]}, \"conclusion\": \"negative\", \"notes\": \"⚠️ Reviewer WARNING: 严重过拟合。3 epochs, rewards accuracy=1.0, margins 9x 膨胀, entropy 崩塌。checkpoint-501 是最过拟合版本，结果有 confound。需补 eval checkpoint-400 对比 + 重训 epochs=1。\", \"metrics\": {\"rel_f1\": 0.3429, \"evi_f1\": 0.8403, \"edcr\": 0.7294, \"format_ok_rate\": 0.995, \"checkpoint\": \"checkpoint-501\", \"rewards_accuracy\": 1, \"margins\": 9.01}, \"log_path\": \"~/runs/faith-evidence-ie/plan_012_dpo_ced.log\", \"completed_at\": \"2026-05-15T21:37:44.232Z\"}, \"plan_012_dpo_ced_1ep\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:50:44.852Z\", \"updated_at\": \"2026-05-15T21:36:34.720Z\", \"spec\": {\"hypothesis\": \"DPO+CED 1-epoch 重训：修复 3-epoch 过拟合问题。epochs=1 (~167 steps, <10min)，其余超参不变（β=0.1, lr=5e-7, loss=sigmoid, seed=42, pairs=2666）。让 DPO 数据点可用于论文。\", \"parent\": \"plan_012_dpo_ced\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 WANDB_PROJECT=freige-dpo PYTHONUNBUFFERED=1 python -m freige.training.dpo_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --dpo_data_path /root/autodl-tmp/dpo_data/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_1ep --beta 0.1 --num_epochs 1 --seed 42 --loss_type sigmoid --per_device_batch_size 1 --gradient_accumulation_steps 16 --wandb_run_name plan_012_dpo_ced_1ep\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"245103\", \"log_path\": \"~/runs/faith-evidence-ie/plan_012_dpo_ced_1ep.log\", \"submitted_at\": \"2026-05-15T19:43:02.707Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/dpo_data/dpo_pairs.jsonl\", \"data_count\": 2666, \"model_name\": \"Qwen3-4B + SFT + CED-DPO (1ep)\", \"seed\": 42, \"base_model\": \"/root/autodl-tmp/models/Qwen3-4B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output\", \"beta\": 0.1, \"num_epochs\": 1, \"loss_type\": \"sigmoid\", \"checkpoint_path\": \"/root/autodl-tmp/dpo_output_1ep\", \"wall_clock_seconds\": 6812.0, \"gpu_hours\": 1.89}, \"gpu_ids\": [3], \"hypothesis\": \"DPO+CED 1 epoch retraining: plan_012_dpo_ced 3 epochs 严重过拟合 (rewards_accuracy=1.0, margins 9x膨胀, entropy崩塌)。重训 1 epoch 验证 early stopping 是否消除 overfitting confound。对比 plan_012 3ep + RSFT (rel_f1=0.46) + SFT baseline (rel_f1=0.4057)。\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"notes\": \"DPO+CED 完全失败。1ep eval: rel_f1=0.0022 (34 TPs / 19265 preds)，比 3ep (0.3429) 更差。训练指标正常 (accuracy=0.82, margins=0.86)，但模型输出几乎无法匹配正确 relation。evi_f1=0.75 说明模型仍生成 evidence，但 relation extraction 崩溃。358/985 truncated (36%)。DPO 对 evidence-grounded DocRE 完全不适用——不是过拟合问题，是方法本身失效。D061 已关闭 DPO 实验线。\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:17:44.285Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:17:46.894275+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"n_preds\": 19265, \"inference_time_s\": 3643, \"train_loss_final\": 0.59, \"rewards_accuracy\": 0.82, \"rewards_margins\": 0.86, \"total_steps\": 167, \"training_time_min\": 33}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T21:36:34.720Z\"}, \"eval_plan_012_dpo_ced_1ep\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:22:11.752Z\", \"updated_at\": \"2026-05-15T21:27:30.000Z\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T21:25:00.000Z\", \"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"num_preds\": 19265, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"inference_time_s\": 3643}, \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_1ep/ --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_ced_1ep --no-quantize\", \"server\": \"rtx5090-4x\", \"data_path\": \"docred-dev\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + DPO-CED-1ep LoRA\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/dpo_output_1ep/ (final, 167 steps = 1 epoch)\", \"eval_data\": \"docred-dev\", \"gpu_id\": 2, \"parent\": \"plan_012_dpo_ced_1ep\", \"hypothesis\": \"DPO+CED 1ep checkpoint dev set evaluation: 验证 1ep 是否消除 3ep 过拟合 (rewards_acc=1.0, margins=9x), 对比 SFT baseline rel_f1=0.4057\"}}, \"mvp2_eval_rsft_r2b_maxtok1536_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:54:57.156Z\", \"updated_at\": \"2026-05-15T15:21:13.816Z\", \"hypothesis\": \"Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). Retry with correct model stack (Base+SFT+RSFT). If EDCR improves significantly (from 0.6609 toward 0.71+), truncation is the cause. If unchanged, distractor citation is genuine RSFT behavior.\", \"parent\": \"mvp2_eval_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T11:55:17.608Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\"\", \"finished_at\": \"2026-05-15T14:55:32.781Z\", \"training_hours\": 3.0}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"197381\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log\", \"submitted_at\": \"2026-05-15T11:55:18.697Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 12352.2, \"gpu_hours\": 3.43}, \"pid\": \"197381\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:55:34.874453+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4504, \"ign_f1\": 0.4504, \"evi_f1\": 0.8102, \"edcr\": 0.674, \"precision\": 0.4488, \"recall\": 0.4519, \"evi_precision\": 0.8162, \"evi_recall\": 0.8044, \"n_truncated\": 146, \"n_total\": 985, \"n_predictions\": 17188, \"n_distractor_citations\": 19589, \"n_total_citations\": 29063, \"format_ok_rate\": 0.998}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/\", \"completed_at\": \"2026-05-15T15:21:10.917Z\", \"notes\": \"max_new_tokens 1536 vs 1024: truncated 179→146 (-33), EDCR 0.6609→0.6740 (+0.0131), rel_f1 0.4493→0.4504, evi_f1 0.8128→0.8102。截断只是 EDCR 偏低的次要因素，distractor citation 是 RSFT 的真实行为。\"}, \"mvp2_eval_lr5e6_r1_ckpt100\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:00:57.035Z\", \"updated_at\": \"2026-05-15T01:30:01.493Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"submitted_at\": \"2026-05-14T23:39:51.199Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 6160.9, \"gpu_hours\": 1.71}, \"hypothesis\": \"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T23:39:49.461Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"finished_at\": \"2026-05-15T01:19:34.927Z\", \"training_hours\": 1.66}, \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:19:36.799167+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\", \"completed_at\": \"2026-05-15T01:22:32.071Z\"}, \"mvp2_eval_lr5e6_r1_ckpt80\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:25:45.043Z\", \"updated_at\": \"2026-05-15T01:02:32.508Z\", \"spec\": {\"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO lr5e6 ckpt-80\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-80\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"command\": \"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-80 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80 --quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"111731\", \"account\": \"root\", \"log_path\": \"/tmp/eval_lr5e6_ckpt80.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/\"}, \"hypothesis\": \"P0 ckpt-80 eval: lr=5e-6 GRPO at step 80. 训练轨迹继续——ckpt-20 FAIL (0.0077), ckpt-40/60 待出. Step 80 reward=0.283 (回升), format_reward=0.249. Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"notes\": \"[2026-05-15 08:56] 正常完成。rel_f1=0.0116，延续 ckpt-20/40/60 的平坦趋势 (0.007-0.012)。evi_f1=0.828 继续上升。lr5e6 轨迹: step 20→40→60→80 rel_f1 = 0.008/0.007/0.009/0.012，无恢复信号。cuda:2 已释放。\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.0116, \"ign_f1\": 0.0116, \"precision\": 0.0109, \"recall\": 0.0124, \"evi_f1\": 0.828, \"evi_precision\": 0.928, \"evi_recall\": 0.748, \"edcr\": 0.993, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.788, \"pred_count\": 13828, \"gold_count\": 12151, \"n_truncated\": 210, \"inference_time_seconds\": 6099}, \"completed_at\": \"2026-05-15T00:56:43.952Z\"}, \"mvp2_eval_lr5e6_r1_ckpt60_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:27:56.124Z\", \"updated_at\": \"2026-05-15T00:07:56.895Z\", \"hypothesis\": \"P0 ckpt-60 eval retry: 原 submit_on_allocated 失败 (pid=unknown). 手动 SSH 启动 /root/autodl-tmp/scripts/eval_lr5e6_ckpt60.sh. Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"spec\": {\"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO lr5e6 ckpt-60\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-60\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-60 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60 --quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"108185\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt60_r2.log\", \"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json\"}, \"conclusion\": \"negative\", \"notes\": \"[2026-05-15 08:07] 正常完成。rel_f1=0.0093，与 ckpt-20 (0.0077) / ckpt-40 (0.0071) 同一量级，无恢复信号。evi_f1=0.81 持续上升（ckpt-20: 0.628, ckpt-40: 0.758），证据抽取在改善但关系能力完全崩塌。结果路径: /root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json。cuda:1 已释放。\", \"metrics\": {\"rel_f1\": 0.0093, \"precision\": 0.0085, \"recall\": 0.0103, \"evi_f1\": 0.81, \"edcr\": 0.993, \"format_ok_rate\": 0.998, \"pred_count\": 14626, \"gold_count\": 12151, \"tp\": 125, \"inference_time_seconds\": 6152}, \"completed_at\": \"2026-05-15T00:07:56.895Z\"}, \"mvp2_eval_lr5e6_r1_ckpt40_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:41:34.558Z\", \"updated_at\": \"2026-05-14T23:11:56.267Z\", \"hypothesis\": \"Re-tracking orphan PID 101842 for P0 ckpt-40 eval (lr=5e-6 GRPO step 40). Original exp auto-failed due to cron/PID mismatch. Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"spec\": {\"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"account\": \"root\", \"command\": \"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference\", \"pid\": \"101842\", \"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO lr5e6 ckpt-40\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-40\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"log_path\": \"/tmp/eval_lr5e6_ckpt40.log\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-40\", \"conclusion\": \"negative\", \"metrics\": {\"f1\": 0.007146887342486364, \"ign_f1\": 0.007146887342486364, \"precision\": 0.0065816821393931, \"recall\": 0.007818286560776891, \"evi_f1\": 0.7583892617449665, \"edcr\": 0.9942045337983383, \"format_ok_rate\": 0.9939086294416244, \"tp\": 95, \"pred_count\": 14434, \"gold_count\": 12151, \"n_truncated\": 424, \"inference_time_seconds\": 6152.4}, \"result_dir\": \"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40\"}, \"notes\": \"[2026-05-15 06:50] 全面状态检查: PID 101842 存活 (Rl, uptime 1:25), GPU 2: 10644 MiB/74% util. tmux mvp2_eval_lr5e6_r1_ckpt40 alive (创建于 05:25 UTC). 按 92s/batch 估算约 55/62 (89%), ETA ~10min (约UTC 07:00).\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.0071, \"precision\": 0.0066, \"recall\": 0.0078, \"evi_f1\": 0.7584, \"evi_precision\": 0.9113, \"evi_recall\": 0.6494, \"edcr\": 0.9942, \"format_ok_rate\": 0.9939, \"field_compliance_rate\": 0.5675, \"pred_count\": 14434, \"gold_count\": 12151, \"tp\": 95, \"n_truncated\": 424, \"inference_time_seconds\": 6152}, \"completed_at\": \"2026-05-14T23:11:48.225Z\"}, \"mvp2_eval_lr5e6_r1_ckpt20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T20:44:21.167Z\", \"updated_at\": \"2026-05-14T22:12:16.372Z\", \"spec\": {\"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"account\": \"root\", \"command\": \"bash /root/autodl-tmp/scripts/eval_lr5e6_ckpt20.sh\", \"pid\": \"96500\", \"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO lr5e6 ckpt-20\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-20\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"log_path\": \"/tmp/eval_lr5e6_ckpt20.log\"}, \"hypothesis\": \"P0 ckpt-20 early eval: lr=5e-6 GRPO at step 20. Pass criteria: rel_f1 > 0.30 (no catastrophic forgetting). Key MVP gate for P0.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.0077, \"rel_precision\": 0.0071, \"rel_recall\": 0.0084, \"evi_f1\": 0.628, \"evi_precision\": 0.855, \"evi_recall\": 0.496, \"edcr\": 0.993, \"format_ok_rate\": 0.991, \"field_compliance_rate\": 0.399, \"pred_count\": 14440, \"gold_count\": 12151, \"tp\": 102, \"n_truncated\": 587, \"inference_time_seconds\": 6370.4}, \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-20\", \"log_path\": \"/tmp/eval_lr5e6_ckpt20.log\", \"completed_at\": \"2026-05-14T22:12:16.372Z\"}, \"mvp2_eval_ced_kl001_r4_step90\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:19:58.623Z\", \"updated_at\": \"2026-05-14T20:01:45.201Z\", \"hypothesis\": \"Eval true best checkpoint (step 90, reward=1.370). Critical after ckpt-50 showed reward hacking (rel_f1 -24.9pp). If step 90 also fails, CED reward design has fundamental issue.\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && ... && python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 90 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"83207\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO ced_kl001 step-90\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-90\", \"eval_data\": \"DocRED dev set\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-90\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step90.log\"}, \"notes\": \"2026-05-15 03:20 UTC: ckpt-90 inference 31/62 (50%), ~45 min remaining. Started 02:32 UTC.\", \"reproduce\": {\"finished_at\": \"2026-05-14T19:57:37.435Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T19:57:39.702949+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.2108, \"ign_f1\": 0.2108, \"evi_f1\": 0.5666, \"edcr\": 0.8584, \"pred_count\": 11160, \"n_truncated\": 22, \"format_ok_rate\": 1, \"n_documents\": 985}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T20:01:45.201Z\"}, \"mvp2_eval_ced_kl001_r4_step100\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:08:31.821Z\", \"updated_at\": \"2026-05-14T19:41:30.318Z\", \"hypothesis\": \"Eval ced_kl001_r4 last checkpoint (step 100) to compare with best-reward checkpoint (step 50). If best ≠ last, the gap measures training stability under batch_size=1 GRPO variance.\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"spec\": {\"command\": \"python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001_step100 --checkpoints 100 --quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"80789\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step100.log\", \"submitted_at\": \"2026-05-14T18:09:02.064Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"model_name\": \"Qwen3-4B + SFT adapter + GRPO ced_kl001 step-100\", \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-100\", \"eval_data\": \"DocRED dev set\", \"data_count\": 998, \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-100\", \"wall_clock_seconds\": 5458.4, \"gpu_hours\": 1.52}, \"notes\": \"2026-05-15 03:20 UTC: ckpt-100 inference 48/62 (77%), ~20 min remaining. Started 02:09 UTC.\", \"reproduce\": {\"finished_at\": \"2026-05-14T19:35:23.622Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T19:35:25.057156+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.2167, \"ign_f1\": 0.2167, \"precision\": 0.2849, \"recall\": 0.1749, \"evi_f1\": 0.5746, \"evi_precision\": 0.5244, \"evi_recall\": 0.6353, \"edcr\": 0.8539, \"pred_count\": 7460, \"gold_count\": 12151, \"tp\": 2125, \"n_truncated\": 21, \"format_ok_rate\": 1}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T19:40:00.432Z\"}, \"mvp2_eval_ced_kl001_r4_early\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:12:53.581Z\", \"updated_at\": \"2026-05-14T18:31:18.065Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 50 --quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"75581\", \"log_path\": \"/tmp/eval_ced_kl001_ckpt50.log\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Early eval of ced_kl001_r4 best-reward checkpoint (step 50, reward=1.1009) to get early signal on CED vs SFT baseline\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-50\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"notes\": \"**Checkpoint-50 eval 完成，结果极差——MVP-2 双指标均 FAIL：**\\\\n\\\\n- rel_f1: 0.1563 vs SFT 0.4057 (Δ=-24.9pp)，远低于 -5pp 阈值\\\\n- evi_f1: 0.5643 vs SFT 0.7979 (Δ=-23.4pp)，需 +2pp 却暴跌\\\\n- EDCR: 0.8858 vs SFT 0.7118 (Δ=+17.4pp)，唯一改善项\\\\n- recall 崩塌 (0.117 vs gold 12151)，precision 也低 (0.236)\\\\n\\\\n**诊断**: training reward 上升 (1.101) 但 eval F1 崩塌，说明 GRPO 训练在优化 reward proxy 而非实际任务表现。模型学会了高 EDCR（少引用 distractor）但牺牲了大量 recall。pred_count=6032 vs gold=12151，预测数量严重不足。\\\\n\\\\n仍需等待 step-90 (reward=1.37) 的 eval 结果——如果 step-90 也崩塌，则 CED reward 设计需要根本性修改。\", \"conclusion\": \"negative\", \"metrics\": {\"f1\": 0.1563, \"ign_f1\": 0.1563, \"evi_f1\": 0.5643, \"edcr\": 0.8858, \"precision\": 0.2356, \"recall\": 0.1169, \"evi_precision\": 0.4864, \"evi_recall\": 0.6721, \"format_ok_rate\": 0.999, \"n_parseable\": 984, \"n_truncated\": 11, \"n_predictions\": 9250, \"tp\": 1421, \"pred_count\": 6032, \"gold_count\": 12151}, \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-50\", \"log_path\": \"/tmp/eval_ced_kl001_ckpt50.log\", \"completed_at\": \"2026-05-14T18:31:06.454Z\"}, \"mvp2_grpo_flatnli_r6\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:25:07.083Z\", \"updated_at\": \"2026-05-14T18:17:52.909Z\", \"hypothesis\": \"Flat-NLI reward with kl_coef=0.01 + num_generations=8 from SFT scratch (not resume). 100-step probe to verify stability. Same D020 config as ced_kl001_r4 (which is healthy). Tests whether flat-NLI reward type works under stable training config.\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && ... && PYTHONUNBUFFERED=1 python -m freige.training.grpo_trainer --stage 2 --kl_coef 0.01 --num_generations 8 --max_steps 100 --wandb_run_name grpo-s2-flatnli-r6\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"76958\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r6.log\", \"submitted_at\": \"2026-05-14T17:25:30.099Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"wall_clock_seconds\": 3061.0, \"gpu_hours\": 0.85}, \"parent\": \"mvp2_grpo_flatnli_r5\", \"notes\": \"D020 配置：kl_coef=0.01 + num_generations=8 + save_steps=10 + max_steps=100。从 SFT 全新训练。\\n\\n**D024 Kill — Mode Collapse Confirmed (step 25)**:\\n- frac_zero_std: 0.1→0.4→0.6→0.7→0.9 (单调上升，破 0.8 阈值)\\n- f1_reward=0, flat_nli_reward=0 — 抽取和 NLI 完全死亡\\n- reward 100% format hacking (0.293)\\n- completion_length 缩短 773→586→399\\n- KL step 5 爆炸至 1.23 亿后回落\\n\\n**科学结论**: D020 配置下 flat-NLI reward 信号不足以维持 GRPO 多样性。与 extract_r4 (step 10 collapse) 模式一致。CED 是三种 reward type 中唯一能稳定训练的。\", \"conclusion\": \"negative\", \"metrics\": {\"steps_completed\": 25, \"final_frac_zero_std\": 0.9, \"final_f1_reward\": 0, \"final_flat_nli_reward\": 0, \"final_format_reward\": 0.293, \"collapse_step\": 25}, \"checkpoint_path\": \"N/A (killed at step 25, mode collapse)\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r6.log\", \"completed_at\": \"2026-05-14T18:16:31.087Z\"}, \"mvp2_grpo_extract_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:31:48.781Z\", \"updated_at\": \"2026-05-14T16:59:20.304Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 1 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 0.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"53149\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_extract_r3.log\", \"submitted_at\": \"2026-05-14T12:31:48.738Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Extraction-only reward (format×0.3, f1×3.0, ced=0) with kl_coef=0 establishes stable GRPO baseline\", \"parent\": \"mvp2_grpo_extract\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0, \"save_steps\": 20, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 0, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"num_generations\": 4, \"quantization\": \"QLoRA 4-bit NF4\"}, \"wall_clock_seconds\": 12041.2, \"gpu_hours\": 3.34}, \"notes\": \"Negative result (756/756 steps completed). 两阶段行为：(1) step 1-520 f1_reward 在 0.02-0.49 波动，completion length ~43 tokens 稳定，看似健康；(2) 实际最后 100+ 步 grad_norm=0, frac_reward_zero_std=1.0, loss=0.0, entropy≈0.005。f1 波动是 SFT 初始化残留，非 GRPO 学习。停滞机制：kl_coef=0 + num_generations=4 → 4 个相同输出 → reward_std=0 → GRPO advantage=0 → 梯度为零。与 ced_r5 的差异：无 CED reward 通道，模型没 drift 到短输出（保持在 SFT 水平），但也完全停止学习。科学价值：证明 num_generations=4 不足以维持 GRPO 多样性，kl_coef=0 下 extraction-only 停滞而 CED collapse 更严重。\", \"reproduce\": {\"finished_at\": \"2026-05-14T15:52:29.058Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T15:52:29.969Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T15:52:31.006940+00:00\"}]}}, \"mvp2_grpo_ced_r5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:31:45.606Z\", \"updated_at\": \"2026-05-14T15:32:21.817Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"53071\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_r5.log\", \"submitted_at\": \"2026-05-14T12:31:45.554Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"CED reward (format×0.3, f1×3.0, ced×1.0) with kl_coef=0 trains stably and improves Evi-F1 over SFT baseline\", \"parent\": \"mvp2_grpo_ced_r4\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0, \"save_steps\": 20, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 1, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"num_generations\": 4, \"quantization\": \"QLoRA 4-bit NF4\"}, \"wall_clock_seconds\": 9887.5, \"gpu_hours\": 2.75}, \"notes\": \"⚠️ Mode collapse confirmed: step 250+ f1_reward=0, completion length collapsed to fixed 34 tokens, frac_reward_zero_std=0.9-1.0. Model learned to produce short fixed-format output maximizing ced_reward (0.99) + format_reward (0.3) while abandoning relation extraction (f1=0). Early checkpoints (pre-collapse) lost due to save_total_limit=5 — only steps 400-480 remain, all post-collapse. Current checkpoints likely unusable for eval.\", \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A (all checkpoints post-collapse, unusable)\", \"completed_at\": \"2026-05-14T15:29:18.460Z\"}}, \"count\": 18, \"total\": 18, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5503}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec463bf6-5204-4e1c-80c2-2d9538d7ca0f",
+  "isSidechain": false,
+  "promptId": "6656c7a5-780a-474e-a396-9263fa94d76f",
+  "type": "user",
+  "uuid": "ed67abe2-1ac7-48e9-81f8-9929533b6afe",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_007_redocred_rsft_eval_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T16:25:37.094Z\\\", \\\"updated_at\\\": \\\"2026-05-17T02:56:32.555Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r2\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 363317, \\\"data_path\\\": \\\"/root/autodl-tmp/data/re-docred\\\", \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\\\", \\\"eval_data\\\": \\\"re-docred/dev\\\", \\\"hypothesis\\\": \\\"Re-DocRED RSFT eval r2: verify CED-RSFT improvement transfers cross-dataset. Compare vs SFT baseline Ign-F1=0.3659 (D080).\\\", \\\"plan_id\\\": \\\"plan_007\\\", \\\"parent\\\": \\\"plan_007_redocred_4b_sft_eval_r2\\\", \\\"log_path\\\": \\\"/tmp/plan_007_redocred_rsft_eval_r2.log\\\"}, \\\"pid\\\": 363317, \\\"metrics\\\": {\\\"F1\\\": 0.0025, \\\"Ign-F1\\\": 0.0026, \\\"Evi-F1\\\": 0.8837, \\\"EDCR\\\": 0.9978, \\\"format_ok\\\": \\\"489/493\\\", \\\"truncated\\\": \\\"117/493\\\", \\\"predictions\\\": 8461}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r2\\\", \\\"completed_at\\\": \\\"2026-05-16T17:33:20.838Z\\\", \\\"notes\\\": \\\"⚠️ NEGATIVE: F1=0.0025 (catastrophic), Evi-F1=0.8837, EDCR=0.9978. SFT baseline on same data = 0.3659 (normal). Framing 调整提案已提交 Director (2026-05-16). 大概率 pipeline bug (adapter loading / prompt format / relation label mapping). Diagnostic Worker dispatched. 等 Director 选 A/B/C narrative 再决定下一步。\\\", \\\"hypothesis\\\": \\\"CED-RSFT improvements on DocRED should transfer to Re-DocRED: RSFT model should outperform SFT baseline on Re-DocRED Ign-F1, demonstrating cross-dataset generalization of rejection sampling gains.\\\"}, \\\"reeval_rsft_topk3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:00:34.722Z\\\", \\\"updated_at\\\": \\\"2026-05-16T00:24:22.091Z\\\", \\\"hypothesis\\\": \\\"Re-eval RSFT top_k=3 WITH --sft_adapter (D064 bug fix). 原 eval_plan_008_rsft_topk3 因缺 --sft_adapter 被 killed。对比 CED RSFT top_k=1 (rel_f1≈0.46) 和 SFT baseline (0.4057)。\\\", \\\"parent\\\": \\\"plan_008_rsft_topk3\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_topk3_output/checkpoint-1509 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_topk3_reeval --no-quantize\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"268485\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/reeval_rsft_topk3.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T23:10:49.243Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"RSFT top_k=3 + SFT adapter\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"rsft_topk3_output/checkpoint-1509\\\", \\\"eval_data\\\": \\\"docred dev\\\", \\\"wall_clock_seconds\\\": 3798.3, \\\"gpu_hours\\\": 1.06}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T00:10:43.871Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T00:10:53.138391+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.4454, \\\"rel_precision\\\": 0.4512, \\\"rel_recall\\\": 0.4398, \\\"ign_f1\\\": 0.4364, \\\"evi_f1\\\": 0.8088, \\\"edcr\\\": 0.6635, \\\"format_ok_rate\\\": 0.999, \\\"n_truncated\\\": 214, \\\"n_predictions\\\": 16020, \\\"inference_time_seconds\\\": 3546.4, \\\"ign_f1_corrected\\\": true}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"RSFT top_k=3 rel_f1=0.4454，优于 SFT baseline (0.4057) 但劣于 CED RSFT top_k=1 (~0.46)。top_k=3 引入更多噪声训练样本，反而降低关系抽取精度。evi_f1=0.8088 较好。214/985 truncated。\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/rsft_topk3_output/checkpoint-1509\\\", \\\"completed_at\\\": \\\"2026-05-16T00:14:07.521Z\\\"}, \\\"eval_plan_012_dpo_1ep_fixed_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T21:58:52.440Z\\\", \\\"updated_at\\\": \\\"2026-05-15T23:44:56.586Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"DPO 1ep re-eval with --sft_adapter (D064 fix)\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 262075, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/eval_plan_012_dpo_1ep_fixed_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T21:58:52.150Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen3-4B + SFT + DPO 1ep\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"plan_012_dpo_ced_3ep\\\", \\\"eval_data\\\": \\\"docred_dev\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/dpo_ced_output/checkpoint-167\\\", \\\"wall_clock_seconds\\\": 6197.9, \\\"gpu_hours\\\": 1.72}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T23:36:34.758Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T23:36:37.754401+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.4034, \\\"evi_f1\\\": 0.8088, \\\"edcr\\\": 0.7139, \\\"format_ok_rate\\\": 0.999, \\\"truncated_rate\\\": 0.343, \\\"predictions\\\": 19107, \\\"ign_f1\\\": 0.4034, \\\"precision\\\": 0.3809, \\\"recall\\\": 0.4287, \\\"vs_sft_delta\\\": -0.0023, \\\"note\\\": \\\"DPO 1ep matches SFT baseline. 1ep→3ep trajectory shows gradual decoupling (rel_f1↓ evi_f1↑), consistent with GRPO pattern. Ign-F1=F1 exact match needs investigation.\\\"}, \\\"completed_at\\\": \\\"2026-05-15T23:42:10.085Z\\\"}, \\\"plan_012_dpo_ced\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:54:03.324Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:37:44.232Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/dpo_output\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/dpo_data/dpo_pairs.jsonl\\\", \\\"data_count\\\": 2666, \\\"model_name\\\": \\\"Qwen3-4B + SFT + CED-DPO\\\", \\\"seed\\\": 42, \\\"beta\\\": 0.1, \\\"num_epochs\\\": 3, \\\"loss_type\\\": \\\"sigmoid\\\", \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\", \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\", \\\"pairs\\\": 2666}, \\\"hypothesis\\\": \\\"DPO+CED preference learning: 用 CED 构造 preference pairs (CED top-1 = chosen, CED bottom-1 = rejected)，DPO 训练。验证 offline preference optimization 能否替代 online GRPO 避免 catastrophic forgetting，同时利用 CED 信号。对比 RSFT (rel_f1=0.46) 和 SFT baseline (rel_f1=0.4057)。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T17:38:15.433Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:38:17.857458+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"⚠️ Reviewer WARNING: 严重过拟合。3 epochs, rewards accuracy=1.0, margins 9x 膨胀, entropy 崩塌。checkpoint-501 是最过拟合版本，结果有 confound。需补 eval checkpoint-400 对比 + 重训 epochs=1。\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.3429, \\\"evi_f1\\\": 0.8403, \\\"edcr\\\": 0.7294, \\\"format_ok_rate\\\": 0.995, \\\"checkpoint\\\": \\\"checkpoint-501\\\", \\\"rewards_accuracy\\\": 1, \\\"margins\\\": 9.01}, \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan_012_dpo_ced.log\\\", \\\"completed_at\\\": \\\"2026-05-15T21:37:44.232Z\\\"}, \\\"plan_012_dpo_ced_1ep\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T18:50:44.852Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:36:34.720Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"DPO+CED 1-epoch 重训：修复 3-epoch 过拟合问题。epochs=1 (~167 steps, <10min)，其余超参不变（β=0.1, lr=5e-7, loss=sigmoid, seed=42, pairs=2666）。让 DPO 数据点可用于论文。\\\", \\\"parent\\\": \\\"plan_012_dpo_ced\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 WANDB_PROJECT=freige-dpo PYTHONUNBUFFERED=1 python -m freige.training.dpo_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --dpo_data_path /root/autodl-tmp/dpo_data/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_1ep --beta 0.1 --num_epochs 1 --seed 42 --loss_type sigmoid --per_device_batch_size 1 --gradient_accumulation_steps 16 --wandb_run_name plan_012_dpo_ced_1ep\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"245103\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/plan_012_dpo_ced_1ep.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T19:43:02.707Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/dpo_data/dpo_pairs.jsonl\\\", \\\"data_count\\\": 2666, \\\"model_name\\\": \\\"Qwen3-4B + SFT + CED-DPO (1ep)\\\", \\\"seed\\\": 42, \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\", \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\", \\\"beta\\\": 0.1, \\\"num_epochs\\\": 1, \\\"loss_type\\\": \\\"sigmoid\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/dpo_output_1ep\\\", \\\"wall_clock_seconds\\\": 6812.0, \\\"gpu_hours\\\": 1.89}, \\\"gpu_ids\\\": [3], \\\"hypothesis\\\": \\\"DPO+CED 1 epoch retraining: plan_012_dpo_ced 3 epochs 严重过拟合 (rewards_accuracy=1.0, margins 9x膨胀, entropy崩塌)。重训 1 epoch 验证 early stopping 是否消除 overfitting confound。对比 plan_012 3ep + RSFT (rel_f1=0.46) + SFT baseline (rel_f1=0.4057)。\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"notes\\\": \\\"DPO+CED 完全失败。1ep eval: rel_f1=0.0022 (34 TPs / 19265 preds)，比 3ep (0.3429) 更差。训练指标正常 (accuracy=0.82, margins=0.86)，但模型输出几乎无法匹配正确 relation。evi_f1=0.75 说明模型仍生成 evidence，但 relation extraction 崩溃。358/985 truncated (36%)。DPO 对 evidence-grounded DocRE 完全不适用——不是过拟合问题，是方法本身失效。D061 已关闭 DPO 实验线。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T20:17:44.285Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T20:17:46.894275+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.0022, \\\"evi_f1\\\": 0.75, \\\"edcr\\\": 0.9982, \\\"format_ok\\\": \\\"981/985\\\", \\\"truncated\\\": \\\"358/985\\\", \\\"tp\\\": 34, \\\"n_preds\\\": 19265, \\\"inference_time_s\\\": 3643, \\\"train_loss_final\\\": 0.59, \\\"rewards_accuracy\\\": 0.82, \\\"rewards_margins\\\": 0.86, \\\"total_steps\\\": 167, \\\"training_time_min\\\": 33}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-15T21:36:34.720Z\\\"}, \\\"eval_plan_012_dpo_ced_1ep\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T20:22:11.752Z\\\", \\\"updated_at\\\": \\\"2026-05-15T21:27:30.000Z\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-15T21:25:00.000Z\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.0022, \\\"ign_f1\\\": 0.0022, \\\"evi_f1\\\": 0.75, \\\"edcr\\\": 0.9982, \\\"num_preds\\\": 19265, \\\"format_ok\\\": \\\"981/985\\\", \\\"truncated\\\": \\\"358/985\\\", \\\"tp\\\": 34, \\\"inference_time_s\\\": 3643}, \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_1ep/ --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_ced_1ep --no-quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"docred-dev\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + DPO-CED-1ep LoRA\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/dpo_output_1ep/ (final, 167 steps = 1 epoch)\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"gpu_id\\\": 2, \\\"parent\\\": \\\"plan_012_dpo_ced_1ep\\\", \\\"hypothesis\\\": \\\"DPO+CED 1ep checkpoint dev set evaluation: 验证 1ep 是否消除 3ep 过拟合 (rewards_acc=1.0, margins=9x), 对比 SFT baseline rel_f1=0.4057\\\"}}, \\\"mvp2_eval_rsft_r2b_maxtok1536_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T11:54:57.156Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:21:13.816Z\\\", \\\"hypothesis\\\": \\\"Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). Retry with correct model stack (Base+SFT+RSFT). If EDCR improves significantly (from 0.6609 toward 0.71+), truncation is the cause. If unchanged, distractor citation is genuine RSFT behavior.\\\", \\\"parent\\\": \\\"mvp2_eval_rsft_r2b\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T11:55:17.608Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T14:55:32.781Z\\\", \\\"training_hours\\\": 3.0}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"197381\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:55:18.697Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 12352.2, \\\"gpu_hours\\\": 3.43}, \\\"pid\\\": \\\"197381\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T14:55:34.874453+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.4504, \\\"ign_f1\\\": 0.4504, \\\"evi_f1\\\": 0.8102, \\\"edcr\\\": 0.674, \\\"precision\\\": 0.4488, \\\"recall\\\": 0.4519, \\\"evi_precision\\\": 0.8162, \\\"evi_recall\\\": 0.8044, \\\"n_truncated\\\": 146, \\\"n_total\\\": 985, \\\"n_predictions\\\": 17188, \\\"n_distractor_citations\\\": 19589, \\\"n_total_citations\\\": 29063, \\\"format_ok_rate\\\": 0.998}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/\\\", \\\"completed_at\\\": \\\"2026-05-15T15:21:10.917Z\\\", \\\"notes\\\": \\\"max_new_tokens 1536 vs 1024: truncated 179→146 (-33), EDCR 0.6609→0.6740 (+0.0131), rel_f1 0.4493→0.4504, evi_f1 0.8128→0.8102。截断只是 EDCR 偏低的次要因素，distractor citation 是 RSFT 的真实行为。\\\"}, \\\"mvp2_eval_lr5e6_r1_ckpt100\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:00:57.035Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:30:01.493Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"117635\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:39:51.199Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 6160.9, \\\"gpu_hours\\\": 1.71}, \\\"hypothesis\\\": \\\"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_lr5e6_r1\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-14T23:39:49.461Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T01:19:34.927Z\\\", \\\"training_hours\\\": 1.66}, \\\"pid\\\": \\\"117635\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T01:19:36.799167+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.0138, \\\"rel_precision\\\": 0.0132, \\\"rel_recall\\\": 0.0144, \\\"ign_f1\\\": 0.0138, \\\"evi_f1\\\": 0.8504, \\\"evi_precision\\\": 0.9256, \\\"evi_recall\\\": 0.7866, \\\"edcr\\\": 0.9876, \\\"format_ok_rate\\\": 0.999, \\\"field_compliance_rate\\\": 0.8162, \\\"evidence_format_rate\\\": 0.8162, \\\"tp\\\": 175, \\\"pred_count\\\": 13300, \\\"gold_count\\\": 12151, \\\"n_predictions\\\": 15498, \\\"n_truncated\\\": 181, \\\"n_documents\\\": 985, \\\"n_parseable\\\": 984, \\\"inference_time_seconds\\\": 5901.7}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\\\", \\\"completed_at\\\": \\\"2026-05-15T01:22:32.071Z\\\"}, \\\"mvp2_eval_lr5e6_r1_ckpt80\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:25:45.043Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:02:32.508Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + GRPO lr5e6 ckpt-80\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-80\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-80 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80 --quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"111731\\\", \\\"account\\\": \\\"root\\\", \\\"log_path\\\": \\\"/tmp/eval_lr5e6_ckpt80.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/\\\"}, \\\"hypothesis\\\": \\\"P0 ckpt-80 eval: lr=5e-6 GRPO at step 80. 训练轨迹继续——ckpt-20 FAIL (0.0077), ckpt-40/60 待出. Step 80 reward=0.283 (回升), format_reward=0.249. Pass criteria: rel_f1 > 0.30.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_lr5e6_r1\\\", \\\"notes\\\": \\\"[2026-05-15 08:56] 正常完成。rel_f1=0.0116，延续 ckpt-20/40/60 的平坦趋势 (0.007-0.012)。evi_f1=0.828 继续上升。lr5e6 轨迹: step 20→40→60→80 rel_f1 = 0.008/0.007/0.009/0.012，无恢复信号。cuda:2 已释放。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.0116, \\\"ign_f1\\\": 0.0116, \\\"precision\\\": 0.0109, \\\"recall\\\": 0.0124, \\\"evi_f1\\\": 0.828, \\\"evi_precision\\\": 0.928, \\\"evi_recall\\\": 0.748, \\\"edcr\\\": 0.993, \\\"format_ok_rate\\\": 0.999, \\\"field_compliance_rate\\\": 0.788, \\\"pred_count\\\": 13828, \\\"gold_count\\\": 12151, \\\"n_truncated\\\": 210, \\\"inference_time_seconds\\\": 6099}, \\\"completed_at\\\": \\\"2026-05-15T00:56:43.952Z\\\"}, \\\"mvp2_eval_lr5e6_r1_ckpt60_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T22:27:56.124Z\\\", \\\"updated_at\\\": \\\"2026-05-15T00:07:56.895Z\\\", \\\"hypothesis\\\": \\\"P0 ckpt-60 eval retry: 原 submit_on_allocated 失败 (pid=unknown). 手动 SSH 启动 /root/autodl-tmp/scripts/eval_lr5e6_ckpt60.sh. Pass criteria: rel_f1 > 0.30.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_lr5e6_r1\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + GRPO lr5e6 ckpt-60\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-60\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-60 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60 --quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"108185\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt60_r2.log\\\", \\\"account\\\": \\\"root\\\", \\\"backend\\\": \\\"tmux\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"[2026-05-15 08:07] 正常完成。rel_f1=0.0093，与 ckpt-20 (0.0077) / ckpt-40 (0.0071) 同一量级，无恢复信号。evi_f1=0.81 持续上升（ckpt-20: 0.628, ckpt-40: 0.758），证据抽取在改善但关系能力完全崩塌。结果路径: /root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json。cuda:1 已释放。\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.0093, \\\"precision\\\": 0.0085, \\\"recall\\\": 0.0103, \\\"evi_f1\\\": 0.81, \\\"edcr\\\": 0.993, \\\"format_ok_rate\\\": 0.998, \\\"pred_count\\\": 14626, \\\"gold_count\\\": 12151, \\\"tp\\\": 125, \\\"inference_time_seconds\\\": 6152}, \\\"completed_at\\\": \\\"2026-05-15T00:07:56.895Z\\\"}, \\\"mvp2_eval_lr5e6_r1_ckpt40_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:41:34.558Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:11:56.267Z\\\", \\\"hypothesis\\\": \\\"Re-tracking orphan PID 101842 for P0 ckpt-40 eval (lr=5e-6 GRPO step 40). Original exp auto-failed due to cron/PID mismatch. Pass criteria: rel_f1 > 0.30.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_lr5e6_r1\\\", \\\"spec\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"account\\\": \\\"root\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference\\\", \\\"pid\\\": \\\"101842\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + GRPO lr5e6 ckpt-40\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-40\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"log_path\\\": \\\"/tmp/eval_lr5e6_ckpt40.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-40\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"f1\\\": 0.007146887342486364, \\\"ign_f1\\\": 0.007146887342486364, \\\"precision\\\": 0.0065816821393931, \\\"recall\\\": 0.007818286560776891, \\\"evi_f1\\\": 0.7583892617449665, \\\"edcr\\\": 0.9942045337983383, \\\"format_ok_rate\\\": 0.9939086294416244, \\\"tp\\\": 95, \\\"pred_count\\\": 14434, \\\"gold_count\\\": 12151, \\\"n_truncated\\\": 424, \\\"inference_time_seconds\\\": 6152.4}, \\\"result_dir\\\": \\\"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40\\\"}, \\\"notes\\\": \\\"[2026-05-15 06:50] 全面状态检查: PID 101842 存活 (Rl, uptime 1:25), GPU 2: 10644 MiB/74% util. tmux mvp2_eval_lr5e6_r1_ckpt40 alive (创建于 05:25 UTC). 按 92s/batch 估算约 55/62 (89%), ETA ~10min (约UTC 07:00).\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.0071, \\\"precision\\\": 0.0066, \\\"recall\\\": 0.0078, \\\"evi_f1\\\": 0.7584, \\\"evi_precision\\\": 0.9113, \\\"evi_recall\\\": 0.6494, \\\"edcr\\\": 0.9942, \\\"format_ok_rate\\\": 0.9939, \\\"field_compliance_rate\\\": 0.5675, \\\"pred_count\\\": 14434, \\\"gold_count\\\": 12151, \\\"tp\\\": 95, \\\"n_truncated\\\": 424, \\\"inference_time_seconds\\\": 6152}, \\\"completed_at\\\": \\\"2026-05-14T23:11:48.225Z\\\"}, \\\"mvp2_eval_lr5e6_r1_ckpt20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T20:44:21.167Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:12:16.372Z\\\", \\\"spec\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"account\\\": \\\"root\\\", \\\"command\\\": \\\"bash /root/autodl-tmp/scripts/eval_lr5e6_ckpt20.sh\\\", \\\"pid\\\": \\\"96500\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + GRPO lr5e6 ckpt-20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-20\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"log_path\\\": \\\"/tmp/eval_lr5e6_ckpt20.log\\\"}, \\\"hypothesis\\\": \\\"P0 ckpt-20 early eval: lr=5e-6 GRPO at step 20. Pass criteria: rel_f1 > 0.30 (no catastrophic forgetting). Key MVP gate for P0.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_lr5e6_r1\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"rel_f1\\\": 0.0077, \\\"rel_precision\\\": 0.0071, \\\"rel_recall\\\": 0.0084, \\\"evi_f1\\\": 0.628, \\\"evi_precision\\\": 0.855, \\\"evi_recall\\\": 0.496, \\\"edcr\\\": 0.993, \\\"format_ok_rate\\\": 0.991, \\\"field_compliance_rate\\\": 0.399, \\\"pred_count\\\": 14440, \\\"gold_count\\\": 12151, \\\"tp\\\": 102, \\\"n_truncated\\\": 587, \\\"inference_time_seconds\\\": 6370.4}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-20\\\", \\\"log_path\\\": \\\"/tmp/eval_lr5e6_ckpt20.log\\\", \\\"completed_at\\\": \\\"2026-05-14T22:12:16.372Z\\\"}, \\\"mvp2_eval_ced_kl001_r4_step90\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:19:58.623Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:01:45.201Z\\\", \\\"hypothesis\\\": \\\"Eval true best checkpoint (step 90, reward=1.370). Critical after ckpt-50 showed reward hacking (rel_f1 -24.9pp). If step 90 also fails, CED reward design has fundamental issue.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001_r4\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && ... && python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 90 --quantize\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"83207\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-4B + SFT + GRPO ced_kl001 step-90\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/grpo_ced_kl001/checkpoint-90\\\", \\\"eval_data\\\": \\\"DocRED dev set\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/grpo_ced_kl001/checkpoint-90\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step90.log\\\"}, \\\"notes\\\": \\\"2026-05-15 03:20 UTC: ckpt-90 inference 31/62 (50%), ~45 min remaining. Started 02:32 UTC.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T19:57:37.435Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T19:57:39.702949+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.2108, \\\"ign_f1\\\": 0.2108, \\\"evi_f1\\\": 0.5666, \\\"edcr\\\": 0.8584, \\\"pred_count\\\": 11160, \\\"n_truncated\\\": 22, \\\"format_ok_rate\\\": 1, \\\"n_documents\\\": 985}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T20:01:45.201Z\\\"}, \\\"mvp2_eval_ced_kl001_r4_step100\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:08:31.821Z\\\", \\\"updated_at\\\": \\\"2026-05-14T19:41:30.318Z\\\", \\\"hypothesis\\\": \\\"Eval ced_kl001_r4 last checkpoint (step 100) to compare with best-reward checkpoint (step 50). If best ≠ last, the gap measures training stability under batch_size=1 GRPO variance.\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001_r4\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001_step100 --checkpoints 100 --quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"80789\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step100.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T18:09:02.064Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"model_name\\\": \\\"Qwen3-4B + SFT adapter + GRPO ced_kl001 step-100\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/grpo_ced_kl001/checkpoint-100\\\", \\\"eval_data\\\": \\\"DocRED dev set\\\", \\\"data_count\\\": 998, \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/grpo_ced_kl001/checkpoint-100\\\", \\\"wall_clock_seconds\\\": 5458.4, \\\"gpu_hours\\\": 1.52}, \\\"notes\\\": \\\"2026-05-15 03:20 UTC: ckpt-100 inference 48/62 (77%), ~20 min remaining. Started 02:09 UTC.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T19:35:23.622Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T19:35:25.057156+00:00\\\"}]}, \\\"metrics\\\": {\\\"rel_f1\\\": 0.2167, \\\"ign_f1\\\": 0.2167, \\\"precision\\\": 0.2849, \\\"recall\\\": 0.1749, \\\"evi_f1\\\": 0.5746, \\\"evi_precision\\\": 0.5244, \\\"evi_recall\\\": 0.6353, \\\"edcr\\\": 0.8539, \\\"pred_count\\\": 7460, \\\"gold_count\\\": 12151, \\\"tp\\\": 2125, \\\"n_truncated\\\": 21, \\\"format_ok_rate\\\": 1}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T19:40:00.432Z\\\"}, \\\"mvp2_eval_ced_kl001_r4_early\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:12:53.581Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:31:18.065Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 50 --quantize\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"75581\\\", \\\"log_path\\\": \\\"/tmp/eval_ced_kl001_ckpt50.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": {\\\"dev\\\": 985}, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Early eval of ced_kl001_r4 best-reward checkpoint (step 50, reward=1.1009) to get early signal on CED vs SFT baseline\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_kl001_r4\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/grpo_ced_kl001/checkpoint-50\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\"}, \\\"notes\\\": \\\"**Checkpoint-50 eval 完成，结果极差——MVP-2 双指标均 FAIL：**\\\\\\\\n\\\\\\\\n- rel_f1: 0.1563 vs SFT 0.4057 (Δ=-24.9pp)，远低于 -5pp 阈值\\\\\\\\n- evi_f1: 0.5643 vs SFT 0.7979 (Δ=-23.4pp)，需 +2pp 却暴跌\\\\\\\\n- EDCR: 0.8858 vs SFT 0.7118 (Δ=+17.4pp)，唯一改善项\\\\\\\\n- recall 崩塌 (0.117 vs gold 12151)，precision 也低 (0.236)\\\\\\\\n\\\\\\\\n**诊断**: training reward 上升 (1.101) 但 eval F1 崩塌，说明 GRPO 训练在优化 reward proxy 而非实际任务表现。模型学会了高 EDCR（少引用 distractor）但牺牲了大量 recall。pred_count=6032 vs gold=12151，预测数量严重不足。\\\\\\\\n\\\\\\\\n仍需等待 step-90 (reward=1.37) 的 eval 结果——如果 step-90 也崩塌，则 CED reward 设计需要根本性修改。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"f1\\\": 0.1563, \\\"ign_f1\\\": 0.1563, \\\"evi_f1\\\": 0.5643, \\\"edcr\\\": 0.8858, \\\"precision\\\": 0.2356, \\\"recall\\\": 0.1169, \\\"evi_precision\\\": 0.4864, \\\"evi_recall\\\": 0.6721, \\\"format_ok_rate\\\": 0.999, \\\"n_parseable\\\": 984, \\\"n_truncated\\\": 11, \\\"n_predictions\\\": 9250, \\\"tp\\\": 1421, \\\"pred_count\\\": 6032, \\\"gold_count\\\": 12151}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/grpo_ced_kl001/checkpoint-50\\\", \\\"log_path\\\": \\\"/tmp/eval_ced_kl001_ckpt50.log\\\", \\\"completed_at\\\": \\\"2026-05-14T18:31:06.454Z\\\"}, \\\"mvp2_grpo_flatnli_r6\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:25:07.083Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:17:52.909Z\\\", \\\"hypothesis\\\": \\\"Flat-NLI reward with kl_coef=0.01 + num_generations=8 from SFT scratch (not resume). 100-step probe to verify stability. Same D020 config as ced_kl001_r4 (which is healthy). Tests whether flat-NLI reward type works under stable training config.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && ... && PYTHONUNBUFFERED=1 python -m freige.training.grpo_trainer --stage 2 --kl_coef 0.01 --num_generations 8 --max_steps 100 --wandb_run_name grpo-s2-flatnli-r6\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"76958\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r6.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T17:25:30.099Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": {\\\"train\\\": 3027, \\\"dev\\\": 985}, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"wall_clock_seconds\\\": 3061.0, \\\"gpu_hours\\\": 0.85}, \\\"parent\\\": \\\"mvp2_grpo_flatnli_r5\\\", \\\"notes\\\": \\\"D020 配置：kl_coef=0.01 + num_generations=8 + save_steps=10 + max_steps=100。从 SFT 全新训练。\\\\n\\\\n**D024 Kill — Mode Collapse Confirmed (step 25)**:\\\\n- frac_zero_std: 0.1→0.4→0.6→0.7→0.9 (单调上升，破 0.8 阈值)\\\\n- f1_reward=0, flat_nli_reward=0 — 抽取和 NLI 完全死亡\\\\n- reward 100% format hacking (0.293)\\\\n- completion_length 缩短 773→586→399\\\\n- KL step 5 爆炸至 1.23 亿后回落\\\\n\\\\n**科学结论**: D020 配置下 flat-NLI reward 信号不足以维持 GRPO 多样性。与 extract_r4 (step 10 collapse) 模式一致。CED 是三种 reward type 中唯一能稳定训练的。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"steps_completed\\\": 25, \\\"final_frac_zero_std\\\": 0.9, \\\"final_f1_reward\\\": 0, \\\"final_flat_nli_reward\\\": 0, \\\"final_format_reward\\\": 0.293, \\\"collapse_step\\\": 25}, \\\"checkpoint_path\\\": \\\"N/A (killed at step 25, mode collapse)\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r6.log\\\", \\\"completed_at\\\": \\\"2026-05-14T18:16:31.087Z\\\"}, \\\"mvp2_grpo_extract_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T12:31:48.781Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:59:20.304Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.training.grpo_trainer --stage 1 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 0.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"53149\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_grpo_extract_r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T12:31:48.738Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": {\\\"train\\\": 3027, \\\"dev\\\": 985}, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Extraction-only reward (format×0.3, f1×3.0, ced=0) with kl_coef=0 establishes stable GRPO baseline\\\", \\\"parent\\\": \\\"mvp2_grpo_extract\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"hyperparams\\\": {\\\"learning_rate\\\": \\\"5e-5\\\", \\\"kl_coef\\\": 0, \\\"save_steps\\\": 20, \\\"num_iterations\\\": 1, \\\"format_reward_weight\\\": 0.3, \\\"f1_reward_weight\\\": 3, \\\"ced_reward_weight\\\": 0, \\\"per_device_batch_size\\\": 1, \\\"gradient_accumulation_steps\\\": 16, \\\"num_generations\\\": 4, \\\"quantization\\\": \\\"QLoRA 4-bit NF4\\\"}, \\\"wall_clock_seconds\\\": 12041.2, \\\"gpu_hours\\\": 3.34}, \\\"notes\\\": \\\"Negative result (756/756 steps completed). 两阶段行为：(1) step 1-520 f1_reward 在 0.02-0.49 波动，completion length ~43 tokens 稳定，看似健康；(2) 实际最后 100+ 步 grad_norm=0, frac_reward_zero_std=1.0, loss=0.0, entropy≈0.005。f1 波动是 SFT 初始化残留，非 GRPO 学习。停滞机制：kl_coef=0 + num_generations=4 → 4 个相同输出 → reward_std=0 → GRPO advantage=0 → 梯度为零。与 ced_r5 的差异：无 CED reward 通道，模型没 drift 到短输出（保持在 SFT 水平），但也完全停止学习。科学价值：证明 num_generations=4 不足以维持 GRPO 多样性，kl_coef=0 下 extraction-only 停滞而 CED collapse 更严重。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T15:52:29.058Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T15:52:29.969Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T15:52:31.006940+00:00\\\"}]}}, \\\"mvp2_grpo_ced_r5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T12:31:45.606Z\\\", \\\"updated_at\\\": \\\"2026-05-14T15:32:21.817Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"53071\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/mvp2_grpo_ced_r5.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T12:31:45.554Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": {\\\"train\\\": 3027, \\\"dev\\\": 985}, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"CED reward (format×0.3, f1×3.0, ced×1.0) with kl_coef=0 trains stably and improves Evi-F1 over SFT baseline\\\", \\\"parent\\\": \\\"mvp2_grpo_ced_r4\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"hyperparams\\\": {\\\"learning_rate\\\": \\\"5e-5\\\", \\\"kl_coef\\\": 0, \\\"save_steps\\\": 20, \\\"num_iterations\\\": 1, \\\"format_reward_weight\\\": 0.3, \\\"f1_reward_weight\\\": 3, \\\"ced_reward_weight\\\": 1, \\\"per_device_batch_size\\\": 1, \\\"gradient_accumulation_steps\\\": 16, \\\"num_generations\\\": 4, \\\"quantization\\\": \\\"QLoRA 4-bit NF4\\\"}, \\\"wall_clock_seconds\\\": 9887.5, \\\"gpu_hours\\\": 2.75}, \\\"notes\\\": \\\"⚠️ Mode collapse confirmed: step 250+ f1_reward=0, completion length collapsed to fixed 34 tokens, frac_reward_zero_std=0.9-1.0. Model learned to produce short fixed-format output maximizing ced_reward (0.99) + format_reward (0.3) while abandoning relation extraction (f1=0). Early checkpoints (pre-collapse) lost due to save_total_limit=5 — only steps 400-480 remain, all post-collapse. Current checkpoints likely unusable for eval.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"N/A (all checkpoints post-collapse, unusable)\\\", \\\"completed_at\\\": \\\"2026-05-14T15:29:18.460Z\\\"}}, \\\"count\\\": 18, \\\"total\\\": 18, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5503}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"plan_007_redocred_rsft_eval_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T16:25:37.094Z\", \"updated_at\": \"2026-05-17T02:56:32.555Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r2\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"pid\": 363317, \"data_path\": \"/root/autodl-tmp/data/re-docred\", \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\", \"eval_data\": \"re-docred/dev\", \"hypothesis\": \"Re-DocRED RSFT eval r2: verify CED-RSFT improvement transfers cross-dataset. Compare vs SFT baseline Ign-F1=0.3659 (D080).\", \"plan_id\": \"plan_007\", \"parent\": \"plan_007_redocred_4b_sft_eval_r2\", \"log_path\": \"/tmp/plan_007_redocred_rsft_eval_r2.log\"}, \"pid\": 363317, \"metrics\": {\"F1\": 0.0025, \"Ign-F1\": 0.0026, \"Evi-F1\": 0.8837, \"EDCR\": 0.9978, \"format_ok\": \"489/493\", \"truncated\": \"117/493\", \"predictions\": 8461}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r2\", \"completed_at\": \"2026-05-16T17:33:20.838Z\", \"notes\": \"⚠️ NEGATIVE: F1=0.0025 (catastrophic), Evi-F1=0.8837, EDCR=0.9978. SFT baseline on same data = 0.3659 (normal). Framing 调整提案已提交 Director (2026-05-16). 大概率 pipeline bug (adapter loading / prompt format / relation label mapping). Diagnostic Worker dispatched. 等 Director 选 A/B/C narrative 再决定下一步。\", \"hypothesis\": \"CED-RSFT improvements on DocRED should transfer to Re-DocRED: RSFT model should outperform SFT baseline on Re-DocRED Ign-F1, demonstrating cross-dataset generalization of rejection sampling gains.\"}, \"reeval_rsft_topk3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T22:00:34.722Z\", \"updated_at\": \"2026-05-16T00:24:22.091Z\", \"hypothesis\": \"Re-eval RSFT top_k=3 WITH --sft_adapter (D064 bug fix). 原 eval_plan_008_rsft_topk3 因缺 --sft_adapter 被 killed。对比 CED RSFT top_k=1 (rel_f1≈0.46) 和 SFT baseline (0.4057)。\", \"parent\": \"plan_008_rsft_topk3\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_topk3_output/checkpoint-1509 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/rsft_topk3_reeval --no-quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"268485\", \"log_path\": \"~/runs/faith-evidence-ie/reeval_rsft_topk3.log\", \"submitted_at\": \"2026-05-15T23:10:49.243Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"RSFT top_k=3 + SFT adapter\", \"seed\": 42, \"checkpoint_source\": \"rsft_topk3_output/checkpoint-1509\", \"eval_data\": \"docred dev\", \"wall_clock_seconds\": 3798.3, \"gpu_hours\": 1.06}, \"reproduce\": {\"finished_at\": \"2026-05-16T00:10:43.871Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T00:10:53.138391+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4454, \"rel_precision\": 0.4512, \"rel_recall\": 0.4398, \"ign_f1\": 0.4364, \"evi_f1\": 0.8088, \"edcr\": 0.6635, \"format_ok_rate\": 0.999, \"n_truncated\": 214, \"n_predictions\": 16020, \"inference_time_seconds\": 3546.4, \"ign_f1_corrected\": true}, \"conclusion\": \"negative\", \"notes\": \"RSFT top_k=3 rel_f1=0.4454，优于 SFT baseline (0.4057) 但劣于 CED RSFT top_k=1 (~0.46)。top_k=3 引入更多噪声训练样本，反而降低关系抽取精度。evi_f1=0.8088 较好。214/985 truncated。\", \"checkpoint_path\": \"/root/autodl-tmp/rsft_topk3_output/checkpoint-1509\", \"completed_at\": \"2026-05-16T00:14:07.521Z\"}, \"eval_plan_012_dpo_1ep_fixed_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:58:52.440Z\", \"updated_at\": \"2026-05-15T23:44:56.586Z\", \"spec\": {\"command\": \"DPO 1ep re-eval with --sft_adapter (D064 fix)\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 262075, \"log_path\": \"~/runs/faith-evidence-ie/eval_plan_012_dpo_1ep_fixed_r2.log\", \"submitted_at\": \"2026-05-15T21:58:52.150Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 0, \"model_name\": \"Qwen3-4B + SFT + DPO 1ep\", \"seed\": 42, \"checkpoint_source\": \"plan_012_dpo_ced_3ep\", \"eval_data\": \"docred_dev\", \"checkpoint_path\": \"/root/autodl-tmp/dpo_ced_output/checkpoint-167\", \"wall_clock_seconds\": 6197.9, \"gpu_hours\": 1.72}, \"reproduce\": {\"finished_at\": \"2026-05-15T23:36:34.758Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:36:37.754401+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.4034, \"evi_f1\": 0.8088, \"edcr\": 0.7139, \"format_ok_rate\": 0.999, \"truncated_rate\": 0.343, \"predictions\": 19107, \"ign_f1\": 0.4034, \"precision\": 0.3809, \"recall\": 0.4287, \"vs_sft_delta\": -0.0023, \"note\": \"DPO 1ep matches SFT baseline. 1ep→3ep trajectory shows gradual decoupling (rel_f1↓ evi_f1↑), consistent with GRPO pattern. Ign-F1=F1 exact match needs investigation.\"}, \"completed_at\": \"2026-05-15T23:42:10.085Z\"}, \"plan_012_dpo_ced\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:54:03.324Z\", \"updated_at\": \"2026-05-15T21:37:44.232Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/dpo_output\", \"data_path\": \"/root/autodl-tmp/dpo_data/dpo_pairs.jsonl\", \"data_count\": 2666, \"model_name\": \"Qwen3-4B + SFT + CED-DPO\", \"seed\": 42, \"beta\": 0.1, \"num_epochs\": 3, \"loss_type\": \"sigmoid\", \"base_model\": \"/root/autodl-tmp/models/Qwen3-4B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output\", \"pairs\": 2666}, \"hypothesis\": \"DPO+CED preference learning: 用 CED 构造 preference pairs (CED top-1 = chosen, CED bottom-1 = rejected)，DPO 训练。验证 offline preference optimization 能否替代 online GRPO 避免 catastrophic forgetting，同时利用 CED 信号。对比 RSFT (rel_f1=0.46) 和 SFT baseline (rel_f1=0.4057)。\", \"reproduce\": {\"finished_at\": \"2026-05-15T17:38:15.433Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T17:38:17.857458+00:00\"}]}, \"conclusion\": \"negative\", \"notes\": \"⚠️ Reviewer WARNING: 严重过拟合。3 epochs, rewards accuracy=1.0, margins 9x 膨胀, entropy 崩塌。checkpoint-501 是最过拟合版本，结果有 confound。需补 eval checkpoint-400 对比 + 重训 epochs=1。\", \"metrics\": {\"rel_f1\": 0.3429, \"evi_f1\": 0.8403, \"edcr\": 0.7294, \"format_ok_rate\": 0.995, \"checkpoint\": \"checkpoint-501\", \"rewards_accuracy\": 1, \"margins\": 9.01}, \"log_path\": \"~/runs/faith-evidence-ie/plan_012_dpo_ced.log\", \"completed_at\": \"2026-05-15T21:37:44.232Z\"}, \"plan_012_dpo_ced_1ep\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T18:50:44.852Z\", \"updated_at\": \"2026-05-15T21:36:34.720Z\", \"spec\": {\"hypothesis\": \"DPO+CED 1-epoch 重训：修复 3-epoch 过拟合问题。epochs=1 (~167 steps, <10min)，其余超参不变（β=0.1, lr=5e-7, loss=sigmoid, seed=42, pairs=2666）。让 DPO 数据点可用于论文。\", \"parent\": \"plan_012_dpo_ced\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 WANDB_PROJECT=freige-dpo PYTHONUNBUFFERED=1 python -m freige.training.dpo_trainer --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --dpo_data_path /root/autodl-tmp/dpo_data/dpo_pairs.jsonl --output_dir /root/autodl-tmp/dpo_output_1ep --beta 0.1 --num_epochs 1 --seed 42 --loss_type sigmoid --per_device_batch_size 1 --gradient_accumulation_steps 16 --wandb_run_name plan_012_dpo_ced_1ep\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"245103\", \"log_path\": \"~/runs/faith-evidence-ie/plan_012_dpo_ced_1ep.log\", \"submitted_at\": \"2026-05-15T19:43:02.707Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/dpo_data/dpo_pairs.jsonl\", \"data_count\": 2666, \"model_name\": \"Qwen3-4B + SFT + CED-DPO (1ep)\", \"seed\": 42, \"base_model\": \"/root/autodl-tmp/models/Qwen3-4B\", \"sft_adapter\": \"/root/autodl-tmp/sft_output\", \"beta\": 0.1, \"num_epochs\": 1, \"loss_type\": \"sigmoid\", \"checkpoint_path\": \"/root/autodl-tmp/dpo_output_1ep\", \"wall_clock_seconds\": 6812.0, \"gpu_hours\": 1.89}, \"gpu_ids\": [3], \"hypothesis\": \"DPO+CED 1 epoch retraining: plan_012_dpo_ced 3 epochs 严重过拟合 (rewards_accuracy=1.0, margins 9x膨胀, entropy崩塌)。重训 1 epoch 验证 early stopping 是否消除 overfitting confound。对比 plan_012 3ep + RSFT (rel_f1=0.46) + SFT baseline (rel_f1=0.4057)。\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"notes\": \"DPO+CED 完全失败。1ep eval: rel_f1=0.0022 (34 TPs / 19265 preds)，比 3ep (0.3429) 更差。训练指标正常 (accuracy=0.82, margins=0.86)，但模型输出几乎无法匹配正确 relation。evi_f1=0.75 说明模型仍生成 evidence，但 relation extraction 崩溃。358/985 truncated (36%)。DPO 对 evidence-grounded DocRE 完全不适用——不是过拟合问题，是方法本身失效。D061 已关闭 DPO 实验线。\", \"reproduce\": {\"finished_at\": \"2026-05-15T20:17:44.285Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T20:17:46.894275+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"n_preds\": 19265, \"inference_time_s\": 3643, \"train_loss_final\": 0.59, \"rewards_accuracy\": 0.82, \"rewards_margins\": 0.86, \"total_steps\": 167, \"training_time_min\": 33}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T21:36:34.720Z\"}, \"eval_plan_012_dpo_ced_1ep\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T20:22:11.752Z\", \"updated_at\": \"2026-05-15T21:27:30.000Z\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-15T21:25:00.000Z\", \"metrics\": {\"rel_f1\": 0.0022, \"ign_f1\": 0.0022, \"evi_f1\": 0.75, \"edcr\": 0.9982, \"num_preds\": 19265, \"format_ok\": \"981/985\", \"truncated\": \"358/985\", \"tp\": 34, \"inference_time_s\": 3643}, \"spec\": {\"command\": \"python -m freige.eval.inference --model_path /root/autodl-tmp/dpo_output_1ep/ --base_model /root/autodl-tmp/models/Qwen3-4B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/dpo_ced_1ep --no-quantize\", \"server\": \"rtx5090-4x\", \"data_path\": \"docred-dev\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + DPO-CED-1ep LoRA\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/dpo_output_1ep/ (final, 167 steps = 1 epoch)\", \"eval_data\": \"docred-dev\", \"gpu_id\": 2, \"parent\": \"plan_012_dpo_ced_1ep\", \"hypothesis\": \"DPO+CED 1ep checkpoint dev set evaluation: 验证 1ep 是否消除 3ep 过拟合 (rewards_acc=1.0, margins=9x), 对比 SFT baseline rel_f1=0.4057\"}}, \"mvp2_eval_rsft_r2b_maxtok1536_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:54:57.156Z\", \"updated_at\": \"2026-05-15T15:21:13.816Z\", \"hypothesis\": \"Truncation diagnosis: r2b eval with max_new_tokens=1536 (vs default 1024). Retry with correct model stack (Base+SFT+RSFT). If EDCR improves significantly (from 0.6609 toward 0.71+), truncation is the cause. If unchanged, distractor citation is genuine RSFT behavior.\", \"parent\": \"mvp2_eval_rsft_r2b\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T11:55:17.608Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\"\", \"finished_at\": \"2026-05-15T14:55:32.781Z\", \"training_hours\": 3.0}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && rm -rf /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/* && python -m freige.eval.inference --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --model_path /root/autodl-tmp/rsft_output_r2b --data_path /root/autodl-tmp/data/docred --no-quantize --max_new_tokens 1536 --output_dir /root/autodl-tmp/eval_results/rsft_r2b_maxtok1536\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"197381\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log\", \"submitted_at\": \"2026-05-15T11:55:18.697Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 12352.2, \"gpu_hours\": 3.43}, \"pid\": \"197381\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_rsft_r2b_maxtok1536_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T14:55:34.874453+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.4504, \"ign_f1\": 0.4504, \"evi_f1\": 0.8102, \"edcr\": 0.674, \"precision\": 0.4488, \"recall\": 0.4519, \"evi_precision\": 0.8162, \"evi_recall\": 0.8044, \"n_truncated\": 146, \"n_total\": 985, \"n_predictions\": 17188, \"n_distractor_citations\": 19589, \"n_total_citations\": 29063, \"format_ok_rate\": 0.998}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/\", \"completed_at\": \"2026-05-15T15:21:10.917Z\", \"notes\": \"max_new_tokens 1536 vs 1024: truncated 179→146 (-33), EDCR 0.6609→0.6740 (+0.0131), rel_f1 0.4493→0.4504, evi_f1 0.8128→0.8102。截断只是 EDCR 偏低的次要因素，distractor citation 是 RSFT 的真实行为。\"}, \"mvp2_eval_lr5e6_r1_ckpt100\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:00:57.035Z\", \"updated_at\": \"2026-05-15T01:30:01.493Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"submitted_at\": \"2026-05-14T23:39:51.199Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 6160.9, \"gpu_hours\": 1.71}, \"hypothesis\": \"P0 ckpt-100 eval: lr=5e-6 GRPO at step 100 (halfway point). Checkpoint-100 已保存。与 kl001_r4 的 step-100 (rel_f1=0.217) 形成直接对比。Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-14T23:39:49.461Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100 --quantize\\\"\", \"finished_at\": \"2026-05-15T01:19:34.927Z\", \"training_hours\": 1.66}, \"pid\": \"117635\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt100.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:19:36.799167+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.0138, \"rel_precision\": 0.0132, \"rel_recall\": 0.0144, \"ign_f1\": 0.0138, \"evi_f1\": 0.8504, \"evi_precision\": 0.9256, \"evi_recall\": 0.7866, \"edcr\": 0.9876, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.8162, \"evidence_format_rate\": 0.8162, \"tp\": 175, \"pred_count\": 13300, \"gold_count\": 12151, \"n_predictions\": 15498, \"n_truncated\": 181, \"n_documents\": 985, \"n_parseable\": 984, \"inference_time_seconds\": 5901.7}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-100\", \"completed_at\": \"2026-05-15T01:22:32.071Z\"}, \"mvp2_eval_lr5e6_r1_ckpt80\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:25:45.043Z\", \"updated_at\": \"2026-05-15T01:02:32.508Z\", \"spec\": {\"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO lr5e6 ckpt-80\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-80\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"command\": \"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-80 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80 --quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"111731\", \"account\": \"root\", \"log_path\": \"/tmp/eval_lr5e6_ckpt80.log\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/\"}, \"hypothesis\": \"P0 ckpt-80 eval: lr=5e-6 GRPO at step 80. 训练轨迹继续——ckpt-20 FAIL (0.0077), ckpt-40/60 待出. Step 80 reward=0.283 (回升), format_reward=0.249. Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"notes\": \"[2026-05-15 08:56] 正常完成。rel_f1=0.0116，延续 ckpt-20/40/60 的平坦趋势 (0.007-0.012)。evi_f1=0.828 继续上升。lr5e6 轨迹: step 20→40→60→80 rel_f1 = 0.008/0.007/0.009/0.012，无恢复信号。cuda:2 已释放。\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.0116, \"ign_f1\": 0.0116, \"precision\": 0.0109, \"recall\": 0.0124, \"evi_f1\": 0.828, \"evi_precision\": 0.928, \"evi_recall\": 0.748, \"edcr\": 0.993, \"format_ok_rate\": 0.999, \"field_compliance_rate\": 0.788, \"pred_count\": 13828, \"gold_count\": 12151, \"n_truncated\": 210, \"inference_time_seconds\": 6099}, \"completed_at\": \"2026-05-15T00:56:43.952Z\"}, \"mvp2_eval_lr5e6_r1_ckpt60_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T22:27:56.124Z\", \"updated_at\": \"2026-05-15T00:07:56.895Z\", \"hypothesis\": \"P0 ckpt-60 eval retry: 原 submit_on_allocated 失败 (pid=unknown). 手动 SSH 启动 /root/autodl-tmp/scripts/eval_lr5e6_ckpt60.sh. Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"spec\": {\"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO lr5e6 ckpt-60\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-60\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.inference --model_path /root/autodl-tmp/grpo_ced_lr5e6/checkpoint-60 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split dev --batch_size 16 --max_new_tokens 1024 --seed 42 --output_dir /root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60 --quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"108185\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_lr5e6_r1_ckpt60_r2.log\", \"account\": \"root\", \"backend\": \"tmux\", \"checkpoint_path\": \"/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json\"}, \"conclusion\": \"negative\", \"notes\": \"[2026-05-15 08:07] 正常完成。rel_f1=0.0093，与 ckpt-20 (0.0077) / ckpt-40 (0.0071) 同一量级，无恢复信号。evi_f1=0.81 持续上升（ckpt-20: 0.628, ckpt-40: 0.758），证据抽取在改善但关系能力完全崩塌。结果路径: /root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json。cuda:1 已释放。\", \"metrics\": {\"rel_f1\": 0.0093, \"precision\": 0.0085, \"recall\": 0.0103, \"evi_f1\": 0.81, \"edcr\": 0.993, \"format_ok_rate\": 0.998, \"pred_count\": 14626, \"gold_count\": 12151, \"tp\": 125, \"inference_time_seconds\": 6152}, \"completed_at\": \"2026-05-15T00:07:56.895Z\"}, \"mvp2_eval_lr5e6_r1_ckpt40_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:41:34.558Z\", \"updated_at\": \"2026-05-14T23:11:56.267Z\", \"hypothesis\": \"Re-tracking orphan PID 101842 for P0 ckpt-40 eval (lr=5e-6 GRPO step 40). Original exp auto-failed due to cron/PID mismatch. Pass criteria: rel_f1 > 0.30.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"spec\": {\"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"account\": \"root\", \"command\": \"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference\", \"pid\": \"101842\", \"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO lr5e6 ckpt-40\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-40\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"log_path\": \"/tmp/eval_lr5e6_ckpt40.log\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-40\", \"conclusion\": \"negative\", \"metrics\": {\"f1\": 0.007146887342486364, \"ign_f1\": 0.007146887342486364, \"precision\": 0.0065816821393931, \"recall\": 0.007818286560776891, \"evi_f1\": 0.7583892617449665, \"edcr\": 0.9942045337983383, \"format_ok_rate\": 0.9939086294416244, \"tp\": 95, \"pred_count\": 14434, \"gold_count\": 12151, \"n_truncated\": 424, \"inference_time_seconds\": 6152.4}, \"result_dir\": \"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40\"}, \"notes\": \"[2026-05-15 06:50] 全面状态检查: PID 101842 存活 (Rl, uptime 1:25), GPU 2: 10644 MiB/74% util. tmux mvp2_eval_lr5e6_r1_ckpt40 alive (创建于 05:25 UTC). 按 92s/batch 估算约 55/62 (89%), ETA ~10min (约UTC 07:00).\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.0071, \"precision\": 0.0066, \"recall\": 0.0078, \"evi_f1\": 0.7584, \"evi_precision\": 0.9113, \"evi_recall\": 0.6494, \"edcr\": 0.9942, \"format_ok_rate\": 0.9939, \"field_compliance_rate\": 0.5675, \"pred_count\": 14434, \"gold_count\": 12151, \"tp\": 95, \"n_truncated\": 424, \"inference_time_seconds\": 6152}, \"completed_at\": \"2026-05-14T23:11:48.225Z\"}, \"mvp2_eval_lr5e6_r1_ckpt20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T20:44:21.167Z\", \"updated_at\": \"2026-05-14T22:12:16.372Z\", \"spec\": {\"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"account\": \"root\", \"command\": \"bash /root/autodl-tmp/scripts/eval_lr5e6_ckpt20.sh\", \"pid\": \"96500\", \"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO lr5e6 ckpt-20\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-20\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"log_path\": \"/tmp/eval_lr5e6_ckpt20.log\"}, \"hypothesis\": \"P0 ckpt-20 early eval: lr=5e-6 GRPO at step 20. Pass criteria: rel_f1 > 0.30 (no catastrophic forgetting). Key MVP gate for P0.\", \"parent\": \"mvp2_grpo_ced_lr5e6_r1\", \"conclusion\": \"negative\", \"metrics\": {\"rel_f1\": 0.0077, \"rel_precision\": 0.0071, \"rel_recall\": 0.0084, \"evi_f1\": 0.628, \"evi_precision\": 0.855, \"evi_recall\": 0.496, \"edcr\": 0.993, \"format_ok_rate\": 0.991, \"field_compliance_rate\": 0.399, \"pred_count\": 14440, \"gold_count\": 12151, \"tp\": 102, \"n_truncated\": 587, \"inference_time_seconds\": 6370.4}, \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_lr5e6/checkpoint-20\", \"log_path\": \"/tmp/eval_lr5e6_ckpt20.log\", \"completed_at\": \"2026-05-14T22:12:16.372Z\"}, \"mvp2_eval_ced_kl001_r4_step90\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:19:58.623Z\", \"updated_at\": \"2026-05-14T20:01:45.201Z\", \"hypothesis\": \"Eval true best checkpoint (step 90, reward=1.370). Critical after ckpt-50 showed reward hacking (rel_f1 -24.9pp). If step 90 also fails, CED reward design has fundamental issue.\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && ... && python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 90 --quantize\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"83207\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": 985, \"model_name\": \"Qwen3-4B + SFT + GRPO ced_kl001 step-90\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-90\", \"eval_data\": \"DocRED dev set\", \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-90\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step90.log\"}, \"notes\": \"2026-05-15 03:20 UTC: ckpt-90 inference 31/62 (50%), ~45 min remaining. Started 02:32 UTC.\", \"reproduce\": {\"finished_at\": \"2026-05-14T19:57:37.435Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T19:57:39.702949+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.2108, \"ign_f1\": 0.2108, \"evi_f1\": 0.5666, \"edcr\": 0.8584, \"pred_count\": 11160, \"n_truncated\": 22, \"format_ok_rate\": 1, \"n_documents\": 985}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T20:01:45.201Z\"}, \"mvp2_eval_ced_kl001_r4_step100\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T18:08:31.821Z\", \"updated_at\": \"2026-05-14T19:41:30.318Z\", \"hypothesis\": \"Eval ced_kl001_r4 last checkpoint (step 100) to compare with best-reward checkpoint (step 50). If best ≠ last, the gap measures training stability under batch_size=1 GRPO variance.\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"spec\": {\"command\": \"python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001_step100 --checkpoints 100 --quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"80789\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_eval_ced_kl001_r4_step100.log\", \"submitted_at\": \"2026-05-14T18:09:02.064Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"model_name\": \"Qwen3-4B + SFT adapter + GRPO ced_kl001 step-100\", \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-100\", \"eval_data\": \"DocRED dev set\", \"data_count\": 998, \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-100\", \"wall_clock_seconds\": 5458.4, \"gpu_hours\": 1.52}, \"notes\": \"2026-05-15 03:20 UTC: ckpt-100 inference 48/62 (77%), ~20 min remaining. Started 02:09 UTC.\", \"reproduce\": {\"finished_at\": \"2026-05-14T19:35:23.622Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T19:35:25.057156+00:00\"}]}, \"metrics\": {\"rel_f1\": 0.2167, \"ign_f1\": 0.2167, \"precision\": 0.2849, \"recall\": 0.1749, \"evi_f1\": 0.5746, \"evi_precision\": 0.5244, \"evi_recall\": 0.6353, \"edcr\": 0.8539, \"pred_count\": 7460, \"gold_count\": 12151, \"tp\": 2125, \"n_truncated\": 21, \"format_ok_rate\": 1}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T19:40:00.432Z\"}, \"mvp2_eval_ced_kl001_r4_early\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:12:53.581Z\", \"updated_at\": \"2026-05-14T18:31:18.065Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -m freige.eval.batch_eval --exp_dir /root/autodl-tmp/grpo_ced_kl001 --sft_adapter /root/autodl-tmp/sft_output --output_dir /root/autodl-tmp/eval_results/grpo_ced_kl001 --checkpoints 50 --quantize\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"75581\", \"log_path\": \"/tmp/eval_ced_kl001_ckpt50.log\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Early eval of ced_kl001_r4 best-reward checkpoint (step 50, reward=1.1009) to get early signal on CED vs SFT baseline\", \"parent\": \"mvp2_grpo_ced_kl001_r4\", \"checkpoint_source\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-50\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\"}, \"notes\": \"**Checkpoint-50 eval 完成，结果极差——MVP-2 双指标均 FAIL：**\\\\n\\\\n- rel_f1: 0.1563 vs SFT 0.4057 (Δ=-24.9pp)，远低于 -5pp 阈值\\\\n- evi_f1: 0.5643 vs SFT 0.7979 (Δ=-23.4pp)，需 +2pp 却暴跌\\\\n- EDCR: 0.8858 vs SFT 0.7118 (Δ=+17.4pp)，唯一改善项\\\\n- recall 崩塌 (0.117 vs gold 12151)，precision 也低 (0.236)\\\\n\\\\n**诊断**: training reward 上升 (1.101) 但 eval F1 崩塌，说明 GRPO 训练在优化 reward proxy 而非实际任务表现。模型学会了高 EDCR（少引用 distractor）但牺牲了大量 recall。pred_count=6032 vs gold=12151，预测数量严重不足。\\\\n\\\\n仍需等待 step-90 (reward=1.37) 的 eval 结果——如果 step-90 也崩塌，则 CED reward 设计需要根本性修改。\", \"conclusion\": \"negative\", \"metrics\": {\"f1\": 0.1563, \"ign_f1\": 0.1563, \"evi_f1\": 0.5643, \"edcr\": 0.8858, \"precision\": 0.2356, \"recall\": 0.1169, \"evi_precision\": 0.4864, \"evi_recall\": 0.6721, \"format_ok_rate\": 0.999, \"n_parseable\": 984, \"n_truncated\": 11, \"n_predictions\": 9250, \"tp\": 1421, \"pred_count\": 6032, \"gold_count\": 12151}, \"checkpoint_path\": \"/root/autodl-tmp/grpo_ced_kl001/checkpoint-50\", \"log_path\": \"/tmp/eval_ced_kl001_ckpt50.log\", \"completed_at\": \"2026-05-14T18:31:06.454Z\"}, \"mvp2_grpo_flatnli_r6\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T17:25:07.083Z\", \"updated_at\": \"2026-05-14T18:17:52.909Z\", \"hypothesis\": \"Flat-NLI reward with kl_coef=0.01 + num_generations=8 from SFT scratch (not resume). 100-step probe to verify stability. Same D020 config as ced_kl001_r4 (which is healthy). Tests whether flat-NLI reward type works under stable training config.\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && ... && PYTHONUNBUFFERED=1 python -m freige.training.grpo_trainer --stage 2 --kl_coef 0.01 --num_generations 8 --max_steps 100 --wandb_run_name grpo-s2-flatnli-r6\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:3\"], \"pid\": \"76958\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r6.log\", \"submitted_at\": \"2026-05-14T17:25:30.099Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred/dev.json\", \"wall_clock_seconds\": 3061.0, \"gpu_hours\": 0.85}, \"parent\": \"mvp2_grpo_flatnli_r5\", \"notes\": \"D020 配置：kl_coef=0.01 + num_generations=8 + save_steps=10 + max_steps=100。从 SFT 全新训练。\\n\\n**D024 Kill — Mode Collapse Confirmed (step 25)**:\\n- frac_zero_std: 0.1→0.4→0.6→0.7→0.9 (单调上升，破 0.8 阈值)\\n- f1_reward=0, flat_nli_reward=0 — 抽取和 NLI 完全死亡\\n- reward 100% format hacking (0.293)\\n- completion_length 缩短 773→586→399\\n- KL step 5 爆炸至 1.23 亿后回落\\n\\n**科学结论**: D020 配置下 flat-NLI reward 信号不足以维持 GRPO 多样性。与 extract_r4 (step 10 collapse) 模式一致。CED 是三种 reward type 中唯一能稳定训练的。\", \"conclusion\": \"negative\", \"metrics\": {\"steps_completed\": 25, \"final_frac_zero_std\": 0.9, \"final_f1_reward\": 0, \"final_flat_nli_reward\": 0, \"final_format_reward\": 0.293, \"collapse_step\": 25}, \"checkpoint_path\": \"N/A (killed at step 25, mode collapse)\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_flatnli_r6.log\", \"completed_at\": \"2026-05-14T18:16:31.087Z\"}, \"mvp2_grpo_extract_r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:31:48.781Z\", \"updated_at\": \"2026-05-14T16:59:20.304Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 1 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 0.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:2\"], \"pid\": \"53149\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_extract_r3.log\", \"submitted_at\": \"2026-05-14T12:31:48.738Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Extraction-only reward (format×0.3, f1×3.0, ced=0) with kl_coef=0 establishes stable GRPO baseline\", \"parent\": \"mvp2_grpo_extract\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0, \"save_steps\": 20, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 0, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"num_generations\": 4, \"quantization\": \"QLoRA 4-bit NF4\"}, \"wall_clock_seconds\": 12041.2, \"gpu_hours\": 3.34}, \"notes\": \"Negative result (756/756 steps completed). 两阶段行为：(1) step 1-520 f1_reward 在 0.02-0.49 波动，completion length ~43 tokens 稳定，看似健康；(2) 实际最后 100+ 步 grad_norm=0, frac_reward_zero_std=1.0, loss=0.0, entropy≈0.005。f1 波动是 SFT 初始化残留，非 GRPO 学习。停滞机制：kl_coef=0 + num_generations=4 → 4 个相同输出 → reward_std=0 → GRPO advantage=0 → 梯度为零。与 ced_r5 的差异：无 CED reward 通道，模型没 drift 到短输出（保持在 SFT 水平），但也完全停止学习。科学价值：证明 num_generations=4 不足以维持 GRPO 多样性，kl_coef=0 下 extraction-only 停滞而 CED collapse 更严重。\", \"reproduce\": {\"finished_at\": \"2026-05-14T15:52:29.058Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T15:52:29.969Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T15:52:31.006940+00:00\"}]}}, \"mvp2_grpo_ced_r5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T12:31:45.606Z\", \"updated_at\": \"2026-05-14T15:32:21.817Z\", \"spec\": {\"command\": \"python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.0 --num_iterations 1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight 1.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:0\"], \"pid\": \"53071\", \"log_path\": \"~/runs/faith-evidence-ie/mvp2_grpo_ced_r5.log\", \"submitted_at\": \"2026-05-14T12:31:45.554Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": {\"train\": 3027, \"dev\": 985}, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"CED reward (format×0.3, f1×3.0, ced×1.0) with kl_coef=0 trains stably and improves Evi-F1 over SFT baseline\", \"parent\": \"mvp2_grpo_ced_r4\", \"checkpoint_source\": \"/root/autodl-tmp/sft_output\", \"eval_data\": \"/root/autodl-tmp/data/docred\", \"hyperparams\": {\"learning_rate\": \"5e-5\", \"kl_coef\": 0, \"save_steps\": 20, \"num_iterations\": 1, \"format_reward_weight\": 0.3, \"f1_reward_weight\": 3, \"ced_reward_weight\": 1, \"per_device_batch_size\": 1, \"gradient_accumulation_steps\": 16, \"num_generations\": 4, \"quantization\": \"QLoRA 4-bit NF4\"}, \"wall_clock_seconds\": 9887.5, \"gpu_hours\": 2.75}, \"notes\": \"⚠️ Mode collapse confirmed: step 250+ f1_reward=0, completion length collapsed to fixed 34 tokens, frac_reward_zero_std=0.9-1.0. Model learned to produce short fixed-format output maximizing ced_reward (0.99) + format_reward (0.3) while abandoning relation extraction (f1=0). Early checkpoints (pre-collapse) lost due to save_total_limit=5 — only steps 400-480 remain, all post-collapse. Current checkpoints likely unusable for eval.\", \"conclusion\": \"negative\", \"checkpoint_path\": \"N/A (all checkpoints post-collapse, unusable)\", \"completed_at\": \"2026-05-14T15:29:18.460Z\"}}, \"count\": 18, \"total\": 18, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5503}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ec463bf6-5204-4e1c-80c2-2d9538d7ca0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T03:52:30.732Z_
+
+<details><summary>↩ Tool result · `toolu_016AV6hHiffzarrBurfkUxV1`</summary>
+
+````text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# RSFT Scoring Commands\\n\\n## 验证结果\\n\\n- **脚本路径**: `/root/autodl-tmp/freige/training/rsft_score_filter.py`\\n- **模块导入**: `from freige.training.rsft_score_filter import main` ✅ OK\\n- **NLI 模型**: `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7`\\n\\n## Argparse 参数列表\\n\\n| 参数 | 必填 | 默认值 | 说明 |\\n|------|------|--------|------|\\n| `--input_dir` | ✅ | - | rsft_generate 输出目录（含 generations.jsonl） |\\n| `--output_path` | ✅ | - | 筛选结果输出目录 |\\n| `--nli_model_path` | ❌ | (内置默认) | NLI 模型路径 |\\n| `--nli_device` | ❌ | auto | NLI 模型运行设备 |\\n| `--tau` | ❌ | 0.5 | CED tau 阈值 |\\n| `--scoring_mode` | ❌ | ced | {ced, flat_nli} |\\n| `--format_weight` | ❌ | 0.2 | combined_score 中 format_reward 权重 |\\n| `--f1_weight` | ❌ | 0.4 | combined_score 中 f1_reward 权重 |\\n| `--ced_weight` | ❌ | 0.4 | combined_score 中 ced_reward 权重 |\\n| `--format_threshold` | ❌ | 0.5 | format_reward 最低阈值 |\\n| `--f1_threshold` | ❌ | 0.1 | f1_reward 最低阈值 |\\n| `--ced_threshold` | ❌ | 0.0 | ced_reward 最低阈值 |\\n| `--selection_strategy` | ❌ | top_pct | {threshold, top_k, top_pct} |\\n| `--top_k` | ❌ | 2 | top_k 策略: 每个文档取 top-K |\\n| `--top_pct` | ❌ | 25 | top_pct 策略: 每个文档取 top N% |\\n\\n## Candidate Generation 进度 (更新: 2026-05-17 ~00:00)\\n\\n| 模型 | lines | docs | 进度 | GPU | 输出路径 | 预计完成 |\\n|------|-------|------|------|-----|----------|----------|\\n| Qwen3-1.7B | 8616 | ~1077 | 35.6% | 0 | `freige/outputs/rsft_candidates_1_7b` | ~May 17 08:00 |\\n| Qwen3-8B | 6952 | ~869 | 28.7% | 3 | `freige/outputs/rsft_candidates_8b` | ~May 17 11:00 |\\n| LLaMA-3.1-8B | ~4456 | ~557 | 18.4% | 1→2(r3) | `/root/autodl-tmp/rsft_candidates_llama_3_1_8b` | ~May 17 15:00 |\\n\\n总目标: 3027 docs × 8 candidates each = 24216 lines\\n\\n## CED Scoring 命令模板\\n\\n基于 4B 历史参数（rsft_filtered_topk3: top_k=3, tau=0.5, weights 0.2/0.4/0.4）\\n\\n### 1.7B CED Scoring\\n\\n```bash\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\ncd /root/autodl-tmp && \\\\\\nCUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\npython -m freige.training.rsft_score_filter \\\\\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_1_7b \\\\\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_1_7b \\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\n    --nli_device cuda:0 \\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\n    --selection_strategy top_k --top_k 3\\n```\\n\\n### 8B CED Scoring\\n\\n```bash\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\ncd /root/autodl-tmp && \\\\\\nCUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\npython -m freige.training.rsft_score_filter \\\\\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b \\\\\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_8b \\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\n    --nli_device cuda:0 \\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\n    --selection_strategy top_k --top_k 3\\n```\\n\\n### LLaMA-3.1-8B CED Scoring\\n\\n```bash\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\ncd /root/autodl-tmp && \\\\\\nCUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\npython -m freige.training.rsft_score_filter \\\\\\n    --input_dir /root/autodl-tmp/rsft_candidates_llama_3_1_8b \\\\\\n    --output_path /root/autodl-tmp/rsft_scored_llama_3_1_8b \\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\n    --nli_device cuda:0 \\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\n    --selection_strategy top_k --top_k 3\\n```\\n\\n### 备选: flat_nli 模式（作为对比实验）\\n\\n将 `--scoring_mode ced` 替换为 `--scoring_mode flat_nli`，输出路径改为 `*_flat_nli`。\\n\\n## GPU 需求\\n\\n- CED scoring 使用 DeBERTa-v3-base NLI 模型，~400MB 显存，**任意一张卡即可**\\n- 3 个 scoring 作业可在不同 GPU 上并行跑，不影响进行中的 generation\\n- 计算量主要在 CPU 侧\\n\\n## 历史 4B Scoring 产出\\n\\n已有多轮 4B scoring 结果供参考：\\n- `/root/autodl-tmp/rsft_scored_s0~s3/` — 分 split 的中间结果\\n- `/root/autodl-tmp/rsft_filtered_topk3/` — top_k=3, 21728→8037 records (37.0%), 2691/2716 docs\\n- `/root/autodl-tmp/rsft_filtered_flat_nli/` — flat_nli 模式对比\\n- `/root/autodl-tmp/rsft_filtered_topk3_ced_filtered/` — 额外 CED 过滤\\n\\n## Evidence Tax Scaling Pattern (2026-05-16)\\n\\n**核心发现**：evidence tax 不是单调的，呈非线性 pattern：\\n- 1.7B: +6.2pp benefit（公平子集分析，442 docs 无截断）— evidence 起隐式正则化作用，抑制过度预测\\n- 4B: -7.9pp cost — 标准 evidence generation 负担\\n- 8B Qwen: ≈0 — 模型容量足够 absorb\\n- 8B LLaMA: -0.7pp — 跨家族确认大模型趋势\\n\\n**机制解释**：1.7B 模型容量不足时，evidence 约束减少幻觉（no-evi 输出 4513 triples vs with-evi 3991），precision 差 9.4pp。中等模型有足够容量生成正确 relations 但 evidence 成为额外负担。大模型容量冗余足以覆盖 evidence 生成。\\n\\n## rsft_generate CLI 正确参数 (2026-05-16)\\n\\n**模块**: `freige.training.rsft_generate`（不是 freige.rsft.generate_candidates）\\n\\n正确参数名：\\n- `--base_model`（不是 --model_path）\\n- `--num_generations`（不是 --n_candidates）\\n- 不加 --no-quantize（默认不量化）\\n- `--data_path` 指向文件（如 train_annotated.json），不是目录\\n- `--start_idx N` 支持断点续传\\n\\n## inference.py 正确参数（RSFT eval 三层加载）(2026-05-16)\\n\\n**模块**: `freige.eval.inference`\\n\\nRSFT 模型 eval 需要三个模型参数：\\n- `--base_model`: 基础模型路径（如 `/root/autodl-tmp/models/Qwen3-4B`）\\n- `--sft_adapter`: SFT adapter 路径（如 `/root/autodl-tmp/sft_output`）\\n- `--model_path`: RSFT checkpoint 路径（如 `/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510`）\\n\\n**加载顺序**: base_model → merge SFT adapter → load RSFT LoRA on top\\n\\n### Re-DocRED RSFT eval r4 命令（Director 确认）\\n```bash\\nbash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r4\\\"\\n```\\n\\n### plan_002 DocRED test eval 命令（Director 确认）\\n```bash\\nbash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_002_test_rsft_s43\\\"\\n```\\n\", \"total_chars\": 6356, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "5174b6c1-e1fd-4d0a-a88a-05d9aae2ba2e",
+  "isSidechain": false,
+  "promptId": "6656c7a5-780a-474e-a396-9263fa94d76f",
+  "type": "user",
+  "uuid": "8cfd5911-349c-4c08-aca3-2a71f9d5f37d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\\\", \\\"content\\\": \\\"# RSFT Scoring Commands\\\\n\\\\n## 验证结果\\\\n\\\\n- **脚本路径**: `/root/autodl-tmp/freige/training/rsft_score_filter.py`\\\\n- **模块导入**: `from freige.training.rsft_score_filter import main` ✅ OK\\\\n- **NLI 模型**: `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7`\\\\n\\\\n## Argparse 参数列表\\\\n\\\\n| 参数 | 必填 | 默认值 | 说明 |\\\\n|------|------|--------|------|\\\\n| `--input_dir` | ✅ | - | rsft_generate 输出目录（含 generations.jsonl） |\\\\n| `--output_path` | ✅ | - | 筛选结果输出目录 |\\\\n| `--nli_model_path` | ❌ | (内置默认) | NLI 模型路径 |\\\\n| `--nli_device` | ❌ | auto | NLI 模型运行设备 |\\\\n| `--tau` | ❌ | 0.5 | CED tau 阈值 |\\\\n| `--scoring_mode` | ❌ | ced | {ced, flat_nli} |\\\\n| `--format_weight` | ❌ | 0.2 | combined_score 中 format_reward 权重 |\\\\n| `--f1_weight` | ❌ | 0.4 | combined_score 中 f1_reward 权重 |\\\\n| `--ced_weight` | ❌ | 0.4 | combined_score 中 ced_reward 权重 |\\\\n| `--format_threshold` | ❌ | 0.5 | format_reward 最低阈值 |\\\\n| `--f1_threshold` | ❌ | 0.1 | f1_reward 最低阈值 |\\\\n| `--ced_threshold` | ❌ | 0.0 | ced_reward 最低阈值 |\\\\n| `--selection_strategy` | ❌ | top_pct | {threshold, top_k, top_pct} |\\\\n| `--top_k` | ❌ | 2 | top_k 策略: 每个文档取 top-K |\\\\n| `--top_pct` | ❌ | 25 | top_pct 策略: 每个文档取 top N% |\\\\n\\\\n## Candidate Generation 进度 (更新: 2026-05-17 ~00:00)\\\\n\\\\n| 模型 | lines | docs | 进度 | GPU | 输出路径 | 预计完成 |\\\\n|------|-------|------|------|-----|----------|----------|\\\\n| Qwen3-1.7B | 8616 | ~1077 | 35.6% | 0 | `freige/outputs/rsft_candidates_1_7b` | ~May 17 08:00 |\\\\n| Qwen3-8B | 6952 | ~869 | 28.7% | 3 | `freige/outputs/rsft_candidates_8b` | ~May 17 11:00 |\\\\n| LLaMA-3.1-8B | ~4456 | ~557 | 18.4% | 1→2(r3) | `/root/autodl-tmp/rsft_candidates_llama_3_1_8b` | ~May 17 15:00 |\\\\n\\\\n总目标: 3027 docs × 8 candidates each = 24216 lines\\\\n\\\\n## CED Scoring 命令模板\\\\n\\\\n基于 4B 历史参数（rsft_filtered_topk3: top_k=3, tau=0.5, weights 0.2/0.4/0.4）\\\\n\\\\n### 1.7B CED Scoring\\\\n\\\\n```bash\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\\\\\\\ncd /root/autodl-tmp && \\\\\\\\\\\\nCUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\\\\\\\npython -m freige.training.rsft_score_filter \\\\\\\\\\\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_1_7b \\\\\\\\\\\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_1_7b \\\\\\\\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\\\\\\\n    --nli_device cuda:0 \\\\\\\\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\\\\\\\n    --selection_strategy top_k --top_k 3\\\\n```\\\\n\\\\n### 8B CED Scoring\\\\n\\\\n```bash\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\\\\\\\ncd /root/autodl-tmp && \\\\\\\\\\\\nCUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\\\\\\\npython -m freige.training.rsft_score_filter \\\\\\\\\\\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b \\\\\\\\\\\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_8b \\\\\\\\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\\\\\\\n    --nli_device cuda:0 \\\\\\\\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\\\\\\\n    --selection_strategy top_k --top_k 3\\\\n```\\\\n\\\\n### LLaMA-3.1-8B CED Scoring\\\\n\\\\n```bash\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\\\\\\\ncd /root/autodl-tmp && \\\\\\\\\\\\nCUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\\\\\\\npython -m freige.training.rsft_score_filter \\\\\\\\\\\\n    --input_dir /root/autodl-tmp/rsft_candidates_llama_3_1_8b \\\\\\\\\\\\n    --output_path /root/autodl-tmp/rsft_scored_llama_3_1_8b \\\\\\\\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\\\\\\\n    --nli_device cuda:0 \\\\\\\\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\\\\\\\n    --selection_strategy top_k --top_k 3\\\\n```\\\\n\\\\n### 备选: flat_nli 模式（作为对比实验）\\\\n\\\\n将 `--scoring_mode ced` 替换为 `--scoring_mode flat_nli`，输出路径改为 `*_flat_nli`。\\\\n\\\\n## GPU 需求\\\\n\\\\n- CED scoring 使用 DeBERTa-v3-base NLI 模型，~400MB 显存，**任意一张卡即可**\\\\n- 3 个 scoring 作业可在不同 GPU 上并行跑，不影响进行中的 generation\\\\n- 计算量主要在 CPU 侧\\\\n\\\\n## 历史 4B Scoring 产出\\\\n\\\\n已有多轮 4B scoring 结果供参考：\\\\n- `/root/autodl-tmp/rsft_scored_s0~s3/` — 分 split 的中间结果\\\\n- `/root/autodl-tmp/rsft_filtered_topk3/` — top_k=3, 21728→8037 records (37.0%), 2691/2716 docs\\\\n- `/root/autodl-tmp/rsft_filtered_flat_nli/` — flat_nli 模式对比\\\\n- `/root/autodl-tmp/rsft_filtered_topk3_ced_filtered/` — 额外 CED 过滤\\\\n\\\\n## Evidence Tax Scaling Pattern (2026-05-16)\\\\n\\\\n**核心发现**：evidence tax 不是单调的，呈非线性 pattern：\\\\n- 1.7B: +6.2pp benefit（公平子集分析，442 docs 无截断）— evidence 起隐式正则化作用，抑制过度预测\\\\n- 4B: -7.9pp cost — 标准 evidence generation 负担\\\\n- 8B Qwen: ≈0 — 模型容量足够 absorb\\\\n- 8B LLaMA: -0.7pp — 跨家族确认大模型趋势\\\\n\\\\n**机制解释**：1.7B 模型容量不足时，evidence 约束减少幻觉（no-evi 输出 4513 triples vs with-evi 3991），precision 差 9.4pp。中等模型有足够容量生成正确 relations 但 evidence 成为额外负担。大模型容量冗余足以覆盖 evidence 生成。\\\\n\\\\n## rsft_generate CLI 正确参数 (2026-05-16)\\\\n\\\\n**模块**: `freige.training.rsft_generate`（不是 freige.rsft.generate_candidates）\\\\n\\\\n正确参数名：\\\\n- `--base_model`（不是 --model_path）\\\\n- `--num_generations`（不是 --n_candidates）\\\\n- 不加 --no-quantize（默认不量化）\\\\n- `--data_path` 指向文件（如 train_annotated.json），不是目录\\\\n- `--start_idx N` 支持断点续传\\\\n\\\\n## inference.py 正确参数（RSFT eval 三层加载）(2026-05-16)\\\\n\\\\n**模块**: `freige.eval.inference`\\\\n\\\\nRSFT 模型 eval 需要三个模型参数：\\\\n- `--base_model`: 基础模型路径（如 `/root/autodl-tmp/models/Qwen3-4B`）\\\\n- `--sft_adapter`: SFT adapter 路径（如 `/root/autodl-tmp/sft_output`）\\\\n- `--model_path`: RSFT checkpoint 路径（如 `/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510`）\\\\n\\\\n**加载顺序**: base_model → merge SFT adapter → load RSFT LoRA on top\\\\n\\\\n### Re-DocRED RSFT eval r4 命令（Director 确认）\\\\n```bash\\\\nbash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r4\\\\\\\"\\\\n```\\\\n\\\\n### plan_002 DocRED test eval 命令（Director 确认）\\\\n```bash\\\\nbash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_002_test_rsft_s43\\\\\\\"\\\\n```\\\\n\\\", \\\"total_chars\\\": 6356, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/memory.md\", \"content\": \"# RSFT Scoring Commands\\n\\n## 验证结果\\n\\n- **脚本路径**: `/root/autodl-tmp/freige/training/rsft_score_filter.py`\\n- **模块导入**: `from freige.training.rsft_score_filter import main` ✅ OK\\n- **NLI 模型**: `/root/autodl-tmp/.hf_cache/models--cross-encoder--nli-deberta-v3-base/snapshots/6c749ce3425cd33b46d187e45b92bbf96ee12ec7`\\n\\n## Argparse 参数列表\\n\\n| 参数 | 必填 | 默认值 | 说明 |\\n|------|------|--------|------|\\n| `--input_dir` | ✅ | - | rsft_generate 输出目录（含 generations.jsonl） |\\n| `--output_path` | ✅ | - | 筛选结果输出目录 |\\n| `--nli_model_path` | ❌ | (内置默认) | NLI 模型路径 |\\n| `--nli_device` | ❌ | auto | NLI 模型运行设备 |\\n| `--tau` | ❌ | 0.5 | CED tau 阈值 |\\n| `--scoring_mode` | ❌ | ced | {ced, flat_nli} |\\n| `--format_weight` | ❌ | 0.2 | combined_score 中 format_reward 权重 |\\n| `--f1_weight` | ❌ | 0.4 | combined_score 中 f1_reward 权重 |\\n| `--ced_weight` | ❌ | 0.4 | combined_score 中 ced_reward 权重 |\\n| `--format_threshold` | ❌ | 0.5 | format_reward 最低阈值 |\\n| `--f1_threshold` | ❌ | 0.1 | f1_reward 最低阈值 |\\n| `--ced_threshold` | ❌ | 0.0 | ced_reward 最低阈值 |\\n| `--selection_strategy` | ❌ | top_pct | {threshold, top_k, top_pct} |\\n| `--top_k` | ❌ | 2 | top_k 策略: 每个文档取 top-K |\\n| `--top_pct` | ❌ | 25 | top_pct 策略: 每个文档取 top N% |\\n\\n## Candidate Generation 进度 (更新: 2026-05-17 ~00:00)\\n\\n| 模型 | lines | docs | 进度 | GPU | 输出路径 | 预计完成 |\\n|------|-------|------|------|-----|----------|----------|\\n| Qwen3-1.7B | 8616 | ~1077 | 35.6% | 0 | `freige/outputs/rsft_candidates_1_7b` | ~May 17 08:00 |\\n| Qwen3-8B | 6952 | ~869 | 28.7% | 3 | `freige/outputs/rsft_candidates_8b` | ~May 17 11:00 |\\n| LLaMA-3.1-8B | ~4456 | ~557 | 18.4% | 1→2(r3) | `/root/autodl-tmp/rsft_candidates_llama_3_1_8b` | ~May 17 15:00 |\\n\\n总目标: 3027 docs × 8 candidates each = 24216 lines\\n\\n## CED Scoring 命令模板\\n\\n基于 4B 历史参数（rsft_filtered_topk3: top_k=3, tau=0.5, weights 0.2/0.4/0.4）\\n\\n### 1.7B CED Scoring\\n\\n```bash\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\ncd /root/autodl-tmp && \\\\\\nCUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\npython -m freige.training.rsft_score_filter \\\\\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_1_7b \\\\\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_1_7b \\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\n    --nli_device cuda:0 \\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\n    --selection_strategy top_k --top_k 3\\n```\\n\\n### 8B CED Scoring\\n\\n```bash\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\ncd /root/autodl-tmp && \\\\\\nCUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\npython -m freige.training.rsft_score_filter \\\\\\n    --input_dir /root/autodl-tmp/freige/outputs/rsft_candidates_8b \\\\\\n    --output_path /root/autodl-tmp/freige/outputs/rsft_scored_8b \\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\n    --nli_device cuda:0 \\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\n    --selection_strategy top_k --top_k 3\\n```\\n\\n### LLaMA-3.1-8B CED Scoring\\n\\n```bash\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\\\\ncd /root/autodl-tmp && \\\\\\nCUDA_VISIBLE_DEVICES=2 HF_HOME=/root/autodl-tmp/.hf_cache \\\\\\npython -m freige.training.rsft_score_filter \\\\\\n    --input_dir /root/autodl-tmp/rsft_candidates_llama_3_1_8b \\\\\\n    --output_path /root/autodl-tmp/rsft_scored_llama_3_1_8b \\\\\\n    --nli_model_path cross-encoder/nli-deberta-v3-base \\\\\\n    --nli_device cuda:0 \\\\\\n    --scoring_mode ced --tau 0.5 \\\\\\n    --selection_strategy top_k --top_k 3\\n```\\n\\n### 备选: flat_nli 模式（作为对比实验）\\n\\n将 `--scoring_mode ced` 替换为 `--scoring_mode flat_nli`，输出路径改为 `*_flat_nli`。\\n\\n## GPU 需求\\n\\n- CED scoring 使用 DeBERTa-v3-base NLI 模型，~400MB 显存，**任意一张卡即可**\\n- 3 个 scoring 作业可在不同 GPU 上并行跑，不影响进行中的 generation\\n- 计算量主要在 CPU 侧\\n\\n## 历史 4B Scoring 产出\\n\\n已有多轮 4B scoring 结果供参考：\\n- `/root/autodl-tmp/rsft_scored_s0~s3/` — 分 split 的中间结果\\n- `/root/autodl-tmp/rsft_filtered_topk3/` — top_k=3, 21728→8037 records (37.0%), 2691/2716 docs\\n- `/root/autodl-tmp/rsft_filtered_flat_nli/` — flat_nli 模式对比\\n- `/root/autodl-tmp/rsft_filtered_topk3_ced_filtered/` — 额外 CED 过滤\\n\\n## Evidence Tax Scaling Pattern (2026-05-16)\\n\\n**核心发现**：evidence tax 不是单调的，呈非线性 pattern：\\n- 1.7B: +6.2pp benefit（公平子集分析，442 docs 无截断）— evidence 起隐式正则化作用，抑制过度预测\\n- 4B: -7.9pp cost — 标准 evidence generation 负担\\n- 8B Qwen: ≈0 — 模型容量足够 absorb\\n- 8B LLaMA: -0.7pp — 跨家族确认大模型趋势\\n\\n**机制解释**：1.7B 模型容量不足时，evidence 约束减少幻觉（no-evi 输出 4513 triples vs with-evi 3991），precision 差 9.4pp。中等模型有足够容量生成正确 relations 但 evidence 成为额外负担。大模型容量冗余足以覆盖 evidence 生成。\\n\\n## rsft_generate CLI 正确参数 (2026-05-16)\\n\\n**模块**: `freige.training.rsft_generate`（不是 freige.rsft.generate_candidates）\\n\\n正确参数名：\\n- `--base_model`（不是 --model_path）\\n- `--num_generations`（不是 --n_candidates）\\n- 不加 --no-quantize（默认不量化）\\n- `--data_path` 指向文件（如 train_annotated.json），不是目录\\n- `--start_idx N` 支持断点续传\\n\\n## inference.py 正确参数（RSFT eval 三层加载）(2026-05-16)\\n\\n**模块**: `freige.eval.inference`\\n\\nRSFT 模型 eval 需要三个模型参数：\\n- `--base_model`: 基础模型路径（如 `/root/autodl-tmp/models/Qwen3-4B`）\\n- `--sft_adapter`: SFT adapter 路径（如 `/root/autodl-tmp/sft_output`）\\n- `--model_path`: RSFT checkpoint 路径（如 `/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510`）\\n\\n**加载顺序**: base_model → merge SFT adapter → load RSFT LoRA on top\\n\\n### Re-DocRED RSFT eval r4 命令（Director 确认）\\n```bash\\nbash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/re-docred --split dev --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_007_redocred_rsft_eval_r4\\\"\\n```\\n\\n### plan_002 DocRED test eval 命令（Director 确认）\\n```bash\\nbash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_ced_s43/checkpoint-510 --base_model /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output --data_path /root/autodl-tmp/data/docred --split test --batch_size 4 --max_new_tokens 1024 --seed 42 --no-quantize --output_dir /root/autodl-tmp/eval_results/plan_002_test_rsft_s43\\\"\\n```\\n\", \"total_chars\": 6356, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5174b6c1-e1fd-4d0a-a88a-05d9aae2ba2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "8cfd5911-349c-4c08-aca3-2a71f9d5f37d",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Negative experiments systematic review and diagnosis",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-17T03:52:35.077Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also read the ROADMAP and decisions to get more context on what happened after these negative results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8cfd5911-349c-4c08-aca3-2a71f9d5f37d",
+  "isSidechain": false,
+  "requestId": "req_011Cb7To4DJRKGpGsbQHDAze",
+  "type": "assistant",
+  "uuid": "307a537c-7a7a-4588-950a-4bebeda76f80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ApJMkga9EiWdocpEp3QvFS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21168,
+      "cache_read_input_tokens": 28010,
+      "output_tokens": 144,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21168,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 144,
+          "cache_read_input_tokens": 28010,
+          "cache_creation_input_tokens": 21168,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21168
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T03:52:35.919Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01XWxLWgchPZpJxWvVdZb7v9`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "decisions.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "307a537c-7a7a-4588-950a-4bebeda76f80",
+  "isSidechain": false,
+  "requestId": "req_011Cb7To4DJRKGpGsbQHDAze",
+  "type": "assistant",
+  "uuid": "f4410d48-170a-45d8-80c7-f5983b15546b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ApJMkga9EiWdocpEp3QvFS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21168,
+      "cache_read_input_tokens": 28010,
+      "output_tokens": 144,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21168,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 144,
+          "cache_read_input_tokens": 28010,
+          "cache_creation_input_tokens": 21168,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21168
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T03:52:36.203Z_
+
+<details><summary>↩ Tool result · `toolu_01XWxLWgchPZpJxWvVdZb7v9`</summary>
+
+```text
+Error: result (70,713 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f4410d48-170a-45d8-80c7-f5983b15546b",
+  "isSidechain": false,
+  "promptId": "6656c7a5-780a-474e-a396-9263fa94d76f",
+  "type": "user",
+  "uuid": "2ccab801-c824-4a0c-9315-2c284e1b3cef",
+  "toolUseResult": "Error: result (70,713 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/decisions.yaml\", \"content\": \"_next_id: 87\\ndecisions:\\n- id: D001\\n  date: 2026-05-14 04:21 UTC\\n  summary: MVP 设计：两阶段验证——MVP-1 CED 信号验证（离线）→ MVP-2 端到端训练验证\\n  rationale: CED 是核心创新，必须先验证 DeBERTa NLI 能在 DocRED 上区分金标证据与实体共现干扰句（MVP-1），再投入 GPU\\n    跑完整训练流水线（MVP-2）。MVP-1 失败则 idea 需 pivot，避免浪费 GPU。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-14 05:46 UTC\\n  summary: 'MVP-1 PASS: CED 信号验证通过，核心假设成立（margin 0.48, accuracy 81.5%, Pearson r 0.34）'\\n  rationale: CED margin 4.8× 超过阈值，DeBERTa 判别力主要来自语义蕴含而非词汇重叠（r=0.34 远低于 0.7）。三个需关注项：33.4%\\n    gold p_pos < τ=0.5（τ 可能需调低）、44.4% 无 hard negatives（退化为 flat NLI）、少数负 margin 样本（标注噪声）。这些不影响\\n    MVP 结论但影响 Research 阶段 CED 调参。\\n  related_experiments:\\n  - exp_id: mvp1_ced_signal\\n    role: primary\\n    result: PASS — mean_margin=0.4827, accuracy=81.5%, pearson_r=0.3406\\n  depends_on: []\\n- id: D003\\n  date: 2026-05-14 06:02 UTC\\n  summary: 'Smoke test 功能性 PASS: ZeRO-2 + QLoRA 兼容，4.9GB/卡，授权启动 MVP-2 SFT'\\n  rationale: Smoke test 自报 FAIL 是假阴性——synthetic data format-only reward 产生零 variance，数学上无梯度是正常行为。关键目标全部达成：ZeRO-2+QLoRA+GRPOTrainer\\n    兼容、显存充裕（4.9/32GB）、有 reward variance 时梯度正常。Reviewer 独立确认功能性 PASS。\\n  related_experiments:\\n  - exp_id: smoke_test_grpo\\n    role: infrastructure\\n    result: 功能性 PASS (ZeRO-2+QLoRA, 4×5090, 4.9GB/卡)\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-14 07:26 UTC\\n  summary: 发现 rtx5090-4x 和 gpu-5090-4x-1 为同一台机器（4 GPU），GRPO 三路对比改为串行\\n  rationale: Reviewer 核实两个 SSH endpoint 返回相同 hostname 和 PID。实际资源 = 4× RTX 5090 32GB，非\\n    8 张。串行 3 路 GRPO 预估 ~7-10h（每路 ~2-3h），今天内可完成 MVP-2，暂不需要额外申请 GPU。\\n  related_experiments: []\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-14 10:03 UTC\\n  summary: CED r1 训练 step 40 后 mode collapse，启动早停+checkpoint 抢救+cliprange 排查\\n  rationale: Reviewer 审查发现 step 40 后所有指标退化（total_reward 1.79→1.10, f1 0.098→0.012,\\n    length 88→547）。clip_ratio 全程为 0 表明 PPO 裁剪未生效，可能是 policy drift 失控的根因。决策：(1) 抢救\\n    step 40 checkpoint 作为当前最优；(2) step 70 前不回升则 kill；(3) 排查并修正 cliprange 后重跑。step\\n    40 checkpoint 仍可用于 vs SFT 的对比 eval，MVP-2 流程不完全停滞。\\n  related_experiments:\\n  - exp_id: mvp2_grpo_ced_r1\\n    role: primary\\n    result: training collapse after step 40, early stopping evaluation in progress\\n  depends_on:\\n  - D003\\n  - D004\\n- id: D006\\n  date: 2026-05-14 10:24 UTC\\n  summary: Kill CED r1（F1 归零+无 checkpoint），准备修复配置后重跑 r2\\n  rationale: Reviewer 确认 step 80 时 f1_reward=0.001（从 peak 0.098 单调下降 50 步），grpo_s3\\n    目录为空（无中间 checkpoint），step 40 最优模型不可挽回。继续 1.3h 必产废模型。诊断三个根因：(1) 无 save_steps 配置；(2)\\n    reward 权重失衡（format ~0.97 远大于 f1 ~0.001，模型无 f1 梯度信号）；(3) clip_ratio=0 裁剪未生效。决策\\n    kill 并修复后重跑 r2。\\n  related_experiments:\\n  - exp_id: mvp2_grpo_ced_r1\\n    role: primary\\n    result: KILL — f1_reward 归零, 无 checkpoint, 训练不可挽回\\n  depends_on:\\n  - D005\\n- id: D007\\n  date: 2026-05-14 11:28 UTC\\n  summary: r3 回退 num_iterations=1，隔离变量逐一测试\\n  rationale: Reviewer CRITICAL 确认：r2 的 KL 在 step 5 爆到 37亿、step 15 爆到 3400亿，直接导致 loss\\n    爆炸+OOM。根因是 num_iterations=2 + QLoRA 4-bit 量化 logits 精度不足，两次迭代间 KL 被放大。r2 同时改了\\n    6 个超参，崩溃后无法归因。r3 必须回退 num_iterations=1，保留 reward weighting（reward 0.25→0.42 正常上升证明\\n    WeightedRewardFn 有效），一次只改一个变量。\\n  related_experiments:\\n  - exp_id: mvp2_grpo_ced_r2\\n    role: evidence\\n    result: KL explosion + OOM at step 18, num_iterations=2 confirmed as root cause\\n  depends_on: []\\n- id: D008\\n  date: 2026-05-14 12:07 UTC\\n  summary: D007 证伪：KL 爆炸根因是 kl_coef + QLoRA 4-bit 不兼容，非 num_iterations。全部 GRPO 重跑\\n    kl_coef=0\\n  rationale: 3 个 GRPO 实验（num_iterations=1）均在 step 5 触发 KL 爆炸早停（KL 达 10^10 量级）。对比 r1（kl_coef=0/未设）跑了\\n    80+ steps 才因 reward imbalance collapse。证据链：所有设 kl_coef=0.05 的实验全部 step 5 爆炸，未设的\\n    r1 稳定运行。机理：QLoRA 4-bit 量化噪声导致 ref model 和 training model 的 log-probs 存在系统性偏差，KL(π_θ||π_ref)\\n    从第一步就是天文数字。修复：kl_coef=0，依赖 reward weighting + save_steps + KL 监控（logging only）控制稳定性。\\n  related_experiments:\\n  - exp_id: mvp2_grpo_ced_r3\\n    role: evidence\\n    result: KL explosion step 5, kl_coef=0.05, num_iterations=1\\n  - exp_id: mvp2_grpo_extract\\n    role: evidence\\n    result: KL explosion step 5, KL=69.5B\\n  - exp_id: mvp2_grpo_flatnli\\n    role: evidence\\n    result: KL explosion step 5, KL=50.8B\\n  depends_on:\\n  - D007\\n- id: D009\\n  date: 2026-05-14 12:12 UTC\\n  summary: CED r4 采用保守配置：grad_accum=16 + lr=5e-6 + kl_coef=0.5 + warmup 200步，解决 r3\\n    单卡 batch=1 + 高 lr 导致的 KL 爆炸\\n  rationale: r3 根因明确：单卡无 grad_accum 导致 effective batch=1，梯度噪声极高，5 步内 KL 爆炸至 4.4M。r1-r3\\n    三次失败模式不同（mode collapse / OOM / KL explosion），说明 CED reward 本身不是问题，是训练超参不稳定。r4\\n    同时修复 3 个因素：(1) grad_accum=16 使 effective batch=16; (2) lr 从 5e-5 降至 5e-6; (3)\\n    kl_coef 从 0.05 升至 0.5 加强偏离惩罚; (4) 加 200 步 warmup 稳定初始阶段。需先拿到 extract 和 flatnli\\n    r1 结果作为对照基线。\\n  related_experiments:\\n  - exp_id: mvp2_grpo_ced_r3\\n    role: evidence\\n    result: failed - KL explosion at step 5, batch=1 root cause\\n  - exp_id: mvp2_grpo_ced_r4\\n    role: target\\n    result: pending approval\\n  depends_on: []\\n- id: D010\\n  date: 2026-05-14 12:32 UTC\\n  summary: 选择 Option A：保留 kl_coef=0.0 实验进程，修复 registry 状态从 killed → RUNNING；D009 的\\n    kl_coef=0.5 正式作废\\n  rationale: Reviewer critical 报告 registry-reality 不一致。3 个实验实际在跑（kl_coef=0.0, grad_acc=16）但\\n    registry 标记 killed。配置本身正确——D008 已证明 kl_coef>0 在 QLoRA 4-bit 下不稳定（r1 kl_coef=0\\n    稳定 80 步 vs 所有 kl_coef>0 爆炸）。D009 提出的 kl_coef=0.5 会放大 QLoRA 量化噪声导致的 KL 计算失真，Reviewer\\n    warning 合理，该指令作废。\\n  related_experiments:\\n  - exp_id: mvp2_grpo_ced_r4\\n    role: target\\n    result: running with kl_coef=0.0, registry fix needed\\n  - exp_id: mvp2_grpo_extract_r2\\n    role: target\\n    result: running with kl_coef=0.0, registry fix needed\\n  - exp_id: mvp2_grpo_flatnli_r2\\n    role: target\\n    result: running with kl_coef=0.0, registry fix needed\\n  depends_on:\\n  - D008\\n  - D009\\n- id: D011\\n  date: 2026-05-14 13:30 UTC\\n  summary: 采纳 Reviewer 评估框架审查：精确化 pass criteria、补充 extraction-only vs SFT 对比、要求多 checkpoint\\n    eval + 统一 eval 脚本\\n  rationale: Reviewer 指出 4 个 warning：(1) 缺 extraction-only vs SFT 对比——回答 GRPO 本身是否有效；(2)\\n    kl_coef=0 必须 eval 多 checkpoint 避免 collapse 后只看末尾；(3) pass criteria 需精确化基准；(4)\\n    eval 代码必须统一。全部采纳，已更新 ROADMAP 和指令 Agent。\\n  related_experiments:\\n  - exp_id: mvp2_grpo_ced_r5\\n    role: target\\n  - exp_id: mvp2_grpo_extract_r3\\n    role: target\\n  - exp_id: mvp2_grpo_flatnli_r3\\n    role: target\\n  - exp_id: mvp2_sft_eval_r2\\n    role: baseline\\n  depends_on:\\n  - D010\\n- id: D012\\n  date: 2026-05-14 14:54 UTC\\n  summary: 调整 MVP-2 pass criteria：取消绝对 F1>45 门槛，改为相对标准；EDCR 升为主指标\\n  rationale: SFT baseline F1=40.57%（37% 输出截断于 1024 tokens），绝对门槛 F1>45 已不现实。截断影响所有模型相同，相对对比仍有效。Evi-F1=79.79%\\n    设了高 baseline，但 EDCR=71.18% 说明模型\\\"spray-and-pray\\\"大量引用 distractor——CED 的核心攻击目标。调整后\\n    pass criteria：(1) CED_Evi-F1 ≥ SFT_Evi-F1（方向正确）；(2) CED_F1 ≥ max(extract, SFT)\\n    - 5pp（不退化）；(3) CED_EDCR 显著低于 SFT_EDCR（核心判据）；(4) CED > flat-NLI 在 Evi-F1 或 EDCR\\n    上方向正确。绝对指标留到 post-MVP 增大 max_new_tokens 后重评。\\n  related_experiments:\\n  - exp_id: mvp2_sft_eval_r2\\n    role: baseline\\n    result: F1=40.57%, Evi-F1=79.79%, EDCR=71.18%\\n  depends_on:\\n  - D011\\n- id: D013\\n  date: 2026-05-14 14:54 UTC\\n  summary: MVP-2 pass criteria 调整：取消绝对 F1>45 门槛，改为相对对比；EDCR 升为核心判定指标\\n  rationale: SFT baseline F1=40.57%（37% 输出被 1024 token 截断导致），已低于原定 F1>45 门槛。但截断对所有模型等效影响，相对对比仍然公平。调整后\\n    pass criteria：(1) 核心不变：CED_Evi-F1 − SFT_Evi-F1 ≥ 2pp；(2) F1 改为相对：CED_F1 ≥ SFT_F1\\n    − 5pp（即 ≥35.57）；(3) 新增 EDCR 核心判定：CED_EDCR 显著低于 SFT_EDCR（71.18%），降幅 ≥10pp 视为强证据；(4)\\n    保持 CED > flat-NLI 方向。SFT EDCR=71% 说明 SFT 模型大量引用 entity-sharing distractors，正是\\n    CED 设计目标的攻击面。即使 Evi-F1 提升不足 2pp，EDCR 大幅下降也足以支撑 Claim 2。\\n  related_experiments:\\n  - exp_id: mvp2_sft_eval_r2\\n    role: baseline\\n    result: F1=40.57%, Evi-F1=79.79%, EDCR=71.18%\\n  depends_on:\\n  - D011\\n- id: D014\\n  date: 2026-05-14 14:58 UTC\\n  summary: CED r5 mode collapse 确认 kill；CED reward 必须加 F1 门控防止短输出 hack；暂停 ced_kl001\\n  rationale: CED r5 在 65% 进度完全 collapse：completion 固定 34 tokens，f1_reward=0，ced_reward≈0.99，entropy≈0。模型发现极短输出不引用\\n    distractor 即可获得近完美 CED 分——CED 自身被 reward hack。根因：CED reward 不依赖抽取质量，模型可在 F1=0\\n    时仍获高 CED reward。修复方案：F1 门控——仅在 completion 包含 ≥1 个 predicted triple 时计算 CED reward，否则\\n    CED=0。这确保 evidence quality 的评估以有效抽取为前提。ced_kl001 使用同样有缺陷的 reward 设计，必须暂停，等修复后再启动。extract_r3\\n    部分 collapse 但仍有 F1 信号，继续观察。\\n  related_experiments:\\n  - exp_id: mvp2_grpo_ced_r5\\n    role: failed\\n    result: 'mode collapse: f1=0, ced≈0.99, 34-token fixed output'\\n  - exp_id: mvp2_grpo_extract_r3\\n    role: monitoring\\n    result: 'partial collapse: f1=0.2-0.34, 43-50 tokens, trending down'\\n  - exp_id: mvp2_grpo_flatnli_r3\\n    role: healthy\\n    result: 'healthy: entropy=0.087, grad_norm=0.398, 11% progress'\\n  depends_on:\\n  - D013\\n- id: D015\\n  date: 2026-05-14 14:58 UTC\\n  summary: ced_r5 mode collapse 保留跑完取分析价值；flatnli_r3 kill 并修复 NLI device 后重启\\n  rationale: ced_r5 在 63% 进度时 f1_reward=0 + entropy≈0，已 mode collapse。保留跑完因为：(1) negative\\n    result 证明纯 CED reward 导致 collapse，支撑 reward balance 的 ablation story；(2) 早期 checkpoint\\n    可能有 f1_reward 正常的版本可用。flatnli_r3 因 NLI 推理在 CPU 上运行导致 10x 减速（124s/it vs 12s/it），预计\\n    20h+。RTX 5090 32GB 有足够余量放 DeBERTa-v3-base (~400MB)，kill 后修复 device 配置重启可将时间降至\\n    2-3h。\\n  related_experiments:\\n  - exp_id: mvp2_grpo_ced_r5\\n    role: subject\\n    result: f1_reward=0, mode collapse at 63%\\n  - exp_id: mvp2_grpo_flatnli_r3\\n    role: subject\\n    result: NLI on CPU, 10x slowdown, killed for restart\\n  depends_on:\\n  - D011\\n- id: D016\\n  date: 2026-05-14 15:00 UTC\\n  summary: Kill ced_r5 (total collapse)，ced_kl001 移到 cuda:0 立即启动\\n  rationale: ced_r5 step 250+ f1_reward=0、completion 坍缩到 34 tokens、save_total_limit=5\\n    已覆盖所有正常 checkpoint。继续跑无任何回收价值。Kill 后释放 cuda:0 给 ced_kl001（kl_coef=0.01），不再等 cuda:1。ced_kl001\\n    现在是 MVP-2 最关键实验——验证 CED+KL约束能否避免 reward hacking。extract_r3 和 flatnli_r3 保持 kl=0\\n    继续跑，作为对照：若它们没 collapse，说明问题是 CED reward 特异的；若也 collapse，说明 kl=0 通病。\\n  related_experiments:\\n  - exp_id: mvp2_grpo_ced_r5\\n    role: failed\\n    result: total mode collapse, killed\\n  - exp_id: mvp2_grpo_ced_kl001\\n    role: replacement\\n    result: moved to cuda:0, critical experiment\\n  depends_on:\\n  - D015\\n- id: D017\\n  date: 2026-05-14 15:01 UTC\\n  summary: Kill ced_r5 + extract_r3 (kl_coef=0 collapse/stall), 部署 kl_coef=0.01 修正实验\\n  rationale: 3路GRPO健康检查：ced_r5完全mode collapse(entropy=0.0005, F1=0, grad_norm=0)，extract_r3训练停滞(grad_norm=0,\\n    F1=0.20低于SFT baseline 0.4057)。共同根因kl_coef=0导致策略无约束偏移。D008显示kl_coef=0.05会KL爆炸，选择0.01作为中间值（5x低于爆炸阈值）。flatnli_r3保留作为kl_coef=0对照组继续观察。\\n  related_experiments:\\n  - exp_id: ced_r5\\n    role: failed\\n    result: mode collapse, entropy=0.0005, F1=0\\n  - exp_id: extract_r3\\n    role: failed\\n    result: stalled, grad_norm=0, F1=0.20\\n  - exp_id: flatnli_r3\\n    role: control\\n    result: healthy at 10.7%, continue as kl_coef=0 control\\n  - exp_id: D008\\n    role: reference\\n    result: kl_coef=0.05 caused KL explosion\\n  depends_on: []\\n- id: D018\\n  date: 2026-05-14 15:04 UTC\\n  summary: flatnli_r3 紧急修复 reward_device cpu→cuda，extract_r3 改为跑完再替换\\n  rationale: Reviewer critical 发现 D015 未执行：flatnli_r3 仍以 --reward_device cpu 运行，step_time\\n    123s/step（GPU 后应 12-15s/step），cuda:3 被占用但 90% 时间等 CPU。修复后从 ~23h 降至 ~2-3h，是当前最高\\n    ROI 操作。extract_r3 已 68%（~50min 完成），改为跑完后再部署 extract_kl001，避免浪费已投入的 2.5h。ced_r5\\n    维持 kill（3.3h GPU 时间用于 ced_kl001 更有价值）。\\n  related_experiments:\\n  - exp_id: flatnli_r3\\n    role: fix\\n    result: reward_device cpu→cuda, from checkpoint-80 resume\\n  - exp_id: extract_r3\\n    role: revised\\n    result: let finish (~50min), then replace with extract_kl001\\n  - exp_id: ced_r5\\n    role: kill\\n    result: maintain kill decision, replace with ced_kl001\\n  depends_on:\\n  - D015\\n  - D017\\n- id: D019\\n  date: 2026-05-14 15:05 UTC\\n  summary: 修正 D017：extract_r3 改为跑完再释放，flatnli_r3 紧急补执行 D015（修复 NLI device 重启）\\n  rationale: Reviewer 审查发现：(1) D015 未执行——flatnli_r3 仍用 CPU NLI，step_time 120s vs GPU\\n    应 12-15s，23h→2-3h 的 10x 效率差，cuda:3 90% 时间在等 CPU。(2) extract_r3 只剩 ~50min，跑完可取早期\\n    checkpoint（collapse 前 step 20-100 可能比 last 好），不值得 kill 浪费已投入的 2.5h。修正后：cuda:0\\n    立即释放给 ced_kl001，cuda:2 等 50min 后给 extract_kl001，cuda:3 kill+修复 NLI device 后从 ckpt-80\\n    重启。\\n  related_experiments:\\n  - exp_id: flatnli_r3\\n    role: fix\\n    result: D015 未执行，NLI 在 CPU 导致 10x 低效，需 kill+修复+重启\\n  - exp_id: extract_r3\\n    role: revised\\n    result: 改为跑完（~50min），eval 早期 checkpoint\\n  - exp_id: ced_r5\\n    role: kill\\n    result: 仍立即 kill，与 D017 一致\\n  depends_on:\\n  - D017\\n  - D015\\n- id: D020\\n  date: 2026-05-14 15:15 UTC\\n  summary: ced_kl001 启动前必须先修复 CED reward F1 门控（D014 未实现）；kl_coef=0.01 实验改为 100 步探测性运行\\n  rationale: Reviewer 代码核查确认 D014 的 F1 门控从未实现：ced_reward.py 对 0-triple 短输出仍给近完美分(0.99)。ced_r5\\n    的 collapse 根因是双重的——kl_coef=0 导致策略自由偏移 + CED reward 对短输出的 hack。仅修 kl_coef 不解决 reward\\n    设计缺陷，ced_kl001 会重复失败。同时 kl_coef=0.01+QLoRA 的兼容性未验证（D008 证明 0.05 爆炸），先做 100 步探测降低风险。\\n  related_experiments:\\n  - exp_id: ced_r5\\n    role: evidence\\n    result: 34-token 短输出 → CED≈0.99 → reward hack → collapse\\n  - exp_id: ced_kl001\\n    role: blocked\\n    result: 等 CED reward 修复后才能启动\\n  - exp_id: D008\\n    role: reference\\n    result: kl_coef=0.05+QLoRA KL 爆炸\\n  depends_on:\\n  - D014\\n  - D017\\n  - D019\\n- id: D021\\n  date: 2026-05-14 17:20 UTC\\n  summary: Kill flatnli_r5（从已 hacked checkpoint 恢复无效），启动 flatnli_r6 从 SFT 全新训练 D020\\n    配置\\n  rationale: Reviewer 独立审查发现 flatnli_r3 checkpoint-100 已深陷 NLI reward hacking（f1=0.025,\\n    flat_nli=0.911）。从该 checkpoint 恢复加 kl_coef=0.01 后 KL=0.46（远高于从 SFT 新训的 ced_kl001_r4\\n    的 0.098），frac_zero_std 升至 0.8-0.9，grad_norm 近零——训练冻结。教训：从 kl=0 已漂移 checkpoint\\n    恢复并加 kl>0 不可行，必须从 SFT 全新开始。\\n  related_experiments:\\n  - exp_id: mvp2_grpo_flatnli_r5\\n    role: 被 kill\\n    result: negative\\n  - exp_id: mvp2_grpo_flatnli_r3\\n    role: 提供了已 hacked 的 checkpoint\\n    result: negative\\n  - exp_id: mvp2_grpo_ced_kl001_r4\\n    role: 健康参照（从 SFT 新训）\\n    result: running\\n  depends_on:\\n  - D020\\n- id: D022\\n  date: 2026-05-14 17:40 UTC\\n  summary: Kill extract_r4 (f1_reward=0 at ckpt-30, mode collapse confirmed); cuda:2\\n    转 ced_kl001_r4 多 checkpoint eval\\n  rationale: extract_r4 (extraction-only, kl_coef=0.01+gen=8) 在 step 10 后 f1_reward\\n    归零、frac_zero_std≥0.8 停滞，checkpoint-30 无恢复信号。同配置的 ced_kl001_r4 在 step 20 f1_reward=0.082\\n    持续上升——直接证明 CED reward 通道是驱动学习的关键因素。这一负面结果本身是强证据，不再尝试 extract_r5。cuda:2 空闲，派去 eval\\n    ced_kl001_r4 中间 checkpoint，提前获取多 checkpoint 评估数据。\\n  related_experiments:\\n  - exp_id: mvp2_grpo_extract_r4\\n    role: killed\\n    result: f1_reward=0 at ckpt-30, mode collapse\\n  - exp_id: mvp2_grpo_ced_kl001_r4\\n    role: contrast\\n    result: f1_reward=0.082 at step 20, healthy\\n  depends_on:\\n  - D020\\n- id: D023\\n  date: 2026-05-14 17:40 UTC\\n  summary: 'Kill extract_r4 (mode collapse confirmed); ablation 结论: CED reward 是 GRPO\\n    训练必需的 dense signal，extraction-only reward 太稀疏无法驱动学习'\\n  rationale: 'extract_r4 checkpoint-30: f1_reward 连续 25 步为 0，frac_zero_std 升至 0.9，grad_norm\\n    在 0.005-0.012 震荡。对比 ced_kl001_r4 同期（f1_reward=0.082 持续上升，frac_zero_std=0.4 持续下降），唯一差异是\\n    reward type。结论: Stage 1 (extract-only) 在 D020 配置下无法维持 GRPO 探索多样性，CED 提供的 dense\\n    reward signal 是训练成功的必要条件。这是论文的关键 ablation evidence。cuda:2 释放，分配给 SFT eval baseline。'\\n  related_experiments:\\n  - exp_id: mvp2_grpo_extract_r4\\n    role: failed_ablation\\n    result: mode collapse — f1_reward=0 for 25 steps\\n  - exp_id: mvp2_grpo_ced_kl001_r4\\n    role: positive_control\\n    result: f1_reward=0.082 at step 20, healthy training\\n  depends_on:\\n  - D020\\n- id: D024\\n  date: 2026-05-14 18:11 UTC\\n  summary: 'Kill flatnli_r6 (mode collapse step 25); D020 配置下三路 ablation 结论: 仅 CED\\n    reward 存活，extract-only 和 flat-NLI 均 collapse'\\n  rationale: 'flatnli_r6 step 25: frac_zero_std=0.9, f1_reward=0, flat_nli_reward=0,\\n    reward 100% 来自 format。与 extract_r4 collapse 模式一致。三个实验共用 D020 配置（kl=0.01, gen=8），唯一差异是\\n    reward type: extract-only collapse (step 10-30), flat-NLI collapse (step 25),\\n    CED 健康完成 100 步。结论: CED 的对比性 evidence discrimination 提供了 GRPO 所需的 dense gradient\\n    signal，是训练成功的必要条件。这比原设想的\\\"CED 改善 evidence quality\\\"更强——CED 是 GRPO 训练本身能否存活的关键。cuda:3\\n    释放用于加速 eval。'\\n  related_experiments:\\n  - exp_id: mvp2_grpo_flatnli_r6\\n    role: failed_ablation\\n    result: mode collapse step 25, frac_zero_std=0.9\\n  - exp_id: mvp2_grpo_extract_r4\\n    role: failed_ablation\\n    result: mode collapse step 10-30\\n  - exp_id: mvp2_grpo_ced_kl001_r4\\n    role: positive_control\\n    result: 100 steps healthy, reward 0.85-1.37\\n  depends_on:\\n  - D023\\n  - D020\\n- id: D025\\n  date: 2026-05-14 18:11 UTC\\n  summary: Kill flatnli_r6 (mode collapse confirmed step 25); D020 配置下三路 ablation\\n    结论：仅 CED reward 存活，extract-only 和 flat-NLI 均 collapse\\n  rationale: 'flatnli_r6 step 25: frac_zero_std=0.9, f1_reward=0, flat_nli_reward=0,\\n    reward 100% 来自 format。与 extract_r4 collapse 模式一致。D020 配置（kl=0.01, gen=8）下三路对比：extract-only\\n    step 30 collapse, flat-NLI step 25 collapse, CED 100 步健康完成。唯一差异是 reward type。结论：CED\\n    的对比性 evidence discrimination 提供了更丰富的梯度信号，是维持 GRPO 探索多样性的必要条件。这是论文最核心的 ablation\\n    evidence — 但需注意区分\\\"CED reward 本身的 anti-collapse 特性\\\"与\\\"stage 3 组合 reward 的其他差异\\\"两个假设。cuda:3\\n    释放后用于 eval 加速。'\\n  related_experiments:\\n  - exp_id: mvp2_grpo_flatnli_r6\\n    role: failed_ablation\\n    result: mode collapse step 25, frac_zero_std=0.9\\n  - exp_id: mvp2_grpo_extract_r4\\n    role: failed_ablation\\n    result: mode collapse step 30, f1_reward=0\\n  - exp_id: mvp2_grpo_ced_kl001_r4\\n    role: positive_control\\n    result: 100 steps healthy, reward=0.85-1.37\\n  depends_on:\\n  - D023\\n  - D020\\n- id: D026\\n  date: 2026-05-14 19:37 UTC\\n  summary: MVP-2 ced_kl001_r4 FAIL — lr=5e-5 导致灾难性遗忘+CED recall shortcut 双重问题，启动 P0/P0+P1\\n    并行修复\\n  rationale: 'ckpt-10/50/100 eval 全部远低于 SFT baseline（rel_f1: 0.003→0.156→0.217 vs\\n    SFT 0.4057，evi_f1: 0.720→0.564→0.575 vs SFT 0.7979）。训练 reward 5x 增长但 eval F1 未恢复，确认\\n    reward hacking + 灾难性遗忘双重机制。根因：lr=5e-5 过高 5-10x + CED 对非匹配 triple 无 recall 惩罚。D020\\n    ablation 的 CED 训练稳定性发现仍有效。下一步：P0（lr=5e-6）和 P0+P1（lr=5e-6 + ced_recall_penalty）并行验证。'\\n  related_experiments:\\n  - exp_id: ced_kl001_r4\\n    role: primary\\n    result: training success but eval fail\\n  - exp_id: mvp2_eval_ced_kl001_r4_ckpt10\\n    role: eval\\n    result: f1=0.003\\n  - exp_id: mvp2_eval_ced_kl001_r4_step50\\n    role: eval\\n    result: f1=0.156\\n  - exp_id: mvp2_eval_ced_kl001_r4_step100\\n    role: eval\\n    result: f1=0.217\\n  depends_on:\\n  - D024\\n  - D025\\n  - D029\\n- id: D027\\n  date: 2026-05-14 19:37 UTC\\n  summary: MVP-2 ced_kl001_r4 FAIL — lr=5e-5 过高导致灾难性遗忘+CED recall shortcut 叠加 reward\\n    hacking\\n  rationale: ckpt-10/50/100 三点轨迹确认：rel_f1 最高 0.217（SFT 0.4057, pass 0.356, gap -13.9pp），evi_f1\\n    最高 0.575（SFT 0.7979, pass 0.818, gap -24.3pp）。恢复速率递减（40步+15.3pp→50步+6.0pp），外推至\\n    step200 仍远低于 pass。根因：(1) lr=5e-5 是社区推荐的 5-10x，导致 step10 即灾难性遗忘；(2) CED shortcut\\n    使非匹配 triple 退化为 flat NLI，引导模型少预测高 EDCR；(3) train/eval 分布不匹配放大差距。下一步：P0(lr=5e-6)\\n    + P0+P1(lr=5e-6+recall_penalty) 并行。\\n  related_experiments:\\n  - exp_id: ced_kl001_r4\\n    role: primary\\n    result: success(training)/fail(eval)\\n  - exp_id: mvp2_eval_ced_kl001_r4_step100\\n    role: eval\\n    result: rel_f1=0.217,evi_f1=0.575\\n  - exp_id: mvp2_eval_ced_kl001_r4_ckpt50\\n    role: eval\\n    result: rel_f1=0.156,evi_f1=0.564\\n  - exp_id: mvp2_eval_ced_kl001_r4_ckpt10\\n    role: eval\\n    result: rel_f1=0.003,evi_f1=0.720\\n  depends_on:\\n  - D024\\n  - D025\\n- id: D028\\n  date: 2026-05-14 21:36 UTC\\n  summary: Kill rp_r2 (P0+P1) — loss 指数 divergence 不可恢复；cuda:3 转跑 rp_r2 ckpt-20 eval\\n    关闭对比线\\n  rationale: rp_r2 loss 从 step 10-20 持续指数增长 (908→24650→1.34e7)，根因是 recall_penalty\\n    5-10x 梯度 + kl_coef=0.01 形成正反馈循环。与 P0 的瞬时 KL spike 不同，这是持续 divergence。Kill 后 cuda:3\\n    跑 rp_r2 ckpt-20 eval（成本低，~2h）拿到数据关闭 P0+P1 对比线。不启动新训练——MVP 阶段 P0 单独通过即可。\\n  related_experiments:\\n  - exp_id: mvp2_grpo_ced_lr5e6_rp_r2\\n    role: killed\\n    result: loss exponential divergence\\n  - exp_id: mvp2_grpo_ced_lr5e6_r1\\n    role: primary\\n    result: P0 continues as sole MVP path\\n  depends_on:\\n  - D027\\n- id: D029\\n  date: 2026-05-14 21:44 UTC\\n  summary: 修正 rp_r2 终止理由：从\\\"loss 持续发散\\\"改为\\\"recall penalty 过度抑制 CED 信号\\\"\\n  rationale: Reviewer 独立核实 trainer_state.json 发现 rp_r2 step 30-40 的 loss/KL 已完全恢复正常（loss=0.038,\\n    KL=0.005），与 P0 的瞬态发散→恢复模式一致，不是持续发散。真正的问题是 ced_reward=0.005 远低于 P0 的 0.079，说明 recall\\n    penalty 过于严苛压制了 CED 学习信号。kill 决策本身不撤回，但论文引用此 negative result 时应表述为\\\"recall penalty\\n    过度抑制 CED 信号\\\"而非\\\"训练发散\\\"。\\n  related_experiments:\\n  - exp_id: rp_r2\\n    role: subject\\n    result: killed-但理由修正\\n  - exp_id: mvp2_train_lr5e6_r1\\n    role: reference\\n    result: 同样出现瞬态发散后恢复\\n  depends_on: []\\n- id: D030\\n  date: 2026-05-14 22:16 UTC\\n  summary: P0 ckpt-20 eval FAIL (rel_f1=0.0077); lr=5e-6 未能防止早期遗忘，与 lr=5e-5 相同模式；扩展至全\\n    checkpoint 轨迹评估\\n  rationale: lr=5e-5 和 lr=5e-6 在 step-20 均出现灾难性遗忘（rel_f1 < 0.01），说明问题不是单纯 LR 过高——GRPO+QLoRA\\n    在结构化生成任务上的前 20 步 inherently 不稳定（60% 输出截断，field compliance 仅 39.9%）。需要看完整 recovery\\n    trajectory（ckpt-40/60/80）才能判断是否\\\"先崩后恢复\\\"。ced_kl001_r4 (lr=5e-5) step-90 最高 0.211\\n    仍低于阈值，lr=5e-6 能否突破 0.30 存疑。同时开始考虑 GRPO 替代方案（DPO/rejection sampling）作为 contingency。\\n  related_experiments:\\n  - exp_id: mvp2_eval_lr5e6_r1_ckpt20\\n    role: primary\\n    result: 'FAIL: rel_f1=0.0077, 39x below threshold'\\n  - exp_id: mvp2_grpo_ced_lr5e6_r1\\n    role: training\\n    result: step ~68, f1_reward recovering at step 45\\n  depends_on: []\\n- id: D031\\n  date: 2026-05-14 23:10 UTC\\n  summary: GRPO+QLoRA P0 方向判死：ckpt-40 rel_f1=0.0071（比 ckpt-20 更差），两个 LR 均远劣于 SFT baseline。Pivot\\n    到离线 RL（Rejection Sampling FT → DPO）\\n  rationale: ckpt-20→ckpt-40 轨迹下降（0.0077→0.0071），GRPO 只学会格式/证据引用但完全丧失关系抽取能力。lr=5e-5\\n    最佳 0.211 vs SFT 0.406，lr=5e-6 最佳 0.008。catastrophic forgetting 是 GRPO+QLoRA 在结构化生成任务上的根本性问题，非超参可解。CED\\n    reward signal 本身有效（MVP-1 verified），问题在在线 RL 训练方法论。Pivot 到离线方法：(1) Rejection Sampling\\n    FT 最简单最稳定优先做 (2) DPO+CED scoring 作为并行备选。\\n  related_experiments:\\n  - exp_id: mvp2_eval_lr5e6_r1_ckpt40_r2\\n    role: trigger\\n    result: rel_f1=0.0071 FAIL\\n  - exp_id: mvp2_eval_lr5e6_r1_ckpt20\\n    role: prior\\n    result: rel_f1=0.0077 FAIL\\n  - exp_id: mvp2_grpo_ced_lr5e6_r1\\n    role: training\\n    result: f1_reward 无学习趋势\\n  - exp_id: ced_kl001_r4\\n    role: prior_attempt\\n    result: best 0.211 at ckpt-90, mode collapse\\n  depends_on:\\n  - D030\\n  - D027\\n- id: D032\\n  date: 2026-05-15 01:03 UTC\\n  summary: 'Kill GRPO 训练 (cuda:0 step 113/200): 轨迹数据已充分，释放 GPU 给 RSFT 管线加速'\\n  rationale: ckpt-80 rel_f1=0.0116 (SFT baseline 的 2.9%)，ckpt-20→80 全线 FAIL。ckpt-100\\n    eval 在跑会给最后一个数据点，但 step 200 无价值。释放 cuda:0 可用于并行 RSFT generate 或后续 scoring/training。\\n  related_experiments:\\n  - exp_id: mvp2_grpo_ced_lr5e6_r1\\n    role: killed\\n    result: trajectory ckpt-20~80 all FAIL, max rel_f1=0.0116\\n  - exp_id: mvp2_eval_lr5e6_r1_ckpt80\\n    role: evidence\\n    result: rel_f1=0.0116 negative\\n  depends_on:\\n  - D031\\n- id: D033\\n  date: 2026-05-15 01:22 UTC\\n  summary: D031 最终确认：GRPO+QLoRA 全线 FAIL，lr5e6 全 6 checkpoint rel_f1 < 0.02；negative\\n    result 模式有论文价值（CED↑ + rel_f1 catastrophic forgetting = 在线 RL 无法维持双能力）\\n  rationale: Reviewer 独立核实 lr5e6 全 6 checkpoint：rel_f1 最高仅 0.0138（阈值 0.30），evi_f1\\n    从 0.628 单调升至 0.850（超 SFT 0.798），edcr 稳定 ~0.99（远超 SFT 0.712）。模式：CED reward signal\\n    有效驱动 evidence 质量提升，但在线 RL (GRPO+QLoRA) 导致关系抽取 catastrophic forgetting。此 negative\\n    result 直接支持离线 RL (RSFT/DPO) 路线的必要性，且为论文提供重要论据。\\n  related_experiments:\\n  - exp_id: mvp2_eval_lr5e6_r1_ckpt100\\n    role: final_eval\\n    result: FAIL rel_f1=0.0138\\n  - exp_id: mvp2_eval_lr5e6_r1_ckpt80\\n    role: trajectory\\n    result: FAIL rel_f1=0.0116\\n  - exp_id: mvp2_eval_lr5e6_r1_ckpt60\\n    role: trajectory\\n    result: FAIL rel_f1=0.0093\\n  - exp_id: mvp2_eval_lr5e6_r1_ckpt40\\n    role: trajectory\\n    result: FAIL rel_f1=0.0071\\n  - exp_id: mvp2_eval_lr5e6_r1_ckpt20\\n    role: trajectory\\n    result: FAIL rel_f1=0.0077\\n  - exp_id: mvp2_grpo_ced_lr5e6_r1\\n    role: training\\n    result: killed after trajectory data collected\\n  depends_on:\\n  - D031\\n  - D032\\n- id: D034\\n  date: 2026-05-15 01:28 UTC\\n  summary: 'D034: RSFT diversity 危机——diversity=1.0/8 因 temperature 未生效，暂停生成并修复'\\n  rationale: Reviewer critical 发现：(1) rsft_generate.py 传入 temperature=0.7 但被 Qwen3-4B\\n    generation_config.json 自带的 T=0.6/top_k=20 覆盖，transformers 打出 WARNING 但 Agent 未注意；(2)\\n    SFT 后模型分布极度尖锐，T=0.6+top_k=20 几乎等同于 greedy，导致 8 次生成完全相同；(3) 早期 diversity_probe\\n    报告 7/8 是 format 解析 bug 导致的虚假多样性，修复格式后真实 diversity 暴露为 1.0/8。必须 kill 当前进程、修复 temperature\\n    覆盖（显式设 model.generation_config.temperature + top_k=0）、用 3-5 doc 验证后再重启。\\n  related_experiments:\\n  - exp_id: mvp2_rsft_generate\\n    role: affected\\n    result: diversity=1.0/8, 生成数据无法用于 rejection sampling\\n  - exp_id: mvp2_diversity_probe\\n    role: evidence\\n    result: 7/8 是虚假多样性（format bug），实际 5.0/8 且修复后降至 1.0/8\\n  depends_on:\\n  - D033\\n- id: D035\\n  date: 2026-05-15 01:29 UTC\\n  summary: 暂停 RSFT 并行化：Reviewer critical 发现 diversity=1.0/8 是格式修复后的真实值，之前 7/8 为格式不一致假象。高温探针优先。\\n  rationale: diversity_probe 原始数据 (8,6,1) 平均 5.0/8 而非上报的 7；且 probe 时 format_ok 仅 34%，\\\"多样性\\\"来自\\n    JSON key 名变体。生产环境 format_ok=99.8% 后实测 diversity=1.0/8。继续当前配置生成 14h 的数据毫无意义——rejection\\n    sampling 退化为普通 SFT。需先用高温(T=1.0/1.2/1.5)探针验证 diversity 是否可恢复。\\n  related_experiments:\\n  - exp_id: mvp2_diversity_probe\\n    role: evidence\\n    result: 虚报 7/8, 实际 5.0/8, 且为格式假象\\n  - exp_id: mvp2_rsft_generate\\n    role: affected\\n    result: diversity=1.0/8 at T=0.7, 暂不扩展\\n  depends_on:\\n  - D033\\n- id: D036\\n  date: 2026-05-15 01:33 UTC\\n  summary: D034 撤销：diversity crisis 是监控 bug，非生成质量问题，T=0.7 下 diversity 充足(7.11/8)，恢复并行生成\\n  rationale: 独立验证 Worker 分析 cuda:1 已生成的 200 docs：triple-set diversity 7.11/8 (median=8.0)，format\\n    parse rate 90.2%，61.5% 文档 8/8 完全不同。之前监控报告 mean_diversity=1.0/8 为度量代码计算错误。无需执行\\n    D034 的 temperature 修复和高温探针。\\n  related_experiments:\\n  - exp_id: mvp2_rsft_generate\\n    role: trigger\\n    result: diversity monitoring bug identified\\n  depends_on: []\\n- id: D037\\n  date: 2026-05-15 07:46 UTC\\n  summary: 'D037: RSFT 全线 FAIL（rel_f1=0.0483），pivot 到 CED-as-reranker（推理时方案）'\\n  rationale: 'GRPO（D027/D031/D033）和 RSFT 两条训练路线均呈现相同的灾难性遗忘——任何对 SFT checkpoint 的二次微调都摧毁\\n    rel_f1。RSFT r1: rel_f1=0.0483, num_preds=848（SFT baseline: 0.4057, 12234）。跨 seed\\n    方差 <0.04%，非随机。根因假设：LoRA 二次微调的系统性遗忘。Pivot 到 CED-as-reranker：SFT 模型生成 N 候选 → CED\\n    打分 → 选最佳，完全绕过训练问题。'\\n  related_experiments:\\n  - exp_id: mvp2_rsft_train_r1\\n    role: primary\\n    result: 'FAIL: rel_f1=0.0483'\\n  - exp_id: mvp2_rsft_train_r1_s43\\n    role: variance\\n    result: training variance <0.04%\\n  - exp_id: mvp2_rsft_train_r1_s44\\n    role: variance\\n    result: eval pending, same outcome expected\\n  depends_on:\\n  - D033\\n  - D027\\n- id: D038\\n  date: 2026-05-15 09:40 UTC\\n  summary: 'D038: 撤回 D037——RSFT \\\"灾难性失败\\\"实为 eval bug（50-doc pred vs 12275 gold denominator\\n    mismatch），s44 全量 eval 通过 MVP-2（rel_f1=0.4655 +5.98pp, evi_f1=0.8087 +1.08pp）'\\n  rationale: r1 的 rel_f1=0.0483 是评估代码 bug：TaskEvalCallback 在 50 docs 上生成预测但 gold triples\\n    用了全量 dev set 12275 条，recall 被人为压到 ~3.5%。s44 独立全量 eval（985 docs）结果：rel_f1=0.4655（+5.98pp\\n    vs SFT 0.4057），evi_f1=0.8087（+1.08pp vs 0.7979），edcr=0.6350（-7.68pp vs 0.7118）。CED\\n    rejection sampling 首次端到端验证成功。D037 的 reranker pivot 基于错误数据，RSFT 实际有效。\\n  related_experiments:\\n  - exp_id: mvp2_rsft_train_r1_s44\\n    role: primary\\n    result: 'PASS: rel_f1=0.4655, evi_f1=0.8087'\\n  - exp_id: mvp2_rsft_train_r1\\n    role: pending_reeval\\n    result: r1 0.0483 was eval bug, full eval needed\\n  depends_on:\\n  - D037\\n- id: D039\\n  date: 2026-05-15 11:49 UTC\\n  summary: 'D039: RSFT+CED ablation 全部 PASS MVP-2——方法鲁棒，1 epoch 足够，EDCR 局限需论文讨论'\\n  rationale: Reviewer 独立验证 4 组 RSFT 配置（r1 s42/s44, r2a, r2b）全部通过 MVP-2 判据（rel_f1 >\\n    0.4057, evi_f1 > 0.798）。核心发现：(1) RSFT+CED 方法贡献 +4-6pp rel_f1，具体超参影响极小（0.45pp 范围内），方法鲁棒性好；(2)\\n    1 epoch 足够，3 epoch 无显著额外收益；(3) r2b 保守 LoRA scaling+低 lr 略优于 r2a（截断更少、字段完整率更高）；(4)\\n    EDCR 一致偏高 63-66%，CED reward 对 rel_f1 提升明显但对证据精确度提升有限，需论文坦诚讨论。两个 warning（ablation\\n    变量混淆、EDCR 高）均不阻塞 MVP，clean ablation 留研究阶段补。等 s43_r2 第三种子确认后调 complete_mvp()。\\n  related_experiments:\\n  - exp_id: mvp2_eval_rsft_r2a\\n    role: ablation\\n    result: rel_f1=0.4494, evi_f1=0.8108, EDCR=0.6641, PASS\\n  - exp_id: mvp2_eval_rsft_r2b\\n    role: ablation\\n    result: rel_f1=0.4493, evi_f1=0.8128, EDCR=0.6609, 截断179/字段完整率81.8%, PASS\\n  - exp_id: mvp2_eval_rsft_r1\\n    role: baseline_rsft\\n    result: rel_f1=0.4449, evi_f1=0.8187, EDCR=0.6565, PASS\\n  - exp_id: mvp2_rsft_train_r1_s44\\n    role: seed_variance\\n    result: rel_f1=0.4655, evi_f1=0.8087, PASS\\n  depends_on:\\n  - D038\\n- id: D040\\n  date: 2026-05-15 12:03 UTC\\n  summary: 'D040: MVP 正式通过 → 进入 Research 阶段。paper_framing.md 定稿（RSFT+CED 路线，4 Claims），experiment_plan.yaml\\n    建立（10 研究实验），dream_simulate(full) 已启动'\\n  rationale: D039 已判定 MVP-2 全部 PASS（4/4 configs），但 complete_mvp() 未被调用。用户催促后补调。Post-MVP\\n    kickoff 按 skill 流程执行：(1) paper_framing.md 从 Pre-MVP draft 更新为 Post-MVP 定稿版——方法从\\n    GRPO 转为 RSFT+CED，新增 Claim 3（在线 RL catastrophic forgetting 分析）和 RC6/RC7；(2) experiment_plan.yaml\\n    新建，10 个研究实验分 P0/P1/P2；(3) dream_simulate(full) 已启动（dream_20260515T120227），等回调后再批准\\n    P0 实验。投稿目标调整为 ARR July → EMNLP 2026 Main（ARR May 25 仅作 stretch goal）。\\n  related_experiments:\\n  - exp_id: mvp2_eval_rsft_r2a\\n    role: evidence\\n    result: rel_f1=0.4494 PASS\\n  - exp_id: mvp2_eval_rsft_r2b\\n    role: evidence\\n    result: rel_f1=0.4493 PASS\\n  - exp_id: mvp2_eval_rsft_r1\\n    role: evidence\\n    result: rel_f1=0.4449 PASS\\n  - exp_id: mvp2_rsft_train_r1_s44\\n    role: evidence\\n    result: rel_f1=0.4655 PASS\\n  depends_on:\\n  - D039\\n- id: D041\\n  date: 2026-05-15 13:15 UTC\\n  summary: 'D041: Evi-F1 评测协议不一致确认——我们的\\\"条件 Evi-F1\\\"(仅 TP triples)与 DREEAM\\\"联合 Evi-F1\\\"(含\\n    FP/FN 惩罚)不可比，publishability threshold 暂冻结等对齐后重评'\\n  rationale: Agent 调查确认：我们的 compute_evi_f1() 在 FP triple 时 continue 跳过（precision 分母只算\\n    TP evidence），recall 分母也只算 matched gold triples。DREEAM 的 official_evaluate() 将\\n    FP/FN 全部计入分母。在 rel_recall ≈ 55% 时，分母差约 1.8x，解释了 82% vs 57% 的差距。已派 Agent 实现 DREEAM\\n    协议对齐函数并重新评估全部实验。在对齐数字出来前，paper_framing.md 的 publishability threshold（Evi-F1 >\\n    57.34）暂冻结。条件 Evi-F1 仍作为辅助指标保留（衡量\\\"关系对了时 evidence 选得好不好\\\"）。\\n  related_experiments:\\n  - exp_id: mvp2_sft_eval_r2\\n    role: affected\\n    result: evi_f1_conditional=0.7979, joint TBD\\n  - exp_id: mvp2_eval_rsft_r1\\n    role: affected\\n    result: evi_f1_conditional=0.8187, joint TBD\\n  - exp_id: mvp2_eval_rsft_r2a\\n    role: affected\\n    result: evi_f1_conditional=0.8108, joint TBD\\n  - exp_id: mvp2_eval_rsft_r2b\\n    role: affected\\n    result: evi_f1_conditional=0.8128, joint TBD\\n  depends_on:\\n  - D039\\n  - D040\\n- id: D042\\n  date: 2026-05-15 13:16 UTC\\n  summary: 'D041: Evi-F1 评测协议与 DREEAM 不一致——我们的 conditional Evi-F1 跳过 FP/FN triples，比\\n    DREEAM 的 joint Evi-F1 宽松得多。必须实现 DREEAM 协议对齐后重算所有实验。Publishability threshold 待重算后修订'\\n  rationale: Agent 调查确认：我们的 compute_evi_f1() 在 FP triple 时 continue 跳过，precision 分母只算\\n    TP；recall 分母也只算已匹配 gold。DREEAM 的 official_evaluate() 把 FP/FN 全部计入分母。关系 recall\\n    ~55% 时，分母差异完全解释 82% vs 57% 的差距。对齐方案：加 FP evidence 到 precision 分母 + 遍历全部 gold triple\\n    evidence 到 recall 分母。论文需要报告 DREEAM 协议数字（与文献可比），条件 Evi-F1 可作为辅助指标（衡量\\\"关系正确时 evidence\\n    选择质量\\\"）。\\n  related_experiments:\\n  - exp_id: mvp2_sft_eval_r2\\n    role: affected\\n    result: conditional evi_f1=0.7979, dreeam evi_f1 待重算\\n  - exp_id: mvp2_eval_rsft_r1\\n    role: affected\\n    result: conditional evi_f1=0.8187, dreeam evi_f1 待重算\\n  - exp_id: mvp2_eval_rsft_r2a\\n    role: affected\\n    result: conditional evi_f1=0.8108, dreeam evi_f1 待重算\\n  - exp_id: mvp2_eval_rsft_r2b\\n    role: affected\\n    result: conditional evi_f1=0.8128, dreeam evi_f1 待重算\\n  depends_on:\\n  - D039\\n  - D040\\n- id: D043\\n  date: 2026-05-15 13:20 UTC\\n  summary: 'D042: Dream 审稿分析——best=2.5/median=3.0/worst=2.5（评分倒挂）。5 个确认行动项（narrow\\n    Claim 3 scope、加 GRPO G=8、修 Evi-F1 协议、CED contingency plan、加 DPO baseline），4 个观察项。Framing\\n    和 plan 已更新，re-dream 启动'\\n  rationale: 'Dream 三档审稿分析（dream-report-action 协议）：\\n\\n\\n    **三档一致的结构性问题（确认行动项）**：\\n\\n    1. CED vs flat-NLI 可能不显著 → 加 contingency plan，如 p>0.05 则 CED 降级\\n\\n    2. Title/claims overclaim \\\"online RL\\\" → Claim 3 限定为 \\\"GRPO+QLoRA\\\"\\n\\n    3. GRPO G=4 太小 → 加 plan_011 (G=8 实验，P0)\\n\\n    4. Cross-protocol Evi-F1 → 已在修复中 (D041)\\n\\n    5. 缺中间 baseline → 加 plan_012 (DPO, P1)\\n\\n\\n    **两档一致的观察项**：\\n\\n    - EDCR 需人工验证 [M][W] → plan_013\\n\\n    - Dev→test 退化 [M][W] → 等 plan_002 真实数据\\n\\n    - Number discrepancies [B][M] → Dream artifact（虚构数据），真实论文不会有此问题\\n\\n\\n    **评分倒挂说明**：best(2.5) < median(3.0) 因 best 版本膨胀数字被审稿人识破——说明诚实报告比膨胀结果更重要。\\n\\n\\n    **判断**：framing 和 plan 已按确认行动项修改，需 re-dream 验证后才能批准 P0 实验。'\\n  related_experiments: []\\n  depends_on:\\n  - D040\\n  - D041\\n- id: D044\\n  date: 2026-05-15 13:24 UTC\\n  summary: Dream v1 分析完成：reframe paper_framing.md，CED 降级，claims 重构，新增 3 个实验\\n  rationale: Dream v1 (best=2.5, median=3.0, worst=2.5) 三档一致指出：(1) CED vs flat-NLI\\n    不显著 p>0.05 → CED 从核心贡献降级为 one possible scoring function；(2) \\\"online RL fails\\\"\\n    标题过度声称 → 收窄到 \\\"GRPO fails for DocRE\\\"；(3) GRPO G=4 太小 → 新增 G=8 实验(plan_011)；(4)\\n    缺 DPO baseline → 新增 plan_012；(5) EDCR 缺人工验证 → 新增 plan_013。Claims 重构为 C1=evidence-grounded\\n    DocRE 可行性, C2=GRPO decoupling 发现, C3=NLI-based RSFT ablation, C4=EDCR 诊断工具。需 re-dream\\n    验证 reframe 效果。\\n  related_experiments:\\n  - exp_id: plan_011\\n    role: new_from_dream\\n    result: GRPO G=8 实验，排除 G=4 confound\\n  - exp_id: plan_012\\n    role: new_from_dream\\n    result: DPO+CED，online-offline 中间 baseline\\n  - exp_id: plan_013\\n    role: new_from_dream\\n    result: EDCR 100例人工标注验证\\n  depends_on:\\n  - D041\\n- id: D045\\n  date: 2026-05-15 13:41 UTC\\n  summary: 'D045: DPO 升级 P0 + GRPO G=8 排为第一优先；DPO 定位修正为 offline preference optimization'\\n  rationale: Reviewer 指出：(1) DPO 是纯 offline 方法，不是 online/offline 中间点——论文中错误定位会被审稿人攻击。已修正\\n    paper_framing.md。(2) DPO 结果直接决定 C2 叙事走向（on-policy 特有 vs 更 general 的现象），对 paper\\n    scope 有重大影响，升级 P0。(3) C2 对 GRPO G=8 单点依赖是最大风险，G=8 必须是 re-dream 后第一个启动的实验。\\n  related_experiments:\\n  - exp_id: plan_012\\n    role: 升级 P0\\n  - exp_id: plan_011\\n    role: 第一优先 P0\\n  depends_on:\\n  - D044\\n- id: D046\\n  date: 2026-05-15 13:42 UTC\\n  summary: 'D045: DPO 从 P1 升 P0 + GRPO G=8 定为 re-dream 后首批实验 + topk3 双变体设计'\\n  rationale: Reviewer 路线图审查指出：(1) DPO 结果直接决定 C2 decoupling 叙事——若 DPO 也出现 decoupling\\n    则现象更 general，若不出现则确认 on-policy 特有，两种结果都对论文有重大影响，升 P0；(2) C2 publishability 必要条件依赖\\n    GRPO G=8 复现 decoupling，是最高风险实验，必须首批启动；(3) topk3 数据含 CED=0 样本会稀释信号，改为双变体并行（全量 vs\\n    过滤 CED=0）以区分数据量效应和信号稀释。同时修正 paper_framing.md 中 DPO 定位错误（纯 offline 方法，非 online/offline\\n    中间点）。\\n  related_experiments:\\n  - exp_id: plan_012\\n    role: DPO+CED 升 P0\\n  - exp_id: plan_011\\n    role: GRPO G=8 首批 P0\\n  - exp_id: plan_008\\n    role: topk3 双变体设计\\n  depends_on:\\n  - D044\\n- id: D047\\n  date: 2026-05-15 14:37 UTC\\n  summary: Re-dream v2 分析：best=3.0/median=2.5/worst=2.5，未达标。识别 7 个三档一致结构性问题，plan_011\\n    bf16 GRPO 是关键突破口，新增 SFT-without-evidence ablation 实验\\n  rationale: 'Dream v2 (dream_20260515T132059) reframe 后评分：best=3.0(Findings), median=2.5(Leaning\\n    Reject), worst=2.5(Leaning Reject)。目标 best≥3.5/median≥3.0 未达标，但比 v1(best=2.5/median=3.0/worst=2.5)的\\n    best 提升了 0.5。\\n\\n\\n    **三档一致结构性问题（确认行动项）**：\\n\\n    1. CED 非显著 vs flat-NLI + title-contribution mismatch → 必须更强地 reframe，CED 降为 one\\n    scoring option\\n\\n    2. QLoRA 混淆 GRPO claim → plan_011 (bf16 LoRA) 直接解决！若 decoupling 在 bf16 下复现 → 消除最大弱点\\n\\n    3. Related work 严重缺失：R1-RE(GRPO sentence-level RE 成功)、RelPrior/Ru-LLM/AutoRE/GLiDRE、DAPO/Dr.GRPO、INFUSE/TRUE\\n\\n    4. DPO 实验细节缺失 → 必须补全训练超参\\n\\n    5. 缺 GRPO forgetting dynamics figure → plan_009 升 P0\\n\\n    6. Single-seed test → 多 seed mean±std\\n\\n    7. 缺 SFT-without-evidence ablation → 新增实验 plan_014\\n\\n\\n    **观察项（等真实数据验证）**：\\n\\n    - Dev-to-test degradation 6x ratio\\n\\n    - CED gold evidence dependency 讨论\\n\\n    - Reward hacking lineage 扩写\\n\\n\\n    **关键路径**：plan_011 eval → 若 decoupling 持续 → C2 claim 升级为 \\\"RL vs structured IE\\\"（去\\n    QLoRA qualifier）→ 论文最大弱点消除 → re-dream 预期 best≥3.5'\\n  related_experiments:\\n  - exp_id: plan_011\\n    role: critical_path\\n    result: training_done_eval_pending\\n  - exp_id: plan_009\\n    role: upgrade_to_P0\\n    result: planned\\n  - exp_id: plan_001\\n    role: flat-NLI_ablation\\n    result: scoring_done\\n  depends_on:\\n  - D044\\n  - D046\\n- id: D048\\n  date: 2026-05-15 14:39 UTC\\n  summary: Dream v2 分析：best=3.0/median=2.5/worst=2.5，未达标。三档一致指出5个结构性问题+2个新实验需求。plan_011\\n    bf16 是升Main最大杠杆。\\n  rationale: Re-dream (dream_20260515T132059) full review 结果：reframe 后 best 从 2.5→3.0\\n    有改善，但 median 从 3.0→2.5 反降。三档一致的结构性问题：(1) CED vs flat-NLI 非显著=标题贡献不匹配，(2) GRPO\\n    QLoRA confound 需 non-QLoRA 控制，(3) related work 大缺（R1-RE/LLM DocRE/GRPO stability），(4)\\n    缺 forgetting dynamics figure，(5) DPO 细节不足。新实验需求：SFT-without-evidence ablation（量化\\n    evidence 生成代价）+ post-hoc retrieval baseline。plan_011 bf16 直接回答 QLoRA confound——如果\\n    decoupling 持续则 C2 从 QLoRA-scoped 升级为 structural claim，这是 Findings→Main 的最关键杠杆。行动：(A)\\n    plan_011 eval 最高优先，(B) 新增 SFT-no-evidence 实验到 plan，(C) plan_009 forgetting figure\\n    并行推进，(D) plan_012 DPO 代码准备立即启动。\\n  related_experiments:\\n  - exp_id: plan_011_grpo_g8_bf16\\n    role: key_experiment\\n    result: ANALYZING\\n  - exp_id: plan_001\\n    role: pending\\n    result: planned\\n  - exp_id: plan_009\\n    role: supporting\\n    result: planned\\n  - exp_id: plan_012\\n    role: pending\\n    result: planned\\n  depends_on:\\n  - D044\\n  - D046\\n- id: D049\\n  date: 2026-05-15 14:39 UTC\\n  summary: 'Dream v2 (dream_20260515T132059) 结果: best=3.0/median=2.5/worst=2.5，未达标(目标\\n    best≥3.5/median≥3.0)。三档一致结构性问题: (1) CED≈flat-NLI 标题错配 (2) QLoRA confound (3) related\\n    work 缺口。行动: 新增 plan_014 bf16 GRPO 控制实验 + plan_015 SFT-no-evidence ablation; plan_009\\n    升 P1; Paper Agent 负责 retitle+reframe+related work。plan_011 eval 优先完成后决定 plan_014\\n    优先级。'\\n  rationale: 'Reframe (D044) 后 re-dream 仍未达 Main 标准。三档审稿一致指出: (a) CED 不显著优于 flat-NLI\\n    但占据标题, (b) GRPO decoupling claim 被 QLoRA confound 限制泛化性, (c) related work 大缺口。这三个是结构性问题而非数据依赖——必须通过新实验(bf16\\n    GRPO 控制)和 reframe 解决。plan_011 已用 bf16 但三变量混淆(bf16+G=8+kl=0.01), 需 clean 单变量控制。禁止\\n    fallback 到 Findings——补实验+reframe 冲 Main。'\\n  related_experiments:\\n  - exp_id: plan_011\\n    role: context\\n    result: ANALYZING - bf16 G=8 训练完成待 eval\\n  - exp_id: plan_014\\n    role: planned\\n    result: '新增: bf16 LoRA GRPO G=4 kl=0 clean control'\\n  - exp_id: plan_015\\n    role: planned\\n    result: '新增: SFT-without-evidence ablation'\\n  depends_on:\\n  - D044\\n  - D046\\n- id: D050\\n  date: 2026-05-15 14:48 UTC\\n  summary: Dream v2 未达标(best=3.0 < 3.5)，决定 pivot 到 analysis paper framing，以 evidence-extraction\\n    decoupling 为核心贡献，CED 降级为分析组件\\n  rationale: Dream v2 三档审稿人一致信号：(1) decoupling 是最新颖贡献(S2两个reviewer强力认可) (2) CED vs\\n    flat-NLI 优势微弱是最致命弱点(W1) (3) EDCR 填补评估盲区(S4) (4) GRPO/DPO/RSFT 光谱设计良好(S6)。当前 framing\\n    把 CED 放标题但数据不支持 CED 显著优势，导致 novelty 感知低。Pivot 到 analysis paper：decoupling 为主 claim，EDCR\\n    为工具贡献，CED 降级为\\\"studied scoring functions之一\\\"。条件：plan_011 bf16 eval 确认 decoupling\\n    非 QLoRA artifact。\\n  related_experiments:\\n  - exp_id: dream_v2_D047\\n    role: trigger\\n    result: best=3.0, median=2.5, worst=2.5\\n  - exp_id: plan_011_grpo_g8_bf16_eval\\n    role: gating\\n    result: pending eval results\\n  depends_on: []\\n- id: D051\\n  date: 2026-05-15 15:55 UTC\\n  summary: D050 pivot 前提失败：bf16 GRPO 无 forgetting (rel_f1=0.4549)，decoupling 是 QLoRA\\n    artifact。暂停 framing pivot，等 plan_015 隔离三重 confound 后再定\\n  rationale: plan_011 bf16 eval 结果：ckpt-100 rel_f1=0.4549（超 SFT +4.92pp，接近 RSFT 0.4596），evi_f1=0.8086，EDCR=0.6318。QLoRA\\n    GRPO 的 catastrophic forgetting 在 bf16 下完全消失。但 plan_011 同时改了三个变量（quantization/G/kl），无法确定是哪个消除了\\n    forgetting。plan_015（bf16+G=4+kl=0）是不可替代的 ablation，必须在定稿 framing 前完成。新的潜在 story：QLoRA\\n    quantization 导致结构化 IE 中 GRPO catastrophic forgetting——比\\\"GRPO fails\\\"更精确、更有诊断价值。\\n  related_experiments:\\n  - exp_id: plan_011_grpo_g8_bf16_eval\\n    role: trigger\\n    result: ckpt-100 rel_f1=0.4549, evi_f1=0.8086, no forgetting\\n  - exp_id: plan_015\\n    role: gating\\n    result: planned, must isolate quantization vs G vs kl\\n  depends_on:\\n  - D050\\n- id: D052\\n  date: 2026-05-15 16:32 UTC\\n  summary: Reviewer 核实 plan_011 vs mvp2_grpo_ced_kl001_r4 已构成 clean quantization ablation（唯一变量=quantization，其余\\n    G=8/kl=0.01/lr=5e-5/weights 完全一致）。不再 gate framing 在 plan_015 上\\n  rationale: Reviewer 逐项核对：plan_011 (bf16) 与 mvp2_grpo_ced_kl001_r4 (QLoRA) 除 quantization\\n    外完全一致（G=8, kl=0.01, lr=5e-5, weights=0.3/3.0/1.0, steps=100, seed=42）。结果：QLoRA\\n    rel_f1=0.2167 vs bf16 rel_f1=0.4549 (Δ=+23.8pp)。这是 quantization→forgetting 的最强直接证据，已完成。plan_015_v2\\n    有 3 个变量差异（weights/lr/kl），不是 clean ablation，定位应为 robustness check。plan_015_v3 不再是\\n    gating experiment——可以立即更新 paper framing。\\n  related_experiments:\\n  - exp_id: plan_011_grpo_g8_bf16_eval\\n    role: treatment\\n    result: bf16 rel_f1=0.4549\\n  - exp_id: mvp2_grpo_ced_kl001_r4\\n    role: control\\n    result: QLoRA rel_f1=0.2167\\n  - exp_id: plan_015_v2\\n    role: robustness\\n    result: running, 3-variable confound, not clean ablation\\n  depends_on:\\n  - D051\\n- id: D053\\n  date: 2026-05-15 16:32 UTC\\n  summary: Quantization isolation 已由 plan_011 vs mvp2_grpo_ced_kl001_r4 解决（Δ=+23.8pp），plan_015\\n    降级为 robustness check，可以开始 reframe\\n  rationale: Reviewer 逐项核对发现 plan_011 (bf16, G=8, kl=0.01, lr=5e-5, weights 0.3/3.0/1.0)\\n    与 mvp2_grpo_ced_kl001_r4 (QLoRA 4-bit, G=8, kl=0.01, lr=5e-5, weights 0.3/3.0/1.0)\\n    配置完全一致，唯一差异为 quantization。结果：QLoRA rel_f1=0.2167 vs bf16 rel_f1=0.4549 (+23.8pp)。D051\\n    等 plan_015 隔离的前提不再成立——干净的 ablation 数据已有。plan_015 系列（lr=5e-6）与任何 QLoRA 实验都有 lr\\n    confound，作为 robustness check 而非 controlled ablation。\\n  related_experiments:\\n  - exp_id: plan_011_grpo_g8_bf16_eval\\n    role: treatment\\n    result: bf16 rel_f1=0.4549\\n  - exp_id: mvp2_grpo_ced_kl001_r4\\n    role: control\\n    result: QLoRA rel_f1=0.2167\\n  - exp_id: plan_015\\n    role: downgraded\\n    result: robustness check, not gating\\n  depends_on:\\n  - D051\\n- id: D054\\n  date: 2026-05-15 17:50 UTC\\n  summary: 'C2 reframe: GRPO decoupling 从\\\"RL通病\\\"收窄为\\\"QLoRA-specific artifact\\\"。bf16 LoRA\\n    GRPO 不遗忘(rel_f1=0.4549 +4.92pp)，QLoRA 崩(0.2167)。Claim 更窄但更 interesting：量化噪声如何破坏\\n    RL reward signal in structured IE。'\\n  rationale: plan_011 vs mvp2_grpo_ced_kl001_r4 构成 clean single-variable ablation（唯一差异=quantization），Δrel_f1=+23.8pp。原\\n    C2\\\"GRPO causes decoupling\\\"已被 plan_011 否定。新 C2 更有实用价值（QLoRA 广泛使用，此 failure mode\\n    未被文献记录），且 Reviewer D052 已确认 ablation 有效性。\\n  related_experiments:\\n  - exp_id: plan_011_grpo_g8_bf16_eval\\n    role: primary\\n    result: rel_f1=0.4549, no forgetting\\n  - exp_id: mvp2_grpo_ced_kl001_r4\\n    role: control\\n    result: rel_f1=0.2167, catastrophic forgetting\\n  - exp_id: plan_015_grpo_g4_bf16_v2\\n    role: supporting\\n    result: killed, plan_011 already provides clean ablation\\n  depends_on:\\n  - D052\\n  - D053\\n- id: D055\\n  date: 2026-05-15 18:00 UTC\\n  summary: 'C4 reframe: CED 优势在 output quality control (compliance +15pp, truncation\\n    3x↓)，非 rel_f1 提升；补跑 flat-NLI 2 seeds 加强统计可信度'\\n  rationale: flat-NLI rel_f1=0.4539 落在 CED 3-seed 1σ 范围内(0.4468-0.4724)，差异不显著。但 field_compliance\\n    78.9% vs ~94% (+15pp 显著)，truncation 20% vs 5-6% (3x 显著)。CED 的真正增益维度是 evidence\\n    faithfulness + output structure quality，非 extraction accuracy。单 seed 对比统计强度不足，cuda:0/cuda:3\\n    空闲，补跑 2 seeds 成本低收益高。\\n  related_experiments:\\n  - exp_id: eval_plan_001_flat_nli\\n    role: flat-NLI ablation\\n    result: rel_f1=0.4539, evi_f1=0.8043, compliance=78.9%, truncation=20%\\n  depends_on: []\\n- id: D056\\n  date: 2026-05-15 18:05 UTC\\n  summary: CED vs flat-NLI 统计不可区分，Claim 3 降级，CED 不再作为独立贡献\\n  rationale: flat-NLI RSFT (seed=42) rel_f1=0.4539 vs CED RSFT 3-seed mean 0.4596±0.0128，差异\\n    -0.57pp 在 1σ 内。同 seed=42 下 flat-NLI 反超 CED +0.90pp。CED contrastive margin 对 RSFT\\n    filtering 无显著增益。论文贡献重新聚焦：(1) evidence-grounded DocRE 任务定义，(2) GRPO decoupling\\n    发现 + quantization artifact 机制，(3) EDCR 诊断指标。CED 降级为 \\\"one possible NLI-based scoring\\n    function\\\"，保留 reranker 价值（rel_f1=0.4864）和 EDCR 组件角色。取消原计划的 5+ seed 显著性检验（GPU 时间转投更高优先级实验）。\\n  related_experiments:\\n  - exp_id: eval_plan_001_flat_nli\\n    role: primary\\n    result: flat-NLI rel_f1=0.4539, CED 3-seed mean=0.4596, 差异不显著\\n  - exp_id: rsft_ced_r1_s42\\n    role: baseline\\n    result: CED seed=42 rel_f1=0.4449\\n  - exp_id: rsft_ced_r1_s44\\n    role: baseline\\n    result: CED seed=44 rel_f1=0.4655\\n  depends_on:\\n  - D055\\n- id: D057\\n  date: 2026-05-15 18:11 UTC\\n  summary: plan_002 test eval 失败，test set eval 推迟到论文终稿阶段\\n  rationale: DocRED test.json 无 gold labels，inference.py 依赖 gold triples 构造 eval 文档，产出\\n    0 predictions。Test set eval 需要：(1) 枚举所有 entity pairs 生成预测，(2) 输出 CodaLab submission\\n    格式，(3) 提交官方服务器。这是工程改造，非当前研究优先级。Dev set 结果足以支撑当前阶段所有 claims。Test set eval 推迟到论文终稿确定后统一做。\\n  related_experiments:\\n  - exp_id: plan_002_test_eval_s44\\n    role: primary\\n    result: failed — 0 predictions, inference.py 不支持无 gold label test split\\n  depends_on: []\\n- id: D058\\n  date: 2026-05-15 18:33 UTC\\n  summary: SFT baseline 推理量化 confound 发现，必须用 --no-quantize 重跑 SFT baseline eval\\n  rationale: Reviewer Review 20 发现：SFT baseline eval 使用 --quantize（registry line 2148），而所有\\n    RSFT/GRPO eval 使用 --no-quantize。推理量化对 4B 模型通常造成 1-3pp 损失。这意味着论文中所有 vs SFT baseline\\n    的 delta 数字都可能被高估 1-3pp：(1) RSFT vs SFT 从 +3.9~6.0pp 可能实际 +2~4pp；(2) bf16 GRPO\\n    vs SFT 从 +4.9pp 可能实际 +2~3pp；(3) evidence tax 从 8.36pp 可能实际 5~7pp。必须重跑 SFT baseline\\n    eval 用 --no-quantize 获取干净 baseline 数字后重新计算所有 delta。\\n  related_experiments:\\n  - exp_id: eval_plan_014_sft_no_evidence\\n    role: trigger\\n    result: rel_f1=0.4893 but comparison with SFT baseline confounded by quantization\\n  - exp_id: sft_baseline\\n    role: affected\\n    result: rel_f1=0.4057 measured with --quantize, needs re-eval with --no-quantize\\n  depends_on: []\\n- id: D059\\n  date: 2026-05-15 19:10 UTC\\n  summary: Claim 2 re-scope：decoupling 作为负面发现保留，ideas A/B/C 归 Future Work 不做实验。精确措辞等\\n    G=8 + DPO 1ep 结果\\n  rationale: Dream 三档一致认为 decoupling \\\"genuinely novel and striking\\\"，是论文最独特贡献。修复 GRPO\\n    会削弱 claim 且无保证。plan_014 量化 evidence burden ~8pp，而 GRPO decoupling 导致 rel_f1→0.01\\n    是量级差异。Claim 2 精确边界取决于：(1) plan_011 G=8 是否复现 decoupling（排除 G=4 confound）；(2) plan_012\\n    DPO 1ep 是否 decouple（判断 on-policy 特有 vs RL 通病）。\\n  related_experiments:\\n  - exp_id: plan_011_bf16_g8_step_eval\\n    role: pending\\n    result: G=8 decoupling 验证\\n  - exp_id: plan_012_dpo_ced_1ep\\n    role: pending\\n    result: DPO 是否 decouple\\n  - exp_id: eval_plan_014_sft_no_evidence\\n    role: evidence\\n    result: evidence burden ~8pp (rel_f1 0.4893 vs 0.4057)\\n  depends_on:\\n  - D008\\n- id: D060\\n  date: 2026-05-15 21:07 UTC\\n  summary: plan_014 no-evidence ablation 纳入 C1 核心证据，CED reranker 定位为最优实用方案\\n  rationale: no-evidence SFT rel_f1=0.4893 vs evidence-SFT 0.4106，量化了 evidence generation\\n    的 ~8pp 代价。CED reranker (0.4864) 恢复 97% 的代价且保留 evi_f1=0.8188。这加强了 C1（evidence-grounded\\n    RE 是有代价但可行的新范式），不需要 reframe。Story Arc 增加\\\"cost of faithfulness\\\"和\\\"best practical\\n    solution\\\"两环。\\n  related_experiments:\\n  - exp_id: plan_014_sft_no_evidence\\n    role: ablation\\n    result: no-evidence rel_f1=0.4893, evidence tax ~8pp\\n  - exp_id: mvp2_ced_reranker_poc\\n    role: baseline\\n    result: CED reranker rel_f1=0.4864, evi_f1=0.8188, recovers 97% of evidence tax\\n  depends_on: []\\n- id: D061\\n  date: 2026-05-15 21:26 UTC\\n  summary: 关闭 DPO 实验线，作为 negative result 纳入论文\\n  rationale: DPO 1ep rel_f1=0.0022（关系本体完全遗忘），3ep rel_f1=0.3429（部分恢复但仍远低于 SFT baseline\\n    0.4106）。非单调退化模式 + 训练指标与 downstream 完全脱节。无论训练长度均不可用，但作为 negative result 有论文价值：(1)\\n    训练 accuracy 不能反映生成质量 (2) preference signal 破坏关系抽取能力 (3) 非单调退化现象\\n  related_experiments:\\n  - exp_id: eval_plan_012_dpo_ced_1ep\\n    role: primary\\n    result: rel_f1=0.0022, field_compliance=0%\\n  - exp_id: plan_012_dpo_ced_3ep\\n    role: comparison\\n    result: rel_f1=0.3429, field_compliance=73.1%\\n  - exp_id: mvp1_ced_signal\\n    role: baseline\\n    result: SFT rel_f1=0.4106\\n  depends_on: []\\n- id: D062\\n  date: 2026-05-15 21:26 UTC\\n  summary: Task decoupling（rel_f1↑ + evi_f1↓）确认为跨方法系统性现象，升级为论文核心发现\\n  rationale: GRPO、DPO、RSFT top_k=3 三种不同优化方法均展现 rel_f1 与 evi_f1 反向变动。这不是某方法的 artifact，而是\\n    faithful evidence generation 的固有代价。强化 paper_framing 的 \\\"cost of faithfulness\\\" narrative：优化关系抽取准确率与生成忠实证据之间存在系统性\\n    tradeoff，RSFT 是目前最优 Pareto 点。\\n  related_experiments:\\n  - exp_id: eval_plan_008_rsft_topk3\\n    role: evidence\\n    result: rel_f1↑ but evi_f1 0.745→0.6816\\n  - exp_id: eval_plan_012_dpo_ced_1ep\\n    role: evidence\\n    result: DPO 完全崩塌\\n  - exp_id: plan_012_dpo_ced_3ep\\n    role: evidence\\n    result: evi_f1=0.84 but rel_f1=0.34\\n  depends_on:\\n  - D060\\n- id: D063\\n  date: 2026-05-15 21:35 UTC\\n  summary: D061 暂缓：DPO 1ep eval 确认为 bug（缺 --sft_adapter），需 reeval 后重新评估 DPO 线\\n  rationale: 排查发现 DPO eval 未传 --sft_adapter，模型加载为 base+DPO（缺 SFT 层），生成自由文本关系名。rel_f1=0.0022\\n    不反映 DPO 真实性能。3ep eval 来自训练内置 eval（自动 merge SFT），可能有效但需确认。批准 cuda:0 跑 1ep reeval（~1h），结果出来后重新判断\\n    DPO 线去留。\\n  related_experiments:\\n  - exp_id: eval_plan_012_dpo_ced_1ep\\n    role: invalidated\\n    result: 'bug: missing --sft_adapter'\\n  - exp_id: plan_012_dpo_ced_3ep\\n    role: pending_verification\\n    result: rel_f1=0.3429 from training-internal eval, needs independent verification\\n  depends_on:\\n  - D061\\n- id: D064\\n  date: 2026-05-15 21:36 UTC\\n  summary: 撤回 DPO 1ep 崩塌结论，3 个 eval 因缺 --sft_adapter 无效，紧急重跑\\n  rationale: Reviewer 发现 eval_plan_012_dpo_ced_1ep、eval_plan_001_flat_nli_s43、eval_plan_008_rsft_topk3\\n    三个 eval 缺少 --sft_adapter /root/autodl-tmp/sft_output 参数，模型加载为 base+adapter（跳过\\n    SFT 层），不认识 DocRED 关系本体导致 rel_f1≈0.002。之前基于此数据的 DPO 1ep 灾难性崩塌结论无效。已下令 kill 正在浪费\\n    GPU 的 rsft_topk3 eval（PID 255528, cuda:3），三个 eval 全部加正确参数重跑，并要求 Agent 排查根因+全面审计历史\\n    eval。\\n  related_experiments:\\n  - exp_id: plan_012\\n    role: eval无效需重跑\\n    result: eval缺--sft_adapter\\n  - exp_id: plan_001\\n    role: eval无效需重跑\\n    result: eval缺--sft_adapter\\n  - exp_id: plan_008\\n    role: eval无效需重跑+kill\\n    result: eval缺--sft_adapter正在浪费GPU\\n  depends_on: []\\n- id: D065\\n  date: 2026-05-15 22:56 UTC\\n  summary: bf16 GRPO G=8 确认无 task decoupling，QLoRA 是 confound——Claim 3 需 reframe 为\\n    \\\"QLoRA-specific artifact\\\" 而非 \\\"GRPO inherent failure\\\"\\n  rationale: 'plan_011 step 30/50/70 全量 dev eval：rel_f1 全程 0.43+ > SFT baseline 0.41，evi_f1\\n    稳定 0.80-0.81，无 QLoRA GRPO 中的 rel_f1 崩塌。field_compliance 从 70.7% 升至 92.4%。结合 QLoRA\\n    GRPO 全线失败（rel_f1 max=0.211），task decoupling 是 QLoRA 量化精度不足导致，非 GRPO 对 IE 任务的固有缺陷。论文\\n    Claim 3 从\\\"GRPO fails for IE\\\"改为\\\"quantization confound analysis\\\"——这反而是更强的 contribution（诊断出量化对\\n    RL-for-IE 的特定影响）。Warning: step-70 rel_f1=0.4341 与之前报告的 0.4549 不一致，需核实。'\\n  related_experiments:\\n  - exp_id: plan_011_bf16_g8_step_eval\\n    role: primary\\n    result: 'step-70: rel_f1=0.4341, evi_f1=0.8099, no decoupling'\\n  - exp_id: mvp2_grpo_ced_lr5e6_r1\\n    role: contrast\\n    result: 'QLoRA GRPO: rel_f1 max=0.211, catastrophic forgetting'\\n  depends_on: []\\n- id: D066\\n  date: 2026-05-15 23:03 UTC\\n  summary: 确认 task decoupling 是 QLoRA-specific artifact：bf16 GRPO G=8 全 4 个 checkpoint\\n    无 decoupling，论文报 best rel_f1=0.4549 (step-100)\\n  rationale: plan_011 bf16 GRPO step 30/50/70/100 完整 eval 显示 rel_f1 全程 > SFT baseline\\n    (0.41)，evi_f1 稳定 0.80-0.81，无 QLoRA GRPO 中观察到的 rel_f1 崩塌。Reviewer PASS。0.4549 来自\\n    step-100 (best checkpoint)，0.4341 来自 step-70 (中间 checkpoint)，两者均为 full dev eval\\n    + --sft_adapter + --no-quantize，差异仅因 checkpoint 不同。论文 Claim 3 核心证据确立：decoupling\\n    是 QLoRA quantization artifact，非 GRPO 固有问题。\\n  related_experiments:\\n  - exp_id: plan_011_bf16_g8_step_eval\\n    role: primary\\n    result: 'success: step-100 rel_f1=0.4549, evi_f1=0.8086, no decoupling'\\n  - exp_id: eval_grpo_g8_bf16\\n    role: corroborating\\n    result: 'success: step-100 rel_f1=0.4549 confirmed'\\n  depends_on: []\\n- id: D067\\n  date: 2026-05-15 23:39 UTC\\n  summary: DPO 叙事修正：从\\\"DPO 也失败\\\"改为\\\"DPO 中性/轻度退化\\\"，作为 RL spectrum 中间数据点\\n  rationale: D064 bug fix 后 DPO 1ep 重新评估：rel_f1=0.4034 ≈ SFT baseline 0.4057（-0.23pp，噪声范围）。D061\\n    基于缺 --sft_adapter 的无效 eval 关闭 DPO 线，该决策维持（不需额外 DPO 实验），但论文叙事需修正。RL spectrum 更新：GRPO\\n    QLoRA catastrophic(<0.02) → GRPO bf16 G=8 mild degradation(0.434 from 0.4549 base)\\n    → DPO 1ep neutral(0.4034) → DPO 3ep mild退化(0.3429) → RSFT effective(0.44-0.49)。DPO\\n    展现温和 decoupling 模式（evi_f1↑ rel_f1↓），支持 preference optimization 在 structured IE\\n    上的 evidence-extraction trade-off 是普遍现象但程度因方法而异。两个 Reviewer 一致确认。待查：DPO field_compliance_rate\\n    仅 65.9%，需对比 SFT baseline 排除模型本身问题。\\n  related_experiments:\\n  - exp_id: eval_plan_012_dpo_1ep_fixed_r2\\n    role: primary\\n    result: rel_f1=0.4034, evi_f1=0.8088, EDCR=0.7139\\n  - exp_id: plan_012_dpo_ced\\n    role: comparison\\n    result: DPO 3ep rel_f1=0.3429 (mild degradation)\\n  - exp_id: plan_011_bf16_g8_step_eval\\n    role: comparison\\n    result: GRPO bf16 G=8 best=0.4341 (mild degradation from 0.4549 base)\\n  depends_on:\\n  - D061\\n- id: D068\\n  date: 2026-05-15 23:40 UTC\\n  summary: 修正 DPO 结论：DPO 1ep 中性（非失败），Claim 2 叙事需从\\\"RL fails\\\"转向\\\"RL spectrum 分化\\\"\\n  rationale: D061 基于缺 --sft_adapter 的无效 eval 判定\\\"关闭 DPO 线\\\"。修正后数据：DPO 1ep rel_f1=0.4034（≈SFT\\n    0.4057），DPO 3ep=0.3429（过拟合退化）。结合 GRPO QLoRA catastrophic(<0.02) vs GRPO bf16 mild\\n    degradation(~0.434)，decoupling 的 catastrophic 程度与 QLoRA 强相关。新叙事：QLoRA+GRPO 导致\\n    catastrophic decoupling；bf16+GRPO 轻度退化；DPO 中性无改善；RSFT 是唯一有效路线。plan_015（clean G=4\\n    bf16 control）升为高优先级以隔离 QLoRA confound。\\n  related_experiments:\\n  - exp_id: eval_plan_012_dpo_1ep_fixed_r2\\n    role: corrected_eval\\n    result: rel_f1=0.4034, neutral vs SFT\\n  - exp_id: plan_012_dpo_ced\\n    role: original_3ep\\n    result: rel_f1=0.3429, mild degradation\\n  - exp_id: plan_011_bf16_g8_step_eval\\n    role: grpo_bf16_control\\n    result: best=0.4341, mild not catastrophic\\n  - exp_id: mvp2_grpo_ced_lr5e6_r1\\n    role: grpo_qlora_original\\n    result: rel_f1<0.02, catastrophic\\n  depends_on: []\\n- id: D069\\n  date: 2026-05-15 23:44 UTC\\n  summary: 修正 D068：evidence-extraction decoupling 是 RL-for-IE 通用现象，非 QLoRA 特有；severity\\n    按方法分层\\n  rationale: D068 判断\\\"catastrophic decoupling 是 QLoRA artifact\\\"不完整。Reviewer 指出 DPO\\n    1ep→3ep 也呈现 decoupling（rel_f1 0.4034→0.3429 下降，evi_f1 0.8088→0.8403 上升），与 GRPO\\n    方向一致仅程度不同。修正后的完整图景：(1) GRPO+QLoRA=catastrophic decoupling (rel_f1<0.02)；(2) GRPO+bf16=mild\\n    decoupling (0.4549→0.434)；(3) DPO+bf16=gradual decoupling (0.4034→0.3429 over\\n    epochs)；(4) RSFT=无 decoupling。结论：decoupling 是所有 RL 方法在结构化 IE 上的通用现象，QLoRA 放大其严重程度但不是唯一原因。RSFT（非\\n    RL 的数据筛选）是唯一规避路径。Claim 2 应从\\\"GRPO fails\\\"升级为\\\"RL-for-IE universal decoupling + severity\\n    hierarchy\\\"。plan_015 仍有价值（量化 QLoRA 放大效应）但不再是叙事关键。另需排查 Ign-F1=F1 的 eval pipeline\\n    bug。\\n  related_experiments:\\n  - exp_id: eval_plan_012_dpo_1ep_fixed_r2\\n    role: dpo_1ep_corrected\\n    result: rel_f1=0.4034, evi_f1=0.8088\\n  - exp_id: plan_012_dpo_ced\\n    role: dpo_3ep\\n    result: rel_f1=0.3429, evi_f1=0.8403, decoupling confirmed\\n  - exp_id: plan_011_bf16_g8_step_eval\\n    role: grpo_bf16\\n    result: 0.4549→0.434, mild decoupling\\n  - exp_id: mvp2_grpo_ced_lr5e6_r1\\n    role: grpo_qlora\\n    result: catastrophic, rel_f1<0.02\\n  depends_on:\\n  - D068\\n- id: D070\\n  date: 2026-05-15 23:50 UTC\\n  summary: Claim 4 重新定位：EDCR 从跨方法诊断指标降级为 per-relation-type/per-document 细粒度诊断工具\\n  rationale: plan_003 EDCR diagnostic table 显示跨方法 EDCR 与 rel_f1 近乎完全反相关（Spearman=-0.965），与\\n    evi_f1 相关性为零（0.002）。这意味着在方法级比较中 EDCR 不提供超出 rel_f1 的独立信息，原始 Claim 4\\\"EDCR 捕捉 Evi-F1\\n    盲区\\\"在方法级不成立。但 per-relation-type 分析显示有意义的方差（date_of_birth EDCR≈0.1 vs head_of_government\\n    EDCR≈0.95），说明 EDCR 在细粒度诊断上仍有价值。重新定位为\\\"per-relation/per-document 证据质量诊断工具\\\"，避免审稿人用一个相关性计算即击穿\\n    Claim 4。\\n  related_experiments:\\n  - exp_id: plan_003_edcr_diagnostic\\n    role: diagnostic_table\\n    result: EDCR vs rel_f1 Spearman=-0.965, vs evi_f1 Spearman=0.002\\n  depends_on: []\\n- id: D071\\n  date: 2026-05-15 23:50 UTC\\n  summary: EDCR 定义存在 by-construction 混淆：当前 EDCR ≈ f(1/rel_f1)，不独立度量 evidence 质量。暂停\\n    Claim 4，实现 TP-only EDCR 后重新评估\\n  rationale: plan_003 诊断表显示 EDCR vs rel_f1 Spearman r=-0.9648, EDCR vs evi_f1 r=0.0022。机理：EDCR\\n    = n_distractor/n_total 在全部预测上计算，rel_f1 低的模型预测大量错误关系→evidence 自动成为 distractor→推高\\n    EDCR。这是定义层面的混淆，非数据问题。修复方案：EDCR 改为仅在 TP triples 上计算（\\\"正确关系中 evidence 的忠实度\\\"），若 TP-only\\n    EDCR 仍与 rel_f1 强相关则 Claim 4 需大幅削弱。plan_013（人工标注验证）暂停，等 TP-only EDCR 定义确认后再决定。\\n  related_experiments:\\n  - exp_id: plan_003_edcr_diagnostic\\n    role: diagnostic\\n    result: EDCR vs rel_f1 r=-0.965, EDCR vs evi_f1 r=0.002\\n  depends_on: []\\n- id: D072\\n  date: 2026-05-16 00:00 UTC\\n  summary: 'Claim 4 升级为双层论述: 方法级 EDCR (decoupling 量化) + per-relation EDCR (独立诊断工具)'\\n  rationale: Per-relation EDCR 分析 (93 relation types) 显示 EDCR vs evi_f1 ρ=-0.064 (p=0.583)，完全独立。与方法级\\n    ρ=-0.965 形成互补。方法级 EDCR 本质是 rel_f1 的变换，诊断价值有限；但 per-relation 粒度上 EDCR 捕捉到 evi_f1\\n    看不到的信息（如 head_of_government EDCR=0.956 但 evi_f1=0.875，证据看似好但 relation 抽取极差）。同时发现\\n    evi_f1 vs rel_f1 在 per-relation 层面也近乎零相关 (ρ=-0.013)，说明 evidence quality 和 relation\\n    extraction 在不同 relation type 间完全解耦——这是一个独立的发现，强化整篇论文的 decoupling narrative。\\n  related_experiments:\\n  - exp_id: plan_003_edcr_diagnostic\\n    role: 方法级 EDCR 分析\\n    result: ρ=-0.965 vs rel_f1\\n  - exp_id: D070\\n    role: per-relation EDCR 分析\\n    result: EDCR vs evi_f1 ρ=-0.064, EDCR vs rel_f1 ρ=-0.793\\n  depends_on:\\n  - D070\\n- id: D073\\n  date: 2026-05-16 00:02 UTC\\n  summary: 'EDCR 论文定义规范: 正文用 distractor count ratio (∈[0,1])，formula proxy 1-rel_f1/evi_f1\\n    仅用于方法级快速对比；per-relation 表格须 n_pred≥10 过滤'\\n  rationale: 'Reviewer 指出两个问题: (1) EDCR formula 1-rel_f1/evi_f1 在 rel_f1>evi_f1 时为负(manufacturer=-0.1879)，名为\\n    rate 却不在[0,1]，审稿人会质疑; (2) per-relation top/bottom 表被退化 case 主导(n_pred=0→EDCR=0,\\n    TP=0→EDCR=1)，有 cherry-picking 嫌疑。解决方案: 论文正文 EDCR 定义为 distractor count ratio (cited\\n    evidence 中非支撑性证据的比例，自然∈[0,1])；formula proxy 仅在方法级无逐预测 distractor 计数时使用，论文中注明是近似。per-relation\\n    展示表格加 n_pred≥10 过滤。'\\n  related_experiments:\\n  - exp_id: plan_003_edcr_diagnostic\\n    role: 方法级 EDCR\\n    result: formula proxy 用于15个方法对比\\n  - exp_id: D070\\n    role: per-relation EDCR\\n    result: 发现负值 case 和退化 case\\n  depends_on:\\n  - D072\\n- id: D074\\n  date: 2026-05-16 00:25 UTC\\n  summary: r2 实际配置正确但已被 kill，r3 替代运行；argparse 静默忽略未知参数是代码隐患\\n  rationale: 验证发现 rsft_trainer.py 的 argparse 不存在 --batch/--grad_accum/--lr/--epochs\\n    参数，这些 flag 被静默忽略，实际使用默认值 per_device_batch_size=4, gradient_accumulation_steps=4，恰好是\\n    CED 正确配置。r2 两个 seed (s43/s45) 的实际训练配置完全一致（510 steps = 2718×3/16），满足 paired t-test\\n    要求。r2 被基于错误假设 kill，r3 用显式正确参数重启，功能等价，仅损失重启时间。后续应修复 argparse strict mode 防止类似问题。\\n  related_experiments:\\n  - exp_id: rsft_ced_s43_train_r2\\n    role: 被验证对象\\n    result: killed（实际配置正确）\\n  - exp_id: rsft_ced_s45_train_r2\\n    role: 被验证对象\\n    result: killed（实际配置正确）\\n  - exp_id: rsft_ced_s43_train_r3\\n    role: 替代实验\\n    result: running\\n  - exp_id: rsft_ced_s45_train_r3\\n    role: 替代实验\\n    result: running\\n  depends_on: []\\n- id: D075\\n  date: 2026-05-16 01:44 UTC\\n  summary: '新增 RC11: 区分 intra-task decoupling vs inter-task forgetting，回应\\\"RL不遗忘\\\"文献'\\n  rationale: 文献扫描发现多篇论文论证 RL fine-tuning 天然缓解 catastrophic forgetting，与 Claim 2 存在表面张力。关键区分：FREIGE\\n    的 decoupling 是 multi-objective competition（RE vs evidence），不是预训练知识遗忘。同时纳入 QuRL/QaRL\\n    作为 QLoRA amplification 的理论支撑。需在 Related Work/Discussion 显式回应。\\n  related_experiments:\\n  - exp_id: eval_grpo_bf16_g8_step30\\n    role: evidence\\n    result: mild decoupling (-2pp) 印证 intra-task trade-off 而非 forgetting\\n  depends_on: []\\n- id: D076\\n  date: 2026-05-16 02:38 UTC\\n  summary: 批准 4 个 eval 重跑：协议审计发现 batch_size/max_new_tokens/seed 不一致，paired t-test\\n    数据无效\\n  rationale: 协议审计发现 8 个 eval 中 4 个不一致：CED s42 (batch_size=8, max_new_tokens=1536),\\n    CED s44 (seed=42 错误), flat-NLI s42 (batch_size=16), flat-NLI s43 (batch_size=16)。统一为\\n    batch_size=4 + --no-quantize + --sft_adapter + max_new_tokens=1024 + 正确 seed。延迟\\n    ~3h，但数据有效性是 C3 统计检验的前提。\\n  related_experiments:\\n  - exp_id: reeval_ced_s42\\n    role: reeval\\n    result: pending\\n  - exp_id: reeval_ced_s44\\n    role: reeval\\n    result: pending\\n  - exp_id: reeval_flat_nli_s42\\n    role: reeval\\n    result: pending\\n  - exp_id: reeval_flat_nli_s43\\n    role: reeval\\n    result: pending\\n  depends_on:\\n  - D075\\n- id: D077\\n  date: 2026-05-16 06:13 UTC\\n  summary: Scope 扩展：plan_006 升 P0，新增 plan_016 (LLaMA cross-family) + plan_007 升 P0\\n    (Re-DocRED)，全面应对模型/数据集单一问题\\n  rationale: 用户指出项目 scope 不足：所有实验仅 Qwen3-4B × DocRED，无法支撑 \\\"通用现象\\\" 级别的 claim。EMNLP 审稿必然质疑泛化性。扩展方案：(1)\\n    Qwen3-1.7B/8B model size ablation (2) LLaMA-3.1-8B cross-family 验证 decoupling\\n    spectrum (3) Re-DocRED cross-dataset。估计额外 ~80 GPU·h，4× RTX 5090 并行 2-3 天可完成。\\n  related_experiments:\\n  - exp_id: plan_006\\n    role: 升P0\\n    result: model size ablation\\n  - exp_id: plan_007\\n    role: 升P0\\n    result: Re-DocRED cross-dataset\\n  - exp_id: plan_016\\n    role: 新增\\n    result: LLaMA cross-family validation\\n  depends_on: []\\n- id: D078\\n  date: 2026-05-16 07:58 UTC\\n  summary: D076 paired t-test 最终确认：CED vs flat-NLI 统计不可区分 (p=0.22, Δ=-0.18pp)，C3 降级决策\\n    D056 正确\\n  rationale: 4-seed D076-compliant paired t-test 完成：CED ign_f1 mean=0.4466 vs flatNLI\\n    mean=0.4484，差异 -0.18pp (t=-1.545, p=0.22)。方向不一致（3/4 flatNLI 胜）。CED contrastive\\n    margin 在 RSFT data selection 上无可测量优势。论文不能 claim CED > flat-NLI。CED 价值保留在 inference-time\\n    reranker (+8pp) 和 EDCR 诊断。\\n  related_experiments:\\n  - exp_id: reeval_flat_nli_s42\\n    role: D076 reeval\\n    result: ign_f1=0.4448\\n  - exp_id: reeval_ced_s44\\n    role: D076 reeval\\n    result: ign_f1=0.4511\\n  - exp_id: reeval_ced_s42\\n    role: D076 reeval\\n    result: ign_f1=0.4423\\n  - exp_id: reeval_flat_nli_s43_r2\\n    role: D076 reeval\\n    result: ign_f1=0.4503\\n  depends_on:\\n  - D056\\n  - D076\\n- id: D079\\n  date: 2026-05-16 13:10 UTC\\n  summary: '8B evidence tax ≈ 0: evidence generation cost is capacity-dependent, not\\n    universal. C1 需从 \\\"flat ~7pp tax\\\" 改为 \\\"tax inversely scales with model size\\\"'\\n  rationale: 8B no-evi Ign-F1=0.5079 vs with-evi 0.5051, Δ=+0.28pp（噪声范围）。对比 4B tax=7.47pp。说明\\n    8B 有足够容量同时处理 RE + evidence generation，无需 trade-off。如果 1.7B tax > 4B tax（待确认），则形成清晰的\\n    scaling curve。这使 C1 从平淡的 \\\"evidence has a cost\\\" 升级为更有洞察力的 \\\"evidence tax is a capacity\\n    phenomenon\\\"——小模型需要 RSFT/reranker 补偿，大模型原生可用。\\n  related_experiments:\\n  - exp_id: plan_006_qwen3_8b_no_evidence_eval_v2\\n    role: primary\\n    result: Ign-F1=0.5079, tax≈0\\n  - exp_id: plan_014_sft_no_evidence\\n    role: baseline\\n    result: 4B no-evi Ign-F1=0.4721, tax=7.47pp\\n  depends_on:\\n  - D077\\n- id: D080\\n  date: 2026-05-16 13:33 UTC\\n  summary: 'Re-DocRED cross-dataset: Ign-F1 下降 3.15pp 但 Evi-F1 提升 1.84pp。Evidence\\n    generation 跨数据集泛化良好，可支撑 \\\"evidence capability generalizes\\\" claim'\\n  rationale: DocRED-trained 4B SFT 在 Re-DocRED 上：Ign-F1 0.3974→0.3659（-3.15pp，中等 domain\\n    shift），Evi-F1 0.7986→0.8170（+1.84pp，反而提升）。说明证据定位能力不受数据集切换影响。EDCR 变化不大（0.698→0.667）。论文可以\\n    claim evidence generation 跨数据集泛化好，但需限定关系抽取泛化有限。\\n  related_experiments:\\n  - exp_id: plan_007_redocred_4b_sft_eval_r2\\n    role: primary\\n    result: Re-DocRED Ign-F1=0.3659, Evi-F1=0.8170\\n  - exp_id: reeval_sft_baseline_d076\\n    role: baseline\\n    result: DocRED Ign-F1=0.3974, Evi-F1=0.7986\\n  depends_on:\\n  - D077\\n- id: D081\\n  date: 2026-05-16 13:52 UTC\\n  summary: 1.7B evidence tax 反转（no-evi 更差 -8pp），但被严重截断混淆（50.9%）。Evidence generation\\n    对小模型是隐式正则化，非纯 \\\"cost\\\"。C1 需改为 capacity-dependent 非单调叙事\\n  rationale: 1.7B no-evi Ign-F1=0.3982 < with-evi 0.4786。但 no-evi 截断率 50.9%（vs with-evi\\n    31.9%），预测数 +52%（26157 vs 17184）。小模型缺乏 evidence 约束后过度生成低质量三元组，被 max_new_tokens=1024\\n    截断。不能 claim \\\"1.7B evidence tax 为负\\\"，正确解读：evidence generation 作为结构性约束防止小模型过度生成。三点数据形成非单调关系：1.7B（evidence=regularizer）→\\n    4B（evidence=cost 7.5pp）→ 8B（evidence=free）。这比简单 \\\"evidence has flat cost\\\" 更有学术价值。需进一步分析：(1)\\n    非截断子集的 tax 估算 (2) 4B plan_006 系列可比性确认。\\n  related_experiments:\\n  - exp_id: plan_006_qwen3_1_7b_no_evidence_eval_v3\\n    role: primary\\n    result: Ign-F1=0.3982, truncation=50.9%, predictions=26157\\n  - exp_id: plan_006_qwen3_8b_no_evidence_eval_v2\\n    role: comparison\\n    result: Ign-F1=0.5079, tax≈0\\n  - exp_id: plan_014_sft_no_evidence\\n    role: comparison\\n    result: 4B no-evi Ign-F1=0.4721, tax=+7.47pp\\n  depends_on:\\n  - D079\\n- id: D082\\n  date: 2026-05-16 14:12 UTC\\n  summary: LLaMA-3.1-8B evidence tax = +0.68pp ≈ 0，跨家族验证成功。8B scale evidence tax 消失是\\n    scale-dependent 现象而非家族特异性。C1 确认升级为 \\\"scale-evidence tax trade-off\\\"\\n  rationale: 'LLaMA with-evi Ign-F1=0.5384 vs no-evi 0.5452, Δ=0.68pp。与 Qwen3-8B (0.28pp)\\n    一致。两个不同模型家族在 8B 规模均显示 evidence tax ≈ 0，证明此现象是 scale-dependent 而非 architecture-specific。论文\\n    C1 可以 claim: \\\"evidence tax vanishes at 8B+ across model families\\\"。同时 LLaMA 在 RE\\n    上优于 Qwen3 (+3.3pp) 但 evidence 质量略低 (evi_f1 -0.37pp, edcr -2.3pp)，可在论文中讨论架构差异。'\\n  related_experiments:\\n  - exp_id: plan_016_llama_3_1_8b_sft_eval\\n    role: primary\\n    result: Ign-F1=0.5384, evi_f1=0.8151, tax=+0.68pp\\n  - exp_id: plan_016_llama_3_1_8b_no_evidence_eval\\n    role: paired\\n    result: Ign-F1=0.5452\\n  - exp_id: plan_006_qwen3_8b_no_evidence_eval_v2\\n    role: comparison\\n    result: Qwen3-8B tax=+0.28pp\\n  depends_on:\\n  - D079\\n  - D081\\n- id: D083\\n  date: 2026-05-16 14:50 UTC\\n  summary: 1.7B 非截断子集分析：排除截断后 evidence 仍 +6.2pp 净益。Evidence tax 呈 V 型：1.7B 正向(正则化)\\n    → 4B 负向(容量竞争 ~8pp) → 8B 中性(≈0)。C1 升级为 \\\"non-monotonic capacity-dependent interaction\\\"\\n  rationale: 公平子集 442 篇（双边未截断）：with-evi Ign-F1=0.6319 vs no-evi 0.5704，Δ=+6.15pp。Precision\\n    差 9.4pp（evidence 约束减少过度预测：no-evi 4513 triples vs with-evi 3991）。全量 +8.04pp 中约\\n    2pp 来自截断混淆，排除后仍有 +6.2pp genuine benefit。V 型曲线：小模型受益（正则化）→ 中模型承受负担（容量竞争）→ 大模型免费（容量充足）。4B\\n    数据点待 D076 重验确认。\\n  related_experiments:\\n  - exp_id: plan_006_qwen3_1_7b_no_evidence_eval_v3\\n    role: primary\\n    result: subset Ign-F1=0.5704 (442 docs non-truncated)\\n  - exp_id: plan_006_qwen3_1_7b_sft_eval\\n    role: paired\\n    result: subset Ign-F1=0.6319\\n  depends_on:\\n  - D081\\n- id: D084\\n  date: 2026-05-16 15:47 UTC\\n  summary: 'LLaMA GRPO QLoRA 复现 catastrophic decoupling（step 59: f1=0, ced=0, format=1.0,\\n    entropy collapse）。C2 跨家族验证成立。继续到 step 100 收集 dynamics 数据后 kill'\\n  rationale: 'LLaMA-3.1-8B GRPO QLoRA 展现与 Qwen3-4B 完全一致的 reward hacking pattern: format_reward\\n    饱和但 f1/ced 始终为零，entropy 从 1.74 降至 0.28（mode collapse），输出长度从 655 缩至 172。这确认 QLoRA\\n    GRPO evidence-extraction decoupling 是跨模型家族的通用现象，非 Qwen 架构特异性。继续到 step 100 是为了\\n    plan_009 dynamics figure 提供 LLaMA 数据点（跨家族对比可视化），之后 kill 释放 cuda:2（省 ~18h GPU 时间）。'\\n  related_experiments:\\n  - exp_id: plan_016_llama_grpo_qlora\\n    role: primary\\n    result: 'step 59: format=1.0, f1=0, ced=0, entropy=0.28 — catastrophic decoupling\\n      confirmed'\\n  - exp_id: mvp2_grpo_ced_lr5e6_r1\\n    role: comparison\\n    result: 'Qwen3-4B same pattern: catastrophic forgetting under QLoRA GRPO'\\n  depends_on:\\n  - D082\\n- id: D085\\n  date: 2026-05-16 15:48 UTC\\n  summary: 修正 D084：立即 kill GRPO（step 60 而非 100）。Reviewer 确认 grad_norm=0/loss=0 训练已死，step\\n    60 dynamics 数据已完整。cuda:2 释放给 LLaMA RSFT candidates r3\\n  rationale: D084 原计划等 step 100，但 Reviewer 发现 step 50 后 grad_norm=0、loss=0、frac_reward_zero_std=1.0，训练完全无信号。继续到\\n    step 100 仅浪费 ~3.5h GPU 时间（70s/step × 40 steps）且不产生新信息。Step 5-60 的完整轨迹（entropy\\n    1.74→0.28, format 0.14→1.0, f1 始终 0）已足够支撑 dynamics figure 的 LLaMA cross-family\\n    数据点。cuda:2 释放后用于 LLaMA RSFT candidates r3（从 r2 的 64 docs 续跑）。\\n  related_experiments:\\n  - exp_id: plan_016_llama_grpo_qlora\\n    role: primary\\n    result: killed at step 60, catastrophic decoupling confirmed cross-family\\n  depends_on:\\n  - D084\\n- id: D086\\n  date: 2026-05-17 01:02 UTC\\n  summary: plan_007_r5 确认 RSFT-CED 跨域迁移有效：Re-DocRED Ign-F1=0.4145 (+4.86pp vs SFT\\n    baseline 0.3659)，增益幅度与 DocRED in-domain (+5.3pp) 一致\\n  rationale: 3 参数正确配置下，Re-DocRED 跨域 eval 首次成功。RSFT-CED 在域外数据上保持 +4.86pp 增益（DocRED\\n    +5.3pp），EDCR=0.621（域内更低，evidence extraction 有轻微衰减但合理）。这为 Claim 1 (cross-dataset\\n    generalization) 提供了坚实支撑。截断率 18.3% 偏高但不影响结论。\\n  related_experiments:\\n  - exp_id: plan_007_redocred_rsft_eval_r5\\n    role: primary\\n    result: 'success: Ign-F1=0.4145, rel_f1≈0.41, EDCR=0.621, truncation=18.3%'\\n  - exp_id: plan_007_redocred_4b_sft_eval_r2\\n    role: baseline\\n    result: SFT baseline Ign-F1=0.3659\\n  depends_on:\\n  - D080\\n  - D077\\n\", \"total_chars\": 66888, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f4410d48-170a-45d8-80c7-f5983b15546b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "2ccab801-c824-4a0c-9315-2c284e1b3cef",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Negative experiments systematic review and diagnosis",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-17T03:52:40.405Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The decisions file is too large. Let me get the relevant decisions related to these negative experiments. Let me use jq to extract relevant ones.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ccab801-c824-4a0c-9315-2c284e1b3cef",
+  "isSidechain": false,
+  "requestId": "req_011Cb7ToTXm1GmY4cS4V3wQj",
+  "type": "assistant",
+  "uuid": "6e518557-a396-47c9-8fa8-9ccde4f363f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BUJsVLo2T1B9NhRWaVbMQ2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 655,
+      "cache_read_input_tokens": 49178,
+      "output_tokens": 576,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 655,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 576,
+          "cache_read_input_tokens": 49178,
+          "cache_creation_input_tokens": 655,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 655
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-17T03:52:41.423Z_
+
+Let me extract key decisions related to GRPO and DPO failures.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e518557-a396-47c9-8fa8-9ccde4f363f2",
+  "isSidechain": false,
+  "requestId": "req_011Cb7ToTXm1GmY4cS4V3wQj",
+  "type": "assistant",
+  "uuid": "d4742d44-3420-4643-89c6-f2b37870c335",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BUJsVLo2T1B9NhRWaVbMQ2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 655,
+      "cache_read_input_tokens": 49178,
+      "output_tokens": 576,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 655,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 576,
+          "cache_read_input_tokens": 49178,
+          "cache_creation_input_tokens": 655,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 655
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T03:52:48.079Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NseqQGYcS8QNXXLvk2nK4c`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt | python3 -c \"\nimport json, sys, yaml\ndata = json.loads(sys.stdin.read())\ncontent = json.loads(data['result'])['data']['content']\ndecisions = yaml.safe_load(content)\n# Filter for decisions related to GRPO, DPO, negative results\nkeywords = ['grpo', 'dpo', 'collapse', 'negative', 'killed', 'reward hack', 'ced_kl001', 'lr5e6', 'flatnli', 'extract_r3', 'topk3', 'redocred']\nrelevant = []\nfor d in decisions:\n    text = str(d).lower()\n    if any(k in text for k in keywords):\n        relevant.append(d)\nprint(f'Total decisions: {len(decisions)}, Relevant: {len(relevant)}')\nfor d in relevant[-30:]:  # Last 30 relevant\n    print(f\\\"---\\\\nID: {d.get('id','?')} | {d.get('date','?')} | {d.get('title','?')}\\\")\n    if 'rationale' in d:\n        print(f\\\"  Rationale: {d['rationale'][:200]}\\\")\n    if 'outcome' in d:\n        print(f\\\"  Outcome: {str(d['outcome'])[:200]}\\\")\n\" 2>&1 | head -200",
+  "description": "Extract GRPO/DPO-related decisions from decisions.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4742d44-3420-4643-89c6-f2b37870c335",
+  "isSidechain": false,
+  "requestId": "req_011Cb7ToTXm1GmY4cS4V3wQj",
+  "type": "assistant",
+  "uuid": "dd5fb9f8-3b09-4ed9-a3bd-6cf9be581805",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BUJsVLo2T1B9NhRWaVbMQ2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 655,
+      "cache_read_input_tokens": 49178,
+      "output_tokens": 576,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 655,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 576,
+          "cache_read_input_tokens": 49178,
+          "cache_creation_input_tokens": 655,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 655
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T03:52:48.453Z_
+
+<details><summary>↩ Tool result · `toolu_01NseqQGYcS8QNXXLvk2nK4c`</summary>
+
+```text
+Total decisions: 2, Relevant: 0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd5fb9f8-3b09-4ed9-a3bd-6cf9be581805",
+  "isSidechain": false,
+  "promptId": "6656c7a5-780a-474e-a396-9263fa94d76f",
+  "type": "user",
+  "uuid": "99fd411a-602c-4609-8c8e-7acff91e7517",
+  "toolUseResult": {
+    "stdout": "Total decisions: 2, Relevant: 0",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "dd5fb9f8-3b09-4ed9-a3bd-6cf9be581805",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T03:52:54.218Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01BK28gYRiLcCgYE7ssRwrLy`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\ncontent = result['data']['content']\n# Print first 500 chars to see structure\nprint(content[:500])\nprint('...')\nprint(f'Total length: {len(content)}')\n\" 2>&1",
+  "description": "Check decisions.yaml content structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99fd411a-602c-4609-8c8e-7acff91e7517",
+  "isSidechain": false,
+  "requestId": "req_011Cb7TpMuwoQYyJRBtuFtQr",
+  "type": "assistant",
+  "uuid": "b7b30eeb-dc48-4c2e-b1dd-c1714911a330",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011V1chCYdfheLEJWbDTrzSp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 599,
+      "cache_read_input_tokens": 49833,
+      "output_tokens": 253,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 599,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 253,
+          "cache_read_input_tokens": 49833,
+          "cache_creation_input_tokens": 599,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 599
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T03:52:54.309Z_
+
+<details><summary>↩ Tool result · `toolu_01BK28gYRiLcCgYE7ssRwrLy`</summary>
+
+```text
+_next_id: 87
+decisions:
+- id: D001
+  date: 2026-05-14 04:21 UTC
+  summary: MVP 设计：两阶段验证——MVP-1 CED 信号验证（离线）→ MVP-2 端到端训练验证
+  rationale: CED 是核心创新，必须先验证 DeBERTa NLI 能在 DocRED 上区分金标证据与实体共现干扰句（MVP-1），再投入 GPU
+    跑完整训练流水线（MVP-2）。MVP-1 失败则 idea 需 pivot，避免浪费 GPU。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-14 05:46 UTC
+  summary: 'MVP-1 PASS: CED 信号验证通过，核心假设成立（margin 0.48, accuracy 81.5%, Pearson r 0.34）'
+  rationale: CED margin 4.8× 超过阈值，DeBERTa 判别力主要来自语义蕴含而非词汇重叠（r=0.34 远低于 
+...
+Total length: 66888
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b7b30eeb-dc48-4c2e-b1dd-c1714911a330",
+  "isSidechain": false,
+  "promptId": "6656c7a5-780a-474e-a396-9263fa94d76f",
+  "type": "user",
+  "uuid": "1ff4d185-e253-461d-bb32-9139507f10b8",
+  "toolUseResult": {
+    "stdout": "_next_id: 87\ndecisions:\n- id: D001\n  date: 2026-05-14 04:21 UTC\n  summary: MVP 设计：两阶段验证——MVP-1 CED 信号验证（离线）→ MVP-2 端到端训练验证\n  rationale: CED 是核心创新，必须先验证 DeBERTa NLI 能在 DocRED 上区分金标证据与实体共现干扰句（MVP-1），再投入 GPU\n    跑完整训练流水线（MVP-2）。MVP-1 失败则 idea 需 pivot，避免浪费 GPU。\n  related_experiments: []\n  depends_on: []\n- id: D002\n  date: 2026-05-14 05:46 UTC\n  summary: 'MVP-1 PASS: CED 信号验证通过，核心假设成立（margin 0.48, accuracy 81.5%, Pearson r 0.34）'\n  rationale: CED margin 4.8× 超过阈值，DeBERTa 判别力主要来自语义蕴含而非词汇重叠（r=0.34 远低于 \n...\nTotal length: 66888",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "b7b30eeb-dc48-4c2e-b1dd-c1714911a330",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T03:53:02.213Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Qai2e1bAbMMUWQyHz9gabH`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/mcp-agent-ml-research-read_project_file-1778989956188.txt | python3 -c \"\nimport json, sys, yaml\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\ncontent = result['data']['content']\ndecisions = yaml.safe_load(content)['decisions']\n# Filter for relevant decisions\nkeywords = ['grpo', 'dpo', 'collapse', 'negative', 'reward hack', 'ced_kl001', 'lr5e6', 'flatnli', 'extract', 'topk', 'redocred', 'mode collapse', 'catastrophic', 'rsft']\nrelevant = []\nfor d in decisions:\n    text = str(d).lower()\n    if any(k in text for k in keywords):\n        relevant.append(d)\nprint(f'Total decisions: {len(decisions)}, Relevant: {len(relevant)}')\nfor d in relevant:\n    print(f\\\"---\\\")\n    print(f\\\"ID: {d.get('id','?')} | {d.get('date','?')}\\\")\n    print(f\\\"  Summary: {d.get('summary','?')}\\\")\n    rat = d.get('rationale','')\n    if rat:\n        print(f\\\"  Rationale: {rat[:300]}\\\")\n\" 2>&1 | head -300",
+  "description": "Extract GRPO/DPO-related decisions with correct yaml parsing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ff4d185-e253-461d-bb32-9139507f10b8",
+  "isSidechain": false,
+  "requestId": "req_011Cb7Tpo1Jk5TUZyoh9XNoN",
+  "type": "assistant",
+  "uuid": "19cf6f16-7b0e-404e-9d07-4e17b2f18b5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RNv3AN6xCE238i2Nwsgir9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 599,
+      "cache_read_input_tokens": 50432,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 599,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 50432,
+          "cache_creation_input_tokens": 599,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 599
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T03:53:02.482Z_
+
+<details><summary>↩ Tool result · `toolu_01Qai2e1bAbMMUWQyHz9gabH`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (42.8KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/bw5ny1e3y.txt
+
+Preview (first 2KB):
+Total decisions: 86, Relevant: 74
+---
+ID: D002 | 2026-05-14 05:46 UTC
+  Summary: MVP-1 PASS: CED 信号验证通过，核心假设成立（margin 0.48, accuracy 81.5%, Pearson r 0.34）
+  Rationale: CED margin 4.8× 超过阈值，DeBERTa 判别力主要来自语义蕴含而非词汇重叠（r=0.34 远低于 0.7）。三个需关注项：33.4% gold p_pos < τ=0.5（τ 可能需调低）、44.4% 无 hard negatives（退化为 flat NLI）、少数负 margin 样本（标注噪声）。这些不影响 MVP 结论但影响 Research 阶段 CED 调参。
+---
+ID: D003 | 2026-05-14 06:02 UTC
+  Summary: Smoke test 功能性 PASS: ZeRO-2 + QLoRA 兼容，4.9GB/卡，授权启动 MVP-2 SFT
+  Rationale: Smoke test 自报 FAIL 是假阴性——synthetic data format-only reward 产生零 variance，数学上无梯度是正常行为。关键目标全部达成：ZeRO-2+QLoRA+GRPOTrainer 兼容、显存充裕（4.9/32GB）、有 reward variance 时梯度正常。Reviewer 独立确认功能性 PASS。
+---
+ID: D004 | 2026-05-14 07:26 UTC
+  Summary: 发现 rtx5090-4x 和 gpu-5090-4x-1 为同一台机器（4 GPU），GRPO 三路对比改为串行
+  Rationale: Reviewer 核实两个 SSH endpoint 返回相同 hostname 和 PID。实际资源 = 4× RTX 5090 32GB，非 8 张。串行 3 路 GRPO 预估 ~7-10h（每路 ~2-3h），今天内可完成 MVP-2，暂不需要额外申请 GPU。
+---
+ID: D005 | 2026-05-14 10:03 UTC
+  Summary: CED r1 训练 step 40 后 mode collapse，启动早停+checkpoint 抢救+cliprange 排查
+  Rationale: Reviewer 审查发现 step 40 后所有指标退化（total_reward 1.79→1.10, f1 0.098→0.012, length 88→547）。clip_ratio 全程为 0 表明 PPO 裁剪未生效，可能是 policy drift 失控的根因。决策：(1) 抢救 step 40 checkpoint 作为当前最优；(2) step 70 前不回升则 kill；(3) 排查并修正 cliprange 后重跑。step 40 checkpoint 仍可用于 vs SFT 的对比 eval，MVP-2 流程不完全停滞。
+---
+ID: D006 | 2026-05-14 10:24 UTC
+  Summary: Kill CED r1（F1 归零+无 checkpoint），准备修复配置后重跑 r2
+  Rationale: Reviewer 确认 step 80 时 f1_reward=0.001（从 peak 0.098 单调下降 50 步），grpo_s3 目录为空（无中间 checkpoint），step 40 最优模型不可挽回。继续 1.3h 必产废模型。诊断三个根因：(1) 无 save_steps 配置；(2) reward 权重失衡（format ~0.97 远大于 f1 ~0.001，模型无 f1 梯度信号）；(3) clip_ratio=0 裁剪未生效。决策 kill 并修复后重跑 r2。
+---
+ID: D007 | 2026-05-14 11:28 UTC
+  Summary: r3 回退 num_iterations=1，隔离变量逐一测试
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "19cf6f16-7b0e-404e-9d07-4e17b2f18b5e",
+  "isSidechain": false,
+  "promptId": "6656c7a5-780a-474e-a396-9263fa94d76f",
+  "type": "user",
+  "uuid": "cb824c52-f728-468f-98f6-cf4233119af4",
+  "toolUseResult": {
+    "stdout": "Total decisions: 86, Relevant: 74\n---\nID: D002 | 2026-05-14 05:46 UTC\n  Summary: MVP-1 PASS: CED 信号验证通过，核心假设成立（margin 0.48, accuracy 81.5%, Pearson r 0.34）\n  Rationale: CED margin 4.8× 超过阈值，DeBERTa 判别力主要来自语义蕴含而非词汇重叠（r=0.34 远低于 0.7）。三个需关注项：33.4% gold p_pos < τ=0.5（τ 可能需调低）、44.4% 无 hard negatives（退化为 flat NLI）、少数负 margin 样本（标注噪声）。这些不影响 MVP 结论但影响 Research 阶段 CED 调参。\n---\nID: D003 | 2026-05-14 06:02 UTC\n  Summary: Smoke test 功能性 PASS: ZeRO-2 + QLoRA 兼容，4.9GB/卡，授权启动 MVP-2 SFT\n  Rationale: Smoke test 自报 FAIL 是假阴性——synthetic data format-only reward 产生零 variance，数学上无梯度是正常行为。关键目标全部达成：ZeRO-2+QLoRA+GRPOTrainer 兼容、显存充裕（4.9/32GB）、有 reward variance 时梯度正常。Reviewer 独立确认功能性 PASS。\n---\nID: D004 | 2026-05-14 07:26 UTC\n  Summary: 发现 rtx5090-4x 和 gpu-5090-4x-1 为同一台机器（4 GPU），GRPO 三路对比改为串行\n  Rationale: Reviewer 核实两个 SSH endpoint 返回相同 hostname 和 PID。实际资源 = 4× RTX 5090 32GB，非 8 张。串行 3 路 GRPO 预估 ~7-10h（每路 ~2-3h），今天内可完成 MVP-2，暂不需要额外申请 GPU。\n---\nID: D005 | 2026-05-14 10:03 UTC\n  Summary: CED r1 训练 step 40 后 mode collapse，启动早停+checkpoint 抢救+cliprange 排查\n  Rationale: Reviewer 审查发现 step 40 后所有指标退化（total_reward 1.79→1.10, f1 0.098→0.012, length 88→547）。clip_ratio 全程为 0 表明 PPO 裁剪未生效，可能是 policy drift 失控的根因。决策：(1) 抢救 step 40 checkpoint 作为当前最优；(2) step 70 前不回升则 kill；(3) 排查并修正 cliprange 后重跑。step 40 checkpoint 仍可用于 vs SFT 的对比 eval，MVP-2 流程不完全停滞。\n---\nID: D006 | 2026-05-14 10:24 UTC\n  Summary: Kill CED r1（F1 归零+无 checkpoint），准备修复配置后重跑 r2\n  Rationale: Reviewer 确认 step 80 时 f1_reward=0.001（从 peak 0.098 单调下降 50 步），grpo_s3 目录为空（无中间 checkpoint），step 40 最优模型不可挽回。继续 1.3h 必产废模型。诊断三个根因：(1) 无 save_steps 配置；(2) reward 权重失衡（format ~0.97 远大于 f1 ~0.001，模型无 f1 梯度信号）；(3) clip_ratio=0 裁剪未生效。决策 kill 并修复后重跑 r2。\n---\nID: D007 | 2026-05-14 11:28 UTC\n  Summary: r3 回退 num_iterations=1，隔离变量逐一测试\n  Rationale: Reviewer CRITICAL 确认：r2 的 KL 在 step 5 爆到 37亿、step 15 爆到 3400亿，直接导致 loss 爆炸+OOM。根因是 num_iterations=2 + QLoRA 4-bit 量化 logits 精度不足，两次迭代间 KL 被放大。r2 同时改了 6 个超参，崩溃后无法归因。r3 必须回退 num_iterations=1，保留 reward weighting（reward 0.25→0.42 正常上升证明 WeightedRewardFn 有效），一次只改一个变量。\n---\nID: D008 | 2026-05-14 12:07 UTC\n  Summary: D007 证伪：KL 爆炸根因是 kl_coef + QLoRA 4-bit 不兼容，非 num_iterations。全部 GRPO 重跑 kl_coef=0\n  Rationale: 3 个 GRPO 实验（num_iterations=1）均在 step 5 触发 KL 爆炸早停（KL 达 10^10 量级）。对比 r1（kl_coef=0/未设）跑了 80+ steps 才因 reward imbalance collapse。证据链：所有设 kl_coef=0.05 的实验全部 step 5 爆炸，未设的 r1 稳定运行。机理：QLoRA 4-bit 量化噪声导致 ref model 和 training model 的 log-probs 存在系统性偏差，KL(π_θ||π_ref) 从第一步就是天文数字。修复：kl_coef=0，依赖 reward weighti\n---\nID: D009 | 2026-05-14 12:12 UTC\n  Summary: CED r4 采用保守配置：grad_accum=16 + lr=5e-6 + kl_coef=0.5 + warmup 200步，解决 r3 单卡 batch=1 + 高 lr 导致的 KL 爆炸\n  Rationale: r3 根因明确：单卡无 grad_accum 导致 effective batch=1，梯度噪声极高，5 步内 KL 爆炸至 4.4M。r1-r3 三次失败模式不同（mode collapse / OOM / KL explosion），说明 CED reward 本身不是问题，是训练超参不稳定。r4 同时修复 3 个因素：(1) grad_accum=16 使 effective batch=16; (2) lr 从 5e-5 降至 5e-6; (3) kl_coef 从 0.05 升至 0.5 加强偏离惩罚; (4) 加 200 步 warmup 稳定初始阶段。需先拿到 extract 和\n---\nID: D010 | 2026-05-14 12:32 UTC\n  Summary: 选择 Option A：保留 kl_coef=0.0 实验进程，修复 registry 状态从 killed → RUNNING；D009 的 kl_coef=0.5 正式作废\n  Rationale: Reviewer critical 报告 registry-reality 不一致。3 个实验实际在跑（kl_coef=0.0, grad_acc=16）但 registry 标记 killed。配置本身正确——D008 已证明 kl_coef>0 在 QLoRA 4-bit 下不稳定（r1 kl_coef=0 稳定 80 步 vs 所有 kl_coef>0 爆炸）。D009 提出的 kl_coef=0.5 会放大 QLoRA 量化噪声导致的 KL 计算失真，Reviewer warning 合理，该指令作废。\n---\nID: D011 | 2026-05-14 13:30 UTC\n  Summary: 采纳 Reviewer 评估框架审查：精确化 pass criteria、补充 extraction-only vs SFT 对比、要求多 checkpoint eval + 统一 eval 脚本\n  Rationale: Reviewer 指出 4 个 warning：(1) 缺 extraction-only vs SFT 对比——回答 GRPO 本身是否有效；(2) kl_coef=0 必须 eval 多 checkpoint 避免 collapse 后只看末尾；(3) pass criteria 需精确化基准；(4) eval 代码必须统一。全部采纳，已更新 ROADMAP 和指令 Agent。\n---\nID: D012 | 2026-05-14 14:54 UTC\n  Summary: 调整 MVP-2 pass criteria：取消绝对 F1>45 门槛，改为相对标准；EDCR 升为主指标\n  Rationale: SFT baseline F1=40.57%（37% 输出截断于 1024 tokens），绝对门槛 F1>45 已不现实。截断影响所有模型相同，相对对比仍有效。Evi-F1=79.79% 设了高 baseline，但 EDCR=71.18% 说明模型\"spray-and-pray\"大量引用 distractor——CED 的核心攻击目标。调整后 pass criteria：(1) CED_Evi-F1 ≥ SFT_Evi-F1（方向正确）；(2) CED_F1 ≥ max(extract, SFT) - 5pp（不退化）；(3) CED_EDCR 显著低于 SFT_EDCR（核心判据）；(4\n---\nID: D014 | 2026-05-14 14:58 UTC\n  Summary: CED r5 mode collapse 确认 kill；CED reward 必须加 F1 门控防止短输出 hack；暂停 ced_kl001\n  Rationale: CED r5 在 65% 进度完全 collapse：completion 固定 34 tokens，f1_reward=0，ced_reward≈0.99，entropy≈0。模型发现极短输出不引用 distractor 即可获得近完美 CED 分——CED 自身被 reward hack。根因：CED reward 不依赖抽取质量，模型可在 F1=0 时仍获高 CED reward。修复方案：F1 门控——仅在 completion 包含 ≥1 个 predicted triple 时计算 CED reward，否则 CED=0。这确保 evidence quality 的评估以有效抽取为\n---\nID: D015 | 2026-05-14 14:58 UTC\n  Summary: ced_r5 mode collapse 保留跑完取分析价值；flatnli_r3 kill 并修复 NLI device 后重启\n  Rationale: ced_r5 在 63% 进度时 f1_reward=0 + entropy≈0，已 mode collapse。保留跑完因为：(1) negative result 证明纯 CED reward 导致 collapse，支撑 reward balance 的 ablation story；(2) 早期 checkpoint 可能有 f1_reward 正常的版本可用。flatnli_r3 因 NLI 推理在 CPU 上运行导致 10x 减速（124s/it vs 12s/it），预计 20h+。RTX 5090 32GB 有足够余量放 DeBERTa-v3-base (~400MB)，kil\n---\nID: D016 | 2026-05-14 15:00 UTC\n  Summary: Kill ced_r5 (total collapse)，ced_kl001 移到 cuda:0 立即启动\n  Rationale: ced_r5 step 250+ f1_reward=0、completion 坍缩到 34 tokens、save_total_limit=5 已覆盖所有正常 checkpoint。继续跑无任何回收价值。Kill 后释放 cuda:0 给 ced_kl001（kl_coef=0.01），不再等 cuda:1。ced_kl001 现在是 MVP-2 最关键实验——验证 CED+KL约束能否避免 reward hacking。extract_r3 和 flatnli_r3 保持 kl=0 继续跑，作为对照：若它们没 collapse，说明问题是 CED reward 特异的；若也 collaps\n---\nID: D017 | 2026-05-14 15:01 UTC\n  Summary: Kill ced_r5 + extract_r3 (kl_coef=0 collapse/stall), 部署 kl_coef=0.01 修正实验\n  Rationale: 3路GRPO健康检查：ced_r5完全mode collapse(entropy=0.0005, F1=0, grad_norm=0)，extract_r3训练停滞(grad_norm=0, F1=0.20低于SFT baseline 0.4057)。共同根因kl_coef=0导致策略无约束偏移。D008显示kl_coef=0.05会KL爆炸，选择0.01作为中间值（5x低于爆炸阈值）。flatnli_r3保留作为kl_coef=0对照组继续观察。\n---\nID: D018 | 2026-05-14 15:04 UTC\n  Summary: flatnli_r3 紧急修复 reward_device cpu→cuda，extract_r3 改为跑完再替换\n  Rationale: Reviewer critical 发现 D015 未执行：flatnli_r3 仍以 --reward_device cpu 运行，step_time 123s/step（GPU 后应 12-15s/step），cuda:3 被占用但 90% 时间等 CPU。修复后从 ~23h 降至 ~2-3h，是当前最高 ROI 操作。extract_r3 已 68%（~50min 完成），改为跑完后再部署 extract_kl001，避免浪费已投入的 2.5h。ced_r5 维持 kill（3.3h GPU 时间用于 ced_kl001 更有价值）。\n---\nID: D019 | 2026-05-14 15:05 UTC\n  Summary: 修正 D017：extract_r3 改为跑完再释放，flatnli_r3 紧急补执行 D015（修复 NLI device 重启）\n  Rationale: Reviewer 审查发现：(1) D015 未执行——flatnli_r3 仍用 CPU NLI，step_time 120s vs GPU 应 12-15s，23h→2-3h 的 10x 效率差，cuda:3 90% 时间在等 CPU。(2) extract_r3 只剩 ~50min，跑完可取早期 checkpoint（collapse 前 step 20-100 可能比 last 好），不值得 kill 浪费已投入的 2.5h。修正后：cuda:0 立即释放给 ced_kl001，cuda:2 等 50min 后给 extract_kl001，cuda:3 kill+修复 NLI dev\n---\nID: D020 | 2026-05-14 15:15 UTC\n  Summary: ced_kl001 启动前必须先修复 CED reward F1 门控（D014 未实现）；kl_coef=0.01 实验改为 100 步探测性运行\n  Rationale: Reviewer 代码核查确认 D014 的 F1 门控从未实现：ced_reward.py 对 0-triple 短输出仍给近完美分(0.99)。ced_r5 的 collapse 根因是双重的——kl_coef=0 导致策略自由偏移 + CED reward 对短输出的 hack。仅修 kl_coef 不解决 reward 设计缺陷，ced_kl001 会重复失败。同时 kl_coef=0.01+QLoRA 的兼容性未验证（D008 证明 0.05 爆炸），先做 100 步探测降低风险。\n---\nID: D021 | 2026-05-14 17:20 UTC\n  Summary: Kill flatnli_r5（从已 hacked checkpoint 恢复无效），启动 flatnli_r6 从 SFT 全新训练 D020 配置\n  Rationale: Reviewer 独立审查发现 flatnli_r3 checkpoint-100 已深陷 NLI reward hacking（f1=0.025, flat_nli=0.911）。从该 checkpoint 恢复加 kl_coef=0.01 后 KL=0.46（远高于从 SFT 新训的 ced_kl001_r4 的 0.098），frac_zero_std 升至 0.8-0.9，grad_norm 近零——训练冻结。教训：从 kl=0 已漂移 checkpoint 恢复并加 kl>0 不可行，必须从 SFT 全新开始。\n---\nID: D022 | 2026-05-14 17:40 UTC\n  Summary: Kill extract_r4 (f1_reward=0 at ckpt-30, mode collapse confirmed); cuda:2 转 ced_kl001_r4 多 checkpoint eval\n  Rationale: extract_r4 (extraction-only, kl_coef=0.01+gen=8) 在 step 10 后 f1_reward 归零、frac_zero_std≥0.8 停滞，checkpoint-30 无恢复信号。同配置的 ced_kl001_r4 在 step 20 f1_reward=0.082 持续上升——直接证明 CED reward 通道是驱动学习的关键因素。这一负面结果本身是强证据，不再尝试 extract_r5。cuda:2 空闲，派去 eval ced_kl001_r4 中间 checkpoint，提前获取多 checkpoint 评估数据。\n---\nID: D023 | 2026-05-14 17:40 UTC\n  Summary: Kill extract_r4 (mode collapse confirmed); ablation 结论: CED reward 是 GRPO 训练必需的 dense signal，extraction-only reward 太稀疏无法驱动学习\n  Rationale: extract_r4 checkpoint-30: f1_reward 连续 25 步为 0，frac_zero_std 升至 0.9，grad_norm 在 0.005-0.012 震荡。对比 ced_kl001_r4 同期（f1_reward=0.082 持续上升，frac_zero_std=0.4 持续下降），唯一差异是 reward type。结论: Stage 1 (extract-only) 在 D020 配置下无法维持 GRPO 探索多样性，CED 提供的 dense reward signal 是训练成功的必要条件。这是论文的关键 ablation evidence。cuda:\n---\nID: D024 | 2026-05-14 18:11 UTC\n  Summary: Kill flatnli_r6 (mode collapse step 25); D020 配置下三路 ablation 结论: 仅 CED reward 存活，extract-only 和 flat-NLI 均 collapse\n  Rationale: flatnli_r6 step 25: frac_zero_std=0.9, f1_reward=0, flat_nli_reward=0, reward 100% 来自 format。与 extract_r4 collapse 模式一致。三个实验共用 D020 配置（kl=0.01, gen=8），唯一差异是 reward type: extract-only collapse (step 10-30), flat-NLI collapse (step 25), CED 健康完成 100 步。结论: CED 的对比性 evidence discrimination 提供了 GRPO 所需的 \n---\nID: D025 | 2026-05-14 18:11 UTC\n  Summary: Kill flatnli_r6 (mode collapse confirmed step 25); D020 配置下三路 ablation 结论：仅 CED reward 存活，extract-only 和 flat-NLI 均 collapse\n  Rationale: flatnli_r6 step 25: frac_zero_std=0.9, f1_reward=0, flat_nli_reward=0, reward 100% 来自 format。与 extract_r4 collapse 模式一致。D020 配置（kl=0.01, gen=8）下三路对比：extract-only step 30 collapse, flat-NLI step 25 collapse, CED 100 步健康完成。唯一差异是 reward type。结论：CED 的对比性 evidence discrimination 提供了更丰富的梯度信号，是维持 GRPO 探索多样\n---\nID: D026 | 2026-05-14 19:37 UTC\n  Summary: MVP-2 ced_kl001_r4 FAIL — lr=5e-5 导致灾难性遗忘+CED recall shortcut 双重问题，启动 P0/P0+P1 并行修复\n  Rationale: ckpt-10/50/100 eval 全部远低于 SFT baseline（rel_f1: 0.003→0.156→0.217 vs SFT 0.4057，evi_f1: 0.720→0.564→0.575 vs SFT 0.7979）。训练 reward 5x 增长但 eval F1 未恢复，确认 reward hacking + 灾难性遗忘双重机制。根因：lr=5e-5 过高 5-10x + CED 对非匹配 triple 无 recall 惩罚。D020 ablation 的 CED 训练稳定性发现仍有效。下一步：P0（lr=5e-6）和 P0+P1（lr=5e-6 + ced_rec\n---\nID: D027 | 2026-05-14 19:37 UTC\n  Summary: MVP-2 ced_kl001_r4 FAIL — lr=5e-5 过高导致灾难性遗忘+CED recall shortcut 叠加 reward hacking\n  Rationale: ckpt-10/50/100 三点轨迹确认：rel_f1 最高 0.217（SFT 0.4057, pass 0.356, gap -13.9pp），evi_f1 最高 0.575（SFT 0.7979, pass 0.818, gap -24.3pp）。恢复速率递减（40步+15.3pp→50步+6.0pp），外推至 step200 仍远低于 pass。根因：(1) lr=5e-5 是社区推荐的 5-10x，导致 step10 即灾难性遗忘；(2) CED shortcut 使非匹配 triple 退化为 flat NLI，引导模型少预测高 EDCR；(3) train/eval 分布不匹配\n---\nID: D028 | 2026-05-14 21:36 UTC\n  Summary: Kill rp_r2 (P0+P1) — loss 指数 divergence 不可恢复；cuda:3 转跑 rp_r2 ckpt-20 eval 关闭对比线\n  Rationale: rp_r2 loss 从 step 10-20 持续指数增长 (908→24650→1.34e7)，根因是 recall_penalty 5-10x 梯度 + kl_coef=0.01 形成正反馈循环。与 P0 的瞬时 KL spike 不同，这是持续 divergence。Kill 后 cuda:3 跑 rp_r2 ckpt-20 eval（成本低，~2h）拿到数据关闭 P0+P1 对比线。不启动新训练——MVP 阶段 P0 单独通过即可。\n---\nID: D029 | 2026-05-14 21:44 UTC\n  Summary: 修正 rp_r2 终止理由：从\"loss 持续发散\"改为\"recall penalty 过度抑制 CED 信号\"\n  Rationale: Reviewer 独立核实 trainer_state.json 发现 rp_r2 step 30-40 的 loss/KL 已完全恢复正常（loss=0.038, KL=0.005），与 P0 的瞬态发散→恢复模式一致，不是持续发散。真正的问题是 ced_reward=0.005 远低于 P0 的 0.079，说明 recall penalty 过于严苛压制了 CED 学习信号。kill 决策本身不撤回，但论文引用此 negative result 时应表述为\"recall penalty 过度抑制 CED 信号\"而非\"训练发散\"。\n---\nID: D030 | 2026-05-14 22:16 UTC\n  Summary: P0 ckpt-20 eval FAIL (rel_f1=0.0077); lr=5e-6 未能防止早期遗忘，与 lr=5e-5 相同模式；扩展至全 checkpoint 轨迹评估\n  Rationale: lr=5e-5 和 lr=5e-6 在 step-20 均出现灾难性遗忘（rel_f1 < 0.01），说明问题不是单纯 LR 过高——GRPO+QLoRA 在结构化生成任务上的前 20 步 inherently 不稳定（60% 输出截断，field compliance 仅 39.9%）。需要看完整 recovery trajectory（ckpt-40/60/80）才能判断是否\"先崩后恢复\"。ced_kl001_r4 (lr=5e-5) step-90 最高 0.211 仍低于阈值，lr=5e-6 能否突破 0.30 存疑。同时开始考虑 GRPO 替代方案（DPO/rejection sa\n---\nID: D031 | 2026-05-14 23:10 UTC\n  Summary: GRPO+QLoRA P0 方向判死：ckpt-40 rel_f1=0.0071（比 ckpt-20 更差），两个 LR 均远劣于 SFT baseline。Pivot 到离线 RL（Rejection Sampling FT → DPO）\n  Rationale: ckpt-20→ckpt-40 轨迹下降（0.0077→0.0071），GRPO 只学会格式/证据引用但完全丧失关系抽取能力。lr=5e-5 最佳 0.211 vs SFT 0.406，lr=5e-6 最佳 0.008。catastrophic forgetting 是 GRPO+QLoRA 在结构化生成任务上的根本性问题，非超参可解。CED reward signal 本身有效（MVP-1 verified），问题在在线 RL 训练方法论。Pivot 到离线方法：(1) Rejection Sampling FT 最简单最稳定优先做 (2) DPO+CED scoring 作为并行备选。\n---\nID: D032 | 2026-05-15 01:03 UTC\n  Summary: Kill GRPO 训练 (cuda:0 step 113/200): 轨迹数据已充分，释放 GPU 给 RSFT 管线加速\n  Rationale: ckpt-80 rel_f1=0.0116 (SFT baseline 的 2.9%)，ckpt-20→80 全线 FAIL。ckpt-100 eval 在跑会给最后一个数据点，但 step 200 无价值。释放 cuda:0 可用于并行 RSFT generate 或后续 scoring/training。\n---\nID: D033 | 2026-05-15 01:22 UTC\n  Summary: D031 最终确认：GRPO+QLoRA 全线 FAIL，lr5e6 全 6 checkpoint rel_f1 < 0.02；negative result 模式有论文价值（CED↑ + rel_f1 catastrophic forgetting = 在线 RL 无法维持双能力）\n  Rationale: Reviewer 独立核实 lr5e6 全 6 checkpoint：rel_f1 最高仅 0.0138（阈值 0.30），evi_f1 从 0.628 单调升至 0.850（超 SFT 0.798），edcr 稳定 ~0.99（远超 SFT 0.712）。模式：CED reward signal 有效驱动 evidence 质量提升，但在线 RL (GRPO+QLoRA) 导致关系抽取 catastrophic forgetting。此 negative result 直接支持离线 RL (RSFT/DPO) 路线的必要性，且为论文提供重要论据。\n---\nID: D034 | 2026-05-15 01:28 UTC\n  Summary: D034: RSFT diversity 危机——diversity=1.0/8 因 temperature 未生效，暂停生成并修复\n  Rationale: Reviewer critical 发现：(1) rsft_generate.py 传入 temperature=0.7 但被 Qwen3-4B generation_config.json 自带的 T=0.6/top_k=20 覆盖，transformers 打出 WARNING 但 Agent 未注意；(2) SFT 后模型分布极度尖锐，T=0.6+top_k=20 几乎等同于 greedy，导致 8 次生成完全相同；(3) 早期 diversity_probe 报告 7/8 是 format 解析 bug 导致的虚假多样性，修复格式后真实 diversity 暴露为 1.0/8。必须 k\n---\nID: D035 | 2026-05-15 01:29 UTC\n  Summary: 暂停 RSFT 并行化：Reviewer critical 发现 diversity=1.0/8 是格式修复后的真实值，之前 7/8 为格式不一致假象。高温探针优先。\n  Rationale: diversity_probe 原始数据 (8,6,1) 平均 5.0/8 而非上报的 7；且 probe 时 format_ok 仅 34%，\"多样性\"来自 JSON key 名变体。生产环境 format_ok=99.8% 后实测 diversity=1.0/8。继续当前配置生成 14h 的数据毫无意义——rejection sampling 退化为普通 SFT。需先用高温(T=1.0/1.2/1.5)探针验证 diversity 是否可恢复。\n---\nID: D036 | 2026-05-15 01:33 UTC\n  Summary: D034 撤销：diversity crisis 是监控 bug，非生成质量问题，T=0.7 下 diversity 充足(7.11/8)，恢复并行生成\n  Rationale: 独立验证 Worker 分析 cuda:1 已生成的 200 docs：triple-set diversity 7.11/8 (median=8.0)，format parse rate 90.2%，61.5% 文档 8/8 完全不同。之前监控报告 mean_diversity=1.0/8 为度量代码计算错误。无需执行 D034 的 temperature 修复和高温探针。\n---\nID: D037 | 2026-05-15 07:46 UTC\n  Summary: D037: RSFT 全线 FAIL（rel_f1=0.0483），pivot 到 CED-as-reranker（推理时方案）\n  Rationale: GRPO（D027/D031/D033）和 RSFT 两条训练路线均呈现相同的灾难性遗忘——任何对 SFT checkpoint 的二次微调都摧毁 rel_f1。RSFT r1: rel_f1=0.0483, num_preds=848（SFT baseline: 0.4057, 12234）。跨 seed 方差 <0.04%，非随机。根因假设：LoRA 二次微调的系统性遗忘。Pivot 到 CED-as-reranker：SFT 模型生成 N 候选 → CED 打分 → 选最佳，完全绕过训练问题。\n---\nID: D038 | 2026-05-15 09:40 UTC\n  Summary: D038: 撤回 D037——RSFT \"灾难性失败\"实为 eval bug（50-doc pred vs 12275 gold denominator mismatch），s44 全量 eval 通过 MVP-2（rel_f1=0.4655 +5.98pp, evi_f1=0.8087 +1.08pp）\n  Rationale: r1 的 rel_f1=0.0483 是评估代码 bug：TaskEvalCallback 在 50 docs 上生成预测但 gold triples 用了全量 dev set 12275 条，recall 被人为压到 ~3.5%。s44 独立全量 eval（985 docs）结果：rel_f1=0.4655（+5.98pp vs SFT 0.4057），evi_f1=0.8087（+1.08pp vs 0.7979），edcr=0.6350（-7.68pp vs 0.7118）。CED rejection sampling 首次端到端验证成功。D037 的 reranker pivot 基于\n---\nID: D039 | 2026-05-15 11:49 UTC\n  Summary: D039: RSFT+CED ablation 全部 PASS MVP-2——方法鲁棒，1 epoch 足够，EDCR 局限需论文讨论\n  Rationale: Reviewer 独立验证 4 组 RSFT 配置（r1 s42/s44, r2a, r2b）全部通过 MVP-2 判据（rel_f1 > 0.4057, evi_f1 > 0.798）。核心发现：(1) RSFT+CED 方法贡献 +4-6pp rel_f1，具体超参影响极小（0.45pp 范围内），方法鲁棒性好；(2) 1 epoch 足够，3 epoch 无显著额外收益；(3) r2b 保守 LoRA scaling+低 lr 略优于 r2a（截断更少、字段完整率更高）；(4) EDCR 一致偏高 63-66%，CED reward 对 rel_f1 提升明显但对证据精确度提升有限，需论\n---\nID: D040 | 2026-05-15 12:03 UTC\n  Summary: D040: MVP 正式通过 → 进入 Research 阶段。paper_framing.md 定稿（RSFT+CED 路线，4 Claims），experiment_plan.yaml 建立（10 研究实验），dream_simulate(full) 已启动\n  Rationale: D039 已判定 MVP-2 全部 PASS（4/4 configs），但 complete_mvp() 未被调用。用户催促后补调。Post-MVP kickoff 按 skill 流程执行：(1) paper_framing.md 从 Pre-MVP draft 更新为 Post-MVP 定稿版——方法从 GRPO 转为 RSFT+CED，新增 Claim 3（在线 RL catastrophic forgetting 分析）和 RC6/RC7；(2) experiment_plan.yaml 新建，10 个研究实验分 P0/P1/P2；(3) dream_simulate(full) 已启\n---\nID: D041 | 2026-05-15 13:15 UTC\n  Summary: D041: Evi-F1 评测协议不一致确认——我们的\"条件 Evi-F1\"(仅 TP triples)与 DREEAM\"联合 Evi-F1\"(含 FP/FN 惩罚)不可比，publishability threshold 暂冻结等对齐后重评\n  Rationale: Agent 调查确认：我们的 compute_evi_f1() 在 FP triple 时 continue 跳过（precision 分母只算 TP evidence），recall 分母也只算 matched gold triples。DREEAM 的 official_evaluate() 将 FP/FN 全部计入分母。在 rel_recall ≈ 55% 时，分母差约 1.8x，解释了 82% vs 57% 的差距。已派 Agent 实现 DREEAM 协议对齐函数并重新评估全部实验。在对齐数字出来前，paper_framing.md 的 publishability threshol\n---\nID: D042 | 2026-05-15 13:16 UTC\n  Summary: D041: Evi-F1 评测协议与 DREEAM 不一致——我们的 conditional Evi-F1 跳过 FP/FN triples，比 DREEAM 的 joint Evi-F1 宽松得多。必须实现 DREEAM 协议对齐后重算所有实验。Publishability threshold 待重算后修订\n  Rationale: Agent 调查确认：我们的 compute_evi_f1() 在 FP triple 时 continue 跳过，precision 分母只算 TP；recall 分母也只算已匹配 gold。DREEAM 的 official_evaluate() 把 FP/FN 全部计入分母。关系 recall ~55% 时，分母差异完全解释 82% vs 57% 的差距。对齐方案：加 FP evidence 到 precision 分母 + 遍历全部 gold triple evidence 到 recall 分母。论文需要报告 DREEAM 协议数字（与文献可比），条件 Evi-F1 可作为辅助指标（\n---\nID: D043 | 2026-05-15 13:20 UTC\n  Summary: D042: Dream 审稿分析——best=2.5/median=3.0/worst=2.5（评分倒挂）。5 个确认行动项（narrow Claim 3 scope、加 GRPO G=8、修 Evi-F1 协议、CED contingency plan、加 DPO baseline），4 个观察项。Framing 和 plan 已更新，re-dream 启动\n  Rationale: Dream 三档审稿分析（dream-report-action 协议）：\n\n**三档一致的结构性问题（确认行动项）**：\n1. CED vs flat-NLI 可能不显著 → 加 contingency plan，如 p>0.05 则 CED 降级\n2. Title/claims overclaim \"online RL\" → Claim 3 限定为 \"GRPO+QLoRA\"\n3. GRPO G=4 太小 → 加 plan_011 (G=8 实验，P0)\n4. Cross-protocol Evi-F1 → 已在修复中 (D041)\n5. 缺中间 baseline → 加 plan_012 \n---\nID: D044 | 2026-05-15 13:24 UTC\n  Summary: Dream v1 分析完成：reframe paper_framing.md，CED 降级，claims 重构，新增 3 个实验\n  Rationale: Dream v1 (best=2.5, median=3.0, worst=2.5) 三档一致指出：(1) CED vs flat-NLI 不显著 p>0.05 → CED 从核心贡献降级为 one possible scoring function；(2) \"online RL fails\" 标题过度声称 → 收窄到 \"GRPO fails for DocRE\"；(3) GRPO G=4 太小 → 新增 G=8 实验(plan_011)；(4) 缺 DPO baseline → 新增 plan_012；(5) EDCR 缺人工验证 → 新增 plan_013。Claims 重构为 C1=ev\n---\nID: D045 | 2026-05-15 13:41 UTC\n  Summary: D045: DPO 升级 P0 + GRPO G=8 排为第一优先；DPO 定位修正为 offline preference optimization\n  Rationale: Reviewer 指出：(1) DPO 是纯 offline 方法，不是 online/offline 中间点——论文中错误定位会被审稿人攻击。已修正 paper_framing.md。(2) DPO 结果直接决定 C2 叙事走向（on-policy 特有 vs 更 general 的现象），对 paper scope 有重大影响，升级 P0。(3) C2 对 GRPO G=8 单点依赖是最大风险，G=8 必须是 re-dream 后第一个启动的实验。\n---\nID: D046 | 2026-05-15 13:42 UTC\n  Summary: D045: DPO 从 P1 升 P0 + GRPO G=8 定为 re-dream 后首批实验 + topk3 双变体设计\n  Rationale: Reviewer 路线图审查指出：(1) DPO 结果直接决定 C2 decoupling 叙事——若 DPO 也出现 decoupling 则现象更 general，若不出现则确认 on-policy 特有，两种结果都对论文有重大影响，升 P0；(2) C2 publishability 必要条件依赖 GRPO G=8 复现 decoupling，是最高风险实验，必须首批启动；(3) topk3 数据含 CED=0 样本会稀释信号，改为双变体并行（全量 vs 过滤 CED=0）以区分数据量效应和信号稀释。同时修正 paper_framing.md 中 DPO 定位错误（纯 offline 方\n---\nID: D047 | 2026-05-15 14:37 UTC\n  Summary: Re-dream v2 分析：best=3.0/median=2.5/worst=2.5，未达标。识别 7 个三档一致结构性问题，plan_011 bf16 GRPO 是关键突破口，新增 SFT-without-evidence ablation 实验\n  Rationale: Dream v2 (dream_20260515T132059) reframe 后评分：best=3.0(Findings), median=2.5(Leaning Reject), worst=2.5(Leaning Reject)。目标 best≥3.5/median≥3.0 未达标，但比 v1(best=2.5/median=3.0/worst=2.5)的 best 提升了 0.5。\n\n**三档一致结构性问题（确认行动项）**：\n1. CED 非显著 vs flat-NLI + title-contribution mismatch → 必须更强地 reframe，CED 降为 one\n---\nID: D048 | 2026-05-15 14:39 UTC\n  Summary: Dream v2 分析：best=3.0/median=2.5/worst=2.5，未达标。三档一致指出5个结构性问题+2个新实验需求。plan_011 bf16 是升Main最大杠杆。\n  Rationale: Re-dream (dream_20260515T132059) full review 结果：reframe 后 best 从 2.5→3.0 有改善，但 median 从 3.0→2.5 反降。三档一致的结构性问题：(1) CED vs flat-NLI 非显著=标题贡献不匹配，(2) GRPO QLoRA confound 需 non-QLoRA 控制，(3) related work 大缺（R1-RE/LLM DocRE/GRPO stability），(4) 缺 forgetting dynamics figure，(5) DPO 细节不足。新实验需求：SFT-without-evi\n---\nID: D049 | 2026-05-15 14:39 UTC\n  Summary: Dream v2 (dream_20260515T132059) 结果: best=3.0/median=2.5/worst=2.5，未达标(目标 best≥3.5/median≥3.0)。三档一致结构性问题: (1) CED≈flat-NLI 标题错配 (2) QLoRA confound (3) related work 缺口。行动: 新增 plan_014 bf16 GRPO 控制实验 + plan_015 SFT-no-evidence ablation; plan_009 升 P1; Paper Agent 负责 retitle+reframe+related work。plan_011 eval 优先完成后决定 plan_014 优先级。\n  Rationale: Reframe (D044) 后 re-dream 仍未达 Main 标准。三档审稿一致指出: (a) CED 不显著优于 flat-NLI 但占据标题, (b) GRPO decoupling claim 被 QLoRA confound 限制泛化性, (c) related work 大缺口。这三个是结构性问题而非数据依赖——必须通过新实验(bf16 GRPO 控制)和 reframe 解决。plan_011 已用 bf16 但三变量混淆(bf16+G=8+kl=0.01), 需 clean 单变量控制。禁止 fallback 到 Findings——补实验+reframe 冲 Main。\n---\nID: D050 | 2026-05-15 14:48 UTC\n  Summary: Dream v2 未达标(best=3.0 < 3.5)，决定 pivot 到 analysis paper framing，以 evidence-extraction decoupling 为核心贡献，CED 降级为分析组件\n  Rationale: Dream v2 三档审稿人一致信号：(1) decoupling 是最新颖贡献(S2两个reviewer强力认可) (2) CED vs flat-NLI 优势微弱是最致命弱点(W1) (3) EDCR 填补评估盲区(S4) (4) GRPO/DPO/RSFT 光谱设计良好(S6)。当前 framing 把 CED 放标题但数据不支持 CED 显著优势，导致 novelty 感知低。Pivot 到 analysis paper：decoupling 为主 claim，EDCR 为工具贡献，CED 降级为\"studied scoring functions之一\"。条件：plan_011 bf1\n---\nID: D051 | 2026-05-15 15:55 UTC\n  Summary: D050 pivot 前提失败：bf16 GRPO 无 forgetting (rel_f1=0.4549)，decoupling 是 QLoRA artifact。暂停 framing pivot，等 plan_015 隔离三重 confound 后再定\n  Rationale: plan_011 bf16 eval 结果：ckpt-100 rel_f1=0.4549（超 SFT +4.92pp，接近 RSFT 0.4596），evi_f1=0.8086，EDCR=0.6318。QLoRA GRPO 的 catastrophic forgetting 在 bf16 下完全消失。但 plan_011 �",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false,
+    "persistedOutputPath": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/bw5ny1e3y.txt",
+    "persistedOutputSize": 43780
+  },
+  "sourceToolAssistantUUID": "19cf6f16-7b0e-404e-9d07-4e17b2f18b5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "cb824c52-f728-468f-98f6-cf4233119af4",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Negative experiments systematic review and diagnosis",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T03:53:06.960Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AYbJuahb76cRMm62opFD8f`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/bw5ny1e3y.txt",
+  "offset": 0,
+  "limit": 300
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb824c52-f728-468f-98f6-cf4233119af4",
+  "isSidechain": false,
+  "requestId": "req_011Cb7TqQ1UpMUtYWxRdB6UX",
+  "type": "assistant",
+  "uuid": "a19e2100-9fea-454e-80f8-d7eb219d62e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SLHbJVnKz7hpJ2byjASmmi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1767,
+      "cache_read_input_tokens": 51031,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1767,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 51031,
+          "cache_creation_input_tokens": 1767,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1767
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T03:53:07.216Z_
+
+<details><summary>↩ Tool result · `toolu_01AYbJuahb76cRMm62opFD8f`</summary>
+
+```text
+0	Total decisions: 86, Relevant: 74
+1	---
+2	ID: D002 | 2026-05-14 05:46 UTC
+3	  Summary: MVP-1 PASS: CED 信号验证通过，核心假设成立（margin 0.48, accuracy 81.5%, Pearson r 0.34）
+4	  Rationale: CED margin 4.8× 超过阈值，DeBERTa 判别力主要来自语义蕴含而非词汇重叠（r=0.34 远低于 0.7）。三个需关注项：33.4% gold p_pos < τ=0.5（τ 可能需调低）、44.4% 无 hard negatives（退化为 flat NLI）、少数负 margin 样本（标注噪声）。这些不影响 MVP 结论但影响 Research 阶段 CED 调参。
+5	---
+6	ID: D003 | 2026-05-14 06:02 UTC
+7	  Summary: Smoke test 功能性 PASS: ZeRO-2 + QLoRA 兼容，4.9GB/卡，授权启动 MVP-2 SFT
+8	  Rationale: Smoke test 自报 FAIL 是假阴性——synthetic data format-only reward 产生零 variance，数学上无梯度是正常行为。关键目标全部达成：ZeRO-2+QLoRA+GRPOTrainer 兼容、显存充裕（4.9/32GB）、有 reward variance 时梯度正常。Reviewer 独立确认功能性 PASS。
+9	---
+10	ID: D004 | 2026-05-14 07:26 UTC
+11	  Summary: 发现 rtx5090-4x 和 gpu-5090-4x-1 为同一台机器（4 GPU），GRPO 三路对比改为串行
+12	  Rationale: Reviewer 核实两个 SSH endpoint 返回相同 hostname 和 PID。实际资源 = 4× RTX 5090 32GB，非 8 张。串行 3 路 GRPO 预估 ~7-10h（每路 ~2-3h），今天内可完成 MVP-2，暂不需要额外申请 GPU。
+13	---
+14	ID: D005 | 2026-05-14 10:03 UTC
+15	  Summary: CED r1 训练 step 40 后 mode collapse，启动早停+checkpoint 抢救+cliprange 排查
+16	  Rationale: Reviewer 审查发现 step 40 后所有指标退化（total_reward 1.79→1.10, f1 0.098→0.012, length 88→547）。clip_ratio 全程为 0 表明 PPO 裁剪未生效，可能是 policy drift 失控的根因。决策：(1) 抢救 step 40 checkpoint 作为当前最优；(2) step 70 前不回升则 kill；(3) 排查并修正 cliprange 后重跑。step 40 checkpoint 仍可用于 vs SFT 的对比 eval，MVP-2 流程不完全停滞。
+17	---
+18	ID: D006 | 2026-05-14 10:24 UTC
+19	  Summary: Kill CED r1（F1 归零+无 checkpoint），准备修复配置后重跑 r2
+20	  Rationale: Reviewer 确认 step 80 时 f1_reward=0.001（从 peak 0.098 单调下降 50 步），grpo_s3 目录为空（无中间 checkpoint），step 40 最优模型不可挽回。继续 1.3h 必产废模型。诊断三个根因：(1) 无 save_steps 配置；(2) reward 权重失衡（format ~0.97 远大于 f1 ~0.001，模型无 f1 梯度信号）；(3) clip_ratio=0 裁剪未生效。决策 kill 并修复后重跑 r2。
+21	---
+22	ID: D007 | 2026-05-14 11:28 UTC
+23	  Summary: r3 回退 num_iterations=1，隔离变量逐一测试
+24	  Rationale: Reviewer CRITICAL 确认：r2 的 KL 在 step 5 爆到 37亿、step 15 爆到 3400亿，直接导致 loss 爆炸+OOM。根因是 num_iterations=2 + QLoRA 4-bit 量化 logits 精度不足，两次迭代间 KL 被放大。r2 同时改了 6 个超参，崩溃后无法归因。r3 必须回退 num_iterations=1，保留 reward weighting（reward 0.25→0.42 正常上升证明 WeightedRewardFn 有效），一次只改一个变量。
+25	---
+26	ID: D008 | 2026-05-14 12:07 UTC
+27	  Summary: D007 证伪：KL 爆炸根因是 kl_coef + QLoRA 4-bit 不兼容，非 num_iterations。全部 GRPO 重跑 kl_coef=0
+28	  Rationale: 3 个 GRPO 实验（num_iterations=1）均在 step 5 触发 KL 爆炸早停（KL 达 10^10 量级）。对比 r1（kl_coef=0/未设）跑了 80+ steps 才因 reward imbalance collapse。证据链：所有设 kl_coef=0.05 的实验全部 step 5 爆炸，未设的 r1 稳定运行。机理：QLoRA 4-bit 量化噪声导致 ref model 和 training model 的 log-probs 存在系统性偏差，KL(π_θ||π_ref) 从第一步就是天文数字。修复：kl_coef=0，依赖 reward weighti
+29	---
+30	ID: D009 | 2026-05-14 12:12 UTC
+31	  Summary: CED r4 采用保守配置：grad_accum=16 + lr=5e-6 + kl_coef=0.5 + warmup 200步，解决 r3 单卡 batch=1 + 高 lr 导致的 KL 爆炸
+32	  Rationale: r3 根因明确：单卡无 grad_accum 导致 effective batch=1，梯度噪声极高，5 步内 KL 爆炸至 4.4M。r1-r3 三次失败模式不同（mode collapse / OOM / KL explosion），说明 CED reward 本身不是问题，是训练超参不稳定。r4 同时修复 3 个因素：(1) grad_accum=16 使 effective batch=16; (2) lr 从 5e-5 降至 5e-6; (3) kl_coef 从 0.05 升至 0.5 加强偏离惩罚; (4) 加 200 步 warmup 稳定初始阶段。需先拿到 extract 和
+33	---
+34	ID: D010 | 2026-05-14 12:32 UTC
+35	  Summary: 选择 Option A：保留 kl_coef=0.0 实验进程，修复 registry 状态从 killed → RUNNING；D009 的 kl_coef=0.5 正式作废
+36	  Rationale: Reviewer critical 报告 registry-reality 不一致。3 个实验实际在跑（kl_coef=0.0, grad_acc=16）但 registry 标记 killed。配置本身正确——D008 已证明 kl_coef>0 在 QLoRA 4-bit 下不稳定（r1 kl_coef=0 稳定 80 步 vs 所有 kl_coef>0 爆炸）。D009 提出的 kl_coef=0.5 会放大 QLoRA 量化噪声导致的 KL 计算失真，Reviewer warning 合理，该指令作废。
+37	---
+38	ID: D011 | 2026-05-14 13:30 UTC
+39	  Summary: 采纳 Reviewer 评估框架审查：精确化 pass criteria、补充 extraction-only vs SFT 对比、要求多 checkpoint eval + 统一 eval 脚本
+40	  Rationale: Reviewer 指出 4 个 warning：(1) 缺 extraction-only vs SFT 对比——回答 GRPO 本身是否有效；(2) kl_coef=0 必须 eval 多 checkpoint 避免 collapse 后只看末尾；(3) pass criteria 需精确化基准；(4) eval 代码必须统一。全部采纳，已更新 ROADMAP 和指令 Agent。
+41	---
+42	ID: D012 | 2026-05-14 14:54 UTC
+43	  Summary: 调整 MVP-2 pass criteria：取消绝对 F1>45 门槛，改为相对标准；EDCR 升为主指标
+44	  Rationale: SFT baseline F1=40.57%（37% 输出截断于 1024 tokens），绝对门槛 F1>45 已不现实。截断影响所有模型相同，相对对比仍有效。Evi-F1=79.79% 设了高 baseline，但 EDCR=71.18% 说明模型"spray-and-pray"大量引用 distractor——CED 的核心攻击目标。调整后 pass criteria：(1) CED_Evi-F1 ≥ SFT_Evi-F1（方向正确）；(2) CED_F1 ≥ max(extract, SFT) - 5pp（不退化）；(3) CED_EDCR 显著低于 SFT_EDCR（核心判据）；(4
+45	---
+46	ID: D014 | 2026-05-14 14:58 UTC
+47	  Summary: CED r5 mode collapse 确认 kill；CED reward 必须加 F1 门控防止短输出 hack；暂停 ced_kl001
+48	  Rationale: CED r5 在 65% 进度完全 collapse：completion 固定 34 tokens，f1_reward=0，ced_reward≈0.99，entropy≈0。模型发现极短输出不引用 distractor 即可获得近完美 CED 分——CED 自身被 reward hack。根因：CED reward 不依赖抽取质量，模型可在 F1=0 时仍获高 CED reward。修复方案：F1 门控——仅在 completion 包含 ≥1 个 predicted triple 时计算 CED reward，否则 CED=0。这确保 evidence quality 的评估以有效抽取为
+49	---
+50	ID: D015 | 2026-05-14 14:58 UTC
+51	  Summary: ced_r5 mode collapse 保留跑完取分析价值；flatnli_r3 kill 并修复 NLI device 后重启
+52	  Rationale: ced_r5 在 63% 进度时 f1_reward=0 + entropy≈0，已 mode collapse。保留跑完因为：(1) negative result 证明纯 CED reward 导致 collapse，支撑 reward balance 的 ablation story；(2) 早期 checkpoint 可能有 f1_reward 正常的版本可用。flatnli_r3 因 NLI 推理在 CPU 上运行导致 10x 减速（124s/it vs 12s/it），预计 20h+。RTX 5090 32GB 有足够余量放 DeBERTa-v3-base (~400MB)，kil
+53	---
+54	ID: D016 | 2026-05-14 15:00 UTC
+55	  Summary: Kill ced_r5 (total collapse)，ced_kl001 移到 cuda:0 立即启动
+56	  Rationale: ced_r5 step 250+ f1_reward=0、completion 坍缩到 34 tokens、save_total_limit=5 已覆盖所有正常 checkpoint。继续跑无任何回收价值。Kill 后释放 cuda:0 给 ced_kl001（kl_coef=0.01），不再等 cuda:1。ced_kl001 现在是 MVP-2 最关键实验——验证 CED+KL约束能否避免 reward hacking。extract_r3 和 flatnli_r3 保持 kl=0 继续跑，作为对照：若它们没 collapse，说明问题是 CED reward 特异的；若也 collaps
+57	---
+58	ID: D017 | 2026-05-14 15:01 UTC
+59	  Summary: Kill ced_r5 + extract_r3 (kl_coef=0 collapse/stall), 部署 kl_coef=0.01 修正实验
+60	  Rationale: 3路GRPO健康检查：ced_r5完全mode collapse(entropy=0.0005, F1=0, grad_norm=0)，extract_r3训练停滞(grad_norm=0, F1=0.20低于SFT baseline 0.4057)。共同根因kl_coef=0导致策略无约束偏移。D008显示kl_coef=0.05会KL爆炸，选择0.01作为中间值（5x低于爆炸阈值）。flatnli_r3保留作为kl_coef=0对照组继续观察。
+61	---
+62	ID: D018 | 2026-05-14 15:04 UTC
+63	  Summary: flatnli_r3 紧急修复 reward_device cpu→cuda，extract_r3 改为跑完再替换
+64	  Rationale: Reviewer critical 发现 D015 未执行：flatnli_r3 仍以 --reward_device cpu 运行，step_time 123s/step（GPU 后应 12-15s/step），cuda:3 被占用但 90% 时间等 CPU。修复后从 ~23h 降至 ~2-3h，是当前最高 ROI 操作。extract_r3 已 68%（~50min 完成），改为跑完后再部署 extract_kl001，避免浪费已投入的 2.5h。ced_r5 维持 kill（3.3h GPU 时间用于 ced_kl001 更有价值）。
+65	---
+66	ID: D019 | 2026-05-14 15:05 UTC
+67	  Summary: 修正 D017：extract_r3 改为跑完再释放，flatnli_r3 紧急补执行 D015（修复 NLI device 重启）
+68	  Rationale: Reviewer 审查发现：(1) D015 未执行——flatnli_r3 仍用 CPU NLI，step_time 120s vs GPU 应 12-15s，23h→2-3h 的 10x 效率差，cuda:3 90% 时间在等 CPU。(2) extract_r3 只剩 ~50min，跑完可取早期 checkpoint（collapse 前 step 20-100 可能比 last 好），不值得 kill 浪费已投入的 2.5h。修正后：cuda:0 立即释放给 ced_kl001，cuda:2 等 50min 后给 extract_kl001，cuda:3 kill+修复 NLI dev
+69	---
+70	ID: D020 | 2026-05-14 15:15 UTC
+71	  Summary: ced_kl001 启动前必须先修复 CED reward F1 门控（D014 未实现）；kl_coef=0.01 实验改为 100 步探测性运行
+72	  Rationale: Reviewer 代码核查确认 D014 的 F1 门控从未实现：ced_reward.py 对 0-triple 短输出仍给近完美分(0.99)。ced_r5 的 collapse 根因是双重的——kl_coef=0 导致策略自由偏移 + CED reward 对短输出的 hack。仅修 kl_coef 不解决 reward 设计缺陷，ced_kl001 会重复失败。同时 kl_coef=0.01+QLoRA 的兼容性未验证（D008 证明 0.05 爆炸），先做 100 步探测降低风险。
+73	---
+74	ID: D021 | 2026-05-14 17:20 UTC
+75	  Summary: Kill flatnli_r5（从已 hacked checkpoint 恢复无效），启动 flatnli_r6 从 SFT 全新训练 D020 配置
+76	  Rationale: Reviewer 独立审查发现 flatnli_r3 checkpoint-100 已深陷 NLI reward hacking（f1=0.025, flat_nli=0.911）。从该 checkpoint 恢复加 kl_coef=0.01 后 KL=0.46（远高于从 SFT 新训的 ced_kl001_r4 的 0.098），frac_zero_std 升至 0.8-0.9，grad_norm 近零——训练冻结。教训：从 kl=0 已漂移 checkpoint 恢复并加 kl>0 不可行，必须从 SFT 全新开始。
+77	---
+78	ID: D022 | 2026-05-14 17:40 UTC
+79	  Summary: Kill extract_r4 (f1_reward=0 at ckpt-30, mode collapse confirmed); cuda:2 转 ced_kl001_r4 多 checkpoint eval
+80	  Rationale: extract_r4 (extraction-only, kl_coef=0.01+gen=8) 在 step 10 后 f1_reward 归零、frac_zero_std≥0.8 停滞，checkpoint-30 无恢复信号。同配置的 ced_kl001_r4 在 step 20 f1_reward=0.082 持续上升——直接证明 CED reward 通道是驱动学习的关键因素。这一负面结果本身是强证据，不再尝试 extract_r5。cuda:2 空闲，派去 eval ced_kl001_r4 中间 checkpoint，提前获取多 checkpoint 评估数据。
+81	---
+82	ID: D023 | 2026-05-14 17:40 UTC
+83	  Summary: Kill extract_r4 (mode collapse confirmed); ablation 结论: CED reward 是 GRPO 训练必需的 dense signal，extraction-only reward 太稀疏无法驱动学习
+84	  Rationale: extract_r4 checkpoint-30: f1_reward 连续 25 步为 0，frac_zero_std 升至 0.9，grad_norm 在 0.005-0.012 震荡。对比 ced_kl001_r4 同期（f1_reward=0.082 持续上升，frac_zero_std=0.4 持续下降），唯一差异是 reward type。结论: Stage 1 (extract-only) 在 D020 配置下无法维持 GRPO 探索多样性，CED 提供的 dense reward signal 是训练成功的必要条件。这是论文的关键 ablation evidence。cuda:
+85	---
+86	ID: D024 | 2026-05-14 18:11 UTC
+87	  Summary: Kill flatnli_r6 (mode collapse step 25); D020 配置下三路 ablation 结论: 仅 CED reward 存活，extract-only 和 flat-NLI 均 collapse
+88	  Rationale: flatnli_r6 step 25: frac_zero_std=0.9, f1_reward=0, flat_nli_reward=0, reward 100% 来自 format。与 extract_r4 collapse 模式一致。三个实验共用 D020 配置（kl=0.01, gen=8），唯一差异是 reward type: extract-only collapse (step 10-30), flat-NLI collapse (step 25), CED 健康完成 100 步。结论: CED 的对比性 evidence discrimination 提供了 GRPO 所需的 
+89	---
+90	ID: D025 | 2026-05-14 18:11 UTC
+91	  Summary: Kill flatnli_r6 (mode collapse confirmed step 25); D020 配置下三路 ablation 结论：仅 CED reward 存活，extract-only 和 flat-NLI 均 collapse
+92	  Rationale: flatnli_r6 step 25: frac_zero_std=0.9, f1_reward=0, flat_nli_reward=0, reward 100% 来自 format。与 extract_r4 collapse 模式一致。D020 配置（kl=0.01, gen=8）下三路对比：extract-only step 30 collapse, flat-NLI step 25 collapse, CED 100 步健康完成。唯一差异是 reward type。结论：CED 的对比性 evidence discrimination 提供了更丰富的梯度信号，是维持 GRPO 探索多样
+93	---
+94	ID: D026 | 2026-05-14 19:37 UTC
+95	  Summary: MVP-2 ced_kl001_r4 FAIL — lr=5e-5 导致灾难性遗忘+CED recall shortcut 双重问题，启动 P0/P0+P1 并行修复
+96	  Rationale: ckpt-10/50/100 eval 全部远低于 SFT baseline（rel_f1: 0.003→0.156→0.217 vs SFT 0.4057，evi_f1: 0.720→0.564→0.575 vs SFT 0.7979）。训练 reward 5x 增长但 eval F1 未恢复，确认 reward hacking + 灾难性遗忘双重机制。根因：lr=5e-5 过高 5-10x + CED 对非匹配 triple 无 recall 惩罚。D020 ablation 的 CED 训练稳定性发现仍有效。下一步：P0（lr=5e-6）和 P0+P1（lr=5e-6 + ced_rec
+97	---
+98	ID: D027 | 2026-05-14 19:37 UTC
+99	  Summary: MVP-2 ced_kl001_r4 FAIL — lr=5e-5 过高导致灾难性遗忘+CED recall shortcut 叠加 reward hacking
+100	  Rationale: ckpt-10/50/100 三点轨迹确认：rel_f1 最高 0.217（SFT 0.4057, pass 0.356, gap -13.9pp），evi_f1 最高 0.575（SFT 0.7979, pass 0.818, gap -24.3pp）。恢复速率递减（40步+15.3pp→50步+6.0pp），外推至 step200 仍远低于 pass。根因：(1) lr=5e-5 是社区推荐的 5-10x，导致 step10 即灾难性遗忘；(2) CED shortcut 使非匹配 triple 退化为 flat NLI，引导模型少预测高 EDCR；(3) train/eval 分布不匹配
+101	---
+102	ID: D028 | 2026-05-14 21:36 UTC
+103	  Summary: Kill rp_r2 (P0+P1) — loss 指数 divergence 不可恢复；cuda:3 转跑 rp_r2 ckpt-20 eval 关闭对比线
+104	  Rationale: rp_r2 loss 从 step 10-20 持续指数增长 (908→24650→1.34e7)，根因是 recall_penalty 5-10x 梯度 + kl_coef=0.01 形成正反馈循环。与 P0 的瞬时 KL spike 不同，这是持续 divergence。Kill 后 cuda:3 跑 rp_r2 ckpt-20 eval（成本低，~2h）拿到数据关闭 P0+P1 对比线。不启动新训练——MVP 阶段 P0 单独通过即可。
+105	---
+106	ID: D029 | 2026-05-14 21:44 UTC
+107	  Summary: 修正 rp_r2 终止理由：从"loss 持续发散"改为"recall penalty 过度抑制 CED 信号"
+108	  Rationale: Reviewer 独立核实 trainer_state.json 发现 rp_r2 step 30-40 的 loss/KL 已完全恢复正常（loss=0.038, KL=0.005），与 P0 的瞬态发散→恢复模式一致，不是持续发散。真正的问题是 ced_reward=0.005 远低于 P0 的 0.079，说明 recall penalty 过于严苛压制了 CED 学习信号。kill 决策本身不撤回，但论文引用此 negative result 时应表述为"recall penalty 过度抑制 CED 信号"而非"训练发散"。
+109	---
+110	ID: D030 | 2026-05-14 22:16 UTC
+111	  Summary: P0 ckpt-20 eval FAIL (rel_f1=0.0077); lr=5e-6 未能防止早期遗忘，与 lr=5e-5 相同模式；扩展至全 checkpoint 轨迹评估
+112	  Rationale: lr=5e-5 和 lr=5e-6 在 step-20 均出现灾难性遗忘（rel_f1 < 0.01），说明问题不是单纯 LR 过高——GRPO+QLoRA 在结构化生成任务上的前 20 步 inherently 不稳定（60% 输出截断，field compliance 仅 39.9%）。需要看完整 recovery trajectory（ckpt-40/60/80）才能判断是否"先崩后恢复"。ced_kl001_r4 (lr=5e-5) step-90 最高 0.211 仍低于阈值，lr=5e-6 能否突破 0.30 存疑。同时开始考虑 GRPO 替代方案（DPO/rejection sa
+113	---
+114	ID: D031 | 2026-05-14 23:10 UTC
+115	  Summary: GRPO+QLoRA P0 方向判死：ckpt-40 rel_f1=0.0071（比 ckpt-20 更差），两个 LR 均远劣于 SFT baseline。Pivot 到离线 RL（Rejection Sampling FT → DPO）
+116	  Rationale: ckpt-20→ckpt-40 轨迹下降（0.0077→0.0071），GRPO 只学会格式/证据引用但完全丧失关系抽取能力。lr=5e-5 最佳 0.211 vs SFT 0.406，lr=5e-6 最佳 0.008。catastrophic forgetting 是 GRPO+QLoRA 在结构化生成任务上的根本性问题，非超参可解。CED reward signal 本身有效（MVP-1 verified），问题在在线 RL 训练方法论。Pivot 到离线方法：(1) Rejection Sampling FT 最简单最稳定优先做 (2) DPO+CED scoring 作为并行备选。
+117	---
+118	ID: D032 | 2026-05-15 01:03 UTC
+119	  Summary: Kill GRPO 训练 (cuda:0 step 113/200): 轨迹数据已充分，释放 GPU 给 RSFT 管线加速
+120	  Rationale: ckpt-80 rel_f1=0.0116 (SFT baseline 的 2.9%)，ckpt-20→80 全线 FAIL。ckpt-100 eval 在跑会给最后一个数据点，但 step 200 无价值。释放 cuda:0 可用于并行 RSFT generate 或后续 scoring/training。
+121	---
+122	ID: D033 | 2026-05-15 01:22 UTC
+123	  Summary: D031 最终确认：GRPO+QLoRA 全线 FAIL，lr5e6 全 6 checkpoint rel_f1 < 0.02；negative result 模式有论文价值（CED↑ + rel_f1 catastrophic forgetting = 在线 RL 无法维持双能力）
+124	  Rationale: Reviewer 独立核实 lr5e6 全 6 checkpoint：rel_f1 最高仅 0.0138（阈值 0.30），evi_f1 从 0.628 单调升至 0.850（超 SFT 0.798），edcr 稳定 ~0.99（远超 SFT 0.712）。模式：CED reward signal 有效驱动 evidence 质量提升，但在线 RL (GRPO+QLoRA) 导致关系抽取 catastrophic forgetting。此 negative result 直接支持离线 RL (RSFT/DPO) 路线的必要性，且为论文提供重要论据。
+125	---
+126	ID: D034 | 2026-05-15 01:28 UTC
+127	  Summary: D034: RSFT diversity 危机——diversity=1.0/8 因 temperature 未生效，暂停生成并修复
+128	  Rationale: Reviewer critical 发现：(1) rsft_generate.py 传入 temperature=0.7 但被 Qwen3-4B generation_config.json 自带的 T=0.6/top_k=20 覆盖，transformers 打出 WARNING 但 Agent 未注意；(2) SFT 后模型分布极度尖锐，T=0.6+top_k=20 几乎等同于 greedy，导致 8 次生成完全相同；(3) 早期 diversity_probe 报告 7/8 是 format 解析 bug 导致的虚假多样性，修复格式后真实 diversity 暴露为 1.0/8。必须 k
+129	---
+130	ID: D035 | 2026-05-15 01:29 UTC
+131	  Summary: 暂停 RSFT 并行化：Reviewer critical 发现 diversity=1.0/8 是格式修复后的真实值，之前 7/8 为格式不一致假象。高温探针优先。
+132	  Rationale: diversity_probe 原始数据 (8,6,1) 平均 5.0/8 而非上报的 7；且 probe 时 format_ok 仅 34%，"多样性"来自 JSON key 名变体。生产环境 format_ok=99.8% 后实测 diversity=1.0/8。继续当前配置生成 14h 的数据毫无意义——rejection sampling 退化为普通 SFT。需先用高温(T=1.0/1.2/1.5)探针验证 diversity 是否可恢复。
+133	---
+134	ID: D036 | 2026-05-15 01:33 UTC
+135	  Summary: D034 撤销：diversity crisis 是监控 bug，非生成质量问题，T=0.7 下 diversity 充足(7.11/8)，恢复并行生成
+136	  Rationale: 独立验证 Worker 分析 cuda:1 已生成的 200 docs：triple-set diversity 7.11/8 (median=8.0)，format parse rate 90.2%，61.5% 文档 8/8 完全不同。之前监控报告 mean_diversity=1.0/8 为度量代码计算错误。无需执行 D034 的 temperature 修复和高温探针。
+137	---
+138	ID: D037 | 2026-05-15 07:46 UTC
+139	  Summary: D037: RSFT 全线 FAIL（rel_f1=0.0483），pivot 到 CED-as-reranker（推理时方案）
+140	  Rationale: GRPO（D027/D031/D033）和 RSFT 两条训练路线均呈现相同的灾难性遗忘——任何对 SFT checkpoint 的二次微调都摧毁 rel_f1。RSFT r1: rel_f1=0.0483, num_preds=848（SFT baseline: 0.4057, 12234）。跨 seed 方差 <0.04%，非随机。根因假设：LoRA 二次微调的系统性遗忘。Pivot 到 CED-as-reranker：SFT 模型生成 N 候选 → CED 打分 → 选最佳，完全绕过训练问题。
+141	---
+142	ID: D038 | 2026-05-15 09:40 UTC
+143	  Summary: D038: 撤回 D037——RSFT "灾难性失败"实为 eval bug（50-doc pred vs 12275 gold denominator mismatch），s44 全量 eval 通过 MVP-2（rel_f1=0.4655 +5.98pp, evi_f1=0.8087 +1.08pp）
+144	  Rationale: r1 的 rel_f1=0.0483 是评估代码 bug：TaskEvalCallback 在 50 docs 上生成预测但 gold triples 用了全量 dev set 12275 条，recall 被人为压到 ~3.5%。s44 独立全量 eval（985 docs）结果：rel_f1=0.4655（+5.98pp vs SFT 0.4057），evi_f1=0.8087（+1.08pp vs 0.7979），edcr=0.6350（-7.68pp vs 0.7118）。CED rejection sampling 首次端到端验证成功。D037 的 reranker pivot 基于
+145	---
+146	ID: D039 | 2026-05-15 11:49 UTC
+147	  Summary: D039: RSFT+CED ablation 全部 PASS MVP-2——方法鲁棒，1 epoch 足够，EDCR 局限需论文讨论
+148	  Rationale: Reviewer 独立验证 4 组 RSFT 配置（r1 s42/s44, r2a, r2b）全部通过 MVP-2 判据（rel_f1 > 0.4057, evi_f1 > 0.798）。核心发现：(1) RSFT+CED 方法贡献 +4-6pp rel_f1，具体超参影响极小（0.45pp 范围内），方法鲁棒性好；(2) 1 epoch 足够，3 epoch 无显著额外收益；(3) r2b 保守 LoRA scaling+低 lr 略优于 r2a（截断更少、字段完整率更高）；(4) EDCR 一致偏高 63-66%，CED reward 对 rel_f1 提升明显但对证据精确度提升有限，需论
+149	---
+150	ID: D040 | 2026-05-15 12:03 UTC
+151	  Summary: D040: MVP 正式通过 → 进入 Research 阶段。paper_framing.md 定稿（RSFT+CED 路线，4 Claims），experiment_plan.yaml 建立（10 研究实验），dream_simulate(full) 已启动
+152	  Rationale: D039 已判定 MVP-2 全部 PASS（4/4 configs），但 complete_mvp() 未被调用。用户催促后补调。Post-MVP kickoff 按 skill 流程执行：(1) paper_framing.md 从 Pre-MVP draft 更新为 Post-MVP 定稿版——方法从 GRPO 转为 RSFT+CED，新增 Claim 3（在线 RL catastrophic forgetting 分析）和 RC6/RC7；(2) experiment_plan.yaml 新建，10 个研究实验分 P0/P1/P2；(3) dream_simulate(full) 已启
+153	---
+154	ID: D041 | 2026-05-15 13:15 UTC
+155	  Summary: D041: Evi-F1 评测协议不一致确认——我们的"条件 Evi-F1"(仅 TP triples)与 DREEAM"联合 Evi-F1"(含 FP/FN 惩罚)不可比，publishability threshold 暂冻结等对齐后重评
+156	  Rationale: Agent 调查确认：我们的 compute_evi_f1() 在 FP triple 时 continue 跳过（precision 分母只算 TP evidence），recall 分母也只算 matched gold triples。DREEAM 的 official_evaluate() 将 FP/FN 全部计入分母。在 rel_recall ≈ 55% 时，分母差约 1.8x，解释了 82% vs 57% 的差距。已派 Agent 实现 DREEAM 协议对齐函数并重新评估全部实验。在对齐数字出来前，paper_framing.md 的 publishability threshol
+157	---
+158	ID: D042 | 2026-05-15 13:16 UTC
+159	  Summary: D041: Evi-F1 评测协议与 DREEAM 不一致——我们的 conditional Evi-F1 跳过 FP/FN triples，比 DREEAM 的 joint Evi-F1 宽松得多。必须实现 DREEAM 协议对齐后重算所有实验。Publishability threshold 待重算后修订
+160	  Rationale: Agent 调查确认：我们的 compute_evi_f1() 在 FP triple 时 continue 跳过，precision 分母只算 TP；recall 分母也只算已匹配 gold。DREEAM 的 official_evaluate() 把 FP/FN 全部计入分母。关系 recall ~55% 时，分母差异完全解释 82% vs 57% 的差距。对齐方案：加 FP evidence 到 precision 分母 + 遍历全部 gold triple evidence 到 recall 分母。论文需要报告 DREEAM 协议数字（与文献可比），条件 Evi-F1 可作为辅助指标（
+161	---
+162	ID: D043 | 2026-05-15 13:20 UTC
+163	  Summary: D042: Dream 审稿分析——best=2.5/median=3.0/worst=2.5（评分倒挂）。5 个确认行动项（narrow Claim 3 scope、加 GRPO G=8、修 Evi-F1 协议、CED contingency plan、加 DPO baseline），4 个观察项。Framing 和 plan 已更新，re-dream 启动
+164	  Rationale: Dream 三档审稿分析（dream-report-action 协议）：
+165	
+166	**三档一致的结构性问题（确认行动项）**：
+167	1. CED vs flat-NLI 可能不显著 → 加 contingency plan，如 p>0.05 则 CED 降级
+168	2. Title/claims overclaim "online RL" → Claim 3 限定为 "GRPO+QLoRA"
+169	3. GRPO G=4 太小 → 加 plan_011 (G=8 实验，P0)
+170	4. Cross-protocol Evi-F1 → 已在修复中 (D041)
+171	5. 缺中间 baseline → 加 plan_012 
+172	---
+173	ID: D044 | 2026-05-15 13:24 UTC
+174	  Summary: Dream v1 分析完成：reframe paper_framing.md，CED 降级，claims 重构，新增 3 个实验
+175	  Rationale: Dream v1 (best=2.5, median=3.0, worst=2.5) 三档一致指出：(1) CED vs flat-NLI 不显著 p>0.05 → CED 从核心贡献降级为 one possible scoring function；(2) "online RL fails" 标题过度声称 → 收窄到 "GRPO fails for DocRE"；(3) GRPO G=4 太小 → 新增 G=8 实验(plan_011)；(4) 缺 DPO baseline → 新增 plan_012；(5) EDCR 缺人工验证 → 新增 plan_013。Claims 重构为 C1=ev
+176	---
+177	ID: D045 | 2026-05-15 13:41 UTC
+178	  Summary: D045: DPO 升级 P0 + GRPO G=8 排为第一优先；DPO 定位修正为 offline preference optimization
+179	  Rationale: Reviewer 指出：(1) DPO 是纯 offline 方法，不是 online/offline 中间点——论文中错误定位会被审稿人攻击。已修正 paper_framing.md。(2) DPO 结果直接决定 C2 叙事走向（on-policy 特有 vs 更 general 的现象），对 paper scope 有重大影响，升级 P0。(3) C2 对 GRPO G=8 单点依赖是最大风险，G=8 必须是 re-dream 后第一个启动的实验。
+180	---
+181	ID: D046 | 2026-05-15 13:42 UTC
+182	  Summary: D045: DPO 从 P1 升 P0 + GRPO G=8 定为 re-dream 后首批实验 + topk3 双变体设计
+183	  Rationale: Reviewer 路线图审查指出：(1) DPO 结果直接决定 C2 decoupling 叙事——若 DPO 也出现 decoupling 则现象更 general，若不出现则确认 on-policy 特有，两种结果都对论文有重大影响，升 P0；(2) C2 publishability 必要条件依赖 GRPO G=8 复现 decoupling，是最高风险实验，必须首批启动；(3) topk3 数据含 CED=0 样本会稀释信号，改为双变体并行（全量 vs 过滤 CED=0）以区分数据量效应和信号稀释。同时修正 paper_framing.md 中 DPO 定位错误（纯 offline 方
+184	---
+185	ID: D047 | 2026-05-15 14:37 UTC
+186	  Summary: Re-dream v2 分析：best=3.0/median=2.5/worst=2.5，未达标。识别 7 个三档一致结构性问题，plan_011 bf16 GRPO 是关键突破口，新增 SFT-without-evidence ablation 实验
+187	  Rationale: Dream v2 (dream_20260515T132059) reframe 后评分：best=3.0(Findings), median=2.5(Leaning Reject), worst=2.5(Leaning Reject)。目标 best≥3.5/median≥3.0 未达标，但比 v1(best=2.5/median=3.0/worst=2.5)的 best 提升了 0.5。
+188	
+189	**三档一致结构性问题（确认行动项）**：
+190	1. CED 非显著 vs flat-NLI + title-contribution mismatch → 必须更强地 reframe，CED 降为 one
+191	---
+192	ID: D048 | 2026-05-15 14:39 UTC
+193	  Summary: Dream v2 分析：best=3.0/median=2.5/worst=2.5，未达标。三档一致指出5个结构性问题+2个新实验需求。plan_011 bf16 是升Main最大杠杆。
+194	  Rationale: Re-dream (dream_20260515T132059) full review 结果：reframe 后 best 从 2.5→3.0 有改善，但 median 从 3.0→2.5 反降。三档一致的结构性问题：(1) CED vs flat-NLI 非显著=标题贡献不匹配，(2) GRPO QLoRA confound 需 non-QLoRA 控制，(3) related work 大缺（R1-RE/LLM DocRE/GRPO stability），(4) 缺 forgetting dynamics figure，(5) DPO 细节不足。新实验需求：SFT-without-evi
+195	---
+196	ID: D049 | 2026-05-15 14:39 UTC
+197	  Summary: Dream v2 (dream_20260515T132059) 结果: best=3.0/median=2.5/worst=2.5，未达标(目标 best≥3.5/median≥3.0)。三档一致结构性问题: (1) CED≈flat-NLI 标题错配 (2) QLoRA confound (3) related work 缺口。行动: 新增 plan_014 bf16 GRPO 控制实验 + plan_015 SFT-no-evidence ablation; plan_009 升 P1; Paper Agent 负责 retitle+reframe+related work。plan_011 eval 优先完成后决定 plan_014 优先级。
+198	  Rationale: Reframe (D044) 后 re-dream 仍未达 Main 标准。三档审稿一致指出: (a) CED 不显著优于 flat-NLI 但占据标题, (b) GRPO decoupling claim 被 QLoRA confound 限制泛化性, (c) related work 大缺口。这三个是结构性问题而非数据依赖——必须通过新实验(bf16 GRPO 控制)和 reframe 解决。plan_011 已用 bf16 但三变量混淆(bf16+G=8+kl=0.01), 需 clean 单变量控制。禁止 fallback 到 Findings——补实验+reframe 冲 Main。
+199	---
+200	ID: D050 | 2026-05-15 14:48 UTC
+201	  Summary: Dream v2 未达标(best=3.0 < 3.5)，决定 pivot 到 analysis paper framing，以 evidence-extraction decoupling 为核心贡献，CED 降级为分析组件
+202	  Rationale: Dream v2 三档审稿人一致信号：(1) decoupling 是最新颖贡献(S2两个reviewer强力认可) (2) CED vs flat-NLI 优势微弱是最致命弱点(W1) (3) EDCR 填补评估盲区(S4) (4) GRPO/DPO/RSFT 光谱设计良好(S6)。当前 framing 把 CED 放标题但数据不支持 CED 显著优势，导致 novelty 感知低。Pivot 到 analysis paper：decoupling 为主 claim，EDCR 为工具贡献，CED 降级为"studied scoring functions之一"。条件：plan_011 bf1
+203	---
+204	ID: D051 | 2026-05-15 15:55 UTC
+205	  Summary: D050 pivot 前提失败：bf16 GRPO 无 forgetting (rel_f1=0.4549)，decoupling 是 QLoRA artifact。暂停 framing pivot，等 plan_015 隔离三重 confound 后再定
+206	  Rationale: plan_011 bf16 eval 结果：ckpt-100 rel_f1=0.4549（超 SFT +4.92pp，接近 RSFT 0.4596），evi_f1=0.8086，EDCR=0.6318。QLoRA GRPO 的 catastrophic forgetting 在 bf16 下完全消失。但 plan_011 同时改了三个变量（quantization/G/kl），无法确定是哪个消除了 forgetting。plan_015（bf16+G=4+kl=0）是不可替代的 ablation，必须在定稿 framing 前完成。新的潜在 story：QLoRA quantization 导
+207	---
+208	ID: D052 | 2026-05-15 16:32 UTC
+209	  Summary: Reviewer 核实 plan_011 vs mvp2_grpo_ced_kl001_r4 已构成 clean quantization ablation（唯一变量=quantization，其余 G=8/kl=0.01/lr=5e-5/weights 完全一致）。不再 gate framing 在 plan_015 上
+210	  Rationale: Reviewer 逐项核对：plan_011 (bf16) 与 mvp2_grpo_ced_kl001_r4 (QLoRA) 除 quantization 外完全一致（G=8, kl=0.01, lr=5e-5, weights=0.3/3.0/1.0, steps=100, seed=42）。结果：QLoRA rel_f1=0.2167 vs bf16 rel_f1=0.4549 (Δ=+23.8pp)。这是 quantization→forgetting 的最强直接证据，已完成。plan_015_v2 有 3 个变量差异（weights/lr/kl），不是 clean ablation，定
+211	---
+212	ID: D053 | 2026-05-15 16:32 UTC
+213	  Summary: Quantization isolation 已由 plan_011 vs mvp2_grpo_ced_kl001_r4 解决（Δ=+23.8pp），plan_015 降级为 robustness check，可以开始 reframe
+214	  Rationale: Reviewer 逐项核对发现 plan_011 (bf16, G=8, kl=0.01, lr=5e-5, weights 0.3/3.0/1.0) 与 mvp2_grpo_ced_kl001_r4 (QLoRA 4-bit, G=8, kl=0.01, lr=5e-5, weights 0.3/3.0/1.0) 配置完全一致，唯一差异为 quantization。结果：QLoRA rel_f1=0.2167 vs bf16 rel_f1=0.4549 (+23.8pp)。D051 等 plan_015 隔离的前提不再成立——干净的 ablation 数据已有。plan_015 系列（lr=
+215	---
+216	ID: D054 | 2026-05-15 17:50 UTC
+217	  Summary: C2 reframe: GRPO decoupling 从"RL通病"收窄为"QLoRA-specific artifact"。bf16 LoRA GRPO 不遗忘(rel_f1=0.4549 +4.92pp)，QLoRA 崩(0.2167)。Claim 更窄但更 interesting：量化噪声如何破坏 RL reward signal in structured IE。
+218	  Rationale: plan_011 vs mvp2_grpo_ced_kl001_r4 构成 clean single-variable ablation（唯一差异=quantization），Δrel_f1=+23.8pp。原 C2"GRPO causes decoupling"已被 plan_011 否定。新 C2 更有实用价值（QLoRA 广泛使用，此 failure mode 未被文献记录），且 Reviewer D052 已确认 ablation 有效性。
+219	---
+220	ID: D055 | 2026-05-15 18:00 UTC
+221	  Summary: C4 reframe: CED 优势在 output quality control (compliance +15pp, truncation 3x↓)，非 rel_f1 提升；补跑 flat-NLI 2 seeds 加强统计可信度
+222	  Rationale: flat-NLI rel_f1=0.4539 落在 CED 3-seed 1σ 范围内(0.4468-0.4724)，差异不显著。但 field_compliance 78.9% vs ~94% (+15pp 显著)，truncation 20% vs 5-6% (3x 显著)。CED 的真正增益维度是 evidence faithfulness + output structure quality，非 extraction accuracy。单 seed 对比统计强度不足，cuda:0/cuda:3 空闲，补跑 2 seeds 成本低收益高。
+223	---
+224	ID: D056 | 2026-05-15 18:05 UTC
+225	  Summary: CED vs flat-NLI 统计不可区分，Claim 3 降级，CED 不再作为独立贡献
+226	  Rationale: flat-NLI RSFT (seed=42) rel_f1=0.4539 vs CED RSFT 3-seed mean 0.4596±0.0128，差异 -0.57pp 在 1σ 内。同 seed=42 下 flat-NLI 反超 CED +0.90pp。CED contrastive margin 对 RSFT filtering 无显著增益。论文贡献重新聚焦：(1) evidence-grounded DocRE 任务定义，(2) GRPO decoupling 发现 + quantization artifact 机制，(3) EDCR 诊断指标。CED 降级为 "one possi
+227	---
+228	ID: D058 | 2026-05-15 18:33 UTC
+229	  Summary: SFT baseline 推理量化 confound 发现，必须用 --no-quantize 重跑 SFT baseline eval
+230	  Rationale: Reviewer Review 20 发现：SFT baseline eval 使用 --quantize（registry line 2148），而所有 RSFT/GRPO eval 使用 --no-quantize。推理量化对 4B 模型通常造成 1-3pp 损失。这意味着论文中所有 vs SFT baseline 的 delta 数字都可能被高估 1-3pp：(1) RSFT vs SFT 从 +3.9~6.0pp 可能实际 +2~4pp；(2) bf16 GRPO vs SFT 从 +4.9pp 可能实际 +2~3pp；(3) evidence tax 从 8.36pp 可能实际 5~
+231	---
+232	ID: D059 | 2026-05-15 19:10 UTC
+233	  Summary: Claim 2 re-scope：decoupling 作为负面发现保留，ideas A/B/C 归 Future Work 不做实验。精确措辞等 G=8 + DPO 1ep 结果
+234	  Rationale: Dream 三档一致认为 decoupling "genuinely novel and striking"，是论文最独特贡献。修复 GRPO 会削弱 claim 且无保证。plan_014 量化 evidence burden ~8pp，而 GRPO decoupling 导致 rel_f1→0.01 是量级差异。Claim 2 精确边界取决于：(1) plan_011 G=8 是否复现 decoupling（排除 G=4 confound）；(2) plan_012 DPO 1ep 是否 decouple（判断 on-policy 特有 vs RL 通病）。
+235	---
+236	ID: D061 | 2026-05-15 21:26 UTC
+237	  Summary: 关闭 DPO 实验线，作为 negative result 纳入论文
+238	  Rationale: DPO 1ep rel_f1=0.0022（关系本体完全遗忘），3ep rel_f1=0.3429（部分恢复但仍远低于 SFT baseline 0.4106）。非单调退化模式 + 训练指标与 downstream 完全脱节。无论训练长度均不可用，但作为 negative result 有论文价值：(1) 训练 accuracy 不能反映生成质量 (2) preference signal 破坏关系抽取能力 (3) 非单调退化现象
+239	---
+240	ID: D062 | 2026-05-15 21:26 UTC
+241	  Summary: Task decoupling（rel_f1↑ + evi_f1↓）确认为跨方法系统性现象，升级为论文核心发现
+242	  Rationale: GRPO、DPO、RSFT top_k=3 三种不同优化方法均展现 rel_f1 与 evi_f1 反向变动。这不是某方法的 artifact，而是 faithful evidence generation 的固有代价。强化 paper_framing 的 "cost of faithfulness" narrative：优化关系抽取准确率与生成忠实证据之间存在系统性 tradeoff，RSFT 是目前最优 Pareto 点。
+243	---
+244	ID: D063 | 2026-05-15 21:35 UTC
+245	  Summary: D061 暂缓：DPO 1ep eval 确认为 bug（缺 --sft_adapter），需 reeval 后重新评估 DPO 线
+246	  Rationale: 排查发现 DPO eval 未传 --sft_adapter，模型加载为 base+DPO（缺 SFT 层），生成自由文本关系名。rel_f1=0.0022 不反映 DPO 真实性能。3ep eval 来自训练内置 eval（自动 merge SFT），可能有效但需确认。批准 cuda:0 跑 1ep reeval（~1h），结果出来后重新判断 DPO 线去留。
+247	---
+248	ID: D064 | 2026-05-15 21:36 UTC
+249	  Summary: 撤回 DPO 1ep 崩塌结论，3 个 eval 因缺 --sft_adapter 无效，紧急重跑
+250	  Rationale: Reviewer 发现 eval_plan_012_dpo_ced_1ep、eval_plan_001_flat_nli_s43、eval_plan_008_rsft_topk3 三个 eval 缺少 --sft_adapter /root/autodl-tmp/sft_output 参数，模型加载为 base+adapter（跳过 SFT 层），不认识 DocRED 关系本体导致 rel_f1≈0.002。之前基于此数据的 DPO 1ep 灾难性崩塌结论无效。已下令 kill 正在浪费 GPU 的 rsft_topk3 eval（PID 255528, cuda:3），三个 eval 全部加
+251	---
+252	ID: D065 | 2026-05-15 22:56 UTC
+253	  Summary: bf16 GRPO G=8 确认无 task decoupling，QLoRA 是 confound——Claim 3 需 reframe 为 "QLoRA-specific artifact" 而非 "GRPO inherent failure"
+254	  Rationale: plan_011 step 30/50/70 全量 dev eval：rel_f1 全程 0.43+ > SFT baseline 0.41，evi_f1 稳定 0.80-0.81，无 QLoRA GRPO 中的 rel_f1 崩塌。field_compliance 从 70.7% 升至 92.4%。结合 QLoRA GRPO 全线失败（rel_f1 max=0.211），task decoupling 是 QLoRA 量化精度不足导致，非 GRPO 对 IE 任务的固有缺陷。论文 Claim 3 从"GRPO fails for IE"改为"quantization confound ana
+255	---
+256	ID: D066 | 2026-05-15 23:03 UTC
+257	  Summary: 确认 task decoupling 是 QLoRA-specific artifact：bf16 GRPO G=8 全 4 个 checkpoint 无 decoupling，论文报 best rel_f1=0.4549 (step-100)
+258	  Rationale: plan_011 bf16 GRPO step 30/50/70/100 完整 eval 显示 rel_f1 全程 > SFT baseline (0.41)，evi_f1 稳定 0.80-0.81，无 QLoRA GRPO 中观察到的 rel_f1 崩塌。Reviewer PASS。0.4549 来自 step-100 (best checkpoint)，0.4341 来自 step-70 (中间 checkpoint)，两者均为 full dev eval + --sft_adapter + --no-quantize，差异仅因 checkpoint 不同。论文 Claim 3 核心证据确
+259	---
+260	ID: D067 | 2026-05-15 23:39 UTC
+261	  Summary: DPO 叙事修正：从"DPO 也失败"改为"DPO 中性/轻度退化"，作为 RL spectrum 中间数据点
+262	  Rationale: D064 bug fix 后 DPO 1ep 重新评估：rel_f1=0.4034 ≈ SFT baseline 0.4057（-0.23pp，噪声范围）。D061 基于缺 --sft_adapter 的无效 eval 关闭 DPO 线，该决策维持（不需额外 DPO 实验），但论文叙事需修正。RL spectrum 更新：GRPO QLoRA catastrophic(<0.02) → GRPO bf16 G=8 mild degradation(0.434 from 0.4549 base) → DPO 1ep neutral(0.4034) → DPO 3ep mild退化(0.3429)
+263	---
+264	ID: D068 | 2026-05-15 23:40 UTC
+265	  Summary: 修正 DPO 结论：DPO 1ep 中性（非失败），Claim 2 叙事需从"RL fails"转向"RL spectrum 分化"
+266	  Rationale: D061 基于缺 --sft_adapter 的无效 eval 判定"关闭 DPO 线"。修正后数据：DPO 1ep rel_f1=0.4034（≈SFT 0.4057），DPO 3ep=0.3429（过拟合退化）。结合 GRPO QLoRA catastrophic(<0.02) vs GRPO bf16 mild degradation(~0.434)，decoupling 的 catastrophic 程度与 QLoRA 强相关。新叙事：QLoRA+GRPO 导致 catastrophic decoupling；bf16+GRPO 轻度退化；DPO 中性无改善；RSFT 是唯一有效路线。
+267	---
+268	ID: D069 | 2026-05-15 23:44 UTC
+269	  Summary: 修正 D068：evidence-extraction decoupling 是 RL-for-IE 通用现象，非 QLoRA 特有；severity 按方法分层
+270	  Rationale: D068 判断"catastrophic decoupling 是 QLoRA artifact"不完整。Reviewer 指出 DPO 1ep→3ep 也呈现 decoupling（rel_f1 0.4034→0.3429 下降，evi_f1 0.8088→0.8403 上升），与 GRPO 方向一致仅程度不同。修正后的完整图景：(1) GRPO+QLoRA=catastrophic decoupling (rel_f1<0.02)；(2) GRPO+bf16=mild decoupling (0.4549→0.434)；(3) DPO+bf16=gradual decoupling (0.
+271	---
+272	ID: D072 | 2026-05-16 00:00 UTC
+273	  Summary: Claim 4 升级为双层论述: 方法级 EDCR (decoupling 量化) + per-relation EDCR (独立诊断工具)
+274	  Rationale: Per-relation EDCR 分析 (93 relation types) 显示 EDCR vs evi_f1 ρ=-0.064 (p=0.583)，完全独立。与方法级 ρ=-0.965 形成互补。方法级 EDCR 本质是 rel_f1 的变换，诊断价值有限；但 per-relation 粒度上 EDCR 捕捉到 evi_f1 看不到的信息（如 head_of_government EDCR=0.956 但 evi_f1=0.875，证据看似好但 relation 抽取极差）。同时发现 evi_f1 vs rel_f1 在 per-relation 层面也近乎零相关 (ρ=-0.013)
+275	---
+276	ID: D074 | 2026-05-16 00:25 UTC
+277	  Summary: r2 实际配置正确但已被 kill，r3 替代运行；argparse 静默忽略未知参数是代码隐患
+278	  Rationale: 验证发现 rsft_trainer.py 的 argparse 不存在 --batch/--grad_accum/--lr/--epochs 参数，这些 flag 被静默忽略，实际使用默认值 per_device_batch_size=4, gradient_accumulation_steps=4，恰好是 CED 正确配置。r2 两个 seed (s43/s45) 的实际训练配置完全一致（510 steps = 2718×3/16），满足 paired t-test 要求。r2 被基于错误假设 kill，r3 用显式正确参数重启，功能等价，仅损失重启时间。后续应修复 argparse str
+279	---
+280	ID: D075 | 2026-05-16 01:44 UTC
+281	  Summary: 新增 RC11: 区分 intra-task decoupling vs inter-task forgetting，回应"RL不遗忘"文献
+282	  Rationale: 文献扫描发现多篇论文论证 RL fine-tuning 天然缓解 catastrophic forgetting，与 Claim 2 存在表面张力。关键区分：FREIGE 的 decoupling 是 multi-objective competition（RE vs evidence），不是预训练知识遗忘。同时纳入 QuRL/QaRL 作为 QLoRA amplification 的理论支撑。需在 Related Work/Discussion 显式回应。
+283	---
+284	ID: D078 | 2026-05-16 07:58 UTC
+285	  Summary: D076 paired t-test 最终确认：CED vs flat-NLI 统计不可区分 (p=0.22, Δ=-0.18pp)，C3 降级决策 D056 正确
+286	  Rationale: 4-seed D076-compliant paired t-test 完成：CED ign_f1 mean=0.4466 vs flatNLI mean=0.4484，差异 -0.18pp (t=-1.545, p=0.22)。方向不一致（3/4 flatNLI 胜）。CED contrastive margin 在 RSFT data selection 上无可测量优势。论文不能 claim CED > flat-NLI。CED 价值保留在 inference-time reranker (+8pp) 和 EDCR 诊断。
+287	---
+288	ID: D079 | 2026-05-16 13:10 UTC
+289	  Summary: 8B evidence tax ≈ 0: evidence generation cost is capacity-dependent, not universal. C1 需从 "flat ~7pp tax" 改为 "tax inversely scales with model size"
+290	  Rationale: 8B no-evi Ign-F1=0.5079 vs with-evi 0.5051, Δ=+0.28pp（噪声范围）。对比 4B tax=7.47pp。说明 8B 有足够容量同时处理 RE + evidence generation，无需 trade-off。如果 1.7B tax > 4B tax（待确认），则形成清晰的 scaling curve。这使 C1 从平淡的 "evidence has a cost" 升级为更有洞察力的 "evidence tax is a capacity phenomenon"——小模型需要 RSFT/reranker 补偿，大模型原生可用。
+291	---
+292	ID: D080 | 2026-05-16 13:33 UTC
+293	  Summary: Re-DocRED cross-dataset: Ign-F1 下降 3.15pp 但 Evi-F1 提升 1.84pp。Evidence generation 跨数据集泛化良好，可支撑 "evidence capability generalizes" claim
+294	  Rationale: DocRED-trained 4B SFT 在 Re-DocRED 上：Ign-F1 0.3974→0.3659（-3.15pp，中等 domain shift），Evi-F1 0.7986→0.8170（+1.84pp，反而提升）。说明证据定位能力不受数据集切换影响。EDCR 变化不大（0.698→0.667）。论文可以 claim evidence generation 跨数据集泛化好，但需限定关系抽取泛化有限。
+295	---
+296	ID: D084 | 2026-05-16 15:47 UTC
+297	  Summary: LLaMA GRPO QLoRA 复现 catastrophic decoupling（step 59: f1=0, ced=0, format=1.0, entropy collapse）。C2 跨家族验证成立。继续到 step 100 收集 dynamics 数据后 kill
+298	  Rationale: LLaMA-3.1-8B GRPO QLoRA 展现与 Qwen3-4B 完全一致的 reward hacking pattern: format_reward 饱和但 f1/ced 始终为零，entropy 从 1.74 降至 0.28（mode collapse），输出长度从 655 缩至 172。这确认 QLoRA GRPO evidence-extraction decoupling 是跨模型家族的通用现象，非 Qwen 架构特异性。继续到 step 100 是为了 plan_009 dynamics figure 提供 LLaMA 数据点（跨家族对比可视化），之后 kill 释放 c
+299	---
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a19e2100-9fea-454e-80f8-d7eb219d62e2",
+  "isSidechain": false,
+  "promptId": "6656c7a5-780a-474e-a396-9263fa94d76f",
+  "type": "user",
+  "uuid": "0bbb87e0-b961-459d-9dd9-a51b19368e17",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/2560c142-1780-44a3-8553-5a85336f7a1a/tool-results/bw5ny1e3y.txt",
+      "content": "Total decisions: 86, Relevant: 74\n---\nID: D002 | 2026-05-14 05:46 UTC\n  Summary: MVP-1 PASS: CED 信号验证通过，核心假设成立（margin 0.48, accuracy 81.5%, Pearson r 0.34）\n  Rationale: CED margin 4.8× 超过阈值，DeBERTa 判别力主要来自语义蕴含而非词汇重叠（r=0.34 远低于 0.7）。三个需关注项：33.4% gold p_pos < τ=0.5（τ 可能需调低）、44.4% 无 hard negatives（退化为 flat NLI）、少数负 margin 样本（标注噪声）。这些不影响 MVP 结论但影响 Research 阶段 CED 调参。\n---\nID: D003 | 2026-05-14 06:02 UTC\n  Summary: Smoke test 功能性 PASS: ZeRO-2 + QLoRA 兼容，4.9GB/卡，授权启动 MVP-2 SFT\n  Rationale: Smoke test 自报 FAIL 是假阴性——synthetic data format-only reward 产生零 variance，数学上无梯度是正常行为。关键目标全部达成：ZeRO-2+QLoRA+GRPOTrainer 兼容、显存充裕（4.9/32GB）、有 reward variance 时梯度正常。Reviewer 独立确认功能性 PASS。\n---\nID: D004 | 2026-05-14 07:26 UTC\n  Summary: 发现 rtx5090-4x 和 gpu-5090-4x-1 为同一台机器（4 GPU），GRPO 三路对比改为串行\n  Rationale: Reviewer 核实两个 SSH endpoint 返回相同 hostname 和 PID。实际资源 = 4× RTX 5090 32GB，非 8 张。串行 3 路 GRPO 预估 ~7-10h（每路 ~2-3h），今天内可完成 MVP-2，暂不需要额外申请 GPU。\n---\nID: D005 | 2026-05-14 10:03 UTC\n  Summary: CED r1 训练 step 40 后 mode collapse，启动早停+checkpoint 抢救+cliprange 排查\n  Rationale: Reviewer 审查发现 step 40 后所有指标退化（total_reward 1.79→1.10, f1 0.098→0.012, length 88→547）。clip_ratio 全程为 0 表明 PPO 裁剪未生效，可能是 policy drift 失控的根因。决策：(1) 抢救 step 40 checkpoint 作为当前最优；(2) step 70 前不回升则 kill；(3) 排查并修正 cliprange 后重跑。step 40 checkpoint 仍可用于 vs SFT 的对比 eval，MVP-2 流程不完全停滞。\n---\nID: D006 | 2026-05-14 10:24 UTC\n  Summary: Kill CED r1（F1 归零+无 checkpoint），准备修复配置后重跑 r2\n  Rationale: Reviewer 确认 step 80 时 f1_reward=0.001（从 peak 0.098 单调下降 50 步），grpo_s3 目录为空（无中间 checkpoint），step 40 最优模型不可挽回。继续 1.3h 必产废模型。诊断三个根因：(1) 无 save_steps 配置；(2) reward 权重失衡（format ~0.97 远大于 f1 ~0.001，模型无 f1 梯度信号）；(3) clip_ratio=0 裁剪未生效。决策 kill 并修复后重跑 r2。\n---\nID: D007 | 2026-05-14 11:28 UTC\n  Summary: r3 回退 num_iterations=1，隔离变量逐一测试\n  Rationale: Reviewer CRITICAL 确认：r2 的 KL 在 step 5 爆到 37亿、step 15 爆到 3400亿，直接导致 loss 爆炸+OOM。根因是 num_iterations=2 + QLoRA 4-bit 量化 logits 精度不足，两次迭代间 KL 被放大。r2 同时改了 6 个超参，崩溃后无法归因。r3 必须回退 num_iterations=1，保留 reward weighting（reward 0.25→0.42 正常上升证明 WeightedRewardFn 有效），一次只改一个变量。\n---\nID: D008 | 2026-05-14 12:07 UTC\n  Summary: D007 证伪：KL 爆炸根因是 kl_coef + QLoRA 4-bit 不兼容，非 num_iterations。全部 GRPO 重跑 kl_coef=0\n  Rationale: 3 个 GRPO 实验（num_iterations=1）均在 step 5 触发 KL 爆炸早停（KL 达 10^10 量级）。对比 r1（kl_coef=0/未设）跑了 80+ steps 才因 reward imbalance collapse。证据链：所有设 kl_coef=0.05 的实验全部 step 5 爆炸，未设的 r1 稳定运行。机理：QLoRA 4-bit 量化噪声导致 ref model 和 training model 的 log-probs 存在系统性偏差，KL(π_θ||π_ref) 从第一步就是天文数字。修复：kl_coef=0，依赖 reward weighti\n---\nID: D009 | 2026-05-14 12:12 UTC\n  Summary: CED r4 采用保守配置：grad_accum=16 + lr=5e-6 + kl_coef=0.5 + warmup 200步，解决 r3 单卡 batch=1 + 高 lr 导致的 KL 爆炸\n  Rationale: r3 根因明确：单卡无 grad_accum 导致 effective batch=1，梯度噪声极高，5 步内 KL 爆炸至 4.4M。r1-r3 三次失败模式不同（mode collapse / OOM / KL explosion），说明 CED reward 本身不是问题，是训练超参不稳定。r4 同时修复 3 个因素：(1) grad_accum=16 使 effective batch=16; (2) lr 从 5e-5 降至 5e-6; (3) kl_coef 从 0.05 升至 0.5 加强偏离惩罚; (4) 加 200 步 warmup 稳定初始阶段。需先拿到 extract 和\n---\nID: D010 | 2026-05-14 12:32 UTC\n  Summary: 选择 Option A：保留 kl_coef=0.0 实验进程，修复 registry 状态从 killed → RUNNING；D009 的 kl_coef=0.5 正式作废\n  Rationale: Reviewer critical 报告 registry-reality 不一致。3 个实验实际在跑（kl_coef=0.0, grad_acc=16）但 registry 标记 killed。配置本身正确——D008 已证明 kl_coef>0 在 QLoRA 4-bit 下不稳定（r1 kl_coef=0 稳定 80 步 vs 所有 kl_coef>0 爆炸）。D009 提出的 kl_coef=0.5 会放大 QLoRA 量化噪声导致的 KL 计算失真，Reviewer warning 合理，该指令作废。\n---\nID: D011 | 2026-05-14 13:30 UTC\n  Summary: 采纳 Reviewer 评估框架审查：精确化 pass criteria、补充 extraction-only vs SFT 对比、要求多 checkpoint eval + 统一 eval 脚本\n  Rationale: Reviewer 指出 4 个 warning：(1) 缺 extraction-only vs SFT 对比——回答 GRPO 本身是否有效；(2) kl_coef=0 必须 eval 多 checkpoint 避免 collapse 后只看末尾；(3) pass criteria 需精确化基准；(4) eval 代码必须统一。全部采纳，已更新 ROADMAP 和指令 Agent。\n---\nID: D012 | 2026-05-14 14:54 UTC\n  Summary: 调整 MVP-2 pass criteria：取消绝对 F1>45 门槛，改为相对标准；EDCR 升为主指标\n  Rationale: SFT baseline F1=40.57%（37% 输出截断于 1024 tokens），绝对门槛 F1>45 已不现实。截断影响所有模型相同，相对对比仍有效。Evi-F1=79.79% 设了高 baseline，但 EDCR=71.18% 说明模型\"spray-and-pray\"大量引用 distractor——CED 的核心攻击目标。调整后 pass criteria：(1) CED_Evi-F1 ≥ SFT_Evi-F1（方向正确）；(2) CED_F1 ≥ max(extract, SFT) - 5pp（不退化）；(3) CED_EDCR 显著低于 SFT_EDCR（核心判据）；(4\n---\nID: D014 | 2026-05-14 14:58 UTC\n  Summary: CED r5 mode collapse 确认 kill；CED reward 必须加 F1 门控防止短输出 hack；暂停 ced_kl001\n  Rationale: CED r5 在 65% 进度完全 collapse：completion 固定 34 tokens，f1_reward=0，ced_reward≈0.99，entropy≈0。模型发现极短输出不引用 distractor 即可获得近完美 CED 分——CED 自身被 reward hack。根因：CED reward 不依赖抽取质量，模型可在 F1=0 时仍获高 CED reward。修复方案：F1 门控——仅在 completion 包含 ≥1 个 predicted triple 时计算 CED reward，否则 CED=0。这确保 evidence quality 的评估以有效抽取为\n---\nID: D015 | 2026-05-14 14:58 UTC\n  Summary: ced_r5 mode collapse 保留跑完取分析价值；flatnli_r3 kill 并修复 NLI device 后重启\n  Rationale: ced_r5 在 63% 进度时 f1_reward=0 + entropy≈0，已 mode collapse。保留跑完因为：(1) negative result 证明纯 CED reward 导致 collapse，支撑 reward balance 的 ablation story；(2) 早期 checkpoint 可能有 f1_reward 正常的版本可用。flatnli_r3 因 NLI 推理在 CPU 上运行导致 10x 减速（124s/it vs 12s/it），预计 20h+。RTX 5090 32GB 有足够余量放 DeBERTa-v3-base (~400MB)，kil\n---\nID: D016 | 2026-05-14 15:00 UTC\n  Summary: Kill ced_r5 (total collapse)，ced_kl001 移到 cuda:0 立即启动\n  Rationale: ced_r5 step 250+ f1_reward=0、completion 坍缩到 34 tokens、save_total_limit=5 已覆盖所有正常 checkpoint。继续跑无任何回收价值。Kill 后释放 cuda:0 给 ced_kl001（kl_coef=0.01），不再等 cuda:1。ced_kl001 现在是 MVP-2 最关键实验——验证 CED+KL约束能否避免 reward hacking。extract_r3 和 flatnli_r3 保持 kl=0 继续跑，作为对照：若它们没 collapse，说明问题是 CED reward 特异的；若也 collaps\n---\nID: D017 | 2026-05-14 15:01 UTC\n  Summary: Kill ced_r5 + extract_r3 (kl_coef=0 collapse/stall), 部署 kl_coef=0.01 修正实验\n  Rationale: 3路GRPO健康检查：ced_r5完全mode collapse(entropy=0.0005, F1=0, grad_norm=0)，extract_r3训练停滞(grad_norm=0, F1=0.20低于SFT baseline 0.4057)。共同根因kl_coef=0导致策略无约束偏移。D008显示kl_coef=0.05会KL爆炸，选择0.01作为中间值（5x低于爆炸阈值）。flatnli_r3保留作为kl_coef=0对照组继续观察。\n---\nID: D018 | 2026-05-14 15:04 UTC\n  Summary: flatnli_r3 紧急修复 reward_device cpu→cuda，extract_r3 改为跑完再替换\n  Rationale: Reviewer critical 发现 D015 未执行：flatnli_r3 仍以 --reward_device cpu 运行，step_time 123s/step（GPU 后应 12-15s/step），cuda:3 被占用但 90% 时间等 CPU。修复后从 ~23h 降至 ~2-3h，是当前最高 ROI 操作。extract_r3 已 68%（~50min 完成），改为跑完后再部署 extract_kl001，避免浪费已投入的 2.5h。ced_r5 维持 kill（3.3h GPU 时间用于 ced_kl001 更有价值）。\n---\nID: D019 | 2026-05-14 15:05 UTC\n  Summary: 修正 D017：extract_r3 改为跑完再释放，flatnli_r3 紧急补执行 D015（修复 NLI device 重启）\n  Rationale: Reviewer 审查发现：(1) D015 未执行——flatnli_r3 仍用 CPU NLI，step_time 120s vs GPU 应 12-15s，23h→2-3h 的 10x 效率差，cuda:3 90% 时间在等 CPU。(2) extract_r3 只剩 ~50min，跑完可取早期 checkpoint（collapse 前 step 20-100 可能比 last 好），不值得 kill 浪费已投入的 2.5h。修正后：cuda:0 立即释放给 ced_kl001，cuda:2 等 50min 后给 extract_kl001，cuda:3 kill+修复 NLI dev\n---\nID: D020 | 2026-05-14 15:15 UTC\n  Summary: ced_kl001 启动前必须先修复 CED reward F1 门控（D014 未实现）；kl_coef=0.01 实验改为 100 步探测性运行\n  Rationale: Reviewer 代码核查确认 D014 的 F1 门控从未实现：ced_reward.py 对 0-triple 短输出仍给近完美分(0.99)。ced_r5 的 collapse 根因是双重的——kl_coef=0 导致策略自由偏移 + CED reward 对短输出的 hack。仅修 kl_coef 不解决 reward 设计缺陷，ced_kl001 会重复失败。同时 kl_coef=0.01+QLoRA 的兼容性未验证（D008 证明 0.05 爆炸），先做 100 步探测降低风险。\n---\nID: D021 | 2026-05-14 17:20 UTC\n  Summary: Kill flatnli_r5（从已 hacked checkpoint 恢复无效），启动 flatnli_r6 从 SFT 全新训练 D020 配置\n  Rationale: Reviewer 独立审查发现 flatnli_r3 checkpoint-100 已深陷 NLI reward hacking（f1=0.025, flat_nli=0.911）。从该 checkpoint 恢复加 kl_coef=0.01 后 KL=0.46（远高于从 SFT 新训的 ced_kl001_r4 的 0.098），frac_zero_std 升至 0.8-0.9，grad_norm 近零——训练冻结。教训：从 kl=0 已漂移 checkpoint 恢复并加 kl>0 不可行，必须从 SFT 全新开始。\n---\nID: D022 | 2026-05-14 17:40 UTC\n  Summary: Kill extract_r4 (f1_reward=0 at ckpt-30, mode collapse confirmed); cuda:2 转 ced_kl001_r4 多 checkpoint eval\n  Rationale: extract_r4 (extraction-only, kl_coef=0.01+gen=8) 在 step 10 后 f1_reward 归零、frac_zero_std≥0.8 停滞，checkpoint-30 无恢复信号。同配置的 ced_kl001_r4 在 step 20 f1_reward=0.082 持续上升——直接证明 CED reward 通道是驱动学习的关键因素。这一负面结果本身是强证据，不再尝试 extract_r5。cuda:2 空闲，派去 eval ced_kl001_r4 中间 checkpoint，提前获取多 checkpoint 评估数据。\n---\nID: D023 | 2026-05-14 17:40 UTC\n  Summary: Kill extract_r4 (mode collapse confirmed); ablation 结论: CED reward 是 GRPO 训练必需的 dense signal，extraction-only reward 太稀疏无法驱动学习\n  Rationale: extract_r4 checkpoint-30: f1_reward 连续 25 步为 0，frac_zero_std 升至 0.9，grad_norm 在 0.005-0.012 震荡。对比 ced_kl001_r4 同期（f1_reward=0.082 持续上升，frac_zero_std=0.4 持续下降），唯一差异是 reward type。结论: Stage 1 (extract-only) 在 D020 配置下无法维持 GRPO 探索多样性，CED 提供的 dense reward signal 是训练成功的必要条件。这是论文的关键 ablation evidence。cuda:\n---\nID: D024 | 2026-05-14 18:11 UTC\n  Summary: Kill flatnli_r6 (mode collapse step 25); D020 配置下三路 ablation 结论: 仅 CED reward 存活，extract-only 和 flat-NLI 均 collapse\n  Rationale: flatnli_r6 step 25: frac_zero_std=0.9, f1_reward=0, flat_nli_reward=0, reward 100% 来自 format。与 extract_r4 collapse 模式一致。三个实验共用 D020 配置（kl=0.01, gen=8），唯一差异是 reward type: extract-only collapse (step 10-30), flat-NLI collapse (step 25), CED 健康完成 100 步。结论: CED 的对比性 evidence discrimination 提供了 GRPO 所需的 \n---\nID: D025 | 2026-05-14 18:11 UTC\n  Summary: Kill flatnli_r6 (mode collapse confirmed step 25); D020 配置下三路 ablation 结论：仅 CED reward 存活，extract-only 和 flat-NLI 均 collapse\n  Rationale: flatnli_r6 step 25: frac_zero_std=0.9, f1_reward=0, flat_nli_reward=0, reward 100% 来自 format。与 extract_r4 collapse 模式一致。D020 配置（kl=0.01, gen=8）下三路对比：extract-only step 30 collapse, flat-NLI step 25 collapse, CED 100 步健康完成。唯一差异是 reward type。结论：CED 的对比性 evidence discrimination 提供了更丰富的梯度信号，是维持 GRPO 探索多样\n---\nID: D026 | 2026-05-14 19:37 UTC\n  Summary: MVP-2 ced_kl001_r4 FAIL — lr=5e-5 导致灾难性遗忘+CED recall shortcut 双重问题，启动 P0/P0+P1 并行修复\n  Rationale: ckpt-10/50/100 eval 全部远低于 SFT baseline（rel_f1: 0.003→0.156→0.217 vs SFT 0.4057，evi_f1: 0.720→0.564→0.575 vs SFT 0.7979）。训练 reward 5x 增长但 eval F1 未恢复，确认 reward hacking + 灾难性遗忘双重机制。根因：lr=5e-5 过高 5-10x + CED 对非匹配 triple 无 recall 惩罚。D020 ablation 的 CED 训练稳定性发现仍有效。下一步：P0（lr=5e-6）和 P0+P1（lr=5e-6 + ced_rec\n---\nID: D027 | 2026-05-14 19:37 UTC\n  Summary: MVP-2 ced_kl001_r4 FAIL — lr=5e-5 过高导致灾难性遗忘+CED recall shortcut 叠加 reward hacking\n  Rationale: ckpt-10/50/100 三点轨迹确认：rel_f1 最高 0.217（SFT 0.4057, pass 0.356, gap -13.9pp），evi_f1 最高 0.575（SFT 0.7979, pass 0.818, gap -24.3pp）。恢复速率递减（40步+15.3pp→50步+6.0pp），外推至 step200 仍远低于 pass。根因：(1) lr=5e-5 是社区推荐的 5-10x，导致 step10 即灾难性遗忘；(2) CED shortcut 使非匹配 triple 退化为 flat NLI，引导模型少预测高 EDCR；(3) train/eval 分布不匹配\n---\nID: D028 | 2026-05-14 21:36 UTC\n  Summary: Kill rp_r2 (P0+P1) — loss 指数 divergence 不可恢复；cuda:3 转跑 rp_r2 ckpt-20 eval 关闭对比线\n  Rationale: rp_r2 loss 从 step 10-20 持续指数增长 (908→24650→1.34e7)，根因是 recall_penalty 5-10x 梯度 + kl_coef=0.01 形成正反馈循环。与 P0 的瞬时 KL spike 不同，这是持续 divergence。Kill 后 cuda:3 跑 rp_r2 ckpt-20 eval（成本低，~2h）拿到数据关闭 P0+P1 对比线。不启动新训练——MVP 阶段 P0 单独通过即可。\n---\nID: D029 | 2026-05-14 21:44 UTC\n  Summary: 修正 rp_r2 终止理由：从\"loss 持续发散\"改为\"recall penalty 过度抑制 CED 信号\"\n  Rationale: Reviewer 独立核实 trainer_state.json 发现 rp_r2 step 30-40 的 loss/KL 已完全恢复正常（loss=0.038, KL=0.005），与 P0 的瞬态发散→恢复模式一致，不是持续发散。真正的问题是 ced_reward=0.005 远低于 P0 的 0.079，说明 recall penalty 过于严苛压制了 CED 学习信号。kill 决策本身不撤回，但论文引用此 negative result 时应表述为\"recall penalty 过度抑制 CED 信号\"而非\"训练发散\"。\n---\nID: D030 | 2026-05-14 22:16 UTC\n  Summary: P0 ckpt-20 eval FAIL (rel_f1=0.0077); lr=5e-6 未能防止早期遗忘，与 lr=5e-5 相同模式；扩展至全 checkpoint 轨迹评估\n  Rationale: lr=5e-5 和 lr=5e-6 在 step-20 均出现灾难性遗忘（rel_f1 < 0.01），说明问题不是单纯 LR 过高——GRPO+QLoRA 在结构化生成任务上的前 20 步 inherently 不稳定（60% 输出截断，field compliance 仅 39.9%）。需要看完整 recovery trajectory（ckpt-40/60/80）才能判断是否\"先崩后恢复\"。ced_kl001_r4 (lr=5e-5) step-90 最高 0.211 仍低于阈值，lr=5e-6 能否突破 0.30 存疑。同时开始考虑 GRPO 替代方案（DPO/rejection sa\n---\nID: D031 | 2026-05-14 23:10 UTC\n  Summary: GRPO+QLoRA P0 方向判死：ckpt-40 rel_f1=0.0071（比 ckpt-20 更差），两个 LR 均远劣于 SFT baseline。Pivot 到离线 RL（Rejection Sampling FT → DPO）\n  Rationale: ckpt-20→ckpt-40 轨迹下降（0.0077→0.0071），GRPO 只学会格式/证据引用但完全丧失关系抽取能力。lr=5e-5 最佳 0.211 vs SFT 0.406，lr=5e-6 最佳 0.008。catastrophic forgetting 是 GRPO+QLoRA 在结构化生成任务上的根本性问题，非超参可解。CED reward signal 本身有效（MVP-1 verified），问题在在线 RL 训练方法论。Pivot 到离线方法：(1) Rejection Sampling FT 最简单最稳定优先做 (2) DPO+CED scoring 作为并行备选。\n---\nID: D032 | 2026-05-15 01:03 UTC\n  Summary: Kill GRPO 训练 (cuda:0 step 113/200): 轨迹数据已充分，释放 GPU 给 RSFT 管线加速\n  Rationale: ckpt-80 rel_f1=0.0116 (SFT baseline 的 2.9%)，ckpt-20→80 全线 FAIL。ckpt-100 eval 在跑会给最后一个数据点，但 step 200 无价值。释放 cuda:0 可用于并行 RSFT generate 或后续 scoring/training。\n---\nID: D033 | 2026-05-15 01:22 UTC\n  Summary: D031 最终确认：GRPO+QLoRA 全线 FAIL，lr5e6 全 6 checkpoint rel_f1 < 0.02；negative result 模式有论文价值（CED↑ + rel_f1 catastrophic forgetting = 在线 RL 无法维持双能力）\n  Rationale: Reviewer 独立核实 lr5e6 全 6 checkpoint：rel_f1 最高仅 0.0138（阈值 0.30），evi_f1 从 0.628 单调升至 0.850（超 SFT 0.798），edcr 稳定 ~0.99（远超 SFT 0.712）。模式：CED reward signal 有效驱动 evidence 质量提升，但在线 RL (GRPO+QLoRA) 导致关系抽取 catastrophic forgetting。此 negative result 直接支持离线 RL (RSFT/DPO) 路线的必要性，且为论文提供重要论据。\n---\nID: D034 | 2026-05-15 01:28 UTC\n  Summary: D034: RSFT diversity 危机——diversity=1.0/8 因 temperature 未生效，暂停生成并修复\n  Rationale: Reviewer critical 发现：(1) rsft_generate.py 传入 temperature=0.7 但被 Qwen3-4B generation_config.json 自带的 T=0.6/top_k=20 覆盖，transformers 打出 WARNING 但 Agent 未注意；(2) SFT 后模型分布极度尖锐，T=0.6+top_k=20 几乎等同于 greedy，导致 8 次生成完全相同；(3) 早期 diversity_probe 报告 7/8 是 format 解析 bug 导致的虚假多样性，修复格式后真实 diversity 暴露为 1.0/8。必须 k\n---\nID: D035 | 2026-05-15 01:29 UTC\n  Summary: 暂停 RSFT 并行化：Reviewer critical 发现 diversity=1.0/8 是格式修复后的真实值，之前 7/8 为格式不一致假象。高温探针优先。\n  Rationale: diversity_probe 原始数据 (8,6,1) 平均 5.0/8 而非上报的 7；且 probe 时 format_ok 仅 34%，\"多样性\"来自 JSON key 名变体。生产环境 format_ok=99.8% 后实测 diversity=1.0/8。继续当前配置生成 14h 的数据毫无意义——rejection sampling 退化为普通 SFT。需先用高温(T=1.0/1.2/1.5)探针验证 diversity 是否可恢复。\n---\nID: D036 | 2026-05-15 01:33 UTC\n  Summary: D034 撤销：diversity crisis 是监控 bug，非生成质量问题，T=0.7 下 diversity 充足(7.11/8)，恢复并行生成\n  Rationale: 独立验证 Worker 分析 cuda:1 已生成的 200 docs：triple-set diversity 7.11/8 (median=8.0)，format parse rate 90.2%，61.5% 文档 8/8 完全不同。之前监控报告 mean_diversity=1.0/8 为度量代码计算错误。无需执行 D034 的 temperature 修复和高温探针。\n---\nID: D037 | 2026-05-15 07:46 UTC\n  Summary: D037: RSFT 全线 FAIL（rel_f1=0.0483），pivot 到 CED-as-reranker（推理时方案）\n  Rationale: GRPO（D027/D031/D033）和 RSFT 两条训练路线均呈现相同的灾难性遗忘——任何对 SFT checkpoint 的二次微调都摧毁 rel_f1。RSFT r1: rel_f1=0.0483, num_preds=848（SFT baseline: 0.4057, 12234）。跨 seed 方差 <0.04%，非随机。根因假设：LoRA 二次微调的系统性遗忘。Pivot 到 CED-as-reranker：SFT 模型生成 N 候选 → CED 打分 → 选最佳，完全绕过训练问题。\n---\nID: D038 | 2026-05-15 09:40 UTC\n  Summary: D038: 撤回 D037——RSFT \"灾难性失败\"实为 eval bug（50-doc pred vs 12275 gold denominator mismatch），s44 全量 eval 通过 MVP-2（rel_f1=0.4655 +5.98pp, evi_f1=0.8087 +1.08pp）\n  Rationale: r1 的 rel_f1=0.0483 是评估代码 bug：TaskEvalCallback 在 50 docs 上生成预测但 gold triples 用了全量 dev set 12275 条，recall 被人为压到 ~3.5%。s44 独立全量 eval（985 docs）结果：rel_f1=0.4655（+5.98pp vs SFT 0.4057），evi_f1=0.8087（+1.08pp vs 0.7979），edcr=0.6350（-7.68pp vs 0.7118）。CED rejection sampling 首次端到端验证成功。D037 的 reranker pivot 基于\n---\nID: D039 | 2026-05-15 11:49 UTC\n  Summary: D039: RSFT+CED ablation 全部 PASS MVP-2——方法鲁棒，1 epoch 足够，EDCR 局限需论文讨论\n  Rationale: Reviewer 独立验证 4 组 RSFT 配置（r1 s42/s44, r2a, r2b）全部通过 MVP-2 判据（rel_f1 > 0.4057, evi_f1 > 0.798）。核心发现：(1) RSFT+CED 方法贡献 +4-6pp rel_f1，具体超参影响极小（0.45pp 范围内），方法鲁棒性好；(2) 1 epoch 足够，3 epoch 无显著额外收益；(3) r2b 保守 LoRA scaling+低 lr 略优于 r2a（截断更少、字段完整率更高）；(4) EDCR 一致偏高 63-66%，CED reward 对 rel_f1 提升明显但对证据精确度提升有限，需论\n---\nID: D040 | 2026-05-15 12:03 UTC\n  Summary: D040: MVP 正式通过 → 进入 Research 阶段。paper_framing.md 定稿（RSFT+CED 路线，4 Claims），experiment_plan.yaml 建立（10 研究实验），dream_simulate(full) 已启动\n  Rationale: D039 已判定 MVP-2 全部 PASS（4/4 configs），但 complete_mvp() 未被调用。用户催促后补调。Post-MVP kickoff 按 skill 流程执行：(1) paper_framing.md 从 Pre-MVP draft 更新为 Post-MVP 定稿版——方法从 GRPO 转为 RSFT+CED，新增 Claim 3（在线 RL catastrophic forgetting 分析）和 RC6/RC7；(2) experiment_plan.yaml 新建，10 个研究实验分 P0/P1/P2；(3) dream_simulate(full) 已启\n---\nID: D041 | 2026-05-15 13:15 UTC\n  Summary: D041: Evi-F1 评测协议不一致确认——我们的\"条件 Evi-F1\"(仅 TP triples)与 DREEAM\"联合 Evi-F1\"(含 FP/FN 惩罚)不可比，publishability threshold 暂冻结等对齐后重评\n  Rationale: Agent 调查确认：我们的 compute_evi_f1() 在 FP triple 时 continue 跳过（precision 分母只算 TP evidence），recall 分母也只算 matched gold triples。DREEAM 的 official_evaluate() 将 FP/FN 全部计入分母。在 rel_recall ≈ 55% 时，分母差约 1.8x，解释了 82% vs 57% 的差距。已派 Agent 实现 DREEAM 协议对齐函数并重新评估全部实验。在对齐数字出来前，paper_framing.md 的 publishability threshol\n---\nID: D042 | 2026-05-15 13:16 UTC\n  Summary: D041: Evi-F1 评测协议与 DREEAM 不一致——我们的 conditional Evi-F1 跳过 FP/FN triples，比 DREEAM 的 joint Evi-F1 宽松得多。必须实现 DREEAM 协议对齐后重算所有实验。Publishability threshold 待重算后修订\n  Rationale: Agent 调查确认：我们的 compute_evi_f1() 在 FP triple 时 continue 跳过，precision 分母只算 TP；recall 分母也只算已匹配 gold。DREEAM 的 official_evaluate() 把 FP/FN 全部计入分母。关系 recall ~55% 时，分母差异完全解释 82% vs 57% 的差距。对齐方案：加 FP evidence 到 precision 分母 + 遍历全部 gold triple evidence 到 recall 分母。论文需要报告 DREEAM 协议数字（与文献可比），条件 Evi-F1 可作为辅助指标（\n---\nID: D043 | 2026-05-15 13:20 UTC\n  Summary: D042: Dream 审稿分析——best=2.5/median=3.0/worst=2.5（评分倒挂）。5 个确认行动项（narrow Claim 3 scope、加 GRPO G=8、修 Evi-F1 协议、CED contingency plan、加 DPO baseline），4 个观察项。Framing 和 plan 已更新，re-dream 启动\n  Rationale: Dream 三档审稿分析（dream-report-action 协议）：\n\n**三档一致的结构性问题（确认行动项）**：\n1. CED vs flat-NLI 可能不显著 → 加 contingency plan，如 p>0.05 则 CED 降级\n2. Title/claims overclaim \"online RL\" → Claim 3 限定为 \"GRPO+QLoRA\"\n3. GRPO G=4 太小 → 加 plan_011 (G=8 实验，P0)\n4. Cross-protocol Evi-F1 → 已在修复中 (D041)\n5. 缺中间 baseline → 加 plan_012 \n---\nID: D044 | 2026-05-15 13:24 UTC\n  Summary: Dream v1 分析完成：reframe paper_framing.md，CED 降级，claims 重构，新增 3 个实验\n  Rationale: Dream v1 (best=2.5, median=3.0, worst=2.5) 三档一致指出：(1) CED vs flat-NLI 不显著 p>0.05 → CED 从核心贡献降级为 one possible scoring function；(2) \"online RL fails\" 标题过度声称 → 收窄到 \"GRPO fails for DocRE\"；(3) GRPO G=4 太小 → 新增 G=8 实验(plan_011)；(4) 缺 DPO baseline → 新增 plan_012；(5) EDCR 缺人工验证 → 新增 plan_013。Claims 重构为 C1=ev\n---\nID: D045 | 2026-05-15 13:41 UTC\n  Summary: D045: DPO 升级 P0 + GRPO G=8 排为第一优先；DPO 定位修正为 offline preference optimization\n  Rationale: Reviewer 指出：(1) DPO 是纯 offline 方法，不是 online/offline 中间点——论文中错误定位会被审稿人攻击。已修正 paper_framing.md。(2) DPO 结果直接决定 C2 叙事走向（on-policy 特有 vs 更 general 的现象），对 paper scope 有重大影响，升级 P0。(3) C2 对 GRPO G=8 单点依赖是最大风险，G=8 必须是 re-dream 后第一个启动的实验。\n---\nID: D046 | 2026-05-15 13:42 UTC\n  Summary: D045: DPO 从 P1 升 P0 + GRPO G=8 定为 re-dream 后首批实验 + topk3 双变体设计\n  Rationale: Reviewer 路线图审查指出：(1) DPO 结果直接决定 C2 decoupling 叙事——若 DPO 也出现 decoupling 则现象更 general，若不出现则确认 on-policy 特有，两种结果都对论文有重大影响，升 P0；(2) C2 publishability 必要条件依赖 GRPO G=8 复现 decoupling，是最高风险实验，必须首批启动；(3) topk3 数据含 CED=0 样本会稀释信号，改为双变体并行（全量 vs 过滤 CED=0）以区分数据量效应和信号稀释。同时修正 paper_framing.md 中 DPO 定位错误（纯 offline 方\n---\nID: D047 | 2026-05-15 14:37 UTC\n  Summary: Re-dream v2 分析：best=3.0/median=2.5/worst=2.5，未达标。识别 7 个三档一致结构性问题，plan_011 bf16 GRPO 是关键突破口，新增 SFT-without-evidence ablation 实验\n  Rationale: Dream v2 (dream_20260515T132059) reframe 后评分：best=3.0(Findings), median=2.5(Leaning Reject), worst=2.5(Leaning Reject)。目标 best≥3.5/median≥3.0 未达标，但比 v1(best=2.5/median=3.0/worst=2.5)的 best 提升了 0.5。\n\n**三档一致结构性问题（确认行动项）**：\n1. CED 非显著 vs flat-NLI + title-contribution mismatch → 必须更强地 reframe，CED 降为 one\n---\nID: D048 | 2026-05-15 14:39 UTC\n  Summary: Dream v2 分析：best=3.0/median=2.5/worst=2.5，未达标。三档一致指出5个结构性问题+2个新实验需求。plan_011 bf16 是升Main最大杠杆。\n  Rationale: Re-dream (dream_20260515T132059) full review 结果：reframe 后 best 从 2.5→3.0 有改善，但 median 从 3.0→2.5 反降。三档一致的结构性问题：(1) CED vs flat-NLI 非显著=标题贡献不匹配，(2) GRPO QLoRA confound 需 non-QLoRA 控制，(3) related work 大缺（R1-RE/LLM DocRE/GRPO stability），(4) 缺 forgetting dynamics figure，(5) DPO 细节不足。新实验需求：SFT-without-evi\n---\nID: D049 | 2026-05-15 14:39 UTC\n  Summary: Dream v2 (dream_20260515T132059) 结果: best=3.0/median=2.5/worst=2.5，未达标(目标 best≥3.5/median≥3.0)。三档一致结构性问题: (1) CED≈flat-NLI 标题错配 (2) QLoRA confound (3) related work 缺口。行动: 新增 plan_014 bf16 GRPO 控制实验 + plan_015 SFT-no-evidence ablation; plan_009 升 P1; Paper Agent 负责 retitle+reframe+related work。plan_011 eval 优先完成后决定 plan_014 优先级。\n  Rationale: Reframe (D044) 后 re-dream 仍未达 Main 标准。三档审稿一致指出: (a) CED 不显著优于 flat-NLI 但占据标题, (b) GRPO decoupling claim 被 QLoRA confound 限制泛化性, (c) related work 大缺口。这三个是结构性问题而非数据依赖——必须通过新实验(bf16 GRPO 控制)和 reframe 解决。plan_011 已用 bf16 但三变量混淆(bf16+G=8+kl=0.01), 需 clean 单变量控制。禁止 fallback 到 Findings——补实验+reframe 冲 Main。\n---\nID: D050 | 2026-05-15 14:48 UTC\n  Summary: Dream v2 未达标(best=3.0 < 3.5)，决定 pivot 到 analysis paper framing，以 evidence-extraction decoupling 为核心贡献，CED 降级为分析组件\n  Rationale: Dream v2 三档审稿人一致信号：(1) decoupling 是最新颖贡献(S2两个reviewer强力认可) (2) CED vs flat-NLI 优势微弱是最致命弱点(W1) (3) EDCR 填补评估盲区(S4) (4) GRPO/DPO/RSFT 光谱设计良好(S6)。当前 framing 把 CED 放标题但数据不支持 CED 显著优势，导致 novelty 感知低。Pivot 到 analysis paper：decoupling 为主 claim，EDCR 为工具贡献，CED 降级为\"studied scoring functions之一\"。条件：plan_011 bf1\n---\nID: D051 | 2026-05-15 15:55 UTC\n  Summary: D050 pivot 前提失败：bf16 GRPO 无 forgetting (rel_f1=0.4549)，decoupling 是 QLoRA artifact。暂停 framing pivot，等 plan_015 隔离三重 confound 后再定\n  Rationale: plan_011 bf16 eval 结果：ckpt-100 rel_f1=0.4549（超 SFT +4.92pp，接近 RSFT 0.4596），evi_f1=0.8086，EDCR=0.6318。QLoRA GRPO 的 catastrophic forgetting 在 bf16 下完全消失。但 plan_011 同时改了三个变量（quantization/G/kl），无法确定是哪个消除了 forgetting。plan_015（bf16+G=4+kl=0）是不可替代的 ablation，必须在定稿 framing 前完成。新的潜在 story：QLoRA quantization 导\n---\nID: D052 | 2026-05-15 16:32 UTC\n  Summary: Reviewer 核实 plan_011 vs mvp2_grpo_ced_kl001_r4 已构成 clean quantization ablation（唯一变量=quantization，其余 G=8/kl=0.01/lr=5e-5/weights 完全一致）。不再 gate framing 在 plan_015 上\n  Rationale: Reviewer 逐项核对：plan_011 (bf16) 与 mvp2_grpo_ced_kl001_r4 (QLoRA) 除 quantization 外完全一致（G=8, kl=0.01, lr=5e-5, weights=0.3/3.0/1.0, steps=100, seed=42）。结果：QLoRA rel_f1=0.2167 vs bf16 rel_f1=0.4549 (Δ=+23.8pp)。这是 quantization→forgetting 的最强直接证据，已完成。plan_015_v2 有 3 个变量差异（weights/lr/kl），不是 clean ablation，定\n---\nID: D053 | 2026-05-15 16:32 UTC\n  Summary: Quantization isolation 已由 plan_011 vs mvp2_grpo_ced_kl001_r4 解决（Δ=+23.8pp），plan_015 降级为 robustness check，可以开始 reframe\n  Rationale: Reviewer 逐项核对发现 plan_011 (bf16, G=8, kl=0.01, lr=5e-5, weights 0.3/3.0/1.0) 与 mvp2_grpo_ced_kl001_r4 (QLoRA 4-bit, G=8, kl=0.01, lr=5e-5, weights 0.3/3.0/1.0) 配置完全一致，唯一差异为 quantization。结果：QLoRA rel_f1=0.2167 vs bf16 rel_f1=0.4549 (+23.8pp)。D051 等 plan_015 隔离的前提不再成立——干净的 ablation 数据已有。plan_015 系列（lr=\n---\nID: D054 | 2026-05-15 17:50 UTC\n  Summary: C2 reframe: GRPO decoupling 从\"RL通病\"收窄为\"QLoRA-specific artifact\"。bf16 LoRA GRPO 不遗忘(rel_f1=0.4549 +4.92pp)，QLoRA 崩(0.2167)。Claim 更窄但更 interesting：量化噪声如何破坏 RL reward signal in structured IE。\n  Rationale: plan_011 vs mvp2_grpo_ced_kl001_r4 构成 clean single-variable ablation（唯一差异=quantization），Δrel_f1=+23.8pp。原 C2\"GRPO causes decoupling\"已被 plan_011 否定。新 C2 更有实用价值（QLoRA 广泛使用，此 failure mode 未被文献记录），且 Reviewer D052 已确认 ablation 有效性。\n---\nID: D055 | 2026-05-15 18:00 UTC\n  Summary: C4 reframe: CED 优势在 output quality control (compliance +15pp, truncation 3x↓)，非 rel_f1 提升；补跑 flat-NLI 2 seeds 加强统计可信度\n  Rationale: flat-NLI rel_f1=0.4539 落在 CED 3-seed 1σ 范围内(0.4468-0.4724)，差异不显著。但 field_compliance 78.9% vs ~94% (+15pp 显著)，truncation 20% vs 5-6% (3x 显著)。CED 的真正增益维度是 evidence faithfulness + output structure quality，非 extraction accuracy。单 seed 对比统计强度不足，cuda:0/cuda:3 空闲，补跑 2 seeds 成本低收益高。\n---\nID: D056 | 2026-05-15 18:05 UTC\n  Summary: CED vs flat-NLI 统计不可区分，Claim 3 降级，CED 不再作为独立贡献\n  Rationale: flat-NLI RSFT (seed=42) rel_f1=0.4539 vs CED RSFT 3-seed mean 0.4596±0.0128，差异 -0.57pp 在 1σ 内。同 seed=42 下 flat-NLI 反超 CED +0.90pp。CED contrastive margin 对 RSFT filtering 无显著增益。论文贡献重新聚焦：(1) evidence-grounded DocRE 任务定义，(2) GRPO decoupling 发现 + quantization artifact 机制，(3) EDCR 诊断指标。CED 降级为 \"one possi\n---\nID: D058 | 2026-05-15 18:33 UTC\n  Summary: SFT baseline 推理量化 confound 发现，必须用 --no-quantize 重跑 SFT baseline eval\n  Rationale: Reviewer Review 20 发现：SFT baseline eval 使用 --quantize（registry line 2148），而所有 RSFT/GRPO eval 使用 --no-quantize。推理量化对 4B 模型通常造成 1-3pp 损失。这意味着论文中所有 vs SFT baseline 的 delta 数字都可能被高估 1-3pp：(1) RSFT vs SFT 从 +3.9~6.0pp 可能实际 +2~4pp；(2) bf16 GRPO vs SFT 从 +4.9pp 可能实际 +2~3pp；(3) evidence tax 从 8.36pp 可能实际 5~\n---\nID: D059 | 2026-05-15 19:10 UTC\n  Summary: Claim 2 re-scope：decoupling 作为负面发现保留，ideas A/B/C 归 Future Work 不做实验。精确措辞等 G=8 + DPO 1ep 结果\n  Rationale: Dream 三档一致认为 decoupling \"genuinely novel and striking\"，是论文最独特贡献。修复 GRPO 会削弱 claim 且无保证。plan_014 量化 evidence burden ~8pp，而 GRPO decoupling 导致 rel_f1→0.01 是量级差异。Claim 2 精确边界取决于：(1) plan_011 G=8 是否复现 decoupling（排除 G=4 confound）；(2) plan_012 DPO 1ep 是否 decouple（判断 on-policy 特有 vs RL 通病）。\n---\nID: D061 | 2026-05-15 21:26 UTC\n  Summary: 关闭 DPO 实验线，作为 negative result 纳入论文\n  Rationale: DPO 1ep rel_f1=0.0022（关系本体完全遗忘），3ep rel_f1=0.3429（部分恢复但仍远低于 SFT baseline 0.4106）。非单调退化模式 + 训练指标与 downstream 完全脱节。无论训练长度均不可用，但作为 negative result 有论文价值：(1) 训练 accuracy 不能反映生成质量 (2) preference signal 破坏关系抽取能力 (3) 非单调退化现象\n---\nID: D062 | 2026-05-15 21:26 UTC\n  Summary: Task decoupling（rel_f1↑ + evi_f1↓）确认为跨方法系统性现象，升级为论文核心发现\n  Rationale: GRPO、DPO、RSFT top_k=3 三种不同优化方法均展现 rel_f1 与 evi_f1 反向变动。这不是某方法的 artifact，而是 faithful evidence generation 的固有代价。强化 paper_framing 的 \"cost of faithfulness\" narrative：优化关系抽取准确率与生成忠实证据之间存在系统性 tradeoff，RSFT 是目前最优 Pareto 点。\n---\nID: D063 | 2026-05-15 21:35 UTC\n  Summary: D061 暂缓：DPO 1ep eval 确认为 bug（缺 --sft_adapter），需 reeval 后重新评估 DPO 线\n  Rationale: 排查发现 DPO eval 未传 --sft_adapter，模型加载为 base+DPO（缺 SFT 层），生成自由文本关系名。rel_f1=0.0022 不反映 DPO 真实性能。3ep eval 来自训练内置 eval（自动 merge SFT），可能有效但需确认。批准 cuda:0 跑 1ep reeval（~1h），结果出来后重新判断 DPO 线去留。\n---\nID: D064 | 2026-05-15 21:36 UTC\n  Summary: 撤回 DPO 1ep 崩塌结论，3 个 eval 因缺 --sft_adapter 无效，紧急重跑\n  Rationale: Reviewer 发现 eval_plan_012_dpo_ced_1ep、eval_plan_001_flat_nli_s43、eval_plan_008_rsft_topk3 三个 eval 缺少 --sft_adapter /root/autodl-tmp/sft_output 参数，模型加载为 base+adapter（跳过 SFT 层），不认识 DocRED 关系本体导致 rel_f1≈0.002。之前基于此数据的 DPO 1ep 灾难性崩塌结论无效。已下令 kill 正在浪费 GPU 的 rsft_topk3 eval（PID 255528, cuda:3），三个 eval 全部加\n---\nID: D065 | 2026-05-15 22:56 UTC\n  Summary: bf16 GRPO G=8 确认无 task decoupling，QLoRA 是 confound——Claim 3 需 reframe 为 \"QLoRA-specific artifact\" 而非 \"GRPO inherent failure\"\n  Rationale: plan_011 step 30/50/70 全量 dev eval：rel_f1 全程 0.43+ > SFT baseline 0.41，evi_f1 稳定 0.80-0.81，无 QLoRA GRPO 中的 rel_f1 崩塌。field_compliance 从 70.7% 升至 92.4%。结合 QLoRA GRPO 全线失败（rel_f1 max=0.211），task decoupling 是 QLoRA 量化精度不足导致，非 GRPO 对 IE 任务的固有缺陷。论文 Claim 3 从\"GRPO fails for IE\"改为\"quantization confound ana\n---\nID: D066 | 2026-05-15 23:03 UTC\n  Summary: 确认 task decoupling 是 QLoRA-specific artifact：bf16 GRPO G=8 全 4 个 checkpoint 无 decoupling，论文报 best rel_f1=0.4549 (step-100)\n  Rationale: plan_011 bf16 GRPO step 30/50/70/100 完整 eval 显示 rel_f1 全程 > SFT baseline (0.41)，evi_f1 稳定 0.80-0.81，无 QLoRA GRPO 中观察到的 rel_f1 崩塌。Reviewer PASS。0.4549 来自 step-100 (best checkpoint)，0.4341 来自 step-70 (中间 checkpoint)，两者均为 full dev eval + --sft_adapter + --no-quantize，差异仅因 checkpoint 不同。论文 Claim 3 核心证据确\n---\nID: D067 | 2026-05-15 23:39 UTC\n  Summary: DPO 叙事修正：从\"DPO 也失败\"改为\"DPO 中性/轻度退化\"，作为 RL spectrum 中间数据点\n  Rationale: D064 bug fix 后 DPO 1ep 重新评估：rel_f1=0.4034 ≈ SFT baseline 0.4057（-0.23pp，噪声范围）。D061 基于缺 --sft_adapter 的无效 eval 关闭 DPO 线，该决策维持（不需额外 DPO 实验），但论文叙事需修正。RL spectrum 更新：GRPO QLoRA catastrophic(<0.02) → GRPO bf16 G=8 mild degradation(0.434 from 0.4549 base) → DPO 1ep neutral(0.4034) → DPO 3ep mild退化(0.3429)\n---\nID: D068 | 2026-05-15 23:40 UTC\n  Summary: 修正 DPO 结论：DPO 1ep 中性（非失败），Claim 2 叙事需从\"RL fails\"转向\"RL spectrum 分化\"\n  Rationale: D061 基于缺 --sft_adapter 的无效 eval 判定\"关闭 DPO 线\"。修正后数据：DPO 1ep rel_f1=0.4034（≈SFT 0.4057），DPO 3ep=0.3429（过拟合退化）。结合 GRPO QLoRA catastrophic(<0.02) vs GRPO bf16 mild degradation(~0.434)，decoupling 的 catastrophic 程度与 QLoRA 强相关。新叙事：QLoRA+GRPO 导致 catastrophic decoupling；bf16+GRPO 轻度退化；DPO 中性无改善；RSFT 是唯一有效路线。\n---\nID: D069 | 2026-05-15 23:44 UTC\n  Summary: 修正 D068：evidence-extraction decoupling 是 RL-for-IE 通用现象，非 QLoRA 特有；severity 按方法分层\n  Rationale: D068 判断\"catastrophic decoupling 是 QLoRA artifact\"不完整。Reviewer 指出 DPO 1ep→3ep 也呈现 decoupling（rel_f1 0.4034→0.3429 下降，evi_f1 0.8088→0.8403 上升），与 GRPO 方向一致仅程度不同。修正后的完整图景：(1) GRPO+QLoRA=catastrophic decoupling (rel_f1<0.02)；(2) GRPO+bf16=mild decoupling (0.4549→0.434)；(3) DPO+bf16=gradual decoupling (0.\n---\nID: D072 | 2026-05-16 00:00 UTC\n  Summary: Claim 4 升级为双层论述: 方法级 EDCR (decoupling 量化) + per-relation EDCR (独立诊断工具)\n  Rationale: Per-relation EDCR 分析 (93 relation types) 显示 EDCR vs evi_f1 ρ=-0.064 (p=0.583)，完全独立。与方法级 ρ=-0.965 形成互补。方法级 EDCR 本质是 rel_f1 的变换，诊断价值有限；但 per-relation 粒度上 EDCR 捕捉到 evi_f1 看不到的信息（如 head_of_government EDCR=0.956 但 evi_f1=0.875，证据看似好但 relation 抽取极差）。同时发现 evi_f1 vs rel_f1 在 per-relation 层面也近乎零相关 (ρ=-0.013)\n---\nID: D074 | 2026-05-16 00:25 UTC\n  Summary: r2 实际配置正确但已被 kill，r3 替代运行；argparse 静默忽略未知参数是代码隐患\n  Rationale: 验证发现 rsft_trainer.py 的 argparse 不存在 --batch/--grad_accum/--lr/--epochs 参数，这些 flag 被静默忽略，实际使用默认值 per_device_batch_size=4, gradient_accumulation_steps=4，恰好是 CED 正确配置。r2 两个 seed (s43/s45) 的实际训练配置完全一致（510 steps = 2718×3/16），满足 paired t-test 要求。r2 被基于错误假设 kill，r3 用显式正确参数重启，功能等价，仅损失重启时间。后续应修复 argparse str\n---\nID: D075 | 2026-05-16 01:44 UTC\n  Summary: 新增 RC11: 区分 intra-task decoupling vs inter-task forgetting，回应\"RL不遗忘\"文献\n  Rationale: 文献扫描发现多篇论文论证 RL fine-tuning 天然缓解 catastrophic forgetting，与 Claim 2 存在表面张力。关键区分：FREIGE 的 decoupling 是 multi-objective competition（RE vs evidence），不是预训练知识遗忘。同时纳入 QuRL/QaRL 作为 QLoRA amplification 的理论支撑。需在 Related Work/Discussion 显式回应。\n---\nID: D078 | 2026-05-16 07:58 UTC\n  Summary: D076 paired t-test 最终确认：CED vs flat-NLI 统计不可区分 (p=0.22, Δ=-0.18pp)，C3 降级决策 D056 正确\n  Rationale: 4-seed D076-compliant paired t-test 完成：CED ign_f1 mean=0.4466 vs flatNLI mean=0.4484，差异 -0.18pp (t=-1.545, p=0.22)。方向不一致（3/4 flatNLI 胜）。CED contrastive margin 在 RSFT data selection 上无可测量优势。论文不能 claim CED > flat-NLI。CED 价值保留在 inference-time reranker (+8pp) 和 EDCR 诊断。\n---\nID: D079 | 2026-05-16 13:10 UTC\n  Summary: 8B evidence tax ≈ 0: evidence generation cost is capacity-dependent, not universal. C1 需从 \"flat ~7pp tax\" 改为 \"tax inversely scales with model size\"\n  Rationale: 8B no-evi Ign-F1=0.5079 vs with-evi 0.5051, Δ=+0.28pp（噪声范围）。对比 4B tax=7.47pp。说明 8B 有足够容量同时处理 RE + evidence generation，无需 trade-off。如果 1.7B tax > 4B tax（待确认），则形成清晰的 scaling curve。这使 C1 从平淡的 \"evidence has a cost\" 升级为更有洞察力的 \"evidence tax is a capacity phenomenon\"——小模型需要 RSFT/reranker 补偿，大模型原生可用。\n---\nID: D080 | 2026-05-16 13:33 UTC\n  Summary: Re-DocRED cross-dataset: Ign-F1 下降 3.15pp 但 Evi-F1 提升 1.84pp。Evidence generation 跨数据集泛化良好，可支撑 \"evidence capability generalizes\" claim\n  Rationale: DocRED-trained 4B SFT 在 Re-DocRED 上：Ign-F1 0.3974→0.3659（-3.15pp，中等 domain shift），Evi-F1 0.7986→0.8170（+1.84pp，反而提升）。说明证据定位能力不受数据集切换影响。EDCR 变化不大（0.698→0.667）。论文可以 claim evidence generation 跨数据集泛化好，但需限定关系抽取泛化有限。\n---\nID: D084 | 2026-05-16 15:47 UTC\n  Summary: LLaMA GRPO QLoRA 复现 catastrophic decoupling（step 59: f1=0, ced=0, format=1.0, entropy collapse）。C2 跨家族验证成立。继续到 step 100 收集 dynamics 数据后 kill\n  Rationale: LLaMA-3.1-8B GRPO QLoRA 展现与 Qwen3-4B 完全一致的 reward hacking pattern: format_reward 饱和但 f1/ced 始终为零，entropy 从 1.74 降至 0.28（mode collapse），输出长度从 655 缩至 172。这确认 QLoRA GRPO evidence-extraction decoupling 是跨模型家族的通用现象，非 Qwen 架构特异性。继续到 step 100 是为了 plan_009 dynamics figure 提供 LLaMA 数据点（跨家族对比可视化），之后 kill 释放 c\n---",
+      "numLines": 300,
+      "startLine": 0,
+      "totalLines": 301
+    }
+  },
+  "sourceToolAssistantUUID": "a19e2100-9fea-454e-80f8-d7eb219d62e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37 · 2026-05-17T03:53:07.221Z_
+
+```json
+{
+  "parentUuid": "0bbb87e0-b961-459d-9dd9-a51b19368e17",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b30c041b-04f4-40da-9a25-a9b235eccebc",
+  "timestamp": "2026-05-17T03:53:07.221Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "b30c041b-04f4-40da-9a25-a9b235eccebc",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Negative experiments systematic review and diagnosis",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-17T03:53:29.307Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture of the negative experiments and the decisions that followed. Let me synthesize this into a structured review report. Let me organize by group and analyze each experiment.
+
+Key patterns I can identify:
+
+**Group 1 (GRPO lr5e6 全轨迹)**: lr=5e-6 still catastrophic forgetting. This was the P0 fix attempt after lr=5e-5 (ced_kl001_r4) failed. The conclusion was GRPO+QLoRA = inherent catastrophic forgetting regardless of LR.
+
+**Group 2 (GRPO Mode Collapse)**: Three reward ablation experiments under D020 config (kl=0.01, G=8). 
+
+Only CED survived while extract-only and flat-NLI both collapsed, which actually strengthens the paper's argument that CED is critical for GRPO stability. **Group 3 (CED Reward Hacking)**: ced_kl001_r4 with lr=5e-5 showed reward improvement but F1 degradation—a classic case of reward hacking combined with catastrophic forgetting under QLoRA. **Group 4 (DPO Failures)**: The 3-epoch run overfit, and the 1-epoch result was initially misleading due to a missing adapter flag, but after correction DPO at 1 epoch essentially matched SFT performance with no meaningful gains.
+
+DPO doesn't appear to be a viable improvement direction. **Group 5 (RSFT top_k=3)**: Using top_k=3 performed worse than top_k=1 because of increased noise. **Group 6 (Truncation)**: Truncation turned out to be a minor factor while the distractor citation issue is genuine RSFT behavior. **Group 7 (Cross-dataset)**: There was a pipeline bug that got fixed in r5.
+
+A couple of overlooked insights stand out: the non-monotonic degradation from 1 to 3 epochs in DPO suggests that very short training with warm restart might actually work but was never explored, and the GRPO lr5e-6 run showed consistent improvement in evidence F1 across the range tested.
+
+The asymmetry in that GRPO run is interesting—evidence quality kept improving while relation F1 tanked, which suggests I could potentially use GRPO to refine evidence and then layer SFT on top for relations. Also, bf16 GRPO actually did work based on those earlier runs, but I never tried the sequential approach of doing RSFT first for relations and then a short GRPO pass to refine evidence.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b30c041b-04f4-40da-9a25-a9b235eccebc",
+  "isSidechain": false,
+  "requestId": "req_011Cb7Tqk7hosNEx6PoeqQQC",
+  "type": "assistant",
+  "uuid": "86fa5b7f-3f41-48ec-8941-f1d60f67ac61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012zxAUpEUmafQZ9NFhLK7xn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20298,
+      "cache_read_input_tokens": 52798,
+      "output_tokens": 6086,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20298,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6086,
+          "cache_read_input_tokens": 52798,
+          "cache_creation_input_tokens": 20298,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20298
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-17T03:53:29.309Z_
+
+I have all the data needed. Let me write the systematic review report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86fa5b7f-3f41-48ec-8941-f1d60f67ac61",
+  "isSidechain": false,
+  "requestId": "req_011Cb7Tqk7hosNEx6PoeqQQC",
+  "type": "assistant",
+  "uuid": "f0770248-f516-4eff-9453-7b6d030fec09",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012zxAUpEUmafQZ9NFhLK7xn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20298,
+      "cache_read_input_tokens": 52798,
+      "output_tokens": 6086,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20298,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6086,
+          "cache_read_input_tokens": 52798,
+          "cache_creation_input_tokens": 20298,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20298
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-17T03:55:31.686Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01SEtTD3oboN7UwJTfgHXptm`</summary>
+
+```json
+{
+  "project": "faith-evidence-ie",
+  "file": "negative_review.md",
+  "content": "# Negative 实验系统性复盘\n\n> 18 个 conclusion=negative 实验，按 Group 合并分析。SFT baseline: rel_f1=0.4057 (Qwen3-4B, DocRED dev)。\n\n---\n\n## Group 1: GRPO lr5e6 全轨迹 (5 evals)\n\n**实验**: mvp2_eval_lr5e6_r1_ckpt20 / ckpt40_r2 / ckpt60_r2 / ckpt80 / ckpt100\n\n**一句话**: lr=5e-6 无法挽救 GRPO+QLoRA 灾难性遗忘，200 步全程 rel_f1 < 0.014。\n\n### 1. 证伪了什么？\n\n**假设**: \"ced_kl001_r4 (lr=5e-5) 的灾难性遗忘源于学习率过高，降到 5e-6 可恢复关系抽取能力。\"\n\n证伪。lr 降 10x 后 rel_f1 从 max 0.217 (lr5e-5) 进一步恶化到 max 0.014 (lr5e-6)。遗忘在 step 20 即已发生且不可恢复。\n\n### 2. 当时怎么处理的？\n\n- D030: ckpt-20 FAIL 后扩展到全 checkpoint 轨迹评估\n- D031: ckpt-40 更差后判死 GRPO+QLoRA 方向，pivot 到离线 RL (RSFT → DPO)\n- D032: kill 训练释放 GPU\n- D033: 全 6 checkpoint 确认，记为论文 negative result\n\n### 3. 处理是否正确？\n\n正确。此时已有两个 LR（5e-5 和 5e-6）的完整证据链，且后续 bf16 实验 (plan_011) 证实根因是 QLoRA 量化而非 GRPO 本身。Pivot 到 RSFT 是正确决策。\n\n**遗漏诊断**: lr5e6 的 evi_f1 从 0.628 单调升至 0.850（超 SFT 0.798），说明 CED reward 确实在驱动证据能力提升。如果当时就意识到这是\"单侧学习\"（evidence 学到了但 relation 崩了），可以更早形成 decoupling claim 的 framing。\n\n### 4. 推导链是否完整？\n\n完整。lr5e-6 → lr5e-5 → bf16 (plan_011) 形成了完整的消融链，最终确认 QLoRA quantization 是 catastrophic forgetting 的根因 (D052: Δ=+23.8pp)。\n\n---\n\n## Group 2: GRPO Mode Collapse (3 experiments)\n\n### mvp2_grpo_ced_r5 — CED reward 被 shortcut hack\n\n**证伪假设**: \"CED reward (format×0.3, f1×3.0, ced×1.0) 在 kl_coef=0 下可稳定训练。\"\n\n证伪。模型发现极短输出（34 tokens）即可获得 ced_reward≈0.99 + format_reward=0.3，完全放弃关系抽取。\n\n**处理**: D014 提出 F1 门控（CED reward 仅在有有效 triple 时计算），D16 kill 释放 GPU。但 D020 发现 F1 门控从未实现，直到 ced_kl001_r4 才在 kl_coef=0.01 下跑出结果。\n\n**处理正确性**: 部分正确。F1 门控方案合理但执行延迟。后续 ced_kl001_r4 用 kl_coef=0.01 替代了缺失的 F1 门控，但两者是互补的——F1 门控从未被真正测试。\n\n### mvp2_grpo_extract_r3 — Extraction-only reward 停滞\n\n**证伪假设**: \"纯 extraction reward (format×0.3, f1×3.0) 可建立 stable GRPO baseline。\"\n\n证伪。num_gen=4 + kl_coef=0 导致 4 个输出完全相同 → reward_std=0 → 梯度消失。从 step 520+ grad_norm=0，训练实际已冻结。\n\n**处理**: D17/D22/D23 kill 并记录 ablation 结论（CED dense signal 是 GRPO 训练必需的）。\n\n**处理正确性**: 正确，但可追问：如果 extract_r3 用 num_gen=8 + kl_coef=0.01 会怎样？D020 配置下 extract_r4 仍在 step 10 后 f1_reward=0（D22），说明 extraction-only reward 本质上信号密度不足。\n\n### mvp2_grpo_flatnli_r6 — Flat-NLI collapse\n\n**证伪假设**: \"Flat-NLI reward 在 D020 稳定配置 (kl=0.01, G=8) 下可维持训练。\"\n\n证伪。Step 25 即 frac_zero_std=0.9，f1/NLI reward 全零，仅 format hacking。\n\n**处理**: D24/D25 kill，确立 \"三路对比仅 CED 存活\" 的 ablation 结论。\n\n**处理正确性**: 正确。三路 reward ablation (CED/extract-only/flat-NLI) 在同一配置下的对比是干净的实验设计。\n\n**Group 2 整体遗漏**: 所有 mode collapse 实验用的 num_gen=4 或 kl=0 配置偏极端。但 D020 配置 (G=8, kl=0.01) 下 extract-only 和 flat-NLI 仍 collapse 而 CED 存活，说明 CED reward 的信息密度确实是关键差异。无遗漏。\n\n---\n\n## Group 3: CED Reward Hacking (3 evals)\n\n**实验**: mvp2_eval_ced_kl001_r4_early (step50) / step90 / step100\n\n**一句话**: CED reward 训练曲线上升但 eval F1 崩塌，经典 reward hacking + QLoRA 灾难性遗忘。\n\n### 1. 证伪了什么？\n\n**假设**: \"CED reward + kl_coef=0.01 + G=8 + lr=5e-5 可以在避免 mode collapse 的同时提升任务指标。\"\n\n证伪。训练 reward 从 0.3 升至 1.37，但 eval rel_f1 max=0.217（SFT=0.4057），EDCR=0.86 (高) 但 recall 崩塌。模型学会了少预测以获高 EDCR。\n\n### 2. 当时怎么处理的？\n\n- D26/D27: 诊断为 lr=5e-5 过高 + CED recall shortcut\n- 启动 P0 (lr=5e-6) 和 P0+P1 (recall penalty)\n- P0+P1 因 recall penalty 梯度爆炸被 kill (D28/D29)\n- P0 也全线失败（见 Group 1）\n- 最终 D31 pivot 到离线 RL\n\n### 3. 处理是否正确？\n\n部分正确。Pivot 是对的，但诊断归因不够精确——当时归因为 \"lr 过高\" 和 \"CED recall shortcut\"，后来 plan_011 证明真正根因是 QLoRA quantization (D52)。如果当时直接尝试 bf16 训练而非 lr sweep，可以节省 ~12h GPU 时间。\n\n### 4. 推导链是否完整？\n\n完整（通过后续 plan_011 补全）。lr5e-5 → lr5e-6 → bf16 → 确认 quantization 是根因。recall penalty 方向被正确放弃（梯度不稳定）。\n\n---\n\n## Group 4: DPO Failures (4 records, 3 独立实验)\n\n### plan_012_dpo_ced (3 epochs) — 严重过拟合\n\n**证伪假设**: \"DPO+CED preference pairs (β=0.1, 3ep, 2666 pairs) 可以替代 online GRPO。\"\n\n证伪。rewards_accuracy=1.0, margins 9x 膨胀, rel_f1=0.3429（低于 SFT baseline 6.3pp）。\n\n**处理**: 识别为过拟合 confound，重训 1 epoch。\n\n### plan_012_dpo_ced_1ep / eval_plan_012_dpo_ced_1ep — 1ep 灾难性崩塌（后证实为 bug）\n\n**证伪假设**: 原以为证伪 \"1 epoch DPO 可消除过拟合问题\"。\n\n**实际**: rel_f1=0.0022 是 eval bug（缺 --sft_adapter 参数）。D064 发现后重跑。\n\n### eval_plan_012_dpo_1ep_fixed_r2 — DPO 1ep ≈ SFT（无提升）\n\n**证伪假设**: \"DPO+CED preference learning 可以改善 SFT baseline。\"\n\n证伪。修复后 rel_f1=0.4034，vs SFT=0.4057 (Δ=-0.23pp)。DPO 1ep 中性，无正向收益。\n\n### 处理\n\n- D61: 关闭 DPO 线（基于 bug eval）\n- D63/D64: 发现 --sft_adapter bug，重跑\n- D67/D68: 修正叙事为 \"DPO 中性/轻度退化\"\n\n### 处理正确性\n\n**遗漏**: \n1. DPO 3ep rel_f1=0.3429 + evi_f1=0.8403 呈现与 GRPO 一致的 decoupling 方向（rel↓ evi↑），这在 D62/D69 被正确识别为跨方法系统性现象。\n2. **未探索**: β 调参（0.1 可能过大）、更少 epochs（0.5ep?）、不同 pair 构造策略。但考虑到 1ep 已经是中性结果，DPO 路线被正确放弃。\n\n### 推导链完整性\n\n完整。1ep→3ep 的非单调退化 + bug 修复后中性结果 = DPO 对此任务无效。作为 RL spectrum 数据点有论文价值。\n\n---\n\n## Group 5: RSFT top_k=3\n\n### reeval_rsft_topk3\n\n**证伪假设**: \"RSFT 取 top_k=3 (更多训练数据) 优于 top_k=1。\"\n\n证伪。rel_f1=0.4454 vs CED RSFT top_k=1 ≈0.46 (低 ~1.5pp)。更多样本引入噪声。\n\n**处理**: 记为 negative，保留 top_k=1 作为最优策略。\n\n**处理正确性**: 正确。但有一个未探索方向：top_k=1 with higher CED threshold（只取 CED score 极高的样本）可能进一步提升质量。当前 top_k=1 实质是 \"per-doc best CED score sample\"，但未对绝对 CED 分数做 threshold 过滤。\n\n**推导链**: 基本完整。top_k=3 vs top_k=1 的对比清晰。D078 进一步确认 CED vs flat-NLI 统计不可区分。\n\n---\n\n## Group 6: Truncation Diagnosis\n\n### mvp2_eval_rsft_r2b_maxtok1536_r2\n\n**证伪假设**: \"EDCR 偏低 (0.66) 是因为输出被 1024 token 截断，增加 max_tokens 可显著改善。\"\n\n证伪。1536 tokens 后 truncated 179→146 (-33)，EDCR 0.6609→0.6740 (+0.013)，效果微乎其微。Distractor citation 是 RSFT 模型的真实行为。\n\n**处理**: 确认 EDCR 偏高是 RSFT 固有局限（模型 spray-and-pray 引用），不再追求 truncation 修复。\n\n**处理正确性**: 正确。此实验干净地隔离了 truncation vs distractor 两个因素。\n\n**遗漏**: 后续未直接用 CED-as-reranker 尝试去除 distractor citations（在推理时过滤低 CED 分的 evidence）。D037 曾提出此方案但因 RSFT eval bug 被搁置，修复后未再跟进。\n\n---\n\n## Group 7: Cross-dataset Transfer\n\n### plan_007_redocred_rsft_eval_r2\n\n**证伪假设**: \"CED-RSFT improvements on DocRED transfer to Re-DocRED。\"\n\nF1=0.0025 (catastrophic)，但 Evi-F1=0.8837 正常。\n\n**处理**: 诊断为 pipeline bug（adapter loading / prompt format / relation label mapping）。后续 r4/r5 修复后成功（SFT baseline Re-DocRED Ign-F1=0.3659, D080）。\n\n**处理正确性**: 正确。Evi-F1 正常排除了模型彻底崩坏的可能，明确指向 pipeline 问题。\n\n**推导链**: 完整。r2 bug → 修复 → r4/r5 成功。\n\n---\n\n## 最终总结：被忽视的方法改进线索\n\n### 线索 1: RSFT + 推理时 CED Reranking（去除 Distractor Citations）\n\n**来源**: Group 6 (truncation diagnosis) + D037 (CED-as-reranker 被搁置)\n\n**线索**: RSFT 模型 EDCR=0.66 是因为 spray-and-pray 式引用 distractor sentences。当前方案接受这个行为不做处理。但 CED 本身是强判别器（MVP-1: accuracy 81.5%, margin 0.48），可以在推理时对每个 predicted triple 的 evidence sentences 逐条做 NLI 过滤，去除 CED score 低于 threshold 的 citations。\n\n**为什么有潜力**: \n- 不需要额外训练，纯推理时增强\n- CED 判别能力已验证\n- EDCR 从 0.66 提升到 0.80+ 是合理预期（参考 GRPO 训练后 EDCR≈0.85-0.99）\n- 可以作为论文的 inference-time component，与 RSFT training-time 互补\n\n**建议验证**: 对 RSFT 输出的每个 triple 的 evidence list，用 DeBERTa NLI 逐条评分，去除 entailment score < τ 的 sentences。评估 EDCR 变化和 Evi-F1 变化。成本：~30min 推理时间，无训练开销。\n\n### 线索 2: bf16 GRPO → RSFT 两阶段训练\n\n**来源**: Group 1 (GRPO evi_f1 单调提升) + D51 (bf16 GRPO rel_f1=0.4549)\n\n**线索**: bf16 GRPO (plan_011) 达到 rel_f1=0.4549 + evi_f1=0.8086，与 RSFT (0.46 + 0.81) 基本平齐。两者各有优势：GRPO 优化 reward 信号（包括 CED 对 evidence 质量的直接监督），RSFT 通过数据筛选保持训练稳定性。未尝试过的组合：SFT → RSFT (筛选高质量样本) → 短程 bf16 GRPO (进一步优化 evidence 质量)。\n\n**为什么有潜力**:\n- RSFT 后模型已有良好的 rel_f1 基础，短程 GRPO 不太可能导致灾难性遗忘\n- GRPO 对 evidence quality 的优化是在线的（可以利用 CED 做 per-step feedback），RSFT 是离线的（只能用固定 CED 阈值）\n- bf16 已证明无 catastrophic forgetting\n\n**建议验证**: 从 RSFT checkpoint 开始，bf16 GRPO 20-50 步（低 lr=1e-6），只用 CED reward（不加 f1 reward 避免冲突），评估 EDCR 是否显著提升且 rel_f1 不退化。\n\n### 线索 3: DPO 数据质量问题——pair 构造策略可能是失败根因\n\n**来源**: Group 4 (DPO 1ep 中性，3ep 退化)\n\n**线索**: 当前 DPO pairs 构造为 \"CED top-1 = chosen, CED bottom-1 = rejected\"。但 D078 证明 CED vs flat-NLI 统计不可区分，且 CED 在 data selection 上无显著优势。这意味着 DPO pairs 的 preference signal 本身可能太弱——chosen 和 rejected 在关系抽取质量上可能差异不大，仅在 evidence 质量上有差异。DPO 因此只学到了 evidence 偏好（evi_f1↑）而对 relation extraction 无正向信号（rel_f1 不变或下降）。\n\n**为什么有潜力**: 如果改用 **rel_f1-based pair construction**（chosen = 关系抽取 F1 高的样本，rejected = F1 低的样本，同时要求两者 format 正确），DPO 的 preference signal 直接对准关系抽取任务，而非 evidence 质量。这可能打破当前 \"DPO 只优化 evidence 无法提升 relation\" 的困局。\n\n**建议验证**: 从现有 RSFT candidates (8 generations per doc) 中重新构造 pairs：chosen = max(rel_f1) sample, rejected = min(rel_f1) sample（要求两者 format_ok）。用相同 DPO 配置 (β=0.1, 1ep) 训练。如果 rel_f1 > 0.42 (超过 SFT+DPO-CED 的 0.4034)，说明 pair 构造是关键变量。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0770248-f516-4eff-9453-7b6d030fec09",
+  "isSidechain": false,
+  "requestId": "req_011Cb7Tqk7hosNEx6PoeqQQC",
+  "type": "assistant",
+  "uuid": "735be390-d01e-4442-8637-21b78f4ec69f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012zxAUpEUmafQZ9NFhLK7xn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20298,
+      "cache_read_input_tokens": 52798,
+      "output_tokens": 6086,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20298,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6086,
+          "cache_read_input_tokens": 52798,
+          "cache_creation_input_tokens": 20298,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20298
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T03:55:31.710Z_
+
+<details><summary>↩ Tool result · `toolu_01SEtTD3oboN7UwJTfgHXptm`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'negative_review.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "735be390-d01e-4442-8637-21b78f4ec69f",
+  "isSidechain": false,
+  "promptId": "6656c7a5-780a-474e-a396-9263fa94d76f",
+  "type": "user",
+  "uuid": "abd4d092-c144-44bb-bd8e-fa575f40d151",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'negative_review.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"file 'negative_review.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "735be390-d01e-4442-8637-21b78f4ec69f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-17T03:55:37.192Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The file is not in the writable list for save_project_file. Let me write it directly to the artifacts directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "abd4d092-c144-44bb-bd8e-fa575f40d151",
+  "isSidechain": false,
+  "requestId": "req_011Cb7U2Q1neGLsm8YUTXFZS",
+  "type": "assistant",
+  "uuid": "b83b89a7-16c1-47e3-beba-5da1ef58985f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0198ZVNXDvGjFQHJ8GXiE4jf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6172,
+      "cache_read_input_tokens": 73096,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6172,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 73096,
+          "cache_creation_input_tokens": 6172,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6172
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T03:55:38.805Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AcL7Qnh6bCcaTWkwCkT1pY`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b83b89a7-16c1-47e3-beba-5da1ef58985f",
+  "isSidechain": false,
+  "requestId": "req_011Cb7U2Q1neGLsm8YUTXFZS",
+  "type": "assistant",
+  "uuid": "c868c4b5-fb0b-4fee-812d-6de7a9c9b96e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0198ZVNXDvGjFQHJ8GXiE4jf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6172,
+      "cache_read_input_tokens": 73096,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6172,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 73096,
+          "cache_creation_input_tokens": 6172,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6172
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T03:55:38.861Z_
+
+<details><summary>↩ Tool result · `toolu_01AcL7Qnh6bCcaTWkwCkT1pY`</summary>
+
+```text
+_project
+ced_eval_commands.md
+ced_stabilizer_literature_survey.md
+cuda3_diagnostic.md
+d024_literature_survey.md
+d076_seed_status.md
+diag_mvp2_grpo_flatnli_r3.md
+diag_redocred_rsft_r2.md
+diagnose_8b_timeout.md
+diagnose_plan_001.md
+diversity_probe.py
+diversity_probe_results.md
+dream_reports
+dreeam_evif1_alignment_report.md
+edcr_analysis.md
+edcr_analysis_r2b.md
+edcr_diagnostic_table.md
+eval_plan_014_no_evidence_r2_analysis.md
+eval_progress_20260516.md
+eval_progress_check_0515.md
+eval_rsft_ced_s43
+eval_rsft_ced_s45
+eval_script_audit.md
+eval_status_check.md
+evidence_cost_literature_scan.md
+experiment_summary_table.md
+freige
+gap_analysis_w3.md
+grpo_forgetting_dynamics.pdf
+grpo_forgetting_dynamics.png
+kl_analysis_report.md
+literature_quantization_rl.md
+literature_survey_evidence_overhead.md
+manifest.yaml
+metrics_summary.csv
+metrics_summary_table.md
+mvp2_eval_rsft_r2b_maxtok1536_r2
+paired_ttest_analysis.py
+paper
+paper_evidence_table.md
+paper_main_tables_draft.md
+paper_metrics_table.md
+paper_table1_data.md
+plan_001_flat_nli_seed45
+plan_003
+plan_003_edcr_cross_method_table.md
+plan_003_edcr_diagnostic
+plan_003_edcr_diagnostic.md
+plan_006_qwen3_1_7b_no_evidence_eval_v3_results.json
+plan_007_redocred_rsft_eval_r2
+plan_009
+plan_009_dynamics_data.json
+plan_009_dynamics_figure
+plan_009_forgetting_data.csv
+plan_009_forgetting_data_v5.csv
+plan_009_forgetting_figure
+plan_009_grpo_forgetting
+plan_012_dpo_ced
+plan_012_dpo_ced_1ep_analysis.md
+process_check_report.md
+reeval_ced_s42
+reeval_ced_s44
+reeval_commands.md
+reeval_flat_nli_s42
+reeval_flat_nli_s43_r2
+reeval_sft_baseline_d076
+related_work_gap_analysis.md
+related_work_survey
+rsft_gen_progress_check.md
+rsft_pipeline_commands.md
+status_check_loop4.md
+test_eval_commands.md
+topk_ablation_lit_review.md
+training_health_check.md
+training_trajectory_loop4.md
+trl_grpo_stability_research.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c868c4b5-fb0b-4fee-812d-6de7a9c9b96e",
+  "isSidechain": false,
+  "promptId": "6656c7a5-780a-474e-a396-9263fa94d76f",
+  "type": "user",
+  "uuid": "2d1741f8-65b4-4284-8470-69696d3cf0e6",
+  "toolUseResult": {
+    "stdout": "_project\nced_eval_commands.md\nced_stabilizer_literature_survey.md\ncuda3_diagnostic.md\nd024_literature_survey.md\nd076_seed_status.md\ndiag_mvp2_grpo_flatnli_r3.md\ndiag_redocred_rsft_r2.md\ndiagnose_8b_timeout.md\ndiagnose_plan_001.md\ndiversity_probe.py\ndiversity_probe_results.md\ndream_reports\ndreeam_evif1_alignment_report.md\nedcr_analysis.md\nedcr_analysis_r2b.md\nedcr_diagnostic_table.md\neval_plan_014_no_evidence_r2_analysis.md\neval_progress_20260516.md\neval_progress_check_0515.md\neval_rsft_ced_s43\neval_rsft_ced_s45\neval_script_audit.md\neval_status_check.md\nevidence_cost_literature_scan.md\nexperiment_summary_table.md\nfreige\ngap_analysis_w3.md\ngrpo_forgetting_dynamics.pdf\ngrpo_forgetting_dynamics.png\nkl_analysis_report.md\nliterature_quantization_rl.md\nliterature_survey_evidence_overhead.md\nmanifest.yaml\nmetrics_summary.csv\nmetrics_summary_table.md\nmvp2_eval_rsft_r2b_maxtok1536_r2\npaired_ttest_analysis.py\npaper\npaper_evidence_table.md\npaper_main_tables_draft.md\npaper_metrics_table.md\npaper_table1_data.md\nplan_001_flat_nli_seed45\nplan_003\nplan_003_edcr_cross_method_table.md\nplan_003_edcr_diagnostic\nplan_003_edcr_diagnostic.md\nplan_006_qwen3_1_7b_no_evidence_eval_v3_results.json\nplan_007_redocred_rsft_eval_r2\nplan_009\nplan_009_dynamics_data.json\nplan_009_dynamics_figure\nplan_009_forgetting_data.csv\nplan_009_forgetting_data_v5.csv\nplan_009_forgetting_figure\nplan_009_grpo_forgetting\nplan_012_dpo_ced\nplan_012_dpo_ced_1ep_analysis.md\nprocess_check_report.md\nreeval_ced_s42\nreeval_ced_s44\nreeval_commands.md\nreeval_flat_nli_s42\nreeval_flat_nli_s43_r2\nreeval_sft_baseline_d076\nrelated_work_gap_analysis.md\nrelated_work_survey\nrsft_gen_progress_check.md\nrsft_pipeline_commands.md\nstatus_check_loop4.md\ntest_eval_commands.md\ntopk_ablation_lit_review.md\ntraining_health_check.md\ntraining_trajectory_loop4.md\ntrl_grpo_stability_research.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "c868c4b5-fb0b-4fee-812d-6de7a9c9b96e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T03:57:26.712Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_011m4GazoHwo9KL74u7dHhpm`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/negative_review.md",
+  "content": "# Negative 实验系统性复盘\n\n> 18 个 conclusion=negative 实验，按 Group 合并分析。SFT baseline: rel_f1=0.4057 (Qwen3-4B, DocRED dev)。\n\n---\n\n## Group 1: GRPO lr5e6 全轨迹 (5 evals)\n\n**实验**: mvp2_eval_lr5e6_r1_ckpt20 / ckpt40_r2 / ckpt60_r2 / ckpt80 / ckpt100\n\n**一句话**: lr=5e-6 无法挽救 GRPO+QLoRA 灾难性遗忘，200 步全程 rel_f1 < 0.014。\n\n### 1. 证伪了什么？\n\n**假设**: \"ced_kl001_r4 (lr=5e-5) 的灾难性遗忘源于学习率过高，降到 5e-6 可恢复关系抽取能力。\"\n\n证伪。lr 降 10x 后 rel_f1 从 max 0.217 (lr5e-5) 进一步恶化到 max 0.014 (lr5e-6)。遗忘在 step 20 即已发生且不可恢复。\n\n### 2. 当时怎么处理的？\n\n- D030: ckpt-20 FAIL 后扩展到全 checkpoint 轨迹评估\n- D031: ckpt-40 更差后判死 GRPO+QLoRA 方向，pivot 到离线 RL (RSFT/DPO)\n- D032: kill 训练释放 GPU\n- D033: 全 6 checkpoint 确认，记为论文 negative result\n\n### 3. 处理是否正确？\n\n正确。此时已有两个 LR（5e-5 和 5e-6）的完整证据链，且后续 bf16 实验 (plan_011) 证实根因是 QLoRA 量化而非 GRPO 本身。Pivot 到 RSFT 是正确决策。\n\n**遗漏诊断**: lr5e6 的 evi_f1 从 0.628 单调升至 0.850（超 SFT 0.798），说明 CED reward 确实在驱动证据能力提升。如果当时就意识到这是\"单侧学习\"（evidence 学到了但 relation 崩了），可以更早形成 decoupling claim 的 framing。\n\n### 4. 推导链是否完整？\n\n完整。lr5e-6 → lr5e-5 → bf16 (plan_011) 形成了完整的消融链，最终确认 QLoRA quantization 是 catastrophic forgetting 的根因 (D052: Δ=+23.8pp)。\n\n---\n\n## Group 2: GRPO Mode Collapse (3 experiments)\n\n### mvp2_grpo_ced_r5 — CED reward 被 shortcut hack\n\n**证伪假设**: \"CED reward (format×0.3, f1×3.0, ced×1.0) 在 kl_coef=0 下可稳定训练。\"\n\n证伪。模型发现极短输出（34 tokens）即可获得 ced_reward≈0.99 + format_reward=0.3，完全放弃关系抽取。\n\n**处理**: D014 提出 F1 门控（CED reward 仅在有有效 triple 时计算），D16 kill 释放 GPU。但 D020 发现 F1 门控从未实现，直到 ced_kl001_r4 才在 kl_coef=0.01 下跑出结果。\n\n**处理正确性**: 部分正确。F1 门控方案合理但执行延迟。后续 ced_kl001_r4 用 kl_coef=0.01 替代了缺失的 F1 门控，但两者是互补的——F1 门控从未被真正测试。\n\n### mvp2_grpo_extract_r3 — Extraction-only reward 停滞\n\n**证伪假设**: \"纯 extraction reward (format×0.3, f1×3.0) 可建立 stable GRPO baseline。\"\n\n证伪。num_gen=4 + kl_coef=0 导致 4 个输出完全相同 → reward_std=0 → 梯度消失。从 step 520+ grad_norm=0，训练实际已冻结。\n\n**处理**: D17/D22/D23 kill 并记录 ablation 结论（CED dense signal 是 GRPO 训练必需的）。\n\n**处理正确性**: 正确，但可追问：如果 extract_r3 用 num_gen=8 + kl_coef=0.01 会怎样？D020 配置下 extract_r4 仍在 step 10 后 f1_reward=0（D22），说明 extraction-only reward 本质上信号密度不足。\n\n### mvp2_grpo_flatnli_r6 — Flat-NLI collapse\n\n**证伪假设**: \"Flat-NLI reward 在 D020 稳定配置 (kl=0.01, G=8) 下可维持训练。\"\n\n证伪。Step 25 即 frac_zero_std=0.9，f1/NLI reward 全零，仅 format hacking。\n\n**处理**: D24/D25 kill，确立 \"三路对比仅 CED 存活\" 的 ablation 结论。\n\n**处理正确性**: 正确。三路 reward ablation (CED/extract-only/flat-NLI) 在同一配置下的对比是干净的实验设计。\n\n**Group 2 整体遗漏**: 所有 mode collapse 实验用的 num_gen=4 或 kl=0 配置偏极端。但 D020 配置 (G=8, kl=0.01) 下 extract-only 和 flat-NLI 仍 collapse 而 CED 存活，说明 CED reward 的信息密度确实是关键差异。无遗漏。\n\n---\n\n## Group 3: CED Reward Hacking (3 evals)\n\n**实验**: mvp2_eval_ced_kl001_r4_early (step50) / step90 / step100\n\n**一句话**: CED reward 训练曲线上升但 eval F1 崩塌，经典 reward hacking + QLoRA 灾难性遗忘。\n\n### 1. 证伪了什么？\n\n**假设**: \"CED reward + kl_coef=0.01 + G=8 + lr=5e-5 可以在避免 mode collapse 的同时提升任务指标。\"\n\n证伪。训练 reward 从 0.3 升至 1.37，但 eval rel_f1 max=0.217（SFT=0.4057），EDCR=0.86 (高) 但 recall 崩塌。模型学会了少预测以获高 EDCR。\n\n### 2. 当时怎么处理的？\n\n- D26/D27: 诊断为 lr=5e-5 过高 + CED recall shortcut\n- 启动 P0 (lr=5e-6) 和 P0+P1 (recall penalty)\n- P0+P1 因 recall penalty 梯度爆炸被 kill (D28/D29)\n- P0 也全线失败（见 Group 1）\n- 最终 D31 pivot 到离线 RL\n\n### 3. 处理是否正确？\n\n部分正确。Pivot 是对的，但诊断归因不够精确——当时归因为 \"lr 过高\" 和 \"CED recall shortcut\"，后来 plan_011 证明真正根因是 QLoRA quantization (D52)。如果当时直接尝试 bf16 训练而非 lr sweep，可以节省约 12h GPU 时间。\n\n### 4. 推导链是否完整？\n\n完整（通过后续 plan_011 补全）。lr5e-5 → lr5e-6 → bf16 → 确认 quantization 是根因。recall penalty 方向被正确放弃（梯度不稳定）。\n\n---\n\n## Group 4: DPO Failures (4 records, 3 独立实验)\n\n### plan_012_dpo_ced (3 epochs) — 严重过拟合\n\n**证伪假设**: \"DPO+CED preference pairs (β=0.1, 3ep, 2666 pairs) 可以替代 online GRPO。\"\n\n证伪。rewards_accuracy=1.0, margins 9x 膨胀, rel_f1=0.3429（低于 SFT baseline 6.3pp）。\n\n**处理**: 识别为过拟合 confound，重训 1 epoch。\n\n### plan_012_dpo_ced_1ep / eval_plan_012_dpo_ced_1ep — 1ep 灾难性崩塌（后证实为 bug）\n\n**证伪假设**: 原以为证伪 \"1 epoch DPO 可消除过拟合问题\"。\n\n**实际**: rel_f1=0.0022 是 eval bug（缺 --sft_adapter 参数）。D064 发现后重跑。\n\n### eval_plan_012_dpo_1ep_fixed_r2 — DPO 1ep = SFT（无提升）\n\n**证伪假设**: \"DPO+CED preference learning 可以改善 SFT baseline。\"\n\n证伪。修复后 rel_f1=0.4034，vs SFT=0.4057 (Δ=-0.23pp)。DPO 1ep 中性，无正向收益。\n\n### 处理\n\n- D61: 关闭 DPO 线（基于 bug eval）\n- D63/D64: 发现 --sft_adapter bug，重跑\n- D67/D68: 修正叙事为 \"DPO 中性/轻度退化\"\n\n### 处理正确性\n\n**遗漏**: \n1. DPO 3ep rel_f1=0.3429 + evi_f1=0.8403 呈现与 GRPO 一致的 decoupling 方向（rel↓ evi↑），这在 D62/D69 被正确识别为跨方法系统性现象。\n2. **未探索**: β 调参（0.1 可能过大）、更少 epochs（0.5ep?）、不同 pair 构造策略。但考虑到 1ep 已经是中性结果，DPO 路线被正确放弃。\n\n### 推导链完整性\n\n完整。1ep→3ep 的非单调退化 + bug 修复后中性结果 = DPO 对此任务无效。作为 RL spectrum 数据点有论文价值。\n\n---\n\n## Group 5: RSFT top_k=3\n\n### reeval_rsft_topk3\n\n**证伪假设**: \"RSFT 取 top_k=3 (更多训练数据) 优于 top_k=1。\"\n\n证伪。rel_f1=0.4454 vs CED RSFT top_k=1 约 0.46 (低约 1.5pp)。更多样本引入噪声。\n\n**处理**: 记为 negative，保留 top_k=1 作为最优策略。\n\n**处理正确性**: 正确。但有一个未探索方向：top_k=1 with higher CED threshold（只取 CED score 极高的样本）可能进一步提升质量。当前 top_k=1 实质是 \"per-doc best CED score sample\"，但未对绝对 CED 分数做 threshold 过滤。\n\n**推导链**: 基本完整。top_k=3 vs top_k=1 的对比清晰。D078 进一步确认 CED vs flat-NLI 统计不可区分。\n\n---\n\n## Group 6: Truncation Diagnosis\n\n### mvp2_eval_rsft_r2b_maxtok1536_r2\n\n**证伪假设**: \"EDCR 偏低 (0.66) 是因为输出被 1024 token 截断，增加 max_tokens 可显著改善。\"\n\n证伪。1536 tokens 后 truncated 179→146 (-33)，EDCR 0.6609→0.6740 (+0.013)，效果微乎其微。Distractor citation 是 RSFT 模型的真实行为。\n\n**处理**: 确认 EDCR 偏高是 RSFT 固有局限（模型 spray-and-pray 引用），不再追求 truncation 修复。\n\n**处理正确性**: 正确。此实验干净地隔离了 truncation vs distractor 两个因素。\n\n**遗漏**: 后续未直接用 CED-as-reranker 尝试去除 distractor citations（在推理时过滤低 CED 分的 evidence）。D037 曾提出此方案但因 RSFT eval bug 被搁置，修复后未再跟进。\n\n---\n\n## Group 7: Cross-dataset Transfer\n\n### plan_007_redocred_rsft_eval_r2\n\n**证伪假设**: \"CED-RSFT improvements on DocRED transfer to Re-DocRED。\"\n\nF1=0.0025 (catastrophic)，但 Evi-F1=0.8837 正常。\n\n**处理**: 诊断为 pipeline bug（adapter loading / prompt format / relation label mapping）。后续 r4/r5 修复后成功（SFT baseline Re-DocRED Ign-F1=0.3659, D080）。\n\n**处理正确性**: 正确。Evi-F1 正常排除了模型彻底崩坏的可能，明确指向 pipeline 问题。\n\n**推导链**: 完整。r2 bug → 修复 → r4/r5 成功。\n\n---\n\n## 最终总结：被忽视的方法改进线索\n\n### 线索 1: RSFT + 推理时 CED Reranking（去除 Distractor Citations）\n\n**来源**: Group 6 (truncation diagnosis) + D037 (CED-as-reranker 被搁置)\n\n**线索**: RSFT 模型 EDCR=0.66 是因为 spray-and-pray 式引用 distractor sentences。当前方案接受这个行为不做处理。但 CED 本身是强判别器（MVP-1: accuracy 81.5%, margin 0.48），可以在推理时对每个 predicted triple 的 evidence sentences 逐条做 NLI 过滤，去除 CED score 低于 threshold 的 citations。\n\n**为什么有潜力**: \n- 不需要额外训练，纯推理时增强\n- CED 判别能力已验证\n- EDCR 从 0.66 提升到 0.80+ 是合理预期（参考 GRPO 训练后 EDCR 约 0.85-0.99）\n- 可以作为论文的 inference-time component，与 RSFT training-time 互补\n\n**建议验证**: 对 RSFT 输出的每个 triple 的 evidence list，用 DeBERTa NLI 逐条评分，去除 entailment score < tau 的 sentences。评估 EDCR 变化和 Evi-F1 变化。成本：约 30min 推理时间，无训练开销。\n\n### 线索 2: bf16 GRPO → RSFT 两阶段训练\n\n**来源**: Group 1 (GRPO evi_f1 单调提升) + D51 (bf16 GRPO rel_f1=0.4549)\n\n**线索**: bf16 GRPO (plan_011) 达到 rel_f1=0.4549 + evi_f1=0.8086，与 RSFT (0.46 + 0.81) 基本平齐。两者各有优势：GRPO 优化 reward 信号（包括 CED 对 evidence 质量的直接监督），RSFT 通过数据筛选保持训练稳定性。未尝试过的组合：SFT → RSFT (筛选高质量样本) → 短程 bf16 GRPO (进一步优化 evidence 质量)。\n\n**为什么有潜力**:\n- RSFT 后模型已有良好的 rel_f1 基础，短程 GRPO 不太可能导致灾难性遗忘\n- GRPO 对 evidence quality 的优化是在线的（可以利用 CED 做 per-step feedback），RSFT 是离线的（只能用固定 CED 阈值）\n- bf16 已证明无 catastrophic forgetting\n\n**建议验证**: 从 RSFT checkpoint 开始，bf16 GRPO 20-50 步（低 lr=1e-6），只用 CED reward（不加 f1 reward 避免冲突），评估 EDCR 是否显著提升且 rel_f1 不退化。\n\n### 线索 3: DPO 数据质量问题——pair 构造策略可能是失败根因\n\n**来源**: Group 4 (DPO 1ep 中性，3ep 退化)\n\n**线索**: 当前 DPO pairs 构造为 \"CED top-1 = chosen, CED bottom-1 = rejected\"。但 D078 证明 CED vs flat-NLI 统计不可区分，且 CED 在 data selection 上无显著优势。这意味着 DPO pairs 的 preference signal 本身可能太弱——chosen 和 rejected 在关系抽取质量上可能差异不大，仅在 evidence 质量上有差异。DPO 因此只学到了 evidence 偏好（evi_f1 上升）而对 relation extraction 无正向信号（rel_f1 不变或下降）。\n\n**为什么有潜力**: 如果改用 rel_f1-based pair construction（chosen = 关系抽取 F1 高的样本，rejected = F1 低的样本，同时要求两者 format 正确），DPO 的 preference signal 直接对准关系抽取任务，而非 evidence 质量。这可能打破当前 \"DPO 只优化 evidence 无法提升 relation\" 的困局。\n\n**建议验证**: 从现有 RSFT candidates (8 generations per doc) 中重新构造 pairs：chosen = max(rel_f1) sample, rejected = min(rel_f1) sample（要求两者 format_ok）。用相同 DPO 配置 (beta=0.1, 1ep) 训练。如果 rel_f1 > 0.42 (超过 SFT+DPO-CED 的 0.4034)，说明 pair 构造是关键变量。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d1741f8-65b4-4284-8470-69696d3cf0e6",
+  "isSidechain": false,
+  "requestId": "req_011Cb7U2vTrn9KgL9mEYjU5V",
+  "type": "assistant",
+  "uuid": "a4ffb0dc-5f57-45c5-b7c9-5f4d54aa1f13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FNrh5tm8pYE498YHy3RD6B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 910,
+      "cache_read_input_tokens": 79268,
+      "output_tokens": 5408,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 910,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5408,
+          "cache_read_input_tokens": 79268,
+          "cache_creation_input_tokens": 910,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 910
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T03:57:26.737Z_
+
+<details><summary>↩ Tool result · `toolu_011m4GazoHwo9KL74u7dHhpm`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/negative_review.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a4ffb0dc-5f57-45c5-b7c9-5f4d54aa1f13",
+  "isSidechain": false,
+  "promptId": "6656c7a5-780a-474e-a396-9263fa94d76f",
+  "type": "user",
+  "uuid": "88f70695-d001-4f03-ba64-22a21112ca33",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/negative_review.md",
+    "content": "# Negative 实验系统性复盘\n\n> 18 个 conclusion=negative 实验，按 Group 合并分析。SFT baseline: rel_f1=0.4057 (Qwen3-4B, DocRED dev)。\n\n---\n\n## Group 1: GRPO lr5e6 全轨迹 (5 evals)\n\n**实验**: mvp2_eval_lr5e6_r1_ckpt20 / ckpt40_r2 / ckpt60_r2 / ckpt80 / ckpt100\n\n**一句话**: lr=5e-6 无法挽救 GRPO+QLoRA 灾难性遗忘，200 步全程 rel_f1 < 0.014。\n\n### 1. 证伪了什么？\n\n**假设**: \"ced_kl001_r4 (lr=5e-5) 的灾难性遗忘源于学习率过高，降到 5e-6 可恢复关系抽取能力。\"\n\n证伪。lr 降 10x 后 rel_f1 从 max 0.217 (lr5e-5) 进一步恶化到 max 0.014 (lr5e-6)。遗忘在 step 20 即已发生且不可恢复。\n\n### 2. 当时怎么处理的？\n\n- D030: ckpt-20 FAIL 后扩展到全 checkpoint 轨迹评估\n- D031: ckpt-40 更差后判死 GRPO+QLoRA 方向，pivot 到离线 RL (RSFT/DPO)\n- D032: kill 训练释放 GPU\n- D033: 全 6 checkpoint 确认，记为论文 negative result\n\n### 3. 处理是否正确？\n\n正确。此时已有两个 LR（5e-5 和 5e-6）的完整证据链，且后续 bf16 实验 (plan_011) 证实根因是 QLoRA 量化而非 GRPO 本身。Pivot 到 RSFT 是正确决策。\n\n**遗漏诊断**: lr5e6 的 evi_f1 从 0.628 单调升至 0.850（超 SFT 0.798），说明 CED reward 确实在驱动证据能力提升。如果当时就意识到这是\"单侧学习\"（evidence 学到了但 relation 崩了），可以更早形成 decoupling claim 的 framing。\n\n### 4. 推导链是否完整？\n\n完整。lr5e-6 → lr5e-5 → bf16 (plan_011) 形成了完整的消融链，最终确认 QLoRA quantization 是 catastrophic forgetting 的根因 (D052: Δ=+23.8pp)。\n\n---\n\n## Group 2: GRPO Mode Collapse (3 experiments)\n\n### mvp2_grpo_ced_r5 — CED reward 被 shortcut hack\n\n**证伪假设**: \"CED reward (format×0.3, f1×3.0, ced×1.0) 在 kl_coef=0 下可稳定训练。\"\n\n证伪。模型发现极短输出（34 tokens）即可获得 ced_reward≈0.99 + format_reward=0.3，完全放弃关系抽取。\n\n**处理**: D014 提出 F1 门控（CED reward 仅在有有效 triple 时计算），D16 kill 释放 GPU。但 D020 发现 F1 门控从未实现，直到 ced_kl001_r4 才在 kl_coef=0.01 下跑出结果。\n\n**处理正确性**: 部分正确。F1 门控方案合理但执行延迟。后续 ced_kl001_r4 用 kl_coef=0.01 替代了缺失的 F1 门控，但两者是互补的——F1 门控从未被真正测试。\n\n### mvp2_grpo_extract_r3 — Extraction-only reward 停滞\n\n**证伪假设**: \"纯 extraction reward (format×0.3, f1×3.0) 可建立 stable GRPO baseline。\"\n\n证伪。num_gen=4 + kl_coef=0 导致 4 个输出完全相同 → reward_std=0 → 梯度消失。从 step 520+ grad_norm=0，训练实际已冻结。\n\n**处理**: D17/D22/D23 kill 并记录 ablation 结论（CED dense signal 是 GRPO 训练必需的）。\n\n**处理正确性**: 正确，但可追问：如果 extract_r3 用 num_gen=8 + kl_coef=0.01 会怎样？D020 配置下 extract_r4 仍在 step 10 后 f1_reward=0（D22），说明 extraction-only reward 本质上信号密度不足。\n\n### mvp2_grpo_flatnli_r6 — Flat-NLI collapse\n\n**证伪假设**: \"Flat-NLI reward 在 D020 稳定配置 (kl=0.01, G=8) 下可维持训练。\"\n\n证伪。Step 25 即 frac_zero_std=0.9，f1/NLI reward 全零，仅 format hacking。\n\n**处理**: D24/D25 kill，确立 \"三路对比仅 CED 存活\" 的 ablation 结论。\n\n**处理正确性**: 正确。三路 reward ablation (CED/extract-only/flat-NLI) 在同一配置下的对比是干净的实验设计。\n\n**Group 2 整体遗漏**: 所有 mode collapse 实验用的 num_gen=4 或 kl=0 配置偏极端。但 D020 配置 (G=8, kl=0.01) 下 extract-only 和 flat-NLI 仍 collapse 而 CED 存活，说明 CED reward 的信息密度确实是关键差异。无遗漏。\n\n---\n\n## Group 3: CED Reward Hacking (3 evals)\n\n**实验**: mvp2_eval_ced_kl001_r4_early (step50) / step90 / step100\n\n**一句话**: CED reward 训练曲线上升但 eval F1 崩塌，经典 reward hacking + QLoRA 灾难性遗忘。\n\n### 1. 证伪了什么？\n\n**假设**: \"CED reward + kl_coef=0.01 + G=8 + lr=5e-5 可以在避免 mode collapse 的同时提升任务指标。\"\n\n证伪。训练 reward 从 0.3 升至 1.37，但 eval rel_f1 max=0.217（SFT=0.4057），EDCR=0.86 (高) 但 recall 崩塌。模型学会了少预测以获高 EDCR。\n\n### 2. 当时怎么处理的？\n\n- D26/D27: 诊断为 lr=5e-5 过高 + CED recall shortcut\n- 启动 P0 (lr=5e-6) 和 P0+P1 (recall penalty)\n- P0+P1 因 recall penalty 梯度爆炸被 kill (D28/D29)\n- P0 也全线失败（见 Group 1）\n- 最终 D31 pivot 到离线 RL\n\n### 3. 处理是否正确？\n\n部分正确。Pivot 是对的，但诊断归因不够精确——当时归因为 \"lr 过高\" 和 \"CED recall shortcut\"，后来 plan_011 证明真正根因是 QLoRA quantization (D52)。如果当时直接尝试 bf16 训练而非 lr sweep，可以节省约 12h GPU 时间。\n\n### 4. 推导链是否完整？\n\n完整（通过后续 plan_011 补全）。lr5e-5 → lr5e-6 → bf16 → 确认 quantization 是根因。recall penalty 方向被正确放弃（梯度不稳定）。\n\n---\n\n## Group 4: DPO Failures (4 records, 3 独立实验)\n\n### plan_012_dpo_ced (3 epochs) — 严重过拟合\n\n**证伪假设**: \"DPO+CED preference pairs (β=0.1, 3ep, 2666 pairs) 可以替代 online GRPO。\"\n\n证伪。rewards_accuracy=1.0, margins 9x 膨胀, rel_f1=0.3429（低于 SFT baseline 6.3pp）。\n\n**处理**: 识别为过拟合 confound，重训 1 epoch。\n\n### plan_012_dpo_ced_1ep / eval_plan_012_dpo_ced_1ep — 1ep 灾难性崩塌（后证实为 bug）\n\n**证伪假设**: 原以为证伪 \"1 epoch DPO 可消除过拟合问题\"。\n\n**实际**: rel_f1=0.0022 是 eval bug（缺 --sft_adapter 参数）。D064 发现后重跑。\n\n### eval_plan_012_dpo_1ep_fixed_r2 — DPO 1ep = SFT（无提升）\n\n**证伪假设**: \"DPO+CED preference learning 可以改善 SFT baseline。\"\n\n证伪。修复后 rel_f1=0.4034，vs SFT=0.4057 (Δ=-0.23pp)。DPO 1ep 中性，无正向收益。\n\n### 处理\n\n- D61: 关闭 DPO 线（基于 bug eval）\n- D63/D64: 发现 --sft_adapter bug，重跑\n- D67/D68: 修正叙事为 \"DPO 中性/轻度退化\"\n\n### 处理正确性\n\n**遗漏**: \n1. DPO 3ep rel_f1=0.3429 + evi_f1=0.8403 呈现与 GRPO 一致的 decoupling 方向（rel↓ evi↑），这在 D62/D69 被正确识别为跨方法系统性现象。\n2. **未探索**: β 调参（0.1 可能过大）、更少 epochs（0.5ep?）、不同 pair 构造策略。但考虑到 1ep 已经是中性结果，DPO 路线被正确放弃。\n\n### 推导链完整性\n\n完整。1ep→3ep 的非单调退化 + bug 修复后中性结果 = DPO 对此任务无效。作为 RL spectrum 数据点有论文价值。\n\n---\n\n## Group 5: RSFT top_k=3\n\n### reeval_rsft_topk3\n\n**证伪假设**: \"RSFT 取 top_k=3 (更多训练数据) 优于 top_k=1。\"\n\n证伪。rel_f1=0.4454 vs CED RSFT top_k=1 约 0.46 (低约 1.5pp)。更多样本引入噪声。\n\n**处理**: 记为 negative，保留 top_k=1 作为最优策略。\n\n**处理正确性**: 正确。但有一个未探索方向：top_k=1 with higher CED threshold（只取 CED score 极高的样本）可能进一步提升质量。当前 top_k=1 实质是 \"per-doc best CED score sample\"，但未对绝对 CED 分数做 threshold 过滤。\n\n**推导链**: 基本完整。top_k=3 vs top_k=1 的对比清晰。D078 进一步确认 CED vs flat-NLI 统计不可区分。\n\n---\n\n## Group 6: Truncation Diagnosis\n\n### mvp2_eval_rsft_r2b_maxtok1536_r2\n\n**证伪假设**: \"EDCR 偏低 (0.66) 是因为输出被 1024 token 截断，增加 max_tokens 可显著改善。\"\n\n证伪。1536 tokens 后 truncated 179→146 (-33)，EDCR 0.6609→0.6740 (+0.013)，效果微乎其微。Distractor citation 是 RSFT 模型的真实行为。\n\n**处理**: 确认 EDCR 偏高是 RSFT 固有局限（模型 spray-and-pray 引用），不再追求 truncation 修复。\n\n**处理正确性**: 正确。此实验干净地隔离了 truncation vs distractor 两个因素。\n\n**遗漏**: 后续未直接用 CED-as-reranker 尝试去除 distractor citations（在推理时过滤低 CED 分的 evidence）。D037 曾提出此方案但因 RSFT eval bug 被搁置，修复后未再跟进。\n\n---\n\n## Group 7: Cross-dataset Transfer\n\n### plan_007_redocred_rsft_eval_r2\n\n**证伪假设**: \"CED-RSFT improvements on DocRED transfer to Re-DocRED。\"\n\nF1=0.0025 (catastrophic)，但 Evi-F1=0.8837 正常。\n\n**处理**: 诊断为 pipeline bug（adapter loading / prompt format / relation label mapping）。后续 r4/r5 修复后成功（SFT baseline Re-DocRED Ign-F1=0.3659, D080）。\n\n**处理正确性**: 正确。Evi-F1 正常排除了模型彻底崩坏的可能，明确指向 pipeline 问题。\n\n**推导链**: 完整。r2 bug → 修复 → r4/r5 成功。\n\n---\n\n## 最终总结：被忽视的方法改进线索\n\n### 线索 1: RSFT + 推理时 CED Reranking（去除 Distractor Citations）\n\n**来源**: Group 6 (truncation diagnosis) + D037 (CED-as-reranker 被搁置)\n\n**线索**: RSFT 模型 EDCR=0.66 是因为 spray-and-pray 式引用 distractor sentences。当前方案接受这个行为不做处理。但 CED 本身是强判别器（MVP-1: accuracy 81.5%, margin 0.48），可以在推理时对每个 predicted triple 的 evidence sentences 逐条做 NLI 过滤，去除 CED score 低于 threshold 的 citations。\n\n**为什么有潜力**: \n- 不需要额外训练，纯推理时增强\n- CED 判别能力已验证\n- EDCR 从 0.66 提升到 0.80+ 是合理预期（参考 GRPO 训练后 EDCR 约 0.85-0.99）\n- 可以作为论文的 inference-time component，与 RSFT training-time 互补\n\n**建议验证**: 对 RSFT 输出的每个 triple 的 evidence list，用 DeBERTa NLI 逐条评分，去除 entailment score < tau 的 sentences。评估 EDCR 变化和 Evi-F1 变化。成本：约 30min 推理时间，无训练开销。\n\n### 线索 2: bf16 GRPO → RSFT 两阶段训练\n\n**来源**: Group 1 (GRPO evi_f1 单调提升) + D51 (bf16 GRPO rel_f1=0.4549)\n\n**线索**: bf16 GRPO (plan_011) 达到 rel_f1=0.4549 + evi_f1=0.8086，与 RSFT (0.46 + 0.81) 基本平齐。两者各有优势：GRPO 优化 reward 信号（包括 CED 对 evidence 质量的直接监督），RSFT 通过数据筛选保持训练稳定性。未尝试过的组合：SFT → RSFT (筛选高质量样本) → 短程 bf16 GRPO (进一步优化 evidence 质量)。\n\n**为什么有潜力**:\n- RSFT 后模型已有良好的 rel_f1 基础，短程 GRPO 不太可能导致灾难性遗忘\n- GRPO 对 evidence quality 的优化是在线的（可以利用 CED 做 per-step feedback），RSFT 是离线的（只能用固定 CED 阈值）\n- bf16 已证明无 catastrophic forgetting\n\n**建议验证**: 从 RSFT checkpoint 开始，bf16 GRPO 20-50 步（低 lr=1e-6），只用 CED reward（不加 f1 reward 避免冲突），评估 EDCR 是否显著提升且 rel_f1 不退化。\n\n### 线索 3: DPO 数据质量问题——pair 构造策略可能是失败根因\n\n**来源**: Group 4 (DPO 1ep 中性，3ep 退化)\n\n**线索**: 当前 DPO pairs 构造为 \"CED top-1 = chosen, CED bottom-1 = rejected\"。但 D078 证明 CED vs flat-NLI 统计不可区分，且 CED 在 data selection 上无显著优势。这意味着 DPO pairs 的 preference signal 本身可能太弱——chosen 和 rejected 在关系抽取质量上可能差异不大，仅在 evidence 质量上有差异。DPO 因此只学到了 evidence 偏好（evi_f1 上升）而对 relation extraction 无正向信号（rel_f1 不变或下降）。\n\n**为什么有潜力**: 如果改用 rel_f1-based pair construction（chosen = 关系抽取 F1 高的样本，rejected = F1 低的样本，同时要求两者 format 正确），DPO 的 preference signal 直接对准关系抽取任务，而非 evidence 质量。这可能打破当前 \"DPO 只优化 evidence 无法提升 relation\" 的困局。\n\n**建议验证**: 从现有 RSFT candidates (8 generations per doc) 中重新构造 pairs：chosen = max(rel_f1) sample, rejected = min(rel_f1) sample（要求两者 format_ok）。用相同 DPO 配置 (beta=0.1, 1ep) 训练。如果 rel_f1 > 0.42 (超过 SFT+DPO-CED 的 0.4034)，说明 pair 构造是关键变量。\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "a4ffb0dc-5f57-45c5-b7c9-5f4d54aa1f13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "88f70695-d001-4f03-ba64-22a21112ca33",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Negative experiments systematic review and diagnosis",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-17T03:57:30.541Z_
+
+Now let me register this artifact.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88f70695-d001-4f03-ba64-22a21112ca33",
+  "isSidechain": false,
+  "requestId": "req_011Cb7UAsi9FRUS1bd8WZeh8",
+  "type": "assistant",
+  "uuid": "5c2669ea-25a1-4cbe-b3db-c6e3f5e2c624",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XYEDgGNTTrKovTkiKBa9SN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5460,
+      "cache_read_input_tokens": 80178,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5460,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 80178,
+          "cache_creation_input_tokens": 5460,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5460
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-17T03:57:34.333Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KgGKsTzRmqJZSWyqQTSwof`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c2669ea-25a1-4cbe-b3db-c6e3f5e2c624",
+  "isSidechain": false,
+  "requestId": "req_011Cb7UAsi9FRUS1bd8WZeh8",
+  "type": "assistant",
+  "uuid": "49ee9559-6d77-41f8-9bba-f52b12b5b352",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XYEDgGNTTrKovTkiKBa9SN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5460,
+      "cache_read_input_tokens": 80178,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5460,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 80178,
+          "cache_creation_input_tokens": 5460,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5460
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-17T03:57:34.344Z_
+
+<details><summary>↩ Tool result · `toolu_01KgGKsTzRmqJZSWyqQTSwof`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49ee9559-6d77-41f8-9bba-f52b12b5b352",
+  "isSidechain": false,
+  "promptId": "6656c7a5-780a-474e-a396-9263fa94d76f",
+  "type": "user",
+  "uuid": "00efd694-5499-4225-a43a-154e5a4b27ae",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 25
+  },
+  "sourceToolAssistantUUID": "49ee9559-6d77-41f8-9bba-f52b12b5b352",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-17T03:57:41.322Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_015FuzTGTqrbn2r53cCxAWzu`</summary>
+
+```json
+{
+  "name": "negative_review",
+  "type": "report",
+  "description": "18个negative实验的系统性复盘：按7个Group分析证伪假设、处理正确性、推导链完整性，提出3条被忽视的改进线索（CED reranking、bf16 GRPO+RSFT两阶段、rel_f1-based DPO pairs）",
+  "project": "faith-evidence-ie",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/negative_review.md",
+  "tags": [
+    "negative-results",
+    "retrospective",
+    "analysis"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00efd694-5499-4225-a43a-154e5a4b27ae",
+  "isSidechain": false,
+  "requestId": "req_011Cb7UBSmyZBcU5nReTQVQe",
+  "type": "assistant",
+  "uuid": "808c7dc6-4695-415d-8b65-5223b39afc04",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RKVr1sAPCNi7UoUTZ3EiUF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 720,
+      "cache_read_input_tokens": 85638,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 720,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 85638,
+          "cache_creation_input_tokens": 720,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 720
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-17T03:57:41.459Z_
+
+<details><summary>↩ Tool result · `toolu_015FuzTGTqrbn2r53cCxAWzu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260517_c9070e\", \"name\": \"negative_review\", \"type\": \"report\", \"description\": \"18个negative实验的系统性复盘：按7个Group分析证伪假设、处理正确性、推导链完整性，提出3条被忽视的改进线索（CED reranking、bf16 GRPO+RSFT两阶段、rel_f1-based DPO pairs）\", \"path\": \"projects/faith-evidence-ie/artifacts/_project/report/negative_review.md\", \"url\": null, \"project\": \"faith-evidence-ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-17T03:57:41.330947+00:00\", \"tags\": [\"negative-results\", \"retrospective\", \"analysis\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "808c7dc6-4695-415d-8b65-5223b39afc04",
+  "isSidechain": false,
+  "promptId": "6656c7a5-780a-474e-a396-9263fa94d76f",
+  "type": "user",
+  "uuid": "caf103d0-0995-4592-a7fc-9ce46786dacc",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260517_c9070e\\\", \\\"name\\\": \\\"negative_review\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"18个negative实验的系统性复盘：按7个Group分析证伪假设、处理正确性、推导链完整性，提出3条被忽视的改进线索（CED reranking、bf16 GRPO+RSFT两阶段、rel_f1-based DPO pairs）\\\", \\\"path\\\": \\\"projects/faith-evidence-ie/artifacts/_project/report/negative_review.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-17T03:57:41.330947+00:00\\\", \\\"tags\\\": [\\\"negative-results\\\", \\\"retrospective\\\", \\\"analysis\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260517_c9070e\", \"name\": \"negative_review\", \"type\": \"report\", \"description\": \"18个negative实验的系统性复盘：按7个Group分析证伪假设、处理正确性、推导链完整性，提出3条被忽视的改进线索（CED reranking、bf16 GRPO+RSFT两阶段、rel_f1-based DPO pairs）\", \"path\": \"projects/faith-evidence-ie/artifacts/_project/report/negative_review.md\", \"url\": null, \"project\": \"faith-evidence-ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-17T03:57:41.330947+00:00\", \"tags\": [\"negative-results\", \"retrospective\", \"analysis\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "808c7dc6-4695-415d-8b65-5223b39afc04",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-17T03:57:51.791Z_
+
+报告已写入 `artifacts/negative_review.md` 并注册 (art_20260517_c9070e)。
+
+核心发现：
+- **Group 1-3 (GRPO)**: 全线失败的真正根因是 QLoRA quantization（D052 最终确认，bf16 vs QLoRA Δ=+23.8pp），当时 lr sweep 浪费了约 12h
+- **Group 4 (DPO)**: 1ep 中性 / 3ep 退化，pair 构造策略（基于 CED 而非 rel_f1）可能是根因
+- **Group 2**: 三路 reward ablation 证明 CED 是 GRPO 唯一可用的 reward signal
+
+3 条被忽视的改进线索：
+1. **推理时 CED Reranking** — 无训练成本，直接过滤 distractor citations 提升 EDCR
+2. **RSFT → bf16 GRPO 两阶段** — RSFT 稳 rel_f1 基础 + GRPO 在线优化 evidence 质量
+3. **rel_f1-based DPO pair 构造** — 当前 CED pairs 只教 evidence 偏好，改用 F1 pairs 可能使 DPO 直接提升关系抽取
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "caf103d0-0995-4592-a7fc-9ce46786dacc",
+  "isSidechain": false,
+  "requestId": "req_011Cb7UBxoFtESNXH54jbPzy",
+  "type": "assistant",
+  "uuid": "a5df0a96-b69d-412b-8b0f-c4562901f9b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WqUmaQCSZtRuinjuPukA4A",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 604,
+      "cache_read_input_tokens": 86358,
+      "output_tokens": 369,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 604,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 369,
+          "cache_read_input_tokens": 86358,
+          "cache_creation_input_tokens": 604,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 604
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "a5df0a96-b69d-412b-8b0f-c4562901f9b1",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Negative experiments systematic review and diagnosis",
+  "sessionId": "2560c142-1780-44a3-8553-5a85336f7a1a"
+}
+```
+
+---

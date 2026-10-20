@@ -1,0 +1,333 @@
+{
+  "schema_version": "1.0",
+  "id": "1d8ccbe031a3abee0667",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Director 指令] RSFT no-evidence eval 批准排期。这些实验验证 RSFT 是否改变 evidence tax 模式，对 Claim 3 有直接价值。 **排期**（按 GPU 释放顺序，不急，当前实验优先）：",
+  "task_key": "325c1e1b-9049-42fd-93dd-e030c0743b0d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/325c1e1b-9049-42fd-93dd-e030c0743b0d.jsonl",
+    "occurrence": 1,
+    "bytes": 698396,
+    "sha256": "c5184d277e8cfdd373289b62741e024578d4ee49de71142659450707ff45663b"
+  },
+  "statistics": {
+    "messages": 280,
+    "user_turns": 26,
+    "tool_calls": 63,
+    "roles": {
+      "record": 75,
+      "user": 26,
+      "assistant": 53,
+      "tool_call": 63,
+      "tool_result": 63
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 82,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0001.json",
+          "message_count": 82
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 41,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0001.json",
+          "message_count": 41
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0001.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0001.json",
+          "message_count": 17
+        },
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "1d8ccbe031a3abee0667-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-director-rsft-no-evidence-eval-rsft-evidence-tax-claim-3-gpu.md"
+}

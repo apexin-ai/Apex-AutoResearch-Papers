@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "3922c04a996326bdbd38",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [WRITE HANDOFF] 请立即写你的 handoff。 **格式硬约束**: - 整条回复**只能**是 <handoff>...</handoff> 标签包裹 - 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"",
+  "task_key": "7f1e6df0-f5b0-42ca-9539-ec750f91f586",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/7f1e6df0-f5b0-42ca-9539-ec750f91f586.jsonl",
+    "occurrence": 1,
+    "bytes": 736699,
+    "sha256": "9ce1cf087535e8cf4c17f1aab7a5f24f8079dc4f81006ed1100c23724a76c105"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "record": 10,
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3922c04a996326bdbd38-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 27,
+      "chunks": [
+        {
+          "path": "3922c04a996326bdbd38-part-0001.json",
+          "message_count": 15
+        },
+        {
+          "path": "3922c04a996326bdbd38-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-write-handoff-handoff-handoff-handoff-copy-112.md"
+}
