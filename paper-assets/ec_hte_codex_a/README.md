@@ -39,3 +39,18 @@ Original project paths and release paths are mapped in [the file manifest](08-in
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
 
 No manuscript PDF was found in this project snapshot.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | No matching files in this snapshot |
+| Contribution records | No matching files in this snapshot |
+| Research code and configurations | [repro/exp_001_bias_bound_mvp/__init__.py](03-code/source/repro/exp_001_bias_bound_mvp/__init__.py) · [repro/exp_002_gpu_dgp_grid/run_gpu_dgp_grid.py](03-code/source/repro/exp_002_gpu_dgp_grid/run_gpu_dgp_grid.py) · [repro/exp_001_bias_bound_mvp/run_experiment.py](03-code/source/repro/exp_001_bias_bound_mvp/run_experiment.py) |
+| Experiment and supporting data | [artifacts/exp_002_gpu_dgp_grid/formal/summary.json](04-experiments/source/artifacts/exp_002_gpu_dgp_grid/formal/summary.json) · [artifacts/exp_001_bias_bound_mvp/quick/metrics.csv](04-experiments/source/artifacts/exp_001_bias_bound_mvp/quick/metrics.csv) · [artifacts/exp_001_bias_bound_mvp/data/summary.json](04-experiments/source/artifacts/exp_001_bias_bound_mvp/data/summary.json) |
+| Internal validation records | [artifacts/analysis/exp002_negative_mechanism_audit_20260531.md](06-validation/source/artifacts/analysis/exp002_negative_mechanism_audit_20260531.md) · [artifacts/_project/report/exp002_negative_mechanism_audit_20260531.md](06-validation/source/artifacts/_project/report/exp002_negative_mechanism_audit_20260531.md) |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [repro/exp_002_gpu_dgp_grid/README.md](07-maintenance/source/repro/exp_002_gpu_dgp_grid/README.md) · [ideas.md](07-maintenance/source/ideas.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 5 runtime bookkeeping files and 0 automated scan reports. These record the system workflow alongside the experiment assets.

@@ -39,3 +39,18 @@ Original project paths and release paths are mapped in [the file manifest](08-in
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
 
 No manuscript PDF was found in this project snapshot.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | No matching files in this snapshot |
+| Contribution records | [task_context/reviewer.md](02-contributions/source/task_context/reviewer.md) |
+| Research code and configurations | [phase2_evaluation.py](03-code/source/phase2_evaluation.py) · [phase2_bc_baseline.py](03-code/source/phase2_bc_baseline.py) · [phase2_awr_finetune.py](03-code/source/phase2_awr_finetune.py) |
+| Experiment and supporting data | [artifacts/gate1b_results.json](04-experiments/source/artifacts/gate1b_results.json) · [artifacts/_project/data/gate1b_results.json](04-experiments/source/artifacts/_project/data/gate1b_results.json) · [artifacts/_project/data/pertask_iql_summary.txt](04-experiments/source/artifacts/_project/data/pertask_iql_summary.txt) |
+| Internal validation records | [artifacts/_project/data/cross_task_mlp_validation.json](06-validation/source/artifacts/_project/data/cross_task_mlp_validation.json) |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [memory.md](07-maintenance/source/memory.md) · [report.md](07-maintenance/source/report.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 9 runtime bookkeeping files and 0 automated scan reports. These record the system workflow alongside the experiment assets.

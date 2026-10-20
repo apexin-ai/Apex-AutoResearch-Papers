@@ -37,3 +37,18 @@ Source: `s3://agent-ml-research-project-backups-20260531/turn_residual_gating/wo
 Original project paths and release paths are mapped in [the file manifest](08-index/asset-manifest.csv). Selected PDFs are copied to `01-manuscript/paper.pdf`; other versions remain under manuscript source. Files exceeding the GitHub size limit are split into checksum-verified parts. Dependency installations, caches, Git internals, credential/account files, and non-regular archive entries are excluded and recorded in [the exclusion manifest](08-index/excluded-files.csv).
 
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | [Selected paper PDF](01-manuscript/paper.pdf) · [artifacts/_project/paper/main.tex](01-manuscript/source/artifacts/_project/paper/main.tex) · [artifacts/_project/paper/main.pdf](01-manuscript/source/artifacts/_project/paper/main.pdf) |
+| Contribution records | [task_context/agent.md](02-contributions/source/task_context/agent.md) · [task_context/director.md](02-contributions/source/task_context/director.md) · [task_context/reviewer.md](02-contributions/source/task_context/reviewer.md) |
+| Research code and configurations | [run_accuracy_eval.py](03-code/source/run_accuracy_eval.py) · [run_profiling_gsm8k.py](03-code/source/run_profiling_gsm8k.py) · [artifacts/plot_figure1.py](03-code/source/artifacts/plot_figure1.py) |
+| Experiment and supporting data | [artifacts/crossover_n500.csv](04-experiments/source/artifacts/crossover_n500.csv) · [artifacts/c3_llama_results.json](04-experiments/source/artifacts/c3_llama_results.json) · [artifacts/c2_progress_snapshot.json](04-experiments/source/artifacts/c2_progress_snapshot.json) |
+| Internal validation records | [artifacts/reference_audit.md](06-validation/source/artifacts/reference_audit.md) · [artifacts/w1w5_audit_report.md](06-validation/source/artifacts/w1w5_audit_report.md) · [artifacts/reference_audit_report.md](06-validation/source/artifacts/reference_audit_report.md) |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [memory.md](07-maintenance/source/memory.md) · [report.md](07-maintenance/source/report.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 319 runtime bookkeeping files and 0 automated scan reports. These record the system workflow alongside the experiment assets.

@@ -39,3 +39,18 @@ Original project paths and release paths are mapped in [the file manifest](08-in
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
 
 No manuscript PDF was found in this project snapshot.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | No matching files in this snapshot |
+| Contribution records | No matching files in this snapshot |
+| Research code and configurations | [experiments/e008_stage1_dgp_robustness.py](03-code/source/experiments/e008_stage1_dgp_robustness.py) · [experiments/e001_global_correction_smoke.py](03-code/source/experiments/e001_global_correction_smoke.py) · [experiments/e006_capped_hybrid_allocation.py](03-code/source/experiments/e006_capped_hybrid_allocation.py) |
+| Experiment and supporting data | [artifacts/e008_stage1_dgp_robustness/data/e008_stage1_dgp_robustness.json](04-experiments/source/artifacts/e008_stage1_dgp_robustness/data/e008_stage1_dgp_robustness.json) · [artifacts/e001_global_correction_smoke/data/e001_global_correction_smoke.json](04-experiments/source/artifacts/e001_global_correction_smoke/data/e001_global_correction_smoke.json) · [artifacts/e010_selector_seed_threshold_sensitivity/data/e010_failure_map.json](04-experiments/source/artifacts/e010_selector_seed_threshold_sensitivity/data/e010_failure_map.json) |
+| Internal validation records | No matching files in this snapshot |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [ideas.md](07-maintenance/source/ideas.md) · [memory.md](07-maintenance/source/memory.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 10 runtime bookkeeping files and 0 automated scan reports. These record the system workflow alongside the experiment assets.

@@ -37,3 +37,18 @@ Source: `s3://agent-ml-research-project-backups-20260531/turn_residual_gating/wo
 Original project paths and release paths are mapped in [the file manifest](08-index/asset-manifest.csv). Selected PDFs are copied to `01-manuscript/paper.pdf`; other versions remain under manuscript source. Files exceeding the GitHub size limit are split into checksum-verified parts. Dependency installations, caches, Git internals, credential/account files, and non-regular archive entries are excluded and recorded in [the exclusion manifest](08-index/excluded-files.csv).
 
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | [Selected paper PDF](01-manuscript/paper.pdf) · [artifacts/dream_reports/dream_20260512T022430/best/paper.tex](01-manuscript/source/artifacts/dream_reports/dream_20260512T022430/best/paper.tex) · [artifacts/dream_reports/dream_20260512T022430/best/paper.pdf](01-manuscript/source/artifacts/dream_reports/dream_20260512T022430/best/paper.pdf) |
+| Contribution records | [task_context/director.md](02-contributions/source/task_context/director.md) · [task_context/reviewer.md](02-contributions/source/task_context/reviewer.md) |
+| Research code and configurations | [src/kv_eviction/run_kv_benchmark.py](03-code/source/src/kv_eviction/run_kv_benchmark.py) · [artifacts/neg_cross_model_llama.py](03-code/source/artifacts/neg_cross_model_llama.py) · [artifacts/mvp_carc_validation_v2.py](03-code/source/artifacts/mvp_carc_validation_v2.py) |
+| Experiment and supporting data | [artifacts/dream_reports/dream_20260512T022430/best/experiment_data.json](04-experiments/source/artifacts/dream_reports/dream_20260512T022430/best/experiment_data.json) · [artifacts/dream_reports/dream_20260512T022430/worst/experiment_data.json](04-experiments/source/artifacts/dream_reports/dream_20260512T022430/worst/experiment_data.json) · [artifacts/dream_reports/dream_20260512T022430/median/experiment_data.json](04-experiments/source/artifacts/dream_reports/dream_20260512T022430/median/experiment_data.json) |
+| Internal validation records | No matching files in this snapshot |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [memory.md](07-maintenance/source/memory.md) · [report.md](07-maintenance/source/report.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 14 runtime bookkeeping files and 0 automated scan reports. These record the system workflow alongside the experiment assets.

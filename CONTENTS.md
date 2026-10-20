@@ -101,3 +101,7 @@ Counts describe archived files and recorded events, including overlapping snapsh
 [Additional dated research snapshots](research-snapshots/README.md) retain later exports and conversations alongside the initial releases.
 
 [Supplementary research materials](supplementary/README.md) include benchmark code, results, revisions, and rebuttals.
+
+[Manuscript exports and revisions](MANUSCRIPT_EXPORTS.md) groups duplicate PDF files and links matching primary project assets.
+
+[Original workspace snapshots](SOURCE_SNAPSHOTS.md) retain fixed links to every archive release.

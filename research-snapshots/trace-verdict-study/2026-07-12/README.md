@@ -41,3 +41,18 @@ Generated documentation is English. Source files and conversations retain their 
 No manuscript PDF was found in this project snapshot.
 
 This dated snapshot came from `uploads/projects-export-20260712.tar.gz`. Only one project was retained temporarily. [Original archive members](08-index/original-members.csv) map each source path to its derived copy. The derived archive SHA-256 is `06a05be724013abd8947e83cf839dc76dfb15d18505367c0832e31c778f639a7`; the source archive ETag is `"3dcc2f4881a84062865a76eb74e07c31-1617"`.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | No matching files in this snapshot |
+| Contribution records | No matching files in this snapshot |
+| Research code and configurations | [registry.yaml](03-code/source/registry.yaml) · [mistakes.yaml](03-code/source/mistakes.yaml) · [decisions.yaml](03-code/source/decisions.yaml) |
+| Experiment and supporting data | No matching files in this snapshot |
+| Internal validation records | No matching files in this snapshot |
+| Project documentation | No matching files in this snapshot |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 0 runtime bookkeeping files and 0 automated scan reports. These record the system workflow alongside the experiment assets.

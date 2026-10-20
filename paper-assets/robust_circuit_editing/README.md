@@ -39,3 +39,18 @@ Original project paths and release paths are mapped in [the file manifest](08-in
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
 
 No manuscript PDF was found in this project snapshot.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | No matching files in this snapshot |
+| Contribution records | No matching files in this snapshot |
+| Research code and configurations | [ROADMAP.lock](03-code/source/ROADMAP.lock) · [registry.yaml](03-code/source/registry.yaml) · [registry.lock](03-code/source/registry.lock) |
+| Experiment and supporting data | [checkpoints/mvp_001_cross_method_consensus_PREPARING_20260516T072745.json](04-experiments/source/checkpoints/mvp_001_cross_method_consensus_PREPARING_20260516T072745.json) · [logs/ralph_loop_timeline.jsonl](04-experiments/source/logs/ralph_loop_timeline.jsonl) |
+| Internal validation records | No matching files in this snapshot |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [report.md](07-maintenance/source/report.md) · [AGENTS.md](07-maintenance/source/AGENTS.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 4 runtime bookkeeping files and 0 automated scan reports. These record the system workflow alongside the experiment assets.

@@ -37,3 +37,18 @@ Source: `s3://agent-ml-research-project-backups-20260531/ec_hte_llm_annotation/w
 Original project paths and release paths are mapped in [the file manifest](08-index/asset-manifest.csv). Selected PDFs are copied to `01-manuscript/paper.pdf`; other versions remain under manuscript source. Files exceeding the GitHub size limit are split into checksum-verified parts. Dependency installations, caches, Git internals, credential/account files, and non-regular archive entries are excluded and recorded in [the exclusion manifest](08-index/excluded-files.csv).
 
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | [Selected paper PDF](01-manuscript/paper.pdf) · [docs/paper/main.tex](01-manuscript/source/docs/paper/main.tex) · [docs/paper/main.pdf](01-manuscript/source/docs/paper/main.pdf) |
+| Contribution records | [task_context/agent.md](02-contributions/source/task_context/agent.md) · [task_context/director.md](02-contributions/source/task_context/director.md) · [task_context/reviewer.md](02-contributions/source/task_context/reviewer.md) |
+| Research code and configurations | [artifacts/lalonde/0_data_creation.R](03-code/source/artifacts/lalonde/0_data_creation.R) · [artifacts/exp-023/data/run_hetero_tau.py](03-code/source/artifacts/exp-023/data/run_hetero_tau.py) · [artifacts/task8_asymmetric_diagnostic_auc.py](03-code/source/artifacts/task8_asymmetric_diagnostic_auc.py) |
+| Experiment and supporting data | [artifacts/stance_analysis.csv](04-experiments/source/artifacts/stance_analysis.csv) · [artifacts/timing_benchmark.csv](04-experiments/source/artifacts/timing_benchmark.csv) · [artifacts/hatespeech_analysis.csv](04-experiments/source/artifacts/hatespeech_analysis.csv) |
+| Internal validation records | [_last_visual_review.json](06-validation/source/_last_visual_review.json) · [_paper_audit_result.json](06-validation/source/_paper_audit_result.json) · [docs/_last_visual_review.json](06-validation/source/docs/_last_visual_review.json) |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [memory.md](07-maintenance/source/memory.md) · [report.md](07-maintenance/source/report.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 66 runtime bookkeeping files and 2 automated scan reports. These record the system workflow alongside the experiment assets.

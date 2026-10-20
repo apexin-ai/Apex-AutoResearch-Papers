@@ -39,3 +39,18 @@ Original project paths and release paths are mapped in [the file manifest](08-in
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
 
 No manuscript PDF was found in this project snapshot.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | No matching files in this snapshot |
+| Contribution records | [task_context/agent.md](02-contributions/source/task_context/agent.md) · [task_context/director.md](02-contributions/source/task_context/director.md) · [task_context/reviewer.md](02-contributions/source/task_context/reviewer.md) |
+| Research code and configurations | [patch_phase3.py](03-code/source/patch_phase3.py) · [artifacts/run_mvp.sh](03-code/source/artifacts/run_mvp.sh) · [run_test_evaluation.py](03-code/source/run_test_evaluation.py) |
+| Experiment and supporting data | [artifacts/pipeline_output/summary.json](04-experiments/source/artifacts/pipeline_output/summary.json) · [checkpoints/phase1_trace_v2_DONE_20260515T053245.json](04-experiments/source/checkpoints/phase1_trace_v2_DONE_20260515T053245.json) · [checkpoints/phase1_trace_v2_QUEUED_20260515T052057.json](04-experiments/source/checkpoints/phase1_trace_v2_QUEUED_20260515T052057.json) |
+| Internal validation records | No matching files in this snapshot |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [memory.md](07-maintenance/source/memory.md) · [report.md](07-maintenance/source/report.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 60 runtime bookkeeping files and 0 automated scan reports. These record the system workflow alongside the experiment assets.

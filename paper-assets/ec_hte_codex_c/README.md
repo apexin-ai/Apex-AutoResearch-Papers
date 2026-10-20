@@ -39,3 +39,18 @@ Original project paths and release paths are mapped in [the file manifest](08-in
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
 
 No manuscript PDF was found in this project snapshot.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | No matching files in this snapshot |
+| Contribution records | No matching files in this snapshot |
+| Research code and configurations | [mvp/diagnose_dgp_bias.py](03-code/source/mvp/diagnose_dgp_bias.py) · [mvp/ec_hte_oracle_bound.py](03-code/source/mvp/ec_hte_oracle_bound.py) · [mvp/ec_hte_semisynth_mvp.py](03-code/source/mvp/ec_hte_semisynth_mvp.py) |
+| Experiment and supporting data | [mvp/directed_dgp_config.json](04-experiments/source/mvp/directed_dgp_config.json) · [checkpoints/stability_seed_reps_001_DONE_20260531T161838.json](04-experiments/source/checkpoints/stability_seed_reps_001_DONE_20260531T161838.json) · [checkpoints/mvp_ec_hte_semisynth_001_DONE_20260531T154341.json](04-experiments/source/checkpoints/mvp_ec_hte_semisynth_001_DONE_20260531T154341.json) |
+| Internal validation records | [checkpoints/diag_dgp_bias_audit_001_DONE_20260531T155331.json](06-validation/source/checkpoints/diag_dgp_bias_audit_001_DONE_20260531T155331.json) · [checkpoints/diag_dgp_bias_audit_001_QUEUED_20260531T154948.json](06-validation/source/checkpoints/diag_dgp_bias_audit_001_QUEUED_20260531T154948.json) · [checkpoints/diag_dgp_bias_audit_001_RUNNING_20260531T155327.json](06-validation/source/checkpoints/diag_dgp_bias_audit_001_RUNNING_20260531T155327.json) |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [memory.md](07-maintenance/source/memory.md) · [report.md](07-maintenance/source/report.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 5 runtime bookkeeping files and 0 automated scan reports. These record the system workflow alongside the experiment assets.

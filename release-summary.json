@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-10-20T16:48:52.176922+00:00",
+  "workspace_archives": 40,
+  "primary_project_records": 89,
+  "primary_projects_with_manuscript_pdf": 53,
+  "additional_project_records_without_pdf": 36,
+  "dated_project_snapshots": 34,
+  "supplementary_collections": 5,
+  "document_pdf_records": 120,
+  "trace_collections": 123,
+  "trace_source_records": 144496,
+  "recorded_events": 15016707,
+  "indexed_asset_rows_verified": 252723,
+  "mirror_objects_matched_by_original_path_and_size": 161505,
+  "mirror_supplemental_objects": 1,
+  "mirror_cache_objects_excluded": 3410,
+  "mirror_cache_bytes_excluded": 6016777325,
+  "offline_preview_rounds": 114,
+  "source_archives_verified": true
+}

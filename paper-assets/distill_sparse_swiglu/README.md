@@ -37,3 +37,18 @@ Source: `s3://agent-ml-research-project-backups-20260531/distill_sparse_swiglu/w
 Original project paths and release paths are mapped in [the file manifest](08-index/asset-manifest.csv). Selected PDFs are copied to `01-manuscript/paper.pdf`; other versions remain under manuscript source. Files exceeding the GitHub size limit are split into checksum-verified parts. Dependency installations, caches, Git internals, credential/account files, and non-regular archive entries are excluded and recorded in [the exclusion manifest](08-index/excluded-files.csv).
 
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | [Selected paper PDF](01-manuscript/paper.pdf) · [paper/main.tex](01-manuscript/source/paper/main.tex) · [paper/main.pdf](01-manuscript/source/paper/main.pdf) |
+| Contribution records | [task_context/agent.md](02-contributions/source/task_context/agent.md) · [task_context/director.md](02-contributions/source/task_context/director.md) · [task_context/reviewer.md](02-contributions/source/task_context/reviewer.md) |
+| Research code and configurations | [src/compute_jaccard.py](03-code/source/src/compute_jaccard.py) · [src/train_perlayer_kl.py](03-code/source/src/train_perlayer_kl.py) · [src/train_bce_kl_targets.py](03-code/source/src/train_bce_kl_targets.py) |
+| Experiment and supporting data | [results/wallclock_profile.json](04-experiments/source/results/wallclock_profile.json) · [artifacts/50pct_3seed_summary.csv](04-experiments/source/artifacts/50pct_3seed_summary.csv) · [artifacts/snr_extended_results.json](04-experiments/source/artifacts/snr_extended_results.json) |
+| Internal validation records | [_last_visual_review.json](06-validation/source/_last_visual_review.json) · [_paper_audit_result.json](06-validation/source/_paper_audit_result.json) · [artifacts/data_audit_report.md](06-validation/source/artifacts/data_audit_report.md) |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [flashinfer/LICENSE](07-maintenance/source/flashinfer/LICENSE) · [R-Sparse/README.md](07-maintenance/source/R-Sparse/README.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 454 runtime bookkeeping files and 2 automated scan reports. These record the system workflow alongside the experiment assets.

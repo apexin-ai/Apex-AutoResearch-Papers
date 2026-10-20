@@ -39,3 +39,18 @@ Original project paths and release paths are mapped in [the file manifest](08-in
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
 
 No manuscript PDF was found in this project snapshot.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | No matching files in this snapshot |
+| Contribution records | [task_context/director.md](02-contributions/source/task_context/director.md) · [task_context/reviewer.md](02-contributions/source/task_context/reviewer.md) |
+| Research code and configurations | [ROADMAP.lock](03-code/source/ROADMAP.lock) · [registry.yaml](03-code/source/registry.yaml) · [registry.lock](03-code/source/registry.lock) |
+| Experiment and supporting data | [artifacts/mvp_experiment_report.json](04-experiments/source/artifacts/mvp_experiment_report.json) · [checkpoints/mvp_002_DONE_20260517T101125.json](04-experiments/source/checkpoints/mvp_002_DONE_20260517T101125.json) · [checkpoints/mvp_001_DONE_20260517T093836.json](04-experiments/source/checkpoints/mvp_001_DONE_20260517T093836.json) |
+| Internal validation records | No matching files in this snapshot |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [memory.md](07-maintenance/source/memory.md) · [report.md](07-maintenance/source/report.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 5 runtime bookkeeping files and 0 automated scan reports. These record the system workflow alongside the experiment assets.

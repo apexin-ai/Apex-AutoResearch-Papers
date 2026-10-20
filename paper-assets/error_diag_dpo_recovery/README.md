@@ -39,3 +39,18 @@ Original project paths and release paths are mapped in [the file manifest](08-in
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
 
 No manuscript PDF was found in this project snapshot.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | [tests/mock_divergence_test/mock_output/divergence_tables.tex](01-manuscript/source/tests/mock_divergence_test/mock_output/divergence_tables.tex) |
+| Contribution records | [task_context/agent.md](02-contributions/source/task_context/agent.md) · [task_context/director.md](02-contributions/source/task_context/director.md) · [task_context/reviewer.md](02-contributions/source/task_context/reviewer.md) |
+| Research code and configurations | [src/dmpo_loss.py](03-code/source/src/dmpo_loss.py) · [src/train_dpo.py](03-code/source/src/train_dpo.py) · [src/test_icl_14b.py](03-code/source/src/test_icl_14b.py) |
+| Experiment and supporting data | [artifacts/datagen_traj_v5/data/v5_csf_summary.txt](04-experiments/source/artifacts/datagen_traj_v5/data/v5_csf_summary.txt) · [artifacts/datagen_traj_v5/intermediate/post_process_trajectories_location.txt](04-experiments/source/artifacts/datagen_traj_v5/intermediate/post_process_trajectories_location.txt) · [tests/mock_divergence_test/mock_expert.json](04-experiments/source/tests/mock_divergence_test/mock_expert.json) |
+| Internal validation records | No matching files in this snapshot |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [memory.md](07-maintenance/source/memory.md) · [report.md](07-maintenance/source/report.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 40 runtime bookkeeping files and 0 automated scan reports. These record the system workflow alongside the experiment assets.

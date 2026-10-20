@@ -37,3 +37,18 @@ Source: `s3://agent-ml-research-project-backups-20260531/contrastive_trace_safet
 Original project paths and release paths are mapped in [the file manifest](08-index/asset-manifest.csv). Selected PDFs are copied to `01-manuscript/paper.pdf`; other versions remain under manuscript source. Files exceeding the GitHub size limit are split into checksum-verified parts. Dependency installations, caches, Git internals, credential/account files, and non-regular archive entries are excluded and recorded in [the exclusion manifest](08-index/excluded-files.csv).
 
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | [Selected paper PDF](01-manuscript/paper.pdf) · [artifacts/paper_drafts/references.bib](01-manuscript/source/artifacts/paper_drafts/references.bib) · [artifacts/_project/paper/discussion.tex](01-manuscript/source/artifacts/_project/paper/discussion.tex) |
+| Contribution records | [task_context/agent.md](02-contributions/source/task_context/agent.md) · [task_context/director.md](02-contributions/source/task_context/director.md) · [task_context/reviewer.md](02-contributions/source/task_context/reviewer.md) |
+| Research code and configurations | [eval_repobench.py](03-code/source/eval_repobench.py) · [artifacts/patch_train.py](03-code/source/artifacts/patch_train.py) · [artifacts/patch_build_m1.py](03-code/source/artifacts/patch_build_m1.py) |
+| Experiment and supporting data | [artifacts/plan006_error_patterns.json](04-experiments/source/artifacts/plan006_error_patterns.json) · [artifacts/bm25_overlap_stratified.json](04-experiments/source/artifacts/bm25_overlap_stratified.json) · [artifacts/plan_006/scalability_data.json](04-experiments/source/artifacts/plan_006/scalability_data.json) |
+| Internal validation records | [artifacts/_project/report/citation_verification.md](06-validation/source/artifacts/_project/report/citation_verification.md) · [artifacts/paper_drafts/v2/citation_verification.md](06-validation/source/artifacts/paper_drafts/v2/citation_verification.md) |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [memory.md](07-maintenance/source/memory.md) · [report.md](07-maintenance/source/report.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 138 runtime bookkeeping files and 0 automated scan reports. These record the system workflow alongside the experiment assets.

@@ -39,3 +39,18 @@ Original project paths and release paths are mapped in [the file manifest](08-in
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
 
 No manuscript PDF was found in this project snapshot.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | No matching files in this snapshot |
+| Contribution records | No matching files in this snapshot |
+| Research code and configurations | [artifacts/run_mvp.py](03-code/source/artifacts/run_mvp.py) · [artifacts/analysis.py](03-code/source/artifacts/analysis.py) · [artifacts/diversity.py](03-code/source/artifacts/diversity.py) |
+| Experiment and supporting data | [artifacts/data/writers_mini.csv](04-experiments/source/artifacts/data/writers_mini.csv) · [artifacts/results/mvp_results.json](04-experiments/source/artifacts/results/mvp_results.json) · [artifacts/data/writers-2023-06-28.csv](04-experiments/source/artifacts/data/writers-2023-06-28.csv) |
+| Internal validation records | No matching files in this snapshot |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [ideas.md](07-maintenance/source/ideas.md) · [memory.md](07-maintenance/source/memory.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 5 runtime bookkeeping files and 0 automated scan reports. These record the system workflow alongside the experiment assets.

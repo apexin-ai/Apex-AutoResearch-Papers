@@ -37,3 +37,18 @@ Source: `s3://agent-ml-research-project-backups-20260531/occsafe_vla/workspace.t
 Original project paths and release paths are mapped in [the file manifest](08-index/asset-manifest.csv). Selected PDFs are copied to `01-manuscript/paper.pdf`; other versions remain under manuscript source. Files exceeding the GitHub size limit are split into checksum-verified parts. Dependency installations, caches, Git internals, credential/account files, and non-regular archive entries are excluded and recorded in [the exclusion manifest](08-index/excluded-files.csv).
 
 Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.
+
+## Concrete file examples
+
+| Content | Examples from this snapshot |
+|---|---|
+| Manuscript assets | [Selected paper PDF](01-manuscript/paper.pdf) · [docs/paper/main.tex](01-manuscript/source/docs/paper/main.tex) · [docs/paper/main.pdf](01-manuscript/source/docs/paper/main.pdf) |
+| Contribution records | [task_context/agent.md](02-contributions/source/task_context/agent.md) · [task_context/director.md](02-contributions/source/task_context/director.md) · [task_context/reviewer.md](02-contributions/source/task_context/reviewer.md) |
+| Research code and configurations | [artifacts/figures/paper/gen_fig1.py](03-code/source/artifacts/figures/paper/gen_fig1.py) · [artifacts/figures/paper/gen_fig2.py](03-code/source/artifacts/figures/paper/gen_fig2.py) · [artifacts/figures/paper/gen_fig3.py](03-code/source/artifacts/figures/paper/gen_fig3.py) |
+| Experiment and supporting data | [artifacts/collapse_signal_report.json](04-experiments/source/artifacts/collapse_signal_report.json) · [artifacts/carr_fullft_lr2e5_probe_01_metrics.json](04-experiments/source/artifacts/carr_fullft_lr2e5_probe_01_metrics.json) · [artifacts/_project/data/quality_scores_summary.json](04-experiments/source/artifacts/_project/data/quality_scores_summary.json) |
+| Internal validation records | No matching files in this snapshot |
+| Project documentation | [ROADMAP.md](07-maintenance/source/ROADMAP.md) · [memory.md](07-maintenance/source/memory.md) · [report.md](07-maintenance/source/report.md) |
+| Provenance and file indexes | [Source/file manifest](08-index/asset-manifest.csv) · [Snapshot metadata](08-index/asset-manifest.json) |
+| Recorded conversations and tools | [Readable Markdown](05-generation-trace/readable/README.md) · [Structured JSON catalogue](05-generation-trace/catalog.json) |
+
+Supporting files include 37 runtime bookkeeping files and 0 automated scan reports. These record the system workflow alongside the experiment assets.
