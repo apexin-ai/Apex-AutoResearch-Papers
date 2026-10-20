@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbaf47522c7040e6989b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cwm s42 ckpt6100 seq8192",
+  "task_key": "worker_ops_cwm-s42-ckpt6100-seq8192_20260524T022201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm-s42-ckpt6100-seq8192_20260524T022201_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "e9e1e45e5ac018baa1c12ad7708d2b3a165e9daa296af4e8a2d19828fa55994a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常。\n\n**启动完成汇报：**\n\n- **命令**：`CUDA_VISIBLE_DEVICES=3 nohup /root/miniconda3/bin/python eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6100 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --split test --device cuda:0 --max_seq_length 8192 --max_new_tokens 512 --batch_size 4 --output_dir /root/autodl-tmp/eval_results/qwen3_8b_cwm_repo_s42_ckpt6100_seq8192_eval`\n- **PID**：328067（子进程 328069）\n- **GPU 3**：18764MiB / 32607MiB，76% util，正常推理中\n- **日志**：`/tmp/cwm_s42_ckpt6100_seq8192.log`\n- **进度**：9784 test instances，已跑 4 条，running_acc=100%\n- **预估完成时间**：按 batch_size=4、seq8192 在 5090 上的速度，约 5~6 小时（前 4 条耗时 ~21 秒，每 batch ~5 秒，9784 条约 2446 batch ≈ 3.4 小时推理 + 开销，预计 4~5 小时完成）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cwm-s42-ckpt6100-seq8192.md"
+}

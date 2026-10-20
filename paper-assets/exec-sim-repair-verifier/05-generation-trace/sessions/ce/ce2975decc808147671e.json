@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ce2975decc808147671e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "setup home eval env",
+  "task_key": "worker_setup_home-eval-env_20260517T094051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_home-eval-env_20260517T094051.log",
+    "occurrence": 1,
+    "bytes": 596828,
+    "sha256": "62ab6e4a25d97e36c0f46c5336525e4b930dbdc7a1979cc04f2ece9d57cc4730"
+  },
+  "statistics": {
+    "messages": 193,
+    "user_turns": 0,
+    "tool_calls": 69,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 69,
+      "tool_result": 69,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 193,
+      "chunks": [
+        {
+          "path": "ce2975decc808147671e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce2975decc808147671e-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/setup-home-eval-env.md"
+}

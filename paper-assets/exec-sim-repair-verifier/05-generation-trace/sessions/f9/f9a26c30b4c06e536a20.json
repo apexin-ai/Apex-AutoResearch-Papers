@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9a26c30b4c06e536a20",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_16_1778899142.md",
+  "task_key": "loop_16_1778899142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778899142.md",
+    "occurrence": 1,
+    "bytes": 4308,
+    "sha256": "f7c6bc902e7ef005e87a0fd59fe9fe46626d281f78192bd57d3bd78ea5b01c3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: max_wall_time\nupdated: '2026-05-16T02:38:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0-3 全在 westd（seetacloud-westd-4x5090）。home-1x5090 有独立 GPU 但不在 gpu_ids 里，只用于 4B 实验\n- westd 必须 `HF_HUB_OFFLINE=1`，不能联网下 HF 模型\n- 4B checkpoint 只在 home (`/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`)，westd 上没有 4B 模型和 checkpoint\n- CWM 8B eval 用 `eval_repo_cwm.py`（不是 eval_repo_cls.py），max_new_tokens=1024，bs=8\n- test eval 禁止 `--max_samples`，必须跑完整 test set (n=9784)\n- 标 FAILED/DONE 前必须 `ps -p PID` 确认进程已退出\n- home 版 eval_repo_cls.py 不支持 `--max_new_tokens` 参数\n\n### 2. 🖥️ 基础设施快照\n- **westd**: seetacloud-westd-4x5090, account=root, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - Python: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n  - CLS 8B s42 resume checkpoints: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`\n  - CLS 8B seed123 backup: `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n  - CWM 8B checkpoints: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400/`（val-best，唯一有用的）\n  - Eval 结果: `/root/autodl-tmp/eval_results/`\n- **home**: home-1x5090, account=sonny, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - 4B v5 checkpoint: `checkpoints_repo_cls_v5/checkpoint-4600/`\n- **活跃进程**:\n  - CWM 8B v3 主跑: PID 443221, cuda:3, 从 idx 0 跑全量\n  - CWM 8B shard2: cuda:1, 从 idx 7680-9784（状态待 Worker 回调确认）\n  - CWM 8B shard3: cuda:0, Worker 刚派出启动（填 v3 当前 idx 到 7680 的 gap）\n\n### 3. 📊 当前状态\n刚完成 Director 综合指令：CLS 4B/CWM 4B mutation breakdown 全部 DONE，CLS 8B per-mutation P/R + CWM 8B shard3 启动中。\n\n**Registry RUNNING/PREPARING（需关注的）**:\n- `cwm8b-ckpt400-test-eval-v3`: RUNNING, cuda:3, PID 443221, ~57% 进度 → 主表最后阻塞项\n- `cwm8b-ckpt400-test-eval-shard2`: RUNNING, cuda:1, idx 7680-9784\n- `cwm8b-ckpt400-test-eval-shard3`: Worker 正在启动（cuda:0）\n\n**等待中的 4 个 Worker 回调**:\n1. `worker_eval_cwm8b-shard3-cuda0` — 查 v3 idx 后启动 shard3\n2. `worker_ops_cwm8b-shard2-status-check` — 确认 shard2 PID + 进度\n3. `worker_eval_cls8b-s42-ckpt3600-per-mutation-pr` — 8B per-mutation P/R + confusion matrix\n4. `worker_analysis_cls8b-per-test-pr-bucketed` — per-test F2P bucket 分析（CPU）\n\n### 4. 📋 待办（条件触发式）\n- shard2 Worker 回调 → 如果已完成：更新 registry DONE；如果挂了：在 cuda:1 重启\n- shard3 Worker 回调 → 确认 shard3 已在 cuda:0 启动，创建 registry 条目\n- CWM 8B 三个 shard 全完成 → **去重合并**：idx 重叠区间 v3 优先，生成最终 9784 样本结果 → 锁 CWM 8B test accuracy → 更新主表 → 汇报 Director\n- CLS 8B per-mutation P/R Worker 回调 → 录入 registry + 更新 memory → 与 4B P/R 对比汇报（boundary_removal pass-bias 对比）\n- per-test bucket 分析回调 → 录入 artifacts → 论文 discussion 素材\n- **CWM 8B 最终数字出来后** → 批量更新 experiments.tex 主表 + ROADMAP\n\n### 5. 🎯 战略上下文\n- **DDL**: EMNLP 2026 ARR May 25（~9 天）\n- **核心结论已锁**: CLS-CWM gap ~26pp（多 seed 一致），CWM bottleneck 是 generation formulation 不是 model capacity（8B 比 4B 更差证明）\n- **CWM 8B eval 是唯一阻塞项**: val-best=ckpt-400（eval_loss 单调递增，无歧义）。interim: unparseable=73.8%, parseable-only=38.5%（比 4B 更差）。三 shard 并行加速中\n- **boundary_removal ~45% 是 task-intrinsic**: 4B/8B/跨 seed 一致，model scaling 无效。off_by_one 是唯一从 scaling 受益的 type（4B 58%→8B 87%）\n- **CWM 与 CLS 偏好相反**: CWM parseable 时偏向 fail，CLS 偏向 pass。boundary_removal 是唯一 CWM > CLS 的 type（parseable 59.2% vs 46.9%），但 parse_rate 仅 30.6%\n- **易踩坑**: read_registry API 只返回前 17 条（YAML 解析问题），后面的 RUNNING 实验需要直接读 registry.yaml 文件确认。reconcile_crons 能找到有 cron 的实验但 shard2 可能没有 cron\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778899142.md"
+}

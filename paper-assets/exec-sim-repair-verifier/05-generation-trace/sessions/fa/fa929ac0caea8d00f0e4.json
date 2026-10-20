@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa929ac0caea8d00f0e4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval s42 extended val sweep",
+  "task_key": "worker_eval_s42-extended-val-sweep_20260515T141312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_s42-extended-val-sweep_20260515T141312_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "4b67a43e5a7431bafa2f665ac7b359f39d0c73b3f03ff467f20a481c8483579e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动并注册。汇总：\n\n**s42-extended-val-sweep 已在运行**\n- **tmux session**: `s42-val-sweep`\n- **GPU**: cuda:0 (RTX 5090, 当前 9101 MiB 已加载模型)\n- **数据集**: swebench_val, 9335 instances\n- **当前进度**: checkpoint-1800 正在评估中（模型已加载）\n- **日志**: `/root/autodl-tmp/eval_results/s42_val_sweep.log`\n- **汇总输出**: `/root/autodl-tmp/eval_results/s42_extended_val_sweep_summary.json`\n\n18 个 checkpoint 顺序执行，每个预估 1-2h，不存在的 checkpoint 自动跳过。查进度可用 `tail -50 /root/autodl-tmp/eval_results/s42_val_sweep.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-s42-extended-val-sweep.md"
+}

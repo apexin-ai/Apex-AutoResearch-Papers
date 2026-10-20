@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "475de3a1ec47cfdfd038",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cwm v11 ckpt400 check",
+  "task_key": "worker_eval_cwm-v11-ckpt400-check_20260513T155342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cwm-v11-ckpt400-check_20260513T155342_result.json",
+    "occurrence": 1,
+    "bytes": 143,
+    "sha256": "878e058107f7a7c66a3d8083f4d9cde55212906d32f37668a43d2e0ac35d09b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**checkpoint-400 不存在**，已被 `save_total_limit=5` 自动清理。\n\n现存 checkpoint：600, 1100, 1200, 1300, 1400。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cwm-v11-ckpt400-check.md"
+}

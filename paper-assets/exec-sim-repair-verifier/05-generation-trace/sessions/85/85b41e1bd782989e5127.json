@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85b41e1bd782989e5127",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "writing cwm format collapse paragraph",
+  "task_key": "worker_writing_cwm-format-collapse-paragraph_20260521T151430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_cwm-format-collapse-paragraph_20260521T151430_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "fc7ad9cd50991898fd89c7fd3fcd0882e3a3db6caebf62a60e13a6d1b37dd349"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/cwm_format_collapse_paragraph.md`。两句话覆盖三个层次：现象（unparseable rate）、机制（pytest trace replay → eos 截断）、排除项（thinking mode 不是原因）。四个 `\\tbd{}` 占位等 multi-seed 数据确认后替换。建议插入位置是 §5.5 \"Why does generation degrade at repo level?\" 段落中，作为 format collapse 的因果诊断补充。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-cwm-format-collapse-paragraph.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea43bc67ee537e9f9d57",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect ckpt600 test8192 must wait",
+  "task_key": "worker_collect_ckpt600-test8192-must-wait_20260514T215602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_ckpt600-test8192-must-wait_20260514T215602_result.json",
+    "occurrence": 1,
+    "bytes": 82,
+    "sha256": "87eb42636173c09d078181934837145f0eee993824e7cf33cf6be7d49ab7ff06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程仍在运行，已设置 90 秒后自动唤醒继续轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-ckpt600-test8192-must-wait.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89303b05f3fbb033d37a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check cwm repo exit status",
+  "task_key": "worker_check_cwm-repo-exit-status_20260517T153856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_cwm-repo-exit-status_20260517T153856_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "a04407830c349499919e53fa151f7e154ab7c2f7eced8ee4c15836f8e271395c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**deepseek-cwm-repo 状态：正常完成**\n\n| 项目 | 值 |\n|---|---|\n| Status | **Completed** |\n| global_step | 13266 / 13266 (100%) |\n| Epochs | 3.0 |\n| 训练耗时 | 31h 18m (112,680s) |\n| train_loss | 0.0210 |\n| eval_loss (final) | NaN |\n| best_checkpoint | `/root/autodl-tmp/checkpoints_deepseek_cwm_repo/best/` |\n| last_checkpoint | `/root/autodl-tmp/checkpoints_deepseek_cwm_repo/checkpoint-13266/` |\n\n注意两个问题：\n1. **eval_loss = NaN** — 最终 epoch-3 评估的 loss 为 NaN，epoch-2 时也可能已经出现。需要检查 eval 数据是否有异常。\n2. **best_metric = inf** — trainer_state 中 `best_model_checkpoint` 为 None，`best_metric` 为 inf，说明 Trainer 的 best model tracking 没有正常工作（可能因为 eval_loss 是 NaN 导致比较失败）。但日志显示 best model 仍被保存到了 `best/` 目录（由自定义代码而非 Trainer 原生逻辑保存）。\n\n新任务 `deepseek-cwm-repo-s123`（seed=123）已在 cuda:3 上运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cwm-repo-exit-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9084bf9873bca97f589b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis table2 seed basis check",
+  "task_key": "worker_analysis_table2-seed-basis-check_20260518T185458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_table2-seed-basis-check_20260518T185458_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "35a1a78b8c6f680f95833b47d9cbdc071b2d1db7fc76620ce281beb1abff69ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Table 2 没有误差线**，不存在 \"training seed vs bootstrap seed\" 的选择问题。\n\n- Table 2 直接展示两个 **training seed** (42, 123) 的原始 accuracy 和算术平均值，列结构为 `s42 | s123 | Mean | Δ`\n- 文中紧随其后的 clustered bootstrap (p=0.0066, 95% CI [1.80, 2.71]) 是对 CLS–CWM gap widening 的显著性检验（用了 3-seed superset: 42/123/456, 10K resamples, 114 clusters），不是 Table 2 的误差线\n\n答案文件已注册为 `art_20260518_4138aa`，含 Reviewer Q5 的 response draft。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-table2-seed-basis-check.md"
+}

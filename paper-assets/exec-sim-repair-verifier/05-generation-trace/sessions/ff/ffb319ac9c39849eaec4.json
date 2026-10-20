@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffb319ac9c39849eaec4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix home kill start 6144",
+  "task_key": "worker_fix_home-kill-start-6144_20260514T113006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_home-kill-start-6144_20260514T113006_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "66a5f4127db45cdc38c525d18d540ea904081b2fc13564ceab454f2407fac85d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6144 验证已自动启动。汇报：\n\n**执行结果：**\n\n| 步骤 | 状态 |\n|------|------|\n| PID 3074797 kill | 成功 |\n| val_sweep (home 系列) 停止 | 成功，已完成 home/ckpt-200 (79.57% acc)，后续 home checkpoint 全部跳过 |\n| 6144 验证启动 | 自动启动，tmux session `val_6144`，04:32:13 开始 |\n| 当前在跑 | `seed123_home/checkpoint-400`，split=val，max_seq_length=6144，batch_size=4 |\n| GPU 显存 | 12905MiB / 32607MiB（~40%），100% 利用率 |\n\n脚本会依次跑 seed123 ckpt-400 → ckpt-600，完成后自动输出对比结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-home-kill-start-6144.md"
+}

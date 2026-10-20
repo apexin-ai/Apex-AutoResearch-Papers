@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc66300d36e01a0d3ae2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh 14b multiseed launch",
+  "task_key": "worker_ssh_14b-multiseed-launch_20260523T044025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_14b-multiseed-launch_20260523T044025_result.json",
+    "occurrence": 1,
+    "bytes": 105,
+    "sha256": "95e4a63a054ba72c1385d9997765d4a7f28d0162e146ee67b75099c688fa7394"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台 sleep 已完成，验证已在前面完成——4 路训练全部正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14b-multiseed-launch.md"
+}

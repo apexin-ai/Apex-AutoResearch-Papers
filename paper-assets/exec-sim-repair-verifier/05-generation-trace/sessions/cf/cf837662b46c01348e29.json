@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf837662b46c01348e29",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_4_1778628473.md",
+  "task_key": "loop_4_1778628473",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778628473.md",
+    "occurrence": 1,
+    "bytes": 4665,
+    "sha256": "1e210925283b25d330ae776e2c8b48293443e46139f303bf770fef6e84ed2d1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-12T23:26:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd-48478 = seetacloud-westd-4x5090 是同一台物理机**（D041 确认）。不要在两个 alias 上同时提交训练\n- seetacloud cgroup 360GB RAM 限制，**禁止并行训练**（D028，v3 OOM SIGKILL 教训）。同一时间只能跑 1 个训练进程\n- home-1x5090 是 sonny 账户，seetacloud 是 root 账户。路径不同：home 用 `/home/sonny/exec-sim-repair-verifier/`，seetacloud 用 root 下路径\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3。但 seetacloud cuda:0/1 因 cgroup 限制实际不可用于并行\n- **ARR May 25 deadline**，约 13 天。repo-level 是 must-have，不是 nice-to-have\n\n### 2. 🖥️ 基础设施快照\n- **home-1x5090**: 账户 sonny, 1×RTX 5090, 62GB RAM, 非容器。工作目录 `/home/sonny/exec-sim-repair-verifier/`。Python 路径未确认（需探测）。磁盘已修复 89%→64%\n- **seetacloud-westd-4x5090** (= westd-48478): 账户 root, 4×RTX 5090, cgroup 360GB RAM。工作目录在 root 下。CWM v9 刚失败，当前无活跃进程\n- 模型：Qwen/Qwen3-4B (HF)，8B 实验已全部完成\n- 数据：home `/home/sonny/exec-sim-repair-verifier/data/swebench_full/` (70748 samples)\n- W&B：CLS v4 用 `--no_wandb` 启动（无 wandb 监控，只有本地日志）\n- **活跃进程**：repo-level-cls-v4, PID 2885139, home-1x5090 cuda:0, 日志 `/tmp/repo-level-cls-v3_stdout.log`, checkpoint `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`\n- **Cron**：repo-level-cls-v4 active（reconcile 确认 pid=2885139 still running）\n- seetacloud 上无活跃进程（CWM v9 刚 EXIT_CODE=2 失败）\n\n### 3. 📊 当前状态\n**刚发生**：CWM v9 在 seetacloud 失败（EXIT_CODE=2, shell misuse/syntax），这是 CWM 第 9 次迭代失败（v1-v9 全军覆没，原因各异：代码 bug → 磁盘满 → OOM → 参数错误 → 平台 SIGTERM → 语法错误）。\n\n**正在跑**：repo-level-cls-v4 在 home-1x5090，Step 183 时 loss=1.36 收敛正常，预计总完成 ~11.6h（从提交时间算可能已过半）。\n\n**PREPARING（未提交）**：\n- `repo-level-cls-seed123`：westd-48478 cuda:2，等 CLS v4 完成+eval 通过后开跑\n- `repo-level-cwm-seed123`：westd-48478 cuda:3，等 CWM 首次成功+eval 通过后开跑\n\n**关键阻塞**：CWM 在 seetacloud 已失败 9 次，无一次成功产出 checkpoint。下一个你需要决定是再修 CWM v10 还是上报 Director 考虑 pivot。seetacloud 的 GPU（cuda:2/3）目前完全空闲。\n\n### 4. 📋 待办（条件触发式）\n- **repo-level-cls-v4 cron 回调（success）→** spawn worker 跑 repo-level eval + paired bootstrap → 更新 registry metrics → 汇报 Director → 如果 gap 落 1-3pp 区间，立即在 seetacloud 提交 cls-seed123\n- **repo-level-cls-v4 cron 回调（failed）→** spawn worker 诊断日志 → 修复 → v5 重提交（home）\n- **CWM v9 失败需处理→** spawn worker 查 seetacloud 上 CWM v9 的具体语法错误日志，修复后提交 v10。如果判断 seetacloud 平台环境问题无法解决，考虑在 home 跑 CWM（但 home 只有 1 卡，需等 CLS 完成）\n- **D008 Go/No-Go 数据齐全（CLS + CWM 都有 repo-level metrics）→** 按 ROADMAP 判定：≥3pp 全力推 EMNLP Main；1-3pp 加 seeds；<1pp kill C1 pivot Plan B\n- **seetacloud GPU 空闲→** 立即处理 CWM v10 或其他可用任务（ai-time-discipline: 空闲 GPU = 失职）\n\n### 5. 🎯 战略上下文\n**核心结论链**：函数级 CLS≈CWM（TOST p=0.007 等价）→ 8B scaling CLS>CWM +2.43pp → **repo-level 是唯一未验证的 pillar**，决定论文能否 claim \"complexity-dependent advantage\"。\n\n**D008 Go/No-Go** 是项目命运节点。CLS v4 是 CLS 侧唯一活跃的 repo-level 实验。CWM 侧 9 次失败意味着如果 v10 也失败，可能需要 pivot：要么 claim \"CWM 在 repo-level 不可行本身就是 evidence\"（备选 B），要么 pivot 到 efficiency framing。\n\n**易错判断**：\n- 不要把 westd-48478 当成独立于 seetacloud 的第二台机器——它们是同一台，D041 已确认\n- CWM v6/v7 是平台级 SIGTERM 杀死（非代码 bug），但 v8/v9 是不同错误（v8 未知，v9 语法错误）——不要假设所有失败原因相同\n- CLS v4 日志路径是 `/tmp/repo-level-cls-v3_stdout.log`（v3 命名但实际是 v4 的日志，因为复用了提交命令）\n- seetacloud 上跑长训练要有 checkpoint-resume 策略，因为平台可能随时 kill\n- extra seed 实验（PREPARING）的前提是首次 seed 成功——如果 CWM 始终无法成功，cwm-seed123 永远不应提交\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778628473.md"
+}

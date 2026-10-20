@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8d4a419286568bd8ae6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose ds s456 e3 eval check",
+  "task_key": "worker_diagnose_ds-s456-e3-eval-check_20260521T135223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_ds-s456-e3-eval-check_20260521T135223_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "aed748723963373a7d0cde89a694fc23cc156a97f69673220ddafd7d28f75f37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**DS s456 e3 eval 状态：正在运行，一切正常。**\n\nCron 误报——进程是刚启动不久的新实例：\n\n| 项目 | 详情 |\n|------|------|\n| **PID** | 63490（父 shell PID 63484） |\n| **GPU** | GPU 1, 29394 MiB / 32607 MiB, 85% util |\n| **启动时间** | 21:47:37（约 5 分钟前） |\n| **进度** | 68/9784 (0.7%), running_acc=69.1% |\n| **速度** | ~4 samples / 19s → 预计 ~9h 完成 |\n| **日志** | `/root/ds_s456_e3_eval_clean.log` |\n| **Sentinel** | 无（尚未完成，符合预期） |\n\nCron 检测不到是因为这是一个新启动的 eval 进程（可能之前的进程确实死了，被重新拉起），没有走标准的 sentinel 注册流程。\n\n**其他 3 个 GPU 进程状态：**\n\n| GPU | PID | 任务 | 显存 | Util |\n|-----|-----|------|------|------|\n| 0 | 4271 | `train_repo_cwm.py` Qwen3-8B s123 (resume from ckpt-3000) | 30544 MiB | 90% |\n| 2 | 28200 | `train_unified.py` deepseek-cwm-repo-s123-v2-resume (from ckpt-4209) | 20492 MiB | 97% |\n| 3 | 4561 | `train_repo_cwm.py` Qwen3-8B s456 (resume from ckpt-3000) | 25550 MiB | 96% |\n\n4 个 GPU 全部在正常工作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-ds-s456-e3-eval-check.md"
+}

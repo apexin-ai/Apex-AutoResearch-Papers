@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bef3c2efd1cdd6232ef",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_19_1778905563.md",
+  "task_key": "loop_19_1778905563",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_19_1778905563.md",
+    "occurrence": 1,
+    "bytes": 4351,
+    "sha256": "3cd218e0627ac45d8e6d522d5ca703a8fd087fc96474fcf0540105c9a0df8f87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: idle_timeout\nupdated: '2026-05-16T04:25:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3。home GPU 白名单: cuda:0\n- CWM 8B checkpoints 目录 `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/` 有 save_total_limit=5，checkpoint 会被自动删除，eval 前必须 `ls checkpoint-*` 确认实际存在\n- test eval 禁止 `--max_samples`，必须评完整 test set (n=9784) / val set (n=9335)\n- CWM 8B eval 用 `eval_repo_cwm.py`（不是 eval_repo_cls.py），必须统计 unparseable rate\n- 8B-8B 对比必须双方都用 val-best checkpoint\n- westd 用 conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要创建 venv\n\n### 2. 🖥️ 基础设施快照\n- **westd**: seetacloud-westd-4x5090, account=root, 工作目录=/home/sonny/exec-sim-repair-verifier\n  - Python: /root/miniconda3/bin/python3 (conda base)\n  - 8B 模型: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\n  - CWM 8B ckpts: /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/\n  - CLS 8B s42 resume ckpts: /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/\n  - CLS 8B seed123 ckpts: /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/ + backup /root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/\n  - 数据: /home/sonny/exec-sim-repair-verifier/data/swebench_full (train=70748, val=9335, test=9784)\n- **home**: home-1x5090, account=sonny, 工作目录=/home/sonny/exec-sim-repair-verifier\n  - 4B ckpts: /home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/\n  - home 版 eval 脚本不支持 --max_new_tokens\n- **活跃进程**: 无（全部已完成或失败）\n- **活跃 Worker**: worker_diagnose_repo-level-cwm-8b-conda-v5_20260516T002936（诊断 CWM 8B v5 失败原因，待回调）\n\n### 3. 📊 当前状态\n刚收到 CWM 8B v5 训练失败 CRON 回调。训练在 step 6198/6633 (93.4%) 被静默杀死，无 Traceback，最后几步耗时飙升 (12s→18s/it)。已完成：\n- 读日志确认无显式错误，疑似 OOM 或系统 kill\n- 派诊断 Worker SSH 查 dmesg/磁盘/最新 checkpoint\n- 更新 registry notes\n- 向 Director 汇报，请求批准确认可恢复后直接提交 v6 resume\n\n**Registry**:\n- DONE 138 个 (success 77, failed 36, killed 21, negative 4)\n- PREPARING 4 个: cls8b-s42-resume-ckpt3600-mutation, cls8b-s42-resume-ckpt3600-test, cls8b-s42-ckpt1000-test-mutation, cls8b-s42-resume-ckpt1000-test-mutation（均为 mutation-type breakdown，待 Director 决策 GPU 分配）\n\n**等待中**:\n- 诊断 Worker 回调 → 确认 root cause + 最新可用 checkpoint\n- Director 批准 v6 resume\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 返回 + 确认有可用 checkpoint (预计 ~ckpt-6000+) → 创建 repo-level-cwm-8b-conda-v6，resume 从最新 ckpt，提交到 westd cuda:2，剩余 ~400 steps (~1.5h)\n- 诊断 Worker 返回 + 磁盘满或 checkpoint 损坏 → 向 Director 报告，评估从更早 ckpt resume 的可行性\n- CWM 8B 训练最终完成 → 立即做 val sweep (找 val-best ckpt) → val-best 做 full test eval (n=9784) → 锁定 8B-8B gap\n- Director 批准 cuda:0/1 分配 → 提交 4 个 PREPARING 的 mutation-type breakdown 实验\n- cls8b-s42-ckpt3600-seq2048-ablation 也失败了（同一\"静默杀死\"模式），可能同一 root cause，诊断 Worker 结果可能一并解释\n\n### 5. 🎯 战略上下文\n- **核心方向**: Task reformulation — execution simulation (CWM) → classification (CLS)。核心假设：CLS 在 repo-level 代码上优势巨大\n- **论文阶段**: Paper Writing，EMNLP 2026 ARR May 25 DDL（剩 10 天）\n- **主表数字已锁定**: CLS 8B s42 test=84.48% (ckpt-3600), CLS 8B seed123 test=85.60% (ckpt-3000), CLS 4B test=83.63%, CWM 4B s42=58.04%, CWM 4B seed123=59.09%, Majority=72.96%\n- **唯一缺失**: CWM 8B test 数字。训练 93% 完成被 kill，这是论文最后一块拼图\n- **易错点**: CWM 8B eval_loss 持续上升 (step 400=0.286 → 4300=0.482)，过拟合严重。eval_loss-best ≠ downstream-best（ckpt-400 running_acc 仅 64.8%，低于 majority）。做 val sweep 时不能只看 eval_loss，必须跑 downstream accuracy\n- **近期 westd 不稳定**: 3 个实验连续失败（v5 静默杀死、ablation 静默杀死、eval OOM），可能是服务器内存压力。v6 提交前确认服务器状态正常\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-1778905563.md"
+}

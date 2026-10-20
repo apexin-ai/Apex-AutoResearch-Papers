@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "baa3e6ff4e2b4d8ca5f2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh check cwm v6 eval strategy",
+  "task_key": "worker_ssh_check-cwm-v6-eval-strategy_20260512T201322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-cwm-v6-eval-strategy_20260512T201322_result.json",
+    "occurrence": 1,
+    "bytes": 2011,
+    "sha256": "a126bb52a6c7a35520f69140905adb269c07c7fd4da725de4912ab15560277c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### 1. eval_strategy / save_strategy 对比\n\n```python\n# train_repo_cwm.py 的 TrainingArguments (非 dryrun 模式)\n\"eval_strategy\": \"steps\",\n\"save_strategy\": \"steps\",\n\"save_steps\": 500,\n# eval_steps: 未显式设置 → 默认跟随 logging_steps = 50\n```\n\n**策略匹配**，都是 `\"steps\"`。不存在 CLS 脚本那种 eval=\"epoch\" + save=\"steps\" 导致 Trainer 静默覆盖的 bug。\n\n### 2. Checkpoint 目录为空 — 但原因不是 bug\n\n```\n/root/autodl-tmp/checkpoints_repo_cwm_v6/  →  空（仅 . 和 ..）\n```\n\n**这是预期行为。** 实际训练进度远低于表面看到的：\n\n- `tail` 看到的 `3691/9335` 是**正在运行的 eval 进度条**（9335 个 eval 样本），不是训练进度\n- 训练的真实进度：**约 step 200 / 6633**（仅 ~3%）\n- `save_steps=500`，第一个 checkpoint 还没到\n\n日志中的 eval 记录：\n- step 100: eval_loss=0.6099（耗时 752s）\n- step 150: eval_loss=0.4333（耗时 752s）\n\n### 3. 严重性能问题\n\n`eval_steps` 未显式设置，默认跟随 `logging_steps=50`。每次 eval 耗时 **~12.5 分钟**（9335 eval 样本）。\n\n| 指标 | 值 |\n|------|-----|\n| 训练总步数 | 6633 |\n| eval 频率 | 每 50 步 |\n| eval 次数 | ~133 次 |\n| 每次 eval 耗时 | ~12.5 min |\n| eval 总耗时 | **~27.7 小时** |\n| 训练总耗时 | ~14.7 小时 |\n| 预估总时间 | **~42 小时** |\n| 训练占比 | ~35%（65% 时间在 eval） |\n\n进程运行 56 分钟，实际只训练了 ~200 步（3%）。\n\n### 4. 结论\n\n- **无 CLS 同款 bug**，eval_strategy 和 save_strategy 都是 \"steps\"，checkpoint 不会被静默跳过\n- **checkpoint 为空是因为还没到 step 500**，不是全损风险\n- **但有严重效率问题**：eval 每 50 步触发一次（应该和 save_steps 一样设 500），导致训练时间从 ~15h 膨胀到 ~42h，约 65% 的 GPU 时间浪费在 eval 上\n- PID 84887 正在运行，未做任何修改"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-cwm-v6-eval-strategy.md"
+}

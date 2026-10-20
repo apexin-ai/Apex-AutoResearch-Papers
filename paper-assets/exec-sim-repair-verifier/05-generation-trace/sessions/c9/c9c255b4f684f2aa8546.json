@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9c255b4f684f2aa8546",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix home eval hang and resume",
+  "task_key": "worker_fix_home-eval-hang-and-resume_20260514T172705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_home-eval-hang-and-resume_20260514T172705_result.json",
+    "occurrence": 1,
+    "bytes": 1194,
+    "sha256": "88de2f2260854d450ec0e036bf1826c1774312f8a52b9521c7b7698a3ab57298"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8B eval 正常运行中，批次 0-8 已完成（~30s），每批 1-5s。无挂起。\n\n**执行汇总：**\n\n| 步骤 | 状态 | 说明 |\n|------|------|------|\n| Kill PID 3145070 | ✅ | SIGTERM 成功，GPU 已释放 |\n| 修复 eval_repo_cls.py (home) | ✅ | L201: `max_new_tokens=8` → `512` |\n| eval_repo_cwm.py | ✅ 无需修改 | 已有 `--max_new_tokens=1024` CLI 参数 |\n| 同步修复到 westd | ✅ | `/root/exec-sim-repair-verifier/eval_repo_cls.py` L144: `8` → `512` |\n| 8B ckpt-3000 val@5120 重跑 | 🔄 运行中 | tmux `eval_8b_val5120_fix`，~9335 样本 |\n| 4B seed123 ckpt-400/600/800 | ⏳ 排队 | 8B 完成后自动开始 |\n| 4B v5 ckpt-600/4000/4400/4600 | ⏳ 排队 | seed123 完成后自动开始 |\n\n**注意事项：**\n- 已有 6664 行部分结果无 resume 支持，全量重跑（脚本 overwrite）\n- 4B 模型用 HF hub `Qwen/Qwen3-4B`（本地已缓存）\n- 8B 模型路径 `/home/sonny/projects/verifier-tts-struct-ie/models/Qwen3-8B`\n- 项目非 git repo，westd 修复通过直接 sed 完成\n- 8B batch_size 降至 8（8B 模型 + 5120 seq_length VRAM 更紧张）\n- 估计 8B ~60min，每个 4B ~15min，全部 ~2.5h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-home-eval-hang-and-resume.md"
+}

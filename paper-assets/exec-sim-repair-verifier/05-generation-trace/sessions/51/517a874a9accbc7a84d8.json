@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "517a874a9accbc7a84d8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper status review loop20",
+  "task_key": "worker_paper_status-review-loop20_20260516T011434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_status-review-loop20_20260516T011434_result.json",
+    "occurrence": 1,
+    "bytes": 4244,
+    "sha256": "bc2a17810d366e77303b447c640432e25f8df0f6e76f4ed5a77a4afe3a69fbe4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 论文完成度审查报告\n\n---\n\n### 1. abstract.tex — **95%**\n- 完整，包含所有关键数字和 narrative\n- 数字核对通过：25.59pp, 58.04%, 83.63%, 72.96%, 53.7–67.2%, 42–43%, TOST p=0.007\n- 无 TODO/placeholder\n\n### 2. introduction.tex — **95%**\n- 完整的三段式 narrative + 三个 contribution bullets\n- 数字一致：1.24pp (5-seed) / 1.18pp (3-seed matched) 两个数分别使用正确\n- 所有引用存在于 bib 中\n- 无 TODO/placeholder\n\n### 3. method.tex — **95%**\n- 三种 formulation 定义完整，公式 (1)–(3) 就位\n- CWM failure mode 分析详尽\n- Oracle framework 含 ICC block-correlation model\n- 无 TODO/placeholder\n\n### 4. experiments.tex — **90%**\n- 5 个 subsection + Analysis 全部有实质内容，7 个 analysis paragraph (a–g)\n- 3 个表格 (main_results, scaling, repo_level) 数据完整\n- **主要缺口：CWM 8B 行为 \"---\"（in progress）**，Table 3 caption 已标注\n- 数字核对：\n\n| 指标 | 用户提供 | 论文中 | 状态 |\n|------|---------|--------|------|\n| CLS 8B s42 test | 84.48% | 84.48% | ✓ |\n| CLS 8B s123 test | 85.60% | 85.60% | ✓ |\n| CLS 4B s42 test | 83.63% | 83.63% | ✓ |\n| CLS 8B s42 ckpt-1000 test | 83.52% | 83.52% (seq-len ablation) | ✓ |\n| CWM 4B s42 test | 58.04% | 58.04% | ✓ |\n| CWM 4B s123 test | 59.09% | 59.09% | ✓ |\n| Majority test | 72.96% | 72.96% | ✓ |\n| TOST p-value | 0.007 | 0.007 | ✓ |\n| Multi-seed gap (mean) | **25.99pp** | **25.59pp** | **⚠️ 不匹配** |\n| CWM 8B | pending | --- | ✓ (已标注) |\n| Majority val | 75.88% | 未报告 | — 正常，论文只报 test |\n| Val numbers (90.28%, 88.23%, etc.) | 用户提供 | 未报告 | — 正常 |\n\n**数字问题**：论文中统一使用 25.59pp（CLS 4B s42 83.63% − CWM 4B s42 58.04%，单 seed 同 size 对比）。用户提供的 25.99pp (mean) 在论文中无对应。需确认：这个 mean 是否应替换 25.59pp，还是用户侧的计算口径不同。\n\n### 5. related_work.tex — **95%**\n- 5 个 paragraph 结构清晰，覆盖 execution simulation / verification / learned verifiers / APR / NLP formulation\n- 每段末尾有定位声明\n- 无 TODO/placeholder\n\n### 6. conclusion.tex — **95%**\n- 完整总结 + Limitations + Future work\n- Limitations 显式提到 CWM 8B 未完成、单 seed repo-level 等\n- 无 TODO/placeholder\n\n### 7. appendix.tex — **85%**\n- Oracle 分析表 + 图就位\n- 三项 ablation (LoRA rank, majority voting, seq-length) 完整\n- **潜在补充**：缺 hyperparameter 详表（learning rate, batch size, epoch 数, LoRA config 等完整列表）——ARR 审稿人可能会要求\n\n### 8. references.bib — **90%**\n- 22 条，均有完整字段\n- 部分条目 author 用 \"others\" 省略（chen2021humaneval, austin2021mbpp, qwen2025qwen3）——ARR 提交可接受\n- 无 incomplete/dangling 条目\n\n### 9. Figures — **100%**\n三个引用的图全部存在于 `artifacts/figures/paper/`：\n- `fig1_reformulation.pdf` ✓\n- `fig2_scaling_gap.pdf` ✓\n- `fig3_oracle_stratified.pdf` ✓\n\n### 10. 格式检查\n- `\\usepackage[review]{acl}` — anonymous review mode ✓\n- `acl.sty` + `acl_natbib.bst` 就位 ✓\n- `main.pdf` 已编译存在 ✓\n- 零 TODO/FIXME/placeholder/`\\textcolor{red}` ✓\n\n---\n\n## 论文整体完成度：**~92%**\n\n## 提交前 Critical Path\n\n| 优先级 | 事项 | 阻塞性 |\n|--------|------|--------|\n| **P0** | CWM 8B eval 完成 → 填入 Table 3 + 更新 abstract/intro/conclusion 中的相关讨论 | 高——如果赶不上 deadline，当前 \"in progress\" 表述可提交但削弱论文 |\n| **P0** | 确认 25.59pp vs 25.99pp 口径——如果 25.99 是正确的 multi-seed mean，需更新 abstract、intro、experiments、conclusion 中全部 5 处 | 高——数字一致性 |\n| **P1** | Appendix 补 hyperparameter 完整表（training config: lr, batch, warmup, LoRA rank/alpha, max_seq_len, epochs per formulation×size） | 中——reviewer 常要求 |\n| **P2** | 最终编译确认 PDF 页数在 EMNLP 8 页限制内（不含 references + appendix） | 中 |\n| **P2** | bib 条目 author 补全（去掉 \"others\"） | 低——不影响审稿 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-status-review-loop20.md"
+}

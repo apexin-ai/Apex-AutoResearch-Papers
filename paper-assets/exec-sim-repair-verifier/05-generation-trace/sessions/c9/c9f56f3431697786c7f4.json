@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "c9f56f3431697786c7f4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra read seed123 submit seed456",
+  "task_key": "worker_infra_read-seed123-submit-seed456_20260512T070033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_read-seed123-submit-seed456_20260512T070033_result.json",
+    "occurrence": 1,
+    "bytes": 1856,
+    "sha256": "59cec1c3a5eb2dd99d584eaed9b526977857d54ff7f4bfd70d928cd46033561e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval_traj_seed123.json\n\n```json\n{\n  \"test_set_size\": 1032,\n  \"class_balance\": {\n    \"resolved\": 479,\n    \"unresolved\": 553,\n    \"resolved_pct\": 46.4\n  },\n  \"majority_baseline_accuracy\": 53.59,\n  \"overall_accuracy\": 85.47,\n  \"accuracy_vs_baseline_gap_pp\": 31.88,\n  \"per_class\": {\n    \"unresolved\": {\n      \"precision\": 83.53,\n      \"recall\": 90.78,\n      \"f1\": 87.0,\n      \"support\": 553\n    },\n    \"resolved\": {\n      \"precision\": 88.17,\n      \"recall\": 79.33,\n      \"f1\": 83.52,\n      \"support\": 479\n    }\n  },\n  \"confusion_matrix\": {\n    \"tn\": 502,\n    \"fp\": 51,\n    \"fn\": 99,\n    \"tp\": 380\n  },\n  \"unparseable_predictions\": 0,\n  \"per_test_consistency\": {\n    \"n_compared\": 1032,\n    \"n_consistent\": 811,\n    \"consistency_rate\": 78.59\n  }\n}\n```\n\n## seed456 提交状态\n\n已提交，tmux session `traj-level-seed456` 运行中（PID 2489224）。日志显示已加载 tokenizer 和数据集（train=8052, val=1001），训练正常启动。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "test_set_size": 1032,
+              "class_balance": {
+                "resolved": 479,
+                "unresolved": 553,
+                "resolved_pct": 46.4
+              },
+              "majority_baseline_accuracy": 53.59,
+              "overall_accuracy": 85.47,
+              "accuracy_vs_baseline_gap_pp": 31.88,
+              "per_class": {
+                "unresolved": {
+                  "precision": 83.53,
+                  "recall": 90.78,
+                  "f1": 87.0,
+                  "support": 553
+                },
+                "resolved": {
+                  "precision": 88.17,
+                  "recall": 79.33,
+                  "f1": 83.52,
+                  "support": 479
+                }
+              },
+              "confusion_matrix": {
+                "tn": 502,
+                "fp": 51,
+                "fn": 99,
+                "tp": 380
+              },
+              "unparseable_predictions": 0,
+              "per_test_consistency": {
+                "n_compared": 1032,
+                "n_consistent": 811,
+                "consistency_rate": 78.59
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-read-seed123-submit-seed456.md"
+}

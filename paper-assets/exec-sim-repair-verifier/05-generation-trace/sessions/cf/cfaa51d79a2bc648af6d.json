@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfaa51d79a2bc648af6d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra kill scp and zstd transfer",
+  "task_key": "worker_infra_kill-scp-and-zstd-transfer_20260519T133903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-scp-and-zstd-transfer_20260519T133903_result.json",
+    "occurrence": 1,
+    "bytes": 947,
+    "sha256": "9a78f54ebdf861ffd941e5aacce249cdac40626547c3501636f7463ba26a1980"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**Step 1: Kill 旧 SCP** — 进程 834522/834554/834614/834630/834640 已不存在（之前已退出），无残留 scp 写 swebench 文件。\n\n**Step 2: zstd 压缩传输** — home 上 zstd -19 压缩后 train 394MB→3.2MB, val 63MB→351KB，通过 SCP（home→seetacloud:48478）传输并解压到 `/home/sonny/exec-sim-repair-verifier/data/`。\n\n**Step 3: 验证通过** ✓\n\n| 文件 | 预期 | 实际 | 位置 |\n|------|------|------|------|\n| swebench_train.jsonl | 70,748 | 70,748 | `data/swebench_train.jsonl` |\n| swebench_val.jsonl | 9,335 | 9,335 | `data/swebench_val.jsonl` |\n| swebench_test.jsonl | 9,784 | 9,784 | `data/swebench_full/swebench_test.jsonl` |\n| swebench_pilot_data.jsonl | 89,867 | 89,867 | `data/swebench_full/swebench_pilot_data.jsonl` |\n\n注意：test 和 pilot_data 在 `swebench_full/` 子目录下，不在顶层 `data/`。两端临时文件已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-scp-and-zstd-transfer.md"
+}

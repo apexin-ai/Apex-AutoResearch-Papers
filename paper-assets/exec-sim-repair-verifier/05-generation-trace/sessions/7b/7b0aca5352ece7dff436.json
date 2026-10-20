@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b0aca5352ece7dff436",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval home 8b ckpt3000 test and seed123 val",
+  "task_key": "worker_eval_home-8b-ckpt3000-test-and-seed123-val_20260514T201854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_home-8b-ckpt3000-test-and-seed123-val_20260514T201854_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "3a9a631aaa416d3d37039790aa606fec37376a614dbfeb4340ac2a18ecac185c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前进度汇总：**\n\n1. **seed123 ckpt-400 val@5120** ✅ 已完成 — accuracy 86.01%, F1_macro 79.66%\n2. **8B ckpt-3000** ✅ 在 home 上找到 — `checkpoints_repo_cls_8b_westd/checkpoint-3000`\n3. **seed123 ckpt-600 val@5120** 🔄 正在运行（PID 3165829, 25% 进度）\n4. **8B ckpt-3000 test eval** ⏳ 排队等 GPU 空闲\n\n已设置每 ~4.5 分钟轮询。ckpt-600 结束后立即提交 8B ckpt-3000 test eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-home-8b-ckpt3000-test-and-seed123-val.md"
+}

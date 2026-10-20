@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ac174cd0b8d10e1974e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "d153 gpu2 cls8b s456 train",
+  "task_key": "worker_d153-gpu2-cls8b-s456-train_20260519T114225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_d153-gpu2-cls8b-s456-train_20260519T114225_result.json",
+    "occurrence": 1,
+    "bytes": 392,
+    "sha256": "2e8779aeba3325562932d7df3ba0e55446f13c58f0d26387a264836420cd94ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交并注册完成。\n\n| 项目 | 值 |\n|---|---|\n| exp_id | `cls8b-repo-s456-train` |\n| PID | 825031 |\n| GPU | cuda:2 (seetacloud-westd-4x5090) |\n| 配置 | Qwen3-8B, bf16, LoRA r16, bs1×ga32, 3 epochs, seed 456 |\n| output_dir | `/root/autodl-tmp/checkpoints_repo_cls_8b_s456/` |\n| 状态 | RUNNING |\n\n预计约 4 小时完成，cron 会自动监控。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/d153-gpu2-cls8b-s456-train.md"
+}

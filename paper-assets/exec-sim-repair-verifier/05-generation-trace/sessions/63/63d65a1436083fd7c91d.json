@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "63d65a1436083fd7c91d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "eval cwm v11 ckpt600 urgent",
+  "task_key": "worker_eval_cwm-v11-ckpt600-urgent_20260513T170905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cwm-v11-ckpt600-urgent_20260513T170905.log",
+    "occurrence": 1,
+    "bytes": 1149825,
+    "sha256": "5f4a776271119c1ab0a1144d79fcd3d83762c7196f7e2ea7021e1b92095d4e73"
+  },
+  "statistics": {
+    "messages": 900,
+    "user_turns": 1,
+    "tool_calls": 379,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 134,
+      "tool_call": 379,
+      "tool_result": 379,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 832,
+      "chunks": [
+        {
+          "path": "63d65a1436083fd7c91d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "63d65a1436083fd7c91d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "63d65a1436083fd7c91d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "63d65a1436083fd7c91d-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "63d65a1436083fd7c91d-part-0005.json",
+          "message_count": 112
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 68,
+      "chunks": [
+        {
+          "path": "63d65a1436083fd7c91d-part-0005.json",
+          "message_count": 68
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-cwm-v11-ckpt600-urgent.md"
+}

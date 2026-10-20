@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f078337cc91160a21c2f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "analysis tost margin sweep c1",
+  "task_key": "worker_analysis_tost-margin-sweep-c1_20260519T084746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tost-margin-sweep-c1_20260519T084746.log",
+    "occurrence": 1,
+    "bytes": 594267,
+    "sha256": "47cc3a85801c5279e5d4e97ed4f12c12d117475146c80b0f2e63e935ce8e5a23"
+  },
+  "statistics": {
+    "messages": 206,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 206,
+      "chunks": [
+        {
+          "path": "f078337cc91160a21c2f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f078337cc91160a21c2f-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-tost-margin-sweep-c1.md"
+}

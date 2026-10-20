@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d23f01c0ec755c748c1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops gpu cleanup check",
+  "task_key": "worker_ops_gpu-cleanup-check_20260523T165649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-cleanup-check_20260523T165649_result.json",
+    "occurrence": 1,
+    "bytes": 1554,
+    "sha256": "2143b3a6eebb5389d0079504cd177be119c8f02b2bff7f62564e256e6a76e14c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 残留进程报告\n\n### GPU 状态\n\n| GPU | 显存占用 | GPU-Util | 温度 | 进程 |\n|-----|---------|----------|------|------|\n| cuda:0 | 17013 / 32607 MiB (52%) | 48% | 54°C | PID 278348 |\n| cuda:1 | 17011 / 32607 MiB (52%) | 49% | 54°C | PID 278746 |\n| cuda:2 | **0 / 32607 MiB (空闲)** | 0% | 31°C | 无 |\n| cuda:3 | 26485 / 32607 MiB (81%) | 92% | 65°C | PID 272025 |\n\n### 残留进程详情\n\n| PID | GPU | 显存 | 运行时间 | 命令 |\n|-----|-----|------|---------|------|\n| 272025 | cuda:3 | 26476 MiB | **6h30m** | `eval_repo_cwm.py` — ckpt-6100 (conda), batch_size=8, test split |\n| 278348 | cuda:0 | 17004 MiB | **5h37m** | `eval_repo_cwm.py` — s123/ckpt-300 reeval, batch_size=1 |\n| 278746 | cuda:1 | 17002 MiB | **5h36m** | `eval_repo_cwm.py` — s456/ckpt-300 reeval, batch_size=1 |\n\n所有进程工作目录均为 `/home/sonny/exec-sim-repair-verifier`，CPU 占用均 100%，说明仍在**活跃运行**中。\n\n### tmux\n\n有一个 `default` session 存在。\n\n### 磁盘\n\n| 挂载点 | 总容量 | 已用 | 可用 | 使用率 |\n|--------|-------|------|------|--------|\n| / | 30G | 22G | 8.5G | **72%** |\n\n评估结果输出目录已产生约 20MB 数据。\n\n### 结论\n\n3 个进程全部是 `eval_repo_cwm.py` 评估任务，均在活跃运行（GPU-Util 48-92%），**不是残留僵尸进程**。cuda:2 空闲可用。\n\n- 如果这些评估是你有意启动的 → 不需要清理，等它们跑完\n- 如果不需要了 → 告诉我，我来 kill 对应 PID"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-cleanup-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76f9cdb10a546985c243",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cwm eval bs8 restart",
+  "task_key": "worker_ops_cwm-eval-bs8-restart_20260523T201219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm-eval-bs8-restart_20260523T201219_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "df295916fa771c577cf92fab52fae042bc9b50162291266afa4a1348c3371396"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Step 5: 汇报**\n\n| 项目 | s456 (cuda:0) | s123 (cuda:2) |\n|------|--------------|--------------|\n| PID | 309505 | 309866 |\n| 断点续传 | 跳过 1306 已完成，从 1312/9784 续传 | 跳过 1162 已完成，从 1168/9784 续传 |\n| incremental 行数 | 1320 | 1168 |\n| 显存占用 | 21124 MiB / 32607 MiB | 21252 MiB / 32607 MiB |\n| GPU 利用率 | 88% | 88% |\n\n**断点续传正常**，两个进程都正确跳过了之前 bs=1 已完成的样本。\n\n**ETA 估算**：\n- s456：剩余 9784 - 1320 = 8464 样本，bs=8 约每 48s 处理 8 样本，约 **14.1 小时**\n- s123：剩余 9784 - 1168 = 8616 样本，同速约 **14.4 小时**\n- 预计完成时间：约 5/24 18:30（UTC+8）\n\nGPU 3 上的 ckpt6100 test eval（PID 272025）不受影响，继续运行。GPU 1 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cwm-eval-bs8-restart.md"
+}

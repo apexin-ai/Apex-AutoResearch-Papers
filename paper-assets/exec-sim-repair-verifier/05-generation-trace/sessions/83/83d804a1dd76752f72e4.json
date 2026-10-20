@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83d804a1dd76752f72e4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code val sweep compilation script",
+  "task_key": "worker_code_val-sweep-compilation-script_20260515T163904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_val-sweep-compilation-script_20260515T163904_result.json",
+    "occurrence": 1,
+    "bytes": 670,
+    "sha256": "d692528c4c603eb7cdbe8047e9ea9228f4887cb9c6fb21735e40fd4d8d4cf19a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本工作正常。结果汇总：\n\n- **已完成**：9 个 checkpoint（8 个来自之前 sweep@seq8192，1 个来自当前 sweep@seq2048）\n- **缺失**：20 个 checkpoint（2000-5800，sweep 正在进行中）\n- **当前 Top-1**：ckpt-1000 88.23%（seq8192）\n- **ckpt-1800**（首个 seq2048 结果）：82.99% — 注意 seq_length 从 8192 降到 2048 会影响精度，两段数据不完全可比\n\nCSV、PDF/PNG 曲线图已生成。图表中用不同 marker 区分了 seq8192（方块）和 seq2048（圆点）两段数据，并用虚线桥接。\n\n当前 sweep 刚跑完第 1 个 checkpoint（1800/21），剩余 20 个还在排队。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-val-sweep-compilation-script.md"
+}

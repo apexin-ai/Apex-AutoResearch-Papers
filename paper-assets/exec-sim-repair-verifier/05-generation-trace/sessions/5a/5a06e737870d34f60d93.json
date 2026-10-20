@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a06e737870d34f60d93",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cls repo cuda0 fix",
+  "task_key": "worker_ops_cls-repo-cuda0-fix_20260516T184047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cls-repo-cuda0-fix_20260516T184047_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "1ea62ca8b5fc0b21d882b0f641d08262eb11d8072d74b174b430254a88e2f45c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练成功启动。\n\n## 汇报\n\n| 项目 | 状态 |\n|------|------|\n| **训练启动** | 成功 |\n| **GPU 0** | 89% 利用率, 19427 MiB 显存 |\n| **PID** | 548885 |\n| **tmux session** | `cls-repo-v4` |\n| **模型** | deepseek-coder-6.7b-instruct (6.76B params, LoRA 16.7M trainable, 0.25%) |\n| **总步数** | 6633 steps (3 epochs) |\n| **日志** | `~/runs/exec-sim-repair-verifier/deepseek-cls-repo-v4.log` |\n\n**train_unified.py 支持的关键参数：**\n- `--model_name_or_path`, `--data_dir`, `--task {cls,cwm}`, `--output_dir`\n- `--train_file`, `--val_file` (覆盖默认文件名)\n- `--epochs`, `--seed`, `--batch_size`, `--grad_accumulation`, `--lr`, `--warmup_ratio`\n- `--max_seq_length`, `--max_steps`\n- `--lora_rank`, `--lora_alpha`, `--lora_dropout`\n- `--wandb_project`, `--run_name`, `--no_wandb`\n- `--resume_from_checkpoint` (支持，可以用)\n\n另外清理了旧的 v3 残留进程（之前占 GPU 0 但未释放）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cls-repo-cuda0-fix.md"
+}

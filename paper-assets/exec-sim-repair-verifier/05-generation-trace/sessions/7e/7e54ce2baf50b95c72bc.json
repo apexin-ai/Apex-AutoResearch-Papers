@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e54ce2baf50b95c72bc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "reviewer / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_3.md",
+    "occurrence": 1,
+    "bytes": 4208,
+    "sha256": "ad7cc5830d6335593dc4f9a768cdbbf3f30ff10869664f11f522772690bf17f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-12T19:42:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `[cuda:0, cuda:1, cuda:2, cuda:3]`（seetacloud 4x5090），home 只有 cuda:0\n- seetacloud 账号 `root`，home/westd 账号 `sonny`——搞反会 SSH 失败\n- seetacloud 有 cgroup memory.max = 360GB（`free -h` 显示 754GB 是宿主机，不可信），历史上导致多次 SIGKILL\n- D024：禁止 kill 正常运行的训练进程。之前 prep worker 违反过（kill 了 v4 CWM PID 77816 at step 386）\n- CWM repo-level 已连续失败 7 次（v1-v6 + v4 被 kill），第 8 次（当前 v6 重提交）正在跑。对 CWM 的任何操作要极度谨慎\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090** (root): 工作目录 `/home/sonny/exec-sim-repair-verifier`，Python `/root/miniconda3/bin/python`，conda base\n  - 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B` (4B) / `Qwen3-8B` (8B)\n  - HF cache：`/root/autodl-tmp/.hf_cache`\n  - 活跃进程：CWM v6 训练 PID 84887, tmux=repo-level-cwm-v6, cuda:2, ~8s/step, 6633 总步\n  - Checkpoint 路径：`/root/autodl-tmp/checkpoints_repo_cwm_v6/`\n  - 日志：`~/runs/exec-sim-repair-verifier/repo-level-cwm-v6.log`\n- **home-1x5090** (sonny): 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - 活跃进程：CLS home PID 2840844, tmux=repo-level-cls-home, cuda:0, ~6.5s/step, 6633 总步\n  - Checkpoint 路径：`/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`\n  - 日志：`~/runs/exec-sim-repair-verifier/repo-level-cls-home.log`\n  - 评估脚本已就绪：`eval_repo_level.py` + `paired_bootstrap_repo.py`\n- **westd-48478** (sonny): SSH 间歇性不可用，不可靠\n\n### 3. 📊 当前状态\n刚完成一轮全面核实：CWM v6 和 CLS home 两条训练线均在正常推进。\n\n| 实验 | 状态 | 进度 | ETA (UTC) |\n|------|------|------|-----------|\n| repo-level-cls-home | RUNNING | step 1076/6633 (16%) | ~13:30 May 13 |\n| repo-level-cwm-v6 | PREPARING→实际 RUNNING | step 10/6633 (0.2%) | ~18:20 May 13 |\n\n**已报告的问题**：\n- CWM v6 registry 仍为 PREPARING，缺 gpu/pid/log_path 字段（warning）\n- Worker 声称 save_steps=50 但服务器实际 500（info，已报告）\n- CWM v6 val 截断率 20.2%（info）\n- Error overlap 脚本 bug：oracle_gain_over_cwm=30.05 应为 2.79（info）\n\n**等待中**：无待处理 worker 回调。等 Director 回应或训练完成通知。\n\n### 4. 📋 待办（条件触发式）\n- CLS home 训练完成（~13:30 UTC）→ 独立核实 checkpoint 存在 + 验证 eval 命令可执行\n- CWM v6 训练完成（~18:20 UTC）→ 核实 checkpoint、验证 registry 更新、检查 CWM checkpoint 是否需拷贝到 home\n- CLS/CWM 双方 eval 结果出来 → 独立核实 paired_bootstrap_repo.py 结果，验证 D008 Go/No-Go 决策\n- D008 判定：gap≥3pp→确认 EMNLP Main 叙事成立；1-3pp→要求追加 seeds；<1pp→确认 kill C1\n- Director 转发 Paper Agent 章节或 framing 提案 → 按 §5/§6 审查\n- 任何新训练提交 → 检查 GPU 边界合规 + registry 追溯完整性\n- ROADMAP 更新通知 → 审查实验覆盖度、GPU 预算\n\n### 5. 🎯 战略上下文\n- **核心假说**：Task Reformulation（CLS vs CWM），CLS 在规模扩展时优势更大。function-level 4B gap=1.25pp → 8B gap=2.42pp（已验证，p=0.0039）。repo-level 是 Pillar 1（Complexity-Dependent Advantage）的关键证据。\n- **D008 决策门**：repo-level gap 决定论文走向。≥3pp 全面推进，<1pp 砍 C1。\n- **易错点 1**：function-level 有两套数据——seed-level 简单平均（gap=2.42pp）和 per-instance clustered bootstrap（gap=2.26pp）。两者都用了正确值（89.37），方法不同导致数字不同，不是 bug。\n- **易错点 2**：seed123 的 89.52=4B accuracy，89.40=8B training eval，89.37=8B independent eval。三个值来源不同，容易混淆。\n- **易错点 3**：HuggingFace Trainer 的 logging_steps 进度条重置不等于 checkpoint save。之前我误判过一次（把 logging_steps=50 当成 save_steps=50）。\n- **易错点 4**：`free -h` 在 seetacloud 显示 754GB 是宿主机内存，容器实际限制 360GB（cgroup）。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-copy-3.md"
+}

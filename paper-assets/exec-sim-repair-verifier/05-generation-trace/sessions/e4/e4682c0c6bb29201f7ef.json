@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4682c0c6bb29201f7ef",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_3_1778615001.md",
+  "task_key": "loop_3_1778615001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778615001.md",
+    "occurrence": 1,
+    "bytes": 4866,
+    "sha256": "7796817a1fff4c1100027352e8bd8e01d651923de038b52c8c894299cb046741"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-12T19:23:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **seetacloud 禁止并行训练**：cgroup 360GB 限制，v3+v4 两次 OOM killer 确认。任何时候只能跑 **1 个训练进程**\n- **CWM 提交必须单 Worker**（D031）：7 次连续失败根因是多 Worker 并行提交互相干扰。CWM 在 seetacloud 的提交/修复只允许 1 个 Worker 负责全流程\n- **禁止杀正在训练的进程**（D024/D030）：Worker 未经审批杀死 CWM v4 step 386 导致 ~1h GPU 时间损失，被 Director CRITICAL\n- GPU 白名单：`cuda:0, cuda:1, cuda:2, cuda:3`（config 里的值），但 seetacloud 单进程限制意味着同时只能用 1 张卡\n- home 服务器工作目录：`/home/sonny/exec-sim-repair-verifier`；seetacloud 工作目录：`/home/sonny/exec-sim-repair-verifier`\n- `train_repo_cwm.py` 未同步到 home（ROADMAP 已知风险），如需 home 跑 CWM 要先 sync\n\n### 2. 🖥️ 基础设施快照\n- **home-1x5090**: 1× RTX 5090, 62GB RAM, 非容器。account=sonny, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - 模型：本地 Qwen3-4B（路径需 SSH 确认，可能在默认 HF cache）\n  - 活跃进程：repo-level-cls-home PID=2840844, tmux session, cron 监控中\n- **seetacloud-westd-4x5090**: 4× RTX 5090, cgroup 360GB RAM。account=root, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`\n  - 数据：`/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/` (70,748 samples)\n  - checkpoint 输出：`/root/autodl-tmp/checkpoints_repo_cwm_v6/`（CWM）; CLS 在 home `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`\n  - 当前无活跃训练进程（cwm-v6 进程已死）\n- **westd-48478**: 之前用过，v3 失败后未再使用\n- W&B: 当前 repo-level 实验都 `--no_wandb`（仅本地日志）\n- save_steps=50 已生效于 cls-home（D029 修复）\n\n### 3. 📊 当前状态\n- **repo-level-cls-home** (RUNNING): home-1x5090 cuda:0, step ~104/6633, ~7s/it, 预计还需 ~12h。cron 监控正常，save_steps=50 中间 checkpoint 在保存\n- **repo-level-cwm-v6** (PREPARING): seetacloud cuda:2。reconcile 发现\"Process gone, no sentinel, no W&B\"——v6 之前的一次提交已死。当前有 1 个 Worker `worker_ssh_fix-cwm-oom-v6` 正在运行，任务是修复 v5 OOM 问题（batch_size 2→1, grad_accum 16→32）并重新提交\n- **等待中**：\n  - Worker `worker_ssh_fix-cwm-oom-v6` 回调 → 确认 v6 是否成功提交\n  - repo-level-cls-home cron 回调 → 训练完成后进入 ANALYZING\n- Paper Agent Step 2 进行中（图表生成 + 模板下载），但无活跃 Worker 在做\n\n### 4. 📋 待办（条件触发式）\n- **Worker fix-cwm-oom-v6 回调到达** → 检查 v6 是否成功启动训练。成功则 update_registry(RUNNING) + 确认 cron 监控；失败则分析原因、考虑进一步修复（已是第 8 次尝试，根因要彻底）\n- **repo-level-cls-home cron 回调（~12h 后）** → spawn Worker 跑 eval（accuracy/F1/per-instance predictions），update_registry(ANALYZING→DONE)，与 CWM 对比（如 CWM 也完成）\n- **repo-level-cwm-v6 cron 回调（~20h 后，假设成功启动）** → 同上 eval 流程\n- **CLS + CWM 双完成** → spawn Worker 跑 paired bootstrap（repo-level gap），对标 D008 Go/No-Go：≥3pp 全力 EMNLP Main，1-3pp 加 seeds，<1pp kill C1\n- **Paper Agent Step 2 完成** → 推进 Step 3-5（Method/Experiments/Discussion 写作），但 repo-level 结果出来前 Results 章节 hold\n\n### 5. 🎯 战略上下文\n- **核心论文 story**: 函数级 CLS≈CWM（TOST 等价），但随复杂度/模型规模增大 gap 扩大。Repo-level 是证明 complexity-dependent advantage 的决胜战场。如果 repo-level gap < 1pp，Claim 1 被 kill，需要 pivot\n- **决策链关键节点**: D008 定义了 Go/No-Go 标准；D028 确认 seetacloud 不能并行；D031 确认 CWM 多次失败是 Worker 竞争导致\n- **CWM 是瓶颈**：7 次连续失败（OOM/SIGKILL/Worker 互杀），v6 是最新尝试。如果 v6 再失败，需要考虑：(1) 数据子采样减少内存 (2) 换 home 跑（但 train_repo_cwm.py 未同步）(3) gradient checkpointing\n- **时间线紧迫**: ARR May 25 ≈ 13 天。bottleneck 是 CWM ~20h 训练。CLS+CWM 完成后还需 eval+stats ~3h + paper patch ~1d + 终审 ~1d = 总计 ~4-5d。留给意外的 buffer 约 1 周\n- **易错点**:\n  - 不要把 cls8b-eval-seed123 的 3 个不一致 accuracy 值（89.52/89.40/89.37）混用，需统一到权威 checkpoint\n  - 8B gap 是 2.26pp（3-seed 修正），不是之前 handoff 的 2.42pp（2-seed）\n  - seetacloud `source /etc/network_turbo` 是下载依赖的前置条件\n  - seetacloud 用 conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不是 venv\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778615001.md"
+}

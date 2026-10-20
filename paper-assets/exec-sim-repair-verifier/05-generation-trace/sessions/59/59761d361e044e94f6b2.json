@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59761d361e044e94f6b2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code swebench fix criticals",
+  "task_key": "worker_code_swebench-fix-criticals_20260512T031825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_swebench-fix-criticals_20260512T031825_result.json",
+    "occurrence": 1,
+    "bytes": 1882,
+    "sha256": "f65084f91e0aa318a93ca26e81cf0f7145cefe4313d7e9671b5e1cb77c170bf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 修复结果\n\n### 4 个 Fix 的实现方式\n\n| Fix | 方案 | 结果 |\n|-----|------|------|\n| **P0-1 test=代码** | 对每个 instance，从 SWE-bench Docker image 启动容器，apply test_patch 后用 AST 提取测试函数体 | 1949/1953 (99.8%) 是代码 |\n| **P0-2 code+上下文** | 从容器读取被修改文件的 base 版本，解析 patch hunk header 的行号，截取 ±50 行拼接到 patch 后面 | 1953/1953 (100%) 有上下文 |\n| **P0-3 exec_output 噪声** | 用 SWE-bench eval 脚本自带的 `>>>>> Start/End Test Output` marker 截取，fallback 到 test framework marker 或尾部 2000 chars | 不再有 conda 噪声 |\n| **P0-4 F2P 平衡** | 新增 `balance_data()` + `--balance_strategy` 参数，默认 `upsample_f2p` 复制 F2P 到 20% | 2.4% → 20.0% |\n\n### 验证数据样本\n\n**Record 1** (django, gold, f2p, label=1):\n- `test`: `def test_validate_custom_error(self): ...` (629 chars 实际代码)\n- `code`: patch + `--- Modified File: django/contrib/postgres/constraints.py (lines 1-81) ---` 上下文\n- `execution_output`: `+ ./tests/runtests.py --verbosity 2 ...` (无 conda 噪声)\n\n**Record 2** (sympy, mutation_off_by_one, p2p, label=1):\n- `test`: `def test_issue_13651(): expr = c + Mul(-1, a + b, ...) ...` (121 chars 实际代码)\n- `code`: patch + `--- Modified File: sympy/printing/latex.py (lines 1427-1526) ---` 上下文\n- `execution_output`: `+ PYTHONWARNINGS=ignore ...` (无 conda 噪声)\n\n### 未提取到代码的 4 条记录\n\n4/1953 (0.2%) 是 django P2P 的一个特殊 test name `\"Partial unique constraints are not ignored by\"` — 它不是标准 `def test_xxx` 格式，AST 无法匹配。影响可忽略。\n\n### 新增 CLI 参数\n\n- `--mode dry_run|pilot|full` (替代原 `--dry_run`)\n- `--balance_strategy none|upsample_f2p|downsample_p2p|weighted` (默认 `upsample_f2p`)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-swebench-fix-criticals.md"
+}

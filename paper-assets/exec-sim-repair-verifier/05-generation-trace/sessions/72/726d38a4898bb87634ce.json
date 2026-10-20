@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "726d38a4898bb87634ce",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_5_1778631163.md",
+  "task_key": "loop_5_1778631163",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778631163.md",
+    "occurrence": 1,
+    "bytes": 2999,
+    "sha256": "61ca44a6809f38d047950e8d9e56a9c822b6ec611a26d91d8c255eee09e6d104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-13T00:12:00+00:00'\n---\n\n## 当前状态 (2026-05-13 ~00:15 UTC)\n\n### 正在跑的实验\n1. **repo-level-cls-v4** — home-1x5090 cuda:0, PID 2885139. Step 754/6633 (11.4%), loss=0.6798↓, eval_loss=0.1317. ETA ~11:30 UTC 5/13（约11小时后）。Cron 监控正常。\n2. **repo-level-cwm-v10** — seetacloud cuda:2, PID 105205. Step 300/6633 (4.5%), loss=4.80↓ (28.20→6.71→4.80). ETA ~02:30 UTC 5/14（约26小时后）。这是 CWM 的第10次迭代，从 v9 的 checkpoint-200 resume（确认是完整训练 max_steps=6633，非 dry-run）。Cron 监控正常。\n\n### 等待中\n- **repo-level-cwm-seed123** / **repo-level-cls-seed123** (PREPARING): Director 策略 D040（后撤回 D041：westd-48478 = seetacloud 同一台机器，不能并行开 extra seeds）。这两个等 CLS v4 或 CWM v10 完成+eval 通过后才能开跑。但 seetacloud cgroup 限制一次只能跑一个训练，所以实际上 extra seeds 要等 v10 结束。\n\n### 关键上下文\n- **核心假说**：complexity-dependent advantage——函数级 CLS≈CWM（TOST 等价 p=0.007），但 repo-level 复杂度增大后 CLS 应显著优于 CWM。这是 C1 claim 的决胜战场。\n- **Go/No-Go (D008)**：F1 diff ≥3pp → 全力 EMNLP Main；1-3pp → 加 seeds；<1pp → kill C1 pivot Plan B。\n- **DDL**：ARR May 25，剩~13天。CLS/CWM 并行训练 bottleneck ~26h (CWM)，然后 eval+stats ~3h，paper patch ~1d，终审 ~1d = ~4-5d 总计。\n- **Repo-level 迭代历史**：CWM 已迭代 v1-v10（v1-v2 代码 bug, v3 磁盘满, v4 CLI 参数, v5 save_strategy, v6 SIGTERM, v7 待诊断, v8 失败, v9 EXIT_CODE=2 语法错误, v10 从 v9 checkpoint resume）。CLS 迭代 v1-v4（v1 sample_weight bug, v2 DataCollator bug, v3 磁盘满, v4 当前在跑）。\n- **函数级数据已全部就绪**：4B 5-seed CLS/CWM paired，8B 3-seed，zero-shot baselines，oracle simulation，block-correlation 分析，per-test precision-recall 诊断——全部 DONE。\n- **Paper Agent** Step 2 进行中（图表生成+模板下载），但论文写作依赖 repo-level 结果。\n\n### 不要再试的事\n- seetacloud 上**不要并行训练**——cgroup 360GB RAM 限制会触发 OOM kill。\n- **不要用 nohup 提交训练**——必须用 `submit_training_job`，否则变 orphan 进程。\n- westd-48478 就是 seetacloud-westd-4x5090 同一台机器（D041 撤回了 D040）。\n- Repo-level CWM v10 的 checkpoint 在 `/root/autodl-tmp/checkpoints_repo_cwm_v9/`（沿用 v9 目录）。日志在 `/root/autodl-tmp/cwm_v9_train.log`。\n\n### 下一步你接手后要做的\n1. 等 CLS v4 完成（ETA ~11:30 UTC 5/13）→ cron 回调 → 跑 eval → 更新 registry。\n2. 等 CWM v10 完成（ETA ~02:30 UTC 5/14）→ cron 回调 → 跑 eval → 更新 registry。\n3. 两个都完成后做 paired bootstrap → Go/No-Go (D008)。\n4. 根据 D008 结果决定是否开 extra seeds（seed123）或 pivot。\n5. 向 Director 汇报时带 `[资源]` 行。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778631163.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42db6e4ec42315c49bb2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "status home check",
+  "task_key": "worker_status_home-check_20260514T121857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_home-check_20260514T121857_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "61adc4f5895941df367998d502714bd85dce578663537c687e22209598decf84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## val_4096 Eval 状态\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | 运行中 (tmux `val_4096`, PID 3083027, CPU 100%) |\n| **进度** | **4900/9335 (52.5%)** |\n| **running_acc** | **82.1%** |\n| **GPU** | cuda:0, 利用率 99%, 显存 10745/32607 MiB |\n| **启动时间** | 05:05 UTC, 已运行约 15 分钟 |\n| **增量保存** | `val_eval_results_4096/seed123_ckpt400/eval_repo_cls_predictions.jsonl` (933 KB) |\n\n从 28.8% → 52.5%，running_acc 从 82.4% 略降至 82.1%。batch 速度约 0.1s（短序列）到 0.9s（截断到 4096 的长序列），按当前速率预计还需约 13-15 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-home-check.md"
+}

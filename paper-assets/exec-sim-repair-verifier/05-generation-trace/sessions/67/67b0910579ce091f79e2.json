@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67b0910579ce091f79e2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_2_1778599925.md",
+  "task_key": "loop_2_1778599925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778599925.md",
+    "occurrence": 1,
+    "bytes": 4452,
+    "sha256": "884673c5c025582739a48f1d5ce9e280e2cc5f512c84bdb8335e8cbec7c9665d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-12T14:48:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **seetacloud GPU 白名单**: cuda:0/1/2/3。home-1x5090 只有 cuda:0。westd-48478 是 seetacloud 同一台机器的别名。\n- **根分区仅 3.6GB**（seetacloud）：所有 checkpoint/数据/HF cache 必须写 `/root/autodl-tmp/`，否则磁盘满崩训练。\n- **D024 硬性纪律**：禁止 Worker 杀死正在正常训练的进程来应用代码修改。\n- **repo-level 脚本有 sample_weight bug**（已知）：`train_repo_verifier.py` 和 `train_repo_cwm.py` 的 `compute_loss` 消费 `sample_weight` 但 Dataset 未生产。当前有 Worker 在修。\n- **ARR May 25 deadline，仅剩 13 天，零容错**。repo-level 是关键路径。\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090** (account: root)：4× RTX 5090，工作目录 `/home/sonny/exec-sim-repair-verifier`，Python `/root/miniconda3/bin/python`（conda base），HF cache `/root/autodl-tmp/.hf_cache`，模型 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B` (8B) / Qwen3-4B (4B)\n- **home-1x5090** (account: sonny)：1× RTX 5090，工作目录 `/home/sonny/exec-sim-repair-verifier`，Python `python3`（系统），模型 `/home/sonny/projects/verifier-tts-struct-ie/models/Qwen3-8B`\n- **活跃进程**：\n  - cwm8b-seed456: PID 47236, seetacloud cuda:2, tmux session, cron 监控中\n  - cls8b-seed456: PID 2810143, home cuda:0, tmux session, cron 监控中\n- **活跃 Worker**: `worker_code_fix-and-submit-repo-level-v2_20260512T144232`（正在修 sample_weight bug 并准备重提交 repo-level-cls-v2 / cwm-v2）\n\n### 3. 📊 当前状态\n- 35 个实验：31 DONE, 2 RUNNING, 2 PREPARING\n- **RUNNING**：cls8b-seed456 (home cuda:0, 8B CLS 第 3 seed) + cwm8b-seed456 (seetacloud cuda:2, 8B CWM 第 3 seed)——两者配对，完成后做 3-paired 8B scaling 分析\n- **PREPARING**：repo-level-cls-v2 + repo-level-cwm-v2——等 Worker 修完 bug 提交到 seetacloud cuda:0/3\n- **等待中**：\n  - Worker `fix-and-submit-repo-level-v2` 回调（修 sample_weight → 提交 repo-level v2）\n  - cls8b-seed456 cron 回调（home 机器）\n  - cwm8b-seed456 cron 回调（seetacloud）\n- **seetacloud cuda:1 空闲**——ROADMAP 标记待分配 error overlap 分析 / CWM per-instance predictions\n- **seetacloud cuda:3 空闲**——等 repo-level-cwm-v2 提交\n\n### 4. 📋 待办（条件触发式）\n- Worker `fix-and-submit-repo-level-v2` 完成 → 确认 repo-level-cls-v2 和 cwm-v2 已提交到 seetacloud cuda:0/3，update_registry → RUNNING\n- cls8b-seed456 cron 回调 → spawn Worker 提取 eval metrics，update_registry，与 seed42/123 合并做 3-paired 8B 分析\n- cwm8b-seed456 cron 回调 → 同上，完成后做 3-paired 8B CLS vs CWM scaling gap 统计（当前 2-seed gap 2.6pp）\n- **两个 8B seed456 都完成** → 3-seed paired bootstrap CI + TOST，验证 \"scaling widens gap\" claim\n- **repo-level cls-v2 + cwm-v2 都完成** → Pillar 1 go/no-go 决策：F1 diff ≥3pp → 全力 EMNLP Main；1-3pp → 加 seeds；<1pp → kill C1 pivot\n- **cuda:1 仍空闲** → 应派 Worker 做 error overlap 分析（CLS vs CWM per-instance predictions 对比）或 CWM per-class F1 breakdown——这是 Dream #5 行动项，零 GPU 成本的分析任务\n\n### 5. 🎯 战略上下文\n- **核心假说**：Classification > Generation 的优势是 complexity-dependent。函数级两者等价（TOST p=0.007），但 CLS 有 +1.25pp 优势（5-paired one-sided p=0.025），8B gap 扩大到 ~2.6pp。**Repo-level 是决胜战场**——如果 repo-level CLS F1 diff ≥3pp，story 成立；<1pp 则 Claim 1 被 kill。\n- **决策链**：D015(8B scaling 确认 gap 放大) → D016(批准 repo-level) → D021(Dream#5 审稿指出 related work/model diversity 不足) → D022/D023(5-paired 确认 +1.25pp) → D024(禁止杀进程)\n- **易错点**：\n  - 不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比（这是别的项目的教训但思维模式适用）\n  - repo-level 数据是 swebench_full（70748 条），不平衡 85/15，必须用 class weighting\n  - seetacloud 需要 `source /etc/network_turbo` + SSL 证书环境变量才能正常下载\n  - home 机器的 8B 模型路径和 seetacloud 不同（`/home/sonny/projects/...` vs `/root/autodl-tmp/.hf_cache/...`）\n  - 函数级 CWM ≈ CLS 是已确认 negative（D018 之后 reframe），不要再跑函数级对比实验浪费 GPU\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778599925.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fe609fd967fdd60bd13",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper figure fig2 scaling gap",
+  "task_key": "worker_paper_figure_fig2_scaling_gap_20260512T173608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_scaling_gap_20260512T173608_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "0818c08ac8c1af991c8984328fcfaf0911c0549e5e739d42ebbcf99495276184"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成并注册。输出文件：\n\n- PDF: `artifacts/figures/paper/fig2_scaling_gap.pdf` (26KB)\n- PNG: `artifacts/figures/paper/fig2_scaling_gap.png` (96KB, 300 DPI)\n- 生成脚本: `artifacts/figures/paper/gen_fig2.py`\n\n图表包含：两组 grouped bar (4B/8B)，CLS 蓝色 vs CWM 橙色，标准差 error bars，bracket 标注 Δ=1.24pp / 2.43pp，\"gap widens\" 虚线箭头，底部 zero-shot 参考值标注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-scaling-gap.md"
+}

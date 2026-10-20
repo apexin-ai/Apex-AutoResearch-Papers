@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4f63d2f47842fc5ed6b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check cls4b seed123 ckpt800 val5120 result",
+  "task_key": "worker_check_cls4b-seed123-ckpt800-val5120-result_20260514T222616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_cls4b-seed123-ckpt800-val5120-result_20260514T222616_result.json",
+    "occurrence": 1,
+    "bytes": 728,
+    "sha256": "398d86f0e71f2524c7d92ca6e2d854c0ae4f5e05ad0813f7aa426127ecc98089"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron，可能已在之前的 session 中删除或未创建。\n\n---\n\n**CLS 4B seed123 ckpt-800 val@5120 eval 结果（success）**\n\n| 指标 | 值 |\n|------|-----|\n| **accuracy** | 87.92% |\n| **f1_macro** | 81.95 |\n| **f1_fail** | 71.57 |\n| **f1_pass** | 92.33 |\n| **precision_fail** | 82.75 |\n| **precision_pass** | 89.08 |\n| **recall_fail** | 63.06 |\n| **recall_pass** | 95.82 |\n| **unparseable_rate** | 0% |\n| **total samples** | 9,335 |\n| **n_truncated** | 234 |\n| **majority baseline** | 75.88% |\n| **gap vs majority** | +12.04pp |\n\nRegistry 已更新：status=DONE, conclusion=success, metrics 已写入。\n\nhome cuda:0 已释放，可以启动 4B v5 val@5120 sweep。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cls4b-seed123-ckpt800-val5120-result.md"
+}

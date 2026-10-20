@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bffabef3567e5f7b72f0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cwm v10 emergency diag fix",
+  "task_key": "worker_ssh_cwm-v10-emergency-diag-fix_20260512T235446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cwm-v10-emergency-diag-fix_20260512T235446_result.json",
+    "occurrence": 1,
+    "bytes": 1499,
+    "sha256": "dd1e79741523c483ef12734edba923215993869e964aae1b6227e9a06639ee52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 1. PID 105205：完整训练，正常运行\n- **身份**：`train_repo_cwm.py`，从 checkpoint-200 resume，**max_steps=6633（3 epochs 完整训练）**，NOT dry-run\n- **当前状态**：运行 ~30min，step **300/6633 (4.5%)**，正在做 eval（~76% 完成）\n- **GPU 2**：96% 利用率，21GB 显存占用\n\n### 2. PID 106086：已死\n不再运行。registry 记录的 v10 fresh start 进程已退出，对当前训练无影响。\n\n### 3. trainer_state.json 真相\n| 文件 | max_steps | global_step | should_training_stop |\n|---|---|---|---|\n| checkpoint-**205** | **205** | 205 | **true** |\n| checkpoint-**200** | **6633** | 200 | **false** |\n\n**checkpoint-205 是旧 dry-run 的产物**，造成了误判。当前进程从 checkpoint-200 resume，使用的是 max_steps=6633。\n\n### 4. 未启动新训练\n不需要。当前 PID 105205 就是完整训练，一切健康。\n\n### 5. 最新 loss\n- step 250：loss=**6.71**，lr=7.5e-5\n- step 300：loss=**4.80**，lr=9.0e-5\n- 趋势正常下降（从 step 50 的 28.20 → step 300 的 4.80）\n\n### 6. ETA\n~**26.5h** 剩余（含 63 次 eval，每次 ~730s）。预计完成时间约 5/14 02:30 UTC。\n\n### 关键结论\n**Reviewer 的 dry-run 担忧是误报**。checkpoint-205 的 trainer_state.json 遗留了 max_steps=205，但当前进程使用的是 checkpoint-200 的状态（max_steps=6633）。ps etime `16:09` 是 16 分 9 秒，不是 16 小时。训练完全正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cwm-v10-emergency-diag-fix.md"
+}

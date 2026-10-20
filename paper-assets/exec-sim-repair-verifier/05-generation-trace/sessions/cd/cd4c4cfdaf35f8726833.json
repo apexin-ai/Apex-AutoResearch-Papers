@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd4c4cfdaf35f8726833",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code repo level eval prep",
+  "task_key": "worker_code_repo-level-eval-prep_20260512T233020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_repo-level-eval-prep_20260512T233020_result.json",
+    "occurrence": 1,
+    "bytes": 1747,
+    "sha256": "921076f3719127aae3fc5e14563b812a518ec12e07dde7a0b2f6af8087ebdfa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个脚本全部已存在于服务器上，且功能完备：\n\n| 脚本 | 功能 |\n|------|------|\n| `eval_repo_verifier.py` | CLS 模型单独 eval（accuracy/F1/truncation 分析） |\n| `eval_repo_cwm.py` | CWM 模型单独 eval（pass/fail + exact match） |\n| `paired_bootstrap_repo.py` | CLS vs CWM paired bootstrap（基于 accuracy） |\n| **`eval_repo_level.py`** | **统一脚本：CLS+CWM 推理 + F1 paired bootstrap + D008 决策** |\n\n`eval_repo_level.py` 是最完整的统一入口，涵盖所有需求：\n\n- 两种模式：`--cls_checkpoint` + `--cwm_checkpoint`（从 checkpoint 推理）或 `--cls_preds` + `--cwm_preds`（直接加载已有预测）\n- 按 `problem_id` 分层的 paired bootstrap（10000 resamples），在 F1 macro 上做检验\n- D008 Go/No-Go 判断逻辑内置（F1 diff ≥ 3pp + p<0.05 → GO，1-3pp → ADD_SEEDS，<1pp → KILL）\n- `--save_predictions` 输出 per-sample JSONL\n\n**结论：不需要重写。** 训练完成后直接跑：\n\n```bash\n# 方式 1: 统一 eval（推荐）\npython eval_repo_level.py \\\n  --cls_checkpoint /path/to/cls/checkpoint \\\n  --cwm_checkpoint /path/to/cwm/checkpoint \\\n  --data_dir data/swebench_full \\\n  --output eval_repo_d008.json \\\n  --save_predictions\n\n# 方式 2: 分步 eval + bootstrap\npython eval_repo_verifier.py --checkpoint_dir /path/to/cls --output cls_results.json --save_predictions\npython eval_repo_cwm.py --checkpoint_dir /path/to/cwm --output cwm_results.json --save_predictions\npython paired_bootstrap_repo.py --cls_preds cls_results_predictions.jsonl --cwm_preds cwm_results_predictions.jsonl\n```\n\n需要我把这些脚本同步到本地 artifacts 目录，还是直接等训练完成后跑 eval？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-repo-level-eval-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aae824811112759d2e2a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh urgent gpu check",
+  "task_key": "worker_ssh_urgent-gpu-check_20260519T194444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent-gpu-check_20260519T194444_result.json",
+    "occurrence": 1,
+    "bytes": 1166,
+    "sha256": "b8a31e7565f88b89a1cb3578cc9c579c5dc82aad7c1f61465c65194d90ab6d8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态总览\n\n| GPU | 显存 | 利用率 | 任务 | 状态 |\n|-----|------|--------|------|------|\n| **0** | **0 MiB / 32 GB** | **0%** | D146 Qwen3-8B CWM repo eval | **已完成，GPU 空闲** |\n| 1 | 28 GB / 32 GB | 91% | CLS s456 train (Qwen3-8B) | 运行中 |\n| 2 | 29 GB / 32 GB | 85% | DeepSeek CWM repo eval | 运行中 |\n| 3 | 28 GB / 32 GB | 86% | DeepSeek CLS s456 train | 运行中 |\n\n## 各任务详情\n\n**D146 (GPU 0)** — pid 778328 已死，eval 于 03:44 正常退出 (EXIT_CODE=0)。结果：\n- Accuracy 64.36%, F1 macro 54.42%, fail F1 33.1%\n- 6236 条 unparseable predictions\n- 输出已保存到 `eval_repo_cwm.json` + `eval_repo_cwm_predictions.jsonl`\n\n**CLS s456 train (GPU 1)** — pid 840928 存活，运行 5h36m，进度 **8407/9335 ≈ 90%**（当前 epoch），~13 it/s，预计几分钟内完成当前 epoch。已有 checkpoint-600 到 checkpoint-1400。\n\n**DeepSeek CWM eval (GPU 2)** — pid 833667 存活，运行 7h05m。\n\n**DeepSeek CLS s456 train (GPU 3)** — pid 842751 存活，运行 5h13m，进度 **1669/6489 ≈ 25.7%**，~10.8s/it，ETA ~14h。\n\n**GPU 0 现在空闲可用。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-gpu-check.md"
+}

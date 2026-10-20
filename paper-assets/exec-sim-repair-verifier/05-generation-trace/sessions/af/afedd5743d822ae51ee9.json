@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afedd5743d822ae51ee9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper citation fix qwen3",
+  "task_key": "worker_paper_citation-fix-qwen3_20260515T150754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_citation-fix-qwen3_20260515T150754_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "4f4e30d78a0793c42fd618a0cacf470a5b9a0516ee44104583c6a3a302ae3741"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。变更摘要：\n\n- `experiments.tex` 第16行：`\\cite{yang2024qwen25}` → `\\cite{qwen2025qwen3}`\n- `references.bib`：删除 `ni2023lever`、`chen2023codet`、`andrews2005mutation`、`just2014mutants` 四个孤立条目\n- `qwen2025qwen3` 条目已验证正确（arXiv:2505.09388, 2025）\n- Commit: `ab4698f` \"fix: correct Qwen3 citation key and remove orphan bib entries\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-citation-fix-qwen3.md"
+}

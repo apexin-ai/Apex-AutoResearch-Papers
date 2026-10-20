@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79de78acc9822b5812a3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research val sweep compilation",
+  "task_key": "worker_research_val-sweep-compilation_20260515T033146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_val-sweep-compilation_20260515T033146_result.json",
+    "occurrence": 1,
+    "bytes": 509,
+    "sha256": "0be0950de78dc0e08585c0a82c42fd2d7e3589b28f05e05f5c8e9969cbb79e6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出注册为 `art_20260515_126c08`。\n\n关键确认：\n- **Val best = ckpt-1000 (88.23%)** ✓\n- 8B s42 val@8192 有 6 个 checkpoint（200–1200），其中 ckpt-400/600 仅有 accuracy，ckpt-800 缺 f1_pass/f1_fail\n- Test@8192 有 3 个 checkpoint，test best 是 ckpt-400 (84.79%)，不是 ckpt-1000——存在 val-test 不一致\n- 4B v5 val@5120 有 3 个 checkpoint，best 是 ckpt-4400 (89.96%)\n\n文件含 markdown 表格和完整 JSON，可直接用于画图。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-val-sweep-compilation.md"
+}

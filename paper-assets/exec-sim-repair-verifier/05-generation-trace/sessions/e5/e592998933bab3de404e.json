@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e592998933bab3de404e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code validate cwm analysis scripts",
+  "task_key": "worker_code_validate-cwm-analysis-scripts_20260514T172329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_validate-cwm-analysis-scripts_20260514T172329_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "496c79a7e53bdbe4601f49d2615eb0de2e762eb73063fccfa9e55bc0f5b7fe5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `memory.md`。核心结论：\n\n**已就绪：**\n- `eval_repo_cwm.py` / `eval_repo_cls.py` / `eval_repo_verifier.py` 均支持 `--split val`、`--max_seq_length`、`--checkpoint_dir`\n- `analyze_cwm_errors.py` 完整可用，支持 error mode 分类、unparseable 分析、CWM vs CLS 对比，输出 JSON summary\n- 8B eval 无需专用脚本，通过 `--model_name Qwen/Qwen3-8B` 即可\n\n**已有 Checkpoints：**\n- CLS 8B: seed42 已完成 (200/400/600)，seed123 训练中 (最新 3000)\n- CWM 8B: 训练中 (最新 1600)\n- CWM 4B: v12 (300-700)，seed123 (200-600)\n\n**需注意：**\n1. `eval_repo_cls.py` 的 `max_seq_length` 硬编码为 2048，val 时需手动传 `--max_seq_length 8192`（其他两个脚本已自动切换）\n2. 8B eval 时 batch_size 需下调（建议 1-2）\n3. CWM 8B 和 CLS 8B seed123 训练仍在进行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-validate-cwm-analysis-scripts.md"
+}

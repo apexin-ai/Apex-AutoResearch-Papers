@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f4ac01ff11136db1c57",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "setup home eval env",
+  "task_key": "worker_setup_home-eval-env_20260517T094051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_home-eval-env_20260517T094051_result.json",
+    "occurrence": 1,
+    "bytes": 1975,
+    "sha256": "5fe32477f75f6308d68cd179f81391e590b56479b8eb03af32a0d3e0d1c856e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "传输受限于 MCP 工具输出大小和服务器间网络隔离。但 `eval_repo_cls.py` 已验证可直接用于 DeepSeek CLS eval。以下是完整 checklist：\n\n---\n\n```\n❌ eval_deepseek_repo.py 存在\n   → 不存在于 home，存在于 seetacloud\n   → 替代方案：eval_repo_cls.py 已验证可用于 CLS eval（支持 DeepSeek via detect_model_family）\n✅ transformers 版本: 4.57.6\n✅ torch 版本: 2.10.0+cu128, CUDA: True\n✅ peft 版本: 0.19.1\n✅ datasets: ok\n✅ sklearn 版本: 1.7.2\n✅ DeepSeek base model 路径: ~/.cache/huggingface/hub/models--deepseek-ai--deepseek-coder-6.7b-instruct (snapshot e5d64addd26a)\n✅ Tokenizer: 从 base model 加载（内置于 checkpoint，无需单独路径）\n✅ Repo-level test data: /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl (9784 instances)\n✅ Repo-level val data: /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl (9335 instances)\n✅ Dry-run 通过（eval_repo_cls.py --model_name deepseek-ai/deepseek-coder-6.7b-instruct --dry_run）\n✅ GPU: RTX 5090, 32GB VRAM, 32GB free\n\n需要提前做的事项：\n- [ ] 传输 eval_deepseek_repo.py（两台服务器无法互联，需手动 scp 或通过中间节点）\n      临时方案：直接用 eval_repo_cls.py --model_name deepseek-ai/deepseek-coder-6.7b-instruct 做 CLS eval\n- [ ] DeepSeek LoRA checkpoint 尚未训练（seetacloud 上也没有），需先训练才能 eval\n- [ ] eval_deepseek_repo.py 的 --base_model 默认路径 /root/autodl-tmp/... 需改为 deepseek-ai/deepseek-coder-6.7b-instruct（HF cache 会自动命中本地）\n```\n\n**结论**: 环境就绪，所有依赖和数据已到位。唯一 blocker 是没有 DeepSeek LoRA checkpoint 可供 eval。一旦训练完成，直接运行：\n```bash\npython3 eval_repo_cls.py --checkpoint_dir <path> --model_name deepseek-ai/deepseek-coder-6.7b-instruct --split test --device cuda:0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-home-eval-env.md"
+}

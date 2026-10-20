@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7636ab724233915486d6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_2_1778597282.md",
+  "task_key": "loop_2_1778597282",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778597282.md",
+    "occurrence": 1,
+    "bytes": 3934,
+    "sha256": "7bedba536c3a8ecd173938a8e98afeb671b9ec84f5ebacf3368f3fad41d75e9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-12T14:32:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud-westd-4x5090 的 GPU 分配是 cuda:0/1/2/3，但 account 是 root，项目路径是 `/home/sonny/exec-sim-repair-verifier`（不是 /root/）\n- home-1x5090 account 是 sonny，不是 root\n- repo-level 实验是项目的 **决胜战场**（ROADMAP 明确写了\"repo-level 是最后机会\"）——修复后必须立即重提交，不能拖\n- repo-level Go/No-Go 标准：F1 diff ≥3pp + p<0.05 → 全力推 EMNLP Main；<1pp → Kill C1, pivot Plan B\n- per-test vs traj 的 accuracy 比较是**不同粒度对比**（1890 tests vs 1032 variants），论文不能直接比，必须用 clustered bootstrap variant-level 对齐后的数字（gap=-0.37pp, p=0.646，无显著差异）\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090** (root): `/home/sonny/exec-sim-repair-verifier`, Python=`/root/miniconda3/bin/python`, conda base, HF_HOME=`/root/autodl-tmp/.hf_cache`, 模型 Qwen3-4B 在 `/root/.cache/huggingface/hub/Qwen/Qwen3-4B`, 8B 在 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`, 32B 在 `/root/autodl-tmp/models/Qwen/Qwen3-32B`\n- **home-1x5090** (sonny): `/home/sonny/exec-sim-repair-verifier`, 模型通过 HF cache 自动下载\n- 数据: 函数级 `data/` (15290 train, 1890 test), repo-level `data/swebench_full/` (70748 train, 9335 val)\n- 活跃进程: cls-seed0 (PID 31570, seetacloud cuda:1, tmux 管理, cron 监控中)\n- 活跃 Worker: `worker_fix_repo-level-sample-weight_20260512T112716` (修复代码 bug)\n\n### 3. 📊 当前状态\n**刚处理完三个回调**：\n- `repo-level-cwm` + `repo-level-cls` 同时 failed（`KeyError: 'sample_weight'`，compute_loss 期望 Dataset 传 sample_weight 但没传）。已派 Worker 修复代码，修复后需重新提交到 seetacloud cuda:2/3\n- `cls-seed789` 完成（accuracy=89.0%），registry 已更新，飞书卡片已发\n\n**RUNNING**: cls-seed0 (seetacloud cuda:1) — 5-seed cls 的最后一个，完成后 5-seed paired comparison 数据齐全\n\n**等待中**:\n- Worker `fix:repo-level-sample-weight` 回调 → 确认修复成功 → 重新创建实验 + submit_training_job 到 cuda:2/3\n- cls-seed0 cron 回调 → 更新 metrics → 汇总 5-seed cls vs 5-seed traj 统计检验\n- Director 回复：是否有额外实验铺 home-1x5090 cuda:0 和 seetacloud cuda:0\n\n### 4. 📋 待办\n- Worker `fix:repo-level-sample-weight` 回调成功 → 创建新实验 repo-level-cls-v2 / repo-level-cwm-v2 → submit_training_job 到 seetacloud cuda:2 和 cuda:3（注意脚本内 `--device cuda:0` 因为 CUDA_VISIBLE_DEVICES 会映射）\n- Worker 修复失败 → 停止自动修复，上报 Director 人工介入\n- cls-seed0 完成 → 汇总 5-seed cls (42/123/456/789/0) mean±std，与 traj 5-seed (42/123/456/789/0) 做 paired t-test → 更新 memory.md 和 report → 汇报 Director\n- repo-level 实验完成 → 按 ROADMAP Go/No-Go 标准判断：≥3pp 全力推进，<1pp 触发 Plan B pivot\n\n### 5. 🎯 战略上下文\n- **核心假说已 pivot 三次**：granularity → reformulation → complexity-dependent advantage。repo-level 是最后验证机会\n- 函数级 cls vs cwm **无差异**（<0.2pp），但 8B scaling 显示 gap 扩大（4B: 0.9pp → 8B: 2.81pp），支持 complexity hypothesis\n- **已有强结论**：fine-tuned 4B >> zero-shot 32B（差 16.7pp），fine-tuning 必要性已验证\n- per-test vs traj: variant-level 对齐后无显著差异（p=0.646），per-test 的价值在 diagnostic granularity 而非 raw accuracy\n- **时间线极紧**：ARR May 25 仅剩 13 天，repo-level 数据构建+训练+eval+写作 = 6-8d，零容错\n- **易踩坑**：(1) 不要直接比 per-test accuracy 和 traj accuracy，粒度不同 (2) repo-level 脚本需要 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 才能跑 (3) seetacloud 的 network_turbo 需要在 pip install 前 source\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778597282.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b76a0841b4b4b54e011d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops traj repo 8k cuda2 seeds",
+  "task_key": "worker_ops_traj-repo-8k-cuda2-seeds_20260516T160145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_traj-repo-8k-cuda2-seeds_20260516T160145_result.json",
+    "occurrence": 1,
+    "bytes": 135,
+    "sha256": "076640a9bae5d5ed62b92351901fb7227df41633d8fa4b5a2a3240bbd3084db3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Seed 0 训练已启动（PID 530525, GPU 2, 20.9 GB VRAM）。预计 ~11 分钟完成，5 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-traj-repo-8k-cuda2-seeds.md"
+}

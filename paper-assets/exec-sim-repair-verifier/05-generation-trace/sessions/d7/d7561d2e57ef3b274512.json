@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d7561d2e57ef3b274512",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "eval cwm v11 subset500",
+  "task_key": "worker_eval_cwm-v11-subset500_20260513T175019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cwm-v11-subset500_20260513T175019.log",
+    "occurrence": 1,
+    "bytes": 569159,
+    "sha256": "4055e7350cf5099b164af962783b5a8427b309ec21761069a549dd8d32560558"
+  },
+  "statistics": {
+    "messages": 425,
+    "user_turns": 0,
+    "tool_calls": 169,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 169,
+      "tool_result": 169,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 425,
+      "chunks": [
+        {
+          "path": "d7561d2e57ef3b274512-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d7561d2e57ef3b274512-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d7561d2e57ef3b274512-part-0003.json",
+          "message_count": 65
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-cwm-v11-subset500.md"
+}

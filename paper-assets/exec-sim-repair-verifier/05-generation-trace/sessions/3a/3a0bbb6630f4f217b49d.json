@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a0bbb6630f4f217b49d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose deepseek traj func v2 fixed",
+  "task_key": "worker_diagnose_deepseek-traj-func-v2-fixed_20260516T142001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_deepseek-traj-func-v2-fixed_20260516T142001_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "cfc2789985ab0abe096f6e1bcb7780cbbf2be33b1abc42c6491eb4261524bb34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**实验并未失败。** `deepseek-traj-func-v2` 训练成功完成：\n\n| 指标 | 值 |\n|------|---|\n| 训练 steps | 756/756 (3 epochs) |\n| train_loss | 0.0857 |\n| eval_loss | 0.0891 |\n| 训练耗时 | ~51 min |\n| Checkpoints | checkpoint-504, checkpoint-756, best |\n\n之前被标记为 `failed` 是误报——可能是 cron 监控在训练完成前检测到进程退出（训练正常结束后进程自然退出），触发了 `on_failed` hook。\n\nRegistry 已更正：status=DONE, conclusion=success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-deepseek-traj-func-v2-fixed.md"
+}

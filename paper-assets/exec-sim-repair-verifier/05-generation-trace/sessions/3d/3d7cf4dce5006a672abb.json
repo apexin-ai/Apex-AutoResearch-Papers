@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d7cf4dce5006a672abb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_19.md",
+  "task_key": "loop_19",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_19.md",
+    "occurrence": 1,
+    "bytes": 4537,
+    "sha256": "6696ed1e07793ab9e99a87a832f4e76836b46365f605f379a2dc01b72bc66143"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: idle_timeout\nupdated: '2026-05-16T02:12:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0/1/2/3 on seetacloud-westd-4x5090。home-1x5090 (sonny) 也可用但当前无 GPU 分配信息\n- eval 禁止 `--max_samples`，必须评完整 test set (n=9784) / val set (n=9335)，否则与主表不可比\n- 标 FAILED/DONE 前必须 `ps -p PID` 确认进程已退出（D085 事故教训：误标导致同 GPU OOM）\n- CWM 8B val-best = ckpt-400（eval_loss 单调递增，无歧义），不要做 val sweep\n- s42 resume checkpoints 从 ckpt-600 开始（`/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`），不含 200/400\n- `save_total_limit=5` 会删旧 checkpoint，提交 eval 前必须 `ls checkpoint-*` 确认存在\n- 主表数字已锁定（D088），不要重跑已有结果\n\n### 2. 🖥️ 基础设施快照\n- **Westd**: seetacloud-westd-4x5090, account=root, workdir=/home/sonny/exec-sim-repair-verifier\n  - Python: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n  - CLS 8B s42 resume ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`\n  - CLS 8B seed123 backup: `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n  - CWM 8B ckpts: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`\n  - CWM 8B eval 脚本: `eval_repo_cwm.py`（不是 eval_repo_cls.py），max_new_tokens=1024, bs=1\n  - CLS 8B eval 脚本: `eval_repo_cls.py`, max_new_tokens=8, bs=1, seq=8192\n- **Home**: home-1x5090, account=sonny, workdir=/home/sonny/exec-sim-repair-verifier\n  - 4B v5 ckpts: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n  - home 版 eval_repo_cls.py **不支持 --max_new_tokens**\n- **活跃进程**: cwm8b-ckpt400-test-eval-v3 (PID 443221, cron 监控中, ~57% done)\n- **Running Workers**: 0\n\n### 3. 📊 当前状态\n- **CWM 8B test eval (ckpt-400)** 是唯一仍在跑的实验 (cwm8b-ckpt400-test-eval-v3, pid=443221)，约 57% 完成。这是锁定 8B-8B gap 的最后一个数据点。\n- Report 提到 cls8b-s42-resume-ckpt3600-test-v2、cwm8b-ckpt400-test-eval-shard2、cls8b-seed123-ckpt3000-mutation 为 running，但 registry 中未见 RUNNING 状态实验。cron reconcile 仅确认 cwm8b-ckpt400-test-eval-v3 在跑。**接手后优先 SSH 确认这些进程是否存活。**\n- 主表 CLS 侧全部锁定：8B s42 test=84.48%, 8B seed123 test=85.60%, 4B s42 test=83.63%\n- CWM 4B 已完成：s42=58.04%, seed123=59.09%\n- 三个 claims (C1/C2/C3) 已确认，进入 Paper Writing 阶段\n- DDL: **EMNLP 2026 ARR May 25（剩 9 天）**\n\n### 4. 📋 待办（条件触发式）\n- cwm8b-ckpt400-test-eval-v3 cron 回调到达 → 读 test accuracy + unparseable rate → 更新 registry + ROADMAP 主表 CWM 8B 行 → 计算 8B-8B gap → 汇报 Director\n- CWM 8B test accuracy 出来后 → 若 <60%，gap >24pp，直接用；若异常高（>70%），检查 eval 是否有 bug\n- CWM 8B unparseable rate 出来后 → 对比 4B 的 53.7%/67.2%，判断 8B 是否改善 → 影响 failure modes §2.3 claim 强度\n- cls8b-seed123-ckpt3000-mutation 结果到达 → 对比 s42 的 boundary_removal=46.9%，验证跨 seed 一致性\n- 所有 eval 完成 → cuda:0-3 全部空闲 → 向 Director 汇报资源释放 + 论文写作全力冲刺\n- Paper Writing: intro/related/conclusion + figures 待完成（需 Director 分配 Worker）\n\n### 5. 🎯 战略上下文\n- **核心结论**: CLS reformulation 在 repo-level 上以 ~26pp gap 碾压 CWM，multi-seed 验证一致（s42: 26.44pp, seed123: 26.51pp）。TOST p=0.007 确认统计显著。\n- **决策链**: D088(val-selected ckpt) → D093(multi-seed 锁定) → D094(seq_length confound 排除) → D095(审稿 action matrix) → D096(8B-8B 主表) → D097(rank ablation 完成) → D100(CWM relaxed matching 排除) → D102(CWM 8B bs=8 加速) → D103(seq8192 统一)\n- **最容易判断错的事**: (1) registry 中很多 PREPARING 状态的实验实际已完成或 killed，notes 里有真实状态——不要被 status 字段误导。(2) report.md 里 \"running\" 的实验可能已经不在跑了，以 cron reconcile + SSH ps 为准。(3) CWM 8B eval 极慢（~37s/sample, SDPA），不要尝试加速或重启，让它跑完。\n- **boundary_removal 46.9%** 是论文 discussion 的重要 failure mode。待 seed123 mutation 和 CWM 8B mutation 对比后决定 narrative 角度。\n- **4B seed123 test=75.33% 是已知 negative**（D096 已处理），论文主表只用 4B s42，不用 4B seed123。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-copy-2.md"
+}

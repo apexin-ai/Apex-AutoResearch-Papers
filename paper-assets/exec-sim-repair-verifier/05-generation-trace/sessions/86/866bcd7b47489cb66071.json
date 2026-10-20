@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "866bcd7b47489cb66071",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose cls repo unparseable",
+  "task_key": "worker_diagnose_cls-repo-unparseable_20260517T162107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cls-repo-unparseable_20260517T162107_result.json",
+    "occurrence": 1,
+    "bytes": 2947,
+    "sha256": "63f0a55e7ea4a9d3be38122dcb8ac3edf849e56975d6d2e7ff60b02215a0fa55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已全部收集完毕。以下是完整诊断结果：\n\n---\n\n## 诊断结果\n\n### 1. Unparseable 根因：**输入截断 (`max_seq_length=2048`)**\n\n100% 相关性：\n- Truncated & Unparseable: **2796**\n- Truncated & Parseable: **0**\n- Not-truncated & Unparseable: **0**\n- Not-truncated & Parseable: **6988**\n\n截断机制：`build_prompt_ids()` 在 tokenize 后硬截断 `ids[:max_len]`，截掉了 chat template 的 generation prompt（assistant turn start）。模型看不到完整 prompt 结构，输出的是代码续写而非 \"pass\"/\"fail\"。\n\n对比：Qwen3-8B CLS 使用 `max_seq_length=8192`，**unparseable=0**。\n\n### 2. 10 个 unparseable 样本的 raw model output\n\n仅涉及 **3 个 unique problem_id**，输出模式高度重复：\n\n| 次数 | gen_text | problem_id |\n|------|----------|------------|\n| 2322x | `', but replace it with a new one'` | pydata__xarray-6992 |\n| 114x | `']()\\\\n# Saves the x'` | pytest-dev__pytest-7490 |\n| 114x | `'if marks.\\\\nskipped_by'` | pytest-dev__pytest-7490 |\n| 114x | `'marks.\\\\nskipped_by_'` | pytest-dev__pytest-7490 |\n| 88x | `\"st_epilog>', lin\"` | sphinx-doc__sphinx-11445 |\n| 44x | `'eno)\\\\n\\\\ndef parse('` | sphinx-doc__sphinx-11445 |\n\n全部是代码片段续写，不是 pass/fail 分类输出。\n\n### 3. Input 长度分布\n\n| 分位 | 字符数 | 估计 token 数 |\n|------|--------|---------------|\n| p50 | 1,634 | ~408 |\n| p75 | 8,911 | ~2,228 |\n| p90 | 8,935 | ~2,234 |\n| p95 | 8,967 | ~2,242 |\n| max | 9,759 | ~2,440 |\n| >8192 chars | 2,796 (28.6%) | 即被截断的部分 |\n\n双峰分布：71.4% 样本 <2048 tokens，28.6% 在 2048-2440 tokens 之间。\n\n### 4. Parseable-only accuracy\n\n| 指标 | 值 |\n|------|------|\n| 报告 accuracy（含 unparseable） | **82.62%** |\n| Parseable-only accuracy | **77.99%** (5450/6988) |\n| Unparseable 默认 pred | 全部=1 (pass, majority fallback) |\n| Unparseable 中 label=pass | 2634/2796 = 94.2% |\n| Accuracy 虚高幅度 | **+4.63pp** |\n\n报告的 82.62% 被 majority fallback 人为抬高。真实模型判断能力是 77.99%。同时 `recall_fail` 极低 (36.77%) 正是因为大量 fail 样本被截断后默认成了 pass。\n\n### 5. 修复建议\n\n**重跑 eval，`--max_seq_length 8192`**：\n\n```bash\npython eval_repo_cls.py \\\n    --checkpoint_dir /root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/best \\\n    --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct \\\n    --max_seq_length 8192 \\\n    --batch_size 1 \\\n    --split test \\\n    --output /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test/eval_summary_seq8192.json \\\n    --pred_output /root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test/predictions_seq8192.jsonl\n```\n\nmax=9759 chars (~2440 tokens)，8192 token limit 完全覆盖所有样本，与 Qwen 评估条件一致。batch_size 降为 1 避免长序列 OOM。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cls-repo-unparseable.md"
+}

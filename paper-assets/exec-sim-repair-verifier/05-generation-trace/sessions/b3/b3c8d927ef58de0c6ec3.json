@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3c8d927ef58de0c6ec3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code cls train script patch",
+  "task_key": "worker_code_cls-train-script-patch_20260514T141336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cls-train-script-patch_20260514T141336_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "ae6cd0a94b61f2517579b5a1036a685ad0c6b8b56ea8805cca173c9f31ac24da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。修改汇总：\n\n| 修改 | 行号 | 内容 |\n|------|------|------|\n| 新增 CLI 参数 | 200-201 | `--resume_from_checkpoint` (default=None), `--save_total_limit` (default=5) |\n| 替换硬编码 | 274 | `\"save_total_limit\": 5` → `\"save_total_limit\": args.save_total_limit` |\n| resume 传参 | 299 | `trainer.train()` → `trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)` |\n\n当前训练不受影响。恢复训练时用 `--resume_from_checkpoint /path/to/checkpoint-200` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cls-train-script-patch.md"
+}

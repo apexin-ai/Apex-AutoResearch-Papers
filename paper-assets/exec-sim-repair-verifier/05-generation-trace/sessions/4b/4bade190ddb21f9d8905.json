@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bade190ddb21f9d8905",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code re repair data filter v2",
+  "task_key": "worker_code_re-repair-data-filter-v2_20260517T044147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_re-repair-data-filter-v2_20260517T044147_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "6de41f97cf71fd561ee9e13d15ddd3ea82b7f922ef73f3c7dc9068860759f258"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 指标 | 值 |\n|------|------|\n| 筛选后 instances | **59** |\n| simple (2-3 failing f2p) | 48 |\n| medium (4-6 failing f2p) | 6 |\n| complex (7+ failing f2p) | 5 |\n| 输出文件 | `/home/sonny/exec-sim-repair-verifier/data/re_repair_v2/re_repair_instances_final.jsonl` |\n| 筛选脚本 | `/home/sonny/exec-sim-repair-verifier/filter_final_instances.py` |\n\n59 个 instances 在目标范围 50-80 内。分布偏向 simple 层（48/59），原因是大多数 SWE-bench Verified instances 本身 FAIL_TO_PASS test 数量不多（2-3 个），且 oracle 扩展覆盖的 96 个 (instance, mutation) 组合中，多数只有少量 f2p test 实际失败。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-re-repair-data-filter-v2.md"
+}

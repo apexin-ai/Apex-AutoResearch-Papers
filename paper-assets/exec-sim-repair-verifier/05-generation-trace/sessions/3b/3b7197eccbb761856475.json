@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b7197eccbb761856475",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect ckpt1000 test8192 final",
+  "task_key": "worker_collect_ckpt1000-test8192-final_20260515T020342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_ckpt1000-test8192-final_20260515T020342_result.json",
+    "occurrence": 1,
+    "bytes": 1252,
+    "sha256": "c6e796e83c72db79fd61b96a3596d75865fe64e780b3c0e8d69c4d9cd8663617"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cls8b-s42-ckpt1000 Test@8192 最终结果\n\n| Metric | Value |\n|--------|-------|\n| **Accuracy** | **83.52%** |\n| **F1 macro** | **77.50%** |\n| Majority baseline | 72.96% |\n| Gap vs majority | +10.57pp |\n| Unparseable count | **0** (0%) |\n| Total samples | 9,784 |\n\n### Per-class Metrics\n\n| Class | Precision | Recall | F1 | Support |\n|-------|-----------|--------|-----|---------|\n| **fail** (bug) | 74.93% | 58.73% | 65.85% | 2,646 |\n| **pass** (non-bug) | 85.84% | 92.72% | 89.14% | 7,138 |\n\n### Confusion Matrix\n\n|  | Pred fail | Pred pass |\n|--|-----------|-----------|\n| **Actual fail** | 1,554 (TN) | 1,092 (FP) |\n| **Actual pass** | 520 (FN) | 6,618 (TP) |\n\n### Config\n- Model: Qwen3-8B\n- Checkpoint: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000`\n- max_seq_length: 8192, batch_size: 1, max_new_tokens: 512\n\n### 要点\n- Val-best ckpt-1000 (val 88.23%) → test 83.52%，有约 4.7pp 的 val-test gap\n- Fail class recall 只有 58.73%，模型漏检了 41% 的 bug——这是主要瓶颈\n- 零 unparseable，生成格式完全稳定\n\n结果 JSON 保存在 `/home/sonny/exec-sim-repair-verifier/eval_repo_cls.json`，逐条预测在 `eval_repo_cls_predictions.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-ckpt1000-test8192-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fe0519049d498ed714c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_22.md",
+  "task_key": "loop_22",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_22.md",
+    "occurrence": 1,
+    "bytes": 3324,
+    "sha256": "a3eeecda9cf4c5e50073c1275ff3014e1d8f94c164931f4ddedbc8ab704b440b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-16T18:31:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单: seetacloud-westd-4x5090 的 cuda:0/1/2/3（4 张 5090）\n- 模型路径必须用 /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct（HF_HUB_OFFLINE=1，不能在线下载）\n- 训练脚本工作目录: /home/sonny/exec-sim-repair-verifier（不是 /root/）\n- conda 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（不是 venv）\n- deepseek-traj-func-v2-s123 (cuda:3) 的 registry 显示 conclusion=failed + hook on_failed，但 reconcile 确认 pid 513115 仍活着——状态不一致，下次处理时先 SSH 确认再更新 registry\n\n### 2. 🖥️ 基础设施快照\n- 服务器: seetacloud-westd-4x5090\n- 工作目录: /home/sonny/exec-sim-repair-verifier\n- Python: /root/miniconda3/bin/python3（conda base 环境）\n- 模型: /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct\n- 数据: /home/sonny/exec-sim-repair-verifier/data/（traj_train.jsonl 8052条, swebench_full/ 70748条）\n- Checkpoints: /root/autodl-tmp/checkpoints_deepseek_*/\n- W&B: 大部分实验 --no_wandb（本地 log 为主）\n- 活跃进程:\n  - deepseek-cls-repo: PID 470263, cuda:0\n  - deepseek-cwm-repo: PID 479953, cuda:1\n  - deepseek-traj-func-v2: PID 511676, cuda:2 — **已死**\n  - deepseek-traj-func-v2-s123: PID 513115, cuda:3 — reconcile 说活着\n\n### 3. 📊 当前状态\n收到 cron 回调: deepseek-traj-func-v2 (cuda:2) 进程异常退出。已派 Worker `worker_diagnose_deepseek-traj-func-v2-fixed_20260516T142001` SSH 诊断日志（读 /tmp/deepseek_traj_v2.log），Worker 尚未回调。已向 Director 汇报 cuda:2 空闲 + 正在诊断。\n\nRegistry RUNNING 实验:\n- deepseek-cls-repo (cuda:0, repo-level CLS verifier, seed 42)\n- deepseek-cwm-repo (cuda:1, repo-level CWM verifier, seed 42, 70k 数据)\n- deepseek-traj-func-v2 (cuda:2, traj verifier seed 42) — 实际已死，待更新\n- deepseek-traj-func-v2-s123 (cuda:3, traj verifier seed 123) — 状态矛盾待确认\n\n### 4. 📋 待办\n- Worker 诊断回调到达 → 读 failure_reason → update_registry(status=DONE, conclusion=failed) → 根据根因决定是否重启 cuda:2 实验\n- 若 OOM → 降 batch_size 或 max_seq_length 后重提交 cuda:2\n- 若代码 bug → 修复后同时重启 v2 和 v2-s123（如果 s123 也有同样问题）\n- deepseek-traj-func-v2-s123 状态矛盾 → SSH 确认 pid 513115 是否真活着 + 是否在正常训练 → 修正 registry\n- deepseek-cls-repo / deepseek-cwm-repo 完成回调 → 走 on-experiment-done 流程\n\n### 5. 🎯 战略上下文\n- 项目核心: 训练 execution-simulation repair verifier（CLS 分类 + CWM 连续 + Trajectory 多步验证），用 deepseek-coder-6.7b + LoRA\n- 当前阶段: 大规模 repo-level 数据训练（70k swebench）+ trajectory verifier（8k 数据）\n- 成功率高: 91/158 success，主要失败是早期环境/路径问题\n- 易错点: registry 里有大量历史 failed/killed 实验（环境搭建期遗留），不要被吓到——当前批次的实验结构已稳定\n- deepseek-traj-func (无 v2) seed 42 已 success（5/16 12:58），v2 是改进版本（可能改了数据格式或训练脚本），如果 v2 反复失败可对比 v1 的配置差异\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-copy-2.md"
+}

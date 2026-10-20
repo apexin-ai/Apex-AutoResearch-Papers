@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7376147aff15cea86a4c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor westd progress check",
+  "task_key": "worker_monitor_westd-progress-check_20260515T221223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westd-progress-check_20260515T221223_result.json",
+    "occurrence": 1,
+    "bytes": 2290,
+    "sha256": "6af85ae84745afe37b2625a6fb4fc624b49e648d49ec47fc27c06cbc4abd404f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态总览 (2026-05-16 06:12 UTC)\n\n### 1. cwm8b-ckpt400-test-eval (PID 381618)\n| 项目 | 状态 |\n|------|------|\n| PID | **ALIVE** (运行 7h34m, CPU 100%) |\n| 进度 | **4248/9784 = 43.4%** |\n| Accuracy | running_acc = **64.8%** |\n| 速度 | ~8.4 samples/min |\n| 剩余 | 5536 samples → **~11h** |\n| ETA | ~17:12 UTC (May 16) |\n| GPU | GPU 3: 22527/32607 MiB (88%) |\n| JSONL | 4256 行 (与日志一致) |\n\n### 2. cls8b-s42-resume-val-sweep-seq8192-v2 (PID 398981)\n| 项目 | 状态 |\n|------|------|\n| PID | **ALIVE** (运行 4h30m) |\n| 当前 ckpt | **checkpoint-3800** (第 11/21 个) |\n| ckpt 内进度 | 2770/9335 = 29.7% |\n| 总体进度 | **~49.0%** (10 完成 + 当前 29.7%) |\n| Accuracy | running_acc = **90.1%** (当前 ckpt) |\n| 速度 | ~5.8 samples/sec (~23 min/ckpt) |\n| 剩余 | 当前 ckpt ~19min + 10 个 ckpt → **~4.8h** |\n| ETA | ~11:00 UTC |\n| GPU | GPU 0: 18477/32607 MiB (76%) |\n\n### 3. repo-level-cwm-8b-conda-v5 (PID 400279)\n| 项目 | 状态 |\n|------|------|\n| PID | **ALIVE** (运行 4h20m) |\n| 进度 | **5888/6633 = 88.8%** (epoch 2.58) |\n| Loss | eval_loss = **0.5152** (step 5800) |\n| 速度 | ~12.1s/step |\n| 最新 ckpt | checkpoint-5800 (05:54 保存) |\n| 剩余 | 745 steps → **~2.5h** |\n| ETA | ~08:42 UTC |\n| GPU | GPU 2: 21057/32607 MiB (98%) |\n\n### 4. cls8b-s42-resume-val-sweep-gpu1 (PID 405526)\n| 项目 | 状态 |\n|------|------|\n| PID | **ALIVE** (运行 3h25m) |\n| 当前 ckpt | **checkpoint-5600** (第 9/10 个) |\n| ckpt 内进度 | 8880/9335 = 95.1% |\n| 总体进度 | **~89.5%** (8 完成 + 当前 95.1%) |\n| Accuracy | running_acc = **88.5%** (当前 ckpt) |\n| 剩余 | ~1min 完成当前 + 1 个 ckpt (~23min) → **~24min** |\n| ETA | ~06:37 UTC |\n| GPU | GPU 1: 18477/32607 MiB (92%) |\n\n### GPU 总览\n| GPU | 利用率 | 显存 | 对应实验 |\n|-----|--------|------|----------|\n| 0 | 76% | 18477/32607 MiB (57%) | val-sweep-seq8192-v2 |\n| 1 | 92% | 18477/32607 MiB (57%) | val-sweep-gpu1 |\n| 2 | 98% | 21057/32607 MiB (65%) | CWM 训练 |\n| 3 | 88% | 22527/32607 MiB (69%) | CWM eval |\n\n**4 个进程全部存活，4 张 5090 满载。** 最快完成的是 exp 4 (~24min)，其次 exp 3 (~2.5h)。exp 2 和 exp 1 分别还需 ~5h 和 ~11h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westd-progress-check-copy-3.md"
+}

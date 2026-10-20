@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae94948e1d41aae181b1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "poll westd cuda3 ckpt3000 test",
+  "task_key": "worker_poll_westd-cuda3-ckpt3000-test_20260515T080030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_poll_westd-cuda3-ckpt3000-test_20260515T080030_result.json",
+    "occurrence": 1,
+    "bytes": 248,
+    "sha256": "726617d598d798886efb8e872ae86b3f36e43aca69262856e897b674f5d8d1a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已安排。实际在跑的是 v1 eval (PID 345441)，log 文件 `cls8b-seed123-ckpt3000-test8192-eval.log`，output_dir `/root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192`。当前 4710/9784 (48%)，3 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/poll-westd-cuda3-ckpt3000-test.md"
+}

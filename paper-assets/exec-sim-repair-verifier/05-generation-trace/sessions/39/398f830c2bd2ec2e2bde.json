@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "398f830c2bd2ec2e2bde",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix home eval script improvements",
+  "task_key": "worker_fix_home-eval-script-improvements_20260515T021432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_home-eval-script-improvements_20260515T021432_result.json",
+    "occurrence": 1,
+    "bytes": 342,
+    "sha256": "e19db4539b8a19fb7080606a5f24ae3bcc85e27538decfc38468dd73d2a5399f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项验证全部通过：\n\n1. **SIGKILL** — L207: `os.kill(os.getpid(), signal.SIGKILL)` 替换了 `os._exit(1)`\n2. **Resume** — L158-176: 启动时读取已有 predictions，跳过已完成样本，append 模式写入\n3. **max_new_tokens** — L220: `512` → `8`\n4. `--help` 正常加载，PID 3204975 仍在运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-home-eval-script-improvements.md"
+}

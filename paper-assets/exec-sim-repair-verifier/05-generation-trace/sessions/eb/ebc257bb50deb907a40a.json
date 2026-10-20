@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebc257bb50deb907a40a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix restart val sweep seq8192 urgent",
+  "task_key": "worker_fix_restart-val-sweep-seq8192-urgent_20260515T172525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_restart-val-sweep-seq8192-urgent_20260515T172525_result.json",
+    "occurrence": 1,
+    "bytes": 288,
+    "sha256": "a7f56d619a6b971ed21e0b8efb03ad435010ebb33bcfed67632be85ccf6ff5af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已重启。\n\n- **PID**: 396597\n- **GPU**: cuda:0, 18470MiB, 73% util\n- **日志**: 正常写入，当前 490/9335 步，running_acc=87.6%\n- **Registry**: notes 和 spec 已更新（status 字段因 DONE→RUNNING 转换受限未改，需要手动改或新建条目）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-restart-val-sweep-seq8192-urgent.md"
+}

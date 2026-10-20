@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59b7e3393eca557fb283",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix val sweep revert seq8192",
+  "task_key": "worker_fix_val-sweep-revert-seq8192_20260515T174155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_val-sweep-revert-seq8192_20260515T174155_result.json",
+    "occurrence": 1,
+    "bytes": 316,
+    "sha256": "f014c4098886a653bf1e8d165809a05e11d572ba414dc372125426ea993b4e69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**汇报：**\n- seq4096 进程已 kill，registry 标记 DONE/killed\n- seq8192-v2 已启动，**PID=398981**\n- cuda:0 显存占用 **17813 MiB**（正常）\n- 日志正常推理中，170/9335，running_acc=85.9%，无 OOM\n- 参数确认：`max_seq_length 8192`、`batch_size 1`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-val-sweep-revert-seq8192.md"
+}

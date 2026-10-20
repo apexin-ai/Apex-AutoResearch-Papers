@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8689913ed73b92677d15",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops kill gpu0 val sweep",
+  "task_key": "worker_ops_kill-gpu0-val-sweep_20260515T222948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-gpu0-val-sweep_20260515T222948_result.json",
+    "occurrence": 1,
+    "bytes": 488,
+    "sha256": "8d2f3d75cd3ee12b95f9e31a0f62c84fe1f1df95e10da70612fb1afc97a83457"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **ckpt-3800 已完成** (eval_repo_cls.json + predictions.jsonl 齐全)\n- **PID 398981 已 kill**，进程确认不存在\n- **GPU 0 已释放** (0 MiB)，GPU 2/3 不受影响\n- **cuda:1 sweep (PID 405526) 也已自然结束**（之前就完成了）\n- **Registry 已更新**：status=DONE, conclusion=success，notes 注明提前终止原因\n- cuda:0 sweep 共完成 checkpoint：1800-3800（11个独有）+ 4000-5400（8个与 cuda:1 重叠）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-gpu0-val-sweep.md"
+}

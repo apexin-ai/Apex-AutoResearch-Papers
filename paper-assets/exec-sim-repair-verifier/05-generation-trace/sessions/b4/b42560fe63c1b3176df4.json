@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b42560fe63c1b3176df4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cwm4b mutation breakdown",
+  "task_key": "worker_eval_cwm4b-mutation-breakdown_20260516T022802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cwm4b-mutation-breakdown_20260516T022802_result.json",
+    "occurrence": 1,
+    "bytes": 1308,
+    "sha256": "bc1d8dad8a860c1a5a60a855b6199f4423343e3857818a286506cc331b83dd7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果保存至 `artifacts/cwm4b_mutation_breakdown.json`。\n\n**核心发现（CWM 4B s42）：**\n\n| mutation_type | parse_rate | parseable acc | CLS 8B acc |\n|---|---|---|---|\n| gold | 43.5% | **23.5%** | 96.2% |\n| operator_swap | 56.9% | **63.1%** | 81.4% |\n| off_by_one | 4.4% | **0.0%** (n=8) | 86.9% |\n| return_value | 48.8% | **27.0%** | 75.4% |\n| boundary_removal | 30.6% | **59.2%** | 46.9% |\n| **Overall** | **46.3%** | **42.9%** | — |\n\n**关键洞察：**\n\n1. **Parseable-only accuracy (42.9%) 远低于 overall (58.04%)**：因为 100% 的 unparseable 样本默认 pred=1 (pass)，在 pass-dominant 数据集 (73%) 上白捡准确率。\n2. **Gold 类别灾难性低**：parseable 时仅 23.5% 正确（即模型倾向输出 \"fail\"）。CLS 8B 在 gold 上达 96.2%。\n3. **Off-by-one 几乎完全不可解析**：95.6% unparseable，仅 8 个可解析样本且全错。\n4. **CWM 的 \"强项\" 是 fail detection**：operator_swap fail-label acc=97.9%，但 pass-label 仅 34.5%——模型 parseable 时严重偏向预测 \"fail\"。\n5. **两个 seed 一致**：seed123 parseable acc 也是 42.7%，模式相同。\n\n这强力支持 \"generation bottleneck\" claim：CWM 4B 不仅有高 unparseable 率，其可解析预测的质量本身也远逊于 CLS。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cwm4b-mutation-breakdown.md"
+}

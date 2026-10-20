@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81ac40fc38bfa06e254e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cls4b v5 val sweep ckpt4400 v3",
+  "task_key": "worker_analysis_cls4b-v5-val-sweep-ckpt4400-v3_20260515T032054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls4b-v5-val-sweep-ckpt4400-v3_20260515T032054_result.json",
+    "occurrence": 1,
+    "bytes": 1690,
+    "sha256": "e0c1b794bfc955f319655342c1595c59892b68eaec50133ee215fc841cd497eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕。总结如下：\n\n---\n\n## cls4b-v5-val-sweep-ckpt4400-v3 结果\n\n**状态**: 成功完成，EXIT_CODE=0，运行 ~70 分钟 (4217s batch time, 1.24 GPU-hours)\n\n### 关键指标\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **89.96%** |\n| F1 macro | **84.94%** |\n| F1 fail | 76.25% (P=88.8%, R=66.8%) |\n| F1 pass | 93.64% (P=90.2%, R=97.3%) |\n| Majority baseline | 75.88% |\n| Gap vs majority | +14.09pp |\n| Samples | 9335 (pass=7083, fail=2252) |\n| Truncated | 234/9335, Unparseable: 0 |\n\n### Val Sweep 对比 (cls4b-v5, val@5120)\n\n| Checkpoint | Accuracy | F1 macro | F1 fail | F1 pass |\n|-----------|----------|----------|---------|---------|\n| ckpt-600 | 82.82 | 79.81 | 72.03 | 87.60 |\n| ckpt-4000 | 89.84 | 84.25 | 74.85 | 93.64 |\n| **ckpt-4400** | **89.96** | **84.94** | **76.25** | **93.64** |\n\nckpt-4400 在所有指标上优于 ckpt-4000：accuracy +0.12pp, f1_macro +0.69pp, f1_fail +1.40pp。提升主要来自 fail 类的 recall 改善。f1_pass 持平。\n\n### 关于 v1/v2 CUDA hang\n\nv3 未修改 watchdog，使用完全相同的代码和参数，顺利跑完 9335 个 sample，**确认 v1/v2 的 CUDA hang 是低概率间歇性事件**，而非代码/数据层面的系统性问题。RTX 5090 驱动稳定性仍需关注，但不阻塞实验。\n\n### 对 D063 val sweep 的影响\n\nckpt-4400 是目前 val sweep 中的 **best checkpoint**（acc 和 f1_macro 均最高）。训练从 ckpt-600 → ckpt-4000 → ckpt-4400 持续改善，尚未出现过拟合迹象。ckpt-4200 和 ckpt-4600 仍在 QUEUED，跑完后可确认曲线趋势——如果 ckpt-4600 继续提升，val-best 可能还会后移。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cls4b-v5-val-sweep-ckpt4400-v3.md"
+}

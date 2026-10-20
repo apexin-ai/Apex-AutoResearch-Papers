@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e6712637b0bce6633a8f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "audit data traceability",
+  "task_key": "worker_audit_data-traceability_20260523T191629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-traceability_20260523T191629.log",
+    "occurrence": 1,
+    "bytes": 884059,
+    "sha256": "5905aded9a4d56bbbac2bcb2868ebea5164a3214223eaa1a7d212191092dd93f"
+  },
+  "statistics": {
+    "messages": 114,
+    "user_turns": 0,
+    "tool_calls": 48,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 14,
+      "tool_call": 48,
+      "tool_result": 48,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 114,
+      "chunks": [
+        {
+          "path": "e6712637b0bce6633a8f-part-0001.json",
+          "message_count": 55
+        },
+        {
+          "path": "e6712637b0bce6633a8f-part-0002.json",
+          "message_count": 59
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-data-traceability.md"
+}

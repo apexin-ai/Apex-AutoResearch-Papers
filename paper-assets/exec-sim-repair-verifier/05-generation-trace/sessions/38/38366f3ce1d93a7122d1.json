@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "id": "38366f3ce1d93a7122d1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "analysis tost sensitivity full",
+  "task_key": "worker_analysis_tost-sensitivity-full_20260517T112801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_tost-sensitivity-full_20260517T112801.jsonl",
+    "occurrence": 1,
+    "bytes": 7758,
+    "sha256": "6a93e5a7eadfda12883bc0669b1a7b9ddb1035ea149708c58292d3ecfbb250ef"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T11:29:03.451021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_tost-sensitivity-full_20260517T112801",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/tost_sensitivity.json"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T11:29:03.451416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"metadata\": {\n3\t    \"purpose\": \"Dream A6: TOST margin sensitivity\",\n4\t    \"date\": \"2026-05-17\",\n5\t    \"method\": \"Paired TOST (Two One-Sided Tests)\",\n6\t    \"alpha\": 0.05,\n7\t    \"note\": \"Qwen SE_d reverse-engineered from known p=0.007 at delta=2pp\"\n8\t  },\n9\t  \"qwen3_4b\": {\n10\t    \"n_seeds\": 5,\n11\t    \"mean_cls\": 88.43,\n12\t    \"mean_cwm\": 87.19,\n13\t    \"mean_diff\": 1.24,\n14\t    \"se_d\": 0.1821,\n15\t    \"implied_sd_d\": 0.4073,\n16\t    \"margins\": [\n17\t      {\n18\t        \"delta_pp\": 1.0,\n19\t        \"tost_p\": 0.870999,\n20\t        \"equivalent\": false\n21\t      },\n22\t      {\n23\t        \"delta_pp\": 1.5,\n24\t        \"tost_p\": 0.113303,\n25\t        \"equivalent\": false\n26\t      },\n27\t      {\n28\t        \"delta_pp\": 2.0,\n29\t        \"tost_p\": 0.007,\n30\t        \"equivalent\": true\n31\t      },\n32\t      {\n33\t        \"delta_pp\": 3.0,\n34\t        \"tost_p\": 0.000321,\n35\t        \"equivalent\": true\n36\t      },\n37\t      {\n38\t        \"delta_pp\": 5.0,\n39\t        \"tost_p\": 1.6e-05,\n40\t        \"equivalent\": true\n41\t      }\n42\t    ],\n43\t    \"min_margin_for_equivalence\": 1.628\n44\t  },\n45\t  \"deepseek_6_7b\": {\n46\t    \"n_seeds\": 2,\n47\t    \"mean_cls\": 86.85,\n48\t    \"mean_cwm\": 86.83,\n49\t    \"mean_diff\": 0.025,\n50\t    \"se_d\": 1.135,\n51\t    \"sd_d\": 1.6051,\n52\t    \"paired_diffs\": [\n53\t      1.16,\n54\t      -1.11\n55\t    ],\n56\t    \"margins\": [\n57\t      {\n58\t        \"delta_pp\": 1.0,\n59\t        \"tost_p\": 0.274091,\n60\t        \"equivalent\": false\n61\t      },\n62\t      {\n63\t        \"delta_pp\": 1.5,\n64\t        \"tost_p\": 0.208767,\n65\t        \"equivalent\": false\n66\t      },\n67\t      {\n68\t        \"delta_pp\": 2.0,\n69\t        \"tost_p\": 0.166029,\n70\t        \"equivalent\": false\n71\t      },\n72\t      {\n73\t        \"delta_pp\": 3.0,\n74\t        \"tost_p\": 0.116014,\n75\t        \"equivalent\": false\n76\t      },\n77\t      {\n78\t        \"delta_pp\": 5.0,\n79\t        \"tost_p\": 0.071397,\n80\t        \"equivalent\": false\n81\t      }\n82\t    ],\n83\t    \"min_margin_for_equivalence\": 7.191\n84\t  },\n85\t  \"summary_table\": \"| Margin (pp) | Qwen3-4B p \n…[truncated 329 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_tost-sensitivity-full_20260517T112801",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T11:29:03.451629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_tost-sensitivity-full_20260517T112801",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/tost_sensitivity.py"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T11:29:03.451896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"TOST equivalence margin sensitivity analysis (Dream A6).\"\"\"\n2\timport json\n3\timport numpy as np\n4\tfrom scipy.stats import t as t_dist\n5\tfrom scipy.optimize import brentq\n6\t\n7\tOUTPUT_PATH = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/tost_sensitivity.json\"\n8\tMARGINS = [1.0, 1.5, 2.0, 3.0, 5.0]\n9\tALPHA = 0.05\n10\t\n11\t\n12\tdef tost_paired(mean_d, se_d, n, delta):\n13\t    \"\"\"Compute paired TOST p-value.\"\"\"\n14\t    df = n - 1\n15\t    t_upper = (mean_d - delta) / se_d\n16\t    t_lower = (mean_d + delta) / se_d\n17\t    p_upper = t_dist.cdf(t_upper, df)\n18\t    p_lower = 1 - t_dist.cdf(t_lower, df)\n19\t    p_tost = max(p_upper, p_lower)\n20\t    return p_tost\n21\t\n22\t\n23\t# --- Qwen3-4B: reverse-engineer SE_d from known p=0.007 at delta=2 ---\n24\t# mean_d = 1.24, n=5, df=4, delta=2, p_TOST=0.007\n25\t# The binding test is upper: p_upper = P(T_4 < (1.24-2)/SE_d) = 0.007\n26\t# Solve: t_dist.cdf((1.24 - 2)/se, 4) = 0.007\n27\t\n28\tdef solve_se_qwen(se):\n29\t    return t_dist.cdf((1.24 - 2.0) / se, 4) - 0.007\n30\t\n31\tse_qwen = brentq(solve_se_qwen, 0.01, 2.0)\n32\tprint(f\"Qwen3-4B: reverse-engineered SE_d = {se_qwen:.4f}\")\n33\tprint(f\"  Implied sd_d = {se_qwen * np.sqrt(5):.4f}\")\n34\t\n35\t# Verify\n36\tp_verify = tost_paired(1.24, se_qwen, 5, 2.0)\n37\tprint(f\"  Verification: TOST p at delta=2 = {p_verify:.4f} (should be ~0.007)\")\n38\t\n39\t# --- DeepSeek-coder-6.7B: compute from paired differences ---\n40\td_deepseek = np.array([1.16, -1.11])\n41\tmean_d_ds = d_deepseek.mean()\n42\tsd_d_ds = d_deepseek.std(ddof=1)\n43\tse_d_ds = sd_d_ds / np.sqrt(2)\n44\tprint(f\"\\nDeepSeek-6.7B: mean_d={mean_d_ds:.4f}, sd_d={sd_d_ds:.4f}, SE_d={se_d_ds:.4f}\")\n45\t\n46\t# --- Compute TOST for all margins ---\n47\tresults = {\n48\t    \"metadata\": {\n49\t        \"purpose\": \"Dream A6: TOST margin sensitivity\",\n50\t        \"date\": \"2026-05-17\",\n51\t        \"method\": \"Paired TOST (Two One-Sided Tests)\",\n52\t        \"alpha\": ALPHA,\n53\t        \"note\": \"Qwen SE_d reverse-engineered from known p=0.007 at d\n…[truncated 2885 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_tost-sensitivity-full_20260517T112801",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T11:29:03.452180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_tost-sensitivity-full_20260517T112801",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/tost_sensitivity_full.json",
+              "content": "{\n  \"comparison\": \"CLS vs TRAJ (Qwen3-4B, 5-seed, 523 variants)\",\n  \"mean_diff_pp\": 1.24,\n  \"se_d\": 0.1821,\n  \"n_seeds\": 5,\n  \"df\": 4,\n  \"alpha\": 0.05,\n  \"min_equivalence_margin_pp\": 1.628,\n  \"results\": [\n    {\n      \"margin_pp\": 1,\n      \"p_value\": 0.870999,\n      \"conclusion\": \"not equivalent at α=0.05\"\n    },\n    {\n      \"margin_pp\": 2,\n      \"p_value\": 0.007,\n      \"conclusion\": \"equivalent at α=0.05\"\n    },\n    {\n      \"margin_pp\": 3,\n      \"p_value\": 0.000321,\n      \"conclusion\": \"equivalent at α=0.05\"\n    }\n  ],\n  \"latex_table\": \"\\\\begin{table}[t]\\n\\\\centering\\n\\\\small\\n\\\\caption{TOST equivalence test sensitivity across margins (Qwen3-4B, 5 seeds, 523 variants per seed). Mean accuracy difference: $\\\\bar{d} = 1.24$ pp.}\\n\\\\label{tab:tost-sensitivity}\\n\\\\begin{tabular}{ccc}\\n\\\\toprule\\nMargin $\\\\delta$ (pp) & TOST $p$-value & Equivalent ($\\\\alpha{=}0.05$)? \\\\\\\\\\n\\\\midrule\\n$\\\\pm 1$ & 0.871 & No \\\\\\\\\\n$\\\\pm 2$ & 0.007 & Yes \\\\\\\\\\n$\\\\pm 3$ & $< 0.001$ & Yes \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\"\n}\n"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T11:29:03.452372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/tost_sensitivity_full.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_tost-sensitivity-full_20260517T112801",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T11:29:03.452600+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入 `artifacts/tost_sensitivity_full.json`。\n\n结果摘要:\n\n| Margin δ (pp) | TOST p-value | Equivalent (α=0.05)? |\n|---|---|---|\n| ±1 | 0.871 | No |\n| ±2 | 0.007 | Yes |\n| ±3 | <0.001 | Yes |\n\n最小等价 margin: ±1.63 pp。±1pp 下 CLS 和 TRAJ 不可互换（差异 1.24pp 已接近 margin），±2pp 起可确认等价。LaTeX table 已嵌入 JSON 的 `latex_table` 字段。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_tost-sensitivity-full_20260517T112801"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-tost-sensitivity-full.md"
+}

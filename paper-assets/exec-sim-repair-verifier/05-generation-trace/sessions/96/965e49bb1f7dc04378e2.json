@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "965e49bb1f7dc04378e2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "urgent verify cwm 8b safe",
+  "task_key": "worker_urgent_verify-cwm-8b-safe_20260514T141415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_verify-cwm-8b-safe_20260514T141415.log",
+    "occurrence": 1,
+    "bytes": 746660,
+    "sha256": "d1a34acde52ae19507ef25b3b26890f7934d944d17ea27ea787e74c99ccf55ec"
+  },
+  "statistics": {
+    "messages": 542,
+    "user_turns": 0,
+    "tool_calls": 218,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 102,
+      "tool_call": 218,
+      "tool_result": 218,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 542,
+      "chunks": [
+        {
+          "path": "965e49bb1f7dc04378e2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "965e49bb1f7dc04378e2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "965e49bb1f7dc04378e2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "965e49bb1f7dc04378e2-part-0004.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/urgent-verify-cwm-8b-safe.md"
+}

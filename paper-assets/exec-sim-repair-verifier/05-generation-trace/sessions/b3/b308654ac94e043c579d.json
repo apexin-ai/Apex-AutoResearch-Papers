@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b308654ac94e043c579d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval and train traj 8b s42 eval s123 train",
+  "task_key": "worker_eval-and-train_traj-8b-s42-eval-s123-train_20260517T141241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval-and-train_traj-8b-s42-eval-s123-train_20260517T141241_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "4a743a0a4bcb7d3dceef32b4fc27b4194b7a769e36cde7ccdbd6769aa82e2eea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s123 训练成功启动，wandb 正在同步。\n\n---\n\n## 结果汇总\n\n### Part 1: Qwen3-8B TRAJ s42 Eval\n\n| 指标 | 值 |\n|---|---|\n| Accuracy | **87.60%** (+34.0pp vs majority baseline) |\n| Pass (resolved) F1 | **85.96%** |\n| Fail (unresolved) F1 | **88.89%** |\n| Unparseable rate | **0.0%** |\n| Per-test consistency | 78.78% (813/1032) |\n| Checkpoint | `checkpoints_traj_8b_seed42/best` |\n| Test set | 1032 samples |\n\n结果已保存到 `artifacts/qwen3_8b_traj_s42_eval.json`，服务器端保存在 `eval_traj_8b_seed42.json`。\n\n### Part 2: s123 训练已启动\n\n| 项目 | 信息 |\n|---|---|\n| tmux session | `qwen3-8b-traj-func-s123` |\n| PID | 3829073 |\n| GPU 占用 | 16,324 MiB |\n| 总 steps | 756 (3 epochs) |\n| wandb run | `traj-qwen3-8b-lora-s123` (run ID: `bfyo1yuo`) |\n| 参数 | LR=2e-4, rank=16, alpha=32, bs=2, grad_accum=16, seq_len=2048 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-and-train-traj-8b-s42-eval-s123-train.md"
+}

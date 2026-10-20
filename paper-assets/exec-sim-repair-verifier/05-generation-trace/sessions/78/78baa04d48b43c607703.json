@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78baa04d48b43c607703",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor westd progress check",
+  "task_key": "worker_monitor_westd-progress-check_20260514T234731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westd-progress-check_20260514T234731_result.json",
+    "occurrence": 1,
+    "bytes": 1000,
+    "sha256": "aefd994b6da4bdb41f9c64e841b450c8356d0d4e394fd3f9cfa2240bfb211e0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进度汇总（2026-05-15 07:48 UTC）\n\n| 进程 | GPU | 当前 step | 总步数 | 进度 | train loss | eval loss | ETA | 状态 |\n|------|-----|-----------|--------|------|-----------|-----------|-----|------|\n| CLS 8B s42 resume | cuda:1 | 1000 | 6633 | 15.1% | ~1.04 | 0.182 | ~19h | 运行中，~293 step/h |\n| CWM 8B v4 | cuda:2 | 2500 | 6633 | 37.7% | 0.085 | 0.435 | ~27h | 运行中，~154 step/h |\n| CLS 8B seed123 v3 | cuda:3 | 4600 | 6633 | 69.4% | ~0.28 | 0.387 | ~7h | 运行中，~286 step/h |\n| CLS 8B s42 ckpt-800 val eval | cuda:0 | 2290/9335 样本 | — | 24.5% | — | — | ~23min | running_acc=85.1% |\n\n**备注：**\n- 4 个进程全部存活，无报错\n- CWM 速度明显慢于 CLS（~154 vs ~286 step/h），因为 CWM 每 100 步存 checkpoint 且有 eval\n- CLS s42 resume 刚跑不到 2h，从 ckpt-600 resume 到了 step 1000\n- CLS seed123 进展最快，预计今天下午完成\n- Eval 进程刚启动 7 分钟，约 23 分钟后出结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westd-progress-check.md"
+}

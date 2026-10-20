@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b19611e2b9b3ef2189d1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper draft intro related conclusion",
+  "task_key": "worker_paper_draft-intro-related-conclusion_20260515T225954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_draft-intro-related-conclusion_20260515T225954_result.json",
+    "occurrence": 1,
+    "bytes": 1512,
+    "sha256": "d9e4eff43691b5c6841a9075354c6e986d83caeacd0b921f86175f725bcf0e2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All citation keys verified against `references.bib` — no missing or fabricated references.\n\n**Results:**\n\n| Section | Before | After | Target |\n|---|---|---|---|\n| introduction.tex | 551w | 907w | 1000w |\n| related_work.tex | 381w | 591w | 600w |\n| conclusion.tex | 341w | 404w | 400w |\n\n**Introduction** changes: Added broader APR context and test-time scaling motivation in the hook; expanded trajectory-level paragraph with concrete re-repair example; added paragraph positioning against LEVER/CodeT and claiming novelty of the systematic formulation comparison; added complexity-dependence paragraph with oracle framework preview; added bridge sentence with dataset/model references before contributions; strengthened C1 with second CWM seed confirmation.\n\n**Related work** changes: Expanded each of the 5 paragraphs with sharper positioning and richer context. Added sentences on why generation cost scales, why verification quality matters for test-time scaling, how our per-test diagnostic differs from LEVER/CodeT, and that code complexity is the key moderator for the NLP classification-vs-generation tradeoff.\n\n**Conclusion** changes: Added P2P regression limitation (1.04% mean), synthetic-to-real transfer limitation, \"or pre-training regimes\" to model family caveat. Expanded future work with oracle ensemble number (90.63%) and complexity-routing ensemble idea, 8B-8B completion mention.\n\nAll numbers match registry. All `\\cite{}` keys exist in `references.bib`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-draft-intro-related-conclusion.md"
+}

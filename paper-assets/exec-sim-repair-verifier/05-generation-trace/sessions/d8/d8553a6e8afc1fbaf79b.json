@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8553a6e8afc1fbaf79b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "urgent home ckpt600 val4096 result",
+  "task_key": "worker_urgent_home-ckpt600-val4096-result_20260514T140057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_home-ckpt600-val4096-result_20260514T140057_result.json",
+    "occurrence": 1,
+    "bytes": 1233,
+    "sha256": "34f2119dbda83ccda74565b4db629d0a79ee3fc2d028f25dd1b5a9ee3a8801ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## 结果汇总\n\n### ckpt-600 val@4096 指标\n| 指标 | 值 |\n|------|-----|\n| accuracy | 79.18% |\n| f1_macro | 70.73% |\n| fail_f1 | 55.00% |\n| pass_f1 | 86.45% |\n| fail_recall | 52.75% |\n| unparseable | 1406 (15.1%) |\n| gap_vs_majority | +3.3pp |\n\n### val@4096 对比：ckpt-600 vs ckpt-400\n\n| 指标 | ckpt-600 | ckpt-400 | 差异 |\n|------|----------|----------|------|\n| accuracy | 79.18% | **82.57%** | -3.39pp |\n| f1_macro | 70.73% | **71.24%** | -0.51pp |\n| fail_f1 | **55.00%** | 53.18% | +1.82pp |\n| fail_recall | **52.75%** | 41.00% | +11.75pp |\n\n### 排序一致性\n\n| 评估设置 | 更优 checkpoint |\n|----------|----------------|\n| test@2048 | **ckpt-600** (80.73% vs 75.05%) |\n| val@4096 | **ckpt-400** (82.57% vs 79.18%) |\n\n**排序不一致。** val@4096 偏好 ckpt-400（accuracy 更高，因为 pass-biased 策略在高 pass-rate val set 上受益），而 test@2048 偏好 ckpt-600。值得注意的是 ckpt-600 的 fail_recall 高很多（52.75% vs 41%），说明 ckpt-600 更均衡，ckpt-400 靠牺牲 fail_recall 换 accuracy。\n\n### GPU 状态\nhome-1x5090 cuda:0 空闲（0% 利用率，0 MiB 显存），等待分配下一任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-home-ckpt600-val4096-result.md"
+}

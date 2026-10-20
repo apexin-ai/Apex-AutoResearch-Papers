@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e55656076c158a48b2cf",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze cls8b s42 ckpt200 test8192 eval",
+  "task_key": "worker_analyze_cls8b-s42-ckpt200-test8192-eval_20260515T105735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cls8b-s42-ckpt200-test8192-eval_20260515T105735_result.json",
+    "occurrence": 1,
+    "bytes": 2009,
+    "sha256": "d927139a21d577d83fe445c6924e18785f259196cad86a539e0a7430f4149ff4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。汇总如下：\n\n---\n\n## 实验 1: cls8b-s42-ckpt200-test8192-eval\n\n| 指标 | 值 |\n|---|---|\n| **Accuracy** | **70.07%** (低于 majority baseline 73.0%，差 -2.9pp) |\n| F1 macro | 68.18% |\n| pass F1 / P / R | 75.9% / 91.8% / 64.7% |\n| fail F1 / P / R | 60.4% / 47.0% / 84.5% |\n| Unparseable | 0 |\n| 样本数 | 9784 (pass=7138, fail=2646) |\n| 报错 | 无，EXIT_CODE=0 |\n| wandb | 无 |\n\n**Confusion matrix:**\n```\n              Predicted\n              fail    pass\nActual fail   2235     411\nActual pass   2517    4621\n```\n\n**分析:** ckpt-200 是最早的 checkpoint，accuracy 70.07% **低于 majority baseline**，是 s42 test sweep 中最差的点。模型严重 over-predict fail（2517 个 pass 被误判为 fail），fail recall 高 (84.5%) 但 precision 极低 (47.0%)。\n\n### s42 test sweep 完整曲线\n\n| Checkpoint | Test Accuracy |\n|---|---|\n| ckpt-200 | **70.07%** ← 本次 |\n| ckpt-400 | 84.79% |\n| ckpt-600 | 82.75% |\n| ckpt-800 | 83.57% |\n| ckpt-1000 | 83.52% (val-best) |\n| ckpt-1200 | 84.74% |\n| ckpt-1400 | **85.47%** (test-best) |\n| ckpt-1600 | 84.37% |\n\nckpt-200 明显欠拟合，200→400 步有 ~15pp 的跳升。\n\n---\n\n## 实验 2: cls8b-seed123-ckpt6600-test-eval\n\n| 指标 | 值 |\n|---|---|\n| **Accuracy** | **84.90%** (+11.9pp over majority) |\n| F1 macro | 77.58% |\n| pass F1 / P / R | 90.4% / 84.3% / 97.4% |\n| fail F1 / P / R | 64.8% / 87.8% / 51.3% |\n| Unparseable | 0 |\n| 样本数 | 9784 (pass=7138, fail=2646) |\n| 报错 | 无，EXIT_CODE=0 |\n| wandb | 无 |\n\n**Confusion matrix:**\n```\n              Predicted\n              fail    pass\nActual fail   1357    1289\nActual pass    188    6950\n```\n\n**分析:** ckpt-6600 的 test accuracy 84.90%，与 seed123 ckpt-3000 (val-best) 的 85.60% 接近，差 0.7pp。fail recall 偏低 (51.3%)，但 fail precision 很高 (87.8%) — 与 s42 ckpt-200 的模式完全相反（s42-200 是高 recall 低 precision）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-cls8b-s42-ckpt200-test8192-eval.md"
+}

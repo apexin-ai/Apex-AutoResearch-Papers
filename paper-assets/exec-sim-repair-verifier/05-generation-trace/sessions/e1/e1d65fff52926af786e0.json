@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1d65fff52926af786e0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval home d063 val sweep",
+  "task_key": "worker_eval_home-d063-val-sweep_20260514T174745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_home-d063-val-sweep_20260514T174745_result.json",
+    "occurrence": 1,
+    "bytes": 1659,
+    "sha256": "2a9bf6ba22d53f377c423ec10acffe649a4696ad9aee68483fc2c0d6957f32aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sweep 脚本启动成功（PID 3153913），正在等待 8B ckpt-3000 完成。\n\n汇总当前状态：\n\n```\n=== 已完成的 val@5120 结果 ===\n| Checkpoint                    | Accuracy | F1_macro | Unparseable% | Truncated% |\n|-------------------------------|----------|----------|-------------|-----------|\n| 8B conda ckpt-400 val@5120    | 80.47    | 75.84    | 0.0%        | 2.51%     |\n\n=== 正在运行 ===\n8B westd ckpt-3000 val@5120: 1968/9335 = 21.1% (PID 3151214, tmux: eval_8b_val5120_fix)\n\n=== 排队中 (nohup PID 3153913, 等 8B 完成后自动启动) ===\n1. seed123 ckpt-400 val@5120\n2. seed123 ckpt-600 val@5120\n3. seed123 ckpt-800 val@5120\n4. v5 ckpt-600 val@5120\n5. v5 ckpt-4000 val@5120\n6. v5 ckpt-4400 val@5120\n7. v5 ckpt-4600 val@5120\n\n=== 路径确认 ===\ncheckpoints_repo_cls_8b_westd/      → checkpoint-200, 2400, 2600, 2800, 3000\ncheckpoints_repo_cls_seed123_home/  → checkpoint-200, 400, 600, 800, 1000\ncheckpoints_repo_cls_v5/            → checkpoint-600, 4000, 4200, 4400, 4600\ncheckpoints_repo_cls_8b_conda_westd/ → (8B conda variant, ckpt-400 已完成 val)\n\n=== 注意 ===\n- 所有旧 results/ 下的结果都是 test@2048，不是 val@5120\n- seed123 在 checkpoints_repo_cls_seed123_home/ (非 checkpoints_repo_cls_seed123/)\n- v5 在 checkpoints_repo_cls_v5/ (非 checkpoints_repo_cls_v5_conda/)\n- 4B 模型默认用 Qwen/Qwen3-4B，无需指定 --model_name\n```\n\n监控命令：\n- 进度: `wc -l results/repo_cls_8b_ckpt3000_val5120/eval_repo_cls_predictions.jsonl`\n- Sweep log: `tail -20 results/val_sweep.log`\n- 进程: `ps -p 3151214,3153913 -o pid,stat,etime`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-home-d063-val-sweep.md"
+}

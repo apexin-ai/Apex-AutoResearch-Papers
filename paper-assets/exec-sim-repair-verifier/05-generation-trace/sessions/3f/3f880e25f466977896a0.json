@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f880e25f466977896a0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "data comprehensive results update",
+  "task_key": "worker_data_comprehensive-results-update_20260515T081704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_comprehensive-results-update_20260515T081704_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "79b49229e16b7fed3afa615fa74de87e6a9563ad2efc2ed3149bbee1da087028"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "新增内容：\n\n1. **Section 4.5 扩展** — 8B s42 test@8192 完整 7 点 sweep（新增 ckpt-800/1000/1200/1400/1600），test-best 更新为 ckpt-1400 (85.47%, +12.51pp)，val-best 补入 ckpt-1000 (88.23%)，scaling gain 从 +2.44pp 修正为 +3.12pp\n\n2. **Section 4.6 新增** — CLS 8B seed123 repo-level：val sweep 5 点（val-best ckpt-3000, 88.69%）+ test@8192 ckpt-3000 全量指标（85.60%, F1m=78.38%）\n\n3. **Section 4.7 新增** — CLS 4B seed42 v5 extended eval：val ckpt-4600=90.07%（val-best），test ckpt-4600=83.63%\n\n4. **Section 4.8 新增** — Multi-seed 8B repo-level 对比表（s42 vs seed123，含 CWM test 和 CLS−CWM gap ~26pp）\n\n5. **Section 8 更新** — 3 条新 key findings（8B scaling gain、multi-seed、4B extended eval）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-comprehensive-results-update.md"
+}

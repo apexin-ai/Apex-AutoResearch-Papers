@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e18cd9ce2b738b3f68ed",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code adapt training script",
+  "task_key": "worker_code_adapt-training-script_20260516T045559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_adapt-training-script_20260516T045559_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "a8982fc5489dae6c739b049bbdec0c78619182e41684e76f461201145290c3ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件写好了：`train_unified.py`\n\n**新模型 DeepSeek-Coder-6.7B-Instruct 的关键差异和注意事项：**\n\n| 差异点 | Qwen3 | DeepSeek-Coder-6.7B-Instruct |\n|--------|-------|------|\n| Chat template 格式 | ChatML (`<\\|im_start\\|>...<\\|im_end\\|>`) | `### Instruction:\\n...\\n### Response:\\n` |\n| 特殊参数 | `enable_thinking=False` | 无 |\n| EOS token | `<\\|im_end\\|>` / `<\\|endoftext\\|>` | `<\\|EOT\\|>` |\n| LoRA target modules | q/k/v/o_proj | 同（LLaMA架构） |\n| context length | 32K | 16K |\n\n**脚本设计要点：**\n1. `detect_model_family()` 根据模型名自动选择配置\n2. `get_chat_template_kwargs()` 只给 Qwen3 传 `enable_thinking=False`\n3. `_try_apply_chat_template()` 兼容不支持 system role 的模型（自动 merge 到 user message）\n4. tokenizer/pad_token 处理对两者都安全\n5. 训练启动时打印一条格式化后的 sample prompt 用于人工验证模板是否正确\n\n**eval 脚本（`eval_cwm_baseline.py`）也有 Qwen 特有逻辑**（`<|im_end|>` 作为 stop token），如果要用 DeepSeek 评估需要同样适配。需要的话我可以接着改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-adapt-training-script.md"
+}

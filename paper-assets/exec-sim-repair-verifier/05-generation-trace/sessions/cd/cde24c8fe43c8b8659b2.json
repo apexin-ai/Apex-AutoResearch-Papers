@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "cde24c8fe43c8b8659b2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "code eval script fix d008",
+  "task_key": "worker_code_eval-script-fix-d008_20260513T000154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-script-fix-d008_20260513T000154.log",
+    "occurrence": 1,
+    "bytes": 1120351,
+    "sha256": "14dbb1746c1749c69ad7749d05eb0098cfaa5b60caae78d6a6d60a4de7c0b885"
+  },
+  "statistics": {
+    "messages": 253,
+    "user_turns": 1,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 72,
+      "tool_call": 86,
+      "tool_result": 86,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 156,
+      "chunks": [
+        {
+          "path": "cde24c8fe43c8b8659b2-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "cde24c8fe43c8b8659b2-part-0002.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 97,
+      "chunks": [
+        {
+          "path": "cde24c8fe43c8b8659b2-part-0002.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-eval-script-fix-d008.md"
+}

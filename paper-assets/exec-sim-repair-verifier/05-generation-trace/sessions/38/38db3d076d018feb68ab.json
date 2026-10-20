@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38db3d076d018feb68ab",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra cwm seq length audit",
+  "task_key": "worker_infra_cwm-seq-length-audit_20260518T134458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_cwm-seq-length-audit_20260518T134458_result.json",
+    "occurrence": 1,
+    "bytes": 1081,
+    "sha256": "776eaa5928da5167bd9d0888792343feb32ba6f064866c60d63d259b7a05f5f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据到齐。\n\n## 结论\n\n| 项目 | max_seq_length |\n|------|---------------|\n| **Qwen3-8B CWM repo (65.17%)** | **2048** |\n| **Qwen3-4B CWM repo (58.04%)** | **2048** |\n| eval_repo_cwm.py 脚本默认值 | 8192 |\n| GPU 1: DeepSeek CWM s42 (best) | 4096 |\n| GPU 2 (D124): DeepSeek CWM s42 epoch2 | **8192** |\n| GPU 3: DeepSeek CWM s123 | 4096 |\n\n**关键发现：所有 Qwen canonical CWM repo eval (65.17% 和 58.04%) 用的都是 `max_seq_length=2048`。**\n\n来源确认：\n- 65.17% → `cwm_8b_ckpt400_test_merged/metrics.json`，所有 shard 日志和 JSON 都记录 `max_seq_length: 2048`（Qwen3-8B, ckpt-400）\n- 58.04% → `results/repo_cwm_v12_conda_eval/eval_repo_cwm.json`，config 记录 `max_seq_length: 2048`（Qwen3-4B, ckpt-500）\n\nD124 (GPU 2) 的 `seq_length=8192` 是非标准设置，比 canonical Qwen eval 的 2048 高 4 倍。`run_repo_eval.sh` 不传此参数（走脚本默认 8192），而 `run_8b_eval.sh` 默认用 6144。实际 canonical 结果都是手动指定或在之前某版脚本中硬编码的 2048。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cwm-seq-length-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84bd94dffff6f5a40888",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval ckpt1400 test collect",
+  "task_key": "worker_eval_ckpt1400-test-collect_20260515T052833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ckpt1400-test-collect_20260515T052833_result.json",
+    "occurrence": 1,
+    "bytes": 223,
+    "sha256": "96c5eddaa3a2c844790cb36ca715889f202ba01082377eb134b777b4b9b95e57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "原 eval 进程(PID 332736)在 8420/9784 处被无声终止，无 error/traceback。已用 nohup 重新启动(PID 334814)，日志写入 `/tmp/eval_cls8b_ckpt1400_test8192_v2.log`。2 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ckpt1400-test-collect.md"
+}

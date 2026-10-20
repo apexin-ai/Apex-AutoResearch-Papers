@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "973fc40a141bf8b50b58",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "viz figure2 yaxis",
+  "task_key": "worker_viz_figure2-yaxis_20260522T170212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_figure2-yaxis_20260522T170212_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "a153f48c25abfbb9830e47390037105fa955361712b2477f7f2ed12b7b59680f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary:\n\n**Figure 2 — fixed:**\n- Regenerated `fig2_scaling_gap.pdf` with y-axis starting at 0% (was 55%)\n- Removed \"Note: $y$-axis begins at 55%\" from caption in `main.tex` line 57\n- Script `plot_figure2_v2.py` already had the correct `set_ylim(0, 105)` — just needed regeneration and file copy\n- Artifact registered: `art_20260522_43ba07`\n\n**Figure 3 — no change needed:**\n- Script: `artifacts/fig3_oracle_stratified.py`, y-axis range `(-5, 50)`\n- This is an advantage plot in percentage points (not accuracy %), with near-zero/negative values at T=1. Starting at -5 is appropriate for this data type\n- Caption in `appendix.tex` line 34 already discloses \"y-axis does not start at zero\"\n- Unlike Figure 2's 55% truncation on accuracy, this is not visually misleading — the reviewer concern was specific to the accuracy scale"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-figure2-yaxis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9804db52616cd2498978",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops verify pid 202994",
+  "task_key": "worker_ops_verify-pid-202994_20260522T184411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-pid-202994_20260522T184411_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "8a8bca0d3a34f7d92ca54a12f1ab91b3a39b8fc28a99cc989bc5c381cd576a33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**1. Eval 轮询进程 (PID 202994)** — 存活，运行 12 分钟\n```\nPID 202994, STAT=S, ELAPSED=12:06, CMD=bash /tmp/run_14b_eval.sh\n```\n\n**2. 模型下载进度** — 13GB 已下载，下载进程仍在运行\n```\n/dev/shm/Qwen3-14B/  →  13G\nPID 200698, CPU=7.4%, TIME=3:11, CMD=python3 snapshot_download('Qwen/Qwen3-14B')\n```\n\n**3. 训练轮询进程 (PID 200355)** — 存活，运行 47 分钟\n```\nPID 200355, STAT=S, ELAPSED=46:41, CMD=bash /tmp/auto_train_14b.sh\n```\n\n三个进程全部正常运行。模型下载中（Qwen3-14B 约 28GB，当前 13G ≈ 46%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-pid-202994.md"
+}

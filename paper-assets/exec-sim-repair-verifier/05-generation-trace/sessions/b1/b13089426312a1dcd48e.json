@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b13089426312a1dcd48e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code repo level bootstrap analysis",
+  "task_key": "worker_code_repo-level-bootstrap-analysis_20260514T172708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_repo-level-bootstrap-analysis_20260514T172708_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "b1a25f1bdacbdcffde3893e18ccaac19ef239679b1ab4e56fcc208c021709042"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已部署到 westd `/home/sonny/exec-sim-repair-verifier/repo_level_bootstrap.py`，dry-run 通过。\n\n用法示例（CWM eval 完成后）：\n```bash\npython repo_level_bootstrap.py \\\n  --cls_pred results/repo_cls_v5_conda_eval/eval_repo_cls_predictions.jsonl \\\n  --cwm_pred results/<cwm_dir>/eval_repo_cls_predictions.jsonl \\\n  --output results/bootstrap_cls_vs_cwm.json\n```\n\n输出 JSON 包含：`cls_accuracy`, `cwm_accuracy`, `gap_pp`（百分点差）, `ci_lower_pp`, `ci_upper_pp`（95% CI）, `p_value`（单侧 H0: CLS ≤ CWM）, `n_samples`, `significant_at_005`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-repo-level-bootstrap-analysis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd157d1602e48a0bc200",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh traj14b s42 check",
+  "task_key": "worker_ssh_traj14b-s42-check_20260523T104704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_traj14b-s42-check_20260523T104704_result.json",
+    "occurrence": 1,
+    "bytes": 805,
+    "sha256": "a22c1158cb7b4518b79d60f843241e44f20f5f24a650c10538227df5d99c242c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在，无需删除。\n\n## 汇报\n\n### traj14b-func-s42 — 训练成功\n\n| 指标 | 值 |\n|------|-----|\n| best checkpoint | `/root/autodl-tmp/checkpoints/traj14b-func-s42/best` (step 504, epoch 2) |\n| best eval_loss | **0.0762** |\n| final eval_loss (epoch 3) | 0.0958 |\n| train_loss | 0.1312 |\n| 训练时长 | ~1h37m (5838s) |\n\nEval loss 曲线：epoch 1 → 0.0977, epoch 2 → 0.0762 (best), epoch 3 → 0.0958（轻微过拟合，best checkpoint 正确保存在 epoch 2）。\n\n### traj14b-func-s456 — 也已完成\n\n| 指标 | 值 |\n|------|-----|\n| best checkpoint | `/root/autodl-tmp/checkpoints/traj14b-func-s456/best` |\n| final eval_loss | 0.0971 |\n| train_loss | 0.1257 |\n| 训练时长 | ~1h37m (5811s) |\n\n三个 seed 全部训练完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-traj14b-s42-check.md"
+}

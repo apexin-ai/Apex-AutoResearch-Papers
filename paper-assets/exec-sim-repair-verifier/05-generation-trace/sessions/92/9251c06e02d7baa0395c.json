@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9251c06e02d7baa0395c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research bibliography expansion",
+  "task_key": "worker_research_bibliography-expansion_20260517T094035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bibliography-expansion_20260517T094035_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "f80160e43883598b32a95adc87083be729bc2047e33ec698aba1545da356e3a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/bibliography_candidates.yaml`。\n\n共收集 23 篇候选论文，覆盖 7 个类别：\n- Parameter-Efficient Fine-Tuning: 2 篇 (LoRA, QLoRA)\n- SWE-bench Ecosystem: 2 篇 (SWE-bench, SWE-agent)\n- Code Evaluation (Non-Execution): 3 篇 (ICE-Score, CodeScore, CodeBERTScore)\n- Reasoning/Verification: 2 篇 (Self-Consistency, Let's Verify Step by Step)\n- Code Reward Models: 4 篇 (SWE-RM, CodeRL, PRLCoder, DreamPRM-Code)\n- Mutation Testing: 3 篇 (Contextual PMT, Seshat, LLM Mutation)\n- Foundation Models: 2 篇 (Qwen3, DeepSeek-Coder)\n- Code Benchmarks: 5 篇 (HumanEval, MBPP, CodeT, AlphaCode, AlphaCode 2)\n\n加上现有 ~10 篇引用，总计可达 30+ 篇，满足 reviewer 要求。每条均含 arXiv ID、venue、year、bib_key 和 relevance 说明。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bibliography-expansion.md"
+}

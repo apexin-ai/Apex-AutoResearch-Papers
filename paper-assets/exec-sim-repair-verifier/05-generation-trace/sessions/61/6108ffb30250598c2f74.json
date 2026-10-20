@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6108ffb30250598c2f74",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh traj14b 3seed launch",
+  "task_key": "worker_ssh_traj14b-3seed-launch_20260523T090139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_traj14b-3seed-launch_20260523T090139_result.json",
+    "occurrence": 1,
+    "bytes": 143,
+    "sha256": "ea1f8d5301dcf2cf5078fab4e20a2c8dc67993265e24a700d8c9b09a872aff06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "之前的等待任务已完成，训练状态已在上条消息中确认——3 个任务都在正常跑，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-traj14b-3seed-launch.md"
+}

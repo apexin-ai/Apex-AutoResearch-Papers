@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6cf496194e7be7f5faf",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis seed123 perinstance predictions",
+  "task_key": "worker_analysis_seed123-perinstance-predictions_20260512T163614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_seed123-perinstance-predictions_20260512T163614_result.json",
+    "occurrence": 1,
+    "bytes": 1469,
+    "sha256": "4e0fcda323188113242cb0bfe966c8cd6fa93ed85f928ff4d412a7cc4563d61a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 全部完成。汇总：\n\n## 产出\n\n### 1. Checkpoint 位置\n| Model | Seed | Server | Path |\n|-------|------|--------|------|\n| CLS | 123 | home-1x5090 | `/home/sonny/exec-sim-repair-verifier/checkpoints_seed123/best` |\n| CWM | 123 | seetacloud-westd-4x5090 | `/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed123/best` |\n\n### 2. CLS seed123 Predictions\n- **文件**: `home:/home/sonny/exec-sim-repair-verifier/eval_cls_seed123_with_preds_predictions.json`\n- **Count**: 1890 predictions\n- **Accuracy**: 1692/1890 = **89.5%**\n- **Gap vs baseline**: +37.8pp\n- **Per-class F1**: fail=89.4%, pass=89.6%\n\n### 3. CWM seed123 Predictions\n- **文件**: `seetacloud:/home/sonny/exec-sim-repair-verifier/eval_cwm_seed123_with_preds_predictions.json`\n- **Count**: 1890 predictions\n- **Accuracy**: 1648/1890 = **87.2%**\n- **Gap vs baseline**: +35.4pp\n- **Per-class F1**: fail=87.4%, pass=87.0%\n- **Exact match rate**: 84.4% (1596/1890)\n\n### 4. 文件清单\n| File | Server | Type |\n|------|--------|------|\n| `eval_cls_seed123_with_preds.json` | home | CLS metrics |\n| `eval_cls_seed123_with_preds_predictions.json` | home | CLS per-instance predictions |\n| `eval_cwm_seed123_with_preds.json` | seetacloud | CWM metrics |\n| `eval_cwm_seed123_with_preds_predictions.json` | seetacloud | CWM per-instance predictions |\n\nCWM predictions 文件在 seetacloud 上，如需要可拉回 home 做 matched-seed 分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-seed123-perinstance-predictions.md"
+}

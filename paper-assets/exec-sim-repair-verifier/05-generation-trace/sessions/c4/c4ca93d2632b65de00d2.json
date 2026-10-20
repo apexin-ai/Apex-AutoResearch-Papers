@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4ca93d2632b65de00d2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops d050 eval cmd templates",
+  "task_key": "worker_ops_d050-eval-cmd-templates_20260513T154350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d050-eval-cmd-templates_20260513T154350_result.json",
+    "occurrence": 1,
+    "bytes": 403,
+    "sha256": "da2251cf5c2106f26f2337b61fb93680088b70202b5601f7078d39c049888d68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已写入 `artifacts/d008_eval_commands.md`。包含三个脚本的完整参数表、CLS eval 命令（max_new_tokens=8 硬编码）、CWM 三组 max_new_tokens 消融命令（1024/512/256）、paired bootstrap 三组对比命令，以及执行顺序说明。checkpoint 路径用 `{BEST}` 占位，westd 环境已标注 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1` 和系统 python3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d050-eval-cmd-templates.md"
+}

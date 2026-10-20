@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b612b8298d251a30f34c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh urgent status check home",
+  "task_key": "worker_ssh_urgent-status-check-home_20260513T110152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent-status-check-home_20260513T110152_result.json",
+    "occurrence": 1,
+    "bytes": 970,
+    "sha256": "66565bbfe15f9394d1e83bf7d97719f6c67d30e8068ea33e63c80d9bf44fd254"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CLS v5 状态汇报\n\n| 项目 | 值 |\n|------|-----|\n| **PID 2947259** | **ALIVE**，运行 3h20m，GPU 93%/19.5GB |\n| **当前 step** | ~1175 / 6633 (17%) |\n| **max_steps** | 6633 (3 epochs) |\n| **预计剩余** | ~10h（~6.8s/it） |\n\n### eval_loss 趋势\n\n| step | eval_loss |\n|------|-----------|\n| 200 | 0.1258 |\n| 400 | 0.0761 |\n| **600** | **0.0642** ← best |\n| 800 | 0.2045 |\n| 1000 | 0.1624 |\n\n### train_loss 趋势（近3个log点）\n\n| step | train_loss |\n|------|-----------|\n| 900 | 0.4092 |\n| 950 | 0.6277 |\n| 1000 | 0.4144 |\n| 1150 | 0.4104 |\n\n### Best checkpoint\n`/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-600`（eval_loss=0.0642）\n\n### 注意\neval_loss 在 step 600 后显著回升（0.0642 → 0.2045 → 0.1624），存在过拟合迹象。train_loss 仍在缓慢下降但 eval 已开始震荡。训练仍在进行中（17%），需关注后续 eval 是否能回落。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-status-check-home.md"
+}

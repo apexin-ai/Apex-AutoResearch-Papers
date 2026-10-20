@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ba46b2e5872471b2fbc6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "investigate traj 8b accuracy discrepancy",
+  "task_key": "worker_investigate_traj-8b-accuracy-discrepancy_20260517T142230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_traj-8b-accuracy-discrepancy_20260517T142230.log",
+    "occurrence": 1,
+    "bytes": 691159,
+    "sha256": "10c72360b5f533b7e1c494b38134177ce8c4a1db28e6f7e12f7a2d8d1b333a67"
+  },
+  "statistics": {
+    "messages": 142,
+    "user_turns": 0,
+    "tool_calls": 50,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 50,
+      "tool_result": 50,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 142,
+      "chunks": [
+        {
+          "path": "ba46b2e5872471b2fbc6-part-0001.json",
+          "message_count": 127
+        },
+        {
+          "path": "ba46b2e5872471b2fbc6-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/investigate-traj-8b-accuracy-discrepancy.md"
+}

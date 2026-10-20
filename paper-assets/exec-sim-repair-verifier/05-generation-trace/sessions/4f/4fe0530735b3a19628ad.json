@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fe0530735b3a19628ad",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code exp downsample cls func",
+  "task_key": "worker_code_exp-downsample-cls-func_20260519T032233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-downsample-cls-func_20260519T032233_result.json",
+    "occurrence": 1,
+    "bytes": 2309,
+    "sha256": "854c1d99419e98695132c74fbf587003f67ae1769585bf80d52d675a1e65e1bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已就绪。以下是完整结果：\n\n---\n\n## 1. Downsample 结果\n\n| | Instances | Problem IDs |\n|---|---|---|\n| 原始 CLS function-level | 15,290 | 906 |\n| Downsample 后 | 8,051 | 475 (52.4%) |\n| TRAJ function-level (目标) | 8,052 | — |\n\n标签分布：pass=4,174 / fail=3,877（基本均衡）。输出在 `data/train_downsampled.jsonl`。\n\n## 2. 训练命令\n\n```bash\ncd /home/sonny/exec-sim-repair-verifier\n\nCUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_unified.py \\\n  --model_name_or_path /root/autodl-tmp/models/Qwen/Qwen3-4B \\\n  --data_dir data/ \\\n  --task cls \\\n  --train_file train_downsampled.jsonl \\\n  --val_file val.jsonl \\\n  --output_dir /root/autodl-tmp/checkpoints_cls_downsample_qwen3_4b/ \\\n  --run_name cls-downsample-qwen3-4b-lora \\\n  --epochs 3 \\\n  --batch_size 2 \\\n  --grad_accumulation 16 \\\n  --lr 2e-4 \\\n  --lora_rank 16 \\\n  --lora_alpha 32 \\\n  --max_seq_length 2048 \\\n  --seed 42 \\\n  --wandb_project exec-sim-repair-verifier\n```\n\n超参与原 CLS 完全一致（LoRA r=16, alpha=32, 3 epochs, lr=2e-4, bf16）。\n\n## 3. Eval 命令（训练完成后）\n\n```bash\nCUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_verifier.py \\\n  --data_dir data/ \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints_cls_downsample_qwen3_4b/best \\\n  --model_name /root/autodl-tmp/models/Qwen/Qwen3-4B \\\n  --output artifacts/eval_cls_downsample_qwen3_4b.json \\\n  --batch_size 16 \\\n  --max_seq_length 2048 \\\n  --save_predictions\n```\n\n## 4. 预估训练时间\n\n- 8,051 samples / (batch_size=2 × grad_accum=16) = 252 steps/epoch × 3 epochs ≈ 756 total steps\n- Qwen3-4B LoRA 在 5090 上约 2-3 min/epoch（function-level 数据短，2048 seq len）\n- 预估：**~30-50 分钟**\n\n## 5. 阻塞问题\n\n**4 张 GPU 全被 eval 任务占满：**\n- GPU 0: Qwen3-8B CWM repo eval (PID 778334)\n- GPU 1: DeepSeek 3-shot baseline eval (PID 788573)\n- GPU 2: DeepSeek CWM repo eval (PID 734440, 从 May 18 开始)\n- GPU 3: DeepSeek CWM repo s123 eval (PID 668680, 从 May 18 开始)\n\n需要等某张 GPU 空出后再启动训练。GPU 2/3 的 eval 已跑超过 24 小时，可能快结束或已卡住。要不要我检查一下它们的进度？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-downsample-cls-func.md"
+}

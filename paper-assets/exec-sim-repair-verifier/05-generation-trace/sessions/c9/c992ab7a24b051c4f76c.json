@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "c992ab7a24b051c4f76c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ssh cwm v9 dryrun submit",
+  "task_key": "worker_ssh_cwm-v9-dryrun-submit_20260512T212552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cwm-v9-dryrun-submit_20260512T212552.log",
+    "occurrence": 1,
+    "bytes": 842950,
+    "sha256": "0ae0dab539ea3aae338e45cc49414ba821ea115a78ffb38ee7a4f42622177b49"
+  },
+  "statistics": {
+    "messages": 630,
+    "user_turns": 0,
+    "tool_calls": 252,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 2,
+      "assistant": 114,
+      "tool_call": 252,
+      "tool_result": 252,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 630,
+      "chunks": [
+        {
+          "path": "c992ab7a24b051c4f76c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c992ab7a24b051c4f76c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c992ab7a24b051c4f76c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c992ab7a24b051c4f76c-part-0004.json",
+          "message_count": 90
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-cwm-v9-dryrun-submit.md"
+}

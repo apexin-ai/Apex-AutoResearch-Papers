@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5d57a72c4b2c0078128",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "viz rank ablation chart",
+  "task_key": "worker_viz_rank-ablation-chart_20260515T163715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_rank-ablation-chart_20260515T163715_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "cafeaaf3be9a82693b667524ebcefdab6a12f9e1d053fb9b4676b2a105ae988c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出文件：\n\n| 产出 | 路径 |\n|------|------|\n| PDF 图表 | `artifacts/rank_ablation_chart.pdf` |\n| PNG 图表 (300dpi) | `artifacts/rank_ablation_chart.png` |\n| LaTeX 表格 | `artifacts/rank_ablation_table.tex` |\n\n图表结论：r16 α32 (ratio=2) baseline 以 87.51% 最优，增大 rank 到 32 无论 alpha=32 还是 alpha=64 都略有下降（~0.5pp），说明当前数据规模下 rank=16 已足够，更大 rank 反而轻微过拟合。r32 α64 的 EM (84.55) 高于 r32 α32 (83.40)，保持 ratio=2 对 exact match 有帮助。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-rank-ablation-chart.md"
+}

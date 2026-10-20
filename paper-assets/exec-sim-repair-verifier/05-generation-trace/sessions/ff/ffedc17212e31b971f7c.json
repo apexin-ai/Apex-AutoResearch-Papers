@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffedc17212e31b971f7c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh 14b training progress check",
+  "task_key": "worker_ssh_14b-training-progress-check_20260523T062110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_14b-training-progress-check_20260523T062110_result.json",
+    "occurrence": 1,
+    "bytes": 1223,
+    "sha256": "6eea03c0d8e36dfdca4db13d19b65c016887ec525852932479482f13cc31c696"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集完毕。\n\n```\n=== 14B Multi-seed Training Progress ===\n\n| 实验 | GPU | 状态 | 当前step/总step | Train Loss (ep0.94) | Eval Loss (ep1.0) | 速度 | 预计剩余 |\n|------|-----|------|----------------|--------------------|--------------------|------|---------|\n| cls14b-func-s123 | 0 | RUNNING | 802/1434 (56%) | 0.0539 | 0.0683 | 7.12s/it | ~75min |\n| cls14b-func-s456 | 1 | RUNNING | 801/1434 (56%) | 0.0585 | 0.0659 | 7.19s/it | ~76min |\n| cwm14b-func-s123 | 2 | RUNNING | 808/1434 (56%) | 0.0402 | 0.0447 | 7.03s/it | ~73min |\n| cwm14b-func-s456 | 3 | RUNNING | 812/1434 (57%) | 0.0382 | 0.0451 | 7.03s/it | ~73min |\n```\n\n**注意**：实际 total steps = 1434（478 steps/epoch × 3 epochs），不是任务描述中的 4302。4 个实验均在 epoch 2 中段，运行已 ~1h37m，GPU 利用率 53-67%，显存占满（~31GB/32GB）。\n\n**Eval**：4 个实验均未完成，无法执行 eval。预计全部在 ~75 分钟后完成。\n\n**Loss 趋势观察**：\n- CWM 模型 loss 明显低于 CLS（0.038-0.040 vs 0.054-0.059），与 s42 的模式一致\n- 两个 seed 之间 loss 差异很小（CLS: 0.054 vs 0.059, CWM: 0.038 vs 0.040），seed 稳定性好"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14b-training-progress-check.md"
+}

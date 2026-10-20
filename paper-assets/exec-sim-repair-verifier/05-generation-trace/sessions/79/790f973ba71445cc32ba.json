@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "790f973ba71445cc32ba",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor seetacloud eval status",
+  "task_key": "worker_monitor_seetacloud-eval-status_20260517T181824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_seetacloud-eval-status_20260517T181824_result.json",
+    "occurrence": 1,
+    "bytes": 1640,
+    "sha256": "a543755b9b97b8514fe94870d646b9d3b273220519191235fbfff127cc67b671"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### GPU 状态\n\n| GPU | 任务 | PID | 进度 | Running Acc | VRAM | Util | 预计剩余 |\n|-----|------|-----|------|-------------|------|------|----------|\n| **0** | CLS v4 (ckpt-4422, seq8192) | 664774 | 1840/9784 (18.8%) | 69.8% | 32048/32607 MiB | 91% | **~7.9h** |\n| **1** | CWM s42 (best, seq4096) | 662946 | 582/9784 (5.9%) | 59.8% | 17345/32607 MiB | 54% | **~30.7h** |\n| **2** | CLS s123 (best, seq8192) | 665019 | 1640/9784 (16.8%) | 73.5% | 32048/32607 MiB | 90% | **~9.1h** |\n| **3** | CWM s123 (ckpt-8844, seq4096) | 668680 | 228/9784 (2.3%) | 64.5% | 17345/32607 MiB | 62% | **~31.9h** |\n\n**速率估算**：CLS ~15-17 samples/min (batch=4, seq8192)；CWM ~5 samples/min (batch=1, seq4096)。CWM 慢约 3 倍，预计需要跑到明天下午。\n\n### 已完成的 eval 结果\n\n**CLS s123 (best ckpt, seq2048)** — 此前已完成的一轮（短 context）:\n\n| Metric | Value |\n|--------|-------|\n| Accuracy | **82.62%** |\n| Majority baseline | 72.96% |\n| Gap vs majority | +9.67pp |\n| F1 (macro) | 71.35% |\n| F1 (fail/pass) | 53.37 / 89.32 |\n| Precision (fail/pass) | 97.3 / 80.95 |\n| Recall (fail/pass) | 36.77 / 99.62 |\n| Unparseable | 2796/9784 (28.6%) |\n\n当前的 seq8192 重跑就是为了降低这个 28.6% unparseable rate。\n\n### 磁盘\n\n| 挂载点 | 总量 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| / (overlay) | 30G | 21G | 9.4G | 69% |\n\n`/autodl-tmp` 不存在（未挂载数据盘），所有数据都在 root overlay 上。9.4G 剩余空间需关注，4 个 eval 同时写 predictions 可能会继续增长。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-seetacloud-eval-status.md"
+}

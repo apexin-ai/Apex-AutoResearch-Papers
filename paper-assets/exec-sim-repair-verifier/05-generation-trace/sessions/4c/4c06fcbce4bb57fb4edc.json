@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c06fcbce4bb57fb4edc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "prep qwen ds eval scripts",
+  "task_key": "worker_prep_qwen-ds-eval-scripts_20260521T135420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_qwen-ds-eval-scripts_20260521T135420_result.json",
+    "occurrence": 1,
+    "bytes": 2751,
+    "sha256": "716e1b0677f642ccb88832b37479d990e96d7a7b4a454f15b8cd7fa3e6cfcb2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕，汇报如下。\n\n---\n\n## 汇总\n\n### 1. Eval 脚本状态\n\n3 个脚本**全部已存在**，无需创建：\n\n| 脚本 | CKPT_DIR | GPU | seq_len | batch | \n|------|----------|-----|---------|-------|\n| `eval_qwen_cwm_s123.sh` | `checkpoints_repo_cwm_8b_s123` | **1** | 8192 | **1** |\n| `eval_qwen_cwm_s456.sh` | `checkpoints_repo_cwm_8b_s456` | **2** | 8192 | **1** |\n| `eval_deepseek_cwm_s123_v2.sh` | `checkpoints_deepseek_cwm_repo_s123_v2` | 2 | 4096 | 4 |\n\n### 2. Checkpoint 快照\n\n| Training | 当前步 | 总步数 | 进度 | 训练 GPU |\n|----------|--------|--------|------|----------|\n| Qwen s123 | 5400 | 6633 | **81%** | GPU 0 |\n| Qwen s456 | 5400 | 6633 | **81%** | GPU 3 |\n| DS s123_v2 | 4209 | 12627 | **33%** | GPU 2 |\n\nQwen 两个约还剩 1233 步，预计几小时内完成。**DS s123 只完成 1/3，远未即将结束。**\n\n### 3. 潜在问题\n\n**A) GPU 分配冲突**：\n\n当前 GPU 占用：GPU 0=Qwen s123训练, GPU 1=DS s456 eval, GPU 2=DS s123训练, GPU 3=Qwen s456训练\n\n- `eval_qwen_cwm_s123.sh` 指定 GPU 1 → 但 DS s456 eval 可能还在跑\n- `eval_qwen_cwm_s456.sh` 指定 GPU 2 → DS s123 训练在 GPU 2（且还要跑很久）\n\n**建议修改**：训练完成后 eval 用各自释放的 GPU：\n- Qwen s123 eval → GPU **0**\n- Qwen s456 eval → GPU **3**\n\n**B) Qwen batch_size=1 问题确认**：两个 Qwen 脚本都是 batch=1 + seq8192，9784 samples 确实会 30-50h。\n\n### 4. Batch Test 命令模板\n\n`eval_repo_cwm.py` 支持 `--max_samples`，可直接用：\n\n```bash\n# Qwen s123 batch=2 测试 (训练完后在 GPU 0)\ncd /home/sonny/exec-sim-repair-verifier\nCKPT=$(ls -d /root/autodl-tmp/checkpoints_repo_cwm_8b_s123/checkpoint-* | awk -F'checkpoint-' '{print $NF, $0}' | sort -n | tail -1 | cut -d' ' -f2-)\nCUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval_repo_cwm.py \\\n    --checkpoint_dir \"$CKPT\" \\\n    --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B \\\n    --split test --device cuda:0 --max_seq_length 8192 --max_new_tokens 512 \\\n    --batch_size 2 --max_samples 50 \\\n    --output_dir /root/autodl-tmp/eval_results/qwen_batch_test_bs2\n\n# batch=4 测试\nCUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python eval_repo_cwm.py \\\n    --checkpoint_dir \"$CKPT\" \\\n    --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B \\\n    --split test --device cuda:0 --max_seq_length 8192 --max_new_tokens 512 \\\n    --batch_size 4 --max_samples 50 \\\n    --output_dir /root/autodl-tmp/eval_results/qwen_batch_test_bs4\n```\n\n### 5. 下一步建议\n\n需要确认是否现在修改两个 Qwen eval 脚本的 GPU 分配（`1→0`, `2→3`）？batch_size 等 batch test 出结果后再改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-qwen-ds-eval-scripts.md"
+}

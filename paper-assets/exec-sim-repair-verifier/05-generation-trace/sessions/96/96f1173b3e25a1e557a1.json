@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96f1173b3e25a1e557a1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze cwm seed0",
+  "task_key": "worker_analyze_cwm-seed0_20260512T135307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cwm-seed0_20260512T135307_result.json",
+    "occurrence": 1,
+    "bytes": 1125,
+    "sha256": "a9870e2e0cafe8a8f037592ec3a64361e91e94f17c5e5c23631396fcc2ec4a45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总如下：\n\n## cwm-seed0 结果\n\n| 指标 | 值 |\n|------|-----|\n| overall_accuracy | **87.57** |\n| fail_f1 | 87.93 |\n| fail_precision / recall | 82.71 / 93.86 |\n| pass_f1 | 87.18 |\n| pass_precision / recall | 93.45 / 81.70 |\n| exact_match_rate | 84.29 |\n| eval_loss | 0.0665 |\n| train_loss | 0.2554 |\n| 训练时间 | ~60 min (1.05 GPU-hr) |\n\n## 4B CWM Seeds 对比\n\n| Seed | overall_acc | fail_f1 | pass_f1 |\n|------|-------------|---------|---------|\n| **seed0** | **87.57** | **87.93** | **87.18** |\n| seed123 | 87.32 | 87.92 | 86.69 |\n| seed42 (baseline) | 86.93 | 87.51 | 86.33 |\n| seed456 | 86.59 | 87.23 | 85.92 |\n| seed789 | 运行中 | — | — |\n\nseed0 是目前 4 个已完成 seed 中**最优的**——overall_acc 87.57 领先 seed123 0.25pp，pass_f1 87.18 领先 seed123 0.49pp，fail_f1 与 seed123 基本持平（87.93 vs 87.92）。\n\n4 个 seed 的方差很小：overall_acc 范围 86.59–87.57（极差 0.98pp），说明 CWM 方法对 seed 不敏感，结果稳定。等 seed789 完成后可做完整 5-seed paired 统计分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-cwm-seed0.md"
+}

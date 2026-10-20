@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c34daddcf6ae689f3579",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "d153 gpu2 cls8b s456 fix",
+  "task_key": "worker_d153-gpu2-cls8b-s456-fix_20260519T121836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_d153-gpu2-cls8b-s456-fix_20260519T121836.log",
+    "occurrence": 1,
+    "bytes": 781482,
+    "sha256": "37c124ac54f843b5f36047ab728b9b20c03cab4b000cea48459d009cfa39c874"
+  },
+  "statistics": {
+    "messages": 239,
+    "user_turns": 0,
+    "tool_calls": 85,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 65,
+      "tool_call": 85,
+      "tool_result": 85,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 239,
+      "chunks": [
+        {
+          "path": "c34daddcf6ae689f3579-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c34daddcf6ae689f3579-part-0002.json",
+          "message_count": 59
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/d153-gpu2-cls8b-s456-fix.md"
+}

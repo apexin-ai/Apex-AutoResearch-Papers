@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d817c1f76e4e1c92cb5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval home v5 checkpoint sweep",
+  "task_key": "worker_eval_home-v5-checkpoint-sweep_20260514T030314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_home-v5-checkpoint-sweep_20260514T030314_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "ca87bd06d8aad0597986fe91a34fac89a1e4f6c2849c6189e2cefb63d6a14085"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 tmux session 都在运行。\n\n## 汇总\n\n### seed123 sweep（进行中）\n| checkpoint | accuracy | 状态 |\n|-----------|----------|------|\n| ckpt-400 | **75.05%** | ✓ 完成 |\n| ckpt-600 | **80.73%** | ✓ 完成 |\n| ckpt-800 | ~73.8% running | 进行中（~60%，预计 20:15 完成）|\n| ckpt-1000 | - | 排队（预计 20:42 完成）|\n\n### CLS v5 (seed42) 发现\n- **实际可用 checkpoint**: 600, 4000, 4200, 4400, 4600\n- **预期的 ckpt-400/800/1000 不存在** — v5 训练到了更长步数\n- ckpt-600 之前有 76.92% 的结果但无结果文件，本次 sweep 会重新评估\n\n### v5 sweep 已启动\ntmux session `eval_v5_sweep` 正在等待 GPU 空闲（seed123 完成后自动开始），将按顺序评估 ckpt-600 → 4000 → 4200 → 4400 → 4600，每个约 27 分钟，总计约 2.5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-home-v5-checkpoint-sweep.md"
+}

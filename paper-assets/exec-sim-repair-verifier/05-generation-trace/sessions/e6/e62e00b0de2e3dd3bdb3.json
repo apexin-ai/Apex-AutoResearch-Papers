@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e62e00b0de2e3dd3bdb3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code 8b eval pipeline prep",
+  "task_key": "worker_code_8b-eval-pipeline-prep_20260514T100453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_8b-eval-pipeline-prep_20260514T100453_result.json",
+    "occurrence": 1,
+    "bytes": 2144,
+    "sha256": "f58136a7b229aecdeea1d5220cf4d8ae4d6639b03a5461a6f12c7817147d0bb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据文件、脚本、权限全部就绪。\n\n---\n\n## 产出汇总\n\n### 1. 已有 Checkpoint 列表\n\n| 模型 | 目录 | Checkpoints |\n|------|------|-------------|\n| **8B CLS seed123** (训练中) | `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` | 200, 600, 800, 1000, 1200 (持续增加) |\n| **8B CWM** (训练中) | `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/` | 200, 300, 400, 500, 600 (持续增加) |\n| **8B CLS seed42** (已完成) | `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/` | 200, 400, 600 |\n\n### 2. Eval 脚本已就绪\n- `run_8b_eval.sh` 已部署到 `/home/sonny/exec-sim-repair-verifier/run_8b_eval.sh`\n- 支持三种 model_type: `cls` (seed123), `cwm`, `cls42` (seed42 re-eval)\n- 自动跳过已有结果（幂等），结果输出到 `results/8b_{type}/`\n- 修正了任务描述中的参数差异：`--checkpoint_dir`（非 `--checkpoint_path`）、CLS 无 `--output_dir`、需指定 `--model_name`\n\n### 3. VRAM 估算（8B bf16 + seq=6144, 5090 32GB）\n\n| batch_size | 估算 VRAM | 是否可行 |\n|-----------|----------|---------|\n| 1 | ~17.3 GB | OK |\n| 2 | ~18.6 GB | OK，建议先试 |\n| 4 | ~21.2 GB | 可能可以，CWM 的 max_new_tokens=1024 会额外占用 |\n\nCLS 可以试 batch_size=2（生成 token 少），CWM 保守用 1（生成 1024 tokens 的 KV cache 额外开销）。脚本默认 batch_size=1 保安全。\n\n### 4. 训练完成后执行计划\n\n**Phase 1 — ~06:00 UTC May 15（CLS seed123 训练完成）：**\n```bash\n# 假设 GPU 0 或 1 空出\nnohup bash run_8b_eval.sh 0 cls 6144 > results/8b_cls_seed123_eval.log 2>&1 &\n\n# 同时用另一个 GPU 跑 seed42 re-eval（seq=6144）\nnohup bash run_8b_eval.sh 1 cls42 6144 > results/8b_cls42_eval.log 2>&1 &\n```\n\n**Phase 2 — ~13:00 UTC May 15（CWM 训练完成）：**\n```bash\nnohup bash run_8b_eval.sh 2 cwm 6144 > results/8b_cwm_eval.log 2>&1 &\n```\n\n**预估时间：** 每个 checkpoint val+test 约 20-30 min（batch_size=1, seq=6144）。CLS seed123 ~7 个 ckpt × 2 splits × 25 min ≈ 6h；CWM 更久（max_new_tokens=1024），~8 个 ckpt × 50 min ≈ 7h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-8b-eval-pipeline-prep-copy-2.md"
+}

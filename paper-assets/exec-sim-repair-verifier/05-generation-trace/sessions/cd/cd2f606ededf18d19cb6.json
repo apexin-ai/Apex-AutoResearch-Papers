@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd2f606ededf18d19cb6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper results function level",
+  "task_key": "worker_paper_results-function-level_20260512T210301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_results-function-level_20260512T210301_result.json",
+    "occurrence": 1,
+    "bytes": 1359,
+    "sha256": "d22e2a29cfe1195508558cedeacc16e2c779307d8fecb69d0d17229549191a76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`docs/paper/experiments.tex` 已经包含了任务要求的全部内容：\n\n| 任务要求 | 已有位置 | 状态 |\n|---|---|---|\n| §5.1 Function-level CLS vs CWM | `sec:func_results` (L30-56) | ✅ 有表格+5-seed means |\n| §5.2 Model-Size Scaling | `sec:scaling` (L59-84) | ✅ 有表格+bootstrap CI |\n| §5.3 CLS vs TRAJ Equivalence | `sec:equivalence` (L87-96) | ✅ TOST p=0.007 |\n| §5.4 Oracle Frontier | `sec:oracle` (L99-128) | ✅ 有表格+stratified analysis |\n| §5.5 Repo-level | `sec:repo` (L130-148) | ✅ placeholder |\n| §5.6 Analysis | `sec:analysis` (L151-164) | ✅ error complementarity, majority voting, block correlation |\n\n有几处与任务描述的差异：\n\n1. **4B CLS-CWM bootstrap 统计量缺失**：experiments.tex 只写了 gap=1.24pp，没有报告 paired bootstrap 的 p=0.025、CI [0.46, 2.04]\n2. **Error overlap 数据不一致**：experiments.tex 用非配对 oracle 90.63%，memory.md 中配对分析是 90.14%（+complementarity 34%, Jaccard 66%）\n3. **任务 §5.1 中 TOST gap=-0.45pp 实际是 CLS vs TRAJ**（已正确放在 §5.3），不是 CLS vs CWM（CLS vs CWM 的 TOST p=0.0855，不等价）\n\nexperiments.tex 已经是完整的 Results section，不需要额外创建 results.tex。要我补上缺失的 4B bootstrap 统计量和更新 matched-seed oracle 数据吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-results-function-level.md"
+}

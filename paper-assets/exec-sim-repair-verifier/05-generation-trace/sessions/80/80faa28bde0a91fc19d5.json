@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80faa28bde0a91fc19d5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor running experiments check",
+  "task_key": "worker_monitor_running-experiments-check_20260515T194606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_running-experiments-check_20260515T194606_result.json",
+    "occurrence": 1,
+    "bytes": 1947,
+    "sha256": "35f196789cf206ac066729136dab22d5892d2cfed55ddf075911b1f2bba059f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n**GPU 状态** — 4x RTX 5090 全部活跃\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 77% | 18.0/31.8 GB |\n| cuda:1 | 100% | 18.0/31.8 GB |\n| cuda:2 | 96% | 20.6/31.8 GB |\n| cuda:3 | 89% | 22.0/31.8 GB |\n\n**进程** — 4 个 PID 全部存活（398981/405526/400279/381618 均 ALIVE）\n\n---\n\n### 逐实验详情\n\n**cuda:0 — cls8b-s42-resume-val-sweep-seq8192-v2** ✅\n- 进度: 6840/9335 (73.3%), running_acc=86.3%\n- 速率: ~10 samples/1.5s，当前 sweep 配置剩余 ~6 min\n- 运行时间: 2h04m\n- 预测 ETA ~May 16 10:50 UTC — 取决于剩余多少 sweep 配置，当前配置即将完成，总体在合理范围内\n\n**cuda:1 — cls8b-s42-resume-val-sweep-gpu1** ✅\n- 进度: 2600/9335 (27.9%), running_acc=89.5%\n- 速率: ~10 samples/2s，当前 sweep 配置剩余 ~22 min\n- 运行时间: 59m\n- 启动较晚，进度正常\n\n**cuda:2 — repo-level-cwm-8b-conda-v5** ✅\n- 进度: 4403/9335 (47.2%)\n- 速率: ~8.3 it/s，当前 bar 剩余 ~10 min\n- 运行时间: 1h55m\n- 预测 ETA ~May 16 05:30 UTC — 看起来在轨\n\n**cuda:3 — cwm8b-ckpt400-test-eval** ⚠️ 进度偏慢\n- 进度: 2984/9784 (**30.5%**)，running_acc=64.1%\n- 速率: 8 samples/~57s → ~8.4 samples/min\n- 运行时间: **5h08m**\n- 剩余 6800 samples / 8.4 per min ≈ **13.5 小时**\n- **推算 ETA: ~May 16 17:15 UTC**，比预测的 09:15 UTC **晚约 8 小时**\n- 无 OOM/error，但速率持续偏低。可能原因：per-sample 推理开销比预估大（repo-level CWM eval 涉及更长上下文？）\n\n**磁盘**: 150G/250G (60%), 剩余 101G，无风险。\n\n---\n\n**结论**: cuda:0/1/2 三个实验正常运行。cuda:3 的 `cwm8b-ckpt400-test-eval` ⚠️ 严重落后于预期，按当前速率要到 May 16 ~17:00 UTC 才能跑完。需要决定是否继续等待或采取措施（比如检查是否有不必要的重复计算可优化）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-running-experiments-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b61d364fc6c3bf94ef7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra gpu status check",
+  "task_key": "worker_infra_gpu-status-check_20260517T191705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-status-check_20260517T191705_result.json",
+    "occurrence": 1,
+    "bytes": 1485,
+    "sha256": "72cbb47a9271e436d90d2be50939f6d0b530b4be9b57a1e3ba5632d78e94c537"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总\n\n**4 张 RTX 5090 全部在跑 eval，无空闲 GPU。**\n\n| GPU | PID | 进程 | 显存 | GPU-Util | 运行时长 | 进度 | running_acc |\n|-----|-----|------|------|----------|----------|------|-------------|\n| 0 | 664774 | `eval_repo_cls.py` (v4 checkpoint-4422, seq=8192) | 28.5G/32.6G | 90% | 2h49m | 2840/9784 (29%) | **70.6%** |\n| 1 | 662946 | `eval_repo_cwm.py` (s42 checkpoint, seq=4096) | 17.3G/32.6G | 60% | 2h56m | 874/9784 (9%) | **58.6%** |\n| 2 | 665019 | `eval_repo_cls.py` (s123 best, seq=8192) | 31.3G/32.6G | 92% | 2h49m | 2520/9784 (26%) | **74.2%** |\n| 3 | 668680 | `eval_repo_cwm.py` (s123 checkpoint-8844, seq=4096) | 17.3G/32.6G | 62% | 1h45m | 521/9784 (5%) | **63.0%** |\n\n### PID 664774 确认\n\n`eval_repo_cls.py` — CLS 分类模型 repo-level eval（v4 checkpoint-4422），运行 2h49m。\n\n### tmux sessions\n\n- `cls-v4-eval-8192` — GPU 0 的 CLS v4 eval\n- `cls-s123-eval-8192` — GPU 2 的 CLS s123 eval\n- `cwm-s123-eval` — GPU 3 的 CWM s123 eval\n- GPU 1 的 CWM s42 eval 没有 tmux session（直接启动）\n\n### 预计完成时间\n\n- **CLS evals (GPU 0, 2)**: 每 40 samples ~2.5min → 剩余 ~7000 samples → 约 7h\n- **CWM s42 (GPU 1)**: 每 sample ~13s → 剩余 ~8900 → 约 32h\n- **CWM s123 (GPU 3)**: 每 sample ~12.5s → 剩余 ~9260 → 约 32h\n\nCWM eval 速度很慢（逐样本生成 max_new_tokens=512），预计还需要 30+ 小时。CLS eval 约 7 小时后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-status-check-copy-2.md"
+}

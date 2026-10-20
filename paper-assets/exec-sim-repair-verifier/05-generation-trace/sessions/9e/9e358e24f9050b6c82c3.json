@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "9e358e24f9050b6c82c3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "code 14b cls training",
+  "task_key": "worker_code_14b-cls-training_20260522T170157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_14b-cls-training_20260522T170157.log",
+    "occurrence": 1,
+    "bytes": 1069293,
+    "sha256": "7b9b1d35c5b52245fd862275383b2d288d87cb35d5aadc4f158d9e7615e91eb3"
+  },
+  "statistics": {
+    "messages": 663,
+    "user_turns": 1,
+    "tool_calls": 247,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 160,
+      "tool_call": 247,
+      "tool_result": 247,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 611,
+      "chunks": [
+        {
+          "path": "9e358e24f9050b6c82c3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9e358e24f9050b6c82c3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9e358e24f9050b6c82c3-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9e358e24f9050b6c82c3-part-0004.json",
+          "message_count": 71
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 52,
+      "chunks": [
+        {
+          "path": "9e358e24f9050b6c82c3-part-0004.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-14b-cls-training.md"
+}

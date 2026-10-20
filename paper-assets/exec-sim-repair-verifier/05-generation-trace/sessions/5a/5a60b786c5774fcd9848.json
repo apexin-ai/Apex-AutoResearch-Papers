@@ -1,0 +1,1005 @@
+{
+  "schema_version": "1.0",
+  "id": "5a60b786c5774fcd9848",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "cpu supplementary statistics",
+  "task_key": "worker_cpu_supplementary-statistics_20260521T054458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_supplementary-statistics_20260521T054458.log",
+    "occurrence": 1,
+    "bytes": 53906,
+    "sha256": "4e154517ef9883d2508fee43d414e0a8c301698cb7e687baa86a92d332fecd5a"
+  },
+  "statistics": {
+    "messages": 24,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+                "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "d866d683-dcac-401f-ade2-d4c6748e69cb",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779359400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "3d9f78f7-56aa-4042-a574-fc80e1937271",
+                "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to write a Python script for supplementary statistical analysis, run it, and report the results. Let me write the script first, then execute it.",
+              "signature": "EugCCmMIDRgCKkAeBfoooBycum4fPb3JWwi/MIYgNy3jtmZCq9LE+W8GBgsIaOI1jy7shVDJxTMwk7O8yky4KYodf4xHFuYfDAPVMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDK9HrVXlNiUoicsevBoMG7MijP4/Ftq97iicIjAEMgDhe2PEe8OxhxZZhLjzfGrezqMGPSmQ4+SuUa7JydG+Y+XgpSk5ipf3exLcvnIqsgGCqonTxZ0ed4tV2i+rQxOKksDnuBTVDPnzsrjR2YfDOLObbLzohWtiYYD+mQr17Z262n0NhrSSIu+g6ktlHjTDCkxYlykF44nPBIk7xeHpqmI1QLuK/YNtYefLPn+AkLUaQJgU0x5KBUB8QeE1RrO1+Jd8SpdNXNoeEmvajEdqwJ8UxEut2/0SjzFXrBlf/R7y732DFx/Fu+/pb0v+6E9U3Jqzt4wj4tPjbojiGb/Hgq8JGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "1a356fdd-f27b-4c4a-8582-eee76fb9122a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Thzw8esArCaWEDWmD8K8sA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13501,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13501
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Writing the script and running it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "6c2710ea-eb42-4d7c-ac0f-653f2df2df6c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Thzw8esArCaWEDWmD8K8sA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13501,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13501
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QiGGEFubMVcx9pryXBEqPa",
+              "name": "Bash",
+              "input": {
+                "command": "ls artifacts/ 2>/dev/null || echo \"no artifacts dir\"",
+                "description": "Check artifacts directory exists"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "676ee7fd-59c0-4621-9fa3-c39044a5c52e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Thzw8esArCaWEDWmD8K8sA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13501,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13501
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Cy8LwYJTXobetNAdNhRPEp",
+              "name": "Bash",
+              "input": {
+                "command": "pip install scipy statsmodels 2>&1 | tail -3",
+                "description": "Ensure scipy and statsmodels installed"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "12846072-c350-426e-b853-95eb7ad1987c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Thzw8esArCaWEDWmD8K8sA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13501,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13501
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T05:45:14.130Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QiGGEFubMVcx9pryXBEqPa",
+              "type": "tool_result",
+              "content": "4b_8b_cls_cwm_paired_bootstrap_corrected.json\n4b_eval_hang_analysis.md\nD132-cwm-s123-e2-seq2048\nD133_diagnosis.md\nD138_data_investigation.md\n_project\nall_experiments_parsed.json\nanalysis_5paired_bootstrap.py\nbf16_only_tost.json\nbibliography_audit_report.json\nbibliography_candidates.yaml\nblock-corr-empirical\nblock_correlation_analysis.py\nckpt6315_eval_analysis.md\ncls4b-v5-ckpt4400-val5120-eval\ncls8b-block-correlation-empirical\ncls8b-s42-resume-ckpt3600-mutation\ncls8b_s42_ckpt3600_per_mutation_pr.json\ncls8b_s42_ckpt3600_per_test_pr_bucketed.json\ncls8b_seed123_ckpt3000_val_eval_pending.md\ncls_multiseed_summary.json\ncls_multiseed_table.md\ncls_v4_s123_config_comparison.md\ncls_v5_cwm_epoch2_launch_config.md\ncomprehensive_results_summary.md\ncomprehensive_test_results.md\ncwm-rank32-ablation-v2\ncwm-rank32-alpha64-ablation\ncwm4b_mutation_breakdown.json\ncwm8b_seed123_analysis.txt\ncwm8b_shard_progress.md\ncwm_error_mode_analysis.md\ncwm_rank32_eval_command.sh\ncwm_rank64_train_command.sh\ncwm_v6_diagnosis.md\ncwm_v6_health_check.md\nd008_eval_commands.md\nd076_val_unparseable_root_cause.md\nd077_fix_report.md\ndeepseek-cls-repo-v5-ckpt2105-eval-analysis.md\ndeepseek-cwm-repo-s123-train\ndeepseek-cwm-repo-s456-train\ndeepseek-traj-func\ndeepseek-traj-func-v2\ndeepseek_func_icc_result.md\ndeepseek_func_summary.json\ndeepseek_training_analysis.md\ndeepseek_traj_per_seed_analysis.md\ndeepseek_zero_shot.json\ndiag_cls_v4.md\ndiag_cwm_v10.md\ndiag_server_failures_20260516.md\ndiagnose_deepseek_cwm_s123.md\ndiagnose_exp-downsample-cls-func-v3-eval.md\ndiagnosis_cwm_v12_cls_8b.md\ndream_reports\nefficiency_benchmark.json\nerror_analysis_data.md\nerror_complementarity_deepseek.json\nerror_overlap_matched_seed.json\neval_pipeline_prep.md\neval_readiness_report.md\neval_repo_cls.py\neval_repo_cls_v2.py\neval_status_check_20260514.md\nexperiment_status_check_loop19.md\nextract_predictions_generic.py\nf1-macro-audit.md\nf1_macro_summary.json\nfew_shot_baseline.json\nfig1_reformulation.pdf\nfig1_reformulation.png\nfig1_reformulation.py\nfig2_gap_amplification.pdf\nfig2_gap_amplification.png\nfig2_gap_amplification.py\nfig3_oracle_stratified.pdf\nfig3_oracle_stratified.png\nfig3_oracle_stratified.py\nfigures\ngpu_status_20260517.md\nholm_bonferroni.py\nholm_bonferroni_results.json\ninference_benchmark_results.json\nlr_verification.json\nmanifest.yaml\nmerge_cwm8b_shards.py\nmulti_seed_test_curves.json\nmutation_comparison_summary.json\nmutation_comparison_summary.md\nmutation_type_accuracy.csv\nmutation_type_distribution.json\nmvp-a-oracle-sim\nmvp-b-data-prep\nnegative_results_analysis.md\noracle-f2p-stratified\noracle_frontier_dual_icc.md\noracle_icc_sensitivity.json\noracle_icc_sensitivity.pdf\noracle_icc_sensitivity.png\np2p-regression-rate\npaper_consistency_audit.md\npaper_materials.md\nparse_all_experiments.py\nprogress_check_20260514.md\nqualitative_cls_error_examples.json\nqualitative_cwm_examples.json\nqwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval\nqwen3-8b-traj-func-s123\nqwen3-8b-traj-func-s42\nqwen3-8b-traj-repo-s42-v2\nqwen3-8b-traj-repo-s42-v2-analysis.md\nqwen3_8b_3shot_repo_baseline_result.json\nqwen3_8b_traj_s123_eval.json\nqwen3_8b_traj_s42_eval.json\nqwen3_traj_repo_launch_config.md\nrank_ablation_chart.pdf\nrank_ablation_chart.png\nrank_ablation_data.json\nrank_ablation_table.tex\nre_repair_experiment_design.md\nre_repair_phase0_results.md\nrebuttal_framework.md\nreference_audit.md\nreference_audit_report.md\nregistry_f1_metrics.json\nrelaxed_matching_results.csv\nrepo-eval-precheck.md\nrepo_8b_training_plan.md\nrepo_level_failure_diagnosis.md\nreview_issues.yaml\nreview_reports\nrun_8b_eval.sh\nrun_val_sweep.sh\nseed123_launch_configs.md\nseed123_launch_plan.md\nswebench_pipeline_design.md\nthree_relay_commands.md\ntost_margin_sweep_v2_results.json\ntost_sensitivity.json\ntraining_progress_20260512.md\ntraining_progress_check_20260514.md\ntraining_status_20260515.md\ntraj-v2-results.md\ntraj_accuracy_investigation.json\ntraj_complementarity_analysis.json\nval_sweep_compilation.md\nval_sweep_status.json\nval_test_distribution_analysis.md\nval_truncation_label_bias_analysis.md\nvariant_level_all_configs.md\nvariant_level_verified_results.md\nwestd_48478_readiness.md\nwestd_status_loop14.md\nwestd_status_loop17.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "c4b3419d-e949-4b56-9add-6628113c51c4",
+            "tool_use_result": {
+              "stdout": "4b_8b_cls_cwm_paired_bootstrap_corrected.json\n4b_eval_hang_analysis.md\nD132-cwm-s123-e2-seq2048\nD133_diagnosis.md\nD138_data_investigation.md\n_project\nall_experiments_parsed.json\nanalysis_5paired_bootstrap.py\nbf16_only_tost.json\nbibliography_audit_report.json\nbibliography_candidates.yaml\nblock-corr-empirical\nblock_correlation_analysis.py\nckpt6315_eval_analysis.md\ncls4b-v5-ckpt4400-val5120-eval\ncls8b-block-correlation-empirical\ncls8b-s42-resume-ckpt3600-mutation\ncls8b_s42_ckpt3600_per_mutation_pr.json\ncls8b_s42_ckpt3600_per_test_pr_bucketed.json\ncls8b_seed123_ckpt3000_val_eval_pending.md\ncls_multiseed_summary.json\ncls_multiseed_table.md\ncls_v4_s123_config_comparison.md\ncls_v5_cwm_epoch2_launch_config.md\ncomprehensive_results_summary.md\ncomprehensive_test_results.md\ncwm-rank32-ablation-v2\ncwm-rank32-alpha64-ablation\ncwm4b_mutation_breakdown.json\ncwm8b_seed123_analysis.txt\ncwm8b_shard_progress.md\ncwm_error_mode_analysis.md\ncwm_rank32_eval_command.sh\ncwm_rank64_train_command.sh\ncwm_v6_diagnosis.md\ncwm_v6_health_check.md\nd008_eval_commands.md\nd076_val_unparseable_root_cause.md\nd077_fix_report.md\ndeepseek-cls-repo-v5-ckpt2105-eval-analysis.md\ndeepseek-cwm-repo-s123-train\ndeepseek-cwm-repo-s456-train\ndeepseek-traj-func\ndeepseek-traj-func-v2\ndeepseek_func_icc_result.md\ndeepseek_func_summary.json\ndeepseek_training_analysis.md\ndeepseek_traj_per_seed_analysis.md\ndeepseek_zero_shot.json\ndiag_cls_v4.md\ndiag_cwm_v10.md\ndiag_server_failures_20260516.md\ndiagnose_deepseek_cwm_s123.md\ndiagnose_exp-downsample-cls-func-v3-eval.md\ndiagnosis_cwm_v12_cls_8b.md\ndream_reports\nefficiency_benchmark.json\nerror_analysis_data.md\nerror_complementarity_deepseek.json\nerror_overlap_matched_seed.json\neval_pipeline_prep.md\neval_readiness_report.md\neval_repo_cls.py\neval_repo_cls_v2.py\neval_status_check_20260514.md\nexperiment_status_check_loop19.md\nextract_predictions_generic.py\nf1-macro-audit.md\nf1_macro_summary.json\nfew_shot_baseline.json\nfig1_reformulation.pdf\nfig1_reformulation.png\nfig1_reformulation.py\nfig2_gap_amplification.pdf\nfig2_gap_amplification.png\nfig2_gap_amplification.py\nfig3_oracle_stratified.pdf\nfig3_oracle_stratified.png\nfig3_oracle_stratified.py\nfigures\ngpu_status_20260517.md\nholm_bonferroni.py\nholm_bonferroni_results.json\ninference_benchmark_results.json\nlr_verification.json\nmanifest.yaml\nmerge_cwm8b_shards.py\nmulti_seed_test_curves.json\nmutation_comparison_summary.json\nmutation_comparison_summary.md\nmutation_type_accuracy.csv\nmutation_type_distribution.json\nmvp-a-oracle-sim\nmvp-b-data-prep\nnegative_results_analysis.md\noracle-f2p-stratified\noracle_frontier_dual_icc.md\noracle_icc_sensitivity.json\noracle_icc_sensitivity.pdf\noracle_icc_sensitivity.png\np2p-regression-rate\npaper_consistency_audit.md\npaper_materials.md\nparse_all_experiments.py\nprogress_check_20260514.md\nqualitative_cls_error_examples.json\nqualitative_cwm_examples.json\nqwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval\nqwen3-8b-traj-func-s123\nqwen3-8b-traj-func-s42\nqwen3-8b-traj-repo-s42-v2\nqwen3-8b-traj-repo-s42-v2-analysis.md\nqwen3_8b_3shot_repo_baseline_result.json\nqwen3_8b_traj_s123_eval.json\nqwen3_8b_traj_s42_eval.json\nqwen3_traj_repo_launch_config.md\nrank_ablation_chart.pdf\nrank_ablation_chart.png\nrank_ablation_data.json\nrank_ablation_table.tex\nre_repair_experiment_design.md\nre_repair_phase0_results.md\nrebuttal_framework.md\nreference_audit.md\nreference_audit_report.md\nregistry_f1_metrics.json\nrelaxed_matching_results.csv\nrepo-eval-precheck.md\nrepo_8b_training_plan.md\nrepo_level_failure_diagnosis.md\nreview_issues.yaml\nreview_reports\nrun_8b_eval.sh\nrun_val_sweep.sh\nseed123_launch_configs.md\nseed123_launch_plan.md\nswebench_pipeline_design.md\nthree_relay_commands.md\ntost_margin_sweep_v2_results.json\ntost_sensitivity.json\ntraining_progress_20260512.md\ntraining_progress_check_20260514.md\ntraining_status_20260515.md\ntraj-v2-results.md\ntraj_accuracy_investigation.json\ntraj_complementarity_analysis.json\nval_sweep_compilation.md\nval_sweep_status.json\nval_test_distribution_analysis.md\nval_truncation_label_bias_analysis.md\nvariant_level_all_configs.md\nvariant_level_verified_results.md\nwestd_48478_readiness.md\nwestd_status_loop14.md\nwestd_status_loop17.md",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T05:45:15.054Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Cy8LwYJTXobetNAdNhRPEp",
+              "type": "tool_result",
+              "content": "note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.\nhint: See PEP 668 for the detailed specification.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "56b4a0fc-adcc-487c-a3f3-4e5a33fa18d8",
+            "tool_use_result": {
+              "stdout": "note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.\nhint: See PEP 668 for the detailed specification.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HsxA7fPMZFRZ9g95KToUdE",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"import scipy; import statsmodels; print('ok')\" 2>&1",
+                "description": "Check if scipy and statsmodels available"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "da537ff6-b37d-4a3c-b4ee-e8899b4ff01f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bcao72LR3VQJAmmZDZKvdo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1997,
+                "cache_read_input_tokens": 25342,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1997
+                },
+                "output_tokens": 48,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T05:45:18.318Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import scipy; import statsmodels; print('ok')\n                  ^^^^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'statsmodels'",
+              "is_error": true,
+              "tool_use_id": "toolu_01HsxA7fPMZFRZ9g95KToUdE"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "8c907d8e-c4ad-4f14-ab56-e2a3c35a505d",
+            "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import scipy; import statsmodels; print('ok')\n                  ^^^^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'statsmodels'"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011cGS3uwPHDRUNNGDaWsXQH",
+              "name": "Bash",
+              "input": {
+                "command": "which python3 && python3 --version && ls -d .venv venv 2>/dev/null || echo \"NO_VENV\"",
+                "description": "Check Python environment"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "1dc99bed-8605-445a-bf7e-f3672fd295ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WuqBMN8VBHrMwEP6dHDyBA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 184,
+                "cache_read_input_tokens": 27339,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 184
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T05:45:22.864Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011cGS3uwPHDRUNNGDaWsXQH",
+              "type": "tool_result",
+              "content": "/usr/bin/python3\nPython 3.14.4\n.venv\nNO_VENV",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "68d79488-2961-4d1e-9e02-ab24d9098821",
+            "tool_use_result": {
+              "stdout": "/usr/bin/python3\nPython 3.14.4\n.venv\nNO_VENV",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0161tCZaJMYa4EmjHQmapn73",
+              "name": "Bash",
+              "input": {
+                "command": "source .venv/bin/activate && pip install scipy statsmodels 2>&1 | tail -5",
+                "description": "Install deps in venv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "2f481b00-983b-4048-8fe5-d955a32302f3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BziT75J1t3jLgTLknCgSHe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 140,
+                "cache_read_input_tokens": 27523,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 140
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "boa9o3104",
+                "tool_use_id": "toolu_0161tCZaJMYa4EmjHQmapn73",
+                "description": "Install deps in venv",
+                "task_type": "local_bash",
+                "uuid": "feee8fa1-887a-458c-b547-9a95c03ac7ba",
+                "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd"
+              }
+            }
+          ],
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "boa9o3104",
+                "tool_use_id": "toolu_0161tCZaJMYa4EmjHQmapn73",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Install deps in venv",
+                "uuid": "c4b58576-501a-48bf-9d84-a701e6ebc230",
+                "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd"
+              }
+            }
+          ],
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T05:45:45.262Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0161tCZaJMYa4EmjHQmapn73",
+              "type": "tool_result",
+              "content": "   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.9/10.9 MB 137.9 MB/s eta 0:00:00\nDownloading patsy-1.0.2-py2.py3-none-any.whl (233 kB)\nInstalling collected packages: scipy, patsy, pandas, statsmodels\n\nSuccessfully installed pandas-3.0.3 patsy-1.0.2 scipy-1.17.1 statsmodels-0.14.6",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "5d365cc3-feaf-411a-ba6f-a693c1af84fb",
+            "tool_use_result": {
+              "stdout": "   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.9/10.9 MB 137.9 MB/s eta 0:00:00\nDownloading patsy-1.0.2-py2.py3-none-any.whl (233 kB)\nInstalling collected packages: scipy, patsy, pandas, statsmodels\n\nSuccessfully installed pandas-3.0.3 patsy-1.0.2 scipy-1.17.1 statsmodels-0.14.6",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now writing the script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "9c09498b-5f57-45b8-97f7-c2f8c4231339",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R1pNjF1jHVh6nNctRv2oFF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 27663,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014XuAJE6qCGpWeyeB6w5Sj3",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/compute_supplementary_stats.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Compute supplementary statistics for EMNLP 2026 submission.\"\"\"\n\nimport numpy as np\nfrom scipy import stats\nfrom statsmodels.stats.power import TTestPower\nfrom datetime import datetime\nimport os\n\n# ── Data ──────────────────────────────────────────────────────────────────────\n# Table 3: Repo-level multi-seed accuracy (%)\nCLS_REPO = {\n    \"Qwen3-8B\": [85.34, 85.60, 84.40],\n    \"DeepSeek\":  [82.61, 74.93, 86.15],\n    \"DeepSeek_no_outlier\": [82.61, 86.15],\n}\nTRAJ_REPO = {\n    \"Qwen3-8B\": [72.92, 77.08, 70.83],\n    \"DeepSeek\":  [81.25, 75.00, 75.00],\n    \"DeepSeek_no_outlier\": [81.25, 75.00],\n}\nCWM_REPO = {\n    \"Qwen3-8B\": 64.36,\n    \"DeepSeek\":  61.49,\n}\n\n# Table 1: Function-level accuracy (%)\nCLS_FUNC = {\"DeepSeek\": [86.93, 86.77]}\nTRAJ_FUNC = {\n    \"Qwen3-8B\": [87.60, 87.79],\n    \"DeepSeek\":  [83.24, 85.08],\n}\nCWM_FUNC = {\"DeepSeek\": [85.77, 87.88]}\n\nnp.random.seed(42)\n\n\ndef bootstrap_ci(values, n_boot=10000, ci=0.95):\n    \"\"\"Bootstrap CI for mean from seed-level values.\"\"\"\n    arr = np.array(values, dtype=float)\n    n = len(arr)\n    boot_means = np.array([np.mean(np.random.choice(arr, size=n, replace=True))\n                           for _ in range(n_boot)])\n    alpha = (1 - ci) / 2\n    lo, hi = np.percentile(boot_means, [alpha * 100, (1 - alpha) * 100])\n    return np.mean(arr), np.std(arr, ddof=1), lo, hi\n\n\ndef cohens_d(a, b):\n    \"\"\"Cohen's d with pooled SD.\"\"\"\n    a, b = np.array(a, dtype=float), np.array(b, dtype=float)\n    na, nb = len(a), len(b)\n    pooled_sd = np.sqrt(((na - 1) * np.var(a, ddof=1) + (nb - 1) * np.var(b, ddof=1))\n                        / (na + nb - 2))\n    if pooled_sd == 0:\n        return float('inf') if np.mean(a) != np.mean(b) else 0.0\n    return (np.mean(a) - np.mean(b)) / pooled_sd\n\n\ndef interpret_d(d):\n    ad = abs(d)\n    if ad < 0.2:\n        return \"negligible\"\n    elif ad < 0.5:\n        return \"small\"\n    elif ad < 0.8:\n        return \"medium\"\n    else:\n        return \"large\"\n\n\ndef paired_power_analysis(a, b, alpha=0.05):\n    \"\"\"Power analysis for paired t-test given two matched arrays.\"\"\"\n    a, b = np.array(a, dtype=float), np.array(b, dtype=float)\n    diffs = a - b\n    n = len(diffs)\n    d_obs = np.mean(diffs) / np.std(diffs, ddof=1) if np.std(diffs, ddof=1) > 0 else float('inf')\n    power_obj = TTestPower()\n    # Current power\n    try:\n        current_power = power_obj.power(effect_size=abs(d_obs), nobs=n, alpha=alpha,\n                                        alternative='two-sided')\n    except Exception:\n        current_power = np.nan\n    # MDE at power=0.80\n    try:\n        mde = power_obj.solve_power(nobs=n, alpha=alpha, power=0.80,\n                                    alternative='two-sided')\n    except Exception:\n        mde = np.nan\n    # Required n for power=0.80\n    try:\n        req_n = power_obj.solve_power(effect_size=abs(d_obs), alpha=alpha, power=0.80,\n                                      alternative='two-sided')\n        req_n = int(np.ceil(req_n))\n    except Exception:\n        req_n = np.nan\n    return d_obs, current_power, mde, req_n\n\n\n# ── Build output ──────────────────────────────────────────────────────────────\nlines = []\nw = lines.append\n\nw(\"=\" * 65)\nw(\"  Supplementary Statistics for EMNLP 2026 Submission\")\nw(\"=\" * 65)\nw(f\"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\")\nw(\"Data source: experiment registry (exec-sim-repair-verifier)\")\nw(\"\")\n\n# ── 1. Bootstrap CI ──────────────────────────────────────────────────────────\nw(\"-\" * 65)\nw(\"  1. Bootstrap 95% CI (Table 3, Repo-level, 10000 resamples)\")\nw(\"-\" * 65)\nw(\"\")\nw(f\"{'Config':<40} {'Mean':>6} {'± SD':>8} {'95% CI':>20}\")\nw(f\"{'-'*40} {'-'*6} {'-'*8} {'-'*20}\")\n\nfor task, data in [(\"CLS\", CLS_REPO), (\"TRAJ\", TRAJ_REPO)]:\n    for model, vals in data.items():\n        if len(vals) < 3:\n            continue\n        mean, sd, lo, hi = bootstrap_ci(vals)\n        label = f\"{task} / {model}\"\n        if model == \"DeepSeek\":\n            label += \" (incl. outlier s123)\"\n        w(f\"{label:<40} {mean:6.2f} {sd:>7.2f}  [{lo:6.2f}, {hi:6.2f}]\")\n\n# DeepSeek CLS without outlier\nvals = CLS_REPO[\"DeepSeek_no_outlier\"]\nmean, sd, lo, hi = bootstrap_ci(vals)\nw(f\"{'CLS / DeepSeek (excl. outlier s123)':<40} {mean:6.2f} {sd:>7.2f}  [{lo:6.2f}, {hi:6.2f}]\")\n\nw(\"\")\n\n# ── 2. Effect Size ───────────────────────────────────────────────────────────\nw(\"-\" * 65)\nw(\"  2. Effect Size (Cohen's d)\")\nw(\"-\" * 65)\nw(\"\")\nw(f\"{'Comparison':<50} {'d':>7} {'Interp.':>12}\")\nw(f\"{'-'*50} {'-'*7} {'-'*12}\")\n\ncomparisons = [\n    (\"CLS vs TRAJ (Qwen3-8B, repo, 3 seeds)\",\n     CLS_REPO[\"Qwen3-8B\"], TRAJ_REPO[\"Qwen3-8B\"]),\n    (\"CLS vs TRAJ (DeepSeek, repo, 3 seeds, incl. outlier)\",\n     CLS_REPO[\"DeepSeek\"], TRAJ_REPO[\"DeepSeek\"]),\n    (\"CLS vs TRAJ (DeepSeek, repo, 2 seeds, excl. outlier)\",\n     CLS_REPO[\"DeepSeek_no_outlier\"], TRAJ_REPO[\"DeepSeek_no_outlier\"]),\n]\n\nfor label, a, b in comparisons:\n    d = cohens_d(a, b)\n    w(f\"{label:<50} {d:>7.3f} {interpret_d(d):>12}\")\n\nw(\"\")\nw(\"CLS vs CWM repo-level (point estimates, CWM has only s42):\")\nfor model in [\"Qwen3-8B\", \"DeepSeek\"]:\n    cls_mean = np.mean(CLS_REPO[model])\n    cwm_val = CWM_REPO[model]\n    diff = cls_mean - cwm_val\n    w(f\"  {model}: CLS mean={cls_mean:.2f}, CWM s42={cwm_val:.2f}, \"\n      f\"Δ={diff:+.2f} pp (no d: CWM n=1)\")\n\nw(\"\")\n\n# ── 3. Power Analysis ────────────────────────────────────────────────────────\nw(\"-\" * 65)\nw(\"  3. Power Analysis (paired t-test, α=0.05, two-sided)\")\nw(\"-\" * 65)\nw(\"\")\nw(f\"{'Comparison':<45} {'d_paired':>8} {'Power':>7} {'MDE@.80':>8} {'n@.80':>6}\")\nw(f\"{'-'*45} {'-'*8} {'-'*7} {'-'*8} {'-'*6}\")\n\npower_cases = [\n    (\"CLS vs TRAJ (Qwen3-8B, 3 seeds)\",\n     CLS_REPO[\"Qwen3-8B\"], TRAJ_REPO[\"Qwen3-8B\"]),\n    (\"CLS vs TRAJ (DeepSeek, 3 seeds, incl. outlier)\",\n     CLS_REPO[\"DeepSeek\"], TRAJ_REPO[\"DeepSeek\"]),\n    (\"CLS vs TRAJ (DeepSeek, 2 seeds, excl. outlier)\",\n     CLS_REPO[\"DeepSeek_no_outlier\"], TRAJ_REPO[\"DeepSeek_no_outlier\"]),\n]\n\nfor label, a, b in power_cases:\n    d_p, pwr, mde, req_n = paired_power_analysis(a, b)\n    pwr_s = f\"{pwr:.3f}\" if not np.isnan(pwr) else \"N/A\"\n    mde_s = f\"{mde:.3f}\" if not np.isnan(mde) else \"N/A\"\n    req_s = f\"{req_n}\" if not (isinstance(req_n, float) and np.isnan(req_n)) else \"N/A\"\n    w(f\"{label:<45} {d_p:>8.3f} {pwr_s:>7} {mde_s:>8} {req_s:>6}\")\n\nw(\"\")\nw(\"Interpretation:\")\nw(\"  - 'd_paired' = mean(diff) / SD(diff), the paired effect size\")\nw(\"  - 'Power' = P(reject H0 | H1 true) with current n and observed d\")\nw(\"  - 'MDE@.80' = minimum detectable paired d at power=0.80 with current n\")\nw(\"  - 'n@.80' = required n (seeds) to reach power=0.80 with observed d\")\n\nw(\"\")\n\n# ── Notes ─────────────────────────────────────────────────────────────────────\nw(\"-\" * 65)\nw(\"  Notes\")\nw(\"-\" * 65)\nw(\"\")\nw(\"1. n=3 seeds yields very wide CIs and low statistical power.\")\nw(\"   Bootstrap CIs from 3 points are inherently limited; they\")\nw(\"   reflect the observed spread but cannot capture the true\")\nw(\"   population variance reliably.\")\nw(\"\")\nw(\"2. DeepSeek CLS s123 (74.93%) is a known outlier caused by\")\nw(\"   NaN eval_loss during training. Results are reported both\")\nw(\"   with and without this seed for transparency.\")\nw(\"\")\nw(\"3. CWM repo-level has only s42 completed; Cohen's d is not\")\nw(\"   computable (n=1). Point differences are reported instead.\")\nw(\"\")\nw(\"4. Power analysis uses paired formulation since seeds are\")\nw(\"   matched across conditions (same seed → same train/val split).\")\nw(\"\")\n\n# ── Write ─────────────────────────────────────────────────────────────────────\nos.makedirs(\"artifacts\", exist_ok=True)\noutput_path = \"artifacts/supplementary_statistics.txt\"\nwith open(output_path, \"w\") as f:\n    f.write(\"\\n\".join(lines))\n\nprint(f\"Written to {output_path}\")\nprint()\nprint(\"\\n\".join(lines))\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "ed504e2e-6e9a-4736-91bc-41f745bb430d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R1pNjF1jHVh6nNctRv2oFF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 27663,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T05:46:29.596Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014XuAJE6qCGpWeyeB6w5Sj3",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/compute_supplementary_stats.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "9c55d3bb-a9ee-4b3e-8641-f7bc91e3e9c4",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/compute_supplementary_stats.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Compute supplementary statistics for EMNLP 2026 submission.\"\"\"\n\nimport numpy as np\nfrom scipy import stats\nfrom statsmodels.stats.power import TTestPower\nfrom datetime import datetime\nimport os\n\n# ── Data ──────────────────────────────────────────────────────────────────────\n# Table 3: Repo-level multi-seed accuracy (%)\nCLS_REPO = {\n    \"Qwen3-8B\": [85.34, 85.60, 84.40],\n    \"DeepSeek\":  [82.61, 74.93, 86.15],\n    \"DeepSeek_no_outlier\": [82.61, 86.15],\n}\nTRAJ_REPO = {\n    \"Qwen3-8B\": [72.92, 77.08, 70.83],\n    \"DeepSeek\":  [81.25, 75.00, 75.00],\n    \"DeepSeek_no_outlier\": [81.25, 75.00],\n}\nCWM_REPO = {\n    \"Qwen3-8B\": 64.36,\n    \"DeepSeek\":  61.49,\n}\n\n# Table 1: Function-level accuracy (%)\nCLS_FUNC = {\"DeepSeek\": [86.93, 86.77]}\nTRAJ_FUNC = {\n    \"Qwen3-8B\": [87.60, 87.79],\n    \"DeepSeek\":  [83.24, 85.08],\n}\nCWM_FUNC = {\"DeepSeek\": [85.77, 87.88]}\n\nnp.random.seed(42)\n\n\ndef bootstrap_ci(values, n_boot=10000, ci=0.95):\n    \"\"\"Bootstrap CI for mean from seed-level values.\"\"\"\n    arr = np.array(values, dtype=float)\n    n = len(arr)\n    boot_means = np.array([np.mean(np.random.choice(arr, size=n, replace=True))\n                           for _ in range(n_boot)])\n    alpha = (1 - ci) / 2\n    lo, hi = np.percentile(boot_means, [alpha * 100, (1 - alpha) * 100])\n    return np.mean(arr), np.std(arr, ddof=1), lo, hi\n\n\ndef cohens_d(a, b):\n    \"\"\"Cohen's d with pooled SD.\"\"\"\n    a, b = np.array(a, dtype=float), np.array(b, dtype=float)\n    na, nb = len(a), len(b)\n    pooled_sd = np.sqrt(((na - 1) * np.var(a, ddof=1) + (nb - 1) * np.var(b, ddof=1))\n                        / (na + nb - 2))\n    if pooled_sd == 0:\n        return float('inf') if np.mean(a) != np.mean(b) else 0.0\n    return (np.mean(a) - np.mean(b)) / pooled_sd\n\n\ndef interpret_d(d):\n    ad = abs(d)\n    if ad < 0.2:\n        return \"negligible\"\n    elif ad < 0.5:\n        return \"small\"\n    elif ad < 0.8:\n        return \"medium\"\n    else:\n        return \"large\"\n\n\ndef paired_power_analysis(a, b, alpha=0.05):\n    \"\"\"Power analysis for paired t-test given two matched arrays.\"\"\"\n    a, b = np.array(a, dtype=float), np.array(b, dtype=float)\n    diffs = a - b\n    n = len(diffs)\n    d_obs = np.mean(diffs) / np.std(diffs, ddof=1) if np.std(diffs, ddof=1) > 0 else float('inf')\n    power_obj = TTestPower()\n    # Current power\n    try:\n        current_power = power_obj.power(effect_size=abs(d_obs), nobs=n, alpha=alpha,\n                                        alternative='two-sided')\n    except Exception:\n        current_power = np.nan\n    # MDE at power=0.80\n    try:\n        mde = power_obj.solve_power(nobs=n, alpha=alpha, power=0.80,\n                                    alternative='two-sided')\n    except Exception:\n        mde = np.nan\n    # Required n for power=0.80\n    try:\n        req_n = power_obj.solve_power(effect_size=abs(d_obs), alpha=alpha, power=0.80,\n                                      alternative='two-sided')\n        req_n = int(np.ceil(req_n))\n    except Exception:\n        req_n = np.nan\n    return d_obs, current_power, mde, req_n\n\n\n# ── Build output ──────────────────────────────────────────────────────────────\nlines = []\nw = lines.append\n\nw(\"=\" * 65)\nw(\"  Supplementary Statistics for EMNLP 2026 Submission\")\nw(\"=\" * 65)\nw(f\"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\")\nw(\"Data source: experiment registry (exec-sim-repair-verifier)\")\nw(\"\")\n\n# ── 1. Bootstrap CI ──────────────────────────────────────────────────────────\nw(\"-\" * 65)\nw(\"  1. Bootstrap 95% CI (Table 3, Repo-level, 10000 resamples)\")\nw(\"-\" * 65)\nw(\"\")\nw(f\"{'Config':<40} {'Mean':>6} {'± SD':>8} {'95% CI':>20}\")\nw(f\"{'-'*40} {'-'*6} {'-'*8} {'-'*20}\")\n\nfor task, data in [(\"CLS\", CLS_REPO), (\"TRAJ\", TRAJ_REPO)]:\n    for model, vals in data.items():\n        if len(vals) < 3:\n            continue\n        mean, sd, lo, hi = bootstrap_ci(vals)\n        label = f\"{task} / {model}\"\n        if model == \"DeepSeek\":\n            label += \" (incl. outlier s123)\"\n        w(f\"{label:<40} {mean:6.2f} {sd:>7.2f}  [{lo:6.2f}, {hi:6.2f}]\")\n\n# DeepSeek CLS without outlier\nvals = CLS_REPO[\"DeepSeek_no_outlier\"]\nmean, sd, lo, hi = bootstrap_ci(vals)\nw(f\"{'CLS / DeepSeek (excl. outlier s123)':<40} {mean:6.2f} {sd:>7.2f}  [{lo:6.2f}, {hi:6.2f}]\")\n\nw(\"\")\n\n# ── 2. Effect Size ───────────────────────────────────────────────────────────\nw(\"-\" * 65)\nw(\"  2. Effect Size (Cohen's d)\")\nw(\"-\" * 65)\nw(\"\")\nw(f\"{'Comparison':<50} {'d':>7} {'Interp.':>12}\")\nw(f\"{'-'*50} {'-'*7} {'-'*12}\")\n\ncomparisons = [\n    (\"CLS vs TRAJ (Qwen3-8B, repo, 3 seeds)\",\n     CLS_REPO[\"Qwen3-8B\"], TRAJ_REPO[\"Qwen3-8B\"]),\n    (\"CLS vs TRAJ (DeepSeek, repo, 3 seeds, incl. outlier)\",\n     CLS_REPO[\"DeepSeek\"], TRAJ_REPO[\"DeepSeek\"]),\n    (\"CLS vs TRAJ (DeepSeek, repo, 2 seeds, excl. outlier)\",\n     CLS_REPO[\"DeepSeek_no_outlier\"], TRAJ_REPO[\"DeepSeek_no_outlier\"]),\n]\n\nfor label, a, b in comparisons:\n    d = cohens_d(a, b)\n    w(f\"{label:<50} {d:>7.3f} {interpret_d(d):>12}\")\n\nw(\"\")\nw(\"CLS vs CWM repo-level (point estimates, CWM has only s42):\")\nfor model in [\"Qwen3-8B\", \"DeepSeek\"]:\n    cls_mean = np.mean(CLS_REPO[model])\n    cwm_val = CWM_REPO[model]\n    diff = cls_mean - cwm_val\n    w(f\"  {model}: CLS mean={cls_mean:.2f}, CWM s42={cwm_val:.2f}, \"\n      f\"Δ={diff:+.2f} pp (no d: CWM n=1)\")\n\nw(\"\")\n\n# ── 3. Power Analysis ────────────────────────────────────────────────────────\nw(\"-\" * 65)\nw(\"  3. Power Analysis (paired t-test, α=0.05, two-sided)\")\nw(\"-\" * 65)\nw(\"\")\nw(f\"{'Comparison':<45} {'d_paired':>8} {'Power':>7} {'MDE@.80':>8} {'n@.80':>6}\")\nw(f\"{'-'*45} {'-'*8} {'-'*7} {'-'*8} {'-'*6}\")\n\npower_cases = [\n    (\"CLS vs TRAJ (Qwen3-8B, 3 seeds)\",\n     CLS_REPO[\"Qwen3-8B\"], TRAJ_REPO[\"Qwen3-8B\"]),\n    (\"CLS vs TRAJ (DeepSeek, 3 seeds, incl. outlier)\",\n     CLS_REPO[\"DeepSeek\"], TRAJ_REPO[\"DeepSeek\"]),\n    (\"CLS vs TRAJ (DeepSeek, 2 seeds, excl. outlier)\",\n     CLS_REPO[\"DeepSeek_no_outlier\"], TRAJ_REPO[\"DeepSeek_no_outlier\"]),\n]\n\nfor label, a, b in power_cases:\n    d_p, pwr, mde, req_n = paired_power_analysis(a, b)\n    pwr_s = f\"{pwr:.3f}\" if not np.isnan(pwr) else \"N/A\"\n    mde_s = f\"{mde:.3f}\" if not np.isnan(mde) else \"N/A\"\n    req_s = f\"{req_n}\" if not (isinstance(req_n, float) and np.isnan(req_n)) else \"N/A\"\n    w(f\"{label:<45} {d_p:>8.3f} {pwr_s:>7} {mde_s:>8} {req_s:>6}\")\n\nw(\"\")\nw(\"Interpretation:\")\nw(\"  - 'd_paired' = mean(diff) / SD(diff), the paired effect size\")\nw(\"  - 'Power' = P(reject H0 | H1 true) with current n and observed d\")\nw(\"  - 'MDE@.80' = minimum detectable paired d at power=0.80 with current n\")\nw(\"  - 'n@.80' = required n (seeds) to reach power=0.80 with observed d\")\n\nw(\"\")\n\n# ── Notes ─────────────────────────────────────────────────────────────────────\nw(\"-\" * 65)\nw(\"  Notes\")\nw(\"-\" * 65)\nw(\"\")\nw(\"1. n=3 seeds yields very wide CIs and low statistical power.\")\nw(\"   Bootstrap CIs from 3 points are inherently limited; they\")\nw(\"   reflect the observed spread but cannot capture the true\")\nw(\"   population variance reliably.\")\nw(\"\")\nw(\"2. DeepSeek CLS s123 (74.93%) is a known outlier caused by\")\nw(\"   NaN eval_loss during training. Results are reported both\")\nw(\"   with and without this seed for transparency.\")\nw(\"\")\nw(\"3. CWM repo-level has only s42 completed; Cohen's d is not\")\nw(\"   computable (n=1). Point differences are reported instead.\")\nw(\"\")\nw(\"4. Power analysis uses paired formulation since seeds are\")\nw(\"   matched across conditions (same seed → same train/val split).\")\nw(\"\")\n\n# ── Write ─────────────────────────────────────────────────────────────────────\nos.makedirs(\"artifacts\", exist_ok=True)\noutput_path = \"artifacts/supplementary_statistics.txt\"\nwith open(output_path, \"w\") as f:\n    f.write(\"\\n\".join(lines))\n\nprint(f\"Written to {output_path}\")\nprint()\nprint(\"\\n\".join(lines))\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J621HNPMk1nprqaP4LmyqL",
+              "name": "Bash",
+              "input": {
+                "command": "source .venv/bin/activate && python compute_supplementary_stats.py",
+                "description": "Run supplementary stats script"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "bf9da7be-c060-4427-ad05-4de1f9ab19d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MsXwcz6XWrtKbwJYiksuRE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3394,
+                "cache_read_input_tokens": 27921,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3394
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T05:46:35.285Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J621HNPMk1nprqaP4LmyqL",
+              "type": "tool_result",
+              "content": "Written to artifacts/supplementary_statistics.txt\n\n=================================================================\n  Supplementary Statistics for EMNLP 2026 Submission\n=================================================================\nGenerated: 2026-05-21 05:46:34\nData source: experiment registry (exec-sim-repair-verifier)\n\n-----------------------------------------------------------------\n  1. Bootstrap 95% CI (Table 3, Repo-level, 10000 resamples)\n-----------------------------------------------------------------\n\nConfig                                     Mean     ± SD               95% CI\n---------------------------------------- ------ -------- --------------------\nCLS / Qwen3-8B                            85.11    0.63  [ 84.40,  85.60]\nCLS / DeepSeek (incl. outlier s123)       81.23    5.74  [ 74.93,  86.15]\nTRAJ / Qwen3-8B                           73.61    3.18  [ 70.83,  77.08]\nTRAJ / DeepSeek (incl. outlier s123)      77.08    3.61  [ 75.00,  81.25]\nCLS / DeepSeek (excl. outlier s123)       84.38    2.50  [ 82.61,  86.15]\n\n-----------------------------------------------------------------\n  2. Effect Size (Cohen's d)\n-----------------------------------------------------------------\n\nComparison                                               d      Interp.\n-------------------------------------------------- ------- ------------\nCLS vs TRAJ (Qwen3-8B, repo, 3 seeds)                5.015        large\nCLS vs TRAJ (DeepSeek, repo, 3 seeds, incl. outlier)   0.865        large\nCLS vs TRAJ (DeepSeek, repo, 2 seeds, excl. outlier)   1.742        large\n\nCLS vs CWM repo-level (point estimates, CWM has only s42):\n  Qwen3-8B: CLS mean=85.11, CWM s42=64.36, Δ=+20.75 pp (no d: CWM n=1)\n  DeepSeek: CLS mean=81.23, CWM s42=61.49, Δ=+19.74 pp (no d: CWM n=1)\n\n-----------------------------------------------------------------\n  3. Power Analysis (paired t-test, α=0.05, two-sided)\n-----------------------------------------------------------------\n\nComparison                                    d_paired   Power  MDE@.80  n@.80\n--------------------------------------------- -------- ------- -------- ------\nCLS vs TRAJ (Qwen3-8B, 3 seeds)                  4.346   0.940    3.264      3\nCLS vs TRAJ (DeepSeek, 3 seeds, incl. outlier)    0.679   0.112    3.264     20\nCLS vs TRAJ (DeepSeek, 2 seeds, excl. outlier)    0.904   0.086   11.550     12\n\nInterpretation:\n  - 'd_paired' = mean(diff) / SD(diff), the paired effect size\n  - 'Power' = P(reject H0 | H1 true) with current n and observed d\n  - 'MDE@.80' = minimum detectable paired d at power=0.80 with current n\n  - 'n@.80' = required n (seeds) to reach power=0.80 with observed d\n\n-----------------------------------------------------------------\n  Notes\n-----------------------------------------------------------------\n\n1. n=3 seeds yields very wide CIs and low statistical power.\n   Bootstrap CIs from 3 points are inherently limited; they\n   reflect the observed spread but cannot capture the true\n   population variance reliably.\n\n2. DeepSeek CLS s123 (74.93%) is a known outlier caused by\n   NaN eval_loss during training. Results are reported both\n   with and without this seed for transparency.\n\n3. CWM repo-level has only s42 completed; Cohen's d is not\n   computable (n=1). Point differences are reported instead.\n\n4. Power analysis uses paired formulation since seeds are\n   matched across conditions (same seed → same train/val split).",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "c69ce9db-53da-42fe-83b4-353b33881dc9",
+            "tool_use_result": {
+              "stdout": "Written to artifacts/supplementary_statistics.txt\n\n=================================================================\n  Supplementary Statistics for EMNLP 2026 Submission\n=================================================================\nGenerated: 2026-05-21 05:46:34\nData source: experiment registry (exec-sim-repair-verifier)\n\n-----------------------------------------------------------------\n  1. Bootstrap 95% CI (Table 3, Repo-level, 10000 resamples)\n-----------------------------------------------------------------\n\nConfig                                     Mean     ± SD               95% CI\n---------------------------------------- ------ -------- --------------------\nCLS / Qwen3-8B                            85.11    0.63  [ 84.40,  85.60]\nCLS / DeepSeek (incl. outlier s123)       81.23    5.74  [ 74.93,  86.15]\nTRAJ / Qwen3-8B                           73.61    3.18  [ 70.83,  77.08]\nTRAJ / DeepSeek (incl. outlier s123)      77.08    3.61  [ 75.00,  81.25]\nCLS / DeepSeek (excl. outlier s123)       84.38    2.50  [ 82.61,  86.15]\n\n-----------------------------------------------------------------\n  2. Effect Size (Cohen's d)\n-----------------------------------------------------------------\n\nComparison                                               d      Interp.\n-------------------------------------------------- ------- ------------\nCLS vs TRAJ (Qwen3-8B, repo, 3 seeds)                5.015        large\nCLS vs TRAJ (DeepSeek, repo, 3 seeds, incl. outlier)   0.865        large\nCLS vs TRAJ (DeepSeek, repo, 2 seeds, excl. outlier)   1.742        large\n\nCLS vs CWM repo-level (point estimates, CWM has only s42):\n  Qwen3-8B: CLS mean=85.11, CWM s42=64.36, Δ=+20.75 pp (no d: CWM n=1)\n  DeepSeek: CLS mean=81.23, CWM s42=61.49, Δ=+19.74 pp (no d: CWM n=1)\n\n-----------------------------------------------------------------\n  3. Power Analysis (paired t-test, α=0.05, two-sided)\n-----------------------------------------------------------------\n\nComparison                                    d_paired   Power  MDE@.80  n@.80\n--------------------------------------------- -------- ------- -------- ------\nCLS vs TRAJ (Qwen3-8B, 3 seeds)                  4.346   0.940    3.264      3\nCLS vs TRAJ (DeepSeek, 3 seeds, incl. outlier)    0.679   0.112    3.264     20\nCLS vs TRAJ (DeepSeek, 2 seeds, excl. outlier)    0.904   0.086   11.550     12\n\nInterpretation:\n  - 'd_paired' = mean(diff) / SD(diff), the paired effect size\n  - 'Power' = P(reject H0 | H1 true) with current n and observed d\n  - 'MDE@.80' = minimum detectable paired d at power=0.80 with current n\n  - 'n@.80' = required n (seeds) to reach power=0.80 with observed d\n\n-----------------------------------------------------------------\n  Notes\n-----------------------------------------------------------------\n\n1. n=3 seeds yields very wide CIs and low statistical power.\n   Bootstrap CIs from 3 points are inherently limited; they\n   reflect the observed spread but cannot capture the true\n   population variance reliably.\n\n2. DeepSeek CLS s123 (74.93%) is a known outlier caused by\n   NaN eval_loss during training. Results are reported both\n   with and without this seed for transparency.\n\n3. CWM repo-level has only s42 completed; Cohen's d is not\n   computable (n=1). Point differences are reported instead.\n\n4. Power analysis uses paired formulation since seeds are\n   matched across conditions (same seed → same train/val split).",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行完成，输出已写入 `artifacts/supplementary_statistics.txt`。\n\n关键发现：\n\n**Bootstrap CI**: Qwen3-8B CLS 非常稳定（85.11 ± 0.63），DeepSeek CLS 含 outlier 时 CI 极宽（[74.93, 86.15]），去掉 outlier 后收窄到 [82.61, 86.15]。\n\n**Cohen's d**: CLS vs TRAJ 所有比较均为 large effect（d > 0.8）。Qwen3-8B 的 d=5.015 极大，说明 CLS 对 TRAJ 在 repo-level 上优势显著且一致。CLS vs CWM 的 point difference 约 +20 pp，但 CWM 只有 1 个 seed 无法算 d。\n\n**Power Analysis**: Qwen3-8B CLS vs TRAJ power=0.94（n=3 已够用）。DeepSeek CLS vs TRAJ power 仅 0.11（含 outlier）/ 0.09（去 outlier），因为 seed 间差异方向不一致，paired effect 被高方差淹没。DeepSeek 需要约 12-20 seeds 才能达到 power=0.80。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "uuid": "1cffc599-66a7-476f-89d5-c23a7ab0415e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XSvqhfRrdUFHE3zLUW34Lg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1101,
+                "cache_read_input_tokens": 31315,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1101
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行完成，输出已写入 `artifacts/supplementary_statistics.txt`。\n\n关键发现：\n\n**Bootstrap CI**: Qwen3-8B CLS 非常稳定（85.11 ± 0.63），DeepSeek CLS 含 outlier 时 CI 极宽（[74.93, 86.15]），去掉 outlier 后收窄到 [82.61, 86.15]。\n\n**Cohen's d**: CLS vs TRAJ 所有比较均为 large effect（d > 0.8）。Qwen3-8B 的 d=5.015 极大，说明 CLS 对 TRAJ 在 repo-level 上优势显著且一致。CLS vs CWM 的 point difference 约 +20 pp，但 CWM 只有 1 个 seed 无法算 d。\n\n**Power Analysis**: Qwen3-8B CLS vs TRAJ power=0.94（n=3 已够用）。DeepSeek CLS vs TRAJ power 仅 0.11（含 outlier）/ 0.09（去 outlier），因为 seed 间差异方向不一致，paired effect 被高方差淹没。DeepSeek 需要约 12-20 seeds 才能达到 power=0.80。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 95264,
+            "duration_api_ms": 73898,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "d9beb1fd-014a-4a56-b1c2-cd99e503d3bd",
+            "total_cost_usd": 0.32937374999999997,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 20575,
+              "cache_read_input_tokens": 178944,
+              "output_tokens": 4366,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 20575,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 357,
+                  "cache_read_input_tokens": 31315,
+                  "cache_creation_input_tokens": 1101,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1101
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2018,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002113,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 4366,
+                "cacheReadInputTokens": 178944,
+                "cacheCreationInputTokens": 20575,
+                "webSearchRequests": 0,
+                "costUSD": 0.32726075,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "9e1faa0f-1292-4bfa-92ed-4bf92e8ffd66"
+          },
+          "id": "event-000024"
+        }
+      ],
+      "message_count": 24
+    }
+  ],
+  "readable_path": "readable/worker-executions/cpu-supplementary-statistics.md"
+}

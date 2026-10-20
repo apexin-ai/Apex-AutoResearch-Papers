@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37ac85dbbf383a85c0e6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper experiments draft",
+  "task_key": "worker_paper_experiments-draft_20260515T143453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_experiments-draft_20260515T143453_result.json",
+    "occurrence": 1,
+    "bytes": 1325,
+    "sha256": "f9119c67b9f769785fae1c71dbbeaeeda8652f018a5cbc2636d71137c617e9ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/_project/paper/experiments.tex` 并注册。\n\n结构和数据摘要：\n\n**§4.1 Setup** — 数据集规模、模型配置、LoRA、seed/精度说明（789/0 NF4 已注明）、val-best checkpoint 协议、统计方法（clustered bootstrap + TOST）\n\n**§4.2 Function-Level (Table 1)** — CLS 88.43±0.78 vs CWM 87.19±0.37 (gap 1.24pp, p=0.025)；TRAJ 86.30±0.97；ZS 8B 64.40% / 32B NF4 71.69%\n\n**§4.3 Scaling (Table 2)** — 8B CLS 89.39 vs CWM 86.96 (gap 2.43pp, p=0.008)；CLS +0.96pp scaling gain, CWM −0.23pp；generation bottleneck 论证\n\n**§4.4 CLS-TRAJ Equivalence** — gap −0.45pp, TOST p=0.007, ICC=0.191, DEFF=3.97；等价精度+免费诊断粒度\n\n**§4.5 Oracle Frontier (Table 3)** — T=1 (69%) 无优势；T=2 (19%) block advantage 31.69pp, 55% contribution；P2P ~1% honest negative\n\n**§4.6 Repo-Level (Table 4)** — 4B CLS 83.63% vs CWM 58.04% = 25.59pp (primary)；8B CLS 83.52/85.60% (secondary)；CWM 低于 majority baseline 14pp；unparseable 54-67%；8B-8B CWM 标 in progress\n\n**§4.7 Analysis** — error complementarity (oracle 90.63%)、CWM 三类 error mode (77% token exhaustion / 23% ambiguous / hallucinated failures)、per-repo variation、seq_length ablation (drop 0.69pp)、LoRA rank ablation (−0.51pp)、ICC=0.191"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-experiments-draft.md"
+}

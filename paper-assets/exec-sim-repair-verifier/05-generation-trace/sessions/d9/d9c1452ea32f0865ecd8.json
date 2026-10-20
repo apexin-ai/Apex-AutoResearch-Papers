@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "id": "d9c1452ea32f0865ecd8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "eval cls v5 urgent",
+  "task_key": "worker_eval_cls-v5-urgent_20260513T155329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls-v5-urgent_20260513T155329.log",
+    "occurrence": 1,
+    "bytes": 1551740,
+    "sha256": "c5784864270c6a8cf98e9d29479266d159f090c6caa5e2dc435ce04e8656903b"
+  },
+  "statistics": {
+    "messages": 1068,
+    "user_turns": 3,
+    "tool_calls": 327,
+    "roles": {
+      "log": 1,
+      "system": 120,
+      "record": 2,
+      "assistant": 220,
+      "tool_call": 327,
+      "tool_result": 327,
+      "user": 3,
+      "result": 68
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 80,
+      "chunks": [
+        {
+          "path": "d9c1452ea32f0865ecd8-part-0001.json",
+          "message_count": 80
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 114,
+      "chunks": [
+        {
+          "path": "d9c1452ea32f0865ecd8-part-0001.json",
+          "message_count": 100
+        },
+        {
+          "path": "d9c1452ea32f0865ecd8-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 654,
+      "chunks": [
+        {
+          "path": "d9c1452ea32f0865ecd8-part-0002.json",
+          "message_count": 166
+        },
+        {
+          "path": "d9c1452ea32f0865ecd8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9c1452ea32f0865ecd8-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9c1452ea32f0865ecd8-part-0005.json",
+          "message_count": 128
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 220,
+      "chunks": [
+        {
+          "path": "d9c1452ea32f0865ecd8-part-0005.json",
+          "message_count": 52
+        },
+        {
+          "path": "d9c1452ea32f0865ecd8-part-0006.json",
+          "message_count": 168
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-cls-v5-urgent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94cf9845692e3dacb1d4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper introduction sync to docs",
+  "task_key": "worker_paper_introduction-sync-to-docs_20260515T144315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_introduction-sync-to-docs_20260515T144315_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "3231c47d62eb1dea8cceb14986983fd64b4fed1d6ce5af0e7a0f7006a5dc22fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both citation keys exist in `references.bib`.\n\n**Summary of all changes made:**\n\n**artifacts/_project/paper/introduction.tex** (3 edits):\n- `zhang2025swerm` → `shum2025swerm`\n- `ding2025selfexecution` → `maimon2026selfexecution`\n- `p = 0.008` → `p = 0.0066`\n\n**docs/paper/introduction.tex** (2 edits):\n- Para 2: `53.7--67.2\\% of \\cwm{} predictions are unparseable across seeds` → `the majority of \\cwm{} predictions become unparseable` (qualitative, numbers kept in C1)\n- C1 end: added zero-shot baseline sentence `(32B NF4: 71.69\\% vs.\\ fine-tuned 4B: 88.43\\%)`\n\n**Verified:**\n- No residual `zhang2025swerm`, `ding2025selfexecution`, or `p = 0.008` in either introduction file\n- Both `shum2025swerm` and `maimon2026selfexecution` exist in `references.bib`\n- LaTeX compiles without errors (citation undefined warnings are normal pre-bibtex)\n\n**Flagged — same old citation keys remain in other files:**\n- `related_work.tex` (lines 7, 15)\n- `method.tex` (line 55)\n- `introduction_304198.tex` (lines 8, 14)\n- `dream_reports/.../paper.tex` (3 occurrences)\n\nWant me to fix those too?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-introduction-sync-to-docs.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6c2e70ca9d2fe8f440d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval deepseek cwm repo s42",
+  "task_key": "worker_eval_deepseek-cwm-repo-s42_20260517T154619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_deepseek-cwm-repo-s42_20260517T154619_result.json",
+    "occurrence": 1,
+    "bytes": 626,
+    "sha256": "832a4fb5bae18d1e0e76fc192efb49c2e77b5fd5ee037a7379589773cd4d02da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正在稳定运行中。当前状态：\n\n- **模型**: DeepSeek-Coder-6.7B + LoRA (CWM repo-level, seed=42)\n- **Test 数据**: `swebench_full/swebench_test.jsonl`, n=9784\n- **GPU**: cuda:1 (5090)\n- **速度**: ~3.3 秒/样本, 预计总时间 ~9 小时\n- **修复内容**:\n  1. Prompt 模板对齐（训练用 \"## Code\" / eval 原来用 \"## Patch (git diff)\"）\n  2. Parser 改进（添加 Traceback 检测、PASSED/FAILED 计数、BPE 解码）\n  3. `max_new_tokens` 从 512 降到 128 加速 4x\n- **初始 accuracy**: ~71-82% (14 samples), 趋势良好\n\n4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-deepseek-cwm-repo-s42.md"
+}

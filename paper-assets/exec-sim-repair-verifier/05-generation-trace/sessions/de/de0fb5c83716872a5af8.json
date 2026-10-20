@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de0fb5c83716872a5af8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research ref xcheck B",
+  "task_key": "worker_research_ref-xcheck-B_20260526T104646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-xcheck-B_20260526T104646_result.json",
+    "occurrence": 1,
+    "bytes": 1712,
+    "sha256": "17243e1f5a7950cda8af739c485d5daafd45d7eef0c50ea3de9448f7bfa29508"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both issues confirmed. Now I have all the data. Here are the results:\n\n---\n\n## 验证结果\n\n```\n[jimenez2024swebench]     ✓ 正确\n[chowdhury2024swebenchverified] ✓ 正确\n[yang2024sweagent]        ✓ 正确\n[xia2024agentless]        ✓ 正确 (key 写 2024 但 year=2025 正确，key 名不影响渲染)\n[yang2025aprsurvey]       ✓ 正确\n[qwen2025qwen3]           ✓ 正确\n[chen2021humaneval]       ✓ 正确\n[austin2021mbpp]          ✓ 正确\n[hu2022lora]              ✓ 正确\n[dettmers2024qlora]       ✓ 正确 (key 写 2024 但 year=2023 正确，key 名不影响渲染)\n[guo2024deepseekcoder]    ⚠️ 问题: 作者 \"Xiong, Yun\" 应为 \"Xiong, Yingfei\"（arXiv 原文确认为 Yingfei Xiong）\n[ni2023lever]             ✓ 正确\n[chen2023codet]           ✓ 正确\n[lightman2023letsverify]  ✓ 正确 (key 写 2023 但 year=2024 正确，ICLR 2024 发表)\n[uesato2022solving]       ✓ 正确\n[wang2026verpo]           ✓ 正确\n[tang2026execverify]      ✓ 正确\n[le2022coderl]            ✓ 正确\n[li2022alphacode]         ✓ 正确\n[shinn2023reflexion]      ✓ 正确\n[tufano2019predictive]    ⚠️ 问题: venue 错误，应为 ICSME 2019，非 ISSTA\n[kim2022predictive]       ✓ 正确\n[raffel2020t5]            ✓ 正确\n```\n\n引用上下文检查：所有 23 条引用在正文中的使用均与论文内容匹配，无张冠李戴。\n\n---\n\n## 有问题的条目汇总\n\n| # | Key | 问题 | 修正建议 |\n|---|-----|------|----------|\n| 35 | `guo2024deepseekcoder` | 作者姓名错误：`Xiong, Yun` | → `Xiong, Yingfei` |\n| 45 | `tufano2019predictive` | 会议名称错误：`ISSTA` | → `ICSME` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-xcheck-b.md"
+}

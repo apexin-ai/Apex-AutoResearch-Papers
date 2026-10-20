@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cd3c0b78f7ab23a646e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops traj repo 8k s0 cron check",
+  "task_key": "worker_ops_traj-repo-8k-s0-cron-check_20260516T163607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_traj-repo-8k-s0-cron-check_20260516T163607_result.json",
+    "occurrence": 1,
+    "bytes": 730,
+    "sha256": "ca2235e6fcf67639b9abc863f2a2c46ee2595336347a4e8e3f2ad6ad1d308a61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前 session 无 cron job（可能是另一个 session 创建的，已过期）。Registry 已更新为 DONE/success。\n\n完成：\n\n- **训练成功**：3 epoch，train_loss=0.2125，eval_loss=0.1013，best checkpoint 已保存\n- **Eval 结果**：accuracy 75%（+20.8pp vs majority baseline），f1_macro 72.68%，unparseable 0%\n- **Registry 状态**：`deepseek-traj-repo-8k-s0` → DONE/success，metrics 已写入\n- **Cron**：当前 session 无活跃 cron，无需删除\n\n对比 repo-level 的其他 seed（`deepseek-traj-repo` s42/s123 均为 77.1% accuracy），8k seq 版本的 s0 反而略低（75%），但测试集很小（48 样本 vs 之前的 386），且 unparseable 从 16.7% 降到 0%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-traj-repo-8k-s0-cron-check.md"
+}

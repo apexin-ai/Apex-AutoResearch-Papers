@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67045d0a3c1d5ba32fc2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh resume qwen training",
+  "task_key": "worker_ssh_resume-qwen-training_20260520T213102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_resume-qwen-training_20260520T213102_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "4ba4f842fe2abd4794f5d48f7f35c7b276adf6fc6f1bbd7d9810127a3152b4da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练全部恢复成功。以下是最终状态总结：\n\n---\n\n## 恢复训练总结\n\n| | s123 | s456 |\n|---|---|---|\n| **Training PID** | 4271 (bash: 4270) | 4561 (bash: 4560) |\n| **恢复 checkpoint** | checkpoint-3000 | checkpoint-3000 |\n| **GPU** | GPU 0: 98%, 30549/32607 MiB | GPU 3: 98%, 21991/32607 MiB |\n| **Monitor PID** | 4871 | 4883 |\n| **Exit watcher PID** | 4870 | 4882 |\n\n### 预估完成时间\n\n- 剩余 steps: 6633 - 3000 = **3633**\n- 速率: ~23.5 s/step（含 eval 开销）\n- 预计剩余: 3633 × 23.5 / 3600 ≈ **23.7 小时**\n- 预计完成: **2026-05-22 ~05:30 UTC+8**（约 2026-05-21 21:30 UTC）\n\n### 注意事项\n\n- 使用了 `--no_wandb` 因为服务器 wandb 凭证缺失（原训练的 ~/.netrc 已丢失）\n- 训练日志: `~/runs/exec-sim-repair-verifier/qwen_cwm_s{123,456}_resume.log`\n- Monitor 每 5 分钟检查一次进程存活，训练完成后自动触发 eval 脚本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-resume-qwen-training.md"
+}

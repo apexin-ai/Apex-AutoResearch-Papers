@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4518e24babb56a753868",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval seed123 ckpt6200 val and continue",
+  "task_key": "worker_eval_seed123-ckpt6200-val-and-continue_20260515T072911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed123-ckpt6200-val-and-continue_20260515T072911_result.json",
+    "occurrence": 1,
+    "bytes": 77,
+    "sha256": "833a39a05ce383027ab9708b920a90283e17a964ae84654825ffc23deb41ee49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ckpt-6200 eval 已提交到 cuda:0，3分钟后轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed123-ckpt6200-val-and-continue.md"
+}

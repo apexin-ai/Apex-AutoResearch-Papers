@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1662af3222bd4e40167",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh urgent status check westd",
+  "task_key": "worker_ssh_urgent-status-check-westd_20260513T110204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent-status-check-westd_20260513T110204_result.json",
+    "occurrence": 1,
+    "bytes": 1551,
+    "sha256": "40dab7586ae33516ecd754037c8841c19e2d769ce3eb341e4589374124778ee8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### GPU 分配全景\n\n| GPU | 利用率 | 显存 | 实验 |\n|-----|--------|------|------|\n| 0 | 78% | 24.9/31.8 GB | CLS seed123 |\n| 1 | 97% | 16.3/31.8 GB | CWM seed123 |\n| 2 | 98% | 13.5/31.8 GB | **CWM v11** |\n| 3 | 98% | 25.8/31.8 GB | 8B CLS |\n\n### 各实验详情\n\n#### 1. CWM v11 (PID 130026, cuda:2) — 最关键\n- **ALIVE**, 运行 2h42m\n- **Step 400/6633** (6.0%), 日志显示正在做 eval (8719/9335, 93%)\n- eval_loss 趋势持续下降：`0.5039 → 0.3643 → 0.3213 → 0.3066`\n- train_loss: `6.64 → 5.48 → 4.98`\n- best_checkpoint: `checkpoint-400`, best_metric: `0.3066`\n- **未完成**，预估剩余 ~40h（按当前速度 ~14 it/s）\n\n#### 2. CLS seed123 (PID 141198, cuda:0)\n- **ALIVE**, 运行 57min\n- **Step 310/6633** (4.7%), ~7s/it\n- eval_loss@200: `0.0808`\n- train_loss: `11.31 → 1.56 → 1.17`（收敛很快）\n\n#### 3. CWM seed123 (PID 142397, cuda:1)\n- **ALIVE**, 运行 37min\n- **Step 273/6633** (4.1%), ~9.5s/it\n- eval_loss@100: `0.5049`（刚过 step 200 的 eval）\n- train_loss: `28.67 → 20.43`（还在初期下降中）\n\n#### 4. 8B CLS (PID 140055, cuda:3)\n- **ALIVE**, 运行 1h03m\n- **Step 273/6633** (4.1%), ~9.5s/it\n- eval_loss@200: `0.0767`（比 4B CLS 的 0.0808 更低）\n- train_loss: `15.95 → 2.64 → 2.01`\n\n### 关键结论\n- **CWM v11 未完成**，6% 进度，loss 稳降中，一切正常\n- 4 个实验全部健康运行，无异常\n- 8B CLS 的 eval_loss (0.0767) 略优于 4B CLS seed123 (0.0808)，值得关注"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-status-check-westd.md"
+}

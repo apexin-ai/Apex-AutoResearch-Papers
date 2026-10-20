@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74c6e8c5c86a1f013e0d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh d046 cwm eval monitor v2",
+  "task_key": "worker_ssh_d046-cwm-eval-monitor-v2_20260513T074500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d046-cwm-eval-monitor-v2_20260513T074500_result.json",
+    "occurrence": 1,
+    "bytes": 169,
+    "sha256": "09b50e63380b8103b6f19bc77be4c876f6c05c7b83ccc2a30c820b397a701044"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态**: PID 123610 运行中，已 1h20m，命令为 `python3 eval_repo_cwm.py`（checkpoint-400, Qwen3-4B, cuda:0）。下次检查 ~4.5 分钟后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d046-cwm-eval-monitor-v2.md"
+}

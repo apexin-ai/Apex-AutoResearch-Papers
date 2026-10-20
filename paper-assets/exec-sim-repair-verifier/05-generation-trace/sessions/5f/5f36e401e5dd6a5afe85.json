@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f36e401e5dd6a5afe85",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis tost sensitivity full",
+  "task_key": "worker_analysis_tost-sensitivity-full_20260517T112801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tost-sensitivity-full_20260517T112801_result.json",
+    "occurrence": 1,
+    "bytes": 417,
+    "sha256": "6515b6e1c81e0c53c6d8fec04cc2a8c9b2281cc8d8d03926228823795fbcb63e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入 `artifacts/tost_sensitivity_full.json`。\n\n结果摘要:\n\n| Margin δ (pp) | TOST p-value | Equivalent (α=0.05)? |\n|---|---|---|\n| ±1 | 0.871 | No |\n| ±2 | 0.007 | Yes |\n| ±3 | <0.001 | Yes |\n\n最小等价 margin: ±1.63 pp。±1pp 下 CLS 和 TRAJ 不可互换（差异 1.24pp 已接近 margin），±2pp 起可确认等价。LaTeX table 已嵌入 JSON 的 `latex_table` 字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tost-sensitivity-full.md"
+}

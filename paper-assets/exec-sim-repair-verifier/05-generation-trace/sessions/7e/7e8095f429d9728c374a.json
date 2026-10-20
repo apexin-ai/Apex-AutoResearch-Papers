@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e8095f429d9728c374a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis deepseek logs",
+  "task_key": "worker_analysis_deepseek-logs_20260516T080136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek-logs_20260516T080136_result.json",
+    "occurrence": 1,
+    "bytes": 2640,
+    "sha256": "0da5df180e6a283b9544f51ff3d85fd602bb45986701caa4956c09a91a399f4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have all the data needed. Here's the summary:\n\n---\n\n## deepseek-cls-func\n- **conclusion**: SUCCESS (EXIT_CODE=0)\n- **epochs_completed**: 3/3\n- **eval_loss per epoch**: epoch1=0.0701, epoch2=0.0727, epoch3=0.0745\n- **train_loss**: 0.0948\n- **best_checkpoint**: `/root/autodl-tmp/checkpoints_deepseek_cls_func/best`\n- **train_time**: 1h 30m 44s (5444.8s)\n- **checkpoints on disk**: `checkpoint-478`, `checkpoint-1434`, `best`\n- **notes**: val loss最优在epoch 1，之后略微上升（可能轻微过拟合）。Best model在epoch 3保存。无accuracy metric输出（仅loss）。\n\n## deepseek-cwm-func\n- **conclusion**: SUCCESS (EXIT_CODE=0)\n- **epochs_completed**: 3/3\n- **eval_loss per epoch**: epoch1=0.0458, epoch2=0.0429, epoch3=0.0457\n- **train_loss**: 0.0986\n- **best_checkpoint**: `/root/autodl-tmp/checkpoints_deepseek_cwm_func/best`\n- **train_time**: 1h 26m 55s (5215.2s)\n- **checkpoints on disk**: `checkpoint-956`, `checkpoint-1434`, `best`\n- **notes**: val loss最优在epoch 2 (0.0429)。Best model在epoch 3保存。\n\n## deepseek-cwm-func-s123\n- **conclusion**: SUCCESS (EXIT_CODE=0)\n- **epochs_completed**: 3/3\n- **eval_loss per epoch**: epoch1=0.0442, epoch2=0.0408, epoch3=0.0451\n- **train_loss**: 0.0976\n- **best_checkpoint**: `/root/autodl-tmp/checkpoints_deepseek_cwm_func_seed123/best`\n- **train_time**: 1h 27m 24s (5244.3s)\n- **checkpoints on disk**: `checkpoint-956`, `checkpoint-1434`, `best`\n- **notes**: val loss最优在epoch 2 (0.0408)。和seed42 CWM结果一致性好（epoch 2最优，epoch 3回弹）。\n\n## deepseek-cls-repo (running / crashed)\n- **conclusion**: FAILED → OOM on initial model load\n- **error**: `torch.OutOfMemoryError` — GPU 0 被其他进程占用 19.09 GiB，剩余仅 25.75 MiB\n- **data**: train=70748, val=9335 (SWE-Bench full), seq_len=8192, truncated=2.2%\n- **progress bars in log**: step 467/6633 (~7%), elapsed ~1h25m, ~11s/step\n- **notes**: 初次启动时（15:38）因其他3个实验占用GPU而OOM。日志中后续出现训练进度条（467/6633），说明可能已被重启。若已重启，按11s/step计算，剩余 ~19h 完成。尚未产生任何 eval 结果。\n\n---\n\n**关键发现**：\n1. 3个func-level实验全部成功完成，训练时间一致（~1.5h）\n2. CWM任务的两个seed结果高度一致（best val_loss: 0.0429 vs 0.0408），验证了可复现性\n3. CLS任务val loss从epoch 1开始即轻微上升，暗示epoch 1可能就是最佳——需确认保存逻辑是否基于 eval_loss 还是 last epoch\n4. cls-repo 需确认是否已成功重启运行中，否则需要手动重启"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-logs.md"
+}

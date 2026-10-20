@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66ac463e9741e99f6bf1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval home 8b ckpt3000 test submit",
+  "task_key": "worker_eval_home-8b-ckpt3000-test-submit_20260514T202951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_home-8b-ckpt3000-test-submit_20260514T202951_result.json",
+    "occurrence": 1,
+    "bytes": 252,
+    "sha256": "703fbc6cd38e0f197f5dd976c23e633de0774214668fbc807a17889ddd7e10a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 仍 100% 占用（PID 3165829, 31718MiB/32607MiB, 81°C）。seed123 ckpt-600 val eval 还在跑。已设置 ~4.5 分钟后再次检查，会持续轮询直到 GPU 空闲，届时收集 ckpt-600 结果并提交 ckpt-3000 test eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-home-8b-ckpt3000-test-submit.md"
+}

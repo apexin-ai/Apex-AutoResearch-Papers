@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e004dba918d59126cb8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh d049 kill orphan 128666",
+  "task_key": "worker_ssh_d049-kill-orphan-128666_20260513T092519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d049-kill-orphan-128666_20260513T092519_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "5b9d4557642d1d3368727a878a47e93b00f0af7c45b2a7016efc7a51017a9b4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇报：**\n\n1. **PID 128666** — 已 kill（普通 SIGTERM 即成功，无需 SIGKILL）\n2. **Checkpoint** — `/root/autodl-tmp/checkpoints_repo_cwm_seed123/` 已删除\n3. **cuda:2 进程** — 仅剩 PID 130031（CWM v11 子进程），占用 13466 MiB，孤儿进程已清除\n4. **CWM v11 状态** — PID 130026 存活，已运行 1h05m34s，GPU 利用率 97%，显存 13475/32607 MiB（释放了约 19GB，比预期还多）\n\ncuda:2 已干净，CWM v11 正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d049-kill-orphan-128666.md"
+}

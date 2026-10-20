@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39e005022568eef682aa",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls v5 val5120 sweep home",
+  "task_key": "worker_eval_cls-v5-val5120-sweep-home_20260514T154933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls-v5-val5120-sweep-home_20260514T154933_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "0ffc43ac75e3d0f11e50cb8b255c1b7a5a8b38fbac966740c26146cffb74de09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:0 已被占用，无法启动新的 eval。**\n\n占用详情：\n- **PID**: 3137889（用户 sonny）\n- **进程**: `eval_repo_cls.py` — 正在跑 conda checkpoint-400 的 val@5120 评估\n- **参数**: `--checkpoint_path .../checkpoints_repo_cls_8b_conda_westd/checkpoint-400 --split val --max_seq_length 5120 --batch_size 4 --model_name .../Qwen3-8B`\n- **显存占用**: 22500 MiB（几乎满载）\n- **已运行**: ~1 分 28 秒\n\n看起来已经有一个 conda ckpt-400 val@5120 的评估在跑（正是你要求的首批任务之一），但用的是 **Qwen3-8B** 模型而非 Qwen3-4B。需要等它完成后才能启动新任务。要等它跑完后继续，还是先停掉它？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls-v5-val5120-sweep-home.md"
+}

@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "id": "dc7006e6ee4e815a4cf9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "analysis cls8b s42 ckpt200 val8192 eval v2",
+  "task_key": "worker_analysis_cls8b-s42-ckpt200-val8192-eval-v2_20260514T223733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_cls8b-s42-ckpt200-val8192-eval-v2_20260514T223733.jsonl",
+    "occurrence": 1,
+    "bytes": 4461,
+    "sha256": "28472c1837a2d34b7848ef171acc23e4e30d3799ce3603940e1a6af5d44c026c"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "tool_call": 2,
+      "tool_result": 2,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T22:38:01.727241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt200-val8192-eval-v2_20260514T223733",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T22:38:01.727748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt200-val8192-eval-v2_20260514T223733",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T22:38:01.728092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt200-val8192-eval-v2_20260514T223733",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cat ~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-val8192-eval-v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T22:38:01.728669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 06:06:18,642 INFO Loading val data: /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\\\n2026-05-15 06:06:18,857 INFO Loaded 9335 val instances\\\\n2026-05-15 06:06:18,859 INFO Label distribution: {1: 7083, 0: 2252}\\\\n2026-05-15 06:06:18,859 INFO Loading model from /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\\n2026-05-15 06:06:21,057 INFO Attention: sdpa\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00, 191.06it/s]\\\\n2026-05-15 06:06:26,927 INFO Model loaded. Starting inference...\\\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n2026-05-15 06:06:29,268 INFO [CLS] 10/9335  running_acc=80.0%\\\\n2026-05-15 06:06:30,330 INFO [CLS] 20/9335  running_acc=65.0%\\\\n2026-05-15 06:06:31,108 INFO [CLS] 30/9335  running_acc=56.7%\\\\n2026-05-15 06:06:32,229 INFO [CLS] 40/9335  running_acc=67.5%\\\\n2026-05-15 06:06:34,367 INFO [CLS] 50/9335  running_acc=68.0%\\\\n2026-05-15 06:06:36,312 INFO [CLS] 60/9335  running_acc=68.3%\\\\n2026-05-15 06:06:38,558 INFO [CLS] 70/9335  running_acc=65.7%\\\\n2026-05-15 06:06:39,891 INFO [CLS] 80/9335  running_acc=61.3%\\\\n2026-05-15 06:06:41,599 INFO [CLS] 90/9335  running_acc=60.0%\\\\n2026-05-15 06:06:43,335 INFO [CLS] 100/9335  running_acc=60.0%\\\\n2026-05-15 06:06:45,229 INFO [CLS] 110/9335  running_acc=60.0%\\\\n2026-05-15 06:06:47,036 INFO [CLS] 120/9335  running_acc=61.7%\\\\n2026-05-15 06:06:48,155 INFO [CLS] 130/9335  running_acc=62.3%\\\\n2026-05-15 06:06:50,674 INFO [CLS] 140/9335  running_acc=62.9%\\\\n2026-05-15 06:06:52,596 INFO [CLS] 150/9335  running_acc=63.3%\\\\n2026-05-15 06:06:53,724 INFO [CLS] 160/9335  running_acc=62.5%\\\\n2026-05-15 06:06:55,008 INFO [CLS] 170/9335  running_acc=61.8%\\\\n2026-05-15 06:06:56\n…[truncated 6474 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt200-val8192-eval-v2_20260514T223733",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T22:38:01.728973+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cls8b-s42-ckpt200-val8192-eval-v2 评估结果\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | 63.52% |\n| **F1 macro** | 61.17% |\n| **F1 (fail)** | 51.6% |\n| **F1 (pass)** | 70.7% |\n| **Precision (fail)** | 38.0% |\n| **Precision (pass)** | 90.4% |\n| **Recall (fail)** | 80.6% |\n| **Recall (pass)** | 58.1% |\n| **Samples evaluated** | 9335 |\n| **Class balance** | pass=7083, fail=2252 |\n| **Majority baseline** | 75.9% |\n| **Accuracy vs majority** | -12.3pp |\n| **Unparseable** | 9 (0.10%) |\n| **Exit code** | 0 (成功) |\n\n**Confusion Matrix:**\n\n|  | Pred fail | Pred pass |\n|--|-----------|-----------|\n| **Actual fail** | 1815 | 437 |\n| **Actual pass** | 2968 | 4115 |\n\n**关键发现：**\n- Accuracy 63.52% **低于** majority baseline 75.9%（差 -12.3pp），模型在 val set 上表现不佳\n- 模型对 fail 类 recall 高（80.6%）但 precision 极低（38.0%），大量 pass 样本被误判为 fail（2968 个 false positive）\n- pass 类 precision 高（90.4%）但 recall 低（58.1%），说明模型过度倾向预测 fail\n- 无错误或异常，9 个 unparseable 用了 majority fallback"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt200-val8192-eval-v2_20260514T223733"
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-cls8b-s42-ckpt200-val8192-eval-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56a569ef25c2077b6a4b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis deepseek func summary",
+  "task_key": "worker_analysis_deepseek-func-summary_20260516T120840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek-func-summary_20260516T120840_result.json",
+    "occurrence": 1,
+    "bytes": 724,
+    "sha256": "0b0ef70169a657509146121c24785788b83435df3d32abe94642c1896ee1cd37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总完成。核心结果：\n\n| 实验 | Seed 42 | Seed 123 | Mean±Std |\n|------|---------|----------|----------|\n| CLS acc | 86.93 | 86.77 | **86.85±0.11%** |\n| CWM acc | 85.77 | 87.88 | **86.83±1.49%** |\n\n**ROADMAP 数字验证通过**：CLS 86.85±0.11%、CWM 86.83±1.49% 均正确。\n\n**Registry 有误**：`deepseek-cls-func-s123` 记录 acc=87.88 是错的，实际为 86.77。87.88 属于 `deepseek-cwm-func-s123`。\n\n其他观察：\n- 所有实验 unparseable=0%\n- CLS 在 epoch 1 即达 best，CWM 在 epoch 2\n- CWM 跨 seed 方差大（std 1.49 vs 0.11），呈现高 precision_pass + 高 recall_fail 的非对称模式\n\nJSON 已写入 `artifacts/deepseek_func_summary.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-func-summary.md"
+}

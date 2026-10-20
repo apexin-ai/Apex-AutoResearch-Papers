@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f650abf90b02cd6b396",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose cwm v12 cls 8b",
+  "task_key": "worker_diagnose_cwm-v12-cls-8b_20260514T010311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cwm-v12-cls-8b_20260514T010311_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "4d55ae27298dd70ef3b9ceb454a6ee79bace428fc21c3ab0d9f72986447999ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，报告已写入 `artifacts/diagnosis_cwm_v12_cls_8b.md`。\n\n**核心结论**:\n\n- **全部为人为 kill，非 OOM**。cwm-v12 明确记录 EXIT_CODE=137，其余实验日志无任何 OOM/错误信息。\n- 三个实验训练进度均在 10-11%（步数 643-756/6633），所有 checkpoint 都含有效的 adapter_model.safetensors。\n- **Eval pipeline 已接管全部 4 块 GPU**，当前在跑 eval_repo_cwm.py 和 eval_repo_cls.py，使用的是各实验的 best checkpoint。\n- cls-8b-conda 的 eval_loss 在 step 200 后开始上升，checkpoint-200 是最优的（eval pipeline 也选了 cls_v5_conda 的 checkpoint-200，说明已知晓这一点）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cwm-v12-cls-8b.md"
+}

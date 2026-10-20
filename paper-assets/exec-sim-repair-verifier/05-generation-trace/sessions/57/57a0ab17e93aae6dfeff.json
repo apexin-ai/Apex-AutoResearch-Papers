@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57a0ab17e93aae6dfeff",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval val 4096 cls seed123 ckpt600",
+  "task_key": "worker_eval_val-4096-cls-seed123-ckpt600_20260514T125821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_val-4096-cls-seed123-ckpt600_20260514T125821_result.json",
+    "occurrence": 1,
+    "bytes": 252,
+    "sha256": "3a21d52b7fda5a5792d3aaf5e1b37f37df678459dc871da19251cad4cc2968b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已启动，运行正常：\n- GPU 占用：90%, 19746 MiB\n- 已加载 9335 val 实例，正在推理中\n- tmux session: `val-4096-cls-seed123-ckpt600`\n- 日志: `/tmp/val-4096-cls-seed123-ckpt600.log`\n- 预计 ~27 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-val-4096-cls-seed123-ckpt600.md"
+}

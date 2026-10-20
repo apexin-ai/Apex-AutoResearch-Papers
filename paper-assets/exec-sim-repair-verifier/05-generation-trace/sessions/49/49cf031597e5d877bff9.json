@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49cf031597e5d877bff9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose cwm rank32 ablation v2",
+  "task_key": "worker_diagnose_cwm-rank32-ablation-v2_20260515T135518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cwm-rank32-ablation-v2_20260515T135518_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "24366331347a29c5f4f2a2ace242096262f93c91f82c09908bfff61a2f390527"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。诊断总结：\n\n| 项目 | 结果 |\n|------|------|\n| 结论 | **成功完成** (EXIT_CODE=0) |\n| 最后 step | 1434/1434 (100%) |\n| 训练时间 | ~83 min |\n| Checkpoints | `best/`, `checkpoint-1434/`, `checkpoint-478/` |\n| Accuracy | 87.0% (+35.2pp vs baseline) |\n| MVP-B | **PASS** |\n| cuda:0 | 空闲 (0MiB, 0% util) |\n| Registry | status=ANALYZING, conclusion=success |\n\n训练脚本内置了评估流程，已自动跑完测试集评估，结果保存在 `eval_cwm_rank32_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cwm-rank32-ablation-v2.md"
+}

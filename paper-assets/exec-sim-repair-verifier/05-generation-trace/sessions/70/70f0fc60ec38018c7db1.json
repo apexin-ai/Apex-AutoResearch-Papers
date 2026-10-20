@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70f0fc60ec38018c7db1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops diagnose cls seed123 eval",
+  "task_key": "worker_ops_diagnose-cls-seed123-eval_20260513T204059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-cls-seed123-eval_20260513T204059_result.json",
+    "occurrence": 1,
+    "bytes": 1351,
+    "sha256": "a6bc91a2c783be601c9a17d3f34947c2207276aca19deb03390a7c3101f9a6cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果：\n\n```\ntrainer_state best_metric: 0.0808 (eval_loss, lower=better)\ntrainer_state best_checkpoint: checkpoint-200\n现存 checkpoints: [200, 2600, 2800, 3000, 3200]\ncheckpoint-200 eval_loss: 0.0808 (最低)\nactual best eval_loss: 0.0808 at step 200\n最差 eval_loss: 0.358 at step 2400\nadapter_config base_model: /root/.cache/huggingface/hub/Qwen/Qwen3-4B\nadapter_config: task_type=CAUSAL_LM, r=16, lora_alpha=32\nV5 checkpoint: 不在 westd 服务器上，无法对比\n\n结论: checkpoint-200 确实是 best checkpoint（eval_loss 最低）\n```\n\n**核心问题不是 checkpoint 选错，而是训练本身严重过拟合。** eval_loss 从 step 200 的 0.08 一路飙升到 step 2400 的 0.36，模型在第一个 eval 点就达到了最佳，之后全是退化。\n\n55% accuracy 就是 seed123 checkpoint-200 的真实水平。与 CLS v5 的 76.92% 差距 ~22 个点，可能原因：\n- seed 123 的数据划分/shuffle 不利\n- 训练过早就过拟合（200 step 就是 best，说明学习率可能过大或数据量不足）\n- 缺少 step 200 之前的更细粒度 checkpoint（可能 step 100 或 step 50 更好）\n\n**建议**: 让 eval 继续跑完拿最终数字作为记录，不需要 kill。但 seed123 的训练配置需要复查——learning rate、warmup、数据量是否与 v5 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-cls-seed123-eval.md"
+}

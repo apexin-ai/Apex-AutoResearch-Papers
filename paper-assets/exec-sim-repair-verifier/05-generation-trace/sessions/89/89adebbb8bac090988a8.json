@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89adebbb8bac090988a8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra full gpu check may18",
+  "task_key": "worker_infra_full-gpu-check-may18_20260518T133947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_full-gpu-check-may18_20260518T133947_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "8429418ecaa350eefc7c0590255539a6a3e25aa78769d014baa1feca22682062"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 张卡都在跑，无已完成任务。汇总：\n\n| GPU | 任务 | 进度 | 关键指标 | GPU 利用率 | 显存 | 预估剩余 |\n|-----|------|------|----------|-----------|------|----------|\n| **0** | CLS v5 retrain | 3889/6315 steps (**61%**), epoch 2 进行中 | epoch 1 eval_loss=0.0886, checkpoint-2105 已保存 | 99% | 24.9/32.6 GB | ~6.5h (~10s/it) |\n| **1** | CWM s42 epoch 3 eval (seq4096) | 6158/9784 samples (**63%**) | running_acc=**56.4%** | 56% | 17.7/32.6 GB | ~13h (~13s/sample) |\n| **2** | CWM s42 epoch 2 eval (seq8192) | 3002/9784 samples (**31%**) | running_acc=**66.9%** | 56% | 17.9/32.6 GB | ~22h (~12s/sample) |\n| **3** | CWM s123 eval (seq4096) | 5754/9784 samples (**59%**) | running_acc=**61.6%** | 51% | 17.7/32.6 GB | ~16h (~14s/sample) |\n\n值得注意：**CWM s42 epoch 2 (seq8192) 的 running_acc 66.9% 大幅领先 epoch 3 (best, seq4096) 的 56.4%**。epoch 2 用了 8192 seq length vs epoch 3 的 4096，序列长度对 CWM 任务影响显著。s123 seed 的 61.6% 也高于 s42 epoch 3，但低于 s42 epoch 2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-full-gpu-check-may18.md"
+}

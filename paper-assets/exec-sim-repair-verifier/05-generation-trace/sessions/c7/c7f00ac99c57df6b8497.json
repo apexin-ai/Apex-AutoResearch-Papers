@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7f00ac99c57df6b8497",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diag repo level cls v4",
+  "task_key": "worker_diag_repo-level-cls-v4_20260513T063442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_repo-level-cls-v4_20260513T063442_result.json",
+    "occurrence": 1,
+    "bytes": 723,
+    "sha256": "1ebddb6b93cf103eb03785ec5ec5c3b5e950500ea80d7596c62a92d6f8447af8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：进程在 step 3000 的 eval 阶段 (75%, 3528/4668) 被系统外部 kill，疑似 OOM killer。日志无任何 Python error/traceback/CUDA error，无 stderr 文件——典型的静默系统级 kill。\n\n**存活 Checkpoint**：\n| Checkpoint | eval_loss |\n|-----------|-----------|\n| **checkpoint-200** | **0.0701** ★ BEST，完好 |\n| checkpoint-2400 | 0.1504 |\n| checkpoint-2600 | 0.2466 |\n\n**值得注意**：best metric 在 step 200 之后从未被超越，后续 13 次 eval loss 在 0.13-0.36 间剧烈震荡，训练质量存疑。当前 GPU 上有新进程 PID 2935724 在运行（~9min, 12376MiB VRAM）。\n\n报告已写入 `artifacts/diag_cls_v4.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-repo-level-cls-v4.md"
+}

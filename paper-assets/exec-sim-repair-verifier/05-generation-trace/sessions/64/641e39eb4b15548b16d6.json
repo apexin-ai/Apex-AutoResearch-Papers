@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "641e39eb4b15548b16d6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check westd training and gpu",
+  "task_key": "worker_check_westd-training-and-gpu_20260515T093843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd-training-and-gpu_20260515T093843_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "2ecb73da3574989f4e028ce237ebaae946d5b0fa66fe752799887426d273db9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇报\n\n### CWM 8B (PID 266816, GPU 2)\n- **进度**: 4013 / 6633 (**60.5%**)，已运行 15h54m\n- **最新 eval_loss**: 日志尾部未显示（eval 刚跑完但 loss 行未落入 tail 范围）\n- **速度**: checkpoint 间隔 ~40min/100steps（含 eval ~19min）\n- **预估完成**: 剩余 2620 steps ≈ **17h** → **5月16日 ~11:00**\n\n### S42 Resume (PID 295794, GPU 1)\n- **进度**: 4041 / 6633 (**60.9%**)，刚完成 step 4000 eval\n- **最新 eval_loss**: **0.3694** (epoch 1.81)\n- **速度**: ~8 s/it 训练 + ~14min eval/100steps\n- **预估完成**: 剩余 2592 steps ≈ **12h** → **5月16日 ~06:00**\n\n### GPU 状态\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | 0% | 0 / 32GB | **空闲** |\n| cuda:1 | 96% | 27.3 / 32GB | S42 Resume (PID 295794) |\n| cuda:2 | 97% | 30.7 / 32GB | CWM 8B (PID 266816) |\n| cuda:3 | 0% | 0 / 32GB | **空闲** |\n\n两张卡空闲（cuda:0, cuda:3），可用于新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-training-and-gpu.md"
+}

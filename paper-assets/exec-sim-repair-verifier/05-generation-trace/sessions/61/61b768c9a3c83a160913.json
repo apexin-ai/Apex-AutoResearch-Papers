@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61b768c9a3c83a160913",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis variant bootstrap ci c3",
+  "task_key": "worker_analysis_variant-bootstrap-ci-c3_20260519T090913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_variant-bootstrap-ci-c3_20260519T090913_result.json",
+    "occurrence": 1,
+    "bytes": 1226,
+    "sha256": "f2ff7be157ab1dbaca14aae61a51194ab45341336191cdfb44681e149cd5a0b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved. Summary of findings:\n\n**CLS vs CWM (paired bootstrap, large gap ~29-35pp)**\n| Comparison | Diff | 95% CI | p | Power |\n|---|---|---|---|---|\n| Qwen3-8B | +29.17pp | [10.42, 47.92] | 0.003 | 0.784 |\n| DeepSeek | +35.42pp | [18.75, 50.05] | <0.001 | 0.960 |\n\n**CLS vs TRAJ (unpaired bootstrap, small gap ~0-8pp)**\n| Comparison | Diff | 95% CI | p | Power |\n|---|---|---|---|---|\n| Qwen3-4B | -4.17pp | [-22.92, 14.58] | 0.740 | 0.066 |\n| Qwen3-8B | +8.33pp | [-8.33, 25.00] | 0.385 | 0.163 |\n| DeepSeek | +0.00pp | [-16.67, 16.67] | 1.000 | 0.025 |\n\n**CWM vs TRAJ (unpaired bootstrap, medium-large gap ~21-35pp)**\n| Comparison | Diff | 95% CI | p | Power |\n|---|---|---|---|---|\n| Qwen3-8B | -20.83pp | [-39.58, -2.08] | 0.039 | 0.579 |\n| DeepSeek | -35.42pp | [-52.08, -16.67] | <0.001 | 0.972 |\n\n**Key narrative points (as requested):**\n- **MDE at n=48: 25.0pp** (McNemar-style)\n- CLS-CWM large gaps: mean power 0.872, both significant, **well-powered**\n- CLS-TRAJ small gaps: mean power 0.084, none significant, **underpowered** (consistent with TOST equivalence)\n- CWM-TRAJ large gaps: mean power 0.776, both significant\n\nOutput: `artifacts/variant_bootstrap_ci.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-variant-bootstrap-ci-c3.md"
+}

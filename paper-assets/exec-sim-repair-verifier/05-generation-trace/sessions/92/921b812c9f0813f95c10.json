@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "921b812c9f0813f95c10",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose cls8b deepseek eval fix",
+  "task_key": "worker_diagnose_cls8b-deepseek-eval-fix_20260519T231845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cls8b-deepseek-eval-fix_20260519T231845_result.json",
+    "occurrence": 1,
+    "bytes": 1268,
+    "sha256": "425eea31a55502ae62ec9f806e97c320920ce0fdb07d748776eb71c99b36c60f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n```json\n{\"cls8b_ckpt_path\": \"/root/autodl-tmp/checkpoints_repo_cls_8b_s456_v2/checkpoint-2200\", \"deepseek_ckpt_path\": \"/root/autodl-tmp/checkpoints_deepseek_cls_repo_s456_v2/checkpoint-2163\", \"free_gpus\": [0, 3], \"eval_output_arg\": \"--output\", \"notes\": \"两个 checkpoint 均完整存在(adapter_model.safetensors + optimizer 等)。CLS8B 有 5 个 checkpoint(600/1600/1800/2000/2200)，DeepSeek 仅 1 个(2163)。GPU1 utilization=100% 但显存 0MiB(异常态)，GPU2 占用 29.6/32.6GB。GPU0 和 GPU3 完全空闲可用。eval 脚本参数确认是 --output 不是 --output_dir。\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "cls8b_ckpt_path": "/root/autodl-tmp/checkpoints_repo_cls_8b_s456_v2/checkpoint-2200",
+              "deepseek_ckpt_path": "/root/autodl-tmp/checkpoints_deepseek_cls_repo_s456_v2/checkpoint-2163",
+              "free_gpus": [
+                0,
+                3
+              ],
+              "eval_output_arg": "--output",
+              "notes": "两个 checkpoint 均完整存在(adapter_model.safetensors + optimizer 等)。CLS8B 有 5 个 checkpoint(600/1600/1800/2000/2200)，DeepSeek 仅 1 个(2163)。GPU1 utilization=100% 但显存 0MiB(异常态)，GPU2 占用 29.6/32.6GB。GPU0 和 GPU3 完全空闲可用。eval 脚本参数确认是 --output 不是 --output_dir。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cls8b-deepseek-eval-fix.md"
+}

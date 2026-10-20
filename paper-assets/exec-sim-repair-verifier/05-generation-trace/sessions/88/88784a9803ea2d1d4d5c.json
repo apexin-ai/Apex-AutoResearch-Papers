@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88784a9803ea2d1d4d5c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper fix fig1 fig2 reviewer",
+  "task_key": "worker_paper_fix-fig1-fig2-reviewer_20260515T233104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-fig1-fig2-reviewer_20260515T233104_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "4ab5bfcdd340d3522f088fad3ba732d3c94d493fb8963756aa9c033af104accb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Summary\n\n**Task 1 (Fig 1):** No change needed. The figure does not contain \"53-67%\" — only textual labels of failure modes. No data source annotation required.\n\n**Task 2 (Fig 2):** No accuracy/F1 confusion found anywhere. All gap numbers are consistently described as accuracy. Fixed one issue: the Figure 2 **caption** reported 1.18pp and 2.26pp (3-seed / bootstrap values) while the actual figure bars display 1.24pp (5-seed) and 2.43pp (3-seed raw). Updated the caption to match the plotted values.\n\n**1.18pp vs 1.24pp distinction:** The body text already clearly labels these — 1.24pp is \"5 seeds\" (Table 1), 1.18pp is \"matched three-seed subset\" (Table 2). No confusion."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-fig1-fig2-reviewer.md"
+}

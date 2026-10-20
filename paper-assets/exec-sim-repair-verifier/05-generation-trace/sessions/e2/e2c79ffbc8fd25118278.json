@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2c79ffbc8fd25118278",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra swebench data check",
+  "task_key": "worker_infra_swebench-data-check_20260512T093516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_swebench-data-check_20260512T093516_result.json",
+    "occurrence": 1,
+    "bytes": 1202,
+    "sha256": "c9dd8e824a3f3cfd7a0d79675733a6bce73119f01797f285ea80db26bb0d0528"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程已正常完成。**\n\n## 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| 进程 PID 2312582 | **已退出（正常完成）** |\n| 日志最后写入时间 | 2026-05-12 01:37:58 (约 1 小时前) |\n| 报错 | 0 个 ERROR |\n\n## 数据产出\n\n**主文件**: `data/swebench_full/swebench_pilot_data.jsonl`\n- **89,867 条记录**，541 MB\n- 250 个 SWE-bench Verified instance，5 种 patch 类型（gold + 4 种 mutation）\n\n## 数据分布\n\n| 维度 | 分布 |\n|------|------|\n| 标签 | label=0: 15,479 / label=1: 74,388 |\n| 测试类型 | P2P: 71,894 / F2P: 17,973 (20%, 经过 upsampling) |\n| Mutation | gold: 39,076 / operator_swap: 23,114 / off_by_one: 11,112 / boundary_removal: 8,732 / return_value: 7,833 |\n| 顶级 Repo | django: 32,121 / xarray: 25,573 / matplotlib: 16,139 |\n\n## 注意事项\n\n- 773 个 SKIP（\"not completed\"），主要是部分 mutation 的 evaluation 未完成，但这些已被跳过并不影响最终数据集\n- 日志末尾有 \"Warning: Missing predictions for 189 instance IDs\"——部分 instance 的某些 mutation 类型没有产出 prediction，被跳过\n- 数据已 ready，可以开始 repo-level 训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-swebench-data-check.md"
+}

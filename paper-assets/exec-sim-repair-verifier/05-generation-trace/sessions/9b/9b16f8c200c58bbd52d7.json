@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b16f8c200c58bbd52d7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check v2 training resume verify",
+  "task_key": "worker_check_v2-training-resume-verify_20260514T173608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_v2-training-resume-verify_20260514T173608_result.json",
+    "occurrence": 1,
+    "bytes": 1317,
+    "sha256": "63a0100507167b2701f545491d9928d97d0ffb23a1fe96c7e2b644df39973256"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n### CWM 8B v2 (cuda:2) — **已崩溃**\n- **错误**: `FileNotFoundError: '/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/trainer_state.json'`\n- **原因**: `--resume_from_checkpoint` 指向了 output_dir 顶层目录，而非具体的 checkpoint 子目录。`trainer_state.json` 在 `checkpoint-1600/` 里。\n- **修复**: 改为 `--resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-1600`\n\n### CLS 8B s123 v2 (cuda:3) — **即将崩溃**\n- 当前还在数据处理阶段（train truncation 刚完成），尚未到 `trainer.train()` 调用\n- 同样的问题：`--resume_from_checkpoint` 指向顶层目录，`trainer_state.json` 在 `checkpoint-3000/` 里\n- **预计**会在模型加载完毕、调用 `trainer.train()` 时报同样的 `FileNotFoundError`\n- **修复**: 改为 `--resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-3000`\n\n### CWM eval (cuda:0/1) — 正常运行\n- **eval_cwm_seed123**: 9320/9784 (95.3%), running_acc=59.0%\n- **eval_cwm_v12**: 9440/9784 (96.5%), running_acc=57.9%\n- 两个 eval 预计很快完成\n\n### 需要操作\n两个 v2 训练都需要用正确的 checkpoint 路径重新提交。要我现在 kill CLS 进程并用正确路径重新启动两个训练吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-v2-training-resume-verify.md"
+}

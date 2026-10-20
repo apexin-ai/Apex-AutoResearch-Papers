@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a7f605016918018f75b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops verify shard4 status",
+  "task_key": "worker_ops_verify-shard4-status_20260516T042706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-shard4-status_20260516T042706_result.json",
+    "occurrence": 1,
+    "bytes": 1098,
+    "sha256": "3d3553e8d43015dae5618a17dc22831cd8b7485bbb96d82eaa3860b926c178d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### shard4 状态：已完成\n\n- **进程已结束**（日志显示完整的评估报告摘要）\n- 已处理 **688 / 684 样本**（全部完成，多 4 条可能是边界包含差异）\n- 最终结果写入 `eval_repo_cwm.json`，评估已跑完\n\n### shard4 结果摘要\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | 65.55% |\n| Majority baseline | 75.73% |\n| F1 macro | 52.66% |\n| F1 (fail) | 28.0% |\n| F1 (pass) | 77.4% |\n| CWM unparseable | 504/688 (73.3%) |\n| Truncated | 49/688 (7.1%) |\n\n### 各 shard 进度\n\n| Shard | 目录 | 已处理样本 | 状态 |\n|-------|-------|-----------|------|\n| shard1 | `cwm_8b_ckpt400_test/` | 7176 | 完成（这是原始全量 or 多 shard 合并？行数远超单 shard） |\n| shard2 | `cwm_8b_ckpt400_test_shard2/` | 1568 | 完成 |\n| shard3 | `cwm_8b_ckpt400_test_shard3/` | 928 | 完成 |\n| shard4 | `cwm_8b_ckpt400_test_shard4/` | 688 | 完成 |\n\nshard1 的 7176 行异常大，可能是之前的全量测试运行或包含了增量追加的结果，需要进一步确认其实际覆盖范围。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-shard4-status.md"
+}

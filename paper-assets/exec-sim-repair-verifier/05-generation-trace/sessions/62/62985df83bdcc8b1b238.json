@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62985df83bdcc8b1b238",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "director / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_2.md",
+    "occurrence": 1,
+    "bytes": 4123,
+    "sha256": "2e1978dc1ac203ed354515e706cc98f13bad23e604d3879e286ce07aa864b5a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-12T14:32:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：seetacloud cuda:0/1/2/3 + home cuda:0。westd-48478 是 seetacloud 的另一个 SSH 入口（同一台物理机），不是额外 GPU\n- seetacloud 训练脚本中 **禁止** `os.environ[\"CUDA_VISIBLE_DEVICES\"] = ...` 覆盖（已踩坑两次导致 OOM）。GPU 分配只通过 shell 层 CUDA_VISIBLE_DEVICES\n- seetacloud 上 Qwen3-4B 本地路径：`/root/.cache/huggingface/hub/Qwen/Qwen3-4B`（不是 `/root/autodl-tmp/.hf_cache/` 下）。8B 在 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`\n- 统计检验：论文只用 clustered bootstrap（D019），禁止引用 Welch's t-test \"per-test 优于 traj\" 结论（苹果比橘子）\n- repo-level 训练 max_seq_length=4096（不是 2048），val 截断率 15.1% 已知但暂不处理\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090**: connect.westd.seetacloud.com:48478 [root]，工作目录 /root/exec-sim-repair-verifier\n  - Python: /root/miniconda3/bin/python (conda base)\n  - 数据: /root/exec-sim-repair-verifier/data/swebench_full/ (89,867 records, 250 instances)\n  - repo-level split: train 70,748 / val 9,335 (184/22/25 instances, class weights fail=1.66/pass=0.34)\n- **home-1x5090**: implicit5638.xyfu.me [sonny]，工作目录 /home/sonny/exec-sim-repair-verifier\n- 活跃进程（需 SSH 验证，session 间隔较长）：\n  - repo-level-cls: seetacloud cuda:0（实际在物理 GPU 0，因历史 CUDA_VISIBLE_DEVICES bug）, ~1150/6633 steps\n  - cwm8b-seed456: seetacloud cuda:2, PID 47236\n  - repo-level-cwm: **被 SIGTERM 杀死** (EXIT_CODE=143, step 694/6633)，需重提交 cuda:3\n  - cls8b-seed456: home cuda:0, PID 2810143，可能已完成（进入 eval 阶段）\n\n### 3. 📊 当前状态\n**刚做完**：5-paired CLS vs CWM bootstrap（seed-level p=0.0506 two-sided, sign test p=0.031, CI [+0.46, +2.04]）。5-paired CLS vs TRAJ TOST 等价通过 (p=0.007)。paper_framing.md 已更新 Claim 2 为 \"Diagnostic Granularity At Equivalent Accuracy\"。\n\n**RUNNING**: repo-level-cls, cwm8b-seed456, cls8b-seed456（可能已完成）\n**需重提交**: repo-level-cwm（被 kill，cuda:3 空闲）\n**空闲 GPU**: seetacloud cuda:1（cwm-seed789 完成后未分配）, cuda:3（repo-level-cwm 死后）\n\n**Agent 队列**: depth=5，包含我的 urgent 消息（repo-level-cwm 重提交 + GPU 空闲处理）和多个 Worker done 回调\n\n### 4. 📋 待办\n- repo-level-cwm 重提交到 cuda:3 → 检查有无 checkpoint 可 resume，确认 CUDA_VISIBLE_DEVICES=3\n- cls8b-seed456 完成 → 更新 registry，释放 home cuda:0 → 分配新实验或待命\n- cwm8b-seed456 完成 → 3-paired 8B scaling 分析（4B gap 1.25pp → 8B gap 预期 ~2.6pp）\n- repo-level-cls + repo-level-cwm 都完成 → **Pillar 1 go/no-go 决策**：cls > cwm 则核心假设成立，否则 pivot 到 efficiency framing\n- Reviewer 建议补 per-instance CWM predictions + clustered bootstrap → 加强 Claim 1（当前 two-sided p=0.0506 可被审稿人质疑）\n- 所有实验完成后 → 更新 ROADMAP，评估是否进入写作阶段\n\n### 5. 🎯 战略上下文\n**三大 Pillar**：(1) Complexity-dependent advantage: cls scales better than CWM, 4B gap 1.25pp → 8B gap 2.60pp, repo-level 待验证; (2) Diagnostic granularity at equivalent accuracy: TOST p=0.007 已证明; (3) Oracle frontier: per-test advantage 集中在 T≥2 instances (31%)\n**决策链**：D016 repo-level 训练 → D018 variant-level 等价发现 → D019 只用 clustered bootstrap → D020 TOST 通过恢复 \"equivalent\"\n**最易判断错的事**：(1) per-test vs traj 的 2pp gap 是粒度假象，variant-level 等价，不要再 claim accuracy advantage; (2) seetacloud 上 4B 和 8B 模型路径不同，别搞混; (3) CWM 4B 有天花板效应 (std=0.37pp)，CLS 方差更大 (std=0.78pp)——4B gap 的不稳定性来自 CLS 不是 CWM\n**repo-level 是决胜实验**：如果 repo-level cls > cwm，Pillar 1 成立，论文 story 完整。如果 null，需要 pivot 到 efficiency framing（same accuracy, 1-token vs N-token inference）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2.md"
+}

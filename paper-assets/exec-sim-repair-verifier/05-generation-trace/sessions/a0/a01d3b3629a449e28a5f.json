@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a01d3b3629a449e28a5f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "director / loop_23.md",
+  "task_key": "loop_23",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_23.md",
+    "occurrence": 1,
+    "bytes": 3628,
+    "sha256": "064f09b96c85fef51022fb99c65e20feb70c67aab87f77f941f7f060087b6c57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: max_messages\nupdated: '2026-05-23T20:00:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 分配：seetacloud-westd-4x5090 的 cuda:0-3，无其他服务器\n- TRAJ function-level 训练集是 **8,052** variant-level 样本（不是 447——447 是 test set 的 matched variant 数）。之前 34× 比例是错误的，已修正为 2.24× more unique variants\n- 论文 EMNLP 2026 DDL 5/25，abstract ≤200 words（当前 172），正文 ≤8 pages\n- 匿名仓库 push 只用 HTTPS+token URL（/tmp/anon_repo），token 不提交到代码里\n- CLS@400 downsample 结果解读：不是 matched comparison（TRAJ 有 20× 更多数据），只是 data efficiency ablation，放 Appendix 不放正文\n\n### 2. 🖥️ 基础设施快照\n- 服务器：seetacloud-westd-4x5090 (connect.westd.seetacloud.com, user=root)\n- GPU：RTX 5090 ×4，cuda:0/1/3 跑 CWM eval，cuda:2 刚完成 CLS@400\n- 远程工作目录：/home/sonny/exec-sim-repair-verifier\n- 本地项目：/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier\n- 匿名仓库：/tmp/anon_repo → https://github.com/anonymous-nlp-2026-2/exec-sim-repair-verifier (latest commit: 99d9154)\n- 论文源码：docs/paper/*.tex，编译 23 页\n- 活跃进程：cuda:0/1/3 上 CWM eval（batch_size=1，s123/s456 跑得慢）\n\n### 3. 📊 当前状态\n**R17 全部修复完成**，等待用户决定是否提交 R18。\n\n已完成：\n- R17 写作修复 10 项：N2 inconclusive、N3 14B downgrade、W1 scope、W3 format collapse qualifier、W4 merge contributions (2 bullets now)、W6 predictability、M1 TRAJ config (corrected data counts)、M3 CWM footnote、M4 DreamPRM/CodePRM\n- 数据审计修复 2 项：§3.2 CLS-TRAJ gap 层级混淆 (<1pp→2.13pp)、DeepSeek 0-shot (63.00→63.02)\n- CLS@400 实验 3-seed 完成：78.57 ± 0.78%，已写入 Appendix O\n- 匿名仓库已同步\n- review_issues.yaml 已更新至 R17\n\nRegistry: CLS@400 3 seeds DONE。CWM eval (s123/s456) 仍 RUNNING on cuda:0/1/3（batch_size=1，DDL 前可能跑不完）。\n\n### 4. 📋 待办\n- 用户回复\"提交 R18\" → submit_paper_to_review(recommended_review_mode=\"continue\", mode_reason=\"R17 fixes verification\")\n- CWM eval 完成回调 → 如果数字与论文不一致则更新 Table 2 DeepSeek CWM 行\n- 运维要求再推匿名仓库 → cd /tmp/anon_repo, cp latest .tex + main.pdf, git push\n- R18 审稿报告回来 → 按 8 步协议处理（Read skills/global/review-report-action.skill.md）\n- DDL 5/25 后如无 rebuttal 需求 → seetacloud 服务器可归类 C 释放\n\n### 5. 🎯 战略上下文\n- **审稿轨迹**：R14/R15 3.0 → R16 3.5 → R17 3.0（fresh review 回归）。Excitement 2.5-3.0/5 是 binding constraint，empirical comparison 贡献类型无法通过修改提升\n- **核心叙事**：三层结构（fine-tuning necessary → function-level equivalence → repo-level divergence under ≤8B LoRA）。GenRM cross-domain hypothesis 在 Intro 作为 question 而非 claim\n- **最易判断错的事**：TRAJ 数据量。function-level TRAJ 有 8,052 variants（比 CLS 的 3,596 还多），confound 是 label granularity 不是 data volume。Repo-level 反过来：TRAJ 只有 386 variants vs CLS ~70K。两个 level 的数据结构完全不同\n- **14B 证据权重**：3 seeds × 1 family × df=2，几乎无统计区分力。Abstract 已降级为 \"Preliminary 14B results suggest gap may narrow\"。不要重新升级\n- **Contribution 结构**：现在只有 2 个 bullets（Complexity-moderated formulation choice + Failure mode taxonomy），error complementarity 已合并入 #1 作为子句\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23.md"
+}

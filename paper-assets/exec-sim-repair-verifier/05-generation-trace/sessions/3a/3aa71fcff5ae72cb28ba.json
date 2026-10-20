@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3aa71fcff5ae72cb28ba",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval collect deepseek func results",
+  "task_key": "worker_eval_collect-deepseek-func-results_20260516T083837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-deepseek-func-results_20260516T083837_result.json",
+    "occurrence": 1,
+    "bytes": 1403,
+    "sha256": "fd76a694958b952189a0e1aa2fb7a3965cec41a394a03dc7d21dff0992b490e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results collected. No explicit `unparseable_rate` field in the CWM summary — the CWM model had 0% truncation and all 1890 instances were evaluated, so unparseable_rate is effectively 0%.\n\n## DeepSeek Func-Level Eval Results\n\n### CLS func (seed42) — COMPLETE\n| Metric | fail | pass | macro |\n|--------|------|------|-------|\n| Accuracy | — | — | **86.93%** |\n| F1 | 86.47 | 87.37 | **86.92%** |\n| Precision | 86.42 | 87.41 | — |\n| Recall | 86.51 | 87.32 | — |\n\nConfusion matrix: TP=854, TN=789, FP=123, FN=124 (n=1890)\n\n### CWM func (seed42) — COMPLETE\n| Metric | fail | pass | macro |\n|--------|------|------|-------|\n| Accuracy | — | — | **85.77%** |\n| F1 | 86.42 | 85.05 | **85.73%** |\n| Precision | 80.07 | 93.18 | — |\n| Recall | 93.86 | 78.22 | — |\n\nConfusion matrix: TP=765, TN=856, FP=56, FN=213 (n=1890)\nGeneration length: mean=28.1, median=33.0, max=103. Truncated: 0%. Unparseable: 0%.\n\nNotable: CWM has a strong precision-recall asymmetry — high precision on pass (93.18%) but low recall (78.22%), meaning it's conservative about predicting \"pass\".\n\n### CWM func (seed123) — STILL RUNNING\nProgress: 832/9784 (~8.5%), running accuracy ~84.9%. This appears to be running on a much larger dataset (9784 vs 1890) — possibly the wrong data split or a different eval configuration. The log is at `/tmp/eval_cwm_func_s123.log`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-deepseek-func-results.md"
+}

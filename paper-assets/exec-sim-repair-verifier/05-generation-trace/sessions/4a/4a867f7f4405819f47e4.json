@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a867f7f4405819f47e4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check all gpu progress v2",
+  "task_key": "worker_check_all-gpu-progress-v2_20260514T172314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_all-gpu-progress-v2_20260514T172314_result.json",
+    "occurrence": 1,
+    "bytes": 2135,
+    "sha256": "cc981a6dc8af2340572f6fb4bb30c225b5f895fd9a5c55261bc9029b5e1343b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "report.md 不可直接写入，直接输出：\n\n## GPU Progress Check — 2026-05-15 01:25 (westd) / 2026-05-14 10:25 (home)\n\n### westd cuda:0 — CWM seed123 eval (PID 195531)\n- Status: **running** (16h20m)\n- Progress: **9208/9784 (94.1%)**\n- Running accuracy: **59.0%**\n- ETA: **~62 min**\n\n### westd cuda:1 — CWM v12 eval (PID 195668)\n- Status: **running** (16h20m)\n- Progress: **9320/9784 (95.3%)**\n- Running accuracy: **57.9%**\n- ETA: **~49 min**\n\n### westd cuda:2 — CWM 8B training (PID 245775, tmux: repo_cwm_8b_restart)\n- Status: **running** (2h55m)\n- Step: **1659/6633 (25.0%)**, resumed from ckpt-1200\n- Training loss: **0.2796**, eval_loss@1600: **0.3742**\n- Latest checkpoint: **ckpt-1600** (saved 01:12)\n- ETA: **~32.7h**\n- eval_loss 趋势: 1400→1500→1600 = 0.364→0.369→0.374，持续微升\n\n### westd cuda:3 — CLS 8B seed123 training (PID 248041)\n- Status: **running** (2h36m)\n- Step: **3200/6633 (48.2%)**, resumed from ckpt-2400\n- Training loss: **0.180** (波动大: 0.53→0.37→0.58→0.18)\n- eval_loss@2800: **0.3238**, eval_loss@3200: **0.4262**\n- Latest checkpoint: **ckpt-3000** (saved 00:55)\n- ETA: **~11.1h**\n- **eval_loss 从 0.324 跳到 0.426 (+31%)，需关注过拟合**\n\n### home cuda:0 — CLS 8B ckpt-3000 val@5120 eval (PID 3145070)\n- Status: **running** (37min)\n- Progress: **~6260/9335 (67.1%)**\n- Running accuracy: **89.3%**\n- ETA: **~33 min**\n\n---\n\n| GPU | Task | Progress | Key Metric | ETA |\n|-----|------|----------|-----------|-----|\n| westd:0 | CWM seed123 eval | 94.1% | acc=59.0% | ~62min |\n| westd:1 | CWM v12 eval | 95.3% | acc=57.9% | ~49min |\n| westd:2 | CWM 8B train | 25.0% | eval_loss=0.374 | ~32.7h |\n| westd:3 | CLS 8B s123 train | 48.2% | eval_loss=0.426 | ~11.1h |\n| home:0 | CLS 8B ckpt3000 val5120 | 67.1% | acc=89.3% | ~33min |\n\n**关注点:**\n1. CLS 8B seed123 的 eval_loss 从 step 2800 (0.324) 跳到 3200 (0.426)，训练 loss 波动也大，可能过拟合\n2. CWM 8B 的 eval_loss 也在缓慢上升 (0.364→0.374)\n3. 两个 CWM eval ~1h 内完成，seed123 (59.0%) 略优于 v12 (57.9%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-gpu-progress-v2.md"
+}

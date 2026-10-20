@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df0c66a95cf949ce6318",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code w5 regression fix",
+  "task_key": "worker_code_w5-regression-fix_20260520T024532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w5-regression-fix_20260520T024532_result.json",
+    "occurrence": 1,
+    "bytes": 1631,
+    "sha256": "db9b870ab21d1104ca7d6fffdf3c265607ab2bae04051ecd21daf6d289a42b84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files updated. Here are the results:\n\n---\n\n### Fix 1: problem_id 粒度\n\n**problem_id 已经是 instance-level**（如 `django__django-10973`），不是 repo name。25 unique problem_ids 是 test set 的真实大小（每个 instance ~391 test cases，共 9784 rows/file）。代码无需修改。\n\n### Fix 2: Complexity Interaction — 结果\n\n**数据概况**：\n| complexity | observations | unique problems |\n|-----------|-------------|-----------------|\n| repo      | 78,272      | 25 (SWE-bench)  |\n| function  | 7,560       | 114 (HumanEval/MBPP) |\n\n**Model 1 — `correct ~ formulation * model + (1|problem_id)` [repo-level only]**（与之前一致）：\n\n| Fixed Effect | Coef | p-value |\n|-------------|------|---------|\n| Intercept | 0.854 | <0.001 |\n| CWM (vs CLS) | **-0.221** | **<0.001** |\n| qwen3-8b (vs deepseek) | +0.011 | 0.002 |\n| CWM:qwen3-8b | +0.016 | 0.006 |\n\n**Model 2 — `correct ~ formulation * complexity + (1|problem_id)` [deepseek only]**：\n\n| Fixed Effect | Coef | z | p-value |\n|-------------|------|---|---------|\n| Intercept (CLS, func) | 0.876 | 62.1 | <0.001 |\n| CWM (vs CLS) | -0.002 | -0.25 | **0.805** |\n| repo (vs func) | -0.019 | -0.63 | 0.530 |\n| **CWM:repo interaction** | **-0.219** | **-23.7** | **<0.001** |\n\n**关键发现**：`formulation:complexity` 交互项 coef=-0.219, p≈0 (z=-23.7)。\n\n- Function-level：CLS 87.0% vs CWM 86.8% → 几乎无差异 (p=0.805)\n- Repo-level：CLS 83.8% vs CWM 61.7% → CWM 暴跌 22 个百分点\n\n**CLS-CWM gap 在 repo level 显著放大**，直接支持 phase transition claim。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w5-regression-fix.md"
+}

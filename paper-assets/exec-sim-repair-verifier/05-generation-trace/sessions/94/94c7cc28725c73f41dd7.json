@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94c7cc28725c73f41dd7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops traj checkpoint check",
+  "task_key": "worker_ops_traj-checkpoint-check_20260519T172001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_traj-checkpoint-check_20260519T172001_result.json",
+    "occurrence": 1,
+    "bytes": 1939,
+    "sha256": "321ff29012cacd34092a8c6cce00e9ace605a4e1f8bd60a453aa82412bddd79b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## TRAJ Multi-Seed Checkpoint 汇总\n\n### Qwen3-8B TRAJ\n\n| Seed | Checkpoint 路径 | 内容 | Eval 结果 |\n|------|----------------|------|-----------|\n| s42 (默认) | `/root/autodl-tmp/checkpoints_qwen3_8b_traj_repo/` | best, checkpoint-147, checkpoint-98 | 无独立 eval 目录 |\n| s123 | `/root/autodl-tmp/checkpoints_qwen3_8b_traj_repo_s123/` | best, checkpoint-147, checkpoint-98 | ✅ `eval_results/qwen3_8b_traj_repo_s123/eval_test.json` |\n| s456 | `/root/autodl-tmp/checkpoints_qwen3_8b_traj_repo_s456/` | best, checkpoint-147, checkpoint-98 | ✅ `eval_results/qwen3_8b_traj_repo_s456/eval_test.json` |\n| v3 | `/root/autodl-tmp/checkpoints_qwen3_8b_traj_repo_v3/` | best, checkpoint-147, checkpoint-98 | — |\n\n**三个 seed（s42/s123/s456）的 checkpoint 全部存在，结构一致。**\n\n### DeepSeek TRAJ (repo 8k)\n\n| Seed | Checkpoint 路径 | 内容 |\n|------|----------------|------|\n| s42 (默认) | `checkpoints_deepseek_traj_repo_8k/` | best, ckpt-147, ckpt-98 + eval_test_s42.json |\n| s0 | `checkpoints_deepseek_traj_repo_8k_s0/` | best, ckpt-147, ckpt-98 |\n| s123 | `checkpoints_deepseek_traj_repo_8k_s123/` | best, ckpt-147, ckpt-98 + eval_test_s123.json |\n| s456 | `checkpoints_deepseek_traj_repo_8k_s456/` | best, ckpt-147, ckpt-98 |\n| s789 | `checkpoints_deepseek_traj_repo_8k_s789/` | best, ckpt-147, **ckpt-49**（非98） |\n| s999 | `checkpoints_deepseek_traj_repo_8k_s999/` | best, ckpt-147, ckpt-98 |\n\nDeepSeek TRAJ repo 8k 有 **6 个 seed**（s42/s0/s123/s456/s789/s999），全部完成训练。s789 的中间 checkpoint 是 49 而非 98，其余一致。\n\n### Qwen3-4B TRAJ\n- s42: `checkpoints_qwen3_4b_traj_repo/` ✅，eval 在 `eval_results/qwen3_4b_traj_repo_s42_best/`\n\n### 其他 DeepSeek TRAJ\n- `checkpoints_deepseek_traj_func/` (s42) + `_s123`\n- `checkpoints_deepseek_traj_v2/` (s42) + `_s123`\n- `checkpoints_deepseek_traj_repo/` (s42) + `_s123`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-traj-checkpoint-check.md"
+}

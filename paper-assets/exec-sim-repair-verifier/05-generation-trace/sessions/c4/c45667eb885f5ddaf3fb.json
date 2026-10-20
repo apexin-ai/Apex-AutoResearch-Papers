@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c45667eb885f5ddaf3fb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh check ds 1epoch eval done",
+  "task_key": "worker_ssh_check-ds-1epoch-eval-done_20260522T145055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-ds-1epoch-eval-done_20260522T145055_result.json",
+    "occurrence": 1,
+    "bytes": 387,
+    "sha256": "8ab6188984d211fcdcd120bc1322c517ec5509db84823bf670459feaddb563a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 `deepseek-cwm-repo-s123-eval-1epoch` 已确认完成，registry 已更新为 **DONE / success**。\n\n日志确认的关键指标与预填 metrics 一致：\n- Accuracy: **75.45%** (majority baseline 73.0%, +2.5pp)\n- F1 macro: **65.08%**\n- Unparseable: **6500/9784 (66.43%)**\n- Checkpoint: `/root/autodl-tmp/checkpoints_deepseek_cwm_repo_s123_v2/checkpoint-4209`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-ds-1epoch-eval-done.md"
+}

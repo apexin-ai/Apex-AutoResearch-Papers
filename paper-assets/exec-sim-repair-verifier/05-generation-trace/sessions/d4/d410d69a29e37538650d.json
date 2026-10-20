@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d410d69a29e37538650d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis eval loss checkpoint selection",
+  "task_key": "worker_analysis_eval-loss-checkpoint-selection_20260514T085827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval-loss-checkpoint-selection_20260514T085827_result.json",
+    "occurrence": 1,
+    "bytes": 3282,
+    "sha256": "552f1812ce872cb5fc430bca7a64fcdc41438e5319cca90295ef25404ceba42b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部到手。结果非常不乐观 — **eval_loss 在 4 个实验中有 3 个与 test accuracy 正相关或不相关，一致选出最差 checkpoint。**\n\n```\n=== Eval Loss Checkpoint Selection ===\n\n--- seed123_home (home, seed=123) ---\nStep  | Eval Loss | Test Acc\n200   | 0.0772    | 75.05%   ← eval_loss best\n400   | 0.1429    | 75.05%\n600   | 0.1292    | 80.73%   ← test_acc best\n800   | 0.2176    | 74.27%\n1000  | 0.2612    | 73.14%\nTrainer best_metric: 0.0772 → ckpt-200\nBest by test_acc: ckpt-600\n\n--- v5 (home, seed=42) ---\nStep  | Eval Loss | Test Acc\n600   | 0.0642    | 76.74%   ← eval_loss best, test_acc WORST\n4000  | 0.3216    | 81.51%\n4200  | 0.3045    | 80.64%\n4400  | 0.1824    | 82.11%\n4600  | 0.2906    | 82.35%   ← test_acc best\nTrainer best_metric: 0.0642 → ckpt-600\nBest by test_acc: ckpt-4600\n\n--- v5-conda (westd, seed=42) ---\nStep  | Eval Loss | Test Acc\n200   | 0.0829    | 52.96%   ← eval_loss best, test_acc WORST\n400   | 0.1076    | 78.43%   ← test_acc best\n600   | 0.0996    | 76.37%\nTrainer best_metric: 0.0829 → ckpt-200\nBest by test_acc: ckpt-400\n\n--- 8B (westd, seed=42) ---\nStep  | Eval Loss | Test Acc\n200   | 0.0796    | 70.22%   ← eval_loss best, test_acc WORST\n400   | 0.0927    | 84.52%   ← test_acc best\n600   | 0.0937    | 78.51%\nTrainer best_metric: 0.0796 → ckpt-200\nBest by test_acc: ckpt-400\n\n--- 8B seed123 (westd, 训练中, seed=123) ---\nStep  | Eval Loss\n200   | 0.0862    ← eval_loss best\n400   | 0.1026\n600   | 0.1086\n800   | 0.0930\nTrainer best_metric: 0.0862 → ckpt-200\n(无 test 结果)\n\n=== 排序一致性 ===\nseed123_home: Spearman(eval_loss, test_acc) = -0.82 (p=0.089) — 方向正确但最优点不一致\nv5:           Spearman(eval_loss, test_acc) = +0.20 (p=0.747) — 几乎无关\nv5-conda:     Spearman(eval_loss, test_acc) = +1.00 (p=0.000) — 完全反向！\n8B:           Spearman(eval_loss, test_acc) = +0.50 (p=0.667) — 反向\n\n=== 结论 ===\n```\n\n**eval_loss 作为 checkpoint selection 指标完全失败。** 核心发现：\n\n1. **4/4 个实验中，eval_loss 最低的 checkpoint 都不是 test accuracy 最高的**\n2. **3/4 个实验中，eval_loss 最低的 checkpoint 反而是 test accuracy 最差的**（v5、v5-conda、8B）\n3. **模式一致**：eval_loss 总是倾向于选最早期的 checkpoint（多为 step 200），此时模型离 pretrained 权重最近，对 eval set 的 loss 最低，但 task-specific 能力最弱\n4. 唯一方向正确的 seed123_home（ρ=-0.82），eval_loss best（ckpt-200, 75.05%）仍比 test best（ckpt-600, 80.73%）差 5.7 个点\n\n**根因**：val/test 标签分布差异导致 eval_loss 和 test accuracy 度量的目标不同。eval_loss 衡量的是模型在 val 分布上的拟合度，而 test 分布与 val 分布存在系统性偏移。早期 checkpoint 由于未充分学习，在 val 上保持了低 loss（接近 pretrained 的泛化），但在 test 上缺乏判别能力。\n\n**eval_loss 不能替代 val inference metrics 做 checkpoint selection，两者都因 val/test 分布差异而失效。** 需要重新审视数据划分策略或寻找其他 model selection 方案（如直接用少量 test-like 数据做 dev set）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-loss-checkpoint-selection.md"
+}

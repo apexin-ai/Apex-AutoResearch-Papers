@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd15f81531affe84a66d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh checkpoint check and traj progress",
+  "task_key": "worker_ssh_checkpoint-check-and-traj-progress_20260523T092715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_checkpoint-check-and-traj-progress_20260523T092715_result.json",
+    "occurrence": 1,
+    "bytes": 2195,
+    "sha256": "da514690acc27208b24d3e11b71120ea37d927d4fb18a0723c86288f68704a74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。\n\n---\n\n## 任务 1：Qwen3 CWM Checkpoint 存在性检查\n\n### Qwen3-8B CWM（3 个目录）\n\n| 目录 | Checkpoints | Best Step |\n|------|------------|-----------|\n| `checkpoints_cwm8b` | 956, 1434 | **956** |\n| `checkpoints_cwm8b_seed123` | 956, 1434 | **956** |\n| `checkpoints_cwm8b_seed456` | 956, 1434 | **956** |\n\n### Qwen3-4B CWM（4 个目录）\n\n| 目录 | Checkpoints | Best Step |\n|------|------------|-----------|\n| `checkpoints_cwm_seed123` | 956, 1434 | **956** |\n| `checkpoints_cwm_seed789` | 956, 1434 | **956** |\n| `checkpoints_cwm_rank32` | 478, 1434 | **478** |\n| `checkpoints_cwm_rank32_alpha64` | 956, 1434 | **956** |\n\n### Qwen3-14B CWM（2 个目录，在 `/root/autodl-tmp/checkpoints/`）\n\n| 目录 | Checkpoints | Best Step |\n|------|------------|-----------|\n| `cwm14b-func-s123` | 956, 1434 | **956** |\n| `cwm14b-func-s456` | 478, 1434 | **478** |\n\n### 空目录\n- `checkpoints_repo_cwm` — 空\n- `checkpoints_cwm_rank64` — 空\n\n### Step 300-400 范围判定\n\n**所有 CWM 目录中均没有 step 300-400 范围的 checkpoint。** 现存 checkpoint 只有 step 478、956、1434 三档。最接近的是 step 478（出现在 `checkpoints_cwm_rank32` 和 `cwm14b-func-s456`）。\n\n8B 主实验（3 个 seed）最早可用的 checkpoint 是 step 956，step 300-400 范围的中间 checkpoint 已被 `save_total_limit` 自动清理。\n\n---\n\n## 任务 2：TRAJ 14B 训练进度\n\n3 个进程均正常运行中，GPU 0/1/2 利用率 77-88%，GPU 3 空闲。\n\n| Seed | GPU | PID | Step | Total | Epoch | Loss | ETA |\n|------|-----|-----|------|-------|-------|------|-----|\n| s42 | 0 | 265154 | 155 | 756 | 1/3 | 尚未输出 | ~1h16m |\n| s123 | 1 | 265560 | 154 | 756 | 1/3 | 尚未输出 | ~1h16m |\n| s456 | 2 | 265996 | 148 | 756 | 1/3 | 尚未输出 | ~1h16m |\n\n- 速度：~7.4-7.6 s/step\n- 训练启动时间：17:08-17:09，已运行约 19 分钟\n- Loss 尚未在 log 中输出（logging_steps 可能设较大值，或首次 log 在后续 step）\n- 每个 epoch 252 步，当前均在第 1 个 epoch 的 ~60% 位置\n- 预计 3 个 epoch 全部完成时间：约 18:45 左右"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-checkpoint-check-and-traj-progress.md"
+}

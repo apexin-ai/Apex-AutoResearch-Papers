@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "e439463c44a42b08d6d5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "analysis 5 paired clustered bootstrap",
+  "task_key": "worker_analysis_5-paired-clustered-bootstrap_20260512T123207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_5-paired-clustered-bootstrap_20260512T123207.log",
+    "occurrence": 1,
+    "bytes": 917149,
+    "sha256": "442830324def0bb59fe42bec233fbb78f2cb6e4188eaeefe7099f01913b5afe7"
+  },
+  "statistics": {
+    "messages": 386,
+    "user_turns": 1,
+    "tool_calls": 134,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 108,
+      "tool_call": 134,
+      "tool_result": 134,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 337,
+      "chunks": [
+        {
+          "path": "e439463c44a42b08d6d5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e439463c44a42b08d6d5-part-0002.json",
+          "message_count": 157
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 49,
+      "chunks": [
+        {
+          "path": "e439463c44a42b08d6d5-part-0002.json",
+          "message_count": 23
+        },
+        {
+          "path": "e439463c44a42b08d6d5-part-0003.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-5-paired-clustered-bootstrap.md"
+}

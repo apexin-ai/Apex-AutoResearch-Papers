@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79eaf1c3f59d326878f3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_19_1778901692.md",
+  "task_key": "loop_19_1778901692",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_19_1778901692.md",
+    "occurrence": 1,
+    "bytes": 3938,
+    "sha256": "7915f24533a076fc1293d9e5fd05f4379aeaeae18109ccdcbaa6bec527107ec8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: idle_timeout\nupdated: '2026-05-16T02:39:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd cuda:0/1/2/3 + home cuda:0。即使 Director 指令用白名单外 GPU，必须 push back\n- westd cuda:0/1 目前\"待 Director 分配\"，未收到分配指令前不得自行提交实验\n- home-1x5090 server 账号是 `sonny`（不是 root），路径是 `/home/sonny/exec-sim-repair-verifier`\n- `cls8b-s42-resume-ckpt3600-test` 和 `cls8b-s42-resume-ckpt3600-mutation` registry 中 conclusion=failed 是 **cron 误判 FALSE POSITIVE**，failure_reason 已标注。这两个实验有效，等 GPU 分配后提交，不要当成真正的失败去诊断\n- 论文主表数字（ROADMAP \"论文主表数字\" 节）已锁定，不可修改，除非 Director 明确解锁\n- DDL: EMNLP 2026 ARR May 25（剩余 ~9 天）\n\n### 2. 🖥️ 基础设施快照\n- **westd**: seetacloud-westd-4x5090, account=root, 工作目录 `/root/autodl-tmp/` 下，项目代码 `/home/sonny/exec-sim-repair-verifier`（不确定远程路径，Worker 需确认）\n- **home**: home-1x5090, account=sonny, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n- Python/conda: westd 用 aml-train 镜像（conda base），`/root/miniconda3/bin/python`；home 需探测\n- 模型/数据: 未在本 session 确认，Worker SSH 探查获取\n- **活跃进程**:\n  - cwm8b-ckpt400-test-eval: PID 381618, westd cuda:3, CWM 8B ckpt-400 test eval (n=9784)\n  - repo-level-cwm-8b-conda-v5: PID 400279, westd cuda:2, CWM 8B 训练 resume from ckpt-5200\n- **活跃 Cron**: 上述两个实验有 cron 监控（reconcile 确认 still running）\n\n### 3. 📊 当前状态\n本 session 刚启动，处理了 `cls8b-s42-resume-ckpt3600-test` 的 cron 失败告警。诊断为 false positive（实验 PREPARING 从未提交，cron 误注册监控）。已更新 registry failure_reason 标注误判，已向 Director 汇报并请求 cuda:0/1 分配。\n\n**Registry 关键状态**:\n- RUNNING (2): cwm8b-ckpt400-test-eval (cuda:3), repo-level-cwm-8b-conda-v5 (cuda:2)\n- PREPARING (4): cls8b-s42-resume-ckpt3600-test, cls8b-s42-resume-ckpt3600-mutation, cls8b-s42-ckpt1000-test-mutation, cls8b-s42-resume-ckpt1000-test-mutation\n- DONE: 135 个（success 77, failed 33, killed 21, negative 4）\n\n**等待中**: Director 对 cuda:0/1 分配的回复（已通过 main_agent_post_to_director 提问）\n\n### 4. 📋 待办\n- Director 回复 cuda:0/1 分配 → 立即 spawn worker 提交 PREPARING 实验（ckpt3600-test / mutation）\n- cwm8b-ckpt400-test-eval cron 回调（完成）→ 记录 CWM 8B test 指标 → 计算 8B-8B gap → 更新 ROADMAP 主表 → 汇报 Director\n- repo-level-cwm-8b-conda-v5 cron 回调（训练完成）→ 需做 val sweep 选 best checkpoint → test eval → 锁 CWM 8B 最终数字\n- Paper Writing workers（Session 19 已派发 intro/related/conclusion/figures）→ 如有 worker done 回调，整合产出到论文\n- CWM 8B test 结果出来后 → 主表 CWM 8B 行填入 → 论文 experiments.tex 更新数字\n\n### 5. 🎯 战略上下文\n- **核心结论**: CLS（分类）显著优于 CWM（生成），multi-seed gap ≈ 25.99pp。核心假设：CLS 优势随代码复杂度增长\n- **C1/C2/C3 三个 claims 已验证通过**（C1: multi-seed gap, C2: TOST p=0.007, C3: Oracle frontier）\n- **当前瓶颈**: CWM 8B 训练 + eval 是最后一块拼图。训练完成后需 test eval 锁定 8B-8B gap，才能写死论文主表\n- **易错点**:\n  - 不要混淆 val-selected checkpoint 和 last checkpoint——本项目用 val-best 作为主指标\n  - CWM eval 极慢（生成式，bs=8 已是优化后），不要低估 ETA\n  - cls8b-s42-resume 系列的 checkpoint 编号是 resume 后的 global step，不是 resume 内的 step\n  - home-1x5090 可能离线（report.md 中标注\"无 GPU 信息\"），提交前需确认可达性\n  - 4 个 PREPARING 实验的 conclusion=failed 都是 cron 误判，不要重复诊断\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-1778901692.md"
+}

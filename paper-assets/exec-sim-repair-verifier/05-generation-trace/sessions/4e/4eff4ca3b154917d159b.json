@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4eff4ca3b154917d159b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "review reference audit",
+  "task_key": "worker_review_reference-audit_20260515T171800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_reference-audit_20260515T171800_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "4c2d30f9561fb9d6909d17d60e14231330c028e71c4cdbfa1865a95832a1300c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成，报告已写入 `artifacts/reference_audit.md`。\n\n核心结论：\n\n- **26/26 citation keys 全部匹配**，无缺失、无孤立条目、无幻觉引用\n- **3 个 warning**（需修复）：\n  - `snell2024scaling` — 已发表于 ICLR 2025 Oral，当前仍标为 arXiv 2024\n  - `xia2024agentless` — 已发表于 FSE 2025（Distinguished Paper），当前仍标为 arXiv 2024\n  - `chen2025vgsearch` — 已被 NeurIPS 2025 接收，当前仍标为 arXiv preprint\n- **2 个 info**（可选）：\n  - `dettmers2024qlora` — key 写的 2024 但 year 字段是 2023（NeurIPS 2023），命名不一致\n  - `meta2025cwm` — author 用 `{Meta AI}` 而非个人作者列表\n\n建议在提交前优先修复 3 个 venue 过时的条目。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-reference-audit-copy-2.md"
+}

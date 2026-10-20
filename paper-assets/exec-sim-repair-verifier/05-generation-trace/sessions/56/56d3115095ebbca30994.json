@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56d3115095ebbca30994",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper figure fig1 reformulation",
+  "task_key": "worker_paper_figure_fig1_reformulation_20260512T171819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_reformulation_20260512T171819_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "58c7294a2c2ba9b78ac87a9eefe7b82bcdf44832b490dd015da9d1c9dd48d9bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成并注册。\n\n**输出文件**:\n- PDF: `artifacts/figures/paper/fig1_reformulation.pdf` (40KB)\n- PNG: `artifacts/figures/paper/fig1_reformulation.png` (262KB, 300 DPI)\n- 生成脚本: `artifacts/figures/paper/gen_fig1.py`\n\n**内容**: 三行水平流水线对比 — (a) CLS 用蓝色高亮 + \"OURS\" 标签，强调 1-token 输出无 generation failure；(b) CWM 橙色系，标注两个 failure mode（Token Budget Exhaustion / String Value Mismatch）；(c) TRAJ 灰色系，标注 \"No per-test signal\" 局限。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-reformulation.md"
+}

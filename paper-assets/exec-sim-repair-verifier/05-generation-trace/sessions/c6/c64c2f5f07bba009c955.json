@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c64c2f5f07bba009c955",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis deepseek cls repo v5",
+  "task_key": "worker_analysis_deepseek-cls-repo-v5_20260518T204003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek-cls-repo-v5_20260518T204003_result.json",
+    "occurrence": 1,
+    "bytes": 1304,
+    "sha256": "ef0a0980ba12f255c078ff57f0b3129eaafc8e28d31d372c45c3e38fc296b326"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。以下是 **deepseek-cls-repo-v5** 训练结果汇总：\n\n## 训练状态\n- **正常完成**，EXIT_CODE=0，3 epochs / 6315 steps\n- 训练时长：17h 35m（63312s）\n- W&B：**未集成**（日志中无 wandb 记录）\n\n## Eval Loss 趋势\n\n| Epoch | eval_loss |\n|-------|-----------|\n| 1     | **0.0886** |\n| 2     | 0.1587    |\n| 3     | 0.1975    |\n\nFinal train_loss: **0.0399**\n\n**明显过拟合**：eval_loss 从 epoch 1 起单调递增（0.089 → 0.159 → 0.197），train_loss 极低。最佳 eval 性能在 epoch 1。\n\n## Checkpoints\n\n| 路径 | 大小 | 说明 |\n|------|------|------|\n| `checkpoint-2105/` | 195M | Epoch 1（含 optimizer state）|\n| `checkpoint-6315/` | 195M | Epoch 3（含 optimizer state）|\n| `best/` | 67M | Epoch 3 保存（仅 LoRA adapter）|\n\n**注意**：`best/` 目录在 epoch 3 结束时保存，但 epoch 3 的 eval_loss 最高（0.197）。实际最优 eval 性能对应 **checkpoint-2105**（epoch 1, eval_loss 0.0886）。后续 eval 实验建议同时测 checkpoint-2105 和 best，确认哪个泛化更好。\n\n## Registry 更新\n- conclusion: `success`\n- metrics: 含 eval_loss_epoch1/2/3, final_train_loss, total_steps, train_time\n- spec: 补充了 checkpoint_path 和 log_path"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-cls-repo-v5-copy-2.md"
+}

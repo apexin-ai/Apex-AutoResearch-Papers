@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "d65537b3b7cb29dc80dd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "eval critical 8b s42 test8192 ckpt400 ckpt600",
+  "task_key": "worker_eval_critical-8b-s42-test8192-ckpt400-ckpt600_20260514T211716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_critical-8b-s42-test8192-ckpt400-ckpt600_20260514T211716.log",
+    "occurrence": 1,
+    "bytes": 1117478,
+    "sha256": "26c6ee011a5ea6af87d47f59ea17f9db6618c59fa7ab07be8ff1f601a660dc72"
+  },
+  "statistics": {
+    "messages": 1061,
+    "user_turns": 1,
+    "tool_calls": 481,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 91,
+      "tool_call": 481,
+      "tool_result": 481,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1046,
+      "chunks": [
+        {
+          "path": "d65537b3b7cb29dc80dd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d65537b3b7cb29dc80dd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d65537b3b7cb29dc80dd-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d65537b3b7cb29dc80dd-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d65537b3b7cb29dc80dd-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "d65537b3b7cb29dc80dd-part-0006.json",
+          "message_count": 146
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "d65537b3b7cb29dc80dd-part-0006.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-critical-8b-s42-test8192-ckpt400-ckpt600.md"
+}

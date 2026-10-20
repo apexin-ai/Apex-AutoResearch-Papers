@@ -1,0 +1,2013 @@
+{
+  "schema_version": "1.0",
+  "id": "dd531713e984f6cc8915",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "cron hook cls8b seed456 20260512T221759 057159",
+  "task_key": "cron_hook_cls8b-seed456_20260512T221759_057159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_cls8b-seed456_20260512T221759_057159.jsonl",
+    "occurrence": 1,
+    "bytes": 91814,
+    "sha256": "0b26b00153d60aa9830eb8231c8b0a14d6bcd9e0d8098aaeb13a32708ab472b6"
+  },
+  "statistics": {
+    "messages": 101,
+    "user_turns": 2,
+    "tool_calls": 49,
+    "roles": {
+      "user": 2,
+      "tool_call": 49,
+      "tool_result": 48,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T18:54:36.878276+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #4。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- home-1x5090 只有 cuda:0，账号 sonny，项目路径 /home/sonny/exec-sim-repair-verifier\n- seetacloud-westd-4x5090（= westd-48478）账号 root，GPU 白名单 cuda:0/1/2/3，项目路径 /home/sonny/exec-sim-repair-verifier（非 /root）\n- seetacloud 根分区仅 ~3.6GB，checkpoint 必须写 /root/autodl-tmp/，否则磁盘满崩溃\n- seetacloud 用 conda 环境（source /root/miniconda3/etc/profile.d/conda.sh && conda activate base），不要创建 venv\n- 8B 模型路径：home=/home/sonny/projects/verifier-tts-struct-ie/models/Qwen3-8B，seetacloud=/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\n- 4B 模型路径：seetacloud=/root/.cache/huggingface/hub/Qwen/Qwen3-4B，home=/home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c\n- repo-level-cls-v2/cwm-v2 的 output_dir 必须是 /root/autodl-tmp/checkpoints_repo_cls 和 /root/autodl-tmp/checkpoints_repo_cwm（磁盘约束）\n\n### 2. 🖥️ 基础设施快照\n- **home-1x5090**: sonny@home-1x5090, 1×RTX 5090, /home/sonny/exec-sim-repair-verifier, Python3 系统路径, 无 conda\n- **seetacloud-westd-4x5090** (= westd-48478): root@seetacloud-westd-4x5090, 4×RTX 5090, /home/sonny/exec-sim-repair-verifier, Python=/root/miniconda3/bin/python, HF_HOME=/root/autodl-tmp/.hf_cache\n- W&B: 大部分实验 --no_wandb，metrics 从 eval json 提取\n- 数据：函数级 data/ (15290 train, 1890 test)；repo-level data/swebench_pertest/\n- 活跃进程：cls8b-seed456 刚完成（PID 2810143 已退出），无其他活跃训练进程\n\n### 3. 📊 当前状态\n**刚做完**：Session 启动初始化（read_registry, reconcile_crons, 读 report/ROADMAP）。收到 cls8b-seed456 CRON 回调（进程正常退出，ANALYZING 状态）。\n\n**已派发未回**：\n- Worker `analysis:cls8b-seed456-results` (worker_analysis_cls8b-seed456-results_20260512T152754) — SSH 到 home-1x5090 读取 eval_cls8b_seed456.json，提取 metrics，更新 registry。**这个 Worker 回调是最高优先级**，回来后需要完成 on-experiment-done 全流程。\n\n**Registry 状态**：\n- cls8b-seed456: ANALYZING — 等 Worker 回调提取 metrics → DONE\n- repo-level-cls-v2: PREPARING — 修复 sample_weight bug 后待重提交到 seetacloud cuda:2\n- repo-level-cwm-v2: PREPARING — 同上，待重提交到 seetacloud cuda:3\n- 其余 32 个实验全部 DONE（success 26, negative 3, failed 3）\n\n**等待中**：Worker 回调 → 完成 cls8b-seed456 分析 → 向 Director 汇报 3-seed 8B scaling gap\n\n### 4. 📋 待办\n- Worker analysis:cls8b-seed456-results 回调 → 读 metrics → 完成 on-experiment-done 流程：(1) 计算 seed456 cls-cwm gap，(2) 汇总 3-seed 8B paired gaps（seed42=+2.81pp, seed123=+2.42pp, seed456=?），(3) update registry → DONE，(4) 刷新 report.md，(5) 向 Director 汇报含 [资源] 行\n- cls8b-seed456 完成后 → home cuda:0 空闲 → 可分配给 error overlap 分析或其他任务\n- repo-level-cls-v2 / cwm-v2 仍在 PREPARING → 需要 Worker 确认 sample_weight bug 已修复 → 提交到 seetacloud cuda:2/3（**这是关键路径，ARR deadline 13 天**）\n- seetacloud cuda:1 空闲 → ROADMAP 说分配给 error overlap / CWM per-instance predictions，需要 Director 确认\n- repo-level 双完成 → Pillar 1 go/no-go 决策（F1 diff ≥3pp=全力 EMNLP Main, 1-3pp=加 seeds, <1pp=kill C1 pivot）\n\n### 5. 🎯 战略上下文\n- **核心假说**：CLS（classification）vs CWM（generation）的优势随 complexity 增加而扩大。函数级 4B gap ~1.25pp，8B gap ~2.6pp（2-seed mean），repo-level 是决胜战场。\n- **论文投稿**：ARR May 25（13 天），零容错。关键路径是 repo-level 训练 (~2d) → eval+统计 (0.5d) → go/no-go → 写作 (5-7d)。\n- **8B 数据已知**：seed42 cls=90.48 cwm=87.67 gap=+2.81pp, seed123 cls=89.40 cwm=86.98 gap=+2.42pp。seed456 的 cwm=86.24，cls 待提取。3-seed mean gap 将决定 scaling claim 的强度。\n- **易踩坑**：(1) repo-level v1 因 sample_weight KeyError 失败，v2 spec 里 command 用了 --device cuda:0 但实际 GPU 分配是 cuda:2/3，submit_training_job 会自动注入 CUDA_VISIBLE_DEVICES 映射，脚本里 cuda:0 是对的。(2) seetacloud 磁盘紧张，任何 checkpoint 写根分区都会爆。(3) 5-paired 4B 分析已完成确认 CLS-TRAJ 等价（TOST p=0.007），这是 Pillar 2 已关闭。(4) D024 硬性纪律：禁止 Worker 杀死正在训练的进程来应用代码修改。\n- **决策链**：D015(8B scaling 确认) → D016(批准 repo-level) → D019-D023(统计检验方法论) → D024(禁止杀进程)\n\n## 项目硬约束 (memory.md 节选)\n\n## 失败模式\n\n### [2026-05-12] repo-level v3 系统 RAM OOM (SIGKILL)\n- 两个 4B 模型 + 2×70k repo-level 长序列样本 (max_seq_length=4096) 同时加载\n- CLS 在 step 188/6633 (~22min) 被 OOM killer 杀死，CWM 同时被杀\n- **教训**：seetacloud 4x5090 系统 RAM 不足以同时跑两个 70k repo-level 训练。必须串行或做内存优化\n- 修复方向：A) 串行训练 B) lazy loading / streaming C) 去掉 custom DataCollator 用 HF 标准\n\n### [2026-05-12] repo-level 脚本 sample_weight KeyError\n- train_repo_verifier.py 和 train_repo_cwm.py 的 compute_loss 方法尝试 `inputs.pop(\"sample_weight\")` 但 Dataset/Collator 未提供该字段\n- 修复方向：确保 Dataset 返回 sample_weight 或 Collator 注入\n\n## 可查的历史\n前 15 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T18:54:47.316965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T18:54:47.367551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T18:54:54.541676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'ANALYZING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T18:54:54.542149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0001}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T18:54:54.994106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T18:54:55.346113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0001}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 352
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T18:54:55.849943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T18:54:55.850363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-12T18:54:55.850602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0001}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-12T18:54:56.052941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "status": "running"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-12T18:55:00.184161+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"repo-level-cls-home\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=repo-level-cls-home)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 4333
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-12T18:55:00.234701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 4181
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-12T18:55:07.361864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "limit": "10",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-12T18:55:07.864014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0001}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-12T18:55:07.864356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-12T18:55:08.116111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-12T17:55:47Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 44 个实验 — DONE 39, PREPARING 3, RUNNING 2\\\\n**DONE 分布**: failed 6, negative 3, success 30\\\\n\\\\n### GPU 占用\\\\n- **分配**: 3 张 — home-1x5090:cuda:0, westd-48478:cuda:2, westd-48478:cuda:3\\\\n- **实际运行**: 1 张 — home-1x5090:cuda:0(repo-level-cls-home)\\\\n- **空闲（分配了没跑）**: westd-48478:cuda:2, westd-48478:cuda:3\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `repo-level-cls-home` | home-1x5090 | cuda:0 | 2840844 | `~/runs/exec-sim-repair-verifier/repo-level-cls-home.log` |\\\\n| `repo-level-cwm-v4` | seetacloud-westd-4x5090 | ? | 77811 | `~/runs/exec-sim-repair-verifier/repo-level-cwm-v4.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `repo-level-cwm-v5` [failed] — 2026-05-12T17:55:46 — CUDA OOM: CUDA out of memory. Tried to allocate 48.00 MiB. GPU 0 has a total cap\\\\n- `matched-seed-8b-predictions` [success] — 2026-05-12T17:46:21\\\\n- `cls8b-eval-seed123` [success] — 2026-05-12T17:26:49\\\\n- `cls8b-eval-seed42` [success] — 2026-05-12T17:25:15\\\\n- `repo-level-cwm-v3` [failed] — 2026-05-12T17:22:48 — EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `repo-level-cwm-v5`: CUDA OOM: CUDA out of memory. Tried to allocate 48.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 45.75 MiB is free. Process 77816 has 25.99 GiB memory in use. Including non-PyTorch memory, \\\\n- `repo-level-cwm-v3`: EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-12\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| repo-level-cls-home | — | — | — | — |\\\\n| repo\n…[truncated 1640 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 251
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-12T18:55:08.117573+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-12T18:55:08.218290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/ROADMAP.md\\\", \\\"content\\\": \\\"# exec-sim-repair-verifier — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-12 17:32 UTC | 更新原因: v4并行再次cgroup OOM确认；更正save_strategy风险（已生效）；更新GPU真实状态\\\\n\\\\n## 核心方向\\\\nTask reformulation: execution simulation 从 generation → classification。**函数级两者等价（F1 diff <0.5pp, TOST p=0.007），核心假说转为 complexity-dependent advantage——repo-level 是决胜战场。** 详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（post-MVP，repo-level 训练中 + 论文写作 Step 2）\\\\n- **Story pillars**:\\\\n  - Pillar 1 (Complexity-Dependent Advantage): ⏳ home CLS 训练中 (step ~104/6633)；seetacloud CWM 待单进程提交（并行两次 cgroup OOM 失败）\\\\n  - Pillar 2 (Function-level Equivalence): ✅ TOST 等价 (gap=-0.45pp, p=0.007, ±2pp margin)\\\\n  - Pillar 3 (Oracle Frontier): ✅ 模拟数据 + block-corr 实证验证\\\\n  - Pillar 4 (Model-Size Scaling): ✅ 8B 3-seed，accuracy gap=2.43pp (bootstrap p=0.0066)\\\\n- **Paper Agent**: Step 2 进行中（图表生成 + 模板下载）\\\\n\\\\n## GPU 状态\\\\n\\\\n### seetacloud-westd-4x5090 (4× RTX 5090, cgroup 360GB RAM 限制)\\\\n| GPU | 实验 | 状态 |\\\\n|-----|------|------|\\\\n| cuda:0 | 空闲 | ⚪ |\\\\n| cuda:1 | 空闲 | ⚪ |\\\\n| cuda:2 | repo-level-cwm 待提交（单进程） | 🔴 urgent |\\\\n| cuda:3 | 空闲 | ⚪ |\\\\n\\\\n⚠️ **seetacloud 禁止并行训练**：cgroup 360GB 限制，两个 4B 训练并行峰值超限触发 OOM killer (v3 + v4 两次确认)\\\\n\\\\n### home-1x5090 (1× RTX 5090, 非容器, 62GB RAM)\\\\n| GPU | 实验 | 状态 |\\\\n|-----|------|------|\\\\n| cuda:0 | repo-level-cls-home (step ~104/6633, ~7s/it) | 🟢 训练中 |\\\\n\\\\nsave_steps=50 已生效，中间 checkpoint 正常保存 ✅\\\\n\\\\n## 已完成实验摘要\\\\n\\\\n### 4B Function-level (per-test)\\\\n| 实验 | Accuracy | Fail F1 | Seeds |\\\\n|------|----------|---------|-------|\\\\n| CLS | 87.5-88.1% | 87.6-89.1% | 5 seeds |\\\\n| CWM | 86.2-87.6% | 87.3-87.9% | 5 seeds |\\\\n| **Gap** | 1.25pp (p=0.025) | | Bootstrap CI [0.46, 2.04] |\\\\n\\\\n### 8B Scaling (accuracy)\\\\n| 实验 | seed42 | seed123 | seed456 | Mean |\\\\n|------|--------|---------|---------|------|\\\\n| cls8b | 90.48% | 89.37-89.52%*\n…[truncated 2828 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 100
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-12T18:55:24.041447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "limit": "10",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-12T18:55:24.193223+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"repo-level-cwm-v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T17:45:02.039Z\\\", \\\"updated_at\\\": \\\"2026-05-12T17:55:46.979Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export HF_HOME=/root/autodl-tmp/.hf_cache && ... && python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_repo_cwm/ --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"78148\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/repo-level-cwm-v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T17:45:02.063Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/\\\", \\\"data_count\\\": 70748, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 644.9, \\\"gpu_hours\\\": 0.18}, \\\"hypothesis\\\": \\\"Repo-level CWM v5 (SWE-bench, Qwen3-4B LoRA). 修复 v4 argparse 错误（移除不支持的 --save_strategy 参数）。与 cls-home 配对验证 complexity gap。\\\", \\\"notes\\\": \\\"v5: 通过 base64 patch 修改 train_repo_cwm.py 的 TrainingArguments (save_strategy=epoch→steps, save_total_limit=2→3, 新增 save_steps=500)。单进程 cuda:2。v4 因 auto-retry 并行冲突被 kill。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T17:55:45.246Z\\\"}, \\\"failure_reason\\\": \\\"CUDA OOM: CUDA out of memory. Tried to allocate 48.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 45.75 MiB is free. Process 77816 has 25.99 GiB memory in use. Including non-PyTorch memory, this process has 5.31 GiB memory in use. Of the allocated me\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-12T17:55:46.979Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T17:55:48.464289+00:00\\\"}]}}, \\\"matched-seed-8b-predictions\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T17:21:33.762Z\\\", \\\"updated_at\\\": \\\"2026-05-12T17:46:\n…[truncated 11120 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 151
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-12T18:55:49.298928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-12T18:55:49.449872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"repo-level-cls-v4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T17:17:08.066Z\\\", \\\"updated_at\\\": \\\"2026-05-12T17:24:21.945Z\\\", \\\"hypothesis\\\": \\\"Repo-level CLS v4 (SWE-bench, Qwen3-4B LoRA). 磁盘修复后重提交（根分区 89%→64%，cache 移至数据盘）。验证 complexity-dependent CLS advantage。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'export HF_HOME=/root/autodl-tmp/.hf_cache && export TORCH_HOME=/root/autodl-tmp/.torch_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B'\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/\\\", \\\"data_count\\\": 70000, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"notes\\\": \\\"v4: 磁盘修复后重提交。HF_HOME/TORCH_HOME 指向数据盘避免根分区写满。与 cwm-v4 并行（RAM 621G 充足）\\\"}}, \\\"repo-level-cwm-v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T14:41:28.527Z\\\", \\\"updated_at\\\": \\\"2026-05-12T16:10:19.999Z\\\", \\\"hypothesis\\\": \\\"Repo-level CWM generation (SWE-bench per-test data, Qwen3-4B LoRA). 修复 sample_weight KeyError 后重提交。与 repo-level-cls-v2 对比验证 complexity gap。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py --output_dir /root/autodl-tmp/checkpoints_repo_cwm/ --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"63096\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/repo-level-cwm-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T15:57:03.090Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"ValueError: DataCollator tokenizer.pad() 收到 dict 而非 tensor。崩溃在 step 0/6633。与 repo-level-cls-v2 同一 root cause。\\\"}, \\\"repo-level-cls-v2\\\": {\\\"status\\\": \\\"PREPAR\n…[truncated 1021 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 150
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-12T18:55:49.602047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "filters": "{'exp_id': 'cls8b-seed456'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-12T18:55:49.752969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1363}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 150
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-12T18:55:54.971493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "filters": "{'status': 'ANALYZING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-12T18:55:56.326184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1402}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1354
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-12T18:55:56.426898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__load_project_config",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-12T18:55:56.477486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-12T18:56:10.228199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "limit": "20",
+              "fields": "['status', 'conclusion', 'metrics', 'updated_at']"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-12T18:56:10.228627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "exec-sim-repair-verifier",
+              "section": "execution"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-12T18:56:10.380450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"repo-level-cwm-v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-12T17:55:46.979Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"matched-seed-8b-predictions\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-12T17:46:21.454Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"repo-level-cls-home\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-12T17:46:11.163Z\\\"}, \\\"repo-level-cwm-v4\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-12T17:46:05.995Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"cls8b-eval-seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-12T17:26:49.146Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"cls8b-eval-seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-12T17:25:15.288Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"repo-level-cls-v4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-12T17:24:21.945Z\\\"}, \\\"repo-level-cwm-v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-12T17:22:48.589Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"repo-level-cls-v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-12T17:22:47.581Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"cwm-seed789\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-12T16:13:15.185Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_accuracy\\\": 86.67, \\\"pass_f1\\\": 86.74, \\\"fail_f1\\\": 86.6, \\\"exact_match_rate\\\": 83.97, \\\"baseline_gap_pp\\\": 34.92, \\\"test_set_size\\\": 1890, \\\"unparseable_predictions\\\": 0, \\\"per_class\\\": {\\\"fail\\\": {\\\"precision\\\": 84.09, \\\"recall\\\": 89.25, \\\"f1\\\": 86.6}, \\\"pass\\\": {\\\"precision\\\": 89.37, \\\"recall\\\": 84.25, \\\"f1\\\": 86.74}}}}, \\\"repo-level-cwm-v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-12T16:10:19.999Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"repo-level-cls-v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-12T16:10:19.053Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"cls8b-seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-12T15:28:45.391Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_accuracy\\\": 88.31, \\\"p\n…[truncated 2882 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 152
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-12T18:56:10.380944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"exec-sim-repair-verifier\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"project_path\\\": \\\"/home/sonny/exec-sim-repair-verifier\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\"}, {\\\"account\\\": \\\"sonny\\\", \\\"server\\\": \\\"home-1x5090\\\"}, {\\\"account\\\": \\\"sonny\\\", \\\"server\\\": \\\"westd-48478\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 152
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-12T18:56:39.185455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "repo-level-cwm-v4",
+              "field": "status",
+              "value": "DONE",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-12T18:56:40.640020+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"repo-level-cwm-v4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-12T17:23:40.543Z\\\", \\\"updated_at\\\": \\\"2026-05-12T18:56:39.304Z\\\", \\\"hypothesis\\\": \\\"Repo-level CWM v4 (SWE-bench, Qwen3-4B LoRA). 磁盘修复后重提交。与 cls-v4 配对验证 complexity gap。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T17:38:57.444Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"completed_at\\\": \\\"2026-05-12T17:38:58.649Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T17:39:00.373716+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TORCH_HOME=/root/autodl-tmp/.torch_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_repo_cwm_v4/ --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"77811\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/\\\", \\\"data_count\\\": 70748, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/repo-level-cwm-v4.log\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"v4 首次提交因 CLI 参数错误 EXIT_CODE=2 失败。系统自动重试 (PID 77811) 但不含 Director 要求的 save_strategy=steps/save_steps=500。与 v5 并行会触发 cgroup OOM，主动停止保护 v5。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.467}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1454
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-12T18:56:40.690677+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-12T18:56:41.193780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_25b6c083."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Read",
+            "elapsed_ms": 503
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-12T18:56:41.344516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "memory.md",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-12T18:56:41.445457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/memory.md\\\", \\\"content\\\": \\\"# Memory — exec-sim-repair-verifier\\\\n\\\\n## 关键发现\\\\n\\\\n### [2026-05-12] 4B/8B CLS vs CWM Paired Bootstrap（修正版，5+3 seeds）\\\\n- 4B: gap=1.25pp, paired t=2.77, p=0.0253 (one-sided), CI [0.46, 2.04], Cohen's d=1.24\\\\n- 8B: gap=2.26pp (非之前的 2.42), paired t=8.60, p=0.0066, CI [1.80, 2.71], Cohen's d=4.97\\\\n- Scaling: gap 从 1.25 → 2.26pp, P(8B>4B)=0.988\\\\n- TOST 4B ±2pp: p=0.0855（不等价——差异是真实的，不是噪声）\\\\n- **注意**：之前 handoff 中 8B gap 写的 2.42pp 是 2-seed 均值，3-seed 修正为 2.26pp\\\\n\\\\n### [2026-05-12] Block-correlation 经验验证\\\\n- ICC=0.191, DEFF=3.97, p<0.0001\\\\n- All-correct 观测/期望比=2.81×，error std 比=1.89×\\\\n- 确认 oracle simulation 的 block-correlation 假设\\\\n\\\\n### [2026-05-12] Majority Voting 无效（negative）\\\\n- K=3 voting 降低 accuracy 0.69pp（87.51→86.83%）\\\\n- 模型错误是系统性偏差，非随机噪声，voting 无法修复\\\\n- Single-pass greedy 是最优推理策略\\\\n\\\\n### [2026-05-12] CWM 4B multi-seed 稳定性确认（3/5 seeds）\\\\n- CWM 4B mean accuracy (seeds 42/123/456): ~87.3%, std <0.3pp\\\\n- CLS 4B mean accuracy (seeds 42/0/789): ~88.1%, std ~0.8pp（seed789 异常高 89%）\\\\n- CLS-CWM gap at 4B: ~0.8pp，跨 seed 稳定\\\\n- CLS-CWM gap at 8B: ~2.9pp (90.48 vs 87.57)\\\\n- **\\\\\\\"Scaling widens gap\\\\\\\" 叙事可靠**：gap 从 4B 0.8pp → 8B 2.9pp，约 3.6x 放大\\\\n- CLS seed789 的 89% 是异常高值，5-paired 分析时需注意此 seed 可能拉大 paired difference\\\\n\\\\n### [2026-05-12] Traj-level 3-seed 完成：per-test > traj-level gap = 2.23pp（稳定）\\\\n- 3-seed mean: traj 86.18±1.06% vs per-test cls 88.41±0.96%\\\\n- Per-seed gap: seed42 2.17pp, seed123 4.05pp, seed456 1.01pp\\\\n- seed 456 traj accuracy 异常高（87.4%），拉低了 gap，但方向不变\\\\n- **单 seed 估计（2.75pp）高估了 gap**——3-seed mean 为 2.23pp，论文需用 3-seed 数字\\\\n- Consistency rate 三 seed 稳定在 78-80%，traj-level 约有 20% 的 trajectory 内部预测自相矛盾\\\\n- **论文意义**: Pillar 3 数据完备，可 claim \\\\\\\"per-test classification 稳定优于 trajectory-level verifier 约 2pp\\\\\\\"\\\\n\\\\n### [2026-05-12] Zero-shot LLM-as-judge 本质是\\\\\\\"猜 FAIL\\\\\\\"策略\\\\n- Qwen3-8B zero-s\n…[truncated 1800 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 100
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-12T18:56:44.455579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-12T18:56:44.506119+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-12T18:56:48.124207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-12T18:56:48.425733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Glob",
+            "elapsed_ms": 301
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-12T18:56:50.787954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-12T18:56:50.838758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-12T18:57:38.648935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__save_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-12T18:57:38.699471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-12T18:58:06.784283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-12T18:58:06.784782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {\\\"seetacloud-westd-4x5090\\\": {\\\"error\\\": \\\"no data yet\\\", \\\"stale\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-12T18:58:06.785041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "tool_args": {
+              "server": "home-1x5090"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-12T18:58:06.885495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {\\\"home-1x5090\\\": {\\\"error\\\": \\\"no data yet\\\", \\\"stale\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "elapsed_ms": 100
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-12T18:58:34.689227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "repo-level-cwm-v6",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "exec-sim-repair-verifier",
+              "spec": "{'hypothesis': 'Repo-level CWM v6 (SWE-bench, Qwen3-4B LoRA). 清理 v4/v5 残留后单进程重提交。与 repo-level-cls-home 配对验证 complexity gap。', 'server': 'seetacloud-westd-4x5090', 'gpu_id': 'cuda:2', 'data_path': '/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/', 'data_count': 70748, 'model_name': 'Qwen/Qwen3-4B', 'seed': 42}"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-12T18:58:35.142988+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"repo-level-cwm-v6\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T18:58:27.726Z\\\", \\\"updated_at\\\": \\\"2026-05-12T18:58:34.799Z\\\", \\\"hypothesis\\\": \\\"Repo-level CWM v6 (SWE-bench, Qwen3-4B LoRA). seetacloud 单进程提交，修复 v4 argparse + v5 OOM。save_steps=500。与 cls-home 配对验证 complexity gap。\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Repo-level CWM v6 (SWE-bench, Qwen3-4B LoRA). 清理 v4/v5 残留后单进程重提交。与 repo-level-cls-home 配对验证 complexity gap。\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/\\\", \\\"data_count\\\": 70748, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4437}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 453
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-12T18:59:05.069570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "infra:seetacloud-cwm-v6-submit",
+              "project": "exec-sim-repair-verifier",
+              "tool_groups": "['ssh', 'registry']",
+              "tools": "['submit_training_job']",
+              "task_prompt": "## 任务：清理 seetacloud 残留进程 + 提交 repo-level CWM v6 训练\n\n### 背景\nseetacloud-westd-4x5090 上的 repo-level CWM 训练连续失败 4 次（v2 代码bug, v3 磁盘满, v4 被杀, v5 CUDA OOM）。v5 失败原因是 v4 的自动重试进程（PID 77811 及子进程 ~77816）仍在 GPU 上，导致 v5 显存不足。现在需要清理残留进程后重新提交。\n\n**seetacloud 硬约束**：\n- cgroup 360GB RAM 限制，禁止并行训练（D028），只能单进程\n- 账号: root\n- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: /home/sonny/exec-sim-repair-verifier\n- 模型路径: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B\n- checkpoint 必须写 /root/autodl-tmp/（根分区仅 ~3.6GB）\n- HF_HOME=/root/autodl-tmp/.hf_cache, TORCH_HOME=/root/autodl-tmp/.torch_cache\n\n### 步骤\n\n#### 1. 检查 GPU 状态（ssh_read_only）\n```bash\nnvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader 2>/dev/null; nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\n```\n确认 4 张 GPU 都是空闲的。如果有残留进程（尤其是 PID 77811 或附近的），记录下来。\n\n#### 2. 清理残留进程（ssh_execute，仅在有残留时）\n如果有训练残留进程：\n```bash\n# 杀死残留的 tmux sessions\ntmux ls 2>/dev/null | grep -E 'repo-level-cwm' | cut -d: -f1 | xargs -I{} tmux kill-session -t {}\n# 确认 GPU 已释放\nnvidia-smi\n```\n\n#### 3. 验证训练脚本（ssh_read_only）\n```bash\nhead -50 /home/sonny/exec-sim-repair-verifier/train_repo_cwm.py\ngrep -n \"save_strategy\\|save_steps\\|save_total_limit\\|output_dir\" /home/sonny/exec-sim-repair-verifier/train_repo_cwm.py\n```\n确认 train_repo_cwm.py 包含 v5 的修复（save_strategy=\"steps\", save_steps=500）。如果没有这些修复，在汇报中说明。\n\n#### 4. 检查磁盘空间（ssh_read_only）\n```bash\ndf -h / /root/autodl-tmp/\n```\n确认根分区 < 80% 且数据盘有足够空间。\n\n#### 5. 提交训练（submit_training_job）\n确认一切正常后，调用 submit_training_job:\n- server: \"seetacloud-westd-4x5090\"\n- gpu_ids: [\"cuda:2\"]\n- exp_id: \"repo-level-cwm-v6\"\n- account: \"root\"\n- project: \"exec-sim-repair-verifier\"\n- timeout_hours: 24\n- command: `bash -c \"export HF_HOME=/root/autodl-tmp/.hf_cache && export TORCH_HOME=/root/autodl-tmp/.torch_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_repo_cwm_v6/ --no_wandb\"`\n\n**注意**: 如果验证发现 train_repo_cwm.py 缺少 save_steps=500 配置，在命令中不要加 CLI 参数（v4 就是因为 argparse 不支持 --save_strategy 参数而失败的），而是需要先用 ssh_execute 修改源码。\n\n#### 6. 更新 registry\n提交成功后，用 update_registry 更新 repo-level-cwm-v6 的 spec（补充 command, pid, log_path 等）。\n\n### 产出\n汇报：GPU 清理状态、磁盘状态、脚本验证结果、提交结果（成功/失败+原因）。",
+              "context": "seetacloud-westd-4x5090 别名 westd-48478。4×RTX 5090 32GB。cgroup 360GB RAM 限制。\n前次 v5 失败日志: \"CUDA out of memory. Tried to allocate 48.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 45.75 MiB is free. Process 77816 has 25.99 GiB memory in use.\"\nv4 PID=77811 on cuda:2, v5 PID=78148 on cuda:2. 两个进程冲突导致 OOM。"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-12T18:59:15.074756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_infra_seetacloud-cwm-v6-submit_20260512T185905\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/logs/workers/worker_infra_seetacloud-cwm-v6-submit_20260512T185905.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_infra_seetacloud-cwm-v6-submit_20260512T185905 started. Use get_worker_status('worker_infra_seetacloud-cwm-v6-submit_20260512T185905') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 10005
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-12T18:59:15.225775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "check:cls-home-progress",
+              "project": "exec-sim-repair-verifier",
+              "tool_groups": "['ssh', 'registry']",
+              "task_prompt": "## 任务：检查 home 服务器 repo-level-cls-home 训练进度\n\n### 背景\nrepo-level-cls-home 是 repo-level CLS classification 训练（Qwen3-4B LoRA on SWE-bench per-test data），运行在 home-1x5090 的 cuda:0 上。PID=2840844，总步数 6633 步。上次检查是 step ~104，约 7s/it。需要确认当前进度和 ETA。\n\n### 服务器信息\n- 服务器: home-1x5090\n- 账号: sonny\n- 项目路径: /home/sonny/exec-sim-repair-verifier\n- Log: ~/runs/exec-sim-repair-verifier/repo-level-cls-home.log\n\n### 步骤（全部用 ssh_read_only）\n\n#### 1. 检查进程是否存活\n```bash\nps -p 2840844 -o pid,etime,rss,args --no-headers 2>/dev/null || echo \"PROCESS_DEAD\"\n```\n\n#### 2. 检查 GPU 状态\n```bash\nnvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader; nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader\n```\n\n#### 3. 读取训练日志尾部（获取当前 step 和 loss）\n```bash\ntail -30 ~/runs/exec-sim-repair-verifier/repo-level-cls-home.log\n```\n\n#### 4. 检查 checkpoint 保存情况\n```bash\nls -lht /home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/ 2>/dev/null | head -10\n```\n\n#### 5. 计算 ETA\n根据当前 step、总步数 6633、和 per-step 时间，计算预计完成时间。\n\n### 产出\n汇报：进程状态、当前 step/total、loss、ETA（UTC 时间）、checkpoint 列表。如果进程已死，立即说明。"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-12T18:59:17.500631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_cls-home-progress_20260512T185915\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/logs/workers/worker_check_cls-home-progress_20260512T185915.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_check_cls-home-progress_20260512T185915 started. Use get_worker_status('worker_check_cls-home-progress_20260512T185915') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2274
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-12T18:59:46.013983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 5 / 实际在跑 1 | Worker 池 2 (GPU 任务 1 / CPU 任务 1)\n\n## Session 4 启动状态汇报\n\n### 8B Scaling（已完成）\ncls8b-seed456 已 DONE，accuracy=88.31%。3-seed 8B 完整数据：\n| seed | CLS | CWM | Gap |\n|------|-----|-----|-----|\n| 42 | 90.48% | 87.67% | +2.81pp |\n| 123 | ~89.4% | 86.98% | ~2.4pp |\n| 456 | 88.31% | 86.24% | +2.07pp |\n| **Mean** | **~89.4%** | **~86.96%** | **~2.43pp (p=0.007)** |\n\nPillar 4 (8B Scaling) 数据完备 ✅\n\n### Repo-level 关键路径（⚠️ 严重延迟）\n- **CLS (home cuda:0)**: RUNNING，PID 2840844。已派 Worker 查进度。\n- **CWM (seetacloud)**: ❌ 无活跃训练。v4 killed → v5 CUDA OOM（v4 残留进程占显存）→ session 间无人恢复。已派 Worker 清理 seetacloud + 提交 CWM v6（cuda:2，单进程）。\n\n### GPU 空闲问题\nseetacloud 4 张卡全部空闲。根因：\n1. CWM v5 CUDA OOM 后无后续恢复\n2. D028 约束（cgroup 360GB）限制 seetacloud 只能单进程训练\n\nCWM v6 提交后 seetacloud 占 1 卡（cuda:2），其余 3 卡（cuda:0/1/3）仍闲。单进程约束下无法并行 repo-level 训练。可选：\n- (A) 在空闲卡上跑 eval/分析任务（不消耗大量 RAM）\n- (B) 等 CLS/CWM 完成后再用\n- (C) 如果 Director 认为 cgroup 限制可能已被误判（v3 是磁盘满，不是 RAM OOM），可尝试单独验证\n\n请 Director 指示 seetacloud 空闲 GPU 的使用方案。\n\n### 时间线\n- CLS home: 预计 ~12h（待 Worker 确认实际进度）\n- CWM seetacloud: ~20h（如 v6 顺利提交）\n- Bottleneck: CWM ~20h → eval+stats ~3h → 论文 ~5d\n- ARR May 25 还有 13 天，时间可控但零容错",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-12T19:14:37.087448+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 Worker 已派发。向 Director 汇报当前状态。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456"
+          },
+          "id": "event-000059"
+        }
+      ],
+      "message_count": 59
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-12T22:15:23.220134+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-12T22:15:34.492489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-12T22:15:34.492910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-12T22:15:37.806835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-12T22:15:37.857589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-12T22:15:38.310915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (84,225 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-25b6c083/db03d310-7837-4e8e-af23-6a71d6bbab45/tool-results/mcp-agent-ml-research-read_registry-1778624138231.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-25b6c083/db03d310-7837-4e8e-af23-6a71d6bbab45/tool-results/mcp-agent-ml-research-read_registry-1778624138231.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 504
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-12T22:15:38.764610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-12T22:15:38.815338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-12T22:15:40.822855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 2, \\\"results\\\": [{\\\"exp_id\\\": \\\"repo-level-cwm-v9\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=95806)\\\"]}, {\\\"exp_id\\\": \\\"repo-level-cls-v4\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Skipped (created 66s ago < interval 120s)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 2965
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-12T22:15:40.823482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-12\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| repo-level-cls-v4 | CLS v4: 基于 v3 代码（DataCollator 已修复），home-1x5090 重提交。磁盘已修复（89%→64%）。save_steps=200, eval_steps=200。验证 repo-level complexity-dependent CLS advantage (C1 claim)。 | — | — | — |\\\\n| repo-level-cwm-v9 | CWM v9: 修复 eval_steps/save_steps 对齐 (both=100), 修复 compute_loss OOM (pop labels before model forward), nohup 启动防 tmux kill | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **repo-level-cls-v3** (failed): CLS v3: 修复 save_strategy=steps+save_steps=200, nohup 启动. 第四次重启, 必须一次做对.\\\\n- **repo-level-cls-v2** (failed): Repo-level classification (SWE-bench per-test data, Qwen3-4B LoRA). 修复 sample_weight KeyError 后重提交。验证 complexity-dependent CLS advantage。\\\\n- **repo-level-cwm-v7** (failed): Repo-level CWM v7 (= v6 restart with eval_steps=500 fix). SWE-bench repo-level, Qwen3-4B LoRA, batch_size=1, grad_accum=32. 与 repo-level-cls-home 配对验证 complexity-dependent advantage (C1 claim).\\\\n\\\\n## 趋势\\\\n成功 30 / 负向 3 / 失败 12 / 共 46\\\\nfail_f1: 87.13 ↓（近 3 次 success）\\\\nfail_precision: 83.3 ↓（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nhome-1x5090: 无 GPU 信息\\\\nseetacloud-westd-4x5090: 无 GPU 信息\\\\nwestd-48478: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- trace-then-judge: 训练失败 — unknown\\\\n- repo-level-cls: 训练失败 — unknown\\\\n- repo-level-cwm: 训练失败 — unknown\\\\n- repo-level-cls-v2: 训练失败 — unknown\\\\n- repo-level-cwm-v2: 训练失败 — unknown\\\\n- repo-level-cls-v3: 训练失败 — unknown\\\\n- repo-level-cwm-v3: 训练失败 — unknown\\\\n- repo-level-cls-home: 训练失败 — unknown\\\\n- repo-level-cwm-v4: 已被终止 — unknown\\\\n- repo-level-cwm-v5: 训练失败 — unknown\\\\n- repo-level-cwm-v6: 训练失败 — unknown\\\\n- repo-level-cwm-v7: 训练失败 — unknown\\\\n- repo-level-cwm-v8: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 1720\n…[truncated 61 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 2058
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-12T22:15:40.823919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/ROADMAP.md\\\", \\\"content\\\": \\\"# exec-sim-repair-verifier — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-12 22:09 UTC | 更新原因: 更新实验版本：CWM v7→v9, CLS-home→v4；修正 GPU 状态；清理已完成任务\\\\n\\\\n## 核心方向\\\\nTask reformulation: execution simulation 从 generation → classification。**函数级两者等价（F1 diff <0.5pp, TOST p=0.007），核心假说转为 complexity-dependent advantage——repo-level 是决胜战场。** 详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（post-MVP，repo-level 训练中 + 论文写作 Step 2）\\\\n- **Story pillars**:\\\\n  - Pillar 1 (Complexity-Dependent Advantage): ⏳ CLS v4 (home cuda:0) + CWM v9 (seetacloud cuda:2) 并行训练中\\\\n  - Pillar 2 (Function-level Equivalence): ✅ TOST 等价 (gap=-0.45pp, p=0.007, ±2pp margin)\\\\n  - Pillar 3 (Oracle Frontier): ✅ 模拟数据 + block-corr 实证验证\\\\n  - Pillar 4 (Model-Size Scaling): ✅ 8B 3-seed，accuracy gap=2.43pp (bootstrap p=0.0066)\\\\n- **Paper Agent**: Step 2 进行中（图表生成 + 模板下载）\\\\n\\\\n## GPU 状态\\\\n\\\\n### seetacloud-westd-4x5090 (4× RTX 5090, cgroup 360GB RAM 限制)\\\\n| GPU | 实验 | 状态 |\\\\n|-----|------|------|\\\\n| cuda:0 | 空闲 | ⚪ cgroup 限制无法并行训练 |\\\\n| cuda:1 | 空闲 | ⚪ cgroup 限制无法并行训练 |\\\\n| cuda:2 | repo-level-cwm-v9 (PID 95806, ~20h) | 🟢 训练中 |\\\\n| cuda:3 | 空闲 | ⚪ cgroup 限制无法并行训练 |\\\\n\\\\n### home-1x5090 (1× RTX 5090, 非容器, 62GB RAM)\\\\n| GPU | 实验 | 状态 |\\\\n|-----|------|------|\\\\n| cuda:0 | repo-level-cls-v4 (提交中/刚启动) | 🟡 启动中 |\\\\n\\\\n## 已完成实验摘要\\\\n\\\\n### 4B Function-level (per-test)\\\\n| 实验 | Accuracy | Fail F1 | Seeds |\\\\n|------|----------|---------|-------|\\\\n| CLS | 87.5-88.1% | 87.6-89.1% | 5 seeds |\\\\n| CWM | 86.2-87.6% | 87.3-87.9% | 5 seeds |\\\\n| **Gap** | 1.25pp (p=0.025) | | Bootstrap CI [0.46, 2.04] |\\\\n\\\\n### 8B Scaling (accuracy)\\\\n| 实验 | seed42 | seed123 | seed456 | Mean |\\\\n|------|--------|---------|---------|------|\\\\n| cls8b | 90.48% | 89.37% | 88.31% | 89.39% |\\\\n| cwm8b | 87.67% | 86.98% | 86.24% | 86.96% |\\\\n| **Gap** | 2.81pp | ~2.4pp | 2.07pp | **~2.43pp*\n…[truncated 2398 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 2008
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-12T22:15:54.156007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-25b6c083/db03d310-7837-4e8e-af23-6a71d6bbab45/tool-results/mcp-agent-ml-research-read_registry-1778624138231.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result['data']\nfor exp in experiments:\n    exp_id = exp.get('exp_id', 'N/A')\n    status = exp.get('status', 'N/A')\n    conclusion = exp.get('conclusion', '')\n    hypothesis = exp.get('hypothesis', '')[:80] if exp.get('hypothesis') else ''\n    server = exp.get('spec', {}).get('server', '') if exp.get('spec') else ''\n    gpu = exp.get('gpu_id', '')\n    print(f'{exp_id} | {status} | {conclusion} | gpu={gpu} | server={server} | {hypothesis}')\n\"\n",
+              "description": "Extract key fields from registry experiments"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-12T22:15:55.010459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    exp_id = exp.get('exp_id', 'N/A')\n             ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Bash",
+            "elapsed_ms": 854
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-12T22:15:55.010829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-12T22:15:55.011039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-account…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-12T22:15:55.412826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "paper_framing.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-12T22:15:55.413270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-account…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-12T22:16:02.438167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-25b6c083/db03d310-7837-4e8e-af23-6a71d6bbab45/tool-results/mcp-agent-ml-research-read_registry-1778624138231.txt | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\nresult = json.loads(raw['result'])\nexperiments = result['data']\n# experiments might be a dict\nif isinstance(experiments, dict):\n    for exp_id, exp in experiments.items():\n        status = exp.get('status', 'N/A') if isinstance(exp, dict) else 'N/A'\n        conclusion = exp.get('conclusion', '') if isinstance(exp, dict) else ''\n        hypothesis = (exp.get('hypothesis', '') or '')[:80] if isinstance(exp, dict) else ''\n        server = ''\n        if isinstance(exp, dict) and exp.get('spec'):\n            server = exp['spec'].get('server', '')\n        gpu = exp.get('gpu_id', '') if isinstance(exp, dict) else ''\n        print(f'{exp_id} | {status} | {conclusion} | gpu={gpu} | server={server} | {hypothesis}')\nelif isinstance(experiments, list):\n    for exp in experiments:\n        if isinstance(exp, str):\n            print(exp)\n        else:\n            print(type(exp))\nelse:\n    print(type(experiments))\n    print(str(experiments)[:500])\n\"\n",
+              "description": "Parse registry with dict handling"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-12T22:16:02.539056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiments | N/A |  | gpu= | server= | \ncount | N/A |  | gpu= | server= | \ntotal | N/A |  | gpu= | server= | \nbaseline | N/A |  | gpu= | server= |"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-12T22:16:10.120472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-25b6c083/db03d310-7837-4e8e-af23-6a71d6bbab45/tool-results/mcp-agent-ml-research-read_registry-1778624138231.txt | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\nresult = json.loads(raw['result'])\ndata = result['data']\nexps = data.get('experiments', [])\nprint(f'Total experiments: {len(exps)}')\nfor exp in exps:\n    exp_id = exp.get('exp_id', 'N/A')\n    status = exp.get('status', 'N/A')\n    conclusion = exp.get('conclusion', '')\n    gpu = exp.get('gpu_id', '')\n    server = ''\n    if exp.get('spec') and isinstance(exp['spec'], dict):\n        server = exp['spec'].get('server', '')\n    hyp = (exp.get('hypothesis', '') or '')[:80]\n    print(f'{exp_id} | {status} | {conclusion} | gpu={gpu} | {server} | {hyp}')\n\"\n",
+              "description": "Parse registry experiments list"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-12T22:16:10.372411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 9, in <module>\n    exp_id = exp.get('exp_id', 'N/A')\n             ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\nTotal experiments: 48"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Bash",
+            "elapsed_ms": 251
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-12T22:16:16.309588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-25b6c083/db03d310-7837-4e8e-af23-6a71d6bbab45/tool-results/mcp-agent-ml-research-read_registry-1778624138231.txt | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\nresult = json.loads(raw['result'])\ndata = result['data']\nexps = data.get('experiments', {})\nif isinstance(exps, dict):\n    for exp_id, exp in exps.items():\n        if isinstance(exp, dict):\n            status = exp.get('status', 'N/A')\n            conclusion = exp.get('conclusion', '')\n            gpu = exp.get('gpu_id', '')\n            print(f'{exp_id} | {status} | {conclusion} | gpu={gpu}')\n        else:\n            print(f'{exp_id} | {type(exp).__name__} | {str(exp)[:50]}')\nelif isinstance(exps, list):\n    print(f'List of {len(exps)} items, first type: {type(exps[0]).__name__}')\n    print(str(exps[0])[:200])\n\"\n",
+              "description": "Parse registry - handle dict keys"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-12T22:16:16.460694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "repo-level-cls-v4 | RUNNING |  | gpu=\nrepo-level-cls-v3 | DONE | failed | gpu=\nrepo-level-cls-v2 | DONE | failed | gpu=\nrepo-level-cwm-v7 | DONE | failed | gpu=\nrepo-level-cls-home | DONE | failed | gpu=\nrepo-level-cwm-v9 | RUNNING |  | gpu=\nrepo-level-cwm-v8 | DONE | failed | gpu=\nrepo-level-cwm-v6 | DONE | failed | gpu=\ncwm8b-seed123 | DONE | success | gpu=\ncls8b-seed123 | DONE | success | gpu=\ncls8b-eval-seed123 | DONE | success | gpu=\ncls8b-eval-seed42 | DONE | success | gpu=\nrepo-level-cwm-v4 | DONE | killed | gpu=\nrepo-level-cwm-v2 | DONE | failed | gpu=\nrepo-level-cwm-v5 | DONE | failed | gpu=\nmatched-seed-8b-predictions | DONE | success | gpu=\nrepo-level-cwm-v3 | DONE | failed | gpu=\ncwm-seed789 | DONE | success | gpu=\ncls8b-seed456 | DONE | success | gpu=\ncwm8b-seed456 | DONE | success | gpu=\n5-paired-clustered-bootstrap | DONE | success | gpu=\nrepo-level-cwm | DONE | failed | gpu=\nrepo-level-cls | DONE | failed | gpu=\ncwm-seed0 | DONE | success | gpu=\nper-test-precision-recall | DONE | success | gpu=\ncwm-seed123 | DONE | success | gpu=\ncwm-seed456 | DONE | success | gpu=\ncls-seed0 | DONE | success | gpu=\ncls-seed789 | DONE | success | gpu=\ntraj-level-finetuned | DONE | success | gpu=\ntraj-level-seed456 | DONE | success | gpu=\ntraj-level-seed789 | DONE | success | gpu=\ntraj-level-seed0 | DONE | success | gpu=\nper-test-majority-voting | DONE | negative | gpu=\nblock-corr-empirical | DONE | success | gpu=\nmodel-size-scaling-cwm8b | DONE | success | gpu=\nmodel-size-scaling-cls8b | DONE | success | gpu=\nllm-judge-32b-zeroshot | DONE | success | gpu=\nllm-judge-8b-zeroshot | DONE | success | gpu=\ntraj-level-seed123 | DONE | success | gpu=\noracle-f2p-stratified | DONE | success | gpu=\ntrace-then-judge | DONE | failed | gpu=\nmvp-b-train | DONE | success | gpu=\nmulti-seed-core | DONE | success | gpu=\ncwm-baseline | DONE | negative | gpu=\nmvp-a-oracle-sim | DONE | success | gpu=\np2p-regression-rate | DONE | negative | gpu=\nmvp-b-data-prep | DONE | success | gpu="
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-12T22:16:20.980170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-12T22:16:21.482771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/memory.md\\\", \\\"content\\\": \\\"# Memory — exec-sim-repair-verifier\\\\n\\\\n## 关键发现\\\\n\\\\n### [2026-05-12] Val 截断与 Label 偏差（显著）\\\\n- 20.2% val 样本 (1883/9335) 在 max_seq_length=2048 处被截断\\\\n- **fail 截断率 31.0% vs pass 截断率 16.7%**（1.86 倍，Chi²=213.27, p≈0）\\\\n- 根因：mutation type 驱动。`mutation_operator_swap` fail 79.6% 被截断（极端偏差）；`mutation_off_by_one` 反向\\\\n- fail 样本含 traceback，平均 token 更长（2092 vs 1645）\\\\n- **影响**：val loss 低估 fail 预测难度，eval 指标系统性偏乐观\\\\n- **论文必须说明**：报告截断率 + 分 mutation type 的截断分布 + 讨论对指标的影响方向\\\\n\\\\n### [2026-05-12] Matched-seed Error Overlap（配对 seed 分析，3 seeds）\\\\n- 3 matched pairs: seed 0/42/456, 每组 1890 samples\\\\n- Mean CLS acc: 87.83%, Mean CWM acc: 87.35%\\\\n- **Oracle accuracy: 90.14%**（+2.31pp over CLS, +2.79pp over CWM）\\\\n- Complementarity rate: 34%（34% 的错误只被一个模型犯）\\\\n- Jaccard overlap: 66%（大部分困难样本对两种方法都难）\\\\n- CWM 独有错误率 18.61% > CLS 独有错误率 15.42%\\\\n- 跨 seed 稳定：complementarity 0.30-0.39 范围\\\\n- **Claim 3 支持**：两种方法有互补错误模式，Oracle 融合可提升 2.3-2.8pp\\\\n- 与之前非配对分析一致（Oracle 90.63% vs 配对 90.14%），估计可靠\\\\n- **注意**：这是函数级数据，repo-level 需重新分析\\\\n\\\\n### [2026-05-12] 8B CLS vs CWM Bootstrap — 两种分析方法澄清\\\\n- **seed-level paired analysis**: gap=2.42pp, t=11.31, p=0.0039, Cohen's d=6.53, CI [2.07, 2.81]\\\\n- **per-instance clustered bootstrap**: gap=2.26pp, t=8.60, p=0.0066, CI [1.80, 2.71], Cohen's d=4.97\\\\n- 两种方法都使用正确的 seed123 值 89.37%（已验证，`8b_scaling_bootstrap_results.json` 确认）\\\\n- 论文建议用 clustered bootstrap (2.26pp) 作为主报告值\\\\n- ROADMAP 中 \\\\\\\"89.37-89.52%*\\\\\\\" 已修正为 \\\\\\\"89.37%\\\\\\\"，89.52 是 4B CLS seed123（非 8B）\\\\n- Scaling: gap 从 4B 1.25pp → 8B 2.26-2.42pp, P(8B>4B)=0.988\\\\n\\\\n### [2026-05-12] 4B CLS vs CWM Paired Bootstrap\\\\n- gap=1.25pp, paired t=2.77, p=0.0253 (one-sided), CI [0.46, 2.04], Cohen's d=1.24\\\\n- TOST 4B ±2pp: p=0.0855（不等价——差异是真实的，不是噪声）\\\\n\\\\n### [2026-05-12] Block-correlation 经验验证\\\\n- ICC=0.191, DEFF=3.97, p<0.0001\\\\n- All-correct 观测/期望比=2.81×，error s\n…[truncated 2868 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 502
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-12T22:16:21.934762+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "paper_framing.md",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-12T22:16:29.421025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — exec-sim-repair-verifier\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR May 25, 2026)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Extended fallback: ICSE 2027 (Jun 23 abstract, Jun 30 paper)\\\\n- Deadline: ARR May 25, 2026 (14 days from project start)\\\\n\\\\n## Core Claims (3 conditions)\\\\n\\\\n1. **Complexity-Dependent Reformulation Advantage**: Binary pass/fail classification and execution output generation (CWM-style) achieve equivalent accuracy on simple function-level code (4B: F1 diff 0.9pp), but classification scales better with model size (8B 3-seed mean accuracy gap=2.43pp; seed42: 2.81pp, cls 90.48% vs cwm 87.67%) and to repo-level complexity where CWM failure modes—token-budget exhaustion and string-value prediction errors—dominate. Zero-shot LLM-as-judge baselines (8B: 64.4%, 32B NF4: 71.7%) are far below fine-tuned 4B (88.4%), confirming fine-tuning necessity. (Validated function-level near-null + 8B scaling evidence; repo-level SWE-bench experiments in progress. Fallback: if repo-level also null, reframe to efficiency-equivalent accuracy—same F1 with 1-token vs N-token inference.)\\\\n\\\\n2. **Diagnostic Granularity At Equivalent Accuracy**: Per-test classification achieves equivalent variant-level accuracy to trajectory-level scoring (TOST equivalence test p=0.007, ±2pp margin; 5-seed pooled gap -0.40pp, 95% CI [-1.32, +0.52]) while providing actionable diagnostic information (which specific tests a patch fails). The per-test formulation gains diagnostic granularity without sacrificing accuracy—potentially enabling targeted re-repair and oracle-based test selection. (Evidence: 5-paired clustered bootstrap CI, 114 clusters, 10000 resamples. Paper must justify ±2pp margin: in code verification, 2pp variant-level difference is negligible given ICC=0.191/DEFF=3.97. Seeds 789\n…[truncated 4381 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 7486
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-12T22:16:29.722566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-25b6c083/db03d310-7837-4e8e-af23-6a71d6bbab45/tool-results/mcp-agent-ml-research-read_registry-1778624138231.txt | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\nresult = json.loads(raw['result'])\ndata = result['data']\nexps = data.get('experiments', {})\n# Get details for RUNNING experiments\nfor exp_id in ['repo-level-cls-v4', 'repo-level-cwm-v9']:\n    exp = exps.get(exp_id, {})\n    if isinstance(exp, dict):\n        print(f'=== {exp_id} ===')\n        for k in ['status', 'hypothesis', 'spec', 'gpu_id', 'server', 'created_at', 'updated_at', 'plan_id']:\n            print(f'  {k}: {exp.get(k, \\\"\\\")}')\n        print()\n\"\n",
+              "description": "Get details of running experiments"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-12T22:16:29.824113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== repo-level-cls-v4 ===\n  status: RUNNING\n  hypothesis: CLS v4: 基于 v3 代码（DataCollator 已修复），home-1x5090 重提交。磁盘已修复（89%→64%）。save_steps=200, eval_steps=200。验证 repo-level complexity-dependent CLS advantage (C1 claim)。\n  spec: {'command': 'nohup python3 train_repo_verifier.py --output_dir /home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/ --no_wandb', 'server': 'home-1x5090', 'gpu': 'cuda:0', 'pid': 2885139, 'data_path': '/home/sonny/exec-sim-repair-verifier/data/swebench_full/', 'data_count': 70748, 'model_name': 'Qwen/Qwen3-4B', 'seed': 42, 'save_strategy': 'steps', 'save_steps': 200, 'eval_strategy': 'steps', 'eval_steps': 200, 'save_total_limit': 3, 'load_best_model_at_end': True, 'log_path': '/tmp/repo-level-cls-v3_stdout.log', 'checkpoint_path': '/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/'}\n  gpu_id: \n  server: \n  created_at: 2026-05-12T17:17:08.066Z\n  updated_at: 2026-05-12T22:14:24.569Z\n  plan_id: \n\n=== repo-level-cwm-v9 ===\n  status: RUNNING\n  hypothesis: CWM v9: 修复 eval_steps/save_steps 对齐 (both=100), 修复 compute_loss OOM (pop labels before model forward), nohup 启动防 tmux kill\n  spec: {'command': 'CUDA_VISIBLE_DEVICES=2 python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_repo_cwm_v9/ --no_wandb --save_steps 100', 'server': 'seetacloud-westd-4x5090', 'gpu': 'cuda:2', 'pid': 95806, 'log_path': '/tmp/repo-level-cwm-v9_stdout.log', 'submitted_at': '2026-05-12T21:30:54.884Z', 'submitted_via': 'submit_training_job', 'backend': 'tmux', 'account': 'root', 'data_path': '/home/sonny/exec-sim-repair-verifier/data/swebench_full/', 'data_count': 70748, 'model_name': 'Qwen/Qwen3-4B', 'seed': 42, 'save_steps': 100, 'eval_steps': 100, 'lora_rank': 16, 'lora_alpha': 32, 'batch_size': 1, 'grad_accumulation': 32, 'lr': 0.0002, 'epochs': 3, 'max_seq_length': 2048, 'checkpoint_path': '/root/autodl-tmp/checkpoints_repo_cwm_v9/'}\n  gpu_id: \n  server: \n  created_at: 2026-05-12T21:30\n…[truncated 58 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-12T22:16:34.956085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__list_workers",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-12T22:16:34.956518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-12T22:16:41.685595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "exec-sim-repair-verifier",
+              "section": "execution"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-12T22:16:41.936854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"exec-sim-repair-verifier\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"project_path\\\": \\\"/home/sonny/exec-sim-repair-verifier\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\"}, {\\\"account\\\": \\\"sonny\\\", \\\"server\\\": \\\"home-1x5090\\\"}, {\\\"account\\\": \\\"sonny\\\", \\\"server\\\": \\\"westd-48478\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 251
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-12T22:16:41.937301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "status": "running"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-12T22:16:41.987947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_ssh_cwm-v9-dryrun-submit_20260512T212552\\\", \\\"task_type\\\": \\\"ssh:cwm-v9-dryrun-submit\\\", \\\"project\\\": \\\"exec-sim-repair-verifier\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-12T21:25:53.028012+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-12T22:16:45.051415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-12T22:16:45.051832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-12T22:16:48.213674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ssh_cwm-v9-dryrun-submit_20260512T212552",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-12T22:16:48.264277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_cwm-v9-dryrun-submit_20260512T212552\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"ssh:cwm-v9-dryrun-submit\\\", \\\"project\\\": \\\"exec-sim-repair-verifier\\\", \\\"started_at\\\": \\\"2026-05-12T21:25:53.028012+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"update_registry\\\", \\\"update_registry\\\", \\\"update_registry\\\", \\\"ssh_execute\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"## 汇报\\\\n\\\\n### 1. Dry-run 结果: **成功** ✅\\\\n- checkpoint-2/, checkpoint-4/, checkpoint-5/ 均正常产出\\\\n- 5 步训练 40.6 秒，GPU 峰值 23.3GB/32GB，无 OOM\\\\n\\\\n### 2. 正式训练\\\\n- **PID**: 95806 (bash wrapper: 95805)\\\\n- **GPU**: cuda:2 (CUDA_VISIBLE_DEVICES=2)\\\\n- **日志**: `/tmp/repo-level-cwm-v9_stdout.log`\\\\n- 当前处于预处理阶段 (~6 分钟)\\\\n\\\\n### 3. 修复内容\\\", \\\"turn_count\\\": 25}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-12T22:16:52.696649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__poll_cron",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-12T22:16:52.797520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-12T22:17:59.055448+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the context needed to write the handoff.\n\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- **seetacloud-westd-4x5090 只能单进程训练**：cgroup 360GB RAM 限制，两个 4B 模型 + 70k 长序列会 OOM SIGKILL（D028 教训，repo-level-cls-v3 就是这么死的）\n- **CWM v6/v7 被平台 SIGTERM 杀过两次**：seetacloud 长训练有被外部 kill 的风险，save_steps 必须足够小（当前 v9 设 100）\n- **gpu_ids 白名单**：config 里是 cuda:0-3，但 seetacloud 受 cgroup 限制实际只能用一张。home 只有 cuda:0\n- **repo-level CLS 日志路径有误**：spec 里 log_path 写的是 `/tmp/repo-level-cls-v3_stdout.log`（v3 的路径），实际是 v4 实验，查日志时注意\n- **nohup 启动的 CLS v4（PID 2885139）没走 submit_training_job**：spec 里没有 `submitted_via: submit_training_job`，意味着可能没有 cron 自动监控。reconcile_crons 只识别到 cwm-v9 和 cls-v4 两个 cron，但 cls-v4 的 cron 刚创建 66s，需确认是否正常挂载\n- **ARR May 25 deadline = 13 天**，repo-level 是决胜实验，不能再失败\n\n### 2. 🖥️ 基础设施快照\n\n**seetacloud-westd-4x5090** (4× RTX 5090, cgroup 360GB)\n- 工作目录：`/home/sonny/exec-sim-repair-verifier`（代码）+ `/root/autodl-tmp/`（模型/checkpoint）\n- Python：`/root/miniconda3/bin/python`（conda base，不是 venv）\n- 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`\n- Checkpoint 输出：`/root/autodl-tmp/checkpoints_repo_cwm_v9/`\n- 活跃进程：repo-level-cwm-v9, PID 95806, tmux session, cuda:2\n- 日志：`/tmp/repo-level-cwm-v9_stdout.log`\n- W&B：`--no_wandb`（两个 RUNNING 实验都没开 W&B）\n\n**home-1x5090** (1× RTX 5090, 62GB RAM, 非容器)\n- 工作目录：`/home/sonny/exec-sim-repair-verifier`\n- Python：系统 python3（具体路径未确认）\n- Checkpoint 输出：`/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`\n- 活跃进程：repo-level-cls-v4, PID 2885139, nohup, cuda:0\n- 日志：`/tmp/repo-level-cls-v3_stdout.log`（路径名是 v3 但实际跑 v4）\n\n**westd-48478**：config 里有（account: sonny），本轮未使用，D040 提到可用于 extra seeds\n\n**Cron**：reconcile 显示 2 个活跃 cron（repo-level-cwm-v9: still running pid=95806; repo-level-cls-v4: 刚创建 66s）\n\n**Worker**：1 个 running（worker_ssh_cwm-v9-dryrun-submit，已跑 25 轮，dry-run 成功，正式训练已提交，应该快完成了）\n\n### 3. 📊 当前状态\n\n**刚完成**：CWM v9 dry-run 成功并提交正式训练（Worker 还在 running 状态，应该马上结束）。CLS v4 也已提交。\n\n**RUNNING 实验**：\n- `repo-level-cwm-v9`：seetacloud cuda:2, PID 95806, 预估 ~20h。Qwen3-4B LoRA, save/eval_steps=100, batch=1, grad_accum=32, 3 epochs, 70748 样本\n- `repo-level-cls-v4`：home cuda:0, PID 2885139, 预估 ~12h。Qwen3-4B, save/eval_steps=200\n\n**等待中**：\n- Worker `worker_ssh_cwm-v9-dryrun-submit` 回调（即将完成）\n- 两个训练的 cron 监控回调（训练完成时触发）\n- 无 pending Director 决策\n\n**历史**：48 个实验，30 success / 3 negative / 12 failed / 1 killed / 2 running。CWM 已迭代到 v9（v1-v8 全部失败），CLS 到 v4（v1-v3 失败）。\n\n### 4. 📋 待办（条件触发式）\n\n- **Worker cwm-v9-dryrun-submit 回调到达** → 确认训练已成功启动，更新 report.md，不需要额外操作\n- **repo-level-cwm-v9 cron 回调（~20h 后）** → 按 on-experiment-done skill 分叉处理；如果 success，spawn Worker 跑 eval + paired bootstrap；如果 failed，诊断日志（第 10 次失败需要认真 root cause）\n- **repo-level-cls-v4 cron 回调（~12h 后）** → 同上；CLS 比 CWM 先完成，但 eval 需要等两个都完成才能做 paired comparison\n- **两个都 success** → spawn Worker 准备 repo-level eval 脚本 + paired bootstrap（D008 Go/No-Go）：F1 diff ≥3pp 全力推 EMNLP Main, 1-3pp 加 seeds, <1pp kill C1 pivot Plan B\n- **训练等待期（CPU 任务）** → 可以并行：(1) 准备 repo-level eval 脚本, (2) Paper Agent Step 2 继续（图表生成 + 模板下载）, (3) westd-48478 如有空闲 GPU 可跑 extra seeds（D040）\n- **如果 CWM v9 再次被 SIGTERM** → 不要再在 seetacloud 重试。向 Director 建议：要么用 home 跑（但只有 1 卡且被 CLS 占用），要么申请新 GPU 资源\n\n### 5. 🎯 战略上下文\n\n**核心论文叙事**：Task reformulation（execution simulation 从 generation → classification）。函数级两者等价（F1 diff <0.5pp），核心假说是 **complexity-dependent advantage**——repo-level 复杂代码上 CLS 应该胜出，因为 CWM 会遇到 token-budget exhaustion 和 string-value prediction errors。\n\n**决策链关键节点**：\n- D008: Repo-level Go/No-Go（待 CLS v4 + CWM v9 结果）\n- CWM baseline negative (函数级) → Director 选 Plan B：追加 repo-level 验证 complexity-dependent advantage\n- 4B gap 1.25pp, 8B gap 2.43pp → \"scaling widens gap\" 叙事成立\n- Paper framing 3 个 claims：C1 complexity-dependent（repo-level 决胜），C2 diagnostic granularity（已验证），C3 accuracy-utility frontier（已验证）\n\n**最容易判断错的事**：\n1. **不要把 CWM v9 再失败等同于\"方法论失败\"**——v6/v7 是被平台 SIGTERM 杀的，代码本身没问题。v8 也是 failed 但原因是 eval_steps 对齐 bug。v9 是真正修好了所有已知问题的版本\n2. **seetacloud 只能单卡训练**——虽然 config 里有 4 个 GPU，cgroup 限制导致并行会 OOM\n3. **两个实验都没开 W&B**（--no_wandb），cron 监控只能靠进程存活检测 + 日志，不能用 fetch_wandb_metrics\n4. **CLS v4 的 log_path 写错了**（写成 v3 的路径），查日志时要注意实际路径\n5. **Timeline 紧张**：bottleneck 是 CWM ~20h，之后 eval+stats ~3h + paper patch ~1d + 终审 ~1d = 总计 ~4-5d，ARR May 25 还有 13 天，有余量但不能再出大岔子\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-seed456"
+          },
+          "id": "event-000101"
+        }
+      ],
+      "message_count": 42
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-cls8b-seed456-20260512t221759-057159.md"
+}

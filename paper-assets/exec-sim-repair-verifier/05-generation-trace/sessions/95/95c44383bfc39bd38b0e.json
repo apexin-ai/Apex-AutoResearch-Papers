@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95c44383bfc39bd38b0e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor 6144 hang watch",
+  "task_key": "worker_monitor_6144-hang-watch_20260514T114807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_6144-hang-watch_20260514T114807_result.json",
+    "occurrence": 1,
+    "bytes": 1949,
+    "sha256": "5a9fc4bad8b99e7670df45c668311f4e6794119f3b85575471b6e25e7e69b181"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务都有结果了。\n\n## 结果汇报\n\n### 任务 A: 进程监控 — 顺利通过危险区间\n\n| 检查 | 时间 (UTC) | Sample Index | Acc | 状态 |\n|------|-----------|-------------|-----|------|\n| #1 | 04:48:34 | 960/9335 | 88.1% | 正常 |\n| #2 | 04:49:26 | 1120/9335 | 88.1% | 进入危险区 |\n| #3 | 04:50:24 | 1320/9335 | 87.0% | **已通过 1200** |\n\n**结论：进程正常通过 1100-1200 危险区间，无 hang。** 速度稳定在 ~10-14s/40样本。\n\n---\n\n### 任务 B: Token 长度分析\n\n**整体分布：**\n| 统计 | 值 |\n|------|-----|\n| Total | 9335 |\n| Mean | 1251.7 |\n| Median | 397.0 |\n| P90 | 4865 |\n| P95 | 4957 |\n| P99 | 5406 |\n| Max | 8768 (sympy__sympy-14248) |\n| Min | 196 |\n\n**分桶统计：**\n| 区间 | 数量 | 占比 |\n|------|------|------|\n| 0-512 | 5599 | 60.0% |\n| 512-1024 | 898 | 9.6% |\n| 1024-2048 | 955 | 10.2% |\n| 2048-3072 | 477 | 5.1% |\n| 3072-4096 | 0 | 0.0% |\n| 4096-5120 | 1171 | 12.5% |\n| 5120-6144 | 199 | 2.1% |\n| **6144-8192** | **27** | **0.3%** |\n| **8192-16384** | **9** | **0.1%** |\n\n**>6144 token（被截断）：36 个样本 (0.4%)**，全部来自 `sympy__sympy-14248`。\n\n**>4096 token：1406 个样本 (15.1%)**，其中绝大多数也是 `sympy__sympy-14248`。\n\n**1100-1200 区间分析：**\n- 最长：index=1179, 6220 tokens (`sympy__sympy-14248`)\n- 区间内有多个 sympy-14248 样本 (4803-6220 tokens) 和短样本 (196-1279 tokens) 交替出现\n- 6220 tokens 在 max_seq_length=6144 内会被截断，但不会导致 hang\n\n**关键发现：** 分布呈双峰态——60% 的样本 <512 tokens，但有 15% 集中在 4096-5120 区间。3072-4096 区间是空的（0 个样本），说明长样本几乎都来自同一个 instance (`sympy__sympy-14248`) 的大 diff。\n\n**Top 20 最长样本全部是 `sympy__sympy-14248`**，该 instance 的 code diff 特别大，贡献了所有超长样本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-6144-hang-watch.md"
+}

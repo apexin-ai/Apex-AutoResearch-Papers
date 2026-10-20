@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d24483b3a2c82460c42",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check westd full status v2",
+  "task_key": "worker_check_westd-full-status-v2_20260514T110516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd-full-status-v2_20260514T110516_result.json",
+    "occurrence": 1,
+    "bytes": 2446,
+    "sha256": "e7d77d9dc179060debbc5ae69af48d042f8295b25afb4e823172cebf1e8df390"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态汇总\n\n### GPU 占用\n\n| GPU | 进程 | PID | 显存 | GPU利用率 |\n|-----|------|-----|------|----------|\n| cuda:0 | CWM seed123 eval (4B, ckpt-500) | 195531 | 12988/32607 MiB | 87% |\n| cuda:1 | CWM v12 eval (4B, ckpt-500) | 195668 | 12988/32607 MiB | 88% |\n| cuda:2 | CWM 8B 训练 (seed42) | 210573 | 31534/32607 MiB | 97% |\n| cuda:3 | CLS 8B 训练 (seed123) | 210657 | 23596/32607 MiB | 61% |\n\n### CWM Eval 进度\n\n**无法直接获取进度** — 两个 eval 进程的 stdout 输出到 pipe（非文件），输出目录 `repo_cwm_seed123_conda_eval/` 和 `repo_cwm_v12_conda_eval/` 均为空。进程启动于 09:03，已运行 **~10 小时**。GPU 利用率 87-88% 说明仍在正常推理（非挂起），但 10 小时无输出文件有些异常（可能是脚本在最后才写文件，或者 batch_size=8 + max_new_tokens=1024 的生成确实很慢）。\n\n### 8B CWM 训练 (GPU 2)\n\n- **当前 step**: 800/6633 (12%)，正在做 step 800 的 eval（eval 进度 83%，7784/9335）\n- **速率**: ~12s/step\n- **最新 loss**: 1.4913 (epoch 0.36)\n- **eval_loss**: 0.3174 (step 800)\n- **ETA**: 纯训练剩余 ~19h，加上 eval 开销 → 预计还需 **24-30h**\n- **Checkpoints**: 300, 400, 500, 600, 700\n\n### 8B CLS seed123 训练 (GPU 3)\n\n- **当前 step**: ~1562/6633 (23%)\n- **速率**: ~8.2s/step\n- **最新 loss**: 0.8878 (step 1550, epoch 0.70)\n- **eval_loss 趋势**: 0.086→0.103→0.109→0.093→**0.415**→0.306→0.165（step 1000 有 spike，之后恢复下降）\n- **ETA**: 纯训练剩余 ~11.5h + eval 开销 → 预计还需 **~17h**\n- **Checkpoints**: 200, 400, 600, 800, 1000, 1200, 1400\n\n### Checkpoint 备份\n\n| 备份目录 | 已备份 checkpoints |\n|---------|-------------------|\n| checkpoints_backup_cls_8b_seed123 | 200, 800, 1000, 1200, 1400 (5个) |\n| checkpoints_backup_cwm_8b | 300, 400, 500, 600, 700 (5个) |\n\n`backup.log` 为空。`tmux ls` 无法通过 read_only 执行，无法确认 auto-backup session 状态。\n\n### 磁盘\n\n```\n/root/autodl-tmp: 131G/250G used, 120G available (53%)\n```\n\n### 注意事项\n\n1. **CWM eval 10h 无输出** — 建议确认进程是否正常。可以 `ssh_execute` 里 `tmux ls` 看 eval session 输出，或检查 eval 脚本是否在最后才写文件。\n2. **CLS 8B eval_loss step 1000 spike** (0.093→0.415) — 已在后续恢复到 0.165，但需关注是否再次出现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-full-status-v2.md"
+}

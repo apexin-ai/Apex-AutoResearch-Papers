@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e88bf10cc8d2a4051d13",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh qwen eta checkpoint verify",
+  "task_key": "worker_ssh_qwen-eta-checkpoint-verify_20260520T093039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_qwen-eta-checkpoint-verify_20260520T093039_result.json",
+    "occurrence": 1,
+    "bytes": 2073,
+    "sha256": "c4679d9ff5300d78c8a19811544383690c7bc05e144a11c09bec6116a1b2ecb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。以下是原始结果和计算所需的关键数据。\n\n---\n\n## s123 Checkpoint 时间戳 (CST +0800)\n\n| Checkpoint | Modify Time | 备注 |\n|-----------|-------------|------|\n| 300 | 2026-05-20 **05:51:00** | 训练09:30才启动，此为旧 run 残留 |\n| 900 | 2026-05-20 **15:31:21** | |\n| 1000 | 2026-05-20 **16:10:46** | |\n| 1100 | 2026-05-20 **16:50:16** | |\n| 1200 | 2026-05-20 **17:29:48** | |\n\n**100-step 间隔:**\n- 900→1000: **39m25s** (2365s) → 23.65s/step\n- 1000→1100: **39m30s** (2370s) → 23.70s/step\n- 1100→1200: **39m32s** (2372s) → 23.72s/step\n\n## s456 Checkpoint 时间戳 (CST +0800)\n\n| Checkpoint | Modify Time |\n|-----------|-------------|\n| 300 | 2026-05-20 **11:32:52** |\n| 900 | 2026-05-20 **15:26:19** |\n| 1000 | 2026-05-20 **16:05:03** |\n| 1100 | 2026-05-20 **16:43:53** |\n| 1200 | 2026-05-20 **17:22:43** |\n\n**100-step 间隔:**\n- 900→1000: **38m44s** (2324s) → 23.24s/step\n- 1000→1100: **38m50s** (2330s) → 23.30s/step\n- 1100→1200: **38m50s** (2330s) → 23.30s/step\n\n## 训练启动时间\n\n- s123: `2026-05-20 09:30:05` — Loaded train=70748, val=9335\n- s456: `2026-05-20 09:30:08` — Loaded train=70748, val=9335\n\n## tqdm 当前进度\n\n**s123** (tail): step **1207**/6633, elapsed 7:55:00, ~12s/it (纯训练), tqdm ETA ~17:55:30\n**s456** (tail): step **1243**/6633, elapsed 7:54:51, ~12s/it (纯训练), tqdm ETA ~17:48:36\n\n每 100 步触发一次 val eval（9335 samples @ ~8 it/s ≈ 19min）+ checkpoint save，这就是 tqdm 报 12s/it 但 wall-clock 实际 ~23.5s/step 的原因。\n\n## Total steps: **6633**（tqdm 分母）\n\n## 真实 ETA 计算\n\n以 wall-clock rate（含 eval+save 开销）：\n\n| | s123 | s456 |\n|--|------|------|\n| 当前 step | ~1207 | ~1243 |\n| 剩余 steps | 5426 | 5390 |\n| Wall-clock rate | 23.7s/step | 23.3s/step |\n| **剩余时间** | **35.7h** | **34.9h** |\n| **预计完成** | **~5/21 凌晨 5:10** | **~5/21 凌晨 4:20** |\n\n（完成时间基于当前时刻 ~17:30 CST 推算）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-qwen-eta-checkpoint-verify.md"
+}

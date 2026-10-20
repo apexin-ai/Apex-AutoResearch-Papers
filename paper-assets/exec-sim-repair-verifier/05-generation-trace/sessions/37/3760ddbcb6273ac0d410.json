@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "3760ddbcb6273ac0d410",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "fix repo level sample weight",
+  "task_key": "worker_fix_repo-level-sample-weight_20260512T112716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_repo-level-sample-weight_20260512T112716.log",
+    "occurrence": 1,
+    "bytes": 806979,
+    "sha256": "026bdccfcd859a981446e80d378a51a76dc859a2ed7ee7e5203a8d03d383bee4"
+  },
+  "statistics": {
+    "messages": 471,
+    "user_turns": 0,
+    "tool_calls": 197,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 73,
+      "tool_call": 197,
+      "tool_result": 197,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 471,
+      "chunks": [
+        {
+          "path": "3760ddbcb6273ac0d410-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3760ddbcb6273ac0d410-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3760ddbcb6273ac0d410-part-0003.json",
+          "message_count": 111
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-repo-level-sample-weight.md"
+}

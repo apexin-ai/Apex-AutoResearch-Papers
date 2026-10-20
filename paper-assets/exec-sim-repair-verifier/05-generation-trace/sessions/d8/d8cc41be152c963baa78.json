@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8cc41be152c963baa78",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops gpu progress check",
+  "task_key": "worker_ops_gpu-progress-check_20260524T032820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-progress-check_20260524T032820_result.json",
+    "occurrence": 1,
+    "bytes": 1136,
+    "sha256": "bcd1b6444c1eed64e62f3095756fc87c85814fa6147a455808da70301fb6565c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。汇总如下：\n\n---\n\n## CWM Eval 进度汇总 (May 24, ~11:30)\n\n| GPU | 实验 | 进度 | Running Acc | 速率 | ETA |\n|-----|------|------|-------------|------|-----|\n| 0 | s456 ckpt300 reeval (seq2048) | **5016/9784 (51.3%)** | **65.9%** | ~8.3/min | ~21:05 |\n| 1 | s42 ckpt300 reeval (seq2048) | **3552/9784 (36.3%)** | **68.9%** | ~8.9/min | ~23:10 |\n| 2 | s123 ckpt300 reeval (seq2048) | **4856/9784 (49.6%)** | **64.3%** | ~8.3/min | ~21:25 |\n| 3 | s42 ckpt6100 eval (seq8192) | **760/9784 (7.8%)** | **70.9%** | ~12/min | ~May 25 00:00 |\n\n**空闲 GPU: 无**（4 张全满载，利用率 76%-90%）\n\n### 补充信息\n\n- **之前的 ckpt6100 seq4096 eval (PID 272025)**: 已完成，9784/9784，**accuracy = 69.50%** (6800/9784)\n- s456 和 s123 的 reeval 有 resumed 样本（分别 1306 和 1162 条来自之前的 partial run），s42 ckpt300 是全新 eval（resumed=0），所以 s42 进度更慢但速率其实接近\n- GPU 3 的 seq8192 eval PID 为 328069（batch_size=4, max_new_tokens=512），每 batch ~20s，单样本速率反而比 seq2048 的 eval 更快"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-progress-check.md"
+}

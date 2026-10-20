@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6fe62314592ccd40a84",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code rank64 train prep",
+  "task_key": "worker_code_rank64-train-prep_20260515T133110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rank64-train-prep_20260515T133110_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "38df14c51262a792221f1b8bc16c612f79c7c55b131709a9b6619f88d2e78813"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。命令已写入 `artifacts/cwm_rank64_train_command.sh` 并注册。\n\n**关键信息汇总：**\n\n| 实验 | rank | alpha | alpha/rank |\n|------|------|-------|-----------|\n| rank=16 baseline | 16 | 32 (default) | 2 |\n| rank=32 (running) | 32 | 32 (default, 未指定) | **1** |\n| rank=64 (prepared) | 64 | 128 (显式指定) | 2 |\n\n**需注意的问题：** rank=32 训练命令没有指定 `--lora_alpha`，使用了默认值 32，导致 alpha/rank=1，与 rank=16 baseline 的 alpha/rank=2 不一致。rank=64 按 Director 要求设 alpha=128 恢复了 alpha/rank=2。如果要做公平对比，rank=32 可能需要用 alpha=64 重跑。\n\n显存方面：rank=32 占 ~18GB，rank=64 估算 23-25GB，单张 5090 (32GB) 足够。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rank64-train-prep.md"
+}

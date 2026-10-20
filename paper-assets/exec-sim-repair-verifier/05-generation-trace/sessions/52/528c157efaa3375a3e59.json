@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "528c157efaa3375a3e59",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra multiseed results",
+  "task_key": "worker_infra_multiseed-results_20260512T031801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_multiseed-results_20260512T031801_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "d90722d77199d637e5231309e42784fd40197746c10f3ecae607c6703dbabd6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Let me compute statistics and report.\n\n| Metric | Seed 42 | Seed 123 | Seed 456 | Mean | Std |\n|--------|---------|----------|----------|------|-----|\n| **overall_accuracy** | 87.83 | 89.52 | 87.88 | **88.41** | 0.96 |\n| **pass_f1** | 88.06 | 89.64 | 87.53 | **88.41** | 1.10 |\n| **fail_f1** | 87.59 | 89.40 | 88.21 | **88.40** | 0.92 |\n| pass_precision | 89.45 | 91.76 | 93.60 | **91.60** | 2.08 |\n| pass_recall | 86.71 | 87.63 | 82.21 | **85.52** | 2.90 |\n| fail_precision | 86.20 | 87.34 | 83.12 | **85.55** | 2.18 |\n| fail_recall | 89.04 | 91.56 | 93.97 | **91.52** | 2.47 |\n\n**状态确认：**\n- 3 seeds 训练全部正常完成（log EXIT_CODE=0，所有检查 PASS）\n- 3 个 best checkpoint 目录完整（adapter_model.safetensors ~45MB each）\n- GPU 空闲：0% 利用率，0 MiB 显存占用\n\n**观察：**\n- 3 seeds 的 accuracy 和 F1 一致性好，std < 1.1pp\n- Seed 456 呈现明显的 precision-recall tradeoff 偏移：pass_precision 最高(93.60) 但 pass_recall 最低(82.21)，fail 方向相反\n- Seed 123 整体最优（accuracy 89.52，两类 F1 均最高）\n- Precision/recall 的 seed 间方差（std ~2-3pp）大于 F1 方差（~1pp），说明不同 seed 的决策边界位置有差异但整体判别力稳定"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-multiseed-results.md"
+}

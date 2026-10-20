@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6536092d43d1d51cdeae",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis deepseek tokenizer check",
+  "task_key": "worker_analysis_deepseek-tokenizer-check_20260517T083521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek-tokenizer-check_20260517T083521_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "26b8123d42c271c37c1ea6f05f12fc4bae5d319f285789c7ba02ca81e957e879"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| 模型 | Tokenizer 类 | Vocab Size |\n|---|---|---|\n| **Qwen3-8B** | `Qwen2TokenizerFast` | 151,643 |\n| **Qwen3-4B** | `Qwen2TokenizerFast` | 151,643 |\n| **DeepSeek-coder-6.7b-instruct** | `LlamaTokenizerFast` | 32,000 |\n\n**编码对比**：Qwen3-8B 和 Qwen3-4B 编码完全一致（共享同一 tokenizer），但与 DeepSeek-coder 完全不同：\n- 不同的 tokenizer 类（Qwen2 vs Llama）\n- vocab size 差 ~5 倍（151K vs 32K）\n- 所有测试字符串的 token ID 和序列长度均不同\n- DeepSeek 每个序列都额外加了 BOS token (32013)\n\n**结论**：Qwen3 和 DeepSeek-coder **使用完全不同的 tokenizer**。论文中 \"tokenizer-specific\" 的表述是准确的——CLS/CWM 模型确实绑定了特定 tokenizer，不能跨模型族复用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-tokenizer-check.md"
+}

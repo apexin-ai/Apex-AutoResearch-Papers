@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b968e125f50ded2f35c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cls variant aggregation fix",
+  "task_key": "worker_analysis_cls-variant-aggregation-fix_20260518T185643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls-variant-aggregation-fix_20260518T185643_result.json",
+    "occurrence": 1,
+    "bytes": 1139,
+    "sha256": "fde9e48a9b7a3ec07477b5dbe1fb7ddf4b69bf03ddf43b490804ed7fe63c739b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。所有 9 个可用 config 的 variant-level 聚合结果：\n\n| Config | Per-test | Variant (n=48) | Coverage |\n|--------|---------|----------------|----------|\n| Qwen3-8B CLS s123 | 85.60% | **81.25%** | 完整 |\n| Qwen3-8B CLS s42 | 84.48% | **72.92%** | 完整 |\n| DeepSeek CLS s123 seq2048 | 82.62% | **72.92%** | 完整 |\n| Qwen3-4B CLS s42 | 76.92% | **68.75%** | 完整 |\n| DeepSeek CLS s42 v4 seq8192 | 71.29% | **58.33%** | 完整 |\n| DeepSeek CLS s123 seq8192 | 74.93% | **56.25%** | 完整 |\n| Qwen3-8B CWM s42 | 65.17% | **52.08%** | 完整 |\n| DeepSeek CWM s123 | 61.46% | **47.92%** | 7210/9784 |\n| DeepSeek CWM s42 | 56.79% | **47.92%** | 7668/9784 |\n\n原始脚本实际上可以正常运行所有 config（非 1/8）。新脚本 `aggregate_variant_level_v2.py` 增加了：\n- 所有 config 的完整 error detail（包括每个错误 variant 的 GT/Pred/Pass/Fail）\n- 额外的 DeepSeek CLS s42 v4 配置\n- 不完整预测的覆盖率追踪\n- JSON + Markdown 双格式输出\n\n不存在的 config：Qwen3-4B CWM s42 和 Qwen3-8B CWM s123 没有找到对应的 prediction 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cls-variant-aggregation-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d63df4a52a3000d6bba1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code eval repo cls prep",
+  "task_key": "worker_code_eval-repo-cls-prep_20260512T194143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-repo-cls-prep_20260512T194143_result.json",
+    "occurrence": 1,
+    "bytes": 1395,
+    "sha256": "970634805057401f58cbd6319dbff51cd38382a5772225aebfc52f7e91b2ac70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`eval_repo_level.py` 已存在且通过语法验证，无需新建 `eval_repo_verifier.py`。\n\n**现有脚本** `eval_repo_level.py` 已覆盖所有需求：\n\n| 需求参数 | 现有脚本 | 状态 |\n|---------|---------|------|\n| `--checkpoint_dir` | ✓ required | OK |\n| `--data_dir` | ✓ default `data/swebench_full` | OK |\n| `--output` (任务中叫 `--output_file`) | ✓ `--output` | OK |\n| `--device` | ✓ default `cuda:0` | OK |\n| `--batch_size` | ✓ default 16 | OK |\n| `--max_seq_length` | ✓ default 2048 | OK（训练也是 2048） |\n| metrics | accuracy, F1, precision, recall, confusion matrix | OK |\n| `--save_predictions` | ✓ JSONL per-sample | OK |\n\n**训练完成后运行命令：**\n\n```bash\ncd /home/sonny/exec-sim-repair-verifier\npython eval_repo_level.py \\\n  --mode cls \\\n  --checkpoint_dir checkpoints_repo_cls_home/best \\\n  --output eval_repo_cls.json \\\n  --save_predictions \\\n  --device cuda:0\n```\n\n**备注：**\n- 训练脚本 `train_repo_verifier.py` 的 `max_seq_length` 默认 2048，eval 脚本匹配\n- 测试集 `swebench_test.jsonl` 有 9784 条样本\n- System prompt 和 user template 与训练完全一致（都用 `\"## Patch (git diff)\\n{code}\\n\\n## Test\\n{test}\\n\\nWill this test pass or fail?\"`）\n- `checkpoints_repo_cls_home/` 目前为空，训练尚未 save checkpoint（save_steps=200）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-repo-cls-prep.md"
+}

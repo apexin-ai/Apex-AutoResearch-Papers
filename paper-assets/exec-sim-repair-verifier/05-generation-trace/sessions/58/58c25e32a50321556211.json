@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58c25e32a50321556211",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code swebench full run",
+  "task_key": "worker_code_swebench-full-run_20260512T040331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_swebench-full-run_20260512T040331_result.json",
+    "occurrence": 1,
+    "bytes": 1005,
+    "sha256": "9c049bd5bbc9c350ef70f044dfff6cb472d0da436b194e067d513160b73b5a51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务结果汇报：\n\n---\n\n## 1. SWE-bench 全量构建 — 已成功启动\n\n| 项目 | 值 |\n|------|------|\n| PID | 2312582 |\n| 日志 | `/tmp/swebench_full.log` |\n| 状态 | RUNNING — 评估阶段进行中 |\n| 实例数 | 250 选中，10 已有（pilot），正在跑 240 个 |\n| 进度 | `0/240` (刚启动) |\n\n大量 \"WARNING: No Docker image found\" 是正常的——只有 pilot 阶段的 9 个镜像已预拉取，其余会按需拉取。预计 12-24h 完成。\n\n---\n\n## 2. mvp-b-train 原始评估结果（eval_results.json）\n\n| 指标 | 值 |\n|------|------|\n| test_set_size | 1890 |\n| overall_accuracy | **87.51%** |\n| majority_baseline | 51.75% |\n| gap vs baseline | +35.77pp |\n\n**Per-class:**\n\n| Class | Precision | Recall | F1 | Support |\n|-------|-----------|--------|----|---------|\n| Pass | 93.24 | 81.80 | 87.15 | 978 |\n| Fail | 82.75 | 93.64 | 87.86 | 912 |\n\n**Confusion matrix:** TN=854, FP=58, FN=178, TP=800, unparseable=0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-swebench-full-run.md"
+}

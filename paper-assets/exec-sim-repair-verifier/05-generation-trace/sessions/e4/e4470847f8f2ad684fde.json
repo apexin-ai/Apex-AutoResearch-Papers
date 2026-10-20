@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4470847f8f2ad684fde",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cwm8b checkpoint eval loss audit",
+  "task_key": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443_result.json",
+    "occurrence": 1,
+    "bytes": 2766,
+    "sha256": "b9d2282ca9277e42ccc259ab2da2f8728a23139b4774822b7dccb9e020234938"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整。以下是结果。\n\n---\n\n## CWM 8B 全部 Eval Loss 历史\n\n| Step | Epoch | eval_loss | 备注 |\n|------|-------|-----------|------|\n| 100 | 0.05 | 0.4423 | |\n| 200 | 0.09 | 0.3070 | |\n| 300 | 0.14 | 0.2907 | |\n| **400** | **0.18** | **0.2862** | **best_model_checkpoint ✓** |\n| 500 | 0.23 | 0.2998 | ↑ 开始上升 |\n| 600 | 0.27 | 0.3013 | |\n| 700 | 0.32 | 0.3174 | |\n| 800 | 0.36 | 0.3243 | |\n| 900 | 0.41 | 0.3433 | |\n| 1000 | 0.45 | 0.3332 | |\n| 1100 | 0.50 | 0.3405 | |\n| 1200 | 0.54 | 0.3565 | |\n| 1300 | 0.59 | 0.3637 | |\n| 1400 | 0.63 | 0.3689 | |\n| 1500 | 0.68 | 0.3742 | |\n| 1600 | 0.72 | 0.3842 | |\n| 1700 | 0.77 | 0.3731 | |\n| 1800 | 0.81 | 0.3866 | |\n| 1900 | 0.86 | 0.3923 | |\n| 2000 | 0.90 | 0.3995 | |\n| 2100 | 0.95 | 0.3983 | |\n| 2200 | 1.00 | 0.4109 | epoch 1 结束 |\n| 2300 | 1.04 | 0.4145 | |\n| 2400 | 1.09 | 0.4344 | |\n| 2500 | 1.13 | 0.4354 | |\n| 2600 | 1.18 | 0.4260 | |\n| 2700 | 1.22 | 0.4466 | |\n| 2800 | 1.27 | 0.4478 | |\n| 2900 | 1.31 | 0.4361 | |\n| 3000 | 1.36 | 0.4449 | |\n| 3100 | 1.40 | 0.4462 | |\n| 3200 | 1.45 | 0.4530 | |\n| 3300 | 1.49 | 0.4449 | |\n| 3400 | 1.54 | 0.4435 | |\n| 3500 | 1.58 | 0.4628 | |\n| 3600 | 1.63 | 0.4583 | |\n| 3700 | 1.67 | 0.4574 | |\n| 3800 | 1.72 | 0.4664 | |\n| 3900 | 1.76 | 0.4702 | |\n| 4000 | 1.81 | 0.4779 | |\n| 4100 | 1.85 | 0.4788 | |\n| 4200 | 1.90 | 0.4825 | |\n| 4300 | 1.94 | 0.4825 | |\n| 4400 | 1.99 | 0.4743 | |\n| 4500 | 2.04 | 0.4829 | epoch 2 结束 |\n| 4600 | 2.08 | 0.4965 | |\n| 4700 | 2.13 | 0.4816 | |\n| 4800 | 2.17 | 0.5030 | |\n| 4900 | 2.22 | 0.5069 | |\n| 5000 | 2.26 | 0.5038 | |\n| 5100 | 2.31 | 0.5038 | |\n| 5200 | 2.35 | 0.5066 | |\n| 5300 | 2.40 | 0.5129 | |\n| 5400 | 2.44 | 0.5097 | |\n| 5500 | 2.49 | 0.5035 | |\n| 5600 | 2.53 | 0.5116 | |\n| 5700 | 2.58 | 0.5152 | |\n| 5800 | 2.62 | 0.5121 | |\n| 5900 | 2.67 | 0.5181 | |\n| 6000 | 2.71 | 0.5161 | |\n| 6100 | 2.76 | 0.5208 | 最后一个 eval |\n\n## 结论\n\n1. **ckpt-400 是 Trainer 自动选出的 val-best checkpoint**，`best_model_checkpoint` 明确指向它，`best_metric = 0.2862`，是全局最低 eval_loss。\n\n2. **eval_loss 在 step 400 后单调上升**，从 0.286 → 0.521（step 6100），训练约 0.18 epoch 后即开始严重过拟合。train_loss 同期从 4.27 降到 0.0036，过拟合非常明显。\n\n3. **磁盘上只保留了 5 个 checkpoint**（400, 5800, 5900, 6000, 6100），说明训练配置了 `save_total_limit=5`，中间的 checkpoint（500-5700）已被自动删除。ckpt-400 被保留是因为 `load_best_model_at_end=True` 会保护 best checkpoint 不被删除。\n\n4. **不需要 val sweep**——ckpt-400 是唯一合理的选择，step 500 之后 eval_loss 就没再低于 0.286。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cwm8b-checkpoint-eval-loss-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb0bbb14860fd891438b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis 8b scaling bootstrap",
+  "task_key": "worker_analysis_8b-scaling-bootstrap_20260512T163636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_8b-scaling-bootstrap_20260512T163636_result.json",
+    "occurrence": 1,
+    "bytes": 1246,
+    "sha256": "fcb2086c4fb6044f7f779debc16da8077c3da4e6db06e721eb8cae9981cbeb56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Summary Table\n\n| Scale | Seeds | Mean CLS | Mean CWM | Gap (pp) | 95% CI | p(>0) | Cohen's d |\n|-------|-------|----------|----------|----------|--------|-------|-----------|\n| 4B | 5 | 88.43 | 87.18 | 1.25 | [-1.71, +0.84] | 0.499 | — |\n| **8B** | **3** | **89.39** | **86.96** | **2.42** | **[+1.50, +3.35]** | **0.004** | **6.53** |\n\n### 关键统计结果\n\n**8B CLS > CWM gap 显著：**\n- Paired t-test: t=11.31, p=0.004 (one-sided)\n- Bootstrap 95% CI: [+1.25, +3.60]pp — 整个 CI 在零以上\n- 3/3 seeds 一致 CLS > CWM (gaps: 2.81, 2.39, 2.07pp)\n\n**Scaling widens the gap (8B > 4B)：**\n- Gap 从 1.25pp (4B) 增至 2.42pp (8B)，增幅 +1.17pp (+94%)\n- One-sample t-test: t=5.48, **p=0.016**\n- Bootstrap P(8B gap > 4B gap) = 0.977\n\n**TOST 等价性拒绝：**\n- 90% CI = [+1.45, +3.40]pp — **超出 ±2pp 边界**\n- TOST p=0.907 — 无法认为 CLS 和 CWM 等价\n- 最小等价 margin 需 3.4pp\n\n**局限：** n=3 seeds，permutation test 只有 8 种排列 (p=0.125)，power 有限。但 paired t-test 和 bootstrap 均达到显著性，且 3 seeds 方向完全一致。\n\n文件已保存：`/home/sonny/exec-sim-repair-verifier/8b_scaling_bootstrap_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-8b-scaling-bootstrap.md"
+}

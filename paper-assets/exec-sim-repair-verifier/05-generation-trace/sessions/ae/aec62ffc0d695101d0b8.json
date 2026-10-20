@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aec62ffc0d695101d0b8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops check all experiments status",
+  "task_key": "worker_ops_check-all-experiments-status_20260516T013749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-all-experiments-status_20260516T013749_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "0382519e7648d8e72ce7791d061ba3c9ada5e7a8612bb6c12b6889f64e4e2675"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n**4 个实验全部存活，无异常。**\n\n| 实验 | GPU | 进度 | Accuracy | ETA |\n|------|-----|------|----------|-----|\n| cwm8b-ckpt400-test-eval-v3 | cuda:3 | 5712/9784 (58%) | 62.8% | ~8h (~17:45 UTC) |\n| cwm8b-ckpt400-test-eval-shard2 | cuda:1 | 7784/9784 (80%) | 69.2% | ~3.8h (~13:25 UTC) |\n| cls8b-seed123-ckpt3000-mutation | cuda:0 | 7330/9784 (75%) | 85.4% | **~5 min** |\n| cls8b-s42-resume-ckpt3600-test-v2 | cuda:2 | 8630/9784 (88%) | 84.3% | **~2.5 min** |\n\n**Registry 操作**：`cls8b-s42-resume-ckpt3600-test-v2` 从 ALLOCATED → RUNNING（PID 446868 确认存活）。\n\n两个 CLS eval 即将完成，两个 CWM eval 还需数小时（生成 1024 tokens vs 分类 8 tokens，速度差 ~50x）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-all-experiments-status.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "fd7df1d1b618d91dc3b5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ops traj repo 8k cuda2 continue",
+  "task_key": "worker_ops_traj-repo-8k-cuda2-continue_20260516T162243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_traj-repo-8k-cuda2-continue_20260516T162243.log",
+    "occurrence": 1,
+    "bytes": 1045793,
+    "sha256": "3a477c246898d8193a0ae1c8ab7993f41d3831ab9c9fc4e47823b304f53a3691"
+  },
+  "statistics": {
+    "messages": 352,
+    "user_turns": 1,
+    "tool_calls": 128,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 88,
+      "tool_call": 128,
+      "tool_result": 128,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 310,
+      "chunks": [
+        {
+          "path": "fd7df1d1b618d91dc3b5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fd7df1d1b618d91dc3b5-part-0002.json",
+          "message_count": 130
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 42,
+      "chunks": [
+        {
+          "path": "fd7df1d1b618d91dc3b5-part-0002.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-traj-repo-8k-cuda2-continue.md"
+}

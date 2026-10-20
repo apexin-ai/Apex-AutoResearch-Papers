@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9819458c0e0fc5cc4208",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_21_1778956271.md",
+  "task_key": "loop_21_1778956271",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_21_1778956271.md",
+    "occurrence": 1,
+    "bytes": 4292,
+    "sha256": "38bd707f24bd375f836ac1c1f8afad9dfa73971bfe7a735c5ef8c0e6f47058f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 21\nreason: idle_timeout\nupdated: '2026-05-16T16:33:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 on `seetacloud-westd-4x5090`，不得用其他设备\n- MCP 服务器名必须用 `seetacloud-westd-4x5090`（非 `westd` 或 `westd-48478`）；但 memory.md 记录 re-repair 实验时用过 `westd-48478`，需确认该别名是否已废弃\n- DeepSeek TRAJ 训练必须用 `train_traj_verifier.py`（D114 决策：train/eval 格式必须一致，旧 v1 数据全部作废）\n- D103: seq_length/bs/precision/lr 变更需 Director 审批\n- D109: repo-level 不 claim \"gap widens with scale\"\n- D112: re-repair 不写入论文\n- 提交实验时 cron exp_id 必须与 registry exp_id 完全一致（历史踩坑：`-fixed` 后缀不匹配）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`seetacloud-westd-4x5090`（4× RTX 5090）\n- 工作目录：`/home/sonny/exec-sim-repair-verifier`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：`/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct`\n- Checkpoint 路径模式：`/root/autodl-tmp/checkpoints_deepseek_{task}_repo{_suffix}/`\n- 数据：`data/swebench_full/` (train 70748条 for CLS/CWM; traj_train 386条 for TRAJ)\n- 测试数据：`data/swebench_full/swebench_test.jsonl` (9784 条)\n- Eval 脚本：`run_repo_eval.sh`（自动从 adapter_config.json 读基座路径）\n- 活跃进程：\n  - `deepseek-cls-repo`: PID 470263, cuda:0, ~30% 完成, ETA May 17 04:00 UTC\n  - `deepseek-cwm-repo`: PID 479953, cuda:1, ~14% 完成, ETA May 17 14:00 UTC\n  - `deepseek-traj-repo-8k-s456`: cuda:3, 刚启动\n  - `deepseek-traj-repo-8k-s0`: PID 530525, cuda:2, 刚启动\n- Cron 活跃：`deepseek-cls-repo`, `deepseek-cwm-repo` 两条\n\n### 3. 📊 当前状态\n**刚完成**：DeepSeek TRAJ repo-8k 两 seed (s123, s42) 完成 → 78.13±4.42%, unparseable 0%（vs 2k 的 77.1%+16.7% unparseable）。TRAJ func-level v2 完成 84.16±1.30%。\n\n**RUNNING (4)**：\n- `deepseek-cls-repo` — cuda:0, CLS repo-level 训练 (~30%)\n- `deepseek-cwm-repo` — cuda:1, CWM repo-level 训练 (~14%)\n- `deepseek-traj-repo-8k-s0` — cuda:2, TRAJ repo 8k 额外 seed 复制\n- `deepseek-traj-repo-8k-s456` — cuda:3, TRAJ repo 8k 额外 seed 复制\n\n**PENDING (1)**：`deepseek-traj-repo-8k-s789` 等待审批\n\n**PREPARING (3)**：`deepseek-traj-repo-8k-s999`, `deepseek-traj-func-v2-s123-fixed`, `deepseek-traj-func-v2-fixed`（后两个已 auto-failed，实际是僵尸条目）\n\n**等待中**：\n- 无活跃 Worker 回调\n- Cron 监控 cls-repo 和 cwm-repo\n- TRAJ repo 8k s0/s456 完成后需 eval\n- CLS/CWM repo 完成后需 eval → 论文最终数据\n\n### 4. 📋 待办（条件触发式）\n- `deepseek-traj-repo-8k-s0` 完成 → spawn Worker eval（`run_repo_eval.sh`），合并 4-seed TRAJ repo 8k 均值±std\n- `deepseek-traj-repo-8k-s456` 完成 → 同上\n- `deepseek-cls-repo` 完成 (ETA May 17 04:00) → spawn Worker eval on test 9784 条 → 填表\n- `deepseek-cwm-repo` 完成 (ETA May 17 14:00) → spawn Worker eval on test 9784 条 → 填表\n- 所有 DeepSeek repo-level 数据就绪 → 更新论文 Table 2 + narrative → 提交最终版\n- DDL: EMNLP ARR May 25（剩 9 天），论文 v41 待最终数据更新\n\n### 5. 🎯 战略上下文\n- **核心结论**：CLS（分类）在 repo-level 大幅优于 CWM（unparseable 问题）和 TRAJ（accuracy gap）；func-level 三者接近但 CLS≥CWM≥TRAJ\n- **跨模型验证**：Qwen3 已完成；DeepSeek 是第二模型家族，用来证明 generalizability\n- **决策链关键节点**：D114 推翻 D113（TRAJ v1 作废）→ v2 重训已完成；D109（不 claim gap widens with scale）；D110（func-level CLS≈CWM）\n- **易错点**：\n  - TRAJ repo 8k s0/s456 是额外 seed，用于缩小 ±4.42% 的 std，不是新实验方向\n  - `deepseek-traj-func-v2-fixed` / `deepseek-traj-func-v2-s123-fixed` 是僵尸条目（auto-failed），不要尝试恢复——v2 结果已从其他成功实验获得\n  - CWM repo 训练时间远长于 CLS（70k 条 vs CLS 同量但 CWM seq 更长），May 17 14:00 只是估计\n  - eval 脚本默认模型是 Qwen，DeepSeek 实验必须覆盖 `--model_name`\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-21-1778956271.md"
+}

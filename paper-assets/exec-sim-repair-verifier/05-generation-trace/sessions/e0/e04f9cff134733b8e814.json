@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e04f9cff134733b8e814",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code eval script prep",
+  "task_key": "worker_code_eval-script-prep_20260512T222025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-script-prep_20260512T222025_result.json",
+    "occurrence": 1,
+    "bytes": 1454,
+    "sha256": "2b2e050be5a30df22f333434babdbae9effb5e73775cc551a11e7f2abc67beab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n**`eval_repo_level.py`** 已部署到 `/home/sonny/exec-sim-repair-verifier/`，dry-run 和 bootstrap 逻辑验证通过。\n\n### 用法\n\n**训练完成后，全量推理 + bootstrap：**\n```bash\npython eval_repo_level.py \\\n  --cls_checkpoint /path/to/cls_best_ckpt \\\n  --cwm_checkpoint /root/autodl-tmp/checkpoints_repo_cwm_v9/checkpoint-XXX \\\n  --device cuda:0 --save_predictions --output eval_repo_level_results.json\n```\n\n**如果已有预测文件（用现有 eval_repo_verifier.py / eval_repo_cwm.py 分别跑过）：**\n```bash\npython eval_repo_level.py \\\n  --cls_preds eval_repo_cls_results_predictions.jsonl \\\n  --cwm_preds eval_repo_cwm_results_predictions.jsonl\n```\n\n### 与现有脚本的关系\n- `eval_repo_verifier.py` / `eval_repo_cwm.py`：单模型 eval，保持不变\n- `paired_bootstrap_repo.py`：旧版 bootstrap（用 accuracy），现在 `eval_repo_level.py` 用 **F1 macro** 做 bootstrap，符合 D008 标准\n- 两种模式互补：可以用新脚本一站式跑，也可以先分别跑单模型 eval 再喂预测文件给新脚本\n\n### 注意事项\n- CLS v4 checkpoint 在 home-1x5090 上，eval 前需要 scp 到 seetacloud，或在 home 上运行单模型 eval 导出预测文件再传过来用 predictions 模式\n- base model 路径默认 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`（已验证存在）\n- 推理时两个模型顺序加载、释放 GPU 显存，单卡即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-script-prep.md"
+}

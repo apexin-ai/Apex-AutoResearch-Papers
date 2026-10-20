@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1e086bce27d2935642f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper draw figure2 scaling",
+  "task_key": "worker_paper_draw-figure2-scaling_20260523T023613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_draw-figure2-scaling_20260523T023613_result.json",
+    "occurrence": 1,
+    "bytes": 250,
+    "sha256": "62ccd2d41148c8068f001f2aa520c7eb49d5d24e05764e92ee92de6b4558b35e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 和 PNG 已生成。图表包含：CLS 实线圆形 + CWM 虚线方形，14B 空心 marker，gap shading，8B/14B gap 标注（2.62 pp / 0.21 pp），14B 区域 exploratory 背景标注。代码在 `artifacts/plot_figure2_v2.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-draw-figure2-scaling.md"
+}

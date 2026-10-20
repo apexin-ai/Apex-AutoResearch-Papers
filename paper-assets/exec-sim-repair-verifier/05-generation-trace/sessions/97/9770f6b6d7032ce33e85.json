@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9770f6b6d7032ce33e85",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh verify cwm v6",
+  "task_key": "worker_ssh_verify-cwm-v6_20260512T194444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-cwm-v6_20260512T194444_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "2dc094595b54b4e5f5bdc76ed93f1b02e192582899d29f97b0a395bd64586445"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cwm-v6 正在正常训练，不是僵尸进程。**\n\n核心指标：\n- PID 84887 存活，状态 `Sl`，运行 27 分钟\n- GPU cuda:2 利用率 **94%**，显存 22.3/32.6 GB\n- 当前 step ~65/6633 (1%)，速度 ~8s/step，预计还需 ~14.5 小时\n- Step 50 输出 loss=28.168, grad_norm=17.59\n\n两个需关注的点：\n1. **checkpoint 目录为空** — `/root/autodl-tmp/checkpoints_repo_cwm_v6/` 下无文件，已过 step 50。需确认训练脚本的 save_steps 配置是否正确，否则训练中断会丢失全部进度。\n2. **初始 loss 偏高 (28.168)** — 训练刚开始，暂不告警，但建议下次检查时确认 loss 在下降。\n\n报告已写入 `artifacts/cwm_v6_health_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-cwm-v6.md"
+}

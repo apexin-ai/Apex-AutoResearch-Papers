@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "527703a1d73596ae3df6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "urgent home val4096 check and next",
+  "task_key": "worker_urgent_home-val4096-check-and-next_20260514T123903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_home-val4096-check-and-next_20260514T123903_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "e416e96244fddceb26c973b55b10f02d27eb9e8a93b58f11387b9a7f39912ba3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ckpt-600 eval 成功启动且运行正常。汇报如下：\n\n---\n\n## 1. ckpt-400 eval — 已完成 ✓\n\n完成时间: 2026-05-14 05:32:50 UTC，总耗时 ~27.7 min\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **82.57%** (+6.7pp vs majority 75.9%) |\n| **F1 macro** | **71.24%** |\n| fail F1 | 53.18% (P=75.5%, R=41.0%) |\n| pass F1 | 89.29% (P=83.6%, R=95.8%) |\n| Unparseable | 1406/9335 (15.1%) |\n| Total samples | 9335 |\n\n混淆矩阵: TP=6784, FP=1328, FN=299, TN=924\n\n## 2. ckpt-600 eval — 已启动 ✓\n\n- tmux session: `ckpt600_eval`\n- PID: 3097826\n- GPU: 10734 MiB\n- 启动时间: 06:00:48 UTC\n- 当前进度: ~90/9335, running_acc=85.0%\n- 速度: ~346 samples/min (同 ckpt-400)\n- **预估完成: ~06:28 UTC** (约 27 min)\n\n注意: 之前有另一个 worker 也启动了 ckpt-600 eval (`val-4096-cls-seed123-ckpt600` session)，导致两个进程写同一输出目录。已清理损坏数据并重新干净启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-home-val4096-check-and-next.md"
+}

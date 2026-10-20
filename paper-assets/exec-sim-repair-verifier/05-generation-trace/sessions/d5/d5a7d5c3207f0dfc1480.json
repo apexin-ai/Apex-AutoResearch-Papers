@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5a7d5c3207f0dfc1480",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval test 4096 cls seed123 ckpt600",
+  "task_key": "worker_eval_test-4096-cls-seed123-ckpt600_20260514T140405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_test-4096-cls-seed123-ckpt600_20260514T140405_result.json",
+    "occurrence": 1,
+    "bytes": 209,
+    "sha256": "f415d20ab4c56873fb79a9023c14f168f78634641eae051210dad614915e519c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- eval 已在 home-1x5090 cuda:0 上启动，max_seq_length=4096, batch_size=2, test split (9784 samples)\n- 每 8 分钟自动检查完成状态\n- 预计 ~25-30 分钟出结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-test-4096-cls-seed123-ckpt600.md"
+}

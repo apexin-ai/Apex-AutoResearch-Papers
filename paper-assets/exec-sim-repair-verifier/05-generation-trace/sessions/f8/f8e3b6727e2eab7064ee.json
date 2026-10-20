@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "f8e3b6727e2eab7064ee",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ssh d162 kill batchtest eval",
+  "task_key": "worker_ssh_d162-kill-batchtest-eval_20260521T132112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d162-kill-batchtest-eval_20260521T132112.log",
+    "occurrence": 1,
+    "bytes": 691595,
+    "sha256": "6626722e755c2b8c85e51a09640d9a31489e61f66a0b41f7b73567b84b7218e5"
+  },
+  "statistics": {
+    "messages": 529,
+    "user_turns": 0,
+    "tool_calls": 210,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 105,
+      "tool_call": 210,
+      "tool_result": 210,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 529,
+      "chunks": [
+        {
+          "path": "f8e3b6727e2eab7064ee-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f8e3b6727e2eab7064ee-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f8e3b6727e2eab7064ee-part-0003.json",
+          "message_count": 169
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-d162-kill-batchtest-eval.md"
+}

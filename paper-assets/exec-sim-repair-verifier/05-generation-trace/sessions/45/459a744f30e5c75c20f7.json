@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "459a744f30e5c75c20f7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra home cwm s42 e2 setup launch",
+  "task_key": "worker_infra_home-cwm-s42-e2-setup-launch_20260518T144853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_home-cwm-s42-e2-setup-launch_20260518T144853_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "089749dd72f6e2b74ed64d6803e2aeaa78b0e6bf19ff6e27c25b1c19b2361000"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 启动成功。汇总：\n\n| 项目 | 状态 |\n|------|------|\n| Home GPU | RTX 5090, 15535MiB/32607MiB, 87% util |\n| eval_repo_cwm.py | md5 一致 (04a6907...) |\n| Checkpoint | 6 文件, adapter_model.safetensors 67MB |\n| adapter_config.json | `base_model_name_or_path` → `deepseek-ai/deepseek-coder-6.7b-instruct` |\n| 数据 | swebench_test.jsonl, 9784 条 |\n| PID | 4141145 |\n| tmux session | `cwm-s42-e2-home` |\n| 参数确认 | `max_seq_length=2048`, family=deepseek, stop tokens=[32021, 32014] |\n| 首行 log | 3/9784, running_acc=33.3%, ~8s/sample |\n\n预估总时间 ~22h（9784 samples × ~8s）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-home-cwm-s42-e2-setup-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bbdfde069b06adff965",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "submit downsample eval retry",
+  "task_key": "worker_submit_downsample-eval-retry_20260519T065446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_downsample-eval-retry_20260519T065446_result.json",
+    "occurrence": 1,
+    "bytes": 472,
+    "sha256": "1baf217b6571370bdf6cf5543d37fe9a4a4731d68ccecbf4b546fbfbd9a5366d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理已启动，模型加载成功并开始 inference。registry 已更新为 RUNNING。\n\n**总结：**\n- **失败原因 1**：上次提交用了错误的参数名（`--adapter_path` vs `--checkpoint_dir` 等），EXIT_CODE=2\n- **失败原因 2**：第二次修复参数名后，GPU 1 被其他进程占用 18GB，导致 OOM\n- **当前状态**：已迁移到空闲的 GPU 2，pid=808206，推理正常运行中（9784 test instances, batch_size=16）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-downsample-eval-retry.md"
+}

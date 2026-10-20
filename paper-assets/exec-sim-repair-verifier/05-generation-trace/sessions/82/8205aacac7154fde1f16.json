@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8205aacac7154fde1f16",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cwm8b eval exit check",
+  "task_key": "worker_ops_cwm8b-eval-exit-check_20260515T144145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm8b-eval-exit-check_20260515T144145_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "7e6a33bb4e5a13a7e6d92fea0ed9c6bd1c34883ea9fc2751c5066370a3621f4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 进程状态：**bs=8 重启已成功，新进程正在跑**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 381618 (新进程) |\n| 启动时间 | 2026-05-15 22:38:37 (约 4 分钟前) |\n| 命令 | `python3 eval_repo_cwm.py --device cuda:0 --max_new_tokens 1024` |\n| 进度 | **376/9784** (359 从 incremental 恢复 + 17 新推理) |\n| running_acc | **70.6%** |\n| 产出文件 | `results_incremental.jsonl` — 376 行, 1.3MB |\n\n### GPU 状态 (cuda:3)\n\n- PID 381618, 22516MiB / 32607MiB, **89% 利用率**\n- 4 张 5090 全部在跑任务，无空闲\n\n### Registry\n\n状态已是 `RUNNING`，PID=381613（tmux 父进程），提交时间 14:38:37 UTC = 22:38 本地时间，与实际进程一致。**bs=8 restart worker 已正确重新提交，registry 无需更新。**\n\n### 速度估算\n\n17 个新样本 / ~3 分钟 ≈ **~5.7 samples/min**。剩余 9784 - 376 = 9408 样本，预计 **~27.5 小时**完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cwm8b-eval-exit-check.md"
+}

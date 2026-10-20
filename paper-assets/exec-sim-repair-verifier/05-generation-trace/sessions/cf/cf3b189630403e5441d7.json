@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf3b189630403e5441d7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "verify lr hyperparams",
+  "task_key": "worker_verify_lr-hyperparams_20260517T132209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_lr-hyperparams_20260517T132209_result.json",
+    "occurrence": 1,
+    "bytes": 1071,
+    "sha256": "0468c13d841f70bf40c508fecd1ac1bcf17f7fafaacaa946a13a1ca647de5774"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总:\n\n| 实验类型 | 脚本默认 LR | 实际使用 LR (checkpoint 确认) |\n|----------|------------|-------------------------------|\n| CLS (Qwen3-4B) | 2e-4 | **5e-5** |\n| CLS (Qwen3-8B) | 2e-4 | **5e-5** |\n| CWM (Qwen3-4B) | 2e-4 | **5e-5** (v11+; 早期 v9 用过 2e-4 已废弃) |\n| CWM (Qwen3-8B) | 2e-4 | **5e-5** |\n| DeepSeek CLS (6.7B) | 2e-4 | **2e-4** |\n| DeepSeek CWM (6.7B) | 2e-4 | **2e-4** |\n| DeepSeek TRAJ (6.7B) | 2e-4 | **2e-4** |\n\n**关键发现:**\n\n1. **Appendix 表格没有 typo** — Qwen CLS/CWM 四列都写 5e-5，checkpoint 确认一致\n2. **所有 DeepSeek 实验用 lr=2e-4**（CLS、CWM、TRAJ 全部），但 appendix 超参表完全没有 DeepSeek 列\n3. **没有 Qwen TRAJ checkpoint** — seetacloud 上只有 DeepSeek TRAJ\n4. Reviewer 看到 TRAJ 用 2e-4 与表中 5e-5 不一致，原因是它们是不同模型族（DeepSeek vs Qwen），appendix 表只覆盖了 Qwen\n\n**建议**: 在超参表中加 DeepSeek 列（或脚注），注明 DeepSeek 用 lr=2e-4，其余 LoRA 配置相同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-lr-hyperparams.md"
+}

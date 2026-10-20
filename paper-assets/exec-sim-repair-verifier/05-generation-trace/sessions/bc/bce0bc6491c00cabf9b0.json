@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bce0bc6491c00cabf9b0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b s42 ckpt1000 test mutation home",
+  "task_key": "worker_eval_cls8b-s42-ckpt1000-test-mutation-home_20260515T220616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-s42-ckpt1000-test-mutation-home_20260515T220616_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "b0a3b349b07bc95da6326e024bb2c9f1dd6d1bb7d407ba1ef3335baa6204be5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**home-1x5090 不可达。** DNS 解析正常（`implicit5638.xyfu.me` → `73.241.206.183`），但 SSH 端口 22 无响应。服务器可能关机或端口转发未配置。\n\n已确认的信息：\n- **westd 上 ckpt-1000 位置**: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000/`（176MB，LoRA adapter）\n- **文件内容**: adapter_config.json, adapter_model.safetensors (61MB), optimizer.pt (123MB), trainer_state.json 等\n\n需要你检查：\n1. home 服务器是否已开机\n2. 路由器是否正确转发 22 端口到该机器\n3. 如果端口/IP 有变化，更新 resources.yaml 中的 host/port\n\n服务器恢复后我可以继续执行 eval 任务。或者，如果你想改在 westd 上运行这个 eval，也可以——westd 上已有 ckpt 和模型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-s42-ckpt1000-test-mutation-home.md"
+}

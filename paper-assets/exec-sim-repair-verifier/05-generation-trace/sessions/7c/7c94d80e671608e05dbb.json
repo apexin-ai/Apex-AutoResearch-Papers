@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "7c94d80e671608e05dbb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "code f1 macro fix and extract",
+  "task_key": "worker_code_f1-macro-fix-and-extract_20260516T162319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_f1-macro-fix-and-extract_20260516T162319.log",
+    "occurrence": 1,
+    "bytes": 706175,
+    "sha256": "dff97edfd81d0dbf4225a4760c2e47472bdfbd11c0680eec7365bb5ca22427f0"
+  },
+  "statistics": {
+    "messages": 182,
+    "user_turns": 1,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 15,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 65,
+      "tool_result": 65,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "7c94d80e671608e05dbb-part-0001.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 157,
+      "chunks": [
+        {
+          "path": "7c94d80e671608e05dbb-part-0001.json",
+          "message_count": 92
+        },
+        {
+          "path": "7c94d80e671608e05dbb-part-0002.json",
+          "message_count": 65
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-f1-macro-fix-and-extract.md"
+}

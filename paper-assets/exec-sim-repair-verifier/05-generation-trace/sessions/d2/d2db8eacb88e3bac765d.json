@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2db8eacb88e3bac765d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cls14b kill restart and 8b baseline",
+  "task_key": "worker_ssh_cls14b-kill-restart-and-8b-baseline_20260522T213548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cls14b-kill-restart-and-8b-baseline_20260522T213548_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "d9a0350139c7af2a9b661fd8d49854eb4fd3d2d183f33af5d4853822a5cc4dd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认成功：\n\n**Step 1 — Kill 旧进程**: PID 212100 已终止，tmux session `cls14b-func-s42` 已清理。\n\n**Step 2 — CLS 14B v2 (GPU 0)**: PID 215642，已在运行。日志确认：\n- `Train file: data/train.jsonl`, `Val file: data/val.jsonl` ✓\n- **`Loaded train=15290, val=1896`** ✓ (正确的 ~15K function-level 数据，不是 70K)\n\n**Step 3 — 8B baseline (GPU 1)**: 模型加载中，使用 `/root/autodl-tmp/models/Qwen/Qwen3-8B`，0-shot 先跑完后自动跑 3-shot。\n\n**GPU 分配**:\n| GPU | 任务 | PID |\n|-----|------|-----|\n| 0 | CLS 14B v2 (train, 15290 samples) | 215642 |\n| 1 | 8B baseline 0-shot/3-shot (loading) | 加载中 |\n| 2 | CWM 14B (已有) | 211098 |\n| 3 | 空闲 | — |\n\nGPU 1 的 8B 模型还在加载 checkpoint shards，尚未占 VRAM，正常现象。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cls14b-kill-restart-and-8b-baseline.md"
+}

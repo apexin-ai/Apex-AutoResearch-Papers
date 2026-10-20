@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ac3ce505f9e5002d2ed",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra scp monitor v2",
+  "task_key": "worker_infra_scp-monitor-v2_20260512T103418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_scp-monitor-v2_20260512T103418_result.json",
+    "occurrence": 1,
+    "bytes": 110,
+    "sha256": "534b92a8be045534577ab8f000280e24b1edec233b214eddb76332f3327d38bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态：gz 文件 61MB/92MB，SCP 传输中。Pipeline PID 27744 存活。3 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-scp-monitor-v2.md"
+}

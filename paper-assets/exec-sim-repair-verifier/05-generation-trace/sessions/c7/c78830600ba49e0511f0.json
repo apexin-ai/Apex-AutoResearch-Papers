@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c78830600ba49e0511f0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code 14b paper text update",
+  "task_key": "worker_code_14b-paper-text-update_20260523T080501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_14b-paper-text-update_20260523T080501_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "dbb552f3ede78bdd07218116e8868753e330cc941e74bea18604c0037504568f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both appendix references are about oracle analysis (single-seed estimate) and 4B comparisons (single seed) — not about 14B. No changes needed there.\n\nAll edits are complete. Summary of changes:\n\n- **abstract.tex**: `[TOST_P]` → `0.0006`\n- **experiments.tex Table 2**: CLS 14B std `0.80` → `0.81`, CWM 14B std `0.67` → `0.65`\n- **experiments.tex text (line 97)**: Same std updates + `[TOST_P]` → `0.0006`\n- **conclusion.tex**: `[TOST_P]` → `0.0006`\n\nThe other items in the checklist (seed descriptions, footnote removal, figure caption, limitations wording) were already updated in prior commits — no stale 14B single-seed/exploratory language remains in any `.tex` source file."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-14b-paper-text-update.md"
+}

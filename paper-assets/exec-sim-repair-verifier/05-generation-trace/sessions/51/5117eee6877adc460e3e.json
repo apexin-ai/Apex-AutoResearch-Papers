@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5117eee6877adc460e3e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research ref xcheck C",
+  "task_key": "worker_research_ref-xcheck-C_20260526T104653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-xcheck-C_20260526T104653_result.json",
+    "occurrence": 1,
+    "bytes": 2040,
+    "sha256": "0f4c1c3b5dcad377d4c86ef4ab817cbf270f424e0309b2bd7507b69fbee8adc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All searches complete. Let me compile the final results, combining web verification with citation context checks.\n\n---\n\n## 逐条验证结果\n\n```\n[andrews2005mutation]   ✓ 正确\n[just2014mutants]       ✓ 正确\n[wang2023selfconsistency] ✓ 正确\n[angrist2009mostly]     ✓ 正确\n[schuirmann1987tost]    ✓ 正确\n[davison1997bootstrap]  ✓ 正确\n[shrout1979icc]         ✓ 正确\n[holm1979]              ✓ 正确\n[lakens2017]            ✓ 正确\n[hoenig2001]            ✓ 正确\n[zhuo2024icescore]      ✓ 正确\n[dong2024codescore]     ⚠️ 问题: volume/year 错误——ACM TOSEM 实际发表于 Volume 34 (2025)，非 Volume 33 (2024)。应改为 volume={34}, year={2025}\n[zhou2023codebertscore] ✓ 正确\n[willard2023outlines]   ✓ 正确\n[poesia2022synchromesh] ✓ 正确\n[dong2024xgrammar]      ⚠️ 问题: 第二作者姓氏错误——应为 \"Ruan, Charlie F.\" 而非 \"Huang, Charlie F.\"；缺少 4 位作者 (Yaxing Cai, Ruihang Lai, Ziyi Xu, Yilong Zhao)，实际共 7 位作者\n[li2025codeprm]         ✓ 正确\n[zhang2026funprm]       ✓ 正确\n[jiang2025coderlplus]   ✓ 正确\n[ye2025prlcoder]        ✓ 正确\n[jain2023contextual]    ⚠️ 问题: 作者列表错误——第二作者应为 Uri Alon 而非 Ristimoy Barik；缺少 Alex Groce。正确作者为 Kush Jain, Uri Alon, Alex Groce, Claire Le Goues\n[wang2024llmmutation]   ✓ 正确（key 中 2024 与 year 字段 2025 不一致，但 key 不影响输出）\n[alphacode2023team]     ✓ 正确\n```\n\n引用上下文检查：所有 23 条引用在正文中的使用均与论文实际内容匹配，无张冠李戴。\n\n---\n\n## 有问题的条目汇总\n\n| # | Key | 问题 | 严重程度 |\n|---|-----|------|----------|\n| 59 | `dong2024codescore` | volume 应为 34, year 应为 2025 (非 33/2024) | 中 |\n| 63 | `dong2024xgrammar` | 第二作者姓 Huang→Ruan；缺 4 位合著者 | 高 |\n| 68 | `jain2023contextual` | 第二作者 Barik→Alon；缺 Alex Groce | 高 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-xcheck-c.md"
+}

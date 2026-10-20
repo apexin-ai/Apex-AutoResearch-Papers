@@ -1,0 +1,959 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ce97e8ad11225ad8eb0a",
+  "rounds": [
+    {
+      "number": 66,
+      "messages": [
+        {
+          "source_line": 1441,
+          "timestamp": "2026-05-16T01:25:03.618870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\section{Oracle Accuracy-Utility Analysis}\n4\t\\label{app:oracle}\n5\t\n6\tWe stratify SWE-bench Verified instances by F2P test count $T$, comparing per-test vs.\\ trajectory-level oracle resolve rates under i.i.d.\\ and block-correlated error models (ICC $= 0.191$).\n7\t\n8\t\\begin{table}[h]\n9\t\\centering\n10\t\\small\n11\t\\caption{Oracle accuracy-utility frontier: per-test advantage stratified by F2P test count ($T$) on SWE-bench Verified (500 instances). Block-correlated model uses empirical ICC $= 0.191$. P2P regression rate: 1.04\\% mean, 0\\% median.}\n12\t\\label{tab:oracle}\n13\t\\resizebox{\\columnwidth}{!}{%\n14\t\\setlength{\\tabcolsep}{3pt}\n15\t\\begin{tabular}{lcccc}\n16\t\\toprule\n17\t\\textbf{$T$} & \\textbf{Inst.\\%} & \\textbf{i.i.d.\\ (\\pp{})} & \\textbf{Block (\\pp{})} & \\textbf{Contrib.\\%} \\\\\n18\t\\midrule\n19\t$1$ & 68.7 & $-$0.04 & $-$0.09 & $\\approx$0 \\\\\n20\t$2$ & 19.1 & 18.49 & 31.69 & 55.3 \\\\\n21\t$3$--$5$ & 7.1 & 25.00 & 40.74 & $\\approx$26 \\\\\n22\t$\\geq 6$ & 5.1 & 30.00 & 40.06 & $\\approx$19 \\\\\n23\t\\midrule\n24\t\\textbf{All} & 100.0 & --- & \\textbf{10.93} & 100.0 \\\\\n25\t\\bottomrule\n26\t\\end{tabular}}\n27\t\\end{table}\n28\t\n29\t\\begin{figure}[h]\n30\t\\centering\n31\t\\includegraphics[width=\\columnwidth]{figures/paper/fig3_oracle_stratified.pdf}\n32\t\\caption{Oracle per-test advantage by F2P test count $T$. Advantage is zero at $T{=}1$ (68.7\\%) and concentrates at $T{=}2$ (19.1\\%, contributing 55.3\\% of total advantage).}\n33\t\\label{fig:oracle_stratified}\n34\t\\end{figure}\n35\t\n36\tTable~\\ref{tab:oracle} and Figure~\\ref{fig:oracle_stratified} reveal a sharp concentration: at $T = 1$ (68.7\\% of instances), per-test and trajectory-level are informationally equivalent. The advantage materializes at $T = 2$ (19.1\\%), where block-correlated advantage reaches 31.69\\pp{} (55.3\\% of total). The overall block-correlated advantage is 10.93\\pp{}, driven by the $T \\geq 2$ minority. Block correlation amplifies relative to i.i.d.: at $T = 2$, 31.69\\pp{} vs.\\ 18.49\\pp{} (1.7$\\times$). P2P regression is negligible\n…[truncated 4358 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-001441"
+        },
+        {
+          "source_line": 1442,
+          "timestamp": "2026-05-16T01:25:28.130690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_paper_full-consistency-review (failed) + 独立论文一致性核查\n\n**结论**: WARNING\n\nWorker `worker_paper_full-consistency-review_20260516T011413` 状态 failed（原因未知，可能超时或工具错误）。以下为 Reviewer 独立完成的论文-registry 交叉验证。\n\n---\n\n### 核心验证结果\n\n**Tables 1, 2, 4 主体数字全部通过交叉验证。** 无伪造或计算错误：\n\n- Table 1: CLS 88.43±0.78, CWM 87.19±0.37, TRAJ 86.30±0.97, ZS 64.40/71.69 — 与 registry provenance 一致 ✓\n- Table 2: 三均值 (88.41/87.23/89.40/86.96)、gap (1.18/2.43)、scaling delta (+0.99/-0.27) — 计算正确 ✓\n- Table 4: CLS 4B 83.63, CWM 4B 58.04/59.09, CLS 8B 84.48/85.60 — 与 registry 完全匹配 ✓\n- F1, Unparse%, vs Majority — 逐行核对通过 ✓\n\n**ckpt-3600 作为 CLS 8B s42 val-best 已确认**: memory.md 记载 val=90.28% (超越 ckpt-1000 的 88.23% +2.05pp)，D088 protocol 合规。\n\n---\n\n### 发现\n\n- [severity: warning] **Seq-length ablation 数字过时 (experiments.tex line 123)**\n  论文写：\"CLS 8B evaluated at max_seq_length=2,048 yields a matched-context gap of **24.79pp**, representing **97%** of the same-size 25.59pp gap.\"\n  24.79pp 来自 **ckpt-1000**@2048 (82.83% - 58.04%)，但 Table 4 已切换到 **ckpt-3600** (84.48%)。\n  ckpt-3600@2048 = 83.04% (registry `cls8b-s42-ckpt3600-seq2048-ablation` 确认)。正确数字应为：\n  - Gap = 83.04 - 58.04 = **25.00pp** (不是 24.79pp)\n  - 25.00 / 25.59 = **97.7%** ≈ 98% (不是 97%)\n  - \"<3%\" claim 仍成立 (100%-97.7%=2.3% < 3%)，定性结论不变\n  建议更新为 25.00pp / 98%。\n\n- [severity: warning] **ROADMAP 主表未更新**\n  ROADMAP 仍显示 `CLS 8B s42 | ckpt-1000 | 88.23% | 83.52% | 25.48pp`。\n  memory.md 已记录 ckpt-3600 (90.28% val / 84.48% test)。ROADMAP 应同步更新。\n\n- [severity: warning] **writing_plan.yaml cross-size 数字过时**\n  写 \"cross-size 8B-CLS vs 4B-CWM = 25.48-26.51pp\"。\n  s42 用 ckpt-3600 后: 84.48 - 58.04 = 26.44pp (不是 25.48pp)。范围应为 26.44-26.51pp。\n\n- [severity: info] **Abstract (1.24pp) vs Introduction (1.18pp) 差异**\n  Abstract 用 5-seed gap (1.24pp, Table 1)，Introduction 用 3 matched-seed gap (1.18pp, Table 2)。两者各自正确，但读者可能困惑。建议 Introduction 明确注明\"3 matched bfloat16 seeds\"以区分。\n\n- [severity: info] **CLS 4B s123 test=75.33% 来源**\n  论文 limitations 引用此数字，memory.md 确认，但 registry 中 `cls4b-seed123-ckpt800-test5120-eval` 状态为 failed。数字的正式溯源不完整。作为 limitations 披露可接受，但应在 paper_provenance 中补记。\n\n- [severity: info] **CWM 8B test 仍为空**\n  Table 4 CWM 8B 行显示 \"---\"。cwm8b-ckpt400-test-eval-v3 正在运行 (5496/9784, ETA ~18:00 UTC)。预计 running_acc ~60%，低于 majority baseline，与 4B CWM 模式一致。8B-8B gap 预计 24-25pp。\n\n### Worker 失败处理建议\n\nWorker 失败未留下输出。上述独立核查覆盖了 full-consistency-review 应检查的主要维度。建议不需重跑 worker——修复上述 3 个 warning 即可。优先级：\n1. 更新 experiments.tex seq-length ablation 数字 (24.79→25.00, 97%→98%)\n2. 更新 ROADMAP 主表\n3. 更新 writing_plan cross-size 范围",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-001442"
+        },
+        {
+          "source_line": 1443,
+          "timestamp": "2026-05-16T01:25:32.253461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4122
+          },
+          "id": "event-001443"
+        },
+        {
+          "source_line": 1444,
+          "timestamp": "2026-05-16T01:25:42.958332+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两份审查已提交给 Director：\n\n1. **GPU 审计** (CRITICAL) — GPU 2 上有 Director 已下令终止但仍在运行的 CWM 训练进程 (PID 442200)；GPU 0/1 上有 registry 标记为 ghost 但实际在运行的 CLS eval 进程。需要立即 kill GPU 2 进程并确认 GPU 0/1 进程意图。\n\n2. **论文一致性审查** (WARNING) — 主体数字全部验证通过，但 seq-length ablation 有一个过时数字 (24.79pp 应为 25.00pp，因主表已切换到 ckpt-3600)。ROADMAP 和 writing_plan 也需同步更新。Worker 失败不影响结论——独立审查已覆盖全部维度。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer"
+          },
+          "id": "event-001444"
+        },
+        {
+          "source_line": 1445,
+          "timestamp": "2026-05-16T01:25:42.980967+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Paper hyperparameter appendix worker 完成，检查写入内容。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer"
+          },
+          "id": "event-001445"
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "messages": [
+        {
+          "source_line": 1446,
+          "timestamp": "2026-05-16T01:27:50.423193+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_cwm8b-eval-accelerate-cuda1_20260516T012110]:\nWorker worker_eval_cwm8b-eval-accelerate-cuda1_20260516T012110 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "source": "worker_done:worker_eval_cwm8b-eval-accelerate-cuda1_20260516t012110"
+          },
+          "id": "event-001446"
+        },
+        {
+          "source_line": 1447,
+          "timestamp": "2026-05-16T01:27:56.206967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "limit": "8",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001447"
+        },
+        {
+          "source_line": 1448,
+          "timestamp": "2026-05-16T01:27:56.662356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"cwm8b-ckpt400-test-eval-shard2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:27:27.393Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:27:36.845Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 8 --max_new_tokens 1024 --start_idx 7680 --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard2/\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"data_path\\\": \\\"data/swebench_full/swebench_test.jsonl\\\", \\\"data_count\\\": 2104, \\\"model_name\\\": \\\"Qwen3-8B + CWM LoRA ckpt-400\\\", \\\"seed\\\": null, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400\\\", \\\"eval_data\\\": \\\"swebench_test (idx 7680-9784)\\\"}}, \\\"cls8b-seed123-ckpt3000-mutation\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:21:39.827Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:22:47.109Z\\\", \\\"hypothesis\\\": \\\"CLS 8B seed123 ckpt-3000 test mutation breakdown — 跨 seed 验证 boundary_removal failure mode\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_repo_cls.py + mutation_breakdown.py\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"data_path\\\": \\\"data/swebench_full/swebench_test.jsonl\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/\\\", \\\"eval_data\\\": \\\"swebench_test\\\", \\\"pid\\\": 447483}}, \\\"cls8b-s42-resume-ckpt3600-test-v2\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:18:39.982Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:19:04.067Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 python3 eval_repo_cls.py --checkpoint_dir /root/aut\n…[truncated 6867 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 455
+          },
+          "id": "event-001448"
+        },
+        {
+          "source_line": 1449,
+          "timestamp": "2026-05-16T01:28:16.662357+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-001449"
+        },
+        {
+          "source_line": 1450,
+          "timestamp": "2026-05-16T01:28:17.767553+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-001450"
+        },
+        {
+          "source_line": 1451,
+          "timestamp": "2026-05-16T01:28:18.068742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"447490, GPU-fc6e3c91-6d49-c4b1-63c9-3e7082c4ac10, 17422 MiB\\\\n448100, GPU-93458947-6c56-24f0-96ad-49bc10fe4583, 21122 MiB\\\\n446873, GPU-19c6fdd6-dd98-c089-da56-c21260f588cd, 17420 MiB\\\\n443221, GPU-02eb6271-cb5b-7542-230f-44000133e276, 21124 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1406
+          },
+          "id": "event-001451"
+        },
+        {
+          "source_line": 1452,
+          "timestamp": "2026-05-16T01:28:18.296293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "exp_id": "cwm8b-ckpt400-test-eval-v3",
+              "project": "exec-sim-repair-verifier",
+              "n": "5"
+            }
+          },
+          "id": "event-001452"
+        },
+        {
+          "source_line": 1453,
+          "timestamp": "2026-05-16T01:28:18.647963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 76 %, 17431 MiB, 32607 MiB\\\\n1, 88 %, 21131 MiB, 32607 MiB\\\\n2, 86 %, 17429 MiB, 32607 MiB\\\\n3, 83 %, 21133 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.65}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 880
+          },
+          "id": "event-001453"
+        },
+        {
+          "source_line": 1454,
+          "timestamp": "2026-05-16T01:28:19.200643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-16 09:24:29,618 INFO [CWM] 5600/9784  running_acc=59.4%  (new=313 resumed=5287)\\\", \\\"2026-05-16 09:25:26,325 INFO [CWM] 5608/9784  running_acc=60.1%  (new=321 resumed=5287)\\\", \\\"2026-05-16 09:26:22,914 INFO [CWM] 5616/9784  running_acc=60.5%  (new=329 resumed=5287)\\\", \\\"2026-05-16 09:27:04,145 INFO [CWM] 5624/9784  running_acc=60.5%  (new=337 resumed=5287)\\\", \\\"2026-05-16 09:28:00,623 INFO [CWM] 5632/9784  running_acc=61.4%  (new=345 resumed=5287)\\\"], \\\"line_count\\\": 5, \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cwm8b-ckpt400-test-eval-v3.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 904
+          },
+          "id": "event-001454"
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "messages": [
+        {
+          "source_line": 1455,
+          "timestamp": "2026-05-16T01:28:23.952765+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — roadmap_updated]:\n[系统通知] ROADMAP.md 已更新（原因：ckpt-3600 切换后同步 ROADMAP 主表 + GPU 状态更新），请审查研究方向和计划的合理性。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "source": "roadmap_updated"
+          },
+          "id": "event-001455"
+        },
+        {
+          "source_line": 1456,
+          "timestamp": "2026-05-16T01:28:31.545293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-001456"
+        },
+        {
+          "source_line": 1457,
+          "timestamp": "2026-05-16T01:28:31.596436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/ROADMAP.md\\\", \\\"content\\\": \\\"# exec-sim-repair-verifier — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-16 01:28 UTC | 更新原因: ckpt-3600 切换后同步 ROADMAP 主表 + GPU 状态更新\\\\n\\\\n> 最后更新原因: ckpt-3600 切换后同步主表数字 + GPU 状态\\\\n\\\\n## 核心方向\\\\nTask reformulation: execution simulation from generation → classification。核心假设：CLS 优势随代码复杂度增长。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Paper Writing（Paper Agent 已启动 Full Draft）+ 8B eval 收尾\\\\n- **DDL**: EMNLP 2026 ARR May 25（剩余 **9 天**）\\\\n- **C1**: ✅ Multi-seed gap = 26.48pp mean (s42: 26.44, seed123: 26.51)\\\\n- **C2**: ✅ TOST p=0.007\\\\n- **C3**: ✅ Oracle frontier 完成\\\\n\\\\n## 论文主表数字（D088 val-selected, 全部锁定）\\\\n\\\\n| 模型 | Val-best | Val | Test | vs CWM gap |\\\\n|------|----------|-----|------|------------|\\\\n| CLS 8B s42 | ckpt-3600 | 90.28% | 84.48% | 26.44pp |\\\\n| CLS 8B seed123 | ckpt-3000 | 88.69% | 85.60% | 26.51pp |\\\\n| CLS 4B s42 | ckpt-4600 | 90.07% | 83.63% | 25.59pp |\\\\n| CWM 4B s42 | — | — | 58.04% | — |\\\\n| CWM 4B seed123 | — | — | 59.09% | — |\\\\n| CWM 8B | — | — | ⏳ eval ~57% | — |\\\\n| Majority | — | 75.88% | 72.96% | — |\\\\n\\\\n## Sweep 完成度\\\\n- ✅ 8B s42 val sweep: peak=ckpt-3600 (90.28%) — 替代 ckpt-1000\\\\n- ✅ 8B s42 test: ckpt-3600=84.48%\\\\n- ✅ seed123 val-best test: ckpt-3000 test=85.60%\\\\n- ✅ 4B val sweep + test: ckpt-4600=83.63%\\\\n- ✅ Seq-length ablation: ckpt-3600@2048=83.04%, gap=25.00pp (98% of 25.59pp)\\\\n\\\\n## 近期任务\\\\n- [ ] CWM 8B eval 完成 (cuda:3, ~57%, ETA ~1h) → 锁 8B-8B gap\\\\n- [ ] cuda:0: 8B per-test precision/recall 分析（已派 Agent）\\\\n- [ ] cuda:1: 8B block-correlation empirical 分析（已派 Agent）\\\\n- [ ] cuda:2: ckpt-3600 test eval（RUNNING）\\\\n- [ ] Paper Writing: intro/related/conclusion + figures\\\\n- [ ] boundary_removal 46.9% accuracy 发现 → 论文 discussion\\\\n\\\\n## GPU 预算\\\\n- westd cuda:0: **待分配** → 8B per-test P/R（指令已发）\\\\n- westd cuda:1: **待分配** → 8B block-corr（指令已发）\\\\n- westd cuda:2: cls8b-s42-resume-ckpt3600\n…[truncated 1543 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 51
+          },
+          "id": "event-001457"
+        },
+        {
+          "source_line": 1458,
+          "timestamp": "2026-05-16T01:29:01.854598+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全 4 GPU 现在都在生产性运行。shard2 并行策略合理，无异常——不需报告 Director。\n\n快速确认：\n- **GPU 0** (PID 447490): `cls8b-seed123-ckpt3000-mutation` eval，76% util，17.4 GB\n- **GPU 1** (PID 448100): `cwm8b-ckpt400-test-eval-shard2`（idx 7680-9784，2104 samples），88% util，21.1 GB\n- **GPU 2** (PID 446873): `cls8b-s42-resume-ckpt3600-test-v2`，86% util，17.4 GB\n- **GPU 3** (PID 443221): `cwm8b-ckpt400-test-eval-v3`（5632/9784=58%），83% util，21.1 GB\n\nshard2 在 GPU 1 上并行处理 CWM eval 尾部，将整体 ETA 从 ~18:00 UTC 缩短到 ~14:00 UTC（约省 4 小时）。CUDA_VISIBLE_DEVICES=1 与实际 GPU 占用匹配，bs=8 符合 D102 指令。无 GPU 边界违规。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer"
+          },
+          "id": "event-001458"
+        },
+        {
+          "source_line": 1459,
+          "timestamp": "2026-05-16T01:29:01.869373+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 更新通知，审查研究方向变更。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer"
+          },
+          "id": "event-001459"
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "messages": [
+        {
+          "source_line": 1460,
+          "timestamp": "2026-05-16T01:40:13.936294+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_check-all-experiments-status_20260516T013749]:\nWorker worker_ops_check-all-experiments-status_20260516T013749 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "source": "worker_done:worker_ops_check-all-experiments-status_20260516t013749"
+          },
+          "id": "event-001460"
+        },
+        {
+          "source_line": 1461,
+          "timestamp": "2026-05-16T01:40:24.039339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "filters": "{'status': 'RUNNING'}",
+              "limit": "10",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001461"
+        },
+        {
+          "source_line": 1462,
+          "timestamp": "2026-05-16T01:40:24.696677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"cls8b-s42-resume-ckpt3600-test-v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:18:39.982Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:39:08.258Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/eval_results/cls8b_s42_resume_ckpt3600_test_v2/\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": 446868, \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-resume-ckpt3600-test-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T01:19:03.561Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/swebench_full/swebench_test.jsonl\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B + CLS LoRA s42-resume ckpt-3600\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/\\\", \\\"eval_data\\\": \\\"swebench_test (n=9784)\\\"}}, \\\"cwm8b-ckpt400-test-eval-shard2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:27:27.393Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:27:36.845Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 8 --max_new_tokens 1024 --start_idx 7680 --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard2/\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"data_path\\\": \\\"data/swebench_full/swebench_test.jsonl\\\", \\\"data_count\\\": 2104, \\\"model_name\\\": \\\"Qwen3-8B + CWM LoRA ckpt-400\\\", \\\"seed\\\": null, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cwm_8b_conda\n…[truncated 1837 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 657
+          },
+          "id": "event-001462"
+        },
+        {
+          "source_line": 1463,
+          "timestamp": "2026-05-16T01:40:24.697155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-001463"
+        },
+        {
+          "source_line": 1464,
+          "timestamp": "2026-05-16T01:40:26.101829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"447490, GPU-fc6e3c91-6d49-c4b1-63c9-3e7082c4ac10, 17602 MiB\\\\n448100, GPU-93458947-6c56-24f0-96ad-49bc10fe4583, 21124 MiB\\\\n446873, GPU-19c6fdd6-dd98-c089-da56-c21260f588cd, 17600 MiB\\\\n443221, GPU-02eb6271-cb5b-7542-230f-44000133e276, 21124 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1404
+          },
+          "id": "event-001464"
+        },
+        {
+          "source_line": 1465,
+          "timestamp": "2026-05-16T01:40:41.981314+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 张 GPU 正在执行有意义的工作，registry 与实际进程一致，无异常。无需向 Director 报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer"
+          },
+          "id": "event-001465"
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "messages": [
+        {
+          "source_line": 1466,
+          "timestamp": "2026-05-16T01:44:52.967309+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_8b-per-mutation-precision-recall_20260516T014054]:\nWorker worker_analysis_8b-per-mutation-precision-recall_20260516T014054 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "source": "worker_done:worker_analysis_8b-per-mutation-precision-recall_20260516t014054"
+          },
+          "id": "event-001466"
+        },
+        {
+          "source_line": 1467,
+          "timestamp": "2026-05-16T01:45:00.658350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "limit": "3",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001467"
+        },
+        {
+          "source_line": 1468,
+          "timestamp": "2026-05-16T01:45:01.160667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"cls8b-s42-ckpt1000-test-mutation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:05:40.602Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:40:18.681Z\\\", \\\"spec\\\": {\\\"description\\\": \\\"CLS 8B s42 ckpt-1000 (val-best) test eval with per-mutation-type accuracy breakdown\\\", \\\"hypothesis\\\": \\\"CLS 8B s42 原始训练 ckpt-1000 test eval + mutation-type breakdown (主表模型)\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000/\\\", \\\"eval_data\\\": \\\"swebench_full test split\\\", \\\"command\\\": \\\"eval_repo_cls.py + mutation_breakdown\\\", \\\"data_path\\\": \\\"data/swebench_full/swebench_test.jsonl\\\", \\\"seed\\\": 42, \\\"data_count\\\": \\\"test split\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-16T01:08:33.170Z\\\", \\\"failure_reason\\\": \\\"Duplicate: used same resume/checkpoint-1000 as cuda:1 experiment (original checkpoints_repo_cls_8b_conda only had up to step 600)\\\"}, \\\"cls8b-s42-resume-ckpt3600-test-v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:18:39.982Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:39:08.258Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/ --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split test --device cuda:0 --batch_size 1 --max_seq_length 8192 --max_new_tokens 8 --output_dir /root/autodl-tmp/eval_results/cls8b_s42_resume_ckpt3600_test_v2/\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": 446868, \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-resume-ckpt3600-test-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T01:19:03.561Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/swebench_full/swebench_test.jsonl\\\", \\\"data_count\\\": 9784, \\\"model_\n…[truncated 1194 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-001468"
+        },
+        {
+          "source_line": 1469,
+          "timestamp": "2026-05-16T01:45:08.370867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "find /root/autodl-tmp/eval_results/ -name \"*precision*\" -o -name \"*recall*\" -o -name \"*per_mutation_pr*\""
+            }
+          },
+          "id": "event-001469"
+        },
+        {
+          "source_line": 1470,
+          "timestamp": "2026-05-16T01:45:08.874710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "memory.md",
+              "max_chars": "5000"
+            }
+          },
+          "id": "event-001470"
+        },
+        {
+          "source_line": 1471,
+          "timestamp": "2026-05-16T01:45:09.579529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/per_mutation_precision_recall_8b.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1208
+          },
+          "id": "event-001471"
+        },
+        {
+          "source_line": 1472,
+          "timestamp": "2026-05-16T01:45:09.580192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/memory.md\\\", \\\"content\\\": \\\"# Memory — exec-sim-repair-verifier\\\\n\\\\n## 硬教训：标 FAILED 前必须确认进程已退出 (2026-05-15)\\\\n- **事故**：v1 ckpt-3000 test eval (PID 345441) 被误标 DONE/failed，但进程实际在跑。随后 v2 提交到同 GPU 导致 OOM。\\\\n- **规则**：标 FAILED/DONE(failed) 前必须 `ps -p PID` 确认进程已退出。标 RUNNING 的实验所在 GPU 不得提交新任务。\\\\n- **适用范围**：所有 registry 状态变更操作\\\\n\\\\n## 硬教训：eval 不要用 --max_samples (2026-05-15)\\\\n- **事故**：seed123 ckpt-6200/6400 test eval 用了 `--max_samples 8192`，只评了 8192/9784 样本，与主表 n=9784 不可比。被 Reviewer 抓出后需 kill+重跑。\\\\n- **规则**：test eval 禁止 --max_samples 参数，必须评完整 test set (n=9784)。val eval 同理 (n=9335)。\\\\n- **例外**：debug/dry-run 时可以用，但结果不入正式表。\\\\n\\\\n## 硬教训：s42 resume 从 ckpt-600 开始 (2026-05-15)\\\\n- s42 resume 的 checkpoint 目录 `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/` 从 ckpt-600 开始（200步间隔），不含 ckpt-200/400。\\\\n- 原始训练 ckpt-200/400 在 `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/`，但那是 s42 原始训练目录不是 resume 目录。\\\\n- **提交 s42 val eval 前检查 checkpoint 是否存在于 resume 目录**。\\\\n\\\\n## ⚠️ Unparseable Rate 混淆变量警告 (2026-05-15)\\\\n- ckpt-1800 的 20.2% unparseable 是在 **seq=2048** 下测的；ckpt-800/1400 的 0% 是在 **seq=8192** 下测的\\\\n- **无法归因为\\\\\\\"过拟合导致 format compliance 退化\\\\\\\"**——可能是截断导致\\\\n- ckpt-200 在 seq=2048 下仅 1.4% unparseable，暗示两者都有影响（截断 + 过拟合），但需控制变量\\\\n- **cls8b-s42-resume-val-sweep-seq8192 正在以统一 seq=8192 重新评估所有 checkpoint**，含 unparseable 追踪\\\\n- 等此 sweep 完成后才能下 unparseable 趋势结论\\\\n\\\\n## 8B-8B Gap 评判标准 (Director 指令, 2026-05-15)\\\\n- **CLS 8B vs CWM 8B 对比必须双方都用 val-best checkpoint**（不是 test-best，不是 final）\\\\n- CWM 8B eval **必须统计 unparseable rate**（无法解析为 pass/fail 的输出比例）\\\\n- unparseable rate 是论文 failure modes (§2.3) 的关键证据\\\\n- 4B repo-level CWM unparseable rate: s42=53.7%, seed123=67.2%\\\\n- 8B 是否改善直接影响 claim 强度\\\\n- **CWM 8B val sweep 脚本必须包含 unparseable 统计**\\\\n\\\\n## D088 Checkpoint 选择 — Val Sweep 完成 (2026-05-15, updated)\\\\n- **主指标回到 val-selected checkpoint**（ML 社区规范）\\\\n- **⚠️ 8B s42 Val-\n…[truncated 3493 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 705
+          },
+          "id": "event-001472"
+        },
+        {
+          "source_line": 1473,
+          "timestamp": "2026-05-16T01:45:14.834819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cat /root/autodl-tmp/eval_results/per_mutation_precision_recall_8b.json"
+            }
+          },
+          "id": "event-001473"
+        },
+        {
+          "source_line": 1474,
+          "timestamp": "2026-05-16T01:45:15.289174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_8b\\\\\\\": {\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"cls8b_s42_resume_ckpt3600\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"per_mutation\\\\\\\": {\\\\n      \\\\\\\"gold\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 4633,\\\\n        \\\\\\\"n_pass\\\\\\\": 4633,\\\\n        \\\\\\\"n_fail\\\\\\\": 0,\\\\n        \\\\\\\"accuracy\\\\\\\": 96.24,\\\\n        \\\\\\\"pass_precision\\\\\\\": 100.0,\\\\n        \\\\\\\"pass_recall\\\\\\\": 96.24,\\\\n        \\\\\\\"pass_f1\\\\\\\": 98.09,\\\\n        \\\\\\\"fail_precision\\\\\\\": 0.0,\\\\n        \\\\\\\"fail_recall\\\\\\\": 0.0,\\\\n        \\\\\\\"fail_f1\\\\\\\": 0.0,\\\\n        \\\\\\\"f1_macro\\\\\\\": 49.05\\\\n      },\\\\n      \\\\\\\"mutation_boundary_removal\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 1049,\\\\n        \\\\\\\"n_pass\\\\\\\": 437,\\\\n        \\\\\\\"n_fail\\\\\\\": 612,\\\\n        \\\\\\\"accuracy\\\\\\\": 46.9,\\\\n        \\\\\\\"pass_precision\\\\\\\": 42.97,\\\\n        \\\\\\\"pass_recall\\\\\\\": 83.98,\\\\n        \\\\\\\"pass_f1\\\\\\\": 56.86,\\\\n        \\\\\\\"fail_precision\\\\\\\": 64.1,\\\\n        \\\\\\\"fail_recall\\\\\\\": 20.42,\\\\n        \\\\\\\"fail_f1\\\\\\\": 30.98,\\\\n        \\\\\\\"f1_macro\\\\\\\": 43.92\\\\n      },\\\\n      \\\\\\\"mutation_operator_swap\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 3357,\\\\n        \\\\\\\"n_pass\\\\\\\": 1693,\\\\n        \\\\\\\"n_fail\\\\\\\": 1664,\\\\n        \\\\\\\"accuracy\\\\\\\": 81.38,\\\\n        \\\\\\\"pass_precision\\\\\\\": 75.7,\\\\n        \\\\\\\"pass_recall\\\\\\\": 92.91,\\\\n        \\\\\\\"pass_f1\\\\\\\": 83.43,\\\\n        \\\\\\\"fail_precision\\\\\\\": 90.62,\\\\n        \\\\\\\"fail_recall\\\\\\\": 69.65,\\\\n        \\\\\\\"fail_f1\\\\\\\": 78.76,\\\\n        \\\\\\\"f1_macro\\\\\\\": 81.09\\\\n      },\\\\n      \\\\\\\"mutation_return_value\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 562,\\\\n        \\\\\\\"n_pass\\\\\\\": 246,\\\\n        \\\\\\\"n_fail\\\\\\\": 316,\\\\n        \\\\\\\"accuracy\\\\\\\": 75.44,\\\\n        \\\\\\\"pass_precision\\\\\\\": 64.36,\\\\n        \\\\\\\"pass_recall\\\\\\\": 98.37,\\\\n        \\\\\\\"pass_f1\\\\\\\": 77.81,\\\\n        \\\\\\\"fail_precision\\\\\\\": 97.85,\\\\n        \\\\\\\"fail_recall\\\\\\\": 57.59,\\\\n        \\\\\\\"fail_f1\\\\\\\": 72.51,\\\\n        \\\\\\\"f1_macro\\\\\\\": 75.16\\\\n      },\\\\n      \\\\\\\"mutation_off_by_one\\\\\\\": {\\\\n        \n…[truncated 2833 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 454
+          },
+          "id": "event-001474"
+        },
+        {
+          "source_line": 1475,
+          "timestamp": "2026-05-16T01:45:56.801108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_analysis_8b-per-mutation-precision-recall\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: info] **8B per-mutation P/R 分析结果已产出** (`/root/autodl-tmp/eval_results/per_mutation_precision_recall_8b.json`)，8B ckpt-3600 数据与 registry mutation breakdown 一致，数字可信。\n\n- [severity: warning] **4B 对比使用了错误的 checkpoint**\n  分析文件中 4B 数据来自 `cls_v5_ckpt600`（极早期 checkpoint），但论文主表 4B val-best 是 **ckpt-4600**（test=83.63%）。从 ckpt-600 推算整体准确率 ≈76.9%，远低于 ckpt-4600 的 83.63%。\n  \n  **如果要在论文中对比 4B vs 8B per-mutation P/R**，必须使用 val-best ckpt-4600 的预测结果，否则对比不公平。当前 4B 数据仅能说明 \"ckpt-600 时的 pattern\"，不代表最终 4B 模型。\n\n- [severity: info] **boundary_removal 46.9% 的根因已明确**：8B ckpt-3600 在 boundary_removal 上有极端 pass bias（pass_recall=84%，fail_recall=仅 20.4%）。模型几乎总预测 \"pass\"，漏掉 80% 的 fail cases。\n  \n  对比有趣发现（虽 4B 用错 ckpt，pattern 仍值得注意）：4B ckpt-600 在 boundary_removal 上反而有 fail bias（fail_recall=82.7%，pass_recall=25.6%）。如果 ckpt-4600 也有类似 pattern，则 4B→8B scaling 在 boundary_removal 上产生了方向性翻转，值得在论文 discussion 中讨论。\n\n### 建议\n\n1. 用 ckpt-4600 predictions 重跑 4B per-mutation P/R（output 文件应在 `/root/autodl-tmp/eval_results/cls4b_v5_ckpt4600_test/`）\n2. 如确认 4B ckpt-4600 在 boundary_removal 上的 fail_recall 也显著高于 8B，则值得在 paper 里讨论这个 scaling 异常",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-001475"
+        },
+        {
+          "source_line": 1476,
+          "timestamp": "2026-05-16T01:46:00.924148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4123
+          },
+          "id": "event-001476"
+        },
+        {
+          "source_line": 1477,
+          "timestamp": "2026-05-16T01:46:04.182416+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据产出了。发现一个方法学问题——4B 对比基线使用了错误的 checkpoint。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer"
+          },
+          "id": "event-001477"
+        }
+      ]
+    },
+    {
+      "number": 71,
+      "messages": [
+        {
+          "source_line": 1478,
+          "timestamp": "2026-05-16T02:09:25.627591+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_8b-block-correlation-cuda1_20260516T020114]:\nWorker worker_analysis_8b-block-correlation-cuda1_20260516T020114 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "source": "worker_done:worker_analysis_8b-block-correlation-cuda1_20260516t020114"
+          },
+          "id": "event-001478"
+        },
+        {
+          "source_line": 1479,
+          "timestamp": "2026-05-16T02:09:34.867518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "find /root/autodl-tmp/eval_results/ -name \"*block*corr*\" -o -name \"*icc*8b*\" -o -name \"*block_corr*8b*\""
+            }
+          },
+          "id": "event-001479"
+        },
+        {
+          "source_line": 1480,
+          "timestamp": "2026-05-16T02:09:34.968516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "limit": "5",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001480"
+        },
+        {
+          "source_line": 1481,
+          "timestamp": "2026-05-16T02:09:36.360849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/cls8b_block_correlation.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1493
+          },
+          "id": "event-001481"
+        },
+        {
+          "source_line": 1482,
+          "timestamp": "2026-05-16T02:09:36.764450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"cls8b-s42-resume-ckpt3600-test-v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:18:39.982Z\\\", \\\"updated_at\\\": \\\"2026-05-16T02:00:59.004Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"eval_repo_cls.py --checkpoint_dir checkpoint-3600 --split test --batch_size 1 --max_seq_length 8192\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": 446868, \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-resume-ckpt3600-test-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T01:19:03.561Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/swebench_full/swebench_test.jsonl\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/\\\", \\\"eval_data\\\": \\\"test split n=9784\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/\\\"}}, \\\"cls8b-s42-ckpt1000-test-mutation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T22:05:40.602Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:40:18.681Z\\\", \\\"spec\\\": {\\\"description\\\": \\\"CLS 8B s42 ckpt-1000 (val-best) test eval with per-mutation-type accuracy breakdown\\\", \\\"hypothesis\\\": \\\"CLS 8B s42 原始训练 ckpt-1000 test eval + mutation-type breakdown (主表模型)\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000/\\\", \\\"eval_data\\\": \\\"swebench_full test split\\\", \\\"command\\\": \\\"eval_repo_cls.py + mutation_breakdown\\\", \\\"data_path\\\": \\\"data/swebench_full/swebench_test.jsonl\\\", \\\"seed\\\": 42, \\\"data_count\\\": \\\"test split\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-16T01:08:33.170Z\\\", \\\"failure_reason\\\": \\\"Duplicate: used same resume/checkpoint-1000 as cuda:1 experiment (original checkpoints_repo_cls\n…[truncated 3718 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1795
+          },
+          "id": "event-001482"
+        },
+        {
+          "source_line": 1483,
+          "timestamp": "2026-05-16T02:09:40.733299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cat /root/autodl-tmp/eval_results/cls8b_block_correlation.json"
+            }
+          },
+          "id": "event-001483"
+        },
+        {
+          "source_line": 1484,
+          "timestamp": "2026-05-16T02:09:41.185703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"source\\\\\\\": \\\\\\\"eval_repo_cls.py 8B CLS ckpt-3600 (val-best)\\\\\\\",\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 9784,\\\\n    \\\\\\\"n_problems\\\\\\\": 25,\\\\n    \\\\\\\"overall_accuracy\\\\\\\": 84.48,\\\\n    \\\\\\\"overall_error_rate\\\\\\\": 0.1552\\\\n  },\\\\n  \\\\\\\"icc_permutation_test\\\\\\\": {\\\\n    \\\\\\\"observed_icc\\\\\\\": 0.314648,\\\\n    \\\\\\\"shuffle_mean\\\\\\\": 8e-06,\\\\n    \\\\\\\"shuffle_std\\\\\\\": 0.000815,\\\\n    \\\\\\\"shuffle_p95\\\\\\\": 0.001485,\\\\n    \\\\\\\"shuffle_p99\\\\\\\": 0.002239,\\\\n    \\\\\\\"p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"n_permutations\\\\\\\": 5000\\\\n  },\\\\n  \\\\\\\"design_effect\\\\\\\": {\\\\n    \\\\\\\"design_effect\\\\\\\": 114.4057,\\\\n    \\\\\\\"avg_cluster_size_k0\\\\\\\": 361.42,\\\\n    \\\\\\\"icc\\\\\\\": 0.314648\\\\n  },\\\\n  \\\\\\\"block_stats\\\\\\\": {\\\\n    \\\\\\\"n_groups\\\\\\\": 25,\\\\n    \\\\\\\"observed_all_correct\\\\\\\": 10,\\\\n    \\\\\\\"observed_all_wrong\\\\\\\": 0,\\\\n    \\\\\\\"expected_all_correct_iid\\\\\\\": 0.0,\\\\n    \\\\\\\"expected_all_wrong_iid\\\\\\\": 0.0,\\\\n    \\\\\\\"ratio_all_correct\\\\\\\": 9230.83,\\\\n    \\\\\\\"ratio_all_wrong\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"error_rate_distribution\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": 0.1572,\\\\n    \\\\\\\"std\\\\\\\": 0.2195,\\\\n    \\\\\\\"min\\\\\\\": 0.0,\\\\n    \\\\\\\"max\\\\\\\": 0.8,\\\\n    \\\\\\\"q25\\\\\\\": 0.0,\\\\n    \\\\\\\"q50\\\\\\\": 0.0667,\\\\n    \\\\\\\"q75\\\\\\\": 0.2125,\\\\n    \\\\\\\"expected_std_iid\\\\\\\": 0.0183\\\\n  },\\\\n  \\\\\\\"conclusion\\\\\\\": {\\\\n    \\\\\\\"block_correlated\\\\\\\": true,\\\\n    \\\\\\\"icc\\\\\\\": 0.3146,\\\\n    \\\\\\\"icc_p_value\\\\\\\": 0.0,\\\\n    \\\\\\\"design_effect\\\\\\\": 114.4057,\\\\n    \\\\\\\"all_correct_ratio_vs_iid\\\\\\\": 9230.83,\\\\n    \\\\\\\"all_wrong_ratio_vs_iid\\\\\\\": 0.0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-001484"
+        },
+        {
+          "source_line": 1485,
+          "timestamp": "2026-05-16T02:10:22.450985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_analysis_8b-block-correlation-cuda1\n\n**结论**: INFO（数据有效，但需注意与论文现有数字的区分）\n\n### 发现\n\n- [severity: info] **8B repo-level block correlation 分析完成**，输出 `/root/autodl-tmp/eval_results/cls8b_block_correlation.json`，数据内部一致。\n\n  关键数字：\n  - **ICC = 0.3146**（p < 0.001, 5000 permutations）\n  - **DEFF = 114.41**\n  - n_problems = 25, avg_cluster_size = 361.42\n  - 10/25 problems all-correct（i.i.d. 预期 ≈ 0，实际/期望比 = 9230x）\n  - 误差率 std = 0.22（i.i.d. 预期 0.018）\n\n- [severity: warning] **论文中 ICC=0.191 / DEFF=3.97 是 function-level 数据，不可与此 repo-level ICC=0.3146 / DEFF=114.41 混淆**\n\n  论文 §3.3 和 §3.6(f) 引用的 ICC=0.191 来自 function-level `block-corr-empirical` 实验（cluster size ~5-10）。新 repo-level 数据显示 ICC 几乎翻倍（0.19→0.31），DEFF 暴增（3.97→114.4），因为 repo-level 的 cluster 平均有 361 条样本。\n\n  **如果论文要讨论 repo-level block correlation**：\n  1. 必须明确标注是 repo-level ICC，与 function-level 分开\n  2. DEFF=114 意味着 25 个 problem 仅相当于 ~3 个独立观测，统计功效极低\n  3. 25 cluster bootstrap 结果的置信区间会非常宽\n\n  如果不打算在正文讨论，可放 appendix 作为 supplementary evidence。\n\n- [severity: info] **误差分布高度异质**：error_rate min=0, max=0.8, q50=0.067。存在一个极差 problem（80% 错误率），10 个完美 problem。这支持了 per-problem 变异大的叙事，但也说明 overall accuracy 很依赖 problem 组成——与 val/test distribution shift 的已知问题一致。",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-001485"
+        },
+        {
+          "source_line": 1486,
+          "timestamp": "2026-05-16T02:10:26.175620+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3724
+          },
+          "id": "event-001486"
+        },
+        {
+          "source_line": 1487,
+          "timestamp": "2026-05-16T02:10:28.219090+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "8B repo-level block correlation 结果已产出，与论文现有 function-level 数据对比有重要发现。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer"
+          },
+          "id": "event-001487"
+        }
+      ]
+    },
+    {
+      "number": 72,
+      "messages": [
+        {
+          "source_line": 1488,
+          "timestamp": "2026-05-16T02:11:29.296338+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001488"
+        },
+        {
+          "source_line": 1489,
+          "timestamp": "2026-05-16T02:12:25.655609+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- CWM 8B 训练已确认严重过拟合（eval_loss best at step 400, 之后单调上升到 0.521）。**禁止从 ckpt-400 以外的 checkpoint resume 训练**。Director 已下令终止 v6。\n- 8B s42 val-best 已从 ckpt-1000 切换到 **ckpt-3600**（resume sweep 发现，val=90.28%）。论文主表用 ckpt-3600，**不要再用 ckpt-1000 数字**。\n- 论文 ICC=0.191 / DEFF=3.97 是 **function-level**。新出的 repo-level ICC=0.3146 / DEFF=114.4 是不同层级，**不可混用**。\n- per-mutation P/R 分析中 4B 对比基线用了错误的 ckpt-600（应为 val-best ckpt-4600）。**已向 Director 报告，等待修正前不要引用 4B per-mutation 对比数据**。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`seetacloud-westd-4x5090`（root）+ `home-1x5090`（sonny，当前离线）\n- 工作目录（远程）：`/home/sonny/exec-sim-repair-verifier`\n- Python：`/root/miniconda3/bin/python3`（conda base）\n- 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- CLS checkpoints：`/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`（ckpt-600 起），seed123 backup `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n- CWM checkpoints：`/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400`（唯一有效 ckpt）\n- Eval 输出：`/root/autodl-tmp/eval_results/`\n- 论文源码（本地）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/`\n- 活跃进程（截至 handoff）：\n  - PID 443221: CWM 8B v3 eval, cuda:3, ~57% (5632/9784)\n  - PID 446873: CLS 8B ckpt-3600 test v2, cuda:2\n  - PID 448100: CWM 8B eval shard2 (idx 7680-9784), cuda:1\n  - PID 447483/447490: CLS 8B seed123 ckpt-3000 mutation, cuda:0\n\n### 3. 📊 当前状态\n本轮审查了 7 个 worker 完成通知：\n- **已解决 CRITICAL**：GPU 2 上 CWM 训练孤儿进程（PID 442200, ckpt-6100 resume）已被杀死\n- **已解决**：GPU 0/1 上错误标记为 \"ghost\" 的 CLS ckpt-1000 eval 已清理\n- **已完成分析**：ckpt-3600 mutation breakdown（boundary_removal 46.9%）、8B block correlation（ICC=0.3146）、per-mutation P/R（8B 有效，4B 用错 ckpt）\n- **RUNNING 实验**：cwm8b-ckpt400-test-eval-v3 (cuda:3)、cwm8b-ckpt400-test-eval-shard2 (cuda:1)、cls8b-s42-resume-ckpt3600-test-v2 (cuda:2)、cls8b-seed123-ckpt3000-mutation (cuda:0)\n- **paper worker 失败**：`worker_paper_full-consistency-review` status=failed，未产出结果。论文数字我已人工交叉验证过 experiments.tex 主要指标，与 registry 一致。\n\n### 4. 📋 待办（条件触发式）\n- CWM 8B v3 eval 完成（~9h ETA）→ **立即核实 overall accuracy + unparseable rate**，与 4B CWM (58.04%, 53.7% unparse) 对比，锁定 8B-8B gap。这是论文 Table 4 最后一个 TBD。\n- cls8b-seed123-ckpt3000-mutation 完成 → 与 s42 ckpt-3600 的 boundary_removal 46.9% 对比，确认是否跨 seed 一致。\n- cls8b-s42-resume-ckpt3600-test-v2 完成 → 验证 accuracy 是否复现 84.48%（v1 结果）。如有差异 > 0.5pp，标 WARNING。\n- CWM shard2 完成 → 确认与 v3 主进程结果的一致性和覆盖完整性（index overlap / gap）。\n- 4B per-mutation P/R 用 ckpt-4600 重跑后 → 审查 boundary_removal 是否保持 fail bias 趋势（与 8B pass bias 对比）。\n- 论文章节提交审查 → 按 §5 章节写作对抗审查模式执行。\n\n### 5. 🎯 战略上下文\n- **核心 story**：CLS vs CWM gap 是 complexity-dependent。function-level ≈1pp，repo-level ≈25pp。CWM 在 repo-level 崩溃（53-67% unparseable，parseable-only 42-43% < random）。\n- **DDL**：EMNLP 2026 ARR May 25，剩 9 天。Paper Agent 已在写 full draft。\n- **最大风险**：CWM 8B eval 是 Table 4 最后缺口。如果 CWM 8B 在 repo-level 显著好于 4B（>65%），则 \"generation bottleneck not capacity\" 的 claim 会被削弱——需要调整 narrative。如果 CWM 8B ≈ 4B（~58-60%），则完美支持 story。\n- **易错点**：\n  1. 不要把 function-level ICC (0.191) 和 repo-level ICC (0.3146) 混用\n  2. ckpt-3600 是 s42 resume 的 val-best，不是原始训练的——checkpoint 目录是 `checkpoints_repo_cls_8b_s42_resume/` 不是 `checkpoints_repo_cls_8b_conda/`\n  3. 4B-4B gap (25.59pp) 目前是 single seed，论文 Limitations 已诚实披露\n  4. CWM eval shard2 从 idx 7680 开始，v3 从头跑——如果 v3 跑过 7680 会有重叠，合并时需 dedup\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_b2cf3b1eba4db851529b6a1a7a34c4e8:reviewer"
+          },
+          "id": "event-001489"
+        }
+      ]
+    }
+  ]
+}

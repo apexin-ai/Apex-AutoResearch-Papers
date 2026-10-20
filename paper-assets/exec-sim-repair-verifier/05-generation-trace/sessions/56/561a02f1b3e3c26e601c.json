@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "561a02f1b3e3c26e601c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cls8b seed123 test eval v2 batch",
+  "task_key": "worker_analysis_cls8b-seed123-test-eval-v2-batch_20260515T103218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls8b-seed123-test-eval-v2-batch_20260515T103218_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "4fe9b49068521c3ab9332d3786af1efd238ee312162ae0e78e5e38f89e95476f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已更新为 DONE。\n\n## 结果对比（Qwen3-8B CLS，seed123，test set n=9784）\n\n| 指标 | ckpt-6400 | ckpt-6200 | 差值 |\n|------|-----------|-----------|------|\n| **Accuracy** | **85.08%** | 84.70% | +0.38pp |\n| F1 macro | **77.91%** | 77.01% | +0.90pp |\n| F1 fail | **65.32%** | 63.71% | +1.61pp |\n| F1 pass | 90.49% | 90.31% | +0.18pp |\n| Precision fail | 87.92% | **88.84%** | -0.92pp |\n| Recall fail | **51.97%** | 49.66% | +2.31pp |\n| Recall pass | 97.35% | **97.69%** | -0.34pp |\n\n**结论**：ckpt-6400 全面优于 ckpt-6200，主要提升来自 fail 类的 recall（+2.3pp），带动 F1 fail 提升 1.6pp。两个 checkpoint 的 precision_fail 都很高（~88%），瓶颈在 recall_fail（~50-52%），模型倾向保守——预测为 fail 时大概率正确，但漏掉近一半真实 fail 样本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cls8b-seed123-test-eval-v2-batch.md"
+}

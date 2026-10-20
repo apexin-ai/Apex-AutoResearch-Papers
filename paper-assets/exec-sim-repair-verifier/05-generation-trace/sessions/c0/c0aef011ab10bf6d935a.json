@@ -1,0 +1,249 @@
+{
+  "schema_version": "1.0",
+  "id": "c0aef011ab10bf6d935a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260515T095123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_related_work_20260515T095123.jsonl",
+    "occurrence": 1,
+    "bytes": 11452,
+    "sha256": "498316ac6e7178ad090cc7306b69f8bc9fe855553750466a68291dbf9227ef4b"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T09:52:01.743479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T095123",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T09:52:01.743890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Execution Simulation for Code.}\n5\tCode World Models~\\cite{meta2025cwm} mid-train a 32B LLM on execution traces to predict output strings, establishing the generation-based paradigm.\n6\tSelf-Execution~\\cite{ding2025selfexecution} extends this with step-by-step trace prediction for self-verification.\n7\tCodeMind~\\cite{liu2024codemind} evaluates code reasoning along multiple dimensions including independent and dependent execution reasoning.\n8\tSolidCoder~\\cite{chen2025solidcoder} bridges mental simulation and actual execution via concrete execution feedback.\n9\tYe et al.~\\cite{ye2025demystifying} identify systematic failure modes in LLM trace prediction.\n10\tAll formulate execution simulation as \\emph{generation}. We reformulate as per-test classification and show the advantage is complexity-dependent.\n11\t\n12\t\\paragraph{LLM-based Verification for Code Repair.}\n13\tSWE-RM~\\cite{zhang2025swerm} trains a 30B MoE reward model for trajectory-level execution-free patch ranking.\n14\tPatch Reasoner~\\cite{wu2025patchreasoner} uses chain-of-thought reasoning for patch verification.\n15\tSnell et al.~\\cite{snell2024scaling} show test-time compute scaling via verification can outperform parameter scaling.\n16\tS*~\\cite{zhang2025sstar} combines execution-grounded selection with model-based scoring.\n17\tVG-Search~\\cite{wang2025vgsearch} studies how verification granularity affects compute-efficient scaling.\n18\tWe formally compare per-test and trajectory-level granularity, showing statistical equivalence (TOST $p = 0.007$) with additional per-test diagnostic signals.\n19\t\n20\t\\paragraph{Automated Program Repair.}\n21\tSWE-bench~\\cite{jimenez2024swebench} and SWE-bench Verified~\\cite{chowdhury2024swebenchverified} provide standard benchmarks for repository-level repair.\n22\tSWE-agent~\\cite{yang2024sweagent} uses tool-augmented agents while Agentless~\\cite{xia2024agentless} demonstrates a simpler localize--repair--validate pipeline.\n2\n…[truncated 749 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T095123",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T09:52:01.744111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T095123",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T09:52:01.744484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T095123",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T09:52:01.744688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T095123",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/related_work.tex",
+              "old_string": "All formulate execution simulation as \\emph{generation}. We reformulate as per-test classification and show the advantage is complexity-dependent.",
+              "new_string": "These approaches share a common generation formulation whose cost scales with output length and whose reliability degrades when outputs are complex---at repository-level complexity, we observe format compliance collapse (53--67\\% unparseable outputs) with the generation formulation (\\S\\ref{sec:experiments}).\nAll formulate execution simulation as \\emph{generation}. We reformulate as per-test classification and show the advantage is complexity-dependent."
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T09:52:01.744881+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T095123",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T09:52:01.745019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T095123",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/related_work.tex",
+              "old_string": "SWE-agent~\\cite{yang2024sweagent} uses tool-augmented agents while Agentless~\\cite{xia2024agentless} demonstrates a simpler localize--repair--validate pipeline.\nThese systems rely on execution-based validation as the final filter.",
+              "new_string": "SWE-agent~\\cite{yang2024sweagent} uses tool-augmented agents while Agentless~\\cite{xia2024agentless} demonstrates a simpler localize--repair--validate pipeline.\nAleithan et al.~\\cite{aleithan2025survey} survey the broader landscape of LLM-based program repair.\nThese systems rely on execution-based validation as the final filter."
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T09:52:01.745419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T095123",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T09:52:01.745580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T095123",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T09:52:01.745741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Execution Simulation for Code.}\n5\tCode World Models~\\cite{meta2025cwm} mid-train a 32B LLM on execution traces to predict output strings, establishing the generation-based paradigm.\n6\tSelf-Execution~\\cite{ding2025selfexecution} extends this with step-by-step trace prediction for self-verification.\n7\tCodeMind~\\cite{liu2024codemind} evaluates code reasoning along multiple dimensions including independent and dependent execution reasoning.\n8\tSolidCoder~\\cite{chen2025solidcoder} bridges mental simulation and actual execution via concrete execution feedback.\n9\tYe et al.~\\cite{ye2025demystifying} identify systematic failure modes in LLM trace prediction.\n10\tThese approaches share a common generation formulation whose cost scales with output length and whose reliability degrades when outputs are complex---at repository-level complexity, we observe format compliance collapse (53--67\\% unparseable outputs) with the generation formulation (\\S\\ref{sec:experiments}).\n11\tAll formulate execution simulation as \\emph{generation}. We reformulate as per-test classification and show the advantage is complexity-dependent.\n12\t\n13\t\\paragraph{LLM-based Verification for Code Repair.}\n14\tSWE-RM~\\cite{zhang2025swerm} trains a 30B MoE reward model for trajectory-level execution-free patch ranking.\n15\tPatch Reasoner~\\cite{wu2025patchreasoner} uses chain-of-thought reasoning for patch verification.\n16\tSnell et al.~\\cite{snell2024scaling} show test-time compute scaling via verification can outperform parameter scaling.\n17\tS*~\\cite{zhang2025sstar} combines execution-grounded selection with model-based scoring.\n18\tVG-Search~\\cite{wang2025vgsearch} studies how verification granularity affects compute-efficient scaling.\n19\tWe formally compare per-test and trajectory-level granularity, showing statistical equivalence (TOST $p = 0.007$) with additional per-test diagnostic signals.\n20\t\n21\t\\paragraph{Automated Program Repair.}\n22\tSWE-be\n…[truncated 1165 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T095123",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T09:52:01.745949+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处改动已完成，其余段落未动：\n- **L10**：Execution Simulation 段新增 format compliance collapse 句\n- **L24**：APR 段新增 Aleithan et al. survey 引用"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260515T095123"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-related-work.md"
+}

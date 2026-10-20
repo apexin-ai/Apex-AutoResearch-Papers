@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebc87a951c3b84fd633c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnosis repo level failures",
+  "task_key": "worker_diagnosis_repo-level-failures_20260512T112603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_repo-level-failures_20260512T112603_result.json",
+    "occurrence": 1,
+    "bytes": 1932,
+    "sha256": "468bdb57ce8cbc26cebe7493e075f98ed4add52960be728b55ee4bb61370190e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 根本原因（两个实验相同）\n\n**`KeyError: 'sample_weight'`** — 代码 bug，不是 OOM/数据/依赖问题。\n\nBug 链：\n1. `preprocess_split` 在 Dataset 中正确添加了 `sample_weight` 列\n2. HuggingFace `Trainer` 在训练前调用 `_remove_unused_columns()`，移除不在模型 `forward()` 签名中的列 — `sample_weight` 被移除\n3. `compute_loss` 中 `inputs.pop(\"sample_weight\")` → `KeyError`\n\nfunction-level 的 `train_verifier.py` 没用 `sample_weight`，所以没有这个问题。repo-level 脚本新增了 class weighting 但没处理 Trainer 的列过滤机制。\n\n### 修复方案\n\n需要改两处（两个脚本同样修改）：\n\n**1. TrainingArguments 加 `remove_unused_columns=False`**\n\n```python\n# 在 ta dict 中加：\n\"remove_unused_columns\": False,\n```\n\n**2. 自定义 collator 包装 DataCollatorForSeq2Seq，把 sample_weight 单独处理**\n\n因为 `DataCollatorForSeq2Seq` 会尝试对 `sample_weight`（标量）做 padding，会出错。需要包装一层：\n\n```python\nclass WeightedDataCollator:\n    def __init__(self, base_collator):\n        self.base_collator = base_collator\n\n    def __call__(self, features):\n        sample_weights = [f.pop(\"sample_weight\") for f in features]\n        batch = self.base_collator(features)\n        batch[\"sample_weight\"] = torch.tensor(sample_weights, dtype=torch.float32)\n        return batch\n```\n\n然后初始化改为：\n```python\nbase_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, padding=True)\ncollator = WeightedDataCollator(base_collator)\n```\n\n### 可以修复重试\n\n纯代码 bug，修复后直接重跑即可。数据（70748 train / 9335 val）和模型都已就绪，15 分钟的 wall clock 主要花在 tokenization 上，实际训练还没开始（0/6633 steps）。\n\n需要我直接在服务器上修复这两个脚本吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-repo-level-failures.md"
+}

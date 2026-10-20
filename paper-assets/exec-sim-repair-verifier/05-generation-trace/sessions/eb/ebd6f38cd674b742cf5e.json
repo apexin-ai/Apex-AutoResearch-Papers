@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebd6f38cd674b742cf5e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra repo level transfer monitor",
+  "task_key": "worker_infra_repo-level-transfer-monitor_20260512T102410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_repo-level-transfer-monitor_20260512T102410_result.json",
+    "occurrence": 1,
+    "bytes": 89,
+    "sha256": "a4fd97c5c43bfe68296ff958a29263506d74dc905fc2bc07bad03e788a61895e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后自动复查。传输正常进行中，pipeline 进程存活。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-repo-level-transfer-monitor.md"
+}

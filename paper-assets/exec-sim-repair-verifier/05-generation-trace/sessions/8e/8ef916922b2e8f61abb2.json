@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ef916922b2e8f61abb2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check home cwm8b eval feasibility",
+  "task_key": "worker_check_home-cwm8b-eval-feasibility_20260515T141430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_home-cwm8b-eval-feasibility_20260515T141430_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "a0ba4721240123cdbe2f530701ce7b8b626b9227861afa25d968cb1eb3a1523c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 评估结论：home-1x5090 当前不可达\n\nSSH 连接全部超时（5 次尝试，每次 10s timeout），服务器可能：\n- 关机/休眠\n- 网络配置变更（IP/端口变了）\n- SSH 服务未启动\n\n**无法完成评估。** 需要你先确认 home-1x5090 是否在线，检查 SSH 连接信息是否最新。\n\n---\n\n**替代方案建议**（不依赖 home 服务器）：\n\n1. **westd 多 GPU 并行**：当前 eval 只用 cuda:3，检查 cuda:0/1/2 是否空闲，在 westd 上直接 shard 到多卡并行跑\n2. **优化单卡速度**：增大 batch size（如果显存允许）、用 vLLM 替代 HF generate 加速推理\n3. **home 恢复后再评估**：服务器上线后我可以重新跑这套检查\n\n要我先检查 westd 的其他 GPU 是否空闲？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-home-cwm8b-eval-feasibility.md"
+}

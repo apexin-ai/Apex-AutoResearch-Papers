@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "599acf1addf123010e99",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra submit cwm seed123",
+  "task_key": "worker_infra_submit-cwm-seed123_20260512T112516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_submit-cwm-seed123_20260512T112516_result.json",
+    "occurrence": 1,
+    "bytes": 1154,
+    "sha256": "f291f6be7192e190022e6e17d93c14425f964e9b5cc422c5a7aa40b0b143646b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cwm-seed123 已启动并在加载 tokenizer。汇总结果：\n\n---\n\n### cwm-seed123 (新提交)\n- **PID**: 34509\n- **tmux session**: `cwm-seed123`\n- **服务器**: seetacloud-westd-4x5090, cuda:0\n- **完整命令**: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name Qwen/Qwen3-4B --output_dir checkpoints_cwm_seed123/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 123 && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed123/best/ --model_name Qwen/Qwen3-4B --output eval_cwm_seed123.json\"`\n- **状态**: 正在加载 tokenizer，即将开始训练\n\n### cls-seed0 (seetacloud cuda:1, PID 31570)\n- **已运行**: 22h35m\n- **进度**: step 393/1434 (27%), ~3.34s/it\n- **预计剩余**: ~58min (epoch 1 of 3)\n\n### cls-seed789 (home cuda:0, PID 2748645)\n- **状态**: 已完成 (PASS)\n- 进程已退出，日志末尾显示 `Per-class F1 >65%: PASS, Accuracy gap >=10pp: PASS (+37.2pp), EXIT_CODE=0`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-submit-cwm-seed123.md"
+}

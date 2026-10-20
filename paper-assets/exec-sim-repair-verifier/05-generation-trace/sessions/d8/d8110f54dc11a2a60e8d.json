@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8110f54dc11a2a60e8d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis matched seed predictions",
+  "task_key": "worker_analysis_matched-seed-predictions_20260512T160154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_matched-seed-predictions_20260512T160154_result.json",
+    "occurrence": 1,
+    "bytes": 1623,
+    "sha256": "d61cbbbfd855a8f08e3584545cd4993cff0f5acb197e83424915489f6aeaefc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。\n\n## 结果报告\n\n### 1. Checkpoint 路径\n| Model | Seed | Checkpoint Path | Date |\n|-------|------|----------------|------|\n| CLS | 42 | `checkpoints_seed42/best/` | May 11 17:54 |\n| CWM | 42 | `checkpoints_cwm/best/` | May 11 15:25 |\n\n（`checkpoints/best/` 是另一个 CLS 运行，metrics 不同于 seed42，不是同一个。）\n\n### 2. 已有 Aggregate Metrics\n**eval_seed42.json (CLS seed42)** — 已存在：\n- Accuracy: 87.83%，fail_f1: 87.59，pass_f1: 88.06\n\n**eval_cwm_results.json (CWM default)** — 已存在：\n- Accuracy: 87.51%，fail_f1: 87.71，pass_f1: 87.31\n- Exact match rate: 84.02%\n\n### 3. Per-instance Output：**脚本不支持**\n\n两个脚本都**只输出 aggregate metrics**，不保存 per-instance predictions。\n\n**`eval_verifier.py` 输出格式**：`{test_set_size, class_balance, majority_baseline_accuracy, overall_accuracy, per_class{fail/pass: P/R/F1}, confusion_matrix, unparseable_predictions}`\n\n**`eval_cwm_baseline.py` 输出格式**：同上 + `cwm_metrics{exact_match_rate, by_error_type, generation_length}`\n\n**缺失的内容**：\n- `y_true` 和 `y_pred` 数组在内存中生成但未写入文件\n- CWM 的 `gen_texts`（生成的执行输出文本）未保存\n- 没有 `--save_predictions` 或类似参数\n- 没有 sample ID 或可追踪的 per-instance 信息\n\n**要获取 per-instance predictions，需要给两个脚本添加功能**——将 `y_true`、`y_pred`（以及 CWM 的 `gen_texts`）写入单独的 JSON 文件。按任务要求，不修改代码，在此报告格式限制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-matched-seed-predictions.md"
+}

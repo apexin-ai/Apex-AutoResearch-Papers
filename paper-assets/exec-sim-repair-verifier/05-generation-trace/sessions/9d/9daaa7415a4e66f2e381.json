@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9daaa7415a4e66f2e381",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis qwen3 8b traj repo s42 v2",
+  "task_key": "worker_analysis_qwen3-8b-traj-repo-s42-v2_20260518T225732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen3-8b-traj-repo-s42-v2_20260518T225732_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "1d6b68321b5bb23d7dc86ab63f038c649428f2aa93baac33f334b43a7928b4a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**训练正常完成**（EXIT_CODE=0，5.8 min，147 steps / 3 epochs）。Train loss 从 1.45 降至 0.15，学习曲线健康。\n\n**唯一异常：eval_loss 全程 nan**。不影响模型训练本身，但 \"best\" checkpoint 选择不可靠（trainer 无法基于 eval_loss 比较模型）。\n\n**Checkpoints**：`best/`、`checkpoint-98`（epoch 2）、`checkpoint-147`（epoch 3）均已保存。\n\n**推荐下一步**：跑 eval 获取 variant-level accuracy。命令（基于 4B eval 模板）：\n\n```bash\ncd /home/sonny/exec-sim-repair-verifier && \\\nHF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_traj_verifier.py \\\n  --model_path /root/autodl-tmp/checkpoints_qwen3_8b_traj_repo/best \\\n  --test_file swebench_test.jsonl \\\n  --output /root/autodl-tmp/eval_results/qwen3_8b_traj_repo_s42_best/eval_test_s42.json \\\n  --seed 42\n```\n\n因 eval_loss=nan 导致 best 选择不可靠，建议也对 checkpoint-98 跑一次 eval 做对比。详细分析已写入 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen3-8b-traj-repo-s42-v2.md"
+}

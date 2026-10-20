@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f4a14d809343a043f33",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor cls v4 progress loop4",
+  "task_key": "worker_monitor_cls-v4-progress-loop4_20260512T234456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_cls-v4-progress-loop4_20260512T234456_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "465f74a77d6baed338cde8595d7a78d76e9751e9d8dc1b7563f2f91a103e0f3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CLS v4 训练状态 (home-1x5090)\n\n| 指标 | 值 |\n|------|-----|\n| **进程** | PID 2885139 存活，已运行 1h50m |\n| **当前 step** | **600 / 6633** (9.0%)，正在跑 step 600 的 eval (88%) |\n| **最新 loss** | 0.6974 (step 600, epoch 0.27) |\n| **loss 趋势** | 80.21 → 0.712 → 0.806 → 0.722 → 0.697 ↓ |\n| **eval_loss** | step 200: **0.0701** → step 400: **0.2500** ↑（step 600 eval 进行中） |\n| **learning_rate** | 1.80e-4（warmup 阶段，仍在上升） |\n| **Checkpoints** | checkpoint-200, checkpoint-400 |\n| **磁盘** | 351GB 可用 (66% 已用)，充足 |\n| **ETA** | **~18.5 小时**（含约 30 次 eval，每次 ~13 min） |\n\n**注意**: eval_loss 从 0.070 升到 0.250，但这处于 warmup 阶段 (lr 还在涨)，暂不需要担心。训练速度 ~7s/step，eval 速度 ~6 it/s。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-cls-v4-progress-loop4.md"
+}

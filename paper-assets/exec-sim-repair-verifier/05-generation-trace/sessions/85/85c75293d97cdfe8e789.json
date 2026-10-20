@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85c75293d97cdfe8e789",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh post restart training status",
+  "task_key": "worker_ssh_post-restart-training-status_20260513T061633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_post-restart-training-status_20260513T061633_result.json",
+    "occurrence": 1,
+    "bytes": 2559,
+    "sha256": "686f5432ac9eae06a81036338e959cb57724ae325036466e45154f529f094c2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已全部收集，汇总如下：\n\n---\n\n## CLS v4 (home-1x5090, sonny@)\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 2885139 存活，运行 8h21m（注：CMD 列截断显示 `bash -c rm -rf /home/sonny/...`，但训练正常推进，应为启动脚本截断显示） |\n| **进度** | step 2600 / 6633 (**39.2%**)，当前正在跑 eval（476/4668 eval steps） |\n| **最新 train_loss** | 0.2056 (step 2600) |\n| **best_metric** | **0.0701** @ checkpoint-200 |\n| **best_checkpoint** | `checkpoints_repo_cls_home/checkpoint-200` |\n| **GPU** | 96% 利用率，19465 / 32607 MiB |\n\n**Eval loss 历史：**\n\n| step | eval_loss |\n|------|-----------|\n| 200 | **0.0701** ← best |\n| 400 | 0.2500 |\n| 600 | 0.1317 |\n| 800 | 0.1462 |\n| *(1000-1800)* | *(日志截断，数据在 checkpoint)* |\n| 2000 | 0.2492 |\n| 2200 | 0.3620 |\n| 2400 | 0.1504 |\n| 2600 | 0.2466 |\n\n**ETA 估算：** checkpoint-2400→2600 耗时 ~36 min（含 13 min eval），剩余 ~4033 steps + ~20 次 eval → **约 11-12 小时**\n\n---\n\n## CWM v10 (seetacloud-westd-4x5090, root@)\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 105205 存活，运行 6h37m，`python3 -u train_repo_cwm.p...` |\n| **进度** | step 1767 / 6633 (**26.6%**)，实时训练中 ~8.0 s/it |\n| **最新 train_loss** | 0.0792 (step 1750) |\n| **best_metric** | **0.2975** @ checkpoint-400 |\n| **best_checkpoint** | `checkpoints_repo_cwm_v9/checkpoint-400` |\n| **GPU** | PID 105205 使用 21058 MiB |\n\n**Eval loss 历史：**\n\n| step | eval_loss |\n|------|-----------|\n| 100 | 0.4337 |\n| 200 | 0.3236 |\n| 300 | 0.3228 |\n| 400 | **0.2975** ← best |\n| 500 | 0.3294 |\n| 600 | 0.3435 |\n| *(700-1000)* | *(日志截断)* |\n| 1100 | 0.3637 |\n| 1200 | 0.3500 |\n| 1300 | 0.3712 |\n| 1400 | 0.3694 |\n| 1500 | 0.3732 |\n| 1600 | 0.3717 |\n| 1700 | 0.3699 |\n\n**ETA 估算：** 剩余 ~4866 steps × 8 s/it + ~49 次 eval × 12.2 min → **约 21 小时**\n\n---\n\n## 关键观察\n\n1. **两个训练都在正常运行**，服务器重启后进程均存活。\n2. **CLS eval_loss 震荡严重**（0.07 → 0.36），best 停在极早期 step 200，后续未刷新 best — 可能存在过拟合或 eval 指标选择问题。\n3. **CWM eval_loss 自 step 400 起持续上升并平台化在 0.35-0.37**，train_loss 已降到 0.08，典型的过拟合信号。best 同样卡在早期 step 400。\n4. 两个实验的 **best checkpoint 都在训练极早期**，当前训练继续跑下去可能不会产生更好的 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-post-restart-training-status.md"
+}

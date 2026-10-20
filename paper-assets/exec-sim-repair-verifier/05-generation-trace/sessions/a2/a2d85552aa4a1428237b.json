@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2d85552aa4a1428237b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix references bib correction",
+  "task_key": "worker_fix_references-bib-correction_20260515T124440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_references-bib-correction_20260515T124440_result.json",
+    "occurrence": 1,
+    "bytes": 2705,
+    "sha256": "e1ec2d0f299eed7d941add3915bd722578c531ca7c394cfd4115db1cb95e50da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "剩余全在 `artifacts/` 下——这些是历史快照/生成产物，不影响编译。`docs/paper/`、`paper/`、`literature_map.yaml`、`paper_provenance.yaml` 全部清理完毕。\n\n---\n\n## 修正报告\n\n### Step 1: 8 条 bib 条目替换（references.bib）\n| 旧 key → 新 key | 旧 first author → 正确 first author |\n|---|---|\n| `ding2025selfexecution` → `maimon2025selfexecution` | Ding → Maimon, Gallil |\n| `ye2025demystifying` → `abdollahi2025demystifying` | Ye → Abdollahi, Mohammad |\n| `chen2025solidcoder` → `lee2025solidcoder` | Chen → Lee, Woojin |\n| `zhang2025swerm` → `shum2025swerm` | Zhang → Shum, KaShun |\n| `wu2025patchreasoner` → `xu2025patchreasoner` | Wu → Xu, Junjielong |\n| `wang2025vgsearch` → `chen2025vgsearch` | Wang → Chen, Hao Mark |\n| `zhang2025sstar` → `li2025sstar` | Zhang → Li, Dacheng |\n| `aleithan2025survey` → `yang2025aprsurvey` | Aleithan → Yang, Boyang |\n\n### Step 2: 新增 Qwen3 Technical Report\n`qwen2025qwen3` 已添加。\n\n### Step 3: 新增 4 条补充引用\n`ni2023lever`, `chen2023codet`, `andrews2005mutation`, `just2014mutants` 已添加。\n\n### Step 4: .tex cite key 更新\n- `docs/paper/related_work.tex` — 8 处替换（含 `Ye et al.` → `Abdollahi et al.`、`Aleithan et al.` → `Yang et al.` 文本修正）\n- `docs/paper/introduction.tex` — 已是新 key（之前已更新）\n- `paper/method.tex` — 1 处 `zhang2025swerm` → `shum2025swerm`\n\n### Step 5: C022 provenance 更新\n`paper_provenance.yaml` 中 C022 的 3 条 evidence key 已更新：\n- `ding2025selfexecution` → `maimon2025selfexecution`\n- `chen2025solidcoder` → `lee2025solidcoder`\n- `ye2025demystifying` → `abdollahi2025demystifying`\n\nC022 claim 内容（\"All prior execution simulation work uses generation formulation; we reformulate as classification\"）与修正后论文的实际内容一致——这些论文确实都使用 generation formulation，first author 错误不影响 claim 的正确性。\n\n### Step 6: \"and others\" 缩写审计\nreferences.bib 中使用 `and others` 的条目：\n| key | 说明 |\n|---|---|\n| `qwen2025qwen3` | 作者 100+ 人，缩写合理 |\n| `liu2024codemind` | 可补全但非修正目标 |\n| `chowdhury2024swebenchverified` | OpenAI 技术报告，可补全 |\n| `yang2024qwen25` | 作者众多，缩写合理 |\n| `chen2021humaneval` | 可补全但非修正目标 |\n| `austin2021mbpp` | 可补全但非修正目标 |\n\n本次修正的 8 条已全部补全完整作者列表。其余 `and others` 条目非紧急，可后续批量处理。\n\n### 额外更新\n`literature_map.yaml` — 8 条 key 和作者名同步修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-references-bib-correction.md"
+}

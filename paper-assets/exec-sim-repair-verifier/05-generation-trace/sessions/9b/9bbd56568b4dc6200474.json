@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bbd56568b4dc6200474",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh qwen eval scripts",
+  "task_key": "worker_ssh_qwen-eval-scripts_20260520T102345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_qwen-eval-scripts_20260520T102345_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "ecdf347b7d3420a1d99f63ece534277ce85d2a2487d94f7ed9362d24882cd87f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已创建，`bash -n` 语法检查通过。\n\n| 脚本 | GPU | Checkpoint 目录 | 输出目录 |\n|------|-----|----------------|---------|\n| `eval_qwen_cwm_s123.sh` | GPU 1 | `checkpoints_repo_cwm_8b_s123` | `qwen3_8b_cwm_repo_s123_eval` |\n| `eval_qwen_cwm_s456.sh` | GPU 2 | `checkpoints_repo_cwm_8b_s456` | `qwen3_8b_cwm_repo_s456_eval` |\n\n参数对齐 DeepSeek 模板：`--max_seq_length 4096 --max_new_tokens 512 --batch_size 1`（Qwen 8B 比 DeepSeek 6.7B 大，batch_size 从 4 降到 1）。自动选取最大编号 checkpoint，eval 后输出 accuracy、unparseable rate、gen_text 长度验证、以及 PASS/FAIL 缺失率。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-qwen-eval-scripts.md"
+}

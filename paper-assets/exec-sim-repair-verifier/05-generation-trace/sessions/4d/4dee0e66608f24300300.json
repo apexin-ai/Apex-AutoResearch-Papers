@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dee0e66608f24300300",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b s42 ckpt1000 test mutation",
+  "task_key": "worker_eval_cls8b-s42-ckpt1000-test-mutation_20260516T005219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-s42-ckpt1000-test-mutation_20260516T005219_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "793951dbfc84d636ed3b088a5677b22a751ef96ffbf34245c6b58c3187505dd8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并运行。\n\n**汇报：**\n\n| 项目 | 值 |\n|------|-----|\n| **exp_id** | `cls8b-s42-ckpt1000-test-mutation` |\n| **PID** | 444497 |\n| **GPU** | cuda:0 (RTX 5090, 空闲) |\n| **Checkpoint** | `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1000/` |\n| **输出目录** | `/root/autodl-tmp/eval_results/cls8b_s42_ckpt1000_test_mutation/` |\n| **日志** | `/root/autodl-tmp/eval_results/cls8b_s42_ckpt1000_test_mutation/run.log` |\n| **状态** | RUNNING，模型已加载，推理进行中 |\n\n**注意：** 指定的 checkpoint 路径 `checkpoints_repo_cls_8b_conda/checkpoint-1000` 不存在（该目录只到 step 600）。实际使用的是 `checkpoints_repo_cls_8b_s42_resume/checkpoint-1000`——s42 原始训练中断后 resume 继续的 step 1000。\n\n流程：eval_repo_cls.py 完成后自动执行 mutation_breakdown 脚本，结果写入 `mutation_breakdown.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-s42-ckpt1000-test-mutation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6b842c4d6e09fcdc67d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "debug repo level v2 failure",
+  "task_key": "worker_debug_repo-level-v2-failure_20260512T160624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_repo-level-v2-failure_20260512T160624_result.json",
+    "occurrence": 1,
+    "bytes": 2723,
+    "sha256": "1e188d093360933493ff13e57a4235114e64d640f9f1ee44d26cf4c5939f36c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both dry-runs completed. Here's the full diagnostic report.\n\n---\n\n## 诊断报告\n\n### 失败原因\n\n两个脚本（`train_repo_verifier.py` 和 `train_repo_cwm.py`）在 DataLoader 第一次取 batch 时崩溃，报错：\n\n```\nValueError: type of {'input_ids': [...], 'attention_mask': [...]} unknown: <class 'dict'>. \nShould be one of a python, numpy, or pytorch object.\n```\n\n根因：`ClassLabelCollator` 在 pop 掉 `class_label` 后把 features 传给 `DataCollatorForSeq2Seq` → `tokenizer.pad()`，而安装的 transformers 版本（v5.x）的 `pad()` 无法正确处理带有 variable-length list 的 feature dict 列表。这是第一次失败（KeyError: 'sample_weight'）的修复代码引入的新 bug — 引入了 `ClassLabelCollator` 包装 `DataCollatorForSeq2Seq`，但两者在这个 transformers 版本下不兼容。\n\n### 修复内容\n\n1. **替换 collator**：删除 `ClassLabelCollator` + `DataCollatorForSeq2Seq` 组合，改为 `WeightedDataCollator` — 手动实现 padding，完全绕过 `tokenizer.pad()`。\n2. **删除无用 import**：`DataCollatorForSeq2Seq` 从两个文件中移除。\n3. **修复 checkpoint 路径**：`--output_dir` 默认值从 `checkpoints_repo_cls/`（根分区）改为 `/root/autodl-tmp/checkpoints_repo_cls/`（数据盘），CWM 同理。\n\n### 验证结果\n\n两个 dry-run（`--max_steps 3 --no_wandb --batch_size 2`）均成功通过：\n\n| 脚本 | 状态 | 步时 | loss 范围 |\n|------|------|------|-----------|\n| train_repo_verifier.py | EXIT_CODE=0 | ~7.4s/step | 61–178 |\n| train_repo_cwm.py | Dry-run complete | ~10.8s/step | 11–23 |\n\n### 训练命令\n\n**CLS（分类器）— GPU 2：**\n```bash\ncd /home/sonny/exec-sim-repair-verifier && \\\nCUDA_VISIBLE_DEVICES=2 python train_repo_verifier.py \\\n  --output_dir /root/autodl-tmp/checkpoints_repo_cls \\\n  --run_name repo-level-cls-v3 \\\n  --device cuda:0\n```\n\n**CWM（Code World Model）— GPU 3：**\n```bash\ncd /home/sonny/exec-sim-repair-verifier && \\\nCUDA_VISIBLE_DEVICES=3 python train_repo_cwm.py \\\n  --output_dir /root/autodl-tmp/checkpoints_repo_cwm \\\n  --run_name repo-level-cwm-v3 \\\n  --device cuda:0\n```\n\n注意：v2 失败运行显示 0% truncation（70748 samples），说明用了更大的 `max_seq_length`（默认 2048 下有 3.8% truncation）。如果需要复现 v2 参数，需加 `--max_seq_length 4096` 或更高。\n\n### 训练时间估算\n\n以 `max_seq_length=2048, batch_size=2, grad_accumulation=16`（6633 steps × 3 epochs）计算：\n- **CLS**: ~7.4s/step → **~13.6 小时**\n- **CWM**: ~10.8s/step → **~20 小时**\n\n如果用 `max_seq_length=4096`，时间大约翻倍（~27h / ~40h）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-repo-level-v2-failure.md"
+}

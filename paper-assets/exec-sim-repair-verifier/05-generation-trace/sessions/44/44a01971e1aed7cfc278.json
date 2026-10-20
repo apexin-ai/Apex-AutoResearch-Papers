@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44a01971e1aed7cfc278",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check gpu 2 3 training started",
+  "task_key": "worker_check_gpu-2-3-training-started_20260514T174628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu-2-3-training-started_20260514T174628_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "7f7815bf673291119d22cc90ea1b689c48cf11511644dcff0dd49c92cc6a6b84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### Westd GPU 2/3 — 8B 训练（第三次提交）\n\n**结论：正常初始化中，尚未完成模型加载。**\n\n| 实验 | PID (python) | 状态 | CPU RSS | GPU 显存 | 运行时间 |\n|------|-------------|------|---------|----------|----------|\n| CWM 8B v2 (cuda:2) | 266816 | **Rl** (running) | 3.7 GB | 0 MiB | ~3 min |\n| CLS 8B s123 v2 (cuda:3) | 266896 | **Rl** (running) | 3.1 GB | 0 MiB | ~3 min |\n\n- 两个 Python 进程都处于 **Rl**（actively running, multi-threaded）状态，CPU 内存持续增长中\n- GPU 显存为 0 是因为 8B 模型正在加载到 CPU 内存（~16GB bf16），尚未 `.to(device)`\n- 日志停在 `Class weights` 之后，下一步是模型加载 + checkpoint resume，对 8B 模型这需要几分钟\n- **无 FileNotFoundError，无报错** — checkpoint 路径修复生效了（之前的 bug 在数据加载之前就会报错）\n\n### Westd GPU 0/1 — 现有训练\n- cuda:0: 12999 MiB, 86% util\n- cuda:1: 12999 MiB, 87% util\n- 正常运行中\n\n### Home — CLS 8B val@5120 eval\n- PID 3151214: **Rl+** 状态，已运行 **15 min 46 sec**，仍在执行中\n\n**建议：3-5 分钟后再查一次，确认 GPU 2/3 显存已上升且日志出现 \"Resuming training from checkpoint\" 信息。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-2-3-training-started.md"
+}

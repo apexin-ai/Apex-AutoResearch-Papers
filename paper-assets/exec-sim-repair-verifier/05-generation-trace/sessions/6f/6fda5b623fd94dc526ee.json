@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fda5b623fd94dc526ee",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra mvp b pr fix",
+  "task_key": "worker_infra_mvp-b-pr-fix_20260512T042357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp-b-pr-fix_20260512T042357_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "fedb27cf64bf2f29c82ecc26523112c33f27660b3f4f956bb4c2fdc5e5f618e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "mvp-b-train eval 结果（`eval_results.json`）：\n\n| 指标 | 值 |\n|------|-----|\n| **test_set_size** | 1890 |\n| **overall_accuracy** | 87.51% |\n| **majority_baseline** | 51.75% |\n| **accuracy vs baseline gap** | +35.77pp |\n\n**Per-class metrics:**\n\n| Class | Precision | Recall | F1 | Support |\n|-------|-----------|--------|-----|---------|\n| **pass** | **93.24** | **81.80** | 87.15 | 978 |\n| **fail** | **82.75** | **93.64** | 87.86 | 912 |\n\n**Confusion matrix:** TP=800, TN=854, FP=58, FN=178, unparseable=0\n\n模型对 fail 的召回率高（93.64），对 pass 的精确率高（93.24）。整体 F1 两类接近平衡（~87）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mvp-b-pr-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b45b1b02cbb26d7a1f2c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code repo level eval script prep",
+  "task_key": "worker_code_repo-level-eval-script-prep_20260512T235002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_repo-level-eval-script-prep_20260512T235002_result.json",
+    "occurrence": 1,
+    "bytes": 1476,
+    "sha256": "b7d50ae1d7534090e0ef0c24e9a3330f3feaa1a333ba2545faa3de644bcd325f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**创建的脚本：**\n\n| 脚本 | 功能 |\n|---|---|\n| `eval_repo_cls.py` | CLS verifier 推理，输出 predictions JSONL + summary JSON |\n| `eval_repo_cwm.py` | CWM execution simulator 推理，输出同格式 JSONL + summary JSON |\n| `paired_bootstrap_repo.py` | 读两个 predictions JSONL，做 clustered paired bootstrap + TOST 等价检验 (±2pp) |\n\n**输出格式统一**：每条 prediction JSONL 包含 `{index, problem_id, label, pred, correct, truncated, gen_text}`，两个 eval 脚本格式一致，可直接喂给 `paired_bootstrap_repo.py`。\n\n**关键参数**：\n- `eval_repo_cls.py`: `max_seq_length=4096`, `max_new_tokens=8`, `batch_size=16`\n- `eval_repo_cwm.py`: `max_seq_length=4096`, `max_new_tokens=64`, `batch_size=8`（CWM 生成更长）\n- `paired_bootstrap_repo.py`: clustered bootstrap by `problem_id`，10000 resamples，TOST margin ±2pp，D008 Go/No-Go 决策\n\n**数据**：9784 test instances (pass=7138, fail=2646)\n\n**待训练完后的运行流程**：\n```bash\n# 1. CLS eval (用非训练 GPU)\npython eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\n\n# 2. CWM eval (CWM checkpoint 就绪后)\npython eval_repo_cwm.py --checkpoint_dir <cwm_checkpoint> --device cuda:1\n\n# 3. Paired bootstrap + TOST\npython paired_bootstrap_repo.py \\\n  --cls_preds eval_repo_cls_predictions.jsonl \\\n  --cwm_preds eval_repo_cwm_predictions.jsonl\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-repo-level-eval-script-prep.md"
+}

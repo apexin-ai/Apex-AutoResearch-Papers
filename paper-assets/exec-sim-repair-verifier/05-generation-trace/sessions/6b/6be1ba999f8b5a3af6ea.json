@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6be1ba999f8b5a3af6ea",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b s42 ckpt3600 mutation",
+  "task_key": "worker_eval_cls8b-s42-ckpt3600-mutation_20260516T011214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-s42-ckpt3600-mutation_20260516T011214_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "2cbc36b6abb2daf5b0106703026e151328bc1eed5c23dcd4cd6a7fe96769cbbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成，artifact 已注册。\n\n## 结果汇总\n\n**CLS 8B s42-resume ckpt-3600 — Per-Mutation-Type Test Accuracy (n=9784)**\n\n| Mutation Type | Correct | Total | Accuracy |\n|---|---|---|---|\n| gold | 4,459 | 4,633 | **96.24%** |\n| mutation_off_by_one | 159 | 183 | **86.89%** |\n| mutation_operator_swap | 2,732 | 3,357 | **81.38%** |\n| mutation_return_value | 424 | 562 | **75.44%** |\n| mutation_boundary_removal | 492 | 1,049 | **46.90%** |\n| **OVERALL** | **8,266** | **9,784** | **84.48%** |\n\n关键发现：\n- **gold 样本**（真实 patch）识别率极高 96.24%，模型擅长判断正确修复\n- **boundary_removal 最难**，仅 46.90%——边界条件移除是最具迷惑性的 mutation\n- **off_by_one 出乎意料地高** 86.89%，但样本量小（n=183）\n- Overall 84.48% 与已知 test 结果一致\n\nRegistry 已更新为 DONE/success，artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-s42-ckpt3600-mutation.md"
+}

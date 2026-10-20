@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42a78e2bd0735e348fa0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose cls8b s42 resume val sweep gpu1",
+  "task_key": "worker_diagnose_cls8b-s42-resume-val-sweep-gpu1_20260515T223311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cls8b-s42-resume-val-sweep-gpu1_20260515T223311_result.json",
+    "occurrence": 1,
+    "bytes": 3248,
+    "sha256": "e7f258b6e843bfd0b5c7fc21d40aa9767bfdb498c50fa4120a28e793c7760542"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断信息收集完毕。以下是报告。\n\n---\n\n## 诊断报告\n\n### 1. 失败根因\n\n**平台级 SIGTERM（SeetaCloud autopanel daemon）**\n\n证据链：\n- 两个进程在**完全相同的秒**被终止（06:31:35-36），说明是同一来源的协调 kill\n- `dmesg` 无 OOM killer 记录\n- 系统未重启（uptime 150 天，无 reboot 记录）\n- 无 cron kill 任务，无 bash_history 中的手动 kill\n- SeetaCloud 平台管理进程 `autopanel serve`（PID 940）正在运行，是唯一有能力同时终止多 GPU 进程的实体\n- 只有 GPU 0 和 GPU 1 上的进程被杀，GPU 2/3 进程未受影响\n- GPU 0 当前处于异常状态（100% utilization, 0MiB memory, 无进程）—— 可能是 CUDA context 清理不完整的残留\n\n**最可能原因**：SeetaCloud 平台对 GPU 0/1 进行了资源回收或调度干预。\n\n### 2. Checkpoint 完成状态\n\n| Checkpoint | 状态 | 来源 |\n|-----------|------|------|\n| 1800 | ✅ 完成 | v2 |\n| 2000 | ✅ 完成 | v2 |\n| 2200 | ✅ 完成 | v2 |\n| 2400 | ✅ 完成 | v2 |\n| 2600 | ✅ 完成 | v2 |\n| 2800 | ✅ 完成 | v2 |\n| 3000 | ✅ 完成 | v2 |\n| 3200 | ✅ 完成 | v2 |\n| 3400 | ✅ 完成 | v2 |\n| 3600 | ✅ 完成 | v2 |\n| 3800 | ✅ 完成 | v2 |\n| 4000 | ✅ 完成 | gpu1 |\n| 4200 | ✅ 完成 | gpu1 |\n| 4400 | ✅ 完成 | gpu1 |\n| 4600 | ✅ 完成 | gpu1 |\n| 4800 | ✅ 完成 | gpu1 |\n| 5000 | ✅ 完成 | gpu1 |\n| 5200 | ✅ 完成 | gpu1 |\n| 5400 | ✅ 完成 | gpu1 |\n| **5600** | ❌ 未完成 | gpu1 在此 checkpoint 评估中途被杀 (6330/9335) |\n| **5800** | ❌ 未完成 | 未开始 |\n\n**19/21 完成，仅缺 5600 和 5800。**\n\n### 3. 可否安全重启\n\n**可以安全重启**，只跑 5600 和 5800。注意事项：\n- 脚本没有 skip_existing 逻辑，不要原脚本整体重跑（会覆盖已有结果）\n- 已完成结果经验证完整有效（含 eval_repo_cls.json + predictions.jsonl）\n- GPU 0 当前状态异常（100% util 但无进程），建议先 `nvidia-smi -r -i 0` 重置 GPU 0 或改用 GPU 1\n\n### 4. 其他 RUNNING 实验\n\n| 实验 | PID | GPU | 状态 | 运行时间 |\n|------|-----|-----|------|---------|\n| cwm8b-ckpt400-test-eval | 381618 | cuda:3 | ✅ 正常运行 | 7h55m |\n| repo-level-cwm-8b-conda-v5 | 400280 | cuda:2 | ✅ 正常运行 | 4h42m |\n\n两者均未受影响，GPU 2/3 显存和算力正常。\n\n### 5. 恢复方案\n\n```bash\n# 只跑缺失的 2 个 checkpoints，用 GPU 1（确认空闲且状态正常）\ncd /home/sonny/exec-sim-repair-verifier\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\nfor STEP in 5600 5800; do\n  CUDA_VISIBLE_DEVICES=1 python3 eval_repo_cls.py \\\n    --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-${STEP} \\\n    --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ \\\n    --split val --device cuda:0 --batch_size 1 \\\n    --max_seq_length 8192 --max_new_tokens 8 \\\n    --output_dir /root/autodl-tmp/eval_results/cls_8b_s42_resume_val/${STEP}/\ndone\n```\n\n预计耗时：~52 分钟（每 checkpoint ~26 分钟）。建议用 nohup 后台执行防止再次被中断，并在完成后验证 GPU 0 状态是否恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cls8b-s42-resume-val-sweep-gpu1.md"
+}

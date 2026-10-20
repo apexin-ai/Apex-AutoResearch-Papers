@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b001f99abfb85e288e9e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls4b v5 ckpt4600 fix",
+  "task_key": "worker_eval_cls4b-v5-ckpt4600-fix_20260515T052657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls4b-v5-ckpt4600-fix_20260515T052657_result.json",
+    "occurrence": 1,
+    "bytes": 407,
+    "sha256": "cbb5197e3bc48a4c56ff99b3c9a76a639bb0975696fc8246dac55c26f725d6ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正在正常运行，不需要干预。\n\n**当前状态：运行中**\n- 进程 PID 3221948，GPU 0 占用 100%，显存 31727 MiB\n- 进度：5968/9335 samples（约 64%），running_acc = 89.8%\n- 每 batch 约 2.9~7.8s，预计还需 ~40 分钟完成\n- 创建时间：2026-05-14 21:42，已运行约 45 分钟\n\n不要杀进程，让它跑完。cron 会自动监控完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls4b-v5-ckpt4600-fix.md"
+}

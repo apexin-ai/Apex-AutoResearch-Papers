@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbc49a07f8a6cdf100c6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra data recovery",
+  "task_key": "worker_infra_data-recovery_20260519T131222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_data-recovery_20260519T131222_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "4b886e23449a1e49d0c161d0910561b2a81587cbf1c47bfdaf55b5427d0b1728"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**数据恢复完成。** seetacloud-westd-4x5090 上的最终状态：\n\n| 文件 | 行数 | 状态 |\n|------|------|------|\n| swebench_pilot_data.jsonl | 89,867 | ✓ 恢复 |\n| swebench_train.jsonl | 70,758 | ✓ 重新生成 |\n| swebench_val.jsonl | 9,330 | ✓ 重新生成 |\n| swebench_test.jsonl | 9,784 | ✓ 未变 |\n\n关键操作：用 `zstd -19` 将 541MB 的 JSONL 压缩到 4.9MB（0.91% 压缩率），绕过了低带宽（~13KB/s）瓶颈，约 8 分钟完成传输。gzip 的 88MB 按同样速度需要 ~2 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-data-recovery.md"
+}

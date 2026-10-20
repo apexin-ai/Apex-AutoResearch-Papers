@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f12d94420c800983c65e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose val unparseable d076",
+  "task_key": "worker_diagnose_val-unparseable-d076_20260514T145852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_val-unparseable-d076_20260514T145852_result.json",
+    "occurrence": 1,
+    "bytes": 1288,
+    "sha256": "74816f2d6549c2502c3bc5ae21699b3b0db2961263e0f182a8c1fbeaf0fdb250"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D076 Val Unparseable 根因分析结论\n\n### 根因\n\n**Val 20.2% unparseable 完全由 prompt 截断引起，精确定位到 2 个 problem_id：**\n\n| Problem ID | 样本数 | Token 数 | 影响 |\n|---|---|---|---|\n| `sympy__sympy-14248` | 1406 | ~4947 | @2048 和 @4096 都截断 |\n| `pytest-dev__pytest-5787` | 477 | ~2352 | @2048 截断，@4096 可容纳 |\n\n1406 + 477 = **1883 = 精确匹配 unparseable 数量**。在 4096 下，只有 sympy 仍截断 = **1406 = 精确匹配 15.1%**。\n\n### 为什么 Test 不受影响\n\nVal 和 test 的 problem_id **零重叠**。Test 最长的 problem（xarray-6992）tokenize 后为 2034-2047 tokens — 差 1-14 个 token 就超 2048 限制。纯属运气。\n\n### 截断机制\n\n截断 prompt → 模型看到不完整 diff → 继续补全代码而非回答 \"pass/fail\" → 被标记为 unparseable。即使碰巧 \"可解析\"，准确率也仅 35.8%（本质上是随机猜测）。\n\n### 推荐修复\n\n**eval 时 `--max_seq_length 5120`**（val 最长 4947 tokens，5120 全部容纳）。无需改代码、无需丢数据。batch_size 可能需从 16 降到 8。修复后 val 0% unparseable，可可靠地用于 checkpoint selection。\n\n详细报告：`artifacts/d076_val_unparseable_root_cause.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-val-unparseable-d076.md"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "70cdbefae4eb29753181",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose cls8b seed123 oom",
+  "task_key": "worker_diagnose_cls8b-seed123-oom_20260512T092920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cls8b-seed123-oom_20260512T092920_result.json",
+    "occurrence": 1,
+    "bytes": 1511,
+    "sha256": "e7bcc3d88169dd3f9ab8a358a0c2d747fe2513860ba717ec68007eab12b01fad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。当前状态：\n\n- **PID 21715**：已不存在，无法追溯确切身份\n- **GPU 0**：PID 23665 — cls8b-seed123 **已被重启**（17:28），独占 GPU 0，占用 19774 MiB / 32607 MiB，GPU 利用率 97%，正常训练中\n- **GPU 1**：PID 22526 — cwm8b-seed123，占用 27730 MiB，正常运行\n- **GPU 2/3**：空闲\n- checkpoint 目录为空，说明重启后刚开始训练，尚未产出 checkpoint\n\n```json\n{\"root_cause\":\"GPU 0 被两个进程共享——PID 21715（未知进程，占 13.57 GiB）+ cls8b-seed123 PID 22433（占 17.49 GiB），合计 ~31 GiB 超过 GPU 0 总显存 31.36 GiB，触发 OOM\",\"process_21715_identity\":\"已消亡，无法确认身份，大概率是之前未清理的训练进程残留\",\"gpu0_status\":\"cleaned\",\"can_retry\":false,\"fix_steps\":[\"无需操作——cls8b-seed123 已作为 PID 23665 重启，独占 GPU 0 正常训练中（19774/32607 MiB, 97% util）\"]}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "GPU 0 被两个进程共享——PID 21715（未知进程，占 13.57 GiB）+ cls8b-seed123 PID 22433（占 17.49 GiB），合计 ~31 GiB 超过 GPU 0 总显存 31.36 GiB，触发 OOM",
+              "process_21715_identity": "已消亡，无法确认身份，大概率是之前未清理的训练进程残留",
+              "gpu0_status": "cleaned",
+              "can_retry": false,
+              "fix_steps": [
+                "无需操作——cls8b-seed123 已作为 PID 23665 重启，独占 GPU 0 正常训练中（19774/32607 MiB, 97% util）"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cls8b-seed123-oom.md"
+}

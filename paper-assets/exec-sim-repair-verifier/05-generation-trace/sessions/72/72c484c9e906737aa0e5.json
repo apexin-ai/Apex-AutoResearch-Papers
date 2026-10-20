@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72c484c9e906737aa0e5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval 0shot batch 3tasks",
+  "task_key": "worker_eval_0shot-batch-3tasks_20260517T233137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_0shot-batch-3tasks_20260517T233137_result.json",
+    "occurrence": 1,
+    "bytes": 149,
+    "sha256": "9197d880793e90a129dd1202ad5fb7c4c3166af5cf328356d0236fc603a298b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Task 1 running (1200/9784, ~22 min ETA). Scripts for Tasks 2 and 3 are already created on the server. I'll check back in ~4.5 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-0shot-batch-3tasks.md"
+}

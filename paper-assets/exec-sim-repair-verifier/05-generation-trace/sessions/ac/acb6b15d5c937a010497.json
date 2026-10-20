@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acb6b15d5c937a010497",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh 8b 3shot result check",
+  "task_key": "worker_ssh_8b-3shot-result-check_20260522T215753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_8b-3shot-result-check_20260522T215753_result.json",
+    "occurrence": 1,
+    "bytes": 75,
+    "sha256": "47c01d5c1c05e71fb2af7b2bccea6debf123b29c34886ae1376e8e09ee1d0b09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程还在跑（elapsed 1m30s），2 分钟后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-8b-3shot-result-check.md"
+}

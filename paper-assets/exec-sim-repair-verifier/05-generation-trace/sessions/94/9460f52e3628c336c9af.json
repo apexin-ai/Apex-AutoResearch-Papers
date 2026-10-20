@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9460f52e3628c336c9af",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh 8b 3shot result fetch",
+  "task_key": "worker_ssh_8b-3shot-result-fetch_20260522T215921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_8b-3shot-result-fetch_20260522T215921_result.json",
+    "occurrence": 1,
+    "bytes": 971,
+    "sha256": "5c62a3ccf2d2c2e91bf00b39d0ffe8bbab69ad6dcb8490e9f924323177cf7272"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个结果都拿到了。汇总如下：\n\n## Qwen3-8B NF4 Eval 结果\n\n| 指标 | 0-shot | 3-shot |\n|------|--------|--------|\n| **per_test_accuracy** | 60.53 | 60.42 |\n| **f1_macro** | 55.73 | 56.09 |\n| **f1_fail** | 70.30 | 69.89 |\n| **f1_pass** | 41.17 | 42.28 |\n| **n_unparseable** | 5 | 1 |\n\n**Confusion matrix:**\n\n|  | 0-shot | 3-shot |\n|--|--------|--------|\n| TN (fail→fail) | 883 | 868 |\n| FP (fail→pass) | 29 | 44 |\n| FN (pass→fail) | 717 | 704 |\n| TP (pass→pass) | 261 | 274 |\n\n**要点：**\n- 0-shot 和 3-shot 性能几乎一样（accuracy 差 0.11pp，f1_macro 差 0.36pp），3-shot 没有带来实质性提升。\n- 两者都严重偏向预测 fail（FN 远大于 FP），pass 召回率极低（~27%）。\n- 3-shot 略微改善了 pass 的召回（TP 261→274），但代价是更多 FP（29→44）和更多 unparseable 减少（5→1）。\n- N=1890，majority baseline 51.75%，两者均高出 ~8.7pp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-8b-3shot-result-fetch.md"
+}

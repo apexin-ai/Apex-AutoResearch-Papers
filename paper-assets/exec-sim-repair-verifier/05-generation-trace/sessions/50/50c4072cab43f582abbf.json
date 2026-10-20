@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50c4072cab43f582abbf",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_4_1778624963.md",
+  "task_key": "loop_4_1778624963",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778624963.md",
+    "occurrence": 1,
+    "bytes": 5034,
+    "sha256": "9709d24e68fe8edb9120e22f177ec40e246e1ce8dde75bdc7f093be52067866d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-12T22:19:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **seetacloud cgroup 360GB**：禁止并行训练，只能单进程占一张卡（v3 因并行 OOM 被 SIGKILL，D028 教训）\n- **CWM v1-v8 全部失败**：v9 是第 9 次尝试。若 v9 再失败，不要盲目提 v10——必须先诊断平台级 SIGTERM 根因（v6/v7 均被外部 kill）\n- **CLS v1-v3 全部失败**：v4 是第 4 次。save_strategy=steps + save_steps=200 + eval_steps=200 是 v4 的关键修复\n- **seetacloud CWM 训练命令必须带 `CUDA_VISIBLE_DEVICES=2`**（物理 GPU 映射）\n- **home 服务器用 sonny 账户**，seetacloud 用 root 账户——不要搞混\n- **westd-48478** 在 config 里但本轮无活跃实验，D040 曾提过用它跑 extra seeds 但未执行\n- **ARR May 25 deadline**（~13 天），repo-level 是 blocking path\n\n### 2. 🖥️ 基础设施快照\n\n**seetacloud-westd-4x5090**（4× RTX 5090, cgroup 360GB, account=root）\n- 工作目录：`/root/autodl-tmp/`\n- Python：`/root/miniconda3/bin/python`（conda 环境，非 venv）\n- 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`\n- 代码：`/home/sonny/exec-sim-repair-verifier/`（git clone）\n- 活跃进程：**repo-level-cwm-v9**, PID 95806, cuda:2, tmux 管理, ~20h 预计\n- Checkpoint：`/root/autodl-tmp/checkpoints_repo_cwm_v9/`\n- Log：`/tmp/repo-level-cwm-v9_stdout.log`\n- Cron：监控 cwm-v9（reconcile 确认 still running）\n\n**home-1x5090**（1× RTX 5090, 62GB RAM, account=sonny）\n- 工作目录：`/home/sonny/exec-sim-repair-verifier/`\n- 活跃进程：**repo-level-cls-v4**, PID 2885139, cuda:0\n- Checkpoint：`/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`\n- Log：`/tmp/repo-level-cls-v3_stdout.log`（注意文件名是 v3 但内容是 v4）\n- Cron：监控 cls-v4（reconcile 确认 still running）\n- 数据：`/home/sonny/exec-sim-repair-verifier/data/swebench_full/`（70748 samples）\n\n**Worker 活跃**：`worker_ssh_cwm-v9-dryrun-submit`（started 2026-05-12T21:25，可能已完成未回调）\n\n### 3. 📊 当前状态\n\n两个 repo-level 关键实验并行训练中，这是整个项目的 blocking path：\n- **repo-level-cwm-v9** (RUNNING, seetacloud cuda:2): CWM 第 9 次尝试，修复了 eval_steps/save_steps 对齐 + compute_loss OOM。预计 ~20h（从 2026-05-12T21:30 开始）\n- **repo-level-cls-v4** (RUNNING, home cuda:0): CLS 第 4 次尝试，基于 v3 代码 + DataCollator 修复 + 磁盘修复。预计 ~12h\n\n无 PREPARING/PENDING 实验。Worker 池 = 1（cwm-v9-dryrun-submit，可能即将完成）。\n\n历史：30 success / 3 negative / 12 failed / 46 total。函数级实验全部完成，所有 evidence 就绪。\n\n### 4. 📋 待办（条件触发式）\n- **cwm-v9 cron 回调（DONE/success）** → spawn Worker 跑 repo-level eval + paired bootstrap；更新 registry metrics\n- **cls-v4 cron 回调（DONE/success）** → 同上，spawn Worker eval\n- **两者都完成** → paired bootstrap 对比 CLS vs CWM repo-level F1 → **D008 Go/No-Go 决策**：\n  - F1 diff ≥ 3pp + p<0.05 → 全力推进 EMNLP Main\n  - F1 diff 1-3pp → 加 seeds / 数据量\n  - F1 diff < 1pp → Kill C1, pivot to Plan B（efficiency framing）\n- **cwm-v9 或 cls-v4 失败** → 立即诊断（重点查 seetacloud 平台 SIGTERM 是否复现）；向 Director 汇报是否还值得再试\n- **Worker cwm-v9-dryrun-submit 回调** → 确认 cwm-v9 提交状态，更新 registry spec\n- **训练等待期（CPU 任务）** → 准备 repo-level eval 脚本 + paired bootstrap 脚本（提前铺好，训练完立即跑）\n- **Paper Agent Step 2-5** → 可并行推进图表生成、LaTeX 模板\n\n### 5. 🎯 战略上下文\n\n**核心结论链**：\n- D008: repo-level Go/No-Go 是最关键决策点，一切取决于 cwm-v9 vs cls-v4 结果\n- 函数级 CLS≈CWM（F1 diff <0.5pp, TOST p=0.007 等价）→ 核心假说已转为 **complexity-dependent advantage**\n- 8B scaling 已证明 gap 从 4B 1.25pp → 8B 2.43pp（p=0.007）\n- Oracle ensemble 90.63%（CLS 漏检 75.5%, CWM 误报 83.1%）→ 互补性已建立\n- Paper framing: 3 个 core claims，C1(complexity-dependent) 是最重要的，repo-level 数据是唯一缺口\n\n**易错点**：\n- **seetacloud 长训练被平台 kill**：v6/v7 都是 SIGTERM 143。如果 v9 再被 kill，不要盲目重启——需要查平台级 idle timeout / resource reclaim 机制\n- **Log 文件名 vs 实际版本**：home 上 log 文件是 `/tmp/repo-level-cls-v3_stdout.log` 但实际跑的是 v4（文件名未更新）\n- **Worker cwm-v9-dryrun-submit 可能已 stale**：started 21:25，如果长时间无回调可能 hung\n- **不要把函数级 metrics 和 repo-level metrics 直接对比**——数据集、复杂度、样本量完全不同\n- **Val 截断率 20.2%**（fail 31% vs pass 16.7%）→ 论文必须披露，eval 指标系统性偏乐观\n- **时间压力**：ARR May 25 = ~13 天，训练 bottleneck ~20h（cwm-v9），eval+stats ~3h，paper ~2-3d，总计 ~4-5d 如果一切顺利\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778624963.md"
+}

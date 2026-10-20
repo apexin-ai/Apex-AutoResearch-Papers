@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b95beaf403a80c79c40b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper method section draft",
+  "task_key": "worker_paper_method-section-draft_20260512T202359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_method-section-draft_20260512T202359_result.json",
+    "occurrence": 1,
+    "bytes": 1071,
+    "sha256": "794148d6f7e52108aa2718368f82b3d0a4efff01803c8ac4818f739ab7d4425e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method 章节已写入 `paper/method.tex`（v5, 16/16 claims covered）。\n\n结构：\n- §3.1 Problem Setup — 定义 patch $p$, test suite $T$, F2P/P2P 分解\n- §3.2 CLS — 单 token 输出 $f(c_p, t_i) \\to \\{\\text{PASS}, \\text{FAIL}\\}$，conjunction 聚合到 patch 级\n- §3.3 CWM — 生成 output string，exact match 推导 verdict，inference cost = $\\sum|\\hat{o}_i|$ tokens\n- §3.4 TRAJ — 全 test suite 输入，单 binary 输出，作为 granularity control\n- §3.5 CWM Failure Modes — token-budget exhaustion + string-value prediction errors，CLS by construction 规避；提出 complexity-dependent advantage 假说\n- §3.6 Oracle Framework — block-correlation model（ICC $\\rho$, DEFF, $k_{\\text{eff}}$），推导 $P_{\\text{detect}}(k) = 1-(1-r)^{k_{\\text{eff}}}$，三个 testable predictions（$k=1$ 无优势、$\\Delta(k)$ 随 $k$ 增长被 $\\rho$ 抑制、优势集中在 multi-F2P tail），P2P regression 阈值分析\n\n5 条 claims 已注册 provenance tracking，关联 D007/D008/D015/D018 等决策。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-method-section-draft.md"
+}

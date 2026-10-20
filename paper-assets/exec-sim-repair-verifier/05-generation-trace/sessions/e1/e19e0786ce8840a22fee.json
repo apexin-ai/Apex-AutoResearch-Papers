@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e19e0786ce8840a22fee",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops check ckpt3600 test result",
+  "task_key": "worker_ops_check-ckpt3600-test-result_20260515T233243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-ckpt3600-test-result_20260515T233243_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "90c4bce2b3d0dd5bde3cfbd2733556db43f8330204b83528169961f0fd58616b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## ckpt-3600 Test Eval 结果 (s42 resume)\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **84.48%** |\n| **F1 macro** | **78.17%** |\n| F1 fail | 66.43% (P=80.1%, R=56.8%) |\n| F1 pass | 89.91% (P=85.5%, R=94.8%) |\n| Majority baseline | 72.96% |\n| Gap vs majority | +11.53pp |\n| 样本数 | 9784/9784 |\n| Unparseable | 0 |\n\n**对比原 val-best ckpt-1000**: test accuracy 83.52% → **84.48%** (+0.96pp)\n\nckpt-3600 在 val 上提升显著 (88.71% → 90.28%)，test 上也有近 1pp 提升，确认 resume 训练有效。\n\n- Registry: `cls8b-s42-resume-ckpt3600-test` → DONE/success，metrics 已写入\n- Cron: 本 session 无活跃 cron，无需删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-ckpt3600-test-result.md"
+}

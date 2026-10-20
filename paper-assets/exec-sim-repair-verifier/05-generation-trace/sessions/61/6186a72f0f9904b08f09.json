@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6186a72f0f9904b08f09",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh 14b multiseed recon",
+  "task_key": "worker_ssh_14b-multiseed-recon_20260523T041432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_14b-multiseed-recon_20260523T041432_result.json",
+    "occurrence": 1,
+    "bytes": 2649,
+    "sha256": "a7a1328236755a290f33a27be1c2fa51872cf4e4fe5fc5e96e94dcfa00e26928"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总完毕。\n\n---\n\n## 服务器探测结果汇总\n\n### 1. GPU 状态 — 全部空闲\n\n| GPU | 型号 | 总显存 | 已用 | 利用率 |\n|-----|------|--------|------|--------|\n| 0 | RTX 5090 | 32 GB | 0 MB | 0% |\n| 1 | RTX 5090 | 32 GB | 0 MB | 0% |\n| 2 | RTX 5090 | 32 GB | 0 MB | 0% |\n| 3 | RTX 5090 | 32 GB | 0 MB | 0% |\n\n**4 块 GPU 全部空闲，可同时跑 4 个独立训练任务。**\n\n### 2. Qwen3-14B 模型\n\n模型位于 `/dev/shm/Qwen3-14B`（内存盘，~28GB）。已就绪，无需重新下载。\n\n### 3. 已有 14B s42 训练配置（从 adapter_config + trainer_state 提取）\n\n| 参数 | CLS 14B (s42_v2) | CWM 14B (s42) |\n|------|-------------------|---------------|\n| LoRA rank | 16 | 16 |\n| LoRA alpha | 32 | 32 |\n| LoRA dropout | 0.05 | 0.05 |\n| target_modules | q/k/v/o_proj | q/k/v/o_proj |\n| quantize | 4bit (QLoRA) | 4bit (QLoRA) |\n| batch_size | 1 | 1 |\n| grad_accumulation | （推断 ~32） | （推断 ~32） |\n| lr | ~5e-5 peak (cosine) | ~5e-5 peak |\n| epochs | 3 | 3 |\n| max_seq_length | 2048 | 2048 |\n| warmup_ratio | 0.05 | 0.05 |\n| total steps | 1434 | 1434 |\n| best checkpoint | step 956 (epoch 2) | step 956 |\n\n从 `train_14b_cwm_pilot.sh` 确认完整命令参数：`--lr 2e-4 --batch_size 1 --grad_accumulation 32 --lora_rank 16 --lora_alpha 32 --epochs 3 --max_seq_length 2048 --warmup_ratio 0.05 --weight_decay 0.01`\n\n### 4. 训练数据\n\n| 文件 | 行数 |\n|------|------|\n| `data/train.jsonl` (CLS) | 15,290 |\n| `data/val.jsonl` (CLS) | 1,896 |\n| `data/cwm_train.jsonl` | 15,290 |\n| `data/cwm_val.jsonl` | 1,896 |\n\n### 5. 磁盘空间\n\n| 分区 | 总量 | 已用 | 剩余 |\n|------|------|------|------|\n| `/root/autodl-tmp` | 250 GB | 201 GB | **50 GB** |\n| `/dev/shm` (内存盘) | 180 GB | 28 GB | 153 GB |\n| `/` (根分区) | 30 GB | 22 GB | 8.5 GB |\n\n已有 14B checkpoint 每个 ~600MB（LoRA adapter 含 optimizer state）。4 个新 checkpoint（每个最终 ~600MB × save_total_limit 3 = ~1.8GB）总计 ~7.2GB。**50GB 余量充足。**\n\n### 6. 已有 14B checkpoint\n\n- `checkpoints_cls14b_func_s42_v2/` — 607MB，含 checkpoint-956（best）、checkpoint-1434\n- `checkpoints_cwm14b_func_s42/` — 607MB，含 checkpoint-956（best）、checkpoint-1434\n- `checkpoints_cls14b/` — 空目录\n\n### 结论\n\n**可以立即启动 4 路并行 14B multi-seed 训练：**\n- 4x RTX 5090 全部空闲，每 GPU 跑一个 seed（QLoRA 14B 单卡 ~14-16GB 显存）\n- 模型已在 `/dev/shm/Qwen3-14B`\n- 磁盘余量 50GB，够存 4 组新 checkpoint\n- 复制 s42 配置，只需改 `--seed` 和 `--output_dir`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14b-multiseed-recon.md"
+}

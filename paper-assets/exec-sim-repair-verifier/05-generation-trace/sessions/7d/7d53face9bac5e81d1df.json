@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d53face9bac5e81d1df",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code figure2 upgrade script",
+  "task_key": "worker_code_figure2-upgrade-script_20260520T072544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_figure2-upgrade-script_20260520T072544_result.json",
+    "occurrence": 1,
+    "bytes": 602,
+    "sha256": "93ee4d4b3ac6c5b89f82c5ddca491e153602b6cdff4c3616d0309d7caa5eaad5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。脚本已写到本地 `plot_figure2_v2.py` 并上传到服务器 `/home/sonny/exec-sim-repair-verifier/plot_figure2_v2.py`，`--help` 验证通过。\n\n功能概要：\n- 双 panel（Function-level / Repo-level），每 panel 内 CLS/CWM/TRAJ × Qwen/DeepSeek grouped bars\n- Error bars (mean ± std)，bar 顶部数值标注\n- 学术风格：serif font、Type 42 嵌入、colorblind-friendly 配色（蓝 #4878A8 / 橙 #E8853A）\n- 输出 PDF + PNG 300 dpi，`--output_dir` / `--format` 可参数化\n- `DATA` dict 中 placeholder 为 0.0，数据到齐后替换数字即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-figure2-upgrade-script.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "814374f9270fb425f3a2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cwm eval final results",
+  "task_key": "worker_analysis_cwm-eval-final-results_20260514T120624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cwm-eval-final-results_20260514T120624_result.json",
+    "occurrence": 1,
+    "bytes": 1111,
+    "sha256": "4631507ebe3ebbda8d50462ab5f9924887674dbb099f22f1a018028d294d0299"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 当前状态汇报\n\n### GPU 使用\n| GPU | 任务 | VRAM |\n|-----|------|------|\n| 0 | CWM seed123 eval | 13.0/32.6 GB |\n| 1 | CWM v12 eval | 13.0/32.6 GB |\n| 2 | CWM 8B train | 31.5/32.6 GB |\n| 3 | CLS 8B seed123 train | 23.6/32.6 GB |\n\n### CWM Eval 进度（仍在跑）\n| 模型 | 进度 | running_acc | 剩余 | ETA |\n|------|------|-------------|-------|-----|\n| CWM v12 | 6296/9784 (64.3%) | 57.8% | ~3488 samples | ~02:10 AM May 15 |\n| CWM seed123 | 6216/9784 (63.5%) | 58.8% | ~3568 samples | ~02:20 AM May 15 |\n\n速率约 9.5 samples/min，还需 **~6 小时**完成。\n\n### 8B 训练进度\n| 模型 | 进度 | 速率 | ETA |\n|------|------|------|-----|\n| CWM 8B (seed42) | 988/6633 (14.9%) | ~12.3s/step | ~May 15 15:00 |\n| CLS 8B (seed123) | 1800/6633 (27.1%) | ~8.2s/step | ~May 15 07:10 |\n\nCLS 8B 刚完成 step 1800 的 eval checkpoint，eval_loss = **0.2101**。\n\n---\n\nCWM eval 距离完成还有约 6 小时，不适合轮询等待。需要我设置定时检查（比如明早自动查结果并执行 4 项分析），还是你稍后手动触发？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cwm-eval-final-results.md"
+}

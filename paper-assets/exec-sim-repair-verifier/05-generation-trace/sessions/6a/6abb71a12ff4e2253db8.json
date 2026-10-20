@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "6abb71a12ff4e2253db8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ssh d049 cls 8b dryrun",
+  "task_key": "worker_ssh_d049-cls-8b-dryrun_20260513T094824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d049-cls-8b-dryrun_20260513T094824.log",
+    "occurrence": 1,
+    "bytes": 529359,
+    "sha256": "1f4564e6902607e0d9e3c428e1a9ba873cac4e348076892876356e84f98e877f"
+  },
+  "statistics": {
+    "messages": 384,
+    "user_turns": 0,
+    "tool_calls": 154,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 154,
+      "tool_result": 154,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 384,
+      "chunks": [
+        {
+          "path": "6abb71a12ff4e2253db8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6abb71a12ff4e2253db8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6abb71a12ff4e2253db8-part-0003.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-d049-cls-8b-dryrun.md"
+}

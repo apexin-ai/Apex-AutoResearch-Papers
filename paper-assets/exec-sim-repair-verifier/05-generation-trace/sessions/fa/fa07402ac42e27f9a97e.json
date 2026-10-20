@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa07402ac42e27f9a97e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops oracle label expansion",
+  "task_key": "worker_ops_oracle-label-expansion_20260517T043408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_oracle-label-expansion_20260517T043408_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "e790211393dab897d7b68904aebd0332ab108b1c5aec33325fa50212a32ba92b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。所有 mutation patches 的 per-test evaluation 已经在之前的 `pilot_mutation_*` runs 中跑完，报告都在 `logs/run_evaluation/` 中。\n\n**产出总结：**\n\n| 文件 | 说明 |\n|------|------|\n| `expand_oracle_labels.py` | 解析脚本 |\n| `data/swebench_full/swebench_test_expanded.jsonl` | 新增 58 instances 的 per-test labels (34,529 entries) |\n| `data/swebench_full/swebench_test_merged.jsonl` | 合并后完整数据：83 instances, 44,313 entries |\n| `data/swebench_full/oracle_per_instance_summary.jsonl` | 按 instance×mutation 汇总的 96 条记录 |\n| `data/swebench_full/oracle_expansion_summary.json` | 统计 metadata |\n\n**关键数字：**\n- 原始：25 instances, 9,784 per-test entries\n- 新增：58 instances (F2P≥2), 34,529 per-test entries\n- 合计：**83 instances**, 44,313 entries\n- 不需要重跑 harness（报告已存在），解析耗时 ~3s"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-oracle-label-expansion.md"
+}

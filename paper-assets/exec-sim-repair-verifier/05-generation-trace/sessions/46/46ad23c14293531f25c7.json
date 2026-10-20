@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46ad23c14293531f25c7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra post restart gpu check",
+  "task_key": "worker_infra_post-restart-gpu-check_20260518T024313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_post-restart-gpu-check_20260518T024313_result.json",
+    "occurrence": 1,
+    "bytes": 1178,
+    "sha256": "a5532fc70dbc1d5b13bc92e0e080f6a5744f0b862b7a9d270f8b76c04ed58bb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。汇总如下：\n\n---\n\n## GPU 状态报告\n\n| GPU | 任务 | 状态 | 进度 | running_acc |\n|-----|------|------|------|-------------|\n| 0 | CLS v4 eval | **已完成** | 9784/9784 | 71.3% |\n| 1 | CWM s42 eval | running | 3091/9784 (31.6%) | 56.8% |\n| 2 | CLS s123 eval | running | 9240/9784 (94.4%) | 74.8% |\n| 3 | CWM s123 eval | running | 2770/9784 (28.3%) | 62.3% |\n\n### CLS v4 eval 结果 (GPU 0, 已完成)\n- **Accuracy: 71.29%** (majority baseline: 72.96%, gap: -1.7pp)\n- F1 macro: 44.39%\n- F1 fail: 5.7% (P=25.5%, R=3.2%) / F1 pass: 83.1% (P=72.9%, R=96.5%)\n- Confusion: TP=6890, FP=2561, FN=248, TN=85\n- Unparseable: 247 (2.5%)\n- 结果文件: `/root/autodl-tmp/eval_results/deepseek_cls_repo_v4_8192.json`\n\n### 预计完成时间\n- **CLS s123 (GPU 2)**: ~94% 完成，约 40 分钟内结束\n- **CWM s42 (GPU 1)**: ~32%，约 20+ 小时\n- **CWM s123 (GPU 3)**: ~28%，约 20+ 小时\n\n### tmux sessions\n- `cls-s123-eval-8192` (GPU 2)\n- `cwm-s123-eval` (GPU 3)\n- CWM s42 无 tmux（直接后台进程）\n\n### 磁盘\n- `/` (overlay): 21G/30G (69%)\n- `/usr/bin/nvidia-smi` (数据盘): 398G/879G (48%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-post-restart-gpu-check.md"
+}

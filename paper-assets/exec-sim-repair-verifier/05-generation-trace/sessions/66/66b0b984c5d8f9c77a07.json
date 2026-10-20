@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "66b0b984c5d8f9c77a07",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ssh cwm v9 eval steps fix",
+  "task_key": "worker_ssh_cwm-v9-eval-steps-fix_20260512T223907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cwm-v9-eval-steps-fix_20260512T223907.log",
+    "occurrence": 1,
+    "bytes": 720405,
+    "sha256": "73155b51211cbaa97ecc7d087a36080c7c015dea8b4cc1e24f2323492779537e"
+  },
+  "statistics": {
+    "messages": 594,
+    "user_turns": 0,
+    "tool_calls": 237,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 115,
+      "tool_call": 237,
+      "tool_result": 237,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 594,
+      "chunks": [
+        {
+          "path": "66b0b984c5d8f9c77a07-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "66b0b984c5d8f9c77a07-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "66b0b984c5d8f9c77a07-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "66b0b984c5d8f9c77a07-part-0004.json",
+          "message_count": 54
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-cwm-v9-eval-steps-fix.md"
+}

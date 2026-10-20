@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "575ac9ee25ba9565c87a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "gen figure2 and lpm",
+  "task_key": "worker_gen_figure2-and-lpm_20260522T123736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gen_figure2-and-lpm_20260522T123736_result.json",
+    "occurrence": 1,
+    "bytes": 1370,
+    "sha256": "8b4b46ba3cb27b9261e85a5e9fcc08fe036c242590efb435781a320ec6d66d9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务执行完毕。\n\n---\n\n## 任务 A: Figure 2\n\n生成成功：\n| 文件 | 大小 |\n|------|------|\n| `/root/autodl-tmp/figures/paper/figure2_v2.pdf` | 20,869 B |\n| `/root/autodl-tmp/figures/paper/figure2_v2.png` | 111,739 B |\n\n---\n\n## 任务 B: LPM Regression\n\n执行完成，但与论文预期值有偏差。关键结果：\n\n### DeepSeek cross-complexity (N=57,512, 139 clusters)\n- **CWM coef = -0.225, z = -64.44, p < 0.001**\n- TRAJ coef = -0.428, z = -31.21\n- complexity coef = -0.114, z = -3.71\n- 注意：触发了 singular matrix fallback，交互项被丢弃，退化为加法模型\n\n### Repo cross-model (N=97,840, 25 clusters)\n- **CWM deficit z = -69.35, p < 0.001**\n- Qwen3-8B effect = +0.079, z = +23.49, p < 0.001\n- 同样退化为加法模型\n\n### Verification MISMATCH 原因\n1. **N 不匹配** (57,512 vs 56,480)：TRAJ func 只有 1 seed (1,032 samples)，且 CWM func s123 可能加载了 repo 级别的预测文件 (`eval_repo_cwm_predictions.jsonl`)\n2. **CWM main coef 不匹配** (-0.225 vs -0.002)：交互项被丢弃后，CWM 系数吸收了交互效应\n3. **cls8b_* 目录解析为 model=UNKNOWN**：目录名缺少 \"qwen\" 前缀，需要修复 `infer_metadata` 或重命名目录\n\n输出保存在 `/root/autodl-tmp/artifacts/w5_full_regression/results.json` 和 `paper_numbers.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gen-figure2-and-lpm.md"
+}

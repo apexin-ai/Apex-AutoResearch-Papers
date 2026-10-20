@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5f246b398592cccf2d2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check cls home progress",
+  "task_key": "worker_check_cls-home-progress_20260512T185915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_cls-home-progress_20260512T185915_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "ec4799ae10d1054e4b65d0f6ab77f11396eac79310cdd8e067bad4c8a0390679"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**repo-level-cls-home 训练状态**\n\n| 项目 | 值 |\n|------|-----|\n| 进程 | PID 2840844 存活，已运行 1h45m |\n| GPU | 19456 MiB VRAM 占用 |\n| 进度 | **862 / 6633** (13%) |\n| 速度 | ~7.11 s/it |\n| 已用时 | 1h 42m |\n| 剩余预估 | **~11h 24m** |\n| ETA | **2026-05-12 ~23:24 UTC** |\n| Loss | 日志中未打印 loss（只有 tqdm 进度条） |\n| Checkpoint | **无**（目录为空，尚未保存） |\n\n注意：训练脚本没有在日志中输出 loss 值，且尚无 checkpoint 保存。如果需要 loss 监控或中途 checkpoint，可能需要检查训练脚本的 logging/save 配置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cls-home-progress.md"
+}

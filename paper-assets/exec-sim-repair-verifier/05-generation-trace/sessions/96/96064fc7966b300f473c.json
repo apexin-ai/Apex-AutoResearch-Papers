@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96064fc7966b300f473c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "train cwm8b v5 resume",
+  "task_key": "worker_train_cwm8b-v5-resume_20260515T175051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cwm8b-v5-resume_20260515T175051_result.json",
+    "occurrence": 1,
+    "bytes": 664,
+    "sha256": "6abac57a618174daaaa9997cb4222af8de16cff18389326fdd2512ae62959239"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Resume confirmed. Progress bar jumped to 78% (5201/6633), training is actively running on cuda:2.\n\n## 汇报\n\n| 项目 | 值 |\n|------|-----|\n| **PID** | 400279 (bash) / 400280 (python) |\n| **GPU** | cuda:2, 24293 MiB, 98% util |\n| **当前 step** | 5201/6633 (从 ckpt-5200 resume 成功) |\n| **剩余** | 1432 steps |\n| **速度** | ~12 s/step (含 eval, 参考 v2 log) |\n| **预计完成** | ~4.8h, 约 06:45 服务器时间 (UTC+8) |\n| **日志** | `~/runs/exec-sim-repair-verifier/repo-level-cwm-8b-conda-v5.log` |\n| **Registry** | `repo-level-cwm-8b-conda-v5` → RUNNING, parent=v4 |\n\n无 timeout 限制，nohup 后台运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cwm8b-v5-resume.md"
+}

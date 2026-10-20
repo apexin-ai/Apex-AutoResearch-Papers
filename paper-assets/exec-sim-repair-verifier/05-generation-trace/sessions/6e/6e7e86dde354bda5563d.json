@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6e7e86dde354bda5563d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "fix tost cls traj",
+  "task_key": "worker_fix_tost-cls-traj_20260519T065959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_tost-cls-traj_20260519T065959.log",
+    "occurrence": 1,
+    "bytes": 763846,
+    "sha256": "8f825353f8c8992642ecc1d716e00f87580b824a50436e1951ff03411ba92fd7"
+  },
+  "statistics": {
+    "messages": 212,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 78,
+      "tool_result": 78,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 212,
+      "chunks": [
+        {
+          "path": "6e7e86dde354bda5563d-part-0001.json",
+          "message_count": 160
+        },
+        {
+          "path": "6e7e86dde354bda5563d-part-0002.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-tost-cls-traj.md"
+}

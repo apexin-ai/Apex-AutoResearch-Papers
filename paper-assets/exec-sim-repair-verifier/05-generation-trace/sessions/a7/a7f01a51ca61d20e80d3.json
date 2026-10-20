@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7f01a51ca61d20e80d3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_10_1778779221.md",
+  "task_key": "loop_10_1778779221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778779221.md",
+    "occurrence": 1,
+    "bytes": 4848,
+    "sha256": "0bd4cb5de9cc89649126a8eb6e9c1e5da3abe7c26938dc10dbadac144e9d8f0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-14T15:41:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **Registry 状态失真**：4 个实验标记 DONE/failed 但实际仍在跑（新 PID），不要信 registry status，必须查 cron/进程\n- **D063 红线**：所有 repo-level checkpoint sweep 数字均在 test set 上做的 = cherry-picking。论文 **禁止** 直接引用这些 best-ckpt 数字。采用 D066 策略：mean±std across valid checkpoints\n- **D077**：val eval 必须用 max_seq_length=5120（2048 导致 20.2% unparseable → 全部回退 majority class → 排序失真）\n- **8B 训练必须 num_workers=0**：D072/D073 根因 = Worker 误杀 DataLoader 子进程，不是平台 SIGTERM\n- **CLS 8B seed123 ckpt-400/600 永久丢失**（D071），只有 ckpt-200 和 ckpt-800+。不要尝试恢复\n- **CWM v11 数字已废止**（D057），论文不可引用 66.6%\n\n### 2. 🖥️ 基础设施快照\n- **westd**: root@seetacloud-westd-4x5090 (westd-48478)，工作目录 `/home/sonny/exec-sim-repair-verifier`\n- **home**: sonny@home-1x5090，工作目录 `/home/sonny/exec-sim-repair-verifier`\n- **Python**: westd `/root/miniconda3/bin/python`（conda base, transformers 4.57.6）；home 同版本\n- **模型**: 4B `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B/`，8B `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- **Checkpoints**: 全在 westd `/root/autodl-tmp/checkpoints_repo_{cls,cwm}_{variant}/`\n- **数据**: test=9784 (swebench_test.jsonl, baseline 72.96%)，val=9335 (baseline 75.88%)\n- **No wandb**（repo-level 全用 --no_wandb）\n- **活跃进程（westd）**:\n  - PID 195531: CWM seed123 eval, cuda:0, ETA ~02:30 UTC May 15\n  - PID 195668: CWM v12 eval, cuda:1, ETA ~02:20 UTC May 15\n  - PID 245775: CWM 8B 训练 resumed from ckpt-1200, cuda:2, step ~1300/6633, ~20-24h remaining\n  - PID 248041: CLS 8B seed123 训练 resumed from ckpt-2400, cuda:3, step ~2529/6633, ~9h remaining\n- **Cron**: 4 个活跃（tracking 上述 4 个 PID），session-level cron 为 0（需要重新注册或依赖系统 cron）\n\n### 3. 📊 当前状态\n61 个实验全标 DONE，但 4 个实际在跑（见上）。westd 4 张 5090 全占满。home cuda:0 空闲。\n\n**刚完成的关键分析链**（D063→D065→D066→D069→D074→D077）：\n- Val/test 分布严重不一致（val 79% pass vs test 73%，val 截断 20.2%），val-based checkpoint selection 彻底失败\n- 结论：论文用 D066 策略 = mean±std across valid checkpoints + sensitivity table，不做 val-based selection\n- D077 确认截断是 val unparseable 根因，5120 可修复到 2.5%，但 D066 策略已足够稳健，val sweep 降为 optional\n\n**等待中**:\n- CWM v12 + seed123 eval 完成回调（~02:20-02:30 UTC May 15）→ 确认 repo-level CWM 最终数字（预期 ~57-58%）\n- CLS 8B seed123 训练完成回调（~24:00 UTC May 14）→ checkpoint sweep\n- CWM 8B 训练完成回调（~12:00 UTC May 15）→ eval pipeline → 8B CWM 数字\n\n**无活跃 Worker，无 Director 待决**。\n\n### 4. 📋 待办（条件触发式）\n- CWM v12 eval cron 回调 → 记录 accuracy/F1/unparseable → update registry+report → 如确认 ~58% 则 CLS-CWM gap ~20pp，向 Director 汇报\n- CWM seed123 eval cron 回调 → paired bootstrap CI with v12 → 统计显著性 → 向 Director 汇报\n- CLS 8B seed123 训练完成 → spawn Worker 做 test@2048 checkpoint sweep (ckpt-800 起，400/600 已丢失) → 对比 s42 的 84.52%\n- CWM 8B 训练完成 → spawn Worker 做 full eval (9784 samples, ~20h) → 完成 8B scaling story\n- 上述全部完成 → 汇总最终 paper numbers → Patch Paper Agent draft → D066 主表 + sensitivity table\n- Home cuda:0 空闲 → 可用于 val@5120 验证或其他诊断，但非关键路径\n\n### 5. 🎯 战略上下文\n**核心结论链**：函数级 CLS≈CWM (gap 1.24pp) → repo-level CLS>>CWM (gap ~20-26pp) → 复杂度放大效应 16-22x → C1 成立。C2/C3 已完成。\n\n**论文关键路径**：CWM v12 + seed123 eval（~12h）→ 确认最终 CWM 数字 → CWM 8B eval（+20h after training）→ 8B scaling story → 全部数字 settle → paper finalize。DDL May 25，剩 11 天。\n\n**决策链关键节点**：D007 (complexity-dependent framing) → D008 (repo-level go/no-go: ≥3pp GO) → D063 (test-set cherry-picking 发现) → D066 (mean±std 报告策略) → D077 (val 截断根因确认)。\n\n**最容易判断错的事**：\n1. 看到 registry 全 DONE 就以为没事做——4 个进程在跑，cron 会回调\n2. 尝试用 val set 做 checkpoint selection——D065/D069/D077 已证明不可行，不要再试\n3. 直接引用 ROADMAP 里的 repo-level 数字（84.52%, 78.43% 等）到论文——这些是 test-set best，需改为 D066 mean±std\n4. CWM ~58% running accuracy 可能最终略有变化（剩 75% 样本），但不可能翻盘到 baseline 以上\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778779221.md"
+}

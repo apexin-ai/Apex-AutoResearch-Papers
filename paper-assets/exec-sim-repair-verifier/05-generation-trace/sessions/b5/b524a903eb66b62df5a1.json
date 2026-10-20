@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b524a903eb66b62df5a1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper verify 2026 citations",
+  "task_key": "worker_paper_verify-2026-citations_20260515T233214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_verify-2026-citations_20260515T233214_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "e54be241810f1b3cad0304b63317ee5480f5c5431f23c6ac91a491591e4a250e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n两篇论文均为**真实**，bib 条目信息与 arXiv 记录完全一致，无需修改。\n\n| Citation Key | 标题 | 作者 | arXiv ID | 年份 | 判定 |\n|---|---|---|---|---|---|\n| `maimon2026selfexecution` | Self-Execution Simulation Improves Coding Models | Maimon, Yoran, Kreuk, Hassid, Cohen, Chambon, Adi | 2604.03253 | 2026 | **真实** ✓ |\n| `lee2026solidcoder` | SolidCoder: Bridging the Mental-Reality Gap in LLM Code Generation through Concrete Execution | Lee, Huang | 2604.19825 | 2026 | **真实** ✓ |\n\n无文件需要修改。\n\nSources:\n- [Self-Execution Simulation Improves Coding Models](https://arxiv.org/abs/2604.03253)\n- [SolidCoder: Bridging the Mental-Reality Gap in LLM Code Generation](https://arxiv.org/abs/2604.19825)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-verify-2026-citations.md"
+}

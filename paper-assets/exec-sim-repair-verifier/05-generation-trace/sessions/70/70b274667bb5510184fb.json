@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70b274667bb5510184fb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis oracle icc sensitivity",
+  "task_key": "worker_analysis_oracle-icc-sensitivity_20260516T043503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_oracle-icc-sensitivity_20260516T043503_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "7cc1d0c9805b516792906a576f25f55e592691f121994e5cf96f04bab7658770"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D107 sensitivity analysis 完成。\n\n**关键数字：**\n\n| ICC | 70-85% Advantage | 说明 |\n|-----|-----------------|------|\n| 0.000 | 0.64 pp | i.i.d. baseline |\n| 0.191 | **2.38 pp** | function-level (论文现用) |\n| 0.3146 | **3.80 pp** | repo-level |\n| 0.500 | 5.78 pp | |\n\n- Advantage 随 ICC **单调递增**，确认 function-level ICC=0.191 是保守估计\n- Repo-level (ICC=0.3146) advantage 是 function-level 的 **1.60x** (+1.42pp)\n- ICC=0.50 时 advantage 达 5.78pp，是 function-level 的 2.43x\n\n**产出文件：**\n- 脚本：`oracle_icc_sensitivity.py`\n- 图表：`artifacts/oracle_icc_sensitivity.pdf` + `.png`\n- 数据：`artifacts/oracle_icc_sensitivity.json`\n\n注意：这些 advantage 数值比原始 `mvp_a_total_sim.py` 的 ~10.93pp 小，因为原始用的是 all-or-nothing block noise (ICC≈1 within blocks)，而 Beta-Binomial 模型在 ICC=0.191 时给出更温和的相关性。两组数字不矛盾——原始模型是另一种极端情形，sensitivity analysis 展示的是 ICC 连续变化下的趋势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-oracle-icc-sensitivity.md"
+}

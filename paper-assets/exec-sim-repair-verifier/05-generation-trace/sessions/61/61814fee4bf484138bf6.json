@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61814fee4bf484138bf6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper fix review issues",
+  "task_key": "worker_paper_fix-review-issues_20260515T220149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-review-issues_20260515T220149_result.json",
+    "occurrence": 1,
+    "bytes": 1555,
+    "sha256": "f3f69d1841665bbc0594513b819f60b74269c8ac462b5301b68dbde32bab08bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits verified. Here's the summary:\n\n---\n\n### 修复完成\n\n| Issue | 严重度 | 文件 | 改动 |\n|-------|--------|------|------|\n| **R2-M2** | Critical | `experiments.tex:116` | `(D088 protocol)` → 删除 |\n| **R2-M2** | Critical | `experiments.tex:146` | 删除 `% exp_ids: model-size-scaling-cls8b ...` 注释 |\n| **R2-M2** | Critical | `experiments.tex:179` | 删除 `% exp_ids: cwm-baseline, cwm-rank32-ablation-v2 ...` 注释 |\n| **R2-W4** | Warning | `main.tex:29` | 标题 `Scales` → `Succeeds` |\n| **R2-W6** | Warning | `references.bib` | 添加 `ni2023lever` (LEVER, ICML 2023) 和 `chen2023codet` (CodeT, ICLR 2023) |\n| **R2-W6** | Warning | `related_work.tex` | 已有 \"Learned Code Verifiers\" 段落引用 LEVER/CodeT（无需改动） |\n| **R1-M4** | Info | `method.tex:24` | §2.2 末尾补充 unparseable predictions 处理策略：默认到 majority-class label (Pass) |\n\n### R1-N1 状态（无法完全修复）\n\n函数级 scaling table (tab:scaling) 已以 8B-8B 对比为主（Gap 2.43pp 加粗）。**Repo-level table 无法切换为 8B-8B primary**——CWM 8B 数据尚未到位（R1-N2 显示训练 57%，ETA May 16 05:30）。CWM 8B eval 完成后需要：\n1. 填入 `tab:repo_level` 中 CWM 8B 行\n2. 更新 caption 将 8B-8B 设为 primary comparison\n3. 更新 abstract/intro 中 repo-level 数字（当前引用 4B-4B 25.59pp）\n\n### Info #6（其他内部引用扫描）\n\n全部 tex 文件已扫描，仅发现上述 3 处内部引用（均已清除），无其他残留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-review-issues.md"
+}

@@ -1,0 +1,289 @@
+{
+  "schema_version": "1.0",
+  "id": "f2a9faea2e3b79cc9944",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "paper research stat methods",
+  "task_key": "worker_paper_research_stat_methods_20260515T085350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_research_stat_methods_20260515T085350.jsonl",
+    "occurrence": 1,
+    "bytes": 11126,
+    "sha256": "ee96871ae7fdff0a96f8795b9486fd3d9de8fb700504e52320bcf0b3384367e4"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T08:54:28.553117+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_stat_methods_20260515T085350",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/literature_map.yaml"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T08:54:28.553619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tpapers:\n2\t  # === Execution Simulation (5/5) ===\n3\t  - bibtex_key: ding2025selfexecution\n4\t    title: \"Self-Execution Simulation Improves Coding Models\"\n5\t    authors: \"Ding et al.\"\n6\t    year: 2025\n7\t    venue: \"arXiv\"\n8\t    arxiv: \"2604.03253\"\n9\t    doi: \"\"\n10\t    category: \"Execution Simulation\"\n11\t    verified: true\n12\t    abstract_snippet: \"Train code LLMs to simulate program execution step-by-step; self-verification by filtering code solutions based on predicted output.\"\n13\t    relevance: \"Closest prior work — trains LLMs for execution prediction via generation, we reformulate as classification.\"\n14\t\n15\t  - bibtex_key: meta2025cwm\n16\t    title: \"CWM: An Open-Weights LLM for Research on Code Generation with World Models\"\n17\t    authors: \"Meta AI\"\n18\t    year: 2025\n19\t    venue: \"arXiv\"\n20\t    arxiv: \"2510.02387\"\n21\t    doi: \"\"\n22\t    category: \"Execution Simulation\"\n23\t    verified: true\n24\t    abstract_snippet: \"32B open-weights LLM mid-trained on Python execution traces; 65.8% on SWE-bench Verified.\"\n25\t    relevance: \"Production-scale CWM approach; our CWM baseline follows their generation formulation at smaller scale.\"\n26\t\n27\t  - bibtex_key: liu2024codemind\n28\t    title: \"CodeMind: A Framework to Challenge Large Language Models for Code Reasoning\"\n29\t    authors: \"Liu et al.\"\n30\t    year: 2024\n31\t    venue: \"arXiv\"\n32\t    arxiv: \"2402.09664\"\n33\t    doi: \"\"\n34\t    category: \"Execution Simulation\"\n35\t    verified: true\n36\t    abstract_snippet: \"Framework for evaluating LLM code reasoning: IER, DER, SR, DSR tasks. Performance drops with higher complexity.\"\n37\t    relevance: \"Evaluates execution reasoning capabilities; our work proposes classification as more robust formulation.\"\n38\t\n39\t  - bibtex_key: ye2025demystifying\n40\t    title: \"Demystifying Errors in LLM Reasoning Traces: An Empirical Study of Code Execution Simulation\"\n41\t    authors: \"Ye et al.\"\n42\t    year: 2025\n43\t    venue: \"arXiv\"\n44\t    arxiv: \"2512.00215\"\n45\t    doi: \"\"\n46\t    category: \"Execu\n…[truncated 12803 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_stat_methods_20260515T085350",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T08:54:28.553860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_stat_methods_20260515T085350",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T08:54:28.554021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_stat_methods_20260515T085350",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T08:54:28.554165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_stat_methods_20260515T085350",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Shrout Fleiss 1979 \"Intraclass correlations: Uses in assessing rater reliability\" DOI Psychological Bulletin"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T08:54:28.554345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Shrout Fleiss 1979 \"Intraclass correlations: Uses in assessing rater reliability\" DOI Psychological Bulletin\"\n\nLinks: [{\"title\":\"Intraclass correlations: uses in assessing rater reliability - PubMed\",\"url\":\"https://pubmed.ncbi.nlm.nih.gov/18839484/\"},{\"title\":\"Intraclass correlations: Uses in assessing rater reliability.\",\"url\":\"https://psycnet.apa.org/record/1979-25169-001\"},{\"title\":\"[PDF] Intraclass correlations: uses in assessing rater reliability. | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Intraclass-correlations:-uses-in-assessing-rater-Shrout-Fleiss/b8d47b0c0b12dd77543e82e6bf6636ddd335cfea\"},{\"title\":\"Intraclass Correlations : Uses in Assessing Rater Reliability\",\"url\":\"https://www.researchgate.net/file.PostFileLoader.html?id=573b2e9af7b67e2efd6743c6&assetKey=AS:362744118300682@1463496346017\"},{\"title\":\"Shrout, P.E. and Fleiss, J.L. (1979) Intraclass Correlations Uses in Assessing Rater Reliability. Psychological Bulletin, 86, 420-428. - References - Scientific Research Publishing\",\"url\":\"https://www.scirp.org/reference/referencespapers?referenceid=2949570\"},{\"title\":\"Intraclass Correlations (ICC1, ICC2, ICC3 From Shrout and Fleiss) — ICC • DescTools\",\"url\":\"https://andrisignorell.github.io/DescTools/reference/ICC.html\"},{\"title\":\"Shrout, P.E. and Fleiss, J.L. (1979) Intraclass Correlations Use in Assessing Rater Reliability. Psychological Bulletin, 86, 420-428. - References - Scientific Research Publishing\",\"url\":\"https://www.scirp.org/reference/referencespapers?referenceid=1741138\"},{\"title\":\"R: Intraclass Correlations (ICC1, ICC2, ICC3 from Shrout and...\",\"url\":\"https://personality-project.org/r/html/ICC.html\"},{\"title\":\"Intraclass correlations: Uses in assessing rater reliability - NYU Scholars\",\"url\":\"https://nyuscholars.nyu.edu/en/publications/intraclass-correlations-uses-in-assessing-rater-reliability\"},{\"title\":\"(PDF) Intraclass correlations: uses in assessing rater reliability. (1979) | Patrick E. \n…[truncated 1103 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_stat_methods_20260515T085350",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T08:54:28.554535+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_stat_methods_20260515T085350",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/literature_map.yaml",
+              "old_string": "  - bibtex_key: davison1997bootstrap\n    title: \"Bootstrap Methods and their Application\"\n    authors: \"Davison and Hinkley\"\n    year: 1997\n    venue: \"Cambridge University Press\"\n    doi: \"10.1017/CBO9780511802843\"\n    category: \"Statistical Methods\"\n    verified: true\n    abstract_snippet: \"Comprehensive reference for bootstrap methods including clustered bootstrap.\"\n    relevance: \"Clustered bootstrap method used for our 5-paired significance testing.\"",
+              "new_string": "  - bibtex_key: davison1997bootstrap\n    title: \"Bootstrap Methods and their Application\"\n    authors: \"Davison and Hinkley\"\n    year: 1997\n    venue: \"Cambridge University Press\"\n    doi: \"10.1017/CBO9780511802843\"\n    category: \"Statistical Methods\"\n    verified: true\n    abstract_snippet: \"Comprehensive reference for bootstrap methods including clustered bootstrap.\"\n    relevance: \"Clustered bootstrap method used for our 5-paired significance testing.\"\n\n  - bibtex_key: shrout1979icc\n    title: \"Intraclass Correlations: Uses in Assessing Rater Reliability\"\n    authors: \"Shrout and Fleiss\"\n    year: 1979\n    venue: \"Psychological Bulletin\"\n    doi: \"10.1037/0033-2909.86.2.420\"\n    category: \"Statistical Methods\"\n    verified: true\n    abstract_snippet: \"Defines six forms of ICC for reliability studies; guidelines for choosing among them based on statistical model and application.\"\n    relevance: \"ICC method used for block correlation analysis (ICC=0.191, DEFF=3.97) in clustered bootstrap.\""
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T08:54:28.554753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_stat_methods_20260515T085350",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T08:54:28.554950+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_stat_methods_20260515T085350",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/literature_map.yaml",
+              "offset": "320"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T08:54:28.555121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "320\t  # === Statistical Methods (2/3 — gap 1) ===\n321\t  - bibtex_key: schuirmann1987tost\n322\t    title: \"A Comparison of the Two One-Sided Tests Procedure and the Power Approach for Assessing the Equivalence of Average Bioavailability\"\n323\t    authors: \"Schuirmann\"\n324\t    year: 1987\n325\t    venue: \"Journal of Pharmacokinetics and Biopharmaceutics\"\n326\t    doi: \"10.1007/BF01068419\"\n327\t    category: \"Statistical Methods\"\n328\t    verified: true\n329\t    abstract_snippet: \"Original TOST equivalence test for bioequivalence studies.\"\n330\t    relevance: \"Statistical method used for our CLS vs TRAJ equivalence test (TOST p=0.007).\"\n331\t\n332\t  - bibtex_key: davison1997bootstrap\n333\t    title: \"Bootstrap Methods and their Application\"\n334\t    authors: \"Davison and Hinkley\"\n335\t    year: 1997\n336\t    venue: \"Cambridge University Press\"\n337\t    doi: \"10.1017/CBO9780511802843\"\n338\t    category: \"Statistical Methods\"\n339\t    verified: true\n340\t    abstract_snippet: \"Comprehensive reference for bootstrap methods including clustered bootstrap.\"\n341\t    relevance: \"Clustered bootstrap method used for our 5-paired significance testing.\"\n342\t\n343\t  - bibtex_key: shrout1979icc\n344\t    title: \"Intraclass Correlations: Uses in Assessing Rater Reliability\"\n345\t    authors: \"Shrout and Fleiss\"\n346\t    year: 1979\n347\t    venue: \"Psychological Bulletin\"\n348\t    doi: \"10.1037/0033-2909.86.2.420\"\n349\t    category: \"Statistical Methods\"\n350\t    verified: true\n351\t    abstract_snippet: \"Defines six forms of ICC for reliability studies; guidelines for choosing among them based on statistical model and application.\"\n352\t    relevance: \"ICC method used for block correlation analysis (ICC=0.191, DEFF=3.97) in clustered bootstrap.\"\n353\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_stat_methods_20260515T085350",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T08:54:28.555298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_stat_methods_20260515T085350",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/literature_map.yaml",
+              "old_string": "# === Statistical Methods (2/3 — gap 1) ===",
+              "new_string": "# === Statistical Methods (3/3) ==="
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T08:54:28.555490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_stat_methods_20260515T085350",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T08:54:28.555652+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已添加 Shrout & Fleiss (1979) 到 Statistical Methods section（`shrout1979icc`，DOI: `10.1037/0033-2909.86.2.420`），gap 已填补，section 计数更新为 3/3。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_stat_methods_20260515T085350"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/paper-research-stat-methods.md"
+}

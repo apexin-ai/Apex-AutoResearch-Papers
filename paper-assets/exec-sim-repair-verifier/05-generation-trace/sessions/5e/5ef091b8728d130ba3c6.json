@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ef091b8728d130ba3c6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cwm eval status check v2",
+  "task_key": "worker_ops_cwm-eval-status-check-v2_20260524T020231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm-eval-status-check-v2_20260524T020231_result.json",
+    "occurrence": 1,
+    "bytes": 1821,
+    "sha256": "8720a7baf85767bf4077a6cc5d5778ab39a16aa2608415062b124690be697015"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### GPU 状态（4 张 5090 全部在跑，87-92% 利用率）\n\n| GPU | PID | 任务 | VRAM | 进度 | Running Acc |\n|-----|-----|------|------|------|-------------|\n| 0 | 309505 | s456 ckpt300 reeval | 21.1/32.6 GB | 4280/9784 (43.7%) | **~66.2%** |\n| 1 | 312223 | s42 ckpt300 reeval | 21.1/32.6 GB | 2776/9784 (28.4%) | **68.95%** |\n| 2 | 309866 | s123 ckpt300 reeval | 21.6/32.6 GB | 4120/9784 (42.1%) | **~64.3%** |\n| 3 | 272025 | s42 ckpt6100 test | 27.9/32.6 GB | 9640/9784 (**98.5%**) | **69.52%** |\n\n### ckpt6100 eval（GPU 3）— 即将完成\n\n- 剩余 144 样本，预计 ~15 分钟内完成（~10:20 CST / 02:20 UTC）\n- 使用 `--max_seq_length 4096`（注意：比 ckpt300 reeval 的 2048 长）\n- Running accuracy: 6702/9640 = **69.52%**\n\n### ckpt300 × 3 seeds 预计完成时间\n\n- s456 (GPU 0): ~7-8h → ~17:40 CST\n- s42 (GPU 1): ~13h → ~23:00 CST（最慢，起步晚）\n- s123 (GPU 2): ~8h → ~18:10 CST\n\n### Table 2 核对\n\n已完成的 Qwen3-8B CWM ckpt6100 per-test accuracy：\n\n| Seed | Accuracy | 来源 |\n|------|----------|------|\n| s123 | 67.33% (6588/9784) | `qwen3_8b_cwm_repo_s123_eval` ✅ |\n| s456 | 66.93% (6548/9784) | `qwen3_8b_cwm_repo_s456_eval` ✅ |\n| s42 | **69.52%** (6702/9640) | `cwm_8b_ckpt6100_test` 🔄 98.5% |\n\n- **Table 2 当前值**: 66.48 ± 1.15\n- **新 3-seed 均值** (s42 完成后): (67.33 + 66.93 + 69.52) / 3 ≈ **67.93 ± 1.37**\n- **偏差**: 均值上升 +1.45pp\n\n⚠️ **注意**: 当前跑的 ckpt6100 eval 用了 `--max_seq_length 4096`，而已完成的 s123/s456 eval 的 seq_length 未知。如果它们用的是 2048，则 s42 的 69.52% 不可直接与 s123/s456 比较——seq_length 不同会引入系统性偏差。需要确认之前 s123/s456 eval 的 seq_length 参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cwm-eval-status-check-v2.md"
+}

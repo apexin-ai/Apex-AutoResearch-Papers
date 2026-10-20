@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97a89cdbd3d11d420fef",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh check home 4b ckpt4000 eval",
+  "task_key": "worker_ssh_check-home-4b-ckpt4000-eval_20260515T113343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-home-4b-ckpt4000-eval_20260515T113343_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "4639bec0e0f3a4528c62e4e3d2ea67086398a069f16e7a22ad6ca93087ba3a38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报结果：\n\n**home-1x5090 服务器不可达** — 所有 SSH 连接（read_only 和 execute）均超时（10s），无法完成任何检查。\n\n**注册表现有信息：**\n- `cls4b-v5-ckpt4000-test5120-eval`：status=DONE, conclusion=failed\n- 无 metrics、无 notes、无错误详情\n- 创建时间：2026-05-15T10:46Z，最后更新：2026-05-15T11:32Z\n- 假设：4B s42 test sweep 补点 ckpt-4000 test@5120\n\n**分析：** cron 监控因 SSH 连续超时 5 次标记为 FAILED，但实际进程可能已在服务器上正常完成。当前服务器仍然不可达，可能是网络问题或机器离线。\n\n**无法执行的操作：**\n1. 检查 PID 3274167 是否还在运行\n2. 查看日志 / eval_summary.json\n3. 重新提交任务\n\n**建议下一步：**\n- 等 home-1x5090 恢复网络后重新执行本任务\n- 如果服务器长时间不可达，考虑在其他有 4B v5 ckpt-4000 的服务器上重跑（需先确认 checkpoint 是否有备份）\n\n需要我设置定时轮询等服务器恢复吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-home-4b-ckpt4000-eval.md"
+}

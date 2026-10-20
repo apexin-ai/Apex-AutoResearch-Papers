@@ -1,0 +1,580 @@
+{
+  "schema_version": "1.0",
+  "id": "c5f2a5351d83b7b14a15",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "analysis cls8b s42 ckpt1400 val8192 eval",
+  "task_key": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642.jsonl",
+    "occurrence": 1,
+    "bytes": 26015,
+    "sha256": "20afa3fd8c193a97e78ff5cb7faa19996ee564ddf4845a288b44ef55445e7ef4"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T03:38:25.909219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T03:38:25.909580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T03:38:25.909767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cat ~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T03:38:25.909940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'cls8b-s42-ckpt1400-val8192-eval'}",
+              "fields": "['*']",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T03:38:25.910167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 11:07:33,411 INFO Loading val data: /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\\\n2026-05-15 11:07:33,626 INFO Loaded 9335 val instances\\\\n2026-05-15 11:07:33,628 INFO Label distribution: {1: 7083, 0: 2252}\\\\n2026-05-15 11:07:33,628 INFO Loading model from /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400\\\\n2026-05-15 11:07:35,807 INFO Attention: sdpa\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00, 212.12it/s]\\\\nThe module name  (originally ) is not a valid Python identifier. Please rename the original module to avoid import issues.\\\\n2026-05-15 11:07:41,624 INFO Model loaded. Starting inference...\\\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n2026-05-15 11:07:43,932 INFO [CLS] 10/9335  running_acc=90.0%\\\\n2026-05-15 11:07:44,988 INFO [CLS] 20/9335  running_acc=90.0%\\\\n2026-05-15 11:07:45,758 INFO [CLS] 30/9335  running_acc=86.7%\\\\n2026-05-15 11:07:46,876 INFO [CLS] 40/9335  running_acc=85.0%\\\\n2026-05-15 11:07:49,003 INFO [CLS] 50/9335  running_acc=82.0%\\\\n2026-05-15 11:07:50,928 INFO [CLS] 60/9335  running_acc=81.7%\\\\n2026-05-15 11:07:53,165 INFO [CLS] 70/9335  running_acc=81.4%\\\\n2026-05-15 11:07:54,500 INFO [CLS] 80/9335  running_acc=80.0%\\\\n2026-05-15 11:07:56,211 INFO [CLS] 90/9335  running_acc=80.0%\\\\n2026-05-15 11:07:57,951 INFO [CLS] 100/9335  running_acc=82.0%\\\\n2026-05-15 11:07:59,845 INFO [CLS] 110/9335  running_acc=80.9%\\\\n2026-05-15 11:08:01,631 INFO [CLS] 120/9335  running_acc=82.5%\\\\n2026-05-15 11:08:02,731 INFO [CLS] 130/9335  running_acc=83.8%\\\\n2026-05-15 11:08:05,250 INFO [CLS] 140/9335  running_acc=82.9%\\\\n2026-05-15 11:08:07,164 INFO [CLS] 150/9335  running_acc=84.0%\\\\n2026-05-15 11:08:0\n…[truncated 6474 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T03:38:25.910349+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2694}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T03:38:25.910544+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cat /tmp/eval_ckpt1400_val/eval_repo_cls.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T03:38:25.910710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"CLS\\\\\\\",\\\\n  \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400\\\\\\\",\\\\n  \\\\\\\"split\\\\\\\": \\\\\\\"val\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 9335,\\\\n  \\\\\\\"n_cls_unparseable\\\\\\\": 9,\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 85.97,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 75.88,\\\\n    \\\\\\\"gap_vs_majority_pp\\\\\\\": 10.09,\\\\n    \\\\\\\"f1_fail\\\\\\\": 62.95,\\\\n    \\\\\\\"f1_pass\\\\\\\": 91.34,\\\\n    \\\\\\\"f1_macro\\\\\\\": 77.15,\\\\n    \\\\\\\"precision_fail\\\\\\\": 86.68,\\\\n    \\\\\\\"precision_pass\\\\\\\": 85.85,\\\\n    \\\\\\\"recall_fail\\\\\\\": 49.42,\\\\n    \\\\\\\"recall_pass\\\\\\\": 97.59,\\\\n    \\\\\\\"confusion_matrix\\\\\\\": {\\\\n      \\\\\\\"tn\\\\\\\": 1113,\\\\n      \\\\\\\"fp\\\\\\\": 1139,\\\\n      \\\\\\\"fn\\\\\\\": 171,\\\\n      \\\\\\\"tp\\\\\\\": 6912\\\\n    },\\\\n    \\\\\\\"support\\\\\\\": {\\\\n      \\\\\\\"fail\\\\\\\": 2252,\\\\n      \\\\\\\"pass\\\\\\\": 7083\\\\n    }\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\\\\\\\",\\\\n    \\\\\\\"max_seq_length\\\\\\\": 8192,\\\\n    \\\\\\\"batch_size\\\\\\\": 1,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 8\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T03:38:25.910886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "fields": "['*']",
+              "limit": "5"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T03:38:25.911302+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"cls8b-s42-ckpt1400-val8192-eval\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:44:39.102Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:35:20.533Z\\\", \\\"hypothesis\\\": \\\"D088 val pipeline: s42 ckpt-1400 val@8192 (resume 训练产出)。完整 sweep curve 数据点。\\\", \\\"parent\\\": \\\"repo-level-cls-8b-conda\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split val --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /tmp/eval_ckpt1400_val\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"321780\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T03:07:31.441Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400\\\", \\\"eval_data\\\": \\\"val split\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T03:35:20.058Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T03:35:22.925701+00:00\\\"}]}}, \\\"repo-level-cls-8b-seed123-conda-v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T17:43:51.115Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:34:57.280Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:0 --batch_size 1 --grad_accumulation 32 --seed 123 --no_wandb --output_dir /root/autodl-tmp/checkpoints_r\n…[truncated 3870 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T03:38:25.911524+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cls8b-s42-ckpt1400-val8192-eval",
+              "field": "metrics",
+              "value": "{'accuracy': 85.97, 'majority_baseline': 75.88, 'gap_vs_majority_pp': 10.09, 'f1_macro': 77.15, 'f1_fail': 62.95, 'f1_pass': 91.34, 'precision_fail': 86.68, 'precision_pass': 85.85, 'recall_fail': 49.42, 'recall_pass': 97.59, 'n_instances': 9335, 'n_unparseable': 9, 'confusion_matrix': {'tn': 1113, 'fp': 1139, 'fn': 171, 'tp': 6912}}",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T03:38:25.911721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cls8b-s42-ckpt1400-val8192-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:44:39.102Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:37:45.093Z\\\", \\\"hypothesis\\\": \\\"D088 val pipeline: s42 ckpt-1400 val@8192 (resume 训练产出)。完整 sweep curve 数据点。\\\", \\\"parent\\\": \\\"repo-level-cls-8b-conda\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split val --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /tmp/eval_ckpt1400_val\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"321780\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T03:07:31.441Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400\\\", \\\"eval_data\\\": \\\"val split\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T03:35:20.058Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T03:35:22.925701+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 85.97, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 10.09, \\\"f1_macro\\\": 77.15, \\\"f1_fail\\\": 62.95, \\\"f1_pass\\\": 91.34, \\\"precision_fail\\\": 86.68, \\\"precision_pass\\\": 85.85, \\\"recall_fail\\\": 49.42, \\\"recall_pass\\\": 97.59, \\\"n_instances\\\": 9335, \\\"n_unparseable\\\": 9, \\\"confusion_matrix\\\": {\\\"tn\\\": 1113, \\\"fp\\\": 1139, \\\"fn\\\": 171, \\\"tp\\\": 6912}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5541}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T03:38:25.911907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cls8b-s42-ckpt1400-val8192-eval",
+              "field": "conclusion",
+              "value": "success",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T03:38:25.912080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cls8b-s42-ckpt1400-val8192-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:44:39.102Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:37:45.674Z\\\", \\\"hypothesis\\\": \\\"D088 val pipeline: s42 ckpt-1400 val@8192 (resume 训练产出)。完整 sweep curve 数据点。\\\", \\\"parent\\\": \\\"repo-level-cls-8b-conda\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_repo_cls.py --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400 --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --split val --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir /tmp/eval_ckpt1400_val\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"321780\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T03:07:31.441Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\\", \\\"data_count\\\": 9335, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400\\\", \\\"eval_data\\\": \\\"val split\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T03:35:20.058Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T03:35:22.925701+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 85.97, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 10.09, \\\"f1_macro\\\": 77.15, \\\"f1_fail\\\": 62.95, \\\"f1_pass\\\": 91.34, \\\"precision_fail\\\": 86.68, \\\"precision_pass\\\": 85.85, \\\"recall_fail\\\": 49.42, \\\"recall_pass\\\": 97.59, \\\"n_instances\\\": 9335, \\\"n_unparseable\\\": 9, \\\"confusion_matrix\\\": {\\\"tn\\\": 1113, \\\"fp\\\": 1139, \\\"fn\\\": 171, \\\"tp\\\": 6912}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4715}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T03:38:25.912230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cls8b-s42-ckpt1400-val8192-eval",
+              "field": "status",
+              "value": "DONE",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T03:38:25.912359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T03:38:25.912511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cls8b-s42-ckpt1400-val8192-eval",
+              "field": "spec",
+              "value": "{'checkpoint_path': '/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400'}",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T03:38:25.912675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cls8b-s42-ckpt1400-val8192-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:44:39.102Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:37:55.068Z\\\", \\\"hypothesis\\\": \\\"D088 val pipeline: s42 ckpt-1400 val@8192 (resume 训练产出)。完整 sweep curve 数据点。\\\", \\\"parent\\\": \\\"repo-level-cls-8b-conda\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T03:35:20.058Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T03:35:22.925701+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 85.97, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 10.09, \\\"f1_macro\\\": 77.15, \\\"f1_fail\\\": 62.95, \\\"f1_pass\\\": 91.34, \\\"precision_fail\\\": 86.68, \\\"precision_pass\\\": 85.85, \\\"recall_fail\\\": 49.42, \\\"recall_pass\\\": 97.59, \\\"n_instances\\\": 9335, \\\"n_unparseable\\\": 9, \\\"confusion_matrix\\\": {\\\"tn\\\": 1113, \\\"fp\\\": 1139, \\\"fn\\\": 171, \\\"tp\\\": 6912}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4944}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T03:38:25.912833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cls8b-s42-ckpt1400-val8192-eval",
+              "field": "status",
+              "value": "DONE",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T03:38:25.912966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['log_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3152}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T03:38:25.913102+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cls8b-s42-ckpt1400-val8192-eval",
+              "field": "spec",
+              "value": "{'log_path': '~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log'}",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T03:38:25.913256+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cls8b-s42-ckpt1400-val8192-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:44:39.102Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:38:06.166Z\\\", \\\"hypothesis\\\": \\\"D088 val pipeline: s42 ckpt-1400 val@8192 (resume 训练产出)。完整 sweep curve 数据点。\\\", \\\"parent\\\": \\\"repo-level-cls-8b-conda\\\", \\\"spec\\\": {\\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T03:35:20.058Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T03:35:22.925701+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 85.97, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 10.09, \\\"f1_macro\\\": 77.15, \\\"f1_fail\\\": 62.95, \\\"f1_pass\\\": 91.34, \\\"precision_fail\\\": 86.68, \\\"precision_pass\\\": 85.85, \\\"recall_fail\\\": 49.42, \\\"recall_pass\\\": 97.59, \\\"n_instances\\\": 9335, \\\"n_unparseable\\\": 9, \\\"confusion_matrix\\\": {\\\"tn\\\": 1113, \\\"fp\\\": 1139, \\\"fn\\\": 171, \\\"tp\\\": 6912}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5399}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T03:38:25.913413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cls8b-s42-ckpt1400-val8192-eval",
+              "field": "spec",
+              "value": "{'checkpoint_path': '/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400', 'log_path': '~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log'}",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T03:38:25.913574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cls8b-s42-ckpt1400-val8192-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:44:39.102Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:38:13.105Z\\\", \\\"hypothesis\\\": \\\"D088 val pipeline: s42 ckpt-1400 val@8192 (resume 训练产出)。完整 sweep curve 数据点。\\\", \\\"parent\\\": \\\"repo-level-cls-8b-conda\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T03:35:20.058Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T03:35:22.925701+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 85.97, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 10.09, \\\"f1_macro\\\": 77.15, \\\"f1_fail\\\": 62.95, \\\"f1_pass\\\": 91.34, \\\"precision_fail\\\": 86.68, \\\"precision_pass\\\": 85.85, \\\"recall_fail\\\": 49.42, \\\"recall_pass\\\": 97.59, \\\"n_instances\\\": 9335, \\\"n_unparseable\\\": 9, \\\"confusion_matrix\\\": {\\\"tn\\\": 1113, \\\"fp\\\": 1139, \\\"fn\\\": 171, \\\"tp\\\": 6912}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5269}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T03:38:25.913820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cls8b-s42-ckpt1400-val8192-eval",
+              "field": "status",
+              "value": "DONE",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T03:38:25.914046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cls8b-s42-ckpt1400-val8192-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T01:44:39.102Z\\\", \\\"updated_at\\\": \\\"2026-05-15T03:38:16.497Z\\\", \\\"hypothesis\\\": \\\"D088 val pipeline: s42 ckpt-1400 val@8192 (resume 训练产出)。完整 sweep curve 数据点。\\\", \\\"parent\\\": \\\"repo-level-cls-8b-conda\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-1400\\\", \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T03:35:20.058Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T03:35:22.925701+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 85.97, \\\"majority_baseline\\\": 75.88, \\\"gap_vs_majority_pp\\\": 10.09, \\\"f1_macro\\\": 77.15, \\\"f1_fail\\\": 62.95, \\\"f1_pass\\\": 91.34, \\\"precision_fail\\\": 86.68, \\\"precision_pass\\\": 85.85, \\\"recall_fail\\\": 49.42, \\\"recall_pass\\\": 97.59, \\\"n_instances\\\": 9335, \\\"n_unparseable\\\": 9, \\\"confusion_matrix\\\": {\\\"tn\\\": 1113, \\\"fp\\\": 1139, \\\"fn\\\": 171, \\\"tp\\\": 6912}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T03:38:16.497Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0869}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T03:38:25.914249+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总：\n\n**cls8b-s42-ckpt1400-val8192-eval → DONE (success)**\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **85.97%** |\n| Majority baseline | 75.88% |\n| Gap vs majority | **+10.09pp** |\n| F1 macro | 77.15% |\n| F1 fail | 62.95% (P=86.68%, R=49.42%) |\n| F1 pass | 91.34% (P=85.85%, R=97.59%) |\n| Instances | 9335 (full val) |\n| Unparseable | 9 |\n\nVal sweep 目前数据点：ckpt-200=63.52%, ckpt-400=80.96%, **ckpt-1400=85.97%**。准确率仍在上升但增速放缓，fail 类 recall 49.4% 是主要瓶颈。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-cls8b-s42-ckpt1400-val8192-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f72f8a3ec27ad6485ce",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh check eval contamination",
+  "task_key": "worker_ssh_check-eval-contamination_20260521T134613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-eval-contamination_20260521T134613_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "06173c09cdc26db4b41c91d2d8c01482fc5ea4f83508927fb14491524f7fab5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n**污染确认并已修复。**\n\n| 项目 | 详情 |\n|------|------|\n| **结果文件** | `/root/autodl-tmp/eval_results/deepseek_cwm_repo_s456_v2_eval/results_incremental.jsonl` |\n| **污染情况** | 前 416 条来自 checkpoint-8418 (epoch 2)，第 417-460 条来自 checkpoint-12627 (epoch 3) |\n| **根因** | eval 脚本的 resume 逻辑只按 `index` 跳过已完成条目，不校验 checkpoint 来源；两次 eval 共用同一 output_dir |\n| **已执行** | kill 旧进程 → 备份为 `results_contaminated_e2e3_mix.jsonl` → 干净重启 |\n| **新 eval 确认** | 日志显示 `[CWM] 4/9784 running_acc=50.0% (new=4 resumed=0)` — 从 0 开始，无污染 |\n| **新 PID** | **63490** |\n| **tmux session** | `ds-s456-e3-eval` |\n| **日志** | `/root/ds_s456_e3_eval_clean.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-eval-contamination.md"
+}

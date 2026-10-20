@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c6d6b6a87d245af12f3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis qwen3 8b traj func s42",
+  "task_key": "worker_analysis_qwen3-8b-traj-func-s42_20260517T141256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen3-8b-traj-func-s42_20260517T141256_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "30ba4a7d02292219434f805cfbd40caa38097c36483863481908b4b545b16d23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。总结：\n\n**qwen3-8b-traj-func-s42 → SUCCESS**\n\n| 指标 | 值 |\n|------|------|\n| test_accuracy | **87.98%** |\n| eval_loss | 0.0975 |\n| train_loss (final step) | 0.0312 |\n| unparseable | 0 |\n\n**对比分析：**\n- 4B TRAJ → 8B TRAJ: 86.30% → 87.98% (+1.68pp)，符合预期的 +1-2pp scaling pattern\n- 8B formulation 排序: CLS (89.40%) > **TRAJ (87.98%)** > CWM (86.96%)，与 4B 排序一致\n- Hypothesis confirmed：TRAJ 在更大模型上展现了与 CLS/CWM 一致的 scaling 行为\n\nRegistry 已更新为 DONE/success，memory.md 已追加分析记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen3-8b-traj-func-s42.md"
+}

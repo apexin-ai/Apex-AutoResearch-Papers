@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c354f73471d7f812305",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh clean stale eval results",
+  "task_key": "worker_ssh_clean-stale-eval-results_20260521T140455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_clean-stale-eval-results_20260521T140455_result.json",
+    "occurrence": 1,
+    "bytes": 936,
+    "sha256": "f284cb039adabdb0c3074f475c15c5647101a67932d2dca10ea53659b81054ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DS s123 清理完成。s456 的 incremental 正在被写（224 行），不动。Qwen 目录有旧结果，需确认是否 backup。\n\n**清理结果汇总：**\n\n| 目录 | 操作 | 详情 |\n|------|------|------|\n| **DS s123** (`deepseek_cwm_repo_s123_v2_eval/`) | ✅ 已清理 | 3 个文件 mv 为 `*_epoch1_backup.*`（共 ~34MB） |\n| **DS s456** (`deepseek_cwm_repo_s456_v2_eval/`) | ⚠️ 未动 | `results_incremental.jsonl` 224 行，正在被写入；另有 `results_contaminated_e2e3_mix.jsonl`（870KB）已标记为 contaminated |\n| **Qwen CWM** (`qwen3_8b_cwm_repo_s42_ckpt400_seq4096/`) | ⚠️ 有旧结果 | May 20 的 `eval_repo_cwm.json` + `results_incremental.jsonl` + `predictions.jsonl`（共 ~63MB），需要你确认是否 backup |\n\nDS s456 的 `results_contaminated_e2e3_mix.jsonl` 看文件名已经标记了污染，是否也需要处理？Qwen 那个目录要不要一起 backup？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-clean-stale-eval-results.md"
+}

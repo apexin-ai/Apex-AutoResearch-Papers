@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d9f12269f7789252b8f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh repo level cwm v6 submit",
+  "task_key": "worker_ssh_repo-level-cwm-v6-submit_20260512T185917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_repo-level-cwm-v6-submit_20260512T185917_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "4077bcf185305601a9cf07abaff0d70ca280d8b963ac182d181d3bee7f01374c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## 总结\n\n**repo-level-cwm-v6 训练已成功提交并稳定运行。**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 83684 |\n| GPU | cuda:0（物理 GPU 0） |\n| GPU 占用 | 22,349 MiB / 32,607 MiB（69%） |\n| batch_size | 1（v5 为 2，OOM） |\n| grad_accumulation | 32（保持有效 batch size = 32） |\n| 总步数 | 6633 |\n| 速度 | ~8 s/step |\n| 预估时长 | ~14.7 小时 |\n| 预计完成 | ~2026-05-13 18:00 UTC |\n| save_steps | 500 |\n| Checkpoint 路径 | `/root/autodl-tmp/checkpoints_repo_cwm_v6/` |\n| 日志路径 | `~/runs/exec-sim-repair-verifier/repo-level-cwm-v6.log` |\n\n**修复措施**：发现服务器上有 8+ 个残留 python 训练进程导致 GPU 0 OOM。全部 kill 后将 batch_size 从 2 降到 1，GPU 占用从 26.5GB 降到 22.3GB，留出 10GB headroom。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-repo-level-cwm-v6-submit.md"
+}

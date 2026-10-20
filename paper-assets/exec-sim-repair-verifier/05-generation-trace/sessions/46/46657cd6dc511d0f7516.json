@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46657cd6dc511d0f7516",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval westd cuda0 s42 ckpt200 val",
+  "task_key": "worker_eval_westd-cuda0-s42-ckpt200-val_20260515T094242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_westd-cuda0-s42-ckpt200-val_20260515T094242_result.json",
+    "occurrence": 1,
+    "bytes": 101,
+    "sha256": "bee29ec09716d4496d1a09abe56d836281703a171185ed039cbfd304dcb1b2e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已注册 (RUNNING) 并提交到 westd cuda:0。3 分钟后开始轮询日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-westd-cuda0-s42-ckpt200-val.md"
+}

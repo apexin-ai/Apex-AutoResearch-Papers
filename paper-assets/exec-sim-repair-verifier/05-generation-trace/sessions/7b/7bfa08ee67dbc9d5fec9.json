@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bfa08ee67dbc9d5fec9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code fix cls repo cuda0",
+  "task_key": "worker_code_fix-cls-repo-cuda0_20260516T183522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-cls-repo-cuda0_20260516T183522_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "e1689485d886525073a83002c413964359e809098cf879ce7bc31b85fefcf29a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 还没占用——70k 样本 tokenization 需要几分钟。进程活着（PID 548291），正在 CPU 端预处理。\n\n**总结：**\n\n1. **checkpoint-2211** 找到（恰好是 epoch 1 的位置），内容完整\n2. `train_unified.py` 不支持 `--resume_from_checkpoint`，已在服务器上直接添加：\n   - 新增 CLI 参数（L245）\n   - `trainer.train()` 改为 `trainer.train(resume_from_checkpoint=args.resume_from_checkpoint)`（L382）\n3. **deepseek-cls-repo-v3** 已提交到 cuda:0，从 checkpoint-2211 恢复，当前在做数据预处理\n4. Registry 已更新为 RUNNING\n\n训练预计在预处理+模型加载后（~5min）开始实际 GPU 训练，从 epoch 2 继续跑完 epoch 2-3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-cls-repo-cuda0.md"
+}

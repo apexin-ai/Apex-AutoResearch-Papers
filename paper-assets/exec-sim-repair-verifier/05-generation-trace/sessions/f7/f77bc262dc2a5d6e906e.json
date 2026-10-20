@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f77bc262dc2a5d6e906e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code clustered bootstrap ci",
+  "task_key": "worker_code_clustered-bootstrap-ci_20260512T090633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_clustered-bootstrap-ci_20260512T090633_result.json",
+    "occurrence": 1,
+    "bytes": 1585,
+    "sha256": "6ecccff36342f80ff2b1c75efdc5b77cc808f60c30805a2c13f321ef52f0b30b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The full pipeline completed. Here are the results:\n\n## Clustered Bootstrap CI Results\n\n**Key finding: When properly aligned at the code-variant level, cls and traj show no significant difference.**\n\n### Per-Seed Clustered Bootstrap (cls_problem_acc − traj_acc, at variant level)\n\n| Seed | cls_problem_acc | traj_acc | Gap (pp) | 95% CI | p-value | DEFF |\n|------|----------------|----------|----------|--------|---------|------|\n| 42   | 85.17% | 85.66% | −0.30 | [−2.46, 1.94] | 0.779 | 1.28 |\n| 123  | 87.02% | 85.47% | +1.36 | [−0.73, 3.41] | 0.185 | 1.29 |\n| 456  | 85.37% | 87.40% | −2.16 | [−4.30, −0.18] | 0.031 | 1.52 |\n\n### Pooled Across Seeds\n\n- **Mean gap**: −0.37pp\n- **Clustered bootstrap 95% CI**: [−1.89, +1.07]\n- **p-value**: 0.646\n- **DEFF**: 0.84\n\n### Seed-Level Paired Analysis (original eval-level comparison)\n\n- Per-seed gap (cls_eval_acc − traj_acc): {42: +2.17, 123: +4.05, 456: +0.48}\n- Mean gap: +2.23pp, p=0.163 (not significant, K=3)\n\n### Interpretation\n\nThe seed-level analysis (mean gap +2.23pp) was misleading because it compared **per-test classification accuracy** (1890 tests) with **per-variant trajectory accuracy** (1032 variants) — an apples-to-oranges comparison. When cls predictions are aggregated to the variant level (cls_problem_acc), the gap shrinks drastically and even reverses direction. The pooled clustered bootstrap finds no significant difference (gap=−0.37pp, p=0.65).\n\nFull results saved to `/home/sonny/exec-sim-repair-verifier/clustered_bootstrap_results.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-clustered-bootstrap-ci.md"
+}

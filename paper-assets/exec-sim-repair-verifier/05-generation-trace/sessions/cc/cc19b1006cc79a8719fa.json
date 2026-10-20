@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc19b1006cc79a8719fa",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh traj14b s123 check",
+  "task_key": "worker_ssh_traj14b-s123-check_20260523T104600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_traj14b-s123-check_20260523T104600_result.json",
+    "occurrence": 1,
+    "bytes": 833,
+    "sha256": "6b6b802de001a730f1ebaec3d9d31d7cba95dcc711af398bc41d7bab2cba4fbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被手动清理或从未创建）。Registry 已更新。\n\n## 汇报\n\n### traj14b-func-s123 — 训练成功\n- Best checkpoint: `/root/autodl-tmp/checkpoints/traj14b-func-s123/checkpoint-252` (step 252, epoch 1)\n- Best eval_loss: **0.0836**\n- Final eval_loss (epoch 3): 0.1035\n- Train loss: 0.1266\n- `best/` 目录已生成（adapter_model.safetensors ~80MB）\n\n### 其他两个 seed — 也已完成\n\n| Seed | Final eval_loss | Train loss | best/ |\n|------|----------------|------------|-------|\n| s42  | 0.0958 | 0.1312 | ✓ |\n| s456 | 0.0971 | 0.1257 | ✓ |\n\n三个 seed 的 best eval_loss 范围：0.0836–0.0971，s123 最优。\n\n### GPU 状态\n- GPU 0–2: 空闲（0% utilization, 0 MiB）\n- GPU 3: 92% utilization, 23761 MiB — 仍有其他任务在运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-traj14b-s123-check.md"
+}

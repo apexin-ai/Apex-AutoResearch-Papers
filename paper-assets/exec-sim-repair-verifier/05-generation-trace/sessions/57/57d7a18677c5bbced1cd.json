@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "57d7a18677c5bbced1cd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ops re repair fullrun",
+  "task_key": "worker_ops_re-repair-fullrun_20260517T044705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_re-repair-fullrun_20260517T044705.log",
+    "occurrence": 1,
+    "bytes": 844603,
+    "sha256": "61fe82c2dd0866e117c41b0fe5a2ca3fd270ea3ffef2d974bdb6ff41bc014cbc"
+  },
+  "statistics": {
+    "messages": 433,
+    "user_turns": 0,
+    "tool_calls": 146,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 137,
+      "tool_call": 146,
+      "tool_result": 146,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 433,
+      "chunks": [
+        {
+          "path": "57d7a18677c5bbced1cd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "57d7a18677c5bbced1cd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "57d7a18677c5bbced1cd-part-0003.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-re-repair-fullrun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb76f8da57453559f546",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_16_1778865576.md",
+  "task_key": "loop_16_1778865576",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778865576.md",
+    "occurrence": 1,
+    "bytes": 5147,
+    "sha256": "54bfa636f27dd32f3512d322d3676d7c17f703288e40e6a0d86deeed7bd9207d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-15T17:18:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `cuda:0, cuda:1, cuda:2, cuda:3`（seetacloud-westd-4x5090）+ `cuda:0`（home-1x5090）\n- Test eval 禁止 `--max_samples`，必须跑完整 test set (n=9784) / val set (n=9335)——之前 seed123 ckpt-6200/6400 因此被 kill+重跑\n- 标 FAILED/DONE 前必须 `ps -p PID` 确认进程已退出——之前 v1 误标导致 OOM 事故\n- s42 resume checkpoint 目录从 ckpt-600 起步（`/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`），ckpt-200/400 不在该目录\n- CWM eval 用 `eval_repo_cwm.py`（不是 eval_repo_cls.py），max_new_tokens=1024, bs=1~8\n- home 版 eval 脚本不支持 `--max_new_tokens` 参数\n\n### 2. 🖥️ 基础设施快照\n- **Westd**: `seetacloud-westd-4x5090`, account=root, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - Python: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n  - CLS 8B s42 resume ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`\n  - CLS 8B seed123 ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` + backup `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n  - CWM 8B ckpts: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`（已有 400, 4000-4300）\n- **Home**: `home-1x5090`, account=sonny, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - 4B v5 ckpts: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n- **活跃进程**:\n  - `repo-level-cwm-8b-conda-v4`: PID 266816, cuda:2, CWM 8B 训练 (~57%)\n  - `repo-level-cls-8b-s42-resume`: PID 295794, cuda:1, CLS 8B s42 resume 训练 (~55%)\n  - `cwm8b-ckpt400-test-eval`: PID 381618, cuda:3(?), CWM 8B ckpt-400 全量 test eval (bs=8)\n  - `cls8b-s42-resume-val-sweep`: PID 388791, cuda:0 — **⚠️ cron 报 \"Process gone, no sentinel, no W&B — miss 3/5\"，可能已挂**\n- **Cron**: 4 个活跃，对应上述 4 个实验\n\n### 3. 📊 当前状态\n**刚做完**: cwm-rank32-alpha64-ablation 分析（rank=32 alpha=64 vs rank=16 alpha=32，差异 -0.51pp，within seed variance），Paper Agent 启动（writing_plan.yaml 已生成），val sweep compilation 脚本修复。\n\n**RUNNING 实验**:\n| exp_id | GPU | 进度 | ETA | 说明 |\n|--------|-----|------|-----|------|\n| repo-level-cwm-8b-conda-v4 | cuda:2 | ~57% | May 16 05:30 UTC | CWM 8B 训练，最后一个 training 实验 |\n| repo-level-cls-8b-s42-resume | cuda:1 | ~55% | ~May 15 23:00 UTC | CLS 8B s42 resume，完成后做 extended val sweep |\n| cwm8b-ckpt400-test-eval | cuda:3 | 进行中 | 未知（bs=8 比 bs=1 快很多）| CWM 8B ckpt-400 全量 test eval (n=9784) |\n| cls8b-s42-resume-val-sweep | cuda:0 | ⚠️ 疑似挂了 | — | cron 连续 3 次检测不到进程 |\n\n**PREPARING**: cls8b-s42-extended-val-sweep, cls8b-ckpt3000-test-eval, cls8b-ckpt3000-test-v2, repo-level-cls-8b-s42-ckpt200-val（均等前置实验完成）\n\n**等待中**: 1 个 running worker (monitor:westd-progress-check)\n\n### 4. 📋 待办（条件触发式）\n- **立即**: `cls8b-s42-resume-val-sweep` cron 报进程消失 → SSH 检查 PID 388791 是否存活，若已死则查日志诊断原因并重启\n- `repo-level-cls-8b-s42-resume` 训练完成 → 启动 cls8b-s42-extended-val-sweep（ckpt-1800~5200 步长 200，cuda:0 或 cuda:1）\n- `cwm8b-ckpt400-test-eval` 完成 → 记录 CWM 8B test accuracy → 计算 8B-8B CLS-CWM gap → 更新 ROADMAP 主表 → 汇报 Director\n- `repo-level-cwm-8b-conda-v4` 训练完成 → eval final checkpoint（可能也要 eval ckpt-400 以外的最优 checkpoint）\n- CWM 8B test 结果出来 → 补全 writing_plan 里的 8B-8B gap 数字 → Paper Agent 可以写 experiments section\n- Paper 全部数字锁定 → spawn writer workers 并行写各章节 → **DDL May 25**\n\n### 5. 🎯 战略上下文\n- **核心结论**: CLS vs CWM 优势是 complexity-dependent。Function-level 近 null (1.24pp)，repo-level 爆炸 (~25pp)。CWM 在 repo-level format compliance collapse (53-67% unparseable)。\n- **决策链**: D088(val-selected protocol) → D093(multi-seed gap locked: 25.99pp mean) → D094(seq_length confound excluded) → D095(Round 1 action matrix) → D096(8B-8B primary) → D097(rank ablation confirmed) → D098(alpha ratio fix) → D100/101(relaxed matching rejected) → D102(CWM eval bs=8)\n- **最大风险**: CWM 8B 是最后一块拼图。如果 CWM 8B test accuracy 远高于 4B（>65%），8B-8B gap 会缩小，C1 的 \"complexity-dependent\" narrative 受挑战。但 eval_loss 从 step 400 (0.286) 到 4300 (0.482) 持续上升表明过拟合，ckpt-400 大概率是最优。\n- **易错点**:\n  - 不要把 cross-size (8B-CLS vs 4B-CWM) 和 same-size (4B-4B / 8B-8B) 对比混淆——主表用 same-size\n  - CLS 4B seed123 test=75.33%（极低），4B multi-seed 不稳定——paper 里 4B 用单 seed (s42) 就好\n  - home 服务器当前离线/不稳定，不要依赖它做关键 eval\n  - DDL 只剩 10 天，Paper Agent 已启动但还没出 draft，需要催进度\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778865576.md"
+}

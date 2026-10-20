@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4efe18558426086850cd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_20_1778933094.md",
+  "task_key": "loop_20_1778933094",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_20_1778933094.md",
+    "occurrence": 1,
+    "bytes": 3485,
+    "sha256": "ab7d0b2d7249776ad2dbaf2846c19a5ef91026cdb5f5c77a715eb0cba6aed473"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: idle_timeout\nupdated: '2026-05-16T12:04:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单: seetacloud-westd-4x5090 的 cuda:0/1/2/3（4 张 5090）\n- DeepSeek 实验用 `--no_wandb`，指标只在日志文件里，不要去 W&B 查\n- checkpoint 路径统一在 `/root/autodl-tmp/checkpoints_*`，不要写到根分区\n- train_unified.py 的 `--task cls` 和 `--task cwm` 是核心对比轴，不可混淆\n- D103 硬约束: seq_length/bs/precision/lr 变更需 Director 审批\n\n### 2. 🖥️ 基础设施快照\n- 服务器: seetacloud-westd-4x5090\n- 工作目录: /home/sonny/exec-sim-repair-verifier\n- Python: /root/miniconda3/bin/python (conda base env, `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n- 模型路径: /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct\n- Checkpoint 路径: /root/autodl-tmp/checkpoints_deepseek_cls_func/, /root/autodl-tmp/checkpoints_deepseek_cwm_func_seed123/\n- HF_HUB_OFFLINE=1 (模型已下载，离线模式)\n- 活跃进程: deepseek-cls-repo (PID 470263, cuda:0, RUNNING)\n- Cron 监控: deepseek-cls-repo 仍在跑\n\n### 3. 📊 当前状态\n刚收到 cron 回调: `deepseek-cwm-func-s123` (cuda:3) 和 `deepseek-cls-func` (cuda:2) 同时完成训练，状态 ANALYZING。\n\n已派 Worker (`worker_analysis_deepseek-training-logs_20260516T080159`) 去 SSH 读两份日志提取指标，**尚未回调**。\n\nRegistry 状态:\n- `deepseek-cls-repo` — RUNNING (cuda:0, PID 470263) — DeepSeek CLS repo-level 训练\n- `deepseek-cwm-func-s123` — ANALYZING — DeepSeek CWM func-level seed123, 等 Worker 分析\n- `deepseek-cls-func` — ANALYZING — DeepSeek CLS func-level, 等 Worker 分析\n\n等待中:\n- Worker 回调 → 提取 metrics → 更新 registry → 汇报 Director\n- deepseek-cls-repo cron 回调（仍在训练）\n\n### 4. 📋 待办\n- Worker `analysis:deepseek-training-logs` 回调 → 读产出 `artifacts/deepseek_training_analysis.md` → 从中提取 accuracy → update_registry 两个实验设 conclusion + metrics + checkpoint_path + log_path → 刷新 report.md → 汇报 Director（带 CLS vs CWM gap 对比）\n- deepseek-cls-repo cron 回调 → 同样流程分析日志\n- 三个 DeepSeek 实验全部 DONE 后 → 汇总第二模型家族 CLS vs CWM gap → 与 Qwen 4B/8B 结果对比 → 更新 ROADMAP mutation breakdown 表 → 通知 Paper Agent 整合 cross-model 结论\n- 如果 CLS vs CWM gap 在 DeepSeek 上复现 → C1 claim 从 \"Qwen-specific\" 升级为 \"cross-model\"，论文叙事增强\n- 如果 gap 不复现（negative） → 按 red-section 规范产 Framing 提案，禁止默默继续\n\n### 5. 🎯 战略上下文\n- 核心论点: CLS formulation >> CWM formulation for execution simulation（已在 Qwen 4B/8B 上验证 ~26pp gap）\n- D108 批准扩展第二模型家族 (DeepSeek 6.7B) 以回应 generalizability concern\n- DeepSeek 实验分两级: func-level（当前）和 repo-level（deepseek-cls-repo 还在跑）\n- EMNLP 2026 ARR DDL = May 25（剩 9 天），DeepSeek 结果是论文最后一块拼图\n- 易错点: CWM 8B 已确认 73.8% unparseable（generation bottleneck 铁证），DeepSeek CWM 很可能也有高 unparseable rate——分析时要区分 \"unparseable defaulting to majority\" vs \"真正预测错误\"\n- 已知 Qwen CWM 4B test=58.04%, majority baseline=72.96%（CWM 甚至低于 majority）——如果 DeepSeek CWM 也低于 majority，则 generation bottleneck 是 model-agnostic 的\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-1778933094.md"
+}

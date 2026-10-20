@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bff79b1f07e8cd5fa028",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra gpu2 wait and launch D124",
+  "task_key": "worker_infra_gpu2-wait-and-launch-D124_20260518T032453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu2-wait-and-launch-D124_20260518T032453_result.json",
+    "occurrence": 1,
+    "bytes": 896,
+    "sha256": "b64210cc46e0905902383d6e00c175437e296c11a28cda834d4efd527af86e2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### 1. CLS s123 eval 结果\n\n| Metric | Value |\n|---|---|\n| **Accuracy** | 74.93% |\n| **Majority baseline** | 72.96% |\n| **Gap vs majority** | +1.97 pp |\n| **F1 (fail)** | 22.84 |\n| **F1 (pass)** | 85.03 |\n| **F1 (macro)** | 53.94 |\n| **Precision (fail/pass)** | 68.11 / 75.32 |\n| **Recall (fail/pass)** | 13.72 / 97.62 |\n| **Confusion matrix** | TN=363, FP=2283, FN=170, TP=6968 |\n| **Support** | fail=2646, pass=7138 |\n| **N instances** | 9784 |\n\nCLS s123 几乎把所有样本预测为 pass（recall_pass=97.62%），对 fail 的召回极低（13.72%），accuracy 只比 majority baseline 高 ~2pp。\n\n### 2. D124 启动确认\n\n| Item | Value |\n|---|---|\n| **PID** | 700398 |\n| **GPU** | 2 |\n| **GPU Memory** | 16528 MiB |\n| **Tmux session** | `cwm-s42-epoch2-eval` ✓ |\n\nD124 (CWM s42 epoch2 eval) 已在 GPU 2 上正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu2-wait-and-launch-d124.md"
+}

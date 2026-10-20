@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be25eea3c469d30b2986",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cls8b seed456 results",
+  "task_key": "worker_analysis_cls8b-seed456-results_20260512T152754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls8b-seed456-results_20260512T152754_result.json",
+    "occurrence": 1,
+    "bytes": 1087,
+    "sha256": "b44c358eb09f09afcc29b3aed1f27c9ed4f225264f2f5295b6bab4464eef2bf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## cls8b-seed456 完整 metrics\n\n| Metric | Value |\n|--------|-------|\n| overall_accuracy | **88.31** |\n| pass_f1 | 88.20 |\n| fail_f1 | 88.41 |\n| pass_precision | 92.29 |\n| pass_recall | 84.46 |\n| fail_precision | 84.72 |\n| fail_recall | 92.43 |\n| train_loss | 0.3105 |\n| eval_loss | 0.0928 |\n| unparseable | 0 |\n| test_set_size | 1890 |\n\n注：eval json 中无 exact_match_rate 字段。\n\n## cls8b vs cwm8b seed456 对比\n\n| Metric | cls8b | cwm8b | Δ |\n|--------|-------|-------|---|\n| overall_accuracy | 88.31 | 86.24 | **+2.07pp** |\n| pass_f1 | 88.20 | 85.96 | +2.24pp |\n| fail_f1 | 88.41 | 86.51 | +1.90pp |\n\n## 3 matched 8B pairs 汇总\n\n| Seed | CLS acc | CWM acc | Gap |\n|------|---------|---------|-----|\n| 42 | 89.52 | 86.72 | +2.81pp |\n| 123 | 88.89 | 86.47 | +2.42pp |\n| 456 | 88.31 | 86.24 | +2.07pp |\n| **Mean** | **88.91** | **86.48** | **+2.43pp** |\n\nCLS 在全部 3 个 seed 上一致优于 CWM，gap 范围 +2.07 ~ +2.81pp，均值 +2.43pp。趋势稳定，seed456 gap 最小但方向一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cls8b-seed456-results.md"
+}

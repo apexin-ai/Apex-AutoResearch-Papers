@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95fc4deb7da5f54a1538",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor westd eval status",
+  "task_key": "worker_monitor_westd-eval-status_20260514T233830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westd-eval-status_20260514T233830_result.json",
+    "occurrence": 1,
+    "bytes": 1246,
+    "sha256": "a56e73447fe2dcb774f177c6a82805d5c48ce348fc397efce219379c9f68ac55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### cls8b-s42-ckpt800-val8192-eval\n\n**状态: 未启动 (never launched)**\n\n- GPU 0 完全空闲（0MiB / 0% util），无任何进程\n- `/tmp/agent-ml-exit/` 中无 `cls8b-s42-ckpt800` 相关 exit 文件\n- `/root/autodl-tmp/results/` 中无 ckpt-800 相关结果目录\n- checkpoint-800 存在于 `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800`（由 s42-resume 训练产生），但 eval 从未被启动\n\n### 4 张 GPU 状态\n\n| GPU | 显存 | 利用率 | 进程 | 状态 |\n|-----|------|--------|------|------|\n| 0 | 0MiB / 32607MiB | 0% | 无 | **空闲** |\n| 1 | 27311MiB / 32607MiB | 98% | `train_repo_verifier.py` s42-resume (PID 295794) | ✅ 正常 |\n| 2 | 30733MiB / 32607MiB | 95% | `train_repo_cwm.py` cwm-v4 (PID 266816) | ✅ 正常 |\n| 3 | 30913MiB / 32607MiB | 97% | `train_repo_verifier.py` seed123-v3 (PID 266449) | ✅ 正常 |\n\n### 3 个训练进程详情\n\n- **cuda:1 s42-resume**: step 1173/6633 (18%), epoch 0.52, loss=0.984, eval_loss=0.182@step1000, ~8s/it\n- **cuda:2 cwm-v4**: 从 ckpt-1600 恢复，正常运行\n- **cuda:3 seed123-v3**: 从 ckpt-3000 恢复，正常运行\n\n**结论**: GPU 0 空闲可用，ckpt-800 eval 需要手动启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westd-eval-status.md"
+}

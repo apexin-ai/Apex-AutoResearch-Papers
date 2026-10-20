@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a98cbeef9e63da7bbd80",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check home 8b val5120 status",
+  "task_key": "worker_check_home-8b-val5120-status_20260514T171903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_home-8b-val5120-status_20260514T171903_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "cac07d35ad22f1a833e9ef3eda7159ce2103bf9561d4d1a73edfea8f3a6b361d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 8B val@5120 Sweep 状态汇总\n\n### tmux session `eval_8b_val5120`\n**存在，正在运行。** 当前在跑 ckpt-3000 的 eval。\n\n### GPU 状态\n- GPU 0: 22509/32607 MiB, 利用率 100%\n- 进程: python3 (PID 3145070, 22500 MiB)\n\n### ckpt-400 (conda) — 已完成 ✓\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **80.47%** |\n| Majority baseline | 75.88% |\n| Gap vs majority | +4.6pp |\n| F1 macro | **75.84%** |\n| F1 fail | 65.27% (P=57.2%, R=76.1%) |\n| F1 pass | 86.42% (P=91.5%, R=81.9%) |\n| Truncated | 234/9335 |\n\n### ckpt-3000 — 正在运行\n\n- 进度: **5400/9335** (57.9%)\n- Running accuracy: **89.2%**\n- 预计剩余: ~3960 samples, 按当前速度约 25-30 分钟\n\n### 结论\n\n**Sweep 尚未完成。** ckpt-400 已完成（acc=80.5%），ckpt-3000 正在跑（进度 58%，running acc=89.2%）。ckpt-3000 的 running accuracy 显著高于 ckpt-400 的最终 accuracy，说明更多训练步数有明显提升。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-home-8b-val5120-status.md"
+}

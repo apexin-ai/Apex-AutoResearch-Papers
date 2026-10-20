@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f22caa5d6beae888f606",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "extract cwm8b resume command",
+  "task_key": "worker_extract_cwm8b-resume-command_20260515T175224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_extract_cwm8b-resume-command_20260515T175224_result.json",
+    "occurrence": 1,
+    "bytes": 2253,
+    "sha256": "6358fd77166ab5c568b8a7757898cfa619c846de8a3a722d0fdf6225f9b3c7dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息已齐全。以下是汇总和 resume 命令。\n\n## 训练状态摘要\n\n| 字段 | 值 |\n|------|-----|\n| 崩溃原因 | timeout (EXIT_CODE=124)，v2 日志在 step 5273 中断 |\n| checkpoint | step 5200, epoch 2.35 |\n| max_steps | 6633 (3 epochs) |\n| 剩余 steps | ~1433 (约 22%) |\n| total_flos | 8.008e+18 |\n| best_model_checkpoint | checkpoint-400 (eval_loss=0.2862) |\n| 当前 eval_loss | 0.5066 (step 5200，已过拟合) |\n\n## 参数溯源\n\n从 `training_args.bin` + `adapter_config.json` 提取，匹配 `train_repo_cwm_8b.py` 的 argparse：\n\n- model: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- output_dir: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`\n- batch_size=1, grad_accumulation=32, lr=5e-5, epochs=3, seed=42\n- warmup_ratio=0.05, weight_decay=0.01\n- lora_rank=16, lora_alpha=32, lora_dropout=0.05\n- save_steps=100, eval_steps=100\n- bf16=True, gradient_checkpointing=True\n- no_wandb, device=cuda:0\n- run_name: `repo-cwm-qwen3-4b-lora` (名称遗留，实际是 8B)\n\n## Resume 命令\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python train_repo_cwm_8b.py \\\n  --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ \\\n  --data_dir /home/sonny/exec-sim-repair-verifier/data/swebench_full \\\n  --output_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/ \\\n  --run_name repo-cwm-qwen3-4b-lora \\\n  --seed 42 \\\n  --max_seq_length 2048 \\\n  --batch_size 1 \\\n  --grad_accumulation 32 \\\n  --lr 5e-5 \\\n  --epochs 3 \\\n  --warmup_ratio 0.05 \\\n  --weight_decay 0.01 \\\n  --lora_rank 16 \\\n  --lora_alpha 32 \\\n  --lora_dropout 0.05 \\\n  --save_steps 100 \\\n  --eval_steps 100 \\\n  --no_wandb \\\n  --device cuda:0 \\\n  --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5200\"\n```\n\n**注意**: eval_loss 从 step 400 (0.286) 持续上升到 step 5200 (0.507)，严重过拟合。best_model_checkpoint 停在 checkpoint-400。resume 完成后 Trainer 会因 `load_best_model_at_end=True` 加载 checkpoint-400，但如果 checkpoint-400 已被 `save_total_limit=5` 清理掉则会报错。建议确认 checkpoint-400 是否仍存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/extract-cwm8b-resume-command.md"
+}

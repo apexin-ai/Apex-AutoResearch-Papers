@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a71a1ddc3b4589fa984",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cls8b s42 ckpt200 val8192 eval v2",
+  "task_key": "worker_analysis_cls8b-s42-ckpt200-val8192-eval-v2_20260514T223733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls8b-s42-ckpt200-val8192-eval-v2_20260514T223733_result.json",
+    "occurrence": 1,
+    "bytes": 1153,
+    "sha256": "25b83dd3439c6d4860597b983a420b2d5b8294cb572845134758647eb2c0905f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cls8b-s42-ckpt200-val8192-eval-v2 评估结果\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | 63.52% |\n| **F1 macro** | 61.17% |\n| **F1 (fail)** | 51.6% |\n| **F1 (pass)** | 70.7% |\n| **Precision (fail)** | 38.0% |\n| **Precision (pass)** | 90.4% |\n| **Recall (fail)** | 80.6% |\n| **Recall (pass)** | 58.1% |\n| **Samples evaluated** | 9335 |\n| **Class balance** | pass=7083, fail=2252 |\n| **Majority baseline** | 75.9% |\n| **Accuracy vs majority** | -12.3pp |\n| **Unparseable** | 9 (0.10%) |\n| **Exit code** | 0 (成功) |\n\n**Confusion Matrix:**\n\n|  | Pred fail | Pred pass |\n|--|-----------|-----------|\n| **Actual fail** | 1815 | 437 |\n| **Actual pass** | 2968 | 4115 |\n\n**关键发现：**\n- Accuracy 63.52% **低于** majority baseline 75.9%（差 -12.3pp），模型在 val set 上表现不佳\n- 模型对 fail 类 recall 高（80.6%）但 precision 极低（38.0%），大量 pass 样本被误判为 fail（2968 个 false positive）\n- pass 类 precision 高（90.4%）但 recall 低（58.1%），说明模型过度倾向预测 fail\n- 无错误或异常，9 个 unparseable 用了 majority fallback"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cls8b-s42-ckpt200-val8192-eval-v2.md"
+}

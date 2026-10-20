@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaa917acae59ca07f8b0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze cls8b seed123 ckpt200 test eval",
+  "task_key": "worker_analyze_cls8b-seed123-ckpt200-test-eval_20260515T115309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cls8b-seed123-ckpt200-test-eval_20260515T115309_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "a7833c14acedb6e2f424fa59fae4d2091b871fcd118530a6e3f377de1b1b0c94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇报：\n\n## cls8b-seed123-ckpt200-test-eval 结果\n\n| 指标 | seed123 ckpt-200 | s42 ckpt-200 | 差异 |\n|------|:-:|:-:|:-:|\n| **Accuracy** | 72.55% | 70.07% | **+2.48pp** |\n| **F1 macro** | 70.18% | 68.18% | **+2.00pp** |\n| Fail F1 | 61.78% | — | — |\n| Pass F1 | 78.58% | — | — |\n| Fail P / R | 49.5% / 82.1% | — | — |\n| Pass P / R | 91.2% / 69.0% | — | — |\n| Majority baseline | 72.96% | — | — |\n| Unparseable | 0 | — | — |\n| n_samples | 9,784 | — | — |\n\n**seed123 在 ckpt-200 上全面优于 s42**：accuracy +2.48pp，f1_macro +2.00pp。\n\n不过 seed123 accuracy (72.55%) 略低于 majority baseline (72.96%)，gap = -0.41pp，说明模型在这个 checkpoint 上判 fail 过于激进（fail recall 82% 但 fail precision 仅 49.5%），牺牲了 pass recall (69.0%)，导致整体 accuracy 被拖低。F1 macro 70.18% 仍高于 baseline 约 4pp 以上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-cls8b-seed123-ckpt200-test-eval.md"
+}

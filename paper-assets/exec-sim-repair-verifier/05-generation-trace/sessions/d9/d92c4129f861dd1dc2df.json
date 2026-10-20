@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d92c4129f861dd1dc2df",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "data error analysis f1 fill",
+  "task_key": "worker_data_error-analysis-f1-fill_20260515T081953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_error-analysis-f1-fill_20260515T081953_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "28e80175ae2502fd77a72051c3994b9cae20cf3a3f1d982c8547c7b27bc76e9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "替换了 4 处：\n\n| 位置 | 原值 | 新值 |\n|------|------|------|\n| §1 表格 F1 macro 列 (行12) | `⚠️ TBD` | `**77.50%**` |\n| §1 表格 F1 fail 列 (行13) | `⚠️ TBD` | `**65.85%**` |\n| §1 表格 F1 pass 列 (行14) | `⚠️ TBD` | `**89.14%**` |\n| §1 D088 修正注释 (行19) | `⚠️ ... 需从 ckpt-1000 eval 结果补填` | 完整 F1/P/R/Confusion 数据，移除 ⚠️ |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-error-analysis-f1-fill.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a75de192beeacd2ce79f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "verify d103 seq8192 v2 confirm",
+  "task_key": "worker_verify_d103-seq8192-v2-confirm_20260515T174628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_d103-seq8192-v2-confirm_20260515T174628_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "f66bb58026f594ffd34f979a1c4c4bde125f9d5283988b525c5d55da00061e3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D103 验证结果\n\n| 项目 | 状态 |\n|------|------|\n| **PID** | 398981 存活，已运行 4m11s |\n| **GPU 占用** | GPU0: 18,477/32,607 MiB (79%) — 进程绑定 `CUDA_VISIBLE_DEVICES=0` |\n| **PYTORCH_ALLOC_CONF** | `expandable_segments:True` ✓ |\n| **max_seq_length** | 8192 ✓ |\n| **batch_size** | 1 ✓ |\n\n**当前进度：**\n- Checkpoint: **checkpoint-1800**（第 1/21 个）\n- Samples: **1,430 / 9,335**\n- running_acc: **87.6%**\n\n**ETA 估算：**\n- 推理速率：从 01:42:49→01:46:48 处理 1,420 samples = **~5.94 samples/sec（356 samples/min）**\n- 总工作量：21 × 9,335 = **196,035 samples**\n- 已完成：1,430 samples（0.7%）\n- 剩余：~194,605 samples → **~32,760 sec ≈ 9.1 小时**（含 21 次模型加载 ~3 min 额外开销）\n- 预估完成：**服务器时间 ~10:55**（当前服务器时间 ~01:47）\n\n> 注：GPU1 (27,313 MiB, 97%) 和 GPU3 (22,527 MiB, 88%) 有其他任务占用，GPU2 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-d103-seq8192-v2-confirm.md"
+}

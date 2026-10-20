@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a13818d6e4211b50e90",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "poll westd seed123 test v2 round4",
+  "task_key": "worker_poll_westd-seed123-test-v2-round4_20260515T101816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_poll_westd-seed123-test-v2-round4_20260515T101816_result.json",
+    "occurrence": 1,
+    "bytes": 46,
+    "sha256": "e13b769a4d94a55a80f50176270cb6017116cda33370294188abc6deaeba05cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Will check again in ~4 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/poll-westd-seed123-test-v2-round4.md"
+}

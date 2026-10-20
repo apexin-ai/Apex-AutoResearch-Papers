@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86b8450e32515c72b24c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval kill nohup and submit seed123 8b val",
+  "task_key": "worker_eval_kill-nohup-and-submit-seed123-8b-val_20260514T210310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kill-nohup-and-submit-seed123-8b-val_20260514T210310_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "6a27cd6cc1bd057ca5ec551b28f3130db8b85fcc7d644f4693f79d86748c7a16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**执行摘要：**\n- Kill：PID 281646 已不存在；发现 cuda:1 上实际运行的是 PID 287860（v5-conda 4B val sweep 子进程），已 kill；cls_val_sweep 脚本进程 277664 也已清理\n- cuda:1 已释放（3 MiB）\n- 参数修正：脚本实际用 `--checkpoint_dir`（非 --checkpoint_path）、`--device`（非 --gpu），且需要 `--model_name`\n- 已提交 `cls8b-seed123-ckpt3000-val-eval`，PID 289068，cuda:1，RUNNING\n- Registry 已更新：status=RUNNING, hypothesis, parent, spec 全部设置完毕"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kill-nohup-and-submit-seed123-8b-val.md"
+}

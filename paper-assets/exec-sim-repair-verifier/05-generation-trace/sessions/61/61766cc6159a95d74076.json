@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61766cc6159a95d74076",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code val5120 sweep prep",
+  "task_key": "worker_code_val5120-sweep-prep_20260514T172722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_val5120-sweep-prep_20260514T172722_result.json",
+    "occurrence": 1,
+    "bytes": 1158,
+    "sha256": "e4efbfe07831563d3968cce7c0dcb4e200d03ce40a5a3e0ff9cb5691baccb356"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入服务器。调研结果：\n\n**脚本参数确认：** 两个脚本都已支持 `--split val` 和 `--max_seq_length 5120`，无需修改。\n\n**Checkpoints 确认：**\n\n| 模型 | 目录 | 可用 ckpts | eval 脚本 |\n|------|------|-----------|-----------|\n| CLS v5-conda (seed42) | `/root/autodl-tmp/checkpoints_repo_cls_v5_conda/` | 200, 400, 600 | `eval_repo_cls.py` |\n| CWM v12 (seed42) | `/root/autodl-tmp/checkpoints_repo_cwm_conda_v12/` | 300, 400, 500, 600, 700 | `eval_repo_cwm.py` |\n| CWM seed123 | `/root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/` | 200, 300, 400, 500, 600 | `eval_repo_cwm.py` |\n\n**注意事项：**\n- CWM 脚本 D077 逻辑：val split 默认 max_seq_length=8192，但我们显式传 5120 覆盖\n- CLS 脚本不自动创建输出目录，命令清单里包含了 `mkdir -p`\n- CWM 脚本有 `--output_dir` + 自动 makedirs\n- CLS batch_size=8（轻量，max_new_tokens=8），CWM batch_size 自动=2（max_new_tokens=1024）\n- 总计 13 runs，6 phases 双 GPU 并行，预计 6-12hr\n\n命令清单已写到 `/home/sonny/exec-sim-repair-verifier/val5120_sweep_commands.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-val5120-sweep-prep.md"
+}

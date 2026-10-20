@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d7abce8c58b7d02015b3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ops traj repo 8k train",
+  "task_key": "worker_ops_traj-repo-8k-train_20260516T152538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_traj-repo-8k-train_20260516T152538.log",
+    "occurrence": 1,
+    "bytes": 828371,
+    "sha256": "859f0d77ae88cec9057ea7fe1c21e8233e672f61f81f80f48d51f723a2829fc3"
+  },
+  "statistics": {
+    "messages": 473,
+    "user_turns": 0,
+    "tool_calls": 182,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 98,
+      "tool_call": 182,
+      "tool_result": 182,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 473,
+      "chunks": [
+        {
+          "path": "d7abce8c58b7d02015b3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d7abce8c58b7d02015b3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d7abce8c58b7d02015b3-part-0003.json",
+          "message_count": 113
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-traj-repo-8k-train.md"
+}

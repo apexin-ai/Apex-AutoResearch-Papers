@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "874208501df0782b875c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect home 4b ckpt4400 final",
+  "task_key": "worker_collect_home-4b-ckpt4400-final_20260515T075820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_home-4b-ckpt4400-final_20260515T075820_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "fd560435d0d50a691dc21d724ed51eb41296aeb5953ac1939c7d2b8de781156d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。结果汇总：\n\n## 4B ckpt-4400 Test 结果\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **83.24%** |\n| F1 macro | 74.44% |\n| F1 fail | 59.45% (P=86.0%, R=45.4%) |\n| F1 pass | 89.44% (P=82.8%, R=97.3%) |\n| Majority baseline | 72.96% |\n| Gap vs majority | +10.28pp |\n| Unparseable | 0 |\n| Total samples | 9,784 |\n\n### 与 ckpt-4600 对比\n\n| | ckpt-4400 | ckpt-4600 | 差异 |\n|--|-----------|-----------|------|\n| **Test acc** | 83.24% | 83.63% | -0.39pp |\n| **Val acc** | 89.96% | 90.07% | -0.11pp |\n\nckpt-4400 略低于 ckpt-4600，差距很小（test -0.39pp, val -0.11pp），两者表现基本一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-home-4b-ckpt4400-final.md"
+}

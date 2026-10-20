@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8946de3694ba0a64b83",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh home 1x5090 check",
+  "task_key": "worker_ssh_home-1x5090-check_20260520T023426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_home-1x5090-check_20260520T023426_result.json",
+    "occurrence": 1,
+    "bytes": 198,
+    "sha256": "dab49d90e970eb1348695d2ac4d8f9b635d85f3cacc9fb111991d80dfb4eca48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**home-1x5090 已不在资源池中。**\n\n当前可用服务器只有 `seetacloud-westd-4x5090` 和 `westd-48478`，`home-1x5090` 已被移除，无法连接，无需清理残留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-home-1x5090-check.md"
+}

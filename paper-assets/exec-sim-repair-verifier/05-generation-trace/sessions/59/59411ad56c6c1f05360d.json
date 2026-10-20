@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59411ad56c6c1f05360d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls4b seed123 test",
+  "task_key": "worker_eval_cls4b-seed123-test_20260515T091525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls4b-seed123-test_20260515T091525_result.json",
+    "occurrence": 1,
+    "bytes": 387,
+    "sha256": "13c596ffa91ce444e126ad9326e4bdc7dc4cf1aa2a4c5c4733735e23dd83ef2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**已提交 CLS 4B seed123 ckpt-800 test eval:**\n\n- Checkpoint: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_seed123_home/checkpoint-800`\n- Registry ID: `cls4b-seed123-ckpt800-test5120-eval` (RUNNING)\n- 服务器: home-1x5090, cuda:0\n- 日志: `~/runs/exec-sim-repair-verifier/cls4b-seed123-ckpt800-test5120-eval.log`\n\n3 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls4b-seed123-test.md"
+}

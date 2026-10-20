@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fdb4c4706a0bbf3b729",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval seed123 test curve westd",
+  "task_key": "worker_eval_seed123-test-curve-westd_20260515T094140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed123-test-curve-westd_20260515T094140_result.json",
+    "occurrence": 1,
+    "bytes": 493,
+    "sha256": "25960707e46b7c827fdca4c5ef7918d48b034632533845379e5bccac5f4eb05a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval job 已提交：\n\n| 实验 | GPU | PID | 日志 |\n|------|-----|-----|------|\n| `cls8b-seed123-ckpt6200-test8192-eval` | cuda:0 | 353094 | `~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6200-test8192-eval.log` |\n| `cls8b-seed123-ckpt6400-test8192-eval` | cuda:3 | 353235 | `~/runs/exec-sim-repair-verifier/cls8b-seed123-ckpt6400-test8192-eval.log` |\n\n结果将输出到各 checkpoint 目录下的 `eval_test8192/` 子目录。cron 会监控完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed123-test-curve-westd.md"
+}

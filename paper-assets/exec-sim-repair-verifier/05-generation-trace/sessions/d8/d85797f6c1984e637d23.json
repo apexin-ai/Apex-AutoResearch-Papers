@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d85797f6c1984e637d23",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check cwm8b ckpt400 eval progress",
+  "task_key": "worker_check_cwm8b-ckpt400-eval-progress_20260515T140321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_cwm8b-ckpt400-eval-progress_20260515T140321_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "434137cfdbea322353883af1b63aa62db5911054cf7caf101a0a0287d62423c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cwm8b-ckpt400-test-eval 进度汇报**\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **275 / 9784** (2.8%) |\n| Running Accuracy | **70.2%** |\n| GPU 利用率 (cuda:3) | 51%, 显存 17.0 / 31.8 GiB, 温度 54°C |\n| 进程状态 | PID 367292 存活，已运行 **1h47m** |\n| 处理速率 | ~22 秒/样本（最近 30 条日志估算） |\n| 剩余样本 | 9,509 |\n| 预估剩余时间 | **~58 小时** |\n| 预估完成时间 | **约 5月18日 08:00 UTC** |\n\n**注意**: 进程 etime 仅 1h47m（约 20:16 UTC 启动），与用户提供的启动时间 12:17 UTC 不符。可能中间有重启。按当前速率，总耗时约 60 小时，比预估的 54 小时略长。\n\n运行正常，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cwm8b-ckpt400-eval-progress.md"
+}

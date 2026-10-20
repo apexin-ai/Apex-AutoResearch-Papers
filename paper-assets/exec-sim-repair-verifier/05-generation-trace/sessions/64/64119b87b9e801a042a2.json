@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64119b87b9e801a042a2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra scp qwen3 4b and train",
+  "task_key": "worker_infra_scp-qwen3-4b-and-train_20260518T215731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_scp-qwen3-4b-and-train_20260518T215731_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "cca8fbbe41796e765c1397ebe1f89dc02c0f128c0d2341f8b8858a9d0c6b67bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练运行正常，32/147 steps (~22%)，约 2s/step。\n\n## 报告\n\n| 项目 | 结果 |\n|------|------|\n| **模型传输** | 直接从 hf-mirror.com 下载到 seetacloud，7.6GB，耗时 462.9s (~7.7 min) |\n| **模型验证** | 通过 (vocab_size=151643, 3 个 safetensors shards 完整) |\n| **训练启动** | 成功，PID 767245，GPU 0 |\n| **训练进度** | 32/147 steps，~2s/step |\n| **预估总时间** | ~5 min（147 steps × 2s/step ≈ 294s），比 DeepSeek TRAJ 快（模型更小） |\n| **Registry** | `qwen3-4b-traj-repo-s42` → RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-scp-qwen3-4b-and-train.md"
+}

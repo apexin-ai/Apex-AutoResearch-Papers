@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da03571e49c6cfc2b868",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "exp deepseek traj func s123",
+  "task_key": "worker_exp_deepseek-traj-func-s123_20260516T122523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_deepseek-traj-func-s123_20260516T122523_result.json",
+    "occurrence": 1,
+    "bytes": 538,
+    "sha256": "bc367e7a503859fea6f7dac5a0f358b3cd5f18426ec7478fbb827f81c43f84d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，汇报：\n\n| 项目 | 值 |\n|------|-----|\n| **exp_id** | `deepseek-traj-func-s123` |\n| **PID** | 506163 |\n| **GPU** | cuda:3，已占用 17,755 MiB / 32,607 MiB |\n| **速度** | ~1.8 s/it，1512 steps total |\n| **预估完成** | ~45-50 min（约 21:15 UTC） |\n| **日志** | `/tmp/deepseek_traj_func_s123.log` |\n| **Checkpoint 输出** | `/root/autodl-tmp/checkpoints_deepseek_traj_func_s123/` |\n| **Cron 监控** | 每 10 分钟自动检查（job `76da9db4`） |\n| **Registry** | RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-deepseek-traj-func-s123.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a5f81e28f5cd2ef35c3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops force kill 442200 NOW",
+  "task_key": "worker_ops_force-kill-442200-NOW_20260516T011503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_force-kill-442200-NOW_20260516T011503_result.json",
+    "occurrence": 1,
+    "bytes": 75,
+    "sha256": "9a067f823b36d84fe73599cc3bc129a3d0a1d6b32b80d73f63dc6bca3bdf3a8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 442200 已死，cuda:2 显存 0 MiB，已完全释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-force-kill-442200-now.md"
+}

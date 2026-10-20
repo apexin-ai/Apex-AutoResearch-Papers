@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0a81c16e6ad503fd841",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b s42 ckpt3600 seq2048 ablation",
+  "task_key": "worker_eval_cls8b-s42-ckpt3600-seq2048-ablation_20260515T234703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-s42-ckpt3600-seq2048-ablation_20260515T234703_result.json",
+    "occurrence": 1,
+    "bytes": 334,
+    "sha256": "07b3088d9a0743143b4c34c997cbc988a44b6b0ce7dbacc9b187f25f9cc8cd1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交，运行正常。\n\n- **PID**: 433953 @ westd cuda:0\n- **Registry**: `cls8b-s42-ckpt3600-seq2048-ablation` → RUNNING\n- **进度**: 280/9784，running_acc ≈ 82.5%\n- **日志**: `/tmp/eval_cls8b_ckpt3600_seq2048.log`\n- **输出**: `/root/autodl-tmp/eval_results/cls8b_s42_resume_ckpt3600_test_seq2048/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-s42-ckpt3600-seq2048-ablation.md"
+}

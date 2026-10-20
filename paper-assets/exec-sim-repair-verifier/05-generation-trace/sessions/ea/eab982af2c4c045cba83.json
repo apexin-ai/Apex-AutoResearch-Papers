@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eab982af2c4c045cba83",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix repo level sample weight",
+  "task_key": "worker_fix_repo-level-sample-weight_20260512T112716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_repo-level-sample-weight_20260512T112716_result.json",
+    "occurrence": 1,
+    "bytes": 1774,
+    "sha256": "0f5cbb56a5c14ab4498878d4bc6b904759589f35e26fd885b6f89efa3b019310"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**CWM dry-run 也完成了！** 3 step 全部成功：\n- Step 1: loss=0.6214\n- Step 2: loss=0.6200\n- Step 3: loss=0.4330\n\n两个脚本都没有 KeyError，修复验证通过。\n\n现在需要重启旧的崩溃训练进程（PID 34681, 34762），它们还在跑旧代码。但这些进程是由 tmux session 管理的，需要 kill 旧进程后重启。不过这超出了 bug 修复的范围——旧进程加载的是修复前的代码，需要重启才能用上新代码。\n\n---\n\n## 修复报告\n\n**Root cause**: `DataCollatorForSeq2Seq` 内部调用 `tokenizer.pad()` 只处理标准 tokenizer 字段（`input_ids`、`attention_mask`、`labels`），`sample_weight` 列虽然在 Dataset 中存在且 `remove_unused_columns=False` 保留了它，但 collator 在 padding 时丢弃了它。`compute_loss` 从 collated batch 中 `pop(\"sample_weight\")` 时触发 KeyError。\n\n**修复内容**（两个文件完全相同的改法）：\n\n1. **新增 `WeightedDataCollator` 类**（`train_repo_verifier.py:120`，`train_repo_cwm.py:118`）：\n   - 在 `__call__` 中先从每个 feature dict 中 pop `sample_weight`\n   - 调用底层 `DataCollatorForSeq2Seq` 做 padding\n   - 将 `sample_weight` 作为 float tensor 加回 batch\n\n2. **修改 collator 初始化**（`train_repo_verifier.py:234`，`train_repo_cwm.py:232`）：\n   - `DataCollatorForSeq2Seq(...)` → `WeightedDataCollator(DataCollatorForSeq2Seq(...))`\n\n**未修改**：class weighting 逻辑、hyperparameters、compute_loss 方法。\n\n**Dry-run 结果**：两个脚本均在 GPU 上完成 3 step 训练，loss 正常下降，无任何 error。\n\n**注意**：旧的训练进程（PID 34681, 34762）加载的是修复前的代码，需要 kill 并重启才能生效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-repo-level-sample-weight.md"
+}

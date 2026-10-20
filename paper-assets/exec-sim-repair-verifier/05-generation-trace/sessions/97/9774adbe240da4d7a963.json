@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "id": "9774adbe240da4d7a963",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "analysis cwm error analysis and cls4b val",
+  "task_key": "worker_analysis_cwm-error-analysis-and-cls4b-val_20260514T194511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cwm-error-analysis-and-cls4b-val_20260514T194511.log",
+    "occurrence": 1,
+    "bytes": 2324825,
+    "sha256": "412e923cddded90c3b8071f1cddad08bb2e99527fae04de5fc79ca7a23af3687"
+  },
+  "statistics": {
+    "messages": 1836,
+    "user_turns": 2,
+    "tool_calls": 796,
+    "roles": {
+      "log": 1,
+      "system": 39,
+      "record": 4,
+      "assistant": 196,
+      "tool_call": 796,
+      "tool_result": 796,
+      "user": 2,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 822,
+      "chunks": [
+        {
+          "path": "9774adbe240da4d7a963-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9774adbe240da4d7a963-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9774adbe240da4d7a963-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9774adbe240da4d7a963-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9774adbe240da4d7a963-part-0005.json",
+          "message_count": 102
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 984,
+      "chunks": [
+        {
+          "path": "9774adbe240da4d7a963-part-0005.json",
+          "message_count": 78
+        },
+        {
+          "path": "9774adbe240da4d7a963-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "9774adbe240da4d7a963-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "9774adbe240da4d7a963-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "9774adbe240da4d7a963-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "9774adbe240da4d7a963-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "9774adbe240da4d7a963-part-0011.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 30,
+      "chunks": [
+        {
+          "path": "9774adbe240da4d7a963-part-0011.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-cwm-error-analysis-and-cls4b-val.md"
+}

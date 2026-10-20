@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37d594ce54f22f4c3928",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "figure fig1 conceptual",
+  "task_key": "worker_figure_fig1-conceptual_20260515T182337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig1-conceptual_20260515T182337_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "99f7322f918db15db1e578d8fee7215a1c500d872059b5d8774fcfd26c957f8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 已生成：\n\n- **PDF**: `artifacts/fig1_reformulation.pdf` (36.8 KB)\n- **PNG**: `artifacts/fig1_reformulation.png` (259 KB)\n- **脚本**: `artifacts/fig1_reformulation.py`\n\n布局：三列 pipeline (CLS/CWM/TRAJ) 纵向流动，CWM 比其他两个多一步 \"Exact match check\"。四个 failure-mode callout 用虚线箭头标注（CWM 两个橙红色、CLS 一个绿色、TRAJ 一个灰色）。底部双箭头显示 Fine-grained ↔ Coarse-grained 粒度谱。`register_artifact` 工具不可用，但此文件路径已有历史注册记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig1-conceptual.md"
+}

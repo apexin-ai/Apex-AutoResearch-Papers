@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1fc036dc4e7f124873d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "director / loop_17.md",
+  "task_key": "loop_17",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_17.md",
+    "occurrence": 1,
+    "bytes": 5729,
+    "sha256": "fd5fb52af5515a00f00395c8877c570f7f9468e5ac48b2193821b98591aa90a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: max_messages\nupdated: '2026-05-17T11:20:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud GPU 只有 cuda:0-3（westd-4x5090），不可用其他 GPU\n- D116: framing 是 \"design space characterization\"，不是 CLS advocacy。语言必须 neutral\n- D120: re-repair 已 drop（genuine negative），不再投入，不写入论文 core claims\n- D119: \"tokenizer-specific\" 归因已验证正确（DeepSeek LlamaTokenizer 32K ≠ Qwen Qwen2Tokenizer 151K），但最终是否成立取决于 DeepSeek CWM repo unparseable 结果\n- D115: 放弃全局单调序 CLS≥CWM≥TRAJ\n- 论文中模型名：Qwen3-4B, Qwen3-8B, DeepSeek-Coder-6.7B（不是 DeepSeek-R1）\n- Abstract/Introduction/Conclusion 还没更新到 D116 framing——等 DeepSeek repo 结果后统一改\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090**: connect.westd.seetacloud.com, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - cuda:0-3 全部 RUNNING DeepSeek repo 训练\n  - 训练脚本: `train_unified.py`（有 eval_loss NaN bug 的 fix，但当前 4 个训练加载时在 fix 前，需独立 eval）\n  - eval 脚本: `eval_repo_cls.py`（支持 DeepSeek via detect_model_family）\n  - Checkpoint 目录: `checkpoints_deepseek_cls_repo_v4/`, `checkpoints_deepseek_cwm_repo/`, `checkpoints_deepseek_cls_repo_s123/`, `checkpoints_deepseek_cwm_repo_s123/`\n- **home-1x5090**: RTX 5090 32GB, Docker v29.1.3\n  - 工作目录: `/home/sonny/exec-sim-repair-verifier`（部分文件，非完整镜像）\n  - eval 环境已预装: transformers 4.57.6, torch 2.10.0, peft 0.19.1, DeepSeek base model cached\n  - `eval_repo_cls.py` 已传输就绪，dry-run 通过\n  - Repo-level test data: `swebench_test.jsonl` (9784) + `swebench_val.jsonl` (9335)\n  - 两台服务器无法直接互联，checkpoint 传输需中间节点 relay\n  - CLS v5 checkpoint: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/checkpoint-4600`\n- **论文本地路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/`\n- Cron 监控 DeepSeek 4 个训练实验（自动回调）\n\n### 3. 📊 当前状态\n**刚做完：**\n- Dream dream_20260517T034206 full review 分析完成（D117），6 项确认行动项中 A1/A2/A5/A6 全部完成，A3/A4 由 Paper Agent 完成\n- Paper Agent 完成两轮 Patch：Title 更新、Table 1 补 DeepSeek TRAJ、TOST sensitivity §5.4、CLS-TRAJ 效率段落、Qualitative Error Analysis §5.7、Related Work 7 段 39 引用、Repo-level table 结构（DeepSeek 行 TBD）\n- Bibliography 审计通过（45 篇，0 幻觉）\n- Round 1 审稿 17 issues 逐条审计完成：12 完全修复、3 部分修复、2 等 DeepSeek 数据\n- Re-repair Docker eval 完成分析 → genuine negative (D120)，已 drop\n\n**RUNNING 实验（registry）：**\n- `deepseek-cls-repo-v4` (cuda:0, ~66%, ETA ~7h from handoff time)\n- `deepseek-cwm-repo` (cuda:1, ~78%, ETA ~6.8h)\n- `deepseek-cls-repo-s123` (cuda:2, ~71%, **最早完成 ~6.2h**)\n- `deepseek-cwm-repo-s123` (cuda:3, ~48%, **最晚 ~16.7h**)\n\n**等待中：**\n- Reviewer 的 Round 1 逐条审计报告已收到（severity: warning，见上方对话）\n- Agent 的 efficiency benchmark 任务（home GPU）已派出，未回报\n- DeepSeek 训练 cron 回调\n\n### 4. 📋 待办（条件触发式）\n- **DeepSeek cls-repo-s123 训练完成（最早）→** 立即 relay checkpoint 到 home → `eval_repo_cls.py` eval 所有 epoch checkpoint → 报告 accuracy/F1/unparseable\n- **任一 DeepSeek CWM repo 完成 →** 关键节点：CWM unparseable rate 决定 \"tokenizer-specific\" vs \"model-agnostic\" narrative。<20% → tokenizer-specific 成立；>40% → 需改为 complexity-dependent\n- **4 个 DeepSeek repo eval 全部到手 →** (1) 填入论文 Table 4 TBD cells (2) 确定 Path A vs B narrative (3) 更新 Abstract/Introduction/Conclusion (4) 补 W8 appendix 表（val-test mutation distribution）(5) 提交 Round 2 审稿\n- **Reviewer Round 1 审计中的 must-fix →** W8 补 appendix 定量表（val vs test per-mutation-type 分布），1h 工作量\n- **Agent efficiency benchmark 回报 →** 数据写入论文 efficiency section，补独立 table\n- **所有论文更新完成 →** `submit_paper_to_review` 提交 Round 2\n\n### 5. 🎯 战略上下文\n- **DDL**: EMNLP 2026 ARR May 25（剩余 ~7.5 天）\n- **核心决策链**: D108(scope扩展) → D116(framing pivot to design space) → D117(dream分析) → D118(D112覆盖) → D119(tokenizer验证) → D120(re-repair drop)\n- **论文 3 core claims**: (1) func-level equivalence (TOST confirmed for Qwen, consistent for DeepSeek), (2) complexity-dependent divergence at repo-level (tokenizer-specific or model-agnostic, 待 DeepSeek 结果), (3) CLS efficiency + diagnostic granularity (6-9x speedup, error complementarity oracle 90.63%/91.5%)\n- **最容易判断错的事**: (a) Reviewer 和 Agent 反复引用 D112 说 re-repair 不入论文——D112 已被 D118/D120 覆盖，re-repair 是因为 genuine negative 才 drop，不是因为 D112 (b) Dream reviewer 担心 \"tokenizer-specific\" 归因错误（假设 DeepSeek-R1-Qwen3 共享 tokenizer）——实际模型是 DeepSeek-coder-6.7b，tokenizer 完全不同，D119 已验证 (c) Abstract/Intro/Conclusion 还是旧 framing 残留，别忘了 DeepSeek 结果到手后必须全面更新 (d) 两台服务器不能直接连，checkpoint 传输需要 relay，预留时间\n- **Dream 分数参考**: best 4/6 含 re-repair（现在 drop 了），实际论文预期在 best 3.5-4/6 之间。median 3/6。提升空间在 DeepSeek 跨模型验证的强度\n- **Round 1 审稿 overall weak reject**，但 17 issues 中 12 个已完全修复。最大 blocker 是 DeepSeek repo 结果\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17.md"
+}

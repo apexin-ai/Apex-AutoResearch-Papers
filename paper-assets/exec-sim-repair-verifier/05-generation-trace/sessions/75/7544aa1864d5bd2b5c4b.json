@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7544aa1864d5bd2b5c4b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_4_1778628405.md",
+  "task_key": "loop_4_1778628405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778628405.md",
+    "occurrence": 1,
+    "bytes": 5010,
+    "sha256": "9e2250e904a60f0be12eed66733204ea594337113a25fa1453a7ddc1fb6a2c84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-12T23:17:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd-48478 = seetacloud-westd-4x5090 是同一台机器**（D041 确认）。不要当作两台独立服务器调度。cgroup 360GB RAM 限制，**禁止并行训练**（D028，v3 OOM 教训）\n- seetacloud 上 CWM 已连续失败 **9 次**（v1-v9），v6/v7 被平台 SIGTERM，v9 EXIT_CODE=2。下次提交前必须先 SSH 诊断 v9 shell syntax 错误的 root cause，不要盲目提交 v10\n- home-1x5090 account=**sonny**（非 root），项目路径 `/home/sonny/exec-sim-repair-verifier/`。seetacloud account=**root**，模型缓存 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`\n- repo-level-cls-seed123 和 repo-level-cwm-seed123 虽标 westd-48478 cuda:2/3，但实际 = seetacloud 同机。**必须等 CWM v9 后续版本成功 + CLS v4 成功后才能开跑**，不能并行\n- ARR May 25 deadline（~13 天），repo-level 是 **决胜实验**，没有 repo-level CWM 成功数据就没有 C1 claim\n\n### 2. 🖥️ 基础设施快照\n- **home-1x5090**: 1×RTX 5090, 62GB RAM, 非容器。account=sonny, 项目路径 `/home/sonny/exec-sim-repair-verifier/`，system python3，数据 `data/swebench_full/` (70748 samples)，checkpoint 输出 `checkpoints_repo_cls_home/`\n- **seetacloud-westd-4x5090**: 4×RTX 5090, cgroup 360GB RAM。account=root, conda base env (`/root/miniconda3/bin/python`)。模型 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`，CWM checkpoint 输出 `/root/autodl-tmp/checkpoints_repo_cwm_v9/`\n- **westd-48478**: 同 seetacloud（别名），account=sonny\n- 活跃进程：**repo-level-cls-v4** PID=2885139, home-1x5090 cuda:0, cron 监控中（reconcile 确认 still running）\n- 无活跃 Worker，无活跃 W&B run（`--no_wandb`）\n- Cron：1 个活跃（repo-level-cls-v4）\n\n### 3. 📊 当前状态\n- **repo-level-cls-v4** (RUNNING): home cuda:0, PID 2885139。Step ~183/6633 时 loss=1.36 收敛正常。save_steps=200, eval_steps=200。预计总训练 ~11.6h。日志 `/tmp/repo-level-cls-v3_stdout.log`\n- **repo-level-cwm-v9** (DONE/failed): seetacloud cuda:2, EXIT_CODE=2 (shell misuse/syntax)。Wall clock 4286s (~1.2h) 即崩溃。这是 CWM 第 9 次连续失败，**未产出过任何 repo-level CWM metrics**\n- **repo-level-cls-seed123** (PREPARING): westd-48478 cuda:2，等 CLS v4 成功后复用代码提交\n- **repo-level-cwm-seed123** (PREPARING): westd-48478 cuda:3，等 CWM 成功后复用代码提交\n- **空闲 GPU**: seetacloud cuda:2（CWM v9 失败后释放）。home cuda:0 满载\n- Worker 池 = 0（失职状态，但下游全部阻塞等实验完成）\n- 总计 50 实验：30 success, 3 negative, 13 failed, 1 killed, 1 running, 2 preparing\n\n### 4. 📋 待办（条件触发式）\n- **repo-level-cls-v4 cron 回调（成功）** → spawn Worker 跑 repo-level eval（paired bootstrap 脚本已在近期任务中）→ 但需等 CWM 也成功才能做 Go/No-Go D008 对比\n- **repo-level-cls-v4 cron 回调（失败）** → 诊断 root cause，这已是 CLS 第 5 次迭代（v1-v3 failed, cls-home killed）\n- **CWM v9 失败需处理** → 必须 spawn Worker SSH 到 seetacloud 读 `/tmp/repo-level-cwm-v9_stdout.log` 诊断 EXIT_CODE=2 root cause → 修复后提交 CWM v10\n- **CLS v4 成功 + CWM vN 成功** → 两者都完成后：eval + paired bootstrap → Go/No-Go D008（≥3pp 全力 EMNLP Main, 1-3pp 加 seeds, <1pp kill C1 pivot）\n- **Go/No-Go 落在 1-3pp** → 启动 seed123 实验（已 PREPARING），但注意 seetacloud 单进程限制，CLS/CWM seed123 必须串行\n- **Director 未收到 CWM v9 失败汇报** → 新 session 启动后立即向 Director 汇报 CWM v9 失败 + 诊断计划\n\n### 5. 🎯 战略上下文\n- **项目核心**：将 execution simulation 从 generation 重新表述为 classification。函数级两者等价（F1 diff <0.5pp），核心假说转为 **complexity-dependent advantage**——repo-level 是决胜战场\n- **Paper framing**（paper_framing.md）三大 claim：C1 Complexity-Dependent Advantage（repo-level 待验证），C2 Diagnostic Granularity（已验证 TOST p=0.007），C3 Oracle Frontier（已验证 block-corr + complementarity）\n- **最大风险**：CWM 已 9 次失败，零 repo-level metrics。如果 CWM 持续无法训练成功，C1 claim 无法验证。此时需要考虑：(a) CWM 训练失败本身是否可作为 evidence（\"generation 在 repo-level 连训练都不稳定\"），(b) pivot 到 efficiency framing\n- **易错判断**：\n  - 不要把 westd-48478 当作独立于 seetacloud 的第三台服务器\n  - CWM v6/v7 是平台 SIGTERM 杀的（非代码 bug），但 v9 是 EXIT_CODE=2（shell syntax），根因不同\n  - seed123 实验依赖 v4/vN 成功后的代码配置复用，不能提前盲提交\n  - 函数级 CLS 4B 5-seed mean ~88.1% vs CWM ~87.3%，gap 仅 ~0.8pp；8B gap 扩大到 2.43pp。\"scaling widens gap\" 是已验证叙事\n- **决策链**：D008（Go/No-Go）待触发 → 依赖 repo-level CLS + CWM 都成功出 metrics\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778628405.md"
+}

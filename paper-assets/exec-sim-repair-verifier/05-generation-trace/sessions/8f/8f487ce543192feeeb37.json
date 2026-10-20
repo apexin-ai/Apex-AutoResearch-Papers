@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f487ce543192feeeb37",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_4_1778624359.md",
+  "task_key": "loop_4_1778624359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778624359.md",
+    "occurrence": 1,
+    "bytes": 5961,
+    "sha256": "24579e63d83552bbce70ac8f41f43e67e94b8579c222e7c1432f3c27dbb1a119"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-12T22:17:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **seetacloud-westd-4x5090 只能单进程训练**：cgroup 360GB RAM 限制，两个 4B 模型 + 70k 长序列会 OOM SIGKILL（D028 教训，repo-level-cls-v3 就是这么死的）\n- **CWM v6/v7 被平台 SIGTERM 杀过两次**：seetacloud 长训练有被外部 kill 的风险，save_steps 必须足够小（当前 v9 设 100）\n- **gpu_ids 白名单**：config 里是 cuda:0-3，但 seetacloud 受 cgroup 限制实际只能用一张。home 只有 cuda:0\n- **repo-level CLS 日志路径有误**：spec 里 log_path 写的是 `/tmp/repo-level-cls-v3_stdout.log`（v3 的路径），实际是 v4 实验，查日志时注意\n- **nohup 启动的 CLS v4（PID 2885139）没走 submit_training_job**：spec 里没有 `submitted_via: submit_training_job`，意味着可能没有 cron 自动监控。reconcile_crons 只识别到 cwm-v9 和 cls-v4 两个 cron，但 cls-v4 的 cron 刚创建 66s，需确认是否正常挂载\n- **ARR May 25 deadline = 13 天**，repo-level 是决胜实验，不能再失败\n\n### 2. 🖥️ 基础设施快照\n\n**seetacloud-westd-4x5090** (4× RTX 5090, cgroup 360GB)\n- 工作目录：`/home/sonny/exec-sim-repair-verifier`（代码）+ `/root/autodl-tmp/`（模型/checkpoint）\n- Python：`/root/miniconda3/bin/python`（conda base，不是 venv）\n- 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`\n- Checkpoint 输出：`/root/autodl-tmp/checkpoints_repo_cwm_v9/`\n- 活跃进程：repo-level-cwm-v9, PID 95806, tmux session, cuda:2\n- 日志：`/tmp/repo-level-cwm-v9_stdout.log`\n- W&B：`--no_wandb`（两个 RUNNING 实验都没开 W&B）\n\n**home-1x5090** (1× RTX 5090, 62GB RAM, 非容器)\n- 工作目录：`/home/sonny/exec-sim-repair-verifier`\n- Python：系统 python3（具体路径未确认）\n- Checkpoint 输出：`/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`\n- 活跃进程：repo-level-cls-v4, PID 2885139, nohup, cuda:0\n- 日志：`/tmp/repo-level-cls-v3_stdout.log`（路径名是 v3 但实际跑 v4）\n\n**westd-48478**：config 里有（account: sonny），本轮未使用，D040 提到可用于 extra seeds\n\n**Cron**：reconcile 显示 2 个活跃 cron（repo-level-cwm-v9: still running pid=95806; repo-level-cls-v4: 刚创建 66s）\n\n**Worker**：1 个 running（worker_ssh_cwm-v9-dryrun-submit，已跑 25 轮，dry-run 成功，正式训练已提交，应该快完成了）\n\n### 3. 📊 当前状态\n\n**刚完成**：CWM v9 dry-run 成功并提交正式训练（Worker 还在 running 状态，应该马上结束）。CLS v4 也已提交。\n\n**RUNNING 实验**：\n- `repo-level-cwm-v9`：seetacloud cuda:2, PID 95806, 预估 ~20h。Qwen3-4B LoRA, save/eval_steps=100, batch=1, grad_accum=32, 3 epochs, 70748 样本\n- `repo-level-cls-v4`：home cuda:0, PID 2885139, 预估 ~12h。Qwen3-4B, save/eval_steps=200\n\n**等待中**：\n- Worker `worker_ssh_cwm-v9-dryrun-submit` 回调（即将完成）\n- 两个训练的 cron 监控回调（训练完成时触发）\n- 无 pending Director 决策\n\n**历史**：48 个实验，30 success / 3 negative / 12 failed / 1 killed / 2 running。CWM 已迭代到 v9（v1-v8 全部失败），CLS 到 v4（v1-v3 失败）。\n\n### 4. 📋 待办（条件触发式）\n\n- **Worker cwm-v9-dryrun-submit 回调到达** → 确认训练已成功启动，更新 report.md，不需要额外操作\n- **repo-level-cwm-v9 cron 回调（~20h 后）** → 按 on-experiment-done skill 分叉处理；如果 success，spawn Worker 跑 eval + paired bootstrap；如果 failed，诊断日志（第 10 次失败需要认真 root cause）\n- **repo-level-cls-v4 cron 回调（~12h 后）** → 同上；CLS 比 CWM 先完成，但 eval 需要等两个都完成才能做 paired comparison\n- **两个都 success** → spawn Worker 准备 repo-level eval 脚本 + paired bootstrap（D008 Go/No-Go）：F1 diff ≥3pp 全力推 EMNLP Main, 1-3pp 加 seeds, <1pp kill C1 pivot Plan B\n- **训练等待期（CPU 任务）** → 可以并行：(1) 准备 repo-level eval 脚本, (2) Paper Agent Step 2 继续（图表生成 + 模板下载）, (3) westd-48478 如有空闲 GPU 可跑 extra seeds（D040）\n- **如果 CWM v9 再次被 SIGTERM** → 不要再在 seetacloud 重试。向 Director 建议：要么用 home 跑（但只有 1 卡且被 CLS 占用），要么申请新 GPU 资源\n\n### 5. 🎯 战略上下文\n\n**核心论文叙事**：Task reformulation（execution simulation 从 generation → classification）。函数级两者等价（F1 diff <0.5pp），核心假说是 **complexity-dependent advantage**——repo-level 复杂代码上 CLS 应该胜出，因为 CWM 会遇到 token-budget exhaustion 和 string-value prediction errors。\n\n**决策链关键节点**：\n- D008: Repo-level Go/No-Go（待 CLS v4 + CWM v9 结果）\n- CWM baseline negative (函数级) → Director 选 Plan B：追加 repo-level 验证 complexity-dependent advantage\n- 4B gap 1.25pp, 8B gap 2.43pp → \"scaling widens gap\" 叙事成立\n- Paper framing 3 个 claims：C1 complexity-dependent（repo-level 决胜），C2 diagnostic granularity（已验证），C3 accuracy-utility frontier（已验证）\n\n**最容易判断错的事**：\n1. **不要把 CWM v9 再失败等同于\"方法论失败\"**——v6/v7 是被平台 SIGTERM 杀的，代码本身没问题。v8 也是 failed 但原因是 eval_steps 对齐 bug。v9 是真正修好了所有已知问题的版本\n2. **seetacloud 只能单卡训练**——虽然 config 里有 4 个 GPU，cgroup 限制导致并行会 OOM\n3. **两个实验都没开 W&B**（--no_wandb），cron 监控只能靠进程存活检测 + 日志，不能用 fetch_wandb_metrics\n4. **CLS v4 的 log_path 写错了**（写成 v3 的路径），查日志时要注意实际路径\n5. **Timeline 紧张**：bottleneck 是 CWM ~20h，之后 eval+stats ~3h + paper patch ~1d + 终审 ~1d = 总计 ~4-5d，ARR May 25 还有 13 天，有余量但不能再出大岔子\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778624359.md"
+}

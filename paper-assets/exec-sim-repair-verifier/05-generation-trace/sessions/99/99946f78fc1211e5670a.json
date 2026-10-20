@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99946f78fc1211e5670a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis tost margin sweep c1",
+  "task_key": "worker_analysis_tost-margin-sweep-c1_20260519T084746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tost-margin-sweep-c1_20260519T084746_result.json",
+    "occurrence": 1,
+    "bytes": 1188,
+    "sha256": "d2391d8cd52a2f753a73e93e6bcbbebbf83cce3caf45231d3ababa9e5e03eb79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All deliverables complete. Here's the summary:\n\n**Results: TOST Margin Sweep (CLS vs TRAJ, paired t-test, 5 seeds)**\n\n| Margin (pp) | TOST p | Equivalent? |\n|---|---|---|\n| ±0.5 | 0.490 | no |\n| ±1.0 | 0.200 | no |\n| ±1.5 | 0.068 | no |\n| **±2.0** | **0.025** | **YES** |\n| ±2.5 | 0.010 | YES |\n| ±3.0 | 0.005 | YES |\n| ±4.0 | 0.001 | YES |\n| ±5.0 | 0.001 | YES |\n\n**Key statistics:**\n- Mean gap (CLS − TRAJ): **−0.486 pp** (5-seed simple mean; paper pooled = −0.45)\n- SD: 1.219 pp, SE: 0.545 pp, df = 4\n- Smallest equivalence margin: **±1.648 pp**\n- Monotonicity: verified\n\n**Paper vs. independent recomputation:**\n- Paper: p = 0.007 at ±2pp (clustered bootstrap, 523 variants, 114 clusters)\n- Paired t-test: p = 0.025 at ±2pp (5 seed-level observations, df=4)\n- Both methods agree: **equivalent at ±2pp** (α=0.05)\n- Discrepancy is purely methodological: clustered bootstrap has more power than df=4 paired t-test because it uses per-variant data within seeds\n\n**Files produced (remote):**\n- `/home/sonny/exec-sim-repair-verifier/tost_margin_sweep.py`\n- `/home/sonny/exec-sim-repair-verifier/tost_margin_sweep_cls_traj.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tost-margin-sweep-c1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a103b56510b4ace4eac6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh progress check loop6",
+  "task_key": "worker_ssh_progress-check-loop6_20260513T012651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_progress-check-loop6_20260513T012651_result.json",
+    "occurrence": 1,
+    "bytes": 755,
+    "sha256": "e172274c10d289f2c6855efece0090910adec2c1112ca849f0cfab2da983a099"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均正常运行，registry 已更新。\n\n| | CLS v4 (home-1x5090) | CWM v10 (seetacloud-4x5090) |\n|---|---|---|\n| PID | 2885139 ✓ (elapsed 3:32) | 105205 ✓ (elapsed 1:48, RSS 5.1GB) |\n| Step | 1200/6633 (18.1%) | 601/6633 (9.1%) |\n| train_loss | 0.5212 | 1.7617 |\n| eval_loss | 0.2410 (step 1000) | 0.3435 (step 600) |\n| 速度 | ~7s/it | ~8s/it |\n| 当前状态 | 正在跑 eval@1200 (1505/4668) | 刚完成 eval@600，继续训练 |\n| Checkpoints | — | 400, 500, 600 (最新 09:26 CST) |\n| ETA | ~17:00 UTC 5/13 | ~19:30 UTC 5/13 |\n\nCLS eval_loss 趋势平稳（step200=0.070 仍是 best）。CWM loss 从 6.71→1.91→1.76 持续下降，eval_loss 从上次的 0.3294 微升至 0.3435（可能波动）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-progress-check-loop6.md"
+}

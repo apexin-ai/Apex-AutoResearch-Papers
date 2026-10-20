@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9118e0222727776f531",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops westd status check loop19",
+  "task_key": "worker_ops_westd-status-check-loop19_20260516T010605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-status-check-loop19_20260516T010605_result.json",
+    "occurrence": 1,
+    "bytes": 1830,
+    "sha256": "7ed162ddb66f6081742932d8696275d7b75fa2ceecc16c7b0dc5964820d654ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态汇报\n\n### GPU 状态\n\n| GPU | 显存占用 | 利用率 | 任务 |\n|-----|---------|--------|------|\n| 0 | 17.6/32.6 GB (54%) | 77% | CLS 8B eval (ckpt-1000, test mutation) |\n| 1 | 17.6/32.6 GB (54%) | 99% | CLS 8B eval (ckpt-1000, resume test mutation) |\n| 2 | 29.3/32.6 GB (90%) | 88% | **CWM 8B 训练** (从 ckpt-6100 继续) |\n| 3 | 21.1/32.6 GB (65%) | 89% | CWM 8B ckpt-400 test eval |\n\n**4 块 GPU 全满载。**\n\n---\n\n### 1. CWM 8B v5 训练 (GPU 2, PID 442200) — 新进程，非原 PID 400279\n\n- 从 checkpoint-6100 恢复训练，总步数 6633\n- 当前进度: **6195/6633 (93%)**, ~12s/step\n- 剩余 ~438 步 → **ETA ~1.5h (约 10:36)**\n- 已保存 checkpoints: 400, 5800, 5900, 6000, 6100 (save_total_limit=5)\n\n### 2. CWM 8B ckpt-400 test eval (GPU 3, PID 443221) — 新进程，非原 PID 381618\n\n- 进度: **5440/9784 (55.6%)**, 增量恢复了 5287 条旧结果\n- 新评估样本: 153 条, running_acc = **59.5%**\n- 速率 ~8 样本/min (batch=8, max_new_tokens=1024 生成慢)\n- 剩余 4344 样本 → **ETA ~8-9h (约 17:00-18:00)**\n\n### 3. CLS 8B ckpt-1000 test mutation eval × 2 (GPU 0 & 1)\n\n两个并行 CLS eval，同一 checkpoint 不同输出目录:\n\n| 任务 | GPU | 进度 | Running Acc | ETA |\n|------|-----|------|-------------|-----|\n| cls8b_s42_**ckpt1000**_test_mutation | 0 | 5630/9784 (58%) | **82.8%** | ~10 min |\n| cls8b_s42_**resume**_ckpt1000_test_mutation | 1 | 5870/9784 (60%) | **83.0%** | ~9 min |\n\nCLS eval 很快（max_new_tokens=8），两个都约 10 分钟内完成。\n\n### 4. 其他\n\n- 无额外 python/train/eval 进程\n- 后台有 auto_backup_checkpoints.sh 在运行\n- tmux 查不了（read_only 限制），但 ps 显示有一个 `eval_cwm_seed123` 的 tmux session（已结束的旧任务壳）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-status-check-loop19.md"
+}

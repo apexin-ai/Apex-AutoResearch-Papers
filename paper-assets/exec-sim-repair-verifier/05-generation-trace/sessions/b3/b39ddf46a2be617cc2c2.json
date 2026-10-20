@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b39ddf46a2be617cc2c2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "experiment deepseek zero shot v2",
+  "task_key": "worker_experiment_deepseek-zero-shot-v2_20260517T130747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_deepseek-zero-shot-v2_20260517T130747_result.json",
+    "occurrence": 1,
+    "bytes": 105,
+    "sha256": "497989b4f7ad05b1b6da0ec9df14a67e8b2c7cada0261e26da0ffae6923f3326"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待任务已完成，推理早已结束。结果已保存，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-deepseek-zero-shot-v2.md"
+}

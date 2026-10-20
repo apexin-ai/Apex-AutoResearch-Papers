@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "404c0d7df8375851a1a3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix registry notes 4 experiments",
+  "task_key": "worker_fix_registry-notes-4-experiments_20260514T162907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_registry-notes-4-experiments_20260514T162907_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "9a748f954ee6fd6a424dfac902a85b297bfadcf25bd2e420c8f86613a38c7099"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 registry notes 已更新完毕。\n\n| 实验 | GPU | 状态 | 进度 | ETA (UTC) |\n|------|-----|------|------|-----------|\n| cwm-seed123-conda | cuda:0 | eval | 8704/9784 (89%), acc=59.1% | ~02:30 May 15 |\n| cwm-v12 | cuda:1 | eval | 8808/9784 (90%), acc=57.8% | ~02:15 May 15 |\n| cwm-8b-conda | cuda:2 | train+eval | step 1500/6633 (22.6%), eval_loss=0.3689 | May 15 22:00-May 16 04:00 |\n| cls-8b-s123-conda | cuda:3 | train | step 2917/6633 (44%), loss=0.5215, eval_loss@2800=0.3238 | ~May 15 13:00 |\n\n两个 eval 约 2 小时内完成。CLS 8B s123 还需 ~12h，CWM 8B 最慢需 ~20-28h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-registry-notes-4-experiments.md"
+}

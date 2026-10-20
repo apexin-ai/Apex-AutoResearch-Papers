@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d86fa16c6d73e105c6a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra cls s123 monitor collect",
+  "task_key": "worker_infra_cls-s123-monitor-collect_20260518T025121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_cls-s123-monitor-collect_20260518T025121_result.json",
+    "occurrence": 1,
+    "bytes": 166,
+    "sha256": "8ae9faf73c878865de8772b08b3e7c502b2b113742f72c93945ed58b997c8f62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitoring CLS s123 eval — self-pacing, no fixed interval. Current: 9360/9784 (95.7%). Next check in ~4 minutes. Will collect full results once done."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cls-s123-monitor-collect.md"
+}

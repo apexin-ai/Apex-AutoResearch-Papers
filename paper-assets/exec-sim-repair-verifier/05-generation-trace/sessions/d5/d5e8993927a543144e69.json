@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5e8993927a543144e69",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_24_1779057524.md",
+  "task_key": "loop_24_1779057524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_24_1779057524.md",
+    "occurrence": 1,
+    "bytes": 5890,
+    "sha256": "32032fb3adbe1e94ce1389b55de92ed3569128eab6669bc093f13a5108cd2ad1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: max_wall_time\nupdated: '2026-05-17T20:57:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud GPU 分配：cuda:0/1/2/3 全部在本项目白名单内\n- CWM eval 必须 max_new_tokens=512（M003 硬约束），CLS eval 必须 max_seq_length=8192（与 Qwen3 一致）\n- DeepSeek CWM repo-level 必须用 last-epoch checkpoint（eval_loss=NaN 无法 val-select）\n- --no_wandb 训练的 cron 会产生 false positive（sentinel 检测依赖 W&B heartbeat）——**不要信 cron 的\"进程退出\"通知**，必须 SSH 确认 PID 存活\n- cwm-repo-s123 registry 状态被错误标记 DONE/failed（无法回退），实际训练已死（epoch 2 止步），eval 用 checkpoint-8844\n- CLS v5 retrain 命名避免与被 kill 的 v4 混淆，output_dir=checkpoints_deepseek_cls_repo_v5/\n\n### 2. 🖥️ 基础设施快照\n**seetacloud-westd-4x5090**（4×RTX 5090 32GB）：\n- 工作目录：`/home/sonny/exec-sim-repair-verifier/`\n- 数据：`data/swebench_full/swebench_{train,val,test}.jsonl`\n- 模型：`/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct`\n- Checkpoints: `/root/autodl-tmp/checkpoints_deepseek_{cls,cwm}_repo_{v4,v5,s123}/`\n- Eval 脚本：`eval_repo_cls.py`（CLS）、`eval_repo_cwm.py`（CWM）\n- Conda：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 磁盘：66G 可用（需关注，4 个 eval 同时写）\n\n活跃进程（seetacloud）：\n- GPU 0: PID 664774, tmux=cls-v4-eval-8192, CLS v4 eval (ckpt-4422, seq8192), ~40% done\n- GPU 1: PID 662946, 无 tmux（stdout→log）, CWM s42 eval (best=ckpt-13266, tokens512), ~12% done\n- GPU 2: PID 665019, tmux=cls-s123-eval-8192, CLS s123 eval (best, seq8192), ~35% done\n- GPU 3: PID 668680, tmux=cwm-s123-eval, CWM s123 eval (ckpt-8844, tokens512), ~9% done\n\nCrons：\n- deepseek-cls-repo-v4 (PID 664774, 10min)\n- deepseek-cls-repo-s123 (PID 665019, 10min)\n- deepseek-cwm-repo-s42-epoch2-eval (PID 662946, 30min)\n- deepseek-cwm-repo-s123 (PID 668680, 30min)\n\n**home-1x5090**（1×RTX 5090 32GB）：\n- Qwen3-8B 模型在本地\n- 正在跑 repo-level 3-shot baseline（PID 3890761, ~53% done, ETA ~80min）\n- Worker worker_check_home-gpu-quick_20260517T205619 待回调\n\n### 3. 📊 当前状态\n刚完成：注册 4 个 cron 监控所有 overnight eval 进程。向 Director 确认了 cron 不会干扰进程。\n\n等待中：\n- worker_check_home-gpu-quick（确认 home GPU 进程）— 即将回调\n- CLS v4 eval cron 通知（~6h 后完成）→ 触发 v5 retrain\n- CLS s123 eval cron 通知（~7h 后完成）→ 触发 CWM s42 epoch 2 eval\n- Home 3-shot repo baseline 完成（~80min）→ 汇报结果\n- CWM eval 两个都要 ~28-30h（后天）\n\nRegistry 关键实验：\n- deepseek-cls-repo-v5: PREPARING（已注册 hypothesis，命令已准备，等 GPU 0 释放）\n- deepseek-cwm-repo-s42-epoch2-eval: PREPARING（命令已准备，等 GPU 2 释放）\n\n### 4. 📋 待办（条件触发式）\n- CLS v4 eval (GPU 0) 完成 cron 通知 → 记录 accuracy/unparseable → submit_training_job deepseek-cls-repo-v5 on cuda:0（命令见下方）\n- CLS s123 eval (GPU 2) 完成 cron 通知 → 记录 accuracy/unparseable → 启动 CWM s42 epoch 2 eval on cuda:2\n- Home 3-shot repo baseline 完成 → 注册 artifact + 汇报 Director\n- CWM s42 eval (GPU 1) 完成 → 记录 accuracy/unparseable/parseable-only → 汇报 Director\n- CWM s123 eval (GPU 3) 完成 → 同上\n- CWM s42 epoch 2 eval 完成 → 对比 epoch 3 (58.2%) 判断过拟合\n\n**CLS v5 retrain 命令**：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 python3 train_unified.py --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir data/ --train_file swebench_full/swebench_train.jsonl --val_file swebench_full/swebench_val.jsonl --task cls --lora_rank 16 --lora_alpha 32 --max_seq_length 2048 --epochs 3 --batch_size 2 --grad_accumulation 8 --lr 2e-4 --seed 42 --no_wandb --output_dir /root/autodl-tmp/checkpoints_deepseek_cls_repo_v5/ --run_name deepseek-cls-repo-v5\n```\n\n**CWM s42 epoch 2 eval 命令**：\n```bash\nCUDA_VISIBLE_DEVICES=2 python3 /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_deepseek_cwm_repo/checkpoint-8844/ --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir /home/sonny/exec-sim-repair-verifier/data/swebench_full --device cuda:0 --batch_size 1 --max_seq_length 4096 --max_new_tokens 512 --output eval_deepseek_cwm_repo_s42_ep2.json --pred_output eval_deepseek_cwm_repo_s42_ep2_predictions.jsonl --output_dir /root/autodl-tmp/eval_results/deepseek_cwm_repo_s42_ep2_test --split test\n```\n\n### 5. 🎯 战略上下文\n- 项目目标：EMNLP 2026 ARR May 25 投稿（剩 8 天），Table 4 DeepSeek repo-level 数字是最后缺失块\n- D116: Design space characterization framing — CLS vs CWM vs TRAJ 三种 formulation 比较\n- C2 narrative: CWM repo-level unparseable rate + accuracy 决定 Path A（CWM works at repo）vs Path B（CWM fails at repo）\n- 当前证据倾向 Path B: CWM s42 running_acc 58.2% 远低于 CLS s123 的 74.5%\n- CWM epoch 2 vs epoch 3 对比（D124）：s123(ep2)=62.6% vs s42(ep3)=58.2%，gap 4.4pp 暗示过拟合\n- CLS v4 (ckpt-4422, epoch 2) running_acc 70.9% < s123 (best) 74.5%，因为 v4 只有 epoch 2 checkpoint（训练被 kill）→ 所以 Director 要求 v5 从零完整训练\n\n易错点：\n- 不要信 cron \"进程退出\" 通知——必须 SSH 确认（--no_wandb 导致 false positive，本 session 已踩坑 3 次）\n- CWM eval 脚本用 `--device cuda:0` 但实际 GPU 由 CUDA_VISIBLE_DEVICES 控制映射\n- Registry deepseek-cwm-repo-s123 状态 DONE/failed 是错误的（无法修复），实际 eval 在跑\n- Home GPU 空闲时找活干（Director L1：GPU 空着=失职）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24-1779057524.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d676e6aae2d1acd14f7c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code w5 regression script",
+  "task_key": "worker_code_w5-regression-script_20260520T070509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w5-regression-script_20260520T070509_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "10f3f181d60cac2055f4bf1fab3968f5c71fddafdd6c47bc0c3dfec2ff765f92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`--help` 正常。脚本已写到本地和服务器 `/home/sonny/exec-sim-repair-verifier/w5_mixed_effects_v2.py`。\n\n相比 v1 的改进：\n- **参数化输入**：`--eval_dirs` 逗号分隔目录，`--data_dir` 加载 mutation_type 元数据，`--output_dir` 指定输出\n- **自动推断**：从目录名提取 formulation (cls/cwm/traj)、model (qwen/deepseek)、seed (sNNN)、complexity (repo/func)\n- **两个模型**：cross-complexity (`formulation * complexity/mutation_type`) 和 cross-model (`formulation * model`)，均用 MixedLM + `(1|problem_id)`\n- **统计输出**：fixed effects 系数表 + joint Wald χ² ANOVA + 经验 odds ratio（bootstrap 95% CI）\n- **保存格式**：JSON (`w5_mixed_effects_results.json`) + LaTeX 表格片段 (`w5_latex_tables.tex`)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w5-regression-script.md"
+}

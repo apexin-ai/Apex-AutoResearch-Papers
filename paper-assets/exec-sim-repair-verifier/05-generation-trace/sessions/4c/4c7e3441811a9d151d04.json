@@ -1,0 +1,324 @@
+{
+  "schema_version": "1.0",
+  "id": "4c7e3441811a9d151d04",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "code adapt training script",
+  "task_key": "worker_code_adapt-training-script_20260516T045559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_adapt-training-script_20260516T045559.jsonl",
+    "occurrence": 1,
+    "bytes": 28255,
+    "sha256": "ee28c41bd1c679d066ba4665a74df4e7f2f09de57b7414a18968fb80d4d4abcd"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T04:58:29.442948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T04:58:29.443328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "build_data.py\nmvp_a_total_sim.py\nbuild_cwm_data.py\ntrain_cwm_baseline.py\neval_cwm_baseline.py\nllm_judge_zeroshot.py\neval_majority_voting.py\nartifacts/block_correlation_analysis.py\nartifacts/_project/intermediate/analysis_5paired_bootstrap.py\nartifacts/analysis_5paired_bootstrap.py\nartifacts/_project/intermediate/extract_predictions_generic.py\nartifacts/extract_predictions_generic.py\n.venv/lib/python3.14/site-packages/pip/__init__.py\n.venv/lib/python3.14/site-packages/pip/__main__.py\n.venv/lib/python3.14/site-packages/pip/__pip-runner__.py\n.venv/lib/python3.14/site-packages/pip/_internal/__init__.py\n.venv/lib/python3.14/site-packages/pip/_internal/build_env.py\n.venv/lib/python3.14/site-packages/pip/_internal/cache.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/__init__.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/autocompletion.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/base_command.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/cmdoptions.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/command_context.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/index_command.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/main.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/main_parser.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/parser.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/progress_bars.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/req_command.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/spinners.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/status_codes.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/__init__.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/cache.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/check.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/completion.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/configuration.py\n.venv/lib/python3.14/site-packages/pip/_inter\n…[truncated 4520 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T04:58:29.443523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/train_cwm_baseline.py"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T04:58:29.443753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# train_cwm_baseline.py — Qwen3 LoRA fine-tuning for CWM (Code World Model) generation baseline\n2\t# Input: data_dir/ with {cwm_train,cwm_val}.jsonl (fields: code, test, target)\n3\t# Output: LoRA adapter in output_dir/best/\n4\t# Key difference from train_verifier.py (classification):\n5\t#   - Prompt asks for execution result instead of pass/fail\n6\t#   - Target is execution output string (e.g. \"PASS: ...\" or \"FAIL: AssertionError: ...\")\n7\t#   - Standard causal LM loss on target tokens (no classification head)\n8\t#   - Loss masked on system+user tokens, only computed on assistant response\n9\t# Same: LoRA config, batch_size, grad_accumulation, lr, epochs, seed, max_seq_len\n10\t\n11\timport argparse\n12\timport json\n13\timport logging\n14\timport os\n15\t\n16\timport torch\n17\tfrom datasets import Dataset\n18\tfrom peft import LoraConfig, TaskType, get_peft_model\n19\tfrom transformers import (\n20\t    AutoModelForCausalLM,\n21\t    AutoTokenizer,\n22\t    DataCollatorForSeq2Seq,\n23\t    Trainer,\n24\t    TrainingArguments,\n25\t)\n26\t\n27\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n28\tlog = logging.getLogger(__name__)\n29\t\n30\tSYSTEM_PROMPT = (\n31\t    \"You are a code execution simulator. Given a code snippet and a test case, \"\n32\t    \"predict the execution result.\"\n33\t)\n34\t\n35\t\n36\tdef load_jsonl(path):\n37\t    with open(path) as f:\n38\t        return [json.loads(line) for line in f]\n39\t\n40\t\n41\tdef detect_thinking_support(tokenizer):\n42\t    \"\"\"Qwen3 tokenizers support enable_thinking; older ones don't.\"\"\"\n43\t    try:\n44\t        tokenizer.apply_chat_template(\n45\t            [{\"role\": \"user\", \"content\": \"hi\"}],\n46\t            tokenize=False,\n47\t            enable_thinking=False,\n48\t        )\n49\t        return {\"enable_thinking\": False}\n50\t    except TypeError:\n51\t        return {}\n52\t\n53\t\n54\tdef build_messages(code, test, target=None):\n55\t    user_msg = f\"## Code\\n{code}\\n\\n## Test\\n{test}\\n\\nWhat is the execution result?\"\n56\t    msgs = [\n57\t        {\"role\": \"syste\n…[truncated 6558 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T04:58:29.443970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/build_cwm_data.py"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T04:58:29.444179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# build_cwm_data.py — Convert (code, test, label) data to CWM generation format\n2\t# Input: data/{train,val,test}.jsonl with fields: code, test, label, source, problem_id, mutation_type\n3\t# Output: data/{cwm_train,cwm_val,cwm_test}.jsonl with target = execution output string\n4\t# Key difference from classification: label 0/1 → target string with actual error messages\n5\t# For fail samples, re-executes code+test to capture stderr; pass samples get fixed string.\n6\t\n7\timport argparse\n8\timport json\n9\timport logging\n10\timport os\n11\timport re\n12\timport subprocess\n13\timport sys\n14\tfrom collections import Counter\n15\t\n16\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n17\tlog = logging.getLogger(__name__)\n18\t\n19\tPASS_TARGET = \"PASS: test completed successfully\"\n20\tDEFAULT_TIMEOUT = 5\n21\t\n22\t\n23\tdef load_jsonl(path):\n24\t    with open(path) as f:\n25\t        return [json.loads(line) for line in f]\n26\t\n27\t\n28\tdef save_jsonl(data, path):\n29\t    with open(path, \"w\") as f:\n30\t        for item in data:\n31\t            f.write(json.dumps(item) + \"\\n\")\n32\t\n33\t\n34\tdef execute_and_capture(code: str, test: str, timeout: int) -> str:\n35\t    \"\"\"Execute code + test, return formatted error string for failures.\"\"\"\n36\t    full_code = code + \"\\n\" + test\n37\t    try:\n38\t        result = subprocess.run(\n39\t            [sys.executable, \"-c\", full_code],\n40\t            capture_output=True, text=True, timeout=timeout,\n41\t        )\n42\t        if result.returncode == 0:\n43\t            return PASS_TARGET\n44\t\n45\t        stderr = result.stderr.strip()\n46\t        if not stderr:\n47\t            stdout = result.stdout.strip()\n48\t            if stdout:\n49\t                return f\"FAIL: Error: {stdout.splitlines()[-1]}\"\n50\t            return \"FAIL: Error: non-zero exit code\"\n51\t\n52\t        # Extract the last exception line from traceback\n53\t        lines = stderr.strip().splitlines()\n54\t        # Find the last line that looks like an exception\n55\t        error_line = None\n56\n…[truncated 5027 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T04:58:29.444333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/build_data.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T04:58:29.444591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Build (code, test) -> pass/fail training data from HumanEval + MBPP\n2\t# Mutations on canonical solutions generate fail examples; actual execution verifies labels.\n3\t\n4\timport argparse\n5\timport ast\n6\timport json\n7\timport os\n8\timport random\n9\timport re\n10\timport subprocess\n11\timport sys\n12\timport textwrap\n13\timport time\n14\tfrom collections import Counter, defaultdict\n15\tfrom pathlib import Path\n16\t\n17\tTIMEOUT = 5  # seconds per test execution\n18\tMUTANTS_PER_SOLUTION = 4\n19\tSEED = 42\n20\t\n21\t\n22\t# ── Mutation strategies ──────────────────────────────────────────────\n23\t\n24\tdef mutate_operators(code: str) -> list[str]:\n25\t    \"\"\"Swap arithmetic/comparison operators.\"\"\"\n26\t    swaps = [\n27\t        ('+', '-'), ('-', '+'), ('*', '/'), ('/', '*'),\n28\t        ('==', '!='), ('!=', '=='),\n29\t        ('<=', '<'), ('>=', '>'), ('<', '<='), ('>', '>='),\n30\t        (' and ', ' or '), (' or ', ' and '),\n31\t    ]\n32\t    results = []\n33\t    for old, new in swaps:\n34\t        if old in code:\n35\t            mutated = code.replace(old, new, 1)\n36\t            if mutated != code:\n37\t                results.append(mutated)\n38\t    return results\n39\t\n40\t\n41\tdef mutate_off_by_one(code: str) -> list[str]:\n42\t    \"\"\"Shift integer literals by ±1.\"\"\"\n43\t    results = []\n44\t    # Find integer literals (not inside strings ideally, but good enough)\n45\t    for match in re.finditer(r'(?<![a-zA-Z_\"\\'])(\\d+)(?![a-zA-Z_\"\\'])', code):\n46\t        val = int(match.group(1))\n47\t        for delta in [1, -1]:\n48\t            new_val = val + delta\n49\t            if new_val < 0:\n50\t                continue\n51\t            mutated = code[:match.start(1)] + str(new_val) + code[match.end(1):]\n52\t            if mutated != code:\n53\t                results.append(mutated)\n54\t    return results\n55\t\n56\t\n57\tdef mutate_return_value(code: str) -> list[str]:\n58\t    \"\"\"Modify return statements.\"\"\"\n59\t    results = []\n60\t    lines = code.split('\\n')\n61\t    for i, line in enumerate(lines):\n62\t        stripped = line.lstrip()\n63\n…[truncated 19079 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T04:58:29.444784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "train_cls|train_verifier",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+              "output_mode": "files_with_matches",
+              "glob": "*.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T04:58:29.444957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 1 file\ntrain_cwm_baseline.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T04:58:29.445081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/eval_cwm_baseline.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T04:58:29.445314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# eval_cwm_baseline.py — Evaluate CWM generation baseline on pass/fail classification\n2\t# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\n3\t# Output: Formatted report to stdout + JSON to --output\n4\t# Key difference from eval_verifier.py:\n5\t#   - Generates execution output string instead of \"pass\"/\"fail\"\n6\t#   - Extracts pass/fail from generated output via keyword matching\n7\t#   - Additional metrics: exact match rate, per-error-type match, generation length stats\n8\t# Same metrics: class balance, majority baseline, per-class P/R/F1, accuracy, confusion matrix\n9\t\n10\timport argparse\n11\timport json\n12\timport logging\n13\timport os\n14\timport re\n15\tfrom collections import Counter, defaultdict\n16\t\n17\timport torch\n18\tfrom peft import PeftModel\n19\tfrom sklearn.metrics import (\n20\t    accuracy_score,\n21\t    confusion_matrix,\n22\t    f1_score,\n23\t    precision_score,\n24\t    recall_score,\n25\t)\n26\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n27\t\n28\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n29\tlog = logging.getLogger(__name__)\n30\t\n31\tSYSTEM_PROMPT = (\n32\t    \"You are a code execution simulator. Given a code snippet and a test case, \"\n33\t    \"predict the execution result.\"\n34\t)\n35\t\n36\t\n37\tdef load_jsonl(path):\n38\t    with open(path) as f:\n39\t        return [json.loads(line) for line in f]\n40\t\n41\t\n42\tdef detect_thinking_support(tokenizer):\n43\t    try:\n44\t        tokenizer.apply_chat_template(\n45\t            [{\"role\": \"user\", \"content\": \"hi\"}],\n46\t            tokenize=False,\n47\t            enable_thinking=False,\n48\t        )\n49\t        return {\"enable_thinking\": False}\n50\t    except TypeError:\n51\t        return {}\n52\t\n53\t\n54\tdef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\n55\t    user_msg = f\"## Code\\n{code}\\n\\n## Test\\n{test}\\n\\nWhat is the execution result?\"\n56\t    msgs = [\n57\t        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n58\t        {\"role\": \"user\", \"content\": user_msg},\n59\t    ]\n\n…[truncated 11785 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T04:58:29.445594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/train_unified.py",
+              "content": "\"\"\"Unified LoRA fine-tuning for CWM (Code World Model) generation — supports multiple model families.\n\nSupported model families:\n  - Qwen3 (e.g. Qwen/Qwen3-4B, Qwen/Qwen3-8B)\n  - DeepSeek-Coder (e.g. deepseek-ai/deepseek-coder-6.7b-instruct)\n\nUsage:\n  # Qwen3-8B\n  python train_unified.py --data_dir data/ --model_name_or_path Qwen/Qwen3-8B \\\n      --output_dir checkpoints_cwm_qwen3_8b/ --run_name cwm-qwen3-8b-lora\n\n  # DeepSeek-Coder-6.7B-Instruct\n  python train_unified.py --data_dir data/ --model_name_or_path deepseek-ai/deepseek-coder-6.7b-instruct \\\n      --output_dir checkpoints_cwm_deepseek/ --run_name cwm-deepseek-6.7b-lora\n\nHyperparams are identical across families: LoRA rank=16, alpha=32, 3 epochs, bf16.\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\n\nimport torch\nfrom datasets import Dataset\nfrom peft import LoraConfig, TaskType, get_peft_model\nfrom transformers import (\n    AutoModelForCausalLM,\n    AutoTokenizer,\n    DataCollatorForSeq2Seq,\n    Trainer,\n    TrainingArguments,\n)\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\nlog = logging.getLogger(__name__)\n\nSYSTEM_PROMPT = (\n    \"You are a code execution simulator. Given a code snippet and a test case, \"\n    \"predict the execution result.\"\n)\n\n# ---------------------------------------------------------------------------\n# Model family detection & configuration\n# ---------------------------------------------------------------------------\n\nFAMILY_CONFIG = {\n    \"qwen\": {\n        # Qwen3 uses ChatML-style template; needs enable_thinking=False to suppress <think> tags\n        \"lora_target_modules\": [\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"],\n    },\n    \"deepseek\": {\n        # DeepSeek-Coder-Instruct uses \"### Instruction / ### Response\" template\n        # No special chat template kwargs needed\n        \"lora_target_modules\": [\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"],\n    },\n}\n\n\ndef detect_model_family(model_name: str) -> str:\n    name_lower = model_name.lower()\n    if \"qwen\" in name_lower:\n        return \"qwen\"\n    if \"deepseek\" in name_lower:\n        return \"deepseek\"\n    return \"auto\"\n\n\ndef get_chat_template_kwargs(family: str, tokenizer) -> dict:\n    \"\"\"Return extra kwargs for tokenizer.apply_chat_template(), per model family.\"\"\"\n    if family == \"qwen\":\n        # Qwen3 tokenizers accept enable_thinking; older Qwen2 ones don't\n        try:\n            tokenizer.apply_chat_template(\n                [{\"role\": \"user\", \"content\": \"hi\"}],\n                tokenize=False,\n                enable_thinking=False,\n            )\n            return {\"enable_thinking\": False}\n        except TypeError:\n            return {}\n    # DeepSeek and auto: no special kwargs\n    return {}\n\n\ndef setup_tokenizer(tokenizer, family: str):\n    \"\"\"Ensure pad_token is set; handle family-specific token quirks.\"\"\"\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n        log.info(f\"Set pad_token = eos_token ({tokenizer.eos_token!r})\")\n\n    if family == \"deepseek\" and tokenizer.pad_token_id == tokenizer.eos_token_id:\n        # DeepSeek-Coder uses <|EOT|> as eos. Using it as pad is fine for training\n        # with DataCollatorForSeq2Seq (labels are masked), but log it for awareness.\n        log.info(\n            f\"DeepSeek: pad_token_id == eos_token_id == {tokenizer.eos_token_id} \"\n            f\"({tokenizer.eos_token!r})\"\n        )\n\n\ndef get_lora_target_modules(family: str) -> list[str]:\n    cfg = FAMILY_CONFIG.get(family, FAMILY_CONFIG[\"qwen\"])\n    return cfg[\"lora_target_modules\"]\n\n\n# ---------------------------------------------------------------------------\n# Prompt / tokenization (family-agnostic via apply_chat_template)\n# ---------------------------------------------------------------------------\n\ndef build_messages(code, test, target=None):\n    user_msg = f\"## Code\\n{code}\\n\\n## Test\\n{test}\\n\\nWhat is the execution result?\"\n    msgs = [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": user_msg},\n    ]\n    if target is not None:\n        msgs.append({\"role\": \"assistant\", \"content\": target})\n    return msgs\n\n\ndef _try_apply_chat_template(tokenizer, messages, tmpl_kw, **kwargs):\n    \"\"\"apply_chat_template with graceful fallback if system role is unsupported.\"\"\"\n    try:\n        return tokenizer.apply_chat_template(messages, **tmpl_kw, **kwargs)\n    except Exception:\n        # Some models don't support system role — merge system into first user message\n        merged = []\n        sys_content = \"\"\n        for m in messages:\n            if m[\"role\"] == \"system\":\n                sys_content = m[\"content\"]\n            elif m[\"role\"] == \"user\" and sys_content:\n                merged.append({\"role\": \"user\", \"content\": sys_content + \"\\n\\n\" + m[\"content\"]})\n                sys_content = \"\"\n            else:\n                merged.append(m)\n        return tokenizer.apply_chat_template(merged, **tmpl_kw, **kwargs)\n\n\ndef tokenize_example(tokenizer, code, test, target, max_len, tmpl_kw):\n    prompt_ids = _try_apply_chat_template(\n        tokenizer,\n        build_messages(code, test),\n        tmpl_kw,\n        tokenize=True,\n        add_generation_prompt=True,\n    )\n    full_ids = _try_apply_chat_template(\n        tokenizer,\n        build_messages(code, test, target),\n        tmpl_kw,\n        tokenize=True,\n        add_generation_prompt=False,\n    )\n\n    truncated = len(full_ids) > max_len\n    if truncated:\n        full_ids = full_ids[:max_len]\n\n    prompt_len = min(len(prompt_ids), len(full_ids))\n    labels = [-100] * prompt_len + full_ids[prompt_len:]\n\n    return {\n        \"input_ids\": full_ids,\n        \"labels\": labels,\n        \"attention_mask\": [1] * len(full_ids),\n    }, truncated\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\n\ndef preprocess_split(tokenizer, data, max_len, name, tmpl_kw):\n    out = {\"input_ids\": [], \"labels\": [], \"attention_mask\": []}\n    n_trunc = 0\n    for ex in data:\n        tok, trunc = tokenize_example(\n            tokenizer, ex[\"code\"], ex[\"test\"], ex[\"target\"], max_len, tmpl_kw,\n        )\n        for k in out:\n            out[k].append(tok[k])\n        n_trunc += int(trunc)\n    pct = n_trunc / len(data) * 100 if data else 0\n    log.info(f\"{name}: {n_trunc}/{len(data)} truncated ({pct:.1f}%)\")\n    return Dataset.from_dict(out)\n\n\n# ---------------------------------------------------------------------------\n# Main\n# ---------------------------------------------------------------------------\n\ndef main():\n    p = argparse.ArgumentParser(description=\"Unified LoRA CWM training (Qwen / DeepSeek / auto)\")\n    p.add_argument(\"--data_dir\", required=True)\n    p.add_argument(\"--model_name_or_path\", required=True, help=\"HF model id or local path\")\n    p.add_argument(\"--output_dir\", default=\"checkpoints_cwm/\")\n    p.add_argument(\"--wandb_project\", default=\"exec-sim-repair-verifier\")\n    p.add_argument(\"--run_name\", default=None, help=\"W&B run name (auto-generated if omitted)\")\n    p.add_argument(\"--seed\", type=int, default=42)\n    p.add_argument(\"--max_seq_length\", type=int, default=2048)\n    p.add_argument(\"--batch_size\", type=int, default=2)\n    p.add_argument(\"--grad_accumulation\", type=int, default=16)\n    p.add_argument(\"--lr\", type=float, default=2e-4)\n    p.add_argument(\"--epochs\", type=int, default=3)\n    p.add_argument(\"--warmup_ratio\", type=float, default=0.1)\n    p.add_argument(\"--lora_rank\", type=int, default=16)\n    p.add_argument(\"--lora_alpha\", type=int, default=32)\n    p.add_argument(\"--lora_dropout\", type=float, default=0.05)\n    p.add_argument(\"--max_steps\", type=int, default=-1)\n    p.add_argument(\"--no_wandb\", action=\"store_true\")\n    args = p.parse_args()\n\n    family = detect_model_family(args.model_name_or_path)\n    log.info(f\"Model: {args.model_name_or_path} → family={family}\")\n\n    if args.run_name is None:\n        # e.g. \"Qwen/Qwen3-8B\" → \"cwm-qwen3-8b-lora\"\n        short = args.model_name_or_path.split(\"/\")[-1].lower().replace(\"_\", \"-\")\n        args.run_name = f\"cwm-{short}-lora\"\n    log.info(f\"Run name: {args.run_name}\")\n\n    if args.no_wandb:\n        os.environ[\"WANDB_DISABLED\"] = \"true\"\n    else:\n        os.environ[\"WANDB_PROJECT\"] = args.wandb_project\n\n    # ── Tokenizer ──\n    log.info(f\"Loading tokenizer: {args.model_name_or_path}\")\n    tokenizer = AutoTokenizer.from_pretrained(\n        args.model_name_or_path, trust_remote_code=True, padding_side=\"right\",\n    )\n    setup_tokenizer(tokenizer, family)\n    tmpl_kw = get_chat_template_kwargs(family, tokenizer)\n    log.info(f\"Chat template kwargs: {tmpl_kw}\")\n\n    # Sanity check: render one example to verify template works\n    sample_text = _try_apply_chat_template(\n        tokenizer,\n        build_messages(\"def f(): return 1\", \"assert f() == 1\", \"PASS: test completed successfully\"),\n        tmpl_kw,\n        tokenize=False,\n        add_generation_prompt=False,\n    )\n    log.info(f\"Sample formatted prompt (first 300 chars):\\n{sample_text[:300]}\")\n\n    # ── Data ──\n    train_raw = load_jsonl(os.path.join(args.data_dir, \"cwm_train.jsonl\"))\n    val_raw = load_jsonl(os.path.join(args.data_dir, \"cwm_val.jsonl\"))\n    log.info(f\"Loaded train={len(train_raw)}, val={len(val_raw)}\")\n\n    train_ds = preprocess_split(tokenizer, train_raw, args.max_seq_length, \"train\", tmpl_kw)\n    val_ds = preprocess_split(tokenizer, val_raw, args.max_seq_length, \"val\", tmpl_kw)\n\n    # ── Model ──\n    log.info(f\"Loading model: {args.model_name_or_path}\")\n    try:\n        import flash_attn  # noqa: F401\n        attn_impl = \"flash_attention_2\"\n    except ImportError:\n        attn_impl = \"sdpa\"\n    log.info(f\"Attention: {attn_impl}\")\n\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_name_or_path,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        attn_implementation=attn_impl,\n    )\n    model.config.use_cache = False\n\n    # ── LoRA ──\n    target_modules = get_lora_target_modules(family)\n    log.info(f\"LoRA target modules: {target_modules}\")\n\n    lora_cfg = LoraConfig(\n        task_type=TaskType.CAUSAL_LM,\n        r=args.lora_rank,\n        lora_alpha=args.lora_alpha,\n        lora_dropout=args.lora_dropout,\n        target_modules=target_modules,\n    )\n    model = get_peft_model(model, lora_cfg)\n    model.enable_input_require_grads()\n    model.print_trainable_parameters()\n\n    # ── Training ──\n    collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, padding=True)\n\n    is_dryrun = args.max_steps > 0\n    ta = {\n        \"output_dir\": args.output_dir,\n        \"num_train_epochs\": args.epochs,\n        \"max_steps\": args.max_steps,\n        \"per_device_train_batch_size\": args.batch_size,\n        \"per_device_eval_batch_size\": args.batch_size,\n        \"gradient_accumulation_steps\": args.grad_accumulation,\n        \"learning_rate\": args.lr,\n        \"warmup_ratio\": args.warmup_ratio,\n        \"bf16\": True,\n        \"logging_steps\": 1 if is_dryrun else 50,\n        \"eval_strategy\": \"no\" if is_dryrun else \"epoch\",\n        \"save_strategy\": \"no\" if is_dryrun else \"epoch\",\n        \"load_best_model_at_end\": not is_dryrun,\n        \"save_total_limit\": 2,\n        \"seed\": args.seed,\n        \"run_name\": args.run_name,\n        \"report_to\": \"none\" if args.no_wandb else \"wandb\",\n        \"gradient_checkpointing\": True,\n        \"dataloader_num_workers\": 4,\n    }\n    if not is_dryrun:\n        ta[\"metric_for_best_model\"] = \"eval_loss\"\n        ta[\"greater_is_better\"] = False\n    training_args = TrainingArguments(**ta)\n\n    trainer = Trainer(\n        model=model,\n        args=training_args,\n        train_dataset=train_ds,\n        eval_dataset=val_ds,\n        data_collator=collator,\n    )\n\n    log.info(\"Starting training...\")\n    trainer.train()\n\n    if not is_dryrun:\n        best_dir = os.path.join(args.output_dir, \"best\")\n        trainer.save_model(best_dir)\n        tokenizer.save_pretrained(best_dir)\n        log.info(f\"Best model saved to {best_dir}\")\n    else:\n        log.info(\"Dry-run complete.\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T04:58:29.445937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/train_unified.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T04:58:29.446120+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件写好了：`train_unified.py`\n\n**新模型 DeepSeek-Coder-6.7B-Instruct 的关键差异和注意事项：**\n\n| 差异点 | Qwen3 | DeepSeek-Coder-6.7B-Instruct |\n|--------|-------|------|\n| Chat template 格式 | ChatML (`<\\|im_start\\|>...<\\|im_end\\|>`) | `### Instruction:\\n...\\n### Response:\\n` |\n| 特殊参数 | `enable_thinking=False` | 无 |\n| EOS token | `<\\|im_end\\|>` / `<\\|endoftext\\|>` | `<\\|EOT\\|>` |\n| LoRA target modules | q/k/v/o_proj | 同（LLaMA架构） |\n| context length | 32K | 16K |\n\n**脚本设计要点：**\n1. `detect_model_family()` 根据模型名自动选择配置\n2. `get_chat_template_kwargs()` 只给 Qwen3 传 `enable_thinking=False`\n3. `_try_apply_chat_template()` 兼容不支持 system role 的模型（自动 merge 到 user message）\n4. tokenizer/pad_token 处理对两者都安全\n5. 训练启动时打印一条格式化后的 sample prompt 用于人工验证模板是否正确\n\n**eval 脚本（`eval_cwm_baseline.py`）也有 Qwen 特有逻辑**（`<|im_end|>` 作为 stop token），如果要用 DeepSeek 评估需要同样适配。需要的话我可以接着改。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_adapt-training-script_20260516T045559"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/code-adapt-training-script.md"
+}

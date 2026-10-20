@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c123049ea907dff581d0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cls14b restart and f1fix",
+  "task_key": "worker_ssh_cls14b-restart-and-f1fix_20260522T203135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cls14b-restart-and-f1fix_20260522T203135_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "3b1924371e1d49ad4aa1fc6a2c29c399dfac69c1ee7b44dcb1c6cbeb5821ea02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认完毕。\n\n**任务 1 - CLS 14B 训练**：已启动并正在训练\n- GPU 0：14196MiB, 86% 利用率, PID 212100\n- 训练参数：trainable 20.9M / 14.8B (0.14%), 6384 steps, `--no_wandb`\n\n**任务 2 - F1 macro bug**：\n- 脚本 bug 已修复（第 257 行 `f1_macro+100` → `f1_macro*100`）\n- 结果文件中的值本身正确（0shot: 64.0, 3shot: 72.79），无需重跑\n- Registry `14b-baseline-0shot-3shot-v2` 已补充 `f1_macro` 字段\n\n**GPU 状态**：\n- GPU 0：CLS 14B 训练中 (501W, 86%)\n- GPU 2：CWM 14B 训练中 (374W, 64%)\n- GPU 1/3：空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cls14b-restart-and-f1fix.md"
+}

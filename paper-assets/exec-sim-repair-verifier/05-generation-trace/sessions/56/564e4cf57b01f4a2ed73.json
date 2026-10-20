@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "564e4cf57b01f4a2ed73",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval deepseek cls repo v4 ckpt4422",
+  "task_key": "worker_eval_deepseek-cls-repo-v4-ckpt4422_20260517T161113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_deepseek-cls-repo-v4-ckpt4422_20260517T161113_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "0a34967d9ffff442b6695056d5da5f07e2be786e79cc17cae76ee6f0a58c6e75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项任务全部完成。汇报：\n\n---\n\n## 任务 1: cls-repo-v4 eval ✅ 已启动\n\n- tmux session: `cls-repo-v4-eval`\n- GPU 0: 26947 MiB 占用，推理中\n- 进度: 80/9784, running_acc = **75.0%**（早期，不稳定）\n- checkpoint: `/root/autodl-tmp/checkpoints_deepseek_cls_repo_v4/checkpoint-4422`\n- 注: 无 conda 环境，用系统 python3 直接运行\n\n## 任务 2: cls-repo-s123 最终结果 ✅ 已完成\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **82.62%** |\n| Majority baseline | 72.96% |\n| Gap vs majority | +9.67pp |\n| F1 macro | 71.35% |\n| F1 (fail) | 53.37% (P=97.3%, R=36.77%) |\n| F1 (pass) | 89.32% (P=80.95%, R=99.62%) |\n| Unparseable | 2796/9784 (28.6%) |\n| Checkpoint | `/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/best` |\n| Test instances | 9784 |\n\n## 任务 3: cwm-repo s42 eval 进度\n\n- 44/9784 (~0.4%)，running_acc = **75.0%**\n- 速度: ~13s/sample（batch_size=1, max_seq_length=8192）\n- 预计完成: ~35 小时\n- GPU 1: PID 660618, 16483 MiB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-deepseek-cls-repo-v4-ckpt4422.md"
+}

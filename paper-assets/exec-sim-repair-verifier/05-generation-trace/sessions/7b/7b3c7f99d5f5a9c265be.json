@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b3c7f99d5f5a9c265be",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "train deepseek cls func s123",
+  "task_key": "worker_train_deepseek-cls-func-s123_20260516T093556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_deepseek-cls-func-s123_20260516T093556_result.json",
+    "occurrence": 1,
+    "bytes": 363,
+    "sha256": "573abba50f4873c085a84b46776995a32de163e27faee9576bdfacfdad54ce58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练成功启动：\n\n| 项目 | 状态 |\n|------|------|\n| tmux session | `deepseek-cls-func-s123` |\n| PID | 489475 |\n| GPU 2 | 7% util, 1753 MiB（模型加载中） |\n| 预计完成 | ~1.5h |\n\nGPU 0/1 被其他训练占用（deepseek-cls-repo + deepseek-cwm-repo-s42），GPU 2 正在加载 deepseek-coder-6.7b 模型，一切正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-deepseek-cls-func-s123.md"
+}

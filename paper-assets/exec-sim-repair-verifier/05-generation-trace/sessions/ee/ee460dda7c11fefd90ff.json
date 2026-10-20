@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee460dda7c11fefd90ff",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_18_1778893604.md",
+  "task_key": "loop_18_1778893604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1778893604.md",
+    "occurrence": 1,
+    "bytes": 5221,
+    "sha256": "0775914c18d7bf2b0030148fe7c8318f907cb81a804725b1657812a6450d251c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-16T01:06:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须查 `get_project_status` 的 `execution.gpu_ids`，report.md 里显示\"无 GPU 信息\"说明上轮未更新——**不要凭记忆假设可用 GPU，派 Worker 前必查**\n- CWM 8B val-best = ckpt-400（eval_loss 单调递增，step 400 后全部过拟合），**不要尝试评估其他 checkpoint**\n- eval 脚本**禁止 `--max_samples`**——必须评完整 test set (n=9784) / val set (n=9335)，否则数据与主表不可比\n- 标 FAILED/DONE(failed) 前**必须 `ps -p PID` 确认进程已退出**，否则会导致 GPU 碰撞 OOM（已发生过）\n- seq_length/batch_size/precision/lr 变更需 Director 审批（D103）\n- s42 resume checkpoint 从 ckpt-600 开始（不含 ckpt-200/400），原始 ckpt-200/400 在另一个目录\n\n### 2. 🖥️ 基础设施快照\n- **westd** (seetacloud-westd-4x5090): 环境 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 代码: `/home/sonny/exec-sim-repair-verifier/`（注意是 /home/sonny 不是 /root）\n  - 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n  - CLS 8B s42 resume ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`（ckpt-600 ~ ckpt-5400, step=200）\n  - CLS 8B seed123 ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` + backup ckpt-3000 at `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n  - CWM 8B ckpts: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`（save_total_limit=5，列表不固定）\n  - 必须 `HF_HUB_OFFLINE=1`\n- **home** (home-1x5090): 用户 `/home/sonny`，python3，4B v5 ckpts at `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n  - home 版 eval 脚本**不支持 --max_new_tokens**\n- 活跃进程：cls8b-s42-resume-ckpt1000-test-mutation + cls8b-s42-ckpt1000-test-mutation（RUNNING，具体 PID/tmux 需 SSH 查）\n- cwm8b-ckpt400-test-eval-v3: ALLOCATED 但未提交（GPU cuda:3, bs=8）\n- CWM 8B 全量 eval 极慢：~37s/sample (SDPA, 无 flash_attn), bs=1 约 96h\n\n### 3. 📊 当前状态\n**刚做完**：ckpt-3600 test eval 完成（84.48%），seq_length confound ablation 完成（CLS@2048 vs CWM gap 仍 25pp），LoRA rank ablation 结论确定（rank=32 vs 16 差异 -0.51pp within variance）。Val sweep 全部完成，val-best 更新为 ckpt-3600 (90.28%)。\n\n**RUNNING**：\n- `cls8b-s42-resume-ckpt1000-test-mutation` — CLS 8B s42 resume ckpt-1000 完整 test eval + per-mutation-type breakdown\n- `cls8b-s42-ckpt1000-test-mutation` — CLS 8B s42 原始 ckpt-1000 test eval + mutation breakdown\n\n**ALLOCATED 未提交**：\n- `cwm8b-ckpt400-test-eval-v3` — CWM 8B ckpt-400 test eval (cuda:3, bs=8)。v1 被 SIGKILL @1544, v2 完成 5280/9784 后被 killed。running_acc=65.0%（低于 majority 72.96%），需跑完确认\n\n**PENDING**：\n- `cls8b-s42-resume-ckpt3600-test` — 等待人工审批\n- `cls8b-s42-resume-ckpt3600-mutation` — PREPARING\n\n**Paper**：Full Draft 已启动，EMNLP 2026 ARR deadline **May 25**（9 天）\n\n### 4. 📋 待办（条件触发式）\n- cls8b-s42-resume-ckpt1000-test-mutation 或 cls8b-s42-ckpt1000-test-mutation cron 回调 → spawn worker 提取 per-mutation-type accuracy，更新 registry，汇报 Director\n- cwm8b-ckpt400-test-eval-v3 需提交 → 确认 GPU cuda:3 仍在白名单 → `submit_on_allocated`\n- cls8b-s42-resume-ckpt3600-test 审批通过 → 提交 ckpt-3600 test eval（这是新 val-best，主表数字依赖此结果）\n- CWM 8B ckpt-400 test eval 完成 → 如果 acc < majority baseline → negative conclusion, 需按 red-section 产 Framing 提案（但 CWM 8B failing 实际 *支持* complexity-dependent narrative）\n- 所有 test eval 完成 → 更新 writing_plan.yaml 主表数字 → 全力推 paper writing\n- Paper Agent 需要：Table 1（主表）、Table 2（ablation）、Figure 1（accuracy scaling）定稿\n\n### 5. 🎯 战略上下文\n**核心结论链**：Classification 和 CWM 在 function-level 等效（~87-88%），但 classification 在 8B 上 scaling 更好（+2.43pp），在 repo-level 上优势扩大到 ~26pp（CWM 严重过拟合 + 高 unparseable rate）。这构成 \"complexity-dependent reformulation advantage\" narrative。\n\n**决策关键节点**：\n- D085: Val-test 分布偏移根因 = repo 不匹配 + mutation type 偏移（需在 paper 讨论）\n- D088: Val-best 更新为 ckpt-3600 (90.28%)，主表数字可能需要全部刷新\n- D093: Multi-seed 最终表已有（s42: 84.48%, seed123: 85.60%, mean: 85.04%）\n\n**易错点**：\n- ckpt-1000 mutation eval 和 ckpt-3600 test eval 是**不同实验目的**——前者是诊断粒度分析，后者是主表数字更新。不要混淆\n- CWM 8B running_acc 65% 低于 majority baseline，但**这对 paper 是好消息**（CWM 在复杂任务上 failure mode 更突出 → 支持 claim）\n- repo-level 实验历史极其曲折（v1-v12 反复失败），不要再尝试重训 CWM repo-level\n- 4B seed123 test=75.33% 极低（远低于 s42 的 83.63%），4B 模型 seed variance 大——paper 中需谨慎讨论\n- Paper 必须先写完 experiments section（有数字支撑），再写 intro/abstract（避免 overclaim）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1778893604.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1fe07164e66e9cab016",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis 8b scaling results",
+  "task_key": "worker_analysis_8b-scaling-results_20260512T092218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_8b-scaling-results_20260512T092218_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "3d866988504ea240d1418f87f024a49d5d63b0a17b0b6a0472042230d4190f35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完成。汇总：\n\n## 8B Model-Size-Scaling 结果\n\n### Classification 8B (cls8b) — **SUCCESS**\n\n| 指标 | 4B baseline | 8B | Δ |\n|------|------------|-----|-----|\n| accuracy | 88.41 | **90.48** | +2.07 |\n| pass_f1 | 88.41 | **90.86** | +2.45 |\n| fail_f1 | 88.40 | **90.06** | +1.66 |\n\n### CWM 8B (cwm8b) — 几乎无提升\n\n| 指标 | 4B baseline | 8B | Δ |\n|------|------------|-----|-----|\n| accuracy | 87.51 | 87.67 | +0.16 |\n| pass_f1 | 87.31 | 87.57 | +0.26 |\n| fail_f1 | 87.71 | 87.77 | +0.06 |\n| exact_match | 84.02 | 84.39 | +0.37 |\n\n### 核心发现：cls-cwm gap 随模型增大显著扩大\n\n| 指标 gap (cls-cwm) | 4B | 8B | 扩大倍数 |\n|----------|------|------|------|\n| accuracy | 0.90pp | **2.81pp** | 3.1× |\n| pass_f1 | 1.10pp | **3.29pp** | 3.0× |\n| fail_f1 | 0.69pp | **2.29pp** | 3.3× |\n\n**结论**：Classification 的 scaling 效率远优于 CWM generation。4B 时两者几乎无差距，8B 时 gap 扩大 ~3 倍。强烈支持 complexity hypothesis —— CWM 的瓶颈不在模型容量，而在生成精确错误信息的任务复杂度本身。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-8b-scaling-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "519521322b0f3f1e05c0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_19_1778905813.md",
+  "task_key": "loop_19_1778905813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_19_1778905813.md",
+    "occurrence": 1,
+    "bytes": 4685,
+    "sha256": "29c67e0630fd44b4dffb62154085542ae8810f2bc79882830b26efe28acb1bfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: idle_timeout\nupdated: '2026-05-16T04:30:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd cuda:0/1/2/3，**当前全部被 CWM 8B eval 占用**，eval 完成前不得在这些 GPU 提交新任务\n- CWM 8B val-best = **ckpt-400**（eval_loss 单调递增，无歧义），不需要 val sweep\n- test eval 禁止 `--max_samples`，必须评完整 test set (n=9784)\n- 标 FAILED/DONE 前必须 `ps -p PID` 确认进程已退出（历史 OOM 事故教训）\n- seq_length/bs/precision/lr 变更需 Director 审批（D103）\n- CWM eval 脚本是 `eval_repo_cwm.py`（不是 eval_repo_cls.py）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: seetacloud-westd-4x5090，工作目录 `/home/sonny/exec-sim-repair-verifier`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **8B 模型**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- **CWM 8B checkpoint**: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400`\n- **CLS 8B s42 resume ckpts**: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`（从 ckpt-600 开始）\n- **CLS 8B seed123 ckpts**: `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n- **Home 服务器**: home-1x5090，用户 sonny，路径 `/home/sonny`，4B v5 ckpt 在 `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n- **活跃进程**:\n  - cwm8b-ckpt400-test-eval-v3: PID 443221, tmux=未知, cuda:3（全量 0-9784，~57%）\n  - cwm8b-ckpt400-test-eval-shard2: PID 448094, cuda:1（idx 7680-9784）\n  - cwm8b-ckpt400-test-eval-shard3: PID 453335, tmux=shard3, cuda:0（idx 6200-7680）\n  - cwm8b-ckpt400-test-eval-shard4: cuda:2（idx 9100-9783）\n- **活跃 Cron**: 监控 v3 / shard2 / shard3（3 个）\n- **活跃 Worker**: `worker_code_prepare-cwm8b-merge`（准备 shard merge 脚本）\n\n### 3. 📊 当前状态\nCWM 8B ckpt-400 test eval 是**最后一个阻塞主表的实验**，正在 4 GPU 并行跑 shard。v3 跑了全量但只到 ~57%，shard2/3/4 补跑 gap 区间加速。一个 Worker 正在准备 shard merge 脚本（去重合并 v3 + shard2 + shard3 + shard4 结果）。\n\nRegistry 状态: 成功 84 / 负向 5 / 失败 35 / 共 148。所有 CLS eval 和 mutation breakdown 已完成（CLS 4B/8B s42/seed123 全有），CWM 4B mutation breakdown 已完成。**只差 CWM 8B eval 和 CWM 8B mutation breakdown**。\n\n**等待中**:\n- 4 个 shard 的 cron 回调（eval 完成）\n- `worker_code_prepare-cwm8b-merge` Worker 完成回调\n- shard 全部完成后 → merge → CWM 8B mutation breakdown → 主表锁定 → Paper Agent 整合\n\n### 4. 📋 待办（条件触发式）\n- **任一 shard cron 回调到达** → 检查是否所有 shard 都完成；未全部完成则继续等\n- **所有 shard 完成** → 执行 merge（Worker 已在准备脚本）→ 统计 CWM 8B overall accuracy + unparseable rate → update_registry\n- **CWM 8B overall 出来** → 锁定 8B-8B gap（CLS 8B s42=84.48%, CLS 8B s123=85.60%）→ 向 Director 汇报主表定稿\n- **CWM 8B merge 完成后** → 派 Worker 跑 CWM 8B per-mutation breakdown（复用 CWM 4B 分析脚本）\n- **CWM 8B mutation breakdown 完成** → 汇总完整 5-model mutation comparison table → 交给 Paper Agent\n- **所有数据就绪** → Paper Writing 整合 scaling + mutation 发现，ROADMAP 中\"近期任务\"最后几项\n\n### 5. 🎯 战略上下文\n**DDL: EMNLP 2026 ARR May 25（剩 9 天）**。核心 story: CLS >> CWM，gap ~26pp，scaling 使 CWM 更差（unparseable 73.8%），generation formulation 是 bottleneck。\n\n**关键决策链**:\n- D088: val-selected checkpoint 为主指标\n- D100: CWM relaxed matching 反而降准确率，排除 parsing failure excuse\n- D102: CWM 8B bs=8 加速\n- D104: CWM 4B mutation breakdown 确认 generation bottleneck\n- D105: 论文需报告 off_by_one scaling (+28pp) 和 boundary_removal scale-invariant\n- D107: Oracle ICC 选方案 B\n\n**CWM 8B interim**: unparseable=73.8%, parseable-only acc=38.5%。4B→8B 使 CWM 更差，这是论文最强证据之一。**已有足够 interim 数据支持写作**，但主表需要最终数字。\n\n**易错点**:\n- shard 之间有重叠（v3 全量 + shard2/3/4 补 gap），merge 时**必须按 idx 去重**\n- shard4 (idx 9100-9783) 和 shard2 (idx 7680-9784) 有大量重叠\n- CWM 8B 的 58% overall accuracy 是\"虚假\"的——unparseable 默认 pred=pass 在 pass-dominant (73%) 数据集上白捡分\n- boundary_removal 是 CWM parseable > CLS 的**唯一** mutation type（59.2% vs 46.9%），但 parse_rate 仅 30.6%，论文需谨慎表述\n- Home 服务器无 GPU 信息，目前仅用于 CPU 任务\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-1778905813.md"
+}

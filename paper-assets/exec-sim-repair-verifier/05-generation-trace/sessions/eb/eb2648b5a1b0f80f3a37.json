@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb2648b5a1b0f80f3a37",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cwm eval status check",
+  "task_key": "worker_ops_cwm-eval-status-check_20260523T200222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm-eval-status-check_20260523T200222_result.json",
+    "occurrence": 1,
+    "bytes": 1074,
+    "sha256": "1fc6fb06527bd47d395df95370f773fd3eace196bee6763703dc69900efcf555"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CWM Eval 状态汇总（截至服务器时间 05-24 04:03）\n\n| | GPU 0 | GPU 1 | GPU 3 |\n|---|---|---|---|\n| **任务** | s123 ckpt300 reeval | s456 ckpt300 reeval | ckpt6100 test |\n| **PID** | 278348 | 278746 | 272025 |\n| **状态** | 运行中 | 运行中 | 运行中 |\n| **启动时间** | 05-23 19:19 | 05-23 19:20 | 05-23 18:26 |\n| **已运行** | ~8h44m | ~8h43m | ~9h36m |\n| **进度** | 1140/9784 (11.7%) | 1282/9784 (13.1%) | 5912/9784 (60.4%) |\n| **Running Acc** | **63.2%** | **66.5%** | **69.3%** |\n| **速度** | ~131 samples/h (bs=1) | ~147 samples/h (bs=1) | ~616 samples/h (bs=8) |\n| **剩余时间** | ~66h | ~58h | ~6.3h |\n| **预计完成** | ~05-26 22:00 | ~05-26 14:00 | ~05-24 10:20 |\n| **显存占用** | 17013 MiB | 17011 MiB | 27883 MiB |\n\n**GPU 2** 空闲（0 MiB / 0% util）。\n\n关键观察：\n- GPU 3（ckpt6100, bs=8）今天上午就能跑完\n- GPU 0/1（bs=1）还要跑 2.5 天左右，速度慢 ~4x，因为 batch_size=1\n- s456 比 s123 acc 高 3.3 个点（66.5% vs 63.2%），ckpt6100 最高 69.3%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cwm-eval-status-check.md"
+}

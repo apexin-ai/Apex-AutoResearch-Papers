@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78ad4fb4207c6db4501c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cls8b s42 ckpt1400 val8192 eval",
+  "task_key": "worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls8b-s42-ckpt1400-val8192-eval_20260515T033642_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "669c705192009efefae1385605b1047cddca888949a502f25980cb7c34daac55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总：\n\n**cls8b-s42-ckpt1400-val8192-eval → DONE (success)**\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **85.97%** |\n| Majority baseline | 75.88% |\n| Gap vs majority | **+10.09pp** |\n| F1 macro | 77.15% |\n| F1 fail | 62.95% (P=86.68%, R=49.42%) |\n| F1 pass | 91.34% (P=85.85%, R=97.59%) |\n| Instances | 9335 (full val) |\n| Unparseable | 9 |\n\nVal sweep 目前数据点：ckpt-200=63.52%, ckpt-400=80.96%, **ckpt-1400=85.97%**。准确率仍在上升但增速放缓，fail 类 recall 49.4% 是主要瓶颈。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cls8b-s42-ckpt1400-val8192-eval.md"
+}

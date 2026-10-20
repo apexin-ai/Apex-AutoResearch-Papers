@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a19f2b7eda50439a85a2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check home gpu status",
+  "task_key": "worker_check_home-gpu-status_20260514T052214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_home-gpu-status_20260514T052214_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "a69234ec93e789a66e7d42f463564edb6b58fb7c46660b53b39572597c45918f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**GPU 状态**\n- RTX 5090：18429 MiB / 32607 MiB 已占用，GPU 利用率 100%，温度 83°C，功耗 555W/575W\n- 空闲显存：~14 GB\n\n**Python 进程**\n- PID 3039149（sonny 用户）正在运行，已运行约 18 分钟，占用 18420 MiB GPU 显存 + ~1.9 GB 内存\n- PID 2947263 已不存在\n\n**Checkpoint 目录**\n- `checkpoints_repo_cls_seed123/`：**空目录**（无 checkpoint 文件）\n- `checkpoints_repo_cls_v5/`：有 5 个 checkpoint — checkpoint-600, 4000, 4200, 4400, 4600（最新 4600 写入于 May 13 14:24）\n\n**结论**\n- GPU 正在被 PID 3039149 满载使用（100% 利用率），**不可用于新任务**。这很可能是 CLS v5 的训练在继续运行（checkpoint 序列在递增）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-home-gpu-status.md"
+}

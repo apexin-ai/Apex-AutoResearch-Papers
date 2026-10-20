@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edfe766dff97e1d3788a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh traj14b eval s123 fix",
+  "task_key": "worker_ssh_traj14b-eval-s123-fix_20260523T105115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_traj14b-eval-s123-fix_20260523T105115_result.json",
+    "occurrence": 1,
+    "bytes": 327,
+    "sha256": "c1b32209b2203d054484c9d6cdc624bbe5fbae6f959d84b7943835b76899a8ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**TRAJ 14B eval s123 完成（用 GPU 0，因 GPU 1 被占用）：**\n\n| 指标 | 值 |\n|------|-----|\n| accuracy | 88.57% |\n| f1_macro | 88.56 |\n| unparseable | 0 |\n| test_size | 1032 |\n| predictions | 1032 条，含 problem_id |\n| fields | problem_id, mutation_type, true_label, pred_label, gen_text |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-traj14b-eval-s123-fix.md"
+}

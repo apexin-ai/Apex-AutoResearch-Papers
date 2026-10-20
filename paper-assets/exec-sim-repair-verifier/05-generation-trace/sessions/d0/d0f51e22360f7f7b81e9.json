@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0f51e22360f7f7b81e9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose ds s456 eval done",
+  "task_key": "worker_diagnose_ds-s456-eval-done_20260522T021402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_ds-s456-eval-done_20260522T021402_result.json",
+    "occurrence": 1,
+    "bytes": 1012,
+    "sha256": "e953660cb769ff86c9c7304b287f8e3a84753f78aea7202c5e88f5d61e38783f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕。\n\n---\n\n## DS CWM s456 Eval 结果\n\n**状态**: 成功完成（9784/9784 样本）\n\n| Metric | DS s456 | DS s42 (baseline) | Delta |\n|---|---|---|---|\n| **Accuracy** | 56.11% | 61.49% | **-5.38pp** |\n| **Unparseable rate** | 56.97% | 62.5% | -5.53pp |\n| **Parseable-only acc** | 32.45% | 38.7% | **-6.25pp** |\n| **F1-macro** | 50.60% | — | — |\n| **Fail recall** | 41.99% | — | — |\n| **Pass recall** | 61.35% | — | — |\n\n**Confusion matrix**: TP=4379, FP=1535, FN=2759, TN=1111\n\n**结论**: s456 在所有指标上均低于 s42 baseline，accuracy 差 5.38pp，parseable-only accuracy 差 6.25pp。不过 unparseable rate 略低（57.0% vs 62.5%），说明 s456 的格式遵循稍好但判断准确性更差。两个种子的 CWM 方法都低于 majority baseline（72.96%），跨种子鲁棒性存疑。\n\n**Registry**: `deepseek-cwm-repo-s456-e3-eval` → DONE/success，metrics 已写入。Cron 已无需删除（不在当前 session）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-ds-s456-eval-done.md"
+}

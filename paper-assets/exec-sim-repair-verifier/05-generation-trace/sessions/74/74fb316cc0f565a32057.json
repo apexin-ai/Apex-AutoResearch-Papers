@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74fb316cc0f565a32057",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "figure fig3 oracle stratified",
+  "task_key": "worker_figure_fig3-oracle-stratified_20260515T182413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig3-oracle-stratified_20260515T182413_result.json",
+    "occurrence": 1,
+    "bytes": 397,
+    "sha256": "f250f74e421722b786efdaf6d7610017346ea5f1d1bd72d1260d8a10a6b3876a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 工具不可用，跳过注册。\n\nFigure 3 已生成，输出文件：\n\n- **PDF**: `artifacts/fig3_oracle_stratified.pdf` (27KB)\n- **PNG**: `artifacts/fig3_oracle_stratified.png` (219KB)\n\n图表包含：分组柱状图（i.i.d. 天蓝 + block-correlated 深蓝）、右轴 contribution % 虚线、y=10.93 overall advantage 水平线、T=2 箭头标注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig3-oracle-stratified.md"
+}

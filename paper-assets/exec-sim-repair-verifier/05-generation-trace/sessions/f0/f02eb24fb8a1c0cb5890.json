@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f02eb24fb8a1c0cb5890",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "investigate traj 8b accuracy discrepancy",
+  "task_key": "worker_investigate_traj-8b-accuracy-discrepancy_20260517T142230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_traj-8b-accuracy-discrepancy_20260517T142230_result.json",
+    "occurrence": 1,
+    "bytes": 1141,
+    "sha256": "c5aaca229136e769dc48198b6b0798b8ccdad587190ce86267ad511eea5d4123"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。\n\n## 结论\n\n**不一致原因**: 两个并发 worker 用了不同的 eval 脚本评估同一个 checkpoint，写入同一个输出文件。\n\n| Eval | 脚本 | 模型加载方式 | 准确率 | 正确数 |\n|---|---|---|---|---|\n| 第一次 (analysis worker) | `eval_traj_verifier.py` | `model.cuda()` | **87.98%** | 908/1032 |\n| 第二次 (eval-and-train worker) | `eval_traj_verifier_8b.py` | `device_map=\"auto\"` | **87.60%** | 904/1032 |\n\n**差异**: 4/1032 样本因 bf16 tensor placement 不同导致预测翻转。两脚本仅差 3 行代码（`device_map=\"auto\"`, `low_cpu_mem_usage=True`, `model.cuda()` 注释掉）。\n\n**建议**: 用 **87.60%** 作为论文数值（来自 8B 专用脚本 `eval_traj_verifier_8b.py`）。0.38pp 差异远小于 4B TRAJ 的 seed 方差（0.97pp）。\n\n**粒度分析**:\n- CLS: 1890 per-test 样本, TRAJ: 1032 per-test 样本\n- 覆盖相同 447 个 (problem_id, mutation_type) variants\n- TRAJ 是 CLS 测试的子集（1032/1890 = 54.6%）\n- 4B TRAJ 同样使用 1032 样本粒度\n\n结果已写入 `artifacts/traj_accuracy_investigation.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-traj-8b-accuracy-discrepancy.md"
+}

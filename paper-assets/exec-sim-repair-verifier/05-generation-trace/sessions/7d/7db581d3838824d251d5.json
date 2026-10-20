@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7db581d3838824d251d5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose repo level cwm 8b conda",
+  "task_key": "worker_diagnose_repo-level-cwm-8b-conda_20260514T141833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_repo-level-cwm-8b-conda_20260514T141833_result.json",
+    "occurrence": 1,
+    "bytes": 2399,
+    "sha256": "3ee03f1e9264fd823d0813fbcf73802f5cff0c4c73858ab3ade92c3063d36ec1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告：`repo-level-cwm-8b-conda`\n\n### 失败根因\n\n```\nRuntimeError: DataLoader worker (pid 241561) is killed by signal: Terminated.\n```\n\nDataLoader worker 收到 **SIGTERM**（非 OOM 的 SIGKILL），发生在 **eval 阶段**（evaluation_loop 迭代 dataloader 时，eval progress 39% = 3669/9335 samples）。\n\nSIGTERM 说明是外部进程主动发送的终止信号，而非内存不足被内核杀死。结合两个 8B 实验在 **< 10s 内同时崩溃**，确认是 **服务器级事件**（实例被回收/抢占、资源管理器强制终止等），不是代码 bug。\n\n### 训练进度\n\n| 指标 | 值 |\n|------|-----|\n| 总步数 | 6633 |\n| 崩溃时步数 | **1300**（正在做 step 1300 的 eval） |\n| 进度 | **~20%** |\n| Epoch | ~0.54（eval）/ ~0.59（train） |\n| 最后 train loss | 0.5461 (grad_norm=11.74) |\n| 最后 eval loss | **0.3565**（step 1300 eval） |\n| 运行时间 | ~8h21m |\n\n### 已保存 Checkpoints\n\n| Checkpoint | 时间 |\n|------------|------|\n| checkpoint-400 | May 14 16:32 |\n| checkpoint-900 | May 14 19:49 |\n| checkpoint-1000 | May 14 20:29 |\n| checkpoint-1100 | May 14 21:08 |\n| **checkpoint-1200** | **May 14 21:47** |\n\n最新 checkpoint-1200 文件完整（adapter_model.safetensors 58MB + optimizer.pt 117MB + scheduler/rng/trainer_state 均在）。\n\n### 磁盘状态\n\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| /root/autodl-tmp | 250G | 133G | 118G | 54% |\n| / | 30G | 20G | 11G | 64% |\n\n**磁盘充足，非磁盘满导致。**\n\n### 与 CLS 8B 是否同一根因\n\n**是。** 两个实验在几乎同一时刻被 SIGTERM 终止，且都不是 OOM/CUDA error/磁盘满，确认是同一个服务器级外部事件。\n\n### 恢复方案\n\n可以从 **checkpoint-1200** 恢复，损失约 100 步（~20 分钟训练时间）：\n\n```bash\npython3 train_repo_cwm.py \\\n  --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ \\\n  --device cuda:0 \\\n  --batch_size 1 \\\n  --grad_accumulation 32 \\\n  --seed 42 \\\n  --no_wandb \\\n  --output_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/ \\\n  --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-1200\n```\n\n恢复前建议先确认服务器实例状态稳定（检查是否为竞价实例被回收，或是否有维护通知）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-repo-level-cwm-8b-conda.md"
+}

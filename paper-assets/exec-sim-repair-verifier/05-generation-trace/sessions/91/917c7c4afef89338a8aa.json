@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "917c7c4afef89338a8aa",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cwm8b seed456",
+  "task_key": "worker_analysis_cwm8b-seed456_20260512T145931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cwm8b-seed456_20260512T145931_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "e9a45c0cf14cde825b38a9bc8f6588268b97918c601a9962ea04f7b3871519e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。汇总：\n\n**cwm8b-seed456 结果**\n\n| 指标 | seed456 | seed42 | seed123 |\n|------|---------|--------|---------|\n| accuracy | 86.24 | 87.67 | 86.98 |\n| pass_f1 | 85.96 | 87.57 | 86.83 |\n| fail_f1 | 86.51 | 87.77 | 87.13 |\n| exact_match | 82.8% | — | — |\n| train_loss | 0.2279 | — | — |\n\nseed456 略低于前两个 seed（约 -1pp），但在正常 seed 方差范围内。3 seeds 均值：accuracy 86.96, pass_f1 86.79, fail_f1 87.14。\n\nMVP-B criteria 全部通过。status=DONE, conclusion=success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cwm8b-seed456.md"
+}

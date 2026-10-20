@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d02c11c7303e6c7e7ac6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cwm8b shard progress check",
+  "task_key": "worker_ops_cwm8b-shard-progress-check_20260516T042956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm8b-shard-progress-check_20260516T042956_result.json",
+    "occurrence": 1,
+    "bytes": 755,
+    "sha256": "024290a046d698ea47142fa37f91a8ce1a94b2a8951bb0c3485b5acbeda67500"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| Shard | Completed | % | PID | ETA (CST) |\n|-------|-----------|---|-----|-----------|\n| **v3** | 7208/9784 | 73.7% | alive | ~18:20 |\n| **shard3** | 952/1480 | 64.3% | alive | ~13:32 |\n| **shard2** | 1592/2104 | 75.7% | alive | ~13:29 |\n| **shard4** | 688/684 | 100% | done | ✅ |\n\n关键发现：\n- **v3 跑的是全量测试集**（无 `--start_idx`/`--end_idx`），输出在 `cwm_8b_ckpt400_test/`，用 cuda:0。已到 index 7207，远超原计划的 6200。\n- **shard2/shard3 约 1 小时内完成**。完成后 idx 0-9783 全覆盖可用——v3 前 6200 行 + shard3 (6200-7680) + shard2 (7680-9784) 拼接即可，无需等 v3 跑完全量。\n- 报告已写到 `artifacts/cwm8b_shard_progress.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cwm8b-shard-progress-check.md"
+}

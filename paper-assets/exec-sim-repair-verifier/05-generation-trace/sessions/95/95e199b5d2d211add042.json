@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95e199b5d2d211add042",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor full gpu status",
+  "task_key": "worker_monitor_full-gpu-status_20260517T202038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_full-gpu-status_20260517T202038_result.json",
+    "occurrence": 1,
+    "bytes": 1026,
+    "sha256": "32651e410f7bcc524c7cebc37760ca373e1e57a07ea6f2ae43d758bf1ed2d98c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部状态汇总：\n\n```\nGPU 0 (CLS v4):   PID 664774 — ALIVE ✓  3920/9784 (40.1%)  running_acc=70.9%  ~6h remaining\nGPU 1 (CWM s42):  PID 662946 — ALIVE ✓  1191/9784 (12.2%)  running_acc=58.2%  ~28h remaining\nGPU 2 (CLS s123): PID 665019 — ALIVE ✓  3440/9784 (35.2%)  running_acc=74.5%  ~7h remaining\nGPU 3 (CWM s123): PID 668680 — ALIVE ✓   846/9784 ( 8.6%)  running_acc=62.6%  ~30h remaining\n```\n\n补充信息：\n- **CLS s123 旧结果** (seq2048) 已完成：9784/9784, accuracy=82.62%, 文件在 `deepseek_cls_repo_s123_test/`\n- **CWM s42** 没有 tmux session，stdout 重定向到 log 文件 `deepseek_cwm_repo_s42_eval.log`，进程正常运行\n- **CLS v4/s123 (8192)** 输出文件在完成时才写入，当前无中间文件\n- **CWM** 两个 eval 速度慢（batch_size=1, 每样本~13s），预计还需 **28-30 小时**\n- **CLS** 两个 eval 速度较快（batch_size=4），预计还需 **6-7 小时**\n- 4 张 GPU 利用率正常（53%-100%），内存占用稳定"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-full-gpu-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d358e990f42a2503953e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "d155 gpu2 deepseek cwm s42 eval",
+  "task_key": "worker_d155-gpu2-deepseek-cwm-s42-eval_20260519T123810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_d155-gpu2-deepseek-cwm-s42-eval_20260519T123810_result.json",
+    "occurrence": 1,
+    "bytes": 853,
+    "sha256": "8a9c54f48f9172dc8520ed609f9518cb7447d231661e7ea7f86195a8b5b0e445"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正常运行：\n\n- **GPU 2**: PID 833672, 23349 MiB / 32607 MiB, 86% util\n- **日志**: 模型已加载，推理已开始（\"Model loaded. Starting inference...\"）\n- **数据**: 9784 test instances，label 分布 {1: 7138, 0: 2646}\n- **batch_size**: 从 12 降至 4（6.7B 模型 @seq4096 OOM，4 可正常运行，VRAM 余量 ~9GB）\n\n完整命令：\n```\nbash -c \"cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_repo_cwm.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints_deepseek_cwm_repo/checkpoint-13266 \\\n  --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct \\\n  --split test --device cuda:0 --max_seq_length 4096 --max_new_tokens 512 \\\n  --batch_size 4 --output_dir /root/autodl-tmp/eval_results/deepseek_cwm_repo_s42_seq4096/\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/d155-gpu2-deepseek-cwm-s42-eval.md"
+}

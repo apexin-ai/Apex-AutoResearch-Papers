@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f988b4a7a6b3dd73dcb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code traj level data prep",
+  "task_key": "worker_code_traj-level-data-prep_20260512T034232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_traj-level-data-prep_20260512T034232_result.json",
+    "occurrence": 1,
+    "bytes": 1567,
+    "sha256": "48f638dc4cb201d3f83a13b6a754d70a32826cedb5c0f78065ceffdb96ddc641"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`train_trace_judge.py` is currently training on the GPU (running 3m41s). Scripts are all created and data is built. The dry-run can't proceed until that finishes.\n\n---\n\n### 汇报\n\n**1. 数据统计**\n\n| Split | Trajectories | Resolved | Unresolved | Avg tests/traj |\n|-------|-------------|----------|------------|----------------|\n| train | 8,052 | 3,764 (46.7%) | 4,288 (53.3%) | 1.9 |\n| val | 1,001 | 457 (45.7%) | 544 (54.3%) | 1.9 |\n| test | 1,032 | 479 (46.4%) | 553 (53.6%) | 1.8 |\n\n0% truncation at max_seq_length=2048.\n\n**2. Dry-run**\n\n无法执行 — `train_trace_judge.py` 正在占用 GPU（27GB/32GB, PID 2310157, 已运行 ~4 分钟）。需等该任务结束后再 dry-run。\n\n**3. 已创建的脚本**\n- `build_traj_data.py` — 已执行，数据在 `data/traj_{train,val,test}.jsonl`\n- `train_traj_verifier.py` — prompt 用 `[Code]`/`[Test Summary]` 格式，label 为 resolved/unresolved\n- `eval_traj_verifier.py` — 含 per-test 一致性分析\n\n**4. 完整训练命令**\n```bash\ncd /home/sonny/exec-sim-repair-verifier && python3 train_traj_verifier.py \\\n  --data_dir data/ --model_name Qwen/Qwen3-4B \\\n  --output_dir checkpoints_traj/ \\\n  --batch_size 2 --grad_accumulation 16 --lr 2e-4 \\\n  --epochs 3 --seed 42 --run_name traj-qwen3-4b-lora\n```\n\n**5. 完整 eval 命令**\n```bash\ncd /home/sonny/exec-sim-repair-verifier && python3 eval_traj_verifier.py \\\n  --data_dir data/ --checkpoint_dir checkpoints_traj/best \\\n  --model_name Qwen/Qwen3-4B --output eval_traj_results.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-traj-level-data-prep.md"
+}

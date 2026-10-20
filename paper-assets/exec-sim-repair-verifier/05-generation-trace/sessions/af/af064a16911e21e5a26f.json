@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af064a16911e21e5a26f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor home gpu status",
+  "task_key": "worker_monitor_home-gpu-status_20260517T181831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_home-gpu-status_20260517T181831_result.json",
+    "occurrence": 1,
+    "bytes": 654,
+    "sha256": "cb94c4dad0495bef50b6f78dcfa7162c97ebc8b0671a68ba3a1551e385e86d33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 项目 | 状态 |\n|------|------|\n| **GPU** | 空闲 — RTX 5090, 0MiB/32607MiB, 0% 利用率, 35°C, 无进程 |\n| **磁盘** | 318G 可用 / 1.1T 总量 (69% 已用) |\n| **TRAJ 8B checkpoints** | 两个 seed 均完好 — seed42 (07:10) 和 seed123 (08:09)，各含 adapter (~58MB) + tokenizer |\n| **Few-shot baseline** | 已完成，结果如下 |\n\n**Few-shot baseline 结果 (3-shot):**\n\n| 模型 | Accuracy | Pass F1 | Fail F1 |\n|------|----------|---------|---------|\n| DeepSeek-Coder-6.7B | 59.95 | 44.13 | 68.78 |\n| Qwen3-8B | 68.78 | 64.46 | 72.17 |\n\nGPU 完全空闲，可以立即启动新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-home-gpu-status-copy-2.md"
+}

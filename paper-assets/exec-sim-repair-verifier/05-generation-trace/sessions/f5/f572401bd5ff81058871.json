@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f572401bd5ff81058871",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cwm8b eval shard progress",
+  "task_key": "worker_ops_cwm8b-eval-shard-progress_20260516T032512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm8b-eval-shard-progress_20260516T032512_result.json",
+    "occurrence": 1,
+    "bytes": 1794,
+    "sha256": "ec9effdc8d40bbfa766e4cf9c96d3b2e8362634b468f66a477f5fb94a42c5301"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CWM 8B ckpt-400 Test Eval 进度报告\n\n### 进程状态：4/4 存活\n\n| Shard | PID | GPU | 已运行 | GPU利用率 | 显存 |\n|-------|--------|------|--------|-----------|------|\n| v3 | 443221 | cuda:0 | 2h38m | 88% | 21.1/31.8 GB |\n| shard2 | 448094 | cuda:1 | 1h59m | 89% | 21.1/31.8 GB |\n| shard3 | 453335 | cuda:0* | 47m | 88% | 21.1/31.8 GB |\n| shard4 | 454722 | cuda:2 | 34m | 88% | 21.3/31.8 GB |\n\n### 各 shard 进度\n\n从 shard4 log 时间戳算出实际处理速度：**~8.3 samples/min**（batch_size=8, ~58s/batch）。\n\n| Shard | 范围 | 已完成 | 总量 | 进度 | 预估剩余 |\n|-------|------|--------|------|------|----------|\n| **v3** | 0-9784 | 6646 | 9784 | 67.9% | ~6h18m* |\n| **shard2** | 7680-9784 | 1039 | 2104 | 49.4% | ~2h08m |\n| **shard3** | 6200-7680 | 400 | 1480 | 27.0% | ~2h10m |\n| **shard4** | 9100-9784 | 292 | 684 | 42.7% | ~47min |\n\n### 关键发现\n\n**v3 是断点续跑**：v3 运行 2h38m 但已有 6646 行结果。按实际速度 8.3/min 算，2h38m 只能跑 ~1317 个新样本，说明之前已有 ~5323 条 resumed 结果。\n\n**范围重叠**：\n- v3 (全量) 与 shard2/3/4 有重叠，需要后续去重\n- shard2 (7680-9784) 与 shard4 (9100-9784) 也有重叠\n\n**全量覆盖 ETA**：\n- 0-6200：已被 v3 完成 ✓\n- 6200-7680：v3 (~idx 6646) 和 shard3 (~idx 6600) 都在跑，瓶颈 ~**2h10m**\n- 7680-9100：shard2 在跑 (~idx 8719)，~**46min** 完成这段\n- 9100-9784：shard4 最快，~**47min** 完成\n\n**整体 ETA：~2h10m**（瓶颈在 shard3 的 6200-7680 段）\n\n### 健康状态\n- 无 OOM 风险（21GB/32GB，余量充足）\n- 4 GPU 利用率均匀 88-89%，速度一致 ~8.3 samples/min\n- shard4 running_acc=69.3%，状态正常\n- 无异常，全部正常推进"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cwm8b-eval-shard-progress.md"
+}

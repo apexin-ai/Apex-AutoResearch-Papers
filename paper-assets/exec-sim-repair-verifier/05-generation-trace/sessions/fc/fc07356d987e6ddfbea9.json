@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "id": "fc07356d987e6ddfbea9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis error overlap matched seed",
+  "task_key": "worker_analysis_error-overlap-matched-seed_20260512T190303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_error-overlap-matched-seed_20260512T190303_result.json",
+    "occurrence": 1,
+    "bytes": 5322,
+    "sha256": "01019d1cf2db9928ac4c87ce04a49be3afd2e5da90b4c14c10ba6f589d8202b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 每个 Seed 的指标表\n\n| 指标 | Seed 0 | Seed 42 | Seed 456 |\n|------|--------|---------|----------|\n| n_samples | 1890 | 1890 | 1890 |\n| cls_accuracy | 87.78 | 87.83 | 87.88 |\n| cwm_accuracy | 87.57 | 87.51 | 86.98 |\n| both_correct | 1611 | 1601 | 1610 |\n| cls_only_wrong | 44 | 53 | 34 |\n| cwm_only_wrong | 48 | 59 | 51 |\n| both_wrong | 187 | 177 | 195 |\n| total_errors | 279 | 289 | 280 |\n| oracle_correct | 1703 | 1713 | 1695 |\n| oracle_accuracy | 90.11 | 90.63 | 89.68 |\n| jaccard_overlap | 0.6703 | 0.6125 | 0.6964 |\n| complementarity_rate | 0.3297 | 0.3875 | 0.3036 |\n| cls_unique_error_rate | 15.77% | 18.34% | 12.14% |\n| cwm_unique_error_rate | 17.20% | 20.42% | 18.21% |\n\n## 聚合结果 (3 seeds)\n\n| 指标 | 值 |\n|------|-----|\n| mean_cls_accuracy | 87.83 |\n| mean_cwm_accuracy | 87.35 |\n| mean_oracle_accuracy | 90.14 |\n| mean_complementarity_rate | 0.3403 |\n| mean_jaccard_overlap | 0.6597 |\n| mean_cls_unique_error_rate | 15.42% |\n| mean_cwm_unique_error_rate | 18.61% |\n| oracle_gain_over_cls | +2.31 |\n| oracle_gain_over_cwm | **30.05 (bug)** |\n\n**注意：`oracle_gain_over_cwm` 值 30.05 是脚本 bug**。base64 脚本中该行计算为 `sum / n / n`（除了两次 n），正确值应为 `90.14 - 87.35 = 2.79`。\n\n## error_overlap_matched_seed.json 完整内容\n\n```json\n{\n  \"per_seed\": [\n    {\n      \"seed\": 0,\n      \"n_samples\": 1890,\n      \"cls_accuracy\": 87.78,\n      \"cwm_accuracy\": 87.57,\n      \"both_correct\": 1611,\n      \"cls_only_wrong\": 44,\n      \"cwm_only_wrong\": 48,\n      \"both_wrong\": 187,\n      \"total_errors\": 279,\n      \"oracle_correct\": 1703,\n      \"oracle_accuracy\": 90.11,\n      \"jaccard_overlap\": 0.6703,\n      \"complementarity_rate\": 0.3297,\n      \"cls_unique_error_rate\": 15.77,\n      \"cwm_unique_error_rate\": 17.2\n    },\n    {\n      \"seed\": 42,\n      \"n_samples\": 1890,\n      \"cls_accuracy\": 87.83,\n      \"cwm_accuracy\": 87.51,\n      \"both_correct\": 1601,\n      \"cls_only_wrong\": 53,\n      \"cwm_only_wrong\": 59,\n      \"both_wrong\": 177,\n      \"total_errors\": 289,\n      \"oracle_correct\": 1713,\n      \"oracle_accuracy\": 90.63,\n      \"jaccard_overlap\": 0.6125,\n      \"complementarity_rate\": 0.3875,\n      \"cls_unique_error_rate\": 18.34,\n      \"cwm_unique_error_rate\": 20.42\n    },\n    {\n      \"seed\": 456,\n      \"n_samples\": 1890,\n      \"cls_accuracy\": 87.88,\n      \"cwm_accuracy\": 86.98,\n      \"both_correct\": 1610,\n      \"cls_only_wrong\": 34,\n      \"cwm_only_wrong\": 51,\n      \"both_wrong\": 195,\n      \"total_errors\": 280,\n      \"oracle_correct\": 1695,\n      \"oracle_accuracy\": 89.68,\n      \"jaccard_overlap\": 0.6964,\n      \"complementarity_rate\": 0.3036,\n      \"cls_unique_error_rate\": 12.14,\n      \"cwm_unique_error_rate\": 18.21\n    }\n  ],\n  \"aggregated\": {\n    \"mean_cls_accuracy\": 87.83,\n    \"mean_cwm_accuracy\": 87.35,\n    \"mean_oracle_accuracy\": 90.14,\n    \"mean_complementarity_rate\": 0.3403,\n    \"mean_jaccard_overlap\": 0.6597,\n    \"mean_cls_unique_error_rate\": 15.42,\n    \"mean_cwm_unique_error_rate\": 18.61,\n    \"oracle_gain_over_cls\": 2.31,\n    \"oracle_gain_over_cwm\": 30.05\n  }\n}\n```\n\n`oracle_gain_over_cwm` 的正确值应为 **2.79**（= 90.14 - 87.35），JSON 中的 30.05 是脚本 bug 产生的错误值。其余指标均正确。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "per_seed": [
+                {
+                  "seed": 0,
+                  "n_samples": 1890,
+                  "cls_accuracy": 87.78,
+                  "cwm_accuracy": 87.57,
+                  "both_correct": 1611,
+                  "cls_only_wrong": 44,
+                  "cwm_only_wrong": 48,
+                  "both_wrong": 187,
+                  "total_errors": 279,
+                  "oracle_correct": 1703,
+                  "oracle_accuracy": 90.11,
+                  "jaccard_overlap": 0.6703,
+                  "complementarity_rate": 0.3297,
+                  "cls_unique_error_rate": 15.77,
+                  "cwm_unique_error_rate": 17.2
+                },
+                {
+                  "seed": 42,
+                  "n_samples": 1890,
+                  "cls_accuracy": 87.83,
+                  "cwm_accuracy": 87.51,
+                  "both_correct": 1601,
+                  "cls_only_wrong": 53,
+                  "cwm_only_wrong": 59,
+                  "both_wrong": 177,
+                  "total_errors": 289,
+                  "oracle_correct": 1713,
+                  "oracle_accuracy": 90.63,
+                  "jaccard_overlap": 0.6125,
+                  "complementarity_rate": 0.3875,
+                  "cls_unique_error_rate": 18.34,
+                  "cwm_unique_error_rate": 20.42
+                },
+                {
+                  "seed": 456,
+                  "n_samples": 1890,
+                  "cls_accuracy": 87.88,
+                  "cwm_accuracy": 86.98,
+                  "both_correct": 1610,
+                  "cls_only_wrong": 34,
+                  "cwm_only_wrong": 51,
+                  "both_wrong": 195,
+                  "total_errors": 280,
+                  "oracle_correct": 1695,
+                  "oracle_accuracy": 89.68,
+                  "jaccard_overlap": 0.6964,
+                  "complementarity_rate": 0.3036,
+                  "cls_unique_error_rate": 12.14,
+                  "cwm_unique_error_rate": 18.21
+                }
+              ],
+              "aggregated": {
+                "mean_cls_accuracy": 87.83,
+                "mean_cwm_accuracy": 87.35,
+                "mean_oracle_accuracy": 90.14,
+                "mean_complementarity_rate": 0.3403,
+                "mean_jaccard_overlap": 0.6597,
+                "mean_cls_unique_error_rate": 15.42,
+                "mean_cwm_unique_error_rate": 18.61,
+                "oracle_gain_over_cls": 2.31,
+                "oracle_gain_over_cwm": 30.05
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-error-overlap-matched-seed.md"
+}

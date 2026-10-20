@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8c33891aa96d615916f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check eval script default seq length",
+  "task_key": "worker_check_eval-script-default-seq-length_20260514T210759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval-script-default-seq-length_20260514T210759_result.json",
+    "occurrence": 1,
+    "bytes": 484,
+    "sha256": "13b0af26a0cc290c132f02019e856a09d6a8e9166c8a3e3287c082b94936e4b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**`max_seq_length` 默认值是 `2048`**（第 257 行：`default=2048`）\n\n**需要重跑。** PID 289073 的命令行确认没有传 `--max_seq_length`，所以用的是默认值 2048，不是 8192，与其他 val sweep 不可比。\n\n**PID 289073 当前状态：** 正在运行，已跑 3 分 43 秒，在 cuda:0 上（不是 cuda:1），checkpoint-3000，split=val。由于刚跑不久，建议尽快 kill 并加上 `--max_seq_length 8192` 重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-script-default-seq-length.md"
+}

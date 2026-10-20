@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "487266cbd127b0ce24de",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_11_1778791292.md",
+  "task_key": "loop_11_1778791292",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778791292.md",
+    "occurrence": 1,
+    "bytes": 6164,
+    "sha256": "b9b00d246810234cdb9c9f1602e7bd69c7c42fa316ffd8fa3969eee9825ca9ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-14T20:35:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd cuda:0/1/2/3 + home cuda:0。只能用这 5 张卡，违规用其他卡直接被 CRITICAL\n- **D063 方法论红线**: checkpoint 选择必须在 val set (9335 samples) 上做，test set (9784) 只报最终数字。之前所有 ROADMAP 里的 checkpoint sweep 数字都是 test set 上的，需要 val set 重跑确认\n- **CWM 8B 训练 PID 266816 (cuda:2) 不可杀/不可干扰** — 之前 D071/D073 已有 Worker 误杀训练进程的事故教训\n- **eval_repo_cls.py max_seq_length 硬编码 2048**，val eval 时必须手动传 `--max_seq_length 8192`，否则截断率飙升（D077 教训）\n- **8B eval 必须传 `--max_new_tokens 512`**（D078），防止 Qwen3-8B 生成不停导致 OOM\n- **CLS 8B checkpoint-3000 存在 provenance 疑问** — 两个 provenance verify Worker 正在跑，结果出来前不要盲目引用 ckpt-3000 数据\n\n### 2. 🖥️ 基础设施快照\n- **westd 服务器**: seetacloud-westd-4x5090, account=root, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n- **home 服务器**: home-1x5090, account=sonny, 同路径\n- **Python**: `/root/miniconda3/bin/python`（westd, conda base 环境），不用 venv\n- **模型缓存**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/` (westd)\n- **数据**: `/home/sonny/exec-sim-repair-verifier/data/` (37338 samples)\n- **Checkpoints 路径** (westd `/root/autodl-tmp/`):\n  - `checkpoints_repo_cls_8b_conda/` — ckpt 200/400/600 (训练完成)\n  - `checkpoints_repo_cls_8b_seed123_conda/` — ckpt 200~3000 (训练中, PID 266444, cuda:3)\n  - `checkpoints_repo_cwm_8b_conda/` — ckpt 400~1600 (训练中, PID 266816, cuda:2)\n  - `checkpoints_repo_cwm_conda_v12/` — ckpt 300~700 (4B CWM, eval 已跑完)\n  - `checkpoints_repo_cwm_seed123_conda/` — ckpt 200~600 (4B CWM seed123, eval 已跑完)\n- **活跃进程**:\n  - PID 266816: 8B CWM 训练 (cuda:2, tmux: repo-level-cwm-8b-conda, step ~1700/6633)\n  - PID 266444: 8B CLS seed123 训练 (cuda:3, resume from ckpt-3000)\n  - PID 282767: CLS 8B ckpt-3000 test eval (cuda:1, registry: cls8b-ckpt3000-test-v2, PREPARING)\n  - PID 282240: CLS 8B ckpt-3000 test eval (cuda:1, registry: cls8b-ckpt3000-test-eval, PREPARING — 可能已被 v2 替代)\n- **Cron 监控**: 2 个 active cron 分别监控 `repo-level-cls-8b-seed123-conda-v3` 和 `repo-level-cwm-8b-conda-v4`\n\n### 3. 📊 当前状态\n**刚做完**: 派了一批 Worker 做 CLS 8B val sweep、8B ckpt-3000 test eval、CWM error analysis。大部分 Worker 已 done，3 个仍 running:\n  - `worker_analysis_cwm-error-analysis-and-cls4b-val` — CWM error mode 分析 + CLS 4B val sweep\n  - `worker_critical_ckpt-3000-provenance-verify` — 验证 westd 上 ckpt-3000 是否是 seed123 的正确 checkpoint\n  - `worker_critical_home-ckpt-provenance-verify` — 验证 home 上 checkpoint provenance\n\n**Registry 状态**: 68 个实验，64 DONE / 2 RUNNING / 2 PREPARING。趋势: 成功 36 / 负向 3 / 失败 18。\n\n**CWM 4B eval 已完成** (killed 状态因中途重启): v12 accuracy ~58.3%, seed123 ~57.3%，unparseable 率极高 (v12: 53.7%, seed123: 67.2%)。这是 CWM 的核心弱点，支撑 C1 claim。\n\n**等待中**:\n  - 3 个 running Worker 回调\n  - 8B CWM 训练完成 (step 1700/6633, ~75% remaining, ETA ~10-15h)\n  - 8B CLS seed123 训练完成 (从 ckpt-3000 resume, 总 steps 6633)\n  - cls8b-ckpt3000-test-v2 eval 结果 (PREPARING, 可能正在跑)\n\n### 4. 📋 待办（条件触发式）\n- **3 个 running Worker 完成 → 读产出，更新 registry，汇报 Director**\n  - provenance verify 结果: 如果 ckpt-3000 provenance 有问题 → 必须标记数据不可信，重新用正确 ckpt eval\n  - CWM error analysis 结果 → 更新 memory.md, 用于 paper error mode 分析章节\n- **cls8b-ckpt3000-test-v2 eval 完成 → 比对 ckpt-400 (84.52%) 和 ckpt-3000 的 test accuracy**\n  - 如果 ckpt-3000 > ckpt-400 → 更新 best checkpoint 记录\n  - 无论结果如何 → 下一步是 val set sweep (D063 修复)\n- **8B CWM 训练 cron 回调 (repo-level-cwm-8b-conda-v4) → 立即启动 8B CWM eval pipeline**\n  - eval 用 `eval_repo_cwm.py --model_name Qwen3-8B --split test` 在 cuda:2 上跑\n  - 同时在 val set 上跑 checkpoint sweep\n- **8B CLS seed123 训练 cron 回调 (repo-level-cls-8b-seed123-conda-v3) → 启动 8B CLS seed123 eval**\n  - checkpoint sweep on val → 选 best → test eval\n  - 与 8B CLS s42 配对做 bootstrap 统计检验\n- **所有 8B eval 完成 → 汇总 4B vs 8B scaling effect**\n  - CLS 8B vs CLS 4B gap, CWM 8B vs CWM 4B gap\n  - CLS-CWM gap 是否随 model size 扩大 → 更新 C1 claim\n- **D063 val set sweep 全部完成 → 用 val-selected checkpoint 跑 test set 最终数字 → patch paper**\n\n### 5. 🎯 战略上下文\n**项目核心**: 证明 \"execution simulation 从 generation 重构为 classification 在代码复杂度增加时优势扩大\"。三个 claims: C1(complexity-dependent advantage, 核心), C2(diagnostic granularity, 已完成), C3(accuracy-utility frontier, 已完成)。\n\n**DDL**: EMNLP 2026 ARR May 25 — 剩 11 天。\n\n**关键决策链**:\n- D063: checkpoint 必须 val set 选，test 只报最终 → 所有已有数字可能变化\n- D072/D073: 8B 训练必须 num_workers=0，否则 DataLoader 子进程被平台 SIGTERM\n- D077: val unparseable 20.2% 根因是截断，修复后降到正常水平\n- D078: 8B eval 必须加 max_new_tokens 限制\n\n**易错点**:\n- **不要把 test set 上的 checkpoint sweep 数字当最终结果** — D063 要求 val set 选 checkpoint\n- **CWM v12 和 seed123 的 \"killed\" 状态不是失败** — 是中途重启后标记的，eval 数据有效\n- **home 服务器和 westd 服务器的 checkpoint 目录名略有不同**（home 没有 `_conda` 后缀的一些旧目录）\n- **两个 PREPARING 实验 (cls8b-ckpt3000-test-eval / cls8b-ckpt3000-test-v2) 可能重复** — v2 是修正 batch_size 后的重提交，先确认 PID 282240 是否还活着再决定是否清理\n- **CWM unparseable 率极高是预期内的** — 这正是 paper 论点 (generation 在复杂代码上失败)，不是 bug\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778791292.md"
+}

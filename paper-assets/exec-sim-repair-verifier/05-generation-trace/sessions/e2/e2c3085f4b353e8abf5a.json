@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2c3085f4b353e8abf5a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cwm14b eval s123 s456",
+  "task_key": "worker_ssh_cwm14b-eval-s123-s456_20260523T075427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cwm14b-eval-s123-s456_20260523T075427_result.json",
+    "occurrence": 1,
+    "bytes": 1235,
+    "sha256": "5d732736392857aab284d822d75336ea8fb196fa5a0c95ed9014de15d13369e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 CWM 14B eval 全部完成。\n\n## 结果汇总\n\n| Seed | CWM Accuracy | Best Checkpoint |\n|------|-------------|-----------------|\n| s42 | 89.26% | `/root/autodl-tmp/checkpoints_cwm14b_func_s42/checkpoint-956` |\n| **s123** | **88.99%** | `/root/autodl-tmp/checkpoints/cwm14b-func-s123/best` |\n| **s456** | **90.26%** | `/root/autodl-tmp/checkpoints/cwm14b-func-s456/best` |\n\n**3-seed 均值：89.50%**\n\n### Prediction 文件路径\n- s123: `/root/autodl-tmp/eval_results/cwm14b_func_s123/eval_cwm_results_predictions.json`\n- s456: `/root/autodl-tmp/eval_results/cwm14b_func_s456/eval_cwm_results_predictions.json`\n\n### 字段名（TOST 脚本参考）\n- `idx` (index)\n- `problem_id` ✓\n- `mutation_type`, `source`\n- `true_label` (PASS/FAIL)\n- `predicted_label` (PASS/FAIL)\n- `correct` (bool)\n- `raw_output`, `error_type`, `exact_match`\n\n### 其他\n- Unparseable: 0（两个 seed 都没有）\n- 基础模型: `/dev/shm/Qwen3-14B`\n- dtype: bf16（默认，未加 `--quantize_4bit`）\n- Test set: 1890 examples\n\nCLS vs CWM 对比（3-seed）：\n- CLS: 89.21%, 90.79%, 89.79% → 均值 89.93%\n- CWM: 89.26%, 88.99%, 90.26% → 均值 89.50%\n\n差异仅 0.43pp，可以跑 TOST 了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cwm14b-eval-s123-s456.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68a1ba9c8427708789ab",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "train cls seed42 conda westd gpu2",
+  "task_key": "worker_train_cls-seed42-conda-westd-gpu2_20260513T225422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cls-seed42-conda-westd-gpu2_20260513T225422_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "20af538d0f6d3edc108aa5e5980938698fc5aae30420b3c7ad0ae42d97643a83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动：\n\n- **GPU 2**: 19425 MiB, 99% 利用率\n- **模型**: Qwen3-4B, LoRA trainable 0.29% (11.8M / 4B params)\n- **Attention**: sdpa\n- **进度**: step 2/6633, ~6.9s/it\n- **数据**: train 2655/70748 truncated (3.8%), val 1883/9335 truncated (20.2%)\n\nRegistry 已为 RUNNING 状态，tmux session `cls-v5-conda` 在 cuda:2 上运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cls-seed42-conda-westd-gpu2.md"
+}

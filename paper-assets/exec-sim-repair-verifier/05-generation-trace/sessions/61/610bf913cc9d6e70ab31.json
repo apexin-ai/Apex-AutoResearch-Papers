@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "610bf913cc9d6e70ab31",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cwm v11 subset500",
+  "task_key": "worker_eval_cwm-v11-subset500_20260513T175019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cwm-v11-subset500_20260513T175019_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "bb6b1e9bb95b21dc305d5ba961125e7cafeeaed4908cedaef3a289fc84332f13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "26/500, acc=69.2%。10 分钟完成 26 样本 ≈ 23s/样本。\n\n进程健康运行。不再逐秒监控了 — eval 正在稳定执行中。\n\n**当前状态汇总**:\n- **进程**: PID 167481/167482, GPU 1, 运行正常\n- **进度**: 26/500 (5.2%), running_acc=69.2%\n- **速度**: ~23 秒/样本\n- **预计剩余**: ~3 小时\n- **预计完成**: ~05:10 (UTC+8)\n\nEval 在后台稳定运行。完成后结果会写入：\n- `/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500/eval_repo_cwm.json`\n- `/root/autodl-tmp/eval_results/cwm_v11_ckpt600_subset500/eval_repo_cwm_predictions.jsonl`\n\n你想让我继续监控等结果出来，还是有其他事要做？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cwm-v11-subset500.md"
+}

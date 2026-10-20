@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "585cdf152daee7ba9894",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "audit paper number consistency",
+  "task_key": "worker_audit_paper-number-consistency_20260521T092353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper-number-consistency_20260521T092353.log",
+    "occurrence": 1,
+    "bytes": 817724,
+    "sha256": "19eef9f17afdf22b753d4cabdcf821dcf4c78209bf98451cd58b6e3035c475f5"
+  },
+  "statistics": {
+    "messages": 109,
+    "user_turns": 1,
+    "tool_calls": 36,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 36,
+      "tool_result": 36,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 35,
+      "chunks": [
+        {
+          "path": "585cdf152daee7ba9894-part-0001.json",
+          "message_count": 35
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 74,
+      "chunks": [
+        {
+          "path": "585cdf152daee7ba9894-part-0001.json",
+          "message_count": 45
+        },
+        {
+          "path": "585cdf152daee7ba9894-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-paper-number-consistency.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1eb8d09c90f2ccf4a0f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "reviewer / loop_25.md",
+  "task_key": "loop_25",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_25.md",
+    "occurrence": 1,
+    "bytes": 3780,
+    "sha256": "b4cc41c3a927f17031cc3b0e9525265148c34b5b9406f6774f5f7e0b3879cd09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 25\nreason: max_wall_time\nupdated: '2026-05-23T20:00:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3（项目配置 exec-sim-repair-verifier.yaml）。当前 3 个 eval 进程分别占 cuda:0/1/3，cuda:2 空闲\n- EMNLP 2026 DDL: **May 25, 2026**（距今 ~2 天）\n- Abstract ≤ 200 words（当前 172 words）\n- Limitations 只能有一个，在正文中（appendix 不能有 limitations section）\n- 论文主文 ≤ 8 页\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`seetacloud-westd-4x5090`（4×RTX 5090, 32GB each）\n- 远程工作目录：`/home/sonny/exec-sim-repair-verifier`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 本地论文路径：`projects/exec-sim-repair-verifier/docs/paper/`\n- 活跃进程（截至 2026-05-23 ~19:40 UTC）：\n  - PID 272025: `eval_repo_cwm.py` ckpt-6100, cuda:3, batch_size=8, ~40.6%（预计 May 24 上午完成）\n  - PID 278348: `eval_repo_cwm.py` s123 ckpt-300 reeval, cuda:0, batch_size=1（DDL 后完成）\n  - PID 278746: `eval_repo_cwm.py` s456 ckpt-300 reeval, cuda:1, batch_size=1（DDL 后完成）\n- s123/s456 batch_size=1 导致极慢（已报 Director，决策是不 kill）\n\n### 3. 📊 当前状态\n**我刚做完**：\n- R17 逐条方案独立审查（N1-N3 MUST-FIX, W1-W6 SHOULD-FIX, M1-M4 MINOR）→ 已 post 给 Director\n- R17 写作修复验证（inconclusive 替换、W3/W4/W6/M1-M4 全部通过，M1 TRAJ 数据量 447→8,052 错误被我发现并修正）\n- M1 数据量修正验证（8,052 vs 15,290, 2.24× 比例，全部 PASS）\n- 数据溯源审计 worker 审查（发现 §3.2 \"<1pp on Qwen3\" 层级混淆——variant-level vs per-test 混用，已报 warning）\n- CLS@400 downsample 实验审查（3 seeds 完成：78.57±0.78%，但与 TRAJ 8,052 samples 不是 matched comparison，已报解释风险）\n\n**等待中**：\n- R17 后续修复（§3.2 \"<1pp\" 层级混淆修正、63.00→63.02 rounding）\n- 最终 PDF 编译 + 视觉检查（提交前必须做）\n- Director 对 CLS@400 写入方式的决策\n\n### 4. 📋 待办\n- §3.2 \"<1pp\" 修复完成 → 验证新措辞是否统一了比较层级（per-test or variant-level）\n- CWM ckpt-6100 eval 完成（~May 24 上午）→ 验证结果是否值得写入 Appendix L CWM convergence\n- 最终 PDF 编译通知 → 执行视觉检查（Read paper-visual-review skill）\n- R18 审稿结果（如有）→ 按 R17 模式逐条审查\n- ARR 提交前 → 检查 Abstract word count、Limitations section 唯一性、页数限制\n\n### 5. 🎯 战略上下文\n- **评分轨迹**：R14/R15 3.0 → R16 3.5 → R17 fresh 回落 3.0。Excitement 是 binding constraint（comparison 论文无新方法），ceiling ~3.5-3.75\n- **核心 finding**：function-level CLS≈CWM（TOST confirmed）；repo-level CLS>>CWM 18-26pp（format collapse）；TRAJ inconclusive after Holm correction\n- **M1 数据量错误**是本 session 最大发现：原文 \"447 vs 15,290 (34×)\" 完全错误，实际 TRAJ 有 8,052 samples。已修正为正确数字。这改变了 \"data volume confound\" 叙事——function-level confound 主要是 label granularity，不是 data volume\n- **CLS@400 解释陷阱**：CLS@400 (78.57%) < TRAJ (86.30%)，但这不是 matched comparison（TRAJ 有 20× 更多数据）。写入论文时必须标注不是 matched，否则会误导\n- **§3.2 line 62 层级混淆**尚未修复：\"<1pp on Qwen3\" 用的是 variant-level pooled gap (-0.45pp)，但同句 DeepSeek \"2.69pp\" 是 per-test gap。审稿人对照 Table 1 会立即发现 Qwen3 per-test gap = 2.13pp ≠ \"<1pp\"\n- **GenRM 叙事弧**完整：Intro 提问 → body 调查 → Conclusion 有条件回答。14B 已降级（Abstract 去数值、Conclusion 加 cross-family 条件），保留 GenRM 动机不影响\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-25-copy-2.md"
+}

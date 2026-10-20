@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a0f44c766decc93a27b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_19_1778905791.md",
+  "task_key": "loop_19_1778905791",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_19_1778905791.md",
+    "occurrence": 1,
+    "bytes": 4588,
+    "sha256": "7e4420ef6409f6a597c5ede5171fc0ff0b3096b247a97b850f969741a1ec9f0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: idle_timeout\nupdated: '2026-05-16T04:26:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 = seetacloud-westd-4x5090 的 cuda:0/1/2/3，无其他可用 GPU（home-1x5090 离线）\n- CWM 8B eval 4 个 shard 全部占满 4 张卡，完成前不可抢占\n- D103: seq_length/batch_size/precision/lr 变更需 Director 审批，不得自行降级\n- D088: 主表必须用 val-selected checkpoint，test eval 必须覆盖完整 test set (n=9784)，禁止 --max_samples\n- 标 FAILED/DONE 前必须 `ps -p PID` 确认进程已退出（此前有误标导致 OOM 事故）\n- CWM 8B eval shard4 (cuda:2) 的 cron 监控可能缺失——reconcile 只返回 3 个 cron（v3/shard2/shard3），shard4 需检查是否有 cron 覆盖\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: seetacloud-westd-4x5090 (root@)，项目目录 /home/sonny/exec-sim-repair-verifier（SSH 后 cd /root/autodl-tmp/ 找模型/数据）\n- **Python**: /root/miniconda3/bin/python（conda base 环境，不是 venv）\n- **模型路径**: CWM 8B checkpoint = /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400；base model = /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\n- **数据**: test set = data/swebench_full/swebench_test.jsonl (n=9784)\n- **eval 输出目录**: /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_{v3,shard2,shard3,shard4}/\n- **活跃进程**:\n  - cwm8b-ckpt400-test-eval-v3: PID 443221, cuda:3, cron 监控中，~57% 完成（idx 0-6200）\n  - cwm8b-ckpt400-test-eval-shard2: PID 448094, cuda:1, cron 监控中（idx 7680-9784）\n  - cwm8b-ckpt400-test-eval-shard3: PID 453335, cuda:0, cron 监控中（idx 6200-7680）\n  - cwm8b-ckpt400-test-eval-shard4: cuda:2（idx 9100+），**cron 可能缺失，优先检查**\n\n### 3. 📊 当前状态\n上一轮完成了 CWM 4B mutation breakdown、CLS 8B 跨 seed P/R 分析、CLS 4B→8B scaling failure mode 对比，并启动了 CWM 8B eval 的 3-shard 并行加速（从原来只有 v3 一个 shard 扩展到 4 shard 覆盖全部 9784 样本）。\n\n**Registry**: 148 DONE + 4 RUNNING（全部是 CWM 8B eval shard）。无 PREPARING/PENDING/QUEUED。\n\n**等待中**:\n- 4 个 CWM 8B eval shard 的 cron 回调（完成后需 merge 去重 → 计算 overall accuracy + unparseable rate + per-mutation breakdown）\n- 无活跃 Worker（Worker 池 = 0，但全 4 GPU 被 eval 占满，暂无 CPU 任务阻塞）\n\n### 4. 📋 待办（条件触发式）\n- **任一 shard cron 回调到达** → spawn Worker 检查该 shard 输出完整性（行数 vs 预期样本数）；若 shard4 无 cron，手动 poll 一次确认状态\n- **4 shard 全部完成** → spawn Worker 做 shard merge（v3 idx 0-6200 + shard3 idx 6200-7680 + shard2 idx 7680-9100 + shard4 idx 9100-9784，注意 v3 和 shard3 在 idx 6200 处有重叠需去重）→ 计算 CWM 8B overall accuracy + unparseable rate + per-mutation breakdown\n- **CWM 8B 数字出炉** → 锁定 8B-8B gap（CLS 8B ~85% vs CWM 8B ?%）→ update_registry + ROADMAP + report.md → 汇报 Director（带 [资源] 行）\n- **主表全部锁定后** → 汇总完整 mutation comparison table（CLS 4B / CLS 8B s42 / CLS 8B s123 / CWM 4B / CWM 8B）→ 派 Paper Writing Worker 整合 scaling + mutation 发现\n- **CWM 8B unparseable > 73.8% (interim)** → 强化 \"generation formulation bottleneck\" narrative；若 < 53.7% (4B level) → 需重新评估 scaling claim，汇报 Director\n\n### 5. 🎯 战略上下文\n**核心结论链**: CLS vs CWM reformulation advantage 随复杂度增长。Function-level 几乎等价 (F1 diff ~0.9pp)，但 repo-level CLS 大幅领先（4B gap ~25pp, 8B gap 待锁定）。CWM 的瓶颈是 generation formulation 本身（unparseable 4B→8B 从 53-67% 升至 73.8%），不是 model capacity。\n\n**关键决策**:\n- D088: val-selected checkpoint 为主指标\n- D102: CWM 8B eval 用 bs=8 加速\n- D104: CWM 4B mutation breakdown 确认 generation bottleneck\n- D107: Oracle ICC 选方案 B\n\n**最容易判断错的事**:\n1. shard 边界和重叠：v3 原本跑 0-全部（resume 模式），shard3 从 6200 开始。merge 时 v3 的 6200+ 部分和 shard3 重叠，需按 idx 去重，以较晚完成的为准\n2. CWM 8B interim 数字（unparseable=73.8%, parseable_acc=38.5%）是早期 v3 单 shard 的中间结果，不是最终数字。最终数字必须等 4 shard merge 后重新计算\n3. shard4 的 start_idx=9100 但 shard2 覆盖 7680-9784——两者在 9100-9784 有重叠，merge 时需处理\n4. DDL 是 ARR May 25（9 天），CWM 8B eval 是最后一个阻塞主表的实验，完成后立即进入 paper writing 冲刺\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-1778905791.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68b2a4c01b840900ee7d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops deprecated file rename",
+  "task_key": "worker_ops_deprecated-file-rename_20260519T164525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deprecated-file-rename_20260519T164525_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "c6a0b46cbc28f3fa83ecf7b200a94430f19b44ea8b45aacae05ee59a4316546f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件均已重命名：\n\n| 原始路径 | 结果 |\n|---|---|\n| `/root/autodl-tmp/eval_results/deepseek_traj_func_s42/eval_traj_results.json` | → `.DEPRECATED` ✓ |\n| `/root/autodl-tmp/eval_results/deepseek_cls_repo_v4_8192.json` | → `.DEPRECATED` ✓ |\n\n第二个文件仅在 `eval_results/` 下存在，`/home/sonny/` 下无副本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deprecated-file-rename.md"
+}

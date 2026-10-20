@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "d8ae85c00c0ed6ac6b61",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops pdf visual check v2",
+  "task_key": "worker_ops_pdf-visual-check-v2_20260523T205619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pdf-visual-check-v2_20260523T205619_result.json",
+    "occurrence": 1,
+    "bytes": 2101516,
+    "sha256": "620c4d18b17eb2c3d95a06ae7d63f8bf6d5ee7ca96a5a21faeed88ebdad3c39d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "d8ae85c00c0ed6ac6b61-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pdf-visual-check-v2.md"
+}

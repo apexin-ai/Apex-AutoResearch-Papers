@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e60bbf8ca73d48ed14b0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "poll westd cuda3 ckpt3000 final",
+  "task_key": "worker_poll_westd-cuda3-ckpt3000-final_20260515T080335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_poll_westd-cuda3-ckpt3000-final_20260515T080335_result.json",
+    "occurrence": 1,
+    "bytes": 86,
+    "sha256": "4539815b3794f94a805c5872a598a0595b94a308998031f3d3ff4784fff61421"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已安排 3 分钟后轮询。当前进度 57.8%，running_acc 85.2%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/poll-westd-cuda3-ckpt3000-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c5581a5b378382f9495",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra kill gpu1 duplicate",
+  "task_key": "worker_infra_kill-gpu1-duplicate_20260519T131851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-gpu1-duplicate_20260519T131851_result.json",
+    "occurrence": 1,
+    "bytes": 268,
+    "sha256": "1f0a03d6de1f6c9f028c7207cea863149b35a8a712b2fcc40dcf575bf7c4c72c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 836311 已终止，GPU 1 显存完全释放（0 MiB, 0%）。\n\n当前 GPU 状态：\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 27723 MiB | 87% |\n| 1 | **0 MiB** | **0%** |\n| 2 | 26083 MiB | 84% |\n| 3 | 0 MiB | 0% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-gpu1-duplicate.md"
+}

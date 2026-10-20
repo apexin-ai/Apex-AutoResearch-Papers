@@ -1,0 +1,687 @@
+{
+  "schema_version": "1.0",
+  "id": "8ab8e2a70014b1e0afbe",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "research paper readiness check",
+  "task_key": "worker_research_paper-readiness-check_20260514T062052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_paper-readiness-check_20260514T062052.jsonl",
+    "occurrence": 1,
+    "bytes": 54160,
+    "sha256": "1063a371b8169a159741ca1b5cfdc3e8b6a7e106ba61bbb0d6abfe69c3713433"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T06:26:25.706856+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T06:26:25.707338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T06:26:25.707549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T06:26:25.707757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — exec-sim-repair-verifier\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR May 25, 2026)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Extended fallback: ICSE 2027 (Jun 23 abstract, Jun 30 paper)\\\\n- Deadline: ARR May 25, 2026 (14 days from project start)\\\\n\\\\n## Core Claims (3 conditions)\\\\n\\\\n1. **Complexity-Dependent Reformulation Advantage**: Binary pass/fail classification and execution output generation (CWM-style) achieve equivalent accuracy on simple function-level code (4B: F1 diff 0.9pp), but classification scales better with model size (8B 3-seed mean accuracy gap=2.43pp; seed42: 2.81pp, cls 90.48% vs cwm 87.67%) and to repo-level complexity where CWM failure modes—token-budget exhaustion and string-value prediction errors—dominate. Zero-shot LLM-as-judge baselines (8B: 64.4%, 32B NF4: 71.7%) are far below fine-tuned 4B (88.4%), confirming fine-tuning necessity. (Validated function-level near-null + 8B scaling evidence; repo-level SWE-bench experiments in progress. Fallback: if repo-level also null, reframe to efficiency-equivalent accuracy—same F1 with 1-token vs N-token inference.)\\\\n\\\\n2. **Diagnostic Granularity At Equivalent Accuracy**: Per-test classification achieves equivalent variant-level accuracy to trajectory-level scoring (TOST equivalence test p=0.007, ±2pp margin; 5-seed pooled gap -0.40pp, 95% CI [-1.32, +0.52]) while providing actionable diagnostic information (which specific tests a patch fails). The per-test formulation gains diagnostic granularity without sacrificing accuracy—potentially enabling targeted re-repair and oracle-based test selection. (Evidence: 5-paired clustered bootstrap CI, 114 clusters, 10000 resamples. Paper must justify ±2pp margin: in code verification, 2pp variant-level difference is negligible given ICC=0.191/DEFF=3.97. Seeds 789\n…[truncated 5157 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T06:26:25.707992+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T06:26:25.708139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "literature_map.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T06:26:25.708265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "ROADMAP.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T06:26:25.708814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (112,005 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/477f919f-f450-4429-96dd-fb97354943c7/tool-results/mcp-agent-ml-research-read_registry-1778739670752.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/477f919f-f450-4429-96dd-fb97354943c7/tool-results/mcp-agent-ml-research-read_registry-1778739670752.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/477f919f-f450-4429-96dd-fb97354943c7/tool-results/mcp-agent-ml-research-read_registry-1778739670752.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T06:26:25.709193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/literature_map.yaml\\\", \\\"content\\\": \\\"papers:\\\\n  # === Execution Simulation (5/5) ===\\\\n  - bibtex_key: ding2025selfexecution\\\\n    title: \\\\\\\"Self-Execution Simulation Improves Coding Models\\\\\\\"\\\\n    authors: \\\\\\\"Ding et al.\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    arxiv: \\\\\\\"2604.03253\\\\\\\"\\\\n    doi: \\\\\\\"\\\\\\\"\\\\n    category: \\\\\\\"Execution Simulation\\\\\\\"\\\\n    verified: true\\\\n    abstract_snippet: \\\\\\\"Train code LLMs to simulate program execution step-by-step; self-verification by filtering code solutions based on predicted output.\\\\\\\"\\\\n    relevance: \\\\\\\"Closest prior work — trains LLMs for execution prediction via generation, we reformulate as classification.\\\\\\\"\\\\n\\\\n  - bibtex_key: meta2025cwm\\\\n    title: \\\\\\\"CWM: An Open-Weights LLM for Research on Code Generation with World Models\\\\\\\"\\\\n    authors: \\\\\\\"Meta AI\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    arxiv: \\\\\\\"2510.02387\\\\\\\"\\\\n    doi: \\\\\\\"\\\\\\\"\\\\n    category: \\\\\\\"Execution Simulation\\\\\\\"\\\\n    verified: true\\\\n    abstract_snippet: \\\\\\\"32B open-weights LLM mid-trained on Python execution traces; 65.8% on SWE-bench Verified.\\\\\\\"\\\\n    relevance: \\\\\\\"Production-scale CWM approach; our CWM baseline follows their generation formulation at smaller scale.\\\\\\\"\\\\n\\\\n  - bibtex_key: liu2024codemind\\\\n    title: \\\\\\\"CodeMind: A Framework to Challenge Large Language Models for Code Reasoning\\\\\\\"\\\\n    authors: \\\\\\\"Liu et al.\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    arxiv: \\\\\\\"2402.09664\\\\\\\"\\\\n    doi: \\\\\\\"\\\\\\\"\\\\n    category: \\\\\\\"Execution Simulation\\\\\\\"\\\\n    verified: true\\\\n    abstract_snippet: \\\\\\\"Framework for evaluating LLM code reasoning: IER, DER, SR, DSR tasks. Performance drops with higher complexity.\\\\\\\"\\\\n    relevance: \\\\\\\"Evaluates execution reasoning capabilities; our work proposes classification as more robust formulation.\n…[truncated 13825 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T06:26:25.709430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/ROADMAP.md\\\", \\\"content\\\": \\\"# exec-sim-repair-verifier — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 06:10 UTC | 更新原因: D061 8B 训练已启动 GPU 2/3, P2 gap 描述修正, D063 val sweep Worker 已派发\\\\n\\\\n## 核心方向\\\\nTask reformulation: execution simulation from generation → classification。核心假设：CLS 优势随代码复杂度增长。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research → Paper Number Finalization（D057 论文阻塞中，等 CWM v12 全量 eval）\\\\n- **DDL**: EMNLP 2026 ARR May 25（剩余 11 天）\\\\n- **🔴 D063 方法论修复**: checkpoint sweep 在 test set 上做 = cherry-picking → 需改为 val set 选 checkpoint\\\\n- **C1 (Complexity-Dependent Advantage)**: ✅ 极度稳固\\\\n  - Function-level: CLS-CWM gap 1.24pp (5 seeds) → 8B: 2.43pp (3 seeds, p=0.008)\\\\n  - Repo-level CLS best: 8B ckpt-400 = 84.52% (F1_macro=80.89, +11.56pp vs majority)\\\\n  - Repo-level CWM early signal: v12 ~58.3%, seed123 ~57.3%（25% done）\\\\n  - 4B-4B repo-level gap: ~18pp (v5-conda 78.43% vs CWM v12 ~58%), 8B-8B: TBD\\\\n  - ⚠️ 上述 repo-level CLS 数字需在 val set 上重新选 checkpoint 后可能变化\\\\n- **C2 (Diagnostic Granularity)**: ✅ 完成 (TOST p=0.007)\\\\n- **C3 (Accuracy-Utility Frontier)**: ✅ 完成\\\\n\\\\n## Checkpoint Sweep 结果（⚠️ 均在 test set 上，需 val set 重跑）\\\\n\\\\n| 模型 | Server | Best Ckpt | Accuracy | F1 macro | Gap vs Maj | 备注 |\\\\n|------|--------|-----------|----------|----------|------------|------|\\\\n| CLS 8B (s42) | westd | ckpt-400 | 84.52% | 80.89 | +11.56pp | ★ repo-level 最佳 |\\\\n| CLS 4B v5 (s42) | home | ckpt-4000 | 81.51% | 72.56 | +8.55pp | pass-biased |\\\\n| CLS 4B seed123 | home | ckpt-600 | 80.73% | 77.31 | +7.78pp | fail recall 77.4% |\\\\n| CLS 4B v5-conda (s42) | westd | ckpt-600 | 76.37% | 71.17 | +3.41pp | D062 F1_macro 选 |\\\\n| CWM v12 (s42) | westd | — | ~58.3%* | TBD | ~-14.7pp | *25% running |\\\\n| CWM seed123 | westd | — | ~57.3%* | TBD | ~-15.7pp | *25% running |\\\\n\\\\n## 近期任务\\\\n- [ ] **D063 修复**: eval 脚本增加 --split 参数 + val set checkpoint sweep（所有 \n…[truncated 2693 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T06:26:25.709643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Extract registry experiment data",
+              "prompt": "I need you to analyze a large JSON file containing ML experiment registry data and extract a structured summary.\n\nThe file is at: /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/477f919f-f450-4429-96dd-fb97354943c7/tool-results/mcp-agent-ml-research-read_registry-1778739670752.txt\n\nIt's JSON with schema: {result: string} — the `result` field is itself a JSON string that needs parsing.\n\nSteps:\n1. Probe the structure with jq (type/length/keys)\n2. Parse the inner JSON and extract ALL experiments\n3. For each experiment, report:\n   - exp_id\n   - status (COMPLETED, RUNNING, FAILED, etc.)\n   - conclusion (if any)\n   - key metrics (accuracy, F1, etc.)\n   - updated_at\n   - Any notes about what the experiment covers\n\nOutput a complete, organized summary grouped by status. Include ALL experiments — don't skip any. Quote metric values exactly as they appear.",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T06:26:25.709840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "decisions.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T06:26:25.709987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/477f919f-f450-4429-96dd-fb97354943c7/tool-results/mcp-agent-ml-research-read_registry-1778739670752.txt",
+              "limit": "50"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T06:26:25.710119+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (50493 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T06:26:25.710249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/477f919f-f450-4429-96dd-fb97354943c7/tool-results/mcp-agent-ml-research-read_registry-1778739670752.txt",
+              "limit": "30"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T06:26:25.710373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (50493 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T06:26:25.710502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/477f919f-f450-4429-96dd-fb97354943c7/tool-results/mcp-agent-ml-research-read_registry-1778739670752.txt\"\nwc -c \"$FILE\"\necho \"---\"\n# Check top-level structure\ncat \"$FILE\" | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nprint('Top-level keys:', list(data.keys()))\nprint('Type of result:', type(data.get('result')))\ninner = json.loads(data['result'])\nprint('Inner type:', type(inner))\nif isinstance(inner, dict):\n    print('Inner keys:', list(inner.keys()))\n    for k, v in inner.items():\n        print(f'  {k}: type={type(v).__name__}, ', end='')\n        if isinstance(v, list):\n            print(f'len={len(v)}')\n        elif isinstance(v, dict):\n            print(f'keys={list(v.keys())[:5]}')\n        else:\n            print(f'val={str(v)[:100]}')\nelif isinstance(inner, list):\n    print('Inner length:', len(inner))\n\"\n",
+              "description": "Probe JSON structure with python"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T06:26:25.710629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "118769 /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/477f919f-f450-4429-96dd-fb97354943c7/tool-results/mcp-agent-ml-research-read_registry-1778739670752.txt\n---\nTop-level keys: ['result']\nType of result: <class 'str'>\nInner type: <class 'dict'>\nInner keys: ['success', 'data', 'error', 'metadata']\n  success: type=bool, val=True\n  data: type=dict, keys=['experiments', 'count', 'total', 'baseline']\n  error: type=NoneType, val=None\n  metadata: type=dict, keys=['elapsed_seconds']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T06:26:25.710761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/477f919f-f450-4429-96dd-fb97354943c7/tool-results/mcp-agent-ml-research-read_registry-1778739670752.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nd = inner['data']\nprint('count:', d['count'])\nprint('total:', d['total'])\nprint('baseline type:', type(d['baseline']).__name__)\nif d['baseline']:\n    print('baseline:', json.dumps(d['baseline'], indent=2)[:500])\nprint()\nexps = d['experiments']\nprint('experiments type:', type(exps).__name__)\nif isinstance(exps, list):\n    print('num experiments:', len(exps))\n    # Show first experiment structure\n    if exps:\n        print('First experiment keys:', list(exps[0].keys()))\nelif isinstance(exps, dict):\n    print('experiment keys:', list(exps.keys()))\n    first_key = list(exps.keys())[0]\n    print('First experiment keys:', list(exps[first_key].keys()))\n\"\n",
+              "description": "Explore experiments structure"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T06:26:25.710919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "count: 61\ntotal: 61\nbaseline type: NoneType\n\nexperiments type: dict\nexperiment keys: ['repo-level-cls-v5', 'repo-level-cls-8b-seed123-conda', 'repo-level-cwm-8b-conda', 'repo-level-cls-v5-conda', 'repo-level-cls-seed123-home', 'repo-level-cls-8b-conda', 'repo-level-cwm-seed123-conda', 'repo-level-cwm-v12', 'repo-level-cwm-v11', 'repo-level-cwm-seed123', 'repo-level-cls-8b', 'repo-level-cls-seed123', 'repo-level-cwm-v10', 'repo-level-cls-v4', 'repo-level-cwm-v9', 'repo-level-cls-v3', 'repo-level-cls-v2', 'repo-level-cwm-v7', 'repo-level-cls-home', 'repo-level-cwm-v8', 'repo-level-cwm-v6', 'cwm8b-seed123', 'cls8b-seed123', 'cls8b-eval-seed123', 'cls8b-eval-seed42', 'repo-level-cwm-v4', 'repo-level-cwm-v2', 'repo-level-cwm-v5', 'matched-seed-8b-predictions', 'repo-level-cwm-v3', 'cwm-seed789', 'cls8b-seed456', 'cwm8b-seed456', '5-paired-clustered-bootstrap', 'repo-level-cwm', 'repo-level-cls', 'cwm-seed0', 'per-test-precision-recall', 'cwm-seed123', 'cwm-seed456', 'cls-seed0', 'cls-seed789', 'traj-level-finetuned', 'traj-level-seed456', 'traj-level-seed789', 'traj-level-seed0', 'per-test-majority-voting', 'block-corr-empirical', 'model-size-scaling-cwm8b', 'model-size-scaling-cls8b', 'llm-judge-32b-zeroshot', 'llm-judge-8b-zeroshot', 'traj-level-seed123', 'oracle-f2p-stratified', 'trace-then-judge', 'mvp-b-train', 'multi-seed-core', 'cwm-baseline', 'mvp-a-oracle-sim', 'p2p-regression-rate', 'mvp-b-data-prep']\nFirst experiment keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'spec', 'notes', 'metrics', 'conclusion', 'completed_at']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T06:26:25.711134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/477f919f-f450-4429-96dd-fb97354943c7/tool-results/mcp-agent-ml-research-read_registry-1778739670752.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\n\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\n# Group by status\nby_status = {}\nfor exp_id, exp in exps.items():\n    status = exp.get('status', 'UNKNOWN')\n    if status not in by_status:\n        by_status[status] = []\n    by_status[status].append((exp_id, exp))\n\nprint('=== STATUS SUMMARY ===')\nfor status, items in sorted(by_status.items()):\n    print(f'{status}: {len(items)} experiments')\nprint()\n\n# Now dump all experiments grouped by status\nfor status in ['COMPLETED', 'RUNNING', 'FAILED', 'PLANNED', 'BLOCKED', 'CANCELLED', 'UNKNOWN']:\n    if status not in by_status:\n        continue\n    items = by_status[status]\n    print(f'\\\\n{\\\"=\\\"*80}')\n    print(f'STATUS: {status} ({len(items)} experiments)')\n    print('='*80)\n    for exp_id, exp in sorted(items, key=lambda x: x[1].get('updated_at', '')):\n        print(f'\\\\n--- {exp_id} ---')\n        print(f'  updated_at: {exp.get(\\\"updated_at\\\", \\\"N/A\\\")}')\n        print(f'  created_at: {exp.get(\\\"created_at\\\", \\\"N/A\\\")}')\n        if exp.get('completed_at'):\n            print(f'  completed_at: {exp[\\\"completed_at\\\"]}')\n        \n        # Hypothesis\n        hyp = exp.get('hypothesis', '')\n        if hyp:\n            print(f'  hypothesis: {hyp[:300]}')\n        \n        # Notes\n        notes = exp.get('notes', '')\n        if notes:\n            if isinstance(notes, list):\n                for n in notes:\n                    print(f'  note: {str(n)[:200]}')\n            else:\n                print(f'  notes: {str(notes)[:300]}')\n        \n        # Metrics\n        metrics = exp.get('metrics', {})\n        if metrics:\n            if isinstance(metrics, dict):\n                for mk, mv in metrics.items():\n                    print(f'  metric.{mk}: {json.dumps(mv) if isinstance(mv, (dict, list)) else mv}')\n            else:\n                print(f'  metrics: {str(metrics)[:300]}')\n        \n        # Conclusion\n        conc = exp.get('conclusion', '')\n        if conc:\n            print(f'  conclusion: {str(conc)[:500]}')\n        \n        # Spec\n        spec = exp.get('spec', {})\n        if spec:\n            if isinstance(spec, dict):\n                desc = spec.get('description', spec.get('desc', ''))\n                if desc:\n                    print(f'  spec.description: {str(desc)[:200]}')\n                cmd = spec.get('command', spec.get('cmd', ''))\n                if cmd:\n                    print(f'  spec.command: {str(cmd)[:150]}')\n                model = spec.get('model', '')\n                if model:\n                    print(f'  spec.model: {model}')\n                dataset = spec.get('dataset', '')\n                if dataset:\n                    print(f'  spec.dataset: {dataset}')\n            else:\n                print(f'  spec: {str(spec)[:200]}')\n        \n        print(f'  retry_count: {exp.get(\\\"retry_count\\\", 0)}')\n\" 2>&1\n",
+              "description": "Extract all 61 experiments grouped by status",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T06:26:25.711331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== STATUS SUMMARY ===\nDONE: 59 experiments\nRUNNING: 2 experiments\n\n\n================================================================================\nSTATUS: RUNNING (2 experiments)\n================================================================================\n\n--- repo-level-cwm-8b-conda ---\n  updated_at: 2026-05-14T05:50:01.696Z\n  created_at: 2026-05-14T05:28:04.512Z\n  spec.command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py\n  retry_count: 0\n\n--- repo-level-cls-8b-seed123-conda ---\n  updated_at: 2026-05-14T05:50:05.398Z\n  created_at: 2026-05-14T05:28:09.211Z\n  spec.command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifi\n  retry_count: 0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T06:26:25.711479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/477f919f-f450-4429-96dd-fb97354943c7/tool-results/mcp-agent-ml-research-read_registry-1778739670752.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\n\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\ndone = [(eid, e) for eid, e in exps.items() if e.get('status') == 'DONE']\ndone.sort(key=lambda x: x[1].get('updated_at', ''))\n\nfor exp_id, exp in done[:20]:\n    print(f'--- {exp_id} ---')\n    print(f'  updated_at: {exp.get(\\\"updated_at\\\", \\\"N/A\\\")}')\n    print(f'  created_at: {exp.get(\\\"created_at\\\", \\\"N/A\\\")}')\n    if exp.get('completed_at'):\n        print(f'  completed_at: {exp[\\\"completed_at\\\"]}')\n    \n    hyp = exp.get('hypothesis', '')\n    if hyp:\n        print(f'  hypothesis: {hyp[:300]}')\n    \n    notes = exp.get('notes', '')\n    if notes:\n        if isinstance(notes, list):\n            for n in notes:\n                print(f'  note: {str(n)[:250]}')\n        else:\n            print(f'  notes: {str(notes)[:400]}')\n    \n    metrics = exp.get('metrics', {})\n    if metrics:\n        if isinstance(metrics, dict):\n            for mk, mv in metrics.items():\n                val = json.dumps(mv) if isinstance(mv, (dict, list)) else str(mv)\n                print(f'  metric.{mk}: {val[:200]}')\n        else:\n            print(f'  metrics: {str(metrics)[:300]}')\n    \n    conc = exp.get('conclusion', '')\n    if conc:\n        print(f'  conclusion: {str(conc)[:500]}')\n    \n    spec = exp.get('spec', {})\n    if spec and isinstance(spec, dict):\n        desc = spec.get('description', spec.get('desc', ''))\n        if desc:\n            print(f'  spec.description: {str(desc)[:250]}')\n    \n    print(f'  retry_count: {exp.get(\\\"retry_count\\\", 0)}')\n    print()\n\" 2>&1\n",
+              "description": "Extract DONE experiments batch 1 (first 20)",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T06:26:25.711673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "--- mvp-b-data-prep ---\n  updated_at: 2026-05-11T19:00:11.658Z\n  created_at: 2026-05-11T18:02:03.573Z\n  completed_at: 2026-05-11T19:00:03.494Z\n  hypothesis: HumanEval/MBPP 可构建足够的 (code, test) → pass/fail 训练数据用于函数级 pilot\n  notes: Total: 19,076 samples (HumanEval 5,575 + MBPP 13,501). Class balance: pass 52.0% / fail 48.0%. Majority baseline: 52.0%. Splits: train=15,290 val=1,896 test=1,890. 5 mutation types: operator_swap (66.1% fail), return_value (87.5%), boundary_removal (72.3%), variable_swap (51.6%), off_by_one (42.5%). All labels verified by actual test execution (5s timeout).\n  conclusion: success\n  retry_count: 0\n\n--- p2p-regression-rate ---\n  updated_at: 2026-05-11T20:04:11.093Z\n  created_at: 2026-05-11T20:03:33.129Z\n  completed_at: 2026-05-11T20:04:02.945Z\n  notes: P2P regression rate measured at 1.04% mean / 0% median on CoderForge Qwen3-32B SWE-bench Verified data (106 unresolved patches). 77% of incorrect patches break zero P2P tests. Falls into <5% zone — per-test verifier has minimal advantage on P2P dimension. Main value is in F2P (distinguishing partial vs zero repair). Project premise partially invalidated for P2P.\n  conclusion: negative\n  retry_count: 0\n\n--- mvp-a-oracle-sim ---\n  updated_at: 2026-05-11T20:05:44.123Z\n  created_at: 2026-05-11T18:02:03.506Z\n  completed_at: 2026-05-11T18:39:41.540Z\n  hypothesis: Per-test verifier 在 70-85% 精度下 resolve rate 比 trajectory-level 高 ≥5%（绝对值）\n  notes: Total (F2P+P2P) simulation completed (2026-05-11). Real SWE-bench dist: F2P median=1, P2P median=50.5, Total median=52. Results by P2P regression rate: (1) reg=5%: per-test advantage NEGATIVE for both i.i.d.(-1.0%) and block(-0.5%) — BOTH FAIL. (2) reg=10%: clear advantage, PASS. (3) reg=20%: dominant, PASS. CRITICAL UPDATE: Real P2P regression rate measured at ~1% (mean), 0% (median) from CoderFo\n  metric.original_T12: {\"iid_adv_70_85\": 0.1849, \"block_adv_70_85\": 0.3618}\n  metric.sensitivity_T3: {\"iid_adv_70_85\": 0.0761, \"block_adv_70_85\": 0.3839}\n  metric.sens\n…[truncated 16023 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T06:26:25.711892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/477f919f-f450-4429-96dd-fb97354943c7/tool-results/mcp-agent-ml-research-read_registry-1778739670752.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\n\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\ndone = [(eid, e) for eid, e in exps.items() if e.get('status') == 'DONE']\ndone.sort(key=lambda x: x[1].get('updated_at', ''))\n\nfor exp_id, exp in done[20:40]:\n    print(f'--- {exp_id} ---')\n    print(f'  updated_at: {exp.get(\\\"updated_at\\\", \\\"N/A\\\")}')\n    print(f'  created_at: {exp.get(\\\"created_at\\\", \\\"N/A\\\")}')\n    if exp.get('completed_at'):\n        print(f'  completed_at: {exp[\\\"completed_at\\\"]}')\n    \n    hyp = exp.get('hypothesis', '')\n    if hyp:\n        print(f'  hypothesis: {hyp[:300]}')\n    \n    notes = exp.get('notes', '')\n    if notes:\n        if isinstance(notes, list):\n            for n in notes:\n                print(f'  note: {str(n)[:250]}')\n        else:\n            print(f'  notes: {str(notes)[:400]}')\n    \n    metrics = exp.get('metrics', {})\n    if metrics:\n        if isinstance(metrics, dict):\n            for mk, mv in metrics.items():\n                val = json.dumps(mv) if isinstance(mv, (dict, list)) else str(mv)\n                print(f'  metric.{mk}: {val[:200]}')\n        else:\n            print(f'  metrics: {str(metrics)[:300]}')\n    \n    conc = exp.get('conclusion', '')\n    if conc:\n        print(f'  conclusion: {str(conc)[:500]}')\n    \n    spec = exp.get('spec', {})\n    if spec and isinstance(spec, dict):\n        desc = spec.get('description', spec.get('desc', ''))\n        if desc:\n            print(f'  spec.description: {str(desc)[:250]}')\n    \n    print(f'  retry_count: {exp.get(\\\"retry_count\\\", 0)}')\n    print()\n\" 2>&1\n",
+              "description": "Extract DONE experiments batch 2 (20-40)",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T06:26:25.712171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "--- cls-seed0 ---\n  updated_at: 2026-05-12T12:31:31.781Z\n  created_at: 2026-05-12T10:22:27.264Z\n  completed_at: 2026-05-12T12:31:22.221Z\n  hypothesis: 补充 cls seed=0 用于 5-paired comparison (cls vs traj 各 5 seeds)，确认 per-test classification accuracy 的稳定性\n  notes: 5-seed cls comparison complete. Seeds: seed0=87.94, seed42=87.83, seed123=89.52, seed456=87.88, seed789=89.00. Cls 5-seed mean=88.43±0.78 (sample std). Traj 5-seed mean=86.30±0.97. Cls outperforms traj by +2.13pp with lower variance (0.78 vs 0.97). All 5 cls seeds pass MVP-B criteria (per-class F1>65%, accuracy gap>=10pp). Classification approach shows consistent advantage over trajectory-level ap\n  metric.accuracy: 87.94\n  metric.pass_f1: 87.79\n  metric.fail_f1: 88.08\n  metric.pass_precision: 92.13\n  metric.pass_recall: 83.84\n  metric.fail_precision: 84.2\n  metric.fail_recall: 92.32\n  metric.train_loss: 0.2347\n  metric.eval_loss: 0.0963\n  metric.train_runtime_sec: 4976.75\n  metric.unparseable: 0\n  conclusion: success\n  retry_count: 0\n\n--- cwm-seed456 ---\n  updated_at: 2026-05-12T12:51:35.823Z\n  created_at: 2026-05-12T11:46:14.491Z\n  completed_at: 2026-05-12T12:49:54.438Z\n  hypothesis: 补充 4B CWM seed=456，与 cwm-baseline (seed=42, 87.51%) 对比确认 4B cls-cwm gap ~0.9pp 的稳定性，支撑 scaling widens gap 叙事\n  notes: CWM 4B seed=456 训练和评估正常完成。accuracy=86.98%，与 cwm-baseline (seed=42, 87.51%) 相差 -0.53pp，与 cwm8b-seed123 (seed=123, 86.98%) 完全一致。4B CWM 两个非默认 seed 均为 86.98%，略低于 seed=42 的 87.51%，说明 seed=42 可能略偏高，4B CWM 的真实水平约 87.0-87.5%。exact_match_rate=84.02% 与 baseline 完全一致。pass_f1=86.66% vs baseline 87.31% (-0.65pp)，fail_f1=87.29% vs baseline 87.71% (-0.42pp)，差异很小。4B cls-cwm gap 分析：cls-baseline accuracy=88.36%，CWM\n  metric.accuracy: 86.98\n  metric.pass_f1: 86.66\n  metric.fail_f1: 87.29\n  metric.pass_precision: 92.26\n  metric.pass_recall: 81.7\n  metric.fail_precision: 82.52\n  metric.fail_recall: 92.65\n  metric.exact_match_rate: 84.02\n  metric.train_loss: 0.2525\n  metric.eval_loss_best: 0.0551\n  metric.eval_loss_final: 0.0635\n  me\n…[truncated 11659 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T06:26:25.712367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/477f919f-f450-4429-96dd-fb97354943c7/tool-results/mcp-agent-ml-research-read_registry-1778739670752.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\n\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\ndone = [(eid, e) for eid, e in exps.items() if e.get('status') == 'DONE']\ndone.sort(key=lambda x: x[1].get('updated_at', ''))\n\nfor exp_id, exp in done[40:]:\n    print(f'--- {exp_id} ---')\n    print(f'  updated_at: {exp.get(\\\"updated_at\\\", \\\"N/A\\\")}')\n    print(f'  created_at: {exp.get(\\\"created_at\\\", \\\"N/A\\\")}')\n    if exp.get('completed_at'):\n        print(f'  completed_at: {exp[\\\"completed_at\\\"]}')\n    \n    hyp = exp.get('hypothesis', '')\n    if hyp:\n        print(f'  hypothesis: {hyp[:300]}')\n    \n    notes = exp.get('notes', '')\n    if notes:\n        if isinstance(notes, list):\n            for n in notes:\n                print(f'  note: {str(n)[:250]}')\n        else:\n            print(f'  notes: {str(notes)[:500]}')\n    \n    metrics = exp.get('metrics', {})\n    if metrics:\n        if isinstance(metrics, dict):\n            for mk, mv in metrics.items():\n                val = json.dumps(mv) if isinstance(mv, (dict, list)) else str(mv)\n                print(f'  metric.{mk}: {val[:200]}')\n        else:\n            print(f'  metrics: {str(metrics)[:300]}')\n    \n    conc = exp.get('conclusion', '')\n    if conc:\n        print(f'  conclusion: {str(conc)[:500]}')\n    \n    spec = exp.get('spec', {})\n    if spec and isinstance(spec, dict):\n        desc = spec.get('description', spec.get('desc', ''))\n        if desc:\n            print(f'  spec.description: {str(desc)[:250]}')\n    \n    print(f'  retry_count: {exp.get(\\\"retry_count\\\", 0)}')\n    print()\n\" 2>&1\n",
+              "description": "Extract DONE experiments batch 3 (40+)",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T06:26:25.712558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "--- repo-level-cwm-v6 ---\n  updated_at: 2026-05-12T20:36:11.807Z\n  created_at: 2026-05-12T18:58:27.726Z\n  completed_at: 2026-05-12T19:17:09.536Z\n  hypothesis: Repo-level CWM v6 (SWE-bench, Qwen3-4B LoRA). 修复 v5 CUDA OOM（batch_size 2→1, grad_accum 16→32, save_steps 500→50）。与 repo-level-cls-home 配对验证 complexity gap。\n  notes: v6 被 SIGTERM (EXIT_CODE=143) 杀死。非 OOM (SIGKILL=137)，非代码错误。SIGTERM 表示外部进程/系统主动发送终止信号。save_steps=50 应有中间 checkpoint。正在调查原因和 checkpoint 恢复可能性。连续第 8 次 repo-level CWM 失败（v1-v5 代码/infra 问题，v6 外部 kill）。\n  conclusion: failed\n  retry_count: 1\n\n--- repo-level-cwm-v8 ---\n  updated_at: 2026-05-12T21:07:35.820Z\n  created_at: 2026-05-12T20:56:38.805Z\n  completed_at: 2026-05-12T21:07:35.101Z\n  hypothesis: Repo-level CWM v8 (save_steps=100 + resume 支持). SWE-bench repo-level, Qwen3-4B LoRA, batch_size=1, grad_accum=32. 与 repo-level-cls-home 配对验证 complexity-dependent advantage (C1 claim). 改进：更频繁 checkpoint 以抵御平台 kill。\n  conclusion: failed\n  retry_count: 0\n\n--- repo-level-cls-home ---\n  updated_at: 2026-05-12T21:45:04.784Z\n  created_at: 2026-05-12T17:14:31.858Z\n  completed_at: 2026-05-12T21:14:15.710Z\n  conclusion: failed\n  retry_count: 0\n\n--- repo-level-cwm-v7 ---\n  updated_at: 2026-05-12T21:45:43.352Z\n  created_at: 2026-05-12T20:52:44.372Z\n  completed_at: 2026-05-12T20:56:30.827Z\n  hypothesis: Repo-level CWM v7 (= v6 restart with eval_steps=500 fix). SWE-bench repo-level, Qwen3-4B LoRA, batch_size=1, grad_accum=32. 与 repo-level-cls-home 配对验证 complexity-dependent advantage (C1 claim).\n  notes: CWM v7 (v6 restart with eval_steps=500 fix) 完成，结论 negative。无 metrics 记录——上一 session 匆忙标记。v1-v7 零次成功产出 repo-level CWM metrics：v1-v2 代码 bug, v3 磁盘满, v4 CLI 参数+并行 OOM, v5 save_strategy 参数, v6 SIGTERM, v7 待诊断。Framing 调整提案已提交 Director，等待 diagnose Worker 确认 v7 root cause。\n  conclusion: failed\n  retry_count: 0\n\n--- repo-level-cls-v2 ---\n  updated_at: 2026-05-12T22:03:59.800Z\n  created_at: 2026-05-12T14:41:27.833Z\n  completed_at: 2026-05-12T18:57:16.615Z\n  hypothesis: Repo-level clas\n…[truncated 12664 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T06:26:25.712726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/477f919f-f450-4429-96dd-fb97354943c7/tool-results/mcp-agent-ml-research-read_registry-1778739670752.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\n\ndata = json.load(sys.stdin)\ninner = json.loads(data['result'])\nexps = inner['data']['experiments']\n\ndone = [(eid, e) for eid, e in exps.items() if e.get('status') == 'DONE']\ndone.sort(key=lambda x: x[1].get('updated_at', ''))\nprint(f'Total DONE: {len(done)}')\nprint(f'Batch 1 (0-19): {[x[0] for x in done[:20]]}')\nprint(f'Batch 2 (20-39): {[x[0] for x in done[20:40]]}')\nprint(f'Batch 3 (40+): {[x[0] for x in done[40:]]}')\nprint(f'Total covered: {len(done[:20]) + len(done[20:40]) + len(done[40:])}')\n\n# Also get conclusions summary\nfrom collections import Counter\nconc_counts = Counter()\nfor eid, e in exps.items():\n    conc = e.get('conclusion', 'none')\n    conc_counts[conc] += 1\nprint(f'\\\\nConclusion distribution: {dict(conc_counts)}')\n\" 2>&1\n",
+              "description": "Verify all experiments covered and get conclusion distribution"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T06:26:25.712917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total DONE: 59\nBatch 1 (0-19): ['mvp-b-data-prep', 'p2p-regression-rate', 'mvp-a-oracle-sim', 'cwm-baseline', 'multi-seed-core', 'mvp-b-train', 'trace-then-judge', 'oracle-f2p-stratified', 'traj-level-seed123', 'llm-judge-8b-zeroshot', 'llm-judge-32b-zeroshot', 'model-size-scaling-cls8b', 'model-size-scaling-cwm8b', 'block-corr-empirical', 'per-test-majority-voting', 'traj-level-seed0', 'traj-level-seed789', 'traj-level-seed456', 'traj-level-finetuned', 'cls-seed789']\nBatch 2 (20-39): ['cls-seed0', 'cwm-seed456', 'cwm-seed123', 'per-test-precision-recall', 'cwm-seed0', 'repo-level-cls', 'repo-level-cwm', '5-paired-clustered-bootstrap', 'cwm8b-seed456', 'cls8b-seed456', 'cwm-seed789', 'repo-level-cwm-v3', 'matched-seed-8b-predictions', 'repo-level-cwm-v5', 'repo-level-cwm-v2', 'repo-level-cwm-v4', 'cls8b-eval-seed42', 'cls8b-eval-seed123', 'cls8b-seed123', 'cwm8b-seed123']\nBatch 3 (40+): ['repo-level-cwm-v6', 'repo-level-cwm-v8', 'repo-level-cls-home', 'repo-level-cwm-v7', 'repo-level-cls-v2', 'repo-level-cls-v3', 'repo-level-cwm-v9', 'repo-level-cls-v4', 'repo-level-cwm-v10', 'repo-level-cls-seed123', 'repo-level-cls-8b', 'repo-level-cwm-seed123', 'repo-level-cwm-v11', 'repo-level-cwm-v12', 'repo-level-cwm-seed123-conda', 'repo-level-cls-8b-conda', 'repo-level-cls-seed123-home', 'repo-level-cls-v5-conda', 'repo-level-cls-v5']\nTotal covered: 59\n\nConclusion distribution: {'success': 36, 'none': 2, 'killed': 7, 'failed': 13, 'negative': 3}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T06:26:25.713175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 61 experiments accounted for (59 DONE + 2 RUNNING). Here is the complete organized summary:\n\n---\n\n## Registry Summary: exec-sim-repair-verifier (61 experiments total)\n\n### Status Distribution\n- **DONE**: 59 experiments\n- **RUNNING**: 2 experiments\n\n### Conclusion Distribution (across all 61)\n- **success**: 36\n- **failed**: 13\n- **killed**: 7\n- **negative**: 3\n- **none** (no conclusion recorded): 2\n\n---\n\n## RUNNING (2 experiments)\n\n| exp_id | updated_at | description |\n|--------|-----------|-------------|\n| **repo-level-cwm-8b-conda** | 2026-05-14T05:50:01Z | 8B CWM repo-level training on conda env |\n| **repo-level-cls-8b-seed123-conda** | 2026-05-14T05:50:05Z | 8B CLS repo-level seed123 training on conda env |\n\n---\n\n## DONE - SUCCESS (36 experiments)\n\n### Foundation / Data Prep\n1. **mvp-b-data-prep** (2026-05-11T19:00Z) -- Data construction from HumanEval/MBPP. 19,076 samples (pass 52%/fail 48%). 5 mutation types. Train/val/test = 15,290/1,896/1,890. Conclusion: `success`.\n\n### Oracle Simulation & P2P Analysis\n2. **p2p-regression-rate** (2026-05-11T20:04Z) -- P2P regression rate = `1.04% mean / 0% median`. 77% of incorrect patches break zero P2P tests. Project premise partially invalidated for P2P. Conclusion: `negative`.\n\n3. **mvp-a-oracle-sim** (2026-05-11T20:05Z) -- Per-test verifier simulation. At reg=5%: per-test advantage NEGATIVE. At reg=10%+: PASS. Key metrics: `total_reg5pct.iid_adv_70_85 = -0.01`, `total_reg10pct.iid_adv_70_85 = 0.132`. Conclusion: `success`.\n\n4. **oracle-f2p-stratified** (2026-05-12T06:07Z) -- F2P stratified analysis. T=1 (68.7% of instances): block advantage = `-0.09`. T=2 (19.1%): advantage = `31.69`. T2 contributes `55.3%` of overall advantage. Conclusion: `success`.\n\n### CWM vs Classification (Function-Level 4B)\n5. **cwm-baseline** (2026-05-11T22:27Z) -- CWM generation baseline. `accuracy=87.51%`, `pass_f1=87.31%`, `fail_f1=87.71%`, `exact_match_rate=84.02%`. Nearly identical to classification. Conclusion: `negative` (hypothesis t\n…[truncated 9769 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "Agent",
+            "elapsed_ms": 3
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T06:26:25.713693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 65\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-11 18:01 UTC\\\\n  summary: 'MVP 方案: Monte Carlo oracle 模拟 + 函数级 pilot，不依赖 Docker 基础设施'\\\\n  rationale: '完整 Part 1 需要 Docker 重新评估 8K 个 patch 获取 per-test labels（16-24h），基础设施搭建成本高。MVP\\\\n    改用 Monte Carlo 模拟参数化真实测试数分布验证理论信息增益，函数级 pilot (HumanEval/MBPP) 验证可学习性。两者均无需 Docker，2-3\\\\n    天可完成。Pass 标准: per-test 在 70-85% 精度下 resolve rate 比 trajectory-level 高 ≥5%; 函数级\\\\n    pilot 精度 >70%。'\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-11 19:07 UTC\\\\n  summary: MVP-A 有条件通过：F2P-only block-corr 10.88%>5%；需补跑 Total(F2P+P2P) 模拟确认全图\\\\n  rationale: 真实 SWE-bench F2P median=1（69% 实例仅 1 个 F2P 测试），但 P2P median=50.5。F2P-only\\\\n    下 per-test 优势收窄但仍过阈值（block-corr 10.88%）。P2P regression 检测是更大的信号源——Total 分布(median=52)下优势预期更强。研究方向需校准：per-test\\\\n    价值主要来自 P2P regression 检测 + F2P multi-test 精确定位，而非单纯的 F2P 粒度。\\\\n  related_experiments:\\\\n  - exp_id: mvp-a-oracle-sim\\\\n    role: evidence\\\\n    result: F2P-only block-corr advantage 10.88%, i.i.d. 1.98%\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-11 19:38 UTC\\\\n  summary: P2P regression rate 是项目关键前提——≥10% per-test 有效，<5% 则有害；需实测\\\\n  rationale: Total 模拟(F2P+P2P)显示 per-test 优势强烈依赖 P2P regression rate：5% 时优势为负(-1%)，10%\\\\n    时 13.2%，20% 时 35.7%。这是从 F2P-only 分析未发现的关键变量。真实 regression rate 未知，需从 SWE-bench\\\\n    数据/文献中实测。此数据点决定项目是否可行及论文 story 如何构建。\\\\n  related_experiments:\\\\n  - exp_id: mvp-a-oracle-sim\\\\n    role: evidence\\\\n    result: 'Total sim: reg=5% adv=-1%, reg=10% adv=13.2%, reg=20% adv=35.7%'\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-11 20:05 UTC\\\\n  summary: P2P 回归率 ~1%，原始 Total 优势前提不成立；项目 reframe 而非 kill\\\\n  rationale: P2P 回归率 ~1%（mean=1.04%, median=0%, 仅 22.6% 错误 patch 破坏任何 P2P 测试），远低于\\\\n    per-test 有效的 10% 阈值。Total(F2P+P2P) 模型下 per-test 实际有害（噪声>信号）。但项目核心价值不在信号\n…[truncated 43911 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 3
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T06:26:25.714043+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕，以下是结构化评估报告。\n\n---\n\n# 论文数字就绪度评估报告\n\n**项目**: exec-sim-repair-verifier | **目标**: EMNLP 2026 ARR May 25 | **剩余**: 11 天\n\n---\n\n## A. 已确定的数字（可直接写入论文）\n\n### C1: Complexity-Dependent Reformulation Advantage\n\n**Function-level（100% settled）**\n\n| 指标 | 值 | 来源 |\n|------|-----|------|\n| CLS 4B 5-seed mean | 88.43±0.78% | multi-seed-core + cls-seed789 + cls-seed0 |\n| CWM 4B 5-seed mean | 87.19±0.37% | cwm-baseline + cwm-seed123/456/789/0 |\n| CLS-CWM 4B gap | +1.25pp (one-sided p=0.025) | 5-paired-clustered-bootstrap |\n| CLS 8B 3-seed mean | 89.39% (42=90.48, 123=89.37, 456=88.31) | model-size-scaling-cls8b + cls8b-seed123/456 |\n| CWM 8B 3-seed mean | 86.96% (42=87.67, 123=86.98, 456=86.24) | model-size-scaling-cwm8b + cwm8b-seed123/456 |\n| CLS-CWM 8B gap | ~2.43pp | 上述 3 seed 对比 |\n| 4B→8B CLS scaling | +2.07pp (seed42) | model-size-scaling-cls8b |\n| 4B→8B CWM scaling | +0.16pp (seed42), CWM 碰天花板 | model-size-scaling-cwm8b |\n| LLM Judge 8B zero-shot | 64.4% | llm-judge-8b-zeroshot |\n| LLM Judge 32B zero-shot | 71.7% | llm-judge-32b-zeroshot |\n| Fine-tuned 4B vs zero-shot gap | +24pp (vs 8B), +16.7pp (vs 32B) | 上述两项 |\n\n### C2: Diagnostic Granularity At Equivalent Accuracy（100% settled）\n\n| 指标 | 值 | 来源 |\n|------|-----|------|\n| TOST equivalence p-value | 0.0071 (±2pp margin) | 5-paired-clustered-bootstrap |\n| Pooled gap (CLS vs TRAJ) | -0.40pp, 95% CI [-1.32, +0.52] | 同上 |\n| ICC (block correlation) | 0.191, DEFF=3.97 | block-corr-empirical |\n| Seeds 789/0 NF4 quantization | 需在论文中注明 | cls-seed789, cls-seed0 |\n\n### C3: Accuracy-Utility Frontier（100% settled）\n\n| 指标 | 值 | 来源 |\n|------|-----|------|\n| T=1 instances 占比 | 68.7%, per-test advantage ≈ 0 | oracle-f2p-stratified |\n| T≥2 instances 占比 | 31.3%, advantage 显著 | 同上 |\n| T=2 贡献整体优势占比 | 55.3% | 同上 |\n| P2P regression rate | 1.04% mean / 0% median | p2p-regression-rate |\n| Majority voting (K=3) | -0.69pp（negative） | per-test-majority-voting |\n| Per-test fail precision/recall | 82.75% / 93.64% | per-test-precision-recall |\n| Best mutation type | return_value (97.26%) | 同上 |\n| Worst mutation type | off_by_one (82.56%) | 同上 |\n\n### 辅助数据（settled）\n\n| 指标 | 值 | 来源 |\n|------|-----|------|\n| 训练数据量 | 19,076 samples (52% pass / 48% fail) | mvp-b-data-prep |\n| 5 种 mutation types | ✅ | 同上 |\n\n---\n\n## B. 待确定的数字（正在跑或未开始）\n\n### 🔴 Critical Path（阻塞论文最终数字）\n\n| 缺失项 | 状态 | ETA | 影响 Section |\n|--------|------|-----|-------------|\n| **CWM v12 全量 eval** | RUNNING ~25% | ~02:20 UTC May 15 (~20h) | Table 4 repo-level CLS-CWM gap 最终值 |\n| **CWM seed123 全量 eval** | RUNNING ~25% | ~02:30 UTC May 15 (~20h) | repo-level paired bootstrap CI |\n| **D063: val set checkpoint sweep** | 未开始，需修 eval 脚本 | 修完后 ~数小时 | **所有** repo-level CLS best checkpoint 可能变化 |\n\n### 🟡 Nice-to-Have（增强论文但非必须）\n\n| 缺失项 | 状态 | ETA | 影响 Section |\n|--------|------|-----|-------------|\n| 8B CWM repo-level training | RUNNING (GPU 2, PID 210568) | ~8-10h 训练 + eval | 2×2 scaling table, \"CWM failure is scale-invariant\" |\n| 8B CLS seed123 repo-level training | RUNNING (GPU 3, PID 210652) | ~8-10h 训练 + eval | 8B multi-seed robustness |\n| CWM unparseable + error mode 分析 | 未开始 | CWM eval 完成后 | Error analysis section |\n| CLS/CWM error complementarity（oracle ensemble） | paper_framing 中提到 90.63% | 需确认数据来源 | Discussion |\n\n---\n\n## C. 方法论风险\n\n### 🔴 D063 Val Set 修复（高风险）\n\n**问题**: 所有 repo-level checkpoint sweep 在 test set (9784 samples) 上做 = cherry-picking。\n\n**影响范围**:\n- repo-level-cls-v5-conda: 当前 ckpt-600 (76.37%) 可能不是 val set 最佳\n- repo-level-cls-seed123-home: 当前 ckpt-600 (80.73%) 可能变化\n- repo-level-cls-8b-conda: 当前 ckpt-400 (84.52%) 可能变化\n- CWM 同理（虽然 CWM eval 还没跑完 sweep）\n\n**最坏情况**: val set 选出的 checkpoint 在 test set 上表现差几个百分点，但 CLS-CWM gap 方向性几乎不可能逆转（CWM ~58% vs CLS ~76-84%，gap >18pp）。\n\n**建议**: 数字可能小幅调整，但 narrative 安全。论文中可先用当前数字写，D063 修复后替换。\n\n### 🟡 CWM Eval 完成后的风险\n\nCWM v12 running acc ~58.3%（2500+ samples），趋势稳定（波动 <0.3pp/百样本）。25% → 100% 大幅变化的可能性很低。但最终数字可能在 56-60% 范围内微调。\n\n**对 narrative 影响**: CLS-CWM repo-level gap 预计 18-26pp，C1 \"classification advantage scales with complexity\" 结论稳固。\n\n### 🟢 8B CWM 训练结果\n\n若 8B CWM 也在 repo-level 表现差（预期如此，因为 token exhaustion 是结构性问题），则论文可声称 \"CWM failure is scale-invariant\"。若 8B CWM 意外表现好，需调整 narrative 但不影响 C1 核心结论（4B 层面差距已确认）。\n\n---\n\n## D. 可立即开始撰写的 Sections\n\n### ✅ 不依赖任何 pending 数字\n\n| Section | 理由 |\n|---------|------|\n| **Method** | 所有 formulation（CLS/CWM/TRAJ）、数据构建、训练设置已定义完毕 |\n| **Function-level Results（全部）** | 5-seed CLS/CWM 对比、8B scaling、LLM judge baseline，数字 100% settled |\n| **C2: Diagnostic Granularity** | TOST 等价检验完成，所有统计数字确定 |\n| **C3: Oracle Frontier** | T 分层分析、P2P regression rate、block correlation 全部完成 |\n| **Statistical Methodology** | clustered bootstrap、TOST、ICC/DEFF 方法已验证 |\n| **Related Work** | 文献覆盖较充分（见 Section E） |\n| **Introduction** | Story spine 已成型，可用 placeholder 处理 repo-level gap |\n\n### 📝 可用 placeholder 先写\n\n| Section | Placeholder 内容 |\n|---------|-----------------|\n| **Repo-level Results (Table 4)** | CLS 用当前数字，CWM 用 \"~58% (preliminary)\" |\n| **Abstract headline** | repo-level gap 用 \"[Z] percentage points\" 占位 |\n| **Error Analysis** | 待 CWM eval 完成后补充 unparseable/token budget 分析 |\n| **Scaling Table (2×2)** | 8B CWM repo-level 待补 |\n\n---\n\n## E. 文献缺口\n\n### literature_map.yaml 覆盖统计\n\n| 类别 | 已有 | 缺口 |\n|------|------|------|\n| Execution Simulation | 5/5 | ✅ 无 |\n| LLM Verification for Code | 5/5 | ✅ 无 |\n| APR and SWE-bench | **7/8** | ❌ 缺 1 篇（类别标注 \"gap 1\"，未指明具体缺什么） |\n| Code LLMs and Benchmarks | 6/6 | ✅ 无 |\n| Task Reformulation NLP | **3/4** | ❌ 缺 1 篇（需一篇 classification vs generation 在其他 NLP 任务的系统性对比） |\n| Statistical Methods | **2/3** | ❌ 缺 1 篇（可能需要 clustered bootstrap 的原始参考或 ICC/DEFF 的经典引用） |\n\n**Related Work 写作评估**: 已有 28 篇 verified 文献，覆盖 6 个核心类别。Dream #5 审稿指出 \"related work ≤7 refs 需 15+\"，当前 28 篇足够支撑扩写。3 个 gap 需要补充但均非关键阻塞。\n\n**建议补充方向**:\n1. APR gap: 考虑补一篇最新 SWE-bench leaderboard 分析或 SWE-agent v2 等\n2. Task Reformulation gap: 补一篇 extractive vs generative QA 的系统性对比（如 FiD 或 RAG 类工作）\n3. Statistical gap: 补 ICC 原始论文（Shrout & Fleiss 1979）或 design effect 的经典教科书引用\n\n---\n\n## 总结\n\n**论文写作可立即开始**: Method、Function-level Results、C2、C3、Related Work 不依赖任何 pending 实验。\n\n**关键阻塞项**: CWM v12/seed123 全量 eval (~20h) + D063 val set 修复。两者完成后 repo-level 数字才能定稿，但 C1 gap 方向性（CLS >> CWM）已极度稳固。\n\n**时间风险**: 11 天中 CWM eval 占 ~1 天，D063 修复 + val sweep 占 ~0.5-1 天，8B 训练+eval 占 ~1-1.5 天。写作窗口 ~7-8 天，足够。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-readiness-check_20260514T062052"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/research-paper-readiness-check.md"
+}

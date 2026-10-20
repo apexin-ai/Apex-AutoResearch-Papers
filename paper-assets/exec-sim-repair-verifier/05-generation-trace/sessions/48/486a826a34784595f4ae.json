@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "486a826a34784595f4ae",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "code swebench pipeline v1",
+  "task_key": "worker_code_swebench-pipeline-v1_20260512T023801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_swebench-pipeline-v1_20260512T023801.log",
+    "occurrence": 1,
+    "bytes": 629226,
+    "sha256": "46d382678c3e27a2749e2e39cb76169a42b1ffd9f2c401ed324c47297b13ee6e"
+  },
+  "statistics": {
+    "messages": 324,
+    "user_turns": 0,
+    "tool_calls": 121,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 77,
+      "tool_call": 121,
+      "tool_result": 121,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 1
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 324,
+      "chunks": [
+        {
+          "path": "486a826a34784595f4ae-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "486a826a34784595f4ae-part-0002.json",
+          "message_count": 144
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-swebench-pipeline-v1.md"
+}

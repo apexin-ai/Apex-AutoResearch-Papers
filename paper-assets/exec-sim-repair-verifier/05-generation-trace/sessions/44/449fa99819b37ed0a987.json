@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "449fa99819b37ed0a987",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check eval progress round3",
+  "task_key": "worker_check_eval-progress-round3_20260522T104758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval-progress-round3_20260522T104758_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "aedcb495ef8d908836fdbad455acb9037f62c395e6f7e5987beb63d9a1b2866d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | 任务 | 进度 | Running Acc | ETA |\n|-----|------|------|-------------|-----|\n| 0 | Qwen CWM s123 | 9436/9784 (**96.4%**) | 67.5% (6365/9436) | ~30 min |\n| 1 | DS CWM s123 1epoch | 6592/9784 (**67.4%**) | 75.6% (4986/6592) | ~4.1h |\n| 2 | DS CWM s123 e3 | 9012/9784 (**92.1%**) | 57.3% (5160/9012) | ~1.0h |\n| 3 | Qwen CWM s456 | 8652/9784 (**88.4%**) | 66.9% (5785/8652) | ~1.7h |\n\n4 个进程全部存活（100% CPU）。注意：\n\n- **DS 1epoch (75.6%)** acc 显著高于 **DS e3 (57.3%)**，e3 checkpoint 可能 overfit\n- GPU 1 的 1epoch eval 用的是 checkpoint-4209，GPU 2 的 e3 eval 用的是 checkpoint-12627\n- Qwen s123 最快完成，预计 ~30 分钟内跑完"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-progress-round3.md"
+}

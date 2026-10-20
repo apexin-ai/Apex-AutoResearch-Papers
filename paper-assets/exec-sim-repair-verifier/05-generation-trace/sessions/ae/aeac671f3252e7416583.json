@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aeac671f3252e7416583",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis holm bonferroni w5",
+  "task_key": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_holm-bonferroni-w5_20260519T092929_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "77722ab09784d9961b23bb57b8d9f8c91637d309ac0711f0f51ca646580e2661"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**3/6 comparisons survive Holm-Bonferroni correction (α=0.05):**\n\n| Rank | Comparison | Raw p | ×k | Adj p | Sig? |\n|------|-----------|-------|-----|-------|------|\n| 1 | Repo: CLS vs CWM | 0.003 | 6 | **0.018** | YES |\n| 2 | Func: CLS vs CWM (TOST) | 0.007 | 5 | **0.035** | YES |\n| 3 | Func: CLS vs TRAJ (TOST) | 0.0087 | 4 | **0.035** | YES |\n| 4 | Repo: CWM vs TRAJ | 0.039 | 3 | 0.117 | no |\n| 5 | Func: CWM vs TRAJ (TOST)* | 0.044 | 2 | 0.117 | no |\n| 6 | Repo: CLS vs TRAJ | 0.385 | 1 | 0.385 | no |\n\n\\* Approximate (SE borrowed from CLS-TRAJ).\n\n核心 CLS 优势的两个 claim (CLS vs CWM at both levels, CLS-TRAJ equivalence at function-level) 都 survive 校正。Repo-level 的 CWM vs TRAJ 和 CLS vs TRAJ 不再显著，论文中需要相应弱化措辞。\n\n脚本和 JSON 已保存到 `artifacts/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-holm-bonferroni-w5.md"
+}

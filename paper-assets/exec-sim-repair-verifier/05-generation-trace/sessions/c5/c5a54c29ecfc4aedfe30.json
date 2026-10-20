@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5a54c29ecfc4aedfe30",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops d050 eval pipeline home",
+  "task_key": "worker_ops_d050-eval-pipeline-home_20260513T154326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d050-eval-pipeline-home_20260513T154326_result.json",
+    "occurrence": 1,
+    "bytes": 409,
+    "sha256": "d61f4de604e5ef53a95abc21553c8f56981500e4339ac18ff1a5c92bb50979d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nMD5:\n  eval_repo_cls.py: 6612a30755f30f6d956927dfe4416949\n  eval_repo_cwm.py: 27f4d4a90995aeb4823dd4c7f9b55408\n  paired_bootstrap_repo.py: d9073b9399fe471c5abfaece2a438227\n\nmax_new_tokens:\n  eval_repo_cls.py: 8 ✓\n  eval_repo_cwm.py: 1024 (default via argparse) ✓\n\nTOST: present ✓ (tost_equivalence函数 + TOST判定逻辑 + margin=2.0pp)\n```\n\n三项全部符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d050-eval-pipeline-home.md"
+}

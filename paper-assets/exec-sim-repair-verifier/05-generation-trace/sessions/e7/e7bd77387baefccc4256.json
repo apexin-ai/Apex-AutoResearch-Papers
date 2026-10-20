@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "e7bd77387baefccc4256",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ssh sync bootstrap scripts to seetacloud",
+  "task_key": "worker_ssh_sync-bootstrap-scripts-to-seetacloud_20260513T012103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_sync-bootstrap-scripts-to-seetacloud_20260513T012103.log",
+    "occurrence": 1,
+    "bytes": 791027,
+    "sha256": "c01efbecc54d0e4421c612218bc6b592d050b690b6bdd8b8830b752a1727ce0a"
+  },
+  "statistics": {
+    "messages": 256,
+    "user_turns": 1,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 77,
+      "tool_call": 86,
+      "tool_result": 85,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 171,
+      "chunks": [
+        {
+          "path": "e7bd77387baefccc4256-part-0001.json",
+          "message_count": 161
+        },
+        {
+          "path": "e7bd77387baefccc4256-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 85,
+      "chunks": [
+        {
+          "path": "e7bd77387baefccc4256-part-0002.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-sync-bootstrap-scripts-to-seetacloud.md"
+}

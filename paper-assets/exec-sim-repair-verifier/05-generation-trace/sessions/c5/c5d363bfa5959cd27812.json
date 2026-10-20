@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "c5d363bfa5959cd27812",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ssh fix cls home checkpoint",
+  "task_key": "worker_ssh_fix-cls-home-checkpoint_20260512T205443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-cls-home-checkpoint_20260512T205443.log",
+    "occurrence": 1,
+    "bytes": 1002115,
+    "sha256": "9431b43668f5f9d0eb380ac3a1d97f451bac4e8640c6cec2f8ba2b6eab36486b"
+  },
+  "statistics": {
+    "messages": 400,
+    "user_turns": 1,
+    "tool_calls": 147,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 98,
+      "tool_call": 147,
+      "tool_result": 147,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 379,
+      "chunks": [
+        {
+          "path": "c5d363bfa5959cd27812-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c5d363bfa5959cd27812-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c5d363bfa5959cd27812-part-0003.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "c5d363bfa5959cd27812-part-0003.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-fix-cls-home-checkpoint.md"
+}

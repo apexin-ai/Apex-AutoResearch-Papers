@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "ee7cf13529c127696878",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose cls8b repo s456 train v2",
+  "task_key": "worker_diagnose_cls8b-repo-s456-train-v2_20260519T221533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cls8b-repo-s456-train-v2_20260519T221533_result.json",
+    "occurrence": 1,
+    "bytes": 2194,
+    "sha256": "f7f4be5337d65f1b61a0c7aa99ff4cb0724ff6a1a0def281e30d7312a9cd2c94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。计算时间估算：\n\n- s42_resume 完整训练 (step 800→6633)：~20h，约 41min/200steps\n- s456_v2 当前速度 (step 600→2200)：5.5h/1600steps，约 41min/200steps\n- 剩余 step 2200→6633 = 4433 steps ≈ **15.2 小时**\n\n```json\n{\"checkpoints\": [\"checkpoint-600\", \"checkpoint-1600\", \"checkpoint-1800\", \"checkpoint-2000\", \"checkpoint-2200\"], \"latest_checkpoint\": \"checkpoint-2200\", \"resume_param\": \"--resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_s456_v2/checkpoint-2200\", \"estimated_remaining_hours\": 15.2, \"disk_ok\": true, \"resume_command\": \"cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:1 --batch_size 1 --grad_accumulation 32 --seed 456 --no_wandb --dataloader_num_workers 0 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456_v2/ --epochs 3 --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_s456_v2/checkpoint-2200\"}\n```\n\n关键信息：\n- 5 个 checkpoint 可用，最新 checkpoint-2200（05:51 保存）\n- 脚本 L200 支持 `--resume_from_checkpoint`，L300 传给 `trainer.train()`\n- 磁盘 54GB 剩余，每个 checkpoint 176MB，充足\n- 恢复命令已切换到 `cuda:1`（空闲 GPU）"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "checkpoints": [
+                "checkpoint-600",
+                "checkpoint-1600",
+                "checkpoint-1800",
+                "checkpoint-2000",
+                "checkpoint-2200"
+              ],
+              "latest_checkpoint": "checkpoint-2200",
+              "resume_param": "--resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_s456_v2/checkpoint-2200",
+              "estimated_remaining_hours": 15.2,
+              "disk_ok": true,
+              "resume_command": "cd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python train_repo_verifier.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ --device cuda:1 --batch_size 1 --grad_accumulation 32 --seed 456 --no_wandb --dataloader_num_workers 0 --output_dir /root/autodl-tmp/checkpoints_repo_cls_8b_s456_v2/ --epochs 3 --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_s456_v2/checkpoint-2200"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cls8b-repo-s456-train-v2-copy-2.md"
+}

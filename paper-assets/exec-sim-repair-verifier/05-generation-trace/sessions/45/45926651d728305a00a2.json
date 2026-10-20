@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "45926651d728305a00a2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "code repo level data prep",
+  "task_key": "worker_code_repo-level-data-prep_20260512T093859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_repo-level-data-prep_20260512T093859.log",
+    "occurrence": 1,
+    "bytes": 1292311,
+    "sha256": "78fb2446fc9c2fb32b57f4ccb6fadb127d11c9723f25846e5671266a86fe139a"
+  },
+  "statistics": {
+    "messages": 1126,
+    "user_turns": 1,
+    "tool_calls": 496,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 124,
+      "tool_call": 496,
+      "tool_result": 496,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 885,
+      "chunks": [
+        {
+          "path": "45926651d728305a00a2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "45926651d728305a00a2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "45926651d728305a00a2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "45926651d728305a00a2-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "45926651d728305a00a2-part-0005.json",
+          "message_count": 165
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 241,
+      "chunks": [
+        {
+          "path": "45926651d728305a00a2-part-0005.json",
+          "message_count": 15
+        },
+        {
+          "path": "45926651d728305a00a2-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "45926651d728305a00a2-part-0007.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-repo-level-data-prep.md"
+}

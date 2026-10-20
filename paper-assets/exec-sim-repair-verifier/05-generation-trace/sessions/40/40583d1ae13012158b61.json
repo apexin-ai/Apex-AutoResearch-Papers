@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40583d1ae13012158b61",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_2_1778606409.md",
+  "task_key": "loop_2_1778606409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778606409.md",
+    "occurrence": 1,
+    "bytes": 5336,
+    "sha256": "7886caf69fb46608f912f06ead892cc58a745803ef6a707e78842b088c1abb41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-12T17:07:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **D024**：正在训练且无报错的进程严禁杀死（2.7 GPU-hours 教训）。修改代码后在空闲 GPU dry-run，不杀现有进程\n- **seetacloud 日志路径**：v3 训练日志在 `~/runs/exec-sim-repair-verifier/` 下（submit_training_job 自动写入），**不是** `/root/autodl-tmp/train_repo_*.log`（那是 v2 遗留崩溃日志）。上一轮因 tail 错误路径误报崩溃\n- **submit_training_job command 必须 bash -c 包裹**：tmux 用 sh 执行，source/conda activate 不包 bash -c 会 EXIT_CODE=127\n- **GPU 编号从 0 开始**：框架注入 CUDA_VISIBLE_DEVICES，脚本内永远 `--gpu 0`\n- **westd-48478 不可用**：SSH account sonny 不存在，root 认证也失败，已放弃\n\n### 2. 🖥️ 基础设施快照\n\n**seetacloud-westd-4x5090** (4× RTX 5090, account: root)\n- 工作目录：`/home/sonny/exec-sim-repair-verifier/`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据：`/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/`（70748 samples）\n- 输出盘：`/root/autodl-tmp/`（根分区仅 3.6GB，大文件必须放这里）\n- 活跃进程：\n  - repo-level-cls-v3: PID 69782, cuda:2, tmux 管理, step ~12/6633 @ 7.4s/it (~13.6h total)\n  - repo-level-cwm-v3: PID 69888, cuda:3, tmux 管理, step ~3/6633 @ 10.7s/it (~19.7h total)\n- cuda:0/1 空闲，Director 说暂不分配（等 v3 稳定后决定）\n\n**home-1x5090** (1× RTX 5090, account: sonny)\n- 工作目录：`/home/sonny/exec-sim-repair-verifier/`\n- 4B checkpoints: `checkpoints_seed42/best`, `checkpoints_seed123/best`, `checkpoints/best`, `checkpoints_cls_seed0/best`\n- 8B checkpoint: `checkpoints_cls8b_seed456/best`\n- CWM checkpoints 在 seetacloud\n- Per-instance predictions: `eval_cls_seed42_with_preds_predictions.json`, `eval_cwm_seed42_with_preds_predictions.json`, `eval_cls_seed123_with_preds_predictions.json`\n- 分析产出: `matched_seed_overlap_results.json`, `8b_scaling_bootstrap_results.json`\n- cuda:0: Worker home-repo-level-backup 正在部署（可能占用）\n\n### 3. 📊 当前状态\n\n**刚做完：**\n- matched-seed error overlap 分析完成（Oracle=90.63%, CLS 漏 FAIL / CWM 漏 PASS 互补模式）\n- 8B scaling bootstrap 完成但 4B 行数据有误（用了 CLS vs TRAJ 而非 CLS vs CWM），修正 Worker 已派出\n- seed123 per-instance predictions 提取完成（CLS 在 home, CWM 在 seetacloud）\n- seetacloud v3 训练确认正常（之前误报崩溃已更正）\n\n**Registry RUNNING：**\n- `repo-level-cls-v3`: seetacloud cuda:2, ~13.6h ETA ~06:30 UTC\n- `repo-level-cwm-v3`: seetacloud cuda:3, ~19.7h ETA ~12:40 UTC\n\n**等待中的 Worker 回调：**\n1. `worker_analysis_4b-cls-cwm-paired-bootstrap` — 修正 4B CLS vs CWM paired bootstrap（预计几分钟）\n2. `worker_code_home-repo-level-backup` — home cuda:0 repo-level CLS backup 部署\n3. `worker_code_westd-8b-repo-level-prep` — 已废弃（westd-48478 不可达），可能很快返回失败\n\n### 4. 📋 待办（条件触发式）\n- 4B bootstrap Worker 回调 → 验证 4B p≈0.025 与 Reviewer 一致 → 更新 artifact → 汇报 Director\n- home-repo-level-backup Worker 回调 → 确认 PIPELINE OK + 训练启动 → 更新 registry\n- repo-level-cls-v3 cron 回调（~06:30 UTC）→ on-experiment-done 流程：eval + paired bootstrap vs CWM → 汇报 Director\n- repo-level-cwm-v3 cron 回调（~12:40 UTC）→ 同上，两个都完成后做 repo-level CLS vs CWM paired comparison\n- **两个 repo-level 都完成且 F1 diff ≥ 3pp** → 全力推 EMNLP Main（ROADMAP D008 Go/No-Go）\n- **F1 diff 1-3pp** → 加 seeds/数据量，评估够不够\n- **F1 diff < 1pp** → Kill C1，pivot Plan B（scope 收缩到 Findings）\n- Director 决定 seetacloud cuda:0/1 分配 → 按指示派 Worker（可选：8B repo-level 代码准备、更多 seed predictions）\n\n### 5. 🎯 战略上下文\n\n**核心假说**：Execution simulation 从 generation → classification 的 task reformulation。函数级两者等价（TOST p=0.007），核心 bet 是 **complexity-dependent advantage**——repo-level 是决胜战场。\n\n**四个 Pillar**：\n- P1 (Complexity-Dependent): ⏳ repo-level 训练中，这是唯一未完成的关键实验\n- P2 (Function-level Equivalence): ✅ TOST gap=-0.45pp, p=0.007\n- P3 (Oracle Frontier): ✅ 模拟完成\n- P4 (Model-Size Scaling): ✅ 8B gap=2.42pp (p=0.004), 4B gap=1.25pp (p≈0.025)\n\n**关键数字**：\n- 4B CLS vs CWM: 88.43% vs 87.18%, gap=1.25pp, 显著 (p≈0.025)\n- 8B CLS vs CWM: 89.39% vs 86.96%, gap=2.42pp, 显著 (p=0.004)\n- Scaling 扩大 gap: +1.17pp (+94%), p=0.016\n- Oracle combination: 90.63%, CLS 漏 FAIL / CWM 漏 PASS\n\n**易错点**：\n- 4B 的 \"TOST 等价\" 是 CLS vs TRAJ（variant-level aggregation），不是 CLS vs CWM。CLS vs CWM 在 4B 也是显著的（p=0.025），只是 gap 小（1.25pp）\n- seetacloud 有两套日志：`~/runs/` (submit_training_job) vs `/root/autodl-tmp/` (旧 nohup)，只看前者\n- CWM seed123 predictions 在 seetacloud 上，不在 home——做 matched-seed 分析需要先 scp 回来\n- DDL: ARR May 25, 还剩 ~13 天。关键路径: repo-level 训练(~20h) → eval(2h) → stats(1h) → 写作(3-5d)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778606409.md"
+}

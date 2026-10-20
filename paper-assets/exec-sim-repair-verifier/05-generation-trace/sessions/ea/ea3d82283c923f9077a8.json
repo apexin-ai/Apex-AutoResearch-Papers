@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "ea3d82283c923f9077a8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "analysis traj complementarity",
+  "task_key": "worker_analysis_traj-complementarity_20260517T102958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_traj-complementarity_20260517T102958.log",
+    "occurrence": 1,
+    "bytes": 1804012,
+    "sha256": "cec1a98c21f36aefd38c4f491d1fcd24b6d83e30d627ba54096f8443143ccad5"
+  },
+  "statistics": {
+    "messages": 761,
+    "user_turns": 1,
+    "tool_calls": 277,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 199,
+      "tool_call": 277,
+      "tool_result": 277,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 485,
+      "chunks": [
+        {
+          "path": "ea3d82283c923f9077a8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ea3d82283c923f9077a8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ea3d82283c923f9077a8-part-0003.json",
+          "message_count": 125
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 276,
+      "chunks": [
+        {
+          "path": "ea3d82283c923f9077a8-part-0003.json",
+          "message_count": 55
+        },
+        {
+          "path": "ea3d82283c923f9077a8-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "ea3d82283c923f9077a8-part-0005.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-traj-complementarity.md"
+}

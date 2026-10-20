@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "9fca9db38c8175dae1a6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "eval cls seed123 8b cwm queue",
+  "task_key": "worker_eval_cls-seed123-8b-cwm-queue_20260513T203010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls-seed123-8b-cwm-queue_20260513T203010.log",
+    "occurrence": 1,
+    "bytes": 1013461,
+    "sha256": "904ed1a24f6a0535d96e8e06cbe767363af32a1df4c3a9a15c07e86074f3c573"
+  },
+  "statistics": {
+    "messages": 956,
+    "user_turns": 0,
+    "tool_calls": 417,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 110,
+      "tool_call": 417,
+      "tool_result": 417,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 956,
+      "chunks": [
+        {
+          "path": "9fca9db38c8175dae1a6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9fca9db38c8175dae1a6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9fca9db38c8175dae1a6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9fca9db38c8175dae1a6-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9fca9db38c8175dae1a6-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "9fca9db38c8175dae1a6-part-0006.json",
+          "message_count": 56
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-cls-seed123-8b-cwm-queue.md"
+}

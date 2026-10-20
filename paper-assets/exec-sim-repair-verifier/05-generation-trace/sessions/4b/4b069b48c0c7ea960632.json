@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "4b069b48c0c7ea960632",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "eval d063 8b s42 val sweep cuda0",
+  "task_key": "worker_eval_d063-8b-s42-val-sweep-cuda0_20260514T204909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d063-8b-s42-val-sweep-cuda0_20260514T204909.log",
+    "occurrence": 1,
+    "bytes": 821211,
+    "sha256": "f53c106b3e04d7d7523be2c27140bdf2f03d38a8cb1ca04d8473d3c0b19f3acd"
+  },
+  "statistics": {
+    "messages": 616,
+    "user_turns": 0,
+    "tool_calls": 247,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 2,
+      "assistant": 105,
+      "tool_call": 247,
+      "tool_result": 247,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 616,
+      "chunks": [
+        {
+          "path": "4b069b48c0c7ea960632-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4b069b48c0c7ea960632-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4b069b48c0c7ea960632-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4b069b48c0c7ea960632-part-0004.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-d063-8b-s42-val-sweep-cuda0.md"
+}

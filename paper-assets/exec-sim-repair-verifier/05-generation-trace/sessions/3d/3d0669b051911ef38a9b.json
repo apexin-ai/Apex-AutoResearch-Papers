@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d0669b051911ef38a9b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval deepseek cwm repo s123 eval 1epoch",
+  "task_key": "worker_eval_deepseek-cwm-repo-s123-eval-1epoch_20260522T022410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_deepseek-cwm-repo-s123-eval-1epoch_20260522T022410_result.json",
+    "occurrence": 1,
+    "bytes": 537,
+    "sha256": "c49a0c5f1763f2a4e5809e324c26f5eb0eacbbcded1c1bd1eda223c10ebe5b43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已成功启动并正在运行：\n\n- **PID**: 111113（实际 python 子进程）\n- **Log**: `/home/sonny/exec-sim-repair-verifier/eval_deepseek_cwm_s123_1epoch.log`\n- **Checkpoint**: `/root/autodl-tmp/checkpoints_deepseek_cwm_repo_s123_v2/checkpoint-4209`\n- **GPU**: 1\n- **状态**: 模型已加载，推理进行中（4/9784 samples processed, running_acc=100.0%）\n\n预计运行时间约 3-4 小时（9784 samples, batch_size=4）。完成后在 log 末尾会打印 accuracy 和 unparseable 比例统计。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-deepseek-cwm-repo-s123-eval-1epoch.md"
+}

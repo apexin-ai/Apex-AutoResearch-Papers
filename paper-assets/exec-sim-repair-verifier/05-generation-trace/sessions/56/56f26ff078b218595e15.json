@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56f26ff078b218595e15",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research prep repo level eval",
+  "task_key": "worker_research_prep-repo-level-eval_20260512T192615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_prep-repo-level-eval_20260512T192615_result.json",
+    "occurrence": 1,
+    "bytes": 1772,
+    "sha256": "2a7aac106a4f801f848f46949a9e0cfa69f83b186d153f0008105dc3b5ace2c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n---\n\n## 产出\n\n两个脚本均已部署到 `home-1x5090:/home/sonny/exec-sim-repair-verifier/`，dry-run 验证通过。\n\n### 1. `eval_repo_level.py` — 统一 eval 脚本\n\n| 参数 | 说明 |\n|------|------|\n| `--mode cls/cwm` | CLS 分类模式 / CWM 生成模式 |\n| `--checkpoint_dir` | LoRA adapter 路径 |\n| `--model_name` | base model（默认 `Qwen/Qwen3-4B`）|\n| `--data_dir` | 默认 `data/swebench_full`（读 `swebench_test.jsonl`）|\n| `--save_predictions` | 输出 per-instance JSONL（供 bootstrap 使用）|\n| `--device` | GPU 设备 |\n| `--max_new_tokens` | CLS 默认 8, CWM 自动升到 64 |\n\n### 2. `paired_bootstrap_repo.py` — Paired bootstrap + D008 Go/No-Go\n\n| 参数 | 说明 |\n|------|------|\n| `--cls_preds` | CLS predictions JSONL |\n| `--cwm_preds` | CWM predictions JSONL |\n| `--n_bootstrap` | bootstrap 轮数（默认 10000）|\n\n输出：gap, 95% CI, one-sided p-value, 自动分级（≥3pp → EMNLP Main, 1-3pp → add seeds, <1pp → kill C1），附带 disagreement analysis。\n\n### 数据规模\n\n| Split | Samples |\n|-------|---------|\n| train | 70,748 |\n| val | 9,335 |\n| test | 9,784 |\n\n### 训练完成后的运行命令\n\n```bash\n# CLS eval (home 上训完的 checkpoint)\npython eval_repo_level.py --mode cls \\\n  --checkpoint_dir checkpoints_repo_cls_home/best \\\n  --save_predictions --device cuda:0\n\n# CWM eval (需先从 seetacloud 拷贝 checkpoint)\npython eval_repo_level.py --mode cwm \\\n  --checkpoint_dir checkpoints_repo_cwm_v6/best \\\n  --save_predictions --device cuda:0\n\n# Paired bootstrap\npython paired_bootstrap_repo.py \\\n  --cls_preds eval_repo_cls_predictions.jsonl \\\n  --cwm_preds eval_repo_cwm_predictions.jsonl\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-prep-repo-level-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5738b21f658189c5751",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose D133 cwm s42 e2 seq2048 home",
+  "task_key": "worker_diagnose_D133-cwm-s42-e2-seq2048-home_20260518T205539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_D133-cwm-s42-e2-seq2048-home_20260518T205539_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "67b90b940332e27f8a56d92132381636e20fe768321815678581c326dd40d8ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。核心发现：\n\n**实验没有真正失败。** D133-resume 已于 13:52 成功启动，当前进度 3066/9784（31.3%），PID 4187955 活跃运行中。\n\n第一次运行在 3039/9784 处静默中断，eval.log 无任何错误信息（无 traceback、无 CUDA error），最可能原因是 **Linux OOM Killer** 杀掉了进程（dmesg 无权限无法确认）。GPU 状态健康（72°C, 16.1/32.6GB VRAM），磁盘充足（318GB 可用）。\n\nResume 正在以 ~8秒/sample 的速度推进，预计还需约 **15 小时**完成。Cron 的 failed 状态是误判，建议改回 running。\n\n报告已写入 `artifacts/D133_diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-d133-cwm-s42-e2-seq2048-home.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87f610910bd3ca71bcb8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze repo level cls 8b s42 resume",
+  "task_key": "worker_analyze_repo-level-cls-8b-s42-resume_20260515T184049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_repo-level-cls-8b-s42-resume_20260515T184049_result.json",
+    "occurrence": 1,
+    "bytes": 2504,
+    "sha256": "73a33ff1c353d745802394f5e78d0cf6ffc0b48522ee27e78d23af740969a5f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。\n\n---\n\n## CLS 8B s42 Resume 训练结果\n\n### 状态: **SUCCESS**\n- EXIT_CODE=0\n- 最终 step: **6633/6633**, epoch: **3.0**\n- 训练耗时: 74425s (~20h 40m)\n- 最终 train_loss: **0.4284**\n\n### eval_loss 完整趋势（每 200 步）\n\n| Step | Epoch | eval_loss | 备注 |\n|------|-------|-----------|------|\n| 200 | 0.09 | **0.0796** | **BEST** |\n| 400 | 0.18 | 0.0927 | |\n| 600 | 0.27 | 0.0937 | resume 起点 |\n| 800 | 0.36 | 0.1717 | |\n| 1000 | 0.45 | 0.1820 | |\n| 1200 | 0.54 | 0.2046 | |\n| 1400 | 0.63 | 0.3226 | |\n| 1600 | 0.72 | 0.2758 | |\n| 1800 | 0.81 | 0.2764 | |\n| 2000 | 0.90 | 0.3210 | |\n| 2200 | 1.00 | 0.3063 | epoch 1 结束 |\n| 2400 | 1.09 | 0.3444 | |\n| 2600 | 1.18 | 0.2576 | |\n| 2800 | 1.27 | 0.2744 | |\n| 3000 | 1.36 | 0.2975 | |\n| 3200 | 1.45 | 0.2981 | |\n| 3400 | 1.54 | 0.4132 | |\n| 3600 | 1.63 | 0.2612 | |\n| 3800 | 1.72 | 0.3429 | |\n| 4000 | 1.81 | 0.3694 | |\n| 4200 | 1.90 | 0.2516 | epoch 2 局部低点 |\n| 4400 | 2.00 | 0.2811 | epoch 2 结束 |\n| 4600 | 2.09 | 0.3713 | |\n| 4800 | 2.18 | 0.3919 | |\n| 5000 | 2.26 | 0.4417 | |\n| 5200 | 2.35 | 0.4021 | |\n| 5400 | 2.44 | 0.4070 | |\n| 5600 | 2.53 | 0.4002 | |\n| 5800 | 2.62 | **0.5263** | 最差点 |\n| 6000 | 2.71 | 0.4230 | |\n| 6200 | 2.80 | 0.4385 | |\n| 6400 | 2.89 | 0.4769 | |\n| 6600 | 2.99 | 0.4768 | |\n\n### Checkpoint 列表\n32 个目录，共 **5.4G**：\n- `checkpoint-800` ~ `checkpoint-6600`（每 200 步，共 30 个）\n- `checkpoint-6633`（最终）\n- `best/`\n\ncheckpoint-6600 和 checkpoint-6633 均含 `adapter_model.safetensors`（~58MB），完整性 OK。\n\n### best/ 目录\n- 含 adapter_model.safetensors + tokenizer 文件，完整\n- 路径: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/best/`\n\n### 异常/警告\n\n**严重过拟合。** eval_loss 从 step 200 的 0.0796 单调上升到最终的 0.4768（增长 ~6x）。整个 3 epoch 的训练没有任何一个 eval 点接近早期的 best。\n\n**best_model_checkpoint 指向旧目录。** trainer_state.json 记录的 best_model_checkpoint 是 `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200`（原训练目录，不是 resume 目录）。best_metric=0.0796 对应 step 200，在 resume 起点（step 600）之前。需确认 `best/` 目录里保存的是否真的是 step 200 的权重——如果原目录的 checkpoint-200 已被清理，`load_best_model_at_end` 可能加载失败而 fallback 到最终模型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-repo-level-cls-8b-s42-resume.md"
+}

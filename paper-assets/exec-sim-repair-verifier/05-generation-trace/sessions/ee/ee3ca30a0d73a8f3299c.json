@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee3ca30a0d73a8f3299c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix val sweep seq4096 restart",
+  "task_key": "worker_fix_val-sweep-seq4096-restart_20260515T172834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_val-sweep-seq4096-restart_20260515T172834_result.json",
+    "occurrence": 1,
+    "bytes": 292,
+    "sha256": "17f8b55e19e123675341ad687be7e183b4ad28bc1fdf84253fee23230e16c2ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n- **PID**: 397645, cuda:0\n- **显存**: 17404MiB / 32607MiB (53%)\n- **初始 running_acc**: ~84.6% (checkpoint-1800, 350/9335 samples)\n- **无 OOM**，seq4096 + bs=1 运行稳定\n- Registry 已更新：seq8192 标记为 killed，seq4096 标记为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-val-sweep-seq4096-restart.md"
+}

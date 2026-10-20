@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "864ace75aa316e7023a3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cwm v9 final submit",
+  "task_key": "worker_ssh_cwm-v9-final-submit_20260512T233446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cwm-v9-final-submit_20260512T233446_result.json",
+    "occurrence": 1,
+    "bytes": 66,
+    "sha256": "f36d6c0094d89ffd1b57ea3c8c98a168b03e0a99c72edd7ba97eb83df2b30da0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已确认正常运行，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cwm-v9-final-submit.md"
+}

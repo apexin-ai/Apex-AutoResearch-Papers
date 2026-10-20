@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a00da2414e06f7f3ebc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh urgent kill timeout",
+  "task_key": "worker_ssh_urgent-kill-timeout_20260520T212728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent-kill-timeout_20260520T212728_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "8a1b4d7a68b81a34ca7052ed9efead8134f4601b00f50accd96706ed724c5c4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**情况不妙。** `kill 886277 886351` 返回 exit 0（两个 timeout 进程确实存在并被杀了），但训练 PID 886278 和 886352 也不存在了——`timeout` 收到 SIGTERM 后把信号转发给了子进程组。\n\n当前服务器上存活的训练进程是**不同的 PID**：\n\n| PID | 任务 | 启动时间 | GPU |\n|-----|------|---------|-----|\n| **949112** | `train_unified.py --seed 456` (deepseek-cwm-repo-s456-v2) | May20 | GPU 1 (20GB/32GB, 99%) |\n| **978461** | `eval_repo_cwm.py` s123_v2 eval | May20 | GPU 0 |\n| 990708-990711 | DataLoader workers of 949112 | 02:24 today | — |\n\n**GPU 状态**：\n- GPU 0: 100% util, 0 MiB（eval 进程可能刚释放）\n- GPU 1: 99%, 20253 MiB（s456_v2 训练活跃）\n- GPU 2: 86%, 30651 MiB\n- GPU 3: 100%, 0 MiB\n\n原始 PID 886278/886352 的 Qwen 训练已经不在了。被杀的 886277/886351 很可能就是这两个训练的 timeout wrapper，信号级联导致训练一起被终止了。`timeout` 默认 kill 整个进程组（`--foreground` 才不会）。\n\n需要确认：这两个 Qwen 训练是否需要重新启动？还是说它们实际上已经在之前完成、被替换为当前的 DeepSeek 训练了？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-kill-timeout.md"
+}

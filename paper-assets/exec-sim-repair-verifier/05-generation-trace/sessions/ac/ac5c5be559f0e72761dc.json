@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac5c5be559f0e72761dc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis inference efficiency collect",
+  "task_key": "worker_analysis_inference-efficiency-collect_20260517T112031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_inference-efficiency-collect_20260517T112031_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "e448f8b6ad025f8b53a63370a6215dd16ff23c7cdac8e0afaf21ed4abd99f097"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Benchmark 完成，结果已保存到 `artifacts/efficiency_benchmark.json`。\n\n关键数据（medium input ~475 tokens, batch=1）：\n\n| Metric | CLS (1 token) | TRAJ (~200 tokens) | Ratio |\n|--------|--------------|-------------------|-------|\n| 单次延迟 | 46.9 ms | 2631.5 ms | 56.1x |\n| Func-level (2.3 tests/inst) | 107.9 ms | 2631.5 ms | **CLS 快 24.4x** |\n| Repo-level (12.3 tests/inst) | 576.9 ms | 2631.5 ms | **CLS 快 4.6x** |\n\n上一个 Worker 的脚本比任务里给的版本更全面：包含了 short/medium/long 三种输入长度，以及 batch=8/16/32 的吞吐量测试。CLS batch 吞吐约 29-30 samples/sec，TRAJ batch 仅 2.2-4.4 samples/sec。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-inference-efficiency-collect.md"
+}

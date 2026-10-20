@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f632487e94de3e6bb7a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research paper materials",
+  "task_key": "worker_research_paper-materials_20260512T172304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-materials_20260512T172304_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "e21913798297ef5c4467e04ec077486313a05816ac3ca74ced5836807b1ecc87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成，产出保存在 `artifacts/_project/report/paper_materials.md`。\n\n关键发现：\n- **Claim 2（per-test ≈ trajectory 等价性）证据最充分**，TOST + clustered bootstrap + ICC 齐全，可直接写\n- **Claim 1（complexity-dependent advantage）函数级方向正确但统计力度不足**——缺 CLS vs CWM paired bootstrap（数据已有未跑），repo-level 是决胜关键\n- **Claim 3（oracle frontier）证据丰富但 oracle 分析基于模拟**，需明确标注\n- **最大阻塞项**：repo-level 训练结果（P0），所有其他缺失项（paired bootstrap、effect size、图表）都可立即推进"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-materials.md"
+}

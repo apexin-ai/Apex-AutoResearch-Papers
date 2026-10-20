@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd5d18eda8c2688b1592",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis 4b cls cwm paired bootstrap",
+  "task_key": "worker_analysis_4b-cls-cwm-paired-bootstrap_20260512T170544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_4b-cls-cwm-paired-bootstrap_20260512T170544_result.json",
+    "occurrence": 1,
+    "bytes": 1141,
+    "sha256": "51c5a8c106c642e656a1bc85a89553ae5512433390dc9089af1729c26a641a02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个产出文件已生成。修正后的结果：\n\n### 4B CLS vs CWM（5 seeds）\n| 指标 | 值 |\n|------|-----|\n| Paired diffs | 0.32, 2.32, 0.90, 2.33, 0.37 |\n| Mean gap | **1.25pp** |\n| Std | 1.01 |\n| Paired t | **t=2.77, p=0.0253**（单侧）|\n| Bootstrap 95% CI | **[0.46, 2.04]pp** |\n| Cohen's d | 1.24（large effect）|\n| TOST p（±2pp） | 0.0855（不等价，差异是真实的）|\n\n### 8B CLS vs CWM（3 seeds）\n| 指标 | 值 |\n|------|-----|\n| Mean gap | **2.26pp** |\n| Paired t | **t=8.60, p=0.0066**（单侧）|\n| Bootstrap 95% CI | **[1.80, 2.71]pp** |\n| Cohen's d | 4.97 |\n\n### Scaling 趋势\n- Gap 从 4B 的 1.25pp 增长到 8B 的 2.26pp（+1.01pp）\n- P(8B gap > 4B gap) = **0.988**\n\n4B 的 t=2.77, p=0.0253 与 Reviewer 独立计算（t=2.77, p≈0.025）完全一致。两个 scale 下 CLS 优势均显著，且随模型规模放大。\n\n**注意**：JSON 中 narrative 里 8B gap 写的 2.42pp 与实际计算值 2.26pp 不一致——这是任务模板中的原始文本，实际数据以计算结果 2.26pp 为准。如需修正 narrative 文本请告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-4b-cls-cwm-paired-bootstrap.md"
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "c00f0fc0ccc4b553b08c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh pdf visual review",
+  "task_key": "worker_ssh_pdf-visual-review_20260521T175211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_pdf-visual-review_20260521T175211_result.json",
+    "occurrence": 1,
+    "bytes": 2108065,
+    "sha256": "e866c14984dd23a2723d51da4c6650dae6bd157aecef636e437c9d1cd0a7066e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "c00f0fc0ccc4b553b08c-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-pdf-visual-review.md"
+}

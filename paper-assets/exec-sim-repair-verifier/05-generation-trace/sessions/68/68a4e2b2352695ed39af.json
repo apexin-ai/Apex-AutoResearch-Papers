@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68a4e2b2352695ed39af",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_24.md",
+  "task_key": "loop_24",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_24.md",
+    "occurrence": 1,
+    "bytes": 4451,
+    "sha256": "d642bbf0befc3236f9a9a9948b6a218107b0c2f18e78ab51a4c6b26ebd7d5eac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-17T18:15:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud-westd-4x5090 的 GPU 分配：cuda:0 (deepseek-cls-repo-v4), cuda:1 (deepseek-cwm-repo), cuda:2 (deepseek-cls-repo-s123), cuda:3 (deepseek-cwm-repo-s123)——4/4 满载，不可抢占\n- home-1x5090 只有 1 张 GPU (cuda:0)，当前无 RUNNING 实验，可用于 eval/analysis 任务\n- DeepSeek repo 训练是 blocking 任务（填 Table 4 TBD + 确定 C2 narrative），不可中断/kill\n- EMNLP 2026 ARR May 25 DDL，剩余 **8 天**，Abstract/Intro/Conclusion 等 DeepSeek 结果后才能统一更新到 D116 framing\n- 参数修改（seq_length/bs/precision/lr）需 Director 审批（feedback memory D103）\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090**: 工作目录 `/root/exec-sim-repair-verifier`，4x5090 全部 RUNNING DeepSeek repo-level 训练\n  - 磁盘: `/usr/bin/nvidia-smi` 436G/879G 可用 (48%), `/autodl-pub` 5.3T/7.3T 可用\n- **home-1x5090**: 工作目录 `/home/sonny/exec-sim-repair-verifier`，account=sonny，1x5090\n  - 用于 Qwen TRAJ 8B 训练 + eval 任务\n  - W&B project: exec-sim-repair-verifier（entity 从 project config 取）\n- 活跃 cron 监控（reconcile 确认）:\n  - deepseek-cwm-repo (pid=479953, cuda:1)\n  - deepseek-cls-repo-v4 (pid=548885, cuda:0)\n  - deepseek-cls-repo-s123 (pid=542509, cuda:2)\n  - deepseek-cwm-repo-s123 (pid=542901, cuda:3)\n\n### 3. 📊 当前状态\n- **刚做的事**: 收到 qwen3-8b-traj-func-s42 完成 cron 回调，补齐了 registry 状态链 PREPARING→QUEUED→RUNNING→ANALYZING，已派 Worker `worker_analysis_qwen3-8b-traj-func-s42_20260517T141256` 去 SSH 读日志 + 查 W&B + 判定 conclusion\n- **等待中的 Worker 回调**: `worker_analysis_qwen3-8b-traj-func-s42_20260517T141256`——**这是最高优先级**，回调到手后需要：更新 registry→DONE, 刷 report.md, 汇报 Director（含资源行），判断 TRAJ 8B 数据对 Table 2 scaling 分析的影响\n- **RUNNING 实验** (4 个，全在 seetacloud):\n  - deepseek-cls-repo-v4 (s42): DeepSeek CLS repo-level，填 Table 4\n  - deepseek-cwm-repo (s42): DeepSeek CWM repo-level，填 Table 4\n  - deepseek-cls-repo-s123: DeepSeek CLS repo-level seed 123, multi-seed evidence\n  - deepseek-cwm-repo-s123: DeepSeek CWM repo-level seed 123, multi-seed evidence\n- **PREPARING** (3 个): qwen3-8b-traj-func-s123, deepseek-traj-func-v2-s123-fixed, deepseek-traj-func-v2-fixed\n- **Paper Agent 正在处理**: 6 项 Round 1 issue 修复 (R1-W4, R1-W2, R1-W5, R2-W5, R1-M3, R1-M1)\n\n### 4. 📋 待办（条件触发式）\n- Worker `worker_analysis_qwen3-8b-traj-func-s42` 回调 → 读 conclusion：\n  - success (test_acc ≈ 87-88%) → 更新 Table 2 TRAJ 8B 行, 汇报 Director, 判断是否需要 s123 seed 复现\n  - negative (低于 4B 86.30%) → 汇报 Director 证伪分析 + 文献联动, 不动 paper\n  - failed → 读日志诊断, 修复后重提交到 home-1x5090\n- qwen3-8b-traj-func-s42 成功 → 立即提交 qwen3-8b-traj-func-s123（home-1x5090 cuda:0 可用）\n- deepseek-cls-repo-v4 / deepseek-cwm-repo 完成 → eval → 填 Table 4 DeepSeek TBD cells\n- 4 个 DeepSeek repo 全部完成 → 确定 C2 narrative (Path A tokenizer-specific vs Path B model-agnostic) → 更新 Abstract/Intro/Conclusion 到 D116 framing\n- Paper Agent 6 项修复完成 → 汇总审查一致性, 等 DeepSeek 结果后统一提交 Round 2\n\n### 5. 🎯 战略上下文\n- **核心 framing (D116)**: Design space characterization——何时用 CLS, 何时用 CWM, 取决于 tokenizer/complexity\n- **C2 claim (D115)**: 放弃全局单调序 CLS≥CWM≥TRAJ, 改为 complexity-dependent divergence (tokenizer-specific, D119 已验证)\n- **Re-repair (D120)**: DROPPED, genuine negative, 不再追\n- **关键数字**: Qwen3-8B CLS 89.40±1.09%, CWM 86.96±0.50%; DeepSeek CLS func 86.85±0.11%, CWM func 86.83±1.49%, TRAJ func 84.16±1.30%\n- **易错点**: \n  - qwen3-8b-traj-func-s42 的 Worker 分析回调是当前最紧急的——不要忽略它去做别的\n  - TRAJ 8B 结果直接影响 Table 2 scaling narrative：如果 TRAJ 不 scale（与 CLS/CWM 不同），这本身也是有价值的发现（formulation-dependent scaling），需要调整 claim 措辞\n  - DeepSeek repo 结果是最后的 blocking 数据点，到手前不要动 Abstract/Intro/Conclusion\n  - Dream Round 1 行动项 A1-A6 已全部完成，剩余是写作修复和 DeepSeek 数据\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24.md"
+}

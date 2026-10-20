@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff38a14785154cc75247",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code cwm8b shard merge prep",
+  "task_key": "worker_code_cwm8b-shard-merge-prep_20260516T043555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cwm8b-shard-merge-prep_20260516T043555_result.json",
+    "occurrence": 1,
+    "bytes": 1332,
+    "sha256": "527cd7b1ba69363173983408bdd0b4bddd695a28d1405614ca8efcf08266b565"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法正确，`--help` 正常输出。\n\n## 结果报告\n\n**输出目录结构与行数：**\n\n| Shard | 目录 | 文件 | 行数 | Index 范围 | 状态 |\n|-------|------|------|------|-----------|------|\n| v3 | `cwm_8b_ckpt400_test/` | `results_incremental.jsonl` | 7248 | 0–7255 | 仍在跑 |\n| shard2 | `cwm_8b_ckpt400_test_shard2/` | `results_incremental.jsonl` | 1640 | 7680–9327 | 仍在跑 (预期2104) |\n| shard3 | `cwm_8b_ckpt400_test_shard3/` | `results_incremental.jsonl` | 1000 | 6200–7207 | 仍在跑 (预期1480) |\n| shard4 | `cwm_8b_ckpt400_test_shard4/` | `results_incremental.jsonl` | 688 | 9096–9783 | 已完成 |\n| shard4 | `cwm_8b_ckpt400_test_shard4/` | `eval_repo_cwm_predictions.jsonl` | 688 | — | predictions 文件 |\n\n**JSONL 格式：** `{\"index\", \"problem_id\", \"label\", \"pred\", \"correct\", \"truncated\", \"gen_text\", \"unparseable\"}`\n\n**Merge 脚本：** `/home/sonny/exec-sim-repair-verifier/merge_cwm8b_shards.py`\n- 以 `index` 去重，shard 优先级: shard4(4) > shard3(3) > shard2(2) > v3(1)\n- 支持 `--dry-run` 只报告不写文件\n- 输出到 `/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_merged/`\n- 计算 accuracy、unparseable rate、per-mutation 统计\n\n等 shard 全部完成后运行 `python3 merge_cwm8b_shards.py` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cwm8b-shard-merge-prep-copy-2.md"
+}

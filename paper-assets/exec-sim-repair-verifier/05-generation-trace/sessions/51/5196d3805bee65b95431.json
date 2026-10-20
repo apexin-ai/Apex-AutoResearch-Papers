@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5196d3805bee65b95431",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval deepseek cls repo s123",
+  "task_key": "worker_eval_deepseek-cls-repo-s123_20260517T151211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_deepseek-cls-repo-s123_20260517T151211_result.json",
+    "occurrence": 1,
+    "bytes": 433,
+    "sha256": "cac2c85f854d176c5bec97ebab13471ba6c474dd1415db10a77c0dda283efb4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 运行中。训练摘要：\n- **模型**: deepseek-coder-6.7b-instruct + LoRA (r=16, alpha=32)\n- **任务**: CLS repo-level (pass/fail classification)\n- **训练时间**: 21.5 小时 (77,406 秒)，3 epochs\n- **Train loss**: 0.0393\n- **Checkpoint**: `best` (epoch 3, step 6633)\n\n当前 eval 进度约 1.6%，running_acc ~83%。预计 40 分钟后完成，届时我会收集完整指标并写入 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-deepseek-cls-repo-s123.md"
+}

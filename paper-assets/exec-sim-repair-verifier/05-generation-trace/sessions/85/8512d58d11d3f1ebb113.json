@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8512d58d11d3f1ebb113",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor overnight setup",
+  "task_key": "worker_monitor_overnight-setup_20260517T172711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_overnight-setup_20260517T172711_result.json",
+    "occurrence": 1,
+    "bytes": 1648,
+    "sha256": "ca6fe661bde23a09838c937633bc47e9b36d1198044b8a3bbe445576625ab7fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n```\nHome (home-1x5090):\n- TRAJ eval: COMPLETED (May 17 10:23)\n  - Results: eval_deepseek_traj_func_m001_reverify_run2.json\n  - Accuracy: 83.04% (vs 53.6% majority baseline)\n  - Resolved F1=79.9, Unresolved F1=85.4\n  - Consistency rate: 77.5%\n- Active tmux: eval_8b_val5120_fix — TERMINATED at 6553/9335 (70%)\n  - This was a CLS eval (not TRAJ), killed externally\n  - GPU: 0%, 0 MiB — idle\n\nSeetacloud (seetacloud-westd-4x5090):\n- Process 1: cls-v4-eval-8192 (tmux), PID=664774, GPU 0 (89%, 31.4G)\n  - eval_repo_cls.py, ckpt=cls_repo_v4/checkpoint-4422, max_seq=8192\n  - Progress: 960/9784 (9.8%), running_acc=70.0%\n  - Rate: ~16.8 samples/min → ~8.7h remaining\n\n- Process 2: cwm-eval-s42 (no tmux), PID=662946, GPU 1 (53%, 17.3G)\n  - eval_repo_cwm.py, ckpt=cwm_repo/best/, split=test\n  - Running 1h07m, no visible progress counter\n  - batch_size=1, max_seq=4096, max_new_tokens=512\n\n- Process 3: cls-s123-eval-8192 (tmux), PID=665019, GPU 2 (91%, 31.4G)\n  - eval_repo_cls.py, ckpt=cls_repo_s123/best, max_seq=8192\n  - Progress: 840/9784 (8.6%), running_acc=74.3%\n  - Rate: ~14.8 samples/min → ~10h remaining\n\n- Process 4: cwm-train-s123 (no tmux), PID=542906, GPU 3 (99%, 18.1G)\n  - train_unified.py, task=cwm, seed=123, 3 epochs\n  - Progress: 10036/13266 (75.6%), ~8.4s/step → ~7.5h remaining\n  - ⚠️ eval_loss=nan at epoch 2 checkpoint (checkpoint-8844)\n```\n\n注意事项：\n1. **Home 的 CLS eval 被杀了**（Terminated），不是 TRAJ eval — TRAJ reverify 已完成。\n2. **CWM training eval_loss=nan** 需要关注，可能是 eval 计算问题或训练发散。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-overnight-setup.md"
+}

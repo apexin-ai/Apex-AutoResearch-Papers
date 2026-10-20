@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2e8ed8700f00644ddf8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect ckpt600 test8192 final result",
+  "task_key": "worker_collect_ckpt600-test8192-final-result_20260514T215432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_ckpt600-test8192-final-result_20260514T215432_result.json",
+    "occurrence": 1,
+    "bytes": 93,
+    "sha256": "c3b6ff13e8f6a021769752fba9ec880294a62cbaacb6943db7bfbe5522b2cb77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询中。进度 67%，约 8 分钟后完成。下次检查在 ~70 秒后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-ckpt600-test8192-final-result.md"
+}

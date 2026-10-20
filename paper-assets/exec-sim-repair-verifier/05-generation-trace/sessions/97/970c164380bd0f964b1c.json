@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "970c164380bd0f964b1c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops docker eval postmortem",
+  "task_key": "worker_ops_docker-eval-postmortem_20260517T082557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_docker-eval-postmortem_20260517T082557_result.json",
+    "occurrence": 1,
+    "bytes": 1562,
+    "sha256": "c24e3a5457334ea653190ce2bde828b4419831f174b74d6527c34b570007eddd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：Docker eval **失败**\n\n**原因：Docker 未安装在该服务器上。**\n\n`eval_re_repair.py` 依赖 `swebench.harness.run_evaluation`（需要 Docker 来创建容器运行测试），但 `seetacloud-westd-4x5090` 上没有 Docker。\n\n### 当前状态\n\n| 项目 | 状态 |\n|------|------|\n| PID 3610714 | 已退出（进程不存在） |\n| Docker | **未安装**（`which docker` 返回空） |\n| 输入数据 | 已生成：`/root/autodl-tmp/eval_results/re_repair_v2/re_repair_instances.jsonl`（9 instances） |\n| eval 输出 | **不存在**（无 `eval_results.jsonl`，无 swebench logs） |\n| Phase 0 (diff-sim) | 已完成（`/root/autodl-tmp/eval_results/re_repair_phase0/`，120 records） |\n\n### 已完成的 Phase 0 结果（diff similarity，非 Docker）\n\n| Condition | Mean Sim | Best-of-K Mean | Valid Diff |\n|-----------|----------|----------------|-----------|\n| control | 0.815 | 0.820 | 100% |\n| cls-diag | 0.775 | 0.818 | 97% |\n| oracle-diag | 0.773 | 0.809 | 100% |\n| random-diag | 0.719 | 0.719 | 90% |\n\n### 重启方案\n\nDocker eval 无法在当前服务器上运行。选项：\n\n1. **迁移到有 Docker 的服务器** — 需要一台支持 Docker 的机器（SWE-bench harness 要求 Docker + 大量磁盘空间缓存环境镜像）\n2. **在当前服务器安装 Docker** — SeetaCloud 容器内通常无法运行 Docker-in-Docker\n3. **放弃 Docker eval，改用 Phase 0 的 diff-similarity 指标** — 已有结果，但不是 resolve rate\n\n需要你决定如何推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-docker-eval-postmortem.md"
+}

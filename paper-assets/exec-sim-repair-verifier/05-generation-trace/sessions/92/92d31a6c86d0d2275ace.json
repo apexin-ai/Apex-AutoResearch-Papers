@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92d31a6c86d0d2275ace",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh resume qwen s456 training",
+  "task_key": "worker_ssh_resume-qwen-s456-training_20260521T182540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_resume-qwen-s456-training_20260521T182540_result.json",
+    "occurrence": 1,
+    "bytes": 1033,
+    "sha256": "8957c68cb26678d62d94a5e74a53bebdd0668f80b650c34f33b9fadfd1433b4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "恢复成功。\n\n**结果汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| **完整命令** | `CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --output_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_s456/ --seed 456 --run_name repo-cwm-qwen3-8b-lora-s456 --max_seq_length 2048 --batch_size 1 --grad_accumulation 32 --lr 5e-5 --epochs 3 --warmup_ratio 0.1 --lora_rank 16 --lora_alpha 32 --lora_dropout 0.05 --save_steps 100 --eval_steps 100 --save_total_limit 5 --no_wandb --resume_from_checkpoint checkpoint-6100` |\n| **tmux session** | `qwen_cwm_s456_resume2` |\n| **PID** | 83238 |\n| **恢复起始 step** | 6101（从 checkpoint-6100 正确恢复，不是 step 0） |\n| **剩余 steps** | ~532 (6101→6633) |\n| **GPU 3** | 98% utilization, 27135 MiB |\n| **日志** | `~/runs/exec-sim-repair-verifier/qwen_cwm_s456_resume2.log` |\n\n注意：第一次提交因缺少 wandb API key 失败，第二次加了 `--no_wandb` 成功启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-resume-qwen-s456-training.md"
+}

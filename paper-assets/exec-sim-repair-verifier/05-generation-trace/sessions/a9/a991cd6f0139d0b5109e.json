@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a991cd6f0139d0b5109e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis verify s123 variant and 4b home",
+  "task_key": "worker_analysis_verify-s123-variant-and-4b-home_20260518T190312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_verify-s123-variant-and-4b-home_20260518T190312_result.json",
+    "occurrence": 1,
+    "bytes": 1030,
+    "sha256": "610481597f3d11b43612876d8ed5e6fdf6bf978165483cd61929890028102847"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已写入 `artifacts/variant_level_verified_results.md`。\n\n**核心结论：**\n\n| Model | Seed | Per-test | Variant (n=48) |\n|---|---|---|---|\n| Qwen3-8B CLS | s123 | 85.60% | **39/48 = 81.25%** (confirmed) |\n| Qwen3-8B CLS | s42 | 84.48% | 35/48 = 72.92% |\n| Qwen3-4B CLS ckpt4600 | s42 | 83.63% | **31/48 = 64.58%** |\n| DeepSeek CLS seq8192 | s123 | 74.93% | 27/48 = 56.25% (canonical) |\n| DeepSeek CLS seq2048 | s123 | 82.62% | 72.92% → **EXCLUDED** |\n\n**Action 2**: Qwen3-8B CLS s123 = 81.25% (39/48) 已验证，数字正确。\n\n**Action 1**: DeepSeek CLS seq2048 已排除。28.6% unparseable 导致 majority default 膨胀。\n\n**Action 3**: Qwen3-4B CLS ckpt4600 variant-level = 64.58% (31/48)。虽然 per-test 83.63% 很高，但模型严重偏向 \"pass\"（recall_pass=96.57%, recall_fail=48.72%），AND rule 下 variant-level 大幅下降。对比同模型 ckpt-600 seq2048（76.92% per-test → 68.75% variant），后者因 fail recall 更平衡反而 variant-level 更高。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-verify-s123-variant-and-4b-home.md"
+}

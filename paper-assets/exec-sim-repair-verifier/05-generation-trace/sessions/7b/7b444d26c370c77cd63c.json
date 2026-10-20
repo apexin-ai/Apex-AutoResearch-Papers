@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b444d26c370c77cd63c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect westd evals and next",
+  "task_key": "worker_collect_westd-evals-and-next_20260515T072436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_westd-evals-and-next_20260515T072436_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "ce87e71650ff69bfc2030fdb4d15920126ee9c30a07606de1fbefdedbb6acce0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n### 1. ckpt-1600 test@8192 (s42) — 完整指标\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **84.99%** |\n| F1 macro | 78.94% |\n| F1 fail | 67.65% (P=81.06%, R=58.05%) |\n| F1 pass | 90.22% (P=85.93%, R=94.97%) |\n| Majority baseline | 72.96% |\n| Gap vs majority | +12.03pp |\n| Unparseable | 0 |\n| Total samples | 9,784 |\n\n**s42 test curve 完整：** 400:84.79% → 600:79.05% → 800:83.53% → 1000:83.52% → 1200:83.84% → 1400:85.47% → **1600:84.99%**\n\nckpt-1400 仍是 test-best (85.47%)，ckpt-1600 略降但差距很小。\n\n---\n\n### 2. seed123 ckpt-6600 val@8192 — 完整指标\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **87.23%** |\n| F1 macro | 79.02% |\n| F1 fail | 65.90% (P=92.60%, R=51.15%) |\n| F1 pass | 92.14% (P=86.40%, R=98.70%) |\n| Majority baseline | 75.88% |\n| Gap vs majority | +11.36pp |\n| Unparseable | 9 |\n| Total samples | 9,335 |\n\n---\n\n### 3. ckpt-6400 val@8192 提交确认\n\n已提交到 cuda:3，PID=343011，tmux session: `cls8b-seed123-ckpt6400-val8192-eval`\n\n---\n\n### 4. GPU 状态\n\n| GPU | 状态 |\n|-----|------|\n| cuda:0 | **空闲** (0%, 0 MiB) |\n| cuda:1 | 占用 (95%, 27.3GB) |\n| cuda:2 | 占用 (96%, 30.7GB) |\n| cuda:3 | 刚提交 ckpt-6400 eval |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-westd-evals-and-next.md"
+}

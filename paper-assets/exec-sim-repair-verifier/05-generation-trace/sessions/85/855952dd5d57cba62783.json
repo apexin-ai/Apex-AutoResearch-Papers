@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "855952dd5d57cba62783",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "d153 gpu1 traj ablation",
+  "task_key": "worker_d153-gpu1-traj-ablation_20260519T114210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_d153-gpu1-traj-ablation_20260519T114210.log",
+    "occurrence": 1,
+    "bytes": 1149377,
+    "sha256": "df6d87879d89df848670efcf6c737080cc92bf0084fe3c17fa1a2f5d741be856"
+  },
+  "statistics": {
+    "messages": 836,
+    "user_turns": 1,
+    "tool_calls": 347,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 134,
+      "tool_call": 347,
+      "tool_result": 347,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 748,
+      "chunks": [
+        {
+          "path": "855952dd5d57cba62783-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "855952dd5d57cba62783-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "855952dd5d57cba62783-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "855952dd5d57cba62783-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "855952dd5d57cba62783-part-0005.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 88,
+      "chunks": [
+        {
+          "path": "855952dd5d57cba62783-part-0005.json",
+          "message_count": 88
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/d153-gpu1-traj-ablation.md"
+}

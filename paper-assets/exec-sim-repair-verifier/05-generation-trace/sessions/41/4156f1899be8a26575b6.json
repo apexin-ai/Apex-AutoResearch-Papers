@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "4156f1899be8a26575b6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "code home repo level backup",
+  "task_key": "worker_code_home-repo-level-backup_20260512T170111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_home-repo-level-backup_20260512T170111.log",
+    "occurrence": 1,
+    "bytes": 562178,
+    "sha256": "865f141de85eff7af86096722b0613ecd897ee9295d1155fbc8f632f6d68c72f"
+  },
+  "statistics": {
+    "messages": 313,
+    "user_turns": 0,
+    "tool_calls": 118,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 118,
+      "tool_result": 118
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 313,
+      "chunks": [
+        {
+          "path": "4156f1899be8a26575b6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4156f1899be8a26575b6-part-0002.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-home-repo-level-backup.md"
+}

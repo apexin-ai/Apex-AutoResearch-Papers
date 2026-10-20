@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7ffbdcaa91b3466e030",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis tost sensitivity",
+  "task_key": "worker_analysis_tost-sensitivity_20260517T090419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tost-sensitivity_20260517T090419_result.json",
+    "occurrence": 1,
+    "bytes": 855,
+    "sha256": "5819dbdb2cb747412f57b2f482485a39de41e7b07b28787c62f10a7a572cc3b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n| Margin | Qwen3-4B p | eq? | DeepSeek p | eq? |\n|--------|-----------|-----|-----------|-----|\n| ±1.0pp | 0.871 | No | 0.274 | No |\n| ±1.5pp | 0.113 | No | 0.209 | No |\n| ±2.0pp | 0.007 | Yes | 0.166 | No |\n| ±3.0pp | 0.000 | Yes | 0.116 | No |\n| ±5.0pp | 0.000 | Yes | 0.071 | No |\n\n关键发现：\n- **Qwen3-4B**: 最小等价 margin = ±1.63pp（5 seeds 足够检测等价性）\n- **DeepSeek-6.7B**: 最小等价 margin = ±7.19pp（2 seeds 功效不足，SE 太大无法在任何合理 margin 下确认等价）\n\nDeepSeek 虽然观测差异极小（0.02pp），但 n=2 导致 SE=1.135，统计功效不足以在 ±5pp 内确认等价。这是 underpowered 的典型案例，不是方法差异的证据。\n\n输出已保存至 `artifacts/tost_sensitivity.json`（`art_20260517_00b5af`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tost-sensitivity.md"
+}

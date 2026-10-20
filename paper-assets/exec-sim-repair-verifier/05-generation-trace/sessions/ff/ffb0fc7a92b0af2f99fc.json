@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffb0fc7a92b0af2f99fc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper fix method tex",
+  "task_key": "worker_paper_fix-method-tex_20260512T205807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-method-tex_20260512T205807_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "0de7affbf01c7f34f8b87724ebcb978de2444bdb1f6dfd5910ed0a521fe58bdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部引用均指向 `meta2025cwm`，该 key 在 `docs/paper/references.bib` 中存在（line 10）。\n\n---\n\n**修改摘要（`docs/paper/method.tex`）：**\n\n| 修复项 | 位置 | 改动 |\n|--------|------|------|\n| 编译阻塞 | L31 | `\\citep{ding2024cwm}` → `\\citep{meta2025cwm}` |\n| $c_p$ 定义 | L24 | 补充 \"represented as a unified git diff in our experiments\" |\n| Exact match footnote | L38 | 添加 footnote 说明 exact match 是 CWM accuracy 的 conservative lower bound |\n| TRAJ 输入表示 | L57 | 补充 \"all tests $T = \\{t_1, \\ldots, t_n\\}$ are concatenated into a single input sequence\" |\n\n注意：`paper/method.tex`（另一版本）不含 `\\citep{ding2024cwm}`，已使用正确的 `\\citet{meta2025cwm}`，且无 $c_p$ 符号（使用 `\\texttt{code\\_context}(p)` 写法），未做修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-method-tex.md"
+}

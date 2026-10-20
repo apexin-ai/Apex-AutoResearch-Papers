@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5ab4256a42c52f7ba00",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cwm repo best ckpt reeval",
+  "task_key": "worker_ssh_cwm-repo-best-ckpt-reeval_20260523T111605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cwm-repo-best-ckpt-reeval_20260523T111605_result.json",
+    "occurrence": 1,
+    "bytes": 1087,
+    "sha256": "ea186771088312a41a501b7f305ffc693590b29b2e7d6d1652615d5b9e2e6913"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都已成功启动并正在推理。\n\n## 汇报\n\n| 项目 | s123 | s456 |\n|------|------|------|\n| **Checkpoint** | checkpoint-300 (val-best, eval_loss=0.2875) | checkpoint-300 (val-best, eval_loss=0.2769) |\n| **路径** | `/root/autodl-tmp/checkpoints_repo_cwm_8b_s123/checkpoint-300` | `/root/autodl-tmp/checkpoints_repo_cwm_8b_s456/checkpoint-300` |\n| **GPU** | GPU 0 (RTX 5090, 16.9GB/32.6GB) | GPU 1 (RTX 5090, 16.9GB/32.6GB) |\n| **PID** | 278342 | 278740 |\n\n**Eval 配置（与 s42 对齐）：**\n- `max_seq_length=2048`, `max_new_tokens=1024`, `batch_size=1`\n- Base model: `/root/autodl-tmp/models/Qwen/Qwen3-8B`\n- Test data: 9784 instances (`swebench_test.jsonl`)\n\n**GPU 利用率：** GPU 0 48%, GPU 1 49%, 各占 ~17GB 显存，正常。\n\n**预计完成时间：** 每条样本约 30-35 秒（从 log 看），9784 条 ≈ 80-95 小时/GPU。这比预期的 4-6h 慢很多——s42 eval 是多 shard 并行跑的（cwm_8b_ckpt400_test_shard2/3/4 目录可见）。如果需要加速，可以把 GPU 2 也利用上做 shard 分片。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cwm-repo-best-ckpt-reeval.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ba27632539f7030e23e5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "eval matched seed 8b predictions",
+  "task_key": "worker_eval_matched-seed-8b-predictions_20260512T172251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_matched-seed-8b-predictions_20260512T172251.log",
+    "occurrence": 1,
+    "bytes": 653677,
+    "sha256": "fde8797968729382fae252dd4f75560687d7d024371ec1996984fcb0530c4379"
+  },
+  "statistics": {
+    "messages": 263,
+    "user_turns": 0,
+    "tool_calls": 99,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 99,
+      "tool_result": 99,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 263,
+      "chunks": [
+        {
+          "path": "ba27632539f7030e23e5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ba27632539f7030e23e5-part-0002.json",
+          "message_count": 83
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-matched-seed-8b-predictions.md"
+}

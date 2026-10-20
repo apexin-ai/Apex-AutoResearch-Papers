@@ -1,0 +1,494 @@
+{
+  "schema_version": "1.0",
+  "id": "710d50ac17da7195ee42",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "eval cls8b ckpt3600 mutation breakdown",
+  "task_key": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419.jsonl",
+    "occurrence": 1,
+    "bytes": 21613,
+    "sha256": "bf5eb133298f63e3e46aa515d13e544819fc786e761c845702325e43699c2935"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T01:15:21.775064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T01:15:21.775556+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T01:15:21.777935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls -la /root/autodl-tmp/eval_results/ | grep -iE \"3600|mutation\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T01:15:21.778330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T01:15:21.778606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls /home/sonny/exec-sim-repair-verifier/mutation_breakdown.py /home/sonny/exec-sim-repair-verifier/analyze_mutation_types.py /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T01:15:21.778886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T01:15:21.779148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls -la /root/autodl-tmp/eval_results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T01:15:21.779364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls /home/sonny/exec-sim-repair-verifier/",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T01:15:21.779607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 236\\\\ndrwxr-xr-x 20 root root   4096 May 16 08:53 .\\\\ndrwxr-xr-x 35 root root   4096 May 15 23:58 ..\\\\ndrwxr-xr-x  2 root root     66 May 16 08:54 cls8b_s42_ckpt1000_test_mutation\\\\ndrwxr-xr-x  2 root root     83 May 15 13:54 cls8b_s42_ckpt1400_test8192\\\\ndrwxr-xr-x  2 root root     83 May 15 12:45 cls8b_s42_ckpt800_test8192\\\\ndrwxr-xr-x  2 root root     30 May 16 08:53 cls8b_s42_resume_ckpt1000_test_mutation\\\\ndrwxr-xr-x  2 root root     83 May 16 08:10 cls8b_s42_resume_ckpt3600_test_seq2048\\\\ndrwxr-xr-x  2 root root    103 May 16 07:23 cls8b_s42_resume_test_ckpt3600\\\\ndrwxr-xr-x  2 root root    118 May 16 07:24 cls8b_s42_resume_test_ckpt3600_mutation\\\\ndrwxr-xr-x  2 root root     83 May 14 05:39 cls_8b_ckpt200\\\\ndrwxr-xr-x 21 root root   4096 May 16 06:31 cls_8b_s42_resume_val\\\\ndrwxr-xr-x  2 root root     83 May 14 05:00 cls_seed123_ckpt200\\\\ndrwxr-xr-x  2 root root     83 May 14 01:05 cls_v5\\\\ndrwxr-xr-x  2 root root     70 May 16 08:42 cwm_8b_ckpt400_test\\\\ndrwxr-xr-x  2 root root     10 May 14 04:22 cwm_v11_ckpt600_full\\\\ndrwxr-xr-x  2 root root     83 May 14 03:11 cwm_v11_ckpt600_subset500\\\\ndrwxr-xr-x  2 root root     83 May 14 04:30 cwm_v11_ckpt600_subset500_backup\\\\ndrwxr-xr-x  2 root root     10 May 14 01:09 cwm_v11_ckpt600_tok1024\\\\ndrwxr-xr-x  2 root root     10 May 14 01:09 cwm_v11_ckpt600_tok256\\\\ndrwxr-xr-x  2 root root     10 May 14 01:09 cwm_v11_ckpt600_tok512\\\\n-rw-r--r--  1 root root    104 May 16 00:03 s42_extended_val_sweep_summary.json\\\\n-rw-r--r--  1 root root   4645 May 15 22:16 s42_val_sweep.log\\\\n-rw-r--r--  1 root root  28325 May 16 00:51 s42_val_sweep_curve.pdf\\\\n-rw-r--r--  1 root root 182695 May 16 00:51 s42_val_sweep_curve.png\\\\n-rw-r--r--  1 root root    666 May 16 00:51 s42_val_sweep_summary.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T01:15:21.780926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"8b_scaling_bootstrap_results.json\\\\n__pycache__\\\\nanalysis_5paired_bootstrap.py\\\\nanalysis_8b_scaling_bootstrap.py\\\\nanalysis_error_overlap.py\\\\nanalysis_error_overlap_report.json\\\\nanalyze_cwm_errors.py\\\\nanalyze_cwm_eval.py\\\\nanalyze_cwm_relaxed.py\\\\nanalyze_p2p_regression.py\\\\nanalyze_relaxed_matching.py\\\\nauto_eval_on_complete.sh\\\\nblock_corr_from_predictions.py\\\\nbootstrap_preliminary_2pairs.json\\\\nbuild_cwm_data.py\\\\nbuild_data.py\\\\nbuild_swebench_data.py\\\\nbuild_trace_data.py\\\\nbuild_traj_data.py\\\\ncheckpoints\\\\ncheckpoints_cls8b\\\\ncheckpoints_cls8b_seed123\\\\ncheckpoints_cls_seed0\\\\ncheckpoints_cwm8b\\\\ncheckpoints_cwm8b_seed123\\\\ncheckpoints_cwm8b_seed456\\\\ncheckpoints_cwm_rank32\\\\ncheckpoints_cwm_rank32_alpha64\\\\ncheckpoints_cwm_rank64\\\\ncheckpoints_cwm_seed123\\\\ncheckpoints_cwm_seed789\\\\ncheckpoints_repo_cls\\\\ncheckpoints_repo_cls_seed123\\\\ncheckpoints_repo_cwm\\\\ncompile_val_sweep.py\\\\ndata\\\\neval_block_correlation_v2.json\\\\neval_cls8b_results.json\\\\neval_cls8b_seed123.json\\\\neval_cls8b_seed42.json\\\\neval_cls_seed0.json\\\\neval_cwm8b_results.json\\\\neval_cwm8b_seed123.json\\\\neval_cwm8b_seed456.json\\\\neval_cwm_baseline.py\\\\neval_cwm_rank32_alpha64_results.json\\\\neval_cwm_rank32_alpha64_results_predictions.json\\\\neval_cwm_rank32_results.json\\\\neval_cwm_seed123.json\\\\neval_cwm_seed123_with_preds.json\\\\neval_cwm_seed123_with_preds_predictions.json\\\\neval_cwm_seed789.json\\\\neval_llm_judge_32b.json\\\\neval_llm_judge_8b.json\\\\neval_majority_voting.json\\\\neval_majority_voting.py\\\\neval_pertest_diag.json\\\\neval_pertest_diagnostic.py\\\\neval_repo_bootstrap.py\\\\neval_repo_cls.json\\\\neval_repo_cls.py\\\\neval_repo_cls.py.bak\\\\neval_repo_cls_predictions.jsonl\\\\neval_repo_cwm.py\\\\neval_repo_cwm.py.bak\\\\neval_repo_level.py\\\\neval_repo_level.py.bak\\\\neval_repo_verifier.py\\\\neval_results\\\\neval_results_bf16.json\\\\neval_results_bf16_predictions.json\\\\neval_trace_judge.py\\\\neval_traj_verifier.py\\\\neval_verifier.py\\\\neval_verif\n…[truncated 1114 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T01:15:21.781317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls -la /root/autodl-tmp/eval_results/cls8b_s42_resume_test_ckpt3600_mutation/",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T01:15:21.781958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls -la /root/autodl-tmp/eval_results/cls8b_s42_resume_test_ckpt3600/",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T01:15:21.782229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1488\\\\ndrwxr-xr-x  2 root root     118 May 16 07:24 .\\\\ndrwxr-xr-x 20 root root    4096 May 16 08:53 ..\\\\n-rw-r--r--  1 root root     780 May 16 07:24 eval_repo_cls.json\\\\n-rw-r--r--  1 root root 1508719 May 16 07:24 eval_repo_cls_predictions.jsonl\\\\n-rw-r--r--  1 root root     558 May 16 07:24 mutation_breakdown.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T01:15:21.784075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1548\\\\ndrwxr-xr-x  2 root root     103 May 16 07:23 .\\\\ndrwxr-xr-x 20 root root    4096 May 16 08:53 ..\\\\n-rw-r--r--  1 root root   64329 May 16 07:23 eval.log\\\\n-rw-r--r--  1 root root     780 May 16 07:23 eval_repo_cls.json\\\\n-rw-r--r--  1 root root 1508719 May 16 07:23 eval_repo_cls_predictions.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T01:15:21.784312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "head -80 /home/sonny/exec-sim-repair-verifier/mutation_breakdown.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T01:15:21.784595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport os\\\\nfrom collections import defaultdict\\\\n\\\\nPRED_PATH = \\\\\\\"/root/autodl-tmp/eval_results/cls8b_s42_resume_test_ckpt3600_mutation/eval_repo_cls_predictions.jsonl\\\\\\\"\\\\nDATA_PATH = \\\\\\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\\\\\\\"\\\\nOUT_DIR = \\\\\\\"/root/autodl-tmp/eval_results/cls8b_s42_resume_test_ckpt3600_mutation\\\\\\\"\\\\n\\\\npredictions = []\\\\nwith open(PRED_PATH) as f:\\\\n    for line in f:\\\\n        predictions.append(json.loads(line))\\\\n\\\\ntest_data = []\\\\nwith open(DATA_PATH) as f:\\\\n    for line in f:\\\\n        test_data.append(json.loads(line))\\\\n\\\\nstats = defaultdict(lambda: {\\\\\\\"correct\\\\\\\": 0, \\\\\\\"total\\\\\\\": 0})\\\\noverall_correct = 0\\\\nfor pred in predictions:\\\\n    idx = pred.get(\\\\\\\"index\\\\\\\", None)\\\\n    if idx is not None and idx < len(test_data):\\\\n        mut_type = test_data[idx].get(\\\\\\\"mutation_type\\\\\\\", \\\\\\\"unknown\\\\\\\")\\\\n    else:\\\\n        mut_type = \\\\\\\"unknown\\\\\\\"\\\\n    correct = pred.get(\\\\\\\"correct\\\\\\\", 0)\\\\n    stats[mut_type][\\\\\\\"total\\\\\\\"] += 1\\\\n    if correct:\\\\n        stats[mut_type][\\\\\\\"correct\\\\\\\"] += 1\\\\n        overall_correct += 1\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n=== Per-Mutation-Type Test Accuracy (ckpt-3600, s42-resume) ===\\\\\\\")\\\\nprint(f\\\\\\\"{'Mutation Type':<30} {'Correct':>8} {'Total':>8} {'Accuracy':>10}\\\\\\\")\\\\nprint(\\\\\\\"-\\\\\\\" * 60)\\\\nfor mt in sorted(stats.keys()):\\\\n    s = stats[mt]\\\\n    acc = s[\\\\\\\"correct\\\\\\\"] / s[\\\\\\\"total\\\\\\\"] * 100 if s[\\\\\\\"total\\\\\\\"] > 0 else 0\\\\n    print(f\\\\\\\"{mt:<30} {s['correct']:>8} {s['total']:>8} {acc:>9.2f}%\\\\\\\")\\\\nprint(\\\\\\\"-\\\\\\\" * 60)\\\\ntotal = sum(s[\\\\\\\"total\\\\\\\"] for s in stats.values())\\\\nprint(f\\\\\\\"{'OVERALL':<30} {overall_correct:>8} {total:>8} {overall_correct/total*100:>9.2f}%\\\\\\\")\\\\n\\\\noutput = {}\\\\nfor mt, s in stats.items():\\\\n    output[mt] = {\\\\\\\"correct\\\\\\\": s[\\\\\\\"correct\\\\\\\"], \\\\\\\"total\\\\\\\": s[\\\\\\\"total\\\\\\\"], \\\\\\\"accuracy\\\\\\\": round(s[\\\\\\\"correct\\\\\\\"]/s[\\\\\\\"total\\\\\\\"]*100, 4) if\n…[truncated 468 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T01:15:21.785050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cat /root/autodl-tmp/eval_results/cls8b_s42_resume_test_ckpt3600_mutation/mutation_breakdown.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T01:15:21.785341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"gold\\\\\\\": {\\\\n    \\\\\\\"correct\\\\\\\": 4459,\\\\n    \\\\\\\"total\\\\\\\": 4633,\\\\n    \\\\\\\"accuracy\\\\\\\": 96.2443\\\\n  },\\\\n  \\\\\\\"mutation_boundary_removal\\\\\\\": {\\\\n    \\\\\\\"correct\\\\\\\": 492,\\\\n    \\\\\\\"total\\\\\\\": 1049,\\\\n    \\\\\\\"accuracy\\\\\\\": 46.9018\\\\n  },\\\\n  \\\\\\\"mutation_operator_swap\\\\\\\": {\\\\n    \\\\\\\"correct\\\\\\\": 2732,\\\\n    \\\\\\\"total\\\\\\\": 3357,\\\\n    \\\\\\\"accuracy\\\\\\\": 81.3822\\\\n  },\\\\n  \\\\\\\"mutation_return_value\\\\\\\": {\\\\n    \\\\\\\"correct\\\\\\\": 424,\\\\n    \\\\\\\"total\\\\\\\": 562,\\\\n    \\\\\\\"accuracy\\\\\\\": 75.4448\\\\n  },\\\\n  \\\\\\\"mutation_off_by_one\\\\\\\": {\\\\n    \\\\\\\"correct\\\\\\\": 159,\\\\n    \\\\\\\"total\\\\\\\": 183,\\\\n    \\\\\\\"accuracy\\\\\\\": 86.8852\\\\n  },\\\\n  \\\\\\\"_overall\\\\\\\": {\\\\n    \\\\\\\"correct\\\\\\\": 8266,\\\\n    \\\\\\\"total\\\\\\\": 9784,\\\\n    \\\\\\\"accuracy\\\\\\\": 84.4849\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T01:15:21.785590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cat /root/autodl-tmp/eval_results/cls8b_s42_resume_test_ckpt3600_mutation/eval_repo_cls.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T01:15:21.785880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"CLS\\\\\\\",\\\\n  \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600\\\\\\\",\\\\n  \\\\\\\"split\\\\\\\": \\\\\\\"test\\\\\\\",\\\\n  \\\\\\\"n_instances\\\\\\\": 9784,\\\\n  \\\\\\\"n_cls_unparseable\\\\\\\": 0,\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 84.48,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 72.96,\\\\n    \\\\\\\"gap_vs_majority_pp\\\\\\\": 11.53,\\\\n    \\\\\\\"f1_fail\\\\\\\": 66.43,\\\\n    \\\\\\\"f1_pass\\\\\\\": 89.91,\\\\n    \\\\\\\"f1_macro\\\\\\\": 78.17,\\\\n    \\\\\\\"precision_fail\\\\\\\": 80.06,\\\\n    \\\\\\\"precision_pass\\\\\\\": 85.53,\\\\n    \\\\\\\"recall_fail\\\\\\\": 56.76,\\\\n    \\\\\\\"recall_pass\\\\\\\": 94.76,\\\\n    \\\\\\\"confusion_matrix\\\\\\\": {\\\\n      \\\\\\\"tn\\\\\\\": 1502,\\\\n      \\\\\\\"fp\\\\\\\": 1144,\\\\n      \\\\\\\"fn\\\\\\\": 374,\\\\n      \\\\\\\"tp\\\\\\\": 6764\\\\n    },\\\\n    \\\\\\\"support\\\\\\\": {\\\\n      \\\\\\\"fail\\\\\\\": 2646,\\\\n      \\\\\\\"pass\\\\\\\": 7138\\\\n    }\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/\\\\\\\",\\\\n    \\\\\\\"max_seq_length\\\\\\\": 8192,\\\\n    \\\\\\\"batch_size\\\\\\\": 1,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 8\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T01:15:21.786189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cls8b-s42-resume-ckpt3600-mutation",
+              "field": "status",
+              "value": "DONE",
+              "project": "exec-sim-repair-verifier",
+              "spec": "{'command': 'python3 mutation_breakdown.py (post-processing from existing predictions)', 'server': 'seetacloud-westd-4x5090', 'data_path': '/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl', 'data_count': 9784, 'model_name': 'Qwen3-8B', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/', 'eval_data': 'test', 'parent': 'cls8b-s42-resume-ckpt3600-test', 'checkpoint_path': '/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/', 'log_path': '/root/autodl-tmp/eval_results/cls8b_s42_resume_test_ckpt3600_mutation/'}"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T01:15:21.786557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cls8b-s42-resume-ckpt3600-mutation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T23:34:55.660Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:15:08.404Z\\\", \\\"failure_reason\\\": \\\"CLEARED: was false positive from cron. Experiment still in PREPARING, awaiting GPU allocation.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T23:35:02.463599+00:00\\\"}]}, \\\"spec\\\": {\\\"command\\\": \\\"python3 mutation_breakdown.py (post-processing from existing predictions)\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl\\\", \\\"data_count\\\": 9784, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/\\\", \\\"eval_data\\\": \\\"test\\\", \\\"parent\\\": \\\"cls8b-s42-resume-ckpt3600-test\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_results/cls8b_s42_resume_test_ckpt3600_mutation/\\\"}, \\\"metrics\\\": {\\\"overall_accuracy\\\": 84.4849, \\\"overall_correct\\\": 8266, \\\"overall_total\\\": 9784, \\\"gold_accuracy\\\": 96.2443, \\\"gold_correct\\\": 4459, \\\"gold_total\\\": 4633, \\\"mutation_operator_swap_accuracy\\\": 81.3822, \\\"mutation_operator_swap_correct\\\": 2732, \\\"mutation_operator_swap_total\\\": 3357, \\\"mutation_off_by_one_accuracy\\\": 86.8852, \\\"mutation_off_by_one_correct\\\": 159, \\\"mutation_off_by_one_total\\\": 183, \\\"mutation_return_value_accuracy\\\": 75.4448, \\\"mutation_return_value_correct\\\": 424, \\\"mutation_return_value_total\\\": 562, \\\"mutation_boundary_removal_accuracy\\\": 46.9018, \\\"mutation_boundary_removal_correct\\\": 492, \\\"mutation_boundary_removal_total\\\": 1049}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-3600/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/eval_result\n…[truncated 210 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T01:15:21.788154+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。结果已完整，无需重新跑 eval。\n\n## CLS 8B s42 resume ckpt-3600 Mutation Breakdown\n\n| Mutation Type | Correct | Total | Accuracy |\n|---|---:|---:|---:|\n| gold (pass → pass) | 4,459 | 4,633 | **96.24%** |\n| mutation_off_by_one | 159 | 183 | **86.89%** |\n| mutation_operator_swap | 2,732 | 3,357 | **81.38%** |\n| mutation_return_value | 424 | 562 | **75.44%** |\n| mutation_boundary_removal | 492 | 1,049 | **46.90%** |\n| **OVERALL** | **8,266** | **9,784** | **84.48%** |\n\n关键发现：\n- **gold 样本（正样本）** 识别率极高 96.24%，说明模型 recall_pass 强\n- **boundary_removal 最难**，仅 46.90% — 这类 mutation 删除边界条件检查，语义变化微妙\n- **off_by_one 最易检测** (86.89%)，但样本量最小 (183)\n- operator_swap 是最大的 mutation 类别 (3,357)，准确率 81.38%\n\nRegistry `cls8b-s42-resume-ckpt3600-mutation` 已标记 DONE，metrics 已录入。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_cls8b-ckpt3600-mutation-breakdown_20260516T011419"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/eval-cls8b-ckpt3600-mutation-breakdown.md"
+}

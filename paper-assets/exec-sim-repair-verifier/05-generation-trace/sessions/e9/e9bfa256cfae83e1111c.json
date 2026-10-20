@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9bfa256cfae83e1111c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval 8b ckpt3000 test westd",
+  "task_key": "worker_eval_8b-ckpt3000-test-westd_20260514T202129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_8b-ckpt3000-test-westd_20260514T202129_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "7a473dfd698c97957c2a2f17e9fb49b9a86eae7d3255b92dd29b8734ddbbb770"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**checkpoint-3000 不存在，无法执行 eval。**\n\n原因：8B CLS 训练仍在进行中，当前进度 **step 662/6633**（约 10%）。checkpoint 每 200 步保存一次（已有 200/400/600），**step 3000 还没到**。\n\n当前状态：\n- **cuda:0**: 被 8B CLS 训练占用（PID 280392, 19234 MiB）— **不空闲**\n- **cuda:1**: 同一训练进程占用（PID 281646, 12196 MiB）\n- **cuda:2/3**: 其他训练占用（~30.7 GB）\n\n预估 checkpoint-3000 到达时间：还需 2338 步 × ~8.2s/step ≈ **5.3 小时**（约今天晚上）。\n\n**等训练跑到 step 3000 并保存 checkpoint 后才能提交 eval。** 届时 cuda:0 也仍然被训练占用，eval 需要等训练结束或用其他空闲 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-8b-ckpt3000-test-westd.md"
+}

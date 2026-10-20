@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d436c5d059c376a3e406",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4.md",
+    "occurrence": 1,
+    "bytes": 5347,
+    "sha256": "c6e1c06ee3d5c259aedae6140ea6ae0c7c0746c9c8d2e2f3e3a6d2cf77005d67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-12T20:49:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **seetacloud-westd-4x5090 禁止并行训练**：cgroup 360GB RAM 限制，两个 4B 训练并行必触发 OOM killer（D028，v3+v4 两次确认）\n- **GPU 白名单**：config 中 gpu_ids=[cuda:0, cuda:1, cuda:2, cuda:3]，但 seetacloud 只能用 cuda:2/cuda:3（cuda:0/1 曾违规使用被 Director CRITICAL，见 D026）\n- **repo-level CWM 已连续 8 次失败**（v1-v6 + 原始两次），提交前务必确认之前失败原因已全部修复，不要盲目重试\n- **CWM v6 被 SIGTERM(143) 杀死**，原因未查明——Worker `worker_ssh_cwm-v6-restart-d033` 正在调查并尝试重启，但该 Worker 可能因本次 session reset 而丢失上下文\n- **submit_training_job 必须用于训练提交**，禁止 nohup；命令必须自带环境激活（seetacloud: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`；home: 直接 python3）\n\n### 2. 🖥️ 基础设施快照\n- **home-1x5090**：account=sonny，工作目录 `/home/sonny/exec-sim-repair-verifier`，Python=系统 python3，1×RTX 5090，62GB RAM\n  - 模型：HF hub `Qwen/Qwen3-4B`（自动下载）\n  - 数据：`/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/`（70748 条）\n  - Checkpoint 输出：`/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`\n  - 训练脚本：`train_repo_verifier.py`（CLS）\n- **seetacloud-westd-4x5090**：account=root，工作目录 `/home/sonny/exec-sim-repair-verifier`，Python=/root/miniconda3/bin/python（conda base），4×RTX 5090，cgroup 360GB RAM\n  - 模型缓存：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`\n  - Checkpoint 输出：`/root/autodl-tmp/checkpoints_repo_cwm_v6/`\n  - 训练脚本：`train_repo_cwm.py`（CWM）\n  - ⚠️ `train_repo_cwm.py` 未同步到 home（ROADMAP 已标注）\n- **westd-48478**：account=sonny，已分配 cuda:2/cuda:3 但当前空闲，无活跃实验\n- **活跃进程**：\n  - `repo-level-cls-home`：home-1x5090 cuda:0，PID 2840844，tmux session，cron 监控中（reconcile 确认 still running）\n  - Worker `worker_ssh_cwm-v6-restart-d033`：正在运行（turn 15），正在 seetacloud 上调查 CWM v6 SIGTERM 并尝试重启\n\n### 3. 📊 当前状态\n- **刚完成**：repo-level-cwm-v6 训练失败（SIGTERM 143，外部 kill，非 OOM 非代码错误），这是 CWM 第 8 次 repo-level 失败\n- **正在运行**：\n  - `repo-level-cls-home`（RUNNING）：home-1x5090 cuda:0，step ~104/6633，~7s/it，预计剩余 ~12h。save_steps=50 已生效，有中间 checkpoint\n  - Worker `worker_ssh_cwm-v6-restart-d033`（running，turn 15）：正在 seetacloud 调查 v6 SIGTERM 原因 + 检查 checkpoint 恢复可能性。最新进展：确认 eval_steps 修复成功（step 50 未触发 eval），正在等 loss 日志刷新\n- **Registry 总览**：45 实验，30 success / 3 negative / 9 failed / 2 killed / 1 running\n- **等待中**：\n  - CWM v6 Worker 回调 → 需要处理结果（重启成功/失败）\n  - repo-level-cls-home cron 回调 → 训练完成后进入 eval 流程\n  - westd-48478 cuda:2/cuda:3 空闲 → 分配了没跑 = 失职（需要解决）\n\n### 4. 📋 待办（条件触发式）\n- **CWM v6 Worker 回调到达** → 如果重启成功：确认 cron 监控已注册，更新 registry 为 RUNNING + 新 PID；如果重启失败：向 Director 汇报连续 8 次失败，建议 (a) 换 westd-48478 服务器重试 或 (b) 只用 CLS repo-level 数据 + 函数级 CWM 数据写论文\n- **repo-level-cls-home 训练完成（~12h 后）** → spawn Worker 跑 eval（`train_repo_verifier.py --eval_only` 或类似命令），计算 repo-level CLS accuracy/F1\n- **repo-level CLS + CWM eval 都完成** → paired bootstrap 比较 CLS vs CWM repo-level gap → 对照 D008 Go/No-Go 标准（≥3pp 全力推 EMNLP Main，1-3pp 加 seeds，<1pp kill C1）\n- **westd-48478 cuda:2/cuda:3 空闲** → 向 Director 汇报，要么用于 CWM repo-level 训练（如果 seetacloud 不可用），要么申请释放\n- **Paper Agent Step 2 进行中** → 不阻塞，可与训练并行推进图表生成\n\n### 5. 🎯 战略上下文\n- **核心论点**：Task reformulation（execution simulation 从 generation → classification）。函数级两者等价（F1 diff <0.5pp），核心假说是 complexity-dependent advantage——repo-level 是决胜战场\n- **决策链要点**：D008 定义了 repo-level Go/No-Go 标准；D028 确认 seetacloud 禁止并行；D030/D031/D032 记录了 CWM 多 Worker 并行提交导致的进程泄漏问题\n- **投稿目标**：EMNLP 2026 Main（ARR May 25，~13 天），时间线紧张但可行（bottleneck 是 CWM ~20h）\n- **最容易判断错的事**：\n  1. CWM repo-level 连续 8 次失败，不要低估基础设施问题的顽固性——v6 的 SIGTERM 可能是 seetacloud 平台行为（idle kill / 资源回收），不是代码问题\n  2. 不要在 seetacloud 上并行启动第二个训练，360GB cgroup 限制是硬约束\n  3. westd-48478 是第三台服务器，如果 seetacloud 继续不可靠，可以考虑把 CWM 训练迁移过去（但需要先搭环境 + 同步代码 + 下载模型）\n  4. 函数级结果已经非常充分（30 个 success），不需要再跑函数级实验。所有精力应集中在 repo-level + 论文写作\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-copy-2.md"
+}

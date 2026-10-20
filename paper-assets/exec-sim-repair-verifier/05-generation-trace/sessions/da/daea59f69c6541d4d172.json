@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daea59f69c6541d4d172",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "experiment deepseek zero shot",
+  "task_key": "worker_experiment_deepseek-zero-shot_20260517T124706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_deepseek-zero-shot_20260517T124706_result.json",
+    "occurrence": 1,
+    "bytes": 774,
+    "sha256": "a10d89efb52ca4597eb4205745ed3a1f4edd953ccd95a64e79cb8b82e669f527"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "pass/fail\n```\n\n**数据集**: 用与 Qwen3 零样本实验 (`llm_judge_zeroshot.py`) 相同的测试集和数据加载方式。\n\n**运行参数**:\n- `temperature=0`（确定性推理）\n- batch inference 自动分批\n- 输出预测结果到 `artifacts/deepseek_coder_6b_zeroshot_results.json`\n\n**评估**:\n- 计算：accuracy, precision, recall, F1（per-class + macro）\n- 与已有实验对比（如果有 Qwen3 零样本结果）\n- 输出 metrics 到 `artifacts/deepseek_coder_6b_zeroshot_metrics.json`\n\n**执行**:\n1. SSH 到 home-1x5090\n2. 找到已有 zeroshot 脚本或创建新的推理脚本\n3. 用 DeepSeek-coder-6.7B-instruct 跑推理\n4. 计算指标并保存结果\n\n先 SSH 连上服务器探索已有脚本，然后执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-deepseek-zero-shot.md"
+}

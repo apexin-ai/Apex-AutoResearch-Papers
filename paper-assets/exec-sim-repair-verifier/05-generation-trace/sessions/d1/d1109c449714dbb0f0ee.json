@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1109c449714dbb0f0ee",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze cwm seed456",
+  "task_key": "worker_analyze_cwm-seed456_20260512T125008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cwm-seed456_20260512T125008_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "683dc1fb94b95bd658fb30fdaf23a3bcb795ec126bc8551b0d030919e572200b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕。结果汇总：\n\n**cwm-seed456 结果**\n\n| 指标 | seed=456 | baseline (seed=42) | 差异 |\n|------|----------|-------------------|------|\n| accuracy | 86.98% | 87.51% | -0.53pp |\n| pass_f1 | 86.66% | 87.31% | -0.65pp |\n| fail_f1 | 87.29% | 87.71% | -0.42pp |\n| exact_match | 84.02% | 84.02% | 0 |\n| train_loss | 0.2525 | — | — |\n| eval_loss (best) | 0.0551 | — | — |\n\n**一致性分析**：seed=456 的 accuracy (86.98%) 与 cwm8b-seed123 (86.98%) 完全一致，两个非默认 seed 均低于 seed=42 (87.51%)，说明 seed=42 略偏高。4B CWM 真实水平约 87.0–87.5%。\n\n**cls-cwm gap**：cls-baseline=88.36%，CWM 三 seed 均值≈87.16%，gap ~1.2pp，在不同 seed 下稳定存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-cwm-seed456.md"
+}

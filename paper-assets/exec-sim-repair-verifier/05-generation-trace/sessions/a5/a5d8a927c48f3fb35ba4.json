@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5d8a927c48f3fb35ba4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect home 4b test",
+  "task_key": "worker_collect_home-4b-test_20260515T072448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_home-4b-test_20260515T072448_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "ad2c7a4cd31cad73a6fccf256f11a2ed643c7b570488e7b5906f04864e06de83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n## 4B v5 ckpt-4600 Test Eval 结果\n\n| 指标 | Val | Test | 差值 |\n|------|-----|------|------|\n| **Accuracy** | 90.07% | 83.63% | **-6.44pp** |\n| **F1 macro** | — | 75.63% | — |\n| **F1 fail** | — | 61.67% | — |\n| **F1 pass** | — | 89.59% | — |\n| Precision fail | — | 84.03% | — |\n| Recall fail | — | 48.72% | — |\n| Precision pass | — | 83.55% | — |\n| Recall pass | — | 96.57% | — |\n| Majority baseline | 72.96% | 72.96% | — |\n| Gap vs majority | — | +10.67pp | — |\n| Unparseable | — | 0 | — |\n| Total samples | — | 9,784 | — |\n\n**Val→Test 下降 6.44pp**（90.07% → 83.63%）。Recall fail 仅 48.72%，模型在 test 上漏掉了超过一半的 fail 样本，说明 fail 检测泛化不足。\n\n**Home cuda:0 已释放**（0 MiB, 0% utilization）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-home-4b-test.md"
+}

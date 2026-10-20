@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e132e24c4a1f00d264e1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "writing appendix fixes",
+  "task_key": "worker_writing_appendix-fixes_20260521T152037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_appendix-fixes_20260521T152037_result.json",
+    "occurrence": 1,
+    "bytes": 1192,
+    "sha256": "c6aa9ddda9747fd0f6d2c28713576c922ca88fe2239fa7546e982fdde8d42cb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits verified. Summary of changes:\n\n**Part A — Appendix fixes:**\n| # | Location | Change |\n|---|----------|--------|\n| Fix 1 | L67 | Removed \"unverified checkpoint\" footnote (numbers are consistent throughout paper) |\n| Fix 2 | L304 ¶(c) | \"42–53%\" → \"38–43%\" (matches experiments.tex:160 and ¶(g)) |\n| Fix 3 | L304 ¶(c) | \"from 26pp to 28pp\" → \"from 26pp to 27pp\" (actual: 25.59→26.65) |\n| Minor 1 | L449 | \"74%\" → \"73.8%\" (matches experiments.tex:160) |\n| Minor 2 | L110 Table 8 caption | \"unavailable\" → \"omitted due to low parse rates\" with table cross-ref |\n| Minor 3 | ¶(g) L319–324 | Compressed 4 bullets from ~8 lines to ~4 lines with cross-refs |\n| Minor 4 | L463 | \"tentative\" → \"should be interpreted with caution\" |\n\n**Part B — Format collapse paragraph:**\n- \"degenerates into replaying pytest execution traces\" → \"faithfully generates pytest execution trace fragments ... but exhausts its generation budget before reaching a PASS/FAIL verdict\"\n- Added note clarifying 149.8 tokens (full eval) vs 477 tokens (benchmark sample) discrepancy\n\nLaTeX compiles cleanly (20 pages, no new errors)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-appendix-fixes.md"
+}

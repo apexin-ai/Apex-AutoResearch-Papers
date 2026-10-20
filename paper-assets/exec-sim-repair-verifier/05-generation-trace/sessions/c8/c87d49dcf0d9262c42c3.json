@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c87d49dcf0d9262c42c3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops deepseek cls func s123 check",
+  "task_key": "worker_ops_deepseek-cls-func-s123-check_20260516T110918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deepseek-cls-func-s123-check_20260516T110918_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "131d63a6c7d5d965344b0f9129279209aef4374271960ac821746ad0a71b3467"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 后台运行中（PID 499760），3 分钟后回来查进度。\n\n**当前状态汇总**：\n\n| 项目 | 结果 |\n|------|------|\n| 训练状态 | **成功** (EXIT_CODE=0) |\n| Epochs | 3/3 完成，2868 steps |\n| Best eval_loss | **0.0675** (step 956, epoch 1) |\n| Eval loss history | ep1: 0.0675, ep2: 0.0676, ep3: 0.0786 |\n| Checkpoint | `/root/autodl-tmp/checkpoints_deepseek_cls_func_seed123/best/` |\n| Registry | DONE, conclusion=success |\n| Cron | 无需删除（session 内无 cron） |\n| Test eval | 后台运行中，等待结果 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deepseek-cls-func-s123-check.md"
+}

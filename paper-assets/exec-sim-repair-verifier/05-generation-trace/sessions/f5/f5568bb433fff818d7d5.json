@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5568bb433fff818d7d5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "experiment cwm rank32 ablation v2",
+  "task_key": "worker_experiment_cwm-rank32-ablation-v2_20260515T124831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_cwm-rank32-ablation-v2_20260515T124831_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "e1e2e288852c960df421c6ed4813b76616d00e9c2b45a649c56d1381395e1590"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**CWM rank=32 消融训练已在运行中，无需重新提交。**\n\n| 项目 | 值 |\n|------|----|\n| PID | 368823 |\n| GPU | cuda:0 (westd) |\n| 进度 | 334/1434 (23%)，~3.3s/step |\n| 参数 | rank=32, alpha=32, lr=2e-4, bs=2, ga=16, epochs=3, seed=42 |\n| 数据 | 函数级 cwm_train.jsonl (15290 条) |\n| checkpoint | `checkpoints_cwm_rank32/`（save_strategy=epoch，epoch 1 尚未结束） |\n| 日志 | `/root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log` |\n| ETA | ~60 分钟后完成 |\n| Registry | `cwm-rank32-ablation-v2` → RUNNING |\n\n**注意**：lora_alpha 保持默认 32（与 baseline 相同绝对值），未调为 64。如果审稿人需要保持 alpha/rank 比不变（baseline 是 2:1），可能需要额外跑一个 alpha=64 的版本。当前这个 alpha=32 的版本也是合理的消融选择（固定 alpha，只变 rank）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-cwm-rank32-ablation-v2.md"
+}

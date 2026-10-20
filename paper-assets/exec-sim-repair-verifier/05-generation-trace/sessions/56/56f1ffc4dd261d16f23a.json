@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56f1ffc4dd261d16f23a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose qwen s456 train v4 cron",
+  "task_key": "worker_diagnose_qwen-s456-train-v4-cron_20260521T220540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_qwen-s456-train-v4-cron_20260521T220540_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "95ea0d7bbe4a886d7de628d6b0e1b36bdc920eddcd31937ab9691914e9ec223e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被之前的回调清除或以其他 ID 注册）。\n\n## 汇总\n\n| 项目 | 结果 |\n|------|------|\n| **训练结论** | **SUCCESS** — checkpoint-6633 存在，epoch=3.0，EXIT_CODE=0，eval_loss=0.5068，train_loss=0.00024 |\n| **PID 83243** | 已退出 |\n| **Registry** | `qwen3-8b-cwm-repo-s456-train-v4` → status=DONE, conclusion=success, checkpoint_path 已设 |\n| **Eval 已启动** | ✓ monitor (PID 92387) 检测到训练完成，06:05 自动启动了 eval |\n| **Eval 进程** | PID 96722 (`eval_qwen_cwm_s456.sh`) → PID 96730 (`eval_repo_cwm.py --checkpoint_dir checkpoint-6633`，GPU cuda:0) |\n\n同时注意到 s123 eval 也在跑（PID 94100，checkpoint-6633，s123 seed）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-qwen-s456-train-v4-cron.md"
+}

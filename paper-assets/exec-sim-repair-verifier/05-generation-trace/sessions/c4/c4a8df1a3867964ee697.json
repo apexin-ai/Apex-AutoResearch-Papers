@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "c4a8df1a3867964ee697",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "eval cls 8b ckpt200",
+  "task_key": "worker_eval_cls-8b-ckpt200_20260513T213258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls-8b-ckpt200_20260513T213258.log",
+    "occurrence": 1,
+    "bytes": 1329361,
+    "sha256": "742c0acd8f93f80ac5d1ea28dd54d09a0202b21425318fa7acc797429779dd84"
+  },
+  "statistics": {
+    "messages": 223,
+    "user_turns": 1,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "assistant": 55,
+      "record": 1,
+      "tool_call": 80,
+      "tool_result": 80,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 98,
+      "chunks": [
+        {
+          "path": "c4a8df1a3867964ee697-part-0001.json",
+          "message_count": 64
+        },
+        {
+          "path": "c4a8df1a3867964ee697-part-0002.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 125,
+      "chunks": [
+        {
+          "path": "c4a8df1a3867964ee697-part-0002.json",
+          "message_count": 52
+        },
+        {
+          "path": "c4a8df1a3867964ee697-part-0003.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-cls-8b-ckpt200.md"
+}

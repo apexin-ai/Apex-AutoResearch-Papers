@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40f8b92241e8475aedc7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "cpu supplementary statistics",
+  "task_key": "worker_cpu_supplementary-statistics_20260521T054458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cpu_supplementary-statistics_20260521T054458_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "afcf19d044e001e263385ed6a1efc4e5c5f76c2cd9e75c98ce2190e6b05b9827"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行完成，输出已写入 `artifacts/supplementary_statistics.txt`。\n\n关键发现：\n\n**Bootstrap CI**: Qwen3-8B CLS 非常稳定（85.11 ± 0.63），DeepSeek CLS 含 outlier 时 CI 极宽（[74.93, 86.15]），去掉 outlier 后收窄到 [82.61, 86.15]。\n\n**Cohen's d**: CLS vs TRAJ 所有比较均为 large effect（d > 0.8）。Qwen3-8B 的 d=5.015 极大，说明 CLS 对 TRAJ 在 repo-level 上优势显著且一致。CLS vs CWM 的 point difference 约 +20 pp，但 CWM 只有 1 个 seed 无法算 d。\n\n**Power Analysis**: Qwen3-8B CLS vs TRAJ power=0.94（n=3 已够用）。DeepSeek CLS vs TRAJ power 仅 0.11（含 outlier）/ 0.09（去 outlier），因为 seed 间差异方向不一致，paired effect 被高方差淹没。DeepSeek 需要约 12-20 seeds 才能达到 power=0.80。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cpu-supplementary-statistics.md"
+}

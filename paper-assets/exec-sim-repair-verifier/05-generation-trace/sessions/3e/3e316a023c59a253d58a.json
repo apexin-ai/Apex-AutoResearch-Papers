@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e316a023c59a253d58a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra scp check and submit",
+  "task_key": "worker_infra_scp-check-and-submit_20260512T110242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_scp-check-and-submit_20260512T110242_result.json",
+    "occurrence": 1,
+    "bytes": 729,
+    "sha256": "011865095b5397feb296ffc20393b0d18fadfb2dd0f6d74de524e2d896a18d38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总：\n\n## 1. SCP/Split 状态：已完成\n\nPipeline (PID 27744) 已退出，传输 + 解压 + split 全部完成（18:55 CST）。\n\n## 2. Split 统计\n\n| Split | Samples | Instances | Pass% | Fail% | 文件大小 |\n|-------|---------|-----------|-------|-------|---------|\n| train | 70,748 | 184 | 85.0% | 15.0% | 394 MB |\n| val | 9,335 | 22 | 75.9% | 24.1% | 64 MB |\n| test | 9,784 | 25 | 73.0% | 27.0% | 58 MB |\n| **总计** | **89,867** | **231** | | | |\n\nClass weights（normalized, sum=2）：fail=1.6555, pass=0.3445\n\n## 3. 训练脚本\n\n- `train_repo_verifier.py` ✓（9.9 KB）\n- `train_repo_cwm.py` ✓（9.7 KB）\n- 参数名：`--max_seq_length`，默认值 2048"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-scp-check-and-submit.md"
+}

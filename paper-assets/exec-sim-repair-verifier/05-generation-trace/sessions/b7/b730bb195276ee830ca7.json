@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b730bb195276ee830ca7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper reference audit",
+  "task_key": "worker_paper_reference-audit_20260515T182132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference-audit_20260515T182132_result.json",
+    "occurrence": 1,
+    "bytes": 829,
+    "sha256": "ee7277c087d9236d33fb2ed4e22f5754dadfe5bf0354e7076aefbdcc42021cc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/reference_audit_report.md` 并注册。\n\n**核心发现：**\n\n| 严重性 | 数量 | 关键问题 |\n|--------|------|----------|\n| CRITICAL | 2 | `fig:scaling_gap` 和 `fig:oracle_stratified` 有 label 无 `\\ref`；`tab:repo_level` CWM 8B 行数据缺失 |\n| WARNING | 4 | 3 个 bib key-year 不匹配（`dettmers2024qlora`→2023, `snell2024scaling`→2025, `xia2024agentless`→2025）；2 篇论文会议接收待确认 |\n| INFO | 2 | 未使用的 `tabularx` 包；残留旧图片文件 |\n\n**引用完整性**：26 条 bib 条目全部被引用，无缺失引用，无重复，无孤立条目。5 篇抽查引用全部真实存在且信息正确。\n\n**提交前必须修复**：C1（添加图表 `\\ref`）和 C2（补充 CWM 8B 数据或移除该行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reference-audit.md"
+}

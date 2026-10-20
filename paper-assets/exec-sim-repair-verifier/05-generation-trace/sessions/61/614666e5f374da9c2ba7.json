@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "614666e5f374da9c2ba7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cwm eval progress check",
+  "task_key": "worker_ops_cwm-eval-progress-check_20260524T054634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm-eval-progress-check_20260524T054634_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "ea1b5a2f8907b9ba2d1f83943021df2084e80c6c564da765ca710cfbef975b93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集完毕。以下是 4 路 CWM eval 状态：\n\n```\nGPU 0: [运行中] cwm_8b_s456 ckpt300 seq2048 reeval | 6176/9784 (63.1%) | acc=66.0% | ETA ~21:00\nGPU 1: [运行中] cwm_8b_s42  ckpt300 seq2048 reeval | 4784/9784 (48.9%) | acc=68.5% | ETA ~23:10\nGPU 2: [运行中] cwm_8b_s123 ckpt300 seq2048 reeval | 6016/9784 (61.5%) | acc=63.6% | ETA ~21:15\nGPU 3: [运行中] cwm_8b_s42  ckpt6100 seq8192 eval  | 2364/9784 (24.2%) | 无日志    | ETA ~00:30 (May 25)\n```\n\n速度参考：\n- GPU 0/1/2：~8 samples/57s（batch_size=8, seq2048）\n- GPU 3：~11.6 samples/min（batch_size=4, seq8192），因为长序列所以更慢\n\nGPU 3 是独立的 ckpt6100 + seq8192 配置，无 nohup.log（可能直接 tmux 或前台运行），进度从 results_incremental.jsonl 行数推算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cwm-eval-progress-check.md"
+}

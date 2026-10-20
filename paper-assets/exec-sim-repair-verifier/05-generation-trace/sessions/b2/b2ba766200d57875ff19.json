@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2ba766200d57875ff19",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze cls seed0",
+  "task_key": "worker_analyze_cls-seed0_20260512T123026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cls-seed0_20260512T123026_result.json",
+    "occurrence": 1,
+    "bytes": 711,
+    "sha256": "8909045110c6eece50c6306fcea13d532ec29b5ac0f1c1dfaf0ac189c7a557ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cls-seed0 已完成，registry 已更新为 DONE。\n\n**结果汇总：**\n\n| Metric | Value |\n|--------|-------|\n| accuracy | 87.94% |\n| fail_f1 / pass_f1 | 88.08 / 87.79 |\n| fail_precision / recall | 84.2% / 92.3% |\n| pass_precision / recall | 92.1% / 83.8% |\n| train_loss / eval_loss | 0.2347 / 0.0963 |\n| train_runtime | 4977s (~83min) |\n| unparseable | 0 |\n\n**5-seed cls 对比：**\n\n| Seed | Accuracy |\n|------|----------|\n| 0 | 87.94 |\n| 42 | 87.83 |\n| 123 | 89.52 |\n| 456 | 87.88 |\n| 789 | 89.00 |\n| **mean ± std** | **88.43 ± 0.78** |\n\n**Cls vs Traj：** cls 88.43±0.78 vs traj 86.30±0.97，cls 高 +2.13pp 且方差更小。5-paired comparison 全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-cls-seed0.md"
+}

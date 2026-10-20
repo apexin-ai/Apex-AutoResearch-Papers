@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1b97aa2090a584b6db0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check home sweep progress",
+  "task_key": "worker_check_home-sweep-progress_20260514T025925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_home-sweep-progress_20260514T025925_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "7ca5e1e6ff2ccf88bc9114ff92b267d607cfe9bd1bd8402bf3970d1fdcf48a4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Checkpoint Sweep 进度汇总\n\n| Checkpoint | 状态 | Accuracy | F1_fail | F1_pass | F1_macro | Unparseable |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| **400** | COMPLETED | 75.05% | 51.77 | 83.17 | 67.47 | 132 (1.35%) |\n| **600** | COMPLETED | **80.73%** | 68.49 | 86.12 | **77.31** | 132 (1.35%) |\n| **800** | RUNNING (4000/9784, ~41%) | running ~73.9% | — | — | — | — |\n| **1000** | NOT STARTED | — | — | — | — | — |\n\n### 关键发现\n\n**checkpoint-600 accuracy = 80.73%**，比预期的 ~80.5% 略高，比 CLS v5 的 76.92% **高出 3.81pp**。F1_macro 77.31 也很强。\n\ncheckpoint-800 running accuracy 只有 73.9%，明显低于 ckpt-600 的 80.73%，看起来**过拟合了**。ckpt-800 最终 accuracy 大概率落在 73-74% 区间。\n\nckpt-800 约还需 ~16 分钟完成，ckpt-1000 约再 ~28 分钟，整体 sweep 预计还需 ~44 分钟。\n\n**结论：checkpoint-600 是 sweet spot，seed123 的最佳 checkpoint。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-home-sweep-progress.md"
+}

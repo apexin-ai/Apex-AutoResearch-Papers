@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fb35746d170a6f0f4f1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh 14b status snapshot",
+  "task_key": "worker_ssh_14b-status-snapshot_20260523T001130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_14b-status-snapshot_20260523T001130_result.json",
+    "occurrence": 1,
+    "bytes": 1657,
+    "sha256": "7c71e84e81f243a3638a5451dc97719bb8b5510c59b74d46616af571c360b697"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 14B 训练全量快照 (2026-05-23 08:12 CST)\n\n### GPU 占用\n\n| GPU | 型号 | 显存 | 利用率 | 温度 | 功耗 | 进程 |\n|-----|------|------|--------|------|------|------|\n| 0 | RTX 5090 | 16,947 / 32,607 MiB (52%) | 69% | 68°C | 393W | **CLS 14B v2** (PID 215642) |\n| 1 | RTX 5090 | 0 / 32,607 MiB | 0% | 32°C | 11W | 空闲 |\n| 2 | RTX 5090 | 14,421 / 32,607 MiB (44%) | 67% | 65°C | 378W | **CWM 14B** (PID 211098) |\n| 3 | RTX 5090 | 0 / 32,607 MiB | 0% | 34°C | 15W | 空闲 |\n\n### 训练进度\n\n| 任务 | PID | 已运行 | 进度 | 当前速度 | 剩余 | 预计完成 |\n|------|-----|--------|------|----------|------|----------|\n| **CWM 14B** | 211098 | 3h46m | **1348/1434 (94%)** | ~9.9s/step | ~86 steps ≈ 14 min | **~08:26 CST** |\n| **CLS 14B v2** | 215642 | 2h35m | **889/1434 (62%)** | ~10.2s/step | ~545 steps ≈ 93 min | **~09:45 CST** |\n\n### Eval 中间指标\n\n| 任务 | Epoch | Eval Loss |\n|------|-------|-----------|\n| CWM 14B | 2.0 (step 956) | **0.0528** |\n| CLS 14B v2 | 1.0 (step 478) | **0.0827** |\n\n### Checkpoints\n\n- **CWM 14B**: `checkpoint-478`, `checkpoint-956`\n- **CLS 14B v2**: `checkpoint-478`\n\n### Eval 结果\n\n- CWM eval: **未生成**（训练未完成）\n- CLS eval: **未生成**（训练未完成）\n\n### Auto-eval 监控\n\n两个监控脚本均已启动（06:41:48 CST），分别 watch CWM PID 211098 和 CLS PID 215642，训练结束后会自动触发 eval。\n\n### 总结\n\nCWM 14B 还剩约 14 分钟完成训练，CLS 14B v2 还剩约 1.5 小时。GPU 1 和 GPU 3 空闲。（tmux ls 被 read-only 模式拦截，如需查看请告知。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14b-status-snapshot.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad6f6c4b7531d702482f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "status westd check",
+  "task_key": "worker_status_westd-check_20260514T121912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_westd-check_20260514T121912_result.json",
+    "occurrence": 1,
+    "bytes": 1885,
+    "sha256": "7f09fbc07c418a9a410936e9d5e4801bc70514eea850f32448f2e16c410c16b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进程状态报告\n\n### 1. CWM v12 Eval (PID 195668, GPU 1)\n- **状态**: 运行中，已运行 11h16m\n- **进度**: 6416/9784 (**65.6%**), running_acc=**57.8%**\n- **速度**: ~9.5 samples/min\n- **预计完成**: 剩余 3368 samples → **~5.9h** → ETA **May 15 ~02:10**\n- **GPU**: 83% 利用率, 12997/32607 MiB\n\n### 2. CWM seed123 Eval (PID 195531, GPU 0)\n- **状态**: 运行中，已运行 11h16m\n- **进度**: 6344/9784 (**64.9%**), running_acc=**58.8%**\n- **速度**: ~9.5 samples/min\n- **预计完成**: 剩余 3440 samples → **~6.0h** → ETA **May 15 ~02:20**\n- **GPU**: 86% 利用率, 12997/32607 MiB\n\n### 3. CWM 8B Train (PID 210573, GPU 2)\n- **状态**: 运行中，已运行 6h30m\n- **进度**: 最新 checkpoint=900/6633 (**13.6%**), epoch=0.41，当前估计 ~step 980\n- **速度**: ~2.56 steps/min (100 steps / 39 min)\n- **预计完成**: 剩余 ~5650 steps → **~36.8h** → ETA **May 16 ~09:00**\n- **GPU**: 95% 利用率, 31543/32607 MiB (几乎满载)\n\n### 4. CLS 8B Train (PID 210657, GPU 3)\n- **状态**: 运行中，已运行 6h30m\n- **进度**: 最新 checkpoint=1800/6633 (**27.1%**), epoch=0.81，当前估计 ~step 1860\n- **速度**: ~4.88 steps/min (200 steps / 41 min)\n- **预计完成**: 剩余 ~4770 steps → **~16.3h** → ETA **May 15 ~12:40**\n- **GPU**: 98% 利用率, 23605/32607 MiB\n\n### Checkpoint 备份\n| 模型 | 已备份 checkpoints | 最新备份时间 |\n|------|-------------------|-------------|\n| CLS 8B | 200, 800, 1400, 1600, 1800 | May 14 20:07 |\n| CWM 8B | 500, 600, 700, 800, 900 | May 14 19:49 |\n\n### Eval 结果\n两个 eval 的结果目录均为空，尚未产出结果文件。\n\n### 注意\n- CWM 8B 训练进度明显慢于 CLS 8B（2.56 vs 4.88 steps/min），GPU 显存接近满载（31.5/32.6 GB）\n- seed123 eval 的 running_acc (58.8%) 略高于 v12 eval (57.8%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-westd-check.md"
+}

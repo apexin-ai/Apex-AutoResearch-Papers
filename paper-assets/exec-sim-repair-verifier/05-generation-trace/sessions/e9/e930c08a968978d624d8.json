@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e930c08a968978d624d8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_3_1778618992.md",
+  "task_key": "loop_3_1778618992",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778618992.md",
+    "occurrence": 1,
+    "bytes": 4390,
+    "sha256": "ac1d24f861779f96d9e3f5f474e60fa6271ebaac57ea289feec868d185b88d6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-12T20:34:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud-westd-4x5090 **禁止并行训练**：cgroup 360GB RAM 限制，两次 OOM 确认 (D028)。一次只跑一个训练进程\n- repo-level CWM 已连续失败 7 次 (v1-v5)，v6 是首次成功运行。**绝对不能未经审批杀掉 v6 进程** (D030 教训：Worker 擅自杀 v4 被 CRITICAL)\n- save_steps 必须 ≤50，禁止 500+（D029：无中间 checkpoint = Reviewer critical）\n- train_repo_cwm.py 尚未同步到 home 服务器（ROADMAP 风险项）\n- home 服务器用户是 `sonny`（非 root），seetacloud 用户是 `root`\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090** (4× RTX 5090, root@, cgroup 360GB)\n  - 工作目录: `/home/sonny/exec-sim-repair-verifier`（注：root 用户但路径在 sonny 下）\n  - 活跃: repo-level-cwm-v6, pid=84887, cuda:2, tmux 未知, ~8.4s/step, save_steps=50（D035 确认 eval_steps=50）\n  - cuda:0/1/3 空闲\n- **home-1x5090** (1× RTX 5090, sonny@, 62GB RAM, 非容器)\n  - 工作目录: `/home/sonny/exec-sim-repair-verifier`\n  - 活跃: repo-level-cls-home, cuda:0, step ~104/6633, ~7s/it, save_steps=50\n- **westd-48478** (sonny@) — 之前 v3 用过，当前无活跃进程\n- **Cron**: 2 个活跃 — `repo-level-cls-home` 和 `repo-level-cwm-v6`，reconcile 确认均 still running\n- **Worker 池**: 0 个运行中（全部已完成）\n- **GPU 白名单**: cuda:0,1,2,3（config 里的）\n\n### 3. 📊 当前状态\n**刚做完**: Session-start 初始化（read_registry + reconcile_crons + 读 report/ROADMAP/memory/paper_framing）。\n\n**RUNNING 实验**:\n| exp_id | 服务器 | GPU | 进度 | 预计剩余 |\n|--------|--------|-----|------|---------|\n| repo-level-cls-home | home-1x5090 | cuda:0 | step ~104/6633 | ~12h |\n| repo-level-cwm-v6 | seetacloud | cuda:2 | 训练中 | ~15-20h |\n\n这两个是 **决胜实验**——repo-level CLS vs CWM 对比，验证 complexity-dependent advantage (Claim 1)。并行跨两台机器，bottleneck ~20h。\n\n**无待处理 Worker 回调**。无 pending 审批。Paper Agent Step 2（图表生成 + 模板下载）状态需确认——上一轮 session 可能已派 Worker 但不在当前 running list。\n\n### 4. 📋 待办（条件触发式）\n- repo-level-cls-home cron 回调 (ANALYZING/DONE) → spawn Worker 做 eval（accuracy/F1/per-class metrics）→ 结果写 registry\n- repo-level-cwm-v6 cron 回调 (ANALYZING/DONE) → spawn Worker 做 eval → 结果写 registry\n- **两个都完成** → spawn Worker 做 paired bootstrap 对比 (CLS vs CWM repo-level gap) → Go/No-Go 决策 (D008): ≥3pp 全力推 EMNLP Main; 1-3pp 加 seeds; <1pp kill C1 pivot\n- Go/No-Go 结果出来 → 向 Director 汇报 + 按 on-experiment-done skill 分叉（success/negative）\n- Paper Agent Step 2-5 应并行推进（不阻塞在训练上）——可以先写 function-level 部分（数据已全），repo-level 部分留占位符\n- seetacloud cuda:0/1/3 空闲 → 但受 cgroup 360GB 限制无法并行训练。可跑非训练任务（eval、数据处理）\n\n### 5. 🎯 战略上下文\n**核心论文 story**: 函数级 CLS≈CWM（等价，TOST p=0.007），但 classification 随 complexity 增长优势扩大（4B: 1.25pp → 8B: 2.43pp → repo-level: TBD）。Repo-level 是证明 complexity-dependent advantage 的关键证据。\n\n**决策链要点**:\n- D008: Repo-level Go/No-Go 阈值已定（3pp/1-3pp/<1pp）\n- D028: seetacloud 禁并行（两次 OOM 确认）\n- D030: 未经审批杀进程 = CRITICAL\n- CWM 连续 7 次失败后 v6 首次成功运行，极其珍贵\n\n**最容易判断错的事**:\n1. **不要在 seetacloud 上并行启动任何训练**——即使 cuda:0/1/3 看起来空闲，RAM 会 OOM\n2. **不要把函数级 metrics 和 repo-level metrics 直接对比**——数据集、任务复杂度、评测维度完全不同\n3. Paper Agent 可能需要确认上次 Step 2 Worker 状态——不在 running workers 里可能已完成或已失败，需检查\n4. **ARR May 25 只剩 ~13 天**——训练 bottleneck ~20h 后还需 eval+stats+paper 写作，时间紧\n\n**已验证无效 / 不要再试**:\n- Majority voting K=3: 降 0.69pp（模型错误是系统性的，不是随机的）\n- P2P regression rate ~1%: per-test 在 P2P 上无优势，论文要诚实说明\n- seetacloud 并行训练: 两次 SIGKILL 确认不可行\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778618992.md"
+}

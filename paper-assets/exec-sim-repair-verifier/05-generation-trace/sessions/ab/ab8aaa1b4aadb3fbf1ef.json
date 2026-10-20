@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab8aaa1b4aadb3fbf1ef",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code exp d constrained decoding prep",
+  "task_key": "worker_code_exp-d-constrained-decoding-prep_20260519T030047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-d-constrained-decoding-prep_20260519T030047_result.json",
+    "occurrence": 1,
+    "bytes": 2023,
+    "sha256": "4bb71c247b9662845461dcdfdcc895e4e2d6dcf8c2abcb076ec118fe7d0ffbf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All scripts are ready. Here's the summary:\n\n---\n\n## EXP-D Results\n\n### 方案 1: Regex Forced-Parse (已完成, 无需 GPU)\n\n脚本: `cwm_forced_parse.py` (已部署并运行)\n\n7 级 parse 策略: original → pytest_summary → unittest_summary → pytest_dots → test_ok_fail → error_signals → last_line → majority_fallback\n\n**结果:**\n\n| 模型 | 原 unparseable | 挽救率 | 原 parseable acc | Forced-parseable acc | Delta |\n|------|---------|--------|---------|---------|-------|\n| Qwen3-8B CWM (n=9784) | 73.8% | 90.6% | 38.5% | 49.4% | +10.8pp |\n| Qwen3-4B CWM (n=500) | 75.2% | 77.9% | 42.7% | 55.9% | +13.2pp |\n| DeepSeek CWM (n=9784) | 51.0% | 20.3% | 38.7% | 51.8% | +13.1pp |\n\n**假设被拒绝**: forced-parse accuracy 显著高于 original parseable-only accuracy (delta 10-13pp), 说明 unparseable outputs 的信号质量反而更好。最有效策略是 `test_ok_fail` (unittest \"... ok\" pattern, acc 67-71%)。\n\n### 方案 2: vLLM Constrained Decoding (代码就绪, 需 GPU)\n\n- vLLM 0.18.1 可用, 支持 `StructuredOutputsParams(choice=[\"PASS\", \"FAIL\"])`\n- `outlines` 未安装\n\n**运行步骤 (需 GPU):**\n```bash\n# 1. Merge LoRA (约 5 min, 1 GPU)\npython merge_lora.py \\\n  --base /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ \\\n  --adapter /root/autodl-tmp/checkpoints_backup_cwm_8b/checkpoint-400/ \\\n  --output /root/autodl-tmp/merged_cwm_8b_ckpt400/\n\n# 2. Constrained decoding (需要 swebench_full 测试数据)\npython eval_cwm_constrained.py \\\n  --model_path /root/autodl-tmp/merged_cwm_8b_ckpt400/ \\\n  --data_path data/swebench_full/swebench_test.jsonl \\\n  --mode choice \\\n  --output_dir /root/autodl-tmp/eval_results/cwm_8b_constrained/\n```\n\n**Blocker**: `data/swebench_full/swebench_test.jsonl` 不在当前服务器上 (原始 89K 样本数据集)。需要从生成源重新构建或从备份恢复。\n\n**预估 GPU 时间**: merge ~5 min + inference ~15-20 min (9784 samples, choice mode 只生成 1 token/sample)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-d-constrained-decoding-prep.md"
+}

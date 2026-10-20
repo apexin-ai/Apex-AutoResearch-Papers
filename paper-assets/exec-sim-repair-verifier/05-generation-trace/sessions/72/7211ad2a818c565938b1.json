@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7211ad2a818c565938b1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code fix train unified cwm repo",
+  "task_key": "worker_code_fix-train-unified-cwm-repo_20260516T065253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-train-unified-cwm-repo_20260516T065253_result.json",
+    "occurrence": 1,
+    "bytes": 1186,
+    "sha256": "f62d9ac00d7f68f728805a31fc30378036c5b82d6e6b0093a43659304601ebf1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据加载验证通过：\n- swebench_full: 70748 条，全部有 `execution_output`，无 `target`，fallback 正常工作\n- cwm_train: 15290 条，全部有 `target`，向后兼容\n\n### 修改总结\n\n**`get_target()` (L132-139)**：CWM 模式下优先读 `target`，fallback 到 `execution_output`，都没有返回 `None`\n\n**`preprocess_split()` (L196-215)**：target 为 `None` 的样本被跳过，并打印 warning 日志\n\n**兼容性**：\n- cwm_train.jsonl（有 `target`）→ 走原有路径，无变化\n- swebench_full（有 `execution_output`）→ fallback 到 `execution_output`，70748 条全部可用，0 条跳过\n\n**远程同步**：已写入 `/home/sonny/exec-sim-repair-verifier/train_unified.py`\n\n注意：任务描述中的 dry-run 命令用了 `--data_path`，但脚本实际的参数是 `--data_dir` + `--train_file`。正确的调用方式：\n```bash\npython train_unified.py --data_dir data/ --train_file swebench_full/swebench_train.jsonl --val_file swebench_full/swebench_val.jsonl --model_name_or_path /root/autodl-tmp/models/deepseek-coder-6.7b-instruct --task cwm --lora_rank 16 --max_steps 2 --batch_size 1 --no_wandb\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-train-unified-cwm-repo.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9dc7eafc594d41001c0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis bf16 only tost v2",
+  "task_key": "worker_analysis_bf16-only-tost-v2_20260519T102522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bf16-only-tost-v2_20260519T102522_result.json",
+    "occurrence": 1,
+    "bytes": 108,
+    "sha256": "87d72973374280f081b7e8c728024ffc326e9a76f787730180e2015c269b6dcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "bf16-only TOST (3 seeds, df=2): mean=-0.45pp, SE=0.98pp, TOST p=0.128 at ±2pp, equivalent=NO"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bf16-only-tost-v2.md"
+}

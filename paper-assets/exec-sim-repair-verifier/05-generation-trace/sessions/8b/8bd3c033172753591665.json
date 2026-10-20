@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bd3c033172753591665",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cwm v6 restart d033",
+  "task_key": "worker_ssh_cwm-v6-restart-d033_20260512T203346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cwm-v6-restart-d033_20260512T203346_result.json",
+    "occurrence": 1,
+    "bytes": 1318,
+    "sha256": "89f9f563a4cf9bcebe17c94c876cc2a4bffd174df6507d685357d9af7b28a22d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 旧进程 kill\nPID 84887 已成功终止。\n\n### 2. train_repo_cwm.py 参数检查与修改\n文件中原有参数：\n- `eval_strategy`: \"steps\" ✓\n- `save_strategy`: \"steps\" ✓\n- `save_steps`: 500 ✓\n- `save_total_limit`: 3 ✓\n- **`eval_steps`: 缺失** — 未显式设置，fallback 到 `logging_steps=50`，这就是 eval 每 50 步触发的根因\n\n**修复**：在第 266 行添加了 `\"eval_steps\": 500`。\n\n### 3. 命令行覆盖检查\n- `/root/.bash_history` 不存在\n- tmux capture-pane 不可用（旧 session 已被 kill）\n- 无发现命令行覆盖参数\n\n### 4. 新 PID\n- Python 进程 PID: **89516**\n- tmux wrapper PID: 89511\n- GPU: cuda:2, 显存占用 8429 MiB\n\n### 5. Step 50 eval 验证 — 成功\n- `grep -i eval` 在完整日志中**零匹配**\n- 日志显示 step 50 → 51 直接过渡，无 \"Running evaluation\" 或 eval_loss 输出\n- **确认 eval_steps=500 修复生效**\n\n### 6. Loss 趋势\n由于 stdout 被重定向到文件时 `\\r` 覆盖机制，HuggingFace Trainer 的 loss 日志值（在 logging_steps=50 时输出）被 tqdm 进度条重绘覆盖，无法从文件中提取单独的 loss 数值。训练速度稳定在 ~8s/step，ETA ~14h50m（对比旧配置 42h 大幅改善），step 55+ 正常推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cwm-v6-restart-d033.md"
+}

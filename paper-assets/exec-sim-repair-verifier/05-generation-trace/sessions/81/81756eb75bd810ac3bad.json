@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81756eb75bd810ac3bad",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh prep seed123 launch configs",
+  "task_key": "worker_ssh_prep-seed123-launch-configs_20260513T014331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prep-seed123-launch-configs_20260513T014331_result.json",
+    "occurrence": 1,
+    "bytes": 953,
+    "sha256": "689482190ccfae6e08cb785a2bdae6383f185b5d890322e7e7fd8231edbd2c80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "配置已保存到 `artifacts/seed123_launch_configs.md` 和 `memory.md`。\n\n汇总：\n\n**CLS seed123（home-1x5090）** — 仅改 3 项：`--seed 123`、`--output_dir checkpoints_repo_cls_seed123/`、`--run_name repo-cls-qwen3-4b-lora-home-seed123`。环境用 `/home/sonny/miniconda3` conda base。日志写 `/tmp/repo-level-cls-seed123_stdout.log`。\n\n**CWM seed123（seetacloud-westd-4x5090）** — 仅改 3 项：`--seed 123`、`--output_dir checkpoints_repo_cwm_seed123/`、`--run_name repo-cwm-qwen3-4b-lora-seed123`。去掉 `--resume_from_checkpoint`（全新训练）。环境用 `/root/miniconda3` conda base，`CUDA_VISIBLE_DEVICES=2`。日志写 `/root/autodl-tmp/cwm_seed123_train.log`。\n\n补充发现：CLS v4 的日志在 05-12 18:45 停止写入，进程 exit code 143——可能已结束或被 kill。CWM v10 当前在 seetacloud 正常训练中（从 checkpoint-200 resume，当前 checkpoints 到 600）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prep-seed123-launch-configs.md"
+}

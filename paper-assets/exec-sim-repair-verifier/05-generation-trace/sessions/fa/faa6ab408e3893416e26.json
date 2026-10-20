@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "faa6ab408e3893416e26",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code per test majority voting",
+  "task_key": "worker_code_per-test-majority-voting_20260512T081800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_per-test-majority-voting_20260512T081800_result.json",
+    "occurrence": 1,
+    "bytes": 1728,
+    "sha256": "39093d04feeec4182f93902618882d8b25662eab8e44dc68f68b679cae0f6ae9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果报告\n\n### 1. Checkpoint 和 Base Model 路径\n\n| 项目 | 路径 | 状态 |\n|------|------|------|\n| Qwen3-4B base model | `/root/.cache/huggingface/hub/Qwen/Qwen3-4B/` | seetacloud 上存在 |\n| 4B LoRA checkpoint | `/home/sonny/exec-sim-repair-verifier/checkpoints/best/` | **仅在 home-1x5090 上存在** (61MB) |\n| test.jsonl | `/home/sonny/exec-sim-repair-verifier/data/test.jsonl` | seetacloud 上存在 (1890 条) |\n\n### 2. 脚本 Dry-run\n- `python3 -c py_compile`: **SYNTAX_OK**\n- `python3 eval_majority_voting.py --help`: **正常输出**\n- 脚本已上传到 seetacloud `/home/sonny/exec-sim-repair-verifier/eval_majority_voting.py`\n\n### 3. **BLOCKER: 4B checkpoint 无法传输**\n\nscp 从 seetacloud → home-1x5090 失败：`Could not resolve hostname home-1x5090: Name or service not known`。两台服务器之间没有 SSH 互通配置。\n\nseetacloud 上只有 8B 的 `checkpoints_cls8b` 和 `checkpoints_cwm8b`（都是 Qwen3-8B LoRA），不能用于此实验。\n\n### 4. 无法提交\n\n因为 checkpoint 不在 seetacloud 上，实验无法提交。预备的提交命令：\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 eval_majority_voting.py --base_model_path /root/.cache/huggingface/hub/Qwen/Qwen3-4B --checkpoint_path checkpoints/best --data_dir data/ --output eval_majority_voting.json --K 3 --temperature 0.7 --gpu 2\"\n```\n\n**需要解决**: 手动将 `home-1x5090:/home/sonny/exec-sim-repair-verifier/checkpoints/best/` 复制到 seetacloud 同路径，之后即可直接用 `submit_training_job` 提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-per-test-majority-voting.md"
+}

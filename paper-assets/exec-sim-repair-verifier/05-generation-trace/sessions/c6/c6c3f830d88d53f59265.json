@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6c3f830d88d53f59265",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor home gpu status",
+  "task_key": "worker_monitor_home-gpu-status_20260515T012412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_home-gpu-status_20260515T012412_result.json",
+    "occurrence": 1,
+    "bytes": 1832,
+    "sha256": "0051fe231c8395da8ed269460a544e24e3e81370fb86c1be94c4565c49fc4501"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## home-1x5090 状态汇报\n\n### GPU\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| cuda:0 | RTX 5090 | 100% | 31727/32607 MiB |\n\n### 当前任务\n- **PID 3193462** — `ckpt-4400 val@5120` eval，已运行 38 分钟\n- 预测已全部完成（5120/5120 行），进程仍在运行（可能在计算最终指标或写 json）\n\n### v5 Sweep 已完成结果\n\n**@2048 seq_length（test set, n=9784）：**\n\n| Checkpoint | Accuracy | F1_macro | F1_fail | F1_pass |\n|-----------|----------|----------|---------|---------|\n| ckpt-600  | 76.74 | 73.74 | 64.88 | 82.61 |\n| ckpt-4000 | 81.51 | 72.56 | 56.90 | 88.23 |\n| ckpt-4200 | 80.64 | 72.10 | 56.66 | 87.54 |\n| ckpt-4400 | 82.11 | 73.94 | 59.34 | 88.54 |\n| ckpt-4600 | **82.35** | **74.74** | **60.87** | **88.60** |\n\n**@5120 seq_length（val set, n=9335）：**\n\n| Checkpoint | Accuracy | F1_macro | F1_fail | F1_pass |\n|-----------|----------|----------|---------|---------|\n| ckpt-600  | 82.82 | 79.81 | 72.03 | 87.60 |\n| ckpt-4000 | **89.84** | **84.25** | 74.85 | **93.64** |\n| ckpt-4400 | 运行中... | — | — | — |\n\n### 关键观察\n1. **val@5120 大幅优于 @2048**：ckpt-4000 从 81.51→89.84 acc, 72.56→84.25 F1_macro（+12pp）\n2. **@2048 上 ckpt-4600 最优**，但差距不大（ckpt-4400 vs 4600: 73.94→74.74 F1_macro）\n3. **val@5120 缺失**：ckpt-4200、ckpt-4600 的 val@5120 eval 尚未执行\n4. **Sweep 脚本中断**：`v5_val5120_sweep.sh` 在 ckpt-4000 步失败（`python: command not found`），后续 eval 需手动启动\n\n### 可用 Checkpoints\n`checkpoint-600, checkpoint-4000, checkpoint-4200, checkpoint-4400, checkpoint-4600`\n\n### 下一步\nckpt-4400 @val5120 即将完成。之后还需跑 ckpt-4200 和 ckpt-4600 的 val@5120 eval 才能完成完整 sweep。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-home-gpu-status.md"
+}

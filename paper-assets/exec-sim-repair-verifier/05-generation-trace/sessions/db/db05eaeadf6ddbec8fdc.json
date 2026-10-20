@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db05eaeadf6ddbec8fdc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_17_1778882995.md",
+  "task_key": "loop_17_1778882995",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1778882995.md",
+    "occurrence": 1,
+    "bytes": 5166,
+    "sha256": "f2f85d05994694569d0391611ed20eb4508c169900c11a1f41aa59165dc00bab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-15T22:03:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd cuda:0/1/2/3 + home cuda:0。其他 GPU 禁止使用，即使 Director 指令也 push back\n- **D103**: seq_length/batch_size/precision/lr 变更需 Director 审批，Worker 不得自行降级（已因 seq4096 事件被 CRITICAL）\n- **eval 禁止 --max_samples**: test eval 必须 n=9784 全量，val eval 必须 n=9335 全量，否则与主表不可比\n- **标 FAILED 前必须 ps -p PID 确认进程退出**: 误标导致过 GPU 冲突 OOM 事故\n- **CWM 8B eval 用 eval_repo_cwm.py**（不是 eval_repo_cls.py），max_new_tokens=1024\n- **submit_training_job 提交**，禁止 nohup；命令须自带环境激活（source conda）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: seetacloud-westd-4x5090（4×RTX 5090）\n- **工作目录**: `/home/sonny/exec-sim-repair-verifier`\n- **Python**: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- **Checkpoints**:\n  - s42 原始: `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/`\n  - s42 resume: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`（从 ckpt-600 起，200 步间隔）\n  - seed123: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` + backup ckpt-3000\n  - CWM 8B: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`（ckpt-400/4000-4300）\n- **Home 服务器**: `/home/sonny`，python3，4B ckpts `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n- **活跃进程**:\n  - cwm8b-ckpt400-test-eval: PID 381618, cuda:3（15.8%, ETA May 16 09:15）\n  - cls8b-s42-resume-val-sweep-seq8192-v2: PID 398981, cuda:0（ckpt-1800, 1/21 ckpts, ETA May 16 10:50）\n  - repo-level-cwm-8b-conda-v5: PID 400279, cuda:2（训练 ~57%, ETA May 16 05:30）\n  - cls8b-s42-resume-val-sweep-gpu1: PID 405526, cuda:1（ckpt-4000→5800, 10 ckpts, 刚启动, ETA ~May 16 04:00）\n- **Cron 监控**: 上述 4 个实验均有 cron，reconcile 确认全部 still running\n- **Worker 池**: 3 running（paper:fix-review-issues ×2, analysis:prepare-val-sweep-compilation）\n\n### 3. 📊 当前状态\n**阶段**: Paper Writing，DDL EMNLP ARR May 25（剩 10 天）。westd 4 GPU 全部 RUNNING。\n\n**刚做完**: \n- s42 resume val sweep 拆分为双 GPU 并行（cuda:0 跑 ckpt-1800→3800 共 11 ckpts，cuda:1 跑 ckpt-4000→5800 共 10 ckpts）\n- 派了 2 个 paper Worker 修 review issues + 1 个 Worker 准备 val sweep compilation\n\n**RUNNING (4)**:\n- `cwm8b-ckpt400-test-eval` — CWM 8B 首个 test 数据点，锁 8B-8B gap 的关键\n- `repo-level-cwm-8b-conda-v5` — CWM 8B 训练（resume from ckpt-5200），完成后还需 final ckpt test eval\n- `cls8b-s42-resume-val-sweep-seq8192-v2` — 21 ckpts val sweep @ seq8192 bs=1\n- `cls8b-s42-resume-val-sweep-gpu1` — 并行 val sweep 后半段\n\n**PENDING (4)**: cls8b-s42-resume-ckpt1000-test-mutation (PREPARING), repo-level-cls-8b-s42-ckpt200-val, cls8b-ckpt3000-test-v2, cls8b-ckpt3000-test-eval, cls8b-s42-extended-val-sweep\n\n**等待**: 3 个 Worker 回调（paper fix + val sweep compilation）；4 个 cron 回调（实验完成时触发）\n\n### 4. 📋 待办（条件触发式）\n- **CWM 8B 训练完成** (repo-level-cwm-8b-conda-v5 cron 回调) → spawn Worker: CWM 8B final ckpt test eval（eval_repo_cwm.py, bs=8, cuda:2）→ 与 ckpt-400 eval 结果对比 → 选 val-best → 锁 8B-8B gap 填入主表\n- **CWM 8B ckpt-400 test eval 完成** (cwm8b-ckpt400-test-eval cron 回调) → 记录 accuracy + unparseable rate → update registry + report.md → 汇报 Director 第一个 CWM 8B test 数据点\n- **Val sweep 双 GPU 全部完成** → compile 完整 s42 resume val curve（21 点）→ 更新 val_sweep_compilation.md → 确认 val-best checkpoint → 如有 resume 阶段新 val-best 则需补 test eval\n- **Paper Worker 回调** → review 修改内容 → 确认与 paper_framing.md / 主表数字一致\n- **CWM 8B 两个 eval 都完成** → 最终 8B-8B gap 数字 → 更新 paper headline result → 汇报 Director\n\n### 5. 🎯 战略上下文\n**核心结论链**: CLS 在 function-level ≈ CWM（C2: TOST p=0.007），但在 repo-level CLS >> CWM（4B gap ~25pp, 8B gap 待锁）。论文 story = \"classification scales better with complexity\"。\n\n**关键决策**:\n- D088: 主指标 = val-selected checkpoint（ML 社区规范）\n- D096: 主表切 8B-8B 对比（CLS 8B seed variance 仅 2.08pp）\n- D103: 参数降级需 Director 审批\n- CWM 8B eval_loss 持续上升（step 400=0.286 → 4300=0.482），ckpt-400 大概率是 val-best\n\n**易踩的坑**:\n- s42 resume ckpt 目录从 ckpt-600 开始，不含 200/400（那些在原始训练目录）\n- CWM eval 用 eval_repo_cwm.py 不是 eval_repo_cls.py\n- home 版 eval 脚本不支持 --max_new_tokens\n- unparseable rate 混淆变量：之前 seq=2048 vs seq=8192 下的数字不可直接比较，等 seq8192 sweep 完成才能下结论\n- 4B seed123 test 仅 75.33%（unstable），主表只报 s42 的 4B 数字\n- CWM 8B eval 极慢（~20s/sample），bs=8 已是 D102 批准的加速方案\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1778882995.md"
+}

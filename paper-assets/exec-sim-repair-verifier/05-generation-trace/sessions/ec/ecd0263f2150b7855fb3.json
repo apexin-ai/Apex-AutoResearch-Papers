@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecd0263f2150b7855fb3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor ckpt3000 completion v2",
+  "task_key": "worker_monitor_ckpt3000-completion-v2_20260514T172613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_ckpt3000-completion-v2_20260514T172613_result.json",
+    "occurrence": 1,
+    "bytes": 111,
+    "sha256": "744370d041cd1c61fafaf6087209debb28b68e2a5e4dd00be63fa42d55693537"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：ckpt-3000 val@5120 在 70% 左右，running_acc=89.2%。270 秒后自动轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-ckpt3000-completion-v2.md"
+}

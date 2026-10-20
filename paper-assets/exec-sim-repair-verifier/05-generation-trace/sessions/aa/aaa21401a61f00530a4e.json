@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaa21401a61f00530a4e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh auto pipeline setup",
+  "task_key": "worker_ssh_auto-pipeline-setup_20260520T125535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_auto-pipeline-setup_20260520T125535_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "5880d94e1ecc5610f99d6572f509a4ce9d9a3faa2a23e2ad40e13cc305602a8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**产出汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| `extract_eval_results.py` | 已部署，s42 验证通过（accuracy=56.7%, unparseable_rate=51.02%, pred_file=`eval_deepseek_cwm_repo_s42_predictions.jsonl`） |\n| `watch_eval_completion.sh` | 已后台运行，PID=**966158** |\n| 监控目标 | s123-v2 monitor PID=957333 → eval dir: `deepseek_cwm_repo_s123_v2_eval` |\n| | s456-v2 monitor PID=957406 → eval dir: `deepseek_cwm_repo_s456_v2_eval` |\n| 输出位置 | `artifacts/eval_summaries/deepseek_cwm_s{123,456}_v2.json` |\n| 完成标志 | `artifacts/eval_summaries/deepseek_cwm_status.flag` → `BOTH_COMPLETE` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-auto-pipeline-setup.md"
+}

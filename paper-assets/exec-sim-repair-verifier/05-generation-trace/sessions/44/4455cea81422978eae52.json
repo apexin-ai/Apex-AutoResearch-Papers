@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4455cea81422978eae52",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis deepseek func icc",
+  "task_key": "worker_analysis_deepseek-func-icc_20260518T185440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek-func-icc_20260518T185440_result.json",
+    "occurrence": 1,
+    "bytes": 927,
+    "sha256": "161d5f291cb79d0a77a2031dadf87a76066f82fe274ed561352a2d3e1adc3087"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**DeepSeek-Coder-6.7B function-level ICC(3,1) = 0.653** [95% CI: 0.626, 0.678]\n\n对比 Qwen3-4B:\n\n| Model | ICC(3,1) | 解释 |\n|-------|----------|------|\n| Qwen3-4B | 0.191 | 轻微一致 |\n| DeepSeek-Coder-6.7B | **0.653** | 实质性一致 |\n\nDeepSeek 两个 seed 间 92.2% 的预测一致，ICC 是 Qwen 的 3.4 倍。说明 DeepSeek 的错误更系统化（由 test case 内在难度决定），而非训练随机性导致。这进一步支持 per-test scoring 利用 block 结构的论点。\n\n结果已保存至：\n- `artifacts/deepseek_func_icc_result.md`\n- 远程 `artifacts/deepseek_func_icc_result.json`\n\n注：s123 的 function-level predictions 需要重新评估（原文件被 repo-level 数据覆盖），重新评估结果 accuracy=87.14% 与原 summary.json 记录的 86.77% 接近（差异可能来自 eval 脚本版本变化中 unparseable 处理逻辑不同）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-func-icc.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6044d85d05eae01e5c1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval westd cuda0 check and utilize",
+  "task_key": "worker_eval_westd-cuda0-check-and-utilize_20260514T205201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_westd-cuda0-check-and-utilize_20260514T205201_result.json",
+    "occurrence": 1,
+    "bytes": 910,
+    "sha256": "71cfcff1c738498ea05bab4fdccca3205d4cc120ed0a45b8ef342b0b01156c12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:0 不空闲。** 已有另一个 Worker 在跑 CLS 8B ckpt-600 val eval（PID 285772）。\n\n### 当前 GPU 状态：\n\n| GPU | 占用 | 进程 | 说明 |\n|-----|------|------|------|\n| cuda:0 | 19.8GB / 32GB, 99% | PID 285772 — `eval_repo_cls.py` CLS 8B ckpt-600 val (seq_len=8192) | 正是你要提交的任务，已经在跑了 |\n| cuda:1 | 13.6GB / 32GB, 100% | PID 281646 — `eval_repo_cls.py` CLS v5 (4B) ckpt-400 val | 另一个 Worker 的任务 |\n| cuda:2 | 30.7GB / 32GB, 95% | PID 266816 — CWM 8B v4 训练 | 不动 |\n| cuda:3 | 30.9GB / 32GB, 81% | PID 266449 — CLS 8B seed123 v3 训练 | 不动 |\n\n**不提交 eval。** cuda:0 上 PID 285772 已经在运行 CLS 8B ckpt-600 val eval，与你要提交的任务相同（只是参数略有不同：它用的是 `--max_seq_length 8192` 而非 5120，且没有指定 `--max_new_tokens`）。四张卡全部在用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-westd-cuda0-check-and-utilize.md"
+}

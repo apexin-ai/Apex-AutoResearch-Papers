@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4aaeea43bfefdc1b8c78",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code 14b figure2 update",
+  "task_key": "worker_code_14b-figure2-update_20260523T080237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_14b-figure2-update_20260523T080237_result.json",
+    "occurrence": 1,
+    "bytes": 276,
+    "sha256": "ba277d8facace7c5febcc7038f9152aa8da116605f56a0b0941a87070ca52b57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成：\n\n- `CONFIRMED_14B = True`\n- `cls_acc_14b = 89.93`（3-seed mean）\n- `cwm_acc_14b = 89.50`（3-seed mean）\n- Gap = 0.43 pp，由代码 `gap_14b = abs(cls_acc[2] - cwm_acc[2])` 自动计算，无需手动改 gap 文本\n- 4B/8B 数据未动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-14b-figure2-update.md"
+}

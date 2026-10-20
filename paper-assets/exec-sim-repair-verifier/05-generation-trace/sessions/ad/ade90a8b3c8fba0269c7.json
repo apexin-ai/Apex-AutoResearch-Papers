@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ade90a8b3c8fba0269c7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check westd full status",
+  "task_key": "worker_check_westd-full-status_20260514T150645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd-full-status_20260514T150645_result.json",
+    "occurrence": 1,
+    "bytes": 2058,
+    "sha256": "1925afbc847e8b370cc153f66a1f597376315177caec6b702487aaacb6e27548"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n| GPU | 进程 | PID | 显存 | GPU利用率 | 状态 |\n|-----|------|-----|------|-----------|------|\n| cuda:0 | CWM seed123 eval | 195531 | 13.0/32.6 GB | 84% | 运行中 |\n| cuda:1 | CWM v12 eval | 195668 | 13.0/32.6 GB | 82% | 运行中 |\n| cuda:2 | CWM 8B train | 245775 | 21.2/32.6 GB | 96% | 运行中 |\n| cuda:3 | CLS 8B s123 train | 248041 | 26.8/32.6 GB | 64% | 运行中 |\n\n## CWM Eval 进度\n- **seed123**: 7904/9784 完成 (80.8%), running_acc=59.1%, ~6.5 sec/sample → 剩余 1880 样本, 预计还需 **~3.4 小时** (~02:30 完成)\n- **v12**: 8016/9784 完成 (81.9%), running_acc=57.8%, ~6.5 sec/sample → 剩余 1768 样本, 预计还需 **~3.2 小时** (~02:15 完成)\n\n## 8B 训练进度\n- **CWM 8B** (PID 245775, cuda:2): step **1300/6633** (19.6%), 从 ckpt-1200 resume 于 22:28\n  - 当前正在跑 val eval (7059/9335)，eval 完成后继续训练\n  - 训练速度 ~12 sec/step，eval 每轮约 19 min（9335 val samples）\n  - 剩余 5333 步纯训练 ≈ 17.8h + eval 开销 → 预计还需 **~20-24 小时**\n  - loss: 0.54 (step 1300), epoch 0.59\n\n- **CLS 8B s123** (PID 248041, cuda:3): step **2529/6633** (38.1%), 从 ckpt-2400 resume 于 22:46\n  - 训练速度 ~8 sec/step\n  - 剩余 4104 步 ≈ **~9.1 小时** (纯训练，不含 eval 开销)\n  - loss: 0.73 (step 2500), epoch 1.13\n\n## CLS 8B s42 Checkpoint 路径\n\n有两组 s42 checkpoints，均无活跃训练进程：\n\n| 路径 | 最新 checkpoint | 每个大小 | 最后更新 |\n|------|----------------|---------|---------|\n| `/root/autodl-tmp/checkpoints_repo_cls_8b/` | checkpoint-3000 | 176M | May 14 05:30 |\n| `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/` | checkpoint-600 | 176M | May 14 08:50 |\n\n- `checkpoints_repo_cls_8b` 更完整（到 step 3000），推荐 scp 这个\n- 可 scp 到 home: **可以**。单个 checkpoint 176M，5 个共 ~880M。数据盘剩余 118GB，网络带宽不是瓶颈\n- 注意：两组 s42 训练均已停止（无进程），最远只到 3000/6633（未训完）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-full-status-copy-2.md"
+}

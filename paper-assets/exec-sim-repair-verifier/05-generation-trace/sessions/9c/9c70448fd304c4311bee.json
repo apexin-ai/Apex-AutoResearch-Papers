@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c70448fd304c4311bee",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis deepseek traj per seed extraction",
+  "task_key": "worker_analysis_deepseek-traj-per-seed-extraction_20260518T185428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek-traj-per-seed-extraction_20260518T185428_result.json",
+    "occurrence": 1,
+    "bytes": 666,
+    "sha256": "8366cf93f60b8acadaacc90588c88d9e5c11486d88f262cd09e516df87848784"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**6 seeds (s42, s123, s0, s456, s789, s999)：**\n\n| Seed | Acc | Correct/48 |\n|------|-----|-----------|\n| s42  | 81.25% | 39 |\n| s999 | 79.17% | 38 |\n| s123 | 75.00% | 36 |\n| s0   | 75.00% | 36 |\n| s456 | 75.00% | 36 |\n| s789 | 66.67% | 32 |\n\nMean=75.35%, SD=5.00pp, Range=[66.67%, 81.25%]\n\n**二项 CI 分析结论：** n=48, p=0.7535 下 binomial SE = 6.22pp，observed SD = 5.00pp < expected 6.22pp。观察到的 seed 间方差完全在统计噪声范围内，无模型不稳定性证据。所有 6 个 seed 都在 95% CI [63.16%, 87.54%] 内。\n\n报告已写入 `artifacts/deepseek_traj_per_seed_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-traj-per-seed-extraction.md"
+}

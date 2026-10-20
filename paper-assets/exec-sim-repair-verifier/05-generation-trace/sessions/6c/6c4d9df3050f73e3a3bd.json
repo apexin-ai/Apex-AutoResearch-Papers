@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c4d9df3050f73e3a3bd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval critical 8b s42 test8192 ckpt400 ckpt600",
+  "task_key": "worker_eval_critical-8b-s42-test8192-ckpt400-ckpt600_20260514T211716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_critical-8b-s42-test8192-ckpt400-ckpt600_20260514T211716_result.json",
+    "occurrence": 1,
+    "bytes": 145,
+    "sha256": "9c51f9d8b8428cec88216f304c3d665c38ab55efaebc3f5b6b98e6a9e2b7d6c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Waiting for ckpt-600 test@8192 to finish. At 5840/9784 (~60%), running_acc=78.8%. ETA ~8 minutes. Will check back in ~4.5 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-critical-8b-s42-test8192-ckpt400-ckpt600.md"
+}

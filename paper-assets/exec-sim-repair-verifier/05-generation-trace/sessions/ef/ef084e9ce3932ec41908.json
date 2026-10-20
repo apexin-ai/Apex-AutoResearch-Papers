@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef084e9ce3932ec41908",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls4b seed123 test v2",
+  "task_key": "worker_eval_cls4b-seed123-test-v2_20260515T093557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls4b-seed123-test-v2_20260515T093557_result.json",
+    "occurrence": 1,
+    "bytes": 349,
+    "sha256": "093be97cfd3d4a8c632fc6b2f67d517e09e44afc0a2ca879f6787d42c262d68c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**CLS 4B seed123 ckpt-800 test eval v2 结果：**\n- accuracy=**75.33%**, f1_macro=67.03%\n- 仅比 majority baseline (73%) 高 **+2.4pp**\n- 对比 4B s42 ckpt-4600 test 的 83.63%，低 **-8.3pp**\n- seed123 的 val-best checkpoint 在 test 上泛化很差，seed 方差显著\n\nRegistry 已更新为 DONE/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls4b-seed123-test-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bbbf872c145209bc1ca",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_8_1778748252.md",
+  "task_key": "loop_8_1778748252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778748252.md",
+    "occurrence": 1,
+    "bytes": 4964,
+    "sha256": "a9a570d73626b77ab4d1eb89a846a0f34b3a6c4af022a862fa9fa2eeb1524c70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T08:36:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd-48478 cuda:0/1/2/3，home-1x5090 cuda:0。不允许用其他 GPU\n- **D063 方法论红线**: checkpoint 选择必须在 val set (9335 samples) 上做，test set (9784) 只报最终数字。当前 report/ROADMAP 里的 CLS 数字全部在 test set 上选的，需要 val set 重新确认\n- **CWM v11 数字已废止 (D057)**: v11 混合版本 checkpoint 不可引用于论文，必须等 v12 全量 eval\n- **Apple-to-apple 对比必须同 server/env**: home (transformers 4.57.6) vs westd (conda 4.57.6) 训练出的模型不能直接对比——曾出现 22pp 差距源于 transformers 版本差异。CLS vs CWM 对比用 westd conda 环境\n- **val set majority baseline = 75.88%，test set = 72.96%**，两者不同，别搞混\n\n### 2. 🖥️ 基础设施快照\n- **westd-48478** (root): 4×RTX 5090, conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`), transformers 4.57.6\n  - 工作目录: `/home/sonny/exec-sim-repair-verifier`\n  - 数据: `/home/sonny/exec-sim-repair-verifier/data/swebench_full/` (70748 samples)\n  - HF cache: `/root/autodl-tmp/.hf_cache/`\n  - CLS checkpoints: `/root/autodl-tmp/checkpoints_repo_cls_*/`, CWM: `/root/autodl-tmp/checkpoints_repo_cwm_*/`\n  - 8B model: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- **home-1x5090** (sonny): 1×RTX 5090, 同项目路径, transformers 4.57.6\n- **活跃进程 (westd)**:\n  - cuda:0 — CWM seed123 eval, PID 195531, tmux: `repo-level-cwm-seed123-conda`, cron 监控中\n  - cuda:1 — CWM v12 eval, PID 195668, tmux: `repo-level-cwm-v12`, cron 监控中\n  - cuda:2 — 8B CWM 训练, PID 210568, tmux: `repo-level-cwm-8b-conda`, cron 监控中\n  - cuda:3 — 8B CLS seed123 训练, PID 210652, tmux: `repo-level-cls-8b-seed123-conda`, cron 监控中\n- **Worker running**: `worker_code_d063-val-sweep-prep` (started 08:29 UTC, 做 val set sweep 脚本准备)\n\n### 3. 📊 当前状态\n刚完成 session 初始化和 D063 val sweep 准备工作。上一轮 session 主要完成了：\n- D056: early stop 5 个 repo-level 训练 → 立即启动 eval pipeline\n- D061: GPU 2/3 启动 8B CWM/CLS 训练\n- D062: checkpoint 选择改用 F1_macro（非 eval_loss）\n- D063: 发现 checkpoint sweep 在 test set 上做 = cherry-picking，需改为 val set\n\n**Registry**: 61 experiments — 2 RUNNING (8B CWM s42, 8B CLS s123), 59 DONE\n**CWM v12 eval**: ~25% done, running acc ~58.3%, ETA ~02:20 UTC May 15（约 18h 后）\n**CWM seed123 eval**: ~25% done, running acc ~57.2%, ETA ~02:30 UTC May 15\n**8B 训练**: 刚启动约 2.5h，预计需要较长时间（4B 训练约需 12-18h）\n\n**等待中**:\n- 4 个 cron 回调（CWM v12 eval done, CWM seed123 eval done, 8B CWM done, 8B CLS done）\n- D063 val sweep worker 完成回调\n- D057 解除阻塞 → 等 CWM v12 全量 eval 结果\n\n### 4. 📋 待办（条件触发式）\n- **CWM v12 eval cron 完成** → spawn worker 提取最终 metrics → update_registry → 如果 acc <65% 确认 negative → 产 Framing 提案（但 paper_framing 已预设 pivot 到 efficiency framing）→ 实际上 ROADMAP 已经以 CLS>>CWM 为核心 story，CWM 低只是进一步放大 complexity-dependent advantage\n- **CWM seed123 eval cron 完成** → 提取 metrics → 与 v12 配对做 paired bootstrap → 算 CLS-CWM repo-level gap 的置信区间 → 更新 paper numbers\n- **D063 val sweep worker 完成** → 在 val set 上为所有 CLS 模型重新选 best checkpoint → 用选出的 checkpoint 在 test set 上报最终数字 → 更新 ROADMAP 表格\n- **8B CWM/CLS 训练 cron 完成** → spawn worker 做 checkpoint sweep eval → 8B-8B repo-level gap\n- **所有 repo-level 数字就绪** → D064 解除论文全面阻塞 → spawn paper writing workers\n\n### 5. 🎯 战略上下文\n- **DDL**: EMNLP 2026 ARR May 25（剩余 11 天），时间非常紧\n- **核心 story**: CLS vs CWM 是 complexity-dependent advantage。函数级 gap 小（4B: 1.24pp, 8B: 2.43pp），repo-level gap 巨大（预估 20-27pp）。这是论文最强 claim\n- **CWM 在 repo-level 严重失败**: running acc 57-58%，低于 majority baseline 72.96%。这不是 negative 而是 positive——证明 CWM 在复杂代码上崩溃，支持 C1 claim\n- **D064 部分解除论文阻塞**: 可以先写不依赖 CWM 数字的章节（method, function-level results, C2, C3）\n- **易错点**:\n  1. 不要把 CWM eval 的 \"killed\" conclusion 误认为实验失败——训练被 kill 是为了释放 GPU 做 eval，eval 进程在 cron 下正常运行\n  2. CLS v5 (home) 81.51% 和 v5-conda (westd) 78.43% 不能直接对比说 seed 差异——它们数据文件不同（md5 不同）\n  3. 8B ckpt-400 peak 之后迅速退化——8B eval 时必须从 ckpt-200 开始 sweep，不能只看最后一个\n  4. val set pass 比例更高（75.88% vs test 72.96%），val 上的 accuracy 绝对值会与 test 不同\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778748252.md"
+}

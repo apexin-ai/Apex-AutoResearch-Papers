@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfa1599b20c6a60d6d89",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose qwen cwm sigterm",
+  "task_key": "worker_diagnose_qwen-cwm-sigterm_20260520T213033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_qwen-cwm-sigterm_20260520T213033_result.json",
+    "occurrence": 1,
+    "bytes": 2947,
+    "sha256": "5b39f2fd5d9e423a34fff7a3bbc91479a84fa928d93999ac262314667393d803"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n---\n\n## 诊断报告：Qwen3-8B CWM 训练 SIGTERM 分析\n\n### 根因：tmux 服务器被杀，级联 SIGTERM\n\n**不是** OOM、磁盘满、或容器重启。\n\n证据链：\n- 容器 uptime 155 天，无重启\n- `dmesg` 无 OOM 记录\n- 磁盘正常（根分区 72%，数据盘 48%）\n- tmux socket 文件存在（`/tmp/tmux-0/default`，创建于 May 20 09:26），但 tmux server 进程已不存在\n- 同时用 `nohup` 启动的 DeepSeek 训练（PID 949112）至今仍在正常运行\n- **两个 Qwen 训练运行在 tmux session 内**，tmux server 被杀时级联 SIGTERM 同时终止了两者\n\ntmux 被谁杀的无法确定（bash_history 无相关记录）。最可能是另一个 agent session 在管理实验时误杀了 tmux server。\n\n### 最后成功的 checkpoint\n\n| 实验 | 最后 checkpoint | 进度 | 保存时间 (CST) |\n|------|----------------|------|----------------|\n| s123 | **checkpoint-3000** | 3000/6633 步 (45.2%), epoch 1.36 | May 21 05:19 |\n| s456 | **checkpoint-3000** | 3000/6633 步 (45.2%), epoch 1.36 | May 21 05:03 |\n\n两个 checkpoint 文件完整（adapter_model.safetensors + optimizer.pt + scheduler.pt + rng_state.pth + trainer_state.json 均在）。\n\n### 可以恢复训练\n\n`train_unified.py` 支持 `--resume_from_checkpoint`。GPU 0 和 GPU 3 当前空闲。\n\n**使用 `nohup` 而非 tmux 启动**，避免同类故障：\n\n```bash\n# s123 — GPU 0\ncd /home/sonny/exec-sim-repair-verifier && \\\nCUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 nohup python train_unified.py \\\n  --data_dir data/ --task cwm --train_file swebench_full/swebench_train.jsonl \\\n  --model_name_or_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ \\\n  --output_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_s123/ \\\n  --run_name repo-cwm-qwen3-8b-s123-resume \\\n  --seed 123 --max_seq_length 2048 --batch_size 1 --grad_accumulation 32 \\\n  --lr 5e-5 --epochs 3 --warmup_ratio 0.05 --no_wandb \\\n  --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cwm_8b_s123/checkpoint-3000 \\\n  > ~/runs/exec-sim-repair-verifier/qwen3-8b-cwm-repo-s123-train-v4-resume.log 2>&1 &\n\n# s456 — GPU 3\ncd /home/sonny/exec-sim-repair-verifier && \\\nCUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 nohup python train_unified.py \\\n  --data_dir data/ --task cwm --train_file swebench_full/swebench_train.jsonl \\\n  --model_name_or_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ \\\n  --output_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_s456/ \\\n  --run_name repo-cwm-qwen3-8b-s456-resume \\\n  --seed 456 --max_seq_length 2048 --batch_size 1 --grad_accumulation 32 \\\n  --lr 5e-5 --epochs 3 --warmup_ratio 0.05 --no_wandb \\\n  --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cwm_8b_s456/checkpoint-3000 \\\n  > ~/runs/exec-sim-repair-verifier/qwen3-8b-cwm-repo-s456-train-v3-resume.log 2>&1 &\n```\n\n剩余约 3633 步 (~12s/step)，预计 ~12 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-qwen-cwm-sigterm.md"
+}

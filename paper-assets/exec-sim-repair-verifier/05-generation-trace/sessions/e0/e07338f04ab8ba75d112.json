@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e07338f04ab8ba75d112",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops traj repo data check",
+  "task_key": "worker_ops_traj-repo-data-check_20260516T143829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_traj-repo-data-check_20260516T143829_result.json",
+    "occurrence": 1,
+    "bytes": 2912,
+    "sha256": "cfe26cf87c1a2d6454b2b3a3411ef410e82537899ceb2af083bcf0822a764467"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. Repo-level TRAJ 数据是否存在？\n\n**不存在。** `data/swebench_full/` 下无任何 traj 文件。现有 traj 文件全是 func-level（在 `data/` 下）：\n\n| 文件 | 行数 | 级别 |\n|------|------|------|\n| `data/traj_train.jsonl` | 8,052 | func-level (HumanEval/MBPP) |\n| `data/traj_val.jsonl` | — | func-level |\n| `data/traj_train_cls.jsonl` | — | func-level 变种 |\n\n### 2. 能否快速生成？\n\n**可以，<5分钟。** `build_traj_data.py` 已就绪，它将 per-test CLS 数据按 `(problem_id, mutation_type, code)` 分组，聚合为 trajectory-level：\n- all tests pass → `label=1` (resolved)\n- any test fail → `label=0` (unresolved)\n\n输出格式含 `code`, `test_summary`, `label`——正是 `train_traj_verifier.py` 期望的格式。\n\n**需要先建 symlink**，因为 `build_traj_data.py` 期望输入文件名为 `train.jsonl` 而非 `swebench_train.jsonl`：\n\n```bash\ncd /home/sonny/exec-sim-repair-verifier/data/swebench_full/\nln -s swebench_train.jsonl train.jsonl\nln -s swebench_val.jsonl val.jsonl\nln -s swebench_test.jsonl test.jsonl\n\ncd /home/sonny/exec-sim-repair-verifier/\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython build_traj_data.py --input_dir data/swebench_full --output_dir data/swebench_full --prefix traj\n```\n\n输入 70,748 per-test → 预估产出 ~20,000-35,000 trajectories（参考 func-level 压缩比 15,290 → 8,052 ≈ 1.9x）。\n\n### 3. `train_traj_verifier.py` 数据格式要求\n\n每行 JSONL 需要：\n- `code` (str): 代码 patch / diff\n- `test_summary` (str): 测试摘要，格式 `\"N tests:\\n- test1\\n- test2...\"`\n- `label` (int): 1=resolved, 0=unresolved\n\n加载路径：`{data_dir}/{data_prefix}_train.jsonl` 和 `{data_dir}/{data_prefix}_val.jsonl`\n\n### 4. 建议的训练命令\n\n与 repo-level CLS/CWM 保持一致的超参（DeepSeek-6.7B, seq=8192, LoRA r=16/α=32, 3 epochs）：\n\n```bash\ncd /home/sonny/exec-sim-repair-verifier/\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\nCUDA_VISIBLE_DEVICES=2,3 python train_traj_verifier.py \\\n  --data_dir data/swebench_full \\\n  --data_prefix traj \\\n  --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct \\\n  --output_dir checkpoints_traj_repo/ \\\n  --run_name deepseek-traj-repo-s42 \\\n  --max_seq_length 8192 \\\n  --batch_size 2 \\\n  --grad_accumulation 16 \\\n  --lr 2e-4 \\\n  --epochs 3 \\\n  --seed 42\n```\n\n### 注意事项\n\n- `train_traj_verifier.py` 没有 `StderrLogCallback`（不像 `train_repo_verifier.py`），监控需要看 wandb 或 stdout log\n- `train_traj_verifier.py` 没有 class weighting——如果 traj 数据不均衡（resolved 远多于 unresolved），可能需要加\n- `train_unified.py` 只支持 `cls`/`cwm` task，不支持 `traj`，必须用 `train_traj_verifier.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-traj-repo-data-check.md"
+}

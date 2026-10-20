@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e731e10cddf1b3000d90",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix westd gpu conflict urgent",
+  "task_key": "worker_fix_westd-gpu-conflict-urgent_20260514T173154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westd-gpu-conflict-urgent_20260514T173154_result.json",
+    "occurrence": 1,
+    "bytes": 1285,
+    "sha256": "1282bc960a6a8fc3f888ed77bd9da52a5bc7a2fb629f7198d2dd344cd98b6e26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 冲突检查结果\n\n### 1. PID 存活状态\n\n| PID | 角色 | 状态 |\n|-----|------|------|\n| 245775 | 旧 CWM 8B (cuda:2) | **已 kill** ✓ |\n| 248041 | 旧 CLS 8B s123 (cuda:3) | **已 kill** ✓ |\n| 262979 | 新 CWM 8B v2 | 只是 bash wrapper，训练从未启动 |\n| 263062 | 新 CLS 8B s123 v2 | 只是 bash wrapper，训练从未启动 |\n\n### 2. GPU 占用（kill 后）\n\n| GPU | 显存占用 | 占用者 |\n|-----|---------|--------|\n| 0 | 12999/32607 MiB (85%) | PID 195531 - eval_cwm |\n| 1 | 12999/32607 MiB (62%) | PID 195668 - eval_cwm |\n| 2 | **0 MiB - 空闲** | 已释放 |\n| 3 | **0 MiB - 空闲** | 已释放 |\n\n### 3. 冲突处理\n\n属于 **场景 C**：旧进程占据 GPU，新进程（bash wrapper）从未真正启动训练。已 kill 旧进程，GPU 2/3 已释放。**v2 tmux session 输出为空，新训练需要重新提交。**\n\n### 4. CWM eval 进度（cuda:0/1，正常运行）\n\n| Session | 进度 | Running Acc |\n|---------|------|-------------|\n| eval_cwm_seed123 | **9288/9784 (94.9%)** | 59.0% |\n| eval_cwm_v12 | **9400/9784 (96.1%)** | 57.9% |\n\n两个 eval 接近完成，预计很快结束。\n\n### 需要操作\n\n**GPU 2/3 已空闲，CWM 8B v2 和 CLS 8B s123 v2 的训练需要重新启动。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westd-gpu-conflict-urgent.md"
+}

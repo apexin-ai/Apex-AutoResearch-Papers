@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee2677d6e4e893b9b716",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "train s42 8b cls resume from 600",
+  "task_key": "worker_train_s42-8b-cls-resume-from-600_20260514T204303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_s42-8b-cls-resume-from-600_20260514T204303_result.json",
+    "occurrence": 1,
+    "bytes": 131,
+    "sha256": "ea26d2da4bf735beb8283e8f34abfca6b41259a88f1fff6bc1d4e5a1c3e08e0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 还在忙（PID 281646 占用 13.6GB 显存，100% 利用率）。已设定 ~5 分钟后自动重新检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-s42-8b-cls-resume-from-600.md"
+}

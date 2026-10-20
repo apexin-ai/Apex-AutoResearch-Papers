@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "948cff4710ef48efc2ea",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ops cls inference home",
+  "task_key": "worker_ops_cls-inference-home_20260517T044847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cls-inference-home_20260517T044847.log",
+    "occurrence": 1,
+    "bytes": 856736,
+    "sha256": "7d949a2c23133692e5e5b4f3c74b923710adb5c22f3bbff979726fe55db67543"
+  },
+  "statistics": {
+    "messages": 484,
+    "user_turns": 1,
+    "tool_calls": 178,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "record": 1,
+      "assistant": 107,
+      "tool_call": 178,
+      "user": 1,
+      "tool_result": 178,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "948cff4710ef48efc2ea-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 477,
+      "chunks": [
+        {
+          "path": "948cff4710ef48efc2ea-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "948cff4710ef48efc2ea-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "948cff4710ef48efc2ea-part-0003.json",
+          "message_count": 124
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-cls-inference-home.md"
+}

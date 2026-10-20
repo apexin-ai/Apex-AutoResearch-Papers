@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2f90be67cbb7bcd2054",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval westd cuda3 seed123 6200 test",
+  "task_key": "worker_eval_westd-cuda3-seed123-6200-test_20260515T094251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_westd-cuda3-seed123-6200-test_20260515T094251_result.json",
+    "occurrence": 1,
+    "bytes": 130,
+    "sha256": "1a507cf9d270f812aaf7c00ea433ca8efd7437352e5940fa707a6870daefa688"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在运行（PID 353094, cuda:0），20/8192 samples。预计 ~20 分钟完成，3 分钟后开始轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-westd-cuda3-seed123-6200-test.md"
+}

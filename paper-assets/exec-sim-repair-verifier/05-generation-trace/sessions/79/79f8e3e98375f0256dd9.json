@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79f8e3e98375f0256dd9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "urgent sigterm diagnose restart",
+  "task_key": "worker_urgent_sigterm-diagnose-restart_20260514T141913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_sigterm-diagnose-restart_20260514T141913_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "7b70db5b8056c55108e1dc474563a84510117dcafe4dd2dc58e71fe616550a6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练都已成功重启：\n\n**GPU 状态（4x5090 全部在用）：**\n| GPU | 任务 | 显存 | 利用率 |\n|-----|------|------|--------|\n| 0 | CWM eval | 12990 MiB | 88% |\n| 1 | CLS eval | 12990 MiB | 88% |\n| 2 | **CWM 8B 训练** (PID 243700) | 26998 MiB | 98% |\n| 3 | **CLS 8B s123 训练** (PID 243778) | 26740 MiB | 97% |\n\n**训练进度：**\n- **CWM 8B**: 从 checkpoint-1200 resume，0/6633 步（刚开始跳过已训练数据）\n- **CLS 8B s123**: 从 checkpoint-2400 resume，已到 step 2408/6633，正常训练中\n\n**诊断结论：** 容器环境无内核日志权限，无 OOM/配额证据，判断为一次性系统事件。\n\n**所做修改：**\n- `train_repo_cwm.py` 新增 `--save_total_limit` CLI 参数（原来硬编码为 5）\n- 两个训练均设 `--save_total_limit 20`\n- 清理了 22:17 的重复旧进程（`train_cwm_8b` / `train_cls_8b_s123` tmux 会话）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-sigterm-diagnose-restart.md"
+}

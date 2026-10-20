@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cc4c5acb045ce8f271d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnostics gpu status check",
+  "task_key": "worker_diagnostics_gpu-status-check_20260519T131204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnostics_gpu-status-check_20260519T131204_result.json",
+    "occurrence": 1,
+    "bytes": 2994,
+    "sha256": "8a3d0b7c84052b2039b7014bdb54dd9f9015d9b13423af7f2aece3c989802857"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态汇报 — seetacloud-westd-4x5090\n\n### GPU 总览 (21:12:22)\n\n| GPU | VRAM | Util | 温度 | PID | 状态 |\n|-----|------|------|------|-----|------|\n| 0 | 27714/32607 MiB | 90% | 68°C | 778334 | **运行中** — Qwen3-8B CWM eval |\n| 1 | 17263/32607 MiB | 63% | 61°C | 836311 | **运行中** — 进程活跃（CLS chain 已完成） |\n| 2 | 26083/32607 MiB | 84% | 60°C | 833672 | **运行中** — DeepSeek CWM s42 seq4096 eval |\n| 3 | 0/32607 MiB | 0% | 31°C | — | **空闲** |\n\n---\n\n### GPU 0 — Qwen3-8B CWM eval (D146)\n\n- **进度**: 6504 / 9784 = **66.5%**\n- **Running acc**: 63.9%\n- **速度**: ~8.4 samples/min（每 8 samples 约 57 秒）\n- **剩余**: 3280 samples → **预计 ~6.5 小时** → ETA **~03:40 May 20**\n\n---\n\n### GPU 1 — CLS ablation chain\n\n**全部 3 个 checkpoint eval 已完成。** Chain log 输出 `[chain] All CLS ablation evals done.` (21:02:01)\n\n结果目录均已生成：`cls8b_s42_ckpt{2200,3600,6633}_test/`\n\n| Checkpoint | Accuracy | F1 macro | F1 fail | F1 pass | P_fail | R_fail |\n|-----------|----------|----------|---------|---------|--------|--------|\n| **ckpt-2200** | **85.34%** | **79.04%** | **67.56%** | 90.53% | 84.16% | **56.42%** |\n| ckpt-3600 | 84.48% | 78.17% | 66.43% | 89.91% | 80.06% | 56.76% |\n| ckpt-6633 | 85.29% | 78.44% | 66.28% | 90.60% | **87.23%** | 53.44% |\n\n**观察**: ckpt-2200 是综合最优（accuracy+F1 macro 均最高）。ckpt-6633 的 precision_fail 最高（87.2%）但 recall_fail 最低（53.4%），说明训练越久越保守。ckpt-3600 全面不如两端。\n\nGPU 1 仍有活跃进程（PID 836311, 17GB VRAM, 63% util），chain 已结束但进程未退出，可能是 tmux 中残留的 Python 进程。\n\n---\n\n### GPU 2 — DeepSeek CWM s42 seq4096 eval\n\n- **状态**: **已启动并运行中**（之前标记为 PREPARING 的实验已跑起来）\n- **进度**: 420 / 9784 = **4.3%**\n- **Running acc**: 59.0%\n- **速度**: ~12.5 samples/min\n- **剩余**: 9364 samples → **预计 ~12.5 小时** → ETA **~09:40 May 20**\n- 增量结果写入 `deepseek_cwm_repo_s42_seq4096/results_incremental.jsonl`（420 行）\n\n---\n\n### GPU 3 — 空闲 ✓\n\n0 MiB VRAM，0% util，无进程。已确认空闲。\n\n---\n\n### 磁盘状态\n\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| `/root/autodl-tmp` | 250G | 196G | 55G | **79%** |\n| `/` (根) | 30G | 20G | 11G | **67%** |\n\n### 数据文件 (`data/swebench_full/`)\n\n总大小 ~145M，16 个文件，43491 行总计。关键文件：\n\n| 文件 | 大小 | 行数 |\n|------|------|------|\n| swebench_test.jsonl | 58M | 9784 |\n| swebench_pilot_data.jsonl | 32M | 7349 |\n| swebench_train.jsonl | 25M | 4359 |\n| swebench_val.jsonl | 22M | 3107 |\n| swebench_verified_meta.jsonl | 6.3M | 500 |\n\n`test.jsonl`/`train.jsonl`/`val.jsonl` 是符号链接指向对应的 `swebench_*.jsonl`，文件完整无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnostics-gpu-status-check.md"
+}

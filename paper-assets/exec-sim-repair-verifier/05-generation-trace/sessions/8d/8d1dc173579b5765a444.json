@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d1dc173579b5765a444",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops install flash attn westd",
+  "task_key": "worker_ops_install-flash-attn-westd_20260516T001155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_install-flash-attn-westd_20260516T001155_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "527e81b2456b9618294832d3e94421c0c62b782ef59f8613a56659e0c5140e1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已有完善的 fallback：`flash_attn` 导入失败时自动回退到 `\"sdpa\"`。\n\n**结果：**\n\n- **flash-attn 2.x 无法安装** — 所有版本都不支持 RTX 5090 Blackwell (sm_120) 架构，源码编译失败\n- **不影响 CWM 8B val sweep** — 所有 eval 脚本（eval_cwm_baseline.py 等）都有 fallback 逻辑，import flash_attn 失败时自动使用 `attn_implementation=\"sdpa\"`\n- **PyTorch 2.10 内置 SDPA flash backend 在 5090 上正常工作**，性能与独立 flash-attn 包基本一致\n- **无需修改任何 eval 脚本**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-install-flash-attn-westd.md"
+}

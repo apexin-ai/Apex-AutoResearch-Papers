@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b56b9dc7b4a9a901153",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code parsing symmetry fix",
+  "task_key": "worker_code_parsing-symmetry-fix_20260513T005032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_parsing-symmetry-fix_20260513T005032_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "a0a0fdfbab1e551277f56c52dadab4d5338acb12e96b6a313b477fe6fec504b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改已完成并验证。总结：\n\n**4 处修改 (`eval_repo_level.py`)**：\n\n| 位置 | 修改前 | 修改后 |\n|------|--------|--------|\n| L115 `parse_cwm_prediction` | `return 0  # default fail for CWM` | `return -1  # ambiguous — unified fallback via majority_class` |\n| L227 `run_inference` 返回值 | `return results` | `return results, n_unparseable` |\n| L482/L491 main 推理调用 | `cls_results = run_inference(...)` | `cls_results, n_cls_unparseable = run_inference(...)` (两处) |\n| L498-499 predictions-only 模式 | (无) | `n_cls_unparseable = None; n_cwm_unparseable = None` |\n| L550-551 output JSON | (无) | 新增 `n_cls_unparseable` 和 `n_cwm_unparseable` 字段 |\n\n**效果**：CLS 和 CWM 的 unparseable/ambiguous 预测现在都返回 -1，统一走 `majority_class` fallback，消除了系统性偏向 CLS 的问题。unparseable 计数写入 summary JSON 供审计。\n\n备份文件: `eval_repo_level.py.bak`  \nmd5: `2849d934ce94d27ef72b50378e45c166`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-parsing-symmetry-fix.md"
+}

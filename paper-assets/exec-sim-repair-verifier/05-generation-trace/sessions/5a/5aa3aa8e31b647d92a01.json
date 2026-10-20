@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5aa3aa8e31b647d92a01",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops prepare deepseek repo eval",
+  "task_key": "worker_ops_prepare-deepseek-repo-eval_20260516T101327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare-deepseek-repo-eval_20260516T101327_result.json",
+    "occurrence": 1,
+    "bytes": 1855,
+    "sha256": "9fb0ff62d061142d034b876a9fa7135b3748ae2a6f8d1f3662753b786a862c77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有准备工作完成。总结：\n\n---\n\n## 报告\n\n### 1. eval 脚本 DeepSeek 支持\n\n| 脚本 | 状态 |\n|------|------|\n| `eval_repo_cls.py` | 之前被截断（95行），已修复部署完整版（388行），支持 DeepSeek |\n| `eval_repo_cwm.py` | 之前无 DeepSeek 支持，已重写部署（471行），完整适配 |\n\n两个脚本均包含：\n- `detect_model_family()` → 自动检测 deepseek/qwen/auto\n- `get_stop_token_ids()` → DeepSeek 使用 `<|EOT|>` (32021) + `<｜end▁of▁sentence｜>` (32014)\n- `get_chat_template_kwargs()` → DeepSeek 返回空 dict（无 enable_thinking）\n- `_apply_chat_template_safe()` → 系统角色回退合并\n- `model.generate()` 中传入 `eos_token_id=eos_ids`\n\n### 2. 数据和路径确认\n\n- 测试数据：`swebench_test.jsonl` = 9784 行 (pass=7138, fail=2646)\n- 模型：`/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct` 加载正常\n- Checkpoint 目录已创建但空（训练中，预计 cls ~03:00 UTC May 17, cwm ~22:00 UTC May 17）\n- 输出目录已创建，磁盘剩余 73GB 充足\n\n### 3. 部署清单\n\n- `/home/sonny/exec-sim-repair-verifier/eval_repo_cls.py` (388行)\n- `/home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py` (471行)\n- `/home/sonny/exec-sim-repair-verifier/run_deepseek_repo_eval.sh`\n\n### 4. 使用方式\n\n```bash\n# CLS eval (训练完成后)\nbash run_deepseek_repo_eval.sh cls 3\n\n# CWM eval (训练完成后)\nbash run_deepseek_repo_eval.sh cwm 3\n```\n\n### 5. 注意事项\n\n- Checkpoint 目录 `checkpoints_deepseek_cls_repo/best/` 和 `checkpoints_deepseek_cwm_repo/best/` 当前为空，训练脚本需要在完成时创建 `best/` 符号链接或目录。需确认训练脚本是否会自动创建 `best/`——如果不会，启动 eval 前需手动指定具体 checkpoint 路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-deepseek-repo-eval.md"
+}

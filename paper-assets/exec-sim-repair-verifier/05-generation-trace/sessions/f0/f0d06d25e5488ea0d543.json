@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0d06d25e5488ea0d543",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_15_1778853732.md",
+  "task_key": "loop_15_1778853732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1778853732.md",
+    "occurrence": 1,
+    "bytes": 4094,
+    "sha256": "0c89808077e73fd17d323762b808104754e05671be2ddcecffd4ef690b72037b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-15T13:56:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3。home 白名单: cuda:0。超出必须向 Director 申请\n- westd 环境用 conda（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不要创建 venv\n- 主指标是 **val-selected checkpoint 的 test accuracy**（D088 决策），不是 test-best\n- seed123 训练的中段 checkpoint 被 save_total_limit 覆盖（D091），只有 ckpt-3000 和 ckpt-6200+ 存活，不要尝试 eval 不存在的 checkpoint\n- Paper DDL: **EMNLP 2026 ARR May 25**，剩余 10 天，不可延误\n\n### 2. 🖥️ 基础设施快照\n- **westd** (seetacloud-westd-4x5090): 工作目录 `/home/sonny/exec-sim-repair-verifier`，Python `/root/miniconda3/bin/python`\n- **home** (home-1x5090): 同上结构\n- 模型缓存: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/` (8B), Qwen3-4B 类似路径\n- Checkpoints: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` (seed123), `/root/autodl-tmp/checkpoints_repo_cls_8b_s42/` (s42), `/root/autodl-tmp/checkpoints_repo_cls_4b_v5/` (4B)\n- CWM 8B 训练: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/` on cuda:2\n- 活跃 cron 5 个: repo-level-cwm-8b-conda-v4 (PID 266816, cuda:2), repo-level-cls-8b-s42-resume (PID 295794, cuda:1), cls8b-seed123-ckpt6600-test-eval (PID 358109, cuda:0), cls8b-s42-ckpt200-test8192-eval (PID 358249, cuda:3), cls4b-v5-ckpt4000-test5120-eval (PID 3274167, home cuda:0)\n\n### 3. 📊 当前状态\n刚处理 cls8b-seed123-ckpt6400-test-eval-v2 的延迟 CRON 回调（已被前轮标记 DONE/success, accuracy=85.08%）。已向 Director 汇报。\n\n**RUNNING 实验**:\n| exp_id | GPU | 说明 |\n|--------|-----|------|\n| repo-level-cwm-8b-conda-v4 | westd cuda:2 | CWM 8B 训练 ~57%, ETA May 16 05:30 |\n| repo-level-cls-8b-s42-resume | westd cuda:1 | s42 resume 训练 ~55% |\n| cls8b-seed123-ckpt6600-test-eval | westd cuda:0 | seed123 test curve 最后补点 |\n| cls8b-s42-ckpt200-test8192-eval | westd cuda:3 | s42 test curve 补点 |\n| cls4b-v5-ckpt4000-test5120-eval | home cuda:0 | 4B test sweep 补点 |\n\n**等待**: 5 个 cron 回调（上述实验完成时触发）。Paper Agent 已独立启动 Full Draft。Worker 池=0。\n\n### 4. 📋 待办\n- cls8b-seed123-ckpt6600-test-eval 完成 → 收录 test curve 最后一点 → seed123 test curve 完整 (3000/6200/6400/6600)，更新 report.md\n- cls8b-s42-ckpt200-test8192-eval 完成 → s42 test curve 补齐最早点 → 更新 val_sweep_compilation.md\n- cls4b-v5-ckpt4000-test5120-eval 完成 → 4B test curve 补点入表\n- repo-level-cwm-8b-conda-v4 完成 → **关键**: CWM 8B test eval → 锁定 8B-8B CLS-CWM gap（目前主表缺这个数）→ 用 cuda:2 或 cuda:3 跑 test eval\n- repo-level-cls-8b-s42-resume 完成 → extended val sweep（用新 checkpoint 跑 val eval）\n- 所有 supplementary curve 收齐 → 通知 Paper Agent 更新图表（Figure: val+test 双线图）\n- cls8b-s42-ckpt1000-test-seq2048-ablation 仍排队等 GPU → seq_length confound ablation，Reviewer 预防性实验\n\n### 5. 🎯 战略上下文\n- **核心结论**: CLS (classification) 大幅优于 CWM (code-with-modification generation)，multi-seed gap 25.99pp。核心假设是 CLS 优势随代码复杂度增长\n- **三个 Claims 已锁定**: C1 multi-seed gap ✅, C2 TOST equivalence ✅, C3 Oracle frontier ✅\n- **最大缺口**: CWM 8B 还在训练（57%），没有 8B-8B 同模型对比数字。主表用的 CWM 4B (58.04%) 是跨 size 对比。CWM 8B 完成后是 paper 最关键的数字\n- **易踩坑**: (1) val-test ranking reversal 是已知现象（D084-D088），不要因为 test 排名和 val 不一致就怀疑代码 bug；(2) seed123 中段 checkpoint 不存在，别派 Worker 去 eval；(3) 4B eval 用 max_seq_length=5120 不是 8192（历史原因，不要改）；(4) Paper Agent 是独立流程，不要重复启动\n- **决策链关键节点**: D088 (val-selected 为主指标) → D091 (seed123 checkpoint 覆盖问题) → D093 (multi-seed gap 锁定 25.99pp)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1778853732.md"
+}

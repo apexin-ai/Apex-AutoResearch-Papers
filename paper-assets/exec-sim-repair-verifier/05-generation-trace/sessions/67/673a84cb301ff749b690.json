@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "673a84cb301ff749b690",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor 8b val5120 then 4b sweep",
+  "task_key": "worker_monitor_8b-val5120-then-4b-sweep_20260514T155417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_8b-val5120-then-4b-sweep_20260514T155417_result.json",
+    "occurrence": 1,
+    "bytes": 192,
+    "sha256": "4b73a0421a5468efd7e0fa276a70c1757b425ca427777b2153e8f222abd45de9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8B val@5120 ckpt-400 eval 正在跑 (987/9335, ~10.6%)，预计 ~55 分钟完成。已设置 4.5 分钟后轮询。ckpt-3000 排队中，会在 ckpt-400 完成后自动启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-8b-val5120-then-4b-sweep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac37ffd35638a2471e52",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh gpu2 deepseek cwm train",
+  "task_key": "worker_ssh_gpu2-deepseek-cwm-train_20260520T030642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu2-deepseek-cwm-train_20260520T030642_result.json",
+    "occurrence": 1,
+    "bytes": 1880,
+    "sha256": "94208ddfe5a74222e36add8f2b2d43f704151b128579b42f3708b6c335c55c63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全貌清晰了。汇报：\n\n## 服务器状态报告\n\n### 1. nvidia-smi\n\n| GPU | 型号 | 显存占用 | GPU利用率 | 状态 |\n|-----|------|---------|----------|------|\n| 0 | RTX 5090 | 21253/32607 MiB | 90% | Qwen3-8B CWM s123 训练 (PID 886278) |\n| 1 | RTX 5090 | 0/32607 MiB | **100%** | **HUNG** — 无进程但利用率100% |\n| 2 | RTX 5090 | 28707/32607 MiB | 85% | DeepSeek CWM s123 eval (PID 893823) |\n| 3 | RTX 5090 | 31261/32607 MiB | 96% | Qwen3-8B CWM s456 训练 (PID 886352) |\n\n### 2. GPU 1 Hung 状态\nGPU 1 显存 0 MiB，无任何 compute process，但 GPU utilization 锁死 100%。典型 GPU hang — 之前的进程异常退出后 GPU 卡在忙循环，需要 `nvidia-smi -r` 或重启实例才能恢复。\n\n### 3. deepseek-cwm-repo-s123-train — 实际成功\nRegistry 标记 conclusion=success 是**正确的**：\n- 训练完整跑完：2865/2865 steps，3 epochs，耗时 5255s（~1.46h）\n- train_loss=0.0767, eval_loss=0.0427\n- Checkpoints 完整：`best/`（adapter_model.safetensors 67MB）、`checkpoint-1910/`、`checkpoint-2865/`\n- EXIT_CODE=2 可能是日志收集脚本的返回码，不影响训练本身\n\n### 4. GPU 2 不可用\nGPU 2 当前正在跑 s123 eval（tmux session: `eval_s123`）：\n- 进度：728/9784（~7.4%）\n- 速率：~81 samples/min\n- 预计剩余：**~112 分钟（~1h52m）**\n\n### 5. 当前 tmux sessions\n- `qwen3-8b-cwm-repo-s123-train-v4` — GPU 0\n- `qwen3-8b-cwm-repo-s456-train-v3` — GPU 3\n- `eval_s123` — GPU 2\n\n### 结论\n**无法立即在 GPU 2 上启动 s456 训练。** 三个选项：\n\n1. **等 eval 跑完**（~2h 后 GPU 2 空出），再启动 s456\n2. **用 GPU 1**（需要先 `nvidia-smi -r` 重置解除 hang 状态，有风险可能影响其他 GPU）\n3. **手动终止 eval**（如果 eval 不重要的话）\n\n需要你决定怎么处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu2-deepseek-cwm-train.md"
+}

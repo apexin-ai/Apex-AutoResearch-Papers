@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb648b8b09214fd5adca",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b s42 resume ckpt1000 test mutation",
+  "task_key": "worker_eval_cls8b-s42-resume-ckpt1000-test-mutation_20260516T005228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-s42-resume-ckpt1000-test-mutation_20260516T005228_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "e62299f1c047012b990378d47c089964123c8cd6e81be1ac1ec0b970772e4f4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并在运行中。\n\n**摘要：**\n- **实验 ID**: `cls8b-s42-resume-ckpt1000-test-mutation`\n- **PID**: 444121\n- **GPU**: cuda:1 (westd 5090)\n- **进度**: 170/9784，running_acc ~82.4%，速度约 10 samples/1.3s\n- **预估完成**: ~25 分钟\n- **日志**: `/root/autodl-tmp/eval_results/cls8b_s42_resume_ckpt1000_test_mutation/eval.log`\n- **流程**: eval_repo_cls.py 完成后自动运行 mutation_breakdown（已 sed 替换路径到 ckpt1000 输出目录）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-s42-resume-ckpt1000-test-mutation.md"
+}

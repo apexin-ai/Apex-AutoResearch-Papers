@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a18544acbb0d83422233",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose deepseek cls repo v4",
+  "task_key": "worker_diagnose_deepseek-cls-repo-v4_20260517T160306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_deepseek-cls-repo-v4_20260517T160306_result.json",
+    "occurrence": 1,
+    "bytes": 1045,
+    "sha256": "bb3c17979ec05c54b03de6d3b983605cca82cb5f3fa1b2b170acb15a847c06a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果：deepseek-cls-repo-v4 训练 **失败**\n\n| 项目 | 值 |\n|------|-----|\n| 启动时间 | 2026-05-17 02:41 CST |\n| 死亡时间 | ~2026-05-18 00:02 CST (运行 ~21.3h) |\n| 训练进度 | 4422/6633 steps 已保存 checkpoint，epoch 3 训练完成后 eval 中途被 kill |\n| train_loss | 3.33 → 0.0065 (正常下降) |\n| eval_loss | **NaN** (epoch 1 和 epoch 2 都是 NaN) |\n| best/ 目录 | 不存在 (best_metric=inf) |\n| 死因 | 进程在 epoch 3 eval 49% 时被静默 kill，无 error/traceback/exit file，GPU 内存残留 (zombie PID 659888, 17334 MiB on GPU-0) |\n\n**关键问题**：eval_loss 全程 NaN 说明 eval 计算逻辑有 bug（训练本身正常），可能是 CLS task 的 eval metric 在 repo-level 数据上存在兼容性问题。checkpoint-4422 的模型权重可能是可用的，但需要修复 eval 代码后才能验证。\n\n**已执行**：\n- Registry 更新为 DONE/failed\n- Cron 已删除\n\n**未启动 eval**（训练未成功完成，且无 best checkpoint）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-deepseek-cls-repo-v4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbad88333d310bcccf97",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh find qwen func eval data",
+  "task_key": "worker_ssh_find-qwen-func-eval-data_20260520T062347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_find-qwen-func-eval-data_20260520T062347_result.json",
+    "occurrence": 1,
+    "bytes": 2954,
+    "sha256": "593f438c9489a035a285ef24bc2ca47d42c421be095984dc03c87530741921a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 1. Qwen CWM func eval files ===\nfind ... -path \"*qwen*cwm*func*\"  →  (empty)\nfind ... -path \"*cwm*qwen*func*\"  →  (empty)\nfind ... -path \"*cwm*8b*func*\"    →  (empty)\n\n=== 2. Qwen CLS func eval files ===\nfind ... -path \"*qwen*cls*func*\"  →  (empty)\nfind ... -path \"*cls*qwen*func*\"  →  (empty)\nfind ... -path \"*cls*8b*func*\"    →  (empty)\n\n=== 3. Qwen results dir ===\nfind /root/autodl-tmp/results -name \"*.jsonl\" -path \"*qwen*\"  →  (empty)\n\nfind /root/autodl-tmp/results -name \"*.jsonl\" -path \"*8b*\":\n/root/autodl-tmp/results/repo_cls_8b_conda_eval/eval_repo_cls_predictions.jsonl\n/root/autodl-tmp/results/cls8b_ckpt200_val/predictions.jsonl\n/root/autodl-tmp/results/cls8b_ckpt400_val/predictions.jsonl\n/root/autodl-tmp/results/cls8b_ckpt600_val/predictions.jsonl\n/root/autodl-tmp/results/cls8b_s42_ckpt1200_test8192/eval_repo_cls_predictions.jsonl\n/root/autodl-tmp/results/cls8b_s42_ckpt1600_test8192/eval_repo_cls_predictions.jsonl\n/root/autodl-tmp/results/cls8b_seed123_ckpt6600_val8192/eval_repo_cls_predictions.jsonl\n/root/autodl-tmp/results/cls8b_seed123_ckpt6400_val8192/eval_repo_cls_predictions.jsonl\n/root/autodl-tmp/results/cls8b_seed123_ckpt6200_val8192/eval_repo_cls_predictions.jsonl\n/root/autodl-tmp/results/cls8b_seed123_ckpt3000_test8192/eval_repo_cls_predictions.jsonl\n/root/autodl-tmp/results/cls8b_seed123_ckpt6633_val8192/eval_repo_cls_predictions.jsonl\n/root/autodl-tmp/results/cls8b_s42_ckpt1000_test_seq2048/eval_predictions.jsonl\n\n=== 4. All qwen eval dirs ===\nls /root/autodl-tmp/eval_results/ | grep -i qwen:\nqwen3_4b_traj_repo_s42_best\nqwen3_8b_cwm_repo_s42_ckpt400_seq4096\nqwen3_8b_traj_repo_s123\nqwen3_8b_traj_repo_s456\n\nls /root/autodl-tmp/eval_results/ | grep -i \"8b\":\ncls_8b_ckpt200\ncls8b_s42_ckpt800_test8192\ncls8b_s42_ckpt1400_test8192\ncwm_8b_ckpt400_test\ncls_8b_s42_resume_val\ncls8b_s42_resume_test_ckpt3600\ncls8b_s42_resume_test_ckpt3600_mutation\ncls8b_s42_resume_ckpt3600_test_seq2048\ncls8b_s42_resume_ckpt1000_test_mutation\ncls8b_s42_ckpt1000_test_mutation\ncls8b_seed123_ckpt3000_test_mutation\ncwm_8b_ckpt400_test_shard2\ncls8b_s42_resume_ckpt3600_test_v2\ncwm_8b_ckpt400_test_shard3\ncwm_8b_ckpt400_test_shard4\ncwm_8b_ckpt400_test_merged\nqwen3_8b_cwm_repo_s42_ckpt400_seq4096\nqwen3_8b_traj_repo_s123\nqwen3_8b_traj_repo_s456\ncls8b_s42_ckpt2200_test\ncls8b_s42_ckpt3600_test\ncls8b_s42_ckpt6633_test\ncls8b_repo_s456_ckpt2200\n\n=== 5. All func-related eval dirs ===\nls /root/autodl-tmp/eval_results/ | grep -i func:\ndeepseek_cls_func_test\ndeepseek_cwm_func_test\ndeepseek_cwm_func_s123_test\ndeepseek_cls_func_s123_test\ndeepseek_traj_func_s42\n```\n\n**结论：Qwen function-level CLS/CWM eval predictions 不存在。** func-level eval 只有 DeepSeek 的，Qwen 的 eval 全部是 repo-level（`qwen3_8b_cwm_repo_*`、`qwen3_8b_traj_repo_*`）。`8b` 命名的 func-level 文件也没有找到。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-find-qwen-func-eval-data.md"
+}

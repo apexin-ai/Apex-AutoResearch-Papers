@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b041ce704cc2fed3f33a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_18_1778893715.md",
+  "task_key": "loop_18_1778893715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1778893715.md",
+    "occurrence": 1,
+    "bytes": 5500,
+    "sha256": "d71d617351312994c27d32c19646c30380414d7c7a6e5c4b3e10942d9ac82456"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-16T01:07:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd cuda:0/1/2/3 + home cuda:0。不得使用白名单外 GPU，即使 Director 指令也必须 push back\n- **Val-selected checkpoint 为主指标** (D088)——所有对比必须用 val-best ckpt，不用 test-best\n- **Test eval 禁止 --max_samples**——必须评完整 test set (n=9784)，val 同理 (n=9335)\n- **CWM 8B val-best = ckpt-400**（eval_loss 单调递增，无歧义），不需要 val sweep\n- **seq_length/bs/precision/lr 变更需 Director 审批** (D103)\n- **标 FAILED 前必须 `ps -p PID` 确认进程已退出**（之前误标导致 OOM 事故）\n- s42 resume checkpoints 从 ckpt-600 开始，路径 `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`，不含 ckpt-200/400\n\n### 2. 🖥️ 基础设施快照\n- **Westd** (seetacloud-westd-4x5090): account=root, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - Python: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n  - CLS 8B s42 resume ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`\n  - CLS 8B seed123 ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` + backup `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n  - CWM 8B ckpts: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`\n  - eval 结果: `/root/autodl-tmp/eval_results/`\n- **Home** (home-1x5090): account=sonny, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - 4B v5 ckpts: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n  - 用 `python3` 不是 `python`\n- **活跃进程**:\n  - `cls8b-s42-resume-ckpt1000-test-mutation` RUNNING on westd cuda:1\n  - `cls8b-s42-ckpt1000-test-mutation` RUNNING on westd cuda:0\n  - `cwm8b-ckpt400-test-eval-v3` ALLOCATED on westd cuda:3 (PID 443216, tmux, bs=8)\n  - Worker `westd-status-check-loop19` 仍在 running（状态检查循环）\n- **Cron**: reconcile 结果为空，0 active crons\n\n### 3. 📊 当前状态\n**刚做完**: Session 19 完成了 s42 resume val sweep（发现新 val-best ckpt-3600, val=90.28%）、ckpt-3600 test eval (84.48%)、seq2048 ablation、CWM 8B v5 诊断（negative, overfitting）、多个 mutation eval 提交。Paper Workers 在 Session 19 已派发但结果未见回调。\n\n**Registry 非 DONE 实验**:\n| exp_id | status | 说明 |\n|--------|--------|------|\n| cls8b-s42-resume-ckpt1000-test-mutation | RUNNING | cuda:1, mutation breakdown |\n| cls8b-s42-ckpt1000-test-mutation | RUNNING | cuda:0, mutation breakdown |\n| cwm8b-ckpt400-test-eval-v3 | ALLOCATED | cuda:3, CWM 8B test eval bs=8, ~96h@bs=1→大幅缩短 |\n| cls8b-s42-resume-ckpt3600-test | PENDING | ckpt-3600 test eval，已有 FALSE POSITIVE failure 标记，需清理后重提交 |\n| cls8b-s42-resume-ckpt3600-mutation | PREPARING | ckpt-3600 mutation breakdown，FALSE POSITIVE failure，需重提交 |\n\n**等待中**: \n- cwm8b-ckpt400-test-eval-v3 的 cron 回调（CWM 8B 唯一缺失的主表数字）\n- mutation eval (cuda:0/1) 完成回调\n- Paper Workers 回调（Session 19 派发的 intro/related/conclusion/figures workers）\n- ckpt-3600 相关实验需要 Director 重新分配 GPU 或清理 FALSE POSITIVE 后重提交\n\n### 4. 📋 待办（条件触发式）\n- **cwm8b-ckpt400-test-eval-v3 完成** → 提取 accuracy + unparseable rate → 锁定 8B-8B gap → 更新主表 → 汇报 Director\n- **mutation eval (cuda:0 + cuda:1) 完成** → 合并 per-mutation-type breakdown → 写入 paper ablation → cuda:0/1 空出后可提交 ckpt-3600 test/mutation\n- **ckpt-3600 实验 FALSE POSITIVE 清理** → 重置 conclusion 为 null → 重新提交到空闲 GPU\n- **CWM 8B test 出结果** → 若 < majority baseline (72.96%) → red-section framing（CWM 在 8B 仍不可用，CLS 优势更强）; 若 > 72.96% → 调整 narrative（8B 缩小 gap 但仍显著）\n- **Paper Workers 回调** → 审阅 draft 质量 → 需要与 ckpt-3600 新数字对齐（主表已从 ckpt-1000 更新为 ckpt-3600）\n- **cuda:2 空闲**（CWM 8B 训练已结束）→ 可用于 ckpt-3600 test 或其他 eval\n\n### 5. 🎯 战略上下文\n- **DDL: EMNLP 2026 ARR May 25，剩 9 天**\n- **核心结论**: CLS formulation 在 repo-level 上大幅优于 CWM（multi-seed mean gap = 26.48pp），优势来自 task reformulation 而非 seq_length artifact（ablation 已排除）\n- **主表数字更新**: s42 val-best 已从 ckpt-1000 (test=83.52%) 更新为 ckpt-3600 (test=84.48%)，+0.96pp。Paper 写作必须用 ckpt-3600 数字\n- **CWM 8B 是最后一个空格**: ckpt-400 test eval 正在跑，running_acc=65.0%（低于 majority 72.96%），预期 CWM 8B 表现差，narrative 方向是\"即使 scale 到 8B CWM 仍不 work\"\n- **易踩坑**: \n  1. 不要把 ROADMAP 里的\"CWM 8B 训练 57%\"当真——v5 已 DONE(negative)，v6 已 killed，训练阶段彻底结束\n  2. ckpt-3600 的 FALSE POSITIVE failure 需要手动清理 registry 再重提交，不要当成真的 failure\n  3. CWM eval 极慢（~37s/sample SDPA），bs=8 已是 D102 批准的加速方案\n  4. seed123 4B test=75.33% 极差（vs s42 83.63%），4B seed 方差大，论文中 4B 只能作为补充证据\n- **决策链**: D088(val-selected主指标) → D093(multi-seed锁定) → D096(8B-8B对比为主表) → D100(CWM relaxed matching排除) → D102(CWM eval bs=8加速) → D103(禁止未授权参数降级)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1778893715.md"
+}

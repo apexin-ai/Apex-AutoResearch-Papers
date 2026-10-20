@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d0b032848f2d23b2d0a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_5_1778632467.md",
+  "task_key": "loop_5_1778632467",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778632467.md",
+    "occurrence": 1,
+    "bytes": 4283,
+    "sha256": "e3eafb86ca95fb344c9917daed3a012ef09504d0da8c304ad20cbabd32b5871d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-13T00:13:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud cgroup 360GB RAM 限制 → 禁止并行训练，同时只能跑一个训练进程\n- westd-48478 和 seetacloud-westd-4x5090 是同一台机器（D041 已确认），extra seed 实验不能与 v10/v4 并行\n- repo-level CWM 已迭代 10 次（v1-v10），CLS 迭代 4 次——再失败必须诊断根因而非盲目重提交\n- CLS v4 用 nohup 启动（非 submit_training_job），无 cron 自动回调——需要手动 SSH 查状态\n- ARR May 25 截稿，距今 ~12 天，repo-level 结果是 Go/No-Go 的决定性数据点\n- 配置中 gpu_ids=[cuda:0,1,2,3] 但实际 seetacloud 因 cgroup 只能用 cuda:2 跑训练\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090**（root@）：4×RTX 5090, cgroup 360GB, 工作目录 `/root/autodl-tmp/` 或 `/root/exec-sim-repair-verifier/`\n  - CWM v10: PID 105205, cuda:2, 从 checkpoint-200 恢复, 命令含 `train_repo_cwm.py --output_dir /root/autodl-tmp/checkpoints_repo_cwm_v9/ --resume_from_checkpoint checkpoint-200`\n  - Cron 监控中（reconcile 确认 still running）\n- **home-1x5090**（sonny@）：1×RTX 5090, 62GB RAM, 非容器, 工作目录 `/home/sonny/exec-sim-repair-verifier/`\n  - CLS v4: PID 2885139, cuda:0, `train_repo_verifier.py --output_dir checkpoints_repo_cls_home/ --no_wandb`\n  - Cron 监控中（reconcile 确认 still running）\n- **westd-48478** = seetacloud 同一台机器（D041），不是独立资源\n- aml-train 镜像用 conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 3. 📊 当前状态\n- **RUNNING（2）**：repo-level-cwm-v10（seetacloud cuda:2）+ repo-level-cls-v4（home cuda:0），两者并行跨机器\n- **PREPARING（2）**：repo-level-cwm-seed123 + repo-level-cls-seed123，等 v10/v4 完成后才能在 seetacloud 上跑（同一台机器无法并行）\n- **Worker（1）**：`worker_code_eval-script-fix-d008` 正在运行（turn_count=3, 最近调用 ssh_execute），准备 D008 Go/No-Go 评估脚本\n- 历史：51 实验，30 success / 3 negative / 13 failed / 1 killed\n- CWM v9 刚 DONE(failed)，v10 是诊断 EXIT_CODE=2 语法错误后的修复重提交\n\n### 4. 📋 待办（条件触发式）\n- repo-level-cwm-v10 cron 回调（DONE）→ 检查 conclusion：success 则跑 eval；failed 则诊断日志确认根因\n- repo-level-cls-v4 cron 回调（DONE）→ 同上，检查 checkpoint 是否产出\n- 两者都 success → 用 eval-script-fix-d008 Worker 产出的脚本跑 D008 Go/No-Go（paired bootstrap, F1 diff 阈值见 ROADMAP）\n- D008 F1 diff ≥ 3pp + p<0.05 → 全力推 EMNLP Main；1-3pp → 加 seed123 实验（PREPARING 中的两个）；<1pp → Kill C1, pivot Plan B\n- Worker eval-script-fix-d008 完成 → 检查产出的 eval 脚本，确认能直接用于两个训练完成后的评估\n- seed123 实验可以跑的前提：v10 完成释放 seetacloud cuda:2，CWM-seed123 用 cuda:3, CLS-seed123 用 cuda:2——但 cgroup 限制可能仍不允许并行，需验证\n\n### 5. 🎯 战略上下文\n- **核心论文 story**：execution simulation 从 generation → classification 的 task reformulation。函数级两者等价（TOST p=0.007），核心假说是 complexity-dependent advantage——repo-level 是唯一未验证的 pillar\n- **D008 是项目生死线**：repo-level CLS vs CWM 的 F1 diff 决定是全力推 EMNLP Main、加 seeds、还是 pivot\n- **已验证的 pillars**：Pillar 2（函数级等价 ✅）、Pillar 3（Oracle Frontier ✅）、Pillar 4（8B scaling gap=2.43pp ✅）\n- **CWM 连续失败 10 次的教训**：v1-v2 代码 bug, v3 磁盘满, v4 CLI+OOM, v5 参数不支持, v6-v7 平台 SIGTERM, v8 未知, v9 EXIT_CODE=2 语法错误。如果 v10 再失败，不要盲目 v11——需要 root cause analysis 确认是平台问题还是代码问题\n- **易错判断**：seetacloud 的 4 张 GPU 看起来能并行但 cgroup 限制实际只能单进程训练。westd-48478 看起来是另一台机器但实际是同一台。不要被表面配置误导开并行实验\n- **时间线**：CLS ~12h / CWM ~20h 并行 → eval+stats ~3h → paper patch ~1d → 终审 ~1d = ~4-5d total，但 CWM 已跑了多久未知，需 SSH 查 step 进度\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778632467.md"
+}

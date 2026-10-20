@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46f0f84dc973f32eb58b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis qwen3 8b cwm repo s42 ckpt400 seq4096 eval",
+  "task_key": "worker_analysis_qwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval_20260519T194838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval_20260519T194838_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "a88a4607c5be6d8c624d3cf93894a1a12357983a1de4b2cfaedebbe1aaac278b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完整 metrics，分析报告已注册为 artifact。\n\n## 结果摘要\n\n**Qwen3-8B CWM @seq4096**: 64.36% acc, 63.74% unparseable, F1 macro 54.42%\n\n### Cross-model comparison @matched seq4096\n\n| Model | Accuracy | Unparseable | F1 macro |\n|---|---|---|---|\n| **Qwen3-8B** | **64.36%** | 63.74% | **54.42%** |\n| DeepSeek (s123) | 61.90% | 65.53% | 51.50% |\n\n### 关键结论\n\n1. **Confound 已修复**: Qwen3-8B 在 matched seq4096 下优于 DeepSeek +2.46pp，方向与 CLS 一致\n2. **Unparseable 降低但 accuracy 未显著提升**: seq8192→seq4096 unparseable 从 73.8% 降至 63.74%，但 overall accuracy 变化不大，印证 CWM 问题 ~60% 是推理而非格式\n3. **CLS vs CWM gap 跨模型一致**: Qwen +20.12pp, DeepSeek +20.71pp — 可以写强 claim\n4. **两个模型的 CWM 都低于 majority baseline** (72.96%)，CWM 在 repo-level 的劣势是 formulation 层面的\n\n**Table 3 建议**: CWM 行统一用 @seq4096 数据（Qwen=64.36%, DeepSeek=61.9% 或等 s42 结果更新）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval.md"
+}

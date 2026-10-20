@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b4ad64abfe2a353b8af",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "exp deepseek traj v2 fixed s42",
+  "task_key": "worker_exp_deepseek-traj-v2-fixed-s42_20260516T135307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_deepseek-traj-v2-fixed-s42_20260516T135307_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "5466318bad984334d22c983763d41c045e29811b3150ae88d7c67313554f021a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**TRAJ v2 (seed 42) 已在运行中，无需重新启动。**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 511676 |\n| GPU | cuda:2 (17338 MiB) |\n| 进度 | 503/756 steps (66%), epoch 2 进行中 |\n| Total steps | 756 (3 epochs × 252 steps/epoch) |\n| 速度 | ~3.9s/step |\n| 剩余 | ~253 steps × 3.9s ≈ **16-17 分钟后完成** |\n| Eval loss (epoch 1) | 0.0923 |\n| LABEL_MAP | `{1: \"resolved\", 0: \"unresolved\"}` ✓ |\n| 输出目录 | `/root/autodl-tmp/checkpoints_deepseek_traj_v2/` |\n\nPrompt 格式确认使用 resolved/unresolved。训练 loss 从 0.39 → 0.088 下降正常。预计约 21:55 UTC 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-deepseek-traj-v2-fixed-s42.md"
+}

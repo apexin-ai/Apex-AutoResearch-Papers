@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85ed0c14b84f8e2a27e0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cwm v11 ckpt600 monitor",
+  "task_key": "worker_eval_cwm-v11-ckpt600-monitor_20260513T174451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cwm-v11-ckpt600-monitor_20260513T174451_result.json",
+    "occurrence": 1,
+    "bytes": 1206,
+    "sha256": "1a8e51e740703693ba458f40da1aec4112f3dd77f52e8e6c44dc3b563d0ab176"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CWM v11 ckpt-600 Eval 状态\n\n**PID 164045**: RUNNING (etime ≈ 10 min)\n\n### tok1024 进度\n- **进度**: 40 / 9784 = **0.41%**\n- **Running accuracy**: 72.5%\n- 推理开始: 01:35:35，40 条完成: 01:46:19（10 min 44 sec / 40 instances）\n- 每 40 条 log 一次（`batch_size * 10 = 40`）\n- **速率**: ~3.73 instances/min = 16.1 sec/instance\n- **预估剩余时间**: (9784−40) / 3.73 ≈ **43.5 小时**\n- 下一条进度 log（80/9784）预计约 01:57\n\n### tok512 / tok256\n- 目录已创建，均为空，尚未启动\n\n### GPU 状态\n| GPU | VRAM Used | Utilization |\n|-----|-----------|-------------|\n| 0 | 24.9 / 32.6 GB | 87% |\n| 1 | 16.3 / 32.6 GB | 74% |\n| 2 | 27.1 / 32.6 GB | **95%** ← eval 进程 |\n| 3 | 25.8 / 32.6 GB | 57% |\n\n### 关键问题\n\n**tok1024 eval 预计需要 ~44 小时**。9784 条 × max_new_tokens=1024 × batch_size=4，在 sdpa（无 flash-attn）下每 batch ~64 秒。三组 eval（1024/512/256）全跑完可能需要 ~77 小时。\n\n是否需要干预？可选方案：\n1. 安装 flash-attn 提速（但需要重启 eval）\n2. 加大 batch_size（当前 VRAM 有余量）\n3. 接受长时间运行，让它跑着"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cwm-v11-ckpt600-monitor.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c0a961981ad00f5bd25",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis repo level cls 8b s42 resume",
+  "task_key": "worker_analysis_repo-level-cls-8b-s42-resume_20260515T183902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_repo-level-cls-8b-s42-resume_20260515T183902_result.json",
+    "occurrence": 1,
+    "bytes": 2449,
+    "sha256": "6757d0040833b1ae2833bc7d8c0ba69e9914876bfc51d5fc4451089c55a71b9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练结果摘要\n\n- **完成状态**：✅ 完成（EXIT_CODE=0）\n- **总 steps**：6633/6633（3 epochs）\n- **总训练时间**：20h 40m（74425s）\n- **最终 train_loss**：0.4284\n- **最终 eval_loss**：0.4768 @ step 6600\n- **Trainer best_metric**：0.0796 @ step 200（来自原始训练 `checkpoints_repo_cls_8b_conda/checkpoint-200`）\n- **Resume 阶段最佳 eval_loss**：0.2516 @ step 4200\n- **异常/告警**：**严重过拟合** — eval_loss 从 epoch 1 的 ~0.08 持续上升到 epoch 3 的 ~0.48\n\n### Checkpoint 列表\n\ncheckpoint-800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 3800, 4000, 4200, 4400, 4600, 4800, 5000, 5200, 5400, 5600, 5800, 6000, 6200, 6400, 6600, 6633, best（共 32 个目录）\n\n### Eval Loss 曲线\n\n| Step | Eval Loss | 备注 |\n|------|-----------|------|\n| 200  | 0.0796 | ← 原训练 epoch 1，overall best |\n| 400  | 0.0927 | 原训练 |\n| 600  | 0.0937 | 原训练（resume 起点）|\n| 800  | 0.1717 | resume 开始 |\n| 1000 | 0.1820 | |\n| 1200 | 0.2046 | |\n| 1400 | 0.3226 | |\n| 1600 | 0.2758 | |\n| 1800 | 0.2764 | |\n| 2000 | 0.3210 | |\n| 2200 | 0.3063 | ~epoch 1 结束 |\n| 2400 | 0.3444 | |\n| 2600 | 0.2576 | |\n| 2800 | 0.2744 | |\n| 3000 | 0.2975 | |\n| 3200 | 0.2981 | |\n| 3400 | 0.4132 | |\n| 3600 | 0.2612 | |\n| 3800 | 0.3429 | |\n| 4000 | 0.3694 | |\n| 4200 | 0.2516 | ← **resume 阶段最佳** |\n| 4400 | 0.2811 | ~epoch 2 结束 |\n| 4600 | 0.3713 | |\n| 4800 | 0.3919 | |\n| 5000 | 0.4417 | |\n| 5200 | 0.4021 | |\n| 5400 | 0.4070 | |\n| 5600 | 0.4002 | |\n| 5800 | 0.5263 | ← 最差点 |\n| 6000 | 0.4230 | |\n| 6200 | 0.4385 | |\n| 6400 | 0.4769 | |\n| 6600 | 0.4768 | epoch 3 结束 |\n\n### 关键观察\n\n1. **过拟合明显**：eval_loss 在 epoch 2 后期（step 4200 之后）急剧上升，从 ~0.25 升到 ~0.48，第 3 epoch 全程在 0.37-0.53 之间波动。\n2. **best 目录风险**：`best_model_checkpoint` 指向的是 **另一个目录** `checkpoints_repo_cls_8b_conda/checkpoint-200`（原始训练），不是当前 resume 目录。`best/` 目录是训练结束时保存的（adapter 约 61MB），需要确认它是否真的加载了那个 checkpoint-200 的权重，还是保存了最终 step 6633 的权重。\n3. **如果做推理评测，建议优先用 checkpoint-4200**（resume 阶段最优，eval_loss=0.2516），而非 `best/` 或最终 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-repo-level-cls-8b-s42-resume.md"
+}

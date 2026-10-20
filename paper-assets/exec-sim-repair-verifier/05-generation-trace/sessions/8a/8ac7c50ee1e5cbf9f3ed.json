@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ac7c50ee1e5cbf9f3ed",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval seed123 8b ckpt3000 val retry",
+  "task_key": "worker_eval_seed123-8b-ckpt3000-val-retry_20260514T204930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed123-8b-ckpt3000-val-retry_20260514T204930_result.json",
+    "occurrence": 1,
+    "bytes": 1008,
+    "sha256": "412e408551a327f05307bbe4a0a77409b2be23052941cf9c6988e8ec9a7652cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**无法立即提交 eval**，4 个 GPU 全部占用：\n\n| GPU | 占用 | 进程 | 已运行 |\n|-----|------|------|--------|\n| cuda:0 | 19.3/31.8 GB, 79% | eval cls 8B ckpt-600 val (PID 285772) | ~10 min |\n| cuda:1 | 13.3/31.8 GB, 100% | eval cls v5 ckpt-400 val (PID 281646) | ~29 min |\n| cuda:2 | 30.0/31.8 GB, 97% | train CWM 8B seed42 (PID 266816) | 3h+ |\n| cuda:3 | 30.1/31.8 GB, 98% | train CLS 8B seed123 续训 (PID 266449) | 3h+ |\n\n**关键发现**：\n- `checkpoints_repo_cls_seed123/checkpoint-3000` 是 **4B 模型**的（base_model = Qwen3-4B），不能用\n- 正确路径：**`/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000`**（base_model = Qwen3-8B，已验证）\n\n**预计最快空闲 GPU**：cuda:1（v5 4B eval 已跑 ~30 min，应较快完成）或 cuda:0（8B eval 较慢）\n\n完整提交命令已写入产出 `cls8b_seed123_ckpt3000_val_eval_pending.md`，下次有空闲 GPU 直接用 `submit_training_job` 提交即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed123-8b-ckpt3000-val-retry.md"
+}

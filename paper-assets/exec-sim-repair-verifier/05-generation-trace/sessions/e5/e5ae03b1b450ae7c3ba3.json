@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5ae03b1b450ae7c3ba3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls v5 urgent",
+  "task_key": "worker_eval_cls-v5-urgent_20260513T155329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls-v5-urgent_20260513T155329_result.json",
+    "occurrence": 1,
+    "bytes": 70,
+    "sha256": "8cc8f8044c51f29d4c58c60e3ce6d2103ebd726a6a8a42789c9f454c9699efc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor task completed. Results already reported above."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls-v5-urgent.md"
+}

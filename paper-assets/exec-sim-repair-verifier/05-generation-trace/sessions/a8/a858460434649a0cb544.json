@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a858460434649a0cb544",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research p2p regression rate v2",
+  "task_key": "worker_research_p2p-regression-rate-v2_20260511T200243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_p2p-regression-rate-v2_20260511T200243_result.json",
+    "occurrence": 1,
+    "bytes": 638,
+    "sha256": "6641eeddbc5125585609be8454d781971356bde7f9d824ab5427a41c420d9ac7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。前一个 Worker 已产出完整分析，无需重做。\n\n**核心结论**：\n\n- **P2P 回归率 ≈ 1% (mean), 0% (median)** — 落入 **<5% 风险区间**\n- 77% 的错误 patch 不破坏任何 P2P 测试；破坏的那些通常只坏 1 个测试\n- **对项目影响：per-test verifier 在 P2P 维度优势不显著**，主要价值在 F2P 维度（区分\"修了 1/3 测试\"和\"修了 0/3 测试\"）\n- 数据源：CoderForge Qwen3-32B on SWE-bench Verified，106 个有可解析 P2P 数据的错误 patch\n\nRegistry 已更新：`p2p-regression-rate` → DONE / negative。Artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-p2p-regression-rate-v2.md"
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "b32123d8f485a05aa921",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra seetacloud env cuda0",
+  "task_key": "worker_infra_seetacloud-env-cuda0_20260512T032225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_seetacloud-env-cuda0_20260512T032225_result.json",
+    "occurrence": 1,
+    "bytes": 2418133,
+    "sha256": "494778972ca0012da72192baa3d31bdbcbcaccaeedff15c2938aae534792a468"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "b32123d8f485a05aa921-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/infra-seetacloud-env-cuda0.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dce784021d14e2693e58",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops diagnose westd p0",
+  "task_key": "worker_ops_diagnose-westd-p0_20260516T004128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-westd-p0_20260516T004128_result.json",
+    "occurrence": 1,
+    "bytes": 1475,
+    "sha256": "b358a8c4a4561b8e638c60c53b3a0d2319b52fe85b7c69496ec96d3722143e46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 服务器健康：正常\n\n| 项目 | 状态 |\n|------|------|\n| GPU | 4x RTX 5090 全部正常，显存 0MiB/32607MiB，空闲 |\n| 根分区 | 30G 用 21G (69%)，剩 9.6G — **偏紧** |\n| 数据盘 | 250G 用 151G (61%)，剩 100G — 正常 |\n\n### Checkpoints\n\n**ckpt-6100 存在**，文件完整：\n- `adapter_model.safetensors` 58MB\n- `optimizer.pt` 117MB\n- `trainer_state.json` + `training_args.bin` 齐全\n\n现有 checkpoints: 400, 5800, 5900, 6000, 6100\n\n### Eval 进度\n\n| 任务 | 状态 |\n|------|------|\n| CWM ckpt-400 eval | **5280 样本已完成**（results_incremental.jsonl） |\n| seq2048 ablation (cls8b ckpt-3600) | **已完成** — 9784 instances, acc=83.04%, F1_macro=76.8% |\n\n### 残留进程\n\n**1 个 python3 进程** (PID 442200)，刚启动于 08:41:15：\n- 命令：`train_repo_cwm.py --resume_from_checkpoint checkpoint-6100`\n- 状态：R (running), 2.4GB RSS, 228 threads\n- **0 GPU 显存** — 正在加载模型中，尚未上 GPU\n\n这个进程是 SIGKILL 后被重新拉起的训练任务，目前处于模型加载阶段。\n\n### SIGKILL 原因分析\n\n无法访问 dmesg/syslog（容器限制），但根据现有信息推断：\n- **非 OOM**：数据盘充裕，根分区虽偏紧但仍有 9.6G\n- **最可能**：SeetaCloud 平台层面的资源管控（GPU 显存/时间配额），或手动 kill\n- 进程已自动恢复（从 ckpt-6100 resume），无数据丢失"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-westd-p0.md"
+}

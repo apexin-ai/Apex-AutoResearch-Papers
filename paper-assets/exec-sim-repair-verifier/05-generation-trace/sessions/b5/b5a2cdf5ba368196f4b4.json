@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5a2cdf5ba368196f4b4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "audit tost cross reference",
+  "task_key": "worker_audit_tost-cross-reference_20260519T065539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_tost-cross-reference_20260519T065539_result.json",
+    "occurrence": 1,
+    "bytes": 1891,
+    "sha256": "8e31c9e186c315296a8e775213ce8acec4afccbdbaab935f12e6549651bce93f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "问题确认。以下是完整分析：\n\n```\n## 脚本分析\n- 脚本路径: /home/ubuntu/.../tost_sensitivity.py (本地)\n- 实际比较的对: CLS vs CWM（仅此一对）\n- gap 值来源: 硬编码 mean_diff = 1.24（CLS 88.43 - CWM 87.19）\n- p-values 是否独立计算: NO — 没有任何脚本计算 CLS-TRAJ 的 TOST\n\n## Appendix Table (tab:tost_sensitivity, 编译后为 Table 13)\n- caption: \"TOST equivalence sensitivity (Qwen3-4B, 5 seeds). Observed mean CLS–CWM difference: 1.24pp.\"\n- 比较的对: CLS vs CWM\n- gap 值: 1.24pp\n\n## §Equivalence 引用 (experiments.tex:95-100)\n- 讨论的比较: CLS vs TRAJ（gap -0.45pp, 523 variant-level instances）\n- 引用的 table: Appendix Table~\\ref{tab:tost_sensitivity}\n- 声称的 p-values: ±2pp p=0.007, ±1pp p=0.871, min margin ±1.63pp\n- 这些数字与 CLS-CWM table 完全一致\n\n## 结论\n- 交叉引用是否正确: NO\n- p-values 一致是巧合还是引用错误: **引用错误**\n  - tost_sensitivity.py 只计算了 CLS-CWM (gap 1.24pp)\n  - §Equivalence 讨论 CLS-TRAJ (gap -0.45pp) 但直接复用了 CLS-CWM 的 p-values\n  - min margin 1.63pp 与 gap 1.24pp 匹配，与 gap -0.45pp 不匹配\n  - tost_sensitivity_full.json 的 header 写 \"CLS vs TRAJ\" 但 mean_diff_pp=1.24（CLS-CWM 的值），说明 header 是错误标注\n- 需要几张 TOST table: 2（CLS-CWM 已有；CLS-TRAJ 需要新建）\n```\n\n**根本问题**：从未有脚本计算过 CLS-TRAJ 的 TOST 分析。`tost_sensitivity_full.json` 试图把 CLS-CWM 的结果重新标记为 \"CLS vs TRAJ\"（header 改了但 `mean_diff_pp` 还是 1.24），然后 §Equivalence 直接引用了这些数字。gap -0.45pp 对应的 TOST p-values 会完全不同——以 -0.45pp 的 gap 和相似的 SE，±2pp 处的 p 会远小于 0.007（等价性更容易确认），±1pp 处的 p 也不会是 0.871。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-tost-cross-reference.md"
+}

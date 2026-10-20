@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eda1c1b25f9f66f11d01",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose repo level cls 8b conda",
+  "task_key": "worker_diagnose_repo-level-cls-8b-conda_20260514T010856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_repo-level-cls-8b-conda_20260514T010856_result.json",
+    "occurrence": 1,
+    "bytes": 1438,
+    "sha256": "8fe2bdfc98b82a45b06d4fa9e4242b9011876d7e6bc4176b14f1d187a8486549"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告: repo-level-cls-8b-conda\n\n### 实际失败原因\n**预期的 early stop，非真正失败。** 训练被人工 kill（符合 D056 决策），cron 检测到进程死亡 5 次后自动标记为 failed。原始 PID 185438 已不存在。\n\n训练运行到 step 662/6633 (10%)，最后记录的 loss=0.9534 (step 650)。train.log 最后更新时间 08:58，之后无新写入。\n\n### Checkpoint 状态\n三个 checkpoint 全部完好：\n\n| Checkpoint | 时间 | eval_loss | 状态 |\n|---|---|---|---|\n| checkpoint-200 | 07:27 | **0.0796** (best) | 完整（adapter_model.safetensors 58MB + optimizer + trainer_state） |\n| checkpoint-400 | 08:08 | - | 存在 |\n| checkpoint-600 | 08:50 | - | 存在 |\n\ntrainer_state.json 确认 `best_global_step=200, best_metric=0.0796`。\n\n### Eval 状态\n**Eval 正在运行。** GPU 3 上有进程 PID 194821：\n- 命令: `python3 eval_repo_cls.py --checkpoint_dir checkpoint-200 --model_name Qwen3-8B --batch_size 8`\n- GPU 占用: 21634MiB, 利用率 88%\n- 输出目录 `/root/autodl-tmp/results/repo_cls_8b_conda_eval/` 已创建（09:00）但尚无输出文件，eval 仍在进行中\n\n### 建议下一步\n1. 将实验状态从 \"failed\" 改为 \"early-stopped (expected)\"\n2. 等待 eval 完成——监控输出文件 `eval_repo_cls.json` 和 `eval_repo_cls_predictions.jsonl` 是否生成\n3. Eval 完成后收集结果，与其他实验对比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-repo-level-cls-8b-conda.md"
+}

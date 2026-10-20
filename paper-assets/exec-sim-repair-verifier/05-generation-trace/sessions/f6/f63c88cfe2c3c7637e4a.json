@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f63c88cfe2c3c7637e4a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cls home progress and 8b metrics",
+  "task_key": "worker_ssh_cls-home-progress-and-8b-metrics_20260512T190041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cls-home-progress-and-8b-metrics_20260512T190041_result.json",
+    "occurrence": 1,
+    "bytes": 2489,
+    "sha256": "75e60676f56e411d56b441b35ee87dfef5bfdae16d5c3abe6ff421d8fae1ab8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 registry 更新全部成功。下面是完整结果。\n\n---\n\n## Part 1: cls-home 训练进度\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **875 / 6633** (13.2%) |\n| 训练速度 | ~6.4–7.2 s/step (均值 ~6.9 s/step) |\n| 已运行 | ~1h44m (从 10:17 开始) |\n| 剩余 step | 5758 |\n| **预计剩余** | **~11.0 小时 (ETA ~23:00)** |\n| GPU | RTX 5090, 99% 利用率, 19.5/32.6 GB VRAM, 76°C |\n| 模型 | Qwen3-4B LoRA (0.29% trainable) |\n| 数据 | train=70748, val=9335 (3.8%/20.2% truncated) |\n| Checkpoints | 目录为空（尚未触发 save） |\n\n**Loss**: 日志中没有显式 loss 打印（仅 tqdm 进度条），loss 数据需等 wandb 或 checkpoint save 后的 trainer_state.json。\n\n---\n\n## Part 2: 8B metrics 补全结果\n\n### 已更新的实验\n\n| exp_id | overall_acc | fail_f1 | pass_f1 | fail_prec | fail_recall | 数据来源 |\n|--------|-------------|---------|---------|-----------|-------------|----------|\n| **cls8b-eval-seed42** | 90.48 | 90.06 | 90.86 | 90.76 | 89.36 | seetacloud `eval_results/cls8b_seed42.json` |\n| **cls8b-eval-seed123** | 89.37 | 89.19 | 89.54 | 87.54 | 90.9 | seetacloud `eval_results/cls8b_seed123_results.json` |\n| **cls8b-seed123** | 89.4 | 89.2 | 89.5 | 87.5 | 90.9 | 已有数据，标准化 accuracy→overall_accuracy |\n| **cwm8b-seed123** | 86.98 | 87.13 | 86.83 | 83.3 | 91.34 | seetacloud `eval_cwm8b_seed123.json`，补全 precision/recall |\n\n### cwm8b-seed42\n\n已存在于 registry，注册为 `model-size-scaling-cwm8b`（acc=87.67, fail_f1=87.77），metrics 完整，无需操作。\n\n---\n\n## Part 3: seed123 值不一致调查\n\nROADMAP 提到 CLS 8B seed123 有 3 个值：**89.52 / 89.40 / 89.37**。来源如下：\n\n| 值 | 来源 | 说明 |\n|----|------|------|\n| **89.52** | home 服务器 `eval_seed123.json` | 可能是不同 checkpoint（非 best）或不同 eval 脚本版本的结果 |\n| **89.40** | `cls8b-seed123` 训练 run 自带 eval | 训练时 eval，已四舍五入 |\n| **89.37** | `cls8b-eval-seed123` 独立 eval (`eval_results/cls8b_seed123_results.json`) | 使用 `--save_predictions` 的正式 eval run |\n\n**结论**：89.37 是从 `checkpoints_cls8b_seed123/best` 用独立 eval 脚本得到的权威值（cls8b-eval-seed123）。89.4 是训练时 eval 的四舍五入值。89.52 来源不明确（文件名无 \"8b\" 标记，可能是不同 checkpoint epoch 的 eval）。差异在 0.15pp 以内，不影响论文结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cls-home-progress-and-8b-metrics.md"
+}

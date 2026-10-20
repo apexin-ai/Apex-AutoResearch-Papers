@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ffc2d1f332de6503417",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops check eval output dirs",
+  "task_key": "worker_ops_check-eval-output-dirs_20260513T184403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-eval-output-dirs_20260513T184403_result.json",
+    "occurrence": 1,
+    "bytes": 704,
+    "sha256": "b858e9e0ae28cf509064398dc0ddbb0d03dacc356ecf5716209d7b7e08bfa0be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nsubset500 目录: 空（仅 . 和 ..），创建于 May 14 01:52\ntok1024 目录: 空（仅 . 和 ..），创建于 May 14 01:09\n污染风险: no（两个目录均为空，无旧文件残留）\nPID 167481: running（已运行 44m19s）\n当前进度: 320/500  running_acc=67.5%（最后更新 02:42:56 UTC）\nGPU 状态:\n  cuda:0: 24923/32607 MiB, 65%\n  cuda:1: 25960/32607 MiB, 93%  ← eval 进程（CUDA_VISIBLE_DEVICES=1）\n  cuda:2: 10779/32607 MiB, 47%\n  cuda:3: 25751/32607 MiB, 36%\n```\n\n注意：predictions.jsonl 尚未写入磁盘，脚本可能在全部推理完成后一次性写出。按当前速率（~6min/40样本），剩余 180 样本预计还需 ~27min。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-output-dirs.md"
+}

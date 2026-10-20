@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7c390f12f4e62c4aa92",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops kill home zombie",
+  "task_key": "worker_ops_kill-home-zombie_20260513T220448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-home-zombie_20260513T220448_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "071e898e4ee02c91d6bbfbc427d6b309b1ed3d5499503ce3da5d7e4084b3fe8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 步骤 | 结果 |\n|------|------|\n| **Kill PID 2947263**（CLS v5 僵尸） | 进程已不存在（之前已退出或被杀） |\n| **GPU 0 状态** | 占用 19870MiB / 32607MiB，98% 利用率 |\n| **占用者** | PID 3001112 — `train_repo_verifier.py --seed 123`（CLS seed123-home），已运行 ~9 分钟 |\n| **PID 2998850**（原 seed123-home） | 已退出 |\n\n**结论**：CLS v5 僵尸进程已消失，GPU 0 当前被**新启动的 seed123-home 训练**（PID 3001112）正常占用。看起来 seed123-home 在僵尸进程退出后已被重新启动，正在正常训练中。无需进一步清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-home-zombie.md"
+}

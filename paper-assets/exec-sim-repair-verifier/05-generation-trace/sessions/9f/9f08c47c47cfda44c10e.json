@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f08c47c47cfda44c10e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh training progress check",
+  "task_key": "worker_ssh_training-progress-check_20260520T004607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_training-progress-check_20260520T004607_result.json",
+    "occurrence": 1,
+    "bytes": 1181,
+    "sha256": "90b63e1a3e9a6b44cd52bcf617b22093313a8641e496bb8dec05d68fa87ab5f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇总\n\n### 1. qwen3-8b-cwm-repo-s123-train-v2 (GPU 0, pid 881318)\n- **状态**: 存活，已运行 8 分钟\n- **当前 step**: 10 / 6633（注意：实际总步数 6633，非 13266。70748 samples / 32 grad_accum = 2211 steps/epoch × 3 = 6633）\n- **进度**: **0.15%**\n- **速度**: ~11.8 s/step\n- **预估剩余**: ~21.7 小时\n- **GPU 利用率**: 74%, 显存 21251/32607 MiB\n\n### 2. deepseek-cwm-repo-s42-e3-seq4096-eval (GPU 2, pid 833667)\n- **状态**: 存活，已运行 12 小时 7 分\n- **当前进度**: 9400 / 9784 samples\n- **进度**: **96.1%**\n- **running_acc**: 61.4%\n- **速度**: ~19 s/batch (batch_size=4)\n- **预估剩余**: ~30 分钟\n- **GPU 利用率**: 67%, 显存 29615/32607 MiB\n\n### 3. qwen3-8b-cwm-repo-s456-train (GPU 3, pid 881460)\n- **状态**: 存活，已运行 8 分钟\n- **当前 step**: 9 / 6633\n- **进度**: **0.14%**\n- **速度**: ~12.2 s/step\n- **预估剩余**: ~22.4 小时\n- **GPU 利用率**: 98%, 显存 31257/32607 MiB\n\n---\n\nEval 任务即将完成（~30 min），两个训练任务刚启动，预计明早完成。GPU 1 未被这三个实验使用（0 MiB 显存占用）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-training-progress-check-copy-3.md"
+}

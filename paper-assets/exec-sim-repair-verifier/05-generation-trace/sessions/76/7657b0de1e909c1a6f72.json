@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7657b0de1e909c1a6f72",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops fix plan and artifact data",
+  "task_key": "worker_ops_fix-plan-and-artifact-data_20260514T005608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-plan-and-artifact-data_20260514T005608_result.json",
+    "occurrence": 1,
+    "bytes": 1109,
+    "sha256": "dd31dc3566abb2d2ed5a3d2dd9c905dc4e943c97661763de9c55baaec3cd282d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### 任务 1: experiment_plan.yaml registry_id 映射\n\n| plan id | registry_id | conclusion | 关键指标 |\n|---------|-------------|------------|---------|\n| per-test-precision-recall | `per-test-precision-recall` | success | accuracy=87.51% |\n| block-corr-empirical | `block-corr-empirical` | success | ICC=0.1909 |\n| per-test-majority-voting | `per-test-majority-voting` | negative | accuracy_mv=86.83% |\n\n三个 `registry_id` 已写入 experiment_plan.yaml。\n\n### 任务 2: unparseable_pct 修正\n\n| 实验 | 原值(计数) | 修正值(百分比) | 计算方式 |\n|------|-----------|--------------|---------|\n| repo-level-cwm-v11 | 376 | 75.2% | 376/500×100 |\n| repo-level-cls-8b | 136 | 1.39% | 136/9784×100 |\n| repo-level-cls-v5 | 132 | 1.35% | 132/9784×100 |\n\n注：JSON 中嵌套的 `raw_metrics` 部分已有正确百分比值，无需修改。仅修正了顶层 parsed 字段。\n\n### 修改文件清单\n1. `experiment_plan.yaml` — 新增 3 个 registry_id\n2. `artifacts/all_experiments_parsed.json` — 修正 3 个 unparseable_pct 值"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-plan-and-artifact-data.md"
+}

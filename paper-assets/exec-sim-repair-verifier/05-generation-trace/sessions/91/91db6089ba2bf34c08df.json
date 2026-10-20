@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91db6089ba2bf34c08df",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research paper status advance",
+  "task_key": "worker_research_paper-status-advance_20260513T003824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-status-advance_20260513T003824_result.json",
+    "occurrence": 1,
+    "bytes": 2734,
+    "sha256": "57c789174fe5f058d08e91a57e0d59868a34efcb673dcb2b0ee54b9f89b1ffd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Paper Writing Status Report\n\n### Existing Assets\n\n| Component | Status | Location |\n|-----------|--------|----------|\n| `writing_plan.yaml` | ✅ Complete | Project file |\n| `paper_framing.md` | ✅ Complete | Project file |\n| `paper_checklist.yaml` | ❌ Missing | — |\n| `method.tex` | ✅ Written (90 lines, all 6 subsections) | `artifacts/_project/paper/method.tex` |\n| `related_work.tex` | ✅ Written (34 lines, all 4 paragraphs) | `artifacts/_project/paper/related_work.tex` |\n| `experiments.tex` | ❌ Not started | — |\n| `introduction.tex` | ❌ Not started | — |\n| `abstract.tex` | ❌ Not started | — |\n| `conclusion.tex` | ❌ Not started | — |\n| Main `paper.tex` (template) | ❌ Not set up | Only dream report versions exist |\n| Fig 1 (reformulation) | ✅ Generated | `artifacts/figures/paper/fig1_reformulation.pdf` |\n| Fig 2 (scaling gap) | ✅ Generated | `artifacts/figures/paper/fig2_scaling_gap.pdf` |\n| Fig 3 (oracle stratified) | ✅ Generated | `artifacts/figures/paper/fig3_oracle_stratified.pdf` |\n\n### Running Experiments\n\n- **repo-level-cls-v4**: ~12% done, ETA ~11:00 UTC today\n- **repo-level-cwm-v10**: ~4.8% done, ETA ~15:00–20:00 UTC today\n\n### Sections by Repo-Level Dependency\n\n**Can write now (no repo-level dependency):**\n1. **Experiments** (§5.1–5.5, §5.7) — Setup, function-level results, scaling, TOST equivalence, oracle frontier, all analysis subsections. Only §5.6 needs `[PLACEHOLDER]`.\n2. **Introduction** — Draftable with `[PLACEHOLDER]` for repo-level claim\n3. **Conclusion** — Draftable with `[PLACEHOLDER]`\n4. **Abstract** — Convention says write last, but a draft is possible\n\n**Blocked on repo-level:**\n- Experiments §5.6, final abstract numbers, Go/No-Go framing decision\n\n### Priority Recommendation\n\n**#1: Experiments section.** It's first in the `writing_order`, has 2800-word budget (largest section), and 6 of 7 subsections have complete data. This is the critical path — Method and Related Work are done, so Experiments is the bottleneck for everything downstream (Introduction, Abstract, Conclusion all depend on it).\n\n**#2: Introduction.** Can be drafted once Experiments structure is solid. Claims C1/C2/C3 are well-defined in `paper_framing.md`.\n\n**#3: Download ACL/ARR LaTeX template and set up `paper.tex` skeleton.** The `writing_plan.yaml` notes this hasn't been done. Needed before any section can be compiled.\n\n### Missing Items\n\n- `paper_checklist.yaml` doesn't exist — should be created to track section-level completion\n- No main LaTeX skeleton (`paper.tex`, `references.bib`) outside of dream reports\n- ACL style files not downloaded yet (noted in `writing_plan.yaml`)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-status-advance.md"
+}

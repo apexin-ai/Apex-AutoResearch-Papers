@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84a14b5595960dec4d17",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "urgent stepa restart ckpt200",
+  "task_key": "worker_urgent_stepa-restart-ckpt200_20260514T143407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_stepa-restart-ckpt200_20260514T143407_result.json",
+    "occurrence": 1,
+    "bytes": 225,
+    "sha256": "0d6e12fade56ba6ff616886511dbf9d5756055c3c1667a33e478fac957335d37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志停在数据加载完成（22:35:00），进程仍在 CPU 上做 tokenization/Trainer 初始化。GPU 3 还没被占用是正常的——需要等模型加载到 GPU。等 cron 触发的 5 分钟验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-stepa-restart-ckpt200.md"
+}

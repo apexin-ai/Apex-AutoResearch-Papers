@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7798061a5af22c42dae9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cwm overfitting",
+  "task_key": "worker_analysis_cwm-overfitting_20260521T075005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cwm-overfitting_20260521T075005_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "5e969362d426dda4927ceb63b2fdc037e1580456a4cd8da28efe0895994982e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。写入 `artifacts/cwm_overfitting_analysis.md` 并已注册。\n\n核心结论：\n\n**过拟合证据强度：中等偏弱**，原因是关键的 same-seed epoch 曲线缺失。\n\n可用数据：\n- **s42 within-seed**：epoch 2 partial (66.85%) → epoch 3 (61.49%) = -5.36pp，但 epoch 2 只有 31.2% coverage\n- **Cross-seed**：s123-v2 epoch 1 (75.45%) vs s42 epoch 3 (61.49%) = +14pp，但 seed variance 未解耦\n- **CLS 对照**：CLS eval_loss 也涨 123%，但 accuracy 仅 -0.1pp → classification formulation 对 overfitting 天然鲁棒，CWM 更敏感\n\n**建议**：方向 A（加强 CWM fails），但用词审慎，等 s123-v3 和 s456-v2 完成后再看 same-seed 曲线是否确认。主表仍用 3-epoch final（与 CLS 公平对比），过拟合现象放 supplementary 讨论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cwm-overfitting.md"
+}

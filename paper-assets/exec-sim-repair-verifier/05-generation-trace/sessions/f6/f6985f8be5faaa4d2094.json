@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6985f8be5faaa4d2094",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260515T091611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_20260515T091611_result.json",
+    "occurrence": 1,
+    "bytes": 966,
+    "sha256": "6220ff126eafdff3ca9cde11c68db548ae14d8395eb15777ac50fed8d53b0046"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All key numbers verified present: 25.59pp gap, 83.63/58.04 accuracy, 42.88% parseable-only, 53.7/67.2% unparseable, 72.96% majority, shrout1979icc citation, D088 protocol, dataset sizes (70K/9,335/9,784), error mode breakdown (76.9%/22.9%), cross-size gaps (25.48/26.51pp), 42--43% parseable range, absolute counts (5,255/6,574).\n\n完成。experiments.tex 已完全重写：\n- §3.1: 新增 repo-level dataset 段落（70K/9,335/9,784）、ICC 引用（shrout1979icc）、D088 val-selected checkpoint protocol\n- §3.2–§3.5: 保持不变，§3.3 末尾加了 §3.6 前向引用\n- §3.6: 两层 C1 结构完全重写——7 列新 Table 4（含 Size 列），same-size 4B-4B 25.59pp 为主，cross-size 8B CLS vs 4B CWM 为辅，CWM 8B placeholder，单 seed 限制显式披露\n- §3.7: 重写为 6 段（a–f），新增 (b) CWM error mode breakdown（v12 repo-level 数据：unparseable 分类、parseable-only 42.88%、per-repo variation）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "613d81c90302a9724d9d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "write 14b insertion audit",
+  "task_key": "worker_write_14b-insertion-audit_20260522T191841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_14b-insertion-audit_20260522T191841_result.json",
+    "occurrence": 1,
+    "bytes": 7400,
+    "sha256": "f291b66d8595f7a0346e8d1e601e39366dee045f20c5f211603b6345bd9d3abc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the content. Let me compile the audit.\n\n## 14B 数据插入点清单\n\n### Tables\n\n1. **Table 1 `tab:main_results`** (experiments.tex:25–58): Function-level per-test accuracy。当前有 Qwen3-4B / DeepSeek-6.7B。需要加 Qwen3-14B 行（CLS/CWM/TRAJ）。\n\n2. **Table 2 `tab:scaling`** (experiments.tex:68–88): Model-size scaling，当前只有 4B 和 8B 两行。需要加 14B 行，并更新 $\\Delta$ 列（新增 8B→14B 增量）。这是 14B 数据最核心的表。\n\n3. **Table 3 `tab:repo_level`** (experiments.tex:112–135): Repo-level 跨 formulation 比较。当前有 Qwen3-4B / Qwen3-8B / DeepSeek-6.7B。需要加 Qwen3-14B 行。\n\n4. **Table 4 `tab:taxonomy`** (experiments.tex:145–162): Failure mode taxonomy。如果 14B 的 CWM format collapse 率有变化，需要更新或增加 14B representative 行。\n\n5. **Table `tab:variant_level`** (appendix.tex:159–193): Variant-level accuracy。需要加 Qwen3-14B 行（CLS/CWM/TRAJ）。\n\n6. **Table `tab:mutation_breakdown`** (appendix.tex:109–127): Per-mutation accuracy。当前有 CLS 4B/8B 和 CWM 4B/8B 列。需要加 CLS 14B 和 CWM 14B 列。\n\n7. **Table `tab:cwm_mutation_parse`** (appendix.tex:136–150): CWM parse rates per mutation。当前有 4B/8B。需要加 14B 列。\n\n8. **Table `tab:hyperparams`** (appendix.tex:200–243): Training hyperparameters。Model-family-specific 表当前有 Qwen3-4B / Qwen3-8B / DS-6.7B 三列。需要加 Qwen3-14B 列。\n\n9. **Table `tab:cwm_convergence`** (appendix.tex:533–549): CWM eval loss across training。如果跑了 14B CWM repo-level，需要加 14B 列。\n\n10. **Table `tab:variant_power`** (appendix.tex:450–471): Variant-level bootstrap analysis。需要加 14B 相关的 CLS vs CWM / CLS vs TRAJ 行。\n\n11. **Table `tab:rank_ablation`** (appendix.tex:49–64): LoRA rank ablation for CWM。当前只有 4B。如果 14B 也做了 rank ablation 需要加；否则可不改。\n\n---\n\n### Figures\n\n1. **Figure 2 `fig:scaling_gap`** (main.tex:54–59, 引用 `figures/paper/fig2_scaling_gap.pdf`): Gap amplification 图。当前显示 4B→8B 两个点。需要加 14B 数据点，变成三点连线。**这是最重要的图更新。**\n\n2. 可能需要检查 `figure2_v2.pdf` / `figure2_v2.png` 是否是 Figure 2 的新版本，需要同步更新。\n\n---\n\n### 正文段落\n\n#### Abstract (abstract.tex)\n- **Line 4**: `\"under ${\\leq}$8B LoRA fine-tuning\"` → 需要改为 `≤14B` 或 `4–14B`\n- **Line 4**: `\"under our ${\\leq}$8B LoRA protocol\"` → 同上\n\n#### Introduction (introduction.tex)\n- **Line 8**: `\"two representative code LLM families (Qwen3, DeepSeek-Coder)\"` — 模型列表可能需要提及 14B\n- **Line 8**: `\"${\\leq}$8B LoRA protocol\"` → 更新\n- **Line 8**: `\"35--36\\pp{} at repo level\"` — 如果 14B 基线不同，需要更新\n- **Line 13**: `\"at repository level under ${\\leq}$8B LoRA\"` → 更新\n- **Line 14**: `\"We fine-tune Qwen3-4B and Qwen3-8B\"` 间接引用（在 experiments 里），但 intro 也提到模型覆盖范围\n\n#### Experiments — Setup (experiments.tex:14)\n- **Line 14**: `\"We fine-tune Qwen3-4B and Qwen3-8B\"` → 加 `Qwen3-14B`\n- **Line 14**: `\"DeepSeek-Coder-6.7B\"` 保持不变\n\n#### Experiments — Scaling (experiments.tex:63–92)\n- **Line 66**: `\"Table~\\ref{tab:scaling} compares all three formulations at 4B and 8B\"` → 加 14B\n- **Line 71**: Table caption `\"accuracy (\\%) at 4B and 8B\"` → 加 14B\n- **Line 90**: `\"The \\cls{}--\\cwm{} gap widens from 1.32\\pp{} at 4B to 2.62\\pp{} at 8B\"` → 需要加 14B 的 gap 数值\n- **Line 92**: `\"\\cwm{} flat scaling ($-$0.03\\pp{})\"` → 看 14B 是否依然 flat\n- **Line 92**: `\"\\traj{} also shows no scaling benefit at repo level (72.92\\% at both 4B and 8B); only \\cls{} scales positively\"` → 更新 14B 数据\n\n#### Experiments — Repo-level (experiments.tex:107–168)\n- **Line 139**: `\"the gap is 25.59\\pp{} at 4B...and 18.35\\pp{} at 8B\"` → 加 14B gap\n- **Line 164**: CWM default assignment artifact 的 4B→8B 趋势 → 加 14B\n- **Line 166**: `\"The \\cls{}--\\cwm{} gap widens from 1--3\\pp{} (function) to 18--26\\pp{} (repo)\"` → 范围可能需要调整\n- **Line 168**: 混合效应模型可能需要纳入 14B 数据重新拟合\n\n#### Experiments — Analysis (experiments.tex:173–183)\n- **Line 180**: `\"217$\\times$ higher throughput\"` — 如果 14B 有不同的推理效率数据\n- **Line 182**: oracle/complementarity 数字可能需要更新\n\n#### Conclusion (conclusion.tex)\n- **Line 4**: `\"${\\leq}$8B LoRA\"` 出现两次 → 更新为 `≤14B`\n- **Line 4**: `\"All findings are conditioned on ${\\leq}$8B LoRA fine-tuning\"` → 更新\n- **Line 6**: `\"testing at 32B+ would resolve the primary open question\"` → 如果 14B 缩小了 gap，这句可能需要修改\n\n#### Limitations (conclusion.tex:8–10)\n- **Line 8**: `\"${\\leq}$8B LoRA fine-tuning\"` → 更新\n- **Line 10**: `\"Model coverage is limited to 6--8B code-specialized LLMs\"` → 更新为 `6--14B`\n\n#### Appendix — Threats (appendix.tex:522–559)\n- **Line 557**: `\"4--8B LoRA fine-tuning\"` → `4--14B`\n- **Line 557**: `\"all repo-level \\cwm{} conclusions conditional on the ${\\leq}$8B LoRA regime\"` → 更新\n- **Line 559**: `\"the repo-level \\cls{}--\\cwm{} gap (18--26\\pp{}) exceeds any single assessed confound\"` → 范围可能变化\n- **Line 564**: `\"6--8B code-specialized LLMs\"` → `6--14B`\n\n#### Appendix — Extended Analysis (appendix.tex:361–411)\n- **Paragraph (g) Failed interventions**: `\"Model scaling (4B→8B)\"` → 如果 14B 改变了结论，需要重写或追加 8B→14B 结果\n- **Paragraph (i) Inference efficiency**: throughput 数据可能需要加 14B\n- **Paragraph (k) CoT**: `\"Within the ${\\leq}$8B LoRA regime\"` → 更新\n\n#### Appendix — Hyperparams (appendix.tex:253)\n- **Line 253**: `\"Total compute budget: ${\\sim}$370 GPU-hours across 223 completed runs\"` → 加上 14B runs 的 GPU 时间\n\n#### Appendix — Interaction model (appendix.tex:505–514)\n- 混合效应回归可能需要纳入 14B 数据重新拟合，或至少提及 14B 支持/改变现有结论\n\n---\n\n### paper_framing.md 更新点\n- `\"≤8B LoRA\"` 贯穿全文 → 改为 `≤14B`\n- `\"Model coverage is limited to 6--8B\"` → `6--14B`\n- Story Spine 中 `\"At ≤8B LoRA deployment scale\"` → 更新\n- Anticipated Reviewer Concerns 的 `\"CWM comparison unfair (≤8B LoRA)\"` → 14B 数据部分缓解此 concern\n\n---\n\n### 优先级排序\n\n| 优先级 | 位置 | 原因 |\n|--------|------|------|\n| P0 | Table 2 (scaling) + Figure 2 | 14B 是第三个 scaling 数据点，直接影响 scaling story |\n| P0 | Table 3 (repo_level) | repo-level 是论文核心差异化结论 |\n| P0 | Abstract / Conclusion 中 `≤8B` 措辞 | 读者第一印象和最终结论 |\n| P1 | Table 1 (main_results) | 如果 14B function-level 也跑了 |\n| P1 | experiments.tex §Scaling 段落叙述 | 需要描述 14B 趋势 |\n| P1 | experiments.tex §Repo-level 段落 gap 数值 | 更新 range |\n| P2 | Appendix tables (variant_level, mutation_breakdown, cwm_parse, hyperparams) | 完整性 |\n| P2 | Appendix threats / limitations 中 `≤8B` | 措辞一致性 |\n| P3 | paper_framing.md | 内部文档，非论文本体 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-14b-insertion-audit.md"
+}

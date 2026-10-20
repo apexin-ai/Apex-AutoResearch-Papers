@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54f30429df08614db7a6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh progress check westd",
+  "task_key": "worker_ssh_progress-check-westd_20260514T154126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_progress-check-westd_20260514T154126_result.json",
+    "occurrence": 1,
+    "bytes": 775,
+    "sha256": "fec4098b2a62affab9d9f92b3d305ca2763a22befb0527eb4a26bd5c23fdef51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/progress_check_20260514.md`。\n\n**核心状态：**\n\n| 进程 | 进度 | 关键指标 | 预计完成 |\n|------|------|----------|----------|\n| CWM v12 eval | 85.4% | acc=**57.8%** | ~02:15 今夜 |\n| CWM seed123 eval | 84.3% | acc=**59.1%** | ~02:30 今夜 |\n| CWM 8B train | 22.6% | loss=0.45, eval_loss=0.36 | ~明天 17:00 |\n| CLS 8B s123 train | 40.4% | loss=0.36, eval_loss=0.28 | ~明天 11:00 |\n\n**重要发现：两个 8B training 都崩溃过。** 崩溃原因是 eval 阶段 DataLoader worker 被系统 kill（`signal: Terminated`），疑似内存不足。两个进程都已被重启，重启命令带了 `--dataloader_num_workers 0`，改为主进程加载数据，应能规避该问题。当前运行稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-progress-check-westd.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2dc0d53d36a6d39339d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis logistic regression marginal",
+  "task_key": "worker_analysis_logistic-regression-marginal_20260522T170132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_logistic-regression-marginal_20260522T170132_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "c488e05dffa62976f7b0fa05fb88abf80c5646ed3684a37a57703f298907eda1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**Cross-complexity (DeepSeek, n=56,480, 139 clusters):**\n- CWM function-level: OR=0.98, p=0.771, AME=−0.2pp (LPM: −0.2pp, p=0.805) — 一致\n- CWM×repo interaction: OR=0.31, p=0.002, AME=−21.6pp (LPM: −21.9pp, p<0.001) — 一致\n\n**Cross-model (repo, n=78,272, 25 clusters):**\n- CWM deficit: OR=0.30, p=0.001, AME=−21.1pp (LPM: −22.0pp, p<0.001) — 一致\n- Model effect/interaction: GEE下不显著 (p=0.449/0.860)，与LPM有分歧。原因是25个cluster下GEE sandwich SE更保守，论文已注意到这一点。\n\n所有主效应 (primary effects) 的方向、量级和显著性在 LPM 和 logistic 之间一致。报告含一段可直接插入 Appendix M 的文字和 LaTeX 表格。\n\n产出：\n- 服务器：`/home/sonny/exec-sim-repair-verifier/artifacts/logistic_regression_results.json`\n- 本地：`artifacts/logistic_regression_report.md`（已注册 artifact）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-logistic-regression-marginal.md"
+}

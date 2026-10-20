@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4521d13c7a798210e16c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9.md",
+    "occurrence": 1,
+    "bytes": 4901,
+    "sha256": "ce3de5b500d9d7dced3425cf57a111ad2d8d76df2ad2dc8e205ef4cf27ea79c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-14T11:32:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `cuda:0/1/2/3`（全在 westd），home 服务器只有 `cuda:0`\n- **D063 未解决**：之前所有 repo-level checkpoint sweep 在 test set (9784) 上做 = cherry-picking。论文数字必须改为 val set (9335) 选 checkpoint → test set 只报最终数字。当前 ROADMAP 里的 accuracy 数字（84.52/81.51/80.73/78.43）都可能变\n- **D065**：已放弃 val inference-based checkpoint selection，改为 training loss curve 选 checkpoint（具体策略见 D066）\n- **D066 报告策略**：主表用 mean±std across seeds，supplementary 报每个 checkpoint 的数字\n- CWM v12 和 seed123-conda 的 registry 标记为 killed，但实际是 **eval 进程仍在跑**（PID 195668/195531），cron 仍在监控。不要再 kill 这两个进程\n- apple-to-apple 对比必须用 westd conda 环境数据（CLS vs CWM 同 server/env/data），home 数据不能直接和 westd 对比\n\n### 2. 🖥️ 基础设施快照\n- **westd** (seetacloud-westd-4x5090, root): 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - Python: `/root/miniconda3/bin/python`（conda base 环境，transformers 4.57.6）\n  - 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`（8B）, 4B 模型路径类似\n  - Checkpoints: `/root/autodl-tmp/checkpoints_repo_*`\n  - HF cache: `/root/autodl-tmp/.hf_cache`\n- **home** (home-1x5090, sonny): 工作目录 `/home/sonny/exec-sim-repair-verifier`，transformers 4.57.6\n- **活跃进程 (westd)**:\n  - cuda:0 — CWM seed123 eval, PID 195531, cron 监控中（~25% done, running acc 57.2%）\n  - cuda:1 — CWM v12 eval, PID 195668, cron 监控中（~25% done, running acc 58.5%）\n  - cuda:2 — 8B CWM 训练, PID 210568, tmux `repo-level-cwm-8b-conda`, cron 监控中\n  - cuda:3 — 8B CLS seed123 训练, PID 210652, tmux `repo-level-cls-8b-seed123-conda`, cron 监控中\n- **活跃 Worker**: `worker_fix_home-kill-start-6144_20260514T113006`（running，task: fix home-kill-start）\n\n### 3. 📊 当前状态\n刚完成 D061-D067 系列决策执行：8B 训练已在 GPU 2/3 启动，CWM v12/seed123 全量 eval 在 GPU 0/1 跑着（~25%），home 上挂死的 eval 进程已被 kill（D067）。\n\n**Registry RUNNING**:\n- `repo-level-cls-8b-seed123-conda` — 8B CLS seed123 训练 (westd cuda:3)\n- `repo-level-cwm-8b-conda` — 8B CWM seed42 训练 (westd cuda:2)\n\n**实质上 RUNNING 但 registry 标记 killed（eval 进程）**:\n- `repo-level-cwm-v12` — 4B CWM seed42 全量 eval, ~25% done, ETA ~02:20 UTC May 15\n- `repo-level-cwm-seed123-conda` — 4B CWM seed123 全量 eval, ~25% done, ETA ~02:30 UTC May 15\n\n**等待中**:\n- Worker `fix_home-kill-start-6144` 回调（正在处理 home 上的进程清理）\n- CWM v12/seed123 eval 完成 cron 回调（ETA ~18-20h）\n- 8B 训练完成 cron 回调（时间取决于训练时长，预计 1-2 天）\n- D064: Paper Agent Full Draft 已启动（部分解除 D057 阻塞）\n\n### 4. 📋 待办（条件触发式）\n- CWM v12 eval 完成 → 记录最终 accuracy/F1_macro → 更新 memory.md 数字速查 → 计算 CLS-CWM gap → 汇报 Director（解除 D057 论文阻塞）\n- CWM seed123 eval 完成 → 同上 + paired bootstrap CLS seed123 vs CWM seed123 → 统计显著性\n- 8B CWM 训练完成 → eval pipeline（checkpoint sweep）→ 8B CLS-CWM gap\n- 8B CLS seed123 训练完成 → eval pipeline → 与 8B seed42 (84.52%) 配对\n- Worker fix_home 回调 → 确认 home 清理完成\n- **D063 val sweep 仍需执行**：所有 CLS 模型在 val set 上选 best checkpoint，然后 test set 只跑 best 的最终数字。eval 脚本需要 `--split` 参数支持（可能已有 Worker 在做）\n- 论文 full draft 写完后 → 用 CWM 最终数字 patch 论文中的 placeholder\n\n### 5. 🎯 战略上下文\n**核心结论链**：CLS (classification) 显著优于 CWM (code-with-modification generation) 作为 verifier，且优势随代码复杂度增长（函数级 1.24pp → repo-level 预估 20-27pp）。8B 进一步放大 gap（函数级 2.43pp vs 4B 1.24pp）。这支撑 paper 的核心 claim \"task reformulation matters more at scale\"。\n\n**最容易判断错的事**：\n1. CWM v12/seed123 的 registry 状态是 `killed`，但 eval 进程实际在跑且有 cron 监控。不要以为它们已终止去重启\n2. ROADMAP 里的 repo-level CLS 数字（84.52/81.51 等）是 test set checkpoint sweep 的结果，D063 之后这些数字需要 val-selected checkpoint 重新确认，可能会变。不要直接引用到论文\n3. home 和 westd 的数据不能直接对比（环境差异），apple-to-apple 只看 westd conda 结果\n4. 8B 过拟合极快（ckpt-400 peak 后 ckpt-600 已退化 6pp），eval 时 checkpoint sweep 间隔要密\n\n**DDL**: EMNLP 2026 ARR May 25，剩 11 天。关键路径：CWM eval 完成 → 最终数字 → 论文 patch → 提交\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-copy-2.md"
+}

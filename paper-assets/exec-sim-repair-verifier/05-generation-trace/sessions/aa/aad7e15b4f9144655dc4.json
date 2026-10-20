@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aad7e15b4f9144655dc4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "urgent cleanup duplicate cwm8b",
+  "task_key": "worker_urgent_cleanup-duplicate-cwm8b_20260514T143015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_cleanup-duplicate-cwm8b_20260514T143015_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "bd1495afccd8208b5d3d26f49d6429d79859f0042eec3e05e2cfe59a8acda5c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理结果：\n\n- **PID 243700 已不存在**，无需 kill（已自行退出）\n- **GPU 2 显存已释放**：0MiB / 32607MiB，完全空闲\n- **新进程正常运行**：PID 245775（python3 train_repo_cwm.py），带 `--dataloader_num_workers 0`，`CUDA_VISIBLE_DEVICES=2`，从 checkpoint-1200 恢复。当前仍在 CPU 上做数据预处理，尚未占用 GPU 显存\n- GPU 3 上的 PID 243778 也是 CWM 相关进程（26740MiB），未受影响\n\n无需任何操作，旧进程已自行退出，新进程独占 cuda:2 通道。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-cleanup-duplicate-cwm8b.md"
+}

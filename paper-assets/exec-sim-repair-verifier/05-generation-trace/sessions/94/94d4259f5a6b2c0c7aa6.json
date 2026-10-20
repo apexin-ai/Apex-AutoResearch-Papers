@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94d4259f5a6b2c0c7aa6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research test curve compilation",
+  "task_key": "worker_research_test-curve-compilation_20260515T140344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_test-curve-compilation_20260515T140344_result.json",
+    "occurrence": 1,
+    "bytes": 810,
+    "sha256": "dec24f8eec284c3e5dbc1a6523fd38bf148ab942dcc9a686bfa8ab5967383ab9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。文件写入 `artifacts/comprehensive_test_results.md` 并注册为 `art_20260515_d88b8c`。\n\n内容概要：\n- **CLS 8B seed123 test curve**: 6 个 checkpoint，val-selected = test-peak = ckpt-3000 (85.60%)\n- **CLS 8B s42 test curve**: 8 个 checkpoint，val-selected ckpt-1000 (83.52%)，test-peak ckpt-1400 (85.47%)\n- **CLS 4B s42 test curve**: 3 个有效 checkpoint，val-selected = ckpt-4600 (83.63%)\n- **CLS 4B seed123**: ckpt-800 仅 75.33%，表现弱\n- **CWM repo-level**: 58-59%，低于 majority baseline，彻底失败\n- **Function-level**: CLS 8B 89.93% > CWM 4B 87.19% ≈ CWM 8B 86.96%\n- **Ablation**: rank=32 无帮助 (−0.51pp)，seq_length 非混杂变量 (CLS@2048 仍超 CWM 24.79pp)\n- CWM 8B repo-level test 仍在运行中 (cwm8b-ckpt400-test-eval)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-test-curve-compilation.md"
+}

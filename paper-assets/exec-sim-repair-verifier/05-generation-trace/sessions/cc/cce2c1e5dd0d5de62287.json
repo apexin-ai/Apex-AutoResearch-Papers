@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cce2c1e5dd0d5de62287",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor home val sweep",
+  "task_key": "worker_monitor_home-val-sweep_20260514T061523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_home-val-sweep_20260514T061523_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "8b60a694089a5d494acd10c8eb0942b4d05ad7e37b42e35b996e77907583f652"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Val Sweep 进度报告\n\n**状态：正在运行，第 1/10 个 checkpoint**\n\n| 项目 | 状态 |\n|------|------|\n| 当前 checkpoint | `seed123/checkpoint-200`（第 1 个） |\n| 推理进度 | 1600/9335 样本（17.1%） |\n| running_acc | 63.4% |\n| GPU 0 | 92% 利用率，17.8/32.6 GB 显存 |\n| 已完成结果 | 0 个（val_eval_results/ 为空） |\n\n**时间估算：**\n- 启动时间：2026-05-13 23:10:56\n- 1600 样本用时约 4.5 分钟，预估当前 checkpoint 总耗时 ~26 分钟\n- 预计第 1 个 checkpoint 完成时间：约 23:37\n- 10 个 checkpoint 全部完成：约 **4-5 小时**（预计 05-14 03:30 左右）\n\n**无异常。** GPU 正常工作，推理稳定推进，无错误日志。刚开始跑，还没有结果文件产出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-home-val-sweep.md"
+}

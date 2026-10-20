@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9c25457330078319ea4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper research stat methods",
+  "task_key": "worker_paper_research_stat_methods_20260515T085350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_stat_methods_20260515T085350_result.json",
+    "occurrence": 1,
+    "bytes": 185,
+    "sha256": "5c4d1201c76a0be2611cfcf10dd8d58992b6076688629931228de7adebe66e5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已添加 Shrout & Fleiss (1979) 到 Statistical Methods section（`shrout1979icc`，DOI: `10.1037/0033-2909.86.2.420`），gap 已填补，section 计数更新为 3/3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-stat-methods.md"
+}

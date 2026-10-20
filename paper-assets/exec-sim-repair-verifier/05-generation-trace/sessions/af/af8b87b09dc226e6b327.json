@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af8b87b09dc226e6b327",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh qwen startup verify",
+  "task_key": "worker_ssh_qwen-startup-verify_20260520T014856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_qwen-startup-verify_20260520T014856_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "ac74551d610f4ebc527e6470f22ef5ae3f94d8391dc83d9d193301d37c5643b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练都成功启动，正在正常跑。\n\n## GPU 状态总览\n\n| GPU | Util | VRAM | 状态 |\n|-----|------|------|------|\n| 0 | 99% | 21.2/31.8 GB | **s123 训练正常** (PID 886278) |\n| 1 | 100% | 0/31.8 GB | **hung** — 跟之前一样，100% util 但 0 VRAM |\n| 2 | 87% | 16.3/31.8 GB | 已有进程 (PID 885624, 运行 22min) |\n| 3 | 91% | 31.3/31.8 GB | **s456 训练正常** (PID 886352) |\n\n## 训练进度\n\n- **s123** (GPU 0): step 66/6633, ~12s/it, 开始于 09:36:11, ETA ~22h\n- **s456** (GPU 3): step 67/6633, ~11.6s/it, 开始于 09:36:22, ETA ~21h\n\n两个 wrapper PID (886273, 886347) 仍存活，RSS ~3.5MB（正常，实际训练是子进程 886278/886352）。\n\n**GPU 3 没有 hung**，训练正常运行，VRAM 占满 31.3GB。GPU 1 确认 hung。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-qwen-startup-verify.md"
+}

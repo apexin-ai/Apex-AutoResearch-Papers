@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c98a0df425b04fc76fd8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls 8b ckpt200",
+  "task_key": "worker_eval_cls-8b-ckpt200_20260513T213258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls-8b-ckpt200_20260513T213258_result.json",
+    "occurrence": 1,
+    "bytes": 1382,
+    "sha256": "4be32495ee1350a37a774a0ddd95262a7bd826425b3cefc0e5a3ef6f245ff503"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CLS 8B (Qwen3-8B, checkpoint-200, seed=42) 评估结果\n\n| 指标 | CLS 8B ckpt-200 | CLS v5 baseline | 差值 |\n|------|-----------------|-----------------|------|\n| **Accuracy** | 71.37% | 76.92% | **-5.55pp** |\n| **F1 macro** | 69.05% | — | — |\n| **fail_f1** | 60.57% | 65.01% | **-4.44pp** |\n| **pass_f1** | 77.53% | 82.78% | **-5.25pp** |\n| **fail_precision** | 48.26% | — | — |\n| **fail_recall** | 81.29% | — | — |\n| **pass_precision** | 90.71% | — | — |\n| **pass_recall** | 67.69% | — | — |\n\n**Confusion Matrix:**\n```\n              Predicted\n              fail    pass\nActual fail   2151     495\nActual pass   2306    4832\n```\n\n**Unparseable:** 136 / 9784 = 1.39%\n\n**关键发现：**\n\n1. **Accuracy 低于 majority baseline**（71.37% vs 73.0%），gap = -1.6pp，模型表现甚至不如直接预测多数类\n2. **全面低于 CLS v5 baseline**，accuracy -5.55pp，fail_f1 -4.44pp，pass_f1 -5.25pp\n3. **fail 类严重过预测**：recall 81.3% 但 precision 仅 48.3%，模型把大量 pass 误判为 fail（FN=2306）\n4. **136 条 unparseable**（1.39%），用 majority fallback 处理\n5. 运行环境：westd (SeetaCloud)，transformers 5.8.0，batch_size=8，max_seq_length=2048\n\ncheckpoint-200 的 8B 模型明显欠拟合或训练策略有问题，建议检查后续 checkpoint 或训练超参。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls-8b-ckpt200.md"
+}

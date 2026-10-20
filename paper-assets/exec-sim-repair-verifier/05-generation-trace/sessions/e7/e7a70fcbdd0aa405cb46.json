@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7a70fcbdd0aa405cb46",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "review reference audit",
+  "task_key": "worker_review_reference-audit_20260516T043516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_reference-audit_20260516T043516_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "0124e30abb5c622572c7d1e1a2e83a3f7358609839893b40beb5ce0a2a375e45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。\n\n**结果**：28 条引用全部为真实论文，0 孤儿，0 缺失，0 幻觉引用。\n\n**已修复 2 个问题**：\n1. `liu2024codemind` — 作者列表从 1 人扩展为完整 4 人\n2. `chowdhury2024swebenchverified` — 类型从 @techreport 改为 @misc，标题/作者/URL 按官方引用格式更新\n\n**剩余信息项**（无需修复）：3 个 key-year 命名不一致（cosmetic）、11 篇 arXiv 预印本尚未发表于会议（正常）。\n\n报告写入 `artifacts/reference_audit_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-reference-audit.md"
+}

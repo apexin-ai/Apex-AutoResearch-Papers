@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f5ef3d55ae9519f1fa7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_15_1778856904.md",
+  "task_key": "loop_15_1778856904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1778856904.md",
+    "occurrence": 1,
+    "bytes": 7021,
+    "sha256": "fd92068776e10461fb7367bd50bc40754bd13d7a6ca349c61e903fdb45eef37f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-15T14:37:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd cuda:0,1,2,3 + home cuda:0。其他 GPU 一律 push back Director\n- **CWM 8B eval 必须 bs=1**（bs=2 OOM，D102 已确认用 bs=8 重启但实际提交是 bs=1 on eval_repo_cwm.py）\n- **Test eval 禁止 --max_samples**（事故教训：seed123 ckpt-6200/6400 只评了 8192/9784，被 Reviewer 抓出）。test n=9784，val n=9335，必须全量\n- **checkpoints_repo_cls_8b/ 目录无效**（transformers 5.x 旧训练产物，peft 0.19.1），不可引用。有效路径是 `checkpoints_repo_cls_8b_conda/`（s42 原始）和 `checkpoints_repo_cls_8b_s42_resume/`（s42 resume，从 ckpt-600 起）\n- **s42 resume 目录从 ckpt-600 开始**（200 步间隔），不含 ckpt-200/400。原始 ckpt-200/400 在 `checkpoints_repo_cls_8b_conda/`\n- **标 FAILED/DONE 前必须 `ps -p PID` 确认进程已退出**（事故教训：误标导致同 GPU 双提交 OOM）\n- **DDL: EMNLP 2026 ARR May 25，剩余 10 天**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: seetacloud-westd-4x5090（4x RTX 5090）\n- **工作目录**: `/home/sonny/exec-sim-repair-verifier`（注意是 sonny 不是 root）\n- **Python/Env**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda base，不是 venv）\n- **模型路径**:\n  - 8B: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n  - 4B: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`（无尾部 /）\n- **Checkpoint 路径**:\n  - CLS 8B s42 原始: `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/`\n  - CLS 8B s42 resume: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`（ckpt-600 起，save_steps=200，save_total_limit=35）\n  - CLS 8B seed123: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/`（backup ckpt-3000 在 `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`）\n  - CWM 8B: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`（ckpt-400, 4000, 4100, 4200, 4300）\n- **Home 服务器**: 用户目录 `/home/sonny`，python3（不是 python），4B v5 ckpt 在 `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n- **活跃进程**:\n  - PID 266816 — CWM 8B v4 训练 (cuda:2, tmux=repo-level-cwm-8b-conda-v4, cron 监控中)\n  - PID 295794 — CLS 8B s42 resume (cuda:1, tmux=repo-level-cls-8b-s42-resume, cron 监控中)\n  - PID 367292 — CWM 8B ckpt-400 test eval (cuda:3, tmux=cwm8b-ckpt400-test-eval, cron 监控中)\n  - PID 379609 — CWM rank32-alpha64 ablation (cuda:0, tmux=cwm-rank32-alpha64-ablation, cron 监控中)\n- **Paper Workers**: `worker_paper_introduction-draft_20260515T143417` + `worker_paper_experiments-draft_20260515T143453`（均 running）\n\n### 3. 📊 当前状态\n**刚完成**: 所有主要 val/test sweep（8B s42 8点 val + 7点 test, seed123 6点 test, 4B 5点 val + 2点 test），multi-seed 数字锁定（gap 25.99pp），Paper Agent 启动 Full Draft（Introduction + Experiments Workers 已派发）。CWM relaxed matching 分析完成（D100/D101: 反而降低准确率，排除 parsing failure 解释）。\n\n**正在跑 (5 experiments)**:\n| exp_id | GPU | 进度 | ETA (UTC) | 摘要 |\n|--------|-----|------|-----------|------|\n| repo-level-cwm-8b-conda-v4 | cuda:2 | 60.5% | May 16 ~11:00 | CWM 8B 全训练（锁 8B-8B gap 的关键数据） |\n| repo-level-cls-8b-s42-resume | cuda:1 | 60.9% | May 16 ~06:00 | CLS 8B s42 续训（extended val sweep 数据源） |\n| cwm8b-ckpt400-test-eval | cuda:3 | 进行中 | 原估 54h (bs=1) | CWM 8B best-eval-loss ckpt test eval（锁 8B CWM test 数字） |\n| cwm-rank32-alpha64-ablation | cuda:0 | 刚提交 | ~1.5h | LoRA rank=32 alpha=64 修正实验（回应 Reviewer） |\n| s42-extended-val-sweep | cuda:0(待命) | 暂停 | rank32 完成后 | s42 resume 的 extended val sweep（ckpt 1800-5200） |\n\n**等待中**:\n- 2 个 Paper Workers 回调（introduction-draft, experiments-draft）\n- 4 个 cron 监控上述 4 个训练/eval 进程\n- `cls8b-s42-extended-val-sweep` PREPARING 状态，等 cwm-rank32-alpha64-ablation 完成释放 cuda:0\n\n### 4. 📋 待办（条件触发式）\n- **cwm-rank32-alpha64-ablation cron 回调（~1.5h）** → eval accuracy，与 rank=16 baseline (87.51%) 对比。若 diff < 1pp → rank ablation 证据完整（3点：r16/r32α32/r32α64），更新 memory + report，通知 Director。释放 cuda:0 → 立即启动 s42-extended-val-sweep\n- **s42-extended-val-sweep 启动后** → 需要 spawn Worker 在 cuda:0 上跑 run_extended_val_sweep.sh（ckpt 1800-5200 共 18 点）。注意 s42 resume 训练本身在 cuda:1，eval 在 cuda:0。训练完成前可以 eval 已有的 checkpoints\n- **repo-level-cls-8b-s42-resume cron 回调（~May 16 06:00）** → 训练完成，可以跑完整 extended val sweep 补齐剩余 checkpoints\n- **cwm8b-ckpt400-test-eval cron 回调** → 拿到 CWM 8B test accuracy，**这是锁定 8B-8B gap 的关键数字**。与 CLS 8B s42 test 83.52% / seed123 85.60% 对比。结果入 ROADMAP 主表 + paper\n- **repo-level-cwm-8b-conda-v4 cron 回调（~May 16 11:00）** → CWM 8B 训练完成。需要：(1) eval final checkpoint test，(2) 与 ckpt-400 eval 结果对比，(3) 确定 CWM 8B 最终数字\n- **Paper Worker introduction-draft 回调** → 审查 draft，确认与 paper_framing.md story spine 一致，更新 paper 目录\n- **Paper Worker experiments-draft 回调** → 审查 draft，确认所有数字追溯到 registry，无 cherry-picking\n- **CWM 8B 训练 + eval 全部完成后** → 锁定主表最后一行（CWM 8B test），更新 ROADMAP，通知 Director \"主表完整\"\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D088: val-selected checkpoint 为主指标（ML 社区规范）\n- D093: Multi-seed gap 锁定 25.99pp（s42: 25.48, seed123: 26.51）\n- D094: seq_length confound 排除（CLS@2048 drop 仅 0.69pp）\n- D095: 审稿 Round 1 Action Matrix 定稿\n- D096: Repo-level 主表切 8B-8B 对比\n- D097: Rank ablation 确认 rank=16 不低估 CWM\n- D098: 补跑 rank32-alpha64 修复 alpha/rank ratio 混淆\n- D100/D101: CWM relaxed matching 反而降低准确率，排除 parsing failure 解释\n\n**易错点**:\n- **CWM 8B 的 eval_loss 持续上升**（step 400=0.286 → 4300=0.482），过拟合趋势明显。ckpt-400 很可能是 best checkpoint。不要假设 final checkpoint 更好\n- **4B seed123 test 只有 75.33%**（远低于 s42 的 83.63%），4B 模型 seed 方差极大且不稳定。论文里 4B 数据需谨慎呈现\n- **s42-extended-val-sweep 和 cls8b-s42-extended-val-sweep 是两个不同 registry 条目**——前者 RUNNING（实际是总控），后者 PREPARING（被暂停）。不要混淆\n- **CWM eval 极慢**（~20s/sample, bs=1），9784 样本约 54h。不要试图加速或提前终止\n- **home 版 eval_repo_cls.py 不支持 --max_new_tokens 参数**（westd 版支持），在 home 上跑 eval 注意\n- **Paper 写作已启动但 CWM 8B 数字未锁定**——Worker 写的 draft 里 CWM 8B 行会是占位符，完成后需要回填\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1778856904.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "539d1cdb769c332fa86d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code eval re repair pipeline",
+  "task_key": "worker_code_eval-re-repair-pipeline_20260517T042941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-re-repair-pipeline_20260517T042941_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "6f98f80584fc16a1614043c8d0f1c54d5fe8a7a0ae689383688df1d0cdec5591"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 结果汇总\n\n**任务 1：`eval_re_repair.py`** — 已部署到 `/home/sonny/exec-sim-repair-verifier/eval_re_repair.py`\n\n**任务 2：Smoke test 结果**\n\n| 字段 | 值 |\n|------|-----|\n| instance_id | `pallets__flask-5014` |\n| resolved | `true` |\n| f2p_passed | `tests/test_blueprints.py::test_empty_name_not_allowed` |\n| f2p_failed | `[]` |\n| p2p_regressed | `[]` |\n| 耗时 | ~16s（利用已有 Docker image 缓存） |\n\n**注意事项**：\n- swebench v4.1.0 的 `main()` 内部会跳过已有 report 的 instance（基于 `run_id + model_name + instance_id` 路径）。如需重跑，删除 `logs/run_evaluation/{run_id}/` 目录。\n- 多个 patch 对同一 instance_id 会被分到不同 batch（每 batch 中 instance_id 唯一），model_name 用 diff 的 md5 前缀区分。\n- MCP ssh 工具有 30s 超时，实际大批量评测需用 `nohup` 后台执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-re-repair-pipeline.md"
+}

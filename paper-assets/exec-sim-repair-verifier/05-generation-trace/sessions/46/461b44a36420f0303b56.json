@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "461b44a36420f0303b56",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cls home restart urgent",
+  "task_key": "worker_ssh_cls-home-restart-urgent_20260512T212528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cls-home-restart-urgent_20260512T212528_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "eb82528a7039ae033cde451abe8c2766b1078879094fa22ca1161d75db6b8b0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态：**\n- 训练进程已在运行，PID 2881844（tmux session `repo-level-cls-home`）\n- 14:23 启动，当前在做数据 tokenization（train=70748, val=9335）\n- GPU 尚未占用（预处理阶段）\n- checkpoint 目录已清空\n- 实验已注册：`repo-level-cls-v2` → RUNNING\n- 配置：eval_strategy=steps, eval_steps=200, save_strategy=steps, save_steps=200\n\n~5 分钟后自动回来检查 GPU 占用和训练进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cls-home-restart-urgent.md"
+}

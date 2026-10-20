@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d6d4a8c947400269c4f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_21_1778956627.md",
+  "task_key": "loop_21_1778956627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_21_1778956627.md",
+    "occurrence": 1,
+    "bytes": 4170,
+    "sha256": "02ad2e6dd96d200dcd4e28b86e706bfb1a0caa2cada4cb1e50e683d249be9d37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 21\nreason: idle_timeout\nupdated: '2026-05-16T18:31:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单: westd cuda:0/1/2/3（4×5090）。服务器 MCP 名称为 `seetacloud-westd-4x5090`（不是 `westd` 或 `seetacloud-westd`）\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（服务器用 conda，无 .venv）\n- TRAJ repo n=48 与 CLS/CWM n=9784 不可直接对比绝对数字（粒度不同：trajectory-level vs per-test-level）\n- D112: re-repair 不写入论文；D109: repo-level 不 claim \"gap widens with scale\"\n- Cron exp_id 必须与 registry exp_id 完全一致（含/不含 `-fixed` 后缀），否则回调失效\n\n### 2. 🖥️ 基础设施快照\n- 服务器: `seetacloud-westd-4x5090`，工作目录 `/home/sonny/exec-sim-repair-verifier`\n- Python: `/root/miniconda3/bin/python`（conda base env）\n- 模型: `/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct`\n- Checkpoints: `/root/autodl-tmp/checkpoints_deepseek_{cls,cwm}_repo{,_s123}/`\n- 数据: `data/swebench_full/swebench_{train,val,test}.jsonl` (train 70748, test 9784)\n- HF cache: `/root/autodl-tmp/.hf_cache`, `HF_HUB_OFFLINE=1` 避免网络\n- 活跃进程:\n  - deepseek-cwm-repo: PID 479953, tmux, cuda:1 (cron 监控中)\n  - deepseek-cls-repo-resume: PID 546754, tmux, cuda:0 (ALLOCATED, cron 应在跑)\n  - deepseek-cwm-repo-s123: PID 542901, tmux, cuda:3 (ALLOCATED)\n  - deepseek-cls-repo-s123: PID 542509, tmux, cuda:2 (ALLOCATED)\n\n### 3. 📊 当前状态\n**全部 4 块 GPU 已占满**，都在跑 DeepSeek repo-level 训练：\n- `deepseek-cwm-repo` (s42, cuda:1): RUNNING, ~28% 进度, ETA May 17 14:00 UTC\n- `deepseek-cls-repo-resume` (s42 续训, cuda:0): ALLOCATED (从 ckpt-2211 恢复，原进程 SIGHUP crash at step 3747/6633), ETA May 17 04:00 UTC\n- `deepseek-cls-repo-s123` (s123, cuda:2): ALLOCATED, 刚提交\n- `deepseek-cwm-repo-s123` (s123, cuda:3): ALLOCATED, 刚提交\n\nALLOCATED 实验已提交（有 PID），但 cron 还没在下次 poll 中确认它们 RUNNING。下次 reconcile 应自动推进。\n\n`deepseek-traj-func-v2-fixed` / `deepseek-traj-func-v2-s123-fixed` 状态为 PREPARING+conclusion=failed，是历史残留（cron 命名不匹配导致的 orphan），无需处理。\n\n**无等待中的 Worker 回调。无待处理 Director 决策。**\n\n### 4. 📋 待办（条件触发式）\n- `deepseek-cls-repo-resume` cron 回调(完成) → spawn worker 跑 eval（`run_repo_eval.sh`，model_name 覆盖为 deepseek）→ 记录 CLS repo s42 accuracy\n- `deepseek-cwm-repo` cron 回调(完成) → spawn worker 跑 CWM repo eval → 记录 CWM repo s42 accuracy + unparseable rate\n- `deepseek-cls-repo-s123` 完成 → eval → 与 s42 合并计算 mean±std\n- `deepseek-cwm-repo-s123` 完成 → eval → 与 s42 合并计算 mean±std\n- 全部 4 个 DeepSeek repo eval 完成 → 更新论文 Table（ROADMAP 里的 \"DeepSeek repo-level\" 行）→ 汇报 Director → 论文最终更新\n- 任何实验 failed → 读日志诊断，可能是 SIGHUP/OOM/disk，重试或汇报\n- DDL May 25 前 9 天：eval 完 → patch experiments.tex → 提交前 reference-audit + paper-visual-review\n\n### 5. 🎯 战略上下文\n**项目核心结论**: CLS（分类）reformulation 在 func-level 性能 ≈CWM，在 repo-level 显著优于 CWM（CWM 有 54-74% unparseable）。TRAJ repo ≈ majority baseline。跨模型验证（Qwen3 + DeepSeek）是回应 Dream reviewer 的关键。\n\n**当前关键 gap**: DeepSeek repo-level 数据是论文 Table 最后空格。s42 结果 + s123 多 seed 证据将决定最终 claim 强度。\n\n**易错点**:\n- eval 脚本默认 model_name 是 Qwen，DeepSeek 实验必须覆盖（用 `run_repo_eval.sh` 自动读 adapter_config.json）\n- deepseek-cls-repo 原始训练在 step 3747 SIGHUP crash，resume 从 ckpt-2211 继续。如果 resume 版完成后 loss 曲线不连续，可能需要手动选 best checkpoint\n- D115 决策：C2 claim 已改为 \"complexity-dependent\"（不再 claim 全局单调序 CLS≥CWM≥TRAJ）\n- Worker 报告\"registry 已更新\"不可信——必须 read_registry 验证（历史教训）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-21-1778956627.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77ef516ce0d9e3be4285",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_5_1778636448.md",
+  "task_key": "loop_5_1778636448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778636448.md",
+    "occurrence": 1,
+    "bytes": 4423,
+    "sha256": "fb55aff080091b95f093aca0e002154dfe38308bcd602fa47da81320f98aa111"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-13T01:24:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **seetacloud-westd-4x5090 cgroup 360GB 限制**：只能单进程训练，禁止并行（D028，v3 OOM SIGKILL 教训）\n- **westd-48478 = seetacloud-westd-4x5090 同一台机器**（D041 确认），不要当两台用\n- home-1x5090 只有 cuda:0 一张卡\n- CWM 已迭代到 v10、CLS 到 v4，这轮必须成功——不要再 kill/重启，除非进程自己挂\n- eval 时注意 val 截断率 20.2%（fail 截断率 31% vs pass 16.7%），论文必须报告\n- seed123 调度（D044）：CLS seed123 改到 home（不在 seetacloud），CWM seed123 仍在 seetacloud\n\n### 2. 🖥️ 基础设施快照\n- **home-1x5090**: 1×RTX 5090, 62GB RAM\n  - 工作目录: `/home/sonny/exec-sim-repair-verifier/`\n  - 输出: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`\n  - 日志: `/tmp/repo-level-cls-v3_stdout.log`\n  - Python: 需 detect_image 确认（之前 session 未记录）\n- **seetacloud-westd-4x5090**: 4×RTX 5090, cgroup 360GB（实际只能用 1 卡）\n  - 工作目录: `/root/autodl-tmp/`\n  - 模型 checkpoint: `/root/autodl-tmp/checkpoints_repo_cwm_v9/`\n  - 数据: `/root/autodl-tmp/swebench_full/` (70748 samples)\n  - 日志: `/root/autodl-tmp/cwm_v9_train.log`\n  - Python: conda base (`/root/miniconda3/bin/python`)，AutoDL 镜像\n  - `HF_HOME=/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - repo-level-cls-v4: PID 2885139, home cuda:0, cron 监控中\n  - repo-level-cwm-v10: PID 105205, seetacloud cuda:2, cron 监控中（resume from checkpoint-200）\n- **模型**: Qwen/Qwen3-4B (两个实验均用)\n- **W&B**: 当前两个实验 `--no_wandb`（历史实验有 W&B 数据）\n\n### 3. 📊 当前状态\n两个 repo-level 训练并行运行中，这是项目的决胜实验：\n- **repo-level-cls-v4** (home): step 1123/6633 (17%), eval_loss=0.2410, ~7s/it, ETA ~15:00 UTC 5/13\n- **repo-level-cwm-v10** (seetacloud): step 594/6633 (9%), eval_loss=0.3294, ~8s/it, ETA ~18:00 UTC 5/13\n\n两个 seed123 实验 PREPARING 状态，等待上述训练完成后在各自机器上接力启动：\n- repo-level-cls-seed123 → home（CLS v4 完后）\n- repo-level-cwm-seed123 → seetacloud（CWM v10 完后）\n\nreconcile_crons 确认两个 cron 正常监控中。无待处理的 Worker 回调。\n\n### 4. 📋 待办（条件触发式）\n- **CLS v4 cron 回调 DONE** → spawn Worker: (1) eval best checkpoint + step200 双 checkpoint 对比（D008 要求）, (2) 记录 metrics 到 registry, (3) 立即在 home 启动 CLS seed123（复用 v4 配置，改 seed=123）\n- **CWM v10 cron 回调 DONE** → spawn Worker: (1) eval checkpoint, (2) 记录 metrics, (3) 立即在 seetacloud 启动 CWM seed123\n- **CLS v4 + CWM v10 eval 都完成** → spawn Worker: paired bootstrap 计算 F1 diff → 对照 D008 Go/No-Go：\n  - F1 diff ≥ 3pp + p<0.05 → 全力推进 EMNLP Main\n  - F1 diff 1-3pp → 等 seed123 加数据\n  - F1 diff < 1pp → Kill C1, pivot to Plan B\n- **seed123 两组都完成** → 最终 multi-seed bootstrap → D008 终审 → 向 Director 汇报决策建议\n- **CLS v4 或 CWM v10 failed** → on-experiment-failed 流程，诊断根因。CWM 已 10 次迭代，再失败需要认真考虑是否 pivot\n\n### 5. 🎯 战略上下文\n- **核心假说**: 代码执行模拟从 generation 重构为 classification，在简单函数级代码等价（F1 diff <0.5pp, TOST p=0.007），但在 repo-level 复杂代码上 classification 有 complexity-dependent advantage\n- **函数级已证实**: 4B 等价, 8B CLS 领先 2.43pp (p=0.007), oracle ensemble 90.63%\n- **repo-level 是决胜战场**: 当前 v4/v10 就是这个关键数据点。如果 repo-level CLS 也不优于 CWM → C1 claim 需要 pivot（效率 framing 或 oracle framing）\n- **ARR May 25 deadline**: ~12 天。训练 ~20h bottleneck + eval 3h + paper patch 1d + 终审 1d ≈ 4-5d 可行\n- **最容易判断错的事**:\n  - 不要把 CLS v4 的 eval_loss step200=0.070 当作 best model——那个异常低可能是过拟合或巧合，必须和后续 checkpoint 对比\n  - seetacloud 上不能并行第二个训练（cgroup 会 SIGKILL），CWM seed123 必须等 v10 完全结束\n  - CWM v10 的输出目录叫 `checkpoints_repo_cwm_v9/`（历史遗留命名，不是 v9）\n  - Paper Agent Step 2 进行中（图表生成+模板下载），但不要在 repo-level 结果出来前动 Results/Discussion\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778636448.md"
+}

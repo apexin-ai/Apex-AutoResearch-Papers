@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dddd5c0d68575547fefe",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls v5 val5120 sweep",
+  "task_key": "worker_eval_cls-v5-val5120-sweep_20260514T154621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls-v5-val5120-sweep_20260514T154621_result.json",
+    "occurrence": 1,
+    "bytes": 1246,
+    "sha256": "495c08a4ab2ed47dd29c22f17265393aa114bd16e9fc904ffd112875c54acc65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**无法立即启动，有几个阻塞问题：**\n\n### 1. GPU 0 不空闲\n所有 4 个 GPU 都在跑任务：\n\n| GPU | VRAM Used | 进程 |\n|-----|-----------|------|\n| 0 | 12990 MiB (88%) | `eval_repo_cwm.py` — CWM seed123_conda ckpt-500 (PID 195531, 今天 09:03 启动) |\n| 1 | 12990 MiB (88%) | python3 (PID 195668) |\n| 2 | 21196 MiB (95%) | python3 (PID 245775) |\n| 3 | 26742 MiB (67%) | python3 (PID 248041) |\n\n### 2. Checkpoint 路径不对\n指定路径不存在。实际路径在 `/root/autodl-tmp/`：\n- `/root/autodl-tmp/checkpoints_repo_cls_8b/` — checkpoint-200, 2400, 2600, 2800, **3000**\n- `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/` — checkpoint-200, **400**, 600\n\n### 3. eval 脚本参数不同\n`eval_repo_cls.py` 实际接口：\n- `--checkpoint_dir`（不是 `--checkpoint_path`）\n- `--output` + `--pred_output`（不是 `--output_dir`）\n- `--device cuda:0`（不是 `CUDA_VISIBLE_DEVICES`）\n- `--model_name` 本地路径：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`\n- 环境是 conda（`/root/miniconda3`），不是 venv\n\n### 需要你决定\n\n要启动 CLS sweep，需要先释放 GPU 0。**要不要 kill GPU 0 上的 CWM eval（PID 195531）？** 还是等它跑完？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls-v5-val5120-sweep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8d8ba8008b5b4c9379f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval restart cls westd gpu23",
+  "task_key": "worker_eval_restart-cls-westd-gpu23_20260514T014747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_restart-cls-westd-gpu23_20260514T014747_result.json",
+    "occurrence": 1,
+    "bytes": 1022,
+    "sha256": "1c42bb27357c695ce43e830b908f5cdb27a80ce32cd7ada23bd5073f83467e49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "指定的 checkpoint 目录不存在，无法启动 eval。具体情况:\n\n**不存在的路径:**\n- `checkpoints_repo_cls_v5_conda/` — 不存在\n- `checkpoints_repo_cls_8b_conda/` — 不存在\n- 整个服务器没有任何 `checkpoint-200`\n- `checkpoints_repo_cls/` 和 `checkpoints_repo_cls_seed123/` 是空目录\n\n**可用的 CLS checkpoint:**\n\n| 目录 | Base model | 子目录 |\n|------|-----------|--------|\n| `checkpoints/best/` | Qwen/Qwen3-4B | best |\n| `checkpoints_cls_seed0/best/` | Qwen/Qwen3-4B | best, checkpoint-956, checkpoint-1434 |\n| `checkpoints_cls8b/best/` | Qwen/Qwen3-8B | best, checkpoint-478, checkpoint-1434 |\n| `checkpoints_cls8b_seed123/best/` | (likely Qwen3-8B) | best, checkpoint-956, checkpoint-1434 |\n\n**测试数据:** `data/swebench_full/swebench_test.jsonl`（不是 `test.jsonl`）\n\n看起来 repo-level CLS 的训练 checkpoint 要么从未生成，要么已被删除。你想用上面哪些 checkpoint 来跑 eval，还是需要先重新训练？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-restart-cls-westd-gpu23.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef7a1b7968e3b0dae93e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code eval nan fix deepseek",
+  "task_key": "worker_code_eval-nan-fix-deepseek_20260517T035959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-nan-fix-deepseek_20260517T035959_result.json",
+    "occurrence": 1,
+    "bytes": 1887,
+    "sha256": "2b506c04c6d1da39b2e6dabc9b1dfe96ceb0a15e86f0db751038c2af4e5fe93b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks complete. Here's the summary:\n\n---\n\n## 1. NaN 根因确认\n\n**真正原因不是 prompt ≥ 2048 截断**，而是 DeepSeek tokenizer 的 `apply_chat_template(tokenize=True)` 返回 `BatchEncoding` 对象（而非 `list`），导致 `len()` 返回 2（字典 key 数）而非实际 token 数。\n\n结果：`tokenize_example()` 对每个 sample 产出 `labels = [-100, -100]`（全 masked），CrossEntropyLoss 在 0 个有效 token 上计算 → NaN。\n\n此外，即使修复类型问题后，~19% CLS / ~22% CWM val samples 的 prompt 实际超过 2048 tokens，也会产生 all-masked labels。\n\n## 2. 修复（已应用，不影响当前运行训练）\n\n`train_unified.py` 新增：\n- `_extract_ids()`: 从 `BatchEncoding` 提取 `.input_ids` 列表\n- `preprocess_split()`: 跳过 all-masked samples 并 log 警告\n\n## 3. eval_deepseek_repo.py\n\n路径：`/home/sonny/exec-sim-repair-verifier/eval_deepseek_repo.py`\n\n用法示例：\n```bash\npython eval_deepseek_repo.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints_deepseek_cls_repo_v4/checkpoint-2211 \\\n  --split val --task cls --device cuda:0 --batch_size 4 --max_seq_length 8192\n```\n\n## 4. 当前 4 个训练实验 + checkpoint 路径\n\n| GPU | 实验 | checkpoint |\n|-----|------|-----------|\n| cuda:0 | deepseek-cls-repo-v4 (seed=42) | `checkpoints_deepseek_cls_repo_v4/checkpoint-2211` |\n| cuda:1 | deepseek-cwm-repo (seed=42) | `checkpoints_deepseek_cwm_repo/checkpoint-4422` |\n| cuda:2 | deepseek-cls-repo-s123 (seed=123) | `checkpoints_deepseek_cls_repo_s123/checkpoint-2211` |\n| cuda:3 | deepseek-cwm-repo-s123 (seed=123) | `checkpoints_deepseek_cwm_repo_s123/` (暂无 checkpoint) |\n\n## 5. Eval 状态\n\nGPU 满载（全部 96-99% utilization，17-19GB/32GB 占用），暂无法安全跑 eval。训练结束后可立即用 eval_deepseek_repo.py 评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-nan-fix-deepseek.md"
+}

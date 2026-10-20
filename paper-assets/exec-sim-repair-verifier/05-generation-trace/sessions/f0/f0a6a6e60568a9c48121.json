@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0a6a6e60568a9c48121",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops traj v2 s123 eval",
+  "task_key": "worker_ops_traj-v2-s123-eval_20260516T143028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_traj-v2-s123-eval_20260516T143028_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "18a8ad7afba7dd52a7e8213eb48cf8800d883b5a0c96f7434bdf07c1fa9bdcf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## 结果摘要\n\n### TRAJ v2 s123 结果\n| 指标 | 值 |\n|------|-----|\n| **Test accuracy** | **85.08%** |\n| Best eval_loss | 0.0770 (step 504, epoch 2) |\n| Train loss | 0.0842 |\n| Train runtime | 3021s (~50 min) |\n| Per-test consistency | 78.2% |\n\n### 2-seed 汇总 (TRAJ v2)\n\n| Seed | Test Acc |\n|------|----------|\n| s42 | 83.24% |\n| s123 | 85.08% |\n| **Mean ± Std** | **84.16 ± 1.30%** |\n\n### 与其他方法对比\n\n| Method | Accuracy |\n|--------|----------|\n| CLS (2-seed) | 86.85 ± 0.11% |\n| CWM (2-seed) | 86.83 ± 1.49% |\n| **TRAJ v2 (2-seed)** | **84.16 ± 1.30%** |\n| Majority baseline | 53.59% |\n\nTRAJ v2 低于 CLS/CWM 约 2.7pp，但方差与 CWM 接近。best_eval_loss 在 epoch 2 达到最优（0.077），epoch 3 出现轻微过拟合（0.087）——这与 s42 行为一致（best step 也在 504）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-traj-v2-s123-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fbf22584062d4c903b0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh check home connectivity",
+  "task_key": "worker_ssh_check-home-connectivity_20260515T121631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-home-connectivity_20260515T121631_result.json",
+    "occurrence": 1,
+    "bytes": 403,
+    "sha256": "b7a041a799df058320c68ca0738b095fd99fa55d3396c91efe3d98756f2a3703"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n- **服务器状态**：home-1x5090 **仍不可达**（SSH 超时，10.19 秒）\n- **4B eval 进程状态**：无法检查（服务器不可连接）\n- **GPU 占用状态**：无法检查\n\n服务器仍然处于 SSH 超时状态，和之前一样。需要物理/远程管理方式（如 IPMI、路由器重启、到现场检查）恢复网络后才能确认 eval 结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-home-connectivity.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a61a8f57069cc4f20507",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh d049 cwm seed123 dryrun",
+  "task_key": "worker_ssh_d049-cwm-seed123-dryrun_20260513T094810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d049-cwm-seed123-dryrun_20260513T094810_result.json",
+    "occurrence": 1,
+    "bytes": 1948,
+    "sha256": "111859f2b211fa894272b79aadf0941a718c3bddd432c0ee57960ddcccb164c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 已清空，dry-run 目录已清理。汇报如下：\n\n---\n\n## Dry-Run 汇报\n\n### 1. 超参确认 (D046)\n| 参数 | 值 | 来源 |\n|------|------|------|\n| lr | 5e-5 | L185 `--lr` default |\n| weight_decay | 0.01 | L188 `--weight_decay` default |\n| warmup_ratio | 0.05 | L187 `--warmup_ratio` default |\n| save_total_limit | 5 | L270 硬编码 |\n| LoRA rank/alpha | 16/32 | L189-190 |\n| batch_size × grad_accum | 1 × 32 = 32 effective | L183-184 |\n\n### 2. Dry-Run 通过 (5 steps, seed=123, cuda:1)\n\n| Step | Loss | Grad Norm | LR |\n|------|------|-----------|----|\n| 1 | 33.61 | 43.35 | 0 (warmup) |\n| 2 | 36.60 | 46.61 | 5e-05 |\n| 3 | 31.75 | 39.52 | 3.75e-05 |\n| 4 | 32.62 | 42.15 | 2.5e-05 |\n| 5 | **25.30** | 33.37 | 1.25e-05 |\n\n- 平均 loss: 31.97，第 5 步明显下降\n- 速度: ~8.7s/step (3.66 samples/sec)\n- 模型: Qwen3-4B, trainable 0.29% (11.8M LoRA params)\n- Attention: **sdpa**（flash_attn 未安装）\n- 数据: train=70748, val=9335; train 截断 4.5%, **val 截断 20.2%**（较高）\n- GPU 显存峰值: ~29GB / 32GB（5090 单卡足够）\n- 无报错，训练日志输出 \"Dry-run complete.\"\n\n### 3. cuda:1 状态\n0 MiB / 32607 MiB，空闲可用。\n\n### 4. 推荐正式启动命令\n\n```bash\ncd /home/sonny/exec-sim-repair-verifier && \\\nnohup bash -c 'CUDA_VISIBLE_DEVICES=1 python3 -u train_repo_cwm.py \\\n  --output_dir /root/autodl-tmp/checkpoints_repo_cwm_seed123/ \\\n  --seed 123 \\\n  --run_name repo-cwm-qwen3-4b-lora-seed123 \\\n  --save_steps 100 \\\n  --eval_steps 100 \\\n  2>&1' > /root/autodl-tmp/train_cwm_seed123.log 2>&1 &\necho $!\n```\n\n**注意事项**：\n- output_dir 和 log 放 `/root/autodl-tmp/` 避免 /tmp 清理（dry-run 时 /tmp 被系统清理过）\n- 未安装 flash_attn，当前用 sdpa；如需加速可先装 `flash-attn`\n- val 截断率 20.2% 偏高，如需改善可考虑增大 `--max_seq_length`（当前 2048）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d049-cwm-seed123-dryrun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb1a1c2b37391eb1dbff",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper figure generation",
+  "task_key": "worker_paper_figure-generation_20260515T182118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure-generation_20260515T182118_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "26b1f413961ce3e1ab8c9925d9c53045ca8147d09b0d8d08bcec28beebc63a35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 张图表全部生成完毕，位于 `artifacts/` 目录：\n\n| 文件 | PDF | PNG |\n|------|-----|-----|\n| Fig 1: Task Reformulation | 35K | 218K |\n| Fig 2: Gap Amplification | 22K | 73K |\n| Fig 3: Oracle Stratified | 25K | 139K |\n\n视觉检查结果：\n- **Fig 1** — 三行流程图，CLS/CWM/TRAJ 分色标注，CWM 下方标注 3 failure modes，TRAJ 标注 no per-test signal\n- **Fig 2** — Broken axis 柱状图，下半 0–5pp 放 Function 级别，上半 20–28pp 放 Repo-level 25.59pp，带 error bars 和 \"single seed\" 标注\n- **Fig 3** — 分组柱状图 + 右 Y 轴 Instance share 折线，T=2 处标注 \"55.3% of total advantage\"，T=1 两个 bar 接近 0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-generation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b3ca0206017fde1705a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_4_1778619105.md",
+  "task_key": "loop_4_1778619105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778619105.md",
+    "occurrence": 1,
+    "bytes": 4800,
+    "sha256": "7a2780e5993d20c6b058dbb1ff362fecb309740e6be4de76dd79dbe3f4e730be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-12T20:50:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **seetacloud-westd-4x5090 禁止并行训练**：cgroup 360GB RAM 限制，两个 4B 训练并行必触发 OOM killer（D028，v3+v4 两次确认）\n- **GPU 白名单**：config 允许 cuda:0-3，但 seetacloud cuda:0/1 当前空闲、home 只有 cuda:0。westd-48478 的 cuda:2/cuda:3 已分配但空闲（report.md 标记）\n- **repo-level CWM 已连续 8 次失败**（v1-v6 + 多次 infra 问题）。当前有一个 Worker (`worker_ssh_cwm-v6-restart-d033`) 正在尝试重启 CWM v6（已 15 turns，刚确认 eval_steps 修复成功，训练刚启动）。**不要再另起 Worker 去碰 seetacloud 上的 CWM 进程**，等这个 Worker 回调\n- **train_repo_cwm.py 未同步到 home 服务器**——不要在 home 上跑 CWM\n- **ARR May 25 deadline = 13 天**，repo-level 是 go/no-go 决胜实验，不能再拖\n\n### 2. 🖥️ 基础设施快照\n- **home-1x5090**：1× RTX 5090, 62GB RAM, 非容器\n  - 工作目录：`/home/sonny/exec-sim-repair-verifier`\n  - Python：系统 python3（无 conda/venv）\n  - 数据：`/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/` (70748 samples)\n  - 活跃进程：repo-level-cls-home, PID 2840844, tmux session, cuda:0, ~step 104/6633 (~7s/it, ~12h 剩余)\n  - Log：`~/runs/exec-sim-repair-verifier/repo-level-cls-home.log`\n  - Checkpoint：`/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`, save_steps=50\n\n- **seetacloud-westd-4x5090**：4× RTX 5090, cgroup 360GB RAM\n  - Python：`/root/miniconda3/bin/python`（conda base env），激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 模型缓存：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`\n  - CWM checkpoint：`/root/autodl-tmp/checkpoints_repo_cwm_v6/`\n  - 工作目录：`/home/sonny/exec-sim-repair-verifier`\n  - CWM v6 刚被 Worker 重启（D033/D035），正在验证训练是否正常进行\n\n- **westd-48478**：cuda:2, cuda:3 已分配但空闲（无活跃实验）\n\n- **Cron**：reconcile 显示 repo-level-cls-home 仍有一个活跃 cron 在监控。本 session 无 CronCreate 记录（CWM v6 的 cron 需要 Worker 回调后重新注册）\n\n### 3. 📊 当前状态\n\n**刚做完**：\n- repo-level-cwm-v6 被 SIGTERM (EXIT_CODE=143) 杀死（非 OOM），标记 failed\n- 派出 Worker `worker_ssh_cwm-v6-restart-d033`（15 turns in，正在重启 CWM v6 训练，刚确认 eval_steps 修复成功）\n\n**Registry 概览**：45 实验，44 DONE + 1 RUNNING\n- RUNNING：`repo-level-cls-home`（home-1x5090, cuda:0, PID 2840844, ~step 104/6633）\n- DONE 分布：success 30, failed 9, killed 2, negative 3\n\n**等待中**：\n- Worker `worker_ssh_cwm-v6-restart-d033` 回调 → 确认 CWM v6 是否成功重启，若成功需 submit_training_job 注册 + cron 监控\n- repo-level-cls-home cron 回调 → 训练完成后跑 eval\n- **Paper Agent Step 2**（图表生成 + 模板下载）进展不明，上个 session 未留下 Worker ID\n\n### 4. 📋 待办（条件触发式）\n- **CWM v6 Worker 回调成功** → 确认 registry 中 repo-level-cwm-v6 状态正确（应为 RUNNING），确认 cron 已注册监控新进程。若 Worker 报告重启失败 → 这是第 9 次失败，向 Director 汇报请求决策（是否放弃 CWM repo-level，pivot 到 efficiency framing）\n- **repo-level-cls-home 训练完成**（cron 回调）→ spawn Worker 跑 eval（`eval_repo_verifier.py`），结果写 registry\n- **两个 repo-level 都完成 eval** → paired bootstrap 对比 CLS vs CWM gap → 按 D008 go/no-go 标准判断：≥3pp 全力 EMNLP Main，1-3pp 加 seeds，<1pp kill C1 pivot\n- **westd-48478 cuda:2/3 空闲** → 向 Director 汇报空闲 GPU，建议分配任务或释放（当前本项目无可跑实验用这两张卡）\n- **Paper Agent Step 2** → 确认是否有 Worker 在跑，若无则重新 spawn\n\n### 5. 🎯 战略上下文\n\n**核心结论链**：\n- D004: P2P 回归率 ~1%，per-test 信号来自 task reformulation 而非 granularity\n- D007: 函数级 CWM ≈ CLS（negative），reframe 为 complexity-dependent advantage\n- D008: repo-level go/no-go 标准已定（≥3pp / 1-3pp / <1pp）\n- 函数级已完成：4B gap=1.25pp (p=0.025)，8B gap=2.43pp (p=0.007)，scaling widens gap\n\n**易错点**：\n- CWM repo-level 已 8 次连败，下一个\"你\"可能倾向放弃——但 Director 未做此决策，必须等 Worker 回调结果再判断\n- seetacloud 上 CWM 和 CLS **绝对不能并行**（360GB cgroup 限制）\n- 8B seed123 CLS accuracy = 89.37%（不是 89.52%，89.52 是 4B CLS seed123）\n- paper_framing.md 的 headline result 有 `[Z]` 占位符等 repo-level 数据填入\n- 论文必须披露 val 截断率 20.2% + fail 截断偏差（memory.md 有详细数据）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778619105.md"
+}

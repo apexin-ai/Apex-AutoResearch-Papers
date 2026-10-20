@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "526093db1b205aa4b015",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "code seetacloud 4gpu experiments",
+  "task_key": "worker_code_seetacloud-4gpu-experiments_20260512T054915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_seetacloud-4gpu-experiments_20260512T054915.log",
+    "occurrence": 1,
+    "bytes": 1155328,
+    "sha256": "d2b5f76aa513c55db35d8281fd6c6a53c5f4c3b53ed51edb9d7025c3377b5a24"
+  },
+  "statistics": {
+    "messages": 726,
+    "user_turns": 2,
+    "tool_calls": 258,
+    "roles": {
+      "log": 1,
+      "system": 25,
+      "record": 1,
+      "assistant": 181,
+      "tool_call": 258,
+      "tool_result": 258,
+      "user": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "526093db1b205aa4b015-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 657,
+      "chunks": [
+        {
+          "path": "526093db1b205aa4b015-part-0001.json",
+          "message_count": 171
+        },
+        {
+          "path": "526093db1b205aa4b015-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "526093db1b205aa4b015-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "526093db1b205aa4b015-part-0004.json",
+          "message_count": 126
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 60,
+      "chunks": [
+        {
+          "path": "526093db1b205aa4b015-part-0004.json",
+          "message_count": 54
+        },
+        {
+          "path": "526093db1b205aa4b015-part-0005.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-seetacloud-4gpu-experiments.md"
+}

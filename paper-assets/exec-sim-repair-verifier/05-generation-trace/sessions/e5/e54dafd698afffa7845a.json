@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e54dafd698afffa7845a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "d153 gpu3 deepseek cls s456 fix",
+  "task_key": "worker_d153-gpu3-deepseek-cls-s456-fix_20260519T120035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_d153-gpu3-deepseek-cls-s456-fix_20260519T120035_result.json",
+    "occurrence": 1,
+    "bytes": 1063,
+    "sha256": "e232e08aba77c580592a8d76fcae272868374f3337d781e582535fecef346cf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 RUNNING。\n\n## 报告\n\n### DeepSeek CLS s456 训练状态: **RUNNING**\n- PID 828872 存活，子进程 PID 828877 在 GPU 3 运行\n- GPU 3: 99% 利用率，17206MiB 显存占用\n- 进度: **step 14/549 (3%)**，~8.7s/step\n- 训练数据: 5829 samples (40 dropped for exceeding max_seq_length)\n- ETA: 约 **1.3 小时**完成全部 549 steps (3 epochs)\n- output_dir 暂无 checkpoint（刚启动 ~2 分钟）\n- Registry 已从 PREPARING → QUEUED → RUNNING\n\n### CLS Checkpoint Ablation 进度: **已完成**\nWorker 1 的三个 ablation eval 目录均已存在：\n- `cls8b_s42_ckpt2200_test` ✓\n- `cls8b_s42_ckpt3600_test` ✓\n- `cls8b_s42_ckpt6633_test` ✓\n\n### GPU 全局状态\n| GPU | 利用率 | 显存 | PID | 备注 |\n|-----|--------|------|-----|------|\n| 0 | 88% | 27714MiB/32607MiB | 778334 | 其他任务 |\n| 1 | 73% | 17420MiB/32607MiB | 828376 | 其他任务 |\n| 2 | 95% | 23780MiB/32607MiB | 825036 | 其他任务 |\n| 3 | 99% | 17206MiB/32607MiB | 828877 | **deepseek-cls-repo-s456** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/d153-gpu3-deepseek-cls-s456-fix.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "5489171af84c3d5de0cb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ssh resume qwen training",
+  "task_key": "worker_ssh_resume-qwen-training_20260520T213102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_resume-qwen-training_20260520T213102.log",
+    "occurrence": 1,
+    "bytes": 685904,
+    "sha256": "fa8ff8c5e48f252b86ee35b6bde75d9eb60893570b8412e2317021bc38696c26"
+  },
+  "statistics": {
+    "messages": 499,
+    "user_turns": 0,
+    "tool_calls": 200,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 95,
+      "tool_call": 200,
+      "tool_result": 200,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 499,
+      "chunks": [
+        {
+          "path": "5489171af84c3d5de0cb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5489171af84c3d5de0cb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5489171af84c3d5de0cb-part-0003.json",
+          "message_count": 139
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-resume-qwen-training.md"
+}

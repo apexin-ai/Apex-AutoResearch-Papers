@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fb9fe7b60d55b63aca4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "reviewer / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_2.md",
+    "occurrence": 1,
+    "bytes": 4195,
+    "sha256": "601fa25c0624a00435fe4bafa4678298a6a0a3de3157fc72738026dd73fdb6c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-12T15:32:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud-westd-4x5090 项目 GPU 白名单：**cuda:2, cuda:3**。cuda:0/1 属于其他项目，越界使用必须 CRITICAL 打回\n- westd-48478 和 seetacloud-westd-4x5090 是**同一台物理机**，不要当两台算力\n- seetacloud 根分区仅 **3.6GB free**（89%），所有 checkpoint/输出必须写入 `/root/autodl-tmp/`，否则磁盘爆满\n- 代码路径是 `/home/sonny/exec-sim-repair-verifier/`，**不是** `/root/exec-sim-repair-verifier/`（Agent 已因此错误导致 repo-level-v2 提交失败）\n- ssh_read_only 不支持管道符 `|`，多条件 grep 需拆成多次调用\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090**（root）：4× RTX 5090 32GB，代码 `/home/sonny/exec-sim-repair-verifier/`，conda `/root/miniconda3/`，数据盘 `/root/autodl-tmp/` (151GB free)\n- **home-1x5090**（sonny）：1× RTX 5090 32GB，代码 `/home/sonny/exec-sim-repair-verifier/`，8B 模型 `/home/sonny/projects/verifier-tts-struct-ie/models/Qwen3-8B`\n- 4B 模型：seetacloud HF cache `/root/autodl-tmp/.hf_cache/` 或 `/root/.cache/huggingface/hub/Qwen/Qwen3-4B`\n- W&B：大部分实验 `--no_wandb`，不检查 W&B\n- **活跃进程**：截至 handoff 时 **0 个训练进程**，全部 5 张 GPU 空闲\n\n### 3. 📊 当前状态\n刚完成的审查：\n- **cls8b-seed456** 完成（88.31%），3-paired 8B scaling 分析已发给 Director（gap +2.42pp）\n- **cwm8b-seed456** 完成（86.24%），确认 8B CWM 退化（86.96% < 4B CWM 87.19%）\n- **error-overlap 分析**已审查（94.7% agreement，CLS mutation detection 优势）\n- **repo-level-cls-v2 / repo-level-cwm-v2**：Agent 提交失败（路径错误 `/root/` vs `/home/sonny/`），已发 CRITICAL×2，至今未修复重启\n- **数据不一致已发现**：worker_analysis_cls8b-seed456 汇总的 seed42/123 数字与 eval JSON 不符（差 ~1pp），已通知 Director\n\nRegistry: repo-level-cls-v2 和 repo-level-cwm-v2 为 PREPARING（从未成功启动），cls8b-seed456 为 RUNNING 待更新为 DONE，其余全 DONE\n\n### 4. 📋 待办\n- Agent 修复路径并重提交 repo-level-cls-v2/cwm-v2 → **立即核实**：(1) 路径 `/home/sonny/...`，(2) GPU 白名单 cuda:2/3，(3) output_dir 指向 `/root/autodl-tmp/`，(4) nvidia-smi 确认进程启动\n- repo-level-cls 训练到 save_steps 时 → 检查磁盘空间（根分区 3.6GB 随时爆）\n- repo-level 双完成 → Pillar 1 go/no-go 决策审查（F1 diff ≥3pp → 全力推 EMNLP，1-3pp → 加 seeds，<1pp → kill C1）\n- cls8b-seed456 registry 更新为 DONE → 核对数字是否用了正确的 eval JSON（90.48/89.37/88.31，不是 worker 汇总的错误数字）\n- home GPU 0 空闲 → 应被分配新任务（CWM per-instance prediction 提取 或额外 seed）\n- 论文写作阶段开始 → 检查 paper_provenance.yaml 覆盖率，执行合规检查（Agent 是否看过 red-section skill）\n\n### 5. 🎯 战略上下文\n**核心结论链**：CLS > CWM，优势随复杂度/模型增大而扩大\n- 4B 函数级：CLS 88.43 vs CWM 87.19（+1.25pp, one-sided p=0.025, 5-paired）\n- 8B 函数级：CLS 89.39 vs CWM 86.96（+2.42pp, t(2)=11.4, 3-paired）\n- CWM 8B 退化（86.96 < 4B 87.19）= generation 天花板证据\n- **repo-level 是 Pillar 1 的决胜战场**，至今 0 步完成（反复被 bug/路径错误/进程被杀阻断）\n- TOST ±2pp 等价检验通过 (p=0.007) 支撑 Pillar 2（函数级 CLS≈TRAJ）\n\n**最容易判断错的事**：\n1. Worker 汇总数字不可信——必须回溯 eval JSON 原始文件核对。已发现 8B 3-paired 汇总有 ~1pp 偏差\n2. repo-level 训练每个需 ~15h（cls）和 ~23h（cwm），ARR deadline 2026-05-25 仅剩 13 天，是真正的 GPU-time 硬约束\n3. 不要被\"实验太多跑不完\"的人类直觉误导——只看 GPU-hours 是否够。但当前 GPU 空转问题是真的 critical\n4. seetacloud cuda:0/1 不属于本项目——即使空闲也不能用，之前有 GPU 越界事故教训（D024）\n5. error-overlap 分析仅有 2 CLS + 2 CWM seeds 的 per-instance predictions，论文需要至少 1 对 matched-seed predictions\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-3.md"
+}

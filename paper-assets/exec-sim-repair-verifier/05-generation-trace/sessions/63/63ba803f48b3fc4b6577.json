@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63ba803f48b3fc4b6577",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis verify 8b bootstrap",
+  "task_key": "worker_analysis_verify-8b-bootstrap_20260512T191802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_verify-8b-bootstrap_20260512T191802_result.json",
+    "occurrence": 1,
+    "bytes": 1061,
+    "sha256": "d98eb625e06091665af289d817a42771064bda3e49ee589dbb6a56e0adc4dcee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n### 1. Bootstrap 分析用了正确值\n\n服务器 `8b_scaling_bootstrap_results.json` 明确记录 seed123 cls_acc = **89.37**（不是 89.52，不是 89.40）。所有 3 个 seed 的值与权威 eval 文件完全一致：\n\n| seed | CLS 8B acc | CWM 8B acc | Gap |\n|------|------------|------------|-----|\n| 42 | 90.48 | 87.67 | 2.81 |\n| 123 | **89.37** | 86.98 | 2.39 |\n| 456 | 88.31 | 86.24 | 2.07 |\n\n**无需修正。**\n\n### 2. 正确的 8B 统计量（已验证与服务器一致）\n\n| 指标 | 值 |\n|------|------|\n| Mean gap | 2.42pp |\n| SD | 0.371pp |\n| Paired t | 11.31 |\n| p (one-sided) | 0.0039 |\n| Cohen's d | 6.53 |\n| Bootstrap 95% CI | [2.07, 2.81] |\n| P(gap > 0) | 1.0000 |\n\n### 3. 两个分析文件的差异说明\n\n本地 `4b_8b_cls_cwm_paired_bootstrap_corrected.json` 中 8B mean gap = 2.26pp（而非 2.42pp），这不是错误——那是 per-instance clustered bootstrap（按 problem_id 聚类后池化），与 seed-level 简单平均方法不同。两者都用了正确的 89.37。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-verify-8b-bootstrap.md"
+}

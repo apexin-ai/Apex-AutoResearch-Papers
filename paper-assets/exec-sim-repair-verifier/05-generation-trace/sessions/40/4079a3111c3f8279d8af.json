@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4079a3111c3f8279d8af",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code per test precision recall",
+  "task_key": "worker_code_per-test-precision-recall_20260512T054931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_per-test-precision-recall_20260512T054931_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "2a850d0ff1656bf0ccd497c3f5993379dbb2e75f36e914af4b3e2c43c53583fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载成功，推理已开始。\n\n**已完成：**\n- `eval_precision_recall.py` 已写入 `/home/sonny/exec-sim-repair-verifier/`（326行）\n- 任务已通过 `submit_training_job` 提交，tmux session: `per-test-precision-recall`\n- 模型 (Qwen3-4B + LoRA) 已加载，正在对 1890 个 test 样本推理\n- 输出将保存到 `eval_precision_recall_results.json`，包含：总体 confusion matrix + P/R/F1、按 mutation_type 分组、按 problem test count 分桶、FP/FN 错误样本分析"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-per-test-precision-recall.md"
+}

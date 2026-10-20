@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e44447ef950942716c2f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "analysis cwm overfitting",
+  "task_key": "worker_analysis_cwm-overfitting_20260521T075005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cwm-overfitting_20260521T075005.log",
+    "occurrence": 1,
+    "bytes": 675658,
+    "sha256": "d2cc3f33b00b5247cfbb342490139e886ab991970fd532955afa94181dadcea6"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 14,
+      "tool_result": 14,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 43,
+      "chunks": [
+        {
+          "path": "e44447ef950942716c2f-part-0001.json",
+          "message_count": 31
+        },
+        {
+          "path": "e44447ef950942716c2f-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-cwm-overfitting.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62ffbb7c524712aa2a96",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check 14b baseline progress",
+  "task_key": "worker_check_14b-baseline-progress_20260522T181315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_14b-baseline-progress_20260522T181315_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "72e2014483a86279e2702d1ac32907c0a7a71b836e5854f0ee8c71cd204c3841"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 模型下载（进行中）\n- **下载进程** PID 200698（modelscope snapshot_download）仍在运行\n- **当前进度**: 3.76 GB / ~29 GB（约 13%）\n- 所有 8 个 shard 文件在 `._____temp/` 中，尚未移入主目录\n- **下载速率**: 从日志看约 300 MB/min（~5 MB/s）\n- **注意**: 日志显示 02:01 时从 6.1G 回落到 16M，下载发生过一次重启\n\n### 时间估算\n- 剩余 ~25 GB，按当前速率约需 **80-90 分钟**（预计 UTC 03:40 前后完成）\n- 下载完成后，eval 脚本会自动启动 0-shot 和 3-shot 评估\n\n### 并行任务\n服务器上有两个后台任务都在等同一份模型下载完成：\n1. **PID 201294** (`run_14b_eval.sh`) — 你关注的 baseline eval（0-shot + 3-shot）\n2. **PID 200355** (`auto_train_14b.sh`, tmux session `cls14b-func-s42`) — cls QLoRA 训练 + eval\n\n### GPU 状态\n4× RTX 5090，全部空闲（0% 利用率，0 MiB 显存占用），等待下载完成。\n\n### 结果文件\n`results_14b_0shot.json` 和 `results_14b_3shot.json` 均不存在，尚未开始评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-14b-baseline-progress.md"
+}

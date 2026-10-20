@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "8787179005395a526399",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ssh repo level cwm v6 submit",
+  "task_key": "worker_ssh_repo-level-cwm-v6-submit_20260512T185917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_repo-level-cwm-v6-submit_20260512T185917.log",
+    "occurrence": 1,
+    "bytes": 627538,
+    "sha256": "056442cbc5ea8ec2780d11ad0ba39baad558f51bdc4619844c36445824e73523"
+  },
+  "statistics": {
+    "messages": 404,
+    "user_turns": 0,
+    "tool_calls": 141,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 118,
+      "tool_call": 141,
+      "tool_result": 141,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 404,
+      "chunks": [
+        {
+          "path": "8787179005395a526399-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8787179005395a526399-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8787179005395a526399-part-0003.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-repo-level-cwm-v6-submit.md"
+}

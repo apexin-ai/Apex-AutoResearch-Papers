@@ -1,0 +1,170 @@
+{
+  "schema_version": "1.0",
+  "id": "f1bba7c07f5115daefcb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "code integrate cwm results",
+  "task_key": "worker_code_integrate-cwm-results_20260521T061652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_integrate-cwm-results_20260521T061652.jsonl",
+    "occurrence": 1,
+    "bytes": 10948,
+    "sha256": "7e3010f34c6084c466c161a01e5fa5812c353e5367e4d910eb99cdfc513b2744"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T06:17:45.329917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_integrate-cwm-results_20260521T061652",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/integrate_cwm_results.py",
+              "content": "# Integrate CWM eval results across seeds/models into Table 3, LaTeX, W5 CSV, and quality checks.\nimport argparse\nimport json\nimport math\nimport os\nimport sys\nfrom pathlib import Path\n\n\nCLS_REPO = {\n    \"Qwen3-8B\": {42: 85.34, 123: 85.60, 456: 84.40},\n    \"DeepSeek\": {42: 82.61, 123: 74.93, 456: 86.15},\n}\nTRAJ_REPO = {\n    \"Qwen3-8B\": {42: 72.92, 123: 77.08, 456: 70.83},\n    \"DeepSeek\": {42: 81.25, 123: 75.00, 456: 75.00},\n}\nSEEDS = [42, 123, 456]\nSEED_SUFFIXES = [\"s42\", \"s123\", \"s456\"]\n\n\ndef load_eval(directory: str | None) -> dict | None:\n    if directory is None:\n        return None\n    p = Path(directory) / \"eval_repo_cwm.json\"\n    if not p.exists():\n        print(f\"WARNING: {p} not found, filling with NaN\", file=sys.stderr)\n        return None\n    with open(p) as f:\n        return json.load(f)\n\n\ndef mean_std_ci(vals: list[float]) -> tuple[float, float, float, float]:\n    clean = [v for v in vals if not math.isnan(v)]\n    if len(clean) == 0:\n        return float(\"nan\"), float(\"nan\"), float(\"nan\"), float(\"nan\")\n    mu = sum(clean) / len(clean)\n    if len(clean) < 2:\n        return mu, float(\"nan\"), float(\"nan\"), float(\"nan\")\n    var = sum((x - mu) ** 2 for x in clean) / (len(clean) - 1)\n    sd = math.sqrt(var)\n    # t critical value for 95% CI with df=2 (3 seeds)\n    t_crit = 4.303\n    margin = t_crit * sd / math.sqrt(len(clean))\n    return mu, sd, mu - margin, mu + margin\n\n\ndef write_table3(models: dict, output_dir: Path):\n    lines = [\"=== Table 3: CWM Repo-level Results ===\", \"\"]\n    header = f\"{'Model':<13}| {'s42':>6}  | {'s123':>6}  | {'s456':>6}  | {'Mean':>6}  | {'Std':>5}  | 95% CI\"\n    lines.append(header)\n    for name, seeds in models.items():\n        accs = [seeds[s].get(\"accuracy\", float(\"nan\")) if seeds[s] else float(\"nan\") for s in SEEDS]\n        mu, sd, lo, hi = mean_std_ci(accs)\n        vals = [f\"{v:6.2f}\" if not math.isnan(v) else \"   NaN\" for v in accs]\n        mu_s = f\"{mu:6.2f}\" if not math.isnan(mu) else \"   NaN\"\n        sd_s = f\"{sd:5.2f}\" if not math.isnan(sd) else \"  NaN\"\n        ci_s = f\"[{lo:.2f}, {hi:.2f}]\" if not math.isnan(lo) else \"[NaN, NaN]\"\n        lines.append(f\"{name:<13}| {vals[0]}  | {vals[1]}  | {vals[2]}  | {mu_s}  | {sd_s}  | {ci_s}\")\n\n    lines += [\"\", \"Unparseable rates:\"]\n    for name, seeds in models.items():\n        rates = [seeds[s].get(\"unparseable_rate\", float(\"nan\")) if seeds[s] else float(\"nan\") for s in SEEDS]\n        mu_r = sum(r for r in rates if not math.isnan(r)) / max(sum(1 for r in rates if not math.isnan(r)), 1)\n        vals = [f\"{v:5.1f}%\" if not math.isnan(v) else \"  NaN%\" for v in rates]\n        mu_s = f\"{mu_r:5.1f}%\" if not math.isnan(mu_r) else \"  NaN%\"\n        lines.append(f\"{name:<13}| {vals[0]} | {vals[1]} | {vals[2]} | {mu_s}\")\n\n    (output_dir / \"table3_cwm.txt\").write_text(\"\\n\".join(lines) + \"\\n\")\n\n\ndef write_latex(models: dict, output_dir: Path):\n    lines = [\"% CWM rows for Table 3 - auto-generated\"]\n    for name, seeds in models.items():\n        accs = [seeds[s].get(\"accuracy\", float(\"nan\")) if seeds[s] else float(\"nan\") for s in SEEDS]\n        mu, sd, _, _ = mean_std_ci(accs)\n        mu_s = f\"{mu:.2f}\" if not math.isnan(mu) else \"NaN\"\n        sd_s = f\"{sd:.2f}\" if not math.isnan(sd) else \"NaN\"\n        lines.append(f\"% {name} CWM\")\n        lines.append(f\"{mu_s} {{\\\\small$\\\\pm${sd_s}}} &\")\n    (output_dir / \"table3_cwm_latex.tex\").write_text(\"\\n\".join(lines) + \"\\n\")\n\n\ndef write_w5_csv(models: dict, output_dir: Path):\n    rows = [\"model,formulation,complexity,seed,accuracy,unparseable_rate\"]\n    for name, seeds in models.items():\n        for s in SEEDS:\n            d = seeds[s]\n            acc = f\"{d['accuracy']:.2f}\" if d and \"accuracy\" in d else \"NaN\"\n            upr = f\"{d['unparseable_rate']:.2f}\" if d and \"unparseable_rate\" in d else \"NaN\"\n            rows.append(f\"{name},CWM,repo,{s},{acc},{upr}\")\n    (output_dir / \"w5_cwm_data.csv\").write_text(\"\\n\".join(rows) + \"\\n\")\n\n    all_rows = [\"model,formulation,complexity,seed,accuracy,unparseable_rate\"]\n    for name in [\"Qwen3-8B\", \"DeepSeek\"]:\n        for s in SEEDS:\n            all_rows.append(f\"{name},CLS,repo,{s},{CLS_REPO[name][s]:.2f},0.00\")\n        for s in SEEDS:\n            all_rows.append(f\"{name},TRAJ,repo,{s},{TRAJ_REPO[name][s]:.2f},0.00\")\n        for s in SEEDS:\n            d = models[name][s]\n            acc = f\"{d['accuracy']:.2f}\" if d and \"accuracy\" in d else \"NaN\"\n            upr = f\"{d['unparseable_rate']:.2f}\" if d and \"unparseable_rate\" in d else \"NaN\"\n            all_rows.append(f\"{name},CWM,repo,{s},{acc},{upr}\")\n    (output_dir / \"w5_all_data.csv\").write_text(\"\\n\".join(all_rows) + \"\\n\")\n\n\ndef write_quality_check(models: dict, output_dir: Path):\n    lines = [\"=== Quality Check ===\", \"\"]\n    any_issue = False\n\n    for name, seeds in models.items():\n        lines.append(f\"--- {name} ---\")\n        accs = {}\n        for s in SEEDS:\n            d = seeds[s]\n            if d is None:\n                lines.append(f\"  seed {s}: MISSING\")\n                any_issue = True\n                continue\n            acc = d.get(\"accuracy\", float(\"nan\"))\n            upr = d.get(\"unparseable_rate\", float(\"nan\"))\n            accs[s] = acc\n\n            if not math.isnan(upr) and upr > 50:\n                lines.append(f\"  seed {s}: unparseable_rate={upr:.1f}% > 50% (expected for CWM repo-level)\")\n            elif not math.isnan(upr):\n                lines.append(f\"  seed {s}: unparseable_rate={upr:.1f}% <= 50% — UNEXPECTEDLY LOW\")\n                any_issue = True\n\n            if not math.isnan(acc) and not (40 <= acc <= 90):\n                lines.append(f\"  seed {s}: accuracy={acc:.2f} OUT OF RANGE [40, 90] — CHECK\")\n                any_issue = True\n\n        if 42 in accs:\n            baseline = accs[42]\n            for s in [123, 456]:\n                if s in accs and abs(accs[s] - baseline) > 15:\n                    lines.append(f\"  ANOMALY: seed {s} accuracy ({accs[s]:.2f}) differs from s42 ({baseline:.2f}) by >{15}pp\")\n                    any_issue = True\n        lines.append(\"\")\n\n    if not any_issue:\n        lines.append(\"All checks passed.\")\n    else:\n        lines.append(\"Some checks flagged — review above.\")\n\n    (output_dir / \"quality_check.txt\").write_text(\"\\n\".join(lines) + \"\\n\")\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Integrate CWM eval results across seeds and models.\")\n    parser.add_argument(\"--qwen_s42_dir\", type=str, default=None)\n    parser.add_argument(\"--qwen_s123_dir\", type=str, default=None)\n    parser.add_argument(\"--qwen_s456_dir\", type=str, default=None)\n    parser.add_argument(\"--deepseek_s42_dir\", type=str, default=None)\n    parser.add_argument(\"--deepseek_s123_dir\", type=str, default=None)\n    parser.add_argument(\"--deepseek_s456_dir\", type=str, default=None)\n    parser.add_argument(\"--output_dir\", type=str, default=\"artifacts/cwm_integration/\")\n    args = parser.parse_args()\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    qwen_dirs = [args.qwen_s42_dir, args.qwen_s123_dir, args.qwen_s456_dir]\n    ds_dirs = [args.deepseek_s42_dir, args.deepseek_s123_dir, args.deepseek_s456_dir]\n\n    models = {\n        \"Qwen3-8B\": {s: load_eval(d) for s, d in zip(SEEDS, qwen_dirs)},\n        \"DeepSeek\": {s: load_eval(d) for s, d in zip(SEEDS, ds_dirs)},\n    }\n\n    loaded = sum(1 for m in models.values() for v in m.values() if v is not None)\n    print(f\"Loaded {loaded}/6 eval results.\")\n\n    write_table3(models, output_dir)\n    write_latex(models, output_dir)\n    write_w5_csv(models, output_dir)\n    write_quality_check(models, output_dir)\n\n    print(f\"Outputs written to {output_dir}/\")\n    for f in sorted(output_dir.iterdir()):\n        print(f\"  {f.name}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T06:17:45.330422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/integrate_cwm_results.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_integrate-cwm-results_20260521T061652",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T06:17:45.330616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_integrate-cwm-results_20260521T061652",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python integrate_cwm_results.py --help",
+              "description": "Verify script --help output"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T06:17:45.330761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 127\n/bin/bash: line 1: python: command not found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_integrate-cwm-results_20260521T061652",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T06:17:45.330911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_integrate-cwm-results_20260521T061652",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 integrate_cwm_results.py --help",
+              "description": "Verify script --help output"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T06:17:45.331046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "usage: integrate_cwm_results.py [-h] [--qwen_s42_dir QWEN_S42_DIR]\n                                [--qwen_s123_dir QWEN_S123_DIR]\n                                [--qwen_s456_dir QWEN_S456_DIR]\n                                [--deepseek_s42_dir DEEPSEEK_S42_DIR]\n                                [--deepseek_s123_dir DEEPSEEK_S123_DIR]\n                                [--deepseek_s456_dir DEEPSEEK_S456_DIR]\n                                [--output_dir OUTPUT_DIR]\n\nIntegrate CWM eval results across seeds and models.\n\noptions:\n  -h, --help            show this help message and exit\n  --qwen_s42_dir QWEN_S42_DIR\n  --qwen_s123_dir QWEN_S123_DIR\n  --qwen_s456_dir QWEN_S456_DIR\n  --deepseek_s42_dir DEEPSEEK_S42_DIR\n  --deepseek_s123_dir DEEPSEEK_S123_DIR\n  --deepseek_s456_dir DEEPSEEK_S456_DIR\n  --output_dir OUTPUT_DIR"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_integrate-cwm-results_20260521T061652",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T06:17:45.331210+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并通过 `--help` 验证。输出 4 个文件到 `--output_dir`：`table3_cwm.txt`、`table3_cwm_latex.tex`、`w5_cwm_data.csv`（CWM only）+ `w5_all_data.csv`（含 hardcoded CLS/TRAJ）、`quality_check.txt`。缺失目录会 warning 并用 NaN 填充。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_integrate-cwm-results_20260521T061652"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/code-integrate-cwm-results.md"
+}

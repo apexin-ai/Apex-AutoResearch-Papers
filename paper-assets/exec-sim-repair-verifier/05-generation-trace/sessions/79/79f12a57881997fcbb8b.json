@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79f12a57881997fcbb8b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cls v2 final restart",
+  "task_key": "worker_ssh_cls-v2-final-restart_20260512T215402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cls-v2-final-restart_20260512T215402_result.json",
+    "occurrence": 1,
+    "bytes": 498,
+    "sha256": "4b76c1dc815559dc2a52b218094184811af606f99b51cbf85be26d7a1ebb6a09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前进度汇报：**\n\n1. **旧进程 kill**: PID 2881844 已终止，无残留\n2. **TrainingArguments**: 所有参数已正确，无需修改\n   - save_strategy=steps, save_steps=200, eval_strategy=steps, eval_steps=200\n   - save_total_limit=3, load_best_model_at_end=True, metric_for_best_model=eval_loss\n3. **新 PID**: 2885139，GPU 19463 MiB / 90% utilization，训练中\n4. **step 200 checkpoint**: 等待中，约 20 分钟后到达。已设置自动轮询监控。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cls-v2-final-restart.md"
+}

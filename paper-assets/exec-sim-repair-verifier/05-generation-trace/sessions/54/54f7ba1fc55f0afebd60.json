@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54f7ba1fc55f0afebd60",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops check shard4 status",
+  "task_key": "worker_ops_check-shard4-status_20260516T042731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-shard4-status_20260516T042731_result.json",
+    "occurrence": 1,
+    "bytes": 1017,
+    "sha256": "ba354f4accb57f38d3a97212a6ca1248d68da2f53d9f9e4164a5ae90a963ba40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### shard4：已完成\n- **进程已结束**，cuda:2 上无运行进程，GPU 利用率 0%，显存 0 MiB\n- 完成时间：2026-05-16 12:12:46\n- 全部 688 个样本处理完毕（9784 总 steps，含 resumed），结果已写入\n- **Accuracy: 65.55%**，F1 macro: 52.66%，majority baseline: 75.73%（低于 baseline 10.2pp）\n- 504 个 unparseable predictions（73.3%），这是主要问题\n- 49 个被截断（7.12%），截断样本准确率反而更高（85.71% vs 64.01%）\n\n### 其他 shard 进程状态\n| Shard | 预期 PID | 实际 GPU 进程 PID | GPU | 利用率 | 显存 | 状态 |\n|-------|---------|------------------|-----|--------|------|------|\n| v3 (shard1) | 443221 | 443221 | GPU 0 | 88% | 21133 MiB | **运行中** |\n| shard2 | 448094 | 448100 | GPU 1 | 88% | 21133 MiB | **运行中**（PID 略有偏差） |\n| shard3 | 453335 | 453335 | GPU 3 | 88% | 21133 MiB | **运行中** |\n| shard4 | 未记录 | — | GPU 2 | 0% | 0 MiB | **已完成** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-shard4-status.md"
+}

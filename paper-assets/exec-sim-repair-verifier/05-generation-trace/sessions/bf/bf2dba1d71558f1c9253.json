@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf2dba1d71558f1c9253",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cwm unparseable samples",
+  "task_key": "worker_analysis_cwm-unparseable-samples_20260517T084428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cwm-unparseable-samples_20260517T084428_result.json",
+    "occurrence": 1,
+    "bytes": 953,
+    "sha256": "ea16bfec9a4aacba98046a810f773fa0c66338c1522facefaf67644477dcef99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已写入 `artifacts/qualitative_cwm_examples.json`。\n\n3 个样本覆盖了两种 unparseable 失败模式和一个 parseable 对比：\n\n| ID | Model | Failure Mode |\n|---|---|---|\n| `qwen3-repo-cwm-unparseable-1` | Qwen3-4B repo | 幻觉完整 Django test runner 日志（1248 tokens），无 pass/fail verdict |\n| `qwen3-repo-cwm-unparseable-2` | Qwen3-4B repo | 幻觉源代码 + 重复退化（`from _pytest.config import ...` 无限循环直到截断，4542 tokens） |\n| `deepseek-func-cwm-parseable-1` | DeepSeek-6.7B func | 正确输出 `FAIL: SyntaxError: expected ':'`（31 tokens），格式完全符合预期 |\n\n核心发现：repo-level CWM 的 unparseable 不是单一原因，而是两种不同的退化模式——(a) 模型把 CWM 任务误解为 execution trace 生成，(b) 模型在长 context 下陷入 autoregressive degeneration。func-level 输入短而明确，DeepSeek 完全没有这个问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cwm-unparseable-samples.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad9ea922ca8d2e3b924f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "prepare cwm s42 epoch2 eval cmd",
+  "task_key": "worker_prepare_cwm-s42-epoch2-eval-cmd_20260517T194907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prepare_cwm-s42-epoch2-eval-cmd_20260517T194907_result.json",
+    "occurrence": 1,
+    "bytes": 1447,
+    "sha256": "05b2c3d67513da02fe1cc25ad417daead6652a81365347508022be42c3a22c55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "checkpoint-8844 存在。当前 GPU 1 上的完整命令已获取。\n\n```\nCWM s42 epoch 3 eval 命令（当前 GPU 1）：\nCUDA_VISIBLE_DEVICES=1 python3 /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_deepseek_cwm_repo/best/ --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir /home/sonny/exec-sim-repair-verifier/data/swebench_full --device cuda:0 --batch_size 1 --max_seq_length 4096 --max_new_tokens 512 --output eval_deepseek_cwm_repo_s42.json --pred_output eval_deepseek_cwm_repo_s42_predictions.jsonl --output_dir /root/autodl-tmp/eval_results/deepseek_cwm_repo_s42_test --split test\n\nCWM s42 epoch 2 eval 命令（GPU 2 释放后启动）：\nCUDA_VISIBLE_DEVICES=2 python3 /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_deepseek_cwm_repo/checkpoint-8844/ --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --data_dir /home/sonny/exec-sim-repair-verifier/data/swebench_full --device cuda:0 --batch_size 1 --max_seq_length 4096 --max_new_tokens 512 --output eval_deepseek_cwm_repo_s42_ep2.json --pred_output eval_deepseek_cwm_repo_s42_ep2_predictions.jsonl --output_dir /root/autodl-tmp/eval_results/deepseek_cwm_repo_s42_ep2_test --split test\n```\n\n注意：脚本内部用 `--device cuda:0`，实际 GPU 由 `CUDA_VISIBLE_DEVICES` 控制映射。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prepare-cwm-s42-epoch2-eval-cmd.md"
+}

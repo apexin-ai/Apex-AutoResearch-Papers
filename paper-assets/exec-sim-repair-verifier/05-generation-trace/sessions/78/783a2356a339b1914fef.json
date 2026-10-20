@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "783a2356a339b1914fef",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls v5 conda ckpt sweep westd",
+  "task_key": "worker_eval_cls-v5-conda-ckpt-sweep-westd_20260514T023919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls-v5-conda-ckpt-sweep-westd_20260514T023919_result.json",
+    "occurrence": 1,
+    "bytes": 1246,
+    "sha256": "e4bd4aaed450f39055bf7c0525d7adcf5e97d4d42fff9b4e4d96628b7d8a2ccd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n## 任务 A: 已完成 eval 结果\n\n### CLS v5-conda (Qwen3-4B) checkpoint-200\n| 指标 | 值 |\n|------|-----|\n| Accuracy | 52.96% (majority baseline 72.96%, gap -20.0pp) |\n| F1 macro | 52.89% |\n| F1 fail | 51.02% (P=35.5%, R=90.6%) |\n| F1 pass | 54.76% (P=91.8%, R=39.0%) |\n| Unparseable | 132/9784 |\n\n模型严重偏向预测 fail（recall_fail=90.6%），但 precision_fail 很低（35.5%），导致大量 pass 被误判为 fail（FN=4353）。\n\n### CLS 8B-conda (Qwen3-8B) checkpoint-200\n| 指标 | 值 |\n|------|-----|\n| Accuracy | 70.22% (majority baseline 72.96%, gap -2.74pp) |\n| F1 macro | 68.21% |\n| F1 fail | 60.23% (P=47.1%, R=83.4%) |\n| F1 pass | 76.19% (P=91.4%, R=65.3%) |\n| Unparseable | 136/9784 |\n\n8B 比 4B 好很多：accuracy +17pp, F1 macro +15pp。仍偏向 fail 但程度大幅缓解。\n\n## 任务 B: ckpt-400/600 eval 启动确认\n\n- GPU 2: `eval_cls_v5_ckpt400` — checkpoint-400，模型已加载，推理进行中（GPU 2 utilization 100%, 17167 MiB）\n- GPU 3: `eval_cls_v5_ckpt600` — checkpoint-600，模型已加载，推理进行中（GPU 3 utilization 100%, 17167 MiB）\n\n预计约 30 分钟完成（参考 ckpt-200 eval 用时约 27 分钟）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls-v5-conda-ckpt-sweep-westd.md"
+}

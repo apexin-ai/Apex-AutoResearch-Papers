@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a760b04d7a1ee4830233",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check seetacloud status and relay prep",
+  "task_key": "worker_check_seetacloud-status-and-relay-prep_20260517T152005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_seetacloud-status-and-relay-prep_20260517T152005_result.json",
+    "occurrence": 1,
+    "bytes": 1664,
+    "sha256": "f77cd31708b9aa466fbbeccc91db719624996360358044132e4192f21a8c19b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. cls-repo-s123 best checkpoint\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | **训练完成** (6633/6633) |\n| Best checkpoint | `/root/autodl-tmp/checkpoints_deepseek_cls_repo_s123/best/` |\n| 大小 | 67MB (LoRA adapter) |\n| **Tar 包** | **`/tmp/deepseek_cls_repo_s123_best.tar.gz`** — 60MB |\n| Test eval | GPU 2 正在跑, 1440/9784 (14.7%), running_acc=82.0% |\n\n注意: trainer_state 中 best_metric=inf, best_model_checkpoint=None. `best/` 目录直接存在, 内含 adapter_model.safetensors (64MB) + tokenizer + config.\n\n---\n\n### 2. GPU 0/1/3 实验进度\n\n| GPU | 实验 | 当前进度 | 状态 | ETA |\n|-----|------|---------|------|-----|\n| **0** | deepseek_cls_repo_v4 | **6472/6633 (97.6%)** | 训练中, ~10.5s/step | **~28 min** |\n| **1** | deepseek_cwm_repo (s42) | 8844/13266, 正在 epoch-2 eval **2678/4668 (57.4%)** | Eval 中 ~3.2 it/s | eval ~10 min, 然后 epoch 3 训练 **~10.4h** |\n| **3** | deepseek_cwm_repo_s123 | **9124/13266 (68.8%)** | 训练中, ~8.5s/step | **~9.8h** |\n\n---\n\n### 3. cuda:2 状态 + traj 准备\n\n**GPU 2 不空闲** — 正在跑 cls-repo-s123 test eval (1440/9784, 预计 ~40 min 完成).\n\n**deepseek-traj 准备情况**:\n- 数据已有: `traj_train.jsonl`, `traj_val.jsonl`, `traj_test.jsonl`\n- 训练脚本: `train_traj_verifier.py` 存在\n- 已有 v2 checkpoints: `checkpoints_deepseek_traj_v2`, `checkpoints_deepseek_traj_v2_s123`\n- eval 相关: `run_traj_predictions_v2.py`, `eval_traj_v2_s42_results.json` 存在\n\nGPU 2 预计 ~40 min 后空闲, 可排 traj-func-v2 实验. 另外 GPU 0 的 cls-repo-v4 ~28 min 后完成, 届时也可释放."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-seetacloud-status-and-relay-prep.md"
+}

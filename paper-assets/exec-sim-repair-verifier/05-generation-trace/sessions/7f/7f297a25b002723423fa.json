@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f297a25b002723423fa",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_17.md",
+  "task_key": "loop_17",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17.md",
+    "occurrence": 1,
+    "bytes": 4884,
+    "sha256": "787db0e539864a31c33846e3637407f9da92c3477861561410eed9179fcd5fc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-15T19:46:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd cuda:0/1/2/3 + home cuda:0。白名单外的 GPU 即使 Director 指令也必须 push back\n- **D103**: seq_length/bs/precision/lr 参数变更需 Director 审批。s42 resume sweep 必须 seq8192（seq4096 被 kill 过）\n- **eval 禁止 --max_samples**: test eval 必须完整 n=9784, val eval 必须完整 n=9335，否则与主表不可比\n- **标 FAILED 前必须 ps -p PID 确认进程已退出**，RUNNING 实验所在 GPU 不得提交新任务\n- **CWM 8B eval 用 eval_repo_cwm.py**（不是 eval_repo_cls.py），max_new_tokens=1024\n- **home 版 eval_repo_cls.py 不支持 --max_new_tokens 参数**\n\n### 2. 🖥️ 基础设施快照\n- **Westd**: seetacloud-westd-4x5090, account=root, 工作目录=/home/sonny/exec-sim-repair-verifier\n  - Python: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n  - CWM 8B ckpts: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/` (ckpt-400, 4000-4300)\n  - s42 resume ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/` (从 ckpt-600 开始, 200步间隔)\n  - seed123 ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/`, backup ckpt-3000 在 `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/`\n- **Home**: home-1x5090, account=sonny, 工作目录=/home/sonny/exec-sim-repair-verifier\n  - 4B v5 ckpts: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n  - 用 python3 不是 python\n- **活跃进程 (4 crons)**:\n  - cwm8b-ckpt400-test-eval: PID 381618, cuda:3\n  - cls8b-s42-resume-val-sweep-seq8192-v2: PID 398981, cuda:0\n  - repo-level-cwm-8b-conda-v5: PID 400279, cuda:2\n  - cls8b-s42-resume-val-sweep-gpu1: PID 405526, cuda:1\n\n### 3. 📊 当前状态\nWestd 4 张 5090 全满，Paper Writing 阶段进行中，DDL 2026-05-25（剩 10 天）。\n\n**RUNNING (4)**:\n| exp_id | GPU | 进度 | ETA (UTC) |\n|--------|-----|------|-----------|\n| cwm8b-ckpt400-test-eval | cuda:3 | 1544/9784 (15.8%) | May 16 09:15 |\n| repo-level-cwm-8b-conda-v5 | cuda:2 | ~57% training | May 16 05:30 |\n| cls8b-s42-resume-val-sweep-seq8192-v2 | cuda:0 | ckpt-1800 (1/21) | May 16 10:50 |\n| cls8b-s42-resume-val-sweep-gpu1 | cuda:1 | 刚启动 (10 ckpts) | May 16 04:00 |\n\n**PENDING (4)**: repo-level-cls-8b-s42-ckpt200-val, cls8b-ckpt3000-test-v2, cls8b-ckpt3000-test-eval, cls8b-s42-extended-val-sweep\n**PREPARING (1)**: cls8b-s42-resume-ckpt1000-test-mutation (per-mutation-type breakdown)\n**Worker 池**: 0 active（全部在等 cron 回调）\n\n### 4. 📋 待办（条件触发式）\n- **cls8b-s42-resume-val-sweep-gpu1 完成 (~May 16 04:00)** → 合并 GPU0+GPU1 val sweep 结果，编译完整 s42 resume val curve (21 ckpts)，更新 report.md + 汇报 Director\n- **repo-level-cwm-8b-conda-v5 训练完成 (~May 16 05:30)** → spawn worker 提交 final ckpt test eval（用 eval_repo_cwm.py），需要空闲 GPU（cuda:1 或 cuda:2 应已释放）\n- **cwm8b-ckpt400-test-eval 完成 (~May 16 09:15)** → 第一个 CWM 8B test 数据点，填主表 CWM 8B 行，计算 8B-8B CLS-CWM gap，汇报 Director\n- **cls8b-s42-resume-val-sweep-seq8192-v2 完成 (~May 16 10:50)** → 完整 s42 resume val curve + unparseable 趋势分析，确认 ckpt-1000 仍为 val-best\n- **CWM 8B final ckpt test eval 完成** → 对比 ckpt-400 vs final，锁定 CWM 8B 最终数字，如果 ckpt-400 > final 则确认过拟合 narrative\n- **GPU 释放后** → 推进 PENDING 实验（cls8b-s42-resume-ckpt1000-test-mutation 优先，提供 per-mutation breakdown 给论文 error analysis）\n\n### 5. 🎯 战略上下文\n- **核心结论**: CLS 在 repo-level 大幅优于 CWM（~26pp gap），在 function-level 两者等价。CLS 和 CWM 有互补错误模式（oracle ensemble 90.63%）\n- **论文主表已锁定** (D088): CLS 8B s42 test=83.52%, CLS 8B seed123 test=85.60%, CWM 4B ~58-59%。**缺 CWM 8B test 数字**——这是当前最关键的 blocker\n- **CWM 8B eval_loss 在 step 400 后持续上升** (0.286→0.482)，预期 ckpt-400 是 best，final ckpt 可能更差。如果 CWM 8B test 也在 ~58% 区间，8B-8B gap ~25pp，paper story 成立\n- **s42 resume val sweep 是补全数据**: 原始 s42 只到 ckpt-1600，resume 从 ckpt-600 继续到 ckpt-5800，需要确认 val curve 在 ckpt-1000 后确实下降（过拟合 evidence）\n- **易错点**: (1) s42 resume ckpts 从 ckpt-600 开始，不含 200/400；(2) home 版 eval 脚本缺 --max_new_tokens；(3) unparseable rate 受 seq_length 影响，不同 seq 下的数据不可直接对比；(4) seed123 只剩 200/3000/6200-6633 五个 ckpt（save_total_limit=5 删了中段）\n- **决策链**: D088(val-selected) → D093(multi-seed确认) → D096(8B-8B对比) → D103(禁止未授权参数降级)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-copy-2.md"
+}

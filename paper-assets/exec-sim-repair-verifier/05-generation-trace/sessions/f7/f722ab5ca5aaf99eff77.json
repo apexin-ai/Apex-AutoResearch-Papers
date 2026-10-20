@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f722ab5ca5aaf99eff77",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra cwm status check",
+  "task_key": "worker_infra_cwm-status-check_20260511T222609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_cwm-status-check_20260511T222609_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "b908f0a5c48c20ee36e64e73aa9a793dedb89bd9f1a49c7ffece52ab18aa16b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。结果：\n\n| 指标 | Classification | CWM Generation | 差值 |\n|------|---------------|----------------|------|\n| Overall Acc | 87.5% | 87.51% | +0.01pp |\n| Pass F1 | 87.1% | 87.31% | +0.21pp |\n| Fail F1 | 87.9% | 87.71% | -0.19pp |\n\n**结论: negative** — 假设未得到验证。CWM generation 与 classification 在 pass/fail 判别上几乎持平，task reformulation (generation→classification) 没有带来显著提升。\n\n附加发现：\n- CWM exact match rate 84.02%（生成的 output 与 ground truth 完全匹配的比例）\n- SyntaxError/NameError 类别 exact match 很高（98.8%/77.3%），但 IndexError/OverflowError 很差（25%/0%）——罕见错误类型泛化不足\n- Classification 方案更轻量高效，在 pass/fail 判别上效果等价，仍是更优选择"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cwm-status-check.md"
+}

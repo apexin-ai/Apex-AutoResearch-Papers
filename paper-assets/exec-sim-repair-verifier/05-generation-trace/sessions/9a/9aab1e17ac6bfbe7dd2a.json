@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9aab1e17ac6bfbe7dd2a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops check seed123 ckpt3000",
+  "task_key": "worker_ops_check-seed123-ckpt3000_20260515T073032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-seed123-ckpt3000_20260515T073032_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "5b5f8f15577f245f7daf6561fc35aa62361f4cbf39eddfd23e55d45a4814f09f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| ckpt-3000 | 存在于 `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`，adapter 完整 |\n| test@8192 eval | tmux session 已创建，等 GPU 3 上 ckpt-6400 val（PID 343016, 2130/9335）结束后自动启动 |\n| GPU 分配 | GPU 3 (CUDA_VISIBLE_DEVICES=3)，预计 ~15:52 UTC 空出 |\n| Registry | `cls8b-seed123-ckpt3000-test8192-eval` → RUNNING |\n\n270 秒后首次轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-seed123-ckpt3000.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b71427de4a3999870656",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diag cls8b s42 ckpt1200 val8192 v2 log",
+  "task_key": "worker_diag_cls8b-s42-ckpt1200-val8192-v2-log_20260515T023641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_cls8b-s42-ckpt1200-val8192-v2-log_20260515T023641_result.json",
+    "occurrence": 1,
+    "bytes": 1240,
+    "sha256": "f482ce37868ca1412ad76ac4002254aa667f63a81ef30ddd044c7f6f1c6b5eb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 进程状态\n- **PID 316940**: 存活，10:10 UTC 启动，在 cuda:0 运行 `eval_repo_cls.py` 评估 ckpt-1200 val@8192\n- 评估刚刚完成（10:39 UTC），耗时约 30 分钟\n\n### 日志情况\n- **实际日志**: `/tmp/eval_ckpt1200.log` — PID 316940 的输出，完整运行 9335/9335\n- **v2.log** (`~/runs/.../cls8b-s42-ckpt1200-val8192-v2.log`): 另一个短命进程（10:07-10:10），仅跑到 740/9335 就停了，非 PID 316940\n- **v3.log**: 不存在\n\n### 评估结果（ckpt-1200, val@8192, seed=42）\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **87.76%** (+11.9pp vs majority 75.9%) |\n| **F1 macro** | **81.25%** |\n| F1 fail | 70.2% (P=85.0%, R=59.8%) |\n| F1 pass | 92.3% (P=88.3%, R=96.7%) |\n| Unparseable | 9 |\n\n### Registry 更新\n- **v3** (`cls8b-s42-ckpt1200-val8192-v3`): RUNNING → DONE/success，写入 metrics、修正 log_path\n- **eval** (`cls8b-s42-ckpt1200-val8192-eval`): RUNNING → DONE/success（同一 PID 316940 的重复条目）\n- **v2**: 维持 DONE/failed 不变（GPU 冲突导致的重复提交）\n\n### GPU 状态\n4 张 5090 全部在用（GPU0 刚释放，GPU1-3 训练中 93-99% 利用率）。cuda:0 现在空闲可接新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-cls8b-s42-ckpt1200-val8192-v2-log.md"
+}

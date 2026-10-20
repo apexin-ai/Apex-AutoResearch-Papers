@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "694f824250c9305bb506",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check home full status 2h",
+  "task_key": "worker_check_home-full-status-2h_20260514T193400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_home-full-status-2h_20260514T193400_result.json",
+    "occurrence": 1,
+    "bytes": 1617,
+    "sha256": "e840c570dd7cc56fc6fe5f3b7bb07fa2fd17c04fda6d949076de5442b1395c16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== GPU 状态 ===\nRTX 5090 | 85°C | 532W/575W | 31727/32607 MiB (97.3%) | GPU-Util 100%\nPID 3159474: python eval_repo_cls.py (seed123 ckpt-400 val@5120)\n\n=== Tmux sessions ===\neval_8b_val5120_fix: 1 window (created Thu May 14 10:31:30 2026)\n\n=== 已完成的 val@5120 结果 ===\n| Checkpoint | N | Accuracy | F1_macro | F1_pass | F1_fail | Trunc% | Unparse% |\n|---|---|---|---|---|---|---|---|\n| 8B ckpt-3000 | 9335 | **89.50%** | **84.08%** | 93.37% | 74.78% | 2.5% | 0% |\n| 8B conda ckpt-400 | 9335 | 80.47% | 75.84% | 86.42% | 65.27% | 2.5% | 0% |\n\nConfusion matrices:\n- **8B ckpt-3000**: TP=6902 FP=799 FN=181 TN=1453 (Prec=89.6% Rec=97.4%)\n- **8B conda ckpt-400**: TP=5799 FP=539 FN=1284 TN=1713 (Prec=91.5% Rec=81.9%)\n\n=== 正在运行 ===\n当前 eval: **seed123 ckpt-400** (Qwen3-4B) val@5120\n进度: **5904/9335** (63.2%), running_acc=**85.67%**, F1_macro=79.17%\n速度: ~120 samples/min (batch ~8s/16样本)\n预计完成: **~13:00 PDT** (还需 ~28 min)\n\n=== 异常 ===\n1. **val_sweep 脚本 OOM 崩溃** — 8B eval 完成后，sweep 脚本尝试在同一 GPU 上接力加载 seed123 ckpt-400 的 4B LoRA adapter，触发 `CUDA error: out of memory`（8B 模型残留显存未释放）。崩溃时间: 11:52。\n2. **手动恢复** — tmux session `eval_8b_val5120_fix` 中已手动重启 seed123 eval (PID 3159474, 11:51 开始)，当前运行正常。\n3. **Sweep 队列中断** — val_sweep.sh 不存在（未找到脚本文件），无法确认后续还有哪些 checkpoint 排队。如果 sweep 计划包含更多 checkpoint，需要手动逐个启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-home-full-status-2h.md"
+}

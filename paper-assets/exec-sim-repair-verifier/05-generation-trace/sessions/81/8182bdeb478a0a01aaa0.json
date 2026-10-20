@@ -1,0 +1,332 @@
+{
+  "schema_version": "1.0",
+  "id": "8182bdeb478a0a01aaa0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "write s53 baseline narrative",
+  "task_key": "worker_write_s53-baseline-narrative_20260522T211425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_write_s53-baseline-narrative_20260522T211425.jsonl",
+    "occurrence": 1,
+    "bytes": 16435,
+    "sha256": "e8e599ac23089ca752c89b48cdd0d32c007385a981cc88579632b7c6c4ffb875"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T21:15:52.089895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T21:15:52.090424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe systematically compare \\cls{}, \\cwm{}, and \\traj{} across two representative code LLM families, two complexity levels, and multiple seeds to characterize the formulation landscape for neural code verification.\n5\t\n6\t\\subsection{Experimental Setup}\n7\t\\label{sec:setup}\n8\t\n9\t\\paragraph{Datasets.}\n10\t\\emph{Function-level}: mutated variants from HumanEval~\\cite{chen2021humaneval} and MBPP~\\cite{austin2021mbpp} (five mutation types), labels verified by execution. 19,076 samples (train 15,290 / val 1,896 / test 1,890; pass:fail $\\approx$ 52:48, majority baseline 51.75\\%).\n11\t\\emph{Repo-level}: per-test instances from SWE-bench Verified~\\cite{chowdhury2024swebenchverified} mutants. ${\\sim}$70K training samples; val ($n{=}9{,}335$) and test ($n{=}9{,}784$) have zero problem overlap (majority baseline 72.96\\%). Val-based checkpoint selection follows standard practice~\\cite{jimenez2024swebench} where validation loss is computable; runs using truncate preprocessing produce NaN validation loss because repo-level execution traces often exceed the 2,048-token sequence length limit; after truncation, many samples have all target tokens removed (labels entirely $-$100), producing degenerate loss---a formulation-inherent weakness that classification and trajectory formulations avoid by design. NaN loss defaults to the final epoch checkpoint (affects DeepSeek \\cls{} s123, all \\cwm{} runs, and Qwen3 \\traj{} runs; see Appendix~\\ref{app:hyperparams}).\n12\t\n13\t\\paragraph{Models and training.}\n14\tWe fine-tune Qwen3-4B and Qwen3-8B~\\cite{qwen2025qwen3} with Low-Rank Adaptation (LoRA)~\\cite{hu2022lora} (rank 16, 3 epochs) across five seeds. Seeds 42/123/456 use bfloat16; seeds 789/0 use NormalFloat 4-bit (NF4) quantization~\\cite{dettmers2024qlora} to test robustness to precision reduction (function-level accuracy remains within seed noise across both precisions; see footnote in \\S\\ref{sec:equivalence}). As a cross-model consistency chec\n…[truncated 22462 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T21:15:52.090647+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T21:15:52.091111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T21:15:52.091386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "old_string": "0-shot & 8B (Qwen3) & 1 & 68.70 \\\\\n0-shot & 6.7B (DeepSeek) & 1 & 63.00 \\\\",
+              "new_string": "0-shot & 8B (Qwen3) & 1 & 68.70 \\\\\n0-shot & 14B (Qwen3) & 1 & 66.24 \\\\\n0-shot & 6.7B (DeepSeek) & 1 & 63.00 \\\\"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T21:15:52.091642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T21:15:52.091787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "old_string": "3-shot ICL & 8B (Qwen3) & 1 & 68.78 \\\\\n3-shot ICL & 6.7B (DeepSeek) & 1 & 59.95 \\\\",
+              "new_string": "3-shot ICL & 8B (Qwen3) & 1 & 68.78 \\\\\n3-shot ICL & 14B (Qwen3) & 1 & 73.12 \\\\\n3-shot ICL & 6.7B (DeepSeek) & 1 & 59.95 \\\\"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T21:15:52.092056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T21:15:52.092227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "old_string": "At 14B, \\cls{} reaches \\placeholder{14B-CLS-ACC}\\% (\\placeholder{14B-CLS-DELTA}\\pp{} from 8B), \\cwm{} reaches \\placeholder{14B-CWM-ACC}\\% (\\placeholder{14B-CWM-DELTA}\\pp{}), and \\traj{} reaches \\placeholder{14B-TRAJ-ACC}\\% (\\placeholder{14B-TRAJ-DELTA}\\pp{}). The \\cls{}--\\cwm{} gap \\placeholder{14B-GAP-TREND} from 2.62\\pp{} at 8B to \\placeholder{14B-CLS-CWM-GAP}\\pp{} at 14B. \\placeholder{14B-SCALING-TAKEAWAY}\n\n\\cwm{} flat scaling",
+              "new_string": "At 14B, \\cls{} reaches \\placeholder{14B-CLS-ACC}\\% (\\placeholder{14B-CLS-DELTA}\\pp{} from 8B), \\cwm{} reaches \\placeholder{14B-CWM-ACC}\\% (\\placeholder{14B-CWM-DELTA}\\pp{}), and \\traj{} reaches \\placeholder{14B-TRAJ-ACC}\\% (\\placeholder{14B-TRAJ-DELTA}\\pp{}). The \\cls{}--\\cwm{} gap \\placeholder{14B-GAP-TREND} from 2.62\\pp{} at 8B to \\placeholder{14B-CLS-CWM-GAP}\\pp{} at 14B. \\placeholder{14B-SCALING-TAKEAWAY}\n\n\\paragraph{Baseline scaling.} Prompting baselines exhibit a mixed pattern at 14B. In the 3-shot setting, Qwen3-14B (73.12\\%) outperforms Qwen3-8B (68.78\\%) by 4.34\\pp{}, consistent with the expected benefit of increased capacity for in-context learning. In contrast, 14B 0-shot accuracy (66.24\\%) falls 2.46\\pp{} below 8B (68.70\\%); this reversal may reflect differences in instruction tuning between the two model sizes rather than a capacity limitation, and we do not draw strong conclusions from it. Regardless of prompting strategy, the best prompting result (14B 3-shot, 73.12\\%) remains 16.82\\pp{} below fine-tuned \\cls{} at 8B (89.94\\%, Table~\\ref{tab:main_results}), confirming that model scaling alone does not substitute for task-specific fine-tuning at function level.\n\n\\cwm{} flat scaling"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T21:15:52.092480+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T21:15:52.092634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "offset": "44",
+              "limit": "25"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T21:15:52.092785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "44\t\\traj{} (fine-tuned) & 6.7B & 2 & 84.16 $\\pm$ 1.30 \\\\\n45\t\\midrule\n46\t\\multicolumn{4}{l}{\\emph{Prompting baselines}} \\\\\n47\t0-shot & 8B (Qwen3) & 1 & 68.70 \\\\\n48\t0-shot & 14B (Qwen3) & 1 & 66.24 \\\\\n49\t0-shot & 6.7B (DeepSeek) & 1 & 63.00 \\\\\n50\tZS LLM-as-judge & 8B (Qwen3) & 1 & 64.40 \\\\\n51\tZS LLM-as-judge & 6.7B (DeepSeek) & 1 & 56.56 \\\\\n52\tZS LLM-as-judge & 32B (NF4) & 1 & 71.69 \\\\\n53\t3-shot ICL & 8B (Qwen3) & 1 & 68.78 \\\\\n54\t3-shot ICL & 14B (Qwen3) & 1 & 73.12 \\\\\n55\t3-shot ICL & 6.7B (DeepSeek) & 1 & 59.95 \\\\\n56\t\\midrule\n57\tMajority (pass) & --- & --- & 51.75 \\\\\n58\t\\bottomrule\n59\t\\end{tabular}}\n60\t\\end{table}\n61\t\n62\tAll three formulations achieve comparable accuracy on Qwen3-4B: \\cls{} 88.43\\% ($\\pm$0.78), \\cwm{} 87.19\\% ($\\pm$0.37), \\traj{} 86.30\\% ($\\pm$0.97). DeepSeek-Coder-6.7B shows: \\cls{} 86.85\\%, \\cwm{} 86.83\\%, \\traj{} 84.16\\%. The \\cls{}--\\cwm{} gap (0.02--1.24\\pp{}) is within seed noise in both families. However, the \\cls{}--\\traj{} gap is model-dependent: $<$1\\pp{} on Qwen3 but 2.69\\pp{} on DeepSeek-Coder, exceeding the $\\pm$2\\pp{} equivalence margin (\\S\\ref{sec:equivalence}). \\cls{} and \\cwm{} are robustly equivalent; \\traj{} parity is model-contingent. Zero-shot baselines (Tables~\\ref{tab:main_results} and~\\ref{tab:repo_level}) establish that repo-level verification requires fine-tuning (0-shot$\\to$fine-tuned gains of 35--36\\pp{}) and that formulation choice matters only at repo level (\\cls{} outperforms \\cwm{} by 18--26\\pp{}).\n63\t\n64\t\n65\t\\subsection{Scaling Behavior}\n66\t\\label{sec:scaling}\n67\t\n68\tBeyond overall accuracy, we examine whether formulation ranking is stable across model sizes. Table~\\ref{tab:scaling} compares all three formulations at 4B, 8B, and 14B using seeds 42 and 123 in full bfloat16 precision (excluding NF4 seeds to isolate the size effect)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T21:15:52.092960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "offset": "100",
+              "limit": "25"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T21:15:52.093136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t%   - CLS continues scaling → three-point consistency; classification robust across sizes\n101\t%   - CWM remains flat → generation stagnation persists at 14B\n102\t%   - CWM recovers → reframe as delayed scaling onset for generation\n103\t%   - CLS-CWM gap widens → divergent trajectories; strengthen practical recommendation\n104\t%   - CLS-CWM gap narrows → scaling partially compensates for formulation choice\n105\t%   - TRAJ overtakes CWM → trajectory scoring as efficient middle ground\n106\t%   - Update Figure~\\ref{fig:scaling_gap} with 14B data point\n107\tAt 14B, \\cls{} reaches \\placeholder{14B-CLS-ACC}\\% (\\placeholder{14B-CLS-DELTA}\\pp{} from 8B), \\cwm{} reaches \\placeholder{14B-CWM-ACC}\\% (\\placeholder{14B-CWM-DELTA}\\pp{}), and \\traj{} reaches \\placeholder{14B-TRAJ-ACC}\\% (\\placeholder{14B-TRAJ-DELTA}\\pp{}). The \\cls{}--\\cwm{} gap \\placeholder{14B-GAP-TREND} from 2.62\\pp{} at 8B to \\placeholder{14B-CLS-CWM-GAP}\\pp{} at 14B. \\placeholder{14B-SCALING-TAKEAWAY}\n108\t\n109\t\\paragraph{Baseline scaling.} Prompting baselines exhibit a mixed pattern at 14B. In the 3-shot setting, Qwen3-14B (73.12\\%) outperforms Qwen3-8B (68.78\\%) by 4.34\\pp{}, consistent with the expected benefit of increased capacity for in-context learning. In contrast, 14B 0-shot accuracy (66.24\\%) falls 2.46\\pp{} below 8B (68.70\\%); this reversal may reflect differences in instruction tuning between the two model sizes rather than a capacity limitation, and we do not draw strong conclusions from it. Regardless of prompting strategy, the best prompting result (14B 3-shot, 73.12\\%) remains 16.82\\pp{} below fine-tuned \\cls{} at 8B (89.94\\%, Table~\\ref{tab:main_results}), confirming that model scaling alone does not substitute for task-specific fine-tuning at function level.\n110\t\n111\t\\cwm{} flat scaling ($-$0.03\\pp{}) may reflect suboptimal hyperparameter transfer at 8B rather than a fundamental limitation; we do not claim generation \\emph{cannot} benefit from scale. At function level, outputs are short status s\n…[truncated 3241 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T21:15:52.093321+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修改已完成：\n\n1. **Table 1** 新增两行 14B baseline 数据（0-shot 66.24%, 3-shot ICL 73.12%），分别插在对应方法组内 8B 和 DeepSeek 之间\n2. **§5.3** 新增 `\\paragraph{Baseline scaling.}` 段落（line 109），覆盖三个要点：\n   - 3-shot 14B > 8B (+4.34pp)，scale 在 few-shot 有效\n   - 0-shot 14B < 8B (-2.46pp)，措辞审慎归因于 instruction tuning 差异\n   - 最优 baseline (73.12%) 仍低于 fine-tuned CLS 8B (89.94%) 16.82pp，scale 不能替代 fine-tuning"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_s53-baseline-narrative_20260522T211425"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/write-s53-baseline-narrative.md"
+}

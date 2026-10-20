@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b01618cd940f0fea9c0e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose server failures 20260516",
+  "task_key": "worker_diagnose_server-failures-20260516_20260516T002555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_server-failures-20260516_20260516T002555_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "41b7a685a57afbcbb3610ce763635a15fb3deba40c692b2f4e062da04756b987"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。核心发现：\n\n**CLS ablation** — 误报，实际已成功完成。Accuracy 83.04%，F1 macro 76.80%，结果完整。\n\n**CWM 8B v5 训练** — 进程在 step 6198/6633 被系统杀死，无错误日志。最新 checkpoint 是 6100，剩余 533 steps（约 1.8 小时）。推测根因：训练做 checkpoint-6100 eval 时与同 GPU 上的 ckpt-400 eval 争抢显存触发 OOM。\n\n**CWM ckpt-400 eval** — EXIT_CODE=137 确认 SIGKILL。已完成 5280/9784 样本（54%），部分结果 5280 行完整可用。\n\n4 块 RTX 5090 当前全部空闲，可立即恢复训练。建议先单独跑完 CWM v5 训练（从 ckpt-6100 resume），完成后再跑 eval，避免 GPU 资源冲突。\n\n报告已写入 `artifacts/diag_server_failures_20260516.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-server-failures-20260516.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c196d158f67122ccf132",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check eval home repolevel",
+  "task_key": "worker_check_eval-home-repolevel_20260514T014720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval-home-repolevel_20260514T014720_result.json",
+    "occurrence": 1,
+    "bytes": 1576,
+    "sha256": "1aff17184f647a00274796d852f034db112f0c7297d216fd5cfdbbc4bb98b9c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了。项目根目录下的 `eval_repo_cls.json` 就是 seed123 的 repo-level eval 结果。\n\n## Repo-level CLS Seed123 Eval 结果\n\n**状态**: 已完成（May 13 18:46），进程已退出（PID 3018282 不存在，GPU 空闲）\n\n**Checkpoint**: `checkpoints_repo_cls_seed123_home/checkpoint-200`\n\n| 指标 | 值 |\n|------|------|\n| n_instances | **9784** (repo-level ✓) |\n| accuracy | 64.75% |\n| majority_baseline | 72.96% |\n| gap_vs_majority | **-8.21 pp** |\n| f1_fail | **55.16** |\n| f1_pass | 70.96 |\n| **f1_macro** | **63.06** |\n| precision_fail | 42.04 |\n| precision_pass | 88.92 |\n| recall_fail | **80.16** |\n| recall_pass | 59.04 |\n| unparseable | 132 (1.35%) |\n\n**Confusion Matrix**: tn=2121, fp=525, fn=2924, tp=4214 (support: fail=2646, pass=7138)\n\n**对比原始 seed (results/repo_cls_v4_eval)**:\n\n| 指标 | 原始 seed | seed123 | 差异 |\n|------|-----------|---------|------|\n| accuracy | 66.11 | 64.75 | -1.36 |\n| f1_fail | 36.30 | **55.16** | **+18.86** |\n| f1_pass | 76.91 | 70.96 | -5.95 |\n| f1_macro | 56.61 | **63.06** | **+6.45** |\n| recall_fail | 35.71 | **80.16** | **+44.45** |\n\nseed123 在 f1_macro（+6.45）和 fail 召回（+44.45 pp）上大幅优于原始 seed，虽然 accuracy 略低（因为原始 seed 几乎全预测 pass 来凑 majority baseline）。seed123 的预测更平衡，fail 检测能力显著更强。\n\n注意：两者都只 eval 了 checkpoint-200（早期 checkpoint），seed123 训练产生了更多 checkpoint（到 1000），尚未 eval 更优 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-home-repolevel.md"
+}

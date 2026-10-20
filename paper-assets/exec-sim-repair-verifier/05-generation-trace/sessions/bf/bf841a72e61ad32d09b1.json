@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf841a72e61ad32d09b1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose deepseek cwm repo s123 train",
+  "task_key": "worker_diagnose_deepseek-cwm-repo-s123-train_20260520T025627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_deepseek-cwm-repo-s123-train_20260520T025627_result.json",
+    "occurrence": 1,
+    "bytes": 519,
+    "sha256": "0ce8fd9bbe8940c403db0ec753993ae8f345580c24f80db60c855ffefd87bf61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练实际成功完成，EXIT_CODE=2 是 wrapper 脚本误报。**\n\n关键发现：\n- 3 epochs 全部跑完（2865/2865 steps），train_loss=0.077，eval_loss=0.043\n- 日志中 error/traceback/oom 匹配数为 0\n- `best/` checkpoint 完整保存（67MB adapter），另有 checkpoint-1910 和 checkpoint-2865\n- GPU 2 已释放，磁盘空间充足（53G 可用）\n\n**无需重新训练。** 建议将 registry 状态从 `failed` 更新为 `done`，直接用 `best/` checkpoint 进行 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-deepseek-cwm-repo-s123-train.md"
+}

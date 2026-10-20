@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "a7d4a81a8c2bab3c0e91",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "code fix repo level sample weight",
+  "task_key": "worker_code_fix-repo-level-sample-weight_20260512T141229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-repo-level-sample-weight_20260512T141229.log",
+    "occurrence": 1,
+    "bytes": 1017728,
+    "sha256": "113f1320170cc39c66bc8b3c9383963b10430c0018f6d3dea41c92f8466fe88b"
+  },
+  "statistics": {
+    "messages": 547,
+    "user_turns": 1,
+    "tool_calls": 236,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 67,
+      "tool_call": 236,
+      "tool_result": 236,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 543,
+      "chunks": [
+        {
+          "path": "a7d4a81a8c2bab3c0e91-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a7d4a81a8c2bab3c0e91-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a7d4a81a8c2bab3c0e91-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a7d4a81a8c2bab3c0e91-part-0004.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "a7d4a81a8c2bab3c0e91-part-0004.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-repo-level-sample-weight.md"
+}

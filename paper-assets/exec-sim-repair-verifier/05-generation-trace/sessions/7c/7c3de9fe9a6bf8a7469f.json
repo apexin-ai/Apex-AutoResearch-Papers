@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c3de9fe9a6bf8a7469f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "exp deepseek traj v2 fixed s123",
+  "task_key": "worker_exp_deepseek-traj-v2-fixed-s123_20260516T135313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_deepseek-traj-v2-fixed-s123_20260516T135313_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "a34fcc9a2838cc78aefda9f40de01821bacae37f27b242b3c7ba8ea1872eb700"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练已在运行，无需重新启动。**\n\n汇总：\n\n| 项目 | 值 |\n|------|-----|\n| PID | 513115 |\n| Total steps | 756 |\n| 当前进度 | 237/756 (31%) |\n| 速度 | ~3.8s/it |\n| 预估剩余 | ~33 min (已跑 ~15 min) |\n| 预估完成时间 | ~22:30 UTC (2026-05-16) |\n| GPU 3 显存 | 18277 MiB, 87% 利用率 |\n| LABEL_MAP | `{1: \"resolved\", 0: \"unresolved\"}` ✓ |\n| seed | 123 ✓ |\n| output_dir | `/root/autodl-tmp/checkpoints_deepseek_traj_v2_s123/` |\n\n训练在 21:38 已由前次尝试成功启动，正常推进中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-deepseek-traj-v2-fixed-s123.md"
+}

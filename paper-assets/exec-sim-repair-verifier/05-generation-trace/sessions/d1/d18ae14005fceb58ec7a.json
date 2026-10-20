@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d18ae14005fceb58ec7a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research results consolidation",
+  "task_key": "worker_research_results-consolidation_20260514T224514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_results-consolidation_20260514T224514_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "03236b1b85f1235093c47f6a769610ffb2953eea6dc15095ca0a01c4ee349ca1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。`artifacts/comprehensive_results_summary.md` 包含 41 个 DONE+success 实验的全部结果，按以下结构组织：\n\n- **Function-level**: CLS 4B (5 seeds, mean 88.43%), CWM 4B (5 seeds, mean 87.19%), CLS 8B (3 seeds, mean 89.39%), CWM 8B (3 seeds, mean 86.96%)\n- **Trajectory-level**: 5 seeds, mean 86.30%\n- **Repo-level**: CLS v5 test best 82.35% (4B), 84.79% (8B), checkpoint sweep + val/test 对比 + max_seq_length 影响\n- **Zero-shot baselines**: Qwen3-8B 64.4%, Qwen3-32B 71.69%\n- **Statistical**: ICC=0.19 (block correlation), CLS≈TRAJ (TOST p=0.007), oracle stratified analysis\n- **Simulation**: per-test advantage 需要 P2P regression ≥10%\n\n已排除 8B ckpt-3000 旧训练产物，每个数字标注了 exp_id 来源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-results-consolidation.md"
+}

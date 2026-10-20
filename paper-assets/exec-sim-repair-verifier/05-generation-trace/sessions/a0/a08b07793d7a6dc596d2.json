@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a08b07793d7a6dc596d2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix cwm eval max tokens",
+  "task_key": "worker_fix_cwm-eval-max-tokens_20260517T161926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cwm-eval-max-tokens_20260517T161926_result.json",
+    "occurrence": 1,
+    "bytes": 924,
+    "sha256": "caf112724c52e1bf71a4758dada8f063423b7b3251340835aecc7c29a7607ec9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CWM eval 已成功重启，推理已开始（1/9784）。GPU1 占用 16GB，一切正常。\n\n## 汇总\n\n### 1. CWM eval max_new_tokens\n- **实际值: 128** (已确认)\n- 已终止旧进程，清理旧结果，以 **max_new_tokens=512** 重新启动\n- 新进程 PID=662946，在 GPU1 (CUDA_VISIBLE_DEVICES=1) 上运行\n- 每样本约 3-13s（token 数增加后会慢一些），9784 样本预估 **8-15 小时**完成\n\n### 2. CLS-s123 unparseable 诊断\n- 2796/9784 (28.6%) unparseable，**与 truncated 100% 重合**\n- 原因：`max_seq_length=2048` 对部分样本不够，输入被截断后模型输出乱码续写（如 `\", but replace it with a new one\"`）而非 `pass`/`fail`\n- 这不是 parser 过严，是 **输入截断导致模型行为退化**\n- 修复方案：用更大的 `max_seq_length`（如 4096）重跑 cls-s123 eval，或对截断样本默认预测 majority class（pass）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cwm-eval-max-tokens.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b699372cc01a91cd0f44",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check gpu status all",
+  "task_key": "worker_check_gpu-status-all_20260516T100839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu-status-all_20260516T100839_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "6deb2153c0d318509f35e7956ed9e13240d1d74966e7dda40304e291db3ee96a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告\n\n| GPU | 利用率 | 显存 | PID | 任务 |\n|-----|--------|------|-----|------|\n| **cuda:0** | 99% | 19.6/32.6 GB | 470268 | `train_unified.py` — **deepseek-cls-repo-level**（repo 级 cls，epoch 3） |\n| **cuda:1** | 100% | 19.7/32.6 GB | 479953 | `train_unified.py` — **deepseek-cwm-repo-s42**（CWM task，SWE-bench 数据，seed 42） |\n| **cuda:2** | 89% | 17.8/32.6 GB | 489475 | `train_unified.py` — **deepseek-cls-func-seed123**（func 级 cls，LoRA r16/α32，seed 123） |\n| **cuda:3** | 0% | 0 GB | — | **空闲** |\n\n**cuda:2 (PID 489475)**：仍在运行。checkpoint 目录 `checkpoints_deepseek_cls_func_seed123/` 已产出 `checkpoint-956`，训练进行中。\n\n**cuda:3**：完全空闲，无进程。Inference benchmark 已有产出 `artifacts/benchmark_inference_results.json`，脚本 `benchmark_inference.py` 和 `benchmark_func_inference.py` 均存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-status-all.md"
+}

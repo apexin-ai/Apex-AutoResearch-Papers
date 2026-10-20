@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dabfbf6c5ef532c92fb5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis error overlap and perclass f1",
+  "task_key": "worker_analysis_error-overlap-and-perclass-f1_20260512T145117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_error-overlap-and-perclass-f1_20260512T145117_result.json",
+    "occurrence": 1,
+    "bytes": 1283,
+    "sha256": "13c6b11a3cf08b7f9012f22ad058deade595311515633df238964aab408e046a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**Error Overlap (4 pairs, 1890 samples/pair)**\n- 94.7% agreement — CLS 和 CWM 在绝大多数样本上一致\n- CLS-only correct 3.0% vs CWM-only correct 2.3%，CLS 净优势 +0.7pp\n- CLS 优势集中在 **mutation 类型**：variable_swap (+4.5 samples net), operator_swap (+6.5), off_by_one (+10.0)\n- CWM 在 **original 代码**上反而更好（-8.5 samples net）\n- Both-wrong 样本偏向 pass 类（~130 pass vs ~53 fail），两个模型都对某些 pass 样本有系统性弱点\n\n**Per-class F1**\n- CLS 优势来自更高的 **fail recall** (+2.08pp) 和 **pass precision** (+1.88pp)\n- Fail F1 差距 (+0.82pp) > Pass F1 差距 (+0.49pp)\n- 按 mutation 类型：variable_swap CLS 优势最大 (+5.3pp acc)，original CWM 反而更好 (-2.1pp)\n\n**论文启示**：CLS 优势本质上是 **mutation detection 优势**而非通用 execution simulation 优势。CWM 在理解未修改代码的行为上略胜一筹。这支持 \"complexity-dependent advantage\" 假说，且为 framing 提供了更精确的角度。\n\n产出文件：\n- 服务器：`analysis_error_overlap.py`, `analysis_error_overlap_report.json`, `predictions_cwm_seed789.jsonl`\n- Artifact: `art_20260512_9b68a3` (error_overlap_analysis report)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-error-overlap-and-perclass-f1.md"
+}

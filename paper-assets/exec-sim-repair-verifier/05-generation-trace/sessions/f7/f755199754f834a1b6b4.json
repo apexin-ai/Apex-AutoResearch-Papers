@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f755199754f834a1b6b4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops monitor qwen3 8b traj eval v2",
+  "task_key": "worker_ops_monitor-qwen3-8b-traj-eval-v2_20260518T232755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-qwen3-8b-traj-eval-v2_20260518T232755_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "6b2df5f46ba051e46e273c8e17bc3eaaaedc5878138ac37e1fa775efa52c9ece"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均已完成。汇总结果：\n\n---\n\n### Qwen3-8B TRAJ Repo Eval 结果\n\n| Metric | Best Checkpoint (epoch 3) | Checkpoint-98 (epoch 2) |\n|---|---|---|\n| **variant_accuracy** | **70.8% (34/48)** | **72.9% (35/48)** |\n| per_test_consistency | 70.8% (34/48) | 72.9% (35/48) |\n| f1_macro | 70.0% | 72.9% |\n| fail_recall (unresolved) | 95.5% | 77.3% |\n| pass_recall (resolved) | 50.0% | 69.2% |\n| unparseable | 0 | 0 |\n\n**关键发现**: Checkpoint-98 (epoch 2) 比 best checkpoint (epoch 3) 更优:\n- variant accuracy 高 2.1pp (72.9% vs 70.8%)\n- 预测更均衡: pass_recall 从 50.0% 提升至 69.2%, fail_recall 从 95.5% 降至 77.3%\n- F1 macro 高 2.9pp (72.9% vs 70.0%)\n\nBest checkpoint 严重偏向预测 unresolved (13 个 resolved 误判), checkpoint-98 的类别平衡明显更好。**Table 4 应使用 checkpoint-98 的结果 (72.9%)**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-qwen3-8b-traj-eval-v2.md"
+}

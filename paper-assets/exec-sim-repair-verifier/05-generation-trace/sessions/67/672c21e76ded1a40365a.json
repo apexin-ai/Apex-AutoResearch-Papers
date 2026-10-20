@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "672c21e76ded1a40365a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh traj14b eval prep",
+  "task_key": "worker_ssh_traj14b-eval-prep_20260523T093608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_traj14b-eval-prep_20260523T093608_result.json",
+    "occurrence": 1,
+    "bytes": 3537,
+    "sha256": "fc954751d2ac90019cff7be1cb5f990fd5a5a18bca3b55f12be82559d14025ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All information collected. Here's the summary:\n\n---\n\n## TRAJ 14B Eval Pipeline 调查报告\n\n### 1. Eval 命令模板（3 seeds 并行）\n\n训练完成后，GPU 0/1/2 释放，三个 seed 可并行 eval：\n\n```bash\n# Seed 42 — GPU 0\nCUDA_VISIBLE_DEVICES=0 nohup python3 eval_traj_verifier.py \\\n  --data_dir data/ \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints/traj14b-func-s42/best \\\n  --model_name /dev/shm/Qwen3-14B \\\n  --output eval_traj14b_s42.json \\\n  --batch_size 4 \\\n  --per_test_data data/test.jsonl \\\n  > /tmp/eval_traj14b_s42.log 2>&1 &\n\n# Seed 123 — GPU 1\nCUDA_VISIBLE_DEVICES=1 nohup python3 eval_traj_verifier.py \\\n  --data_dir data/ \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints/traj14b-func-s123/best \\\n  --model_name /dev/shm/Qwen3-14B \\\n  --output eval_traj14b_s123.json \\\n  --batch_size 4 \\\n  --per_test_data data/test.jsonl \\\n  > /tmp/eval_traj14b_s123.log 2>&1 &\n\n# Seed 456 — GPU 2\nCUDA_VISIBLE_DEVICES=2 nohup python3 eval_traj_verifier.py \\\n  --data_dir data/ \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints/traj14b-func-s456/best \\\n  --model_name /dev/shm/Qwen3-14B \\\n  --output eval_traj14b_s456.json \\\n  --batch_size 4 \\\n  --per_test_data data/test.jsonl \\\n  > /tmp/eval_traj14b_s456.log 2>&1 &\n```\n\n**batch_size=4**（不是默认的 16）：14B bf16 ≈ 28GB model weights，5090 32GB VRAM 下 batch_size=16 会 OOM。\n\n### 2. Per-test prediction 输出：**不支持，需要改脚本**\n\n`pred_details` 在内存中构建（含 `problem_id`, `mutation_type`, `true_label`, `pred_label`, `gen_text`），但 **没有写入 output JSON**。`results` dict 只保存聚合指标。\n\nTOST 需要 per-test `(problem_id, correct/incorrect)` —— 需要在 `results` 保存前加一行：\n```python\nresults[\"predictions\"] = pred_details\n```\n\n### 3. 输出格式（字段名）\n\n```json\n{\n  \"test_set_size\": 1032,\n  \"class_balance\": {\"resolved\": 479, \"unresolved\": 553, \"resolved_pct\": 46.4},\n  \"majority_baseline_accuracy\": 53.59,\n  \"overall_accuracy\": 83.24,\n  \"accuracy_vs_baseline_gap_pp\": 29.65,\n  \"f1_macro\": 82.81,\n  \"per_class\": {\n    \"unresolved\": {\"precision\": ..., \"recall\": ..., \"f1\": ..., \"support\": ...},\n    \"resolved\": {\"precision\": ..., \"recall\": ..., \"f1\": ..., \"support\": ...}\n  },\n  \"confusion_matrix\": {\"tn\": ..., \"fp\": ..., \"fn\": ..., \"tp\": ...},\n  \"unparseable_predictions\": 0,\n  \"per_test_consistency\": {\"n_compared\": 1032, \"n_consistent\": 824, \"consistency_rate\": 79.84}\n}\n```\n\n### 4. 训练进度\n\n| Seed | Progress | ETA |\n|------|----------|-----|\n| s42  | 227/756 (30%) | ~1h05m |\n| s123 | 227/756 (30%) | ~1h05m |\n| s456 | 220/756 (29%) | ~1h08m |\n\n~7.4s/step，预计 **18:35–18:40 UTC** 完成。Best checkpoint 自动保存到 `{output_dir}/best/`（`load_best_model_at_end=True`, `metric_for_best_model=\"eval_loss\"`）。\n\n### 5. 潜在问题\n\n| 问题 | 严重性 | 对策 |\n|------|--------|------|\n| **pred_details 不保存** | 高（TOST 阻塞） | 加 `results[\"predictions\"] = pred_details` |\n| **OOM 风险** | 高 | batch_size 从 16 降到 4（或 2） |\n| dtype | 无 | bf16 已硬编码，无需额外参数 |\n| base model 路径 | 无 | `/dev/shm/Qwen3-14B` 已确认存在 |\n| checkpoint 尚未生成 | 预期 | 训练结束后 `best/` 目录自动创建 |\n\n**下一步**：是否要我现在修改 `eval_traj_verifier.py` 加入 `pred_details` 保存？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-traj14b-eval-prep.md"
+}

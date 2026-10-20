@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "91be441f6d39ae1e77db",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "infra checkpoint transfer",
+  "task_key": "worker_infra_checkpoint-transfer_20260512T083441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_checkpoint-transfer_20260512T083441.log",
+    "occurrence": 1,
+    "bytes": 1448675,
+    "sha256": "d6e1ebb698649af543039ea006c710fcd8f2ca1e65332f13630879e1672ee03c"
+  },
+  "statistics": {
+    "messages": 1388,
+    "user_turns": 1,
+    "tool_calls": 623,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 5,
+      "assistant": 130,
+      "tool_call": 623,
+      "tool_result": 623,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1142,
+      "chunks": [
+        {
+          "path": "91be441f6d39ae1e77db-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "91be441f6d39ae1e77db-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "91be441f6d39ae1e77db-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "91be441f6d39ae1e77db-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "91be441f6d39ae1e77db-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "91be441f6d39ae1e77db-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "91be441f6d39ae1e77db-part-0007.json",
+          "message_count": 62
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 246,
+      "chunks": [
+        {
+          "path": "91be441f6d39ae1e77db-part-0007.json",
+          "message_count": 118
+        },
+        {
+          "path": "91be441f6d39ae1e77db-part-0008.json",
+          "message_count": 128
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-checkpoint-transfer.md"
+}

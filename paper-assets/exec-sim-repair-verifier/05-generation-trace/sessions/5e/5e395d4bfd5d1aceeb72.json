@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e395d4bfd5d1aceeb72",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix tost cls traj",
+  "task_key": "worker_fix_tost-cls-traj_20260519T065959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_tost-cls-traj_20260519T065959_result.json",
+    "occurrence": 1,
+    "bytes": 1734,
+    "sha256": "dd439d64aa5197185ae025350cc7c4f66aec4024423d19fec60c2e1687d5bc2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Results Summary\n\n### Per-test level comparison (CLS per-test vs TRAJ per-test, 3 paired seeds)\n\n| Margin | p-value | Equivalent? |\n|--------|---------|-------------|\n| ±0.5pp | 0.9960  | NO          |\n| **±1.0pp** | **0.9904** | **NO** |\n| ±1.5pp | 0.9550  | NO          |\n| **±2.0pp** | **0.2302** | **NO** |\n| ±2.5pp | 0.0195  | YES         |\n| ±3.0pp | 0.0062  | YES         |\n| ±3.5pp | 0.0030  | YES         |\n| ±4.0pp | 0.0017  | YES         |\n| ±4.5pp | 0.0011  | YES         |\n| ±5.0pp | 0.0008  | YES         |\n\n**Minimum equivalence margin: ±2.25pp**\n\n### Key findings\n\n**Mean CLS-TRAJ gap = +1.89pp** (CLS is BETTER, not equivalent at ±2pp). This directly contradicts the paper's claim of -0.45pp gap and p=0.007.\n\n### Comparison with old (incorrect) numbers\n\n| Metric | Old (CLS-CWM mislabeled) | New (CLS-TRAJ correct) |\n|--------|--------------------------|------------------------|\n| Mean diff | 1.24pp | **1.89pp** |\n| p at ±2pp | 0.007 (equiv) | **0.230 (NOT equiv)** |\n| p at ±1pp | 0.871 | 0.990 |\n| Min margin | ±1.63pp | **±2.25pp** |\n\n### Data limitations\n\n- Only 3 paired seeds available (0, 42, 789) out of the claimed 5, df=2\n- TRAJ per-instance predictions not available for Qwen3-4B (checkpoints were on a different server)\n- CLS variant-level accuracy (~91%) is much higher than TRAJ per-test (~86%), so the variant-level gap is even larger (~5.3pp)\n\nThe paper's §Equivalence claim of CLS-TRAJ equivalence at p=0.007 is not supported by the corrected data. At per-test level, the minimum equivalence margin is ±2.25pp (larger than the ±2pp threshold used). The old p=0.007 was from CLS-CWM data (gap=1.24pp, 5 seeds), not CLS-TRAJ."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-tost-cls-traj.md"
+}

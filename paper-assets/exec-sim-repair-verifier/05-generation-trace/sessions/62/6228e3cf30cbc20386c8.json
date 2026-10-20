@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6228e3cf30cbc20386c8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "analysis cls variant level aggregation",
+  "task_key": "worker_analysis_cls-variant-level-aggregation_20260518T183449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls-variant-level-aggregation_20260518T183449.log",
+    "occurrence": 1,
+    "bytes": 669883,
+    "sha256": "b3bc18b04fa9f8e135154eb0084007e10000e6828e399bbbd783577b535bdf1a"
+  },
+  "statistics": {
+    "messages": 224,
+    "user_turns": 0,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 86,
+      "tool_result": 86,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 224,
+      "chunks": [
+        {
+          "path": "6228e3cf30cbc20386c8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6228e3cf30cbc20386c8-part-0002.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-cls-variant-level-aggregation.md"
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "id": "a1890e74ad8c20869dc7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "infra seetacloud env cuda0",
+  "task_key": "worker_infra_seetacloud-env-cuda0_20260512T032225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_seetacloud-env-cuda0_20260512T032225.log",
+    "occurrence": 1,
+    "bytes": 2903268,
+    "sha256": "ee4779f187e4c4958f2d0c9f2a36fd6767f64383418cb6c51f6c20e164a13dbb"
+  },
+  "statistics": {
+    "messages": 2346,
+    "user_turns": 4,
+    "tool_calls": 1004,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 4,
+      "assistant": 308,
+      "tool_call": 1004,
+      "tool_result": 1004,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 725,
+      "chunks": [
+        {
+          "path": "a1890e74ad8c20869dc7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1890e74ad8c20869dc7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1890e74ad8c20869dc7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1890e74ad8c20869dc7-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1890e74ad8c20869dc7-part-0005.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 847,
+      "chunks": [
+        {
+          "path": "a1890e74ad8c20869dc7-part-0005.json",
+          "message_count": 175
+        },
+        {
+          "path": "a1890e74ad8c20869dc7-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1890e74ad8c20869dc7-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1890e74ad8c20869dc7-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1890e74ad8c20869dc7-part-0009.json",
+          "message_count": 132
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "a1890e74ad8c20869dc7-part-0009.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "a1890e74ad8c20869dc7-part-0009.json",
+          "message_count": 22
+        },
+        {
+          "path": "a1890e74ad8c20869dc7-part-0010.json",
+          "message_count": 74
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 652,
+      "chunks": [
+        {
+          "path": "a1890e74ad8c20869dc7-part-0010.json",
+          "message_count": 106
+        },
+        {
+          "path": "a1890e74ad8c20869dc7-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1890e74ad8c20869dc7-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1890e74ad8c20869dc7-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1890e74ad8c20869dc7-part-0014.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-seetacloud-env-cuda0.md"
+}

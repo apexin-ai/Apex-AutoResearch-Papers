@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdf6915ce052c9485c04",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh check eval prep s456",
+  "task_key": "worker_ssh_check-eval-prep-s456_20260520T031416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-eval-prep-s456_20260520T031416_result.json",
+    "occurrence": 1,
+    "bytes": 1667,
+    "sha256": "a6f7d2b18beeb26af49b4f460e0d830b26571eab622f8e81805829a642dc5fb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。汇总如下：\n\n---\n\n## 1. DeepSeek CWM s123 Eval 详情\n\n| 项目 | 值 |\n|---|---|\n| **完整命令** | `/root/miniconda3/bin/python eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_deepseek_cwm_repo_s123/best/ --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --split test --device cuda:0 --max_seq_length 4096 --max_new_tokens 512 --batch_size 4 --output_dir /root/autodl-tmp/eval_results/deepseek_cwm_repo_s123_seq4096/` |\n| **进度** | **1260 / 9784**（约 12.9%） |\n| **测试集** | `data/swebench_full/swebench_test.jsonl`（9784 条） |\n| **Checkpoint** | `/root/autodl-tmp/checkpoints_deepseek_cwm_repo_s123/best/`（LoRA adapter） |\n| **输出文件** | `/root/autodl-tmp/eval_results/deepseek_cwm_repo_s123_seq4096/results_incremental.jsonl` |\n| **max_seq_length** | **4096**（命令行显式指定，脚本默认 8192） |\n| **device** | `cuda:0`（注意：不是 GPU 2，是 GPU 0） |\n\n**注意**：进程在 `cuda:0` 上运行，不是你说的 GPU 2。请确认 GPU 分配是否正确。\n\n---\n\n## 2. s456 训练准备检查\n\n| 检查项 | 状态 |\n|---|---|\n| `/root/autodl-tmp/checkpoints_deepseek_cwm_repo_s456/` 不存在 | **通过** — 目录不存在，不会覆盖 |\n| 模型 `/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct` | **通过** — config.json 存在 |\n| `train_unified.py` 存在 | **通过** |\n| `data/` 目录完整 | **通过** — 包含 cwm_train/val/test.jsonl 等全部数据文件 |\n\ns456 训练的所有前置条件已就绪，等 s123 eval 完成释放 GPU 后可直接启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-eval-prep-s456.md"
+}

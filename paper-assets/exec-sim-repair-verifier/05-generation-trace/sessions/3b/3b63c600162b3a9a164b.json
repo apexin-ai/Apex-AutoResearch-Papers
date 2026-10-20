@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b63c600162b3a9a164b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh gpu cleanup and ram",
+  "task_key": "worker_ssh_gpu-cleanup-and-ram_20260519T225533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu-cleanup-and-ram_20260519T225533_result.json",
+    "occurrence": 1,
+    "bytes": 953,
+    "sha256": "8a2f735b524aeb65466d9e7cc0fe5d25f63836960accdcde8533fc9276fb9f08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**GPU 状态**\n\n| GPU | Memory | Util | 状态 |\n|-----|--------|------|------|\n| 0 | 0MiB / 32607MiB | 0% | 干净 |\n| 1 | 0MiB / 32607MiB | **100%** | 显存已释放但 util 仍卡 100%，容器不支持 GPU reset，无法通过软件恢复 |\n| 2 | 29615MiB / 32607MiB | 85% | 有进程在跑 (PID 833672, python) |\n| 3 | 0MiB / 32607MiB | 0% | 干净 |\n\n**GPU 1 异常**: 显存 0MiB 但 GPU-Util 100%、P0 功耗 111W — 这是 GPU 卡死状态（hung context），容器内无法 reset。只有重启实例或联系平台才能恢复。\n\n**GPU 2**: 有训练进程占用约 29.6GB，未在清理范围内，保持不动。\n\n**RAM 基线**\n\n| 指标 | 值 |\n|------|-----|\n| cgroup current | 68.4 GiB |\n| cgroup max | 360 GiB |\n| MemTotal | 754 GiB |\n| MemAvailable | 700 GiB |\n| MemFree | 466 GiB |\n| Swap | 0 (无) |\n\nGPU 3 已清理干净。GPU 1 需要实例重启才能恢复正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-cleanup-and-ram.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3abdcf2f92b08514995",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis multi seed oracle",
+  "task_key": "worker_analysis_multi-seed-oracle_20260522T124959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_multi-seed-oracle_20260522T124959_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "0532e57a63cce3ee01ebb6163813513fd741174768d0cdd0624eed38f21f4968"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results with all individual accuracies matching expected values (CWM s42=65.17, s123=67.33, s456=66.93):\n\n```\n=== Individual Accuracies (n=9784) ===\nCLS s42:  85.34%\nCWM s42:  65.17%\nCWM s123: 67.33%\nCWM s456: 66.93%\n\n=== Oracle (CLS ∪ CWM correct) ===\nOracle CLS+CWM(s42):  91.28%\nOracle CLS+CWM(s123): 95.86%\nOracle CLS+CWM(s456): 95.68%\n\nMean ± Std: 94.27 ± 2.59%\n```\n\nNote: the s42 oracle is lower than s123/s456 because CLS and CWM s42 share the same training seed, making their errors more correlated. The cross-seed oracles (s123, s456) are tightly clustered at ~95.8%."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multi-seed-oracle.md"
+}

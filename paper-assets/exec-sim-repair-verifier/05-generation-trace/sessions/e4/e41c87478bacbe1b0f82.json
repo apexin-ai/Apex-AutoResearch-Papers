@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e41c87478bacbe1b0f82",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code bootstrap eval prep",
+  "task_key": "worker_code_bootstrap-eval-prep_20260513T004336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap-eval-prep_20260513T004336_result.json",
+    "occurrence": 1,
+    "bytes": 876,
+    "sha256": "c17d4a77064b541d0c7acf28260f6f5a6e28ef2d0e9905cf57c45ef11fdcaaee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`--help` 和 `--dry_run` 均正常。\n\n脚本 `eval_repo_bootstrap.py` 已部署到 `/home/sonny/exec-sim-repair-verifier/`，功能：\n\n- **两种运行模式**：inference（加载 CLS+CWM checkpoint 做推理）或 predictions（直接读 JSONL 跳过推理）\n- **Clustered paired bootstrap**：按 `problem_id` 聚类重采样，计算 F1 macro/fail/pass + accuracy 的 gap、95% CI、p-value\n- **D008 Go/No-Go**：自动判定 GO_EMNLP_MAIN / ADD_SEEDS / KILL_C1\n- **输出到 `--output_dir`**：`bootstrap_results.json` + `predictions.csv`（per-sample 对比）+ 原始 JSONL\n\n测试集：9784 instances（fail=2646, pass=7138）。训练完成后运行：\n```bash\npython eval_repo_bootstrap.py \\\n  --cls_checkpoint_dir checkpoints_repo_cls_home/best \\\n  --cwm_checkpoint_dir <cwm_best_path> \\\n  --output_dir results/repo_bootstrap\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bootstrap-eval-prep.md"
+}

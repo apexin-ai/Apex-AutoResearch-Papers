@@ -1,0 +1,653 @@
+{
+  "schema_version": "1.0",
+  "id": "77784cfdb39aeeed45cc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "code 14b paper text update",
+  "task_key": "worker_code_14b-paper-text-update_20260523T080501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_14b-paper-text-update_20260523T080501.jsonl",
+    "occurrence": 1,
+    "bytes": 22854,
+    "sha256": "41ea32911a2fa9b422003f6c569b2acdc503eff57900af5e72c4754f4eeb0bc4"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T08:06:37.671836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T08:06:37.672479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tLLM-based program repair increasingly leverages test-time compute scaling, generating multiple candidate patches and selecting the best via a verifier. Execution-based verification is reliable but expensive; three execution-free alternatives have emerged: per-test binary classification (\\cls{}), execution output generation (\\cwm{}), and trajectory-level patch scoring (\\traj{}). No prior work compares these formulations under matched conditions.\n3\t\n4\tWe present the first systematic comparison across two representative code LLM families (Qwen3, DeepSeek-Coder), two complexity levels, and multiple seeds under ${\\leq}$8B LoRA fine-tuning. At function level, \\cls{} and \\cwm{} are statistically equivalent across both families (TOST, 5 seeds): classification is not inherently easier than generation when outputs are short. \\traj{} parity is model-dependent and not confirmed after multiple comparison correction. At repository level, a significant interaction ($z{=}-23.7$, DeepSeek-Coder) confirms this equivalence collapses: the \\cls{}--\\cwm{} gap widens to 18--26\\pp{} across 2--3 seeds per model under our ${\\leq}$8B LoRA protocol in variant-level evaluation, driven by format collapse in generation-based simulation. Gap magnitude depends on multiple confounds. At 14B (3 seeds), the function-level gap narrows to 0.43\\pp{} (TOST $p{=}$[TOST\\_P]), consistent with capacity-dependent convergence.\n5\t\n6\tError complementarity and a failure mode taxonomy motivate future work on complexity-aware formulation routing, though simple heuristics capture $<$0.4\\pp{} of oracle advantage.\n7\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T08:06:37.672704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T08:06:37.672999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe systematically compare \\cls{}, \\cwm{}, and \\traj{} across two representative code LLM families, two complexity levels, and multiple seeds to characterize the formulation landscape for neural code verification.\n5\t\n6\t\\subsection{Experimental Setup}\n7\t\\label{sec:setup}\n8\t\n9\t\\paragraph{Datasets.}\n10\t\\emph{Function-level}: mutated variants from HumanEval~\\cite{chen2021humaneval} and MBPP~\\cite{austin2021mbpp} (five mutation types), labels verified by execution. 19,076 samples (train 15,290 / val 1,896 / test 1,890; pass:fail $\\approx$ 52:48, majority baseline 51.75\\%).\n11\t\\emph{Repo-level}: per-test instances from SWE-bench Verified~\\cite{chowdhury2024swebenchverified} mutants. ${\\sim}$70K training samples; val ($n{=}9{,}335$) and test ($n{=}9{,}784$) have zero problem overlap (majority baseline 72.96\\%). Val-based checkpoint selection follows standard practice~\\cite{jimenez2024swebench} where validation loss is computable; runs using truncate preprocessing produce NaN validation loss because repo-level execution traces often exceed the 2,048-token sequence length limit; after truncation, many samples have all target tokens removed (labels entirely $-$100), producing degenerate loss---a formulation-inherent weakness that classification and trajectory formulations avoid by design. NaN loss defaults to the final epoch checkpoint (affects DeepSeek \\cls{} s123, all \\cwm{} runs, and Qwen3 \\traj{} runs; see Appendix~\\ref{app:hyperparams}).\n12\t\n13\t\\paragraph{Models and training.}\n14\tWe fine-tune Qwen3-4B and Qwen3-8B~\\cite{qwen2025qwen3} with Low-Rank Adaptation (LoRA)~\\cite{hu2022lora} (rank 16, 3 epochs) across five seeds. Seeds 42/123/456 use bfloat16; seeds 789/0 use NormalFloat 4-bit (NF4) quantization~\\cite{dettmers2024qlora} to test robustness to precision reduction (function-level accuracy remains within seed noise across both precisions; see footnote in \\S\\ref{sec:equivalence}). As a cross-model consistency chec\n…[truncated 19296 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T08:06:37.673343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T08:06:37.673531+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t% ACL style (review mode for anonymous ARR submission)\n4\t\\usepackage[review]{acl}\n5\t\n6\t% Fonts — Times Roman (required by ACL/ARR template)\n7\t\\usepackage{times}\n8\t\n9\t% Math\n10\t\\usepackage{amsmath}\n11\t\\usepackage{amssymb}\n12\t\n13\t% Tables\n14\t\\usepackage{booktabs}\n15\t\\usepackage{multirow}\n16\t\\usepackage{tabularx}\n17\t\n18\t% Graphics\n19\t\\usepackage{graphicx}\n20\t\\usepackage{xcolor}\n21\t\\graphicspath{{../../artifacts/}}\n22\t\n23\t% Lists\n24\t\\usepackage{enumitem}\n25\t\n26\t% Custom commands\n27\t\\newcommand{\\cls}{\\textsc{Cls}}\n28\t\\newcommand{\\cwm}{\\textsc{Cwm}}\n29\t\\newcommand{\\traj}{\\textsc{Traj}}\n30\t\\newcommand{\\fone}{F\\textsubscript{1}}\n31\t\\newcommand{\\pp}{\\,\\text{pp}}\n32\t\\newcommand{\\tbd}{\\textsc{tbd}}\n33\t\\newcommand{\\placeholder}[1]{{\\color{red}\\texttt{[#1]}}}\n34\t\n35\t\\title{A Systematic Comparison of Execution-Free Verification Formulations for Code Repair}\n36\t\\author{Anonymous}\n37\t\n38\t\\begin{document}\n39\t\\maketitle\n40\t\n41\t\\input{abstract}\n42\t\n43\t\\input{introduction}\n44\t\n45\t\\begin{figure*}[t]\n46\t\\centering\n47\t\\includegraphics[width=\\textwidth]{figures/paper/fig1_reformulation.pdf}\n48\t\\caption{Three verification formulations. \\textbf{Left:} \\cls{} predicts binary pass/fail per test (1 output token). \\textbf{Center:} \\cwm{} generates execution output, derives verdict by exact match ($O(L)$ tokens). \\textbf{Right:} Trajectory-level scoring predicts patch-level resolved/unresolved (1 token, no per-test signal). Each formulation makes different tradeoffs between output complexity, diagnostic granularity, and inference cost.}\n49\t\\label{fig:reformulation}\n50\t\\end{figure*}\n51\t\n52\t\\input{method}\n53\t\n54\t\\input{experiments}\n55\t\n56\t\\begin{figure}[t]\n57\t\\centering\n58\t\\includegraphics[width=\\columnwidth]{figures/paper/figure2_v2.pdf}\n59\t\\caption{Function-level accuracy scaling (4B--14B). CLS and CWM accuracy with shaded gap region. The \\cls{}--\\cwm{} gap follows an inverted-U trajectory: 1.32\\pp{} at 4B, widening to 2.62\\pp{} at 8B, then narrowing to 0.43\\p\n…[truncated 304 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T08:06:37.673688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T08:06:37.673860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe presented the first systematic comparison of three execution-free verification formulations (\\cls{}, \\cwm{}, \\traj{}). At function level, \\cls{} and \\cwm{} are statistically equivalent (TOST $p{=}0.007$, 5 seeds); \\traj{} equivalence is not confirmed after multiple comparison correction. Per-test classification achieves 217$\\times$ higher throughput while providing diagnostic signal. Complementary errors (oracle: 90.63\\%/95.83\\%; single-seed) motivate complexity-aware routing. At repository level under ${\\leq}$8B LoRA, divergence reaches 18--26\\pp{} ($z{=}-23.7$, 2--3 seeds per model), with \\cwm{} falling below majority baseline---consistent across families but dependent on multiple confounds (\\S\\ref{sec:threats}). Three failure modes (format collapse, decision collapse, aggregation penalty) are consistent across families. \\cls{} is recommended primarily for its throughput advantage and diagnostic capability; the accuracy advantage over \\traj{} is directional but underpowered ($n{=}48$, MDE${\\approx}$25\\pp{}; Appendix~\\ref{app:power}). Primary statistical findings are established under ${\\leq}$8B LoRA fine-tuning. 14B results (3 seeds) corroborate function-level convergence (gap 0.43\\pp{}, TOST $p{=}$[TOST\\_P]), consistent with capacity-dependent scaling; whether this extends to repo level remains open.\n5\t\n6\tThree directions follow: (1)~oracle gains motivate complexity-aware routing using the failure mode taxonomy as routing features; (2)~the semantic generation bottleneck (four interventions fail; Appendix~\\ref{app:extended_analysis}(g)) suggests capacity scaling or execution trace pretraining~\\cite{meta2025cwm} is needed---testing at 32B+ would resolve the primary open question; (3)~larger-scale evaluation of per-test diagnostics for downstream repair ($n{=}44$ in our pilot) would test whether \\cls{}'s throughput advantage extends to repair pipelines.\n7\t\n8\t\\section*{Limitations}\n9\t\n10\tPrimary findings use ${\\\n…[truncated 560 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T08:06:37.674078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex",
+              "old_string": "(TOST $p{=}$[TOST\\_P])",
+              "new_string": "(TOST $p{=}0.0006$)"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T08:06:37.674233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T08:06:37.674363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "old_string": "\\textbf{89.93 $\\pm$ 0.80}",
+              "new_string": "\\textbf{89.93 $\\pm$ 0.81}"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T08:06:37.674551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T08:06:37.674679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "old_string": "\\underline{89.50 $\\pm$ 0.67}",
+              "new_string": "\\underline{89.50 $\\pm$ 0.65}"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T08:06:37.674914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T08:06:37.675060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "old_string": "89.93$\\pm$0.80\\% while \\cwm{} reaches 89.50$\\pm$0.67\\%, closing the gap from 2.62\\pp{} at 8B to 0.43\\pp{} (TOST $p{=}$[TOST\\_P])",
+              "new_string": "89.93$\\pm$0.81\\% while \\cwm{} reaches 89.50$\\pm$0.65\\%, closing the gap from 2.62\\pp{} at 8B to 0.43\\pp{} (TOST $p{=}0.0006$)"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T08:06:37.675266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T08:06:37.675437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex",
+              "old_string": "TOST $p{=}$[TOST\\_P]",
+              "new_string": "TOST $p{=}0.0006$"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T08:06:37.675592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T08:06:37.675729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "TOST_P|TOST\\\\\\_P",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T08:06:37.675904+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T08:06:37.676065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\[GAP\\]|\\[TOST",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T08:06:37.676196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.aux:636:\\@writefile{lof}{\\contentsline {figure}{\\numberline {2}{\\ignorespaces Function-level accuracy scaling (4B--14B). CLS and CWM accuracy with shaded gap region. The \\textsc  {Cls}{}--\\textsc  {Cwm}{} gap follows an inverted-U trajectory: 1.32\\,\\text  {pp}{} at 4B, widening to 2.62\\,\\text  {pp}{} at 8B, then converging to near-zero ({\\color  {red}[GAP]\\,\\text  {pp}{}}) at 14B (3 seeds).}}{7}{figure.caption.29}\\protected@file@percent }\ndocs/paper/main.aux:637:\\newlabel{fig:scaling_gap}{{2}{7}{Function-level accuracy scaling (4B--14B). CLS and CWM accuracy with shaded gap region. The \\cls {}--\\cwm {} gap follows an inverted-U trajectory: 1.32\\pp {} at 4B, widening to 2.62\\pp {} at 8B, then converging to near-zero ({\\color {red}[GAP]\\pp {}}) at 14B (3 seeds)}{figure.caption.29}{}}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T08:06:37.676351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "single.seed|exploratory",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T08:06:37.676480+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/experiments.tex:117:Table~\\ref{tab:repo_level} compares formulations at repository-level complexity. Variant-level comparisons ($n{=}48$) are exploratory due to limited seed coverage; the per-test interaction effect is statistically confirmed (see below). Checkpoints are val-selected where validation loss is computable (\\S\\ref{sec:setup}); the test set has zero problem overlap with validation.\ndocs/paper/experiments.tex:189:\\paragraph{Error complementarity.} \\cls{} and \\cwm{} exhibit partially complementary errors. An oracle combination achieves 90.63\\% (+2.80\\pp{}; 95\\% CI [89.3\\%, 91.9\\%]; single-seed) at function level and 95.83\\% (+14.58\\pp{}; $n{=}48$) at repo level. Simple routing heuristics capture $<$0.4\\pp{} of the oracle gap; the complementarity is instance-specific, suggesting a learned router is needed (Appendix~\\ref{app:oracle}).\ndocs/paper/conclusion.tex:4:[Omitted long matching line]\ndocs/paper/appendix.tex:364:[Omitted long matching line]\ndocs/paper/appendix.tex:560:[Omitted long matching line]\ndocs/paper/introduction.tex:15:\\item \\textbf{Error complementarity.} \\cls{} and \\cwm{} exhibit partially complementary error patterns at function level (oracle: 90.63\\%, 95\\% CI [89.3\\%, 91.9\\%]; single-seed); at repo level, oracle routing reaches 95.83\\% variant accuracy (+14.58\\pp{}; single-seed), the strongest practical argument for exploring formulation-level tradeoffs (\\S\\ref{sec:analysis})."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T08:06:37.676654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "single.seed|exploratory",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "context": "1"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T08:06:37.676781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "363-\\paragraph{(a) Error complementarity.}\n364:[Omitted long matching line]\n365-\n--\n559-\\label{app:limitations}\n560:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T08:06:37.676976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex",
+              "offset": "363",
+              "limit": "3"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T08:06:37.677115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "363\t\\paragraph{(a) Error complementarity.}\n364\t\\cls{} and \\cwm{} are both FP-dominant at function level but at different rates, producing partial complementarity. Among \\cls{} errors (seed 42), 56.5\\% are false positives (PASS $\\to$ FAIL); among \\cwm{} errors, 70.3\\% are false positives. Both formulations over-predict failure, but \\cwm{}'s stronger FP bias means it incorrectly rejects passing tests that \\cls{} correctly accepts. An oracle combination achieves 90.63\\% accuracy (1713/1890 correct, 177 both-wrong; +2.80\\pp{} over the best single formulation, \\cls{} 87.83\\%; single-seed estimate, seed 42). The complementarity arises from different \\emph{degrees} of fail-bias rather than opposite error directions: \\cwm{}'s generation bottleneck produces aggressive failure predictions, while \\cls{}'s single-token output is more calibrated. Ensemble approaches exploiting this degree difference are a natural direction.\n365\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T08:06:37.677243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/appendix.tex",
+              "offset": "559",
+              "limit": "3"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T08:06:37.677377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "559\t\\label{app:limitations}\n560\tThe same-size 4B comparison uses a single seed; \\cls{} 4B seed 123 (val-best ckpt-800) achieves only 75.33\\% test accuracy (+2.4\\pp{} above majority baseline); val-best selection at an early checkpoint (step 800) amplifies the val-test distribution shift observed across all configurations. The \\cwm{} 8B comparison uses 3 seeds per model. The validation and test sets have zero problem overlap but differ in mutation type composition (Table~\\ref{tab:mutation_distribution}): \\texttt{operator\\_swap} shifts from 19.1\\% (val) to 34.3\\% (test), the largest single-type distribution mismatch (+15.2\\pp{}). All repo-level results use val-selected checkpoints, and checkpoint selection variance could contribute to observed differences. Our training data is synthetically constructed from mutation operators rather than real developer patches. While mutation testing literature establishes that mutants are reasonable proxies for real faults in test effectiveness studies~\\cite{andrews2005mutation,just2014mutants}, these findings concern mutation \\emph{adequacy} (whether tests that kill mutants also detect real faults), not whether verifiers trained on mutants transfer to real patches. However, the coupling effect underlying these results supports \\emph{relative ranking} validity: a domain shift from synthetic mutations to real bugs may affect absolute accuracy levels, but our core finding---that formulation choice matters at repo level but not function level---concerns relative performance ordering, which is expected to be preserved under distributional shifts that affect all formulations equally. The synthetic-to-real transfer gap for absolute accuracy remains untested. The \\traj{} training configuration differs from \\cls{}/\\cwm{}: smaller training set (${\\sim}$400 vs.\\ ${\\sim}$70K instances), different learning rate ($2{\\times}10^{-4}$ vs.\\ $5{\\times}10^{-5}$), and variant-level evaluation ($n{=}48$ vs.\\ per-test $n{=}9{,}784$). The function-level TOS\n…[truncated 701 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T08:06:37.677562+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both appendix references are about oracle analysis (single-seed estimate) and 4B comparisons (single seed) — not about 14B. No changes needed there.\n\nAll edits are complete. Summary of changes:\n\n- **abstract.tex**: `[TOST_P]` → `0.0006`\n- **experiments.tex Table 2**: CLS 14B std `0.80` → `0.81`, CWM 14B std `0.67` → `0.65`\n- **experiments.tex text (line 97)**: Same std updates + `[TOST_P]` → `0.0006`\n- **conclusion.tex**: `[TOST_P]` → `0.0006`\n\nThe other items in the checklist (seed descriptions, footnote removal, figure caption, limitations wording) were already updated in prior commits — no stale 14B single-seed/exploratory language remains in any `.tex` source file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_14b-paper-text-update_20260523T080501"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/code-14b-paper-text-update.md"
+}

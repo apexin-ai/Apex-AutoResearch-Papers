@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88f28b7e9a5df456be4c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260515T093620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260515T093620_result.json",
+    "occurrence": 1,
+    "bytes": 608,
+    "sha256": "60b4a04962a3b2ab2a045487a2e2468472085a1e03d985cf44b36e2a5e2037c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入。主要变更：\n\n- **C1 数字全部更新**：same-size 4B-4B gap 25.59pp (83.63% vs 58.04%, seed 42)，两层结构（gap 随复杂度递增 1.24→2.43→25.59pp + scaling 证据 CLS +0.96pp / CWM -0.27pp）\n- **CWM 失败模式从 2 个扩展到 3 个**：新增 format compliance collapse 作为第三类，含 53.7–67.2% unparseable + parseable-only 42–43% below random\n- **CLS 0% unparseable** 明确写入 C1 bullet\n- **Single seed limitation** 在 C1 末尾显式声明\n- **删除旧数字**：10.32pp、75% unparseable、8.3× 均已移除\n- C2/C3 保持不变"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction.md"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "81cde618bb345a2d4f4e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ops s3 backup archive",
+  "task_key": "worker_ops_s3-backup-archive_20260525T205549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3-backup-archive_20260525T205549.log",
+    "occurrence": 1,
+    "bytes": 708492,
+    "sha256": "f54b50b4f07ed40fb5a0f3f5ccee88ca412eb8cfcbc72c8602b74f7dd98a3943"
+  },
+  "statistics": {
+    "messages": 600,
+    "user_turns": 0,
+    "tool_calls": 270,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 270,
+      "tool_result": 270,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 600,
+      "chunks": [
+        {
+          "path": "81cde618bb345a2d4f4e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "81cde618bb345a2d4f4e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "81cde618bb345a2d4f4e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "81cde618bb345a2d4f4e-part-0004.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-s3-backup-archive.md"
+}

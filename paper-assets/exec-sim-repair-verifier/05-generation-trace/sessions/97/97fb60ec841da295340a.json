@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97fb60ec841da295340a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh 14b cls eval immediate",
+  "task_key": "worker_ssh_14b-cls-eval-immediate_20260523T074031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_14b-cls-eval-immediate_20260523T074031_result.json",
+    "occurrence": 1,
+    "bytes": 984,
+    "sha256": "4ba19b953c41bb92eee4dbdb67e1b1b544bd1fbd6ce00d8afca3549139d6d957"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n## CLS 14B bf16 Eval 结果\n\n| Seed | Best Checkpoint | Accuracy | F1 (pass) | F1 (fail) | Unparseable |\n|------|----------------|----------|-----------|-----------|-------------|\n| **s123** | checkpoint-956 | **90.79%** | 90.99% | 90.58% | 0 |\n| **s456** | checkpoint-478 | **89.79%** | 90.11% | 89.45% | 0 |\n\n对比 s42-v2 NF4 eval (89.47%)：\n- s123 bf16: +1.32pp\n- s456 bf16: +0.32pp\n- 3-seed 平均 (s42 bf16 待跑): s123/s456 平均 **90.29%**\n\n## Prediction JSONL 路径\n- `/root/autodl-tmp/eval_results/cls14b_func_s123/eval_results_predictions.json` (212KB, 1890 samples)\n- `/root/autodl-tmp/eval_results/cls14b_func_s456/eval_results_predictions.json` (212KB, 1890 samples)\n\n## CWM 14B 训练进度\n两个 seed 都已完成训练（checkpoint-1434 + best/）：\n- `cwm14b-func-s123`: best 在某个中间 step（有 best/ 目录）\n- `cwm14b-func-s456`: 同上\n\nCWM 14B eval 可以随时启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14b-cls-eval-immediate.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f289774fb809675d9ebc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops kill cwm v11 eval and verify",
+  "task_key": "worker_ops_kill-cwm-v11-eval-and-verify_20260513T220556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-cwm-v11-eval-and-verify_20260513T220556_result.json",
+    "occurrence": 1,
+    "bytes": 1309,
+    "sha256": "5a9a68cd991f41e5a827d383d36354e1804d6927c0c70d1413dfa460779038f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。\n\n## 操作结果\n- CWM v11 eval PID 180344: **已 kill**（SIGTERM 成功）\n- Chain 脚本: **无**。无 crontab，无 chain 进程。两个 tmux session 存在但无自动重启逻辑：\n  - `cwm_seed123`: CWM seed123 训练（看起来已挂起/崩溃，输出停在 data loading 后）\n  - `repo-level-cwm-v12`: 空输出（对应 PID 181202 的 v12 训练）\n\n## 全量 GPU 状态\n\n### westd-48478 (4×5090)\n| GPU | Memory Used | Util% | PID | 实验 |\n|-----|------------|-------|-----|------|\n| 0 | 0 / 32607 MiB | 0% | — | **空闲**（刚释放 CWM v11 eval） |\n| 1 | 23261 / 32607 MiB | 95% | 181202 | `train_repo_cwm.py --seed 42 --no_wandb` → CWM v12 训练（tmux: `repo-level-cwm-v12`） |\n| 2 | 0 / 32607 MiB | 0% | — | **空闲** |\n| 3 | 0 / 32607 MiB | 0% | — | **空闲** |\n\n### home-1x5090 (1×5090)\n| GPU | Memory Used | Util% | PID | 实验 |\n|-----|------------|-------|-----|------|\n| 0 | 19879 / 32607 MiB | 91% | 3001112 | `train_repo_verifier.py --seed 123` → Verifier seed123 训练 |\n\n## 备注\n- `cwm_seed123` tmux session 的训练似乎已停滞（输出停在 data loading 阶段，GPU 0 已空闲）——可能需要检查是否崩溃\n- westd 有 3 个 GPU 空闲（0/2/3），可安排新任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-cwm-v11-eval-and-verify.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "acf004b3616f07e8b2f5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "exp re repair phase0",
+  "task_key": "worker_exp_re-repair-phase0_20260516T084228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_re-repair-phase0_20260516T084228.log",
+    "occurrence": 1,
+    "bytes": 889415,
+    "sha256": "0ace62cf12cdcd5672cddf9c69df7ee24333c45a7e0c2690256364690ce94317"
+  },
+  "statistics": {
+    "messages": 377,
+    "user_turns": 0,
+    "tool_calls": 123,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 127,
+      "tool_call": 123,
+      "tool_result": 123,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 377,
+      "chunks": [
+        {
+          "path": "acf004b3616f07e8b2f5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "acf004b3616f07e8b2f5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "acf004b3616f07e8b2f5-part-0003.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-re-repair-phase0.md"
+}

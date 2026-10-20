@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a11990bb474a367b7166",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cwm8b merge script prep",
+  "task_key": "worker_ops_cwm8b-merge-script-prep_20260516T024605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm8b-merge-script-prep_20260516T024605_result.json",
+    "occurrence": 1,
+    "bytes": 1011,
+    "sha256": "83b5ee544ebd15a81fb1c3202bfc7f430a72f4ae1e148e00ffa200c57075c31f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写好并注册。\n\n**汇总：**\n- 探测到 3 个 shard 目录，都输出 `results_incremental.jsonl`（JSONL 格式）\n  - `cwm_8b_ckpt400_test` (v3): 6312 行，idx 0-6311\n  - `cwm_8b_ckpt400_test_shard2`: 696 行，起始 idx 7680\n  - `cwm_8b_ckpt400_test_shard3`: 72 行，起始 idx 6200\n- 每行字段：`index`, `problem_id`, `label`, `pred`, `correct`, `truncated`, `gen_text`, `unparseable`\n- `mutation_type` 在数据集 `swebench_test.jsonl` 中，通过 index 对齐 join\n- 合并脚本：`artifacts/merge_cwm8b_shards.py`，去重优先级 v3 > shard3 > shard2，验证 0-9783 全覆盖，输出合并 JSONL + 汇总 JSON（含 per-mutation breakdown）\n\n**跑法（等 shard 全部完成后）：**\n```bash\npython merge_cwm8b_shards.py \\\n  --eval_dir /root/autodl-tmp/eval_results \\\n  --data_path /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_test.jsonl \\\n  --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_merged\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cwm8b-merge-script-prep.md"
+}

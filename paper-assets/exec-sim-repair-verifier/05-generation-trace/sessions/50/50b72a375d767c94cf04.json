@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50b72a375d767c94cf04",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh training progress check",
+  "task_key": "worker_ssh_training-progress-check_20260521T180213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_training-progress-check_20260521T180213_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "9bcc77de9f6084acf18617789ffd36e211d06e639a6deecbe9db1c513ad75c1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇总\n\n### 1. Qwen s123 训练 (GPU 0, PID 4271)\n- **状态**: 存活，运行 20h23m\n- **进度**: step ~6000/6633 (90%)，正在跑 step 6000 的 eval（5936/9335 样本）\n- **ETA**: ~2h（含 eval 时间）\n- **GPU 0**: 98%, 30553/32607 MiB\n\n### 2. Qwen s456 训练 (GPU 3, PID 4561)\n- **状态**: 存活，运行 20h22m\n- **进度**: step 6150/6633 (92.7%)，~12s/step\n- **ETA**: ~1.5h\n- **GPU 3**: 97%, 25559/32607 MiB\n\n### 3. DS s123 训练 (GPU 2, PID 28200)\n- **状态**: 存活，运行 13h38m\n- **进度**: 最新 checkpoint 8418/12627 (67%)。按 ~8s/step 推算，当前约 step ~10200 (81%)\n- **ETA**: ~5-6h\n- **GPU 2**: 99%, 20501/32607 MiB\n- 注：输出目录实为 `checkpoints_deepseek_cwm_repo_s123_v2/`（非 v3），日志为 `deepseek-cwm-repo-s123-train-v2.log`\n\n### 4. DS s456 e3 eval (GPU 1, PID 63490)\n- **状态**: 存活，运行 4h15m\n- **进度**: 3324/9784 样本 (34%)，~13 样本/min\n- **ETA**: ~8.3h\n- **GPU 1**: 85%, 30427/32607 MiB\n\n---\n\nQwen 两个种子预计 1.5-2h 内完成，DS s123 训练约 5-6h，DS s456 eval 最慢约 8h。全部 4 GPU 满载运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-training-progress-check-copy-2.md"
+}

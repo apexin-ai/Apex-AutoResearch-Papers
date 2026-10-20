@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6aad656b5fc7db992ecf",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose cwm8b v4 crash",
+  "task_key": "worker_diagnose_cwm8b-v4-crash_20260515T174735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_cwm8b-v4-crash_20260515T174735_result.json",
+    "occurrence": 1,
+    "bytes": 1757,
+    "sha256": "b091a76586707013acc58f4d518614fb0aad7b4386a3e202c845f9af4aa2ca8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。汇总如下：\n\n---\n\n## CWM 8B 训练崩溃诊断报告\n\n### 1. 进程状态\n**已死。** PID 266816 不存在，tmux session `repo-level-cwm-8b-conda-v4` 也不在 session 列表中。\n\n### 2. 崩溃原因：`timeout` 超时 (EXIT_CODE=124)\n日志末尾明确显示 `EXIT_CODE=124`，这是 bash `timeout` 命令的标准退出码。训练进程被外部 timeout 包装器强制杀死，**不是 OOM、CUDA error 或磁盘满**。佐证：\n- dmesg 无 OOM killer 记录\n- 磁盘 `/root/autodl-tmp` 剩余 102G（60% 使用率），充足\n- 日志中无任何 error/exception/CUDA 错误\n\n训练实际运行了 **~23h54m**，在 step 5273/6633 (79.5%) 处被 timeout 终止。Cron 上报的 step 4013 (60.5%) 是过期数据。\n\n### 3. 最新完整 checkpoint\n**checkpoint-5200**（保存于 2026-05-16 01:30）。文件完整：\n- `adapter_model.safetensors` (61MB)\n- `optimizer.pt` (123MB)\n- `scheduler.pt`, `trainer_state.json`, `rng_state.pth` 均存在\n\n丢失了 step 5201-5273 共 73 步进度（~14 分钟训练量）。\n\n### 4. cuda:2 状态\n**空闲可用。** 显存 0 MiB / 32607 MiB，利用率 0%。\n\n其他 GPU 仍在使用中：\n| GPU | 显存使用 | 利用率 |\n|-----|---------|--------|\n| 0 | 18477/32607 MiB | 99% |\n| 1 | 27313/32607 MiB | 88% |\n| 2 | **0/32607 MiB** | **0%** |\n| 3 | 22527/32607 MiB | 88% |\n\n### 5. Resume 可行性\n**可以直接从 checkpoint-5200 resume。** 剩余 1433 步（~4h45m，按 ~12s/it 估算）。启动时需要：\n- 将 timeout 时长设为 ≥8h（给足余量）\n- 日志写入正确的 v4 log 文件（当前实际写入了 v2.log）\n- `--resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5200`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cwm8b-v4-crash-copy-2.md"
+}

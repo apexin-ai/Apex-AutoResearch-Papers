@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7d406a4d3509c21cbac",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code oracle f2p stratified",
+  "task_key": "worker_code_oracle-f2p-stratified_20260512T050929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_oracle-f2p-stratified_20260512T050929_result.json",
+    "occurrence": 1,
+    "bytes": 1238,
+    "sha256": "2bf5811f78651ea429266ab8236a9d1e59480ae152776a4adc3e40e1cf217db1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### 分层 block-correlated advantage (70-85% accuracy)\n\n| 分层 | 实例占比 | Block Advantage | IID Advantage |\n|------|---------|-----------------|---------------|\n| **T=1** | 68.7% | **-0.09%** | -0.11% |\n| **T=2** | 19.1% | **31.69%** | 3.88% |\n| **T=3-5** | 7.1% | **40.74%** | 6.04% |\n| **T=6+** | 5.1% | **40.06%** | 17.31% |\n| Overall | 100% | **10.93%** | 1.98% |\n\n### 关键发现\n\n1. **T=1 advantage ≈ 0**：确认了预期——当只有 1 个 F2P test 时，per-test verifier 退化为 trajectory-level verifier（都是单个 binary prediction），无信息增益\n2. **T=2 即有 31.7% advantage**：仅 2 个测试就能产生巨大优势，因为 per-test 可以用连续评分（0/1/2）做排序\n3. **T≥3 趋于饱和**：T=3-5 (40.7%) 和 T=6+ (40.1%) 接近，说明 ~3 个测试后 advantage 就接近上限\n\n### 加权分解\n\n整体 10.93% advantage 的来源：\n- T=1 贡献 -0.6%（近零）\n- T=2 贡献 **55.3%**（最大贡献者）\n- T=3-5 贡献 26.5%\n- T=6+ 贡献 18.7%\n\n**结论**：per-test verifier 的优势完全来自 T≥2 的 31.3% 实例，在这些实例上 advantage 高达 30-40%。T=2 是性价比最高的分界点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-oracle-f2p-stratified.md"
+}

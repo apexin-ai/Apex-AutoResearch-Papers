@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cb68a2acef161b0a803",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260515T095317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abstract_20260515T095317_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "07c58b5bdbe5dce0bcb0d1c9b350bcdeec55a4c042ea2ad59286ee9814162cd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入。主要变更：\n\n- **三个 failure modes**：加入 format compliance collapse\n- **Repo-level 数字全部更新**：25.59pp gap (83.63% vs 58.04%, 4B, single seed)，~14pp below majority baseline (72.96%)，unparseable 53.7–67.2%，parseable-only 42–43%，CLS 0% unparseable\n- **Scaling evidence 加入**：CLS +0.96pp vs CWM −0.27pp (4B→8B)\n- **Cross-size 省略**，节省 word budget\n- C2/C3 数字不变，function-level 数字不变"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abstract.md"
+}

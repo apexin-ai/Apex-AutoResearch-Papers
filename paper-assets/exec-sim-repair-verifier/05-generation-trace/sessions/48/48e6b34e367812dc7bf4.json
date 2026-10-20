@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48e6b34e367812dc7bf4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_11_1778787437.md",
+  "task_key": "loop_11_1778787437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778787437.md",
+    "occurrence": 1,
+    "bytes": 5313,
+    "sha256": "8eee91df3d866a86b2c697353145a89ecf26f4d9fc7ab8cbaeefc897e30e884b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-14T19:36:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0/1/2/3（仅 westd）。home 服务器只有 cuda:0。不得越界。\n- **D063 方法论红线**: checkpoint 选择必须在 val set (9335 samples) 上做，test set (9784) 只报最终数字。之前所有 checkpoint sweep 结果均在 test 上做的，属于 cherry-picking，论文不可直接引用。\n- eval_repo_cls.py 的 max_seq_length 硬编码 2048，val 评估必须手动传 `--max_seq_length 8192`，否则截断率飙升（D077 教训）。\n- CWM vs CLS apple-to-apple 比较必须用 westd conda 环境的数据，不可跨 server/env 混比。\n- 8B eval batch_size 需下调到 1-2（5090 显存限制）。\n- submit_training_job 的 command 必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不要假设 .venv。\n\n### 2. 🖥️ 基础设施快照\n- **westd**: root@seetacloud-westd-4x5090, 工作目录 `/root/exec-sim-repair-verifier`（推测，需确认），4x RTX 5090\n  - Python: `/root/miniconda3/bin/python`（conda base）\n  - HF cache: 需确认（AutoDL 应在 `/root/autodl-tmp/.hf_cache`）\n  - 模型: Qwen3-8B / Qwen3-4B（HF 或本地缓存）\n- **home**: sonny@home-1x5090, 工作目录 `/home/sonny/exec-sim-repair-verifier`, 1x RTX 5090\n- **Checkpoints (westd)**:\n  - `checkpoints_repo_cls_8b_conda/`: ckpt 200, 400, 600（完成）\n  - `checkpoints_repo_cls_8b_seed123_conda/`: ckpt 200, 1800-3000（训练中）\n  - `checkpoints_repo_cwm_8b_conda/`: ckpt 400-1600（训练中）\n  - `checkpoints_repo_cwm_conda_v12/`: ckpt 300-700\n  - `checkpoints_repo_cwm_seed123_conda/`: ckpt 200-600\n- **活跃进程**:\n  - `repo-level-cls-8b-seed123-conda-v3`: PID 266444, cuda:3, westd（registry 有记录）\n  - ROADMAP 提到 PID 210568 (CWM 8B, cuda:2) 和 PID 210652 (CLS 8B s123, cuda:3) — 这些是旧 PID，v3 重启后 PID 已变，需 SSH 确认 cuda:2 上是否仍有 CWM 8B 训练\n  - CWM v12 eval (cuda:1) 和 CWM seed123 eval (cuda:0) 的 ETA 是 ~02:20-02:30 UTC May 15 — 可能已完成，需确认\n- **Cron**: 本 session 无活跃 cron。上一个 session 的 cron 已随 session 销毁。**需立即为 RUNNING 实验重建 cron 监控。**\n\n### 3. 📊 当前状态\n**刚完成的关键事件**（过去 24h）:\n- CLS 8B seed42: **success**, acc=84.52%, F1_macro=80.89, best=ckpt-400（但此结果基于 test set，D063 要求 val 重选）\n- CLS 8B seed123 训练多次失败/重启（v1 failed → v2 重启 → v3 修正 resume 路径），v3 当前 RUNNING\n- CWM 8B v3: **failed**（原因未记录）\n- D072/D073: 8B 训练崩溃根因 = Worker 误杀 DataLoader 子进程，修复方案 num_workers=0\n- D077: val unparseable 20.2% 根因 = 截断，已修复截断逻辑\n\n**Registry RUNNING (3)**:\n- `repo-level-cls-8b-seed123-conda-v3` — PID 266444, cuda:3, 实际在跑\n- `repo-level-cls-8b-seed123-conda-v2` — pid=null, 疑似 stale（被 v3 取代）\n- `repo-level-cwm-8b-conda-v2` — pid=null, 疑似 stale（v3 已 failed，v2 状态未清理）\n\n**总计**: 65 实验 (62 DONE + 3 RUNNING), 其中 36 success / 3 negative / 16 failed\n\n**等待中**: \n- 无 Worker 在跑（Worker 池 = 0，违反 L1 约束）\n- 无 Cron 监控（新 session 需重建）\n- CWM v12/seed123 eval 可能已完成但无人收割结果\n\n### 4. 📋 待办（条件触发式）\n- **立即**: SSH 确认 westd cuda:0/1/2/3 上各进程实际状态（CWM eval 是否完成、CWM 8B 训练是否存活、CLS 8B s123 v3 训练进度）\n- **立即**: 清理 stale RUNNING 记录（v2 entries 若确认已死，转 DONE(failed)）\n- **立即**: 为 `repo-level-cls-8b-seed123-conda-v3` 注册 cron 监控\n- CWM v12 eval 完成 → 收割结果 → 更新 registry → CLS-CWM gap 计算 → 解除 D057 论文阻塞\n- CWM seed123 eval 完成 → 收割 → paired bootstrap 统计检验\n- CLS 8B 所有模型 → val set checkpoint sweep（D063 修复）→ val 选 best ckpt → test 最终 eval\n- 8B CLS s123 训练完成 → 8B eval pipeline（val sweep → test final）\n- 8B CWM 训练完成（若 cuda:2 仍活） → 同上\n- 所有 final numbers 就绪 → Paper Agent patch（11 天倒计时）\n\n### 5. 🎯 战略上下文\n**核心结论**: CLS reformulation 优于 CWM，优势随代码复杂度/模型规模增长（C1 claim）。Function-level 已稳固（5 seeds, p=0.008）。Repo-level 是论文差异化亮点，8B scaling 数据正在积累。\n\n**决策链要点**:\n- D063: test-set checkpoint selection = cherry-picking，必须 val 重做。**ROADMAP 里所有 repo-level accuracy 数字目前都不可直接用于论文。**\n- D072/D073: DataLoader num_workers>0 在 westd 上会被平台 SIGTERM，已全部改 num_workers=0\n- D077/D074: 截断是 unparseable 的主因但非误分类主因（test@4096 仅 +0.54pp）\n\n**易错点**:\n- 不要把 stale RUNNING 记录（v2 无 PID）当成真实运行进程，它们可能已死\n- ROADMAP 里的 PID (210568/210652) 是旧值，v3 重启后已变（v3 PID=266444）\n- CWM eval 极慢（~20h for 9784 samples），不要因为没看到结果就以为失败了\n- home 和 westd 的数据/环境不完全一致，跨 server 比较需谨慎标注\n- eval_repo_cls.py 不像其他脚本那样自动切换 max_seq_length，val 必须手动传 8192\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778787437.md"
+}

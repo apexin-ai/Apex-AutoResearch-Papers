@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e01a394d9e957025bc60",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh check qwen cwm progress",
+  "task_key": "worker_ssh_check-qwen-cwm-progress_20260520T030652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-qwen-cwm-progress_20260520T030652_result.json",
+    "occurrence": 1,
+    "bytes": 1209,
+    "sha256": "c9f92ebc5ee2df32b058fc58c1404ecf5d45169af3dcb1df699a77fd946f8c76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度报告\n\n### 实验 1: qwen3-8b-cwm-repo-s123-train-v4\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **存活** (PID 886273, 已运行 1h37m) |\n| 进度 | **260 / 6633 steps (3.9%)** |\n| 速度 | ~12.1 s/step |\n| tqdm ETA | ~21h12m |\n| 预计完成 | ~May 21 00:40 UTC |\n| Checkpoints | `checkpoint-100`, `checkpoint-200`, `checkpoint-300` |\n| 错误/警告 | 无 |\n\nStep 200 处触发了一轮 eval（9335 样本，耗时 ~19min），已完成。\n\n> 注意：checkpoint-300 存在但当前 step 仅 260——可能来自之前的训练运行。\n\n### 实验 2: qwen3-8b-cwm-repo-s456-train-v3\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **存活** (PID 886347, 已运行 1h37m) |\n| 进度 | **266 / 6633 steps (4.0%)** |\n| 速度 | ~12.1 s/step |\n| tqdm ETA | ~21h26m |\n| 预计完成 | ~May 21 01:00 UTC |\n| Checkpoints | `checkpoint-100`, `checkpoint-200` |\n| 错误/警告 | 无 |\n\n同样在 step 200 处完成了 eval（9335 样本，~19min）。\n\n### 总结\n\n两个实验均正常运行，进度接近（~4%），速度稳定在 ~12s/step。预计 **May 21 凌晨 00:40–01:00 UTC** 完成，与原始预估一致。日志无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-qwen-cwm-progress.md"
+}

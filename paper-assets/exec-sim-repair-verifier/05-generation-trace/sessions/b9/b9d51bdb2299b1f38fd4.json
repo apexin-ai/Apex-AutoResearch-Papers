@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9d51bdb2299b1f38fd4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze llm judge 32b zeroshot",
+  "task_key": "worker_analyze_llm-judge-32b-zeroshot_20260512T082016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_llm-judge-32b-zeroshot_20260512T082016_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "32619ce0492dcd6dc6676d4ba4c4acddac3661c251e694136166e2a3a1e1d61e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。汇总：\n\n**结论：SUCCESS** — Fine-tuned 4B 的 Pareto 优势得到确认。\n\n| 指标 | 32B zero-shot | 8B zero-shot | Fine-tuned 4B |\n|------|:---:|:---:|:---:|\n| Accuracy | 71.69% | 64.4% | **88.41%** |\n| Fail P / R / F1 | 64.4 / 92.4 / 75.9 | 57.9 / 95.8 / 72.2 | ~88.4 / ~88.4 / **88.40** |\n| Pass P / R / F1 | 88.1 / 52.4 / 65.7 | 90.0 / 35.1 / 50.5 | ~88.4 / ~88.4 / **88.41** |\n| Traj. accuracy | 99.1% | — | — |\n\n关键发现：\n- 8B→32B（4x 参数量）仅提升 7.3pp accuracy，距 fine-tuned 4B 仍差 16.7pp\n- Zero-shot 模型存在系统性 FAIL 偏向（fail recall>92%, pass recall<53%），fine-tuning 消除了这一偏差\n- Wall clock 471s，0.13 GPU-hours"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-llm-judge-32b-zeroshot.md"
+}

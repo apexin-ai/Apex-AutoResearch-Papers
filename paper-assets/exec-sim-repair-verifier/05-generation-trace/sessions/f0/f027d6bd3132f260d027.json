@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f027d6bd3132f260d027",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval home mutation eval prep",
+  "task_key": "worker_eval_home-mutation-eval-prep_20260515T221239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_home-mutation-eval-prep_20260515T221239_result.json",
+    "occurrence": 1,
+    "bytes": 1930,
+    "sha256": "312ded512409ae912bafd6853fcdea6d0166ed60ac0a6d146bbcbffae16595e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查报告\n\n### 1. Home GPU 状态：**不可达**\nhome-1x5090 所有 SSH 命令均 10s 超时。服务器可能关机或网络不通。\n\n### 2. 8B 模型：**无法确认**（服务器不可达）\n\n### 3. CLS 8B ckpt-1000：**无法确认**（服务器不可达）\n实验配置显示 checkpoint 来源为 `westd:/root/autodl-tmp/checkpoints_repo_cls_8b_conda/`，需要从 westd 同步到 home。\n\n### 4. eval 脚本是否支持 per-mutation breakdown：**否**\n`eval_repo_cls.py`（v1/v2）只计算整体 accuracy、F1、confusion matrix。**没有任何 mutation_type 相关逻辑。** 需要改动：\n- 数据加载时保留 `mutation_type` 字段\n- 推理结果中记录 `mutation_type`\n- `compute_metrics` 后增加 per-mutation-type 分组计算 accuracy/F1\n- 输出 summary JSON 中增加 `by_mutation_type` 字段\n\n### 5. 数据中 mutation_type 字段：**有**\n`build_data.py` 生成的数据包含 `mutation_type` 字段，共 6 种值：\n- `original`（正确代码）\n- `operator_swap`\n- `off_by_one`\n- `return_value`\n- `boundary_removal`\n- `variable_swap`\n\n`extract_predictions_generic.py` 已经会透传 `mutation_type`，但 `eval_repo_cls.py` 不读这个字段。\n\n### 6. 磁盘空间：**无法确认**（服务器不可达）\n\n### 7. 总结：提交 per-mutation eval 还需要\n\n| 步骤 | 状态 |\n|------|------|\n| home-1x5090 恢复在线 | **阻塞** — 当前不可达 |\n| 改 `eval_repo_cls.py` 添加 per-mutation-type breakdown | **需要做** |\n| Qwen3-8B 模型同步到 home | 待确认（服务器恢复后检查） |\n| CLS 8B s42 ckpt-1000 LoRA adapter 同步到 home | 待确认（可能需要从 westd 同步） |\n| test 数据集同步到 home | 待确认 |\n\n**建议优先级**：先改 eval 脚本（本地可做，不依赖服务器），等 home 恢复后再检查模型/数据/磁盘状态。是否现在修改 eval 脚本？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-home-mutation-eval-prep.md"
+}

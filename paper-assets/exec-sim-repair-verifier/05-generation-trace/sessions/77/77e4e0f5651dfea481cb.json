@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77e4e0f5651dfea481cb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_9_1778790620.md",
+  "task_key": "loop_9_1778790620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778790620.md",
+    "occurrence": 1,
+    "bytes": 5820,
+    "sha256": "f2477d25beeb1f19d910477b958aec1301a79d8d993bb839ba9f3e74b54936b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_messages\nupdated: '2026-05-14T19:53:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd GPU 白名单**: cuda:0/1/2/3（4x5090）。submit_training_job 的 `--device cuda:0` 是逻辑编号，CUDA_VISIBLE_DEVICES 由框架注入\n- **CWM 训练脚本是 `train_repo_cwm.py`**，不是 `train_repo_verifier.py --task cwm`。v3 就是因为用错脚本名崩溃的（EXIT_CODE=2）\n- **CLS 训练脚本是 `train_repo_verifier.py`**（不带 --task 参数，默认 CLS）\n- **resume_from_checkpoint 必须指向 `checkpoint-XXXX` 子目录**，不能指向 output_dir 根目录（v2 两次崩溃教训）\n- **kill 进程前必须验证 60s 内无文件写入**，kill 前备份 predictions.jsonl（两次误杀事故）\n- **8B 训练必须 `--dataloader_num_workers 0`**（D072/D073 DataLoader 误杀教训）\n- **home 服务器用 .venv**（`source .venv/bin/activate`），**westd 用 conda**（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n\n### 2. 🖥️ 基础设施快照\n**westd (seetacloud-westd-4x5090, root)**\n- 工作目录: `/home/sonny/exec-sim-repair-verifier/`\n- Python: `/root/miniconda3/bin/python`\n- 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/` (8B), Qwen3-4B (4B, 默认 HF cache)\n- Checkpoint 目录:\n  - CWM 8B: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/` (checkpoint-400..1600)\n  - CLS 8B seed123: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` (checkpoint-200..3000)\n  - CLS 8B conda (seed42): 已完成训练，checkpoint 在 westd 上\n- 活跃进程（截至 handoff 前 ~1h 确认）:\n  - cuda:0: PID 195531 — CWM eval seed123 (tmux: eval_cwm_seed123, 运行 >16h, 应已完成)\n  - cuda:1: PID 195668 — CWM eval v12 (tmux: eval_cwm_v12, 运行 >16h, 应已完成)\n  - cuda:2: PID 266816 — CWM 8B v2 训练 (正确脚本 train_repo_cwm.py, resume checkpoint-1600, 27GB VRAM)\n  - cuda:3: PID 266449 — CLS 8B v3 训练 (train_repo_verifier.py, resume checkpoint-3000, 30.9GB VRAM)\n- val5120 sweep 命令: `/home/sonny/exec-sim-repair-verifier/val5120_sweep_commands.txt` (13 个 eval, 6 phases dual-GPU)\n\n**home (home-1x5090, sonny)**\n- 工作目录: `/home/sonny/exec-sim-repair-verifier/`\n- Python: `/home/sonny/exec-sim-repair-verifier/.venv/bin/python`\n- Checkpoint 目录:\n  - CLS 8B westd: `/home/sonny/checkpoints_repo_cls_8b_westd/` (checkpoint-200..3000)\n  - CLS seed123: `/home/sonny/checkpoints_repo_cls_seed123_home/` (checkpoint-200..1000)\n  - CLS v5: `/home/sonny/checkpoints_repo_cls_v5/` (checkpoint-600..4600)\n  - CLS 8B conda westd: `/home/sonny/checkpoints_repo_cls_8b_conda_westd/`\n- 活跃进程:\n  - cuda:0: PID 3151214 — 8B ckpt-3000 val@5120 eval (~21% 约 1.5h 前)\n  - nohup PID 3153913 — val sweep 自动串联脚本（等 8B 完成后自动跑 7 个 4B eval）\n\n### 3. 📊 当前状态\n**刚做完**: 修复 GPU 2/3 resume 路径 bug（v2/v3 多次提交），标记 CWM v3 为 DONE/failed，取消冗余 Worker。\n\n**正在等待**: 两个 status check Worker 刚派出（handoff 前）：\n- `worker_check_westd-full-status-2h` — 全面检查 westd 4 卡状态 + CWM eval 结果\n- `worker_check_home-full-status-2h` — 检查 home val sweep 进度 + 已完成结果\n\n**Registry 需修复**:\n- `repo-level-cls-8b-seed123-conda-v2`: 仍标 RUNNING，实际已崩溃，需改 DONE/failed（设 conclusion 前设 status 会失败，要先 update conclusion=failed 再 status=DONE）\n- `repo-level-cwm-8b-conda-v2`: 标 RUNNING，但实际情况需确认（PID 266816 可能是 v2 也可能是 fix worker 提交的新进程）\n\n**已知 val@5120 结果**:\n- 8B conda ckpt-400 val@5120: accuracy=80.47%, f1_macro=75.84, unparseable=0%, truncated=2.51%\n\n### 4. 📋 待办（条件触发式）\n- **westd status Worker 返回 + CWM eval DEAD** → 收集 CWM seed123/v12 accuracy，更新 registry，立即在 cuda:0/1 启动 val5120_sweep_commands.txt 中的 sweep（D063 paper blocker）\n- **westd status Worker 返回 + CWM eval ALIVE** → 等完成，监控进度\n- **home status Worker 返回** → 收集已完成的 val@5120 结果，确认 sweep 队列状态\n- **home 8B ckpt-3000 val@5120 完成** → 收集 accuracy/f1_macro，对比 ckpt-400 的 80.47% 判断最优 checkpoint\n- **home 全部 7 个 4B val sweep 完成** → 汇总所有 checkpoint 的 val@5120 指标，选 best checkpoint，只对 best 跑一次 test@5120 最终 eval\n- **westd CWM 8B v2 训练完成** → 收集 eval_loss，确认最优 checkpoint\n- **westd CLS 8B v3 训练完成** → 同上，注意 v1 在 step 2800→3200 有 eval_loss 跳升（0.278→0.426），关注过拟合\n\n### 5. 🎯 战略上下文\n**核心假设**: CLS（分类）优势随代码复杂度增长。repo-level 是最高复杂度验证。\n\n**关键数据点**:\n- CLS repo-level: ~80% accuracy（8B conda ckpt-400 val@5120）\n- CWM repo-level: ~57-59% accuracy（低于 72.96% majority baseline，是真实结果不是截断伪影，max_new_tokens=1024 已确认）\n- CLS 优势在 repo-level 显著（+20pp vs CWM）\n\n**D063 方法论修复（paper blocker）**: checkpoint 选择必须在 val set 上做（不是 test set = cherry-picking）。所有之前的数字都是 test@2048，现在需要 val@5120 重新选 checkpoint。这是当前最高优先级。\n\n**易错点**:\n1. CWM 和 CLS 用**不同训练脚本**（train_repo_cwm.py vs train_repo_verifier.py），不要搞混\n2. registry 的 `parent` 字段会让系统认为是 eval 实验（要求 checkpoint_source + eval_data），纯训练 retry 不要设 parent\n3. `submit_training_job` 创建的是 tmux wrapper PID，实际 Python 进程 PID 不同，nvidia-smi 里看到的是后者\n4. val set = 9335 samples, test set = 9784 samples，用 sample count 可判断跑的是哪个 split\n5. eval_repo_cls.py 不支持 `--resume`，中断后必须从头跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778790620.md"
+}

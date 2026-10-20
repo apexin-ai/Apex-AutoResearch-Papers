@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9244c35efa0cfcbb898",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra full gpu status check",
+  "task_key": "worker_infra_full-gpu-status-check_20260512T142131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_full-gpu-status-check_20260512T142131_result.json",
+    "occurrence": 1,
+    "bytes": 1562,
+    "sha256": "b27eb3ebc24d59c0a3ff14ca773b74a54775faa85dbb7f9fcfd590e4462709fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### seetacloud-westd-4x5090 (4× RTX 5090)\n\n| GPU | 状态 | PID | 进程 | 显存 |\n|-----|------|-----|------|------|\n| 0 | **占用** | 34681 | `train_repo_verifier.py` (repo-level-cls) | 31133/32607 MiB |\n| 1 | **空闲** | — | — | 0 MiB |\n| 2 | **占用** | 47236 | `train_cwm_baseline.py` (cwm8b-seed456) | 26207/32607 MiB |\n| 3 | **空闲** | — | — | 0 MiB |\n\n### home-1x5090 (1× RTX 5090)\n\n| GPU | 状态 | PID | 进程 | 显存 |\n|-----|------|-----|------|------|\n| 0 | **占用** | 2810148 | `train_verifier.py` (cls8b-seed456) | 26221/32607 MiB |\n\n---\n\n### 实验真实状态\n\n| 实验 | 状态 | 进度 | 位置 | 备注 |\n|------|------|------|------|------|\n| **repo-level-cls** | **运行中** | 1150/6633 (17%), ~2h49m | westd GPU 0 | ~8.5s/it, ETA ~13h |\n| **repo-level-cwm** | **已崩溃** | 694/6633 (10%) 时终止 | westd (已退出) | `EXIT_CODE=143` (SIGTERM 被杀) |\n| **cwm8b-seed456** | **运行中** | 423/1434 (29%), ~24min | westd GPU 2 | Qwen3-8B, ~3.4s/it, ETA ~60min |\n| **cls8b-seed456** | **运行中** | ~150/948 eval中 | home GPU 0 | Qwen3-8B, 正在 eval 迭代 |\n\n### 缺失产出\n\n- `eval_repo_cls.json` — 不存在\n- `eval_repo_cwm.json` — 不存在\n- `*cls_cwm*.json` / `*5paired*.json` — 不存在\n\n---\n\n**关键发现：repo-level-cwm 已死（SIGTERM），GPU 1 和 GPU 3 空闲。** Director 的判断部分正确：repo-level-cls 确实在跑，但 repo-level-cwm 已被杀掉，需要重启。westd 有 2 个空闲 GPU 可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-full-gpu-status-check.md"
+}

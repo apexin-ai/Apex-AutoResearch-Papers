@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb2d5166031ca9d1df00",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_12_1778809232.md",
+  "task_key": "loop_12_1778809232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778809232.md",
+    "occurrence": 1,
+    "bytes": 5276,
+    "sha256": "3e14401a8dc66e525e0fbc96bb15d0646218fa43b141a365d5e344a9092a9def"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T00:52:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd cuda:0/1/2/3 + home cuda:0，无其他可用 GPU\n- D088 硬约束：**主指标必须用 val-selected checkpoint**（test-selected 已被撤回）。新 checkpoint 先跑 val@8192，超过 val-best (85.00%) 才跑 test@8192\n- eval_repo_cls.py 参数名易错：`--checkpoint_dir`（非 --checkpoint_path），`--device`（非 --gpu），必须显式 `--max_seq_length 8192`（默认 2048），8B+8192 需 `--batch_size 1`\n- 8B seed123 checkpoint 路径：`/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000`（Qwen3-8B）。**不是** `checkpoints_repo_cls_seed123/checkpoint-3000`（那是 4B）\n- CLS 与 CWM 对比必须用 westd conda 环境的数据（apple-to-apple），不能跨 server 比\n- DDL: **EMNLP 2026 ARR May 25**，剩 10 天\n\n### 2. 🖥️ 基础设施快照\n- **westd (seetacloud-westd-4x5090)**: root@, 工作目录 `/root/autodl-tmp/` 下多个 checkpoint 目录\n  - Python: `/root/miniconda3/bin/python`（conda base，不是 venv）\n  - 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - CLS 8B s42 resume output: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`\n  - CLS 8B seed123 ckpt: `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000`\n  - 代码仓库: `/root/autodl-tmp/exec-sim-repair-verifier/`（推测，需确认）\n- **home (home-1x5090)**: sonny@, 单卡 5090\n- 活跃进程:\n  - westd cuda:0: cls8b-s42-ckpt800-val8192-eval, PID 304607（val eval）\n  - westd cuda:1: repo-level-cls-8b-s42-resume, PID 295789/295794（训练，从 ckpt-600 resume）\n  - westd cuda:2: repo-level-cwm-8b-conda-v4, PID 266816（CWM 8B 训练，step ~1700/6633）\n  - westd cuda:3: repo-level-cls-8b-seed123-conda-v3, PID 266444（CLS 8B seed123 训练，从 ckpt-3000）\n  - home cuda:0: cls4b-v5-ckpt4000-val5120-eval, PID 3186818（可能刚完成，cron 已标 DONE）\n- Cron 活跃: repo-level-cls-8b-seed123-conda-v3, repo-level-cwm-8b-conda-v4, repo-level-cls-8b-s42-resume\n\n### 3. 📊 当前状态\n**刚完成**: cls4b-v5-ckpt4000-val5120-eval（cron reconcile 标记 DONE，home cuda:0 释放）。cls4b-v5-ckpt4400-val5120-eval 也刚创建 cron。\n\n**RUNNING (5)**:\n- `cls8b-s42-ckpt800-val8192-eval`: 8B s42 ckpt-800 val@8192 eval（D088 pipeline，若 >85% 需补 test）\n- `repo-level-cls-8b-s42-resume`: 8B s42 从 ckpt-600 resume 训练到 step 6633\n- `repo-level-cwm-8b-conda-v4`: CWM 8B 训练（step ~1700/6633），完成后跑 8B-8B CLS vs CWM gap\n- `repo-level-cls-8b-seed123-conda-v3`: CLS 8B seed123 训练，完成后做 8B multi-seed\n\n**PREPARING (3)**: repo-level-cls-8b-s42-ckpt200-val, cls8b-ckpt3000-test-v2, cls8b-ckpt3000-test-eval（这三个可能是残留状态，需确认是否还需要）\n\n**Worker 池**: 0 running。**违反 L1 红线（池<2）**——下一个 session 应立即派 Worker 做非 GPU 任务（论文写作准备、文献联动等）\n\n**等待中**: 3 个 cron 回调（训练完成时触发），无 Director 决策 pending\n\n### 4. 📋 待办（条件触发式）\n- `cls8b-s42-ckpt800-val8192-eval` 完成 → 检查 acc 是否 >85.00%；若是 → 提交 test@8192 eval；若否 → 记录，继续等 resume 训练产出新 ckpt\n- `repo-level-cls-8b-s42-resume` 训练完成 → sweep 新 checkpoint（ckpt-800/1000/...）val@8192，选 val-best → test@8192\n- `repo-level-cwm-8b-conda-v4` 训练完成 → eval CWM 8B → 计算 8B-8B CLS vs CWM gap → 更新论文 headline\n- `repo-level-cls-8b-seed123-conda-v3` 训练完成 → val sweep → 确认 8B multi-seed 一致性\n- home cuda:0 释放 → 可用于 CLS 4B supplementary eval（v5_conda ckpt-600 val@8192 待补跑）\n- 所有 eval 完成 → 派 Worker 批量更新论文数字（paper agent patch：repo-level 最终数字 + error analysis + headline）\n- PREPARING 状态实验 → 确认是否仍需要，清理或推进\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- C1 (Complexity-Dependent Advantage): 极稳固。Function-level gap 1.24pp (4B) / 2.43pp (8B)。Repo-level gap 24-26pp（CLS 82-84% vs CWM 58-59%，CWM 低于 majority baseline 72.96%）\n- C2 (Diagnostic Granularity): 完成 (TOST p=0.007)\n- C3 (Accuracy-Utility Frontier): 完成\n- D082 CWM error analysis: parseable-only acc 仅 42%，38% 的\"正确\"来自 unparseable 默认归类巧合。直接支持 complexity-dependent failure narrative\n\n**最关键的未完成项**: D063 val sweep——checkpoint 选择必须基于 val set。当前 8B s42 val-best 是 ckpt-400 (80.96%)，ckpt-600 val 在跑(ckpt-800 也在跑)。这决定论文 headline 数字\n\n**易错点**:\n- 不要混淆 val-selected 和 test-selected checkpoint（D084-D088 反复纠正过）\n- CLS 4B 跨 server 对比有 seq_len confound（home 用 5120，westd 用 8192）\n- CWM 的 overall accuracy (58%) 比 parseable-only accuracy (42%) 高很多，因为 unparseable 默认归为 majority class。论文里要用 parseable-only 数字才诚实\n- 3 个 PREPARING 实验可能是过时残留（PID 指向旧进程），不要盲目提交，先 SSH 确认进程状态\n- Worker 池=0 是当前失职，但所有 GPU 都在跑，应派 CPU Worker 做论文准备/文献联动\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778809232.md"
+}

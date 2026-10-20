@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c8b79dfac062fc92f1c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval collect traj s42 results",
+  "task_key": "worker_eval_collect-traj-s42-results_20260516T130320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-traj-s42-results_20260516T130320_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "a2d996376872d87fec7cc6ac8100b6b02b7fba95a213cbf0cda7718ed6f08543"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **83.14%** |\n| n_samples | 1032 |\n| Precision (resolved) | 89.00% |\n| Recall (resolved) | 72.65% |\n| F1 (resolved) | 80.00% |\n| Precision (unresolved) | 79.56% |\n| Recall (unresolved) | 92.22% |\n| F1 (unresolved) | 85.43% |\n| Unparseable | 8 (0.78%) |\n| Per-test consistency | 77.42% |\n\n对比：CLS 86.85%、CWM 86.83%，**Traj 83.14% 低了约 3.7pp**。模型倾向于预测 unresolved（recall 92.2%），对 resolved 的 recall 偏低（72.65%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-traj-s42-results.md"
+}

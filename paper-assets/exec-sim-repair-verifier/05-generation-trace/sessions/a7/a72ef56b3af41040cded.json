@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a72ef56b3af41040cded",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor home 8b eval vram and progress",
+  "task_key": "worker_monitor_home-8b-eval-vram-and-progress_20260514T173651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_home-8b-eval-vram-and-progress_20260514T173651_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "6da35785722d082b4893e34135e84e16acc8e19a88b8d43c4ec41b341d362af8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 监控结果\n\n### 1. 进程存活 ✓\n- PID 3151214 活跃，CPU 111%，10:31启动，已运行 ~8分钟\n- 命令: `eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_8b_westd/checkpoint-3000 --split val --max_seq_length 5120 --batch_size 8`\n\n### 2. VRAM 占用\n- **29447 / 32607 MiB (90.3%)**，GPU利用率 100%\n- 两次检查间 VRAM 稳定不变，无上升趋势\n- 剩余 ~3.2GB，**OOM风险低** — batch_size=8 下内存已收敛到稳定值\n\n### 3. predictions.jsonl 增长 ✓\n| 时刻 | 行数 | 大小 |\n|------|------|------|\n| T1 | 672 | 130KB |\n| T2 (~97秒后) | 840 | 155KB |\n\n- **增长 168 行/97秒**，进程正常推进\n- 当前进度: **840 / 1896 (44.3%)**\n- 预计剩余 ~10分钟完成\n\n### 4. 4B eval 串联\n- **未发现4B eval排队**。tmux session `eval_8b_val5120_fix` 中只有当前8B eval的单条命令，没有 `&&` 链式调用\n- 服务器上无其他python eval进程在等待\n- 如果需要4B eval接力，需要手动启动\n\n### 5. 异常\n无异常。进程稳定推进，VRAM平稳，无OOM风险。唯一注意点是**4B eval没有自动串联**，8B完成后需要手动启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-home-8b-eval-vram-and-progress.md"
+}

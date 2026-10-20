@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a747f90b1176dc1c4dd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code repo level 3shot baseline prep",
+  "task_key": "worker_code_repo-level-3shot-baseline-prep_20260519T024810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_repo-level-3shot-baseline-prep_20260519T024810_result.json",
+    "occurrence": 1,
+    "bytes": 1132,
+    "sha256": "a1431cc389826ca4862f2ef8ed2383861c7c797e5af7f658bd8a49755b1740f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "一切正常。输出格式与 `eval_repo_cls.py` 一致。\n\n**结果汇总：**\n\n| 项目 | 信息 |\n|------|------|\n| 脚本路径 | `/home/sonny/exec-sim-repair-verifier/eval_3shot_baseline.py` |\n| 输出目录 | `artifacts/eval_3shot/` (predictions.jsonl + summary.json) |\n| 推理速度 | ~2.4 ex/s (基于 3-sample test) |\n| 预估全量时间 | 9784 / 2.4 ≈ **68 分钟** (单 GPU) |\n| 测试集 | 9784 per-test instances, 48 variants |\n\n**推荐全量运行命令：**\n\n```bash\ncd /home/sonny/exec-sim-repair-verifier && \\\nHF_HUB_OFFLINE=1 nohup /root/miniconda3/bin/python eval_3shot_baseline.py \\\n    --model_name_or_path /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct \\\n    --data_dir data/swebench_full \\\n    --device cuda:1 \\\n    --max_seq_length 4096 \\\n    --output_dir artifacts/eval_3shot_deepseek \\\n    > logs/eval_3shot_deepseek.log 2>&1 &\n```\n\n脚本支持 `--resume_from N` 断点续跑，以及 `--max_samples` 用于调试。Predictions JSONL 包含 `problem_id` 和 `mutation_type` 字段，可直接与 `aggregate_variant_level.py` 对接。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-repo-level-3shot-baseline-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c378e55f0fbe10ba2d4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh deepseek cwm s123 eval and s456 train",
+  "task_key": "worker_ssh_deepseek-cwm-s123-eval-and-s456-train_20260520T025802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_deepseek-cwm-s123-eval-and-s456-train_20260520T025802_result.json",
+    "occurrence": 1,
+    "bytes": 125,
+    "sha256": "c7b616e2928448e20908991b669068a2d78b14b5c09dffea9361039684daa718"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s123 eval 已在 tmux session `eval_s123` 中启动（GPU 2）。60 秒后检查启动状态和初始进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deepseek-cwm-s123-eval-and-s456-train.md"
+}

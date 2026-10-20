@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcd4f35ca328fe997422",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code fix compile val sweep",
+  "task_key": "worker_code_fix-compile-val-sweep_20260515T164826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-compile-val-sweep_20260515T164826_result.json",
+    "occurrence": 1,
+    "bytes": 721,
+    "sha256": "11caebe017803c0dc151f9789bc87e5988bf0ed9bafc3b92a7a1c80b863aef35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 项修复全部完成，dry-run 验证通过：\n\n**1. CSV 加 `seq_length` 列** — 每行有 `seq_length`（PREV_RESULTS=8192，scanned 从 JSON `config.max_seq_length` 读取，fallback 规则 step≤1600→8192, ≥1800→2048）\n\n**2. Top-3 按 `seq_length` 分组** — 分别输出：\n- `Top-3 (seq_length=8192)`: #1 ckpt-1000 88.23%, #2 ckpt-1200 87.76%, #3 ckpt-1600 86.75%\n- `Top-3 (seq_length=2048)`: #1 ckpt-1800 82.99%（当前仅 1 个 ckpt）\n\n**3. Unparseable rate 监控** — CSV 新增 `n_cls_unparseable` + `unparseable_rate` 列。ckpt-1800 unparseable rate = 20.17% (1883/9335)。当前仅 1 个有数据的 ckpt，后续 ckpt 完成后会自动触发 >5pp 差异 WARNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-compile-val-sweep.md"
+}

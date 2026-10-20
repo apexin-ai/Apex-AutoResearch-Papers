@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf6acd8ec7383fc3cc6d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh health check eval verify",
+  "task_key": "worker_ssh_health-check-eval-verify_20260521T055555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_health-check-eval-verify_20260521T055555_result.json",
+    "occurrence": 1,
+    "bytes": 2741,
+    "sha256": "c56c3b8a2234f00431442e5efb47ba3288f039869d0ce0f73994e0a42d392a35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX 5090 | 98% | 30553 / 32607 MiB (94%) |\n| 1 | RTX 5090 | 99% | 20253 / 32607 MiB (62%) |\n| 2 | RTX 5090 | 99% | 20501 / 32607 MiB (63%) |\n| 3 | RTX 5090 | 98% | 25559 / 32607 MiB (78%) |\n\n4 卡全部满载。\n\n## 训练进程\n\n| 实验 | PID | 存活 | 运行时长 | 当前 Step | 进度 | Loss | Eval Loss | ETA |\n|------|-----|------|----------|-----------|------|------|-----------|-----|\n| Qwen s123 resume | 4271 | **ALIVE** | 8h17m | 4284/6633 | 64.6% | 0.0194 (ep1.90) | 0.4717 (ep1.85) | ~8.0h |\n| Qwen s456 resume | 4561 | **ALIVE** | 8h16m | 4300/6633 + eval中 2129/9335 | 64.8% | 0.0173 (ep1.94) | 0.4713 (ep1.90) | ~7.8h + eval |\n| DeepSeek s456-v2 | 949112 | **ALIVE** | 20h52m | ⚠️ 日志无训练步 | — | — | — | — |\n\n## Monitor 进程\n\n| PID | 存活 | 运行时长 | 说明 |\n|-----|------|----------|------|\n| 817 | **ALIVE** | 8h37m | watch_s123_eval_then_resume.sh |\n| 1769 | **ALIVE** | 8h32m | monitor PID 949112 → eval_deepseek_cwm_s456_v2.sh |\n\n## DeepSeek s123-v2 Eval 结果（已完成）\n\n| 指标 | 值 |\n|------|-----|\n| Checkpoint | checkpoint-4209 |\n| Accuracy | **75.45%** |\n| Majority baseline | 72.96% |\n| Gap vs majority | +2.49pp |\n| F1 (fail/pass/macro) | 46.05 / 84.11 / 65.08 |\n| Unparseable | 6500/9784 (66.4%) |\n| 截断 | 0 |\n\n## Eval 脚本验证\n\n| 脚本 | 存在 | seq_length | batch_size | max_new_tokens | 状态 |\n|------|------|------------|------------|----------------|------|\n| eval_deepseek_cwm_s456_v2.sh | ✓ | 4096 | 4 | 512 | ✓ 参数正确 |\n| eval_qwen_cwm_s123.sh | ✓ | **8192** | 1 | 512 | ✓ 参数正确 |\n| eval_qwen_cwm_s456.sh | ✓ | **8192** | 1 | 512 | ✓ 参数正确 |\n| eval_deepseek_cwm_s123_v2.sh | ✓ | 4096 | 4 | 512 | ✓ (已跑完) |\n| eval_14b_cwm_pilot.sh | ✓ | — | — | — | 未检查 |\n\nQwen eval 的 max_seq_length 均为 8192，bug 已修复确认。\n\n## 异常/告警\n\n1. **DeepSeek s456-v2 (PID 949112) 日志异常**：进程存活 20h52m，但日志仅有 2026-05-20 17:00 的初始化信息（Loaded train=70748, val=1896），无任何训练步输出。最后一行是 token length 超限警告。可能原因：\n   - 训练进度输出到 stderr 未捕获\n   - 进程卡在数据加载/模型加载阶段\n   - 需要检查进程实际 GPU 利用和输出（GPU 3 确实 98% 利用率，说明很可能在正常训练，只是日志未写入）\n\n2. **DeepSeek s123-v2 eval unparseable 率极高 (66.4%)**：6500/9784 样本 unparseable，实际可判定的只有 3284 个样本。accuracy 75.45% 是在全量（unparseable 默认 pass）上计算的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-health-check-eval-verify.md"
+}

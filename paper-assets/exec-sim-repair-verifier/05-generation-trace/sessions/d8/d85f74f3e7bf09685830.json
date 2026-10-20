@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d85f74f3e7bf09685830",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cwm v11 full 9784",
+  "task_key": "worker_eval_cwm-v11-full-9784_20260513T202226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cwm-v11-full-9784_20260513T202226_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "36b0097904ec9e8b671cc35ab2b00d8fc54ef84806ea430d0efa44be26c1ad72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。汇总：\n\n| 项目 | 状态 |\n|------|------|\n| **PID** | 174009 |\n| **模型加载** | 成功（sdpa attention, 398 weights loaded） |\n| **推理状态** | 已开始 (\"Starting inference...\") |\n| **cuda:2 显存** | 10,777 MiB / 32,607 MiB 已占用 |\n| **数据量** | 9,784 样本（label 1: 7138, label 0: 2646） |\n| **修正** | model_name 改为 `/root/.cache/huggingface/hub/Qwen/Qwen3-4B`（原路径不存在） |\n| **日志** | `/tmp/cwm_v11_eval_full.log` |\n| **输出目录** | `/root/autodl-tmp/eval_results/cwm_v11_ckpt600_full/` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cwm-v11-full-9784.md"
+}

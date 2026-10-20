@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8688dc02023f22c722a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b s42 ckpt1600 val8192",
+  "task_key": "worker_eval_cls8b-s42-ckpt1600-val8192_20260515T033928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-s42-ckpt1600-val8192_20260515T033928_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "1920016641fddafc97ebb5a8108dbb8fe4eeafd80291b6635285e918d342f276"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交，汇总：\n\n- **实验**: `cls8b-s42-ckpt1600-val8192-eval`\n- **PID**: 324412\n- **GPU**: cuda:0（5090，空闲）\n- **命令**: `python3 eval_repo_cls.py --checkpoint_dir .../checkpoint-1600 --model_name Qwen/Qwen3-8B --split val --max_seq_length 8192 --batch_size 1 --device cuda:0 --output_dir results/repo_cls_8b_s42_ckpt1600_val8192`\n- **日志**: `~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1600-val8192-eval.log`\n- **预计耗时**: ~30min（参考 ckpt-1200/1400）\n- **Registry**: RUNNING\n\nVal sweep 最后一个数据点，完成后 curve 齐全：ckpt-1000(88.23%) → 1200(87.76%) → 1400(85.97%) → 1600(?)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-s42-ckpt1600-val8192.md"
+}

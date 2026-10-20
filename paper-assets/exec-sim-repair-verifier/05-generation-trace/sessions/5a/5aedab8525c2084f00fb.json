@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5aedab8525c2084f00fb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ops cwm seqlen audit",
+  "task_key": "worker_ops_cwm-seqlen-audit_20260524T020958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm-seqlen-audit_20260524T020958.log",
+    "occurrence": 1,
+    "bytes": 1004991,
+    "sha256": "ab03a5ed46ee0d96ff425d13bd7dc7ccba8c04518a98a657fe765cd7f7ffb21c"
+  },
+  "statistics": {
+    "messages": 198,
+    "user_turns": 0,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 80,
+      "tool_result": 80,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 198,
+      "chunks": [
+        {
+          "path": "5aedab8525c2084f00fb-part-0001.json",
+          "message_count": 55
+        },
+        {
+          "path": "5aedab8525c2084f00fb-part-0002.json",
+          "message_count": 143
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-cwm-seqlen-audit.md"
+}

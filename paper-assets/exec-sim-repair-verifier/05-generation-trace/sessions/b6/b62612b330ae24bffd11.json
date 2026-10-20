@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b62612b330ae24bffd11",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_3_1778629354.md",
+  "task_key": "loop_3_1778629354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778629354.md",
+    "occurrence": 1,
+    "bytes": 4961,
+    "sha256": "c369e56892973c4f433f1a071b3824ee377cb5b2c9c146fdbd05b976def89f74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-12T23:41:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **seetacloud train_repo_cwm.py 禁止传 `--eval_steps` CLI 参数**。argparse 不认识，会 EXIT_CODE=2 立即崩溃。eval_steps 由源码 line 269 自动取 save_steps 值。这个坑已踩 5+ 次。\n- **seetacloud 平台会 SIGTERM 杀 tmux**。训练必须用 nohup 启动，不用 tmux。\n- **seetacloud cgroup 360GB 限制**：不能并行两个训练。cuda:0/1/3 空闲但不可用于训练。\n- **westd-48478 = seetacloud-westd-4x5090 是同一台机器**，SSH 账号不同（westd-48478 用 sonny 但认证失败，seetacloud 用 root 可连）。\n- **home 服务器训练进程严禁 kill**（D024），除非 Director 明确批准。\n- **save_steps 与 eval_steps 必须整除兼容**（load_best_model_at_end 要求 save_steps % eval_steps == 0），否则 ValueError。\n\n### 2. 🖥️ 基础设施快照\n**seetacloud-westd-4x5090** (4× RTX 5090, root@):\n- 工作目录: `/home/sonny/exec-sim-repair-verifier/`\n- Python: `/root/miniconda3/bin/python` (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n- 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B/`\n- CWM 数据: `/home/sonny/exec-sim-repair-verifier/data/swebench_full/` (train 70748, val 9335)\n- CWM checkpoint 目录: `/root/autodl-tmp/checkpoints_repo_cwm_v9/` (checkpoint-100, checkpoint-200 已确认)\n- CWM 日志: `/root/autodl-tmp/cwm_v9_train.log`（新路径，旧路径 `/tmp/repo-level-cwm-v9_stdout.log`）\n\n**home-1x5090** (1× RTX 5090, sonny@):\n- 工作目录: `/home/sonny/exec-sim-repair-verifier/`\n- Python: 系统 python3\n- CLS checkpoint 目录: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/` (checkpoint-200 已确认, 45MB adapter)\n- CLS 日志: `/tmp/repo-level-cls-v3_stdout.log`\n- CLS 活跃进程: **PID 2885139** (运行 1h42m+, step ~252+, loss=1.04, eval_loss=0.0701)\n- Cron: repo-level-cls-v4, 120s 间隔\n\n**Eval 脚本**（两台服务器已同步，571行 24308字节一致）:\n- `eval_repo_level.py`: 统一 CLS+CWM eval + clustered paired bootstrap + D008 Go/No-Go\n- Bootstrap 已修复为按 problem_id 聚类重采样（之前是 i.i.d. bug）\n\n### 3. 📊 当前状态\n**刚做完**：清理指令队列混乱。5+ 次 CWM v9 重启失败，全因 CLI 传 --eval_steps。Bootstrap i.i.d.→clustered 修复已完成。\n\n**RUNNING**:\n- `repo-level-cls-v4`: home cuda:0, PID 2885139, step ~252/6633, ~10h 剩余\n- `repo-level-cwm-v9`: **worker_ssh_cwm-v9-final-submit 正在重启**（用 Reviewer 精确命令，不传 --eval_steps）\n\n**PREPARING**:\n- `repo-level-cls-seed123`: westd-48478 cuda:2（= seetacloud，SSH 认证失败待解决）\n- `repo-level-cwm-seed123`: westd-48478 cuda:3（同上）\n\n**等待中**:\n- worker_ssh_cwm-v9-final-submit 回调 → 更新 registry PID + 注册 cron\n- worker_ssh_fix-experiments-tex-data 可能已完成（检查 §5.6 数据：all_correct 46 vs 48, error complementarity 追溯）\n- westd-48478 SSH 修复（需向用户确认连接信息）\n\n### 4. 📋 待办（条件触发式）\n- cwm-v9-final-submit 回调成功 → update_registry(cwm-v9, status=RUNNING, pid=NEW_PID) + register_cron(120s) + 汇报 Director\n- cwm-v9-final-submit 回调失败 → 汇报 Director 完整错误日志，不要自行重试改参数\n- CLS v4 训练完成（cron 回调）→ 立即用 eval_repo_level.py 跑 CLS eval，不等 CWM\n- CWM v9 训练完成 → 跑 CWM eval → 与 CLS 结果做 paired bootstrap → D008 Go/No-Go\n- D008 结果 1-3pp → 启动 extra seeds（seetacloud + home 串行）\n- D008 结果 <1pp → Kill C1 claim，产出 Framing 调整提案（red-section skill）\n- fix-experiments-tex-data 回调 → 根据结果修正 experiments.tex（all_correct + error complementarity）\n- westd-48478 SSH 修复 → 转 extra seeds 为 PENDING 提交审批\n\n### 5. 🎯 战略上下文\n**核心假说**: Classification vs CWM 在 repo-level 有 complexity-dependent advantage。函数级已证明等价（TOST p=0.007），8B 显示 gap 扩大（2.43pp, p=0.007）。Repo-level 是决胜战场。\n\n**D008 Go/No-Go**: F1 diff ≥3pp+p<0.05 → 全力推 EMNLP Main; 1-3pp → 加 seeds; <1pp → Kill C1, pivot Plan B。\n\n**最容易判断错的事**:\n1. 不要在 train_repo_cwm.py CLI 传 --eval_steps。已踩坑 5+ 次。eval_steps 由代码内部从 save_steps 自动取值。\n2. westd-48478 不是独立服务器，是 seetacloud 同一台机器。不要把它当成\"额外 GPU 资源\"来并行训练。\n3. CLS 的输出目录是 `checkpoints_repo_cls_home/`（不是 `output/repo_cls_swebench/`），日志是 `cls-v3`（不是 v4）。\n4. save_steps 和 eval_steps 必须整除兼容（load_best_model_at_end 约束）。save_steps=100 + eval_steps=500 会 ValueError。\n5. ARR deadline ~13 天。训练 bottleneck ~20-28h（CWM eval 开销大）。训练完 → eval+stats ~3h → paper patch ~1d → 终审 ~1d。时间紧但可行。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778629354.md"
+}

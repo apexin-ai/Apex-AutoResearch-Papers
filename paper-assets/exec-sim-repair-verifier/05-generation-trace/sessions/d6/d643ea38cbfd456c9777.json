@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d643ea38cbfd456c9777",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_5_1778634690.md",
+  "task_key": "loop_5_1778634690",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778634690.md",
+    "occurrence": 1,
+    "bytes": 4816,
+    "sha256": "1a75ffff5a03ebcf558abbb741971d0282ae7557eac81bce29d0f6c2d080fa38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-13T01:11:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud-westd-4x5090 cgroup 360GB RAM 限制 → **严禁并行训练**，只能单进程跑一张卡（cuda:2）\n- westd-48478 = seetacloud-westd-4x5090 **同一台物理机**（D041 教训），不要当两台机器调度\n- CLS v4 训练完成后必须做**双 checkpoint 对比**（step200 vs eval_loss 最低的其他 checkpoint），D008 Go/No-Go 必须基于真实最优模型\n- CWM v10 是从 checkpoint-200 **resume** 的，不是从头训练；checkpoint 目录仍是 `/root/autodl-tmp/checkpoints_repo_cwm_v9/`（目录名含 v9 但实际是 v10）\n- GPU 白名单 `cuda:0,1,2,3`，但 seetacloud 实际只能用 cuda:2，home 只有 cuda:0\n- CWM 已迭代 10 次、CLS 4 次——当前版本**必须成功**，不能再无限重试\n\n### 2. 🖥️ 基础设施快照\n- **home-1x5090**: user=sonny, 1×RTX 5090, 62GB RAM\n  - 工作目录: `/home/sonny/exec-sim-repair-verifier`\n  - CLS v4 checkpoint: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`\n  - CLS v4 日志: `/tmp/repo-level-cls-v3_stdout.log`\n  - 数据: `/home/sonny/exec-sim-repair-verifier/data/swebench_full/` (70748 samples)\n- **seetacloud-westd-4x5090**: user=root, 4×RTX 5090 (cgroup 限制只能单卡)\n  - 工作目录: `/root/autodl-tmp/` 下\n  - CWM v10 checkpoint: `/root/autodl-tmp/checkpoints_repo_cwm_v9/`\n  - CWM v10 日志: `/root/autodl-tmp/cwm_v9_train.log`\n  - 数据: `/root/autodl-tmp/swebench_full/` (70748 samples)\n  - Python: conda base (`/root/miniconda3/bin/python`)，不是 venv\n- **模型**: Qwen/Qwen3-4B (LoRA fine-tuning)\n- **活跃进程**:\n  - CLS v4: PID 2885139 on home cuda:0, cron 监控中\n  - CWM v10: PID 105205 on seetacloud cuda:2, cron 监控中\n- **活跃 Worker**: `worker_ssh_sync-eval-home-to-seetacloud_20260513T005509`（同步 eval 代码 home→seetacloud，running）\n\n### 3. 📊 当前状态\n两个 repo-level 训练并行跑中，都有 cron 监控：\n- **repo-level-cls-v4** (home cuda:0): step ~800/6633 (~12%), ~6 it/s, ETA ~11:00 UTC 5/13。eval_loss 非单调（step200=0.070 最低, step400=0.250, step600=0.132, step800=0.146），load_best_model_at_end=True。\n- **repo-level-cwm-v10** (seetacloud cuda:2): step ~316/6633 (~4.8%), ~8-10s/step, ETA ~15:00-20:00 UTC 5/13。eval_loss@step300=0.3228, GPU 96%。\n- **repo-level-cls-seed123** (PREPARING): D044 改为 home 执行，CLS v4 完成后立即启动，seed=123\n- **repo-level-cwm-seed123** (PREPARING): CWM v10 完成后在 seetacloud 启动，seed=123\n- 1 个 Worker running（sync eval 代码），无待处理的 Worker 回调\n- Paper Agent Step 2 进行中（图表生成 + 模板下载）\n\n### 4. 📋 待办（条件触发式）\n- CLS v4 cron 回调（~11:00 UTC）→ spawn Worker 跑 eval（双 checkpoint 对比：step200 vs 最优 non-step200）→ 记录 metrics 到 registry → 立即启动 repo-level-cls-seed123 (home cuda:0, seed=123)\n- CWM v10 cron 回调（~15:00-20:00 UTC）→ spawn Worker 跑 eval → 记录 metrics → 立即启动 repo-level-cwm-seed123 (seetacloud cuda:2, seed=123)\n- CLS v4 + CWM v10 eval 都完成 → paired bootstrap 统计检验 → D008 Go/No-Go 判定（≥3pp 全力 EMNLP Main; 1-3pp 等 seed123 加固; <1pp kill C1 pivot Plan B）\n- seed123 两组都完成 → 最终 Go/No-Go → 向 Director 汇报\n- sync-eval Worker 完成回调 → 确认 seetacloud 有最新 eval 代码（CWM v10 eval 需要）\n- Paper Agent Step 2 完成 → 推进 Step 3-5\n\n### 5. 🎯 战略上下文\n- **核心论文叙事**：函数级 CLS≈CWM（TOST 等价 p=0.007），但 repo-level 复杂代码上 CLS 有 complexity-dependent advantage → 这是 C1 claim 的决胜战场\n- **已确认的 pillars**：Pillar 2 (function-level equivalence ✅), Pillar 3 (Oracle frontier ✅), Pillar 4 (8B scaling gap=2.43pp ✅)\n- **Pillar 1 (complexity-dependent advantage)** 完全依赖当前 CLS v4 + CWM v10 的结果\n- **ARR May 25 deadline**，~12 天。Critical path: 训练 ~20h → eval+stats ~3h → paper patch ~1d → 终审 ~1d = ~4-5d\n- **易错点**：\n  - CLS v4 eval_loss 在 step200 最低（0.070），后续 step 更高——load_best_model_at_end 会选 step200，但这可能是欠拟合。D008 要求双 checkpoint 对比，**不要只用 best checkpoint**\n  - CWM checkpoint 目录名是 `checkpoints_repo_cwm_v9` 但实际内容是 v10（resume 到同目录），不要被目录名误导\n  - seetacloud 是 AutoDL 实例，需要 `source /etc/network_turbo` + SSL 证书设置才能联网\n  - 47 个实验中 13 个 failed（主要是 CWM v1-v9 反复失败），如果 v10 再失败需要认真考虑 pivot\n  - D008 Go/No-Go 如果落在 1-3pp 灰区，seed123 是对冲策略，但 seed123 还在 PREPARING 状态，需要 v4/v10 先完成\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778634690.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f1103265a04e0190f7b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis deepseek cls repo v5 ckpt6315 eval",
+  "task_key": "worker_analysis_deepseek-cls-repo-v5-ckpt6315-eval_20260518T215327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek-cls-repo-v5-ckpt6315-eval_20260518T215327_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "cf1f2018e56f37ad7d15f9e4bef60c61fab61da1bf8fc4f9cdead371bfa73b34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，报告已写入 `artifacts/ckpt6315_eval_analysis.md`。核心发现：\n\n**ckpt-6315 (epoch 3) vs ckpt-2105 (epoch 1):**\n\n| 指标 | ep3 | ep1 | Delta |\n|---|---|---|---|\n| accuracy | 82.51% | 82.61% | -0.10pp |\n| fail_recall | **38.47%** | 51.02% | **-12.55pp** |\n| f1_macro | 71.76 | 75.07 | -3.31 |\n| pass_recall | 98.84% | 94.33% | +4.51pp |\n| unparseable | 0 | 0 | -- |\n\n**关键判断：**\n\n1. **Hypothesis 成立** — epoch 3 accuracy 略低于 epoch 1，但真正的退化在 fail_recall (-12.55pp) 和 f1_macro (-3.31)\n2. **Variant 级别 decision collapse 确认** — fail variant 0/3 全部判错，模型对每个 fail task 的多数票都投给了 pass\n3. **Instance 级别** — fail 预测占 11.2%（实际 fail 占 27%），正在滑向 collapse\n4. **ckpt-2105 仍是最优 checkpoint**\n5. **需排查**: variant 总数差异 (25 vs 48)，两次 eval 的 problem_id 集合不一致，variant_accuracy 不可直比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-cls-repo-v5-ckpt6315-eval.md"
+}

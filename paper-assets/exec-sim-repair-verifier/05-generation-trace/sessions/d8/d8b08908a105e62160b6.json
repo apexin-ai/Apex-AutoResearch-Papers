@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8b08908a105e62160b6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh d047 fix eval cwm max tokens",
+  "task_key": "worker_ssh_d047-fix-eval-cwm-max-tokens_20260513T075930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d047-fix-eval-cwm-max-tokens_20260513T075930_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "c39cd81347051bc21612b7f18a1b9deef6158d32c94dfd5556bc64a6d52148b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。验证结果：\n\n**grep 确认（两台一致）：**\n- `eval_repo_cwm.py:8` — `(256 vs 8)` ✓\n- `eval_repo_cwm.py:260` — `default=256` ✓\n- `eval_repo_level.py:165` — `max_new_tokens = 256` ✓（:161 的 `= 8` 未动）\n- `eval_repo_bootstrap.py:193` — `max_new_tokens = 256` ✓（:189 的 `= 8` 未动）\n\n**md5 对比：**\n\n| 文件 | home-1x5090 | seetacloud-westd-4x5090 | 一致？ |\n|------|------------|------------------------|--------|\n| eval_repo_cwm.py | `76c571e6...` | `7753e8a7...` | ✗ |\n| eval_repo_level.py | `8b7e357f...` | `8b7e357f...` | ✓ |\n| eval_repo_bootstrap.py | `1e66d409...` | `1e66d409...` | ✓ |\n\n`eval_repo_cwm.py` 的 md5 不一致——两台服务器在 max_new_tokens 之外的内容本身就有差异（修改前已存在）。max_new_tokens 相关行的修改内容两台完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d047-fix-eval-cwm-max-tokens.md"
+}

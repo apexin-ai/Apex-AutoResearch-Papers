@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8afdf7a4b9287dbfa43b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval d063 8b s42 val sweep cuda0",
+  "task_key": "worker_eval_d063-8b-s42-val-sweep-cuda0_20260514T204909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d063-8b-s42-val-sweep-cuda0_20260514T204909_result.json",
+    "occurrence": 1,
+    "bytes": 1020,
+    "sha256": "6e3a17f4935956583049169b4b9a40cfa64926d9e2915e31c2508982bb825a0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval 已成功启动并运行。**\n\n## 提交确认\n\n- **exp_id**: `repo-level-cls-8b-s42-ckpt200-val`\n- **tmux session**: `repo-level-cls-8b-s42-ckpt200-val`\n- **PID**: 290070\n- **GPU 0**: 17684MiB / 32607MiB, 51% utilization\n- **日志**: `/tmp/cls8b_s42_ckpt200_val5120.log`\n- **参数**: `--split val --max_seq_length 5120 --max_new_tokens 512 --batch_size 1 --device cuda:0`\n- **运行中**: 60/9335，running_acc=68.3%\n\n## 注意事项\n- 首次提交因 **batch_size 默认 16 导致 OOM**，已修复为 `--batch_size 1`\n- 预计运行约 26 分钟（参考同配置 val@8192 sweep 的速度）\n\n## 额外发现\n在等待 cuda:0 期间发现已有 val@8192 sweep 完成，结果如下：\n| Checkpoint | val@8192 accuracy |\n|---|---|\n| ckpt-200 | 63.52%（低于 majority baseline 75.88%） |\n| ckpt-400 | 80.96% |\n| ckpt-600 | ~85.0%（刚完成） |\n\n## 后续\nckpt-200 val@5120 完成后，需接着跑 **ckpt-600 val@5120**。ckpt-400 val@5120 已有结果 (80.47%)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d063-8b-s42-val-sweep-cuda0.md"
+}

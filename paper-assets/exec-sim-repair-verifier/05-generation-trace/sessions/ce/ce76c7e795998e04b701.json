@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce76c7e795998e04b701",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cwm8b shard3 gap",
+  "task_key": "worker_eval_cwm8b-shard3-gap_20260516T024958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cwm8b-shard3-gap_20260516T024958_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "cff731802f4ca1f9c39fb8309d181cbdd05d009c0f818fc04de5f150040b950e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**shard3 已经在运行了。** 当前状态：\n\n- **PID 453335** on cuda:0，68% GPU util\n- 命令：`--start_idx 6200 --max_samples 7680 --device cuda:0`\n- 已完成 **104 samples**（当前 idx 6303，起始 6200）\n- 输出：`/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard3/results_incremental.jsonl`\n\n全部 4 个 GPU 使用情况：\n| GPU | Util | Memory | 用途 |\n|-----|------|--------|------|\n| cuda:0 | 68% | 21 GB | shard3 (idx 6200→7680) ← 已在跑 |\n| cuda:1 | 87% | 21 GB | shard2 (idx 7680-9784) |\n| cuda:2 | 0% | 0 MB | 空闲 |\n| cuda:3 | 88% | 21 GB | v3 主 eval |\n\n不需要再启动，shard3 已经在 cuda:0 上正常运行。需要我更新 registry 记录这个状态吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cwm8b-shard3-gap.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84fc3f65731680be3b98",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "debug cwm v6 crash",
+  "task_key": "worker_debug_cwm-v6-crash_20260512T191144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_cwm-v6-crash_20260512T191144_result.json",
+    "occurrence": 1,
+    "bytes": 1528,
+    "sha256": "1cced7b7ddedb19d7f8b8407a9e2b2794c05d4afa7e38df302632fb2812b11ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**CWM v6 没有崩溃。** 进程 PID 83684 正在正常运行。\n\n### 现状\n- 进程活跃：RSS 4.9GB 且持续增长，CPU 105%，已运行 4 分 41 秒\n- 当前阶段：正在 `preprocess_split()` 中逐条 tokenize **70748 条训练数据**（max_seq_length=2048）\n- GPU 显存 0MB：尚未到达模型加载步骤（模型加载在预处理之后）\n\n### 为什么日志只有 4 行\n代码执行顺序：\n1. Load tokenizer → ✅ 已日志\n2. Detect thinking → ✅ 已日志\n3. Load JSONL → ✅ 已日志\n4. Compute class weights → ✅ 已日志\n5. **`preprocess_split(train_raw)` ← 当前卡在这里，70748 条 tokenize 无中间日志**\n6. `preprocess_split(val_raw)` → 还没到\n7. Load model → 还没到\n8. Training → 还没到\n\n`preprocess_split` 用 Python for 循环逐条处理 70K+ 样本，处理完才输出一行 truncation 统计日志。这就是为什么看起来像 \"卡死\" 了。\n\n### 关于之前的 PID 81312/81785\n`/tmp/cwm_v6_dryrun.log` 时间戳 03:04，内容与主日志一致（同样只有 4 行），说明可能是 dryrun 测试的残留。当前运行的 PID 83684 才是正式的 v6。\n\n### 建议\n1. **不需要修复** — 等待预处理完成即可，预计再等几分钟\n2. 未来可优化：在 `preprocess_split` 中加进度日志（每 10000 条打印一次），避免长时间无输出引起误判\n3. 也可以考虑用 `datasets.map()` 替代手写 for 循环，利用多进程加速 tokenization"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-cwm-v6-crash.md"
+}

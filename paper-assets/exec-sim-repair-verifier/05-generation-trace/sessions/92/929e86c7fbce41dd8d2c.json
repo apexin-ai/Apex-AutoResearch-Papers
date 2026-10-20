@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "929e86c7fbce41dd8d2c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check cwm s42 epoch2 ckpt",
+  "task_key": "worker_check_cwm-s42-epoch2-ckpt_20260517T174744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_cwm-s42-epoch2-ckpt_20260517T174744_result.json",
+    "occurrence": 1,
+    "bytes": 131,
+    "sha256": "29085bce8fdbf95e12bbe5d1b82c3d960dca0c4f901fc2442d53b82d2ddd1547"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Yes, available.** checkpoint-8844 存在，`adapter_model.safetensors` 大小 ~64MB，写入时间 May 17 13:07。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cwm-s42-epoch2-ckpt.md"
+}

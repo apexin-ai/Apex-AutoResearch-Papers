@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "552dd994f8b0f78a23b2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect critical ckpt600 test8192 result",
+  "task_key": "worker_collect_critical-ckpt600-test8192-result_20260514T220030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_critical-ckpt600-test8192-result_20260514T220030_result.json",
+    "occurrence": 1,
+    "bytes": 78,
+    "sha256": "444b881d23cba533d3449f4eb03bc61abfa4b3a2b703f3f0c6a6f58837d6f1b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 3 个 monitor 均已完成关闭。无待处理任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-critical-ckpt600-test8192-result.md"
+}

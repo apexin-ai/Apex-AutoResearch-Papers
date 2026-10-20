@@ -1,0 +1,84 @@
+14B Upgrade Checklist: "exploratory" → "confirmed" text replacements
+=====================================================================
+Generated: 2026-05-23. Apply AFTER 3-seed results confirm convergence.
+
+PRIORITY 1: Core claims (must change)
+--------------------------------------
+
+[1] abstract.tex:4
+    CURRENT:  "Exploratory 14B results (single seed) show the function-level gap narrowing to near-zero ($-$0.05\pp{}), suggesting capacity-dependent convergence."
+    ACTION:   Remove "Exploratory" + "(single seed)" + "suggesting" → state as confirmed finding with 3-seed mean ± std
+
+[2] experiments.tex:68
+    CURRENT:  "the 14B row uses seed 42 (single-seed, exploratory)"
+    ACTION:   → "the 14B row uses seeds 42, 123, 456" (match 4B/8B wording)
+
+[3] experiments.tex:73 (Table 2 caption)
+    CURRENT:  "seed 42 (14B, exploratory). ... \cwm{} comparison is exploratory ($n{=}2$ seeds at 4B/8B, $n{=}1$ at 14B)."
+    ACTION:   → "seeds 42/123/456 (14B). ... \cwm{} comparison uses $n{=}2$ seeds (4B/8B) and $n{=}3$ seeds (14B)."
+
+[4] experiments.tex:92 (Table 2 footnote)
+    CURRENT:  "\footnotesize\textsuperscript{$\dagger$}Single seed (42); exploratory."
+    ACTION:   Remove entire footnote (no longer needed if 14B has 3 seeds)
+
+[5] experiments.tex:98
+    CURRENT:  "At 14B (single seed; exploratory), \cls{} reaches 89.21\% ... These single-seed results require multi-seed confirmation."
+    ACTION:   → "At 14B (3 seeds), \cls{} reaches XX.XX ± YY\% ... " Remove last sentence about multi-seed confirmation.
+
+[6] main.tex:59 (Figure 2 caption)
+    CURRENT:  "14B results are single-seed (exploratory)."
+    ACTION:   Remove this sentence. Update gap annotation with actual 3-seed value.
+
+[7] conclusion.tex:4
+    CURRENT:  "Exploratory 14B results show the \cls{}--\cwm{} gap narrowing to near-zero ($-$0.05\pp{}; single seed), providing preliminary evidence that..."
+    ACTION:   → "14B results (3 seeds) confirm the gap narrows to XX\pp{} (± YY), providing evidence that..."
+
+[8] conclusion.tex:10 (Limitations)
+    CURRENT:  "14B results are single-seed and directional only."
+    ACTION:   → Remove or weaken: "14B results use 3 seeds; further replication at 32B+ is needed."
+
+PRIORITY 2: Supporting text (update if applicable)
+---------------------------------------------------
+
+[9] experiments.tex:96 (scaling paragraph)
+    NOTE:     "clustered bootstrap on the 3-seed superset (42, 123, 456 for \cls{}/\cwm{})" — this is about 8B, not 14B. No change needed.
+
+[10] introduction.tex:15
+    CURRENT:  "single-seed" in oracle context — "(oracle: 90.63\%, 95\% CI [89.3\%, 91.9\%]; single-seed)"
+    NOTE:     This refers to oracle combination, not 14B scaling. Only change if oracle is re-computed with multi-seed.
+
+[11] appendix.tex:364
+    CURRENT:  "single-seed estimate, seed 42" in error complementarity
+    NOTE:     Same as [10] — oracle analysis context, not 14B scaling. Change only if oracle is re-run.
+
+PRIORITY 3: Extended limitations (minor)
+-----------------------------------------
+
+[12] appendix.tex:560
+    CURRENT:  Long paragraph discussing single-seed limitations
+    NOTE:     Review and soften 14B-specific caveats. Keep caveats about other single-seed analyses (4B, oracle).
+
+DATA UPDATES (Table 2 + Figure 2)
+----------------------------------
+
+[13] experiments.tex: Table tab:scaling
+    - CLS 14B row: update s42/s123/s456 columns + mean
+    - CWM 14B row: update s42/s123/s456 columns + mean
+    - Remove dagger footnote [4]
+
+[14] Figure 2 (plot_figure2_v3.py)
+    - Set CONFIRMED_14B = True
+    - Update cls_acc_14b / cwm_acc_14b with 3-seed means
+    - Regenerate figure2_v3.pdf
+
+[15] main.tex:58-59
+    - Change includegraphics to figure2_v3.pdf
+    - Update caption (remove single-seed qualifier)
+
+STATISTICAL UPDATES
+--------------------
+
+[16] Run update_14b_table.py with 3-seed data:
+    - Compute TOST p-value for 14B
+    - If equivalent: add to equivalence claim in experiments.tex ~line 68 and abstract
+    - If not: keep as "directional" but remove "exploratory"

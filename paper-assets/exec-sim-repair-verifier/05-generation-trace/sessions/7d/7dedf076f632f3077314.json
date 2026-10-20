@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7dedf076f632f3077314",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "data val sweep compilation audit",
+  "task_key": "worker_data_val-sweep-compilation-audit_20260515T081714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_val-sweep-compilation-audit_20260515T081714_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "999c05a3b101fe0bd069208f0fe03a9a05ccfe6833bc4c35e091501cf77979ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果\n\n### 已完整（无需修改）\n| 数据组 | 检查点数 | 状态 |\n|--------|---------|------|\n| 8B s42 val@8192 | 8/8 | ✅ 全部准确 |\n| 8B s42 test@8192 | 7/7 | ✅ 全部准确 |\n| seed123 val@8192 | 5/5 | ✅ 含 ckpt-6633 ⏳running |\n| 4B v5 val@5120 | 5/5 | ✅ 全部准确 |\n| 4B v5 test@5120 | 2/2 | ✅ 全部准确 |\n\n### 已修正\n| 问题 | 修正内容 |\n|------|---------|\n| seed123 test ckpt-3000 | ⏳running → **85.60%** |\n| Summary 表缺行 | 新增 `8B seed123 test@8192 (val-selected) ckpt-3000 85.60%` |\n| JSON 缺 `8b_seed123_test8192` | 新增完整数据块 |\n| JSON 缺 `4b_v5_test5120` | 新增完整数据块（原主文件 JSON 已有表格但 JSON 段遗漏） |\n| 报告副本严重过时 | 整体同步为最新版 |\n\n### 仍为 ⏳running（非本次审计范围）\n- seed123 val ckpt-6633"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-val-sweep-compilation-audit.md"
+}

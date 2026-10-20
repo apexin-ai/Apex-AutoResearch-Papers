@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec865f3a66d6afabc83e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor westd all gpu status",
+  "task_key": "worker_monitor_westd-all-gpu-status_20260515T010954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westd-all-gpu-status_20260515T010954_result.json",
+    "occurrence": 1,
+    "bytes": 2428,
+    "sha256": "97edb08f9f9ce6e441b27a2641e0d20ac887d1d86c2d6acbdee6347645f54dc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇报 (2026-05-15 ~09:16 UTC)\n\n### nvidia-smi\n\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX 5090 | 99% | 19.2 / 32.6 GB |\n| 1 | RTX 5090 | 91% | 27.3 / 32.6 GB |\n| 2 | RTX 5090 | 97% | 30.7 / 32.6 GB |\n| 3 | RTX 5090 | 80% | 30.9 / 32.6 GB |\n\n全部 4 卡在用。\n\n---\n\n### cuda:0 — cls8b-s42-ckpt1000-val8192-eval (PID 310114)\n- **状态**: ALIVE, 运行 6m41s\n- **进度**: 2100 / 9335 samples (22.5%)\n- **Running accuracy**: 87.8%\n- **速度**: ~3.9 samples/s (10 samples per ~2.5s)\n- **预计完成**: ~09:45 UTC (剩余 ~30 min)\n\n---\n\n### cuda:1 — repo-level-cls-8b-s42-resume (PID 295789)\n- **状态**: ALIVE, 进程运行 3h22m\n- **进度**: 3279 / 9335 steps (35%)\n- **速度**: tqdm 显示 ~12 it/s, 剩余估计 ~8 min\n- **注意**: 3h22m 进程时间 vs 4m53s tqdm elapsed — 大部分时间在加载模型/数据/checkpoint. 训练本身跑得很快。\n- **预计完成**: ~09:25 UTC (如 tqdm 准确)\n\n---\n\n### cuda:2 — repo-level-cwm-8b-conda (PID 266816)\n- **状态**: ALIVE, 运行 7h26m\n- **进度**: ~step 2750 / 6633 (41%)，从 checkpoint-1600 resume\n- **最新 checkpoint**: 2700 (09:03 UTC)\n- **速度**: ~39 min / 100 steps (23.4 s/step)\n- **预计完成**: **~May 16 10:30 UTC** (剩余 ~25h)\n- **注意**: 该进程未通过 agent 框架启动, \"v4\" log 不存在。进度通过 checkpoint 目录推断。\n\n---\n\n### cuda:3 — repo-level-cls-8b-seed123-conda-v3 (PID 266444)\n- **状态**: ALIVE, 运行 7h29m\n- **进度**: 5193 / 6633 steps (78.3%)，从 checkpoint-3000 resume\n- **速度**: ~8.3 s/step\n- **最新 checkpoint**: 5000 (刚保存)\n- **Loss**: 0.2471, grad_norm: 0.047\n- **预计完成**: ~12:35 UTC (剩余 ~3h19m)\n\n---\n\n### s42-resume 已生成 checkpoints\n```\ncheckpoint-800, checkpoint-1000, checkpoint-1200, checkpoint-1400\n```\n当前正在 eval checkpoint-1000。下一个可 eval: **checkpoint-1200**。\n\n---\n\n### 异常\n- **cwm \"v4\" log 不存在** — PID 266816 是直接 `python3 train_repo_cwm.py` 启动的（非 agent wrapper），stdout 可能在终端或 nohup.out，不在 `~/runs/` 目录。旧的 v3 log 以 EXIT_CODE=2 终止（参数错误）。\n- **s42-resume 速度异常** — tqdm 显示 12 it/s 极快（vs seed123 的 8.3 s/step），可能是短序列或数据子集不同。建议确认该训练使用的数据集规模。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westd-all-gpu-status.md"
+}

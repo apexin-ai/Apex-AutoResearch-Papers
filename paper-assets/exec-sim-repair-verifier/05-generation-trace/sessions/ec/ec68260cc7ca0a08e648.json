@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec68260cc7ca0a08e648",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis deepseek cls repo v5 ckpt2105 eval",
+  "task_key": "worker_analysis_deepseek-cls-repo-v5-ckpt2105-eval_20260518T211529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek-cls-repo-v5-ckpt2105-eval_20260518T211529_result.json",
+    "occurrence": 1,
+    "bytes": 904,
+    "sha256": "4ea58babb4928658ccf8c0b1dee5a42688f22e6d2b0bb3777751ea5b05c0c7a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Hypothesis CONFIRMED (strong positive).**\n\n核心结果：\n\n| Model | Per-test | Variant (AND rule) |\n|---|---|---|\n| **DeepSeek v5 ckpt-2105 (s42, epoch 1)** | **82.61%** | **81.25%** |\n| DeepSeek s123 (epoch 3, reference) | 74.93% | 56.25% |\n| Qwen3-8B s42 | 84.48% | 72.92% |\n| Qwen3-4B s42 | 83.63% | 64.58% |\n\n- per-test 82.61% 超 s123 参考 +7.68pp，接近 Qwen3-4B\n- variant 81.25% 超 s123 参考 +25pp，**超过所有已评估模型**（含 Qwen3-8B 的 72.92%）\n- unparseable/truncated 均为 0，无技术问题\n- early stopping 选择验证成功\n- 9/48 variant 错误中 7 个是 FN（gold miss），模型偏保守\n\n报告已写入 `artifacts/deepseek-cls-repo-v5-ckpt2105-eval-analysis.md`。\n\n**注意**：25pp variant gap 混合了 seed 差异和 epoch 差异，v5 s42 epoch 3 eval 尚未跑，跑完才能完全隔离 early stopping 的贡献。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-cls-repo-v5-ckpt2105-eval.md"
+}

@@ -1,0 +1,545 @@
+{
+  "schema_version": "1.0",
+  "id": "d9609c961af6f6c91d0e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "analysis cls8b s42 ckpt200 val8192 eval v2",
+  "task_key": "worker_analysis_cls8b-s42-ckpt200-val8192-eval-v2_20260514T223733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls8b-s42-ckpt200-val8192-eval-v2_20260514T223733.log",
+    "occurrence": 1,
+    "bytes": 37252,
+    "sha256": "e900c597ea2622d72171c1b92e2c696e8b6906b4bf47804c11321ab0dd36b370"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 2,
+      "tool_result": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier",
+                "session_id": "aef5b501-fe82-41c2-99b2-7bd169679f5c",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "855e75a4-e818-4153-b609-26e9b6375c78",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779206400,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.68,
+                  "isUsingOverage": false
+                },
+                "uuid": "48311bb2-e1f9-4487-82b2-4abcf6a14fb5",
+                "session_id": "aef5b501-fe82-41c2-99b2-7bd169679f5c"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the log file from the server using ssh_read_only.",
+              "signature": "EvgBClkIDRgCKkCEtiBRghVFYVFrMjQEouLxnciY5LvK/FSlNc2IU0UmmHo+LAlO+dPsGlJRNMrYxzOdpbX+d7dj8sVs47wf8afSMg9jbGF1ZGUtb3B1cy00LTY4ABIMsAhpk9oqvlg1CO0+Ggxi66UksKNSeU9yIrciMA2ByULIcmsHAh7eDPo2hmhxr5QuY6tPFDSSzZt8hcO3/dVYcVhZ26OPNUwEbmmRkypNfzfvNbZEc95JYQojqpyAmdAqrtwzRT/dUNrDGGdhf4tN0I9LDpU1RC8qLgtdK7NCt5fB26Kc+vvg4ORw4VZbYNPcqEQrZPaalVnm8AQYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aef5b501-fe82-41c2-99b2-7bd169679f5c",
+            "uuid": "dc38603e-c197-4358-b440-a4c9fb406c59",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01912GZf4gJA9f9rnR3nU6e8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11173,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11173
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VCvqcugVs8SCGqLKCBNJcc",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aef5b501-fe82-41c2-99b2-7bd169679f5c",
+            "uuid": "e84f07c6-14c3-4d23-b9c2-a7b37866ba9a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01912GZf4gJA9f9rnR3nU6e8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11173,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11173
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T22:37:44.608Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01VCvqcugVs8SCGqLKCBNJcc",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aef5b501-fe82-41c2-99b2-7bd169679f5c",
+            "uuid": "e737b091-7177-42e6-b06b-b1ba845f0b72",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WjvHgQLdiNgnAaYgKteXm5",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "seetacloud-westd-4x5090",
+                "command": "cat ~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt200-val8192-eval-v2.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aef5b501-fe82-41c2-99b2-7bd169679f5c",
+            "uuid": "8c45a693-10e3-4adc-b118-aa853aeb2e3b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0188459jtUSAMKcWhitiiDNi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 457,
+                "cache_read_input_tokens": 23014,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 457
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T22:37:49.626Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WjvHgQLdiNgnAaYgKteXm5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 06:06:18,642 INFO Loading val data: /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\\\n2026-05-15 06:06:18,857 INFO Loaded 9335 val instances\\\\n2026-05-15 06:06:18,859 INFO Label distribution: {1: 7083, 0: 2252}\\\\n2026-05-15 06:06:18,859 INFO Loading model from /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\\n2026-05-15 06:06:21,057 INFO Attention: sdpa\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00, 191.06it/s]\\\\n2026-05-15 06:06:26,927 INFO Model loaded. Starting inference...\\\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n2026-05-15 06:06:29,268 INFO [CLS] 10/9335  running_acc=80.0%\\\\n2026-05-15 06:06:30,330 INFO [CLS] 20/9335  running_acc=65.0%\\\\n2026-05-15 06:06:31,108 INFO [CLS] 30/9335  running_acc=56.7%\\\\n2026-05-15 06:06:32,229 INFO [CLS] 40/9335  running_acc=67.5%\\\\n2026-05-15 06:06:34,367 INFO [CLS] 50/9335  running_acc=68.0%\\\\n2026-05-15 06:06:36,312 INFO [CLS] 60/9335  running_acc=68.3%\\\\n2026-05-15 06:06:38,558 INFO [CLS] 70/9335  running_acc=65.7%\\\\n2026-05-15 06:06:39,891 INFO [CLS] 80/9335  running_acc=61.3%\\\\n2026-05-15 06:06:41,599 INFO [CLS] 90/9335  running_acc=60.0%\\\\n2026-05-15 06:06:43,335 INFO [CLS] 100/9335  running_acc=60.0%\\\\n2026-05-15 06:06:45,229 INFO [CLS] 110/9335  running_acc=60.0%\\\\n2026-05-15 06:06:47,036 INFO [CLS] 120/9335  running_acc=61.7%\\\\n2026-05-15 06:06:48,155 INFO [CLS] 130/9335  running_acc=62.3%\\\\n2026-05-15 06:06:50,674 INFO [CLS] 140/9335  running_acc=62.9%\\\\n2026-05-15 06:06:52,596 INFO [CLS] 150/9335  running_acc=63.3%\\\\n2026-05-15 06:06:53,724 INFO [CLS] 160/9335  running_acc=62.5%\\\\n2026-05-15 06:06:55,008 INFO [CLS] 170/9335  running_acc=61.8%\\\\n2026-05-15 06:06:56,819 INFO [CLS] 180/9335  running_acc=62.8%\\\\n2026-05-15 06:06:58,243 INFO [CLS] 190/9335  running_acc=64.7%\\\\n2026-05-15 06:06:59,619 INFO [CLS] 200/9335  running_acc=64.0%\\\\n2026-05-15 06:07:00,898 INFO [CLS] 210/9335  running_acc=64.8%\\\\n2026-05-15 06:07:01,866 INFO [CLS] 220/9335  running_acc=64.5%\\\\n2026-05-15 06:07:03,711 INFO [CLS] 230/9335  running_acc=64.3%\\\\n2026-05-15 06:07:05,596 INFO [CLS] 240/9335  running_acc=64.2%\\\\n2026-05-15 06:07:07,024 INFO [CLS] 250/9335  running_acc=64.0%\\\\n2026-05-15 06:07:09,398 INFO [CLS] 260/9335  running_acc=63.8%\\\\n2026-05-15 06:07:11,037 INFO [CLS] 270/9335  running_acc=64.4%\\\\n2026-05-15 06:07:13,352 INFO [CLS] 280/9335  running_acc=64.3%\\\\n2026-05-15 06:07:15,222 INFO [CLS] 290/9335  running_acc=64.5%\\\\n2026-05-15 06:07:17,702 INFO [CLS] 300/9335  running_acc=64.0%\\\\n2026-05-15 06:07:19,569 INFO [CLS] 310/9335  running_acc=63.5%\\\\n2026-05-15 06:07:21,066 INFO [CLS] 320/9335  running_acc=64.4%\\\\n2026-05-15 06:07:22,383 INFO [CLS] 330/9335  running_acc=64.8%\\\\n2026-05-15 06:07:24,600 INFO [CLS] 340/9335  running_acc=64.4%\\\\n2026-05-15 06:07:26,000 INFO [CLS] 350/9335  running_acc=64.9%\\\\n2026-05-15 06:07:28,417 INFO [CLS] 360/9335  running_acc=64.4%\\\\n2026-05-15 06:07:30,340 INFO [CLS] 370/9335  running_acc=64.1%\\\\n2026-05-15 06:07:32,583 INFO [CLS] 380/9335  running_acc=63.7%\\\\n2026-05-15 06:07:33,647 INFO [CLS] 390/9335  running_acc=63.3%\\\\n2026-05-15 06:07:34,993 INFO [CLS] 400/9335  running_acc=63.5%\\\\n2026-05-15 06:07:37,134 INFO [CLS] 410/9335  running_acc=64.1%\\\\n2026-05-15 06:07:39,368 INFO [CLS] 420/9335  running_acc=64.0%\\\\n2026-05-15 06:07:40,806 INFO [CLS] 430/9335  running_acc=64.4%\\\\n2026-05-15 06:08:01,150 INFO [CLS] 440/9335  running_acc=64.3%\\\\n2026-05-15 06:08:03,503 INFO [CLS] 450/9335  running_acc=64.2%\\\\n2026-05-15 06:08:05,363 INFO [CLS] 460/9335  running_acc=64.3%\\\\n2026-05-15 06:08:06,765 INFO [CLS] 470/9335  running_acc=63.8%\\\\n2026-05-15 06:08:09,672 INFO [CLS] 480/9335  running_acc=62.9%\\\\n2026-05-15 06:08:11,855 INFO [CLS] 490/9335  running_acc=62.4%\\\\n2026-05-15 06:08:14,413 INFO [CLS] 500/9335  running_acc=62.6%\\\\n2026-05-15 06:08:15,771 INFO [CLS] 510/9335  running\\\\n\\\\n... [截断: 输出过长，省略 53355 字符] ...\\\\n\\\\n:47,670 INFO [CLS] 8860/9335  running_acc=63.7%\\\\n2026-05-15 06:33:49,759 INFO [CLS] 8870/9335  running_acc=63.7%\\\\n2026-05-15 06:33:51,107 INFO [CLS] 8880/9335  running_acc=63.7%\\\\n2026-05-15 06:33:52,909 INFO [CLS] 8890/9335  running_acc=63.7%\\\\n2026-05-15 06:33:54,872 INFO [CLS] 8900/9335  running_acc=63.7%\\\\n2026-05-15 06:33:56,663 INFO [CLS] 8910/9335  running_acc=63.6%\\\\n2026-05-15 06:33:58,376 INFO [CLS] 8920/9335  running_acc=63.6%\\\\n2026-05-15 06:33:59,828 INFO [CLS] 8930/9335  running_acc=63.6%\\\\n2026-05-15 06:34:02,076 INFO [CLS] 8940/9335  running_acc=63.6%\\\\n2026-05-15 06:34:04,049 INFO [CLS] 8950/9335  running_acc=63.6%\\\\n2026-05-15 06:34:05,963 INFO [CLS] 8960/9335  running_acc=63.6%\\\\n2026-05-15 06:34:08,195 INFO [CLS] 8970/9335  running_acc=63.5%\\\\n2026-05-15 06:34:09,473 INFO [CLS] 8980/9335  running_acc=63.6%\\\\n2026-05-15 06:34:10,855 INFO [CLS] 8990/9335  running_acc=63.6%\\\\n2026-05-15 06:34:11,975 INFO [CLS] 9000/9335  running_acc=63.6%\\\\n2026-05-15 06:34:13,238 INFO [CLS] 9010/9335  running_acc=63.6%\\\\n2026-05-15 06:34:15,367 INFO [CLS] 9020/9335  running_acc=63.6%\\\\n2026-05-15 06:34:17,000 INFO [CLS] 9030/9335  running_acc=63.6%\\\\n2026-05-15 06:34:18,626 INFO [CLS] 9040/9335  running_acc=63.6%\\\\n2026-05-15 06:34:20,431 INFO [CLS] 9050/9335  running_acc=63.6%\\\\n2026-05-15 06:34:21,688 INFO [CLS] 9060/9335  running_acc=63.6%\\\\n2026-05-15 06:34:23,371 INFO [CLS] 9070/9335  running_acc=63.6%\\\\n2026-05-15 06:34:24,703 INFO [CLS] 9080/9335  running_acc=63.6%\\\\n2026-05-15 06:34:26,516 INFO [CLS] 9090/9335  running_acc=63.6%\\\\n2026-05-15 06:34:27,446 INFO [CLS] 9100/9335  running_acc=63.6%\\\\n2026-05-15 06:34:29,381 INFO [CLS] 9110/9335  running_acc=63.6%\\\\n2026-05-15 06:34:30,794 INFO [CLS] 9120/9335  running_acc=63.6%\\\\n2026-05-15 06:34:32,366 INFO [CLS] 9130/9335  running_acc=63.6%\\\\n2026-05-15 06:34:33,820 INFO [CLS] 9140/9335  running_acc=63.6%\\\\n2026-05-15 06:34:35,543 INFO [CLS] 9150/9335  running_acc=63.6%\\\\n2026-05-15 06:34:37,094 INFO [CLS] 9160/9335  running_acc=63.6%\\\\n2026-05-15 06:34:39,343 INFO [CLS] 9170/9335  running_acc=63.6%\\\\n2026-05-15 06:34:42,029 INFO [CLS] 9180/9335  running_acc=63.5%\\\\n2026-05-15 06:34:44,297 INFO [CLS] 9190/9335  running_acc=63.5%\\\\n2026-05-15 06:34:46,385 INFO [CLS] 9200/9335  running_acc=63.5%\\\\n2026-05-15 06:34:48,668 INFO [CLS] 9210/9335  running_acc=63.5%\\\\n2026-05-15 06:34:50,770 INFO [CLS] 9220/9335  running_acc=63.5%\\\\n2026-05-15 06:34:52,424 INFO [CLS] 9230/9335  running_acc=63.5%\\\\n2026-05-15 06:34:54,266 INFO [CLS] 9240/9335  running_acc=63.5%\\\\n2026-05-15 06:34:55,600 INFO [CLS] 9250/9335  running_acc=63.5%\\\\n2026-05-15 06:34:57,756 INFO [CLS] 9260/9335  running_acc=63.5%\\\\n2026-05-15 06:34:58,634 INFO [CLS] 9270/9335  running_acc=63.5%\\\\n2026-05-15 06:35:00,203 INFO [CLS] 9280/9335  running_acc=63.5%\\\\n2026-05-15 06:35:01,800 INFO [CLS] 9290/9335  running_acc=63.5%\\\\n2026-05-15 06:35:03,654 INFO [CLS] 9300/9335  running_acc=63.5%\\\\n2026-05-15 06:35:05,409 INFO [CLS] 9310/9335  running_acc=63.5%\\\\n2026-05-15 06:35:07,039 INFO [CLS] 9320/9335  running_acc=63.5%\\\\n2026-05-15 06:35:09,396 INFO [CLS] 9330/9335  running_acc=63.5%\\\\n2026-05-15 06:35:10,384 INFO [CLS] 9335/9335  running_acc=63.5%\\\\n2026-05-15 06:35:10,384 WARNING 9 unparseable predictions (majority fallback)\\\\n2026-05-15 06:35:10,688 INFO Summary saved to /home/sonny/exec-sim-repair-verifier/eval_repo_cls.json\\\\n2026-05-15 06:35:10,713 INFO Predictions saved to /home/sonny/exec-sim-repair-verifier/eval_repo_cls_predictions.jsonl\\\\n\\\\n============================================================\\\\nREPO-LEVEL CLS EVALUATION\\\\n============================================================\\\\n\\\\nTest set: 9335 instances\\\\nClass balance: pass=7083 fail=2252\\\\nMajority baseline: 75.9%\\\\n\\\\nAccuracy: 63.52%  (gap vs majority: -12.3pp)\\\\nF1 macro: 61.17%\\\\n  fail: P=38.0% R=80.6% F1=51.6%\\\\n  pass: P=90.4% R=58.1% F1=70.7%\\\\n\\\\nConfusion matrix:\\\\n              Predicted\\\\n              fail    pass\\\\n  Actual fail   1815     437\\\\n  Actual pass   2968    4115\\\\n\\\\nUnparseable: 9\\\\n============================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aef5b501-fe82-41c2-99b2-7bd169679f5c",
+            "uuid": "5ff80b8a-0152-4442-a595-174183d7b096",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 06:06:18,642 INFO Loading val data: /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\\\n2026-05-15 06:06:18,857 INFO Loaded 9335 val instances\\\\n2026-05-15 06:06:18,859 INFO Label distribution: {1: 7083, 0: 2252}\\\\n2026-05-15 06:06:18,859 INFO Loading model from /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\\\n2026-05-15 06:06:21,057 INFO Attention: sdpa\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00, 191.06it/s]\\\\n2026-05-15 06:06:26,927 INFO Model loaded. Starting inference...\\\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n2026-05-15 06:06:29,268 INFO [CLS] 10/9335  running_acc=80.0%\\\\n2026-05-15 06:06:30,330 INFO [CLS] 20/9335  running_acc=65.0%\\\\n2026-05-15 06:06:31,108 INFO [CLS] 30/9335  running_acc=56.7%\\\\n2026-05-15 06:06:32,229 INFO [CLS] 40/9335  running_acc=67.5%\\\\n2026-05-15 06:06:34,367 INFO [CLS] 50/9335  running_acc=68.0%\\\\n2026-05-15 06:06:36,312 INFO [CLS] 60/9335  running_acc=68.3%\\\\n2026-05-15 06:06:38,558 INFO [CLS] 70/9335  running_acc=65.7%\\\\n2026-05-15 06:06:39,891 INFO [CLS] 80/9335  running_acc=61.3%\\\\n2026-05-15 06:06:41,599 INFO [CLS] 90/9335  running_acc=60.0%\\\\n2026-05-15 06:06:43,335 INFO [CLS] 100/9335  running_acc=60.0%\\\\n2026-05-15 06:06:45,229 INFO [CLS] 110/9335  running_acc=60.0%\\\\n2026-05-15 06:06:47,036 INFO [CLS] 120/9335  running_acc=61.7%\\\\n2026-05-15 06:06:48,155 INFO [CLS] 130/9335  running_acc=62.3%\\\\n2026-05-15 06:06:50,674 INFO [CLS] 140/9335  running_acc=62.9%\\\\n2026-05-15 06:06:52,596 INFO [CLS] 150/9335  running_acc=63.3%\\\\n2026-05-15 06:06:53,724 INFO [CLS] 160/9335  running_acc=62.5%\\\\n2026-05-15 06:06:55,008 INFO [CLS] 170/9335  running_acc=61.8%\\\\n2026-05-15 06:06:56,819 INFO [CLS] 180/9335  running_acc=62.8%\\\\n2026-05-15 06:06:58,243 INFO [CLS] 190/9335  running_acc=64.7%\\\\n2026-05-15 06:06:59,619 INFO [CLS] 200/9335  running_acc=64.0%\\\\n2026-05-15 06:07:00,898 INFO [CLS] 210/9335  running_acc=64.8%\\\\n2026-05-15 06:07:01,866 INFO [CLS] 220/9335  running_acc=64.5%\\\\n2026-05-15 06:07:03,711 INFO [CLS] 230/9335  running_acc=64.3%\\\\n2026-05-15 06:07:05,596 INFO [CLS] 240/9335  running_acc=64.2%\\\\n2026-05-15 06:07:07,024 INFO [CLS] 250/9335  running_acc=64.0%\\\\n2026-05-15 06:07:09,398 INFO [CLS] 260/9335  running_acc=63.8%\\\\n2026-05-15 06:07:11,037 INFO [CLS] 270/9335  running_acc=64.4%\\\\n2026-05-15 06:07:13,352 INFO [CLS] 280/9335  running_acc=64.3%\\\\n2026-05-15 06:07:15,222 INFO [CLS] 290/9335  running_acc=64.5%\\\\n2026-05-15 06:07:17,702 INFO [CLS] 300/9335  running_acc=64.0%\\\\n2026-05-15 06:07:19,569 INFO [CLS] 310/9335  running_acc=63.5%\\\\n2026-05-15 06:07:21,066 INFO [CLS] 320/9335  running_acc=64.4%\\\\n2026-05-15 06:07:22,383 INFO [CLS] 330/9335  running_acc=64.8%\\\\n2026-05-15 06:07:24,600 INFO [CLS] 340/9335  running_acc=64.4%\\\\n2026-05-15 06:07:26,000 INFO [CLS] 350/9335  running_acc=64.9%\\\\n2026-05-15 06:07:28,417 INFO [CLS] 360/9335  running_acc=64.4%\\\\n2026-05-15 06:07:30,340 INFO [CLS] 370/9335  running_acc=64.1%\\\\n2026-05-15 06:07:32,583 INFO [CLS] 380/9335  running_acc=63.7%\\\\n2026-05-15 06:07:33,647 INFO [CLS] 390/9335  running_acc=63.3%\\\\n2026-05-15 06:07:34,993 INFO [CLS] 400/9335  running_acc=63.5%\\\\n2026-05-15 06:07:37,134 INFO [CLS] 410/9335  running_acc=64.1%\\\\n2026-05-15 06:07:39,368 INFO [CLS] 420/9335  running_acc=64.0%\\\\n2026-05-15 06:07:40,806 INFO [CLS] 430/9335  running_acc=64.4%\\\\n2026-05-15 06:08:01,150 INFO [CLS] 440/9335  running_acc=64.3%\\\\n2026-05-15 06:08:03,503 INFO [CLS] 450/9335  running_acc=64.2%\\\\n2026-05-15 06:08:05,363 INFO [CLS] 460/9335  running_acc=64.3%\\\\n2026-05-15 06:08:06,765 INFO [CLS] 470/9335  running_acc=63.8%\\\\n2026-05-15 06:08:09,672 INFO [CLS] 480/9335  running_acc=62.9%\\\\n2026-05-15 06:08:11,855 INFO [CLS] 490/9335  running_acc=62.4%\\\\n2026-05-15 06:08:14,413 INFO [CLS] 500/9335  running_acc=62.6%\\\\n2026-05-15 06:08:15,771 INFO [CLS] 510/9335  running\\\\n\\\\n... [截断: 输出过长，省略 53355 字符] ...\\\\n\\\\n:47,670 INFO [CLS] 8860/9335  running_acc=63.7%\\\\n2026-05-15 06:33:49,759 INFO [CLS] 8870/9335  running_acc=63.7%\\\\n2026-05-15 06:33:51,107 INFO [CLS] 8880/9335  running_acc=63.7%\\\\n2026-05-15 06:33:52,909 INFO [CLS] 8890/9335  running_acc=63.7%\\\\n2026-05-15 06:33:54,872 INFO [CLS] 8900/9335  running_acc=63.7%\\\\n2026-05-15 06:33:56,663 INFO [CLS] 8910/9335  running_acc=63.6%\\\\n2026-05-15 06:33:58,376 INFO [CLS] 8920/9335  running_acc=63.6%\\\\n2026-05-15 06:33:59,828 INFO [CLS] 8930/9335  running_acc=63.6%\\\\n2026-05-15 06:34:02,076 INFO [CLS] 8940/9335  running_acc=63.6%\\\\n2026-05-15 06:34:04,049 INFO [CLS] 8950/9335  running_acc=63.6%\\\\n2026-05-15 06:34:05,963 INFO [CLS] 8960/9335  running_acc=63.6%\\\\n2026-05-15 06:34:08,195 INFO [CLS] 8970/9335  running_acc=63.5%\\\\n2026-05-15 06:34:09,473 INFO [CLS] 8980/9335  running_acc=63.6%\\\\n2026-05-15 06:34:10,855 INFO [CLS] 8990/9335  running_acc=63.6%\\\\n2026-05-15 06:34:11,975 INFO [CLS] 9000/9335  running_acc=63.6%\\\\n2026-05-15 06:34:13,238 INFO [CLS] 9010/9335  running_acc=63.6%\\\\n2026-05-15 06:34:15,367 INFO [CLS] 9020/9335  running_acc=63.6%\\\\n2026-05-15 06:34:17,000 INFO [CLS] 9030/9335  running_acc=63.6%\\\\n2026-05-15 06:34:18,626 INFO [CLS] 9040/9335  running_acc=63.6%\\\\n2026-05-15 06:34:20,431 INFO [CLS] 9050/9335  running_acc=63.6%\\\\n2026-05-15 06:34:21,688 INFO [CLS] 9060/9335  running_acc=63.6%\\\\n2026-05-15 06:34:23,371 INFO [CLS] 9070/9335  running_acc=63.6%\\\\n2026-05-15 06:34:24,703 INFO [CLS] 9080/9335  running_acc=63.6%\\\\n2026-05-15 06:34:26,516 INFO [CLS] 9090/9335  running_acc=63.6%\\\\n2026-05-15 06:34:27,446 INFO [CLS] 9100/9335  running_acc=63.6%\\\\n2026-05-15 06:34:29,381 INFO [CLS] 9110/9335  running_acc=63.6%\\\\n2026-05-15 06:34:30,794 INFO [CLS] 9120/9335  running_acc=63.6%\\\\n2026-05-15 06:34:32,366 INFO [CLS] 9130/9335  running_acc=63.6%\\\\n2026-05-15 06:34:33,820 INFO [CLS] 9140/9335  running_acc=63.6%\\\\n2026-05-15 06:34:35,543 INFO [CLS] 9150/9335  running_acc=63.6%\\\\n2026-05-15 06:34:37,094 INFO [CLS] 9160/9335  running_acc=63.6%\\\\n2026-05-15 06:34:39,343 INFO [CLS] 9170/9335  running_acc=63.6%\\\\n2026-05-15 06:34:42,029 INFO [CLS] 9180/9335  running_acc=63.5%\\\\n2026-05-15 06:34:44,297 INFO [CLS] 9190/9335  running_acc=63.5%\\\\n2026-05-15 06:34:46,385 INFO [CLS] 9200/9335  running_acc=63.5%\\\\n2026-05-15 06:34:48,668 INFO [CLS] 9210/9335  running_acc=63.5%\\\\n2026-05-15 06:34:50,770 INFO [CLS] 9220/9335  running_acc=63.5%\\\\n2026-05-15 06:34:52,424 INFO [CLS] 9230/9335  running_acc=63.5%\\\\n2026-05-15 06:34:54,266 INFO [CLS] 9240/9335  running_acc=63.5%\\\\n2026-05-15 06:34:55,600 INFO [CLS] 9250/9335  running_acc=63.5%\\\\n2026-05-15 06:34:57,756 INFO [CLS] 9260/9335  running_acc=63.5%\\\\n2026-05-15 06:34:58,634 INFO [CLS] 9270/9335  running_acc=63.5%\\\\n2026-05-15 06:35:00,203 INFO [CLS] 9280/9335  running_acc=63.5%\\\\n2026-05-15 06:35:01,800 INFO [CLS] 9290/9335  running_acc=63.5%\\\\n2026-05-15 06:35:03,654 INFO [CLS] 9300/9335  running_acc=63.5%\\\\n2026-05-15 06:35:05,409 INFO [CLS] 9310/9335  running_acc=63.5%\\\\n2026-05-15 06:35:07,039 INFO [CLS] 9320/9335  running_acc=63.5%\\\\n2026-05-15 06:35:09,396 INFO [CLS] 9330/9335  running_acc=63.5%\\\\n2026-05-15 06:35:10,384 INFO [CLS] 9335/9335  running_acc=63.5%\\\\n2026-05-15 06:35:10,384 WARNING 9 unparseable predictions (majority fallback)\\\\n2026-05-15 06:35:10,688 INFO Summary saved to /home/sonny/exec-sim-repair-verifier/eval_repo_cls.json\\\\n2026-05-15 06:35:10,713 INFO Predictions saved to /home/sonny/exec-sim-repair-verifier/eval_repo_cls_predictions.jsonl\\\\n\\\\n============================================================\\\\nREPO-LEVEL CLS EVALUATION\\\\n============================================================\\\\n\\\\nTest set: 9335 instances\\\\nClass balance: pass=7083 fail=2252\\\\nMajority baseline: 75.9%\\\\n\\\\nAccuracy: 63.52%  (gap vs majority: -12.3pp)\\\\nF1 macro: 61.17%\\\\n  fail: P=38.0% R=80.6% F1=51.6%\\\\n  pass: P=90.4% R=58.1% F1=70.7%\\\\n\\\\nConfusion matrix:\\\\n              Predicted\\\\n              fail    pass\\\\n  Actual fail   1815     437\\\\n  Actual pass   2968    4115\\\\n\\\\nUnparseable: 9\\\\n============================================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.57}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 06:06:18,642 INFO Loading val data: /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl\\n2026-05-15 06:06:18,857 INFO Loaded 9335 val instances\\n2026-05-15 06:06:18,859 INFO Label distribution: {1: 7083, 0: 2252}\\n2026-05-15 06:06:18,859 INFO Loading model from /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-200\\n2026-05-15 06:06:21,057 INFO Attention: sdpa\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00, 191.06it/s]\\n2026-05-15 06:06:26,927 INFO Model loaded. Starting inference...\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n2026-05-15 06:06:29,268 INFO [CLS] 10/9335  running_acc=80.0%\\n2026-05-15 06:06:30,330 INFO [CLS] 20/9335  running_acc=65.0%\\n2026-05-15 06:06:31,108 INFO [CLS] 30/9335  running_acc=56.7%\\n2026-05-15 06:06:32,229 INFO [CLS] 40/9335  running_acc=67.5%\\n2026-05-15 06:06:34,367 INFO [CLS] 50/9335  running_acc=68.0%\\n2026-05-15 06:06:36,312 INFO [CLS] 60/9335  running_acc=68.3%\\n2026-05-15 06:06:38,558 INFO [CLS] 70/9335  running_acc=65.7%\\n2026-05-15 06:06:39,891 INFO [CLS] 80/9335  running_acc=61.3%\\n2026-05-15 06:06:41,599 INFO [CLS] 90/9335  running_acc=60.0%\\n2026-05-15 06:06:43,335 INFO [CLS] 100/9335  running_acc=60.0%\\n2026-05-15 06:06:45,229 INFO [CLS] 110/9335  running_acc=60.0%\\n2026-05-15 06:06:47,036 INFO [CLS] 120/9335  running_acc=61.7%\\n2026-05-15 06:06:48,155 INFO [CLS] 130/9335  running_acc=62.3%\\n2026-05-15 06:06:50,674 INFO [CLS] 140/9335  running_acc=62.9%\\n2026-05-15 06:06:52,596 INFO [CLS] 150/9335  running_acc=63.3%\\n2026-05-15 06:06:53,724 INFO [CLS] 160/9335  running_acc=62.5%\\n2026-05-15 06:06:55,008 INFO [CLS] 170/9335  running_acc=61.8%\\n2026-05-15 06:06:56,819 INFO [CLS] 180/9335  running_acc=62.8%\\n2026-05-15 06:06:58,243 INFO [CLS] 190/9335  running_acc=64.7%\\n2026-05-15 06:06:59,619 INFO [CLS] 200/9335  running_acc=64.0%\\n2026-05-15 06:07:00,898 INFO [CLS] 210/9335  running_acc=64.8%\\n2026-05-15 06:07:01,866 INFO [CLS] 220/9335  running_acc=64.5%\\n2026-05-15 06:07:03,711 INFO [CLS] 230/9335  running_acc=64.3%\\n2026-05-15 06:07:05,596 INFO [CLS] 240/9335  running_acc=64.2%\\n2026-05-15 06:07:07,024 INFO [CLS] 250/9335  running_acc=64.0%\\n2026-05-15 06:07:09,398 INFO [CLS] 260/9335  running_acc=63.8%\\n2026-05-15 06:07:11,037 INFO [CLS] 270/9335  running_acc=64.4%\\n2026-05-15 06:07:13,352 INFO [CLS] 280/9335  running_acc=64.3%\\n2026-05-15 06:07:15,222 INFO [CLS] 290/9335  running_acc=64.5%\\n2026-05-15 06:07:17,702 INFO [CLS] 300/9335  running_acc=64.0%\\n2026-05-15 06:07:19,569 INFO [CLS] 310/9335  running_acc=63.5%\\n2026-05-15 06:07:21,066 INFO [CLS] 320/9335  running_acc=64.4%\\n2026-05-15 06:07:22,383 INFO [CLS] 330/9335  running_acc=64.8%\\n2026-05-15 06:07:24,600 INFO [CLS] 340/9335  running_acc=64.4%\\n2026-05-15 06:07:26,000 INFO [CLS] 350/9335  running_acc=64.9%\\n2026-05-15 06:07:28,417 INFO [CLS] 360/9335  running_acc=64.4%\\n2026-05-15 06:07:30,340 INFO [CLS] 370/9335  running_acc=64.1%\\n2026-05-15 06:07:32,583 INFO [CLS] 380/9335  running_acc=63.7%\\n2026-05-15 06:07:33,647 INFO [CLS] 390/9335  running_acc=63.3%\\n2026-05-15 06:07:34,993 INFO [CLS] 400/9335  running_acc=63.5%\\n2026-05-15 06:07:37,134 INFO [CLS] 410/9335  running_acc=64.1%\\n2026-05-15 06:07:39,368 INFO [CLS] 420/9335  running_acc=64.0%\\n2026-05-15 06:07:40,806 INFO [CLS] 430/9335  running_acc=64.4%\\n2026-05-15 06:08:01,150 INFO [CLS] 440/9335  running_acc=64.3%\\n2026-05-15 06:08:03,503 INFO [CLS] 450/9335  running_acc=64.2%\\n2026-05-15 06:08:05,363 INFO [CLS] 460/9335  running_acc=64.3%\\n2026-05-15 06:08:06,765 INFO [CLS] 470/9335  running_acc=63.8%\\n2026-05-15 06:08:09,672 INFO [CLS] 480/9335  running_acc=62.9%\\n2026-05-15 06:08:11,855 INFO [CLS] 490/9335  running_acc=62.4%\\n2026-05-15 06:08:14,413 INFO [CLS] 500/9335  running_acc=62.6%\\n2026-05-15 06:08:15,771 INFO [CLS] 510/9335  running\\n\\n... [截断: 输出过长，省略 53355 字符] ...\\n\\n:47,670 INFO [CLS] 8860/9335  running_acc=63.7%\\n2026-05-15 06:33:49,759 INFO [CLS] 8870/9335  running_acc=63.7%\\n2026-05-15 06:33:51,107 INFO [CLS] 8880/9335  running_acc=63.7%\\n2026-05-15 06:33:52,909 INFO [CLS] 8890/9335  running_acc=63.7%\\n2026-05-15 06:33:54,872 INFO [CLS] 8900/9335  running_acc=63.7%\\n2026-05-15 06:33:56,663 INFO [CLS] 8910/9335  running_acc=63.6%\\n2026-05-15 06:33:58,376 INFO [CLS] 8920/9335  running_acc=63.6%\\n2026-05-15 06:33:59,828 INFO [CLS] 8930/9335  running_acc=63.6%\\n2026-05-15 06:34:02,076 INFO [CLS] 8940/9335  running_acc=63.6%\\n2026-05-15 06:34:04,049 INFO [CLS] 8950/9335  running_acc=63.6%\\n2026-05-15 06:34:05,963 INFO [CLS] 8960/9335  running_acc=63.6%\\n2026-05-15 06:34:08,195 INFO [CLS] 8970/9335  running_acc=63.5%\\n2026-05-15 06:34:09,473 INFO [CLS] 8980/9335  running_acc=63.6%\\n2026-05-15 06:34:10,855 INFO [CLS] 8990/9335  running_acc=63.6%\\n2026-05-15 06:34:11,975 INFO [CLS] 9000/9335  running_acc=63.6%\\n2026-05-15 06:34:13,238 INFO [CLS] 9010/9335  running_acc=63.6%\\n2026-05-15 06:34:15,367 INFO [CLS] 9020/9335  running_acc=63.6%\\n2026-05-15 06:34:17,000 INFO [CLS] 9030/9335  running_acc=63.6%\\n2026-05-15 06:34:18,626 INFO [CLS] 9040/9335  running_acc=63.6%\\n2026-05-15 06:34:20,431 INFO [CLS] 9050/9335  running_acc=63.6%\\n2026-05-15 06:34:21,688 INFO [CLS] 9060/9335  running_acc=63.6%\\n2026-05-15 06:34:23,371 INFO [CLS] 9070/9335  running_acc=63.6%\\n2026-05-15 06:34:24,703 INFO [CLS] 9080/9335  running_acc=63.6%\\n2026-05-15 06:34:26,516 INFO [CLS] 9090/9335  running_acc=63.6%\\n2026-05-15 06:34:27,446 INFO [CLS] 9100/9335  running_acc=63.6%\\n2026-05-15 06:34:29,381 INFO [CLS] 9110/9335  running_acc=63.6%\\n2026-05-15 06:34:30,794 INFO [CLS] 9120/9335  running_acc=63.6%\\n2026-05-15 06:34:32,366 INFO [CLS] 9130/9335  running_acc=63.6%\\n2026-05-15 06:34:33,820 INFO [CLS] 9140/9335  running_acc=63.6%\\n2026-05-15 06:34:35,543 INFO [CLS] 9150/9335  running_acc=63.6%\\n2026-05-15 06:34:37,094 INFO [CLS] 9160/9335  running_acc=63.6%\\n2026-05-15 06:34:39,343 INFO [CLS] 9170/9335  running_acc=63.6%\\n2026-05-15 06:34:42,029 INFO [CLS] 9180/9335  running_acc=63.5%\\n2026-05-15 06:34:44,297 INFO [CLS] 9190/9335  running_acc=63.5%\\n2026-05-15 06:34:46,385 INFO [CLS] 9200/9335  running_acc=63.5%\\n2026-05-15 06:34:48,668 INFO [CLS] 9210/9335  running_acc=63.5%\\n2026-05-15 06:34:50,770 INFO [CLS] 9220/9335  running_acc=63.5%\\n2026-05-15 06:34:52,424 INFO [CLS] 9230/9335  running_acc=63.5%\\n2026-05-15 06:34:54,266 INFO [CLS] 9240/9335  running_acc=63.5%\\n2026-05-15 06:34:55,600 INFO [CLS] 9250/9335  running_acc=63.5%\\n2026-05-15 06:34:57,756 INFO [CLS] 9260/9335  running_acc=63.5%\\n2026-05-15 06:34:58,634 INFO [CLS] 9270/9335  running_acc=63.5%\\n2026-05-15 06:35:00,203 INFO [CLS] 9280/9335  running_acc=63.5%\\n2026-05-15 06:35:01,800 INFO [CLS] 9290/9335  running_acc=63.5%\\n2026-05-15 06:35:03,654 INFO [CLS] 9300/9335  running_acc=63.5%\\n2026-05-15 06:35:05,409 INFO [CLS] 9310/9335  running_acc=63.5%\\n2026-05-15 06:35:07,039 INFO [CLS] 9320/9335  running_acc=63.5%\\n2026-05-15 06:35:09,396 INFO [CLS] 9330/9335  running_acc=63.5%\\n2026-05-15 06:35:10,384 INFO [CLS] 9335/9335  running_acc=63.5%\\n2026-05-15 06:35:10,384 WARNING 9 unparseable predictions (majority fallback)\\n2026-05-15 06:35:10,688 INFO Summary saved to /home/sonny/exec-sim-repair-verifier/eval_repo_cls.json\\n2026-05-15 06:35:10,713 INFO Predictions saved to /home/sonny/exec-sim-repair-verifier/eval_repo_cls_predictions.jsonl\\n\\n============================================================\\nREPO-LEVEL CLS EVALUATION\\n============================================================\\n\\nTest set: 9335 instances\\nClass balance: pass=7083 fail=2252\\nMajority baseline: 75.9%\\n\\nAccuracy: 63.52%  (gap vs majority: -12.3pp)\\nF1 macro: 61.17%\\n  fail: P=38.0% R=80.6% F1=51.6%\\n  pass: P=90.4% R=58.1% F1=70.7%\\n\\nConfusion matrix:\\n              Predicted\\n              fail    pass\\n  Actual fail   1815     437\\n  Actual pass   2968    4115\\n\\nUnparseable: 9\\n============================================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Got all the results. Let me extract the key metrics.",
+              "signature": "Eu8BClkIDRgCKkBaM4WkIE63hcAb2VAx7EMI5bgQhZPk3fejSiiqTxQvTpitGSH2NExmsTyF//uKT/UQh2rZFO8UsW3kLx7aAQ2VMg9jbGF1ZGUtb3B1cy00LTY4ABIMdb9VEc+eJaBdUfRZGgxDPxpZ3oxIzN0mzVUiMOlvLbiLSLSqTsh0pcHG7fQFVeq1NCu3XmdZf07mE2GxYk/fYdBG+S5rCvzNRr4GlipEualBNgGzRknAuq99OTPT8F8yyjHVl3lm6z3LYvxEWydg4sH2yRKnQkXcK9vgDF1lnrkzmbJI6u3aB0vzvGPG6i0qaoAYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aef5b501-fe82-41c2-99b2-7bd169679f5c",
+            "uuid": "83692e46-bd5e-4282-ba53-3e17563e9698",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LRokZQ7jcbazEXpS1MeRKi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4544,
+                "cache_read_input_tokens": 23471,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4544
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cls8b-s42-ckpt200-val8192-eval-v2 评估结果\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | 63.52% |\n| **F1 macro** | 61.17% |\n| **F1 (fail)** | 51.6% |\n| **F1 (pass)** | 70.7% |\n| **Precision (fail)** | 38.0% |\n| **Precision (pass)** | 90.4% |\n| **Recall (fail)** | 80.6% |\n| **Recall (pass)** | 58.1% |\n| **Samples evaluated** | 9335 |\n| **Class balance** | pass=7083, fail=2252 |\n| **Majority baseline** | 75.9% |\n| **Accuracy vs majority** | -12.3pp |\n| **Unparseable** | 9 (0.10%) |\n| **Exit code** | 0 (成功) |\n\n**Confusion Matrix:**\n\n|  | Pred fail | Pred pass |\n|--|-----------|-----------|\n| **Actual fail** | 1815 | 437 |\n| **Actual pass** | 2968 | 4115 |\n\n**关键发现：**\n- Accuracy 63.52% **低于** majority baseline 75.9%（差 -12.3pp），模型在 val set 上表现不佳\n- 模型对 fail 类 recall 高（80.6%）但 precision 极低（38.0%），大量 pass 样本被误判为 fail（2968 个 false positive）\n- pass 类 precision 高（90.4%）但 recall 低（58.1%），说明模型过度倾向预测 fail\n- 无错误或异常，9 个 unparseable 用了 majority fallback"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aef5b501-fe82-41c2-99b2-7bd169679f5c",
+            "uuid": "ded6700c-c3dd-458f-aacb-e8f4d76b95ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LRokZQ7jcbazEXpS1MeRKi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4544,
+                "cache_read_input_tokens": 23471,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4544
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cls8b-s42-ckpt200-val8192-eval-v2 评估结果\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | 63.52% |\n| **F1 macro** | 61.17% |\n| **F1 (fail)** | 51.6% |\n| **F1 (pass)** | 70.7% |\n| **Precision (fail)** | 38.0% |\n| **Precision (pass)** | 90.4% |\n| **Recall (fail)** | 80.6% |\n| **Recall (pass)** | 58.1% |\n| **Samples evaluated** | 9335 |\n| **Class balance** | pass=7083, fail=2252 |\n| **Majority baseline** | 75.9% |\n| **Accuracy vs majority** | -12.3pp |\n| **Unparseable** | 9 (0.10%) |\n| **Exit code** | 0 (成功) |\n\n**Confusion Matrix:**\n\n|  | Pred fail | Pred pass |\n|--|-----------|-----------|\n| **Actual fail** | 1815 | 437 |\n| **Actual pass** | 2968 | 4115 |\n\n**关键发现：**\n- Accuracy 63.52% **低于** majority baseline 75.9%（差 -12.3pp），模型在 val set 上表现不佳\n- 模型对 fail 类 recall 高（80.6%）但 precision 极低（38.0%），大量 pass 样本被误判为 fail（2968 个 false positive）\n- pass 类 precision 高（90.4%）但 recall 低（58.1%），说明模型过度倾向预测 fail\n- 无错误或异常，9 个 unparseable 用了 majority fallback"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 20990,
+            "duration_api_ms": 20596,
+            "num_turns": 3,
+            "stop_reason": "end_turn",
+            "session_id": "aef5b501-fe82-41c2-99b2-7bd169679f5c",
+            "total_cost_usd": 0.1509185,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 16174,
+              "cache_read_input_tokens": 58326,
+              "output_tokens": 782,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 16174,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 519,
+                  "cache_read_input_tokens": 23471,
+                  "cache_creation_input_tokens": 4544,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4544
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1013,
+                "outputTokens": 14,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001083,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 782,
+                "cacheReadInputTokens": 58326,
+                "cacheCreationInputTokens": 16174,
+                "webSearchRequests": 0,
+                "costUSD": 0.1498355,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "3404d3b8-ac4d-4711-a050-924d182294d8"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-cls8b-s42-ckpt200-val8192-eval-v2.md"
+}

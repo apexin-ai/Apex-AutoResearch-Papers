@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cae6813ad0bdf3276419",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh d049 investigate cuda1",
+  "task_key": "worker_ssh_d049-investigate-cuda1_20260513T100559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d049-investigate-cuda1_20260513T100559_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "4162c5f5f8c40b27a33e6b173208b501cab845fe2460638feefbadd72eef8b5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结果\n\n### 1. PID 139302\n**已死亡**，进程不存在。之前占用 cuda:1 的 16.3GB 显存已被释放。cuda:1 当前 0 MiB 占用。\n\n### 2. 当前 GPU 进程\n\n| PID | GPU | 显存 | 运行时间 | 命令 |\n|-----|-----|------|---------|------|\n| 130031 | cuda:2 | 13,466 MiB | 1h46m | `train_repo_cwm.py` → `/root/autodl-tmp/checkpoints_repo_cwm_v11/` |\n| 140060 | cuda:3 | 25,734 MiB | 6m15s | `train_repo_verifier_8b.py` (Qwen3-8B) → `/root/autodl-tmp/checkpoints_repo_cls_8b/` |\n\n### 3. 全面 GPU 状态\n\n| GPU | 利用率 | 显存占用 / 总量 |\n|-----|--------|----------------|\n| cuda:0 | 0% | 0 / 32,607 MiB (空闲) |\n| cuda:1 | 0% | 0 / 32,607 MiB (空闲) |\n| cuda:2 | 98% | 13,475 / 32,607 MiB |\n| cuda:3 | 86% | 25,743 / 32,607 MiB |\n\n**结论**：PID 139302 已自行退出，无需 kill。cuda:0 和 cuda:1 完全空闲可用。cuda:2 和 cuda:3 上跑的都是本项目的训练任务，状态正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d049-investigate-cuda1.md"
+}

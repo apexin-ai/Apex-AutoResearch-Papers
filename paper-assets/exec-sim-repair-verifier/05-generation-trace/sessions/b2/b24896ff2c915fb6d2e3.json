@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b24896ff2c915fb6d2e3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh training status and eval prep",
+  "task_key": "worker_ssh_training-status-and-eval-prep_20260520T101312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_training-status-and-eval-prep_20260520T101312_result.json",
+    "occurrence": 1,
+    "bytes": 1288,
+    "sha256": "34132d506585c6e819584b4c6ff6761c98872ecf9f7fac4e2d6bb41bb01a4cdb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇总\n\n| GPU | 任务 | 当前 step / 总 step | 进度 | 速度 | 预估剩余 | ETA |\n|-----|------|---------------------|------|------|----------|-----|\n| 0 | Qwen s123 | 1326 / 6633 | 20% | ~12.2s/it | ~18h | **5/21 ~12:30** |\n| 1 | DeepSeek s456-v2 | 468 / 12627 | 3.7% | ~8.0s/it | ~27h | **5/21 ~21:30** |\n| 2 | DeepSeek s123-v2 | 1965 / 12627 | 15.6% | ~8.2s/it | ~24.3h | **5/21 ~18:30** |\n| 3 | Qwen s456 | 1365 / 6633 | 20.6% | ~11.9s/it | ~17.5h | **5/21 ~12:00** |\n\n4 张 5090 全部满载（89-99% util, 72-75°C）。\n\n## save_strategy 确认\n\n- `save_strategy = \"epoch\"`（line 375），`save_total_limit = 2`（line 377）\n- 只保留最后 2 个 epoch checkpoint\n- DeepSeek 12627 total steps / 3 epochs → epoch checkpoint 约在 step 4209, 8418, 12627\n- 参考 s42：checkpoint-8844 (epoch 2) + checkpoint-13266 (epoch 3/final)\n- eval 脚本用 `sort -t'-' -k2 -n | tail -1` 自动取最大编号 checkpoint\n\n## Eval 脚本已写入\n\n- `/home/sonny/exec-sim-repair-verifier/eval_deepseek_cwm_s123_v2.sh` — GPU 2, `--batch_size 4 --max_seq_length 4096`\n- `/home/sonny/exec-sim-repair-verifier/eval_deepseek_cwm_s456_v2.sh` — GPU 1, 同参数\n\n两个脚本已 `chmod +x`，训练完成后直接执行即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-training-status-and-eval-prep.md"
+}

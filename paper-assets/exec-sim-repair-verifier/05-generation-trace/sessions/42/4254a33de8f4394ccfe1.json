@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4254a33de8f4394ccfe1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect westd ckpt6633 val final",
+  "task_key": "worker_collect_westd-ckpt6633-val-final_20260515T085504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_westd-ckpt6633-val-final_20260515T085504_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "c711873581a7f57738f1c54778de3471d9a0b918c45f1b0fe6c140522a27d893"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。ckpt-6633 val eval 结果：\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **87.10%** |\n| Majority baseline | 75.88% |\n| **Gap vs majority** | **+11.23pp** |\n| **F1 macro** | **78.79%** |\n| F1 fail | 65.52% (P=92.26%, R=50.80%) |\n| F1 pass | 92.07% (P=86.31%, R=98.64%) |\n| Unparseable | 9 / 9335 |\n| Wall clock | ~57 min (0.95 GPU-hr) |\n\n特点：fail 类 precision 很高（92.3%）但 recall 偏低（50.8%），模型对 fail 的判断保守——说 fail 时大概率对，但漏掉了近一半的 fail 样本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-westd-ckpt6633-val-final.md"
+}

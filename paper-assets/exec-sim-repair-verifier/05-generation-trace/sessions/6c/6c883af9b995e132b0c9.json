@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c883af9b995e132b0c9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b eval seed123",
+  "task_key": "worker_eval_cls8b-eval-seed123_20260512T172236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-eval-seed123_20260512T172236_result.json",
+    "occurrence": 1,
+    "bytes": 491,
+    "sha256": "46affa72eeb24387b7de3fb6c0313fd6300d6b5aa772f33c7668e216c6f462e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果摘要：**\n- 输出路径：`/home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed123_predictions.json`（1890 条 per-instance 预测）\n- 聚合指标路径：`/home/sonny/exec-sim-repair-verifier/eval_results/cls8b_seed123_results.json`\n- **Accuracy: 89.37%**（vs baseline 51.75%, gap +37.62pp）\n- Fail F1: 89.19%, Pass F1: 89.54%\n- Unparseable: 0\n- MVP-B criteria: 全部 PASS\n- Registry `cls8b-eval-seed123` 已更新为 DONE/success"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-eval-seed123.md"
+}

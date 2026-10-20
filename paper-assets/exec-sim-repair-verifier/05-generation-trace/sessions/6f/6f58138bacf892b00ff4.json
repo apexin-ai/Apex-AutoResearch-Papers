@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f58138bacf892b00ff4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra seetacloud savesteps eval8b",
+  "task_key": "worker_infra_seetacloud-savesteps-eval8b_20260512T160140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_seetacloud-savesteps-eval8b_20260512T160140_result.json",
+    "occurrence": 1,
+    "bytes": 2470,
+    "sha256": "6844d6fd6ea21dd54f91ae019cf59c96a70805f85260d0820d388dcf8b784a1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总报告：\n\n---\n\n## 1. save_strategy / save_steps 配置\n\n| 脚本 | save_strategy | save_steps | save_total_limit |\n|------|--------------|------------|-----------------|\n| `train_repo_verifier.py` (L249) | `\"epoch\"` (dryrun 时 `\"no\"`) | 未设置 | 2 |\n| `train_repo_cwm.py` (L247) | `\"epoch\"` (dryrun 时 `\"no\"`) | 未设置 | 2 |\n\n两个脚本都按 epoch 保存，save_total_limit=2，配置正常。无 D024 违规风险。\n\n## 2. repo-level 训练状态\n\n**⚠️ 两个训练进程均已崩溃，所有 GPU 空闲。**\n\n- GPU 0-3：全部 0 MiB / 0% 利用率\n- 无 `train_repo` 相关 python 进程在运行\n- **两个 log 相同错误**（EXIT_CODE=1）：\n  ```\n  ValueError: type of {...} unknown: <class 'dict'>. Should be one of a python, numpy, or pytorch object.\n  ```\n  崩溃位置：DataCollator 的 `__call__` → `tokenizer.pad()` 收到了 dict 而非 tensor。两个脚本都在 0% 进度（0/6633）就挂了。\n\n## 3. 8B CLS eval JSON\n\n| seed | checkpoint 路径 | accuracy | fail_f1 | pass_f1 |\n|------|----------------|----------|---------|---------|\n| seed42 | `checkpoints_cls8b/best` | **90.48** | 90.06 | 90.86 |\n| seed123 | `checkpoints_cls8b_seed123/best` | **89.37** | 89.19 | 89.54 |\n\n- `eval_cls8b_seed42.json` — **新生成** ✅\n- `eval_cls8b_seed123.json` — 已存在，内容有效 ✅\n- 两个 eval 均无 unparseable predictions\n\n## 4. checkpoint 路径列表\n\n```\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b/best          # CLS 8B seed42\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed123/best  # CLS 8B seed123\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b/best          # CWM 8B (default seed)\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed123/best  # CWM 8B seed123\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm8b_seed456/best  # CWM 8B seed456\n/home/sonny/exec-sim-repair-verifier/checkpoints/best                # CLS default\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls_seed0/best      # CLS seed0\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed123/best    # CWM seed123\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/best    # CWM seed789\n/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls/           # repo-level CLS (无 best/)\n/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cwm/           # repo-level CWM (无 best/)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-seetacloud-savesteps-eval8b.md"
+}

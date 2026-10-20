@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "501f1b03cd6abad06cdb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code qwen3 traj repo train prep",
+  "task_key": "worker_code_qwen3-traj-repo-train-prep_20260518T183507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen3-traj-repo-train-prep_20260518T183507_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "3ebc8c519d93bcba0ef0ce92b4f05837cb6fcb9af2dd3b7e3cf3db40d7dab3b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "配置已写入 `artifacts/qwen3_traj_repo_launch_config.md`。\n\n关键发现：\n- **Qwen3-4B 不在服务器上**，只有 Qwen3-8B 和 Qwen3-32B。命令已改用 Qwen3-8B。\n- 训练数据在 `data/swebench_full/traj_train.jsonl`（386 条 SWE-bench repo-level diffs）\n- 超参复用 DeepSeek TRAJ repo_8k 的实测配置：batch=1, grad_accum=8, seq=8192, epochs=3, lr=2e-4\n- 预计训练 ~45-51 分钟，eval ~2-3 分钟\n- Qwen3 的 thinking mode 已被训练脚本的 `detect_thinking_support()` 自动处理，不需要额外操作\n- GPU 3 当前还在跑 CWM eval（99% utilization），释放后可直接启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen3-traj-repo-train-prep.md"
+}

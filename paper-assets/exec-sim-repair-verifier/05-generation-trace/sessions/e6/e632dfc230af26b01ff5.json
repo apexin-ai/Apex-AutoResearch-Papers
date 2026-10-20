@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e632dfc230af26b01ff5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check home gpu quick",
+  "task_key": "worker_check_home-gpu-quick_20260517T205619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_home-gpu-quick_20260517T205619_result.json",
+    "occurrence": 1,
+    "bytes": 225,
+    "sha256": "7ab58c653b346f4c0222ec3052bf8fadeec532487f8c38e0603a8c17bba94b7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**PID 3890761** — `python3 run_qwen_repo_level.py`，已运行 **2h05m**，GPU 利用率 **100%**，显存占用 20.9G/32.6G，温度 82°C，功耗 578W（略超 TDP）。正在满载跑 repo-level 推理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-home-gpu-quick.md"
+}

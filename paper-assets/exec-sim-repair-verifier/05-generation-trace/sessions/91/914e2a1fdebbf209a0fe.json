@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "914e2a1fdebbf209a0fe",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "urgent verify unaffected tasks",
+  "task_key": "worker_urgent_verify-unaffected-tasks_20260514T141922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_verify-unaffected-tasks_20260514T141922_result.json",
+    "occurrence": 1,
+    "bytes": 794,
+    "sha256": "a2dadcc0dbc859b7067981d388c283433c005d324951ac7549a4612433f45c66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 eval 任务正常运行，未受 SIGTERM 影响。\n\n| 任务 | Server | GPU | PID | 状态 | 进度 |\n|------|--------|-----|-----|------|------|\n| CWM v12 eval | westd | 0/1 | 195668 | ALIVE, 已运行 13h16m | 输出目录空（结束时写入） |\n| CWM seed123 eval | westd | 0/1 | 195531 | ALIVE, 已运行 13h16m | 输出目录空（结束时写入） |\n| test@4096 eval | home | 0 | 3111657 | ALIVE, CPU 100% | **8625/9784 (88.2%)**, running_acc=81.0% |\n\nGPU 状态：\n- westd GPU 0: 88%, 13GB — GPU 1: 87%, 13GB — GPU 2/3: 空闲（训练已被杀）\n- home GPU 0: 89%, 10.9GB\n\n注意：westd 两个 eval 进程命令行都显示 `--device cuda:0`，但 GPU 0 和 1 都有负载，应该是通过 `CUDA_VISIBLE_DEVICES` 映射到不同物理 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-verify-unaffected-tasks.md"
+}

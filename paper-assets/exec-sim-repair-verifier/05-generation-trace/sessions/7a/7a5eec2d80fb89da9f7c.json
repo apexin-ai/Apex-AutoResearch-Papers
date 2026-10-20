@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a5eec2d80fb89da9f7c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "setup qwen3 8b traj func",
+  "task_key": "worker_setup_qwen3-8b-traj-func_20260517T124501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_qwen3-8b-traj-func_20260517T124501_result.json",
+    "occurrence": 1,
+    "bytes": 1868,
+    "sha256": "6feec102874f97424c9f1a50c74c7e029c930048477c626c5afc660aaee46f72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 准备完成，汇总报告\n\n### 1. 模型路径\n`/home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-8B/` (snapshot `b968826d`)\n- HF name: `Qwen/Qwen3-8B`\n\n### 2. 数据路径和数据量\n`/home/sonny/exec-sim-repair-verifier/data/`\n| Split | File | Samples |\n|-------|------|---------|\n| Train | `traj_train.jsonl` | 8,052 |\n| Val | `traj_val.jsonl` | 1,001 |\n| Test | `traj_test.jsonl` | 1,032 |\n\n序列长度: Mean=220, P95=420, P99=578, Max=1253 tokens. 0% truncation at 2048.\n\n### 3. 训练脚本\n`/home/sonny/exec-sim-repair-verifier/train_traj_verifier.py`\n\n### 4. Training Commands\n\n**Seed 42:**\n```bash\ncd /home/sonny/exec-sim-repair-verifier && python3 train_traj_verifier.py \\\n  --data_dir data \\\n  --model_name Qwen/Qwen3-8B \\\n  --output_dir checkpoints_traj_8b_seed42 \\\n  --run_name traj-qwen3-8b-lora-s42 \\\n  --seed 42 \\\n  --batch_size 2 \\\n  --grad_accumulation 16 \\\n  --epochs 3 \\\n  --lr 2e-4 \\\n  --lora_rank 16 \\\n  --lora_alpha 32 \\\n  --max_seq_length 2048\n```\n\n**Seed 123:**\n```bash\ncd /home/sonny/exec-sim-repair-verifier && python3 train_traj_verifier.py \\\n  --data_dir data \\\n  --model_name Qwen/Qwen3-8B \\\n  --output_dir checkpoints_traj_8b_seed123 \\\n  --run_name traj-qwen3-8b-lora-s123 \\\n  --seed 123 \\\n  --batch_size 2 \\\n  --grad_accumulation 16 \\\n  --epochs 3 \\\n  --lr 2e-4 \\\n  --lora_rank 16 \\\n  --lora_alpha 32 \\\n  --max_seq_length 2048\n```\n\n### 5. Dry-run 结果\n- bs=2, max_steps=2: **成功**，4.27 s/step\n- Attention: SDPA (flash_attn 未安装)\n- Trainable params: 15.3M / 8.2B (0.19%)\n- Gradient checkpointing: enabled\n\n### 6. 预估训练时间\n- 756 steps/run (252 steps/epoch × 3 epochs)\n- ~4.3 s/step → **~54 min/run**\n- 两个 seed 共 ~108 min\n\n### 7. Blockers\n无。所有组件就绪，dry-run 通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-qwen3-8b-traj-func.md"
+}

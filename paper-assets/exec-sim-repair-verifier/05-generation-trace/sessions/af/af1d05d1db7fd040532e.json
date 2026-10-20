@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af1d05d1db7fd040532e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh fix cwm oom v6",
+  "task_key": "worker_ssh_fix-cwm-oom-v6_20260512T190022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-cwm-oom-v6_20260512T190022_result.json",
+    "occurrence": 1,
+    "bytes": 1303,
+    "sha256": "6206e257e64fa53a286dfa87b263f44923ecb6309ecaf8c8e51a7aac4aff3470"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练在 **cuda:2** 上正常运行，已完成 31/6633 步。\n\n## 产出汇总\n\n### 1. train_repo_cwm.py 修改\n\n| 参数 | 改前 | 改后 |\n|------|------|------|\n| `batch_size` | 2 | 1 |\n| `grad_accumulation` | 16 | 32 |\n| `save_steps` | 500 | 50 |\n\neffective batch size 不变（2×16 = 1×32 = 32）\n\n### 2. Dry-run / 验证结果\n\n先前错误提交（GPU 0）+ 当前正确提交（GPU 2）均证实修复有效：\n- **GPU VRAM**: 22,342 MiB / 32,607 MiB（68.5%，**10GB headroom**）\n- **速度**: ~8.0 s/step\n- **总步数**: 6,633（3 epochs × 70,748 samples / batch 1 / accum 32）\n- **预计时长**: ~14.7 小时\n\n### 3. repo-level-cwm-v6 已提交\n\n- **状态**: RUNNING on cuda:2, PID 84887\n- **tmux session**: repo-level-cwm-v6\n- **日志**: `~/runs/exec-sim-repair-verifier/repo-level-cwm-v6.log`\n- **checkpoint**: `/root/autodl-tmp/checkpoints_repo_cwm_v6/`\n- **parent**: repo-level-cwm-v5\n- **spec**: command, server, data_path, data_count=70748, model_name=Qwen/Qwen3-4B, seed=42 已写入\n\n### 4. v5 OOM 根因\n\nv5 crash 在 `model.to(device)` 阶段——**另一个进程（PID 77816）占用 25.99GB**，导致 GPU 余量不足。v6 修复后即使单独运行，峰值也从 ~26.5GB 降到 22.3GB，避免类似争用风险。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-cwm-oom-v6.md"
+}

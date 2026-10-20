@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e3691d980566ab7b190",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops check qwen seq length",
+  "task_key": "worker_ops_check-qwen-seq-length_20260516T164608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-qwen-seq-length_20260516T164608_result.json",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "a9d8ecfac24d6fb08d985eb8cad5e8587f8e8bc1167f9d05c85c69bb64938a38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本的 `max_seq_length` 默认值都是 **2048**：\n\n- `train_repo_verifier.py:188` — `default=2048`\n- `train_repo_cwm.py:182` — `default=2048`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-qwen-seq-length.md"
+}

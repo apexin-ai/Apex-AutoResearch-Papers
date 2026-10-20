@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bdada0d90e1d379b6b7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "poll westd seed123 test v2 round2",
+  "task_key": "worker_poll_westd-seed123-test-v2-round2_20260515T101354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_poll_westd-seed123-test-v2-round2_20260515T101354_result.json",
+    "occurrence": 1,
+    "bytes": 240,
+    "sha256": "60bd45ab3400b5955d04f197282d42ef9bfa87c43f4b3475c8484aeabd62a56b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态报告（第 1 次检查）：**\n- **ckpt-6200** (PID 355567): 运行中，2240/9784 (~23%), running_acc=83.8%\n- **ckpt-6400** (PID 355710): 运行中，2240/9784 (~23%), running_acc=84.3%\n\n~4.5 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/poll-westd-seed123-test-v2-round2.md"
+}

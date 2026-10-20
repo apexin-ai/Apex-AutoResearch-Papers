@@ -1,0 +1,206 @@
+{
+  "schema_version": "1.0",
+  "id": "4d42df2b51c0b897e462",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "paper writing abstract",
+  "task_key": "worker_paper_writing_abstract_20260515T095317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_abstract_20260515T095317.jsonl",
+    "occurrence": 1,
+    "bytes": 11644,
+    "sha256": "6c3536a814c2918d8c0d2331631c0158906c86d9a1a86ea8ed8b960a4acd8707"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T09:54:52.329503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260515T095317",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T09:54:52.330473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260515T095317",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T09:54:52.330703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260515T095317",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T09:54:52.330919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tExecution-free verification for LLM-based code repair faces a granularity--accuracy tradeoff: generation-based approaches (Code World Models) predict execution output strings but suffer from token-budget exhaustion and string-value prediction errors as code complexity grows, while trajectory-level verifiers provide binary patch verdicts but discard per-test diagnostic information.\n3\t%\n4\tWe reformulate execution simulation from open-ended output generation to per-test binary pass/fail classification, and systematically compare classification (\\cls{}), generation (\\cwm{}), and trajectory-level formulations at controlled model sizes.\n5\t%\n6\tOn function-level benchmarks, \\cls{} and \\cwm{} achieve near-equivalent accuracy (88.43\\% vs.\\ 87.19\\%, 5 seeds, gap 1.24\\pp{}); at 8B parameters the gap widens (raw 2.43\\pp{}; bootstrap mean 2.26\\pp{}, $p{=}0.0066$), with \\cwm{} failing to benefit from increased capacity. Per-test \\cls{} matches trajectory-level accuracy (TOST equivalence $p{=}0.007$, $\\pm$2\\pp{} margin) while providing free diagnostic granularity---which specific tests fail. Oracle analysis on SWE-bench Verified shows this per-test advantage concentrates in instances with two or more failing tests (31\\% of instances, contributing 55\\% of total advantage), and an oracle ensemble of \\cls{} and \\cwm{} reaches 90.63\\% accuracy. At repository level, the gap amplifies substantially (76.92\\% vs.\\ 66.60\\%, single seed): \\cwm{} falls below majority baseline due to 75\\% unparseable outputs from format non-compliance despite sufficient token budget, while \\cls{} remains robust (1.3\\% unparseable).\n7\t%\n8\tThese results support classification as a promising alternative to generation-based execution simulation, with an advantage that grows with code complexity---from modest at function level to critical at repository level.\n9\t\\end{abstract}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260515T095317",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T09:54:52.331242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260515T095317",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex",
+              "content": "\\begin{abstract}\nExecution-free verification for LLM-based code repair faces a granularity--accuracy tradeoff: generation-based approaches (Code World Models) predict execution output strings but suffer from token-budget exhaustion, string-value prediction errors, and format compliance collapse as code complexity grows, while trajectory-level verifiers provide binary patch verdicts but discard per-test diagnostic information.\n%\nWe reformulate execution simulation from open-ended output generation to per-test binary pass/fail classification, and systematically compare classification (\\cls{}), generation (\\cwm{}), and trajectory-level formulations at controlled model sizes.\n%\nOn function-level benchmarks, \\cls{} and \\cwm{} achieve near-equivalent accuracy at 4B parameters (88.43\\% vs.\\ 87.19\\%, 5 seeds, gap 1.24\\pp{}). At 8B the gap widens to 2.43\\pp{} (bootstrap mean 2.26\\pp{}, $p{=}0.0066$, 3 seeds), with \\cwm{} failing to benefit from scaling (\\cls{} +0.96\\pp{} vs.\\ \\cwm{} $-$0.27\\pp{}, 4B$\\to$8B). Per-test \\cls{} matches trajectory-level accuracy (TOST equivalence $p{=}0.007$, $\\pm$2\\pp{} margin) while providing free diagnostic granularity---which specific tests fail. Oracle analysis on SWE-bench Verified shows this advantage concentrates in instances with $\\geq$2 failing tests (31\\% of instances, 55\\% of total advantage); an oracle ensemble reaches 90.63\\%. At repository level, the gap amplifies to 25.59\\pp{} (83.63\\% vs.\\ 58.04\\%, 4B, single seed), with \\cwm{} falling ${\\sim}$14\\pp{} below majority baseline (72.96\\%). Format non-compliance produces 53.7--67.2\\% unparseable \\cwm{} outputs, and even parseable outputs score only 42--43\\%---below random chance---while \\cls{} remains robust with 0\\% unparseable.\n%\nThese results support classification as a promising alternative to generation-based execution simulation, with an advantage that grows with code complexity---from modest at function level to critical at repository level.\n\\end{abstract}\n"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T09:54:52.331455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260515T095317",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T09:54:52.331599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260515T095317",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T09:54:52.331740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tExecution-free verification for LLM-based code repair faces a granularity--accuracy tradeoff: generation-based approaches (Code World Models) predict execution output strings but suffer from token-budget exhaustion, string-value prediction errors, and format compliance collapse as code complexity grows, while trajectory-level verifiers provide binary patch verdicts but discard per-test diagnostic information.\n3\t%\n4\tWe reformulate execution simulation from open-ended output generation to per-test binary pass/fail classification, and systematically compare classification (\\cls{}), generation (\\cwm{}), and trajectory-level formulations at controlled model sizes.\n5\t%\n6\tOn function-level benchmarks, \\cls{} and \\cwm{} achieve near-equivalent accuracy at 4B parameters (88.43\\% vs.\\ 87.19\\%, 5 seeds, gap 1.24\\pp{}). At 8B the gap widens to 2.43\\pp{} (bootstrap mean 2.26\\pp{}, $p{=}0.0066$, 3 seeds), with \\cwm{} failing to benefit from scaling (\\cls{} +0.96\\pp{} vs.\\ \\cwm{} $-$0.27\\pp{}, 4B$\\to$8B). Per-test \\cls{} matches trajectory-level accuracy (TOST equivalence $p{=}0.007$, $\\pm$2\\pp{} margin) while providing free diagnostic granularity---which specific tests fail. Oracle analysis on SWE-bench Verified shows this advantage concentrates in instances with $\\geq$2 failing tests (31\\% of instances, 55\\% of total advantage); an oracle ensemble reaches 90.63\\%. At repository level, the gap amplifies to 25.59\\pp{} (83.63\\% vs.\\ 58.04\\%, 4B, single seed), with \\cwm{} falling ${\\sim}$14\\pp{} below majority baseline (72.96\\%). Format non-compliance produces 53.7--67.2\\% unparseable \\cwm{} outputs, and even parseable outputs score only 42--43\\%---below random chance---while \\cls{} remains robust with 0\\% unparseable.\n7\t%\n8\tThese results support classification as a promising alternative to generation-based execution simulation, with an advantage that grows with code complexity---from modest at function level to critical at repository level.\n9\t\\end{abstract}\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260515T095317",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T09:54:52.332000+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入。主要变更：\n\n- **三个 failure modes**：加入 format compliance collapse\n- **Repo-level 数字全部更新**：25.59pp gap (83.63% vs 58.04%, 4B, single seed)，~14pp below majority baseline (72.96%)，unparseable 53.7–67.2%，parseable-only 42–43%，CLS 0% unparseable\n- **Scaling evidence 加入**：CLS +0.96pp vs CWM −0.27pp (4B→8B)\n- **Cross-size 省略**，节省 word budget\n- C2/C3 数字不变，function-level 数字不变"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_abstract_20260515T095317"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-abstract.md"
+}

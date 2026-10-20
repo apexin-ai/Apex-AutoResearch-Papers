@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "id": "a913de78d41f38b87f63",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "analyze per test majority voting",
+  "task_key": "worker_analyze_per-test-majority-voting_20260512T092930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analyze_per-test-majority-voting_20260512T092930.jsonl",
+    "occurrence": 1,
+    "bytes": 8312,
+    "sha256": "aa4d4a5e94051fa4025489aa8838fdb4c17dbb9d78ab673ab366e4b409f72597"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T09:30:06.476904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_per-test-majority-voting_20260512T092930",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T09:30:06.477285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_per-test-majority-voting_20260512T092930",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T09:30:06.477453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_per-test-majority-voting_20260512T092930",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "tail -80 ~/runs/exec-sim-repair-verifier/per-test-majority-voting.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T09:30:06.477587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_per-test-majority-voting_20260512T092930",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cat /home/sonny/exec-sim-repair-verifier/eval_majority_voting.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T09:30:06.477756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-12 17:22:49,838 INFO Loading base model: /root/.cache/huggingface/hub/Qwen/Qwen3-4B\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 122.71it/s]\\\\n2026-05-12 17:22:49,906 INFO Loading adapter: checkpoints/best\\\\n2026-05-12 17:22:54,808 INFO Test set: 1890 examples, pass=978, fail=912\\\\n2026-05-12 17:22:54,808 INFO Majority baseline: 51.7%\\\\n2026-05-12 17:22:54,808 INFO === Single-pass greedy (temperature=0) ===\\\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n2026-05-12 17:23:24,481 INFO Greedy accuracy: 87.51% (29.7s)\\\\n2026-05-12 17:23:24,481 INFO === 3-pass sampling (temperature=0.7) ===\\\\n2026-05-12 17:23:24,481 INFO Pass 1/3...\\\\n2026-05-12 17:23:54,396 INFO   Pass 1 accuracy: 86.72%\\\\n2026-05-12 17:23:54,396 INFO Pass 2/3...\\\\n2026-05-12 17:24:25,440 INFO   Pass 2 accuracy: 86.83%\\\\n2026-05-12 17:24:25,440 INFO Pass 3/3...\\\\n2026-05-12 17:24:54,619 INFO   Pass 3 accuracy: 87.62%\\\\n2026-05-12 17:24:54,625 INFO Majority vote accuracy: 86.83%\\\\n2026-05-12 17:24:54,625 INFO Improvement over greedy: -0.69pp\\\\n2026-05-12 17:24:54,625 INFO Agreement distribution:\\\\n2026-05-12 17:24:54,625 INFO   3/3: 1763 (93.3%)\\\\n2026-05-12 17:24:54,625 INFO   2/3: 127 (6.7%)\\\\n2026-05-12 17:24:54,642 INFO Results saved to eval_majority_voting.json\\\\n\\\\n============================================================\\\\nMAJORITY VOTING REPORT: Per-test Self-Consistency (K=3)\\\\n============================================================\\\\n\\\\nTest set: 1890 examples (pass=978, fail=912)\\\\nTemperature: 0.7, K=3\\\\n\\\\nSingle-pass (greedy): 87.51%\\\\nMajority vote (K=3):  86.83%\\\\nImprovement:           -0.69pp\\\\n\\\\nAgreement distribution:\\\\n  3/3 unanimous: 1763 (93.3%)\\\\n  2/3 unanimous: \n…[truncated 520 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_per-test-majority-voting_20260512T092930",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T09:30:06.478040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_set_size\\\\\\\": 1890,\\\\n  \\\\\\\"K\\\\\\\": 3,\\\\n  \\\\\\\"temperature\\\\\\\": 0.7,\\\\n  \\\\\\\"class_balance\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": 978,\\\\n    \\\\\\\"fail\\\\\\\": 912,\\\\n    \\\\\\\"pass_pct\\\\\\\": 51.7\\\\n  },\\\\n  \\\\\\\"majority_baseline_accuracy\\\\\\\": 51.75,\\\\n  \\\\\\\"single_pass_accuracy\\\\\\\": 87.51,\\\\n  \\\\\\\"majority_vote_accuracy\\\\\\\": 86.83,\\\\n  \\\\\\\"improvement_pp\\\\\\\": -0.69,\\\\n  \\\\\\\"agreement_distribution\\\\\\\": {\\\\n    \\\\\\\"3/3\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 1763,\\\\n      \\\\\\\"pct\\\\\\\": 93.3\\\\n    },\\\\n    \\\\\\\"2/3\\\\\\\": {\\\\n      \\\\\\\"count\\\\\\\": 127,\\\\n      \\\\\\\"pct\\\\\\\": 6.7\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_pass_accuracies\\\\\\\": [\\\\n    86.72,\\\\n    86.83,\\\\n    87.62\\\\n  ],\\\\n  \\\\\\\"flipped_correct\\\\\\\": 15,\\\\n  \\\\\\\"flipped_wrong\\\\\\\": 28,\\\\n  \\\\\\\"net_flips\\\\\\\": -13,\\\\n  \\\\\\\"single_pass\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 87.51,\\\\n    \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 35.77,\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"FAIL\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 82.75,\\\\n        \\\\\\\"recall\\\\\\\": 93.64,\\\\n        \\\\\\\"f1\\\\\\\": 87.86,\\\\n        \\\\\\\"support\\\\\\\": 912\\\\n      },\\\\n      \\\\\\\"PASS\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 93.24,\\\\n        \\\\\\\"recall\\\\\\\": 81.8,\\\\n        \\\\\\\"f1\\\\\\\": 87.15,\\\\n        \\\\\\\"support\\\\\\\": 978\\\\n      }\\\\n    },\\\\n    \\\\\\\"confusion_matrix\\\\\\\": {\\\\n      \\\\\\\"tn\\\\\\\": 854,\\\\n      \\\\\\\"fp\\\\\\\": 58,\\\\n      \\\\\\\"fn\\\\\\\": 178,\\\\n      \\\\\\\"tp\\\\\\\": 800\\\\n    },\\\\n    \\\\\\\"unparseable\\\\\\\": 0\\\\n  },\\\\n  \\\\\\\"majority_vote\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 86.83,\\\\n    \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 35.08,\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"FAIL\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 81.66,\\\\n        \\\\\\\"recall\\\\\\\": 93.75,\\\\n        \\\\\\\"f1\\\\\\\": 87.29,\\\\n        \\\\\\\"support\\\\\\\": 912\\\\n      },\\\\n      \\\\\\\"PASS\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 93.24,\\\\n        \\\\\\\"recall\\\\\\\": 80.37,\\\\n        \\\\\\\"f1\\\\\\\": 86.33,\\\\n        \\\\\\\"support\\\\\\\": 978\\\\n      }\\\\n    },\\\\n    \\\\\\\"confusion_matrix\\\\\\\": {\\\\n      \\\\\\\"tn\\\\\\\": 855,\\\\n      \\\\\\\"fp\\\\\\\n…[truncated 345 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_per-test-majority-voting_20260512T092930",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T09:30:06.478279+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Per-test Majority Voting 实验结果\n\n**实验状态：成功完成** (EXIT_CODE=0)\n\n### 关键 Metrics\n\n| Metric | Single-pass (greedy) | Majority Vote (K=3) | Delta |\n|--------|---------------------|---------------------|-------|\n| **Accuracy** | 87.51% | 86.83% | **-0.69pp** |\n| FAIL F1 | 87.86% | 87.29% | -0.57pp |\n| PASS F1 | 87.15% | 86.33% | -0.82pp |\n| FAIL Recall | 93.64% | 93.75% | +0.11pp |\n| PASS Recall | 81.80% | 80.37% | -1.43pp |\n\n### 与 Baseline 对比\n\n| Method | Accuracy |\n|--------|----------|\n| 3-seed mean (baseline) | 88.41% |\n| Single-pass seed 42 | 87.83% |\n| 本次 greedy | 87.51% |\n| **Majority vote K=3** | **86.83%** |\n\n### Flip 分析\n\n- 3/3 unanimous: 1763 (93.3%) — 绝大多数样本三次预测一致\n- 2/3 split: 127 (6.7%)\n- Flipped correct→wrong: **28**, Flipped wrong→correct: **15**, Net: **-13**\n\nMajority voting 在 127 个分歧样本上翻转了 43 个预测，但翻错的比翻对的多 13 个，导致整体下降。\n\n### Per-pass 采样准确率\n\nPass 1: 86.72%, Pass 2: 86.83%, Pass 3: 87.62% — 三次采样均低于 greedy (87.51%)，temperature=0.7 引入的随机性降低了单次准确率。\n\n### 结论\n\n**Majority voting 无效，反而降低了 accuracy (-0.69pp)**。原因：\n\n1. 模型在 greedy 模式下已经高度校准（87.5%），temperature 采样引入的噪声大于纠错收益\n2. 93.3% 的样本三次一致，说明模型对大部分样本已高度 confident，self-consistency 无空间发挥\n3. 在少数分歧样本上，错误翻转多于正确翻转（28 vs 15），说明模型错误不是随机噪声而是系统性偏差，voting 无法修复\n\n**Per-test majority voting 不值得采用。** Single-pass greedy 更快（30s vs 120s）且更准。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_per-test-majority-voting_20260512T092930"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-per-test-majority-voting.md"
+}

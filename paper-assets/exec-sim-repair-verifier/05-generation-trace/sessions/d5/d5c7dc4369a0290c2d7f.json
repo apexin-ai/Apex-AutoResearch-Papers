@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5c7dc4369a0290c2d7f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops traj func s42 check",
+  "task_key": "worker_ops_traj-func-s42-check_20260516T125711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_traj-func-s42-check_20260516T125711_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "a0db855aa51c9dcdd3ebf38a120f3b3d81a9da919b5e3408db50b2d02d608c7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**deepseek-traj-func 训练结果：**\n\n| 指标 | 值 |\n|------|-----|\n| 状态 | ✓ 成功完成 |\n| Best eval_loss | **0.0793** (step 1008, epoch 2) |\n| Epoch 1 eval_loss | 0.0943 |\n| Epoch 3 eval_loss | 0.0884 |\n| Train loss | 0.1131 |\n| 训练耗时 | 48.5 min |\n| Checkpoint | `/root/autodl-tmp/checkpoints_deepseek_traj_func/best` (LoRA adapter, 67MB) |\n\nBest model 在 epoch 2 取得，epoch 3 eval_loss 略有回升（0.0793 → 0.0884），early stopping 选择正确。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-traj-func-s42-check.md"
+}

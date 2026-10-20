@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bc73fb6da91251c9b0f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh ds s456 e3 eval check",
+  "task_key": "worker_ssh_ds-s456-e3-eval-check_20260521T142557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_ds-s456-e3-eval-check_20260521T142557_result.json",
+    "occurrence": 1,
+    "bytes": 576,
+    "sha256": "d60839dfbc410f67857dadba9db7b043f580850a2ad781ad6938b30e5c1e2a1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n**进程 PID 63490 仍在运行**（已运行 38 分 54 秒），并未退出。\n\n| 项目 | 状态 |\n|------|------|\n| 进度 | **496 / 9784** (5.1%) |\n| 当前 running_acc | **57.1%** |\n| 处理速度 | ~4 samples / 19s ≈ 每分钟 ~12.6 条 |\n| 预估剩余时间 | ~(9784-496) / 12.6 ≈ **736 分钟 ≈ 12.3 小时** |\n| GPU 1 | 30425 MiB 已用，利用率 72%（活跃） |\n| 日志最后时间 | 2026-05-21 22:26:16 |\n\neval 正在正常推进，无报错。按当前速度完成全部 9784 样本约需 **12+ 小时**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-ds-s456-e3-eval-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8355d7cbef1693b63990",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_5_1778631120.md",
+  "task_key": "loop_5_1778631120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778631120.md",
+    "occurrence": 1,
+    "bytes": 4875,
+    "sha256": "4f49e0e4b2a940ed428d68ab0323220b91d49cf44dd82b97f3166eefa7acd335"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-13T00:09:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **seetacloud cgroup 360GB RAM 限制**：禁止并行训练，只能单 GPU 跑一个训练进程（v3 双进程 OOM SIGKILL 教训）\n- **westd-48478 = seetacloud-westd-4x5090 是同一台机器**（D041 已确认），extra seed 实验不能和主实验同时跑\n- **CWM v10 实际是 v9 从 checkpoint-200 resume**（v10 fresh start OOM 失败，PID 106091 已死），registry 里叫 v10 但代码/checkpoint 路径都是 v9 的\n- **CLS v4 用 nohup 启动（非 submit_training_job）**，PID 2885139，cron 在监控但注意 nohup 的局限\n- **ARR May 25 deadline**，距今 12 天，repo-level 是 paper 的 C1 claim 核心证据，不能拖\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090**（root@）：4×RTX 5090, cgroup 360GB\n  - 工作目录：`/root/autodl-tmp/`\n  - CWM 训练脚本：`/root/autodl-tmp/exec-sim-repair-verifier/train_repo_cwm.py`\n  - CWM checkpoint：`/root/autodl-tmp/checkpoints_repo_cwm_v9/checkpoint-200`（resume 起点）\n  - CWM 日志：`/root/autodl-tmp/cwm_v9_train.log`\n  - 数据：`/root/autodl-tmp/swebench_full/`（70748 samples）\n  - 模型：Qwen/Qwen3-4B\n  - 活跃进程：PID 105205 (CWM v10, cuda:2), cron 监控中\n- **home-1x5090**（sonny@）：1×RTX 5090, 62GB RAM\n  - 工作目录：`/home/sonny/exec-sim-repair-verifier/`\n  - CLS checkpoint 目录：`/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`\n  - 数据：`/home/sonny/exec-sim-repair-verifier/data/swebench_full/`（70748 samples）\n  - 活跃进程：PID 2885139 (CLS v4, cuda:0), cron 监控中\n  - 上次进度：step 754/6633 (11.4%), loss=0.6798, eval_loss=0.1317, ETA ~11:30 UTC 5/13\n- **Cron**：2 个活跃——分别监控 repo-level-cls-v4 和 repo-level-cwm-v10\n- **gpu_ids 白名单**：cuda:0/1/2/3（但 cgroup 限制实际只能用 1 张）\n\n### 3. 📊 当前状态\n- **刚做完**：CWM v9 诊断（EXIT_CODE=2 语法错误）→ v10 fresh OOM → 回退 v9 resume from checkpoint-200 成功启动；CLS v4 第四次重启成功（DataCollator 修复 + 磁盘清理 89%→64%）\n- **RUNNING**：\n  - `repo-level-cwm-v10`：seetacloud cuda:2, PID 105205, v9 resume from ckpt-200, ~27h ETA\n  - `repo-level-cls-v4`：home cuda:0, PID 2885139, step 754/6633, ~12h ETA（约 5/13 11:30 UTC 完成）\n- **PREPARING**：\n  - `repo-level-cls-seed123`：等主实验完成 + eval 通过后在 seetacloud 跑\n  - `repo-level-cwm-seed123`：同上配对\n- **活跃 Worker**：\n  - `worker_ssh_cwm-v10-emergency-diag-fix`：CWM v10 紧急诊断修复（可能已完成待回调）\n  - `worker_code_eval-script-fix-d008`：准备 D008 Go/No-Go eval + paired bootstrap 脚本\n- **等待中**：2 个 Worker 回调；CLS v4 和 CWM v10 的 cron 完成回调\n\n### 4. 📋 待办（条件触发式）\n- **CLS v4 cron 回调（~5/13 11:30 UTC）** → spawn worker 跑 repo-level eval（用 eval-script-fix-d008 Worker 准备的脚本）→ 记录 metrics 到 registry\n- **CWM v10 cron 回调（~5/13 晚间 UTC）** → spawn worker 跑 repo-level eval → 记录 metrics\n- **CLS + CWM 双完成 + eval 出结果** → paired bootstrap 统计检验 → D008 Go/No-Go 决策汇报 Director：\n  - F1 diff ≥ 3pp + p<0.05 → 全力推 EMNLP Main\n  - F1 diff 1-3pp → 立即提交 seed123 extra seeds（seetacloud + home 串行或找新 GPU）\n  - F1 diff < 1pp → Kill C1，pivot Plan B（efficiency framing）\n- **seed123 实验** → 只能在主实验释放 GPU 后串行跑（westd-48478 = seetacloud 同一机器）\n- **Worker 回调到达** → 整合产出，更新 registry + report.md\n\n### 5. 🎯 战略上下文\n- **项目核心**：证明 classification 在复杂代码（repo-level）上优于 generation（CWM），即 complexity-dependent advantage（C1 claim）\n- **函数级已定论**：CLS ≈ CWM（TOST p=0.007 等价），这是已完成的 Pillar 2\n- **8B scaling 已定论**：CLS > CWM 2.43pp（p=0.007），Pillar 4 完成\n- **repo-level 是最后的决胜局**：CWM v1-v9 全部失败（代码 bug / 磁盘满 / 平台 SIGTERM / OOM），v10 是第一次真正跑起来的 CWM repo-level 训练\n- **最容易判断错的事**：\n  1. westd-48478 不是独立服务器——它就是 seetacloud，不要在上面同时跑 seed123\n  2. v10 虽叫 v10 但实际是 v9 resume，checkpoint/log 路径都是 v9 的，不要困惑\n  3. CLS v4 用 nohup 不是 submit_training_job，但 cron 已接管监控\n  4. seetacloud 历史上多次被平台 SIGTERM（v6/v7），如果 v10 再被 kill，需要考虑换平台而不是无限重试\n- **决策链**：D008 (Go/No-Go) 待触发 → 取决于 repo-level CLS vs CWM F1 diff\n- **时间线**：CLS ~12h + CWM ~27h 并行 → bottleneck ~27h → eval+stats ~3h → paper patch ~1d → 终审 ~1d = 总计 ~4-5d，ARR May 25 可行但无余量\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778631120.md"
+}

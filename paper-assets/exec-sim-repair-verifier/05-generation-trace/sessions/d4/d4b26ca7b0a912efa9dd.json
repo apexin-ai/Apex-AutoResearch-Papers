@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4b26ca7b0a912efa9dd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b s42 resume val sweep 5600 5800",
+  "task_key": "worker_eval_cls8b-s42-resume-val-sweep-__-5600-5800_20260515T223649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-s42-resume-val-sweep-__-5600-5800_20260515T223649_result.json",
+    "occurrence": 1,
+    "bytes": 357,
+    "sha256": "273d66d45d93a777b1e94edabab6e9755165dfe276338b5030fa1d1bea8aca2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并设置监控：\n\n| 项目 | 详情 |\n|------|------|\n| tmux session | `val_patch_5600_5800` |\n| 日志 | `/tmp/val_patch_5600_5800.log` |\n| GPU | cuda:1 |\n| registry | `cls8b-s42-resume-val-sweep-补跑-5600-5800` → RUNNING |\n| 预计完成 | ~50min（两个 ckpt 串联） |\n| 监控 | 25 分钟后自动检查进度 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-s42-resume-val-sweep-5600-5800.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4500bafe240a0ffd15e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh 14b baseline exit check",
+  "task_key": "worker_ssh_14b-baseline-exit-check_20260522T202555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_14b-baseline-exit-check_20260522T202555_result.json",
+    "occurrence": 1,
+    "bytes": 442,
+    "sha256": "2992327ea7b0af1c6c5a5f0f6e4325127a2076820a383d276c416fbabe3090cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。实验 **14b-baseline-0shot-3shot-v2** 判定为 **success**，registry 已更新为 DONE，cron 已删除。\n\n**关键发现：** Qwen3-14B 的 baseline 表现远超预期假设（假设 0-shot ~52%、3-shot ~60%），实际 0-shot 66.24%、3-shot 73.12%，说明 14B scale 在 zero/few-shot 上已有显著提升。结果文件保存在服务器 `/home/sonny/exec-sim-repair-verifier/results_14b_{0,3}shot.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14b-baseline-exit-check.md"
+}

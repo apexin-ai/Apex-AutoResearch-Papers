@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef027a9d62705530514f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper bib first author audit",
+  "task_key": "worker_paper_bib-first-author-audit_20260515T223048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_bib-first-author-audit_20260515T223048_result.json",
+    "occurrence": 1,
+    "bytes": 3290,
+    "sha256": "1824300accd143002fec374b58ebb010c1ecd2fdbb96de8b336552dac7bf5ea2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审核结果\n\n| # | Citation Key | Title | 当前 First Author | 正确 First Author | 需修复? |\n|---|---|---|---|---|---|\n| 1 | `maimon2026selfexecution` | Self-Execution Simulation... | Maimon, Gallil | Maimon, Gallil | -- |\n| 2 | `meta2025cwm` | CWM: An Open-Weights LLM... | ~~Meta AI~~ | FAIR CodeGen team + Copet, Jade | **已修复** |\n| 3 | `liu2024codemind` | CodeMind... | Liu, Changshu | Liu, Changshu | -- |\n| 4 | `abdollahi2025demystifying` | Demystifying Errors... | Abdollahi, Mohammad | Abdollahi, Mohammad | -- |\n| 5 | `lee2026solidcoder` | SolidCoder... | Lee, Woojin | Lee, Woojin | -- |\n| 6 | `shum2025swerm` | SWE-RM... | Shum, KaShun | Shum, KaShun | -- |\n| 7 | `xu2025patchreasoner` | Patch Reasoner... | Xu, Junjielong | Xu, Junjielong | -- |\n| 8 | `chen2025vgsearch` | Rethinking Optimal Verification... | Chen, Hao Mark | Chen, Hao Mark | -- |\n| 9 | `snell2024scaling` | Scaling LLM Test-Time... | Snell, Charlie | Snell, Charlie | -- (title 已修复) |\n| 10 | `li2025sstar` | S*: Test Time Scaling... | Li, Dacheng | Li, Dacheng | -- |\n| 11 | `jimenez2024swebench` | SWE-bench... | Jimenez, Carlos E | Jimenez, Carlos E | -- |\n| 12 | `chowdhury2024swebenchverified` | SWE-bench Verified | Chowdhury, Neil | Chowdhury, Neil | -- |\n| 13 | `yang2024sweagent` | SWE-agent... | Yang, John | Yang, John | -- |\n| 14 | `xia2024agentless` | Agentless... | Xia, Chunqiu Steven | Xia, Chunqiu Steven | -- |\n| 15 | `yang2025aprsurvey` | A Survey of LLM-based APR... | Yang, Boyang | Yang, Boyang | -- |\n| 16 | `qwen2025qwen3` | Qwen3 Technical Report | Yang, An (alphabetical) | Yang, An (alphabetical) | -- |\n| 17 | `chen2021humaneval` | Evaluating LLMs Trained on Code | Chen, Mark | Chen, Mark | -- |\n| 18 | `austin2021mbpp` | Program Synthesis with LLMs | Austin, Jacob | Austin, Jacob | -- |\n| 19 | `hu2022lora` | LoRA... | Hu, Edward J | Hu, Edward J | -- |\n| 20 | `dettmers2024qlora` | QLoRA... | Dettmers, Tim | Dettmers, Tim | -- |\n| 21 | `ni2023lever` | LEVER... | Ni, Ansong | Ni, Ansong | -- |\n| 22 | `chen2023codet` | CodeT... | Chen, Bei | Chen, Bei | -- |\n| 23 | `rajpurkar2016squad` | SQuAD... | Rajpurkar, Pranav | Rajpurkar, Pranav | -- |\n| 24 | `lewis2020bart` | BART... | Lewis, Mike | Lewis, Mike | -- |\n| 25 | `raffel2020t5` | T5... | Raffel, Colin | Raffel, Colin | -- |\n| 26 | `schuirmann1987tost` | Two One-Sided Tests... | Schuirmann, Donald J | Schuirmann, Donald J | -- |\n| 27 | `davison1997bootstrap` | Bootstrap Methods... | Davison, Anthony C | Davison, Anthony C | -- |\n| 28 | `shrout1979icc` | Intraclass Correlations... | Shrout, Patrick E | Shrout, Patrick E | -- |\n\n### 修复内容\n\n1. **`meta2025cwm`** — author 字段从 `{Meta AI}` 改为 `{FAIR CodeGen team} and Copet, Jade and ... and others`，匹配 arXiv 实际作者列表\n2. **`snell2024scaling`** — title 补上缺失的 \"Model\"：`...Scaling Model Parameters`\n\n### 附加检查\n\n- **缺失字段**：所有条目的 year、title、author 均完整。会议论文均有 booktitle，期刊论文均有 journal。\n- **格式一致性**：会议名称使用简写（ICLR, NeurIPS, EMNLP, ACL, ICML, FSE），风格统一。\n- **无其他 first author 错误**：26/28 条目原本就正确，2 条已修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-bib-first-author-audit.md"
+}

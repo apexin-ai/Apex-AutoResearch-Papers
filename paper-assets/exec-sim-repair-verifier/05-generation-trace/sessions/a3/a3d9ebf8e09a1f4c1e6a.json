@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3d9ebf8e09a1f4c1e6a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval d063 val sweep home",
+  "task_key": "worker_eval_d063-val-sweep-home_20260514T084118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d063-val-sweep-home_20260514T084118_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "ff2e8d8e599ae05cc38fafe77cf9896e6d08073e9494f7f45ac348ab6b59ae98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Val sweep 正在正常运行，无需额外操作。当前进度：\n\n**已完成 (5/13)**（seed123_home 系列全部完成）:\n\n| Checkpoint | Acc | F1 Macro | Fail F1 | Pass F1 |\n|---|---|---|---|---|\n| seed123_home/ckpt-200 | 62.51 | 55.54 | 37.94 | 73.14 |\n| seed123_home/ckpt-400 | 80.72 | 67.03 | 45.78 | 88.27 |\n| seed123_home/ckpt-600 | 76.78 | 66.81 | 48.63 | 85.00 |\n| seed123_home/ckpt-800 | **81.81** | **69.14** | **49.37** | 88.91 |\n| seed123_home/ckpt-1000 | 82.30 | 67.63 | 45.84 | **89.42** |\n\n**正在评估**: `checkpoints_repo_cls_v5/checkpoint-600`\n\n**剩余 7 个**: v5 系列 (checkpoint-4000/4200/4400/4600) + home 系列 (checkpoint-200/2400/2600)\n\n预计还需约 3-4 小时完成全部 sweep。tmux session `val_sweep` 在正常运行，不需要用 submit_training_job 重新启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d063-val-sweep-home.md"
+}

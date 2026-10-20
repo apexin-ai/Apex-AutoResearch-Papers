@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd6795e21db0a5e451eb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cwm seed789 check",
+  "task_key": "worker_analysis_cwm-seed789-check_20260512T135932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cwm-seed789-check_20260512T135932_result.json",
+    "occurrence": 1,
+    "bytes": 366,
+    "sha256": "f6ce6034c60d9d8d603dad0cfe356ccecc7d9025aa20130b34b99d3ef0d2e4d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**cwm-seed789 最终结果：**\n- accuracy: **86.67%** (baseline gap +34.92pp)\n- pass_f1: **86.74**, fail_f1: **86.60**\n- exact_match_rate: **83.97%**\n- unparseable: 0\n- wall_clock: ~1.43 GPU-hours\n\nRegistry 已更新为 DONE/success，cron 已清除。4B CWM 5-seed 全部就绪，可以做 paired CLS-CWM 统计分析了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cwm-seed789-check.md"
+}

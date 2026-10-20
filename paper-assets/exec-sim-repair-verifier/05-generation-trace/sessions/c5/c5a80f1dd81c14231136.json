@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5a80f1dd81c14231136",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh checkpoint discovery",
+  "task_key": "worker_ssh_checkpoint-discovery_20260519T223534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_checkpoint-discovery_20260519T223534_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "11a2ad0cebcaa993fac9537bc3a51780befc2b351f3a96abc20745b5e90ef47c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### GPU 0 僵尸进程\n已 `kill -9`，GPU 0 显存 **0 MiB** — 清空成功。\n\n### Checkpoint 清单\n\n| 路径 | 可用 Checkpoint |\n|------|----------------|\n| **CWM 8B s123** (`checkpoints_repo_cwm_8b_s123/`) | `checkpoint-100`, `checkpoint-200`, `checkpoint-300` |\n| **CLS 8B s456 v2** (`checkpoints_repo_cls_8b_s456_v2/`) | `checkpoint-600`, `checkpoint-1600`, `checkpoint-1800`, `checkpoint-2000`, `checkpoint-2200` |\n| **DeepSeek CLS s456 v2** (`checkpoints_deepseek_cls_repo_s456_v2/`) | `checkpoint-2163` (仅一个) |\n| **DeepSeek CLS s456 v3** | 路径不存在 |\n\n### 训练进度\n\n| 任务 | 状态 |\n|------|------|\n| **DeepSeek CLS s456 v2** | **正在训练**，step 2333/6489 (36%)，epoch 1 eval_loss=0.0724，~11s/it，预估剩余 ~13h |\n| **CWM 8B s123** | **正在训练**，step 2117/9335 (23%)，~7 it/s，进展正常 |\n\n两个训练都在正常跑。DeepSeek CLS 只存了一个 checkpoint（step 2163，epoch 1 结束时），v3 路径不存在说明没有 v3 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-checkpoint-discovery.md"
+}

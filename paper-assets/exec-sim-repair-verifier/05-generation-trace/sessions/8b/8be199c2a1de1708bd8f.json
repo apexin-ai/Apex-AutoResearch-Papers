@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8be199c2a1de1708bd8f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh 14b figure2 regen",
+  "task_key": "worker_ssh_14b-figure2-regen_20260523T080432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_14b-figure2-regen_20260523T080432_result.json",
+    "occurrence": 1,
+    "bytes": 347,
+    "sha256": "39857569bb25c2ac1cd45d77f26a5fd25b503ddbd356ac75ce46e25109d1727f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 v3 生成成功。\n\n- **PDF**: `/home/sonny/exec-sim-repair-verifier/docs/paper/figures/paper/figure2_v3.pdf` (18KB)\n- **PNG**: `/home/sonny/exec-sim-repair-verifier/docs/paper/figures/paper/figure2_v3.png` (81KB)\n\n使用的是更新后的 14B 数据：`CONFIRMED_14B=True`, `cls_acc_14b=89.93`, `cwm_acc_14b=89.50`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14b-figure2-regen.md"
+}

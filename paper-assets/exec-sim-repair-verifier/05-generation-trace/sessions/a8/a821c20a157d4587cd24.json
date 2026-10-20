@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a821c20a157d4587cd24",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis bib author verify",
+  "task_key": "worker_analysis_bib-author-verify_20260517T114810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bib-author-verify_20260517T114810_result.json",
+    "occurrence": 1,
+    "bytes": 1802,
+    "sha256": "b5f43258c31851af91bc0c28f4fc06c2c4697076cb00920e8cdc1246fcdff85d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 2024-2026 年条目核查完成。汇总结果：\n\n---\n\n## 核查报告\n\n### 重点核查条目\n\n| citation key | bib 中 first author | arXiv 实际 first author | 状态 |\n|---|---|---|---|\n| `xu2025patchreasoner` | Xu, Junjielong | Junjielong Xu | **正确** |\n| `maimon2026selfexecution` | Maimon, Gallil | Gallil Maimon | **正确** |\n\n任务提到的 `wu2025patchreasoner` 和 `ding2025selfexecution` 在当前 bib 中不存在。现有 key 使用的 `xu` 和 `maimon` 均与 arXiv 记录一致。\n\n### 全部 2024-2026 年条目核查\n\n| citation key | bib first author | 核查结果 |\n|---|---|---|\n| `liu2024codemind` | Liu, Changshu | ✓ |\n| `jimenez2024swebench` | Jimenez, Carlos E | ✓ |\n| `chowdhury2024swebenchverified` | Chowdhury, Neil | ✓ |\n| `yang2024sweagent` | Yang, John | ✓ |\n| `xia2024agentless` | Xia, Chunqiu Steven | ✓ |\n| `guo2024deepseekcoder` | Guo, Daya | ✓ |\n| `zhuo2024icescore` | Zhuo, Terry Yue | ✓ |\n| `dong2024codescore` | Dong, Yihong | ✓ |\n| `wang2024llmmutation` | Wang, Bo | ✓ |\n| `meta2025cwm` | {FAIR CodeGen team} | ✓ |\n| `abdollahi2025demystifying` | Abdollahi, Mohammad | ✓ |\n| `shum2025swerm` | Shum, KaShun | ✓ |\n| `xu2025patchreasoner` | Xu, Junjielong | ✓ |\n| `chen2025vgsearch` | Chen, Hao Mark | ✓ |\n| `snell2024scaling` | Snell, Charlie | ✓ |\n| `li2025sstar` | Li, Dacheng | ✓ |\n| `yang2025aprsurvey` | Yang, Boyang | ✓ |\n| `qwen2025qwen3` | Yang, An | ✓ |\n| `ye2025prlcoder` | Ye, Yufan | ✓ |\n| `dreamprm2025code` | Zhang, Ruiyi | ✓ |\n| `maimon2026selfexecution` | Maimon, Gallil | ✓ |\n| `lee2026solidcoder` | Lee, Woojin | ✓ |\n\n**结论：所有 22 个 2024-2026 年条目的 first author 均与 arXiv/官方记录一致，无需修正。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bib-author-verify.md"
+}

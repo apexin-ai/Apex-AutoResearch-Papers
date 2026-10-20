@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef8337b757814af3ba9c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code westd val sweep prep",
+  "task_key": "worker_code_westd-val-sweep-prep_20260514T061513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-val-sweep-prep_20260514T061513_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "8a9658c8ec8b36614969a6e9c1c43c269f60ca85187103f5464239e7d7192970"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总：\n\n**已完成的修改：**\n- `eval_repo_cls.py` 添加了 `--split {val,test}` 参数（默认 test，向后兼容），数据路径自动切换为 `swebench_{split}.jsonl`，输出 JSON 包含 `split` 字段\n\n**Dry-run 验证通过：**\n- `--split val` 正确加载 9335 个 val 实例（pass: 7083, fail: 2252）\n\n**可用 Checkpoints（全部确认存在）：**\n\n| 模型 | Base | Checkpoints |\n|------|------|------------|\n| 8B | Qwen3-8B | checkpoint-{200,400,600} |\n| v5-conda | Qwen3-4B | checkpoint-{200,400,600} |\n\n**Sweep 脚本：** `/home/sonny/exec-sim-repair-verifier/run_westd_val_sweep.sh`\n- 用法：`bash run_westd_val_sweep.sh <gpu_id>`\n- 依次跑 6 个 checkpoint 的 val eval，结果输出到 `val_eval_results_westd/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-val-sweep-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89bb645125eacecfb42b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra submit cwm seed456 home",
+  "task_key": "worker_infra_submit-cwm-seed456-home_20260512T114725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_submit-cwm-seed456-home_20260512T114725_result.json",
+    "occurrence": 1,
+    "bytes": 491,
+    "sha256": "3cabbd9ccee96a6d46c303f5c931623fb1db4dfd99e532e30dac2df06a54eedb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 RUNNING。\n\n**汇总：**\n\n| 项 | 值 |\n|---|---|\n| exp_id | cwm-seed456 |\n| server | home-1x5090 cuda:0 |\n| PID | 2759009 (GPU进程 2759014, 11402 MiB) |\n| log | `~/runs/exec-sim-repair-verifier/cwm-seed456.log` |\n| 训练进度 | 0/1434 steps, 已开始 |\n| 数据 | train=15290, val=1896 (10 truncated) |\n| 模型 | Qwen3-4B (本地路径), LoRA 11.8M params |\n| 训练后自动 eval | `eval_cwm_baseline.py → eval_cwm_seed456.json` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-submit-cwm-seed456-home.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8978e8849815e10af869",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor westd cuda0 ckpt1000 status",
+  "task_key": "worker_monitor_westd-cuda0-ckpt1000-status_20260515T010714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westd-cuda0-ckpt1000-status_20260515T010714_result.json",
+    "occurrence": 1,
+    "bytes": 1344,
+    "sha256": "d2f1f12a8a87d4c7ccbe70afccea32e5a5ed0f5b8bdb9e33e128ff1b6806093a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## seetacloud-westd-4x5090 状态\n\n### cuda:0 — eval_repo_cls.py 正在运行\n\n| 项目 | 值 |\n|------|-----|\n| PID | 310119 |\n| 启动时间 | 09:03（约4分钟前） |\n| GPU 显存 | 19232 MiB / 32607 MiB |\n| GPU 利用率 | 99% |\n| 进度 | **1270 / 9335**（~13.6%） |\n| running_acc | **88.0%** |\n| 速率 | ~1 sample/s |\n| 预计剩余 | ~2.2 小时 |\n\n参数：`--checkpoint_dir checkpoint-1000 --split val --max_seq_length 8192 --batch_size 1`\n\n### 其他 GPU\n\n| GPU | PID | 任务 |\n|-----|-----|------|\n| cuda:1 | 295794 | train_repo_verifier 8B s42 resume（从 ckpt-600 继续） |\n| cuda:2 | 266816 | train_repo_verifier 8B seed42 v2（从 ckpt-3000 继续） |\n| cuda:3 | 266449 | train_repo_verifier 8B seed123（从 ckpt-3000 继续） |\n\n---\n\n## home-1x5090 状态\n\n### 4B v5 ckpt-4400 eval — 正在运行\n\n| 项目 | 值 |\n|------|-----|\n| PID | 3193462 |\n| 运行时间 | **21分30秒** |\n| GPU 显存 | 31718 MiB / 32607 MiB |\n| GPU 利用率 | 100%，温度 85°C |\n| 命令 | `eval_repo_cls.py --checkpoint_dir checkpoint-4400 --split val --max_seq_length 5120` |\n| 输出目录 | `results/repo_cls_v5_ckpt4400_val5120` |\n\n日志文件未找到标准路径（可能直接输出到 stdout 或 nohup.out），但进程活跃、GPU 满载，eval 在正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westd-cuda0-ckpt1000-status.md"
+}

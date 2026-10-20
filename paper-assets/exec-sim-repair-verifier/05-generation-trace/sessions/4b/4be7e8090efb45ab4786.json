@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4be7e8090efb45ab4786",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code prepare eval pipeline",
+  "task_key": "worker_code_prepare-eval-pipeline_20260513T225444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-eval-pipeline_20260513T225444_result.json",
+    "occurrence": 1,
+    "bytes": 3362,
+    "sha256": "eca3c50901458fa2d609549793bfc2424640c33f6a7662364619c8a5605c8542"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕。以下是完整报告。\n\n---\n\n## Eval Pipeline 就绪性报告\n\n### 1. Eval 脚本清单\n\n| 脚本 | 状态 | 关键参数 |\n|---|---|---|\n| `eval_repo_cwm.py` | ✅ 就绪 | max_new_tokens=**1024**(默认), batch_size=8, 有 `--output_dir` |\n| `eval_repo_cls.py` | ⚠️ 可用但有限制 | max_new_tokens=8(硬编码), batch_size=16, **无 `--output_dir`**, **无 `--max_samples`** |\n\n### 2. Eval 数据\n\n- `data/swebench_full/swebench_test.jsonl` — **9784 条** ✅\n\n### 3. 环境\n\n- torch=2.10.0+cu128, transformers=4.57.6, peft=0.19.0 ✅\n- 4x RTX 5090 (32GB)\n- Base models: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B` ✅, `Qwen3-8B` ✅\n\n### 4. GPU 分配 & 训练状态\n\n| GPU | 实验 | 进度 | 预计剩余 |\n|---|---|---|---|\n| 0 | CWM seed123 | ~200/6633 (3%) | ~14h |\n| 1 | CWM v12 (seed42) | ~200/6633 (3%), 已有 checkpoint-100, 200 | ~14h |\n| **2** | **空闲** | — | — |\n| 3 | CLS 8B (seed42) | ~84/6633 (1%) | ~15h |\n\n### 5. 问题\n\n**CLS v5 conda 训练未启动** — 日志只有数据加载阶段，没有训练进程在运行，checkpoint 目录为空。需要排查原因并重新启动。\n\n**CLS eval 脚本缺 `--output_dir`** — 多个 CLS eval 结果会互相覆盖，需用 `--output` / `--pred_output` 区分文件名。\n\n### 6. Eval 命令模板\n\n训练完成后，在 GPU 2 上顺序执行（`CUDA_VISIBLE_DEVICES=2` + `--device cuda:0`）：\n\n**CWM v12:**\n```bash\ncd /home/sonny/exec-sim-repair-verifier && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=2 python3 eval_repo_cwm.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_conda_v12/checkpoint-BEST \\\n  --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B \\\n  --max_new_tokens 1024 \\\n  --batch_size 8 \\\n  --device cuda:0 \\\n  --output_dir /root/autodl-tmp/results/repo_cwm_v12_eval/\n```\n\n**CWM seed123:**\n```bash\ncd /home/sonny/exec-sim-repair-verifier && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=2 python3 eval_repo_cwm.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/checkpoint-BEST \\\n  --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B \\\n  --max_new_tokens 1024 \\\n  --batch_size 8 \\\n  --device cuda:0 \\\n  --output_dir /root/autodl-tmp/results/repo_cwm_seed123_eval/\n```\n\n**CLS 8B:**\n```bash\ncd /home/sonny/exec-sim-repair-verifier && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=2 python3 eval_repo_cls.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_conda/checkpoint-BEST \\\n  --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B \\\n  --batch_size 8 \\\n  --device cuda:0 \\\n  --output eval_repo_cls_8b.json \\\n  --pred_output eval_repo_cls_8b_predictions.jsonl\n```\n> CLS 8B 用 Qwen3-8B (15.3B params)，batch_size 从默认 16 降到 8，避免 OOM。\n\n**CLS v5 conda:** ❌ 无法执行 — 训练未启动，无 checkpoint。\n\n### 7. 待办\n\n1. **排查 CLS v5 conda 训练失败原因并重启**（GPU 2 空闲可用）\n2. 训练完成后确定 best checkpoint（查 `trainer_state.json` 中的 `best_model_checkpoint`）\n3. 将 `checkpoint-BEST` 替换为实际 checkpoint 编号后执行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-eval-pipeline.md"
+}

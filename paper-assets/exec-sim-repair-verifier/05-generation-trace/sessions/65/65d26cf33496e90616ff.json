@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65d26cf33496e90616ff",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper rank ablation paragraph",
+  "task_key": "worker_paper_rank-ablation-paragraph_20260515T140859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_rank-ablation-paragraph_20260515T140859_result.json",
+    "occurrence": 1,
+    "bytes": 209,
+    "sha256": "aa17020971e26ca73ffcd9ba0b2b5ab4ea39c3dd06277a2171db7198434ea0d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(a)-(g) 编号连续，无新 `\\cite`，风格与前面段落一致。段落 4 句，用了 \"consistent with\" 而非强断言，引用了具体数字（87.0%、87.51%、-0.51pp、0.53pp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-rank-ablation-paragraph.md"
+}

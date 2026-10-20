@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37dec980e3bc44ce245f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_8_1778770523.md",
+  "task_key": "loop_8_1778770523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778770523.md",
+    "occurrence": 1,
+    "bytes": 5893,
+    "sha256": "d5d96089bebb0cc7a7784fc6faa046a545b681c3c15aa6c25ceb99fb163d9600"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-14T12:16:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **home GPU 分配**: 只有 cuda:0，项目配置 `gpu_ids=[0]`\n- **westd GPU 分配**: cuda:0-3 全在用（0/1 CWM eval, 2/3 8B train），不可抢占\n- **进程监控必须跨 30 分钟**: 判断进程 hang 至少隔 10 分钟查 2 次，总跨度 ≥30 分钟。2 分钟内连查 3 次就宣布安全被 Director 批评过（6144 三次挂死事件）\n- **signal.alarm 对 CUDA 无效**: GPU hang 时 Python signal handler 不触发（GIL 问题）。eval 脚本已改用 watchdog 线程 + os._exit(1) 方案\n- **Val/test 分布不匹配**: val 79% pass vs test 73% pass，val checkpoint selection 与 test 负相关。当前用 4096 val eval 验证是否截断是根因\n- **checkpoints_repo_cls_home/ 是旧 transformers 5.8.0 训练的**: 与 conda 环境不一致，Director 已明确跳过，不要再 sweep\n- **save_total_limit=5 两个 8B 训练**: auto-backup 在 tmux `ckpt_backup` 保护，不要动\n\n### 2. 🖥️ 基础设施快照\n**home-1x5090** (sonny@home):\n- 工作目录: `/home/sonny/exec-sim-repair-verifier`\n- Python: `.venv/bin/python`（venv 环境）\n- 数据: `swebench_val.jsonl` (9335), `swebench_test.jsonl` (9784)\n- 活跃: val_4096 eval (PID 3083027, tmux `val_4096`, cuda:0) — seed123/ckpt-400, ~28.8%, running_acc=82.4%, ETA ~05:33 PDT\n- Checkpoint 目录: `checkpoints_repo_cls_seed123_home/` (ckpt 200-1000), `checkpoints_repo_cls_v5_home/` (ckpt 600-4600)\n- 修改后的 eval 脚本: `eval_repo_cls.py` (v2, 402行, watchdog+incremental save), 原版备份 `eval_repo_cls.py.bak`\n\n**westd-48478** (root@seetacloud-westd-4x5090):\n- 工作目录: `/home/sonny/exec-sim-repair-verifier`\n- Python: `/root/miniconda3/bin/python`（conda base）\n- 训练/模型: `/root/autodl-tmp/`\n- 活跃进程:\n  - CWM v12 eval (PID 195668, tmux `eval_cwm_v12`, cuda:1) — 6296/9784 (64%), ETA ~02:10 UTC May 15\n  - CWM seed123 eval (PID 195531, tmux `eval_cwm_seed123`, cuda:0) — 6216/9784 (64%), ETA ~02:20 UTC May 15\n  - CWM 8B train (PID 210573, tmux `repo-level-cwm-8b-conda`, cuda:2) — step 988/6633\n  - CLS 8B train (PID 210657, tmux `repo-level-cls-8b-seed123-conda`, cuda:3) — step 1800/6633\n- Checkpoint 备份: tmux `ckpt_backup`, script `/root/autodl-tmp/auto_backup_checkpoints.sh`, log `/root/autodl-tmp/backup.log`\n- 备份目录: `checkpoints_backup_cls_8b_seed123/` (200,800,1000,1200,1400,1600), `checkpoints_backup_cwm_8b/` (300,400,500,600,700,800)\n- Crons: 4 active (repo-level-cwm-seed123-conda, repo-level-cwm-v12, repo-level-cls-8b-seed123-conda, repo-level-cwm-8b-conda)\n\n### 3. 📊 当前状态\n**刚做完**: Kill 6144 挂死进程 → 修改 eval_repo_cls.py 加 watchdog timeout → 部署 4096 方案重跑 val eval。发送超参对比表给 Director（CLS vs CWM 超参完全对齐，公平性可辩护）。\n\n**正在跑**:\n- `repo-level-cls-8b-seed123-conda` RUNNING — 8B CLS 训练 step 1800/6633, eval_loss=0.2101\n- `repo-level-cwm-8b-conda` RUNNING — 8B CWM 训练 step 988/6633, eval_loss=0.3174\n- Home val_4096: seed123/ckpt-400 eval, 28.8% done, ETA ~20min\n- Westd CWM v12 + seed123 eval: ~64% done, ETA ~02:20 UTC May 15\n\n**等待中**:\n- CWM eval cron 回调 (repo-level-cwm-v12 + repo-level-cwm-seed123-conda)\n- 4096 val eval 完成（ckpt-400 → 自动跑 ckpt-600? 需确认脚本是否自动链式运行，可能需要手动启动 ckpt-600）\n\n### 4. 📋 待办（条件触发式）\n- **Home 4096 ckpt-400 完成** → 检查结果 JSON → 启动 ckpt-600 的 4096 eval（同参数） → 两个都完成后对比 val ranking 与 test ranking\n- **CWM eval cron 回调（~02:20 UTC May 15）** → 执行 Director 要求的 **4 项分析**:\n  1. Parseable subset accuracy（区分生成 vs 判断能力）\n  2. Fail-class precision/recall（ensemble 价值）\n  3. CWM vs CLS 错误互补性（Cohen's kappa + disagreement matrix）— 需要 CLS predictions 文件，home 上有\n  4. Per-repo 维度对比\n  另加: unparseable rate + error mode distribution, 对比 v11 75.2%, 20 case 抽样深入分析\n- **CLS 8B 训练完成（~07:10 UTC May 15）** → 用 `run_8b_eval.sh` 启动 8B eval pipeline（脚本已在 westd 准备好）\n- **CWM 8B 训练完成（~15:00 UTC May 15）** → 同上\n- **CLS 8B eval_loss 再次出现 spike (>0.35)** → 立即报告 Director\n- **4096 val 结果完整后** → 如果 val ranking 与 test ranking 一致 → 用 val best checkpoint 做最终 test eval（一次性）；如果不一致 → 报告 Director，可能需要 D066 报告策略（mean±std across checkpoints）\n\n### 5. 🎯 战略上下文\n**核心论点**: CLS 优于 CWM，优势随复杂度增长（C1）。Function-level gap 1.24pp (4B) → 2.43pp (8B)。Repo-level gap 更大（~18pp at 4B），但 CWM repo-level 数字待确认。\n\n**关键数字状态**:\n- CWM v12 running_acc ~58% vs majority baseline 72.96% → CWM 低于 baseline，强烈支撑 C1\n- CLS best (test): 8B ckpt-400 = 84.52%, 4B seed123 ckpt-600 = 80.73%\n- 但上述 test 数字是在 test set 上选的 checkpoint（D063 cherry-picking 问题），需要 val set 重选后可能变化\n- 4096 val eval running_acc=82.4%（vs 2048 的 80-83%），截断率 ~15%（vs 2048 的 20.2%，6144 的 0.4%）\n\n**最容易判断错的事**:\n1. 进程在跑 ≠ 不会挂。6144 三次在 1120-1560 区间挂死，但前 1000 个样本跑得完全正常。不要因为前几百个样本正常就宣布安全\n2. CWM eval 的输出目录在完成前是空的（脚本最后才写文件）— 目录为空不等于进程异常\n3. westd-48478 和 seetacloud-westd-4x5090 是同一台机器\n4. CWM 4B 的主比较对象是 v12 (seed=42)，不是 seed123。seed123 是 robustness check\n5. DDL 是 EMNLP 2026 ARR May 25（剩 11 天），CWM 分析结果决定 CWM 在论文中的定位（standalone vs ensemble vs negative result）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778770523.md"
+}

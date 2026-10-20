@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e1ebf0710b57b4eeeb3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cwm relaxed matching",
+  "task_key": "worker_analysis_cwm-relaxed-matching_20260515T122839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cwm-relaxed-matching_20260515T122839_result.json",
+    "occurrence": 1,
+    "bytes": 1229,
+    "sha256": "3d0df9ed6a90d113114072606da5ccb65d56160cbdaa4641fcc0aa4d74c16553"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n## Repo-level CWM 4B (seed 42) Relaxed Matching 分析\n\n| 策略 | Parseable率 | Acc (parsed) | Overall Acc | Upper Bound |\n|------|------------|-------------|-------------|-------------|\n| **Strict** (原始) | 46.3% | 42.88% | 58.04% | 59.04% |\n| **Normalized** (whitespace+pytest summary) | 69.6% | 54.16% | 59.61% | 59.87% |\n| **Enhanced** (6种启发式) | 77.2% | 60.79% | 62.34% | 63.57% |\n| Majority baseline | 100% | 72.96% | 72.96% | — |\n| **CLS 4B** | 100% | **83.63%** | **83.63%** | — |\n\n### 关键发现\n\n1. Enhanced parser 将 parseable rate 从 46.3% 提升到 77.2%，unparseable 从 53.7% 降到 22.8%\n2. 但即使 parseable accuracy 从 42.88% 提升到 60.79%，**overall accuracy 仅从 58.04% → 62.34%**\n3. CWM 最优上界 63.57% **仍低于 majority baseline (72.96%)**，更远低于 CLS (83.63%)\n4. **Gap = 21.3pp**，strict matching 不是 CWM 低性能的原因\n\n### 备注\n- 函数级 CWM seed 42 不存在（只有 seed 123/789，均已 0 unparseable、~87% accuracy）\n- 分析脚本和 JSON 结果已保存在 westd: `/home/sonny/exec-sim-repair-verifier/analyze_relaxed_matching.py`\n- Artifact 已注册: `art_20260515_77c4fb`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cwm-relaxed-matching-copy-2.md"
+}

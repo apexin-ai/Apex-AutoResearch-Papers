@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab8eebf0d2f953a174e9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops check cuda0 conflict",
+  "task_key": "worker_ops_check-cuda0-conflict_20260515T053410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-cuda0-conflict_20260515T053410_result.json",
+    "occurrence": 1,
+    "bytes": 411,
+    "sha256": "86a90e10db6db238bd134bdafd2d564cb1ffa174cec5fbf13aa37f4c6dffa2a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:0 状态：无冲突，正常运行。**\n\n- **PID 334814**：已死，不存在\n- **PID 335070**：存活，是 submit_training_job 的 bash wrapper\n- **PID 335075**：335070 的子进程，实际执行 `python eval_repo_cls.py`（ckpt-1400, test@8192）\n- **GPU 0 显存**：17239 MiB / 32607 MiB（占用 53%），利用率 78%\n\n只有正式提交的任务在跑，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-cuda0-conflict.md"
+}

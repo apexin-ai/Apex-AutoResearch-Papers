@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4967fdc93a5cd15f893",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose deepseek cwm repo s123",
+  "task_key": "worker_diagnose_deepseek-cwm-repo-s123_20260517T160336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_deepseek-cwm-repo-s123_20260517T160336_result.json",
+    "occurrence": 1,
+    "bytes": 1235,
+    "sha256": "8b59f2eb65736dcdce4583948507e545d8209b157a7223cc3eda5778cf154504"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**训练仍在进行中，未完成。**\n\n| 指标 | 值 |\n|------|-----|\n| 当前进度 | 9418/13266 (71%) |\n| train_loss | 0.0004 (健康) |\n| eval_loss | **nan** (epoch 1.0 和 2.0 均为 nan) |\n| best_metric | inf (无法选出 best checkpoint) |\n| best/ 目录 | 不存在 |\n| GPU 3 利用率 | 99%, 18GB/32GB |\n| 预估剩余时间 | ~8.5h (3848 steps × ~8s/step) |\n\n**问题：`eval_loss: nan`**\n\n日志有明确报错：`Token indices sequence length is longer than the specified maximum sequence length for this model (21612 > 16384)`。验证集中存在超过模型 max position embeddings (16384) 的样本，导致 eval forward pass 溢出产生 nan。由于 `best_metric: inf`，训练结束后 `best/` 目录不会被创建。\n\n**影响**：训练本身正常收敛（train_loss 持续下降），但无法通过 eval_loss 选出最优 checkpoint。训练完成后只能使用最后一个 checkpoint（checkpoint-13266）或手动从 checkpoint-4422/8844 中选择。\n\n**行动**：保留 cron 继续监控，不更新 registry 状态。训练完成后需要决定如何选择最终 checkpoint（建议用最后一个 checkpoint，因为 train_loss 趋势正常）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-deepseek-cwm-repo-s123.md"
+}

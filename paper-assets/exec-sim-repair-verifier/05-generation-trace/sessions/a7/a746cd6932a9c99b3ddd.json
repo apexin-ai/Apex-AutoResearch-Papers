@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a746cd6932a9c99b3ddd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "exp deepseek traj func",
+  "task_key": "worker_exp_deepseek-traj-func_20260516T120511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_deepseek-traj-func_20260516T120511_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "47e8d7ad27759f117f0df5601132218384d55f6b3414ded86503c615d9bb739a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动。汇报：\n\n**TRAJ 数据**\n- `traj_train_cls.jsonl`: 8052 条（从 `test_summary` 重命名为 `test` 字段）\n- `traj_val_cls.jsonl`: 1001 条\n- 0% truncation，test 字段 max 930 chars\n\n**训练状态**\n- PID: 504483，运行在 cuda:2 (RTX 5090)\n- 1512 total steps，~2s/step，预计 **~50 分钟**完成\n- 模型加载正常，已开始前向/反向，loss 尚未到打印间隔（默认 500 steps）\n- 输出目录：`/root/autodl-tmp/checkpoints_deepseek_traj_func/`\n- 日志：`/tmp/deepseek_traj_func.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-deepseek-traj-func.md"
+}

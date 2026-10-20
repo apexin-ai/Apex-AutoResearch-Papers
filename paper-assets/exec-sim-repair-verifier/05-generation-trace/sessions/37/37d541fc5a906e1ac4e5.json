@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37d541fc5a906e1ac4e5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b s42 resume val sweep",
+  "task_key": "worker_eval_cls8b-s42-resume-val-sweep_20260515T155748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-s42-resume-val-sweep_20260515T155748_result.json",
+    "occurrence": 1,
+    "bytes": 449,
+    "sha256": "1ea5f264e1bfe240a228b3529d43e708e65191e901015e8277c201196d985e73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job running correctly. checkpoint-1800 eval in progress — loaded 9335 val instances as expected.\n\n**Summary:**\n- **Sweep submitted**: `cls8b-s42-resume-val-sweep` on westd cuda:0\n- **Checkpoints**: 21 points (step 1800→5800, stride 200)\n- **Val set**: 9335 instances (full, no sampling)\n- **Log**: `~/runs/exec-sim-repair-verifier/cls8b-s42-resume-val-sweep.log`\n- **Registry**: RUNNING, exp_id=`cls8b-s42-resume-val-sweep`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-s42-resume-val-sweep.md"
+}

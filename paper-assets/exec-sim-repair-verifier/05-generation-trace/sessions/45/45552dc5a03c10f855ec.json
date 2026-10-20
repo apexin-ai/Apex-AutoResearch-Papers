@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45552dc5a03c10f855ec",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops integrate cls check progress",
+  "task_key": "worker_ops_integrate-cls-check-progress_20260517T055350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_integrate-cls-check-progress_20260517T055350_result.json",
+    "occurrence": 1,
+    "bytes": 966,
+    "sha256": "81c04bd6267cd5babdd0c9f1fa801bcae87d3ff01688c145892d5613a7e0338b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 总结\n\n| 项目 | 状态 |\n|------|------|\n| **A1** | ✅ 完成（295 records） |\n| **A2** | ✅ 完成（295 records） |\n| **B（旧）** | ❌ 用了 simulated fallback（84% acc），已从 generated_repairs.jsonl 中删除 50 条坏记录 |\n| **B/C/D（新）** | 🔄 已重启，PID 3598738，使用真实 CLS predictions（93.29% acc） |\n\n**关键操作**：\n1. 合并了 `cls_predictions.jsonl`（59/59 命中）→ `re_repair_instances_with_cls.jsonl`\n2. 清理了 generated_repairs.jsonl 中 50 条错误的 B 记录（保留 590 条 A1+A2）\n3. 重启 generation：`--conditions B C D --resume`，加载合并后的数据\n\n**产出路径**：\n- 合并数据：`/home/sonny/exec-sim-repair-verifier/data/re_repair_v2/re_repair_instances_with_cls.jsonl`\n- 日志：`/home/sonny/eval_results/re_repair_v2/generation_bcd.log`\n\n预计 B（~20min）+ C（~20min）+ D（~20min）≈ 1 小时内完成全部 generation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-integrate-cls-check-progress.md"
+}

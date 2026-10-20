@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d10fd33a0931708990ad",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze deepseek cwm repo s123 eval",
+  "task_key": "worker_analyze_deepseek-cwm-repo-s123-eval_20260519T043404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_deepseek-cwm-repo-s123-eval_20260519T043404_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "5434f5e71b89cd3345a78794b7417e80ace7fefa00ae33594480441545cfbdec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n**deepseek-cwm-repo-s123 eval results (checkpoint-8844, epoch 2, seq4096)**\n\n| Metric | Value |\n|---|---|\n| **Accuracy** | 61.9% |\n| **Majority baseline** | 72.96% |\n| **Gap vs majority** | -11.06 pp |\n| **F1 macro** | 51.5 |\n| **F1 pass / fail** | 73.96 / 29.04 |\n| **Recall pass / fail** | 74.15 / 28.84 |\n| **Unparseable rate** | 65.53% (6411/9784) |\n| **Total samples** | 9784 (complete) |\n| **Correct** | 6056 |\n| **Truncated** | 0 |\n\n**结果文件**: `/root/autodl-tmp/eval_results/deepseek_cwm_repo_s123_test/eval_deepseek_cwm_repo_s123.json`\n\n结果低于 majority baseline 11 pp，unparseable rate 高达 65.5%，与 s42 seed 的 CWM repo-level 表现一致（同样高 unparseable）。训练在 step 10045/13266 被 kill（EXIT_CODE=129），但 epoch 2 eval 在此之前已完整完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-deepseek-cwm-repo-s123-eval.md"
+}

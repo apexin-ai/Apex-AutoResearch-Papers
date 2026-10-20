@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc2178b9f89e15f7f143",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code llm judge zeroshot v3",
+  "task_key": "worker_code_llm-judge-zeroshot-v3_20260512T080619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llm-judge-zeroshot-v3_20260512T080619_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "67bafb7f1ae0e878974818c932e666f6641ba3718676be6d65bdc72bdd43a250"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已提交。汇总：\n\n### 1. Qwen3-32B 模型检查\n- 路径：`/root/autodl-tmp/models/Qwen/Qwen3-32B/`\n- 大小：62GB（full precision，17 个 safetensors shard）\n- 状态：**完整**，需 4-bit 量化加载到单卡 32GB\n\n### 2. 数据格式（test.jsonl）\n字段：`code`, `test`, `label`（1=PASS, 0=FAIL）, `source`, `problem_id`, `mutation_type`\n\n### 3. Dry-run\n`--help` 解析正常通过\n\n### 4. 实验状态\n\n| 实验 | GPU | PID | 日志 |\n|------|-----|-----|------|\n| llm-judge-8b-zeroshot | cuda:2 | 13295 | `~/runs/exec-sim-repair-verifier/llm-judge-8b-zeroshot.log` |\n| llm-judge-32b-zeroshot | cuda:3 | 13452 | `~/runs/exec-sim-repair-verifier/llm-judge-32b-zeroshot.log` |\n\n8B 为 full precision（bfloat16），32B 为 NF4 4-bit 量化。两个实验并行运行在 cuda:2 和 cuda:3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llm-judge-zeroshot-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb620a139eb74116898d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze per test majority voting",
+  "task_key": "worker_analyze_per-test-majority-voting_20260512T092930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_per-test-majority-voting_20260512T092930_result.json",
+    "occurrence": 1,
+    "bytes": 1802,
+    "sha256": "c04f4d096834facf69de55942b8c6d7ad5db51c00b2773c79150ae6e6e39f454"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Per-test Majority Voting 实验结果\n\n**实验状态：成功完成** (EXIT_CODE=0)\n\n### 关键 Metrics\n\n| Metric | Single-pass (greedy) | Majority Vote (K=3) | Delta |\n|--------|---------------------|---------------------|-------|\n| **Accuracy** | 87.51% | 86.83% | **-0.69pp** |\n| FAIL F1 | 87.86% | 87.29% | -0.57pp |\n| PASS F1 | 87.15% | 86.33% | -0.82pp |\n| FAIL Recall | 93.64% | 93.75% | +0.11pp |\n| PASS Recall | 81.80% | 80.37% | -1.43pp |\n\n### 与 Baseline 对比\n\n| Method | Accuracy |\n|--------|----------|\n| 3-seed mean (baseline) | 88.41% |\n| Single-pass seed 42 | 87.83% |\n| 本次 greedy | 87.51% |\n| **Majority vote K=3** | **86.83%** |\n\n### Flip 分析\n\n- 3/3 unanimous: 1763 (93.3%) — 绝大多数样本三次预测一致\n- 2/3 split: 127 (6.7%)\n- Flipped correct→wrong: **28**, Flipped wrong→correct: **15**, Net: **-13**\n\nMajority voting 在 127 个分歧样本上翻转了 43 个预测，但翻错的比翻对的多 13 个，导致整体下降。\n\n### Per-pass 采样准确率\n\nPass 1: 86.72%, Pass 2: 86.83%, Pass 3: 87.62% — 三次采样均低于 greedy (87.51%)，temperature=0.7 引入的随机性降低了单次准确率。\n\n### 结论\n\n**Majority voting 无效，反而降低了 accuracy (-0.69pp)**。原因：\n\n1. 模型在 greedy 模式下已经高度校准（87.5%），temperature 采样引入的噪声大于纠错收益\n2. 93.3% 的样本三次一致，说明模型对大部分样本已高度 confident，self-consistency 无空间发挥\n3. 在少数分歧样本上，错误翻转多于正确翻转（28 vs 15），说明模型错误不是随机噪声而是系统性偏差，voting 无法修复\n\n**Per-test majority voting 不值得采用。** Single-pass greedy 更快（30s vs 120s）且更准。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-per-test-majority-voting.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6acc374d14ab7202130c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls4b seed123 val sweep continue",
+  "task_key": "worker_eval_cls4b-seed123-val-sweep-continue_20260514T205947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls4b-seed123-val-sweep-continue_20260514T205947_result.json",
+    "occurrence": 1,
+    "bytes": 1082,
+    "sha256": "aace35acfb752ad61db0aa5e7f6f744b920d16611cb62237d3dac9a33e854b9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 4B CLS seed123 val@5120 sweep 最终结果\n\n| Checkpoint | Accuracy | F1 macro | F1 fail | F1 pass | Gap vs baseline |\n|-----------|----------|----------|---------|---------|----------------|\n| ckpt-400 | 86.01% | 79.66 | 68.30 | 91.02 | +10.13pp |\n| ckpt-600 | 81.89% | 77.01 | 66.43 | 87.60 | +6.01pp |\n| **ckpt-800** | **87.92%** | **81.95** | **71.57** | **92.33** | **+12.04pp** |\n\n### 关键发现\n\n**Val@5120 best = ckpt-800**，但与 test 结果严重不一致：\n\n| | Val@5120 best | Test@2048 best |\n|--|--------------|----------------|\n| Checkpoint | ckpt-800 (87.92%) | ckpt-600 (80.73%) |\n| ckpt-800 表现 | **最佳** (87.92%) | **严重退化** (74.27%) |\n\n这与 val@2048 趋势一致（val@2048 best acc = ckpt-1000）。**Val-test distribution shift 显著——不能只靠 val 选 checkpoint。**\n\n所有 3 个 checkpoint unparseable = 0（vs val@2048 的 20%），truncated 均 234/9335 (2.5%)。\n\n### 当前状态\n- Sweep 脚本自动继续跑 v5 (seed42) checkpoints（v5-ckpt600 正在运行）\n- Registry 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls4b-seed123-val-sweep-continue.md"
+}

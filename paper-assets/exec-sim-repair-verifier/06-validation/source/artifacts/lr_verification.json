@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-05-17",
+  "purpose": "Verify actual learning rates across all experiment types vs appendix table",
+  "script_defaults": {
+    "train_unified.py (CLS/CWM)": {"line": 253, "default_lr": "2e-4"},
+    "train_cwm_baseline.py": {"line": 115, "default_lr": "2e-4"},
+    "train_traj_verifier.py": {"line": 107, "default_lr": "2e-4"}
+  },
+  "actual_lr_from_checkpoints": {
+    "Qwen3-4B CLS": {
+      "lr": "5e-5",
+      "source": "checkpoints_repo_cls_v5_conda/checkpoint-200/training_args.bin",
+      "confirmed_seeds": ["42", "123"]
+    },
+    "Qwen3-8B CLS": {
+      "lr": "5e-5",
+      "source": "checkpoints_repo_cls_8b_conda/checkpoint-200/training_args.bin",
+      "confirmed_seeds": ["42", "123"]
+    },
+    "Qwen3-4B CWM": {
+      "lr": "5e-5",
+      "source": "checkpoints_repo_cwm_conda_v12/checkpoint-300/training_args.bin",
+      "note": "Early v9 used 2e-4 (deprecated); v11+ and all final runs use 5e-5",
+      "confirmed_seeds": ["42", "123"]
+    },
+    "Qwen3-8B CWM": {
+      "lr": "5e-5",
+      "source": "checkpoints_repo_cwm_8b_conda/checkpoint-400/training_args.bin",
+      "confirmed_seeds": ["42"]
+    },
+    "DeepSeek-6.7B CLS": {
+      "lr": "2e-4",
+      "source": "checkpoints_deepseek_cls_repo/checkpoint-2211/training_args.bin",
+      "confirmed_seeds": ["42", "123"]
+    },
+    "DeepSeek-6.7B CWM": {
+      "lr": "2e-4",
+      "source": "checkpoints_deepseek_cwm_repo/checkpoint-4422/training_args.bin",
+      "confirmed_seeds": ["42", "123"]
+    },
+    "DeepSeek-6.7B TRAJ": {
+      "lr": "2e-4",
+      "source": "checkpoints_deepseek_traj_repo/best/training_args.bin",
+      "confirmed_variants": ["traj_func", "traj_v2", "traj_repo", "traj_repo_8k"],
+      "confirmed_seeds": ["42", "123", "0", "456", "789", "999"]
+    }
+  },
+  "appendix_table_status": {
+    "current_columns": ["4B CLS", "4B CWM", "8B CLS", "8B CWM"],
+    "current_lr_value": "5e-5 for all four",
+    "is_correct": true,
+    "missing_from_table": ["DeepSeek-6.7B (CLS/CWM/TRAJ) — all use lr=2e-4", "TRAJ formulation column"]
+  },
+  "conclusion": {
+    "qwen_cls_cwm": "Appendix table correctly reports lr=5e-5. All Qwen CLS and CWM checkpoints confirm 5e-5 (overridden from script default 2e-4 via --lr 5e-5).",
+    "deepseek_all": "All DeepSeek experiments (CLS, CWM, TRAJ) used lr=2e-4 (script default). NOT documented in appendix hyperparameters table.",
+    "qwen_traj": "No Qwen TRAJ checkpoints exist on seetacloud. TRAJ experiments appear to be DeepSeek-only.",
+    "potential_typo": "No typo in the existing table. The gap is that DeepSeek hyperparameters (lr=2e-4) are undocumented. If the reviewer saw TRAJ lr=2e-4 and compared to the Qwen table showing 5e-5, the discrepancy is real but expected — different model families used different LRs.",
+    "recommendation": "Add a DeepSeek column or footnote to the hyperparameters table stating DeepSeek uses lr=2e-4 with otherwise identical LoRA config."
+  }
+}

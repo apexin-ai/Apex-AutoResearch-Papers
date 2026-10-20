@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6233890fe39e7abb7309",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code cwm rank ablation prep",
+  "task_key": "worker_code_cwm-rank-ablation-prep_20260515T122747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cwm-rank-ablation-prep_20260515T122747_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "6b32527215e2531a3fb98c97e7455c44ab6e801b50a7927635cd2d81c978f6ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，进度正常。\n\n**汇报：**\n\n| 项目 | 值 |\n|------|------|\n| 原始 LoRA rank | **16**（alpha=32, dropout=0.05） |\n| rank=32 实验 | **已成功提交**，tmux session `cwm-rank32-ablation`，PID 368813 |\n| 训练数据 | train=15,290, val=1,896 |\n| 总 steps | 1,434（15290 / (batch=2 × accum=16) × 3 epochs） |\n| trainable params | 23,592,960（0.58%，rank=32 比 baseline 的 rank=16 翻倍） |\n| 预估完成时间 | ~2h，约 **2026-05-15 22:30 UTC+8** |\n| eval | train 完成后自动串联执行 `eval_cwm_baseline.py`，输出 `eval_cwm_rank32_results.json` |\n| registry | `cwm-rank32-ablation` 状态 RUNNING |\n\n**rank=64**：需等 rank=32 完成后再提交到同一张 cuda:0。届时命令为：\n```\n--lora_rank 64 --output_dir checkpoints_cwm_rank64/ --output eval_cwm_rank64_results.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cwm-rank-ablation-prep.md"
+}

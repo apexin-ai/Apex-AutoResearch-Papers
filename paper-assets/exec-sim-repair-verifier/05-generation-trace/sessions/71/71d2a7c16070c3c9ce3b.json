@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71d2a7c16070c3c9ce3b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis deepseek training progress",
+  "task_key": "worker_analysis_deepseek-training-progress_20260517T084409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek-training-progress_20260517T084409_result.json",
+    "occurrence": 1,
+    "bytes": 1893,
+    "sha256": "8dc9d92dfb8ba0b0279b99780a32693311c06c2b497436356bf5512c393bb406"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the summary:\n\n---\n\n## 训练进度汇总 (2026-05-17 16:44 CST)\n\n所有 4 个进程均在正常运行，使用 `train_unified.py`（之前 `train_repo_cls.log` / `train_repo_cwm.log` 中的 crash 是旧脚本 `train_repo_verifier.py` 的残留日志，与当前训练无关）。\n\n### 进程信息\n\n| Exp | GPU | PID | Process Start |\n|-----|-----|-----|---------------|\n| deepseek-cls-repo-v4 | cuda:0 | 548885 | May 17 02:41 |\n| deepseek-cwm-repo | cuda:1 | 479953 | May 16 16:04 |\n| deepseek-cls-repo-s123 | cuda:2 | 542514 | May 17 01:27 |\n| deepseek-cwm-repo-s123 | cuda:3 | 542906 | May 17 01:30 |\n\n### 训练进度\n\n| Exp | GPU | GPU Util | Last Ckpt | Total Steps | Ckpt Progress | Est. Current Step | Est. Progress | Speed | ETA |\n|-----|-----|----------|-----------|-------------|---------------|-------------------|---------------|-------|-----|\n| deepseek-cls-repo-v4 | cuda:0 | 96% | 2211 (ep1) | 6633 | 33.3% | ~4400 | ~66% | ~5.4 steps/min | ~7.2h |\n| deepseek-cwm-repo | cuda:1 | 99% | 8844 (ep2) | 13266 | 66.7% | ~10400 | ~78% | ~7.3 steps/min | ~6.8h |\n| deepseek-cls-repo-s123 | cuda:2 | 98% | 4422 (ep2) | 6633 | 66.7% | ~4700 | ~71% | ~5.4 steps/min | ~6.2h |\n| deepseek-cwm-repo-s123 | cuda:3 | 100% | 4422 (ep1) | 13266 | 33.3% | ~6400 | ~48% | ~7.2 steps/min | ~16.7h |\n\n### 要点\n\n- **Speed** 从 checkpoint 时间间隔推算（cls ~11s/step, cwm ~8.2s/step）\n- **ETA** 包含剩余 epoch-end eval 时间（cls eval ~19min, cwm eval ~24min each）\n- Checkpoint 只在 epoch 结束时保存（save_steps=500 但 eval + save 实际发生在 epoch boundary）\n- **cwm-repo-s123 最慢**，只完成了 1/3，预计还需 ~17h\n- **cls-repo-s123 最快完成**，预计 ~6.2h 后结束（约今晚 23:00 CST）\n- 4 张 RTX 5090 GPU 利用率均在 96-100%，VRAM 使用 17.6-19.7 GiB / 32.6 GiB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-training-progress.md"
+}

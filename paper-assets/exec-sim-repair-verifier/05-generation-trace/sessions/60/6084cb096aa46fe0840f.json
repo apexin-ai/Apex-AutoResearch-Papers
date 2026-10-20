@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6084cb096aa46fe0840f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260515T095123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260515T095123_result.json",
+    "occurrence": 1,
+    "bytes": 192,
+    "sha256": "33578d6882222e6b2b7c31a084f51f2fcef8790083d94b86f02c7adea4303bc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处改动已完成，其余段落未动：\n- **L10**：Execution Simulation 段新增 format compliance collapse 句\n- **L24**：APR 段新增 Aleithan et al. survey 引用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

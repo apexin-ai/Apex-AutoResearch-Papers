@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d81a31202568a86d301a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops traj repo 8k cuda3 seeds",
+  "task_key": "worker_ops_traj-repo-8k-cuda3-seeds_20260516T162134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_traj-repo-8k-cuda3-seeds_20260516T162134_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "fb78da5707dd6b7794867139f401bd12b752fe6f96826b139a2b855c20a2d3b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Both seeds trained and evaluated on cuda:3.\n\n## Final Report: TRAJ repo-8k Multi-Seed Results\n\n| Seed | Accuracy | F1 Macro | Resolved F1 | Unresolved F1 | Unparseable | Best Eval Loss |\n|------|----------|----------|-------------|---------------|-------------|----------------|\n| 456  | 75.0%    | 75.00%   | 75.0%       | 75.0%         | 0           | 0.1547         |\n| 999  | **79.2%** | **78.57%** | **82.1%**  | 75.0%         | 0           | 0.1565         |\n\nBoth experiments registered as DONE with conclusion=success. Checkpoints at:\n- `/root/autodl-tmp/checkpoints_deepseek_traj_repo_8k_s456/best/`\n- `/root/autodl-tmp/checkpoints_deepseek_traj_repo_8k_s999/best/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-traj-repo-8k-cuda3-seeds.md"
+}

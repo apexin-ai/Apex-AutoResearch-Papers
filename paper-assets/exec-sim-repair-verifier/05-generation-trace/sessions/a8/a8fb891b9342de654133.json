@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8fb891b9342de654133",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix cuda0 cleanup resubmit ckpt1200",
+  "task_key": "worker_fix_cuda0-cleanup-resubmit-ckpt1200_20260515T020713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cuda0-cleanup-resubmit-ckpt1200_20260515T020713_result.json",
+    "occurrence": 1,
+    "bytes": 538,
+    "sha256": "b278a79931f6feac7b08b2fee3408d2f2829b40d6c59e0520ebd6ab962de06db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 结果\n\n| 项目 | 详情 |\n|------|------|\n| **cuda:0 原占用** | PID 315423 — 之前 OOM 失败的 ckpt-1200 val eval，占 19218 MiB |\n| **清理** | kill 315423 + 清理 3 个旧 tmux sessions，cuda:0 完全释放 |\n| **新 eval PID** | **316307**（tmux session: `ckpt1200-val8192-v2`） |\n| **GPU 状态** | cuda:0: PID 316307, 18238 MiB（eval）；cuda:1/2/3 训练进程不受影响 |\n| **日志** | `~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1200-val8192-v2.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cuda0-cleanup-resubmit-ckpt1200.md"
+}

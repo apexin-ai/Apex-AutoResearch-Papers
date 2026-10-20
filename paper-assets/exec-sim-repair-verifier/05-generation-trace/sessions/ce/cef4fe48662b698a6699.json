@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cef4fe48662b698a6699",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code eval pipeline both servers",
+  "task_key": "worker_code_eval-pipeline-both-servers_20260512T210238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-pipeline-both-servers_20260512T210238_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "438ca1d80be177de842fb77f1473a067c0f2420a09310f19aee44e359ce20459"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。两台服务器的 pipeline 状态：\n\n**Home (home-1x5090)**:\n- `run_repo_eval.sh` — 调用 `eval_repo_level.py --mode cls|cwm`\n- `paired_bootstrap_repo.py` — 原有脚本，无需修改\n- 全部语法检查通过\n\n**Seetacloud (seetacloud-westd-4x5090)**:\n- `run_repo_eval.sh` — CLS 调用 `eval_repo_verifier.py`，CWM 调用 `eval_repo_cwm.py`\n- `eval_repo_verifier.py` — 已修改：`\"prediction\"` → `\"pred\"`，输出格式 JSON → JSONL\n- `eval_repo_cwm.py` — 已添加 `--save_predictions` + `per_sample` 追踪 + JSONL 输出\n- `paired_bootstrap_repo.py` — 从 Home 部署\n- 全部语法检查通过\n\n**用法**:\n```bash\n# 先跑 CLS\n./run_repo_eval.sh --mode cls --checkpoint_dir <cls_ckpt_path> --device cuda:0\n\n# 再跑 CWM（自动触发 paired bootstrap）\n./run_repo_eval.sh --mode cwm --checkpoint_dir <cwm_ckpt_path> --device cuda:0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-pipeline-both-servers.md"
+}

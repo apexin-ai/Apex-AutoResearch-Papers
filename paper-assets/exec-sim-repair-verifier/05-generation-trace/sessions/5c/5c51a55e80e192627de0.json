@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c51a55e80e192627de0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops check cls 8b eval result",
+  "task_key": "worker_ops_check-cls-8b-eval-result_20260514T012144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-cls-8b-eval-result_20260514T012144_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "db1b4a3cee10fa05405765e2b796e4dd8d1abb91807c98d864ef88890b7f44fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**CLS 8B eval 未退出，仍在运行中。** Cron 误判。\n\n当前状态：\n\n| Eval | GPU | 进度 | running_acc | 状态 |\n|------|-----|------|-------------|------|\n| cls_8b (D056) | 3 (21.6GB, 100%) | 5440/9784 (55.6%) | 69.8% | 运行中 |\n| cls_v5 | 2 (18.4GB, 54%) | 7520/9784 (76.9%) | 52.6% | 运行中 |\n| cwm_seed123 | 0 (13.0GB, 88%) | 176/9784 (1.8%) | 58.0% | 运行中 |\n| cwm_v12 | 1 (13.0GB, 81%) | 176/9784 (1.8%) | 58.0% | 运行中 |\n\n4 个 eval 全部在跑，无一退出。cls_v5 最快（77%），两个 CWM 刚开始（1.8%），cls_8b 过半（56%）。按当前速度 cls_8b 大约还需 ~30 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-cls-8b-eval-result.md"
+}

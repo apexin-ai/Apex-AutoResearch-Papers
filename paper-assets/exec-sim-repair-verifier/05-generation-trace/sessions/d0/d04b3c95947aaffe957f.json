@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d04b3c95947aaffe957f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_12_1778799577.md",
+  "task_key": "loop_12_1778799577",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778799577.md",
+    "occurrence": 1,
+    "bytes": 6116,
+    "sha256": "9196645fa935fed8fccd6c56d788c35f392f20d843dacdcc5ff9558f89d09fd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-14T22:50:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd cuda:0/1/2/3, home cuda:0。不得使用白名单外 GPU\n- **D088 checkpoint 选择规则**: 主指标用 val-selected checkpoint（ML 社区规范）。新 checkpoint 先跑 val@8192，超过当前 val-best (85.00%) 才跑 test@8192\n- **旧 checkpoint 不可用**: `checkpoints_repo_cls_8b/checkpoint-3000` 是 transformers 5.x 旧训练产物（peft 0.19.1），89.50% val 结果无效（D080）。只能用 `checkpoints_repo_cls_8b_conda/` 下的 checkpoint\n- **Val/Test 隔离**: val set (9335 samples) 选 checkpoint，test set (9784 samples) 只报最终数字。禁止在 test set 上做 checkpoint selection\n- **CLS vs CWM apple-to-apple**: 必须用 westd conda 环境训练的模型互相比较，不混用不同 server/env 的结果\n- **eval 参数**: eval_repo_cls.py 用 `--checkpoint_dir`（非 --checkpoint_path），`--device`（非 --gpu），8B+8192 tokens 必须 `--batch_size 1`，`--max_seq_length` 默认 2048 必须显式指定\n\n### 2. 🖥️ 基础设施快照\n- **westd** (seetacloud-westd-4x5090, root@): 工作目录 `/home/sonny/exec-sim-repair-verifier`，Python `/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **home** (home-1x5090, sonny@): 工作目录 `/home/sonny/exec-sim-repair-verifier`\n- **HF cache**: `/root/autodl-tmp/.hf_cache/` (westd)\n- **模型**: Qwen3-8B at `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`, Qwen3-4B via `Qwen/Qwen3-4B` (home hub cache)\n- **Checkpoint 路径** (westd):\n  - 8B s42 conda: `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/` (原始训练, ckpt-200/400/600)\n  - 8B s42 resume: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/` (从 ckpt-600 续训, 新 ckpt 产出中)\n  - 8B seed123: `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000` → resume dir `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/`\n  - CWM 8B: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`\n- **活跃进程**:\n  - westd cuda:0: `cls8b-s42-ckpt800-val8192-eval` (eval, 无 cron—Worker 直接跑)\n  - westd cuda:1: `repo-level-cls-8b-s42-resume` (PID 295794, tmux, cron 监控中)\n  - westd cuda:2: `repo-level-cwm-8b-conda-v4` (PID 266816, tmux, cron 监控, step ~1700/6633)\n  - westd cuda:3: `repo-level-cls-8b-seed123-conda-v3` (PID 266444, tmux, cron 监控, from ckpt-3000)\n  - home cuda:0: `cls4b-v5-ckpt600-val5120-eval` (eval) + `cls4b-v5-val5120-sweep-home` (PID 3180425, cron 监控, val sweep 多 ckpt)\n\n### 3. 📊 当前状态\n**刚完成**: CWM error analysis (D082), val-test distribution analysis (D085-D087), D088 策略修订（回到 val-selected）\n\n**RUNNING (5)**:\n1. `repo-level-cls-8b-s42-resume` — 8B CLS s42 从 ckpt-600 续训到 6633 步，westd cuda:1。产出新 ckpt 供 val sweep\n2. `repo-level-cwm-8b-conda-v4` — CWM 8B 训练，westd cuda:2，step ~1700/6633 (~25%)，预计剩余 ~16h\n3. `repo-level-cls-8b-seed123-conda-v3` — 8B CLS seed123 从 ckpt-3000 续训，westd cuda:3\n4. `cls8b-s42-ckpt800-val8192-eval` — 8B s42 resume 产出的 ckpt-800 val@8192 评估，westd cuda:0\n5. `cls4b-v5-ckpt600-val5120-eval` — 4B v5 ckpt-600 val@5120 评估，home cuda:0\n\n**PREPARING (实质已死/待跑)**:\n- `cls4b-v5-val5120-sweep-home` — 4B v5 val sweep (ckpt-600/4000/4200/4400/4600)，PID 3180425 cron 在跑\n- `repo-level-cls-8b-s42-ckpt200-val` — 已死(PID gone)，已被 ckpt800 eval 替代\n- `cls8b-ckpt3000-test-v2` / `cls8b-ckpt3000-test-eval` — 无效 checkpoint，已取消\n\n**等待中**:\n- Worker `worker_research_results-consolidation_20260514T224514` 正在运行（results consolidation）\n- 4 个 cron 监控上述训练进程\n\n### 4. 📋 待办（条件触发式）\n- `cls8b-s42-ckpt800-val8192-eval` 完成 → 记录 val accuracy。若 >85.00% (当前 val-best) → 提交 test@8192 eval；若 ≤85.00% → 记录数据点，等更多 resume checkpoint\n- `cls4b-v5-ckpt600-val5120-eval` 完成 → 记录结果，与已有 4B val 数据合并。继续 `cls4b-v5-val5120-sweep-home` 其他 checkpoint\n- `cls4b-v5-val5120-sweep-home` 完成 → 汇总 4B v5 全部 val 结果，选 val-best checkpoint，跑 test eval\n- `repo-level-cls-8b-s42-resume` 训练完成 → 对每个新 checkpoint (800/1000/.../6600) 跑 val@8192 sweep，选 val-best\n- `repo-level-cwm-8b-conda-v4` 训练完成 → 跑 CWM 8B eval，得到 8B-8B CLS vs CWM gap（当前只有 8B CLS vs 4B CWM gap）\n- `repo-level-cls-8b-seed123-conda-v3` 训练完成 → 跑 val sweep → 选 val-best → test eval，确认 8B multi-seed robustness\n- **results-consolidation Worker 回调** → 读取产出，整合到 report.md / registry\n- **所有 val sweep 完成** → 汇总最终数字，更新 paper_framing.md，派 Worker 写论文 results section\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- C1 (Complexity-Dependent Advantage): CLS >> CWM，gap 随复杂度增大。Func-level gap 1.24pp (4B) / 2.43pp (8B)；Repo-level gap 24-26pp。CWM 在 repo-level 低于 majority baseline\n- C2 (Diagnostic Granularity): TOST p=0.007 ✅\n- C3 (Accuracy-Utility Frontier): ✅\n\n**DDL**: EMNLP ARR May 25，剩余 11 天\n\n**最易判断错的事**:\n1. **不要用旧 checkpoint** (`checkpoints_repo_cls_8b/checkpoint-3000`)，只用 `_conda` 后缀目录下的\n2. **Val-test reversal 是已知现象**（D084-D087），原因是 val/test repo 分布不同 + problem 零重叠。不要因为 test 数字低于 val 就认为模型有问题\n3. **8B s42 当前 val-best 是 ckpt-600 (85.00%)**，不是 ckpt-400。ckpt-400 是 test-best (84.79%) 但我们用 val-selected\n4. **CWM 8B 训练还在跑**（~25%），完成后才有 8B-8B gap 数据。论文目前用 8B CLS vs 4B CWM 的 gap，这不是 apple-to-apple\n5. **4B eval 有 seq_len confound**: 4B seed123 val@5120 vs test@2048，不能直接比。保持 4B v5 sweep 统一用 5120\n6. **cls4b-v5-val5120-sweep-home 状态不一致**: registry 是 PREPARING 但 cron 显示 PID 3180425 在跑，可能 registry 未更新到 RUNNING\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778799577.md"
+}

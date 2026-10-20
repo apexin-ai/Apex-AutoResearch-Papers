@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be849116b123978ffeb2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh urgent check training data",
+  "task_key": "worker_ssh_urgent-check-training-data_20260520T050302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent-check-training-data_20260520T050302_result.json",
+    "occurrence": 1,
+    "bytes": 3397,
+    "sha256": "ae9da72928337daf1ae54cc60caf2bc1aa33935aec46a1c49c6643749c8a9d2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Here's the summary:\n\n---\n\n## 1. DeepSeek CWM s456\n\n- **脚本**: `train_unified.py --task cwm`\n- **数据**: `data/cwm_train.jsonl` — **function-level 短格式** (HumanEval)\n- **样本数**: train=15290, val=1896 (dropped 10, 0% truncated)\n- **启动时间**: 2026-05-20 13:00:00\n- **进度**: 日志到 step ~146/2865 (~5%), ~1.75s/it\n- **PID 917644 在 /proc 中不存在** — 进程可能已死或换了 PID\n\n## 2. Qwen CWM s123-v4 (PID 886278)\n\n- **脚本**: `train_repo_cwm.py`\n- **命令**: `train_repo_cwm.py --model_name Qwen3-8B --device cuda:0 --seed 123 --epochs 3`\n- **数据**: `swebench_full/swebench_train.jsonl` — **repo-level 长格式** (SWE-bench)\n- **样本数**: train=70748, val=9335\n- **Class weights**: fail=1.7009, pass=0.2991\n- **截断率**: train 4.5%, **val 20.2%**\n- **进度**: step 100/6633 (~1.5%), ~12s/it\n- **Loss**: 24.49 → 18.50\n\n## 3. Qwen CWM s456-v3 (PID 886352)\n\n- **脚本**: `train_repo_cwm.py`\n- **命令**: `train_repo_cwm.py --model_name Qwen3-8B --device cuda:0 --seed 456 --epochs 3`\n- **数据**: 同上 swebench_full (70748 samples)\n- **Class weights**: fail=1.7009, pass=0.2991\n- **进度**: step 100/6633 (~1.5%), ~12s/it\n- **Loss**: 22.61 → 18.94\n\n两个 Qwen 训练完全对称，只是 seed 不同。\n\n## 4. DeepSeek s42 vs s123 对比\n\n日志文件列表：\n```\ndeepseek-cwm-repo-s123-eval.log\ndeepseek-cwm-repo-s123-train.log\ndeepseek-cwm-repo-s123.log\ndeepseek-cwm-repo-s42-seq4096-eval.log   ← s42 只有 eval 日志，没有 train 日志\ndeepseek-cwm-repo-s456-train.log\ndeepseek-cwm-repo.log\n```\n\n**DeepSeek s123 训练日志**: 同样使用 `data/cwm_train.jsonl` (function-level, 15290), 已跑到 epoch ~0.99 (step 955/2865), loss 从 2.57 降到 0.039。\n\n## 5. 数据文件\n\n| 文件 | 行数 | 类型 | 内容 |\n|------|------|------|------|\n| `data/cwm_train.jsonl` | 15,290 | function-level | keys: code, test, target, label, source, problem_id, mutation_type; target=\"PASS: test completed successfully\" |\n| `data/swebench_full/swebench_train.jsonl` | 70,748 | repo-level | keys: code(diff), test(test path), label, source, problem_id, mutation_type, error_message, execution_output, metadata |\n| `data/cwm_val.jsonl`, `cwm_test.jsonl` | 存在 | function-level | — |\n| `swebench_full/cwm_*.jsonl` | **不存在** | — | — |\n\n## 6-7. 训练脚本数据加载逻辑\n\n**`train_unified.py`**:\n- `--task cwm` (默认) → `data/cwm_train.jsonl` + `cwm_val.jsonl` (function-level)\n- `--task cls` → 优先 `swebench_full/swebench_train.jsonl`，回退 `train.jsonl`\n- `--train_file` 可手动覆盖\n\n**`train_repo_cwm.py`**:\n- 固定读取 `swebench_full/swebench_train.jsonl` (repo-level)\n- 内部有 class weights → **实际做 pass/fail 分类**，虽然名字叫 CWM\n\n---\n\n## 关键发现\n\n**DeepSeek s456 和 s123 用的是完全相同的 function-level 数据 (`cwm_train.jsonl`, 15290 条)**，运行名里虽然有 \"repo\" 字样，但实际走的是 `train_unified.py --task cwm`，加载的是 HumanEval function-level 短数据，不是 repo-level swebench 数据。\n\n如果 DeepSeek s456 的目的是训 repo-level CWM（和 Qwen 对齐），**那数据加载是错的** — 它应该用 `train_repo_cwm.py` 或者用 `train_unified.py --train_file swebench_full/swebench_train.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-check-training-data.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9420b8dd3855db895456",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra check seetacloud state",
+  "task_key": "worker_infra_check-seetacloud-state_20260512T153418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-seetacloud-state_20260512T153418_result.json",
+    "occurrence": 1,
+    "bytes": 2425,
+    "sha256": "97a36bb41ac13d7557535aec951ec08503b210433026a727a37106f57078d8d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n## 服务器状态汇总\n\n### GPU（4× RTX 5090 32GB）\n| GPU | 显存使用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 0 / 32607 MiB | 0% | **空闲** |\n| 1 | 0 / 32607 MiB | 0% | **空闲** |\n| 2 | 0 / 32607 MiB | 0% | **空闲** |\n| 3 | 0 / 32607 MiB | 0% | **空闲** |\n\n### PID 34681\n**不存在。** 之前的 repo-level-cls 训练已终止。\n\n### 训练进程\n**无任何 python 训练进程在运行。** 只有系统服务（jupyter-lab、tensorboard、supervisord）。\n\n### 磁盘\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| 根分区 `/` | 30G | 27G | 3.6G | **89%** ⚠️ |\n| `/root/autodl-tmp` | 250G | 100G | 151G | 40% |\n\n根分区 89% 需关注，大文件应放 autodl-tmp。\n\n### Checkpoints\n`/home/sonny/exec-sim-repair-verifier/checkpoints/best/` 存在一个已保存的 LoRA adapter（~47MB safetensors），时间 May 12 17:21。`/root/autodl-tmp/checkpoints/` 不存在。\n\n### repo-level 脚本修复状态\n| 项目 | train_repo_verifier.py | train_repo_cwm.py |\n|------|----------------------|-------------------|\n| sample_weight 处理 | ✅ 内联 class_weight_tensor（L139/155） | ✅ 内联 class_weight_tensor（L137/153） |\n| WeightedDataCollator | ❌ **未使用** | ❌ **未使用** |\n| remove_unused_columns=False | ✅ L258 | ✅ L256 |\n\n两个脚本都没用 `WeightedDataCollator`，而是在 model 内部通过 `class_weight_tensor` 直接计算加权 loss。配合 `remove_unused_columns=False`，之前的 `sample_weight` KeyError 应已修复（不再需要 collator 传 sample_weight，权重在 forward 中从 labels 推导）。\n\n### repo-level 数据\n- `data/swebench_pertest/` **不存在**\n- `data/` 下无 `*repo*` 命名文件\n- `data/swebench_full/` 有完整数据（train 413MB / val 67MB / test 60MB / pilot_data 541MB + mutation predictions）\n- `data/cwm_*` 和 `data/traj_*` 等数据集均就绪\n\n### 结论\n1. **4 块 GPU 全部空闲**，无任何训练在跑，PID 34681 已死\n2. registry 中 PREPARING 状态的实验实际上未启动\n3. 脚本修复看起来到位（用内联加权替代了 WeightedDataCollator）\n4. repo-level 数据需确认使用哪个目录——`swebench_pertest` 不存在，但 `swebench_full` 数据就绪\n5. **根分区 89%，建议清理或将大文件迁移到 autodl-tmp**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-seetacloud-state.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95c28de6cfab874091cd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect v5 val5120 sweep and ckpt800 val",
+  "task_key": "worker_collect_v5-val5120-sweep-and-ckpt800-val_20260514T233653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_v5-val5120-sweep-and-ckpt800-val_20260514T233653_result.json",
+    "occurrence": 1,
+    "bytes": 1787,
+    "sha256": "2691fba0ec949c04b4fd4895b02a84705faf5bc6dba30f6faa11fed691cb994d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Part 1: Home — 4B v5 val@5120 sweep\n\n**Sweep 状态：失败。** 只完成了 ckpt-600。脚本在启动 ckpt-4000 时崩溃：\n```\nrun_v5_val5120_sweep.sh: line 20: python: command not found\n```\n\n**已完成的 val@5120 结果（仅 ckpt-600）：**\n\n| Checkpoint | Accuracy | F1 macro | F1 fail | F1 pass | Prec fail | Recall fail | Unparseable | Total |\n|---|---|---|---|---|---|---|---|---|\n| **600** | 82.82 | 79.81 | 72.03 | 87.60 | 59.30 | **91.70** | 0 | 9335 |\n\n**ckpt-4000/4200/4400/4600 仅有 val@2048 结果**（不是你要求的 val@5120）：\n\n| Checkpoint | Accuracy | F1 macro | F1 fail | F1 pass | Unparseable | Total | seq_len |\n|---|---|---|---|---|---|---|---|\n| 4000 | 81.51 | 72.56 | 56.90 | 88.23 | 132 | 9784 | 2048 |\n| 4200 | 80.64 | 72.10 | 56.66 | 87.54 | 132 | 9784 | 2048 |\n| 4400 | 82.11 | 73.94 | 59.34 | 88.54 | 132 | 9784 | 2048 |\n| 4600 | 82.35 | 74.74 | 60.87 | 88.60 | 132 | 9784 | 2048 |\n\nckpt-4000 val@5120 仅完成 336/9335 条预测就中断了。\n\n---\n\n### Part 2: Westd — 8B s42 ckpt-800 val@8192\n\n**结果：不存在。** 没有找到任何 ckpt-800 val@8192 相关的日志或结果目录。Westd 上只有以下 8192 相关 log：\n- `cls8b-s42-ckpt400-test8192-eval.log`\n- `cls8b-s42-ckpt600-test8192-eval.log`\n- `cls8b-s42-ckpt200-val8192-eval-v2.log`\n- `cls8b-seed123-ckpt3000-val8192-eval.log`\n\nckpt-800 val@8192 eval 似乎从未启动。\n\n---\n\n### 需要修复\n\n1. **Home sweep 修复**：脚本里用了 `python` 而非 `python3`（或需要 activate venv）。修好后重跑 ckpt-4000/4200/4400/4600 的 val@5120。\n2. **Westd ckpt-800 val@8192**：需要手动启动这个 eval。\n\n要我修复 sweep 脚本并重新启动两边的 eval 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-v5-val5120-sweep-and-ckpt800-val.md"
+}

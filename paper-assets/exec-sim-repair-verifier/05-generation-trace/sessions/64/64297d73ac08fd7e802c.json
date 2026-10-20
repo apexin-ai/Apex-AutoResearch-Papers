@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64297d73ac08fd7e802c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh d046 cwm eval wait collect",
+  "task_key": "worker_ssh_d046-cwm-eval-wait-collect_20260513T074700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d046-cwm-eval-wait-collect_20260513T074700_result.json",
+    "occurrence": 1,
+    "bytes": 264,
+    "sha256": "ea6996f3d098de326bf34c7ff3554e32704abeebb19bab8f8ae55da5625648ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- PID 123610 仍在运行（已 1h22m），eval 脚本在 GPU 2 上跑（88% 利用率，13GB VRAM）\n- predictions 文件尚未生成（可能最后一次性写出）\n- GPU 0/1/3 空闲，可用\n- 4.5 分钟后自动回来检查"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d046-cwm-eval-wait-collect.md"
+}

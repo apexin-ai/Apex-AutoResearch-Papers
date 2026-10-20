@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aedbe6b1ffc20a85e15e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper writing conclusion",
+  "task_key": "worker_paper_writing_conclusion_20260515T100823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_conclusion_20260515T100823_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "73fee6ebb138d3823ceb7476babfce27256fc4e39c95baadda866086def457ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入。变更汇总：\n\n**第一段**：+0.99→+0.96pp，\"string-prediction bottleneck\"→\"generation bottleneck\"\n\n**第二段**（全面重写）：gap 25.59pp，CWM 58.04%（低于 majority ~14pp），CLS 83.63%/0% unparseable，引入 \"format compliance collapse\" 命名，新增 parseable-only 42–43% below random chance，compounding failure 论述\n\n**Limitations**：single seed 限定改为 4B-4B 具体说明 + 8B-8B 待训练；新增 val/test distribution shift；新增 no downstream re-repair experiment\n\n**Future work**：未改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-conclusion.md"
+}

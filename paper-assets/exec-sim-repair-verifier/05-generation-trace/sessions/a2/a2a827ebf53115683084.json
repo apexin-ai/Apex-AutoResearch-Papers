@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2a827ebf53115683084",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops d056 home kill and eval",
+  "task_key": "worker_ops_d056-home-kill-and-eval_20260514T011721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d056-home-kill-and-eval_20260514T011721_result.json",
+    "occurrence": 1,
+    "bytes": 216,
+    "sha256": "14a9170b61a6f54f4ea201d3438f1f6692c41f3d7f58a06138cae74df710714d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n```\nKill: PID 3001112 killed, GPU released (0 MiB)\nBest checkpoint: checkpoint-200 (eval_loss=0.0772)\nEval: PID 3018282, tmux session eval_cls_seed123, GPU 0 memory 17810 MiB\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d056-home-kill-and-eval.md"
+}

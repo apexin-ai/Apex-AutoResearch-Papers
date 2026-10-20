@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e37f7654ad88d7bcd92",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh comprehensive gpu status",
+  "task_key": "worker_ssh_comprehensive-gpu-status_20260520T012703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_comprehensive-gpu-status_20260520T012703_result.json",
+    "occurrence": 1,
+    "bytes": 1633,
+    "sha256": "05df8441634b5d3d4f7b6708912ab16d854d382af62473df846fd2e958197af5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总览\n\n### GPU 状态\n\n| GPU | Util | VRAM | 状态 |\n|-----|------|------|------|\n| 0 | 98% | 21253/32607 MiB | 活跃训练 |\n| 1 | 100% | **0 MiB** / 32607 MiB | **仍 hung** — 100% 利用率但 0 VRAM，温度 40°C |\n| 2 | 82% | 16051/32607 MiB | 活跃训练 |\n| 3 | 99% | 31259/32607 MiB | 活跃训练 |\n\n### 训练任务\n\n| 任务 | GPU | PID | 状态 | 进度 |\n|------|-----|-----|------|------|\n| **Qwen3-8B CWM s123** | 0 或 3 | 881323 | **OOM 崩溃** (EXIT_CODE=1) | v3 日志显示 CUDA OOM，进程 20.75 GiB 时爆显存 |\n| **Qwen3-8B CWM s456** | 0 或 3 | 881465 | **OOM 崩溃** (EXIT_CODE=1) | v2 日志显示 CUDA OOM，进程 30.52 GiB 时爆显存 |\n| **DeepSeek CWM s123** | 2 | 885624 | **运行中** | step 13/2865 (0.5%), ~1.8s/it, ETA ~1h25m |\n\n### 关键问题\n\n1. **Qwen s123 + s456 双双 OOM**：两个 8B 模型都挤在 `--device cuda:0`（共享同一张卡），互相抢显存导致 OOM。进程虽然在 ps 中仍显示，但日志已报 EXIT_CODE=1，实际已死。GPU 0 和 GPU 3 上残留的 21 GiB / 31 GiB 显存是僵尸进程占用。\n\n2. **GPU 1 仍然 hung**：100% utilization + 0 MiB VRAM 是典型的 GPU 硬件 hang 状态，未恢复。\n\n3. **DeepSeek CWM s123 正常**：刚启动 1 分钟，在 GPU 2 上跑得很稳，16 GiB 显存占用。\n\n### RAM\n754 GB total, 51 GB used — 充裕。\n\n### 建议操作\n- Qwen 两个 OOM 进程需要 kill 掉释放 GPU 0/3 显存，然后分别指定 `CUDA_VISIBLE_DEVICES=0` 和 `CUDA_VISIBLE_DEVICES=3` 重新启动\n- GPU 1 需要 `nvidia-smi -r` 或实例重启才能恢复"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-comprehensive-gpu-status.md"
+}

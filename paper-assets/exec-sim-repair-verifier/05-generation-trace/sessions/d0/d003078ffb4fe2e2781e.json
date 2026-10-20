@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d003078ffb4fe2e2781e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis D138 data investigation",
+  "task_key": "worker_analysis_D138-data-investigation_20260518T192455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_D138-data-investigation_20260518T192455_result.json",
+    "occurrence": 1,
+    "bytes": 1219,
+    "sha256": "42b301743d5027f426f253e3a54cf26755c16d14d1c62f344f2f140470a745ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。核心结论：\n\n**问题 1**：76.92% 和 83.63% 来自**完全不同的 eval**。76.92% = ckpt-600 + seq2048（seetacloud），83.63% = ckpt-4600 + seq5120（home 服务器）。`aggregate_variant_level_v2.py` 硬编码了错误的（ckpt-600）路径。论文 Table 4 报的 83.63% 是正确的。83.63% 的 variant-level 聚合结果为 **64.58%**（31/48），与论文 line 166 的叙述一致。\n\n**问题 2**：Fail recall 对比：\n\n| Model | Per-test Acc | Fail Recall | Variant Acc |\n|---|---|---|---|\n| DeepSeek s123 (seq8192) | 74.93% | **13.72%** | 56.25% |\n| Qwen3-4B (ckpt4600) | 83.63% | 48.72% | 64.58% |\n| Qwen3-8B s42 | 84.48% | 56.76% | 72.92% |\n| Qwen3-8B s123 | 85.60% | 51.44% | 81.25% |\n\n**\"Model-contingent decision collapse\" 叙事成立**：DeepSeek 几乎全预测 pass（fail recall 仅 14%），而 Qwen3 维持合理的 fail 检测但受 AND-rule 聚合惩罚。同一 CLS 公式在不同模型上展现质变式不同的失败模式。\n\n一个有趣发现：4B ckpt600（76.92% acc）的 variant-level（68.75%）反而**高于** ckpt4600（83.63% acc → 64.58%），因为 ckpt4600 过度偏向预测 pass，在 AND 规则下被放大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d138-data-investigation.md"
+}

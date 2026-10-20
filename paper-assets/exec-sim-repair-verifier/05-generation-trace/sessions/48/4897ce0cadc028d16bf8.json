@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4897ce0cadc028d16bf8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze downsample eval results",
+  "task_key": "worker_analyze_downsample-eval-results_20260519T061354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_downsample-eval-results_20260519T061354_result.json",
+    "occurrence": 1,
+    "bytes": 1007,
+    "sha256": "a4a075e3743bf94a8b4d0a277a2fba3b5871abbc0bdecc9615b973f4c38b5b1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The eval was **never launched**. Here's the situation:\n\n**Training (`exp-downsample-cls-func-v3`):** Completed successfully.\n- Best checkpoint: epoch 2, eval_loss = 0.0907\n- Checkpoint path: `/root/autodl-tmp/checkpoints_cls_downsample_qwen3_4b/best`\n- Already registered with `conclusion=success`\n\n**Eval (`exp-downsample-cls-func-v3-eval`):** Does not exist in registry. No eval output files found anywhere on the server (no logs, no JSON results, no predictions). The PID 802400 mentioned in the task left no trace.\n\nThe training status is already properly registered, but the eval needs to be launched. The eval script is `eval_repo_cls.py` based on prior experiments (e.g., `eval_cls_seed0.json` shows Qwen3-4B full-data function-level = 87.94% accuracy at seed 0).\n\nWant me to launch the downsample eval on the server? The command would use `eval_repo_cls.py` with the downsample checkpoint at `/root/autodl-tmp/checkpoints_cls_downsample_qwen3_4b/best` against the test set."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-downsample-eval-results.md"
+}

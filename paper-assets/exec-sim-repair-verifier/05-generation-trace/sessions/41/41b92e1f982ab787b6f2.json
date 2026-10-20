@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41b92e1f982ab787b6f2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops re repair env check",
+  "task_key": "worker_ops_re-repair-env-check_20260517T033932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_re-repair-env-check_20260517T033932_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "81b029ac491f15748005a82e73b1c65ff9df9fb670c389a4a7074aac93fd7692"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 环境检查报告\n\n### Qwen3-8B-Instruct\n- 状态: **不可用**\n- 路径: 未找到\n- 说明: 服务器上只有 base 版本:\n  - `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B` (16G)\n  - `/root/autodl-tmp/models/Qwen/Qwen3-8B`\n  - `/root/autodl-tmp/models/Qwen/Qwen3-32B`\n  - `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B` (7.6G)\n- 其他 Instruct 模型: **无** (全部为 base 版本，未找到任何 `*Instruct*` 目录)\n\n### SWE-bench Docker\n- Docker 镜像: **不可用** (docker 命令不存在)\n- Docker 容器: **不可用**\n- Python 包: **未安装** (pip list 中无 swe 相关包)\n- 项目中有 SWE-bench 数据处理脚本和数据目录:\n  - `data/swebench_fix_test/`\n  - `data/swebench_full/`\n  - `data/swebench_pilot/`\n  - `build_swebench_data.py`, `split_swebench_data.py`, `swebench_test_dist.py`\n\n### 磁盘\n- 可用空间: **67G** (250G 总量，已用 184G，74%)\n- 模型占用: **102G**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-re-repair-env-check.md"
+}

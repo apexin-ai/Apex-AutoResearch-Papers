@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8c85167d6bfe71907d2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "critical westd cuda1 queue manager",
+  "task_key": "worker_critical_westd-cuda1-queue-manager_20260514T204309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_critical_westd-cuda1-queue-manager_20260514T204309_result.json",
+    "occurrence": 1,
+    "bytes": 136,
+    "sha256": "bde52ec92e4b88f8ade30d5709102696f4823e27d2107f8285264e49e7a18957"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 当前状态：PID 281646 占用 13620 MiB，GPU utilization 100%，仍在运行 4B v5 eval。3 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/critical-westd-cuda1-queue-manager.md"
+}

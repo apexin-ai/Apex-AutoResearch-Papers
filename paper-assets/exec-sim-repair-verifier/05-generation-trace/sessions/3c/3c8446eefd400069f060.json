@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c8446eefd400069f060",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval seed123 checkpoint sweep home",
+  "task_key": "worker_eval_seed123-checkpoint-sweep-home_20260514T015335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed123-checkpoint-sweep-home_20260514T015335_result.json",
+    "occurrence": 1,
+    "bytes": 238,
+    "sha256": "e1f7e9ee9a35b024bb70eff52dce69b81a8d8d86b94d39c6e4fa94e7197f1593"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 正在后台运行。当前状态：\n- checkpoint-400 推理中（模型已加载，正在处理 9784 samples）\n- 待 eval: checkpoint-600, 800, 1000\n- 预计总耗时 ~2 小时\n\n20 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed123-checkpoint-sweep-home.md"
+}

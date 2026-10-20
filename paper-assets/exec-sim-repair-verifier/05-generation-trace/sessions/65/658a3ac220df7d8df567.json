@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "658a3ac220df7d8df567",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "code eval parser symmetry fix",
+  "task_key": "worker_code_eval-parser-symmetry-fix_20260513T004034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-parser-symmetry-fix_20260513T004034.log",
+    "occurrence": 1,
+    "bytes": 701687,
+    "sha256": "8387d2b41f21f1845ac63fd9a70bd565ea16fcd5e1aaa5e6b8d7d8faed903fa5"
+  },
+  "statistics": {
+    "messages": 200,
+    "user_turns": 0,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 50,
+      "tool_call": 72,
+      "tool_result": 72,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 200,
+      "chunks": [
+        {
+          "path": "658a3ac220df7d8df567-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "658a3ac220df7d8df567-part-0002.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-eval-parser-symmetry-fix.md"
+}

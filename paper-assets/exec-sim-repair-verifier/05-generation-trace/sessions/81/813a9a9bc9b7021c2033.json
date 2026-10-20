@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "813a9a9bc9b7021c2033",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "poll westd seed123 test v2 round3",
+  "task_key": "worker_poll_westd-seed123-test-v2-round3_20260515T101701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_poll_westd-seed123-test-v2-round3_20260515T101701_result.json",
+    "occurrence": 1,
+    "bytes": 41,
+    "sha256": "6359a51cbf7dc2bb5008de94d654270f373f93af8fe6d91768189351ad73293f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 分钟后回来复查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/poll-westd-seed123-test-v2-round3.md"
+}

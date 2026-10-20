@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95e7e501632784e192d5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code exp downsample cls func v3",
+  "task_key": "worker_code_exp-downsample-cls-func-v3_20260519T040349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-downsample-cls-func-v3_20260519T040349_result.json",
+    "occurrence": 1,
+    "bytes": 1283,
+    "sha256": "2c1ea3bc16404d11c07f6debf45d9afd8d33e6bb844e9a11db03cd87b99ded13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**v2 失败根因**：wandb 启动时进入 online 模式但未配置 API key\n```\nwandb.errors.errors.UsageError: No API key configured. Use `wandb login` to log in.\nEXIT_CODE=1\n```\n失败点：`trainer.train()` → `on_train_begin` → `wandb.init()` → `_find_or_prompt_for_key`。/root/.netrc 不存在，环境无 WANDB_API_KEY。\n\n**修复方法**：`submit_training_job` 框架自动注入环境变量。v3 进程 `/proc/796729/environ` 显示：\n```\nHF_HUB_OFFLINE=1\nWANDB_MODE=offline    ← 修复关键\nCUDA_VISIBLE_DEVICES=1\n```\n\n**当前状态**：v3 已在运行（无需重新提交）\n- tmux session: `exp-downsample-cls-func-v3`（12:05:35 启动）\n- PID 796729 on GPU 1（cuda:1, 16.8 GB）\n- 进度：step 36/756 @ 3.35s/iter，预计总时长 ~42 min\n- 数据校验：train 8051 行（10 条 prompt 超长被丢弃，保留 8041），val 1896 行 ✓\n- log: `/root/runs/exec-sim-repair-verifier/exp-downsample-cls-func-v3.log`\n\n**Registry**：已更新 `exp-downsample-cls-func-v3.notes` 记录诊断与修复细节。\n\n**GPU 1 占用情况**：v3 自身占用（PID 796729）。其他 GPU：0=cwm-8b eval（778334），2=deepseek-cwm eval（734440），3=deepseek-cwm-s123 eval（668680，已运行 1d10h）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-downsample-cls-func-v3.md"
+}

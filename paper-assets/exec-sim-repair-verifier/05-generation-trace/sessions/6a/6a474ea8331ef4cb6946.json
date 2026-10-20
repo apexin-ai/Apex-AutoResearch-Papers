@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a474ea8331ef4cb6946",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_3_1778612064.md",
+  "task_key": "loop_3_1778612064",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778612064.md",
+    "occurrence": 1,
+    "bytes": 4437,
+    "sha256": "e36e0cfdd5ded2031c01fe50c7241263300feb91b0ab846ab333cbc8f9c720cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-12T17:39:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud-westd-4x5090 **禁止并行训练**：cgroup 360GB RAM 限制，v3+v4 两次确认 OOM killer 杀进程。只能单进程训练\n- gpu_ids 白名单 = [cuda:0, cuda:1, cuda:2, cuda:3]（seetacloud），home 只有 cuda:0\n- cls8b-eval-seed123 accuracy 有 3 个不同值（89.52/89.40/89.37），**未统一**——引用 8B 数据时必须先确认权威 checkpoint\n- train_repo_cwm.py **未同步到 home 服务器**——不要在 home 跑 CWM\n- ARR May 25 deadline = 13 天，repo-level 结果是 Go/No-Go 决胜点\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090**: root@seetacloud-westd-4x5090, 工作目录 /home/sonny/exec-sim-repair-verifier, 4×RTX 5090, cgroup 360GB RAM\n- **home-1x5090**: sonny@home-1x5090, 工作目录 /home/sonny/exec-sim-repair-verifier, 1×RTX 5090, 62GB RAM\n- **westd-48478**: sonny@westd-48478（备用服务器，当前无活跃任务）\n- Python: 具体路径需 SSH 探测（seetacloud 大概率 conda /root/miniconda3, home 可能 venv 或系统 python）\n- HF cache: seetacloud 应设 /root/autodl-tmp/.hf_cache（AutoDL 根分区只有 ~30GB）\n- **活跃进程**: 无（reconcile_crons 返回 0 个活跃 cron，0 个 running worker）\n- **repo-level-cls-home** 之前在 home cuda:0 训练 (step ~104/6633)，但 registry 状态是 PREPARING 而非 RUNNING——**很可能训练进程已完成或被杀，需要 SSH 确认**\n\n### 3. 📊 当前状态\n**刚做完的事**：上一个 session 完成了全部函数级实验（5-seed CLS/CWM）、8B 3-seed scaling、补充实验（block-corr/majority-voting/error-complementarity/precision-recall）、Fig 1 生成。Paper Agent Step 2 进行中。\n\n**Registry 状态**：43 个实验，37 DONE（29 success / 3 negative / 5 failed），6 PREPARING：\n- `repo-level-cls-home` — PREPARING，之前在 home 跑到 step ~104/6633，**状态异常需确认**\n- `repo-level-cwm-v4` — PREPARING，seetacloud 单进程提交待执行\n- `repo-level-cls-v4` — PREPARING，seetacloud 磁盘修复后重提交\n- `repo-level-cwm-v2` — PREPARING (conclusion=failed)，已废弃\n- `repo-level-cls-v2` — PREPARING (conclusion=failed)，已废弃\n- `matched-seed-8b-predictions` — PREPARING，home 服务器生成 8B per-instance predictions\n\n**等待中**：无活跃 Worker、无活跃 Cron、无待处理 Director 决策\n\n### 4. 📋 待办（条件触发式）\n- **立即** → SSH 探测 home 服务器 repo-level-cls-home 训练进程状态（是否还活着、到了哪个 step、有无 checkpoint）\n- repo-level-cls-home 仍在跑 → 注册 cron 监控；已完成 → 转 ANALYZING 跑 eval\n- repo-level-cls-home 已死 → 找最近 checkpoint，决定从断点续训还是重启\n- home GPU 空闲 → 提交 matched-seed-8b-predictions（生成 8B eval JSONs）\n- seetacloud GPU 全空闲 → 提交 repo-level-cwm-v4（单进程，cuda:2）\n- CLS + CWM repo-level 都完成 → paired bootstrap 对比 → Go/No-Go 判定（D008: ≥3pp 全力 EMNLP Main, 1-3pp 加 seeds, <1pp pivot Plan B）\n- repo-level eval 完成 → Paper Agent patch repo-level 数据到论文各章节\n- cls8b seed123 accuracy 值不一致 → 需确认权威 checkpoint 并统一 registry\n\n### 5. 🎯 战略上下文\n- **核心赌注**：函数级 CLS≈CWM（gap<0.5pp），项目命运取决于 repo-level 是否出现 complexity-dependent advantage。这是 Pillar 1 的决胜实验\n- **决策链**：D019(统计检验方法) → D020(TOST 等价，Claim 2 恢复) → D021(审稿反馈) → D022/D023(5-paired gap 确认) → D024(禁止杀训练进程) → D025/D026(GPU 分配) → D027(v3 OOM 恢复) → D028(seetacloud 禁止并行)\n- **最容易判断错的事**：\n  1. 不要在 seetacloud 同时启动两个训练——哪怕 4 张卡看起来空闲，RAM 撑不住两个 70k 样本的 4B 模型\n  2. repo-level-cls-home 的 ROADMAP 写 \"step ~104/6633\"，但 registry 是 PREPARING——实际状态未知，必须先 SSH 确认再做任何决策\n  3. 8B gap 数字：3-seed 修正后是 2.26pp（不是之前的 2.42pp），论文必须用 3-seed 数字\n  4. v2 系列已废弃（conclusion=failed），不要尝试重提交\n- **Go/No-Go 时间压力**：ARR May 25 剩 13 天，repo-level bottleneck ~20h（CWM），eval+stats ~3h，paper patch ~1d，终审 ~1d = 最少 4-5 天。**不能再有 OOM 事故**\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778612064.md"
+}

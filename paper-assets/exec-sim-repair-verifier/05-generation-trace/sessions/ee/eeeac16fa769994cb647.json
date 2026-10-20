@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eeeac16fa769994cb647",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect ckpt1000 val8192 and submit test",
+  "task_key": "worker_collect_ckpt1000-val8192-and-submit-test_20260515T013555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_ckpt1000-val8192-and-submit-test_20260515T013555_result.json",
+    "occurrence": 1,
+    "bytes": 1241,
+    "sha256": "ca560b0de223ad5d9a7d2e8c6c823ed7ef07319048cd699931226a7d489652ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 结果\n\n### 1. ckpt-1000 val@8192 最终结果\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **88.23%** |\n| **F1 macro** | **82.72%** |\n| F1 fail | 73.0% (P=81.8%, R=65.8%) |\n| F1 pass | 92.5% (P=89.8%, R=95.3%) |\n| Unparseable | 9/9335 |\n\n**远超 val-best 阈值 85%，比 ckpt-600 的 85.00% 高出 3.23pp。**\n\n### 2. test@8192 已提交\n- **tmux session**: `cls8b-s42-ckpt1000-test8192-eval`\n- **PID**: 312975\n- **GPU**: cuda:0 (空闲，0 MiB → 已开始加载模型)\n- **test 集**: 9784 instances\n- **Registry**: RUNNING\n- 预计耗时 ~35min（按 val 的 9335 samples / 34min 推算）\n\n### 3. s42 resume 新 checkpoint\n| Checkpoint | 生成时间 |\n|-----------|---------|\n| checkpoint-800 | 06:34 |\n| **checkpoint-1000** | 07:15 |\n| **checkpoint-1200** | 07:56 |\n| **checkpoint-1400** | 08:38 |\n| **checkpoint-1600** | 09:19 |\n\n训练仍在继续，每 ~40min 出一个 checkpoint。1200/1400/1600 均为新产出。\n\n### 4. GPU 占用\n| GPU | 状态 |\n|-----|------|\n| cuda:0 | → test@8192 eval (刚启动) |\n| cuda:1 | 27.3 GB occupied (PID 295794) |\n| cuda:2 | 30.7 GB occupied (PID 266816) |\n| cuda:3 | 30.9 GB occupied (PID 266449) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-ckpt1000-val8192-and-submit-test.md"
+}

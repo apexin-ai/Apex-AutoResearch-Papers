@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7efe464a6d32b27a33d0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper table3 cls integration",
+  "task_key": "worker_paper_table3-cls-integration_20260520T005447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table3-cls-integration_20260520T005447_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "e75adb8093705e5dd84884258237243f07080c5aa8b6bd9083fa4b2366a0254d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Table 3 updated. Numbers verified against JSON:\n- Qwen3-8B CLS: **84.83 $\\pm$ 0.67** (3 seeds) ✓\n- DeepSeek CLS: **84.38 $\\pm$ 2.50** (2 seeds, with ‡ footnote for s123 exclusion) ✓\n- TRAJ: **73.61 $\\pm$ 3.18** (3 seeds) ✓\n- Majority: **72.96** ✓\n- CWM: `\\tbd{}` placeholder ✓\n\nChanges made:\n1. **main.tex**: added `\\newcommand{\\tbd}{\\textsc{tbd}}`\n2. **experiments.tex**: removed 43-line commented-out multi-seed template; replaced single-seed Table 3 with multi-seed version; updated caption, footnotes (including DeepSeek s123 exclusion note), and bold marking (moved from 4B to 8B as new best)\n\nDeepSeek CLS Var. column now shows only s42=81.25 (s123 excluded for consistency with per-test exclusion). Surrounding body text (lines 135-139) still discusses single-seed CWM comparisons, which remains valid as labeled."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-table3-cls-integration.md"
+}

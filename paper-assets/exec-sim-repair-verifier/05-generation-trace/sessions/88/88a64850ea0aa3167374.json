@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88a64850ea0aa3167374",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops repo level v3 recovery",
+  "task_key": "worker_ops_repo-level-v3-recovery_20260512T171653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_repo-level-v3-recovery_20260512T171653_result.json",
+    "occurrence": 1,
+    "bytes": 2185,
+    "sha256": "caf7dff350a0cb6d9688fb9babfbd2584446e4739f84c679eded47f48c92a8a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断和修复完成。汇总：\n\n---\n\n## 诊断结果\n\n### 1. OOM 根因\n\n**根分区磁盘满 (89%, 27G/30G)**，不是 RAM OOM。\n\n- 系统 RAM 754G，空闲 621G — 完全充足\n- dmesg 无权限（容器），但 EXIT_CODE=137 + 磁盘 89% 高度指向：训练过程中 tokenizer cache / temp 文件写入根分区导致 ENOSPC，触发进程被杀\n- 两个 v3 的 checkpoint 目录 (`checkpoints_repo_cls`, `checkpoints_repo_cwm`) 都是空的 — 没来得及存第一个 checkpoint\n\n**磁盘占用分布**：\n- `/root/.cache/huggingface` (Qwen3-4B + Qwen3-8B): 7.6G（根分区）\n- `/home/sonny/exec-sim-repair-verifier`: 4.5G（根分区，含旧 checkpoint ~3.4G）\n- 其余系统占用 ~15G\n\n### 2. 根分区清理结果\n\n89% → **64%** ✓\n\n操作：将 `/root/.cache` 移至数据盘并创建符号链接 `/root/.cache → /root/autodl-tmp/.cache_root_backup`\n\n### 3. 训练脚本参数\n\n两个脚本**已支持** `save_strategy`/`save_total_limit`，无需修改：\n- `save_strategy=\"epoch\"`（非 dryrun 时）\n- `save_total_limit=2`\n- `output_dir` 默认已指向数据盘 (`/root/autodl-tmp/checkpoints_repo_cls/`, `/root/autodl-tmp/checkpoints_repo_cwm/`)\n\n### 4. 推荐重提交命令\n\n模型路径应改为数据盘副本（避免再从根分区读取/缓存）：\n\n```bash\n# CLS (cuda:2)\nHF_HOME=/root/autodl-tmp/.hf_cache \\\nTORCH_HOME=/root/autodl-tmp/.torch_cache \\\nnohup python /home/sonny/exec-sim-repair-verifier/train_repo_verifier.py \\\n  --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B \\\n  --device cuda:2 \\\n  > /root/autodl-tmp/train_repo_cls.log 2>&1 &\n\n# CWM (cuda:3)\nHF_HOME=/root/autodl-tmp/.hf_cache \\\nTORCH_HOME=/root/autodl-tmp/.torch_cache \\\nnohup python /home/sonny/exec-sim-repair-verifier/train_repo_cwm.py \\\n  --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B \\\n  --device cuda:3 \\\n  > /root/autodl-tmp/train_repo_cwm.log 2>&1 &\n```\n\n### 5. 是否需要错开启动\n\n**不需要**。RAM 621G 空闲，两个 Qwen3-4B LoRA 训练各占 ~15-20G GPU 显存 + ~10-20G RAM，完全可以同时启动。OOM 根因是磁盘不是内存，现已修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-repo-level-v3-recovery.md"
+}

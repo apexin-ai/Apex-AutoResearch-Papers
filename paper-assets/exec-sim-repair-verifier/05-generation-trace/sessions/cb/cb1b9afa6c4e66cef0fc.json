@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb1b9afa6c4e66cef0fc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check loop8 westd full",
+  "task_key": "worker_check_loop8-westd-full_20260514T052402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_loop8-westd-full_20260514T052402_result.json",
+    "occurrence": 1,
+    "bytes": 1658,
+    "sha256": "d749c55a82685a370af27af74d5b34cd13f955075b9846e0ba13ca376cbb0490"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 服务器: westd-48478 ===\nGPU 0: [运行中] CWM seed123 eval - 12997/32607 MiB, 88% util\nGPU 1: [运行中] CWM v12 eval    - 12997/32607 MiB, 100% util\nGPU 2: [空闲] 0 MiB\nGPU 3: [空闲] 0 MiB\n\n=== CWM eval（进行中）===\nCWM seed123: 2448/9784 (25.0%), running_acc=57.2%\nCWM v12:     2472/9784 (25.3%), running_acc=58.5%\n\n速度 ~8 samples/52s ≈ 每样本 6.5s，剩余 ~13.2h 完成\n\n=== CLS eval 结果汇总 ===\n\n| 模型 | Checkpoint | Accuracy | F1_macro | F1_fail | F1_pass | Gap vs Majority |\n|------|-----------|----------|----------|---------|---------|-----------------|\n| CLS 8B  | ckpt-200 | 70.22% | 68.21% | 60.23% | 76.19% | -2.74pp |\n| CLS 8B  | **ckpt-400** | **84.52%** | **80.89%** | **72.57%** | **89.21%** | **+11.56pp** |\n| CLS 8B  | ckpt-600 | 78.51% | 74.56% | 64.53% | 84.58% | +5.55pp |\n| CLS 4B (v5) | ckpt-200 | 52.96% | 52.89% | 51.02% | 54.76% | -19.99pp |\n| CLS 4B (v5) | ckpt-400 | 78.43% | 68.41% | 50.61% | 86.21% | +5.48pp |\n| CLS 4B (v5) | ckpt-600 | 76.37% | 71.17% | 58.93% | 83.41% | +3.41pp |\n\n| CWM 4B (v10) | ckpt-400 | 69.91% | 46.71% | 11.54% | 81.87% | -3.05pp |\n\n=== 关键发现 ===\n- **CLS 8B ckpt-400 是目前最佳**：accuracy 84.52%, f1_macro 80.89%, 超 majority baseline 11.56pp\n- CLS 8B 过拟合明显：ckpt-600 比 ckpt-400 下降 6pp accuracy\n- CLS 4B (v5) 最佳在 ckpt-400 (accuracy 78.43%) 但 f1_macro 只有 68.41%（fail recall 低至 40.85%）\n- CWM v10 有严重 parse 问题（9102/9784 unparseable），f1_fail 仅 11.54%\n- CWM seed123/v12 正在评估中（max_new_tokens=1024 vs v10 的 64），预计明日凌晨完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-loop8-westd-full.md"
+}

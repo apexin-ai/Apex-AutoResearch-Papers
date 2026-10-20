@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f0815fecd3d0c945550",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_5_1778632790.md",
+  "task_key": "loop_5_1778632790",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778632790.md",
+    "occurrence": 1,
+    "bytes": 3945,
+    "sha256": "9fd0d737d56982661e8c012a80215f72f4dec2c7deb3264205f8b0c0670a4eb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-13T00:34:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud-westd-4x5090 **禁止并行训练**：cgroup 360GB RAM 限制，两个 4B 训练并行会触发 OOM killer（v3+v4 两次确认）。同一时间只能跑一个训练进程。\n- seetacloud 上 `eval_steps` 必须与 `save_steps` 对齐（`load_best_model_at_end` 要求 save_steps 是 eval_steps 整数倍）——v8 就是因为 save_steps=100 vs eval_steps=500 崩的。\n- Worker `cwm-v9-dryrun-submit` 已在 seetacloud cuda:2 提交了 CWM v9 训练。**不要再次提交**——我本轮已误提交一次重复进程（pid=94010），发现后立即 kill 了。后续以 Worker 进程为准。\n- CWM 训练输出目录是 `/root/autodl-tmp/checkpoints_repo_cwm_v9/`（v9 新目录），不是之前的 `_v6/`。\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090**：account=root，工作目录 `/home/sonny/exec-sim-repair-verifier`，Python `/root/miniconda3/bin/python`，conda base env（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n  - 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`\n  - 数据：`/home/sonny/exec-sim-repair-verifier/data/swebench_full`（70748 条）\n  - CWM v9 训练中（Worker 提交，pid 未知，tmux session 未知——需 Worker 回调确认）\n- **home-1x5090**：account=sonny，工作目录 `/home/sonny/exec-sim-repair-verifier`，1× RTX 5090，62GB RAM\n  - CLS v2 训练中（pid=2881844，checkpoint `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`，eval_steps=200，save_steps=200）\n- W&B：两个实验都用 `--no_wandb`，cron 通过进程存活检测监控\n\n### 3. 📊 当前状态\n收到 cwm-v8 失败 cron 回调，诊断为 eval_steps/save_steps 配置冲突。Worker `cwm-v9-dryrun-submit` 已在处理修复并提交 v9。我误提交了重复进程后立即 kill。已向 Director 汇报。\n\n| exp_id | 状态 | 位置 |\n|--------|------|------|\n| repo-level-cls-v2 | RUNNING | home cuda:0, pid=2881844 |\n| repo-level-cwm-v9 | PREPARING（registry）/ 实际 Worker 已提交在跑 | seetacloud cuda:2 |\n\n**等待中**：\n- Worker `cwm-v9-dryrun-submit` 回调 → 需要拿到真实 pid 更新 registry\n- Worker `cls-home-restart-d036` 回调 → 确认 CLS v2 重启状态\n- cron 可能报 pid=94010 退出失败 → **忽略**，这是被 kill 的重复进程\n\n### 4. 📋 待办\n- Worker cwm-v9-dryrun-submit 回调 → 从产出中提取真实 pid/tmux session → update_registry(exp_id=repo-level-cwm-v9, spec={pid, log_path 等}) → 状态推进到 RUNNING\n- cron 报 pid=94010 失败 → 忽略（notes 已说明），不要重提交\n- CWM v9 训练完成 cron → 按 on-experiment-done 处理，与 CLS v2 做 paired comparison\n- CLS v2 训练完成 cron → 同上，等配对实验都完才做 bootstrap test\n- 两路都完成 → repo-level eval + paired bootstrap → Go/No-Go 判定（D008：≥3pp 全力 EMNLP Main，1-3pp 加 seeds，<1pp kill C1）\n\n### 5. 🎯 战略上下文\n- **核心假说**：函数级 CLS≈CWM（TOST 等价已证），但 repo-level 复杂度下 CLS 应显著优于 CWM（complexity-dependent advantage = C1 claim）。repo-level 是决胜战场。\n- **CWM 连续失败 8 次**（v1-v8），原因各异（并行 OOM、Worker 互相干扰、eval_steps 配置错误、平台 kill 等）。D031 已总结根因是多 Worker 并行提交。v9 是第一次由单 Worker 干净提交。\n- **时间线**：ARR May 25 截稿，~13 天。训练 bottleneck ~20h（CWM 最慢），eval+stats ~3h，paper ~2d。总计 ~4-5d 如果训练顺利。\n- **易错点**：不要在 seetacloud 上并行启动第二个训练——每次试都 OOM 被 kill。不要用 `--output_dir checkpoints_repo_cwm_v6/`——那是旧目录有残留 checkpoint。\n- 8B scaling 实验已完成：CLS-CWM gap=2.43pp (p=0.007)，支持 C1。repo-level 实验是补齐最后一块拼图。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778632790.md"
+}

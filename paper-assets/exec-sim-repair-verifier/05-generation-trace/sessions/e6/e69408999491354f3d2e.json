@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e69408999491354f3d2e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "gpu3 cwm8b s123 train",
+  "task_key": "worker_gpu3-cwm8b-s123-train_20260519T124930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu3-cwm8b-s123-train_20260519T124930.log",
+    "occurrence": 1,
+    "bytes": 732600,
+    "sha256": "a743af10afc6e6e5c03061c5ff595809de571b18079f26d2a3dbabe677bbb931"
+  },
+  "statistics": {
+    "messages": 182,
+    "user_turns": 0,
+    "tool_calls": 58,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 58,
+      "tool_result": 58,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 182,
+      "chunks": [
+        {
+          "path": "e69408999491354f3d2e-part-0001.json",
+          "message_count": 114
+        },
+        {
+          "path": "e69408999491354f3d2e-part-0002.json",
+          "message_count": 68
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu3-cwm8b-s123-train.md"
+}

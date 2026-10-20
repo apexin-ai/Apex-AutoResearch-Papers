@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eca41744411a9b6a4cbf",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cls v4 progress check",
+  "task_key": "worker_ssh_cls-v4-progress-check_20260513T000413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cls-v4-progress-check_20260513T000413_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "3193dbfa40469d056788b9b8aca9cc6b4f26bbd106509fafe5e419e8e4a17061"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CLS v4 训练状态汇总\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 2885139 存活，运行时间 2h09m23s |\n| **GPU** | 利用率 89%，显存 19465/32607 MiB (60%) |\n| **训练进度** | **754 / 6633 步 (11.4%)**，epoch 0.34 |\n| **Loss** | 0.6798 (step 750)，eval_loss 0.1317 (step 600) |\n| **Learning Rate** | 1.97e-4 |\n| **Grad Norm** | 2.27 |\n| **速度** | ~6.9-7.0 s/it |\n| **最新 Checkpoint** | checkpoint-600 (2026-05-12 16:46) |\n| **磁盘** | 663G / 1.1T used (66%)，剩余 351G |\n\n### 预计剩余时间\n\n- 已完成 754 步，用时 ~2h06m\n- 剩余 5879 步，按 ~7.0 s/step 估算：**约 11.4 小时**\n- 预计完成时间：约 **今晚 ~03:30**（基于当前时间推算）\n\n训练正常进行，loss 从 0.72 (step 700) 降到 0.68 (step 750)，eval_loss 0.132 表现良好。每 200 步保存 checkpoint，下一个 checkpoint-800 预计约 40 分钟后保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cls-v4-progress-check.md"
+}

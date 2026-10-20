@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cec3549b49ebf1d430b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research model selection download",
+  "task_key": "worker_research_model-selection-download_20260516T045315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_model-selection-download_20260516T045315_result.json",
+    "occurrence": 1,
+    "bytes": 1608,
+    "sha256": "238adab6f7fbd0e2010f48505a162c5d0a9e9a90533979de82602593a401e33f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正在后台进行。汇报当前状态：\n\n## 模型选择：DeepSeek-Coder-6.7B-Instruct\n\n**选择理由：**\n- **HumanEval pass@1: 78.6%** — 同级别（~7B）最强，甚至超过 CodeLlama-70B-Instruct (67.8%)\n- 与 Qwen 完全不同家族（DeepSeek 自有架构）\n- 标准 transformer，完全支持 LoRA 微调\n- 6.7B 参数，与 Qwen3-8B 可比\n- HuggingFace/ModelScope 高下载量，社区验证充分\n\n**淘汰理由：**\n| 模型 | 淘汰原因 |\n|------|----------|\n| CodeLlama-7B-Instruct | HumanEval ~34-40%，远低于 DeepSeek |\n| StarCoder2-7B | 无 instruct 版本，擅长低资源语言但 HumanEval 不突出 |\n| CodeGemma-7B-IT | 非纯 code specialist，benchmark 数据不如 DeepSeek 清晰 |\n\n## 下载状态\n\n- **PID**: 464106\n- **服务器**: seetacloud-westd-4x5090\n- **路径**: `/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct`\n- **方式**: ModelScope（HF 被墙）\n- **速度**: ~5-6 MB/s，预计 **25-30 分钟**完成\n- **磁盘**: 99GB 可用，模型 ~13GB，充足\n\n我会继续监控下载进度。要我等完成后再汇报，还是先继续其他工作？\n\nSources:\n- [DeepSeek-Coder GitHub](https://github.com/deepseek-ai/DeepSeek-Coder)\n- [DeepSeek-Coder-6.7B-Instruct on HuggingFace](https://huggingface.co/deepseek-ai/deepseek-coder-6.7b-instruct)\n- [DeepSeek-Coder-6.7B-Instruct on ModelScope](https://modelscope.cn/models/deepseek-ai/deepseek-coder-6.7b-instruct)\n- [Performance Benchmarks - DeepWiki](https://deepwiki.com/deepseek-ai/DeepSeek-Coder/2.2-performance-and-benchmarks)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-model-selection-download.md"
+}

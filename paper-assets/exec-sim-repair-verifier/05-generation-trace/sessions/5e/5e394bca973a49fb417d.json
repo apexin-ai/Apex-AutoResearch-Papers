@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e394bca973a49fb417d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "prep seed123 8b val sweep plan",
+  "task_key": "worker_prep_seed123-8b-val-sweep-plan_20260515T021451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_seed123-8b-val-sweep-plan_20260515T021451_result.json",
+    "occurrence": 1,
+    "bytes": 1967,
+    "sha256": "f69c0b0c3916b0c65b7c308dd457773830ca1811268df75b0cecd96f700a052c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 训练进度\n- **当前 step**: 5458 / 6633 (82%)\n- **已运行**: 8h31m\n- **速度**: ~8.3s/step\n- **剩余**: 1175 steps × 8.3s ≈ **2h43m**\n- **最近指标**: train_loss=0.2422 (step 5450), eval_loss=0.3489 (step 5400, epoch 2.44)\n\n### 已有 Checkpoints\n| Checkpoint | 时间 | 大小 |\n|---|---|---|\n| checkpoint-200 | May 14 14:35 | ~176M |\n| checkpoint-4800 | May 15 08:01 | ~176M |\n| checkpoint-5000 | May 15 08:43 | ~176M |\n| checkpoint-5200 | May 15 09:25 | ~176M |\n| checkpoint-5400 | May 15 10:07 | ~176M |\n\n配置: `save_steps=200, save_total_limit=5, eval_steps=200`\n\n### 训练结束时预计保留的 Checkpoints\n\nsave_total_limit=5，后续还会产出 checkpoint-5600/5800/6000/6200/6400/6600。旧的会被逐步淘汰。训练结束时预计保留：\n\n- checkpoint-200（可能被保留——疑似 resume 前遗留或 best model）\n- checkpoint-6000, 6200, 6400, 6600（最后4个）\n\n如果 checkpoint-200 被淘汰，则保留最后5个: **5800, 6000, 6200, 6400, 6600**。\n\n### Val Sweep 计划\n\n**策略**: 全量评估（≤ 6 个 checkpoint，无需抽样）\n\n每个 checkpoint eval 参数：\n```bash\npython /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-XXXX \\\n  --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ \\\n  --split val \\\n  --device cuda:3 \\\n  --batch_size 1 \\\n  --max_seq_length 8192 \\\n  --output_dir /root/autodl-tmp/eval_results_8b_seed123/\n```\n\n- **每个 checkpoint**: ~35 min\n- **5-6 个 checkpoint**: ~175-210 min (3-3.5h)\n- 按 val loss / F1 选 best checkpoint\n\n### 磁盘空间\n- `/root/autodl-tmp/`: 111GB 可用 (56% used)，充足\n\n### Eval 脚本验证\n- `eval_repo_cls.py` 存在，支持 `--split val`、`--checkpoint_dir`、`--model_name`、`--batch_size`、`--max_seq_length`、`--output_dir` 等参数，可直接使用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-seed123-8b-val-sweep-plan.md"
+}

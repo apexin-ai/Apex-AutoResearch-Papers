@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4a63eab6f2d7e93c898",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "write s53 baseline narrative",
+  "task_key": "worker_write_s53-baseline-narrative_20260522T211425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_s53-baseline-narrative_20260522T211425_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "14feef6cbf234b7e61766c71bac9a431d7d2c28f1ec890aea7ee0862b51ed768"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修改已完成：\n\n1. **Table 1** 新增两行 14B baseline 数据（0-shot 66.24%, 3-shot ICL 73.12%），分别插在对应方法组内 8B 和 DeepSeek 之间\n2. **§5.3** 新增 `\\paragraph{Baseline scaling.}` 段落（line 109），覆盖三个要点：\n   - 3-shot 14B > 8B (+4.34pp)，scale 在 few-shot 有效\n   - 0-shot 14B < 8B (-2.46pp)，措辞审慎归因于 instruction tuning 差异\n   - 最优 baseline (73.12%) 仍低于 fine-tuned CLS 8B (89.94%) 16.82pp，scale 不能替代 fine-tuning"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-s53-baseline-narrative.md"
+}

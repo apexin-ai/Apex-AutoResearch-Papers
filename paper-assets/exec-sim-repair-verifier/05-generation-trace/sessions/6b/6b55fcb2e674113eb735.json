@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b55fcb2e674113eb735",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code data consistency fix",
+  "task_key": "worker_code_data-consistency-fix_20260521T063551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_data-consistency-fix_20260521T063551_result.json",
+    "occurrence": 1,
+    "bytes": 1185,
+    "sha256": "c9be8b887d821de366ca29386075ee2c31ab165bcf4c10842b561c39b934ee87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行成功，输出无 error。\n\n---\n\n```\n=== 数值修正对比 ===\n\n文件: compute_supplementary_stats.py\n  Qwen CLS s42:  85.34 → 84.48 (source: cls8b-s42-resume-ckpt3600-test-v2)\n  Qwen TRAJ s42: 72.92 → 70.83 (source: qwen3-8b-traj-repo-s42-best-eval, D159)\n\n文件: integrate_cwm_results.py\n  CLS_REPO Qwen s42:  85.34 → 84.48\n  TRAJ_REPO Qwen s42: 72.92 → 70.83\n  + DeepSeek CLS s123=74.93 标注 known_outlier，quality_check 不再触发 ANOMALY\n\n文件: w5_mixed_effects_v2.py\n  ✓ 无硬编码 CLS/TRAJ 值，从 eval_dirs 动态读取，无需修改\n\n文件: plot_figure2_v2.py\n  TRAJ Qwen mean: 73.61 → 72.91\n  TRAJ Qwen std:  3.15 → 3.61\n  CLS Qwen std:   0.66 → 0.67\n\n统计结果变更 (artifacts/supplementary_statistics.txt):\n  Bootstrap CI:\n    CLS / Qwen3-8B:  mean 85.11 → 84.83, SD 0.63 → 0.67\n    TRAJ / Qwen3-8B: mean 73.61 → 72.91, SD 3.18 → 3.61\n  Cohen's d:\n    CLS vs TRAJ (Qwen3-8B): 5.015 → 4.590 (still large)\n  CLS mean → CWM delta:\n    Qwen3-8B: Δ +20.75 → +20.47 pp\n  Power Analysis:\n    CLS vs TRAJ (Qwen3-8B): d_paired 4.346 → 4.054, Power 0.940 → 0.914\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-data-consistency-fix.md"
+}

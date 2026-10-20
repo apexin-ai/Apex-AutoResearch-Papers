@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "553b0a253ec1978b5950",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra home cwm kill restart",
+  "task_key": "worker_infra_home-cwm-kill-restart_20260518T204625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_home-cwm-kill-restart_20260518T204625_result.json",
+    "occurrence": 1,
+    "bytes": 876,
+    "sha256": "3b415d7f81ef7843ee5f99c7ff70a0731ce557d510157e69ff3126f34dd94018"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n| 项目 | 结果 |\n|------|------|\n| **Kill** | 成功，SIGTERM 即生效（未需 SIGKILL） |\n| **进程确认** | `ps aux` 无残留进程 |\n| **Resume 支持** | 脚本内置自动 resume：读取 `results_incremental.jsonl` 跳过已完成 index |\n| **已完成数据** | 3039 条（31.1%） |\n| **重启 PID** | **4187955**（tmux session: `D133-resume`） |\n| **Resume 验证** | 日志确认跳过 3039 条，从 3040/9784 开始处理新样本 |\n\n**注意事项**：\n- 原始命令的路径（`/root/autodl-tmp/`, `/root/miniconda3/`）是 AutoDL 模板路径，home 服务器实际路径不同。已根据 eval.log 和文件系统还原正确路径。\n- 用 sonny 用户重启（原进程也是 sonny 用户运行的）。\n\n**预计剩余时间**：剩余 6745 samples，~8s/sample ≈ **15h**，ETA 约 May 19 05:00 UTC。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-home-cwm-kill-restart.md"
+}

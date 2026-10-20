@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5655a98d03e02c02a5e2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval ckpt1400 test final collect",
+  "task_key": "worker_eval_ckpt1400-test-final-collect_20260515T060842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ckpt1400-test-final-collect_20260515T060842_result.json",
+    "occurrence": 1,
+    "bytes": 1130,
+    "sha256": "5bbb58dc169a4cf6ce857838a7ff705cfc611dac1d7b6e677a47d74796987c59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n## ckpt-1400 test@8192 结果\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **85.47%** |\n| F1 macro | 78.90% |\n| F1 fail | 67.13% |\n| F1 pass | 90.67% |\n| Precision fail | 86.43% |\n| Recall fail | 54.88% |\n| Precision pass | 85.27% |\n| Recall pass | 96.81% |\n| Majority baseline | 72.96% |\n| Gap vs majority | +12.51pp |\n| Unparseable | 0 |\n| Total samples | 9,784 |\n\n## 对比 & 状态\n\n**ckpt-1400 是 test 最高 checkpoint**，超过 ckpt-400 (84.79%) +0.68pp。\n\n| Checkpoint | Accuracy | F1 macro | F1 fail |\n|-----------|----------|----------|---------|\n| **ckpt-1400** | **85.47%** | **78.90%** | 67.13% |\n| ckpt-400 | 84.79% | 81.18% | 72.93% |\n| ckpt-800 | 83.53% | 78.97% | 69.17% |\n| ckpt-1200 | 83.84% | 77.47% | 65.49% |\n| ckpt-1000 | 83.52% | 77.50% | 65.85% |\n| ckpt-600 | 79.05% | 75.12% | 65.24% |\n\n注意：ckpt-1400 accuracy 最高但 F1 fail 只有 67.13%（recall_fail=54.9%），远低于 ckpt-400 的 72.93%。ckpt-400 在 F1 macro 和 F1 fail 上仍是最优。\n\n**cuda:0 已释放**（0 MiB / 0% utilization）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ckpt1400-test-final-collect.md"
+}

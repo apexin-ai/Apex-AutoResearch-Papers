@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8650aa08c4ad4dca2e25",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "experiment few shot baseline",
+  "task_key": "worker_experiment_few-shot-baseline_20260517T115423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_few-shot-baseline_20260517T115423_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "8d61902551c87cae60f0ce5c2bb351ad5c3fbc0b7e684078cea6beb3f640561c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `artifacts/few_shot_baseline.json`。\n\n## 3-shot Baseline 结果汇总\n\n| Model | Accuracy | Pass F1 | Fail F1 | Unparseable |\n|---|---|---|---|---|\n| DeepSeek-coder-6.7B-instruct | 59.95% | 44.13% | 68.78% | 0% |\n| Qwen3-8B | 68.78% | 64.46% | 72.17% | 0% |\n\n**对比参考**:\n- Zero-shot: 64.4%\n- Fine-tuned CLS: 86.85%\n\n**关键观察**:\n- DeepSeek 3-shot (59.95%) 反而低于 zero-shot (64.4%)，且严重偏向预测 fail (tn=834, fn=679)，pass 召回极低 (299/978 = 30.6%)\n- Qwen3-8B 3-shot (68.78%) 优于 DeepSeek 零/少样本，但仍远低于 fine-tuned CLS (86.85%)，验证了 fine-tuning 的必要性\n- 两个模型 unparseable rate 均为 0%，输出格式遵循良好"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-few-shot-baseline.md"
+}

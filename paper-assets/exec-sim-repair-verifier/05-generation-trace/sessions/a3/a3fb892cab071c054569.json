@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3fb892cab071c054569",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis deepseek cwm func",
+  "task_key": "worker_analysis_deepseek-cwm-func_20260516T075814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek-cwm-func_20260516T075814_result.json",
+    "occurrence": 1,
+    "bytes": 1522,
+    "sha256": "b4ba3414160b9ad3639d987815a9cd869caed475b3e89d4bb1d5b0c3f5847490"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## deepseek-cwm-func 训练结果汇总\n\n### 状态：完整完成 ✓\n\n训练正常完成 3 个 epoch，EXIT_CODE=0，总耗时 ~87 分钟（5215s）。\n\n### 关键指标\n\n| 指标 | 值 |\n|------|------|\n| **最终 train loss** | 0.0986 (avg), 最后 step 0.0152 |\n| **Best eval loss** | **0.04292** (epoch 2, step 956) |\n| **Epoch 1 eval loss** | 0.04581 |\n| **Epoch 2 eval loss** | 0.04292 ← best |\n| **Epoch 3 eval loss** | 0.04575 |\n| Train speed | 8.8 samples/s, 0.275 steps/s |\n\n### Loss 趋势\n\nTrain loss 持续下降：1.89 → 0.10 → 0.08 → ... → 0.012（最后 step）。但 eval loss 在 epoch 2 达到最优后 epoch 3 略微回升（0.04292 → 0.04575），有轻微 overfitting 迹象。\n\n### Checkpoints\n\n| 路径 | 说明 |\n|------|------|\n| `checkpoints_deepseek_cwm_func/best/` | Best model（对应 step 956 / epoch 2） |\n| `checkpoints_deepseek_cwm_func/checkpoint-956/` | epoch 2 结束时 |\n| `checkpoints_deepseek_cwm_func/checkpoint-1434/` | epoch 3 结束时（最终） |\n\n总大小：456 MB（LoRA adapter，非全量模型）。\n\n### Best checkpoint\n\n- 路径：`/root/autodl-tmp/checkpoints_deepseek_cwm_func/checkpoint-956`\n- 对应 metric：eval_loss = 0.04292\n- `best/` 目录已保存该 adapter 的副本\n\n### 注意事项\n\n- Epoch 3 eval loss 比 epoch 2 高 6.6%，说明 2 epoch 可能已经足够\n- 无 eval accuracy 指标输出（仅记录 eval_loss），后续 eval 需要用 generation + exact match 方式评估"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-cwm-func.md"
+}

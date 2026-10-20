@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4857f4ad1e9869e1be2e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis mutation type seed variance",
+  "task_key": "worker_analysis_mutation-type-seed-variance_20260515T122916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mutation-type-seed-variance_20260515T122916_result.json",
+    "occurrence": 1,
+    "bytes": 1330,
+    "sha256": "1f83145c7370295e97c6125c9f7be92bcbf158c390db556228a68be0bbb60698"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**Part 1 — 按 mutation type 拆解 (W3/W8)**\n\n| 类型 | 8B s42 Acc | Test 占比 | Val 占比 | 难度排名 |\n|------|-----------|-----------|---------|---------|\n| gold | 94.09% | 47.4% | 45.2% | 最易 |\n| return_value | 83.99% | 5.7% | 10.7% | |\n| operator_swap | 82.72% | **34.3%** | 19.1% | |\n| off_by_one | 71.04% | 1.9% | 10.0% | |\n| boundary_removal | **41.47%** | 10.7% | 15.0% | 最难 |\n\n- **operator_swap 从 19.1%→34.3% 并不是主要困难源**——模型处理得不错 (82.72%)\n- **boundary_removal 最难** (41.47%，几乎随机)，错误模式是大量 FP (预测 pass 但实际 fail)\n- **Test 分布比 val 更有利**：测试精度因分布偏移虚增 ~2-3pp\n- **隐藏因素**：xarray (23.7% test, 0% val) 全部 label=pass，模型 100% 正确——这是平凡贡献\n\n**Part 2 — 种子差异根因 (C1)**\n\n- 4B s123 过拟合更快：val loss 从 step 200 的 0.08 急升到 step 800 的 0.15，step 1000 达 0.28\n- Val-best (ckpt-800) 选在过拟合拐点\n- 8B 代理分析显示：不同 seed 在 return_value 上差距最大 (17.62pp)，而非 operator_swap\n- 4B val-best 的逐类型预测文件在离线 home 服务器上，无法完成最终确认\n\n报告已注册为 artifact：`mutation_type_analysis_w3w8_c1.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mutation-type-seed-variance.md"
+}

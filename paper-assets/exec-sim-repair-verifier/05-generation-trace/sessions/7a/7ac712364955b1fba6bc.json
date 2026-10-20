@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ac712364955b1fba6bc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check traj s123 completion",
+  "task_key": "worker_check_traj-s123-completion_20260517T151233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_traj-s123-completion_20260517T151233_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "eba3174e8b02b7d36ad279f1f0d48f855f774387469a41f2c1f3ed9b05db5c35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Qwen3-8B TRAJ s123 训练成功**（756/756 steps, 3 epochs），eval 结果已写入 artifact。\n\n| Metric | s123 | s42 |\n|--------|------|-----|\n| Accuracy | 87.79% | 87.60% |\n| Pass-F1 (resolved) | 86.74% | 85.96% |\n| Fail-F1 (unresolved) | 88.69% | 88.89% |\n| Unparseable | 0 | 0 |\n| Per-test consistency | 76.07% | 78.78% |\n\n两个 seed 结果高度一致，模型稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-traj-s123-completion.md"
+}

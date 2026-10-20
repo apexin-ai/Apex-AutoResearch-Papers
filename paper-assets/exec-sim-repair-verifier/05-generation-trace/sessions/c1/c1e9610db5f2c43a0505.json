@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1e9610db5f2c43a0505",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research ref xcheck A",
+  "task_key": "worker_research_ref-xcheck-A_20260526T104640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-xcheck-A_20260526T104640_result.json",
+    "occurrence": 1,
+    "bytes": 2224,
+    "sha256": "7e45954a46e3cc01f8f16b37c16f5281be2be7d81517e9500aee91c83585a772"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 24 web searches complete. Now compiling the verification results.\n\n---\n\n## 验证结果\n\n```\n[cameron2008bootstrap] ✓ 正确\n[wellek2010] ✓ 正确\n[moulton1990] ✓ 正确\n[cohen1988] ✓ 正确\n[kruschke2013bayesian] ✓ 正确\n[kruschke2018rejecting] ✓ 正确\n[gu2024cruxeval] ✓ 正确\n[nam2025repoexec] ✓ 正确\n[zhao2026genprm] ⚠️ 问题: 作者列表完全错误。bib 写的是 \"Zhao, Mingyang; Liu, Yang; Yang, Lei; Chen, Liang; Li, Zhongyuan\"，实际作者是 Jian Zhao, Runze Liu, Kaiyan Zhang, Zhimu Zhou, Junqi Gao, Dong Li, Jiafei Lyu, Zhouyi Qian, Biqing Qi, Xiu Li, Bowen Zhou (arXiv:2504.00891)。venue AAAI 2026 经 GitHub 官方仓库确认正确。\n[hosseini2025genrm] ✓ 正确\n[maimon2026selfexecution] ✓ 正确\n[meta2025cwm] ✓ 正确\n[liu2024codemind] ✓ 正确\n[abdollahi2025demystifying] ✓ 正确\n[venkatkrishna2026aletheia] ✓ 正确\n[lee2026solidcoder] ✓ 正确\n[nye2021scratchpad] ✓ 正确\n[liu2023codeexecutor] ✓ 正确\n[li2024redo] ✓ 正确\n[shum2025swerm] ✓ 正确\n[xu2025patchreasoner] ✓ 正确\n[chen2025vgsearch] ✓ 正确\n[snell2024scaling] ⚠️ 问题: 标题与 ICLR 2025 正式发表版不一致。bib 写 \"...Scaling Model Parameters\"，ICLR 2025 正式标题是 \"Scaling LLM Test-Time Compute Optimally Can be More Effective than Scaling Parameters for Reasoning\"（多了 \"for Reasoning\"，少了 \"Model\"）。Oral 标注正确。\n[li2025sstar] ✓ 正确\n```\n\n---\n\n## 有问题的条目汇总\n\n| bib key | 严重程度 | 问题描述 |\n|---------|---------|---------|\n| `zhao2026genprm` | **严重** | 作者列表完全捏造：5 个虚假作者名，实际论文有 11 位作者，无一匹配。venue (AAAI 2026) 正确。应替换为：`Zhao, Jian and Liu, Runze and Zhang, Kaiyan and Zhou, Zhimu and Gao, Junqi and Li, Dong and Lyu, Jiafei and Qian, Zhouyi and Qi, Biqing and Li, Xiu and Zhou, Bowen` |\n| `snell2024scaling` | **中等** | 标题与 ICLR 2025 正式版不匹配。应改为 `Scaling {LLM} Test-Time Compute Optimally Can be More Effective than Scaling Parameters for Reasoning` |\n\n所有 24 条引用上下文均与论文内容一致，无张冠李戴。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-xcheck-a.md"
+}

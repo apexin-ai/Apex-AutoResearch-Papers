@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6eb6dceefd0add23f2f7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh gpu snapshot urgent",
+  "task_key": "worker_ssh_gpu-snapshot-urgent_20260522T202759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu-snapshot-urgent_20260522T202759_result.json",
+    "occurrence": 1,
+    "bytes": 2966,
+    "sha256": "78e84c9f483a0efdbb7ea0cadfca9bd5ee1ffe85190cbfaec11db8c7044a075e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**nvidia-smi:**\n```\nSat May 23 04:28:19 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:27:00.0 Off |                  N/A |\n| 42%   32C    P8             15W /  575W |       0MiB /  32607MiB |      0%      Default |\n+-----------------------------------------+------------------------+----------------------+\n|   1  NVIDIA GeForce RTX 5090        On  |   00000000:49:00.0 Off |                  N/A |\n| 41%   32C    P8             10W /  575W |       0MiB /  32607MiB |      0%      Default |\n+-----------------------------------------+------------------------+----------------------+\n|   2  NVIDIA GeForce RTX 5090        On  |   00000000:5A:00.0 Off |                  N/A |\n| 52%   65C    P1            416W /  575W |   14413MiB /  32607MiB |     86%      Default |\n+-----------------------------------------+------------------------+----------------------+\n|   3  NVIDIA GeForce RTX 5090        On  |   00000000:A8:00.0 Off |                  N/A |\n| 41%   33C    P8             14W /  575W |       0MiB /  32607MiB |      0%      Default |\n+-----------------------------------------+------------------------+----------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|    2   N/A  N/A          211098      C   python3                               14404MiB |\n+-----------------------------------------------------------------------------------------+\n```\n\n**ps aux | grep:**\n```\nroot  211098 124 0.3 ... python3 train_unified.py --data_dir data/ --model_name_or_path /dev/shm/Qwen3-14B --task cwm --output_dir /root/autodl-tmp/checkpoints_cwm14b_func_s42/ --run_name cwm-qwen3-14b-qlora-func-s42 --seed 42 --max_seq_length 2048 --batch_size 1 --grad_accumulation 32 --lr 5e-5 --epochs 3 --quantize_4bit --no_wandb\nroot  211524  0.2 0.2 ... python3 train_unified.py [same args] (worker process)\nroot  211525  0.2 0.2 ... python3 train_unified.py [same args] (worker process)\nroot  211526  0.2 0.2 ... python3 train_unified.py [same args] (worker process)\nroot  211527  0.2 0.2 ... python3 train_unified.py [same args] (worker process)\n```\n\nGPU 2 上正在跑 `train_unified.py`（CWM 14B QLoRA func s42），PID 211098 主进程 + 4 个 worker，占用 14404MiB 显存，GPU 利用率 86%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-snapshot-urgent.md"
+}

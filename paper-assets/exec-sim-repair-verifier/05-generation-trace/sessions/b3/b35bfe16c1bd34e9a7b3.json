@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "id": "b35bfe16c1bd34e9a7b3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "analysis cls seed789",
+  "task_key": "worker_analysis_cls-seed789_20260512T112455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_cls-seed789_20260512T112455.jsonl",
+    "occurrence": 1,
+    "bytes": 8564,
+    "sha256": "266c9e61094ea8e4e680faa88890ace36a8ca0adc7a7c465ae371b1e8e061416"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T11:25:33.366697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls-seed789_20260512T112455",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T11:25:33.367172+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls-seed789_20260512T112455",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T11:25:33.367447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls-seed789_20260512T112455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "command": "tail -100 ~/runs/exec-sim-repair-verifier/cls-seed789.log",
+              "account": "sonny"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T11:25:33.367674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls-seed789_20260512T112455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "command": "cat /home/sonny/exec-sim-repair-verifier/eval_seed789.json",
+              "account": "sonny"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T11:25:33.368629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls-seed789_20260512T112455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "command": "ls -la /home/sonny/exec-sim-repair-verifier/checkpoints_seed789/best/",
+              "account": "sonny"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T11:25:33.369036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 83%|████████▎ | 788/948 [00:29<00:04, 32.77it/s]\\\\u001b[A\\\\n\\\\r 84%|████████▎ | 792/948 [00:29<00:04, 31.58it/s]\\\\u001b[A\\\\n\\\\r 84%|████████▍ | 796/948 [00:29<00:05, 30.36it/s]\\\\u001b[A\\\\n\\\\r 84%|████████▍ | 800/948 [00:29<00:04, 30.31it/s]\\\\u001b[A\\\\n\\\\r 85%|████████▍ | 804/948 [00:29<00:04, 30.16it/s]\\\\u001b[A\\\\n\\\\r 85%|████████▌ | 808/948 [00:29<00:04, 29.73it/s]\\\\u001b[A\\\\n\\\\r 86%|████████▌ | 811/948 [00:29<00:04, 29.24it/s]\\\\u001b[A\\\\n\\\\r 86%|████████▌ | 814/948 [00:30<00:04, 28.65it/s]\\\\u001b[A\\\\n\\\\r 86%|████████▌ | 817/948 [00:30<00:04, 28.63it/s]\\\\u001b[A\\\\n\\\\r 86%|████████▋ | 820/948 [00:30<00:04, 28.44it/s]\\\\u001b[A\\\\n\\\\r 87%|████████▋ | 823/948 [00:30<00:04, 28.79it/s]\\\\u001b[A\\\\n\\\\r 87%|████████▋ | 826/948 [00:30<00:04, 29.08it/s]\\\\u001b[A\\\\n\\\\r 87%|████████▋ | 829/948 [00:30<00:04, 29.29it/s]\\\\u001b[A\\\\n\\\\r 88%|████████▊ | 832/948 [00:30<00:03, 29.47it/s]\\\\u001b[A\\\\n\\\\r 88%|████████▊ | 837/948 [00:30<00:03, 32.92it/s]\\\\u001b[A\\\\n\\\\r 89%|████████▊ | 841/948 [00:30<00:03, 30.72it/s]\\\\u001b[A\\\\n\\\\r 89%|████████▉ | 845/948 [00:31<00:03, 29.39it/s]\\\\u001b[A\\\\n\\\\r 89%|████████▉ | 848/948 [00:31<00:03, 28.58it/s]\\\\u001b[A\\\\n\\\\r 90%|████████▉ | 851/948 [00:31<00:03, 27.70it/s]\\\\u001b[A\\\\n\\\\r 90%|█████████ | 854/948 [00:31<00:03, 28.07it/s]\\\\u001b[A\\\\n\\\\r 91%|█████████ | 858/948 [00:31<00:03, 28.83it/s]\\\\u001b[A\\\\n\\\\r 91%|█████████ | 862/948 [00:31<00:02, 29.40it/s]\\\\u001b[A\\\\n\\\\r 91%|█████████▏| 866/948 [00:31<00:02, 29.40it/s]\\\\u001b[A\\\\n\\\\r 92%|█████████▏| 869/948 [00:31<00:02, 28.97it/s]\\\\u001b[A\\\\n\\\\r 92%|█████████▏| 872/948 [00:31<00:02, 28.58it/s]\\\\u001b[A\\\\n\\\\r 92%|█████████▏| 876/948 [00:32<00:02, 31.41it/s]\\\\u001b[A\\\\n\\\\r 93%|█████████▎| 880/948 [00:32<00:02, 33.68it/s]\\\\u001b[A\\\\n\\\\r 93%|█████████▎| 884/948 [00:32<00:01, 32.91it/s]\\\\u001b[A\\\\n\\\\r 94%|█████████▎| 888/948 [00:32<00:01, 32.62it/s]\\\\u001b[A\\\\n\\\\r 94%|█████████▍| 893/948 [00:32<00:01, 35.31it/s]\\\\u001b[A\\\\n\\\\r 95%|█████████▍| 897/\n…[truncated 4071 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls-seed789_20260512T112455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T11:25:33.369369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_set_size\\\\\\\": 1890,\\\\n  \\\\\\\"class_balance\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": 978,\\\\n    \\\\\\\"fail\\\\\\\": 912,\\\\n    \\\\\\\"pass_pct\\\\\\\": 51.7\\\\n  },\\\\n  \\\\\\\"majority_baseline_accuracy\\\\\\\": 51.75,\\\\n  \\\\\\\"overall_accuracy\\\\\\\": 88.99,\\\\n  \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 37.25,\\\\n  \\\\\\\"per_class\\\\\\\": {\\\\n    \\\\\\\"fail\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 85.2,\\\\n      \\\\\\\"recall\\\\\\\": 93.42,\\\\n      \\\\\\\"f1\\\\\\\": 89.12,\\\\n      \\\\\\\"support\\\\\\\": 912\\\\n    },\\\\n    \\\\\\\"pass\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 93.26,\\\\n      \\\\\\\"recall\\\\\\\": 84.87,\\\\n      \\\\\\\"f1\\\\\\\": 88.87,\\\\n      \\\\\\\"support\\\\\\\": 978\\\\n    }\\\\n  },\\\\n  \\\\\\\"confusion_matrix\\\\\\\": {\\\\n    \\\\\\\"tn\\\\\\\": 852,\\\\n    \\\\\\\"fp\\\\\\\": 60,\\\\n    \\\\\\\"fn\\\\\\\": 148,\\\\n    \\\\\\\"tp\\\\\\\": 830\\\\n  },\\\\n  \\\\\\\"unparseable_predictions\\\\\\\": 0\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls-seed789_20260512T112455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T11:25:33.369632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 61680\\\\ndrwxrwxr-x 2 sonny sonny     4096 May 12 04:19 .\\\\ndrwxrwxr-x 5 sonny sonny     4096 May 12 04:19 ..\\\\n-rw-rw-r-- 1 sonny sonny     1043 May 12 04:19 adapter_config.json\\\\n-rw-rw-r-- 1 sonny sonny 47224624 May 12 04:19 adapter_model.safetensors\\\\n-rw-rw-r-- 1 sonny sonny      707 May 12 04:19 added_tokens.json\\\\n-rw-rw-r-- 1 sonny sonny     4168 May 12 04:19 chat_template.jinja\\\\n-rw-rw-r-- 1 sonny sonny  1671853 May 12 04:19 merges.txt\\\\n-rw-rw-r-- 1 sonny sonny     5180 May 12 04:19 README.md\\\\n-rw-rw-r-- 1 sonny sonny      613 May 12 04:19 special_tokens_map.json\\\\n-rw-rw-r-- 1 sonny sonny     5431 May 12 04:19 tokenizer_config.json\\\\n-rw-rw-r-- 1 sonny sonny 11422654 May 12 04:19 tokenizer.json\\\\n-rw-rw-r-- 1 sonny sonny     5841 May 12 04:19 training_args.bin\\\\n-rw-rw-r-- 1 sonny sonny  2776833 May 12 04:19 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls-seed789_20260512T112455",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T11:25:33.369958+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练和评估均正常完成，checkpoint 存在。\n\n```json\n{\n  \"seed\": 789,\n  \"status\": \"COMPLETED\",\n  \"accuracy\": 88.99,\n  \"per_class\": {\n    \"pass\": { \"precision\": 93.26, \"recall\": 84.87, \"f1\": 88.87 },\n    \"fail\": { \"precision\": 85.20, \"recall\": 93.42, \"f1\": 89.12 }\n  },\n  \"confusion_matrix\": { \"tn\": 852, \"fp\": 60, \"fn\": 148, \"tp\": 830 },\n  \"unparseable_predictions\": 0,\n  \"train_loss\": 0.2357,\n  \"eval_loss\": 0.0871,\n  \"train_runtime_sec\": 3433.07,\n  \"train_samples_per_second\": 13.361,\n  \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_seed789/best/\",\n  \"checkpoint_confirmed\": true,\n  \"warnings\": [],\n  \"mvp_b_criteria\": \"PASS\"\n}\n```\n\n**4-seed 汇总：**\n\n| Seed | Accuracy | Pass F1 | Fail F1 |\n|------|----------|---------|---------|\n| 42   | 87.83    | 88.06   | 87.59   |\n| 123  | 89.52    | 89.64   | 89.40   |\n| 456  | 87.88    | 87.53   | 88.21   |\n| **789** | **88.99** | **88.87** | **89.12** |\n| **Mean** | **88.56** | **88.53** | **88.58** |\n| **Std**  | **0.77**  | **0.89**  | **0.76**  |\n\nseed789 accuracy=88.99 在正常范围内（87-90%），与 seed123 接近，标准差 <1pp，结果稳定。还差 seed 1 个即可完成 5-seed comparison。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cls-seed789_20260512T112455"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-cls-seed789.md"
+}

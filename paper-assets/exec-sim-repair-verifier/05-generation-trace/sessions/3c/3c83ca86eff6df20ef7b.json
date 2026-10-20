@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c83ca86eff6df20ef7b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check home 3shot result",
+  "task_key": "worker_check_home-3shot-result_20260517T223355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_home-3shot-result_20260517T223355_result.json",
+    "occurrence": 1,
+    "bytes": 1314,
+    "sha256": "063912130871bf034957e0a3d3a064a7115ec055ecf801aae02f580abe18329d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果报告\n\n**进程状态**: 已完成 (PID 3890761)，耗时 ~2.9 小时\n\n**脚本配置**:\n- 模型: Qwen3-8B\n- 方法: 3-shot (2 pass + 1 fail)\n- 数据集: swebench_full repo-level test split, 9784 samples\n- max_seq_length: 8192, batch_size: 2\n- 输出: `/home/sonny/exec-sim-repair-verifier/few_shot_results_repo_level.json`\n\n**结果 — 完全无效**:\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | 72.96% |\n| Pass F1 | 84.36% |\n| Fail F1 | **0.0%** |\n| Unparseable | **100% (9784/9784)** |\n| Confusion | TP=7138, FP=2646, TN=0, FN=0 |\n\n**根因**: 所有 9784 个样本的输出完全相同，都是代码片段而非 pass/fail 判断。原因是 repo-level 代码 + 3 个 few-shot 示例的 token 数远超 8192 上限，脚本截断方式是 `ids[:max_seq_length]`（从右截断），直接砍掉了 generation prompt 和 query。模型只看到了被截断的 few-shot 代码，于是做代码续写。所有 unparseable 预测 fallback 到 majority class (pass)，72.96% accuracy 就是数据集 pass 的 base rate，没有任何预测能力。\n\n**结论**: 这个实验需要重做。要么大幅增加 max_seq_length（Qwen3-8B 支持 32K），要么对 repo-level 代码做摘要/截断后再拼 few-shot prompt，确保 generation prompt 不被截断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-home-3shot-result.md"
+}

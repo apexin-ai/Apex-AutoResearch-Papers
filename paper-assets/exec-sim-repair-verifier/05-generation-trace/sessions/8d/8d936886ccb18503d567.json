@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d936886ccb18503d567",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check traj v2 status",
+  "task_key": "worker_check_traj-v2-status_20260516T141512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_traj-v2-status_20260516T141512_result.json",
+    "occurrence": 1,
+    "bytes": 1429,
+    "sha256": "0c8be51acb6f633ea4125b7dfd4f6a8c449b3290afa4ff45dafbca7e52f67abd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## DeepSeek TRAJ v2 训练状态报告\n\n### 实验 1: `deepseek-traj-func-v2` (seed 42)\n\n| 项目 | 值 |\n|------|-----|\n| **状态** | ✅ **Completed** |\n| PID 511676 | 已退出 |\n| best_eval_loss | **0.0891** |\n| train_loss | 0.0857 |\n| train_runtime | 3069.6s (~51 min) |\n| best_step | 756/756 (epoch 3 结束时) |\n| checkpoint 路径 | `/root/autodl-tmp/checkpoints_deepseek_traj_v2/best` |\n| 所有 checkpoints | `checkpoint-504`, `checkpoint-756`, `best` |\n\n### 实验 2: `deepseek-traj-func-v2-s123` (seed 123)\n\n| 项目 | 值 |\n|------|-----|\n| **状态** | 🔄 **Running** (epoch 2→3 过渡中) |\n| PID 513115 | 存活，已运行 37 min |\n| 当前进度 | 555/756 steps (73%) |\n| epoch 2 eval_loss | **0.0770** |\n| 估计剩余时间 | ~13 min |\n| checkpoint 路径 | `/root/autodl-tmp/checkpoints_deepseek_traj_v2_s123/` |\n| 当前 checkpoints | `checkpoint-252`, `checkpoint-504` |\n\n### GPU 利用率\n\n| GPU | Util | VRAM |\n|-----|------|------|\n| 0 | 99% | 19.6 / 32.6 GB |\n| 1 | 99% | 19.7 / 32.6 GB |\n| 2 | 100% | 23.8 / 32.6 GB |\n| 3 | 98% | 18.3 / 32.6 GB |\n\n4 张卡全部满载。GPU 2 (VRAM 最高) 可能是 s123 实验所在的 cuda:3 对应物理卡，GPU 0/1 在跑其他任务。\n\n### 备注\n- s123 的 epoch 2 eval_loss (0.0770) 比 seed 42 的最终 eval_loss (0.0891) 更低，预计最终结果会更好\n- s123 预计约 13 分钟后完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-traj-v2-status.md"
+}

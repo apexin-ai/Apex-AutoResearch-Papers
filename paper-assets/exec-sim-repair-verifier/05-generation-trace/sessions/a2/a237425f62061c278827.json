@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a237425f62061c278827",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6.md",
+    "occurrence": 1,
+    "bytes": 4310,
+    "sha256": "95027f695f667cc954069d4728a9776214a1f327bb8977c1ef2adea5ec03675d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-05-13T21:57:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd 裸 Python (transformers 5.8.0) 训练结果全部无效**——不可用于论文。只有 conda 环境 (transformers 4.57.6) 或 home 环境的结果可信。\n- **kill_job 不杀子进程**：kill 后必须 `nvidia-smi` 确认 GPU 释放，否则用实际 Python PID 二次 kill。\n- **home 账号是 sonny**，westd 账号是 root。home 不用 conda（系统 python3 自带 transformers 4.57.6）。\n- **westd conda 激活命令**：`bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"`——submit_training_job 的 command 必须 bash -c 包裹。\n- **CWM v11 全量 eval 在 westd cuda:2 跑着（PID 180344）**——不要动它，这是 D008 后唯一有效的 CWM 全量数据。\n\n### 2. 🖥️ 基础设施快照\n- **home-1x5090**: `/home/sonny/exec-sim-repair-verifier/`, 系统 python3.10.12, transformers 4.57.6, 1×RTX 5090\n- **westd-48478** (= seetacloud-westd-4x5090): `/home/sonny/exec-sim-repair-verifier/`, 系统 python3.10.12 (transformers 5.8.0, ❌无效) + conda base (transformers 4.57.6, ✅有效), 4×RTX 5090\n- 模型路径 home: `Qwen/Qwen3-4B` (hub 引用, 自动缓存)\n- 模型路径 westd: `/root/.cache/huggingface/hub/Qwen/Qwen3-4B`\n- 数据: `data/swebench_full/swebench_train.jsonl` (70748行), home 和 westd 的 md5 不同（不同 shuffle）\n- HF 离线模式 westd: `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n- 活跃进程:\n  - home cuda:0: CLS seed123-home — **需重启**（OOM 崩溃, PID 2998850 已死）\n  - westd cuda:1: CWM v12 — PID 181197→181202（可能已启动, 需确认）\n  - westd cuda:2: CWM v11 full eval — PID 180344\n  - westd cuda:0/3: 应已释放（刚 kill 孤儿进程 141203/140060）\n\n### 3. 📊 当前状态\n**刚做完**：D054 环境一致性修复——kill 了 westd 上三个无效训练（CLS seed123/CWM seed123/CLS 8B），提交了 CWM v12 conda 训练。发现并修复 kill_job 不杀子进程问题。\n\n**Registry RUNNING**:\n- `repo-level-cls-seed123-home`: home cuda:0, **OOM 崩溃需重启**（残留 CLS v5 进程占 GPU 导致）\n- `repo-level-cwm-v12`: westd cuda:1, PID 181202, conda env, **需确认是否正常运行**（之前 GPU 被占, 可能卡死）\n- `repo-level-cwm-v11`: ANALYZING, 全量 eval PID 180344 on cuda:2（9784样本, ~8-12h）\n\n**等待中**:\n- Worker `ops:fix-home-seed123-oom-and-verify-westd` 正在运行——诊断 home OOM + 验证 westd GPU 释放\n- Worker `eval:cls-seed123-8b-cwm-queue` 仍在运行（turn 31, 做 CLS 8B eval 后会串行启动 CWM v11 full eval，但 cuda:2 已有 180344 在跑，可能冲突）\n- Director 待决策: westd cuda:0 和 cuda:3 空闲后的安排\n\n### 4. 📋 待办\n- Worker `fix-home-seed123-oom` 回调 → 确认 home seed123 重启成功，更新 registry PID\n- CWM v12 如果卡死 → kill PID 181202 + 重新 submit_training_job（确认 cuda:1 空闲后）\n- CWM v11 全量 eval 完成 → registry 更新 metrics + paired bootstrap (CLS v5 vs CWM v11)\n- home seed123 训练完成 → eval best checkpoint（用 home 上的 eval_repo_cls.py）\n- CWM v12 训练完成 → eval best checkpoint + paired bootstrap (CLS v5 vs CWM v12)\n\n### 5. 🎯 战略上下文\n- **D008 = GO**: CLS v5 76.92% vs CWM v11 66.6%, gap 10.3pp, repo-level 放大 8.3x\n- **可靠数据只有**: CLS v5 (home, 76.92%) 和 CWM v11 subset500 (westd 系统 python, 66.6% + 75% unparseable)\n- **CWM v11 的 75% unparseable 是任务本身的问题**（生成 traceback 太长被截断），不是环境问题——这 IS the paper evidence\n- **transformers 版本教训**: home=4.57.6, westd 系统=5.8.0。所有 westd 裸 python 训练出来的 checkpoint 无效。只有 conda (4.57.6) 训练的结果与 home 可比。\n- **函数级结果完整稳固**: CLS 5-seed mean=88.43%, CWM 5-seed mean=86.30%, gap 1.24pp (TOST p=0.007)。8B scaling gap 2.43pp。这些在 home 上用正确环境完成。\n- **易错**: 不要用 westd 裸 python eval 的结果做论文对比（eval 环境不影响，训练环境才影响）。CWM v11 的 eval 结果有效因为 checkpoint 是用系统 python 训练的——但 D054 结论是所有 westd 系统 python 训练无效。**CWM v12 (conda) 的结果将取代 v11。**\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-copy-2.md"
+}

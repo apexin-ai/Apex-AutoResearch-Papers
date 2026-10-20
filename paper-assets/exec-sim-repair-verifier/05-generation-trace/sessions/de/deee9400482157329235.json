@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "deee9400482157329235",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code cwm baseline scripts",
+  "task_key": "worker_code_cwm-baseline-scripts_20260511T210816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cwm-baseline-scripts_20260511T210816_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "06e86dcb920b7b48a7837c38e2619c4fb33a37606bebf0568554a283c4864120"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个脚本全部验证通过：\n\n| 脚本 | `--help` | 状态 |\n|------|----------|------|\n| `build_cwm_data.py` | `--input_dir`, `--output_dir`, `--timeout` | OK |\n| `train_cwm_baseline.py` | 与 `train_verifier.py` 完全一致的超参数接口 | OK |\n| `eval_cwm_baseline.py` | `--data_dir`, `--checkpoint_dir`, `--max_new_tokens` | OK |\n\n**关键设计对齐点**：\n- **Loss masking**: `tokenize_example` 用 `apply_chat_template` 分别生成 prompt-only 和 full (prompt+target) 的 token IDs，prompt 部分 labels 设为 -100，只在 assistant 回复部分计算 loss\n- **LoRA/训练配置**: rank=16, alpha=32, target_modules, bs=2, grad_accum=16, lr=2e-4, epochs=3 — 与 `train_verifier.py` 完全一致\n- **Prompt 格式**: system=\"code execution simulator\", user 问 \"What is the execution result?\", target 是 \"PASS: ...\" 或 \"FAIL: {ErrorType}: {msg}\"\n- **评估**: 分类指标完全复用 `eval_verifier.py` 格式，额外增加 exact match rate、per-error-type breakdown、生成长度统计"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cwm-baseline-scripts.md"
+}

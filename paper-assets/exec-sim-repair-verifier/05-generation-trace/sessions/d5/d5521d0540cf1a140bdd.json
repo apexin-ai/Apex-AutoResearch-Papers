@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5521d0540cf1a140bdd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check westd status and cwm max tokens",
+  "task_key": "worker_check_westd-status-and-cwm-max-tokens_20260514T171919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd-status-and-cwm-max-tokens_20260514T171919_result.json",
+    "occurrence": 1,
+    "bytes": 1331,
+    "sha256": "cbb4b12647eefe5c489e6d2f2e5948ce9e4a3b5434d4b5bbb805eb9ad8562bbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。\n\n---\n\n## 汇总\n\n### Part 1: 4 张卡状态\n\n| GPU | 任务 | PID | 存活 | 显存 | GPU利用率 | 进度 | 关键指标 |\n|-----|------|-----|------|------|-----------|------|----------|\n| cuda:0 | CWM seed123 eval | 195531 | ✅ 运行16h+ | 13.0/32.6 GB | 90% | **9168/9784** (93.7%) | running_acc=**59.0%** |\n| cuda:1 | CWM v12 eval | 195668 | ✅ 运行16h+ | 13.0/32.6 GB | 88% | **9280/9784** (94.8%) | running_acc=**57.9%** |\n| cuda:2 | CWM 8B training | 245775 | ✅ 运行2h51m | 21.2/32.6 GB | 90% | **step 1637/6633** (24.7%) | loss=0.2796, eval_loss=0.374 |\n| cuda:3 | CLS 8B seed123 training | 248041 | ✅ 运行2h33m | 26.8/32.6 GB | 98% | **step 3000/6633** (45.2%) | loss=0.369, eval_loss=0.426 |\n\n两个 eval 预计 ~1 小时内完成。两个 training 还需较长时间。\n\n### Part 2: CWM max_new_tokens — **没有问题**\n\n从 `/proc/cmdline` 确认两个 CWM eval 的实际启动参数：\n\n- **PID 195531** (seed123): `--max_new_tokens 1024`\n- **PID 195668** (v12): `--max_new_tokens 1024`\n\n**`max_new_tokens=1024`，不是 64。** v10 的问题已在当前 eval 中修复，当前结果可信。\n\nCWM seed123 的 59.0% 和 CWM v12 的 57.9% 是在 1024 tokens 下的真实准确率，不存在 unparseable 导致的低估问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-status-and-cwm-max-tokens.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a96521d64a175bfb898",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "exp deepseek traj func v2",
+  "task_key": "worker_exp_deepseek-traj-func-v2_20260516T131901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_deepseek-traj-func-v2_20260516T131901_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "f67881f23d054d078a623bb5df0d2a78902c6dd68b4becd241aaa84170cb38bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，汇报如下：\n\n| 项目 | 值 |\n|------|-----|\n| PID | 511671 |\n| GPU | cuda:2, 14977/32607 MiB |\n| Total steps | 756 (8052 samples ÷ batch 32 × 3 epochs) |\n| 速度 | ~4.2 s/step |\n| 预估总时长 | ~53 分钟 |\n| LoRA | rank=16, alpha=32, trainable 16.7M params (0.25%) |\n| 标签 | LABEL_MAP = {1: \"resolved\", 0: \"unresolved\"} ✓ |\n| 截断率 | 0% (train + val) |\n| 输出目录 | `/root/autodl-tmp/checkpoints_deepseek_traj_v2/` |\n\n**无需修改脚本** — `train_traj_verifier.py` 使用 AutoTokenizer/AutoModelForCausalLM，对 DeepSeek 开箱即用。`detect_thinking_support` 返回 `{'enable_thinking': False}`（无害，DeepSeek tokenizer 接受该 kwarg）。\n\n日志路径：`/tmp/deepseek_traj_v2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-deepseek-traj-func-v2.md"
+}

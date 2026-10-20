@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4417ccb1306c74b6b393",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "knowledge update seed123 test compilation",
+  "task_key": "worker_knowledge_update-seed123-test-compilation_20260515T121912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_update-seed123-test-compilation_20260515T121912_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "91119dc1aaedd476d6e8fcdf63bf2e87fd43f80123e5085304a22a4b86e58d79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。变更摘要：\n\n**seed123 8B test curve** — 从 3/6 补全到 6/6：\n- 新增 ckpt-200 (72.55%, below majority baseline)、ckpt-6600 (84.90%)、ckpt-6633 (84.89%)\n- Test-best = ckpt-3000 (85.60%, f1_macro=78.38)，与 val-best 一致\n- 所有数据来自 registry，per-class F1 全部填入\n\n**s42 test curve** — 从 7/8 补全到 8/8：\n- 新增 ckpt-200 (70.07%, below majority baseline)\n\n**附带修复**：\n- 4B seed123 test F1 从 — 更新为 registry 实际值 (f1_macro=67.03)\n- 移除 JSON 中重复的 `4b_v5_test5120` key"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-update-seed123-test-compilation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e5da198c442a32139dc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cwm8b shard3 cuda0",
+  "task_key": "worker_eval_cwm8b-shard3-cuda0_20260516T023620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cwm8b-shard3-cuda0_20260516T023620_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "f9d1db62e841163adc73ab3b2fde00abb2d16024879dca4a2069e442c2604928"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Shard3 已成功启动，一切正常。\n\n**状态汇总：**\n- **GPU 0** → shard3 (PID 453335)：`test[6200:7680]`，1480 条，tmux session `shard3`\n- **GPU 1** → shard2 (PID 448100)：`test[7680:]`，已完成 616 条\n- **GPU 3** → v3 主跑 (PID 443221)：`test[0:]`，已完成 6224 条\n- **GPU 2** → 空闲\n\nshard3 正在快速跳过 idx 0-6199，之后开始推理 6200-7679 区间。预计 ~1480 条 / 每分钟约 57 条 ≈ 26 分钟完成。三个 shard 之间有轻微重叠（v3 和 shard3 在 6200-6224 区间），后续合并时去重即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cwm8b-shard3-cuda0.md"
+}

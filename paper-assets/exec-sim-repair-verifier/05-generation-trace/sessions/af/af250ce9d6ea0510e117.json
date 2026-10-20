@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af250ce9d6ea0510e117",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor cwm eval westd",
+  "task_key": "worker_monitor_cwm-eval-westd_20260514T052651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_cwm-eval-westd_20260514T052651_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "3438fcc1227bb65de6e0167b36a502667f315169324a5bf60a866e2753c65d6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 cron 监控已注册。汇总：\n\n| 实验 | PID | 进度 | Running Acc | 预计完成 |\n|------|-----|------|-------------|----------|\n| repo-level-cwm-seed123-conda | 195531 (GPU 0) | 2480/9784 (25.3%) | 57.3% | ~02:30 UTC May 15 |\n| repo-level-cwm-v12 | 195668 (GPU 1) | 2496/9784 (25.5%) | 58.3% | ~02:20 UTC May 15 |\n\n- GPU 利用率 85-88%，温度 59-60°C，运行稳定\n- 每 8 sample 约 52 秒，总 9784 样本\n- 速率 ~9.4 samples/min，剩余 ~13 小时，远超原估计的 18:30 UTC\n- Cron 每 5 分钟检查一次，进程结束后会自动通知"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-cwm-eval-westd.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "537edbf52e5c53fad86f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "monitor training progress check",
+  "task_key": "worker_monitor_training-progress-check_20260512T202310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training-progress-check_20260512T202310_result.json",
+    "occurrence": 1,
+    "bytes": 564,
+    "sha256": "48636b67eee76cd116677eb8638b817ca0d77ec7f3ca0f69253b0bbd2b77ebbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果摘要：\n\n| 实验 | 进度 | Loss | GPU | ETA |\n|------|------|------|-----|-----|\n| **cwm-v6** (seetacloud cuda:2) | 166/6633 (2.5%) | train 11.16, eval 0.433 | 97%, 22.4/32.6GB | ~42h |\n| **cls-home** (home cuda:0) | 1577/6633 (23.8%) | 日志无输出 | 92%, 19.5/32.6GB | ~10h |\n\n关键发现：cwm-v6 每 50 步跑一次全量 eval（9335 样本，~12.5 min），导致训练效率极低——eval 占总时间 65%。cls-home 无 inline eval，速度快很多但无 loss 可视性，建议确认 wandb 或其他 metrics 输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b124bf85926cf6a9cb11",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_9_1778760513.md",
+  "task_key": "loop_9_1778760513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778760513.md",
+    "occurrence": 1,
+    "bytes": 5176,
+    "sha256": "512e71d3b7be6d3370afc465247096e19f3ec9457b52dce8f3f508f3ac49018f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-14T11:58:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd cuda:0/1/2/3 + home cuda:0。westd 服务器名=`westd-48478`（SSH config 名 `seetacloud-westd-4x5090`），端口可能变\n- **D063 方法论红线**: checkpoint 选择必须在 val set (9335 samples) 上做，test set (9784) 只报最终数字。之前所有 ROADMAP 里的 CLS accuracy 数字都是 test set 上选的，需要 val sweep 后可能变化\n- **CWM v11 数字已废止 (D057)**，不可引用于论文。论文用 CWM v12 + seed123 全量 eval 结果\n- **跨服务器对比无效**: home (transformers 4.57.6) vs westd (曾用 5.8.0，现 conda 4.57.6)。Apple-to-apple 必须用 westd conda 环境训练的模型\n- **submit_training_job 的 command 必须自带环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`\n\n### 2. 🖥️ 基础设施快照\n- **westd**: root@seetacloud-westd-4x5090 (westd-48478), 4×RTX 5090, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - Python: `/root/miniconda3/bin/python` (conda base, transformers 4.57.6)\n  - 数据: `/home/sonny/exec-sim-repair-verifier/data/`\n  - 模型输出: `/home/sonny/exec-sim-repair-verifier/outputs/`\n  - HF cache: `/root/autodl-tmp/.hf_cache` (如有) 或默认\n- **home**: sonny@home-1x5090, 1×RTX 5090, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - Python: 系统 python3 (transformers 4.57.6)\n- **活跃进程**:\n  - westd cuda:0 — CWM seed123 eval (PID 195531, exp: repo-level-cwm-seed123-conda, ~25% done, ETA ~02:30 UTC May 15)\n  - westd cuda:1 — CWM v12 eval (PID 195668, exp: repo-level-cwm-v12, ~25% done, ETA ~02:20 UTC May 15)\n  - westd cuda:2 — 8B CWM training (PID 210568, tmux: repo-level-cwm-8b-conda, exp: repo-level-cwm-8b-conda)\n  - westd cuda:3 — 8B CLS seed123 training (PID 210652, tmux: repo-level-cls-8b-seed123-conda, exp: repo-level-cls-8b-seed123-conda)\n- **活跃 Cron**: 4 个，分别监控上述 4 个进程\n- **活跃 Worker**: worker_fix_home-4096-timeout-rerun (fixing home eval timeout issue)\n\n### 3. 📊 当前状态\nRegistry: 61 experiments (59 DONE, 2 RUNNING — 两个 8B 训练)。CWM v12/seed123 的全量 eval 由 cron 监控中（registry 状态 DONE 但 eval 进程仍在跑）。\n\n**刚做完**: D061-D067 系列决策。启动了 8B CLS/CWM 训练 (GPU 2/3)。完成了 test set 上的 checkpoint sweep（但 D063 认定这些是 cherry-picking，需 val set 重做）。D064 部分解除论文阻塞，已启动 Paper Agent Full Draft（CWM 数字用占位符）。\n\n**正在进行**:\n1. CWM v12 + seed123 全量 eval（westd GPU 0/1，~25% done，ETA ~14-18h 后完成）\n2. 8B CWM + CLS seed123 训练（westd GPU 2/3，刚启动）\n3. Worker 在修 home eval 的 4096 timeout 问题\n\n**等待中**:\n- CWM v12/seed123 eval 完成 → cron 回调 → 最终 CLS-CWM gap 确认 → 解除 D057 论文阻塞\n- D063 val set checkpoint sweep 尚未执行（需要 GPU 空闲或用 home cuda:0）\n- 8B 训练完成 → 8B eval pipeline\n\n### 4. 📋 待办（条件触发式）\n- CWM v12 eval cron 回调 (exp done) → 读最终 accuracy/F1 → update_registry → 与 CLS best 对比确认 gap → 汇报 Director\n- CWM seed123 eval cron 回调 → 同上 → paired bootstrap 计算 CLS-CWM gap 统计显著性\n- 两个 CWM eval 都完成 → D057 论文阻塞解除 → patch Paper Agent 的 CWM 占位符数字\n- Worker home-4096-timeout 完成 → 检查结果，home cuda:0 空闲后启动 D063 val set checkpoint sweep\n- 8B CWM/CLS 训练 cron 回调 → checkpoint sweep → eval pipeline → 8B-8B repo-level gap\n- D063 val sweep 完成 → 用 val-selected checkpoint 在 test set 做最终 eval → 更新论文所有数字\n\n### 5. 🎯 战略上下文\n**核心 story**: CLS (classification) 比 CWM (code-writing/generation) 更适合做 execution simulation verifier，且优势随代码复杂度增长（函数级 1.24pp → repo 级 ~20pp）。三个 claims: C1 complexity-dependent advantage (核心), C2 diagnostic granularity (done), C3 accuracy-utility frontier (done)。\n\n**关键决策链**: D008 (repo-level GO) → D057 (论文阻塞等 CWM 全量) → D061 (8B 训练启动) → D063 (val set checkpoint selection 方法论修复) → D064 (部分解除论文阻塞) → D065 (放弃 val inference-based selection) → D066 (主表用 mean±std across seeds)\n\n**最容易判断错的事**:\n1. **CWM eval running acc 57-58% 不是最终数字**——还有 75% 没跑完。但如果最终确认，CLS-CWM gap 将是 20-26pp（远超函数级 1.24pp），对 C1 claim 极为有利\n2. **ROADMAP 里的 CLS accuracy 数字全是 test-set-selected**——D063 要求 val set 重选后可能变化，不要直接用于论文\n3. **8B 过拟合极快**——ckpt-400 就 peak，ckpt-600 退化 6pp。8B eval 时 checkpoint sweep 间隔要更密（每 100 steps）\n4. **repo-level 训练所有模型都在 <10% steps 就 peak**——这不是 bug，是这个任务的特性（severe overfitting）\n5. **DDL: EMNLP ARR May 25，剩 11 天**——时间紧但 GPU 全满载，关键路径是 CWM eval（~14h）+ val sweep + 论文定稿\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778760513.md"
+}

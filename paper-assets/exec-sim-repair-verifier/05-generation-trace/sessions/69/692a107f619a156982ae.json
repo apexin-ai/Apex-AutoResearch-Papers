@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "692a107f619a156982ae",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh d046 home cls v5 prep",
+  "task_key": "worker_ssh_d046-home-cls-v5-prep_20260513T072211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d046-home-cls-v5-prep_20260513T072211_result.json",
+    "occurrence": 1,
+    "bytes": 1720,
+    "sha256": "7fe88fb4d6e29baa518fc5a68d6c4af2e6ec89615b232369a9fe059c02282494"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Step 4: 汇报\n\n### 1. seed123 进程\n全部已 kill（PID 2940520/2940525 及所有子进程），无残留。\n\n### 2. GPU 状态\nRTX 5090 完全空闲：**0% util, 0 MiB / 32607 MiB**\n\n### 3. 超参修改对比\n\n| 参数 | 修改前 | 修改后 |\n|------|--------|--------|\n| `learning_rate` (--lr default) | 2e-4 | **5e-5** |\n| `weight_decay` | 不存在 | **0.01**（新增） |\n| `warmup_ratio` | 0.1 | **0.05** |\n| `save_total_limit` | 3 | **5** |\n\n其余参数不变：`num_train_epochs=3, save_steps=200, eval_steps=200, batch_size=2, grad_accumulation=16, lora_rank=16, lora_alpha=32`\n\n### 4. Dry-run 结果\n通过，无报错。5 steps 训练日志：\n\n| Step | Loss | LR | Grad Norm |\n|------|------|----|-----------|\n| 1 | 100.5 | 0.0 | 658.3 |\n| 2 | 129.1 | 5e-05 | 775.4 |\n| 3 | 64.9 | 3.75e-05 | 467.9 |\n| 4 | 122.1 | 2.5e-05 | 916.8 |\n| 5 | 88.2 | 1.25e-05 | 631.1 |\n\n- learning_rate 确认为 **5e-05**（step 2 达到峰值后 cosine decay）\n- train_loss 平均 101.0，train_runtime 32.6s（~6.5s/step）\n- `warmup_ratio` 已生效（注意 transformers 提示 warmup_ratio deprecated，建议改用 warmup_steps，但不影响功能）\n\n### 5. 推荐 CLS v5 启动命令\n\n```bash\ncd /home/sonny/exec-sim-repair-verifier && source /home/sonny/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 train_repo_verifier.py \\\n  --output_dir /home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/ \\\n  --seed 42 \\\n  --run_name repo-cls-qwen3-4b-lora-v5 \\\n  > /tmp/cls_v5_stdout.log 2>&1 & echo \"CLS_V5_PID=$!\"\n```\n\n（默认开启 wandb，3 epochs，其余超参使用脚本中已修改的新默认值）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d046-home-cls-v5-prep.md"
+}

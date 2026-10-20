@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a8d15ac0cd0e2f8cf44",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis error overlap cls cwm",
+  "task_key": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_error-overlap-cls-cwm_20260512T160639_result.json",
+    "occurrence": 1,
+    "bytes": 1390,
+    "sha256": "d7028fba0dd3f87594eac8d5cf636daa67b8d14edb631213f9ec4827cbb6b2f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总关键发现：\n\n---\n\n## 结果汇报\n\n### 任务 1: CLS vs CWM Error Overlap (seed42, n=1890)\n\n| 类别 | 数量 | 比例 |\n|------|------|------|\n| Both correct | 1601 | 84.71% |\n| CLS-only correct | 59 | 3.12% |\n| CWM-only correct | 53 | 2.80% |\n| Both wrong | 177 | 9.37% |\n\n**互补性**：Oracle 组合 (任一正确即正确) 准确率 = **90.63%**，比 CLS 单独 (+2.80pp)、CWM 单独 (+3.12pp) 都高。两种方法有约 **5.9%** 的互补空间。\n\n**Cohen's Kappa**：\n- 预测一致性 κ = 0.88 (almost perfect agreement)  \n- 正确性一致性 κ = 0.73 (substantial agreement)\n\n**按 mutation type**：互补性最强的是 **off_by_one** (CWM-only 4.8%, 两者都错 14.9%) 和 **operator_swap** (CWM-only 5.7%)。**return_value** 几乎完全重叠 (96.8% both correct)。\n\n### 任务 2: CWM Per-class F1 Breakdown\n\nCWM 最弱 mutation types:\n1. **off_by_one**: acc 81.82%, exact_match 75.71%, fail_f1 79.87%\n2. **original** (pass samples): acc 85.18%, exact_match 85.18%  \n3. **operator_swap**: acc 88.59%, exact_match 85.91%\n\n最强：**return_value** (97.01% acc, 94.78% exact_match), **variable_swap** (94.12% acc)\n\n### 任务 3: cwm-seed789 Metrics 补录\n\n已更新 registry：\n- overall_accuracy: 86.67%\n- pass_f1: 86.74, fail_f1: 86.60\n- exact_match_rate: 83.97%\n- baseline_gap: +34.92pp"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-error-overlap-cls-cwm.md"
+}

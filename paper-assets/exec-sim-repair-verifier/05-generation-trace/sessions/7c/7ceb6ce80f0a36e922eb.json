@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ceb6ce80f0a36e922eb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code cwm eval analysis",
+  "task_key": "worker_code_cwm-eval-analysis_20260514T151900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cwm-eval-analysis_20260514T151900_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "f58f7a73e96a536db31ba66a3cdf2dfdff922670a01a8b6ed38276cabbeb85e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "majority baseline 现在是 72.96%，与 eval_repo_cwm.json 一致。\n\n脚本已就绪：\n- **`/home/sonny/exec-sim-repair-verifier/analyze_cwm_eval.py`** 已部署到 home 服务器\n- 本地副本在 `projects/exec-sim-repair-verifier/analyze_cwm_eval.py`\n- 用 CWM v10 (9784 samples) 验证通过，metrics 与 eval_repo_cwm.json 完全匹配\n\nCWM v12 / seed123 eval 完成后的用法：\n```bash\npython3 analyze_cwm_eval.py \\\n  --predictions_path /root/autodl-tmp/results/repo_cwm_v12_conda_eval/eval_repo_cwm_predictions.jsonl \\\n  --output_path /root/autodl-tmp/results/repo_cwm_v12_conda_eval/cwm_analysis.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cwm-eval-analysis.md"
+}

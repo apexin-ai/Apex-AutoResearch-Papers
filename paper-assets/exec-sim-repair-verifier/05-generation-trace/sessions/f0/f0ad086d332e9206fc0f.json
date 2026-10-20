@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0ad086d332e9206fc0f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check home server availability",
+  "task_key": "worker_check_home-server-availability_20260515T145913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_home-server-availability_20260515T145913_result.json",
+    "occurrence": 1,
+    "bytes": 276,
+    "sha256": "f64e33eaca02a9b97804133a7026bcf4b2f3e2ccd9b13ae71ddd53547e358152"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**home-1x5090 服务器离线。** 三次 SSH 连接均超时（~10s），无法访问。\n\n所有任务（GPU 状态、遗留实验结果检查、环境状态）均无法执行。需要确认服务器是否开机/网络是否通畅后再重试。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-home-server-availability.md"
+}

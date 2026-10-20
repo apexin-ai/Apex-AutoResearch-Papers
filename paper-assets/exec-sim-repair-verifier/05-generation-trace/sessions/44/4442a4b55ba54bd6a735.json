@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4442a4b55ba54bd6a735",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diag cls seed123 home oom",
+  "task_key": "worker_diag_cls-seed123-home-oom_20260514T012018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_cls-seed123-home-oom_20260514T012018_result.json",
+    "occurrence": 1,
+    "bytes": 1460,
+    "sha256": "43d15cdf155094381ee09f980db7d2767334fe89e05a55a4fbf342739d1ad549"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "情况清楚了。报告如下：\n\n---\n\n## 诊断报告\n\n### GPU 当前状态\n- PID 2947263（旧残留进程）已不存在\n- **PID 3018282 正在运行**：`eval_repo_cls.py` 评估 checkpoint-200，tmux session `eval_cls_seed123`，已运行 ~2.5 分钟，占用 18420 MiB\n- 这是一个**主动的 eval 任务**，不是残留进程，不应杀掉\n\n### Checkpoint 情况\n5 个 checkpoint 完整存在：200、400、600、800、1000\n- 最新：checkpoint-1000（May 13 18:01）\n- best checkpoint：checkpoint-200（eval_loss = 0.0772）\n\n### 训练状态\n训练**尚未完成**——跑到 step 1000 / 6633（epoch 0.45 / 3.0）。训练被中断而非完成（`should_training_stop: false`）。\n\n| Step | Train Loss | Eval Loss |\n|------|-----------|-----------|\n| 200  | 1.5423    | **0.0772** (best) |\n| 400  | 0.7862    | 0.1429 |\n| 600  | 0.6569    | 0.1292 |\n| 800  | 0.4035    | 0.2176 |\n| 1000 | 0.4976    | 0.2612 |\n\nTrain loss 在下降但 **eval loss 从 step 200 起持续上升**（0.077 → 0.261），呈明显过拟合趋势。\n\n### 建议\n1. **不需要重启训练** — 训练虽只跑了 15%，但 eval loss 已连续 4 个 checkpoint 恶化，继续训练大概率无益\n2. **用 checkpoint-200 做 eval**（当前已在进行中）\n3. 等当前 eval 完成后 GPU 会释放，如果仍想继续训练可从 checkpoint-1000 resume，但建议先看 checkpoint-200 的 eval 结果再决定"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-cls-seed123-home-oom.md"
+}

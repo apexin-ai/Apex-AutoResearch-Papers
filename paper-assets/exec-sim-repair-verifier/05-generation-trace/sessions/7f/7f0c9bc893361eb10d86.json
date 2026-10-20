@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f0c9bc893361eb10d86",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh eval params check",
+  "task_key": "worker_ssh_eval-params-check_20260520T212614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval-params-check_20260520T212614_result.json",
+    "occurrence": 1,
+    "bytes": 2932,
+    "sha256": "be3194803a433633328aecb1531925c5866e8b535e3c70051e0c6f08e688cab2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## 1. 所有 eval 脚本参数\n\n| 脚本 | GPU | model | batch_size | max_seq_length | max_new_tokens |\n|------|-----|-------|-----------|----------------|----------------|\n| eval_qwen_cwm_s123.sh | `CUDA_VISIBLE_DEVICES=1` | Qwen3-8B | **1** | **8192** | 512 |\n| eval_qwen_cwm_s456.sh | `CUDA_VISIBLE_DEVICES=2` | Qwen3-8B | **1** | **8192** | 512 |\n| eval_deepseek_cwm_s123_v2.sh | `CUDA_VISIBLE_DEVICES=2` | DeepSeek-6.7B | **4** | **4096** | 512 |\n| eval_deepseek_cwm_s456_v2.sh | `CUDA_VISIBLE_DEVICES=1` | DeepSeek-6.7B | **4** | **4096** | 512 |\n\n**max_new_tokens**: 全部是 **512**，没有设 1024 的。\n\n---\n\n## 2. 当前 s123-v2 eval 进度\n\n- **进程**: PID 978461，已运行 **5h41m**\n- **实际参数**: `deepseek-coder-6.7b-instruct`, checkpoint-4209, `--batch_size 4 --max_seq_length 4096 --device cuda:0`（脚本写 `CUDA_VISIBLE_DEVICES=2` 但进程 cmdline 显示 `cuda:0`，说明映射到物理 GPU2）\n- **进度**: **4412 / 9784** 样本 = **45.1%**，运行 5h41m\n- **速度**: ~4412 / 341min ≈ **12.9 样本/min**\n- **预估剩余**: ~(9784 - 4412) / 12.9 ≈ **416 min ≈ 7h** 剩余\n\n---\n\n## 3. eval_repo_cwm.py 支持的参数\n\n支持 `--max_samples`（不叫 `--limit`）和 `--start_idx`，可用于截取子集测试。\n\n---\n\n## 4. Qwen s42 CWM checkpoint 路径\n\n| seed 组 | 路径 | 内容 |\n|---------|------|------|\n| s123 | `/root/autodl-tmp/checkpoints_repo_cwm_8b_s123/` | checkpoint-2700~3000 |\n| s456 | `/root/autodl-tmp/checkpoints_repo_cwm_8b_s456/` | checkpoint-2700~3000 |\n\n---\n\n## 5. GPU VRAM 状态\n\n| GPU | Used | Total | Util |\n|-----|------|-------|------|\n| 0 | 21257 MiB | 32607 MiB (5090) | 97% |\n| 1 | 20253 MiB | 32607 MiB | 99% |\n| 2 | 30651 MiB | 32607 MiB | 100% |\n| 3 | 31263 MiB | 32607 MiB | 96% |\n\n---\n\n## 6. batch_size=2 可行性判断\n\n**Qwen3-8B (seq8192, batch=1)**：\n- 当前 GPU0/1 占用 ~20-21 GB，说明 Qwen3-8B 在 batch=1 + seq8192 下占用约 **20-21 GB / 32 GB**\n- 剩余 ~11 GB headroom\n\n**batch=2 的估算**：\n- KV cache 是主要增量，seq8192 的 KV cache 对 8B 模型约 2-4 GB/sample（取决于 GQA）\n- batch=2 大约需要额外 3-5 GB → 总计 ~24-26 GB，**理论可行**（32 GB 卡有余量）\n- 但需注意 max_new_tokens=512 的生成阶段也需要 KV cache 空间\n\n**建议**：用 `--max_samples 50` 做快速测试验证 batch=2 是否 OOM，命令：\n```bash\nCUDA_VISIBLE_DEVICES=3 python eval_repo_cwm.py \\\n    --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_s123/checkpoint-3000 \\\n    --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B \\\n    --split test --device cuda:0 --max_seq_length 8192 \\\n    --max_new_tokens 512 --batch_size 2 --max_samples 50 \\\n    --output_dir /tmp/batch2_test\n```\n\n当前 GPU2/3 被占满（30-31 GB），需等现有任务完成后才能跑这个测试。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-params-check.md"
+}

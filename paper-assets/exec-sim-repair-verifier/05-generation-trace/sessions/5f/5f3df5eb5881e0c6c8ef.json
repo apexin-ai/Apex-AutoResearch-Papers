@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f3df5eb5881e0c6c8ef",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b test curve v3",
+  "task_key": "worker_eval_cls8b-test-curve-v3_20260515T044015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-test-curve-v3_20260515T044015_result.json",
+    "occurrence": 1,
+    "bytes": 69,
+    "sha256": "0ebb1da6d4fc5e6d14de33a12ea0d5b9eb1a93118ad3bfcdd1c330ce82bae10d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后自动回来检查 ckpt-800 完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-test-curve-v3.md"
+}

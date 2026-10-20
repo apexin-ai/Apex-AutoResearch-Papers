@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d1c40d01d8fe8842b61",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra verify followup readiness",
+  "task_key": "worker_infra_verify-followup-readiness_20260518T154049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify-followup-readiness_20260518T154049_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "a3f5017ebdbdaebd4f4349fda2fd3257ceb6b56b062c0b86dbf3349cccd619ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### Part 1: s123 checkpoint-8844\n\n**路径**: `/root/autodl-tmp/checkpoints_deepseek_cwm_repo_s123/checkpoint-8844/`\n\n存在且完整，包含 adapter_model.safetensors (67MB)、optimizer.pt、trainer_state.json 等全部文件。同目录下还有 checkpoint-4422。\n\n### Part 2: D133 当前进度\n\n| 指标 | 值 |\n|---|---|\n| Samples | 385 / 9784 (3.9%) |\n| Running Acc | 64.7% |\n| 速率 | ~8s/sample |\n| GPU | 86% util, 15575 MiB used |\n\n按当前速率估算剩余约 21 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-followup-readiness.md"
+}

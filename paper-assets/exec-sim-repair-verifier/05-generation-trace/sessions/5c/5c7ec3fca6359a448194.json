@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c7ec3fca6359a448194",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval urgent 8b s42 test8192 ckpt400 ckpt600",
+  "task_key": "worker_eval_urgent-8b-s42-test8192-ckpt400-ckpt600_20260514T211726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_urgent-8b-s42-test8192-ckpt400-ckpt600_20260514T211726_result.json",
+    "occurrence": 1,
+    "bytes": 290,
+    "sha256": "d8b3667cfe26b3baeba66891ea2c507e1d4f057ad156c6247129c6cd80338b04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ckpt-400 test@8192 已在 cuda:0 上启动（PID 291891，tmux session: cls8b-s42-ckpt400-test8192-eval）。90 秒后检查进度。\n\n当前状态：\n- **ckpt-400 test@8192**: RUNNING on cuda:0\n- **ckpt-600 test@8192**: 待 ckpt-400 完成后提交（cuda:0 上串行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-urgent-8b-s42-test8192-ckpt400-ckpt600.md"
+}

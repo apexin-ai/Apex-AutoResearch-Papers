@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1f9e2041cb78ba03dc2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cwm v9 fix save steps",
+  "task_key": "worker_ssh_cwm-v9-fix-save-steps_20260512T230435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cwm-v9-fix-save-steps_20260512T230435_result.json",
+    "occurrence": 1,
+    "bytes": 900,
+    "sha256": "5b68bfd248c62d355a9793f2fb28a1f9eeb0c5c9df52ea4f28814acf7f745e9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**问题**：`save_steps=100` + `eval_steps=500` + `load_best_model_at_end=True` 不兼容。transformers 要求 `save_steps` 必须是 `eval_steps` 的整数倍（100 不是 500 的倍数）。\n\n虽然 eval 每 500 步会有对应的 checkpoint（因为 500 是 100 的倍数），但 transformers 的校验逻辑是 `save_steps % eval_steps == 0`，所以拒绝了。\n\n**可选方案**：\n\n1. **禁用 `load_best_model_at_end`**（推荐）— 保持 save_steps=100 + eval_steps=500，训练结束后手动选最优 checkpoint\n2. **eval_steps=100** — 恢复原来的值，但 Director 明确要改成 500\n3. **save_steps=500** — 但 Director 说 ratchet 策略不可改\n\n方案 1 影响最小：ratchet 策略不变，eval 频率降低，只是训练结束不会自动加载 best model（可通过 eval loss 手动选）。\n\n是否用方案 1 修改脚本并重启？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cwm-v9-fix-save-steps.md"
+}

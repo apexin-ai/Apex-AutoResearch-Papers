@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7dc6f9e480c0bf7a7e96",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval ckpt200 val8192 cleanup and submit",
+  "task_key": "worker_eval_ckpt200-val8192-cleanup-and-submit_20260514T220707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ckpt200-val8192-cleanup-and-submit_20260514T220707_result.json",
+    "occurrence": 1,
+    "bytes": 486,
+    "sha256": "a0a9f4a19ca8739c3be9a409eddc049fcd83f85e9e658182190c9ad7cf70f468"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 上正在运行的就是 `cls8b-s42-ckpt200-val8192-eval-v2` session 里的 ckpt-200 val@8192 eval（PID 297547），和你要提交的任务完全相同。\n\n**当前状态：**\n- `cls8b-s42-ckpt200-val8192-eval-v2` — GPU 0，PID 297547，正在跑 ckpt-200 val 8192 eval，99% 利用率\n- GPU 0 不空闲，被这个 eval 占用\n\n这个 eval 本身就是目标任务，不需要 kill 再重新提交。要继续等它跑完，还是要 kill 掉重跑 v3？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ckpt200-val8192-cleanup-and-submit.md"
+}

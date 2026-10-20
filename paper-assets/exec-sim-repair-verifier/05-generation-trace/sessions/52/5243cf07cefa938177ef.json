@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5243cf07cefa938177ef",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval 0shot repo baseline",
+  "task_key": "worker_eval_0shot-repo-baseline_20260517T230923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_0shot-repo-baseline_20260517T230923_result.json",
+    "occurrence": 1,
+    "bytes": 706,
+    "sha256": "6a9b77464c4ad0c4b9292609965caf53c370de199b81c7a9883232c6e91bce40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常，汇总：\n\n| 项目 | 值 |\n|---|---|\n| **脚本路径** | `/home/sonny/exec-sim-repair-verifier/run_0shot_repo_level.py` |\n| **tmux session** | `0shot-repo-baseline` |\n| **PID** | 3929211 |\n| **数据** | 9784 samples, pass=7138 / fail=2646 |\n| **模型** | Qwen3-8B, thinking=disabled, attn=sdpa |\n| **截断** | 0 samples truncated（到 400 条为止） |\n| **unparseable** | 0% |\n| **running accuracy** | ~52.8%（400 samples 时） |\n| **处理速度** | ~10 samples/sec |\n| **预计总时间** | ~16-17 分钟（ETA ~954s） |\n\n前 400 条 accuracy 约 52.8%，0% unparseable，符合 0-shot baseline 的预期（远低于 fine-tuned CLS 的 74-85%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-0shot-repo-baseline.md"
+}

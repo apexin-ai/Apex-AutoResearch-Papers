@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c61a85ba0ae269fa98c2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code d063 val eval prep",
+  "task_key": "worker_code_d063-val-eval-prep_20260514T120133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d063-val-eval-prep_20260514T120133_result.json",
+    "occurrence": 1,
+    "bytes": 1101,
+    "sha256": "b54755edeedb3add71536f16775da522189b1c6ef94cf6d3f85496744eaadeab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n### 修改内容\n\n**`eval_repo_verifier.py`** 新增 `--split {val,test}` 参数（默认 `test`，向后兼容）：\n- 数据加载从硬编码 `swebench_test.jsonl` 改为 `swebench_{split}.jsonl`\n- 报告标题和输出 JSON 均包含 split 标识\n- 头部注释已更新\n\n**数据文件无需创建**——`data/swebench_full/` 下已有：\n- `swebench_val.jsonl`：9335 samples\n- `swebench_test.jsonl`：9784 samples\n\n**注意**：`eval_repo_cls.py` 已有 `--split` 支持，sweep 脚本 (`run_val_sweep.sh`, `run_westd_val_sweep.sh`) 已在用它。\n\n### Val sweep 命令模板\n\n```bash\n# eval_repo_verifier.py val sweep\npython3 eval_repo_verifier.py \\\n  --checkpoint_dir <CKPT_PATH> \\\n  --split val \\\n  --output val_eval_results/<tag>_val.json \\\n  --save_predictions \\\n  --device cuda:0\n\n# 选出 best checkpoint 后，在 test set 报最终数字\npython3 eval_repo_verifier.py \\\n  --checkpoint_dir <BEST_CKPT_PATH> \\\n  --split test \\\n  --output final_test_result.json \\\n  --save_predictions \\\n  --device cuda:0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d063-val-eval-prep.md"
+}

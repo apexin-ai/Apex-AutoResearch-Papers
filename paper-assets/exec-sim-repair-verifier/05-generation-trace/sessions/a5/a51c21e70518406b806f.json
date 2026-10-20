@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "a51c21e70518406b806f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cwm error analysis and cls4b val",
+  "task_key": "worker_analysis_cwm-error-analysis-and-cls4b-val_20260514T194511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cwm-error-analysis-and-cls4b-val_20260514T194511_result.json",
+    "occurrence": 1,
+    "bytes": 2477074,
+    "sha256": "7818a956e56b5e8b736ece80309ac0c3f2ede0e2391aaf5f8e4afff31ffc8d8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "a51c21e70518406b806f-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cwm-error-analysis-and-cls4b-val.md"
+}

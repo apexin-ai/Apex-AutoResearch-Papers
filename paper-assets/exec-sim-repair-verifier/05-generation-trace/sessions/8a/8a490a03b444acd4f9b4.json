@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "8a490a03b444acd4f9b4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "paper full consistency review",
+  "task_key": "worker_paper_full-consistency-review_20260516T011413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_full-consistency-review_20260516T011413.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/paper-full-consistency-review.md"
+}

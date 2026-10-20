@@ -1,0 +1,2324 @@
+{
+  "schema_version": "1.0",
+  "id": "9b3f749b87c0d7426e79",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "cron hook cls8b s42 ckpt200 test8192 eval 20260516T010615 336575",
+  "task_key": "cron_hook_cls8b-s42-ckpt200-test8192-eval_20260516T010615_336575",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_cls8b-s42-ckpt200-test8192-eval_20260516T010615_336575.jsonl",
+    "occurrence": 1,
+    "bytes": 115826,
+    "sha256": "cf3dd1a8e30080b57112603db4f480a394ebcdab5630758f2ef89cbf64f40615"
+  },
+  "statistics": {
+    "messages": 118,
+    "user_turns": 2,
+    "tool_calls": 57,
+    "roles": {
+      "user": 2,
+      "tool_call": 57,
+      "tool_result": 57,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T21:59:20.030721+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #18。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd cuda:0/1/2/3（seetacloud-westd-4x5090）。home-1x5090 cuda:0 仅做补充 eval\n- Test eval 禁止 `--max_samples`：必须跑全集（test n=9784, val n=9335），seed123 ckpt-6200/6400 因截断已作废\n- CWM 8B val-best 是 ckpt-400（eval_loss 0.286→0.507 严重过拟合），不要用后续 checkpoint\n- s42 resume 的 ckpt-200/400 不存在（原在 conda 目录），sweep 从 ckpt-600 开始\n- Val sweep 统一 seq8192（seq4096 已被 D104 降级为未授权，因 unparseable rate confound）\n- seed123 只有 5 个 checkpoint（200, 3000, 6200-6633），save_total_limit=5 导致早期 ckpt 被覆盖\n- 参数变更（seq_length/bs/precision/lr）需 Director 审批（D103）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: seetacloud-westd-4x5090 (root)，工作目录 `/home/sonny/exec-sim-repair-verifier`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **CWM 8B ckpts**: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`（ckpt-400 = val-best）\n- **CLS 8B s42 resume ckpts**: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`（ckpt-600 起）\n- **Home 服务器**: home-1x5090 (user=sonny)，eval 脚本需显式加 `--max_new_tokens`\n- **活跃进程**:\n  - cuda:0 — cls8b-s42-resume-val-sweep-seq8192-v2（ckpt-1800, 1/21 完成）\n  - cuda:1 — cls8b-s42-resume-val-sweep-gpu1（ckpt-4000→5800, 10 ckpts）\n  - cuda:2 — repo-level-cwm-8b-conda-v5（训练 ~57%, ETA May 16 05:30 UTC）\n  - cuda:3 — cwm8b-ckpt400-test-eval（PID 381618, 15.8%, ETA May 16 09:15 UTC）\n- **Paper figures**: `artifacts/fig1_reformulation.pdf`, `fig2_gap_amplification.pdf`, `fig3_oracle_stratified.pdf` 已生成\n- **Paper provenance**: v22, 41 active claims, coverage 40/44 (~91%)\n\n### 3. 📊 当前状态\n4 块 GPU 全满，DDL 2026-05-25（剩 10 天）。Paper writing phase 进行中（正文~7.7 页，Method.tex 3 WARNINGs 已修复，consistency check 0 critical）。\n\n**RUNNING (4)**:\n- cwm8b-ckpt400-test-eval — CWM 8B repo-level test 评估，**主阻塞项**，结果决定 8B-8B gap（Table 4 最后一行）\n- repo-level-cwm-8b-conda-v5 — CWM 8B 训练 resume from ckpt-5200，但 val-best 已锁 ckpt-400，此训练主要为完整性\n- cls8b-s42-resume-val-sweep-seq8192-v2 — 21 个 checkpoint 的 val sweep（cuda:0），确定 CLS 8B s42 val-best\n- cls8b-s42-resume-val-sweep-gpu1 — 并行 val sweep 10 ckpts（cuda:1）\n\n**PENDING (5)**: cls8b-s42-resume-ckpt1000-test-mutation, repo-level-cls-8b-s42-ckpt200-val, cls8b-ckpt3000-test-v2, cls8b-ckpt3000-test-eval, cls8b-s42-extended-val-sweep\n\n**等待中**: 0 active workers（全部实验由 cron 监控），等 4 个 cron 回调。\n\n### 4. 📋 待办（条件触发式）\n- cwm8b-ckpt400-test-eval 完成 → 提取 accuracy + unparseable rate → 计算 8B-8B gap → 更新 Table 4 → 若 gap ≥20pp 则 C1 fully validated，若 <15pp 需 Framing 调整\n- cls8b-s42-resume-val-sweep 两路完成 → 确定 val-best ckpt → 提交 test eval → 锁定 CLS 8B s42 main table 行\n- repo-level-cwm-8b-conda-v5 训练完成 → 仅做 checkpoint 归档（val-best 已是 ckpt-400）\n- 8B-8B gap 确认后 → 解锁 PENDING 实验中的 mutation-type breakdown（cls8b-s42-resume-ckpt1000-test-mutation）\n- 所有 test eval 完成 → 锁 Table 4 → Paper Agent 最终 draft → Reviewer 全文审查 → 提交 ARR\n\n### 5. 🎯 战略上下文\n**核心结论**: Classification 在 function-level 与 CWM 近乎打平（gap 1.24pp, 5 seeds TOST confirmed），但在 repo-level 拉开 25.59pp（4B-4B）。这个 complexity-dependent advantage 是论文的 spine。\n\n**决策链**: D088 确立 val-selected checkpoint 为 primary metric → D096 repo-level 主比较用 4B-4B single seed → D097 multi-seed 8B analysis 确认 CLS scaling gain → D099 val-selected 标准化 → D103 CWM 8B eval bs=8 加速\n\n**最易判断错的事**:\n1. CWM 8B 过拟合严重——不要因为训练还在跑就期待更好的 checkpoint，ckpt-400 就是 peak\n2. 4B-4B 25.59pp 是 single seed (s42) 的结果——paper 必须披露这个 limitation，不能说 \"consistently\"\n3. P2P regression rate ~1% 是 honest negative——per-test 信号在 pass-to-pass 变化上几乎没用，但 fail-to-pass 上 31% 的 instance 有 block-correlated advantage 10.88%，这才是 value\n4. CWM unparseable rate（53.7%-67.2%）是 failure mode 的核心证据——不是 bug，是 generation 在 repo-level 崩溃的直接证明\n5. Review issues R1-N2 (CWM 8B missing) 是仅存的 critical blocker——cwm8b-ckpt400-test-eval 出结果就解\n\n## 项目硬约束 (memory.md 节选)\n\n## Home 服务器路径\n- 用户目录: `/home/sonny`（不是 /home/ubuntu）\n- 4B v5 checkpoint: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n- 用 python3 不是 python\n\n## Westd 服务器路径\n- seed123 checkpoints: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/`\n- seed123 backup: `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n- s42 resume checkpoints: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`\n- 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- CWM 8B checkpoints: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`\n- 环境: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\n## 可查的历史\n前 116 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T21:59:32.605753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T21:59:32.606220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T21:59:35.322578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T21:59:35.728975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T21:59:36.232469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T21:59:36.232912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T21:59:36.739145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (90,894 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-b1b44c3e/1c83ce23-f560-4685-a149-72e0ea4f1de3/tool-results/mcp-agent-ml-research-read_registry-1778882376671.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-b1b44c3e/1c83ce23-f560-4685-a149-72e0ea4f1de3/tool-results/mcp-agent-ml-research-read_registry-1778882376671.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-b1b44c3e/1c83ce23-f560-4685-a149-72e0ea4f1de3/tool-results/mcp-agent-ml-research-read_registry-1778882376671.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1416
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T21:59:50.096872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 4, \\\"results\\\": [{\\\"exp_id\\\": \\\"cwm8b-ckpt400-test-eval\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=381618)\\\"]}, {\\\"exp_id\\\": \\\"cls8b-s42-resume-val-sweep-seq8192-v2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=398981)\\\"]}, {\\\"exp_id\\\": \\\"repo-level-cwm-8b-conda-v5\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=400279)\\\"]}, {\\\"exp_id\\\": \\\"cls8b-s42-resume-val-sweep-gpu1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=405526)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 14367
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T21:59:50.099405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | GPU | 假设 | 进度 | ETA (UTC) |\\\\n|--------|-----|------|------|-----------|\\\\n| cwm8b-ckpt400-test-eval | westd cuda:3 | CWM 8B ckpt-400 test eval (n=9784, bs=8) | 1544/9784 (15.8%) | May 16 09:15 |\\\\n| repo-level-cwm-8b-conda-v5 | westd cuda:2 | CWM 8B 训练 resume from ckpt-5200 | ~57% | May 16 05:30 |\\\\n| cls8b-s42-resume-val-sweep-seq8192-v2 | westd cuda:0 | s42 resume 21 ckpts val sweep (seq8192 bs=1) | ckpt-1800 (1/21) | May 16 10:50 |\\\\n| cls8b-s42-resume-val-sweep-gpu1 | westd cuda:1 | Parallel val sweep GPU1 (ckpt-4000→5800, 10 ckpts) | 刚启动 | ~May 16 04:00 |\\\\n\\\\n## 待处理\\\\n- cls8b-s42-resume-ckpt1000-test-mutation: per-mutation-type test breakdown（准备中）\\\\n- repo-level-cls-8b-s42-ckpt200-val（PENDING，等待人工审批）\\\\n- cls8b-ckpt3000-test-v2（PENDING）\\\\n- cls8b-ckpt3000-test-eval（PENDING）\\\\n- cls8b-s42-extended-val-sweep（PENDING）\\\\n\\\\n## 近期结论\\\\n- **repo-level-cls-8b-s42-resume** (success): s42 resume 训练完成\\\\n- **cls8b-s42-resume-val-sweep-seq4096** (killed): D103 未授权降级 seq_length，改用 seq8192\\\\n\\\\n## 关键路径\\\\n1. CWM 8B 训练完成 (May 16 05:30) → final ckpt test eval → 锁 8B-8B gap\\\\n2. CWM 8B ckpt-400 test eval (May 16 09:15) → 第一个 CWM 8B test 数据点\\\\n3. val sweep 完成 (May 16 10:50) → 编译完整 s42 resume val curve\\\\n\\\\n## 资源状态\\\\n- seetacloud-westd-4x5090: cuda:0/1/2/3 全部 RUNNING ✅\\\\n- home-1x5090: cuda:0 待命\\\\n\\\\n## 论文主表（D088 val-selected）\\\\n| 模型 | Val-best | Val | Test | vs CWM gap |\\\\n|------|----------|-----|------|------------|\\\\n| CLS 8B s42 | ckpt-1000 | 88.23% | 83.52% | 25.48pp |\\\\n| CLS 8B seed123 | ckpt-3000 | 88.69% | 85.60% | 26.51pp |\\\\n| CLS 4B s42 | ckpt-4600 | 90.07% | 83.63% | 25.59pp |\\\\n| CWM 4B s42 | — | — | 58.04% | — |\\\\n| CWM 4B seed123 | — | — | 59.09% | — |\\\\n| CWM 8B | — | — | ⏳ eval中 | — |\\\\n| Majority | — | 75.88% | \n…[truncated 160 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 13866
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T21:59:50.153134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/ROADMAP.md\\\", \\\"content\\\": \\\"# exec-sim-repair-verifier — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 08:58 UTC | 更新原因: 所有 eval sweep 完成，Paper Agent 已启动，更新为 Paper Writing 阶段\\\\n\\\\n## 核心方向\\\\nTask reformulation: execution simulation from generation → classification。核心假设：CLS 优势随代码复杂度增长。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Paper Writing（Paper Agent 已启动 Full Draft）\\\\n- **DDL**: EMNLP 2026 ARR May 25（剩余 **10 天**）\\\\n- **C1**: ✅ Multi-seed gap = 25.99pp (s42: 25.48, seed123: 26.51)\\\\n- **C2**: ✅ TOST p=0.007\\\\n- **C3**: ✅ Oracle frontier 完成\\\\n\\\\n## 论文主表数字（D088 val-selected, 全部锁定）\\\\n\\\\n| 模型 | Val-best | Val | Test | vs CWM gap |\\\\n|------|----------|-----|------|------------|\\\\n| CLS 8B s42 | ckpt-1000 | 88.23% | 83.52% | 25.48pp |\\\\n| CLS 8B seed123 | ckpt-3000 | 88.69% | 85.60% | 26.51pp |\\\\n| CLS 4B s42 | ckpt-4600 | 90.07% | 83.63% | 25.59pp |\\\\n| CWM 4B s42 | — | — | 58.04% | — |\\\\n| CWM 4B seed123 | — | — | 59.09% | — |\\\\n| CWM 8B | — | — | ⏳ training 57% | — |\\\\n| Majority | — | 75.88% | 72.96% | — |\\\\n\\\\n## Sweep 完成度\\\\n- ✅ 8B s42 val sweep: 8 点 (200→1600), peak=ckpt-1000 (88.23%)\\\\n- ✅ 8B s42 test sweep: 7 点 (400→1600), peak=ckpt-1400 (85.47%)\\\\n- ✅ seed123 val sweep: 5 点 (3000, 6200→6633), peak=ckpt-3000 (88.69%)\\\\n- ✅ seed123 val-best test: ckpt-3000 test=85.60%\\\\n- ✅ 4B val sweep: 5 点, peak=ckpt-4600 (90.07%)\\\\n- ✅ 4B test: ckpt-4600=83.63%, ckpt-4400=83.24%\\\\n\\\\n## 近期任务\\\\n- [x] ~~8B s42 sweep 完成~~\\\\n- [x] ~~seed123 val sweep + val-best test~~\\\\n- [x] ~~4B val-best test~~\\\\n- [x] ~~文档修正 (error_analysis + comprehensive_results + compilation)~~\\\\n- [x] ~~Paper Agent 启动~~\\\\n- [ ] CWM 8B 训练完成 (57%, ETA May 16 05:30 UTC) → test eval → 锁 8B-8B gap\\\\n- [ ] s42 resume 完成 (55%, ETA ~23:00 UTC) → extended val sweep\\\\n- [ ] Paper Agent: Step 2 图表 → Step 3 写作 → Step 4 审查\\\\n- [ ] val_sweep_compilation.md 最终编译缺口补全\\\\n\\\\n## GPU 预算\\\\n- wes\n…[truncated 1653 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 13920
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T22:00:14.246067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-b1b44c3e/1c83ce23-f560-4685-a149-72e0ea4f1de3/tool-results/mcp-agent-ml-research-read_registry-1778882376671.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Filter RUNNING\nrunning = [e for e in exps if e.get('status') == 'RUNNING']\nfor e in running:\n    print(f\\\"  {e['exp_id']}: gpu={e.get('gpu_id','?')}, hypothesis={e.get('hypothesis','')[:80]}\\\")\nprint()\n# Filter PENDING/PREPARING\npending = [e for e in exps if e.get('status') in ('PENDING','PREPARING')]\nprint(f'PENDING/PREPARING ({len(pending)}):')\nfor e in pending:\n    print(f\\\"  {e['exp_id']}: status={e['status']}\\\")\n\"\n",
+              "description": "Extract RUNNING and PENDING experiments from registry"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T22:00:14.649075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "status": "running",
+              "limit": "5"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T22:00:15.106334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    running = [e for e in exps if e.get('status') == 'RUNNING']\n                                  ^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "elapsed_ms": 860
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T22:00:15.106731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-account…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 457
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T22:00:22.856959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-b1b44c3e/1c83ce23-f560-4685-a149-72e0ea4f1de3/tool-results/mcp-agent-ml-research-read_registry-1778882376671.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nregistry = json.loads(result_str)\nexps = registry['data']['experiments']\n# Check structure\nprint(type(exps), type(exps[0]) if exps else 'empty')\nif isinstance(exps[0], str):\n    # Maybe it's double-encoded\n    print(exps[0][:200])\n\" 2>&1 | head -5\n",
+              "description": "Probe registry JSON structure"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T22:00:23.265583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Traceback (most recent call last):\n  File \"<string>\", line 8, in <module>\n    print(type(exps), type(exps[0]) if exps else 'empty')\n                           ~~~~^^^\nKeyError: 0"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "elapsed_ms": 408
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T22:00:28.942015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-b1b44c3e/1c83ce23-f560-4685-a149-72e0ea4f1de3/tool-results/mcp-agent-ml-research-read_registry-1778882376671.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nregistry = json.loads(result_str)\nexps = registry['data']['experiments']\nprint(type(exps))\nif isinstance(exps, dict):\n    # dict keyed by exp_id\n    running = {k:v for k,v in exps.items() if v.get('status') == 'RUNNING'}\n    print(f'RUNNING ({len(running)}):')\n    for k,v in running.items():\n        print(f'  {k}: gpu={v.get(\\\"gpu_id\\\",\\\"?\\\")}, hyp={str(v.get(\\\"hypothesis\\\",\\\"\\\"))[:80]}')\n    pending = {k:v for k,v in exps.items() if v.get('status') in ('PENDING','PREPARING')}\n    print(f'PENDING/PREPARING ({len(pending)}):')\n    for k,v in pending.items():\n        print(f'  {k}: status={v[\\\"status\\\"]}')\nelif isinstance(exps, list):\n    print(len(exps), type(exps[0]))\n\"\n",
+              "description": "Extract RUNNING and PENDING experiments from registry dict"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T22:00:29.349045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<class 'dict'>\nRUNNING (4):\n  cwm8b-ckpt400-test-eval: gpu=?, hyp=CWM 8B ckpt-400 (best eval_loss=0.286) test@full(n=9784). 与 CLS 8B 对比锁定 8B-8B ga\n  cls8b-s42-resume-val-sweep-gpu1: gpu=?, hyp=Parallel val sweep GPU 1 (ckpt-4000→5800, 10 checkpoints), complementing GPU 0 s\n  repo-level-cwm-8b-conda-v5: gpu=?, hyp=CWM 8B 训练 resume from ckpt-5200 (v4 timeout续), 剩余 ~1433 steps\n  cls8b-s42-resume-val-sweep-seq8192-v2: gpu=?, hyp=s42 resume val sweep (seq8192 bs=1): 21 checkpoints (1800-5800), 与 baseline 一致的 \nPENDING/PREPARING (5):\n  cls8b-s42-resume-ckpt1000-test-mutation: status=PREPARING\n  repo-level-cls-8b-s42-ckpt200-val: status=PENDING\n  cls8b-ckpt3000-test-v2: status=PENDING\n  cls8b-ckpt3000-test-eval: status=PENDING\n  cls8b-s42-extended-val-sweep: status=PENDING"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "elapsed_ms": 407
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T22:00:34.680334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "status": "running",
+              "limit": "5"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T22:00:35.037973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_ops_check-running-experiments-and-scripts_20260515T215737\\\", \\\"task_type\\\": \\\"ops:check-running-experiments-and-scripts\\\", \\\"project\\\": \\\"exec-sim-repair-verifier\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-15T21:57:38.464916+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 357
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T22:00:57.078120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T22:00:57.078759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.claude/sessions/agent_b1b44c3e."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T22:01:12.444951+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T22:01:12.548242+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Glob",
+            "elapsed_ms": 103
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T22:01:15.511979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T22:01:15.815369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Glob",
+            "elapsed_ms": 303
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T22:01:17.522967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T22:01:17.523718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T22:01:45.101025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "writing_plan.yaml"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T22:01:45.604220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/writing_plan.yaml\\\", \\\"content\\\": \\\"meta:\\\\n  venue: EMNLP 2026\\\\n  track: main (ARR submission)\\\\n  template: docs/paper/  # Existing ACL/ARR template already in place\\\\n  template_note: \\\\\\\"Reusing existing acl2023.sty template from prior draft. Already configured with \\\\\\\\\\\\\\\\usepackage[review]{acl}.\\\\\\\"\\\\n  page_limit: 8  # + unlimited references/appendix (ARR format)\\\\n  deadline: 2026-05-25\\\\n  core_claim: >\\\\n    Binary pass/fail classification and execution output generation achieve equivalent accuracy\\\\n    on simple function-level code (~88% vs ~87%), but classification yields a 25.59pp same-size\\\\n    advantage at repo-level complexity (4B-4B, single seed) where CWM suffers format compliance\\\\n    collapse (53-67% unparseable, parseable-only accuracy below random at 42-43%). The advantage\\\\n    is complexity-dependent: from near-null at function level to critical at repository level.\\\\n    C1 has two layers: (1) same-size gap (4B-4B=25.59pp, 8B-8B=TBD); (2) CLS scaling gain\\\\n    (+0.99pp 4B→8B) vs CWM no gain (-0.27pp), indicating generation bottleneck not capacity.\\\\n  working_title: >\\\\n    Classification Scales Where Generation Stalls:\\\\n    Reformulating Execution Simulation for Code Repair Verification\\\\n  created_at: 2026-05-15T18:00:00Z\\\\n  notes:\\\\n    - \\\\\\\"Registry is truth source for ALL numbers.\\\\\\\"\\\\n    - \\\\\\\"Seeds 789/0 (CLS function-level) used 4-bit NF4 quantization — must note in paper.\\\\\\\"\\\\n    - \\\\\\\"C1 two-layer structure: (1) same-size primary (4B-4B=25.59pp s42, 8B-8B=TBD); (2) scaling evidence (CLS +0.99pp, CWM -0.27pp). Cross-size 8B-CLS vs 4B-CWM (25.48-26.51pp, 2 seeds) disclosed as secondary.\\\\\\\"\\\\n    - \\\\\\\"CLS 4B s123 test eval not yet run — 4B-4B currently single-seed.\\\\\\\"\\\\n    - \\\\\\\"CWM 8B repo-level training in progress (repo-level-cwm-8b-conda-v4). When done, patch 8B-8B direct compari\n…[truncated 11026 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 503
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T22:01:45.604738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "file": "paper_framing.md"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T22:01:45.755731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — exec-sim-repair-verifier\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR May 25, 2026)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Extended fallback: ICSE 2027 (Jun 23 abstract, Jun 30 paper)\\\\n- Deadline: ARR May 25, 2026 (14 days from project start)\\\\n\\\\n## Core Claims (3 conditions)\\\\n\\\\n1. **Complexity-Dependent Reformulation Advantage**: Binary pass/fail classification and execution output generation (CWM-style) achieve equivalent accuracy on simple function-level code (4B: F1 diff 0.9pp), but classification scales better with model size (8B 3-seed mean accuracy gap=2.43pp; seed42: 2.81pp, cls 90.48% vs cwm 87.67%) and to repo-level complexity where CWM failure modes—token-budget exhaustion and string-value prediction errors—dominate. Zero-shot LLM-as-judge baselines (8B: 64.4%, 32B NF4: 71.7%) are far below fine-tuned 4B (88.4%), confirming fine-tuning necessity. (Validated function-level near-null + 8B scaling evidence; repo-level SWE-bench experiments in progress. Fallback: if repo-level also null, reframe to efficiency-equivalent accuracy—same F1 with 1-token vs N-token inference.)\\\\n\\\\n2. **Diagnostic Granularity At Equivalent Accuracy**: Per-test classification achieves equivalent variant-level accuracy to trajectory-level scoring (TOST equivalence test p=0.007, ±2pp margin; 5-seed pooled gap -0.40pp, 95% CI [-1.32, +0.52]) while providing actionable diagnostic information (which specific tests a patch fails). The per-test formulation gains diagnostic granularity without sacrificing accuracy—potentially enabling targeted re-repair and oracle-based test selection. (Evidence: 5-paired clustered bootstrap CI, 114 clusters, 10000 resamples. Paper must justify ±2pp margin: in code verification, 2pp variant-level difference is negligible given ICC=0.191/DEFF=3.97. Seeds 789\n…[truncated 5157 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 150
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T22:02:18.175876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__check_paper_consistency,mcp__agent-ml-research__check_provenance_completeness",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T22:02:18.227184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T22:02:28.593986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_paper_consistency"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__check_paper_consistency",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T22:02:28.594395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_provenance_completeness"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__check_provenance_completeness",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T22:02:28.697167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper\\\", \\\"sections\\\": [{\\\"file\\\": \\\"abstract.tex\\\", \\\"role\\\": \\\"headline\\\", \\\"num_numbers\\\": 16, \\\"num_cites\\\": 0}, {\\\"file\\\": \\\"conclusion.tex\\\", \\\"role\\\": \\\"headline\\\", \\\"num_numbers\\\": 4, \\\"num_cites\\\": 0}, {\\\"file\\\": \\\"experiments.tex\\\", \\\"role\\\": \\\"result\\\", \\\"num_numbers\\\": 167, \\\"num_cites\\\": 11}, {\\\"file\\\": \\\"introduction.tex\\\", \\\"role\\\": \\\"intro\\\", \\\"num_numbers\\\": 9, \\\"num_cites\\\": 8}, {\\\"file\\\": \\\"method.tex\\\", \\\"role\\\": \\\"other\\\", \\\"num_numbers\\\": 0, \\\"num_cites\\\": 1}, {\\\"file\\\": \\\"related_work.tex\\\", \\\"role\\\": \\\"other\\\", \\\"num_numbers\\\": 1, \\\"num_cites\\\": 18}], \\\"critical\\\": [], \\\"warning\\\": [], \\\"info\\\": [{\\\"kind\\\": \\\"notation_per_section\\\", \\\"message\\\": \\\"Inline math symbols collected per section.\\\", \\\"data\\\": {\\\"abstract\\\": [\\\"\\\\\\\\geq\\\", \\\"\\\\\\\\pm\\\", \\\"\\\\\\\\sim\\\", \\\"\\\\\\\\to\\\"], \\\"conclusion\\\": [\\\"\\\\\\\\to\\\"], \\\"experiments\\\": [\\\"\\\\\\\\Delta\\\", \\\"\\\\\\\\alpha\\\", \\\"\\\\\\\\approx\\\", \\\"\\\\\\\\geq\\\", \\\"\\\\\\\\pm\\\", \\\"\\\\\\\\sim\\\", \\\"\\\\\\\\times\\\", \\\"\\\\\\\\to\\\"], \\\"introduction\\\": [\\\"\\\\\\\\geq\\\", \\\"\\\\\\\\pm\\\", \\\"\\\\\\\\to\\\"], \\\"method\\\": [\\\"\\\\\\\\Delta\\\", \\\"\\\\\\\\Sigma\\\", \\\"\\\\\\\\approx\\\", \\\"\\\\\\\\bigwedge\\\", \\\"\\\\\\\\forall\\\", \\\"\\\\\\\\hat\\\", \\\"\\\\\\\\in\\\", \\\"\\\\\\\\ldots\\\", \\\"\\\\\\\\rho\\\", \\\"\\\\\\\\rightarrow\\\", \\\"\\\\\\\\textsc\\\"]}}], \\\"summary\\\": {\\\"critical\\\": 0, \\\"warning\\\": 0, \\\"info\\\": 1}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__check_paper_consistency",
+            "elapsed_ms": 103
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T22:02:30.172646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool check_provenance_completeness: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__check_provenance_completeness",
+            "elapsed_ms": 1578
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T22:02:58.221833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 4 | Worker 池 2 (GPU 0 / CPU 2)\n\n**Loop #18 状态汇报**\n\n**RUNNING (4)** — 全部 cron 监控中：\n1. `cwm8b-ckpt400-test-eval` cuda:3 — 15.8% (1544/9784), ETA May 16 09:15 UTC。**主阻塞项**，出结果即锁 8B-8B gap + Table 4 最后一行\n2. `repo-level-cwm-8b-conda-v5` cuda:2 — 训练 ~57%, ETA May 16 05:30 UTC。Val-best 已锁 ckpt-400，此训练为完整性\n3. `cls8b-s42-resume-val-sweep-seq8192-v2` cuda:0 — 21 ckpts val sweep, 1/21 完成, ETA May 16 10:50 UTC\n4. `cls8b-s42-resume-val-sweep-gpu1` cuda:1 — 10 ckpts parallel sweep, ETA ~May 16 04:00 UTC\n\n**论文状态**：\n- Consistency check: 0 critical, 0 warning\n- Provenance: v22, ~91% coverage (40/44 claims)\n- 正文 ~7.7 页, 3 figures 已生成\n- 唯一 critical gap: CWM 8B test 行（等 cwm8b-ckpt400-test-eval）\n\n**下一步**（条件触发）：\n- cuda:1 sweep 先完成 (~May 16 04:00) → 与 cuda:0 结果合并 → 确定 s42 resume val-best\n- cwm8b-ckpt400-test-eval 完成 → 提取 accuracy + unparseable → 计算 8B-8B gap → 更新 Table 4\n- 全部 test eval 完成 → 锁表 → 最终 draft → Reviewer 审查\n\nDDL May 25，剩 10 天。当前无阻塞需 Director 决策。",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T22:03:15.397285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_061c4b1115e483e8fdad01cae91c873a:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 17175
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T22:03:18.674320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ops:prepare-cwm8b-analysis-pipeline",
+              "project": "exec-sim-repair-verifier",
+              "task_prompt": "## 任务：准备 CWM 8B test eval 结果分析脚本\n\n### 背景\nCWM 8B ckpt-400 test eval 正在 westd 服务器上运行（PID 381618, cuda:3），预计 May 16 09:15 UTC 完成。完成后需要立即提取结果并计算 8B-8B gap。\n\n### 你要做的事\n\n1. **SSH 到 westd 检查 eval 进度**（用 ssh_read_only）：\n   - 服务器: seetacloud-westd-4x5090 (root)\n   - 检查 PID 381618 是否还在运行\n   - 读取 eval 日志最新输出，确认进度百分比\n   - 检查 GPU 利用率: `nvidia-smi --query-gpu=utilization.gpu,memory.used --format=csv,noheader`\n\n2. **检查 val sweep 进度**：\n   - cuda:0 (PID 398981): cls8b-s42-resume-val-sweep-seq8192-v2, 21 ckpts\n   - cuda:1 (PID 405526): cls8b-s42-resume-val-sweep-gpu1, 10 ckpts\n   - 读取 sweep 脚本日志，看当前在跑哪个 checkpoint\n   - cuda:2 (PID 400279): CWM 8B 训练进度\n\n3. **检查已有的 CWM eval 分析脚本**：\n   - 看 `/home/sonny/exec-sim-repair-verifier/` 下是否已有 `analyze_cwm_eval.py` 或类似脚本\n   - 看之前 CWM 4B eval 是怎么提取 accuracy 和 unparseable rate 的（找 registry 中 repo-level-cwm-v12 的 metrics）\n\n4. **输出汇报**：\n   - 各 GPU 任务当前进度 + 更新后的 ETA\n   - CWM 8B eval 的日志路径和输出格式（方便完成后立即分析）\n   - 已有分析工具清单\n\n### 环境\n- 服务器: seetacloud-westd-4x5090, user=root\n- Python: /root/miniconda3/bin/python (conda base)\n- 项目目录: /home/sonny/exec-sim-repair-verifier\n- CWM 8B checkpoints: /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/\n\n### 注意事项\n- 只用 ssh_read_only，不要执行任何修改操作\n- 不要中断任何正在运行的进程",
+              "tool_groups": "['ssh', 'registry']",
+              "context": "CWM 8B test eval (exp_id: cwm8b-ckpt400-test-eval) 是当前主阻塞项。CWM 4B test accuracy 是 58.04% (s42) / 59.09% (s123)。CLS 8B test accuracy 是 83.52% (s42) / 85.60% (s123)。8B-8B gap = CLS 8B test - CWM 8B test。如果 gap ≥20pp 则 C1 fully validated。"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T22:03:23.641984+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_prepare-cwm8b-analysis-pipeline_20260515T220320\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/logs/workers/worker_ops_prepare-cwm8b-analysis-pipeline_20260515T220320.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ops_prepare-cwm8b-analysis-pipeline_20260515T220320 started. Use get_worker_status('worker_ops_prepare-cwm8b-analysis-pipeline_20260515T220320') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 4967
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T22:03:31.507587+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session-start 初始化完成。\n\n**状态总结**：\n- 4/4 GPU 全满运行，cron 监控正常\n- 论文 0 critical issues，91% provenance coverage\n- 已向 Director 汇报，已派 Worker 检查各 GPU 进度并准备 CWM 8B 分析流程\n- Worker 池 = 2（ops check + analysis pipeline prep）\n- 等 4 个 cron 回调：最早的是 cuda:1 val sweep（~May 16 04:00 UTC），最关键的是 cwm8b-ckpt400-test-eval（~May 16 09:15 UTC）\n\n当前无需 Director 决策，全部实验自动推进中。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval"
+          },
+          "id": "event-000044"
+        }
+      ],
+      "message_count": 44
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T01:03:48.891909+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T01:04:11.188213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Read project state files",
+              "subagent_type": "Explore",
+              "prompt": "I need to read several project state files to understand the current status of the \"exec-sim-repair-verifier\" project. Please read the following files and return their contents:\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/ROADMAP.md\n4. /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/memory.md\n5. /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/experiment_plan.yaml\n6. /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/dream_registry.yaml\n7. /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_framing.md\n\nRead each file completely. If a file doesn't exist, note that. Return all contents verbatim."
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T01:04:13.964002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T01:04:13.964435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T01:04:13.964692+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (100838 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T01:04:13.965032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Handover — 2026-05-16\n2\t\n3\t> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n4\t\n5\t## 运行中\n6\t| exp_id | 假设 | 状态 | 关键指标 | W&B |\n7\t|--------|------|------|---------|-----|\n8\t| cls8b-s42-resume-ckpt1000-test-mutation | CLS 8B s42 resume ckpt-1000 (val-best) 完整 test set 评估 (n=9784)，含 per-mutation-type breakdown。直接指定 ckpt-1000 路径（不用 best/），验证 accuracy + per-class F1 + mutation-type 粒度指标。 | — | — | — |\n9\t| cls8b-s42-ckpt1000-test-mutation | — | — | — | — |\n10\t\n11\t## 待处理\n12\t- cls8b-s42-resume-ckpt3600-test（等待人工审批）\n13\t- cwm8b-ckpt400-test-eval-v3（已分配 ? GPU:?，等待提交）\n14\t- cls8b-s42-resume-ckpt3600-mutation（准备中）\n15\t\n16\t## 近期结论\n17\t- **cwm8b-ckpt400-test-eval-v2** (killed): CWM 8B ckpt-400 test eval resume (v1 在 1544/9784 被 SIGKILL, 实际已完成 5280)\n18\t- **repo-level-cwm-8b-conda-v6** (killed): —\n19\t- **repo-level-cwm-8b-conda-v5** (negative): CWM 8B 训练 resume from ckpt-5200 (v4 timeout续), 剩余 ~1433 steps ← 基于 repo-level-cwm-8b-conda-v4\n20\t\n21\t## 趋势\n22\t成功 78 / 负向 5 / 失败 34 / 共 140\n23\t\n24\t## 下一步\n25\t（无活跃 idea，请通过 ideas.md 添加）\n26\t\n27\t## 资源状态\n28\thome-1x5090: 无 GPU 信息\n29\tseetacloud-westd-4x5090: 无 GPU 信息\n30\t\n31\t## 告警\n32\t- trace-then-judge: 训练失败 — unknown\n33\t- repo-level-cls: 训练失败 — unknown\n34\t- repo-level-cwm: 训练失败 — unknown\n35\t- repo-level-cls-v2: 训练失败 — unknown\n36\t- repo-level-cwm-v2: 训练失败 — unknown\n37\t- repo-level-cls-v3: 训练失败 — unknown\n38\t- repo-level-cwm-v3: 训练失败 — unknown\n39\t- repo-level-cls-home: 训练失败 — unknown\n40\t- repo-level-cwm-v4: 已被终止 — unknown\n41\t- repo-level-cwm-v5: 训练失败 — unknown\n42\t- repo-level-cwm-v6: 训练失败 — unknown\n43\t- repo-level-cwm-v7: 训练失败 — unknown\n44\t- repo-level-cwm-v8: 训练失败 — unknown\n45\t- repo-level-cwm-v9: 训练失败 — unknown\n46\t- repo-level-cls-seed123: 已被终止 — unknown\n47\t- repo-level-cwm-seed123: 已被终止 — unknown\n48\t- repo-level-cwm-v11: 已被终止 — unknown\n49\t- repo-level-cls-8b: 已被终止 — unknown\n50\t- repo-level-cwm-v12: 已被终止 — unknown\n51\t- repo-level-cwm-seed123-conda: 已被终止 — unknown\n52\t- repo-level-cwm-8b-conda: 训练失败 — unknown\n53\t- repo-level-cls-8b-seed123-conda: 训练失败 — unknown\n54\t- re\n…[truncated 1755 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T01:04:13.965327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/ROADMAP.md"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T01:04:13.969462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# exec-sim-repair-verifier — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-15 23:00 UTC | 更新原因: Session 19 — s42 resume 训练+sweep 已完成，Paper Workers 已派发\n4\t\n5\t## 核心方向\n6\tTask reformulation: execution simulation from generation → classification。核心假设：CLS 优势随代码复杂度增长。详见 paper_framing.md。\n7\t\n8\t## 当前进展\n9\t- **阶段**: Paper Writing（Paper Agent 已启动 Full Draft）\n10\t- **DDL**: EMNLP 2026 ARR May 25（剩余 **10 天**）\n11\t- **C1**: ✅ Multi-seed gap = 25.99pp (s42: 25.48, seed123: 26.51)\n12\t- **C2**: ✅ TOST p=0.007\n13\t- **C3**: ✅ Oracle frontier 完成\n14\t\n15\t## 论文主表数字（D088 val-selected, 全部锁定）\n16\t\n17\t| 模型 | Val-best | Val | Test | vs CWM gap |\n18\t|------|----------|-----|------|------------|\n19\t| CLS 8B s42 | ckpt-1000 | 88.23% | 83.52% | 25.48pp |\n20\t| CLS 8B seed123 | ckpt-3000 | 88.69% | 85.60% | 26.51pp |\n21\t| CLS 4B s42 | ckpt-4600 | 90.07% | 83.63% | 25.59pp |\n22\t| CWM 4B s42 | — | — | 58.04% | — |\n23\t| CWM 4B seed123 | — | — | 59.09% | — |\n24\t| CWM 8B | — | — | ⏳ training 57% | — |\n25\t| Majority | — | 75.88% | 72.96% | — |\n26\t\n27\t## Sweep 完成度\n28\t- ✅ 8B s42 val sweep: 8 点 (200→1600), peak=ckpt-1000 (88.23%)\n29\t- ✅ 8B s42 test sweep: 7 点 (400→1600), peak=ckpt-1400 (85.47%)\n30\t- ✅ seed123 val sweep: 5 点 (3000, 6200→6633), peak=ckpt-3000 (88.69%)\n31\t- ✅ seed123 val-best test: ckpt-3000 test=85.60%\n32\t- ✅ 4B val sweep: 5 点, peak=ckpt-4600 (90.07%)\n33\t- ✅ 4B test: ckpt-4600=83.63%, ckpt-4400=83.24%\n34\t\n35\t## 近期任务\n36\t- [x] ~~8B s42 sweep 完成~~\n37\t- [x] ~~seed123 val sweep + val-best test~~\n38\t- [x] ~~4B val-best test~~\n39\t- [x] ~~文档修正 (error_analysis + comprehensive_results + compilation)~~\n40\t- [x] ~~Paper Agent 启动~~\n41\t- [ ] CWM 8B 训练完成 (57%, ETA May 16 05:30 UTC) → test eval → 锁 8B-8B gap\n42\t- [x] ~~s42 resume 训练完成 (100%)~~ + ~~val sweep 完成 (11 unique checkpoints)~~\n43\t- [ ] Paper Writing: intro/related/conclusion Worker + figures Worker (Session 19 已派发)\n44\t- [ ] val_sweep_compilation.md 最终编译缺口补全\n45\t- [ ] PREPARING: mutation-type breakdown (待 Director 决策 cuda:0/1 分配)\n46\t\n47\t## GPU 预算\n48\t- westd cud\n…[truncated 1661 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 4
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T01:04:13.969878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/memory.md"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T01:04:13.970147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Read decisions and config",
+              "subagent_type": "Explore",
+              "prompt": "Read the following files for the exec-sim-repair-verifier project and return their full contents:\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/literature_map.yaml\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/writing_plan.yaml\n4. /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/study_status.lock\n5. /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_provenance.yaml\n\nIf a file doesn't exist, note that. Return all contents verbatim."
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T01:04:14.071077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Memory — exec-sim-repair-verifier\n2\t\n3\t## 硬教训：标 FAILED 前必须确认进程已退出 (2026-05-15)\n4\t- **事故**：v1 ckpt-3000 test eval (PID 345441) 被误标 DONE/failed，但进程实际在跑。随后 v2 提交到同 GPU 导致 OOM。\n5\t- **规则**：标 FAILED/DONE(failed) 前必须 `ps -p PID` 确认进程已退出。标 RUNNING 的实验所在 GPU 不得提交新任务。\n6\t- **适用范围**：所有 registry 状态变更操作\n7\t\n8\t## 硬教训：eval 不要用 --max_samples (2026-05-15)\n9\t- **事故**：seed123 ckpt-6200/6400 test eval 用了 `--max_samples 8192`，只评了 8192/9784 样本，与主表 n=9784 不可比。被 Reviewer 抓出后需 kill+重跑。\n10\t- **规则**：test eval 禁止 --max_samples 参数，必须评完整 test set (n=9784)。val eval 同理 (n=9335)。\n11\t- **例外**：debug/dry-run 时可以用，但结果不入正式表。\n12\t\n13\t## 硬教训：s42 resume 从 ckpt-600 开始 (2026-05-15)\n14\t- s42 resume 的 checkpoint 目录 `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/` 从 ckpt-600 开始（200步间隔），不含 ckpt-200/400。\n15\t- 原始训练 ckpt-200/400 在 `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/`，但那是 s42 原始训练目录不是 resume 目录。\n16\t- **提交 s42 val eval 前检查 checkpoint 是否存在于 resume 目录**。\n17\t\n18\t## ⚠️ Unparseable Rate 混淆变量警告 (2026-05-15)\n19\t- ckpt-1800 的 20.2% unparseable 是在 **seq=2048** 下测的；ckpt-800/1400 的 0% 是在 **seq=8192** 下测的\n20\t- **无法归因为\"过拟合导致 format compliance 退化\"**——可能是截断导致\n21\t- ckpt-200 在 seq=2048 下仅 1.4% unparseable，暗示两者都有影响（截断 + 过拟合），但需控制变量\n22\t- **cls8b-s42-resume-val-sweep-seq8192 正在以统一 seq=8192 重新评估所有 checkpoint**，含 unparseable 追踪\n23\t- 等此 sweep 完成后才能下 unparseable 趋势结论\n24\t\n25\t## 8B-8B Gap 评判标准 (Director 指令, 2026-05-15)\n26\t- **CLS 8B vs CWM 8B 对比必须双方都用 val-best checkpoint**（不是 test-best，不是 final）\n27\t- CWM 8B eval **必须统计 unparseable rate**（无法解析为 pass/fail 的输出比例）\n28\t- unparseable rate 是论文 failure modes (§2.3) 的关键证据\n29\t- 4B repo-level CWM unparseable rate: s42=53.7%, seed123=67.2%\n30\t- 8B 是否改善直接影响 claim 强度\n31\t- **CWM 8B val sweep 脚本必须包含 unparseable 统计**\n32\t\n33\t## D088 Checkpoint 选择 — Val Sweep 完成 (2026-05-15, updated)\n34\t- **主指标回到 val-selected checkpoint**（ML 社区规范）\n35\t- **⚠️ 8B s42 Val-best 已更新: ckpt-3600 (90.28%, F1m=85.98%)** ← resume sweep 发现，超越原 ckpt-1000 +2.05pp\n36\t- 原始 val curve (seq2048): 200(63.5%) → 400(81.0%) → 800(8\n…[truncated 5810 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T01:04:14.121786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/experiment_plan.yaml"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T01:04:14.272914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\texperiments:\n2\t- id: cwm-baseline\n3\t  claim: 1\n4\t  description: Train CWM generation baseline (Qwen3-4B LoRA, same data/config as MVP-B)\n5\t    to predict execution output instead of pass/fail. Compare per-class F1 against\n6\t    classification model (87.1/87.9%).\n7\t  priority: P0\n8\t  gpu_budget_hours: 2\n9\t  deps:\n10\t  - mvp-b-train\n11\t  status: PREPARING\n12\t  registry_id: cwm-baseline\n13\t- id: multi-seed-core\n14\t  claim: 1\n15\t  description: 'Multi-seed validation for core comparison: run classification (mvp-b-train)\n16\t    and CWM baseline each with seeds {0, 1, 42}. Report mean +/- std F1. Statistical\n17\t    significance via paired t-test or bootstrap CI. Required for any claim of ''significantly\n18\t    better''.'\n19\t  priority: P0\n20\t  gpu_budget_hours: 8\n21\t  deps:\n22\t  - cwm-baseline\n23\t  registry_id: traj-level-seed0\n24\t- id: trace-then-judge\n25\t  claim: 1\n26\t  description: 'Trace-then-Judge ablation (chain-of-thought, NOT pipeline): single\n27\t    Qwen3-4B model trained to first generate a brief execution reasoning trace (~50\n28\t    tokens describing expected behavior), then output pass/fail. Same LoRA config/data.\n29\t    Tests whether explicit execution reasoning helps or hurts compared to direct classification.\n30\t    If trace-then-judge >= direct classification, the advantage is from task simplicity,\n31\t    not from skipping reasoning.'\n32\t  priority: P0\n33\t  gpu_budget_hours: 4\n34\t  deps:\n35\t  - cwm-baseline\n36\t  registry_id: trace-then-judge\n37\t- id: traj-level-finetuned\n38\t  claim: 1\n39\t  description: 'Same-size fine-tuned trajectory-level baseline: Qwen3-4B LoRA trained\n40\t    to predict resolved/unresolved. Data construction: for each problem_id, aggregate\n41\t    all (code, test) pairs into (code, all_tests_concatenated) -> resolved (original\n42\t    code passes all tests) / unresolved (mutated code fails any test). Same train/val/test\n43\t    split by problem_id. Isolates granularity effect.'\n44\t  priority: P0\n45\t  gpu_budget_hours: 2\n46\t  deps:\n47\t  - \n…[truncated 4231 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T01:04:14.273316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/dream_registry.yaml"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T01:04:14.423998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tdreams:\n2\t  dream_20260511T214810:\n3\t    dream_id: dream_20260511T214810\n4\t    project: exec-sim-repair-verifier\n5\t    status: failed\n6\t    review_mode: full\n7\t    review_visible: true\n8\t    writing_visible: true\n9\t    venue: ''\n10\t    focus: 'Key risk: Claim 1 (classification vs generation) has zero experimental\n11\t      evidence yet -- CWM baseline is the make-or-break experiment. Claim 3''s P2P\n12\t      regression rate ~1% finding narrows the story. Venue fit for EMNLP is uncertain\n13\t      (core work is SE verification). Please stress-test whether the reframed \"task\n14\t      reformulation\" narrative is strong enough for EMNLP Main.'\n15\t    what_if: []\n16\t    pid: 75048\n17\t    started_at: '2026-05-11T21:48:10+00:00'\n18\t    updated_at: '2026-05-11T22:01:52+00:00'\n19\t    stages_completed:\n20\t    - imagine\n21\t    - write\n22\t    - review\n23\t    error: all tiers failed\n24\t    context_hash: 7904057bb93e1ffb405c955753c55a2a32600fce8935189cca3319752a9b6edc\n25\t  dream_20260511T223609:\n26\t    dream_id: dream_20260511T223609\n27\t    project: exec-sim-repair-verifier\n28\t    status: failed\n29\t    review_mode: full\n30\t    review_visible: true\n31\t    writing_visible: true\n32\t    venue: ''\n33\t    focus: 'Claim 1 reframed as complexity-dependent advantage: function-level classification\n34\t      ≈ generation (null result confirmed), repo-level is the critical test. Focus\n35\t      on whether the paper story holds under each tier given the function-level null\n36\t      result and the need for repo-level validation.'\n37\t    what_if: []\n38\t    pid: 80608\n39\t    chat_id: ''\n40\t    card_message_id: ''\n41\t    started_at: '2026-05-11T22:36:09+00:00'\n42\t    updated_at: '2026-05-11T22:36:09+00:00'\n43\t    stages_completed: []\n44\t    error: 'phase1: Phase 1 failed: Dream requires an available Claude pool account\n45\t      — none healthy.'\n46\t    context_hash: d8af163a129c190865c897814aa36d1f7b8a08157b64a0d2c04b6358607825f2\n47\t  dream_20260511T225536:\n48\t    dream_id: dream_20260511T225536\n49\t \n…[truncated 2788 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 150
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T01:04:14.474646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_framing.md"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T01:04:14.475191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — exec-sim-repair-verifier\n2\t\n3\t## Target Venue\n4\t- Primary: EMNLP 2026 Main (ARR May 25, 2026)\n5\t- Fallback: EMNLP 2026 Findings\n6\t- Extended fallback: ICSE 2027 (Jun 23 abstract, Jun 30 paper)\n7\t- Deadline: ARR May 25, 2026 (14 days from project start)\n8\t\n9\t## Core Claims (3 conditions)\n10\t\n11\t1. **Complexity-Dependent Reformulation Advantage**: Binary pass/fail classification and execution output generation (CWM-style) achieve equivalent accuracy on simple function-level code (4B: F1 diff 0.9pp), but classification scales better with model size (8B 3-seed mean accuracy gap=2.43pp; seed42: 2.81pp, cls 90.48% vs cwm 87.67%) and to repo-level complexity where CWM failure modes—token-budget exhaustion and string-value prediction errors—dominate. Zero-shot LLM-as-judge baselines (8B: 64.4%, 32B NF4: 71.7%) are far below fine-tuned 4B (88.4%), confirming fine-tuning necessity. (Validated function-level near-null + 8B scaling evidence; repo-level SWE-bench experiments in progress. Fallback: if repo-level also null, reframe to efficiency-equivalent accuracy—same F1 with 1-token vs N-token inference.)\n12\t\n13\t2. **Diagnostic Granularity At Equivalent Accuracy**: Per-test classification achieves equivalent variant-level accuracy to trajectory-level scoring (TOST equivalence test p=0.007, ±2pp margin; 5-seed pooled gap -0.40pp, 95% CI [-1.32, +0.52]) while providing actionable diagnostic information (which specific tests a patch fails). The per-test formulation gains diagnostic granularity without sacrificing accuracy—potentially enabling targeted re-repair and oracle-based test selection. (Evidence: 5-paired clustered bootstrap CI, 114 clusters, 10000 resamples. Paper must justify ±2pp margin: in code verification, 2pp variant-level difference is negligible given ICC=0.191/DEFF=3.97. Seeds 789/0 used 4-bit quantization — note in paper. Downstream re-repair experiment still needed for practical impact claim.)\n14\t\n15\t3. **Accuracy-Utility Frontier Characteri\n…[truncated 4900 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T01:04:15.680286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T01:04:15.781104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/literature_map.yaml"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T01:04:16.085023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (36329 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 404
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T01:04:16.085619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tpapers:\n2\t  # === Execution Simulation (5/5) ===\n3\t  - bibtex_key: maimon2026selfexecution\n4\t    title: \"Self-Execution Simulation Improves Coding Models\"\n5\t    authors: \"Maimon et al.\"\n6\t    year: 2026\n7\t    venue: \"arXiv\"\n8\t    arxiv: \"2604.03253\"\n9\t    doi: \"\"\n10\t    category: \"Execution Simulation\"\n11\t    verified: true\n12\t    abstract_snippet: \"Train code LLMs to simulate program execution step-by-step; self-verification by filtering code solutions based on predicted output.\"\n13\t    relevance: \"Closest prior work — trains LLMs for execution prediction via generation, we reformulate as classification.\"\n14\t\n15\t  - bibtex_key: meta2025cwm\n16\t    title: \"CWM: An Open-Weights LLM for Research on Code Generation with World Models\"\n17\t    authors: \"Meta AI\"\n18\t    year: 2025\n19\t    venue: \"arXiv\"\n20\t    arxiv: \"2510.02387\"\n21\t    doi: \"\"\n22\t    category: \"Execution Simulation\"\n23\t    verified: true\n24\t    abstract_snippet: \"32B open-weights LLM mid-trained on Python execution traces; 65.8% on SWE-bench Verified.\"\n25\t    relevance: \"Production-scale CWM approach; our CWM baseline follows their generation formulation at smaller scale.\"\n26\t\n27\t  - bibtex_key: liu2024codemind\n28\t    title: \"CodeMind: A Framework to Challenge Large Language Models for Code Reasoning\"\n29\t    authors: \"Liu et al.\"\n30\t    year: 2024\n31\t    venue: \"arXiv\"\n32\t    arxiv: \"2402.09664\"\n33\t    doi: \"\"\n34\t    category: \"Execution Simulation\"\n35\t    verified: true\n36\t    abstract_snippet: \"Framework for evaluating LLM code reasoning: IER, DER, SR, DSR tasks. Performance drops with higher complexity.\"\n37\t    relevance: \"Evaluates execution reasoning capabilities; our work proposes classification as more robust formulation.\"\n38\t\n39\t  - bibtex_key: abdollahi2025demystifying\n40\t    title: \"Demystifying Errors in LLM Reasoning Traces: An Empirical Study of Code Execution Simulation\"\n41\t    authors: \"Abdollahi et al.\"\n42\t    year: 2025\n43\t    venue: \"arXiv\"\n44\t    arxiv: \"2512.00215\"\n45\t    doi: \"\"\n46\t  \n…[truncated 13439 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 304
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T01:04:16.136211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/writing_plan.yaml"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T01:04:16.237430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tmeta:\n2\t  venue: EMNLP 2026\n3\t  track: main (ARR submission)\n4\t  template: docs/paper/  # Existing ACL/ARR template already in place\n5\t  template_note: \"Reusing existing acl2023.sty template from prior draft. Already configured with \\\\usepackage[review]{acl}.\"\n6\t  page_limit: 8  # + unlimited references/appendix (ARR format)\n7\t  deadline: 2026-05-25\n8\t  core_claim: >\n9\t    Binary pass/fail classification and execution output generation achieve equivalent accuracy\n10\t    on simple function-level code (~88% vs ~87%), but classification yields a 25.59pp same-size\n11\t    advantage at repo-level complexity (4B-4B, single seed) where CWM suffers format compliance\n12\t    collapse (53-67% unparseable, parseable-only accuracy below random at 42-43%). The advantage\n13\t    is complexity-dependent: from near-null at function level to critical at repository level.\n14\t    C1 has two layers: (1) same-size gap (4B-4B=25.59pp, 8B-8B=TBD); (2) CLS scaling gain\n15\t    (+0.99pp 4B→8B) vs CWM no gain (-0.27pp), indicating generation bottleneck not capacity.\n16\t  working_title: >\n17\t    Classification Scales Where Generation Stalls:\n18\t    Reformulating Execution Simulation for Code Repair Verification\n19\t  created_at: 2026-05-15T18:00:00Z\n20\t  notes:\n21\t    - \"Registry is truth source for ALL numbers.\"\n22\t    - \"Seeds 789/0 (CLS function-level) used 4-bit NF4 quantization — must note in paper.\"\n23\t    - \"C1 two-layer structure: (1) same-size primary (4B-4B=25.59pp s42, 8B-8B=TBD); (2) scaling evidence (CLS +0.99pp, CWM -0.27pp). Cross-size 8B-CLS vs 4B-CWM (25.48-26.51pp, 2 seeds) disclosed as secondary.\"\n24\t    - \"CLS 4B s123 test eval not yet run — 4B-4B currently single-seed.\"\n25\t    - \"CWM 8B repo-level training in progress (repo-level-cwm-8b-conda-v4). When done, patch 8B-8B direct comparison.\"\n26\t    - \"Existing .tex files form the base — Workers should rewrite from existing structure, not from scratch.\"\n27\t    - \"D088 protocol: val-selected checkpoint as primary metric. Appendi\n…[truncated 15236 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T01:04:16.288167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/study_status.lock"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T01:04:16.288503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (1). The file has 1 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T01:04:16.389430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/paper_provenance.yaml"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T01:04:16.441004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tpaper:\n2\t  title: ''\n3\t  version: 22\n4\t  generated_at: '2026-05-15T11:00:22.960673+00:00'\n5\tclaims:\n6\t- id: C001\n7\t  location:\n8\t    section: method\n9\t    paragraph: 0\n10\t    sentence: 0\n11\t  text: CLS output space is fixed and minimal, eliminating token-budget exhaustion\n12\t    and string-value mismatch failure modes by construction\n13\t  type: methodological\n14\t  evidence: []\n15\t  decisions: []\n16\t  deprecated: true\n17\t- id: C003\n18\t  location:\n19\t    section: method\n20\t    paragraph: 0\n21\t    sentence: 0\n22\t  text: CWM suffers from token-budget exhaustion when output length exceeds generation\n23\t    budget, producing spurious FAIL verdicts\n24\t  type: methodological\n25\t  evidence: []\n26\t  decisions: []\n27\t  deprecated: true\n28\t- id: C006\n29\t  location:\n30\t    section: method\n31\t    paragraph: 0\n32\t    sentence: 0\n33\t  text: CWM suffers from string-value mismatch on complex return types due to exact-match\n34\t    evaluation\n35\t  type: methodological\n36\t  evidence: []\n37\t  decisions: []\n38\t  deprecated: true\n39\t- id: C010\n40\t  location:\n41\t    section: method\n42\t    paragraph: 0\n43\t    sentence: 0\n44\t  text: When T_f2p = 1, per-test and trajectory-level are informationally equivalent\n45\t  type: analytical\n46\t  evidence:\n47\t  - oracle-f2p-stratified\n48\t  decisions: []\n49\t  deprecated: true\n50\t- id: C015\n51\t  location:\n52\t    section: method\n53\t    paragraph: 0\n54\t    sentence: 0\n55\t  text: Block-correlation model with ICC=rho yields DEFF = 1 + (n_bar - 1)*rho, amplifying\n56\t    per-test advantage\n57\t  type: analytical\n58\t  evidence:\n59\t  - block-corr-empirical\n60\t  decisions: []\n61\t  deprecated: true\n62\t- id: C021\n63\t  location:\n64\t    section: method\n65\t    paragraph: 0\n66\t    sentence: 0\n67\t  text: Empirical ICC = 0.191, DEFF = 3.97 from function-level experiments\n68\t  type: quantitative\n69\t  evidence:\n70\t  - block-corr-empirical\n71\t  decisions: []\n72\t  deprecated: true\n73\t- id: C022\n74\t  location:\n75\t    section: related_work\n76\t    paragraph: 0\n77\t    sentence: 0\n…[truncated 25528 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T01:04:16.995619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+              "offset": "1",
+              "limit": "5000"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T01:04:17.248280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (82549 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 252
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-16T01:04:19.514435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml",
+              "limit": "10000",
+              "offset": "0"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T01:04:19.665269+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml",
+              "limit": "10000",
+              "offset": "10000"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T01:04:19.866169+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (10000). The file has 1755 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 200
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T01:04:20.018159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (36329 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 503
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-16T01:04:20.018586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml",
+              "limit": "10000",
+              "offset": "20000"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-16T01:04:20.018884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (20000). The file has 1755 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-16T01:04:21.479006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml"
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-16T01:04:21.931282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1754 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "elapsed_ms": 452
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-16T01:04:23.442107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml",
+              "limit": "3500",
+              "offset": "0"
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-16T01:04:23.894641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (36329 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-16T01:04:23.895110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml",
+              "limit": "3500",
+              "offset": "3500"
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-16T01:04:24.098085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (3500). The file has 1755 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 202
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-16T01:04:24.200036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml",
+              "limit": "3500",
+              "offset": "7000"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-16T01:04:24.250688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (7000). The file has 1755 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-16T01:04:25.508205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-16T01:04:25.558996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (87.5KB). Full output saved to: /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-b1b44c3e/1dea7dce-8291-454a-bbe2-aea96053893a/tool-results/b8p60i4jx.txt\n\nPreview (first 2KB):\n_next_id: 104\ndecisions:\n- id: D001\n  date: 2026-05-11 18:01 UTC\n  summary: 'MVP 方案: Monte Carlo oracle 模拟 + 函数级 pilot，不依赖 Docker 基础设施'\n  rationale: '完整 Part 1 需要 Docker 重新评估 8K 个 patch 获取 per-test labels（16-24h），基础设施搭建成本高。MVP\n    改用 Monte Carlo 模拟参数化真实测试数分布验证理论信息增益，函数级 pilot (HumanEval/MBPP) 验证可学习性。两者均无需 Docker，2-3\n    天可完成。Pass 标准: per-test 在 70-85% 精度下 resolve rate 比 trajectory-level 高 ≥5%; 函数级\n    pilot 精度 >70%。'\n  related_experiments: []\n  depends_on: []\n- id: D002\n  date: 2026-05-11 19:07 UTC\n  summary: MVP-A 有条件通过：F2P-only block-corr 10.88%>5%；需补跑 Total(F2P+P2P) 模拟确认全图\n  rationale: 真实 SWE-bench F2P median=1（69% 实例仅 1 个 F2P 测试），但 P2P median=50.5。F2P-only\n    下 per-test 优势收窄但仍过阈值（block-corr 10.88%）。P2P regression 检测是更大的信号源——Total 分布(median=52)下优势预期更强。研究方向需校准：per-test\n    价值主要来自 P2P regression 检测 + F2P multi-test 精确定位，而非单纯的 F2P 粒度。\n  related_experiments:\n  - exp_id: mvp-a-oracle-sim\n    role: evidence\n    result: F2P-only block-corr advantage 10.88%, i.i.d. 1.98%\n  depends_on:\n  - D001\n- id: D003\n  date: 2026-05-11 19:38 UTC\n  summary: P2P regression rate 是项目关键前提——≥10% per-test 有效，<5% 则有害；需实测\n  rationale: Total 模拟(F2P+P2P)显示 per-test 优势强烈依赖 P2P regression rate：5% 时优势为负(-1%)，10%\n    时 13.2%，20% 时 35.7%。这是从 F2P-only 分析未发现的关键变量。真实 regression rate 未知，需从 SWE-bench\n    数据/文献中实测。此数据点决定项目是否可行及论文 story 如何构建。\n  related_experiments:\n  - exp_id: mvp-a-oracle-sim\n    role: evidence\n    result: 'Total sim: reg=5% adv=-1%, reg=10% adv=13.2%, reg=20% adv=35.7%'\n  depends_on:\n  - D002\n- id: D004\n  date: 2026-05-11 20:05 UTC\n  summary: P2P 回归率 ~1%，原始 Total 优势前提不成立；项目 reframe 而非 kill\n  rationale: P2P 回归率 ~1%（mean=1.04%, median=0%, 仅 22.6% 错误 patch 破坏任何 P2P 测试），远低于\n    p\n…[truncated 272 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-16T01:04:28.551083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+              "offset": "1",
+              "limit": "1000"
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-16T01:04:28.655014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-16T01:04:28.755786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6127 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-16T01:04:28.857865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tbaseline: null\n2\texperiments:\n3\t  mvp-a-oracle-sim:\n4\t    status: DONE\n5\t    retry_count: 0\n6\t    created_at: '2026-05-11T18:02:03.506Z'\n7\t    updated_at: '2026-05-11T20:05:44.123Z'\n8\t    hypothesis: Per-test verifier 在 70-85% 精度下 resolve rate 比 trajectory-level 高 ≥5%（绝对值）\n9\t    spec:\n10\t      command: python3 mvp_a_oracle_sim.py\n11\t      server: home-1x5090\n12\t      data_path: /home/sonny/exec-sim-repair-verifier/\n13\t      data_count: 10000\n14\t      model_name: oracle-sim\n15\t      seed: 42\n16\t      checkpoint_path: /home/sonny/exec-sim-repair-verifier/mvp_a_results.json\n17\t      log_path: /home/sonny/exec-sim-repair-verifier/mvp_a_results.json\n18\t    conclusion: success\n19\t    completed_at: '2026-05-11T18:39:41.540Z'\n20\t    metrics:\n21\t      original_T12:\n22\t        iid_adv_70_85: 0.1849\n23\t        block_adv_70_85: 0.3618\n24\t      sensitivity_T3:\n25\t        iid_adv_70_85: 0.0761\n26\t        block_adv_70_85: 0.3839\n27\t      sensitivity_T7:\n28\t        iid_adv_70_85: 0.1351\n29\t        block_adv_70_85: 0.3833\n30\t      sensitivity_T11:\n31\t        iid_adv_70_85: 0.1863\n32\t        block_adv_70_85: 0.3639\n33\t      real_f2p_T1:\n34\t        iid_adv_70_85: 0.0198\n35\t        block_adv_70_85: 0.1088\n36\t        pct_T1: 0.687\n37\t        T_median: 1\n38\t        T_mean: 2.3\n39\t      swebench_f2p_stats:\n40\t        median: 1\n41\t        mean: 3\n42\t        P75: 2\n43\t        P90: 3\n44\t      total_reg5pct:\n45\t        iid_adv_70_85: -0.01\n46\t        block_adv_70_85: -0.005\n47\t        pass: false\n48\t      total_reg10pct:\n49\t        iid_adv_70_85: 0.132\n50\t        block_adv_70_85: 0.083\n51\t        pass: true\n52\t      total_reg20pct:\n53\t        iid_adv_70_85: 0.357\n54\t        block_adv_70_85: 0.278\n55\t        pass: true\n56\t    notes: 'Total (F2P+P2P) simulation completed (2026-05-11). Real SWE-bench dist:\n57\t      F2P median=1, P2P median=50.5, Total median=52. Results by P2P regression rate:\n58\t      (1) reg=5%: per-test advantage NEGATIVE for both i.i.d.(-1.0%) and block(-0.5%)\n59\t      — B\n…[truncated 40865 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 306
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-16T01:04:28.858365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-b1b44c3e/1dea7dce-8291-454a-bbe2-aea96053893a/tool-results/b8p60i4jx.txt"
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-16T01:04:29.111915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (36329 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 253
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-16T01:04:30.873299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+              "offset": "1000",
+              "limit": "2000"
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-16T01:04:31.176852+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-b1b44c3e/1dea7dce-8291-454a-bbe2-aea96053893a/tool-results/b8p60i4jx.txt",
+              "limit": "12000",
+              "offset": "0"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-16T01:04:31.177279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (32075 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 303
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-16T01:04:31.428266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (36329 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-16T01:04:31.631131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-b1b44c3e/1dea7dce-8291-454a-bbe2-aea96053893a/tool-results/b8p60i4jx.txt",
+              "limit": "12000",
+              "offset": "12000"
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-16T01:04:32.133448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (12000). The file has 1755 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-16T01:04:32.234409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-b1b44c3e/1dea7dce-8291-454a-bbe2-aea96053893a/tool-results/b8p60i4jx.txt",
+              "limit": "12000",
+              "offset": "24000"
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-16T01:04:32.335508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (24000). The file has 1755 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-16T01:04:32.687204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/registry.yaml",
+              "offset": "5500",
+              "limit": "627"
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-16T01:04:33.039710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5500\t      data_count: 15290\n5501\t      model_name: Qwen/Qwen3-4B\n5502\t      seed: 42\n5503\t      log_path: /root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\n5504\t      checkpoint_path: /home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/\n5505\t      gpu: cuda:0\n5506\t      pid: 368823\n5507\t      lora_rank: 32\n5508\t      lora_alpha: 32\n5509\t      lr: 0.0002\n5510\t      epochs: 3\n5511\t      batch_size: 2\n5512\t      grad_accumulation: 16\n5513\t      total_steps: 1434\n5514\t      description: CWM rank=32 ablation (vs baseline rank=16). Function-level data.\n5515\t        Alpha kept at 32.\n5516\t      estimated_duration: ~1.5h total\n5517\t    hypothesis: 'LoRA rank ablation: CWM 4B rank=32 vs baseline rank=16. 回应审稿人质疑 rank=16\n5518\t      是否系统性低估 CWM 能力。其余配置完全一致（lr=2e-4, epochs=3, seed=42, alpha=32, data=function-level）。PID\n5519\t      368823 在 GPU 0 上正常训练，step 324/1434 (22%)。注意：训练命令未串联 eval，完成后需单独触发 eval。'\n5520\t    conclusion: success\n5521\t    checkpoint_path: /home/sonny/exec-sim-repair-verifier/checkpoints_cwm_rank32/best\n5522\t    log_path: /root/runs/exec-sim-repair-verifier/cwm-rank32-ablation.log\n5523\t    notes: '诊断结论: 训练成功完成 (EXIT_CODE=0)\n5524\t\n5525\t      最后 step: 1434/1434 (100%)\n5526\t\n5527\t      训练时间: 5003.67s (~83min)\n5528\t\n5529\t      train_loss=0.2536, eval_loss=0.0688\n5530\t\n5531\t      Checkpoints: best/, checkpoint-1434/, checkpoint-478/\n5532\t\n5533\t      评估结果: accuracy=87.0% (+35.2pp), F1(fail)=87.1%, F1(pass)=86.9%, exact_match=83.4%\n5534\t\n5535\t      MVP-B: PASS (per-class F1>65%, gap>=10pp)\n5536\t\n5537\t      **Director 确认结论**: rank=32 (87.0%) vs rank=16 baseline (87.19%) 无显著差异。CWM capacity\n5538\t      非瓶颈，LoRA rank=16 未系统性低估 CWM 能力。'\n5539\t    metrics:\n5540\t      accuracy: 87\n5541\t      exact_match_rate: 83.4\n5542\t      fail_f1: 87.1\n5543\t      pass_f1: 86.9\n5544\t      train_loss_final: 0.0152\n5545\t      train_loss_avg: 0.2536\n5546\t      eval_loss: 0.0688\n5547\t      train_runtime_sec: 5003\n5548\t      test_set_size: 1890\n5549\t      vs_rank16_baseline: -0.\n…[truncated 26451 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-16T01:04:33.996206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -300 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml"
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-16T01:04:34.098062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_next_id: 104\ndecisions:\n- id: D001\n  date: 2026-05-11 18:01 UTC\n  summary: 'MVP 方案: Monte Carlo oracle 模拟 + 函数级 pilot，不依赖 Docker 基础设施'\n  rationale: '完整 Part 1 需要 Docker 重新评估 8K 个 patch 获取 per-test labels（16-24h），基础设施搭建成本高。MVP\n    改用 Monte Carlo 模拟参数化真实测试数分布验证理论信息增益，函数级 pilot (HumanEval/MBPP) 验证可学习性。两者均无需 Docker，2-3\n    天可完成。Pass 标准: per-test 在 70-85% 精度下 resolve rate 比 trajectory-level 高 ≥5%; 函数级\n    pilot 精度 >70%。'\n  related_experiments: []\n  depends_on: []\n- id: D002\n  date: 2026-05-11 19:07 UTC\n  summary: MVP-A 有条件通过：F2P-only block-corr 10.88%>5%；需补跑 Total(F2P+P2P) 模拟确认全图\n  rationale: 真实 SWE-bench F2P median=1（69% 实例仅 1 个 F2P 测试），但 P2P median=50.5。F2P-only\n    下 per-test 优势收窄但仍过阈值（block-corr 10.88%）。P2P regression 检测是更大的信号源——Total 分布(median=52)下优势预期更强。研究方向需校准：per-test\n    价值主要来自 P2P regression 检测 + F2P multi-test 精确定位，而非单纯的 F2P 粒度。\n  related_experiments:\n  - exp_id: mvp-a-oracle-sim\n    role: evidence\n    result: F2P-only block-corr advantage 10.88%, i.i.d. 1.98%\n  depends_on:\n  - D001\n- id: D003\n  date: 2026-05-11 19:38 UTC\n  summary: P2P regression rate 是项目关键前提——≥10% per-test 有效，<5% 则有害；需实测\n  rationale: Total 模拟(F2P+P2P)显示 per-test 优势强烈依赖 P2P regression rate：5% 时优势为负(-1%)，10%\n    时 13.2%，20% 时 35.7%。这是从 F2P-only 分析未发现的关键变量。真实 regression rate 未知，需从 SWE-bench\n    数据/文献中实测。此数据点决定项目是否可行及论文 story 如何构建。\n  related_experiments:\n  - exp_id: mvp-a-oracle-sim\n    role: evidence\n    result: 'Total sim: reg=5% adv=-1%, reg=10% adv=13.2%, reg=20% adv=35.7%'\n  depends_on:\n  - D002\n- id: D004\n  date: 2026-05-11 20:05 UTC\n  summary: P2P 回归率 ~1%，原始 Total 优势前提不成立；项目 reframe 而非 kill\n  rationale: P2P 回归率 ~1%（mean=1.04%, median=0%, 仅 22.6% 错误 patch 破坏任何 P2P 测试），远低于\n    per-test 有效的 10% 阈值。Total(F2P+P2P) 模型下 per-test 实际有害（噪声>信号）。但项目核心价值不在信号数量而在 task\n    reformulation：(1) binary classification 绕开 CWM 两大失败模式，即使 T=1 也是更简单的任务 → 可能实现更高精度;\n    (2) F2P-only block-corr 仍有 10.88% 优势（31% multi-test 实例）; (3) 诊断价值——per-test 告诉\n    repair agent 具体哪个测试失败，支持 targeted re-repair。决策：继续，reframe story \n…[truncated 10827 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-16T01:04:36.457308+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tail -n +300 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml | head -300"
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-16T01:04:36.558217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    role: context\n    result: 5-seed mean 86.30±0.97%\n  depends_on:\n  - D018\n- id: D020\n  date: 2026-05-12 13:10 UTC\n  summary: TOST 等价检验通过 (p=0.007, ±2pp)，Claim 2 恢复 \"equivalent\" 措辞\n  rationale: 5-paired clustered bootstrap CI 显著收窄置信区间至 [-1.32, +0.52]，TOST p=0.0071\n    正式证明 per-test 与 traj variant-level accuracy 等价（±2pp margin 内）。三种检验方法一致（pooled\n    bootstrap p=0.499, paired-t p=0.425, TOST p=0.007）。Claim 2 从 \"comparable\" 升级回\n    \"equivalent\"，需在论文中 justify ±2pp margin。\n  related_experiments:\n  - exp_id: clustered-bootstrap-ci-5paired\n    role: evidence\n    result: TOST p=0.007, pooled gap -0.40pp, CI [-1.32, +0.52]\n  - exp_id: cls-seed0\n    role: trigger\n    result: 5th cls seed completed, accuracy 87.94%\n  depends_on:\n  - D018\n  - D019\n- id: D021\n  date: 2026-05-12 14:37 UTC\n  summary: 'Dream #5 审稿完成: 三档一致指出 related work/model diversity/re-repair 为结构性缺陷, repo-level\n    是论文生死线'\n  rationale: 'dream_20260511T231719 full review (best=weak accept, median=borderline,\n    worst=reject)。三档共同 critical: (1) related work ≤7 refs 需 15+; (2) 只有 Qwen3-4B/8B,\n    需更多 model family 或 frame 为 scale-conditional; (3) re-repair 需 fully specify 或\n    demote to preliminary; (4) TtJ 缺 repo-level 评估; (5) error overlap 分析 CLS vs CWM\n    缺失。worst tier 验证了 repo-level null → reject 的判断。行动: 修复 repo-level scripts 立即重提交,\n    写作阶段优先扩 related work, 考虑 error overlap 分析作为低成本高收益实验。'\n  related_experiments:\n  - exp_id: repo-level-cls\n    role: decisive\n    result: failed (sample_weight bug)\n  - exp_id: repo-level-cwm\n    role: decisive\n    result: failed (killed + bug)\n  depends_on:\n  - D016\n  - D020\n- id: D022\n  date: 2026-05-12 14:41 UTC\n  summary: '函数级 5-paired CLS vs CWM: gap +1.25pp (one-sided p=0.025), 落入 Go/No-Go\n    的 1-3pp 区间, 支持 complexity-dependent narrative'\n  rationale: CLS 5-seed mean 88.44±0.78, CWM 5-seed mean 87.19±0.37。One-sided p=0.025\n    统计显著，但 gap 仅 1.25pp——函数级差异小但存在，与\"简单任务 CWM failure modes 不触发\"一致。结合 8B 2-seed gap\n    2.6pp (scaling ~2x)，complexity-dependent narrative 有数据支撑。关键：re\n…[truncated 8576 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-16T01:04:38.625962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "tail -n +600 /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/decisions.yaml"
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-16T01:04:38.676686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (58.3KB). Full output saved to: /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier--claude-sessions-agent-b1b44c3e/1dea7dce-8291-454a-bbe2-aea96053893a/tool-results/bkeqwsm6o.txt\n\nPreview (first 2KB):\n- id: D038\n  date: 2026-05-12 21:15 UTC\n  summary: 紧急恢复：CLS home 立即重启 + CWM v9 修复 eval_steps=100 后提交\n  rationale: 'Reviewer critical: 5 张 GPU 全空闲，零实验运行。CLS home 被 Worker SIGINT 杀死（3.5h\n    进度丢失），CWM v8 因 save_steps/eval_steps 不兼容崩溃。CLS 在 home 重启（稳定平台），CWM v9 在 seetacloud\n    修复参数后提交，均用 nohup 防止 tmux 被平台 kill。'\n  related_experiments:\n  - exp_id: repo-level-cls-home\n    role: restart\n    result: killed by worker SIGINT, 3.5h lost\n  - exp_id: repo-level-cwm-v8\n    role: predecessor\n    result: 'ValueError: save_steps not multiple of eval_steps'\n  depends_on:\n  - D037\n  - D036\n- id: D039\n  date: 2026-05-12 21:53 UTC\n  summary: CLS v2 第四次重启：save_strategy 从 epoch 改 steps，save_steps=200\n  rationale: 审计发现 CLS v2 save_strategy=\"epoch\"，首个 checkpoint 在 step 2211 (~4h)，之前死了全损。当前\n    step 190 (~22min 进度)，kill 损失极小。修为 save_strategy=\"steps\" + save_steps=200，每 ~23min\n    存一次 checkpoint。\n  related_experiments:\n  - exp_id: repo-level-cls-v2\n    role: target\n    result: restart at step 190\n  depends_on:\n  - D038\n  - D036\n- id: D040\n  date: 2026-05-12 22:08 UTC\n  summary: westd-48478 两张空闲 GPU 跑 repo-level extra seeds (seed=123)，对冲 D008 1-3pp\n    场景\n  rationale: D008 Go/No-Go 三种结果中，1-3pp 需要加 seeds 增强统计显著性。与其等 D008 结果再启动（浪费 12-20h），不如利用\n    westd-48478 空闲 GPU 提前并行跑 extra seed。≥3pp 时 extra seed 加强论文；<1pp 时 kill 不受影响。零成本对冲。\n  related_experiments:\n  - exp_id: repo-level-cwm-v9\n    role: primary_seed\n  - exp_id: repo-level-cls-v4\n    role: primary_seed\n  depends_on:\n  - D008\n- id: D041\n  date: 2026-05-12 22:43 UTC\n  summary: 撤回 D040：westd-48478 = seetacloud 同一台机器，extra seeds 改为串行排队\n  rationale: Agent 确认 westd-48478 SSH 认证失败后发现它就是 seetacloud-westd-4x5090。cgroup 360GB\n    限制下并行训练有 O\n…[truncated 310 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-16T01:04:49.721639+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get the remainder and organize all the content. Let me compile the complete summary for you:\n\n## Summary of File Contents\n\nHere's what I found for the exec-sim-repair-verifier project:\n\n### 1. **decisions.yaml** (1,754 lines - Large file)\nThis is an extensive decision log documenting the project evolution from May 11-15, 2026. Key decisions include:\n\n- **D001-D008**: Initial MVP design phase, including complexity-dependent advantage framing and reframing from per-test advantage to task reformulation\n- **D009-D024**: Experimentation phase with multiple pivots on training approaches (trace-then-judge paused, trajectory-level tests, repo-level training)\n- **D025-D041**: GPU allocation strategy and troubleshooting repeated training failures on seetacloud (versions v1-v9 of CWM repo-level training with save_steps/eval_steps issues)\n- **D042+**: Continuing decisions on test-time evaluation protocols, checkpoint management, and paper finalization\n\n### 2. **literature_map.yaml** (Fully provided above)\nComprehensive literature review with 33 papers organized in 7 categories:\n- Execution Simulation (5 papers)\n- LLM Verification for Code (5 papers)\n- APR and SWE-bench (8 papers)\n- Code LLMs and Benchmarks (6 papers)\n- Task Reformulation NLP (3 papers)\n- Statistical Methods (3 papers)\n- LoRA and Efficient Fine-tuning (2 papers)\n\n### 3. **writing_plan.yaml** (Fully provided above)\nDetailed paper outline for EMNLP 2026 submission with:\n- Meta information: 8-page limit, main track, May 25 deadline\n- Core claim structure: complexity-dependent advantage from 1.24pp (function-level) to 25.59pp (repo-level, same-size 4B-4B)\n- 6 sections: abstract, introduction, related_work, method, experiments, conclusion\n- Visualization plan (3 figures), table plan (4 tables), and literature strategy (30 citations across 7 clusters)\n- Writing order: experiments → method → introduction → related_work → abstract → conclusion\n\n### 4. **study_status.lock** (1 line file)\nEmpty or minimal file \n…[truncated 801 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Agent",
+            "elapsed_ms": 35751
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-16T01:05:05.155956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect. Now I have enough information to provide you with a comprehensive summary. Here's the complete content you requested:\n\n## Summary of Project State Files\n\n### 1. **registry.yaml** (6127 lines, comprehensive experiment registry)\nThe registry file contains detailed records of 140+ experiments tracking the full research progression. Key experiments include:\n\n**Completed Core Experiments:**\n- `mvp-a-oracle-sim`: Oracle simulation with F2P/P2P analysis (DONE)\n- `mvp-b-train`: 4B classification baseline achieving 87.5% accuracy (DONE)\n- `cwm-baseline`: 4B CWM generation baseline achieving 87.51% accuracy (DONE, negative result - classification ≈ generation)\n- `multi-seed-core`: 3-seed validation (seeds 42, 123, 456) showing robust ~88% accuracy (DONE)\n- `model-size-scaling-cls8b`: 8B classification achieving 90.48% (vs 4B: 88.41%, +2.07pp) (DONE)\n- `model-size-scaling-cwm8b`: 8B CWM achieving 87.67% (vs 4B: 87.51%, +0.16pp) (DONE)\n- `traj-level-finetuned` + multi-seed variants: Establishing equivalence at variant level (~86.46% vs 88.41% per-test, -0.37pp when controlled for granularity)\n- CWM rank ablations confirming rank=16 baseline is sufficient\n\n**Repo-Level (SWE-bench) Experiments:**\n- `repo-level-cwm-8b-conda-v5`: NEGATIVE result - severe overfitting (eval_loss increases from 0.286→0.521 after step 400)\n- `repo-level-cwm-8b-conda-v6`: KILLED by Director due to confirmed overfitting pattern\n\n**Currently Running/Active:**\n- `cls8b-s42-resume-ckpt1000-test-mutation`: RUNNING - CLS 8B s42 resume ckpt-1000 complete test set evaluation\n- `cls8b-s42-ckpt1000-test-mutation`: RUNNING - CLS 8B s42 original ckpt-1000 test eval with per-mutation-type breakdown\n- `cwm8b-ckpt400-test-eval-v3`: ALLOCATED - CWM 8B ckpt-400 test eval (GPU cuda:3, bs=8, eta May 16 05:30 UTC)\n\n**Pending/Failed Recent:**\n- `cls8b-s42-resume-ckpt3600-test`: PENDING (needs resubmission)\n- `cls8b-s42-resume-ckpt3600-mutation`: PREPARING (needs resubmission)\n\n---\n\n### 2. **report.md** (89 lines, a\n…[truncated 6172 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Agent",
+            "elapsed_ms": 53967
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-16T01:05:08.478613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/report.md"
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-16T01:05:08.580775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Handover — 2026-05-16\n2\t\n3\t> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n4\t\n5\t## 运行中\n6\t| exp_id | 假设 | 状态 | 关键指标 | W&B |\n7\t|--------|------|------|---------|-----|\n8\t| cls8b-s42-resume-ckpt1000-test-mutation | CLS 8B s42 resume ckpt-1000 (val-best) 完整 test set 评估 (n=9784)，含 per-mutation-type breakdown。直接指定 ckpt-1000 路径（不用 best/），验证 accuracy + per-class F1 + mutation-type 粒度指标。 | — | — | — |\n9\t| cls8b-s42-ckpt1000-test-mutation | — | — | — | — |\n10\t\n11\t## 待处理\n12\t- cls8b-s42-resume-ckpt3600-test（等待人工审批）\n13\t- cwm8b-ckpt400-test-eval-v3（已分配 ? GPU:?，等待提交）\n14\t- cls8b-s42-resume-ckpt3600-mutation（准备中）\n15\t\n16\t## 近期结论\n17\t- **cwm8b-ckpt400-test-eval-v2** (killed): CWM 8B ckpt-400 test eval resume (v1 在 1544/9784 被 SIGKILL, 实际已完成 5280)\n18\t- **repo-level-cwm-8b-conda-v6** (killed): —\n19\t- **repo-level-cwm-8b-conda-v5** (negative): CWM 8B 训练 resume from ckpt-5200 (v4 timeout续), 剩余 ~1433 steps ← 基于 repo-level-cwm-8b-conda-v4\n20\t\n21\t## 趋势\n22\t成功 78 / 负向 5 / 失败 34 / 共 140\n23\t\n24\t## 下一步\n25\t（无活跃 idea，请通过 ideas.md 添加）\n26\t\n27\t## 资源状态\n28\thome-1x5090: 无 GPU 信息\n29\tseetacloud-westd-4x5090: 无 GPU 信息\n30\t\n31\t## 告警\n32\t- trace-then-judge: 训练失败 — unknown\n33\t- repo-level-cls: 训练失败 — unknown\n34\t- repo-level-cwm: 训练失败 — unknown\n35\t- repo-level-cls-v2: 训练失败 — unknown\n36\t- repo-level-cwm-v2: 训练失败 — unknown\n37\t- repo-level-cls-v3: 训练失败 — unknown\n38\t- repo-level-cwm-v3: 训练失败 — unknown\n39\t- repo-level-cls-home: 训练失败 — unknown\n40\t- repo-level-cwm-v4: 已被终止 — unknown\n41\t- repo-level-cwm-v5: 训练失败 — unknown\n42\t- repo-level-cwm-v6: 训练失败 — unknown\n43\t- repo-level-cwm-v7: 训练失败 — unknown\n44\t- repo-level-cwm-v8: 训练失败 — unknown\n45\t- repo-level-cwm-v9: 训练失败 — unknown\n46\t- repo-level-cls-seed123: 已被终止 — unknown\n47\t- repo-level-cwm-seed123: 已被终止 — unknown\n48\t- repo-level-cwm-v11: 已被终止 — unknown\n49\t- repo-level-cls-8b: 已被终止 — unknown\n50\t- repo-level-cwm-v12: 已被终止 — unknown\n51\t- repo-level-cwm-seed123-conda: 已被终止 — unknown\n52\t- repo-level-cwm-8b-conda: 训练失败 — unknown\n53\t- repo-level-cls-8b-seed123-conda: 训练失败 — unknown\n54\t- re\n…[truncated 1755 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 102
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-16T01:05:08.581367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/memory.md"
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-16T01:05:08.638979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Memory — exec-sim-repair-verifier\n2\t\n3\t## 硬教训：标 FAILED 前必须确认进程已退出 (2026-05-15)\n4\t- **事故**：v1 ckpt-3000 test eval (PID 345441) 被误标 DONE/failed，但进程实际在跑。随后 v2 提交到同 GPU 导致 OOM。\n5\t- **规则**：标 FAILED/DONE(failed) 前必须 `ps -p PID` 确认进程已退出。标 RUNNING 的实验所在 GPU 不得提交新任务。\n6\t- **适用范围**：所有 registry 状态变更操作\n7\t\n8\t## 硬教训：eval 不要用 --max_samples (2026-05-15)\n9\t- **事故**：seed123 ckpt-6200/6400 test eval 用了 `--max_samples 8192`，只评了 8192/9784 样本，与主表 n=9784 不可比。被 Reviewer 抓出后需 kill+重跑。\n10\t- **规则**：test eval 禁止 --max_samples 参数，必须评完整 test set (n=9784)。val eval 同理 (n=9335)。\n11\t- **例外**：debug/dry-run 时可以用，但结果不入正式表。\n12\t\n13\t## 硬教训：s42 resume 从 ckpt-600 开始 (2026-05-15)\n14\t- s42 resume 的 checkpoint 目录 `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/` 从 ckpt-600 开始（200步间隔），不含 ckpt-200/400。\n15\t- 原始训练 ckpt-200/400 在 `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/`，但那是 s42 原始训练目录不是 resume 目录。\n16\t- **提交 s42 val eval 前检查 checkpoint 是否存在于 resume 目录**。\n17\t\n18\t## ⚠️ Unparseable Rate 混淆变量警告 (2026-05-15)\n19\t- ckpt-1800 的 20.2% unparseable 是在 **seq=2048** 下测的；ckpt-800/1400 的 0% 是在 **seq=8192** 下测的\n20\t- **无法归因为\"过拟合导致 format compliance 退化\"**——可能是截断导致\n21\t- ckpt-200 在 seq=2048 下仅 1.4% unparseable，暗示两者都有影响（截断 + 过拟合），但需控制变量\n22\t- **cls8b-s42-resume-val-sweep-seq8192 正在以统一 seq=8192 重新评估所有 checkpoint**，含 unparseable 追踪\n23\t- 等此 sweep 完成后才能下 unparseable 趋势结论\n24\t\n25\t## 8B-8B Gap 评判标准 (Director 指令, 2026-05-15)\n26\t- **CLS 8B vs CWM 8B 对比必须双方都用 val-best checkpoint**（不是 test-best，不是 final）\n27\t- CWM 8B eval **必须统计 unparseable rate**（无法解析为 pass/fail 的输出比例）\n28\t- unparseable rate 是论文 failure modes (§2.3) 的关键证据\n29\t- 4B repo-level CWM unparseable rate: s42=53.7%, seed123=67.2%\n30\t- 8B 是否改善直接影响 claim 强度\n31\t- **CWM 8B val sweep 脚本必须包含 unparseable 统计**\n32\t\n33\t## D088 Checkpoint 选择 — Val Sweep 完成 (2026-05-15, updated)\n34\t- **主指标回到 val-selected checkpoint**（ML 社区规范）\n35\t- **⚠️ 8B s42 Val-best 已更新: ckpt-3600 (90.28%, F1m=85.98%)** ← resume sweep 发现，超越原 ckpt-1000 +2.05pp\n36\t- 原始 val curve (seq2048): 200(63.5%) → 400(81.0%) → 800(8\n…[truncated 5810 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval",
+            "tool": "Read",
+            "elapsed_ms": 57
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-16T01:06:15.325966+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须查 `get_project_status` 的 `execution.gpu_ids`，report.md 里显示\"无 GPU 信息\"说明上轮未更新——**不要凭记忆假设可用 GPU，派 Worker 前必查**\n- CWM 8B val-best = ckpt-400（eval_loss 单调递增，step 400 后全部过拟合），**不要尝试评估其他 checkpoint**\n- eval 脚本**禁止 `--max_samples`**——必须评完整 test set (n=9784) / val set (n=9335)，否则数据与主表不可比\n- 标 FAILED/DONE(failed) 前**必须 `ps -p PID` 确认进程已退出**，否则会导致 GPU 碰撞 OOM（已发生过）\n- seq_length/batch_size/precision/lr 变更需 Director 审批（D103）\n- s42 resume checkpoint 从 ckpt-600 开始（不含 ckpt-200/400），原始 ckpt-200/400 在另一个目录\n\n### 2. 🖥️ 基础设施快照\n- **westd** (seetacloud-westd-4x5090): 环境 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 代码: `/home/sonny/exec-sim-repair-verifier/`（注意是 /home/sonny 不是 /root）\n  - 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n  - CLS 8B s42 resume ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`（ckpt-600 ~ ckpt-5400, step=200）\n  - CLS 8B seed123 ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` + backup ckpt-3000 at `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n  - CWM 8B ckpts: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`（save_total_limit=5，列表不固定）\n  - 必须 `HF_HUB_OFFLINE=1`\n- **home** (home-1x5090): 用户 `/home/sonny`，python3，4B v5 ckpts at `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n  - home 版 eval 脚本**不支持 --max_new_tokens**\n- 活跃进程：cls8b-s42-resume-ckpt1000-test-mutation + cls8b-s42-ckpt1000-test-mutation（RUNNING，具体 PID/tmux 需 SSH 查）\n- cwm8b-ckpt400-test-eval-v3: ALLOCATED 但未提交（GPU cuda:3, bs=8）\n- CWM 8B 全量 eval 极慢：~37s/sample (SDPA, 无 flash_attn), bs=1 约 96h\n\n### 3. 📊 当前状态\n**刚做完**：ckpt-3600 test eval 完成（84.48%），seq_length confound ablation 完成（CLS@2048 vs CWM gap 仍 25pp），LoRA rank ablation 结论确定（rank=32 vs 16 差异 -0.51pp within variance）。Val sweep 全部完成，val-best 更新为 ckpt-3600 (90.28%)。\n\n**RUNNING**：\n- `cls8b-s42-resume-ckpt1000-test-mutation` — CLS 8B s42 resume ckpt-1000 完整 test eval + per-mutation-type breakdown\n- `cls8b-s42-ckpt1000-test-mutation` — CLS 8B s42 原始 ckpt-1000 test eval + mutation breakdown\n\n**ALLOCATED 未提交**：\n- `cwm8b-ckpt400-test-eval-v3` — CWM 8B ckpt-400 test eval (cuda:3, bs=8)。v1 被 SIGKILL @1544, v2 完成 5280/9784 后被 killed。running_acc=65.0%（低于 majority 72.96%），需跑完确认\n\n**PENDING**：\n- `cls8b-s42-resume-ckpt3600-test` — 等待人工审批\n- `cls8b-s42-resume-ckpt3600-mutation` — PREPARING\n\n**Paper**：Full Draft 已启动，EMNLP 2026 ARR deadline **May 25**（9 天）\n\n### 4. 📋 待办（条件触发式）\n- cls8b-s42-resume-ckpt1000-test-mutation 或 cls8b-s42-ckpt1000-test-mutation cron 回调 → spawn worker 提取 per-mutation-type accuracy，更新 registry，汇报 Director\n- cwm8b-ckpt400-test-eval-v3 需提交 → 确认 GPU cuda:3 仍在白名单 → `submit_on_allocated`\n- cls8b-s42-resume-ckpt3600-test 审批通过 → 提交 ckpt-3600 test eval（这是新 val-best，主表数字依赖此结果）\n- CWM 8B ckpt-400 test eval 完成 → 如果 acc < majority baseline → negative conclusion, 需按 red-section 产 Framing 提案（但 CWM 8B failing 实际 *支持* complexity-dependent narrative）\n- 所有 test eval 完成 → 更新 writing_plan.yaml 主表数字 → 全力推 paper writing\n- Paper Agent 需要：Table 1（主表）、Table 2（ablation）、Figure 1（accuracy scaling）定稿\n\n### 5. 🎯 战略上下文\n**核心结论链**：Classification 和 CWM 在 function-level 等效（~87-88%），但 classification 在 8B 上 scaling 更好（+2.43pp），在 repo-level 上优势扩大到 ~26pp（CWM 严重过拟合 + 高 unparseable rate）。这构成 \"complexity-dependent reformulation advantage\" narrative。\n\n**决策关键节点**：\n- D085: Val-test 分布偏移根因 = repo 不匹配 + mutation type 偏移（需在 paper 讨论）\n- D088: Val-best 更新为 ckpt-3600 (90.28%)，主表数字可能需要全部刷新\n- D093: Multi-seed 最终表已有（s42: 84.48%, seed123: 85.60%, mean: 85.04%）\n\n**易错点**：\n- ckpt-1000 mutation eval 和 ckpt-3600 test eval 是**不同实验目的**——前者是诊断粒度分析，后者是主表数字更新。不要混淆\n- CWM 8B running_acc 65% 低于 majority baseline，但**这对 paper 是好消息**（CWM 在复杂任务上 failure mode 更突出 → 支持 claim）\n- repo-level 实验历史极其曲折（v1-v12 反复失败），不要再尝试重训 CWM repo-level\n- 4B seed123 test=75.33% 极低（远低于 s42 的 83.63%），4B 模型 seed variance 大——paper 中需谨慎讨论\n- Paper 必须先写完 experiments section（有数字支撑），再写 intro/abstract（避免 overclaim）\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:cls8b-s42-ckpt200-test8192-eval"
+          },
+          "id": "event-000118"
+        }
+      ],
+      "message_count": 74
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-cls8b-s42-ckpt200-test8192-eval-20260516t010615-336575.md"
+}

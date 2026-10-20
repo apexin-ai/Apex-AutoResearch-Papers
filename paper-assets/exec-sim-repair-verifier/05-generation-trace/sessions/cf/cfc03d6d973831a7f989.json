@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfc03d6d973831a7f989",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_10_1778787353.md",
+  "task_key": "loop_10_1778787353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778787353.md",
+    "occurrence": 1,
+    "bytes": 4220,
+    "sha256": "133ca2540064022ba5bc40056ed78ea9d954302b5714f25f12dcfdf9deb38150"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-14T17:20:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：home-1x5090 cuda:0, westd-48478 cuda:0/1/2/3。白名单外的 GPU 即使 Director 指令也必须 push back\n- westd cuda:0/1 正在跑 CWM eval（进程 195531/195668），**禁止 kill 或干扰**——这是 D057 论文解除阻塞的关键路径\n- Checkpoint selection 必须在 val set (9335 samples) 上做，test set (9784) 只报最终数字（D063/D065/D069 决策链）\n- D069 结论：val set 无论截断长度 (2048/4096) 均无法做 inference-based checkpoint selection → 改用 training loss curve 选 checkpoint\n- apple-to-apple 比较必须用 westd conda 环境数据（CLS vs CWM 同 server/env/data）\n\n### 2. 🖥️ 基础设施快照\n- **westd-48478**: 工作目录 `/home/sonny/exec-sim-repair-verifier/`, Python `/root/miniconda3/bin/python`, conda base env\n- 模型缓存: `/root/autodl-tmp/.hf_cache/`，4B 模型 `Qwen/Qwen3-4B/`，8B 模型 `Qwen/Qwen3-8B/`\n- CLS checkpoints: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/`, `/root/autodl-tmp/checkpoints_repo_cls_8b_conda/`\n- CWM checkpoints: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`, `/root/autodl-tmp/checkpoints_repo_cwm_v12/`\n- 数据: `/home/sonny/exec-sim-repair-verifier/data/swebench_full/` (70748 samples)\n- 活跃进程: CWM seed123 eval (PID 195531, cron 活跃), CWM v12 eval (PID 195668, cron 活跃)\n- **home-1x5090**: 工作目录 `/home/ubuntu/exec-sim-repair-verifier/`, 模型 `/home/ubuntu/.hf_cache/`\n- W&B: `--no_wandb` 模式（8B 训练未用 wandb）\n\n### 3. 📊 当前状态\n刚收到 cron 回调：**repo-level-cwm-8b-conda** (westd cuda:2) 和 **repo-level-cls-8b-seed123-conda** (westd cuda:3) 两个 8B 训练同时失败，均 EXIT_CODE=1，约 8.47 GPU hours。已派 Worker `diagnose:8b-training-failure` 读日志诊断根因，**尚未收到回调**。\n\nRegistry 状态：\n- 61 个实验全部 DONE（success 36, failed 15, killed 7, negative 3）\n- **无 RUNNING 实验**——westd cuda:2/3 刚腾出来\n- CWM v12 eval 和 CWM seed123 eval 仍在跑（cron 监控中，ETA ~02:20-02:30 UTC May 15）\n\n等待中：\n- Worker `diagnose:8b-training-failure` 回调 → 根因分析 + 决定是否 resume\n- CWM v12 eval cron 完成回调 → 解除 D057 论文阻塞\n- CWM seed123 eval cron 完成回调 → paired bootstrap 统计检验\n\n### 4. 📋 待办\n- 诊断 Worker 回调到达 → 根据根因：(a) 磁盘满/OOM → 清理后从最新 checkpoint resume 8B 训练; (b) 代码 bug → 修复后 resume; (c) 不可恢复 → 汇报 Director 决策\n- CWM v12 eval 完成 → spawn Worker 做 checkpoint sweep + 汇总 CLS-CWM gap → 更新 ROADMAP → 解除 D057 → 通知 Paper Agent\n- CWM seed123 eval 完成 → paired bootstrap CLS vs CWM seed123 → 补充 C1 统计显著性\n- 8B 训练恢复后完成 → 8B eval pipeline（checkpoint sweep on val set → best ckpt → test set final eval）\n- 所有 repo-level 数据就绪 → Paper Agent patch 论文主表（D064 已启动 full draft）\n\n### 5. 🎯 战略上下文\n- **核心论文方向**: CLS (classification) vs CWM (code-with-marks generation) 对比，核心假设是 CLS 优势随代码复杂度增长。C1 (complexity-dependent advantage) 是主 claim\n- **EMNLP 2026 ARR May 25 DDL**，剩 11 天。D057 论文阻塞在 CWM v12 全量 eval 结果上\n- **8B 是 model-size scaling 数据点**：4B-4B gap ~18pp (CLS 78.43% vs CWM ~58%)，8B-8B gap TBD。如果 8B gap 更大 → 强化 C1 \"scales with model capacity\" narrative\n- **易错点 1**: 之前 D071 误报 CWM 8B 崩溃（实际是旧日志 ValueError），这次是真崩——不要假设又是误报，必须看实际日志\n- **易错点 2**: westd 上有 backup checkpoints（之前 D070 发现 CLS 8B ckpt-400/600 丢失），resume 前先确认最新 checkpoint 完整性\n- **易错点 3**: 两个 8B 训练用 `--device cuda:0` 但实际分配在 cuda:2/3（CUDA_VISIBLE_DEVICES 映射），resume 时命令不变，但必须确认 GPU 分配未变\n- **D065 决策**: 放弃 val inference-based checkpoint selection，改用 training loss 选 checkpoint → paper 主表策略是 mean±std across seeds（D066）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778787353.md"
+}

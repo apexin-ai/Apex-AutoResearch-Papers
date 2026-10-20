@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d857d66565a30d82ab71",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis rerepair deep diagnosis",
+  "task_key": "worker_analysis_rerepair-deep-diagnosis_20260517T083456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rerepair-deep-diagnosis_20260517T083456_result.json",
+    "occurrence": 1,
+    "bytes": 5005,
+    "sha256": "9edcf10e99fb14eb7400d89cfd3a1bbe103c6a2585537220a94db7c0479df3e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the complete diagnosis:\n\n---\n\n## Q1: 条件标签映射\n\n从 `re_repair_v2.py:146-188` 确认:\n\n| Condition | 含义 | Prompt 内容 |\n|-----------|------|------------|\n| **A1** | minimal | \"Your patch failed some tests\" (无具体信息) |\n| **A2** | +test names | 列出所有测试函数名 |\n| **B** | +CLS predictions | 每个测试的 pass/fail 预测 (classifier) |\n| **C** | +oracle | 每个测试的 ground-truth pass/fail |\n| **D** | +random | 每个测试随机 pass/fail (negative control) |\n\n**B 的 CLS 数据确认**: `generation_bcd.log` 显示 BCD 条件从 `re_repair_instances_with_cls.jsonl` 加载, 该文件 59/59 条记录都有 `cls_per_test` (每条 48 个测试)。B **使用了真实 CLS 预测, 没有触发随机 fallback**。\n\n但 `re_repair_v2.py:162` 有一个隐患: 当 `cls_per_test` 为空时 B 静默退化为随机标签, 与 D 等价, 且无日志警告。\n\n---\n\n## Q2: 按条件分解结果\n\n**全量 (1475 records)**:\n\n| Cond | Total | Resolved | Error% | Instances | pass@1 |\n|------|-------|----------|--------|-----------|--------|\n| A1 | 295 | 132 (44.7%) | 26.8% | 44 | **52.3%** |\n| A2 | 295 | 106 (35.9%) | 38.0% | 44 | 43.2% |\n| B | 295 | 92 (31.2%) | 44.1% | 44 | 36.4% |\n| C | 295 | 99 (33.6%) | 41.4% | 44 | 38.6% |\n| D | 295 | 101 (34.2%) | 42.7% | 44 | 40.9% |\n\n**Error-free 子集 (906/1475)**:\n\n| Cond | Clean | Resolved(%) | Instances | pass@1 |\n|------|-------|-------------|-----------|--------|\n| A1 | 216 | 132 (61.1%) | 36 | **63.9%** |\n| A2 | 183 | 106 (57.9%) | 32 | 59.4% |\n| B | 165 | 92 (55.8%) | 30 | 53.3% |\n| C | 173 | 99 (57.2%) | 30 | 56.7% |\n| D | 169 | 101 (59.8%) | 32 | 56.2% |\n\n**核心发现 — 结果反直觉**:\n- **A1 (minimal) 全面领先**, pass@1=52.3% (error-free: 63.9%)\n- 添加诊断信息一律 **降低** 性能: A1 > A2 > D ≈ C > B\n- **Oracle (C) 不优于 Random (D)**: C pass@1=38.6% vs D=40.9%, error-free 也是 C=56.7% vs D=56.2%\n- **CLS (B) 是最差条件**: pass@1=36.4%, error-free=53.3%\n\n**但这受 error rate 严重混淆**: A1 error 26.8% vs B/C/D 41-44%。更多诊断信息导致模型生成更复杂的 diff, 更容易 patch apply failure。Error-free 子集各条件差距缩小 (53-64%), 但 A1 仍然领先。\n\n---\n\n## Q3: Instance 数量\n\n- Generation: 1475 records, 44 unique instance_ids\n- Eval: 1475 records, 44 unique instance_ids\n- **完美对齐**: 0 missing instances, 0 missing (instance,cond,k) triples\n- 每个条件 295 = 44 instances × 不等的 samples (59 instances prepared, 但 unique instance_ids = 44, 说明部分 instance 有多个 mutation)\n\n---\n\n## Q4: Error 分类\n\n**569/1475 (38.6%) records 出错, 100% 都是 \"Report not found\"**\n\n根因: Docker eval 中 **patch apply failure** (从 `docker_eval.log` 确认), 包括:\n- `malformed patch at line X`\n- `patch unexpectedly ends in middle of line`\n- `unexpected end of file in patch`\n\n**Per-condition error 分布**:\n\n| Cond | Errors | Err Instances | ALL-samples-errored |\n|------|--------|---------------|---------------------|\n| A1 | 79 | 19 | 8 |\n| A2 | 112 | 20 | 12 |\n| B | 130 | 24 | 14 |\n| C | 122 | 21 | 14 |\n| D | 126 | 23 | 12 |\n\n**13 个 instance 在所有 5 个条件下全部失败** (系统性 patch apply failure):\ndjango__django-{11276, 11815, 11964, 14404, 15098, 16136, 16560}, matplotlib__matplotlib-{22865, 25287}, mwaskom__seaborn-3069, pydata__xarray-4075, pytest-dev__pytest-5787, sphinx-doc__sphinx-9461\n\nA1 error 最低 (26.8%) 因为 minimal prompt 下模型更倾向原样返回 patch (mean_similarity=0.937), diff 格式更规范。B/C/D 添加详细诊断后模型做更大幅度修改 (similarity 0.72-0.73), 生成更复杂的 diff, 格式出错概率更高。\n\n---\n\n## Q5: 输出文件清单\n\n| Size | File |\n|------|------|\n| 9.3MB | `generated_repairs.jsonl` (combined, 1475 records) |\n| 2.0MB | `generated_repairs_D.jsonl` |\n| 2.0MB | `generated_repairs_B.jsonl` |\n| 2.0MB | `generated_repairs_C.jsonl` |\n| 1.9MB | `generated_repairs_A2.jsonl` |\n| 1.4MB | `generated_repairs_A1.jsonl` |\n| 915KB | **`eval_results.jsonl`** (Docker eval 结果, 非 verification_results.jsonl) |\n| 170KB | `docker_eval.log` |\n| 7.3KB | `generation_bcd.log` |\n| 4.8KB | `generation.log` |\n| 1.0KB | `analysis_summary.json` |\n\n---\n\n## 总结诊断\n\n1. **标签映射正确**, B 使用了真实 CLS 预测 (非 random fallback)\n2. **结果反直觉的根因是双重的**:\n   - **Error rate 混淆**: 详细诊断 → 更大修改幅度 → 更高 patch apply failure rate (A1: 26.8% vs B: 44.1%)\n   - **即使排除 error, A1 仍领先**: Qwen3-8B 在收到详细诊断后反而\"过度修改\", 引入新问题\n3. **Oracle (C) ≈ Random (D)** 说明这个 8B 模型可能根本不会利用 per-test 标签信息, 无论准确与否\n4. **13/44 instances 系统性 patch apply failure** 是噪声主因, 需要改进 diff 后处理或过滤"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rerepair-deep-diagnosis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fac9a4c3f58a0ca9091e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cls v5 ckpt2105 eval results",
+  "task_key": "worker_analysis_cls-v5-ckpt2105-eval-results_20260518T211955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls-v5-ckpt2105-eval-results_20260518T211955_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "c3a4127cebbe76b5409867039f1988e8ed8839ad63ee74206c9cfadfc03e7f19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。结果汇总：\n\n## DeepSeek CLS repo-v5 ckpt-2105 eval (s42, Table 4 canonical)\n\n| 指标 | 值 |\n|---|---|\n| **Accuracy** | **82.61%** |\n| Macro F1 | 75.07 |\n| Pass F1 | 88.78 |\n| Fail F1 | 61.35 |\n| Precision (fail / pass) | 76.92 / 83.86 |\n| Recall (fail / pass) | 51.02 / 94.33 |\n| Unparseable | **0 / 9784 (0.00%)** |\n\n**Confusion matrix**: TP=6733, FP=1296, TN=1350, FN=405\n\n### 与 s123 参考值对比\n\n| | s123 | s42 (本次) | Δ |\n|---|---|---|---|\n| Accuracy | 74.93% | **82.61%** | **+7.68 pp** |\n| Unparseable rate | 1.36% | **0.00%** | -1.36 pp |\n\ns42 大幅超过 s123 参考值，accuracy +7.68 pp，且 unparseable 降至 0。这是一个非常强的结果，可以直接用于 Table 4。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cls-v5-ckpt2105-eval-results.md"
+}

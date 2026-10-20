@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95f4c60875499387d432",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix val sweep oom restart",
+  "task_key": "worker_fix_val-sweep-oom-restart_20260515T172200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_val-sweep-oom-restart_20260515T172200_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "50483fd0649f10dcb7a56f0841fbe92aacdcaf8ec2a9f8122a6f52d2cadf05c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **cuda:0 空闲** ✓ — 0 MiB，旧进程 393951 已死，无残余进程\n2. **脚本修改** — 原 `--batch_size 8` 删除后默认值是 16（更糟），最终显式设为 `--batch_size 1`，并加 `PYTORCH_ALLOC_CONF=expandable_segments:True`\n3. **已完成 checkpoint** — 无（eval_results 目录为空，从 ckpt-1800 开始全量重跑）\n4. **新 PID** — 396591\n5. **启动验证** ✓\n   - 进程存活，运行 35 秒\n   - cuda:0 占用 17.8GB / 32GB（headroom 充足）\n   - 日志正常推理中：ckpt-1800 已到 150/9335，running_acc=86.0%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-val-sweep-oom-restart.md"
+}

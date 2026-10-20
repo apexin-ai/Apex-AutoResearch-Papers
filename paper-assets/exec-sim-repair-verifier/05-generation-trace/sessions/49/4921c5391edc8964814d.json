@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4921c5391edc8964814d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check home val sweep progress",
+  "task_key": "worker_check_home-val-sweep-progress_20260514T061451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_home-val-sweep-progress_20260514T061451_result.json",
+    "occurrence": 1,
+    "bytes": 1668,
+    "sha256": "04954ea1cef1ffd1977fec300a107c3b51ee786ae77a49640c89e75d5728543a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n---\n\n### GPU 状态\n- GPU 0 (RTX 5090): **100% 使用率**，17.8GB/32.6GB 显存，PID 3046727 (python3)\n- 无冲突 — ckpt-4600 test eval 已完成，当前 GPU 被 val sweep 独占\n\n### Val Sweep 进度\n- **正在跑第 1 个 checkpoint**: `checkpoint-200`，进度 1440/9335 (~15%)\n- 已完成 val eval 结果: **0 个**（`val_eval_results/` 目录为空）\n- 按当前速度 (~28s/160 samples)，单个 checkpoint 约需 **27 分钟**，10 个 checkpoint 总计约 **4.5 小时**\n- 当前 running_acc = 63.5%（checkpoint-200 表现较差，符合预期——早期 checkpoint）\n\n### ckpt-4600 Test Eval 结果 (已完成)\n| 指标 | 值 |\n|------|-----|\n| **accuracy** | **82.35%** |\n| **f1_macro** | **74.74** |\n| **f1_fail** | **60.87** |\n| f1_pass | 88.60 |\n| precision_fail | 76.00 |\n| recall_fail | 50.76 |\n| majority baseline | 72.96% |\n| gap vs majority | +9.39pp |\n| n_instances | 9784 (test) |\n| unparseable | 132 |\n\n### `--split` 修改验证\n- `eval_repo_cls.py` 第 245 行: `--split` 参数已正确实现，choices=[\"val\", \"test\"]，default=\"test\"\n- 数据路径模板: `swebench_{args.split}.jsonl`\n- val 日志确认加载了 `swebench_val.jsonl`，9335 条样本（label: 2252 fail / 7083 pass）\n\n### Val 数据文件\n- `/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_val.jsonl` — **9335 行**，确认存在\n\n### 总结\nVal sweep 刚启动，正在跑第一个 checkpoint (checkpoint-200)，预计全部完成需约 4.5 小时。ckpt-4600 test eval 已出结果，accuracy 82.35%，f1_macro 74.74，f1_fail 60.87。无 GPU 冲突，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-home-val-sweep-progress.md"
+}

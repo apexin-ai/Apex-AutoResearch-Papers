@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbe339d888d1e8e96cd4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval s42 ckpt800 val8192 submit",
+  "task_key": "worker_eval_s42-ckpt800-val8192-submit_20260514T223906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_s42-ckpt800-val8192-submit_20260514T223906_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "9b0be316013fa6fbcc1967c4733ea4d57b8a5986acced14eed14c70a57cc8467"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **cuda:0** 空闲 → eval 已启动，当前占用 17.9GB / 73% 利用率\n- **Checkpoint**: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/checkpoint-800`（adapter_config.json 确认）\n- **tmux session**: `cls8b-s42-ckpt800-val8192-eval`\n- **Registry**: `cls8b-s42-ckpt800-val8192-eval` → RUNNING，parent=repo-level-cls-8b-conda"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-s42-ckpt800-val8192-submit.md"
+}

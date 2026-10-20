@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d346ce96a843f3f9f7fc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls4b ckpt4600 test",
+  "task_key": "worker_eval_cls4b-ckpt4600-test_20260515T064849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls4b-ckpt4600-test_20260515T064849_result.json",
+    "occurrence": 1,
+    "bytes": 303,
+    "sha256": "6e5b390b83fd873130c0d2446db398a8fe33cd066b403a1857f8ae11436b95d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job 已提交并运行中：\n- **exp_id**: cls4b-v5-ckpt4600-test-eval\n- **服务器**: home-1x5090 cuda:0\n- **checkpoint**: checkpoints_repo_cls_v5/checkpoint-4600\n- **split**: test, batch_size=16, max_seq_length=5120\n\n3 分钟后自动轮询日志，完成后汇报 test 指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls4b-ckpt4600-test.md"
+}

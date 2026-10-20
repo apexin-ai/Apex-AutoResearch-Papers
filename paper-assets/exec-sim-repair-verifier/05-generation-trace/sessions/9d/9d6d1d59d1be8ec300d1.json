@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d6d1d59d1be8ec300d1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval s42 extended val sweep restart",
+  "task_key": "worker_eval_s42-extended-val-sweep-restart_20260515T154656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_s42-extended-val-sweep-restart_20260515T154656_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "e72f2706c06a3291882760e9c654c19602c0edda869d4a6752b4c52a825901eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 0 不空闲。** pid 387617 正在运行，已跑 1h05m：\n\n```\npython3 eval_cwm_baseline.py --data_dir data \\\n  --checkpoint_dir checkpoints_cwm_rank32_alpha64/best \\\n  --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B \\\n  --output checkpoints_cwm_rank32_alpha64/best/eval_results.json --save_predictions\n```\n\n这是 CWM rank32-alpha64 ablation 的 eval，占用 13345 MiB / 32607 MiB。\n\n**Checkpoint 情况**：1800→5200 全部 18 个 checkpoint 都已存在（实际有 26 个 ckpt，800→5800）。\n\n**Sweep 脚本**：`run_extended_val_sweep.sh` 存在，内容正确，覆盖 18 个 step（1800-5200），使用 cuda:0，batch_size=1。\n\n**4 GPU 全占满：**\n| GPU | PID | 占用 | 进程 |\n|-----|-----|------|------|\n| 0 | 387617 | 13.3 GB | eval_cwm_baseline.py (ablation eval) |\n| 1 | 295794 | 27.3 GB | s42-resume training |\n| 2 | 266816 | 30.7 GB | 未知 |\n| 3 | 381618 | 22.5 GB | 未知 |\n\n按指示不 kill 残留进程。需要等 pid 387617 完成后才能启动 sweep。要我持续监控等它结束后自动提交，还是你来决定下一步？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-s42-extended-val-sweep-restart.md"
+}

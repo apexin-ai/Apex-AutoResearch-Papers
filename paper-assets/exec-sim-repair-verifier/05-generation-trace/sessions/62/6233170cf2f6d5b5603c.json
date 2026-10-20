@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6233170cf2f6d5b5603c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cls14b progress check",
+  "task_key": "worker_ssh_cls14b-progress-check_20260523T012118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cls14b-progress-check_20260523T012118_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "ed9103bbc067fac070fa0252f166c9992ea29366f431f43c3c6b58d25369ef96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**CLS 14B v2 训练**：\n- 进度：**1283/1434 steps (89%)**，已运行 3h44m\n- 速度：~10.1s/step\n- 剩余：约 151 steps × 10.1s ≈ **25 分钟后完成**\n- Epoch 2 eval loss：0.0771（已完成 epoch 2 eval）\n- 进程 PID 215642 运行中，elapsed 3:44:42\n\n**auto-eval 监控**：\n- tmux session 正常运行，日志显示 `Watching CLS 14B v2 training PID=215642...`\n- 训练完成后会自动触发 eval\n\n**GPU**：\n- GPU 0：58% 利用率，16947/32607 MiB（单卡训练）\n- GPU 1-3：空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cls14b-progress-check.md"
+}

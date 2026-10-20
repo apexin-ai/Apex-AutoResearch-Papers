@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97a4a4a95226eeb28de0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix val sweep seq8192 restart",
+  "task_key": "worker_fix_val-sweep-seq8192-restart_20260515T165720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_val-sweep-seq8192-restart_20260515T165720_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "26acdb55a49024372c8b7fdd5bd019f3f0d3403453994f3256c2fb6d285b1533"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。报告：\n\n---\n\n### 执行报告\n\n| 步骤 | 状态 |\n|------|------|\n| **Kill 旧 sweep** | pid 388791 + 子进程 391710 已 kill，cuda:0 已释放 (0 MiB / 32110 MiB free) |\n| **脚本修改** | 添加 `--max_seq_length 8192`、`--batch_size 8`、`--max_new_tokens 8` |\n| **清理无效结果** | 删除 `cls_8b_s42_resume_val/1800/`（seq2048, 1883 unparseable） |\n| **重启 sweep** | PID 393945，子进程 393951 已确认参数正确 |\n| **验证** | 日志显示 ckpt-1800 加载中，val instances=9335，cmdline 含 `--max_seq_length 8192` ✓ |\n| **Registry** | 旧实验标记 DONE/failed，新实验 `cls8b-s42-resume-val-sweep-seq8192` 状态 RUNNING |\n\n21 个 checkpoint (1800→5800) 在 cuda:0 上运行，日志路径 `~/runs/exec-sim-repair-verifier/cls8b-s42-resume-val-sweep-seq8192.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-val-sweep-seq8192-restart.md"
+}

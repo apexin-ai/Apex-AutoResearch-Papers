@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f074167beeadf4c938a1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval restart cls westd gpu23 v2",
+  "task_key": "worker_eval_restart-cls-westd-gpu23-v2_20260514T015218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_restart-cls-westd-gpu23-v2_20260514T015218_result.json",
+    "occurrence": 1,
+    "bytes": 536,
+    "sha256": "f31a5c49890b10d1d04f3a0d7559655696d8ff8faf67144e787358667f7d9d91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都已成功启动并在运行：\n\n| Session | GPU | 显存占用 | 状态 |\n|---------|-----|---------|------|\n| `eval_cls_v5` | GPU 2 | 15565 MiB, 100% util | 模型已加载，推理中 |\n| `eval_cls_8b` | GPU 3 | 13095 MiB, 7% util | 模型刚加载完 |\n\n- 数据：9784 样本（pass: 7138, fail: 2646）\n- 8B 的 module name 警告可忽略，不影响推理\n- 预计 4B ~28 分钟，8B 稍慢\n- 结果将分别输出到 `results/repo_cls_v5_conda_eval/` 和 `results/repo_cls_8b_conda_eval/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-restart-cls-westd-gpu23-v2.md"
+}

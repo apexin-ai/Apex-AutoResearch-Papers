@@ -1,0 +1,1284 @@
+{
+  "schema_version": "1.0",
+  "session_id": "658a3ac220df7d8df567",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-13T00:54:42.858Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0123hspSUrM6nbRn7xneNecT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            log.info(f\\\\\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\\\\\")\\\\n\\\\n    if n_unparseable:\\\\n        log.warning(f\\\\\\\"{n_unparseable} unparseable predictions\\\\\\\")\\\\n    return results\\\\n\\\\n\\\\ndef compute_metrics(y_true, y_pred):\\\\n    acc = accuracy_score(y_true, y_pred)\\\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\\\n    return {\\\\n        \\\\\\\"accuracy\\\\\\\": round(acc * 100, 2),\\\\n        \\\\\\\"majority_baseline\\\\\\\": round(majority * 100, 2),\\\\n        \\\\\\\"gap_vs_majority_pp\\\\\\\": round((acc - majority) * 100, 2),\\\\n        \\\\\\\"f1_fail\\\\\\\": round(float(f1[0]) * 100, 2),\\\\n        \\\\\\\"f1_pass\\\\\\\": round(float(f1[1]) * 100, 2),\\\\n        \\\\\\\"f1_macro\\\\\\\": round(float(f1.mean()) * 100, 2),\\\\n        \\\\\\\"precision_fail\\\\\\\": round(float(prec[0]) * 100, 2),\\\\n        \\\\\\\"precision_pass\\\\\\\": round(float(prec[1]) * 100, 2),\\\\n        \\\\\\\"recall_fail\\\\\\\": round(float(rec[0]) * 100, 2),\\\\n        \\\\\\\"recall_pass\\\\\\\": round(float(rec[1]) * 100, 2),\\\\n        \\\\\\\"confusion_matrix\\\\\\\": {\\\\n            \\\\\\\"tn\\\\\\\": int(cm[0][0]), \\\\\\\"fp\\\\\\\": int(cm[0][1]),\\\\n            \\\\\\\"fn\\\\\\\": int(cm[1][0]), \\\\\\\"tp\\\\\\\": int(cm[1][1]),\\\\n        },\\\\n        \\\\\\\"support\\\\\\\": {\\\\\\\"fail\\\\\\\": int(Counter(y_true)[0]), \\\\\\\"pass\\\\\\\": int(Counter(y_true)[1])},\\\\n    }\\\\n\\\\n\\\\ndef gen_length_stats(results):\\\\n    lengths = [len(r[\\\\\\\"gen_text\\\\\\\"]) for r in results]\\\\n    return {\\\\n        \\\\\\\"mean\\\\\\\": round(np.mean(lengths), 1),\\\\n        \\\\\\\"median\\\\\\\": round(float(np.median(lengths)), 1),\\\\n        \\\\\\\"max\\\\\\\": max(lengths),\\\\n        \\\\\\\"min\\\\\\\": min(lengths),\\\\n    }\\\\n\\\\n\\\\ndef print_report(metrics, gen_stats, n_total):\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"REPO-LEVEL CWM EVALUATION\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"\\\\\\\\nTest set: {n_total} instances\\\\\\\")\\\\n    print(f\\\\\\\"Class balance: pass={metrics['support']['pass']} fail={metrics['support']['fail']}\\\\\\\")\\\\n    print(f\\\\\\\"Majority baseline: {metrics['majority_baseline']:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nAccuracy: {metrics['accuracy']:.2f}%  (gap vs majority: {metrics['gap_vs_majority_pp']:+.1f}pp)\\\\\\\")\\\\n    print(f\\\\\\\"F1 macro: {metrics['f1_macro']:.2f}%\\\\\\\")\\\\n    print(f\\\\\\\"  fail: P={metrics['precision_fail']:.1f}% R={metrics['recall_fail']:.1f}% F1={metrics['f1_fail']:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"  pass: P={metrics['precision_pass']:.1f}% R={metrics['recall_pass']:.1f}% F1={metrics['f1_pass']:.1f}%\\\\\\\")\\\\n    cm = metrics[\\\\\\\"confusion_matrix\\\\\\\"]\\\\n    print(f\\\\\\\"\\\\\\\\nConfusion matrix:\\\\\\\")\\\\n    print(f\\\\\\\"              Predicted\\\\\\\")\\\\n    print(f\\\\\\\"              fail    pass\\\\\\\")\\\\n    print(f\\\\\\\"  Actual fail  {cm['tn']:>5}   {cm['fp']:>5}\\\\\\\")\\\\n    print(f\\\\\\\"  Actual pass  {cm['fn']:>5}   {cm['tp']:>5}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nGeneration length: mean={gen_stats['mean']}, median={gen_stats['median']}, max={gen_stats['max']}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n\\\\ndef main():\\\\n    p = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Evaluate repo-level CWM (execution simulator) LoRA checkpoint\\\\\\\",\\\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\\\n        epilog=\\\\\\\"\\\\\\\"\\\\\\\"Examples:\\\\n  python eval_repo_cwm.py --checkpoint_dir <cwm_checkpoint_path> --device cuda:1\\\\n  python eval_repo_cwm.py --dry_run\\\\n\\\\\\\"\\\\\\\"\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--checkpoint_dir\\\\\\\", help=\\\\\\\"LoRA checkpoint directory\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_name\\\\\\\", default=\\\\\\\"Qwen/Qwen3-4B\\\\\\\", help=\\\\\\\"Base model name/path\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"data/swebench_full\\\\\\\", help=\\\\\\\"Data directory with swebench_test.jsonl\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"eval_repo_cwm.json\\\\\\\", help=\\\\\\\"Summary JSON output\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--pred_output\\\\\\\", default=\\\\\\\"eval_repo_cwm_predictions.jsonl\\\\\\\", help=\\\\\\\"Predictions JSONL output\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=8)\\\\n    p.add_argument(\\\\\\\"--max_seq_length\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=64)\\\\n    p.add_argument(\\\\\\\"--device\\\\\\\", default=\\\\\\\"cuda:0\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry_run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Only test data loading, no model inference\\\\\\\")\\\\n    args = p.parse_args()\\\\n\\\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\\\n    data_path = os.path.join(script_dir, args.data_dir, \\\\\\\"swebench_test.jsonl\\\\\\\")\\\\n    if not os.path.exists(data_path):\\\\n        data_path = os.path.join(args.data_dir, \\\\\\\"swebench_test.jsonl\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading test data: {data_path}\\\\\\\")\\\\n    test_data = load_jsonl(data_path)\\\\n    log.info(f\\\\\\\"Loaded {len(test_data)} test instances\\\\\\\")\\\\n\\\\n    label_counts = Counter(ex[\\\\\\\"label\\\\\\\"] for ex in test_data)\\\\n    log.info(f\\\\\\\"Label distribution: {dict(label_counts)}\\\\\\\")\\\\n\\\\n    if args.dry_run:\\\\n        log.info(\\\\\\\"Dry run — data loaded successfully. Exiting.\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\\\\\")\\\\n        return\\\\n\\\\n    if not args.checkpoint_dir:\\\\n        p.error(\\\\\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading model from {args.checkpoint_dir}\\\\\\\")\\\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\\\n    log.info(\\\\\\\"Model loaded. Starting inference...\\\\\\\")\\\\n\\\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\\\n                            args.max_seq_length, args.max_new_tokens, args.device)\\\\n\\\\n    del model\\\\n    gc.collect()\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    labels = [r[\\\\\\\"label\\\\\\\"] for r in results]\\\\n    preds = [r[\\\\\\\"pred\\\\\\\"] for r in results]\\\\n\\\\n    metrics = compute_metrics(labels, preds)\\\\n    gen_stats = gen_length_stats(results)\\\\n\\\\n    truncated_count = sum(1 for r in results if r[\\\\\\\"truncated\\\\\\\"])\\\\n    truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\\\n    trunc_correct = [r[\\\\\\\"correct\\\\\\\"] for r in results if r[\\\\\\\"truncated\\\\\\\"]]\\\\n    non_trunc_correct = [r[\\\\\\\"correct\\\\\\\"] for r in results if not r[\\\\\\\"truncated\\\\\\\"]]\\\\n    truncated_accuracy = round(sum(trunc_correct) / len(trunc_correct) * 100, 2) if trunc_correct else None\\\\n    non_truncated_accuracy = round(sum(non_trunc_correct) / len(non_trunc_correct) * 100, 2) if non_trunc_correct else None\\\\n    truncation_stats = {\\\\n        \\\\\\\"truncated_count\\\\\\\": truncated_count,\\\\n        \\\\\\\"truncated_pct\\\\\\\": truncated_pct,\\\\n        \\\\\\\"truncated_accuracy\\\\\\\": truncated_accuracy,\\\\n        \\\\\\\"non_truncated_accuracy\\\\\\\": non_truncated_accuracy,\\\\n    }\\\\n\\\\n    n_cwm_unparseable = sum(1 for r in results if r.get(\\\\\\\"unparseable\\\\\\\", False))\\\\n\\\\n    print_report(metrics, gen_stats, len(results))\\\\n\\\\n    output = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"CWM\\\\\\\",\\\\n        \\\\\\\"checkpoint\\\\\\\": args.checkpoint_dir,\\\\n        \\\\\\\"n_instances\\\\\\\": len(results),\\\\n        \\\\\\\"n_cwm_unparseable\\\\\\\": n_cwm_unparseable,\\\\n        \\\\\\\"metrics\\\\\\\": metrics,\\\\n        \\\\\\\"generation_stats\\\\\\\": gen_stats,\\\\n        \\\\\\\"truncation\\\\\\\": truncation_stats,\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model_name\\\\\\\": args.model_name,\\\\n            \\\\\\\"max_seq_length\\\\\\\": args.max_seq_length,\\\\n            \\\\\\\"max_new_tokens\\\\\\\": args.max_new_tokens,\\\\n            \\\\\\\"batch_size\\\\\\\": args.batch_size,\\\\n        },\\\\n    }\\\\n    out_path = os.path.join(script_dir, args.output)\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    log.info(f\\\\\\\"Summary saved to {out_path}\\\\\\\")\\\\n\\\\n    pred_path = os.path.join(script_dir, args.pred_output)\\\\n    with open(pred_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for r in results:\\\\n            f.write(json.dumps(r) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    log.info(f\\\\\\\"Predictions saved to {pred_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "7b5e6ed9-e161-43ae-b6cb-b87d6cf4a158",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            log.info(f\\\\\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\\\\\")\\\\n\\\\n    if n_unparseable:\\\\n        log.warning(f\\\\\\\"{n_unparseable} unparseable predictions\\\\\\\")\\\\n    return results\\\\n\\\\n\\\\ndef compute_metrics(y_true, y_pred):\\\\n    acc = accuracy_score(y_true, y_pred)\\\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\\\n    return {\\\\n        \\\\\\\"accuracy\\\\\\\": round(acc * 100, 2),\\\\n        \\\\\\\"majority_baseline\\\\\\\": round(majority * 100, 2),\\\\n        \\\\\\\"gap_vs_majority_pp\\\\\\\": round((acc - majority) * 100, 2),\\\\n        \\\\\\\"f1_fail\\\\\\\": round(float(f1[0]) * 100, 2),\\\\n        \\\\\\\"f1_pass\\\\\\\": round(float(f1[1]) * 100, 2),\\\\n        \\\\\\\"f1_macro\\\\\\\": round(float(f1.mean()) * 100, 2),\\\\n        \\\\\\\"precision_fail\\\\\\\": round(float(prec[0]) * 100, 2),\\\\n        \\\\\\\"precision_pass\\\\\\\": round(float(prec[1]) * 100, 2),\\\\n        \\\\\\\"recall_fail\\\\\\\": round(float(rec[0]) * 100, 2),\\\\n        \\\\\\\"recall_pass\\\\\\\": round(float(rec[1]) * 100, 2),\\\\n        \\\\\\\"confusion_matrix\\\\\\\": {\\\\n            \\\\\\\"tn\\\\\\\": int(cm[0][0]), \\\\\\\"fp\\\\\\\": int(cm[0][1]),\\\\n            \\\\\\\"fn\\\\\\\": int(cm[1][0]), \\\\\\\"tp\\\\\\\": int(cm[1][1]),\\\\n        },\\\\n        \\\\\\\"support\\\\\\\": {\\\\\\\"fail\\\\\\\": int(Counter(y_true)[0]), \\\\\\\"pass\\\\\\\": int(Counter(y_true)[1])},\\\\n    }\\\\n\\\\n\\\\ndef gen_length_stats(results):\\\\n    lengths = [len(r[\\\\\\\"gen_text\\\\\\\"]) for r in results]\\\\n    return {\\\\n        \\\\\\\"mean\\\\\\\": round(np.mean(lengths), 1),\\\\n        \\\\\\\"median\\\\\\\": round(float(np.median(lengths)), 1),\\\\n        \\\\\\\"max\\\\\\\": max(lengths),\\\\n        \\\\\\\"min\\\\\\\": min(lengths),\\\\n    }\\\\n\\\\n\\\\ndef print_report(metrics, gen_stats, n_total):\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"REPO-LEVEL CWM EVALUATION\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"\\\\\\\\nTest set: {n_total} instances\\\\\\\")\\\\n    print(f\\\\\\\"Class balance: pass={metrics['support']['pass']} fail={metrics['support']['fail']}\\\\\\\")\\\\n    print(f\\\\\\\"Majority baseline: {metrics['majority_baseline']:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nAccuracy: {metrics['accuracy']:.2f}%  (gap vs majority: {metrics['gap_vs_majority_pp']:+.1f}pp)\\\\\\\")\\\\n    print(f\\\\\\\"F1 macro: {metrics['f1_macro']:.2f}%\\\\\\\")\\\\n    print(f\\\\\\\"  fail: P={metrics['precision_fail']:.1f}% R={metrics['recall_fail']:.1f}% F1={metrics['f1_fail']:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"  pass: P={metrics['precision_pass']:.1f}% R={metrics['recall_pass']:.1f}% F1={metrics['f1_pass']:.1f}%\\\\\\\")\\\\n    cm = metrics[\\\\\\\"confusion_matrix\\\\\\\"]\\\\n    print(f\\\\\\\"\\\\\\\\nConfusion matrix:\\\\\\\")\\\\n    print(f\\\\\\\"              Predicted\\\\\\\")\\\\n    print(f\\\\\\\"              fail    pass\\\\\\\")\\\\n    print(f\\\\\\\"  Actual fail  {cm['tn']:>5}   {cm['fp']:>5}\\\\\\\")\\\\n    print(f\\\\\\\"  Actual pass  {cm['fn']:>5}   {cm['tp']:>5}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nGeneration length: mean={gen_stats['mean']}, median={gen_stats['median']}, max={gen_stats['max']}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n\\\\ndef main():\\\\n    p = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Evaluate repo-level CWM (execution simulator) LoRA checkpoint\\\\\\\",\\\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\\\n        epilog=\\\\\\\"\\\\\\\"\\\\\\\"Examples:\\\\n  python eval_repo_cwm.py --checkpoint_dir <cwm_checkpoint_path> --device cuda:1\\\\n  python eval_repo_cwm.py --dry_run\\\\n\\\\\\\"\\\\\\\"\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--checkpoint_dir\\\\\\\", help=\\\\\\\"LoRA checkpoint directory\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_name\\\\\\\", default=\\\\\\\"Qwen/Qwen3-4B\\\\\\\", help=\\\\\\\"Base model name/path\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"data/swebench_full\\\\\\\", help=\\\\\\\"Data directory with swebench_test.jsonl\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"eval_repo_cwm.json\\\\\\\", help=\\\\\\\"Summary JSON output\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--pred_output\\\\\\\", default=\\\\\\\"eval_repo_cwm_predictions.jsonl\\\\\\\", help=\\\\\\\"Predictions JSONL output\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=8)\\\\n    p.add_argument(\\\\\\\"--max_seq_length\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=64)\\\\n    p.add_argument(\\\\\\\"--device\\\\\\\", default=\\\\\\\"cuda:0\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry_run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Only test data loading, no model inference\\\\\\\")\\\\n    args = p.parse_args()\\\\n\\\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\\\n    data_path = os.path.join(script_dir, args.data_dir, \\\\\\\"swebench_test.jsonl\\\\\\\")\\\\n    if not os.path.exists(data_path):\\\\n        data_path = os.path.join(args.data_dir, \\\\\\\"swebench_test.jsonl\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading test data: {data_path}\\\\\\\")\\\\n    test_data = load_jsonl(data_path)\\\\n    log.info(f\\\\\\\"Loaded {len(test_data)} test instances\\\\\\\")\\\\n\\\\n    label_counts = Counter(ex[\\\\\\\"label\\\\\\\"] for ex in test_data)\\\\n    log.info(f\\\\\\\"Label distribution: {dict(label_counts)}\\\\\\\")\\\\n\\\\n    if args.dry_run:\\\\n        log.info(\\\\\\\"Dry run — data loaded successfully. Exiting.\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\\\\\")\\\\n        return\\\\n\\\\n    if not args.checkpoint_dir:\\\\n        p.error(\\\\\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading model from {args.checkpoint_dir}\\\\\\\")\\\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\\\n    log.info(\\\\\\\"Model loaded. Starting inference...\\\\\\\")\\\\n\\\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\\\n                            args.max_seq_length, args.max_new_tokens, args.device)\\\\n\\\\n    del model\\\\n    gc.collect()\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    labels = [r[\\\\\\\"label\\\\\\\"] for r in results]\\\\n    preds = [r[\\\\\\\"pred\\\\\\\"] for r in results]\\\\n\\\\n    metrics = compute_metrics(labels, preds)\\\\n    gen_stats = gen_length_stats(results)\\\\n\\\\n    truncated_count = sum(1 for r in results if r[\\\\\\\"truncated\\\\\\\"])\\\\n    truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\\\n    trunc_correct = [r[\\\\\\\"correct\\\\\\\"] for r in results if r[\\\\\\\"truncated\\\\\\\"]]\\\\n    non_trunc_correct = [r[\\\\\\\"correct\\\\\\\"] for r in results if not r[\\\\\\\"truncated\\\\\\\"]]\\\\n    truncated_accuracy = round(sum(trunc_correct) / len(trunc_correct) * 100, 2) if trunc_correct else None\\\\n    non_truncated_accuracy = round(sum(non_trunc_correct) / len(non_trunc_correct) * 100, 2) if non_trunc_correct else None\\\\n    truncation_stats = {\\\\n        \\\\\\\"truncated_count\\\\\\\": truncated_count,\\\\n        \\\\\\\"truncated_pct\\\\\\\": truncated_pct,\\\\n        \\\\\\\"truncated_accuracy\\\\\\\": truncated_accuracy,\\\\n        \\\\\\\"non_truncated_accuracy\\\\\\\": non_truncated_accuracy,\\\\n    }\\\\n\\\\n    n_cwm_unparseable = sum(1 for r in results if r.get(\\\\\\\"unparseable\\\\\\\", False))\\\\n\\\\n    print_report(metrics, gen_stats, len(results))\\\\n\\\\n    output = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"CWM\\\\\\\",\\\\n        \\\\\\\"checkpoint\\\\\\\": args.checkpoint_dir,\\\\n        \\\\\\\"n_instances\\\\\\\": len(results),\\\\n        \\\\\\\"n_cwm_unparseable\\\\\\\": n_cwm_unparseable,\\\\n        \\\\\\\"metrics\\\\\\\": metrics,\\\\n        \\\\\\\"generation_stats\\\\\\\": gen_stats,\\\\n        \\\\\\\"truncation\\\\\\\": truncation_stats,\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model_name\\\\\\\": args.model_name,\\\\n            \\\\\\\"max_seq_length\\\\\\\": args.max_seq_length,\\\\n            \\\\\\\"max_new_tokens\\\\\\\": args.max_new_tokens,\\\\n            \\\\\\\"batch_size\\\\\\\": args.batch_size,\\\\n        },\\\\n    }\\\\n    out_path = os.path.join(script_dir, args.output)\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    log.info(f\\\\\\\"Summary saved to {out_path}\\\\\\\")\\\\n\\\\n    pred_path = os.path.join(script_dir, args.pred_output)\\\\n    with open(pred_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for r in results:\\\\n            f.write(json.dumps(r) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    log.info(f\\\\\\\"Predictions saved to {pred_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"            log.info(f\\\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\\\")\\n\\n    if n_unparseable:\\n        log.warning(f\\\"{n_unparseable} unparseable predictions\\\")\\n    return results\\n\\n\\ndef compute_metrics(y_true, y_pred):\\n    acc = accuracy_score(y_true, y_pred)\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\n    return {\\n        \\\"accuracy\\\": round(acc * 100, 2),\\n        \\\"majority_baseline\\\": round(majority * 100, 2),\\n        \\\"gap_vs_majority_pp\\\": round((acc - majority) * 100, 2),\\n        \\\"f1_fail\\\": round(float(f1[0]) * 100, 2),\\n        \\\"f1_pass\\\": round(float(f1[1]) * 100, 2),\\n        \\\"f1_macro\\\": round(float(f1.mean()) * 100, 2),\\n        \\\"precision_fail\\\": round(float(prec[0]) * 100, 2),\\n        \\\"precision_pass\\\": round(float(prec[1]) * 100, 2),\\n        \\\"recall_fail\\\": round(float(rec[0]) * 100, 2),\\n        \\\"recall_pass\\\": round(float(rec[1]) * 100, 2),\\n        \\\"confusion_matrix\\\": {\\n            \\\"tn\\\": int(cm[0][0]), \\\"fp\\\": int(cm[0][1]),\\n            \\\"fn\\\": int(cm[1][0]), \\\"tp\\\": int(cm[1][1]),\\n        },\\n        \\\"support\\\": {\\\"fail\\\": int(Counter(y_true)[0]), \\\"pass\\\": int(Counter(y_true)[1])},\\n    }\\n\\n\\ndef gen_length_stats(results):\\n    lengths = [len(r[\\\"gen_text\\\"]) for r in results]\\n    return {\\n        \\\"mean\\\": round(np.mean(lengths), 1),\\n        \\\"median\\\": round(float(np.median(lengths)), 1),\\n        \\\"max\\\": max(lengths),\\n        \\\"min\\\": min(lengths),\\n    }\\n\\n\\ndef print_report(metrics, gen_stats, n_total):\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"REPO-LEVEL CWM EVALUATION\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"\\\\nTest set: {n_total} instances\\\")\\n    print(f\\\"Class balance: pass={metrics['support']['pass']} fail={metrics['support']['fail']}\\\")\\n    print(f\\\"Majority baseline: {metrics['majority_baseline']:.1f}%\\\")\\n    print(f\\\"\\\\nAccuracy: {metrics['accuracy']:.2f}%  (gap vs majority: {metrics['gap_vs_majority_pp']:+.1f}pp)\\\")\\n    print(f\\\"F1 macro: {metrics['f1_macro']:.2f}%\\\")\\n    print(f\\\"  fail: P={metrics['precision_fail']:.1f}% R={metrics['recall_fail']:.1f}% F1={metrics['f1_fail']:.1f}%\\\")\\n    print(f\\\"  pass: P={metrics['precision_pass']:.1f}% R={metrics['recall_pass']:.1f}% F1={metrics['f1_pass']:.1f}%\\\")\\n    cm = metrics[\\\"confusion_matrix\\\"]\\n    print(f\\\"\\\\nConfusion matrix:\\\")\\n    print(f\\\"              Predicted\\\")\\n    print(f\\\"              fail    pass\\\")\\n    print(f\\\"  Actual fail  {cm['tn']:>5}   {cm['fp']:>5}\\\")\\n    print(f\\\"  Actual pass  {cm['fn']:>5}   {cm['tp']:>5}\\\")\\n    print(f\\\"\\\\nGeneration length: mean={gen_stats['mean']}, median={gen_stats['median']}, max={gen_stats['max']}\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser(\\n        description=\\\"Evaluate repo-level CWM (execution simulator) LoRA checkpoint\\\",\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\n        epilog=\\\"\\\"\\\"Examples:\\n  python eval_repo_cwm.py --checkpoint_dir <cwm_checkpoint_path> --device cuda:1\\n  python eval_repo_cwm.py --dry_run\\n\\\"\\\"\\\")\\n    p.add_argument(\\\"--checkpoint_dir\\\", help=\\\"LoRA checkpoint directory\\\")\\n    p.add_argument(\\\"--model_name\\\", default=\\\"Qwen/Qwen3-4B\\\", help=\\\"Base model name/path\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"data/swebench_full\\\", help=\\\"Data directory with swebench_test.jsonl\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"eval_repo_cwm.json\\\", help=\\\"Summary JSON output\\\")\\n    p.add_argument(\\\"--pred_output\\\", default=\\\"eval_repo_cwm_predictions.jsonl\\\", help=\\\"Predictions JSONL output\\\")\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=8)\\n    p.add_argument(\\\"--max_seq_length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--max_new_tokens\\\", type=int, default=64)\\n    p.add_argument(\\\"--device\\\", default=\\\"cuda:0\\\")\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\", help=\\\"Only test data loading, no model inference\\\")\\n    args = p.parse_args()\\n\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\n    data_path = os.path.join(script_dir, args.data_dir, \\\"swebench_test.jsonl\\\")\\n    if not os.path.exists(data_path):\\n        data_path = os.path.join(args.data_dir, \\\"swebench_test.jsonl\\\")\\n\\n    log.info(f\\\"Loading test data: {data_path}\\\")\\n    test_data = load_jsonl(data_path)\\n    log.info(f\\\"Loaded {len(test_data)} test instances\\\")\\n\\n    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n    log.info(f\\\"Label distribution: {dict(label_counts)}\\\")\\n\\n    if args.dry_run:\\n        log.info(\\\"Dry run — data loaded successfully. Exiting.\\\")\\n        print(f\\\"\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\")\\n        return\\n\\n    if not args.checkpoint_dir:\\n        p.error(\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\")\\n\\n    log.info(f\\\"Loading model from {args.checkpoint_dir}\\\")\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\n    log.info(\\\"Model loaded. Starting inference...\\\")\\n\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\n                            args.max_seq_length, args.max_new_tokens, args.device)\\n\\n    del model\\n    gc.collect()\\n    torch.cuda.empty_cache()\\n\\n    labels = [r[\\\"label\\\"] for r in results]\\n    preds = [r[\\\"pred\\\"] for r in results]\\n\\n    metrics = compute_metrics(labels, preds)\\n    gen_stats = gen_length_stats(results)\\n\\n    truncated_count = sum(1 for r in results if r[\\\"truncated\\\"])\\n    truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\\n    trunc_correct = [r[\\\"correct\\\"] for r in results if r[\\\"truncated\\\"]]\\n    non_trunc_correct = [r[\\\"correct\\\"] for r in results if not r[\\\"truncated\\\"]]\\n    truncated_accuracy = round(sum(trunc_correct) / len(trunc_correct) * 100, 2) if trunc_correct else None\\n    non_truncated_accuracy = round(sum(non_trunc_correct) / len(non_trunc_correct) * 100, 2) if non_trunc_correct else None\\n    truncation_stats = {\\n        \\\"truncated_count\\\": truncated_count,\\n        \\\"truncated_pct\\\": truncated_pct,\\n        \\\"truncated_accuracy\\\": truncated_accuracy,\\n        \\\"non_truncated_accuracy\\\": non_truncated_accuracy,\\n    }\\n\\n    n_cwm_unparseable = sum(1 for r in results if r.get(\\\"unparseable\\\", False))\\n\\n    print_report(metrics, gen_stats, len(results))\\n\\n    output = {\\n        \\\"model\\\": \\\"CWM\\\",\\n        \\\"checkpoint\\\": args.checkpoint_dir,\\n        \\\"n_instances\\\": len(results),\\n        \\\"n_cwm_unparseable\\\": n_cwm_unparseable,\\n        \\\"metrics\\\": metrics,\\n        \\\"generation_stats\\\": gen_stats,\\n        \\\"truncation\\\": truncation_stats,\\n        \\\"config\\\": {\\n            \\\"model_name\\\": args.model_name,\\n            \\\"max_seq_length\\\": args.max_seq_length,\\n            \\\"max_new_tokens\\\": args.max_new_tokens,\\n            \\\"batch_size\\\": args.batch_size,\\n        },\\n    }\\n    out_path = os.path.join(script_dir, args.output)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    log.info(f\\\"Summary saved to {out_path}\\\")\\n\\n    pred_path = os.path.join(script_dir, args.pred_output)\\n    with open(pred_path, \\\"w\\\") as f:\\n        for r in results:\\n            f.write(json.dumps(r) + \\\"\\\\n\\\")\\n    log.info(f\\\"Predictions saved to {pred_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+              }
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the full CWM file. Let me write it to seetacloud using the same heredoc approach.",
+              "signature": "EpcCClkIDRgCKkBGtN3na3NRkV/vg7PeM9S32/uBZi76qRwLOy+7fuRTCr2fzZjBMwGWsXw9aBYB5wOSKGnIUTc+Ksh/4I0IDzedMg9jbGF1ZGUtb3B1cy00LTY4ABIMkMhWASln+tG8sMjwGgxv8vRdY2xaNOTk4QwiMBUFM929rGMcgrGMMKhC1mArUL7PzT/SLet7H075N67IDOswtRhX+y4vw1mYpBzuACpsZLHmWy3dpYDY3i+rg6FxLTC9Apuo6jobUjsw9jJPgtpEAoDxNE2WT/Z2d/Z6Y0Ou80Y5yypSexe/SOR3BRcJhrkCeK0p/z9Yz9q++9L940XSUFizMtipHJlBOnmtXS3pGEGem+gt0GinuYXvGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "b36cc7b8-e70a-4c68-bea5-637f81b9de07",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dk2j3ZkUAB1QRnxLiqRTpk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6210,
+                "cache_read_input_tokens": 127942,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6210
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PyupeciFd9hkwNwfRVByPd",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "seetacloud-westd-4x5090",
+                "command": "cat << 'ENDOFFILE' > /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py\n#!/usr/bin/env python3\n# eval_repo_cwm.py — Evaluate repo-level CWM (Code World Model / execution simulator) LoRA checkpoint\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\n# Dependencies: torch, transformers, peft, sklearn, numpy\n# Key difference from eval_repo_cls.py:\n#   - CWM generates execution output text, then pass/fail is extracted via keyword matching\n#   - Longer max_new_tokens (64 vs 8) since CWM generates execution traces\n#   - Different system prompt (\"execution simulator\" vs \"code verifier\")\n# Usage:\n#   python eval_repo_cwm.py --checkpoint_dir <path> --device cuda:1\n#   python eval_repo_cwm.py --dry_run\n\nimport argparse\nimport json\nimport logging\nimport os\nimport gc\nfrom collections import Counter\n\nimport numpy as np\nimport torch\nfrom sklearn.metrics import (\n    accuracy_score, confusion_matrix, f1_score,\n    precision_score, recall_score,\n)\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\nlog = logging.getLogger(__name__)\n\nSYSTEM_PROMPT = (\n    \"You are a code execution simulator. Given a code patch (git diff) and a test name, \"\n    \"predict the execution result when the test is run against the patched code.\"\n)\nUSER_TEMPLATE = \"## Patch (git diff)\\n{code}\\n\\n## Test\\n{test}\\n\\nWhat is the execution result?\"\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\n\ndef detect_thinking_support(tokenizer):\n    try:\n        tokenizer.apply_chat_template(\n            [{\"role\": \"user\", \"content\": \"hi\"}],\n            tokenize=False, enable_thinking=False,\n        )\n        return {\"enable_thinking\": False}\n    except TypeError:\n        return {}\n\n\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\n    msgs = [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": user_msg},\n    ]\n    ids = tokenizer.apply_chat_template(\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\n    )\n    if hasattr(ids, \"input_ids\"):\n        ids = ids.input_ids\n    if not isinstance(ids, list):\n        ids = list(ids)\n    truncated = len(ids) > max_len\n    if truncated:\n        ids = ids[:max_len]\n    return ids, truncated\n\n\ndef parse_cwm_prediction(text):\n    if \"</think>\" in text:\n        text = text.split(\"</think>\")[-1]\n    text_lower = text.strip().lower()\n    if text_lower.startswith(\"pass\"):\n        return 1\n    if text_lower.startswith(\"fail\"):\n        return 0\n    fail_kw = [\"error\", \"assert\", \"traceback\", \"exception\", \"fail\"]\n    pass_kw = [\"pass\", \"success\", \"completed\"]\n    has_fail = any(p in text_lower for p in fail_kw)\n    has_pass = any(p in text_lower for p in pass_kw)\n    if has_fail and not has_pass:\n        return 0\n    if has_pass and not has_fail:\n        return 1\n    return -1\n\n\ndef load_model(checkpoint_dir, base_model_name, device):\n    from peft import PeftModel\n    from transformers import AutoModelForCausalLM, AutoTokenizer\n\n    tokenizer = AutoTokenizer.from_pretrained(\n        checkpoint_dir, trust_remote_code=True, padding_side=\"left\",\n    )\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    try:\n        import flash_attn\n        attn_impl = \"flash_attention_2\"\n    except ImportError:\n        attn_impl = \"sdpa\"\n    log.info(f\"Attention: {attn_impl}\")\n\n    base_model = AutoModelForCausalLM.from_pretrained(\n        base_model_name,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        attn_implementation=attn_impl,\n    )\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\n    model.eval()\n    model = model.to(device)\n    return model, tokenizer\n\n\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length,\n                  max_new_tokens, device):\n    tmpl_kw = detect_thinking_support(tokenizer)\n    total = len(test_data)\n    label_counts = Counter(ex[\"label\"] for ex in test_data)\n    majority_class = 1 if label_counts.get(1, 0) >= label_counts.get(0, 0) else 0\n\n    results = []\n    n_unparseable = 0\n\n    for i in range(0, total, batch_size):\n        batch = test_data[i : i + batch_size]\n\n        batch_built = [\n            build_prompt_ids(tokenizer, ex[\"code\"], ex[\"test\"], tmpl_kw, max_seq_length)\n            for ex in batch\n        ]\n        batch_ids = [r[0] for r in batch_built]\n        batch_truncated = [r[1] for r in batch_built]\n\n        max_len = max(len(ids) for ids in batch_ids)\n        padded = [[tokenizer.pad_token_id] * (max_len - len(ids)) + ids for ids in batch_ids]\n        attn_mask = [[0] * (max_len - len(ids)) + [1] * len(ids) for ids in batch_ids]\n\n        input_ids = torch.tensor(padded, device=device)\n        attention_mask = torch.tensor(attn_mask, device=device)\n\n        with torch.no_grad():\n            out = model.generate(\n                input_ids=input_ids,\n                attention_mask=attention_mask,\n                max_new_tokens=max_new_tokens,\n                do_sample=False,\n                pad_token_id=tokenizer.pad_token_id,\n            )\n\n        for j, ex in enumerate(batch):\n            gen_ids = out[j][len(padded[j]):]\n            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\n            pred = parse_cwm_prediction(gen_text)\n            was_unparseable = pred == -1\n            if pred == -1:\n                n_unparseable += 1\n                pred = majority_class\n\n            pid = ex.get(\"problem_id\", ex.get(\"metadata\", {}).get(\"instance_id\", \"\"))\n            results.append({\n                \"index\": i + j,\n                \"problem_id\": pid,\n                \"label\": ex[\"label\"],\n                \"pred\": pred,\n                \"correct\": int(pred == ex[\"label\"]),\n                \"truncated\": batch_truncated[j],\n                \"gen_text\": gen_text.strip(),\n                \"unparseable\": was_unparseable,\n            })\n\n        done = min(i + batch_size, total)\n        if done % (batch_size * 10) == 0 or done == total:\n            acc_so_far = sum(r[\"correct\"] for r in results) / len(results) * 100\n            log.info(f\"[CWM] {done}/{total}  running_acc={acc_so_far:.1f}%\")\n\n    if n_unparseable:\n        log.warning(f\"{n_unparseable} unparseable predictions\")\n    return results\n\n\ndef compute_metrics(y_true, y_pred):\n    acc = accuracy_score(y_true, y_pred)\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\n    return {\n        \"accuracy\": round(acc * 100, 2),\n        \"majority_baseline\": round(majority * 100, 2),\n        \"gap_vs_majority_pp\": round((acc - majority) * 100, 2),\n        \"f1_fail\": round(float(f1[0]) * 100, 2),\n        \"f1_pass\": round(float(f1[1]) * 100, 2),\n        \"f1_macro\": round(float(f1.mean()) * 100, 2),\n        \"precision_fail\": round(float(prec[0]) * 100, 2),\n        \"precision_pass\": round(float(prec[1]) * 100, 2),\n        \"recall_fail\": round(float(rec[0]) * 100, 2),\n        \"recall_pass\": round(float(rec[1]) * 100, 2),\n        \"confusion_matrix\": {\n            \"tn\": int(cm[0][0]), \"fp\": int(cm[0][1]),\n            \"fn\": int(cm[1][0]), \"tp\": int(cm[1][1]),\n        },\n        \"support\": {\"fail\": int(Counter(y_true)[0]), \"pass\": int(Counter(y_true)[1])},\n    }\n\n\ndef gen_length_stats(results):\n    lengths = [len(r[\"gen_text\"]) for r in results]\n    return {\n        \"mean\": round(np.mean(lengths), 1),\n        \"median\": round(float(np.median(lengths)), 1),\n        \"max\": max(lengths),\n        \"min\": min(lengths),\n    }\n\n\ndef print_report(metrics, gen_stats, n_total):\n    print(\"\\n\" + \"=\" * 60)\n    print(\"REPO-LEVEL CWM EVALUATION\")\n    print(\"=\" * 60)\n    print(f\"\\nTest set: {n_total} instances\")\n    print(f\"Class balance: pass={metrics['support']['pass']} fail={metrics['support']['fail']}\")\n    print(f\"Majority baseline: {metrics['majority_baseline']:.1f}%\")\n    print(f\"\\nAccuracy: {metrics['accuracy']:.2f}%  (gap vs majority: {metrics['gap_vs_majority_pp']:+.1f}pp)\")\n    print(f\"F1 macro: {metrics['f1_macro']:.2f}%\")\n    print(f\"  fail: P={metrics['precision_fail']:.1f}% R={metrics['recall_fail']:.1f}% F1={metrics['f1_fail']:.1f}%\")\n    print(f\"  pass: P={metrics['precision_pass']:.1f}% R={metrics['recall_pass']:.1f}% F1={metrics['f1_pass']:.1f}%\")\n    cm = metrics[\"confusion_matrix\"]\n    print(f\"\\nConfusion matrix:\")\n    print(f\"              Predicted\")\n    print(f\"              fail    pass\")\n    print(f\"  Actual fail  {cm['tn']:>5}   {cm['fp']:>5}\")\n    print(f\"  Actual pass  {cm['fn']:>5}   {cm['tp']:>5}\")\n    print(f\"\\nGeneration length: mean={gen_stats['mean']}, median={gen_stats['median']}, max={gen_stats['max']}\")\n    print(\"=\" * 60)\n\n\ndef main():\n    p = argparse.ArgumentParser(\n        description=\"Evaluate repo-level CWM (execution simulator) LoRA checkpoint\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"Examples:\n  python eval_repo_cwm.py --checkpoint_dir <cwm_checkpoint_path> --device cuda:1\n  python eval_repo_cwm.py --dry_run\n\"\"\")\n    p.add_argument(\"--checkpoint_dir\", help=\"LoRA checkpoint directory\")\n    p.add_argument(\"--model_name\", default=\"Qwen/Qwen3-4B\", help=\"Base model name/path\")\n    p.add_argument(\"--data_dir\", default=\"data/swebench_full\", help=\"Data directory with swebench_test.jsonl\")\n    p.add_argument(\"--output\", default=\"eval_repo_cwm.json\", help=\"Summary JSON output\")\n    p.add_argument(\"--pred_output\", default=\"eval_repo_cwm_predictions.jsonl\", help=\"Predictions JSONL output\")\n    p.add_argument(\"--batch_size\", type=int, default=8)\n    p.add_argument(\"--max_seq_length\", type=int, default=2048)\n    p.add_argument(\"--max_new_tokens\", type=int, default=64)\n    p.add_argument(\"--device\", default=\"cuda:0\")\n    p.add_argument(\"--dry_run\", action=\"store_true\", help=\"Only test data loading, no model inference\")\n    args = p.parse_args()\n\n    script_dir = os.path.dirname(os.path.abspath(__file__))\n    data_path = os.path.join(script_dir, args.data_dir, \"swebench_test.jsonl\")\n    if not os.path.exists(data_path):\n        data_path = os.path.join(args.data_dir, \"swebench_test.jsonl\")\n\n    log.info(f\"Loading test data: {data_path}\")\n    test_data = load_jsonl(data_path)\n    log.info(f\"Loaded {len(test_data)} test instances\")\n\n    label_counts = Counter(ex[\"label\"] for ex in test_data)\n    log.info(f\"Label distribution: {dict(label_counts)}\")\n\n    if args.dry_run:\n        log.info(\"Dry run — data loaded successfully. Exiting.\")\n        print(f\"\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\")\n        return\n\n    if not args.checkpoint_dir:\n        p.error(\"--checkpoint_dir required for inference (use --dry_run for data-only check)\")\n\n    log.info(f\"Loading model from {args.checkpoint_dir}\")\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\n    log.info(\"Model loaded. Starting inference...\")\n\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\n                            args.max_seq_length, args.max_new_tokens, args.device)\n\n    del model\n    gc.collect()\n    torch.cuda.empty_cache()\n\n    labels = [r[\"label\"] for r in results]\n    preds = [r[\"pred\"] for r in results]\n\n    metrics = compute_metrics(labels, preds)\n    gen_stats = gen_length_stats(results)\n\n    truncated_count = sum(1 for r in results if r[\"truncated\"])\n    truncated_pct = round(truncated_count / len(results) * 100, 2) if results else 0\n    trunc_correct = [r[\"correct\"] for r in results if r[\"truncated\"]]\n    non_trunc_correct = [r[\"correct\"] for r in results if not r[\"truncated\"]]\n    truncated_accuracy = round(sum(trunc_correct) / len(trunc_correct) * 100, 2) if trunc_correct else None\n    non_truncated_accuracy = round(sum(non_trunc_correct) / len(non_trunc_correct) * 100, 2) if non_trunc_correct else None\n    truncation_stats = {\n        \"truncated_count\": truncated_count,\n        \"truncated_pct\": truncated_pct,\n        \"truncated_accuracy\": truncated_accuracy,\n        \"non_truncated_accuracy\": non_truncated_accuracy,\n    }\n\n    n_cwm_unparseable = sum(1 for r in results if r.get(\"unparseable\", False))\n\n    print_report(metrics, gen_stats, len(results))\n\n    output = {\n        \"model\": \"CWM\",\n        \"checkpoint\": args.checkpoint_dir,\n        \"n_instances\": len(results),\n        \"n_cwm_unparseable\": n_cwm_unparseable,\n        \"metrics\": metrics,\n        \"generation_stats\": gen_stats,\n        \"truncation\": truncation_stats,\n        \"config\": {\n            \"model_name\": args.model_name,\n            \"max_seq_length\": args.max_seq_length,\n            \"max_new_tokens\": args.max_new_tokens,\n            \"batch_size\": args.batch_size,\n        },\n    }\n    out_path = os.path.join(script_dir, args.output)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    log.info(f\"Summary saved to {out_path}\")\n\n    pred_path = os.path.join(script_dir, args.pred_output)\n    with open(pred_path, \"w\") as f:\n        for r in results:\n            f.write(json.dumps(r) + \"\\n\")\n    log.info(f\"Predictions saved to {pred_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nENDOFFILE\necho \"CWM written, lines: $(wc -l < /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py)\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "a9e551f5-92e6-4b0e-a9ea-45a7f0ad11ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dk2j3ZkUAB1QRnxLiqRTpk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6210,
+                "cache_read_input_tokens": 127942,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6210
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-13T00:55:34.804Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PyupeciFd9hkwNwfRVByPd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CWM written, lines: 347\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "74bd983b-06db-4be0-b617-67ef12f37fa9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CWM written, lines: 347\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"CWM written, lines: 347\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证 seetacloud 文件的关键改动和 MD5。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "5a349c1c-620c-4d98-9b33-d5a470e8a61b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017LgdQTpVrTQLc9QebJkM6b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4816,
+                "cache_read_input_tokens": 134152,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4816
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JDyzZcTbrE9XhQnsEayE52",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "seetacloud-westd-4x5090",
+                "command": "md5sum /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "c7365654-ff87-4277-8b8c-b9d53b5b6233",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017LgdQTpVrTQLc9QebJkM6b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4816,
+                "cache_read_input_tokens": 134152,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4816
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-13T00:55:41.541Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JDyzZcTbrE9XhQnsEayE52",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"8d56b0a1207ce77e69d61c9c2c0cadaa  /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py\\\\na40c8cbd8454d453229d1bec22b1cb95  /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "9ccdc3bb-dfeb-445c-b151-befea9989e2e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"8d56b0a1207ce77e69d61c9c2c0cadaa  /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py\\\\na40c8cbd8454d453229d1bec22b1cb95  /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"8d56b0a1207ce77e69d61c9c2c0cadaa  /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py\\na40c8cbd8454d453229d1bec22b1cb95  /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011DRGspC4bkoBWTqUm5TDWj",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "seetacloud-westd-4x5090",
+                "command": "grep -n \"return -1\" /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "de851127-8b26-468b-9c6c-19550c99ee2a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017LgdQTpVrTQLc9QebJkM6b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4816,
+                "cache_read_input_tokens": 134152,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4816
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-13T00:55:42.479Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011DRGspC4bkoBWTqUm5TDWj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"89:    return -1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "2642087f-2448-4dd0-b337-53c8cac16d7c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"89:    return -1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"89:    return -1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Sg74i6Vu2DRuWcJSWdLsUv",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "seetacloud-westd-4x5090",
+                "command": "grep -n \"n_cwm_unparseable\" /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "25a78bcd-bac5-43fa-a38d-80be67522302",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017LgdQTpVrTQLc9QebJkM6b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4816,
+                "cache_read_input_tokens": 134152,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4816
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-13T00:55:43.421Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Sg74i6Vu2DRuWcJSWdLsUv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"315:    n_cwm_unparseable = sum(1 for r in results if r.get(\\\\\\\"unparseable\\\\\\\", False))\\\\n323:        \\\\\\\"n_cwm_unparseable\\\\\\\": n_cwm_unparseable,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "d8faa677-7f15-4ca3-9ef9-c3f4ae847bd6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"315:    n_cwm_unparseable = sum(1 for r in results if r.get(\\\\\\\"unparseable\\\\\\\", False))\\\\n323:        \\\\\\\"n_cwm_unparseable\\\\\\\": n_cwm_unparseable,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"315:    n_cwm_unparseable = sum(1 for r in results if r.get(\\\"unparseable\\\", False))\\n323:        \\\"n_cwm_unparseable\\\": n_cwm_unparseable,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FACWcxAU2YwDpGEv2wKEcp",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "seetacloud-westd-4x5090",
+                "command": "grep -n \"n_cls_unparseable\" /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "296818b2-2567-4589-8ed3-545d749ae0a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017LgdQTpVrTQLc9QebJkM6b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4816,
+                "cache_read_input_tokens": 134152,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4816
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-13T00:55:44.367Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FACWcxAU2YwDpGEv2wKEcp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"285:        \\\\\\\"n_cls_unparseable\\\\\\\": n_unparseable,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "b7d3a104-add7-411b-8925-6b242feea645",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"285:        \\\\\\\"n_cls_unparseable\\\\\\\": n_unparseable,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"285:        \\\"n_cls_unparseable\\\": n_unparseable,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0171RBYhh7DiJKRtkJNAJt5R",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "seetacloud-westd-4x5090",
+                "command": "grep -n \"was_unparseable\" /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "ff7e389e-553d-4755-bc30-bd32544a2ad1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017LgdQTpVrTQLc9QebJkM6b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4816,
+                "cache_read_input_tokens": 134152,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4816
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-13T00:55:45.279Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0171RBYhh7DiJKRtkJNAJt5R",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"153:            was_unparseable = pred == -1\\\\n167:                \\\\\\\"unparseable\\\\\\\": was_unparseable,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "0bdb1c56-c961-40a6-b45f-f27ee9e633d0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"153:            was_unparseable = pred == -1\\\\n167:                \\\\\\\"unparseable\\\\\\\": was_unparseable,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"153:            was_unparseable = pred == -1\\n167:                \\\"unparseable\\\": was_unparseable,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QwiYsJM8EWuJTdgYNfxnGC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "seetacloud-westd-4x5090",
+                "command": "grep -n \"was_unparseable\" /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "e995f976-0990-4cc8-9a29-4d58101a6a98",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017LgdQTpVrTQLc9QebJkM6b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4816,
+                "cache_read_input_tokens": 134152,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4816
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-13T00:55:45.951Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QwiYsJM8EWuJTdgYNfxnGC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"161:            was_unparseable = pred == -1\\\\n175:                \\\\\\\"unparseable\\\\\\\": was_unparseable,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "07c1f6fd-7012-4a3d-94e3-8b35461b57e6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"161:            was_unparseable = pred == -1\\\\n175:                \\\\\\\"unparseable\\\\\\\": was_unparseable,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"161:            was_unparseable = pred == -1\\n175:                \\\"unparseable\\\": was_unparseable,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me compare the MD5s:\n\nHome:\n- CLS: `2e3867d83f0566cd6c8978570354304c`\n- CWM: `a40c8cbd8454d453229d1bec22b1cb95`\n\nSeetacloud:\n- CLS: `8d56b0a1207ce77e69d61c9c2c0cadaa`\n- CWM: `a40c8cbd8454d453229d1bec22b1cb95` ✓ MATCH!\n\n\nCWM matches perfectly, but the CLS files differ. The home version has 310 lines while the Seetacloud version from the heredoc has 306 lines—a 4-line gap that's likely from the compute_metrics function being truncated when I read it initially.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "544416fc-6068-4129-aad0-a49ebe9e74fc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015BQytf98JB8g3xpGZSVex9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1647,
+                "cache_read_input_tokens": 138968,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1647
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "CWM MD5 完全一致。CLS 差 4 行，需要检查差异。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "254cf5fe-9569-4335-977e-8f59f0f4d60f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015BQytf98JB8g3xpGZSVex9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1647,
+                "cache_read_input_tokens": 138968,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1647
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FZ55V8uGCAM3KJAczBxjjv",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "tail -n +178 /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "bff9b060-f6c6-4486-837f-79bb6faa43f9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015BQytf98JB8g3xpGZSVex9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1647,
+                "cache_read_input_tokens": 138968,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1647
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-13T00:56:00.094Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FZ55V8uGCAM3KJAczBxjjv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n\\\\ndef compute_metrics(y_true, y_pred):\\\\n    acc = accuracy_score(y_true, y_pred)\\\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\\\n    return {\\\\n        \\\\\\\"accuracy\\\\\\\": round(acc * 100, 2),\\\\n        \\\\\\\"majority_baseline\\\\\\\": round(majority * 100, 2),\\\\n        \\\\\\\"gap_vs_majority_pp\\\\\\\": round((acc - majority) * 100, 2),\\\\n        \\\\\\\"f1_fail\\\\\\\": round(float(f1[0]) * 100, 2),\\\\n        \\\\\\\"f1_pass\\\\\\\": round(float(f1[1]) * 100, 2),\\\\n        \\\\\\\"f1_macro\\\\\\\": round(float(f1.mean()) * 100, 2),\\\\n        \\\\\\\"precision_fail\\\\\\\": round(float(prec[0]) * 100, 2),\\\\n        \\\\\\\"precision_pass\\\\\\\": round(float(prec[1]) * 100, 2),\\\\n        \\\\\\\"recall_fail\\\\\\\": round(float(rec[0]) * 100, 2),\\\\n        \\\\\\\"recall_pass\\\\\\\": round(float(rec[1]) * 100, 2),\\\\n        \\\\\\\"confusion_matrix\\\\\\\": {\\\\n            \\\\\\\"tn\\\\\\\": int(cm[0][0]), \\\\\\\"fp\\\\\\\": int(cm[0][1]),\\\\n            \\\\\\\"fn\\\\\\\": int(cm[1][0]), \\\\\\\"tp\\\\\\\": int(cm[1][1]),\\\\n        },\\\\n        \\\\\\\"support\\\\\\\": {\\\\\\\"fail\\\\\\\": int(Counter(y_true)[0]), \\\\\\\"pass\\\\\\\": int(Counter(y_true)[1])},\\\\n    }\\\\n\\\\n\\\\ndef print_report(metrics, n_total, n_unparseable):\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"REPO-LEVEL CLS EVALUATION\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"\\\\\\\\nTest set: {n_total} instances\\\\\\\")\\\\n    print(f\\\\\\\"Class balance: pass={metrics['support']['pass']} fail={metrics['support']['fail']}\\\\\\\")\\\\n    print(f\\\\\\\"Majority baseline: {metrics['majority_baseline']:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nAccuracy: {metrics['accuracy']:.2f}%  (gap vs majority: {metrics['gap_vs_majority_pp']:+.1f}pp)\\\\\\\")\\\\n    print(f\\\\\\\"F1 macro: {metrics['f1_macro']:.2f}%\\\\\\\")\\\\n    print(f\\\\\\\"  fail: P={metrics['precision_fail']:.1f}% R={metrics['recall_fail']:.1f}% F1={metrics['f1_fail']:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"  pass: P={metrics['precision_pass']:.1f}% R={metrics['recall_pass']:.1f}% F1={metrics['f1_pass']:.1f}%\\\\\\\")\\\\n    cm = metrics[\\\\\\\"confusion_matrix\\\\\\\"]\\\\n    print(f\\\\\\\"\\\\\\\\nConfusion matrix:\\\\\\\")\\\\n    print(f\\\\\\\"              Predicted\\\\\\\")\\\\n    print(f\\\\\\\"              fail    pass\\\\\\\")\\\\n    print(f\\\\\\\"  Actual fail  {cm['tn']:>5}   {cm['fp']:>5}\\\\\\\")\\\\n    print(f\\\\\\\"  Actual pass  {cm['fn']:>5}   {cm['tp']:>5}\\\\\\\")\\\\n    if n_unparseable:\\\\n        print(f\\\\\\\"\\\\\\\\nUnparseable: {n_unparseable}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n\\\\ndef main():\\\\n    p = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\\\\\\\",\\\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\\\n        epilog=\\\\\\\"\\\\\\\"\\\\\\\"Examples:\\\\n  python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\\\\n  python eval_repo_cls.py --dry_run\\\\n\\\\\\\"\\\\\\\"\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--checkpoint_dir\\\\\\\", help=\\\\\\\"LoRA checkpoint directory\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_name\\\\\\\", default=\\\\\\\"Qwen/Qwen3-4B\\\\\\\", help=\\\\\\\"Base model name/path\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"data/swebench_full\\\\\\\", help=\\\\\\\"Data directory with swebench_test.jsonl\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"eval_repo_cls.json\\\\\\\", help=\\\\\\\"Summary JSON output\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--pred_output\\\\\\\", default=\\\\\\\"eval_repo_cls_predictions.jsonl\\\\\\\", help=\\\\\\\"Predictions JSONL output\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=16)\\\\n    p.add_argument(\\\\\\\"--max_seq_length\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--device\\\\\\\", default=\\\\\\\"cuda:0\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry_run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Only test data loading, no model inference\\\\\\\")\\\\n    args = p.parse_args()\\\\n\\\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\\\n    data_path = os.path.join(script_dir, args.data_dir, \\\\\\\"swebench_test.jsonl\\\\\\\")\\\\n    if not os.path.exists(data_path):\\\\n        data_path = os.path.join(args.data_dir, \\\\\\\"swebench_test.jsonl\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading test data: {data_path}\\\\\\\")\\\\n    test_data = load_jsonl(data_path)\\\\n    log.info(f\\\\\\\"Loaded {len(test_data)} test instances\\\\\\\")\\\\n\\\\n    label_counts = Counter(ex[\\\\\\\"label\\\\\\\"] for ex in test_data)\\\\n    log.info(f\\\\\\\"Label distribution: {dict(label_counts)}\\\\\\\")\\\\n\\\\n    if args.dry_run:\\\\n        log.info(\\\\\\\"Dry run — data loaded successfully. Exiting.\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\\\\\")\\\\n        return\\\\n\\\\n    if not args.checkpoint_dir:\\\\n        p.error(\\\\\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading model from {args.checkpoint_dir}\\\\\\\")\\\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\\\n    log.info(\\\\\\\"Model loaded. Starting inference...\\\\\\\")\\\\n\\\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\\\n                            args.max_seq_length, args.device)\\\\n\\\\n    del model\\\\n    gc.collect()\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    labels = [r[\\\\\\\"label\\\\\\\"] for r in results]\\\\n    preds = [r[\\\\\\\"pred\\\\\\\"] for r in results]\\\\n    n_unparseable = sum(1 for r in results if r.get(\\\\\\\"unparseable\\\\\\\", False))\\\\n\\\\n    metrics = compute_metrics(labels, preds)\\\\n    print_report(metrics, len(results), n_unparseable)\\\\n\\\\n    output = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"CLS\\\\\\\",\\\\n        \\\\\\\"checkpoint\\\\\\\": args.checkpoint_dir,\\\\n        \\\\\\\"n_instances\\\\\\\": len(results),\\\\n        \\\\\\\"n_cls_unparseable\\\\\\\": n_unparseable,\\\\n        \\\\\\\"metrics\\\\\\\": metrics,\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model_name\\\\\\\": args.model_name,\\\\n            \\\\\\\"max_seq_length\\\\\\\": args.max_seq_length,\\\\n            \\\\\\\"batch_size\\\\\\\": args.batch_size,\\\\n        },\\\\n    }\\\\n    out_path = os.path.join(script_dir, args.output)\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    log.info(f\\\\\\\"Summary saved to {out_path}\\\\\\\")\\\\n\\\\n    pred_path = os.path.join(script_dir, args.pred_output)\\\\n    with open(pred_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for r in results:\\\\n            f.write(json.dumps(r) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    log.info(f\\\\\\\"Predictions saved to {pred_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "68483582-6a66-4461-9042-85f42d5a5f33",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n\\\\ndef compute_metrics(y_true, y_pred):\\\\n    acc = accuracy_score(y_true, y_pred)\\\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\\\n    return {\\\\n        \\\\\\\"accuracy\\\\\\\": round(acc * 100, 2),\\\\n        \\\\\\\"majority_baseline\\\\\\\": round(majority * 100, 2),\\\\n        \\\\\\\"gap_vs_majority_pp\\\\\\\": round((acc - majority) * 100, 2),\\\\n        \\\\\\\"f1_fail\\\\\\\": round(float(f1[0]) * 100, 2),\\\\n        \\\\\\\"f1_pass\\\\\\\": round(float(f1[1]) * 100, 2),\\\\n        \\\\\\\"f1_macro\\\\\\\": round(float(f1.mean()) * 100, 2),\\\\n        \\\\\\\"precision_fail\\\\\\\": round(float(prec[0]) * 100, 2),\\\\n        \\\\\\\"precision_pass\\\\\\\": round(float(prec[1]) * 100, 2),\\\\n        \\\\\\\"recall_fail\\\\\\\": round(float(rec[0]) * 100, 2),\\\\n        \\\\\\\"recall_pass\\\\\\\": round(float(rec[1]) * 100, 2),\\\\n        \\\\\\\"confusion_matrix\\\\\\\": {\\\\n            \\\\\\\"tn\\\\\\\": int(cm[0][0]), \\\\\\\"fp\\\\\\\": int(cm[0][1]),\\\\n            \\\\\\\"fn\\\\\\\": int(cm[1][0]), \\\\\\\"tp\\\\\\\": int(cm[1][1]),\\\\n        },\\\\n        \\\\\\\"support\\\\\\\": {\\\\\\\"fail\\\\\\\": int(Counter(y_true)[0]), \\\\\\\"pass\\\\\\\": int(Counter(y_true)[1])},\\\\n    }\\\\n\\\\n\\\\ndef print_report(metrics, n_total, n_unparseable):\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"REPO-LEVEL CLS EVALUATION\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"\\\\\\\\nTest set: {n_total} instances\\\\\\\")\\\\n    print(f\\\\\\\"Class balance: pass={metrics['support']['pass']} fail={metrics['support']['fail']}\\\\\\\")\\\\n    print(f\\\\\\\"Majority baseline: {metrics['majority_baseline']:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nAccuracy: {metrics['accuracy']:.2f}%  (gap vs majority: {metrics['gap_vs_majority_pp']:+.1f}pp)\\\\\\\")\\\\n    print(f\\\\\\\"F1 macro: {metrics['f1_macro']:.2f}%\\\\\\\")\\\\n    print(f\\\\\\\"  fail: P={metrics['precision_fail']:.1f}% R={metrics['recall_fail']:.1f}% F1={metrics['f1_fail']:.1f}%\\\\\\\")\\\\n    print(f\\\\\\\"  pass: P={metrics['precision_pass']:.1f}% R={metrics['recall_pass']:.1f}% F1={metrics['f1_pass']:.1f}%\\\\\\\")\\\\n    cm = metrics[\\\\\\\"confusion_matrix\\\\\\\"]\\\\n    print(f\\\\\\\"\\\\\\\\nConfusion matrix:\\\\\\\")\\\\n    print(f\\\\\\\"              Predicted\\\\\\\")\\\\n    print(f\\\\\\\"              fail    pass\\\\\\\")\\\\n    print(f\\\\\\\"  Actual fail  {cm['tn']:>5}   {cm['fp']:>5}\\\\\\\")\\\\n    print(f\\\\\\\"  Actual pass  {cm['fn']:>5}   {cm['tp']:>5}\\\\\\\")\\\\n    if n_unparseable:\\\\n        print(f\\\\\\\"\\\\\\\\nUnparseable: {n_unparseable}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n\\\\ndef main():\\\\n    p = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\\\\\\\",\\\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\\\n        epilog=\\\\\\\"\\\\\\\"\\\\\\\"Examples:\\\\n  python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\\\\n  python eval_repo_cls.py --dry_run\\\\n\\\\\\\"\\\\\\\"\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--checkpoint_dir\\\\\\\", help=\\\\\\\"LoRA checkpoint directory\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_name\\\\\\\", default=\\\\\\\"Qwen/Qwen3-4B\\\\\\\", help=\\\\\\\"Base model name/path\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"data/swebench_full\\\\\\\", help=\\\\\\\"Data directory with swebench_test.jsonl\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"eval_repo_cls.json\\\\\\\", help=\\\\\\\"Summary JSON output\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--pred_output\\\\\\\", default=\\\\\\\"eval_repo_cls_predictions.jsonl\\\\\\\", help=\\\\\\\"Predictions JSONL output\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=16)\\\\n    p.add_argument(\\\\\\\"--max_seq_length\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--device\\\\\\\", default=\\\\\\\"cuda:0\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry_run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Only test data loading, no model inference\\\\\\\")\\\\n    args = p.parse_args()\\\\n\\\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\\\n    data_path = os.path.join(script_dir, args.data_dir, \\\\\\\"swebench_test.jsonl\\\\\\\")\\\\n    if not os.path.exists(data_path):\\\\n        data_path = os.path.join(args.data_dir, \\\\\\\"swebench_test.jsonl\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading test data: {data_path}\\\\\\\")\\\\n    test_data = load_jsonl(data_path)\\\\n    log.info(f\\\\\\\"Loaded {len(test_data)} test instances\\\\\\\")\\\\n\\\\n    label_counts = Counter(ex[\\\\\\\"label\\\\\\\"] for ex in test_data)\\\\n    log.info(f\\\\\\\"Label distribution: {dict(label_counts)}\\\\\\\")\\\\n\\\\n    if args.dry_run:\\\\n        log.info(\\\\\\\"Dry run — data loaded successfully. Exiting.\\\\\\\")\\\\n        print(f\\\\\\\"\\\\\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\\\\\")\\\\n        return\\\\n\\\\n    if not args.checkpoint_dir:\\\\n        p.error(\\\\\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\\\\\")\\\\n\\\\n    log.info(f\\\\\\\"Loading model from {args.checkpoint_dir}\\\\\\\")\\\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\\\n    log.info(\\\\\\\"Model loaded. Starting inference...\\\\\\\")\\\\n\\\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\\\n                            args.max_seq_length, args.device)\\\\n\\\\n    del model\\\\n    gc.collect()\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    labels = [r[\\\\\\\"label\\\\\\\"] for r in results]\\\\n    preds = [r[\\\\\\\"pred\\\\\\\"] for r in results]\\\\n    n_unparseable = sum(1 for r in results if r.get(\\\\\\\"unparseable\\\\\\\", False))\\\\n\\\\n    metrics = compute_metrics(labels, preds)\\\\n    print_report(metrics, len(results), n_unparseable)\\\\n\\\\n    output = {\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"CLS\\\\\\\",\\\\n        \\\\\\\"checkpoint\\\\\\\": args.checkpoint_dir,\\\\n        \\\\\\\"n_instances\\\\\\\": len(results),\\\\n        \\\\\\\"n_cls_unparseable\\\\\\\": n_unparseable,\\\\n        \\\\\\\"metrics\\\\\\\": metrics,\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model_name\\\\\\\": args.model_name,\\\\n            \\\\\\\"max_seq_length\\\\\\\": args.max_seq_length,\\\\n            \\\\\\\"batch_size\\\\\\\": args.batch_size,\\\\n        },\\\\n    }\\\\n    out_path = os.path.join(script_dir, args.output)\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    log.info(f\\\\\\\"Summary saved to {out_path}\\\\\\\")\\\\n\\\\n    pred_path = os.path.join(script_dir, args.pred_output)\\\\n    with open(pred_path, \\\\\\\"w\\\\\\\") as f:\\\\n        for r in results:\\\\n            f.write(json.dumps(r) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    log.info(f\\\\\\\"Predictions saved to {pred_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n\\ndef compute_metrics(y_true, y_pred):\\n    acc = accuracy_score(y_true, y_pred)\\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\\n    return {\\n        \\\"accuracy\\\": round(acc * 100, 2),\\n        \\\"majority_baseline\\\": round(majority * 100, 2),\\n        \\\"gap_vs_majority_pp\\\": round((acc - majority) * 100, 2),\\n        \\\"f1_fail\\\": round(float(f1[0]) * 100, 2),\\n        \\\"f1_pass\\\": round(float(f1[1]) * 100, 2),\\n        \\\"f1_macro\\\": round(float(f1.mean()) * 100, 2),\\n        \\\"precision_fail\\\": round(float(prec[0]) * 100, 2),\\n        \\\"precision_pass\\\": round(float(prec[1]) * 100, 2),\\n        \\\"recall_fail\\\": round(float(rec[0]) * 100, 2),\\n        \\\"recall_pass\\\": round(float(rec[1]) * 100, 2),\\n        \\\"confusion_matrix\\\": {\\n            \\\"tn\\\": int(cm[0][0]), \\\"fp\\\": int(cm[0][1]),\\n            \\\"fn\\\": int(cm[1][0]), \\\"tp\\\": int(cm[1][1]),\\n        },\\n        \\\"support\\\": {\\\"fail\\\": int(Counter(y_true)[0]), \\\"pass\\\": int(Counter(y_true)[1])},\\n    }\\n\\n\\ndef print_report(metrics, n_total, n_unparseable):\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"REPO-LEVEL CLS EVALUATION\\\")\\n    print(\\\"=\\\" * 60)\\n    print(f\\\"\\\\nTest set: {n_total} instances\\\")\\n    print(f\\\"Class balance: pass={metrics['support']['pass']} fail={metrics['support']['fail']}\\\")\\n    print(f\\\"Majority baseline: {metrics['majority_baseline']:.1f}%\\\")\\n    print(f\\\"\\\\nAccuracy: {metrics['accuracy']:.2f}%  (gap vs majority: {metrics['gap_vs_majority_pp']:+.1f}pp)\\\")\\n    print(f\\\"F1 macro: {metrics['f1_macro']:.2f}%\\\")\\n    print(f\\\"  fail: P={metrics['precision_fail']:.1f}% R={metrics['recall_fail']:.1f}% F1={metrics['f1_fail']:.1f}%\\\")\\n    print(f\\\"  pass: P={metrics['precision_pass']:.1f}% R={metrics['recall_pass']:.1f}% F1={metrics['f1_pass']:.1f}%\\\")\\n    cm = metrics[\\\"confusion_matrix\\\"]\\n    print(f\\\"\\\\nConfusion matrix:\\\")\\n    print(f\\\"              Predicted\\\")\\n    print(f\\\"              fail    pass\\\")\\n    print(f\\\"  Actual fail  {cm['tn']:>5}   {cm['fp']:>5}\\\")\\n    print(f\\\"  Actual pass  {cm['fn']:>5}   {cm['tp']:>5}\\\")\\n    if n_unparseable:\\n        print(f\\\"\\\\nUnparseable: {n_unparseable}\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\ndef main():\\n    p = argparse.ArgumentParser(\\n        description=\\\"Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\\\",\\n        formatter_class=argparse.RawDescriptionHelpFormatter,\\n        epilog=\\\"\\\"\\\"Examples:\\n  python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\\n  python eval_repo_cls.py --dry_run\\n\\\"\\\"\\\")\\n    p.add_argument(\\\"--checkpoint_dir\\\", help=\\\"LoRA checkpoint directory\\\")\\n    p.add_argument(\\\"--model_name\\\", default=\\\"Qwen/Qwen3-4B\\\", help=\\\"Base model name/path\\\")\\n    p.add_argument(\\\"--data_dir\\\", default=\\\"data/swebench_full\\\", help=\\\"Data directory with swebench_test.jsonl\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"eval_repo_cls.json\\\", help=\\\"Summary JSON output\\\")\\n    p.add_argument(\\\"--pred_output\\\", default=\\\"eval_repo_cls_predictions.jsonl\\\", help=\\\"Predictions JSONL output\\\")\\n    p.add_argument(\\\"--batch_size\\\", type=int, default=16)\\n    p.add_argument(\\\"--max_seq_length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--device\\\", default=\\\"cuda:0\\\")\\n    p.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\", help=\\\"Only test data loading, no model inference\\\")\\n    args = p.parse_args()\\n\\n    script_dir = os.path.dirname(os.path.abspath(__file__))\\n    data_path = os.path.join(script_dir, args.data_dir, \\\"swebench_test.jsonl\\\")\\n    if not os.path.exists(data_path):\\n        data_path = os.path.join(args.data_dir, \\\"swebench_test.jsonl\\\")\\n\\n    log.info(f\\\"Loading test data: {data_path}\\\")\\n    test_data = load_jsonl(data_path)\\n    log.info(f\\\"Loaded {len(test_data)} test instances\\\")\\n\\n    label_counts = Counter(ex[\\\"label\\\"] for ex in test_data)\\n    log.info(f\\\"Label distribution: {dict(label_counts)}\\\")\\n\\n    if args.dry_run:\\n        log.info(\\\"Dry run — data loaded successfully. Exiting.\\\")\\n        print(f\\\"\\\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\\\")\\n        return\\n\\n    if not args.checkpoint_dir:\\n        p.error(\\\"--checkpoint_dir required for inference (use --dry_run for data-only check)\\\")\\n\\n    log.info(f\\\"Loading model from {args.checkpoint_dir}\\\")\\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\\n    log.info(\\\"Model loaded. Starting inference...\\\")\\n\\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\\n                            args.max_seq_length, args.device)\\n\\n    del model\\n    gc.collect()\\n    torch.cuda.empty_cache()\\n\\n    labels = [r[\\\"label\\\"] for r in results]\\n    preds = [r[\\\"pred\\\"] for r in results]\\n    n_unparseable = sum(1 for r in results if r.get(\\\"unparseable\\\", False))\\n\\n    metrics = compute_metrics(labels, preds)\\n    print_report(metrics, len(results), n_unparseable)\\n\\n    output = {\\n        \\\"model\\\": \\\"CLS\\\",\\n        \\\"checkpoint\\\": args.checkpoint_dir,\\n        \\\"n_instances\\\": len(results),\\n        \\\"n_cls_unparseable\\\": n_unparseable,\\n        \\\"metrics\\\": metrics,\\n        \\\"config\\\": {\\n            \\\"model_name\\\": args.model_name,\\n            \\\"max_seq_length\\\": args.max_seq_length,\\n            \\\"batch_size\\\": args.batch_size,\\n        },\\n    }\\n    out_path = os.path.join(script_dir, args.output)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    log.info(f\\\"Summary saved to {out_path}\\\")\\n\\n    pred_path = os.path.join(script_dir, args.pred_output)\\n    with open(pred_path, \\\"w\\\") as f:\\n        for r in results:\\n            f.write(json.dumps(r) + \\\"\\\\n\\\")\\n    log.info(f\\\"Predictions saved to {pred_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+              }
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I see the differences. The home version of CLS `compute_metrics` has a `\"support\"` field, and `print_report` has the new format with `REPO-LEVEL CLS EVALUATION` header and additional lines. My heredoc version was based on the earlier truncated read, so it was missing:\n1. The `\"support\"` field in compute_metrics\n2. The different print_report format\n\nLet me rewrite the CLS file with the correct content. Actually, the simplest approach: write the exact same file from home to seetacloud again via heredoc, this time making sure I have the complete content.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "97e0e3ff-7111-4805-add2-8d7fc9a15443",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MkrSTdVx6D1kUUXRm5KUnJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3318,
+                "cache_read_input_tokens": 140615,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3318
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "CLS 缺少 `support` 字段和更新版的 `print_report`。重写 seetacloud 上的 CLS 文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "48948595-9b8b-45c9-9f0c-b40fef3f3bb6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MkrSTdVx6D1kUUXRm5KUnJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3318,
+                "cache_read_input_tokens": 140615,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3318
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XdpYnEN9owJvWYMVLYNa5R",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "seetacloud-westd-4x5090",
+                "command": "cat << 'ENDOFFILE' > /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py\n#!/usr/bin/env python3\n# eval_repo_cls.py — Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\n# Input: LoRA checkpoint dir + data/swebench_full/swebench_test.jsonl\n# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\n# Dependencies: torch, transformers, peft, sklearn, numpy\n# Usage:\n#   python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\n#   python eval_repo_cls.py --dry_run  # verify data loading without GPU\n\nimport argparse\nimport json\nimport logging\nimport os\nimport gc\nfrom collections import Counter\n\nimport numpy as np\nimport torch\nfrom sklearn.metrics import (\n    accuracy_score, confusion_matrix, f1_score,\n    precision_score, recall_score,\n)\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\nlog = logging.getLogger(__name__)\n\nSYSTEM_PROMPT = (\n    \"You are a code verifier. Given a code patch (git diff) and a test name, \"\n    \"predict whether the test will pass or fail when run against the patched code.\"\n)\nUSER_TEMPLATE = \"## Patch (git diff)\\n{code}\\n\\n## Test\\n{test}\\n\\nWill this test pass or fail?\"\nLABEL_MAP = {1: \"pass\", 0: \"fail\"}\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\n\ndef detect_thinking_support(tokenizer):\n    try:\n        tokenizer.apply_chat_template(\n            [{\"role\": \"user\", \"content\": \"hi\"}],\n            tokenize=False, enable_thinking=False,\n        )\n        return {\"enable_thinking\": False}\n    except TypeError:\n        return {}\n\n\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\n    msgs = [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": user_msg},\n    ]\n    ids = tokenizer.apply_chat_template(\n        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\n    )\n    if hasattr(ids, \"input_ids\"):\n        ids = ids.input_ids\n    if not isinstance(ids, list):\n        ids = list(ids)\n    truncated = len(ids) > max_len\n    if truncated:\n        ids = ids[:max_len]\n    return ids, truncated\n\n\ndef parse_prediction(text):\n    if \"</think>\" in text:\n        text = text.split(\"</think>\")[-1]\n    text = text.strip().lower()\n    if text.startswith(\"pass\"):\n        return 1\n    if text.startswith(\"fail\"):\n        return 0\n    if \"pass\" in text and \"fail\" not in text:\n        return 1\n    if \"fail\" in text and \"pass\" not in text:\n        return 0\n    return -1\n\n\ndef load_model(checkpoint_dir, base_model_name, device):\n    from peft import PeftModel\n    from transformers import AutoModelForCausalLM, AutoTokenizer\n\n    tokenizer = AutoTokenizer.from_pretrained(\n        checkpoint_dir, trust_remote_code=True, padding_side=\"left\",\n    )\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    try:\n        import flash_attn\n        attn_impl = \"flash_attention_2\"\n    except ImportError:\n        attn_impl = \"sdpa\"\n    log.info(f\"Attention: {attn_impl}\")\n\n    base_model = AutoModelForCausalLM.from_pretrained(\n        base_model_name,\n        torch_dtype=torch.bfloat16,\n        trust_remote_code=True,\n        attn_implementation=attn_impl,\n    )\n    model = PeftModel.from_pretrained(base_model, checkpoint_dir)\n    model.eval()\n    model = model.to(device)\n    return model, tokenizer\n\n\ndef run_inference(model, tokenizer, test_data, batch_size, max_seq_length, device):\n    tmpl_kw = detect_thinking_support(tokenizer)\n    total = len(test_data)\n    label_counts = Counter(ex[\"label\"] for ex in test_data)\n    majority_class = 1 if label_counts.get(1, 0) >= label_counts.get(0, 0) else 0\n\n    results = []\n    n_unparseable = 0\n\n    for i in range(0, total, batch_size):\n        batch = test_data[i : i + batch_size]\n\n        batch_built = [\n            build_prompt_ids(tokenizer, ex[\"code\"], ex[\"test\"], tmpl_kw, max_seq_length)\n            for ex in batch\n        ]\n        batch_ids = [r[0] for r in batch_built]\n        batch_truncated = [r[1] for r in batch_built]\n\n        max_len = max(len(ids) for ids in batch_ids)\n        padded = [[tokenizer.pad_token_id] * (max_len - len(ids)) + ids for ids in batch_ids]\n        attn_mask = [[0] * (max_len - len(ids)) + [1] * len(ids) for ids in batch_ids]\n\n        input_ids = torch.tensor(padded, device=device)\n        attention_mask = torch.tensor(attn_mask, device=device)\n\n        with torch.no_grad():\n            out = model.generate(\n                input_ids=input_ids,\n                attention_mask=attention_mask,\n                max_new_tokens=8,\n                do_sample=False,\n                pad_token_id=tokenizer.pad_token_id,\n            )\n\n        for j, ex in enumerate(batch):\n            gen_ids = out[j][len(padded[j]):]\n            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\n            pred = parse_prediction(gen_text)\n            was_unparseable = pred == -1\n            if pred == -1:\n                n_unparseable += 1\n                pred = majority_class\n\n            pid = ex.get(\"problem_id\", ex.get(\"metadata\", {}).get(\"instance_id\", \"\"))\n            results.append({\n                \"index\": i + j,\n                \"problem_id\": pid,\n                \"label\": ex[\"label\"],\n                \"pred\": pred,\n                \"correct\": int(pred == ex[\"label\"]),\n                \"truncated\": batch_truncated[j],\n                \"gen_text\": gen_text.strip(),\n                \"unparseable\": was_unparseable,\n            })\n\n        done = min(i + batch_size, total)\n        if done % (batch_size * 10) == 0 or done == total:\n            acc_so_far = sum(r[\"correct\"] for r in results) / len(results) * 100\n            log.info(f\"[CLS] {done}/{total}  running_acc={acc_so_far:.1f}%\")\n\n    if n_unparseable:\n        log.warning(f\"{n_unparseable} unparseable predictions (majority fallback)\")\n    return results\n\n\ndef compute_metrics(y_true, y_pred):\n    acc = accuracy_score(y_true, y_pred)\n    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\n    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\n    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\n    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\n    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\n    return {\n        \"accuracy\": round(acc * 100, 2),\n        \"majority_baseline\": round(majority * 100, 2),\n        \"gap_vs_majority_pp\": round((acc - majority) * 100, 2),\n        \"f1_fail\": round(float(f1[0]) * 100, 2),\n        \"f1_pass\": round(float(f1[1]) * 100, 2),\n        \"f1_macro\": round(float(f1.mean()) * 100, 2),\n        \"precision_fail\": round(float(prec[0]) * 100, 2),\n        \"precision_pass\": round(float(prec[1]) * 100, 2),\n        \"recall_fail\": round(float(rec[0]) * 100, 2),\n        \"recall_pass\": round(float(rec[1]) * 100, 2),\n        \"confusion_matrix\": {\n            \"tn\": int(cm[0][0]), \"fp\": int(cm[0][1]),\n            \"fn\": int(cm[1][0]), \"tp\": int(cm[1][1]),\n        },\n        \"support\": {\"fail\": int(Counter(y_true)[0]), \"pass\": int(Counter(y_true)[1])},\n    }\n\n\ndef print_report(metrics, n_total, n_unparseable):\n    print(\"\\n\" + \"=\" * 60)\n    print(\"REPO-LEVEL CLS EVALUATION\")\n    print(\"=\" * 60)\n    print(f\"\\nTest set: {n_total} instances\")\n    print(f\"Class balance: pass={metrics['support']['pass']} fail={metrics['support']['fail']}\")\n    print(f\"Majority baseline: {metrics['majority_baseline']:.1f}%\")\n    print(f\"\\nAccuracy: {metrics['accuracy']:.2f}%  (gap vs majority: {metrics['gap_vs_majority_pp']:+.1f}pp)\")\n    print(f\"F1 macro: {metrics['f1_macro']:.2f}%\")\n    print(f\"  fail: P={metrics['precision_fail']:.1f}% R={metrics['recall_fail']:.1f}% F1={metrics['f1_fail']:.1f}%\")\n    print(f\"  pass: P={metrics['precision_pass']:.1f}% R={metrics['recall_pass']:.1f}% F1={metrics['f1_pass']:.1f}%\")\n    cm = metrics[\"confusion_matrix\"]\n    print(f\"\\nConfusion matrix:\")\n    print(f\"              Predicted\")\n    print(f\"              fail    pass\")\n    print(f\"  Actual fail  {cm['tn']:>5}   {cm['fp']:>5}\")\n    print(f\"  Actual pass  {cm['fn']:>5}   {cm['tp']:>5}\")\n    if n_unparseable:\n        print(f\"\\nUnparseable: {n_unparseable}\")\n    print(\"=\" * 60)\n\n\ndef main():\n    p = argparse.ArgumentParser(\n        description=\"Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"Examples:\n  python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\n  python eval_repo_cls.py --dry_run\n\"\"\")\n    p.add_argument(\"--checkpoint_dir\", help=\"LoRA checkpoint directory\")\n    p.add_argument(\"--model_name\", default=\"Qwen/Qwen3-4B\", help=\"Base model name/path\")\n    p.add_argument(\"--data_dir\", default=\"data/swebench_full\", help=\"Data directory with swebench_test.jsonl\")\n    p.add_argument(\"--output\", default=\"eval_repo_cls.json\", help=\"Summary JSON output\")\n    p.add_argument(\"--pred_output\", default=\"eval_repo_cls_predictions.jsonl\", help=\"Predictions JSONL output\")\n    p.add_argument(\"--batch_size\", type=int, default=16)\n    p.add_argument(\"--max_seq_length\", type=int, default=2048)\n    p.add_argument(\"--device\", default=\"cuda:0\")\n    p.add_argument(\"--dry_run\", action=\"store_true\", help=\"Only test data loading, no model inference\")\n    args = p.parse_args()\n\n    script_dir = os.path.dirname(os.path.abspath(__file__))\n    data_path = os.path.join(script_dir, args.data_dir, \"swebench_test.jsonl\")\n    if not os.path.exists(data_path):\n        data_path = os.path.join(args.data_dir, \"swebench_test.jsonl\")\n\n    log.info(f\"Loading test data: {data_path}\")\n    test_data = load_jsonl(data_path)\n    log.info(f\"Loaded {len(test_data)} test instances\")\n\n    label_counts = Counter(ex[\"label\"] for ex in test_data)\n    log.info(f\"Label distribution: {dict(label_counts)}\")\n\n    if args.dry_run:\n        log.info(\"Dry run — data loaded successfully. Exiting.\")\n        print(f\"\\nDry run OK: {len(test_data)} instances, labels={dict(label_counts)}\")\n        return\n\n    if not args.checkpoint_dir:\n        p.error(\"--checkpoint_dir required for inference (use --dry_run for data-only check)\")\n\n    log.info(f\"Loading model from {args.checkpoint_dir}\")\n    model, tokenizer = load_model(args.checkpoint_dir, args.model_name, args.device)\n    log.info(\"Model loaded. Starting inference...\")\n\n    results = run_inference(model, tokenizer, test_data, args.batch_size,\n                            args.max_seq_length, args.device)\n\n    del model\n    gc.collect()\n    torch.cuda.empty_cache()\n\n    labels = [r[\"label\"] for r in results]\n    preds = [r[\"pred\"] for r in results]\n    n_unparseable = sum(1 for r in results if r.get(\"unparseable\", False))\n\n    metrics = compute_metrics(labels, preds)\n    print_report(metrics, len(results), n_unparseable)\n\n    output = {\n        \"model\": \"CLS\",\n        \"checkpoint\": args.checkpoint_dir,\n        \"n_instances\": len(results),\n        \"n_cls_unparseable\": n_unparseable,\n        \"metrics\": metrics,\n        \"config\": {\n            \"model_name\": args.model_name,\n            \"max_seq_length\": args.max_seq_length,\n            \"batch_size\": args.batch_size,\n        },\n    }\n    out_path = os.path.join(script_dir, args.output)\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    log.info(f\"Summary saved to {out_path}\")\n\n    pred_path = os.path.join(script_dir, args.pred_output)\n    with open(pred_path, \"w\") as f:\n        for r in results:\n            f.write(json.dumps(r) + \"\\n\")\n    log.info(f\"Predictions saved to {pred_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nENDOFFILE\necho \"CLS written, lines: $(wc -l < /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py)\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "02d7a647-dc30-4fcb-b8a2-61833533879c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MkrSTdVx6D1kUUXRm5KUnJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3318,
+                "cache_read_input_tokens": 140615,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3318
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-13T00:56:56.217Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XdpYnEN9owJvWYMVLYNa5R",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CLS written, lines: 310\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "df510dc8-e0ee-414d-9e05-a3a50ec35777",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CLS written, lines: 310\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"CLS written, lines: 310\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01837KsVPRQTPEjNExTKS9NP",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "seetacloud-westd-4x5090",
+                "command": "md5sum /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "667c87c5-f143-46a3-8700-b3479627bb57",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ScLmuphuvk23VBuPfD5Tsz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4394,
+                "cache_read_input_tokens": 143933,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4394
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-13T00:57:02.005Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01837KsVPRQTPEjNExTKS9NP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2e3867d83f0566cd6c8978570354304c  /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py\\\\na40c8cbd8454d453229d1bec22b1cb95  /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "a83e8ae9-9fe0-45e9-9cb1-017d4d391421",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2e3867d83f0566cd6c8978570354304c  /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py\\\\na40c8cbd8454d453229d1bec22b1cb95  /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2e3867d83f0566cd6c8978570354304c  /home/sonny/exec-sim-repair-verifier/eval_repo_cls.py\\na40c8cbd8454d453229d1bec22b1cb95  /home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器 MD5 完全一致：\n- CLS: `2e3867d83f0566cd6c8978570354304c`\n- CWM: `a40c8cbd8454d453229d1bec22b1cb95`\n\n最后验证 seetacloud 上的语法。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "e5661e21-3cfa-4b1e-bc30-e67b4615d540",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011WMTb1TN9K2Uyaa9sxRifr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 314,
+                "cache_read_input_tokens": 148327,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 314
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01He83VnWPwkUfCjSj5jG8hS",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "seetacloud-westd-4x5090",
+                "command": "cd /home/sonny/exec-sim-repair-verifier && python3 eval_repo_cls.py --help && python3 eval_repo_cwm.py --help",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "e67dc8fe-0d8c-425a-a159-00cfff2ec143",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011WMTb1TN9K2Uyaa9sxRifr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 314,
+                "cache_read_input_tokens": 148327,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 314
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": "2026-05-13T00:57:11.492Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01He83VnWPwkUfCjSj5jG8hS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: eval_repo_cls.py [-h] [--checkpoint_dir CHECKPOINT_DIR]\\\\n                        [--model_name MODEL_NAME] [--data_dir DATA_DIR]\\\\n                        [--output OUTPUT] [--pred_output PRED_OUTPUT]\\\\n                        [--batch_size BATCH_SIZE]\\\\n                        [--max_seq_length MAX_SEQ_LENGTH] [--device DEVICE]\\\\n                        [--dry_run]\\\\n\\\\nEvaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --checkpoint_dir CHECKPOINT_DIR\\\\n                        LoRA checkpoint directory\\\\n  --model_name MODEL_NAME\\\\n                        Base model name/path\\\\n  --data_dir DATA_DIR   Data directory with swebench_test.jsonl\\\\n  --output OUTPUT       Summary JSON output\\\\n  --pred_output PRED_OUTPUT\\\\n                        Predictions JSONL output\\\\n  --batch_size BATCH_SIZE\\\\n  --max_seq_length MAX_SEQ_LENGTH\\\\n  --device DEVICE\\\\n  --dry_run             Only test data loading, no model inference\\\\n\\\\nExamples:\\\\n  python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\\\\n  python eval_repo_cls.py --dry_run\\\\nusage: eval_repo_cwm.py [-h] [--checkpoint_dir CHECKPOINT_DIR]\\\\n                        [--model_name MODEL_NAME] [--data_dir DATA_DIR]\\\\n                        [--output OUTPUT] [--pred_output PRED_OUTPUT]\\\\n                        [--batch_size BATCH_SIZE]\\\\n                        [--max_seq_length MAX_SEQ_LENGTH]\\\\n                        [--max_new_tokens MAX_NEW_TOKENS] [--device DEVICE]\\\\n                        [--dry_run]\\\\n\\\\nEvaluate repo-level CWM (execution simulator) LoRA checkpoint\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --checkpoint_dir CHECKPOINT_DIR\\\\n                        LoRA checkpoint directory\\\\n  --model_name MODEL_NAME\\\\n                        Base model name/path\\\\n  --data_dir DATA_DIR   Data directory with swebench_test.jsonl\\\\n  --output OUTPUT       Summary JSON output\\\\n  --pred_output PRED_OUTPUT\\\\n                        Predictions JSONL output\\\\n  --batch_size BATCH_SIZE\\\\n  --max_seq_length MAX_SEQ_LENGTH\\\\n  --max_new_tokens MAX_NEW_TOKENS\\\\n  --device DEVICE\\\\n  --dry_run             Only test data loading, no model inference\\\\n\\\\nExamples:\\\\n  python eval_repo_cwm.py --checkpoint_dir <cwm_checkpoint_path> --device cuda:1\\\\n  python eval_repo_cwm.py --dry_run\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "5df46861-9b75-4cd5-af99-4b950cc716e4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: eval_repo_cls.py [-h] [--checkpoint_dir CHECKPOINT_DIR]\\\\n                        [--model_name MODEL_NAME] [--data_dir DATA_DIR]\\\\n                        [--output OUTPUT] [--pred_output PRED_OUTPUT]\\\\n                        [--batch_size BATCH_SIZE]\\\\n                        [--max_seq_length MAX_SEQ_LENGTH] [--device DEVICE]\\\\n                        [--dry_run]\\\\n\\\\nEvaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --checkpoint_dir CHECKPOINT_DIR\\\\n                        LoRA checkpoint directory\\\\n  --model_name MODEL_NAME\\\\n                        Base model name/path\\\\n  --data_dir DATA_DIR   Data directory with swebench_test.jsonl\\\\n  --output OUTPUT       Summary JSON output\\\\n  --pred_output PRED_OUTPUT\\\\n                        Predictions JSONL output\\\\n  --batch_size BATCH_SIZE\\\\n  --max_seq_length MAX_SEQ_LENGTH\\\\n  --device DEVICE\\\\n  --dry_run             Only test data loading, no model inference\\\\n\\\\nExamples:\\\\n  python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\\\\n  python eval_repo_cls.py --dry_run\\\\nusage: eval_repo_cwm.py [-h] [--checkpoint_dir CHECKPOINT_DIR]\\\\n                        [--model_name MODEL_NAME] [--data_dir DATA_DIR]\\\\n                        [--output OUTPUT] [--pred_output PRED_OUTPUT]\\\\n                        [--batch_size BATCH_SIZE]\\\\n                        [--max_seq_length MAX_SEQ_LENGTH]\\\\n                        [--max_new_tokens MAX_NEW_TOKENS] [--device DEVICE]\\\\n                        [--dry_run]\\\\n\\\\nEvaluate repo-level CWM (execution simulator) LoRA checkpoint\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --checkpoint_dir CHECKPOINT_DIR\\\\n                        LoRA checkpoint directory\\\\n  --model_name MODEL_NAME\\\\n                        Base model name/path\\\\n  --data_dir DATA_DIR   Data directory with swebench_test.jsonl\\\\n  --output OUTPUT       Summary JSON output\\\\n  --pred_output PRED_OUTPUT\\\\n                        Predictions JSONL output\\\\n  --batch_size BATCH_SIZE\\\\n  --max_seq_length MAX_SEQ_LENGTH\\\\n  --max_new_tokens MAX_NEW_TOKENS\\\\n  --device DEVICE\\\\n  --dry_run             Only test data loading, no model inference\\\\n\\\\nExamples:\\\\n  python eval_repo_cwm.py --checkpoint_dir <cwm_checkpoint_path> --device cuda:1\\\\n  python eval_repo_cwm.py --dry_run\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.56}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: eval_repo_cls.py [-h] [--checkpoint_dir CHECKPOINT_DIR]\\n                        [--model_name MODEL_NAME] [--data_dir DATA_DIR]\\n                        [--output OUTPUT] [--pred_output PRED_OUTPUT]\\n                        [--batch_size BATCH_SIZE]\\n                        [--max_seq_length MAX_SEQ_LENGTH] [--device DEVICE]\\n                        [--dry_run]\\n\\nEvaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --checkpoint_dir CHECKPOINT_DIR\\n                        LoRA checkpoint directory\\n  --model_name MODEL_NAME\\n                        Base model name/path\\n  --data_dir DATA_DIR   Data directory with swebench_test.jsonl\\n  --output OUTPUT       Summary JSON output\\n  --pred_output PRED_OUTPUT\\n                        Predictions JSONL output\\n  --batch_size BATCH_SIZE\\n  --max_seq_length MAX_SEQ_LENGTH\\n  --device DEVICE\\n  --dry_run             Only test data loading, no model inference\\n\\nExamples:\\n  python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\\n  python eval_repo_cls.py --dry_run\\nusage: eval_repo_cwm.py [-h] [--checkpoint_dir CHECKPOINT_DIR]\\n                        [--model_name MODEL_NAME] [--data_dir DATA_DIR]\\n                        [--output OUTPUT] [--pred_output PRED_OUTPUT]\\n                        [--batch_size BATCH_SIZE]\\n                        [--max_seq_length MAX_SEQ_LENGTH]\\n                        [--max_new_tokens MAX_NEW_TOKENS] [--device DEVICE]\\n                        [--dry_run]\\n\\nEvaluate repo-level CWM (execution simulator) LoRA checkpoint\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --checkpoint_dir CHECKPOINT_DIR\\n                        LoRA checkpoint directory\\n  --model_name MODEL_NAME\\n                        Base model name/path\\n  --data_dir DATA_DIR   Data directory with swebench_test.jsonl\\n  --output OUTPUT       Summary JSON output\\n  --pred_output PRED_OUTPUT\\n                        Predictions JSONL output\\n  --batch_size BATCH_SIZE\\n  --max_seq_length MAX_SEQ_LENGTH\\n  --max_new_tokens MAX_NEW_TOKENS\\n  --device DEVICE\\n  --dry_run             Only test data loading, no model inference\\n\\nExamples:\\n  python eval_repo_cwm.py --checkpoint_dir <cwm_checkpoint_path> --device cuda:1\\n  python eval_repo_cwm.py --dry_run\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.56}}"
+              }
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两台服务器（home-1x5090, seetacloud-westd-4x5090）的文件完全一致，MD5 匹配，语法验证通过。\n\n修改总结：\n\n**`eval_repo_cwm.py`** — 3 处改动：\n1. `parse_cwm_prediction` ambiguous 情况从 `return 0` 改为 `return -1`（L89）\n2. `run_inference` 中增加 `-1 → majority_class` fallback 逻辑（L161-164），与 CLS 对称\n3. summary JSON 增加 `n_cwm_unparseable` 字段（L315, L323）\n\n**`eval_repo_cls.py`** — 3 处改动：\n1. `run_inference` 中增加 `was_unparseable` 标记，写入 result dict（L153, L167）\n2. `main()` 中 `n_unparseable` 计算从错误的 `gen_text == \"\"` 改为 `r.get(\"unparseable\", False)`（L280）\n3. summary JSON 增加 `n_cls_unparseable` 字段（L289）\n\n两边 fallback 逻辑现在完全对称：parse 失败 → 返回 -1 → majority_class 替换 → 记录 unparseable 标记。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "uuid": "531b843e-73a1-4b3b-9711-15a18b7e1aec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UZJ62Dfyr9ZmC6j4Zahzjz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1040,
+                "cache_read_input_tokens": 148641,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1040
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两台服务器（home-1x5090, seetacloud-westd-4x5090）的文件完全一致，MD5 匹配，语法验证通过。\n\n修改总结：\n\n**`eval_repo_cwm.py`** — 3 处改动：\n1. `parse_cwm_prediction` ambiguous 情况从 `return 0` 改为 `return -1`（L89）\n2. `run_inference` 中增加 `-1 → majority_class` fallback 逻辑（L161-164），与 CLS 对称\n3. summary JSON 增加 `n_cwm_unparseable` 字段（L315, L323）\n\n**`eval_repo_cls.py`** — 3 处改动：\n1. `run_inference` 中增加 `was_unparseable` 标记，写入 result dict（L153, L167）\n2. `main()` 中 `n_unparseable` 计算从错误的 `gen_text == \"\"` 改为 `r.get(\"unparseable\", False)`（L280）\n3. summary JSON 增加 `n_cls_unparseable` 字段（L289）\n\n两边 fallback 逻辑现在完全对称：parse 失败 → 返回 -1 → majority_class 替换 → 记录 unparseable 标记。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 998201,
+            "duration_api_ms": 950257,
+            "num_turns": 73,
+            "stop_reason": "end_turn",
+            "session_id": "c687b28b-4964-49dc-b5cb-efff378c1c1b",
+            "total_cost_usd": 3.811550000000001,
+            "usage": {
+              "input_tokens": 45,
+              "cache_creation_input_tokens": 137980,
+              "cache_read_input_tokens": 3360504,
+              "output_tokens": 50678,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 137980,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 370,
+                  "cache_read_input_tokens": 148641,
+                  "cache_creation_input_tokens": 1040,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1040
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1648,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001748,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 45,
+                "outputTokens": 50678,
+                "cacheReadInputTokens": 3360504,
+                "cacheCreationInputTokens": 137980,
+                "webSearchRequests": 0,
+                "costUSD": 3.8098020000000012,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "bef276b7-7044-4368-9f27-d9b8682901b9"
+          },
+          "id": "event-000200"
+        }
+      ]
+    }
+  ]
+}

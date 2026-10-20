@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69ec2d4bce4e589ca0c4",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check westd training anomaly and cwm val",
+  "task_key": "worker_check_westd-training-anomaly-and-cwm-val_20260514T195722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd-training-anomaly-and-cwm-val_20260514T195722_result.json",
+    "occurrence": 1,
+    "bytes": 2378,
+    "sha256": "3e477ca922aa0a6d429575daf3d3924de86472c19e5c5916520ae76e31a78e17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据全部收集完毕。以下是汇报。\n\n---\n\n## 1. 训练异常排查结果：**虚惊一场（误读日志）**\n\n上一轮检查读的是 `repo-level-cwm-v4.log`，但该文件实际是一个 **Qwen3-4B CWM** 的独立训练（step 386/6633），不是 CWM 8B 的日志。\n\nCWM 8B (PID 266816) 实际写入 `repo-level-cwm-8b-conda-v2.log`（通过 `/proc/266816/fd/1` 确认）。\n\n**两个训练的真实指标完全不同：**\n\n| | CWM 8B (PID 266816, GPU 2) | CLS 8B seed123 (PID 266449, GPU 3) |\n|---|---|---|\n| 脚本 | `train_repo_cwm.py` | `train_repo_verifier.py` |\n| 模型 | Qwen3-8B | Qwen3-8B |\n| 当前 step | ~1955/6633 (29%) | ~3650/6633 (55%) |\n| Epoch | ~0.86 | ~1.65 |\n| 最新 loss | 0.2261 | 0.3716 |\n| 最新 lr | 3.757e-5 | 2.368e-5 |\n| 最新 eval_loss | 0.3866 (step 1900) | 0.3874 (step 3600) |\n| 最新 checkpoint | checkpoint-1900 (03:48) | checkpoint-3600 (03:51) |\n| CUDA_VISIBLE_DEVICES | 2 | 3 |\n| tmux session | `repo-level-cwm-8b-conda-v2` | (nohup) |\n\n**结论：训练正常，无配置错误。** 之前的\"一致指标\"是读错了日志文件。\n\n---\n\n## 2. GPU 全面状态\n\n| GPU | VRAM | Util | PID | 任务 |\n|-----|------|------|-----|------|\n| cuda:0 | 19794/32607 MiB | 99% | 276775 | CLS 8B ckpt-200 val eval |\n| cuda:1 | 13629/32607 MiB | 100% | 277670 | **CLS v5 (4B) ckpt-200 val eval** |\n| cuda:2 | 30733/32607 MiB | 98% | 266816 | CWM 8B 训练 (step ~1955) |\n| cuda:3 | 30913/32607 MiB | 89% | 266449 | CLS 8B seed123 训练 (step ~3650) |\n\nPID 277670 在 GPU 0 上还有 546 MiB 溢出（主要在 GPU 1）。\n\n---\n\n## 3. CLS 8B val sweep (cuda:0)\n\n- PID 276775（非 276768，可能是重启过）\n- 正在 eval checkpoint-200，进度 **3600/9335 (~39%)**\n- running_acc = **64.1%**\n- 尚无 summary.json 产出（第一个 checkpoint 还没跑完）\n- 预计还需 ~10 分钟完成当前 checkpoint\n\n---\n\n## 4. cuda:1 无法启动 CWM v12 val\n\ncuda:1 被 **CLS v5 (Qwen3-4B) checkpoint-200 val eval**（PID 277670）占用，已运行 ~7 分钟。无法启动 CWM v12 eval。\n\n---\n\n## 5. 额外发现\n\n`repo-level-cwm-v4.log` 是一个独立的 **Qwen3-4B CWM 训练**（非 8B），目前在 step 386/6633（~6%）。但它没有在 nvidia-smi 中出现任何 GPU 进程，可能已经结束或挂起。需要确认是否有意为之。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-training-anomaly-and-cwm-val.md"
+}

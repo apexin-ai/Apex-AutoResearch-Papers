@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ca734d3d4f03bf3afbe",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper experiments sync to docs",
+  "task_key": "worker_paper_experiments-sync-to-docs_20260515T150400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_experiments-sync-to-docs_20260515T150400_result.json",
+    "occurrence": 1,
+    "bytes": 1162,
+    "sha256": "971989f873431e82167d2fa5ff9757a0f73399a74c7d9f06277897c84ab61412"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件都没有旧引用 key，这项检查通过。\n\n对比两个文件后，**docs/paper 版本实际上比 artifacts 版本更完整**，不建议直接用 artifacts 覆盖：\n\n| 方面 | artifacts 版本 | docs/paper 版本 |\n|------|---------------|----------------|\n| LaTeX 宏 | 不用（直接写 CLS/CWM） | 用 `\\cls{}`, `\\cwm{}`, `\\pp{}`, `\\fone{}` 等宏 |\n| Analysis 段落 | 6 段 | 8 段（多了 relaxed matching, variance compression, precision/recall, majority voting） |\n| 表格格式 | 简单 | `\\resizebox` + per-seed 列 |\n| Repo-level | 无 limitations 段 | 有 limitations 段 |\n| Scaling 表 | 只有 Mean | 含 s42/s123/s456 列 |\n| Label 命名 | `\\label{ssec:...}` | `\\label{sec:...}` |\n| 引用命令 | `\\citep` | `\\cite` |\n| lr 值 | 正确 | 正确 |\n\n两个文件 lr 值都已经是正确的（$2{\\times}10^{-4}$ function / $5{\\times}10^{-5}$ repo），citation keys 也没问题。\n\n**结论：docs/paper/experiments.tex 已经是更完整、格式更正确的版本，不需要从 artifacts 同步。** 覆盖反而会丢失内容并破坏编译。是否跳过这次同步？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-experiments-sync-to-docs.md"
+}

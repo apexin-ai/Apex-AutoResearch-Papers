@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8ecbedea7d530120c99",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code shard merge prep",
+  "task_key": "worker_code_shard-merge-prep_20260516T050024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_shard-merge-prep_20260516T050024_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "a77f568b415b11110fe8a5c22684cda92f18ac9b54e6fc45670c3407ebc331b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完成，脚本正常工作。当前状态：\n\n**合并结果：9592 / 9784，缺 192 个 index**（从 7488 开始的连续区间），说明 shard 还没跑完。\n\n各 shard 贡献：\n| Shard | 行数 | 去重后保留 |\n|-------|------|-----------|\n| v3 | 7488 | 6256 |\n| shard2 | 1872 | 1416 |\n| shard3 | 1232 | 1232 |\n| shard4 | 688 | 688 |\n\n当前指标（不完整，仅供参考）：\n- Overall accuracy: 65.15% (unparseable→pass)\n- Unparseable rate: 73.81%\n- Parseable-only accuracy: 38.61%\n\n脚本已部署到远程 `/home/sonny/exec-sim-repair-verifier/merge_cwm8b_shards.py`，等 shard 全部跑完后执行 `python merge_cwm8b_shards.py`（不加 `--dry-run`）即可输出合并 JSONL 和 metrics.json。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-shard-merge-prep.md"
+}

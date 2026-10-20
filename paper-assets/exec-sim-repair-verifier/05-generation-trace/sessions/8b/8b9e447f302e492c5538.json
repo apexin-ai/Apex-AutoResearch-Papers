@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b9e447f302e492c5538",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops traj v2 results collect",
+  "task_key": "worker_ops_traj-v2-results-collect_20260516T142006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_traj-v2-results-collect_20260516T142006_result.json",
+    "occurrence": 1,
+    "bytes": 711,
+    "sha256": "5b11d89274e04f2e34423bd45829446eb33386c92458ff429eb6e0e7eec418c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### s42 — 完成 ✓\n\n| 指标 | 值 |\n|------|-----|\n| **Test Accuracy** | **83.24%** |\n| Best Eval Loss | 0.0796 (step 504) |\n| Majority Baseline | 53.59% |\n| Gap vs Baseline | +29.65pp |\n\n与 CLS/CWM 对比：**TRAJ v2 (83.24%) 低于 CLS (86.85%) 和 CWM (86.83%) 约 3.6pp**。符合预期——trajectory 格式在 function-level 效率低于直接分类。\n\n### s123 — 训练中\n\n- PID 513115，step 635/756 (~84%)，预计 ~8 分钟后完成\n- 当前 best eval_loss = 0.0770（优于 s42 的 0.0796）\n- 训练完成后需要在 cuda:3 上跑 eval\n\nRegistry 已更新（s42→DONE, s123→RUNNING）。报告写入 `artifacts/traj-v2-results.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-traj-v2-results-collect.md"
+}

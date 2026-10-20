@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "d962e6f1ca71fa37d952",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "check westd full gpu status and eval results",
+  "task_key": "worker_check_westd-full-gpu-status-and-eval-results_20260514T212843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd-full-gpu-status-and-eval-results_20260514T212843.log",
+    "occurrence": 1,
+    "bytes": 860117,
+    "sha256": "189ce3b8e05d9e3d73b5d25197dd4cae0c136b1fbdcb782c495fd4e39d21fd9a"
+  },
+  "statistics": {
+    "messages": 595,
+    "user_turns": 0,
+    "tool_calls": 248,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 95,
+      "tool_call": 248,
+      "tool_result": 248,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 595,
+      "chunks": [
+        {
+          "path": "d962e6f1ca71fa37d952-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d962e6f1ca71fa37d952-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d962e6f1ca71fa37d952-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d962e6f1ca71fa37d952-part-0004.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/check-westd-full-gpu-status-and-eval-results.md"
+}

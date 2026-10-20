@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54501bfef461fb24c023",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_3_1778613825.md",
+  "task_key": "loop_3_1778613825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778613825.md",
+    "occurrence": 1,
+    "bytes": 4861,
+    "sha256": "f912698c57cbd9a6480d81ca87506628ada520c79e25f08971eaf47adf7ed667"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-12T18:56:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **seetacloud-westd-4x5090 禁止并行训练**：cgroup 360GB RAM 限制，repo-level-cwm-v3 + cls-v3 并行两次 SIGKILL 确认（D028）。只能串行。\n- **westd-48478:cuda:2 和 cuda:3 已分配但空闲** — 当前违反\"分配了必须跑\"规则，需立即提交实验或向 Director 说明原因。\n- **repo-level-cwm-v5 OOM 在 seetacloud cuda:0** — 31GB VRAM 不够同时跑 v4+v5，当前 v4 (PID 77811) 仍在跑，不要再在同机器提交第二个 GPU 训练。\n- **cls8b-eval-seed123 accuracy 值有 3 个不同数（89.52/89.40/89.37）**，论文引用前必须确认权威 checkpoint。\n- **train_repo_cwm.py 未同步到 home 服务器** — 如要在 home 跑 CWM，必须先 git pull。\n\n### 2. 🖥️ 基础设施快照\n- **home-1x5090**: sonny@home-1x5090, 1×RTX 5090, 62GB RAM, 非容器\n  - 工作目录: `/home/sonny/exec-sim-repair-verifier`\n  - Python: 系统 python3（无 conda/venv）\n  - 活跃: repo-level-cls-home (PID 2840844, save_steps=50, step ~104/6633, ~7s/it, ~12h 剩余)\n  - Log: `~/runs/exec-sim-repair-verifier/repo-level-cls-home.log`\n  - Checkpoint: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_home/`\n- **seetacloud-westd-4x5090**: root@, 4×RTX 5090, cgroup 360GB RAM\n  - Python: `/root/miniconda3/bin/python`（conda base）\n  - HF_HOME: `/root/autodl-tmp/.hf_cache`\n  - 活跃: repo-level-cwm-v4 (PID 77811, cuda:2?)\n  - Log: `~/runs/exec-sim-repair-verifier/repo-level-cwm-v4.log`\n  - 注意: `source /etc/network_turbo` 必须在 pip/git 之前执行\n- **westd-48478**: sonny@westd-48478, 分配 cuda:2 和 cuda:3，当前空闲\n  - 未确认详细环境（上个 session 有 Worker 做过 8b-repo-level-prep 但未实际提交训练）\n- **Cron**: repo-level-cls-home 有活跃 cron 监控（reconcile 确认 still running）\n- **W&B**: 未启用（训练命令含 --no_wandb）\n\n### 3. 📊 当前状态\n- **刚完成**: repo-level-cwm-v5 提交后立即 CUDA OOM（v4 占满 25.99GB），matched-seed-8b-predictions 生成成功，cls8b-eval-seed42/123 完成，fig1+fig2 论文图完成\n- **RUNNING**: \n  - `repo-level-cls-home`: home cuda:0, step ~104/6633, 预计 ~12h 完成（5月13日早间）\n  - `repo-level-cwm-v4`: seetacloud, PID 77811（但 v5 OOM 提示 v4 可能也有问题——需验证 v4 是否还活着，report 写\"?\"在 gpu 列）\n- **PREPARING** (3个，全被阻塞):\n  - `repo-level-cls-v4`: seetacloud 版 CLS，因 seetacloud 已有 v4 CWM 在跑\n  - `repo-level-cwm-v2` / `repo-level-cls-v2`: 旧版本，已被 v4 系列取代，可能废弃\n- **westd-48478 cuda:2/3 空闲**: 之前 Worker 做了 8b-repo-level-prep 但未提交训练\n- **Paper Agent**: Step 2 进行中（Fig 1 PASS，Fig 2 完成）\n- **无活跃 Worker**（全部 done/cancelled/failed）\n\n### 4. 📋 待办（条件触发式）\n- **repo-level-cls-home cron 回调（~12h 后）** → spawn Worker 跑 eval（per-instance predictions）→ 与 CWM eval 配对做 paired bootstrap → 填 Pillar 1 格子\n- **确认 repo-level-cwm-v4 是否存活** → SSH 检查 PID 77811 + 读 log tail；如已死 → 诊断原因 → 在 seetacloud 单进程重提交（cls-home 跑完前 seetacloud 只跑 CWM）\n- **westd-48478 cuda:2/3 空闲** → 要么提交 8B repo-level 训练（之前 prep 过），要么向 Director 汇报释放 GPU。不能继续空着\n- **CLS + CWM 都完成** → repo-level eval + paired bootstrap → Go/No-Go 决策（D008: ≥3pp 全力推 EMNLP Main，1-3pp 加 seeds，<1pp kill C1）\n- **Paper Agent Step 2 完成** → 推进 Step 3-5（methods/results/discussion）\n\n### 5. 🎯 战略上下文\n- **核心赌注**: 函数级 CLS≈CWM（已验证），所有 narrative 押在 repo-level complexity-dependent advantage 上。如果 repo-level 也无差异，paper 只能 pivot 到效率 framing（同 F1 + 1-token 推理）——这是 findings 级别不是 main\n- **决策链**: D019(TOST 等价) → D020(Claim2 恢复) → D022(4B gap 1.25pp) → D023(确认) → D028(seetacloud 禁并行) → 当前\n- **时间线**: ARR May 25 还剩 ~13 天。训练 bottleneck ~20h（CWM on seetacloud），eval+stats ~3h，paper ~2-3d。时间够但不能再失败\n- **易错点**:\n  1. repo-level-cwm-v4 可能已经死了（v5 OOM 暗示 GPU 状态异常）——第一件事必须验证\n  2. westd-48478 环境未完全确认，之前 Worker 只做了 prep 没跑训练——提交前必须 dry-run\n  3. 8B gap 是 2.26pp（3-seed 修正），不是之前 handoff 写的 2.42pp（2-seed）——论文引用正确数字\n  4. PREPARING 里的 v2 系列是旧版本（sample_weight bug），可能不需要再跑——但不要删，让 Director 决定\n  5. seetacloud 需要 `source /etc/network_turbo` + SSL 证书设置才能 pip/git，否则超时\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778613825.md"
+}

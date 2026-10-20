@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae1ae766dea0a463966d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect ckpt1200 val8192 final",
+  "task_key": "worker_collect_ckpt1200-val8192-final_20260515T023411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_ckpt1200-val8192-final_20260515T023411_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "b52a93639d5911089056289f5df93b1a1a0c379d7ee18ff147e271c2e33beb53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程 316940 仍在运行**，未退出。\n\n当前状态：\n- **进度**：740/9335（~7.9%），running_acc=87.4%\n- **确认是 ckpt-1200 val split**：日志显示 `checkpoint-1200`，`swebench_val.jsonl`，9335 instances\n- **无错误**：日志 83 行全部正常\n- **eval_repo_cls.json**：仍是旧的 ckpt-1000 test 结果，尚未被覆盖\n\n速度约 ~5 samples/sec，剩余 8595 samples，预计还需 **~29 分钟**（约 10:40 完成）。\n\n不需要现在更新 registry 或删 cron。等进程跑完再收集结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-ckpt1200-val8192-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40934b8ab27db11dc652",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis token length check",
+  "task_key": "worker_analysis_token-length-check_20260512T102743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_token-length-check_20260512T102743_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "e16a5676b7b5d8c5d892ae7ea8885a235c6a49bfaaab8db74c54b55ba170a067"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n### 数据字段\n`code`(git diff), `test`(测试名), `label`(0/1), `source`, `problem_id`, `mutation_type`, `error_message`, `execution_output`, `metadata`\n\n### Token 长度分布 (n=89,867)\n\n| 指标 | 值 |\n|------|-----|\n| Min | 176 |\n| Max | 16,450 |\n| Mean | 887 |\n| Std | 1,737 |\n| p50 | 415 |\n| p90 | 1,275 |\n| p95 | 2,222 |\n| p99 | 6,656 |\n\n### 截断率\n\n| 阈值 | 截断率 | 样本数 |\n|------|--------|--------|\n| >512 | 38.0% | 34,138 |\n| >1024 | 26.0% | 23,341 |\n| >2048 | **5.9%** | 5,340 |\n| >4096 | 3.4% | 3,039 |\n| >8192 | 0.9% | 849 |\n| >16384 | 0.2% | 144 |\n\n### 推荐\n\n**max_seq_length=4096**。2048 截断率 5.9% 超过 5% 阈值，4096 截断率降至 3.4%（可接受）。8192 只额外挽回 2.5% 的样本但显存开销翻倍，性价比不高。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-token-length-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "445f58cc044a3ac6d395",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_23.md",
+  "task_key": "loop_23",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_23.md",
+    "occurrence": 1,
+    "bytes": 4515,
+    "sha256": "f6ae0f25dace77693db42362a1dff3a777a2053105f010a0ce162f27c814ffc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: max_wall_time\nupdated: '2026-05-17T11:21:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud GPU 白名单: cuda:0/1/2/3（4×5090），4 个 DeepSeek repo-level 训练正在占满，**不要 kill 任何训练进程**\n- home-1x5090 只有 1 张 GPU (cuda:0)，当前被 efficiency benchmark 占用（Worker 运行中）\n- 两台服务器**无法直接互联**（scp 不通），checkpoint 传输必须走 local relay: seetacloud → local → home\n- `eval_deepseek_repo.py` 在 home 上不存在，替代方案: `eval_repo_cls.py --model_name deepseek-ai/deepseek-coder-6.7b-instruct`\n- Re-repair 已 drop (D120)，不再投入任何资源\n\n### 2. 🖥️ 基础设施快照\n**seetacloud-westd-4x5090**:\n- 工作目录: `/home/sonny/exec-sim-repair-verifier/`\n- 模型缓存: `/root/autodl-tmp/.hf_cache/`\n- Checkpoint 目录: `/root/autodl-tmp/checkpoints_deepseek_{cls_repo_v4,cwm_repo,cls_repo_s123,cwm_repo_s123}/`\n- Eval 输出: `/root/autodl-tmp/eval_results/`\n- 活跃 PID: 548885 (cls-repo-v4, cuda:0), 479953 (cwm-repo, cuda:1), 542514 (cls-repo-s123, cuda:2), 542906 (cwm-repo-s123, cuda:3)\n- 4 个 cron 监控活跃（reconcile_crons 已确认）\n\n**home-1x5090**:\n- 工作目录: `/home/sonny/exec-sim-repair-verifier/`\n- DeepSeek base model: `~/.cache/huggingface/hub/models--deepseek-ai--deepseek-coder-6.7b-instruct`\n- Python deps: transformers 4.57.6, torch 2.10.0+cu128, peft 0.19.1\n- Repo test data: `/home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_{test,val}.jsonl`\n- GPU: RTX 5090, 32GB VRAM\n\n### 3. 📊 当前状态\n**刚完成**: Director 指派的全部 Dream review 补充分析任务:\n- A2 bibliography: 45 篇 bib（+9 新增，audit 全通过）→ `docs/paper/references.bib`\n- A5 CWM 样本: 2 unparseable + 1 contrast → `artifacts/qualitative_cwm_examples.json`\n- A5 CLS 样本: FP + FN + repo FP → `artifacts/qualitative_cls_error_examples.json`\n- A6 TOST: 5-margin sensitivity → `artifacts/tost_sensitivity.json`\n- Error complementarity: DeepSeek CLS-CWM 完整 breakdown → `artifacts/error_complementarity_deepseek.json`\n\n**等待中的 Worker**:\n1. `worker_analysis_inference-efficiency-collect_20260517T112031` — home 上 CLS vs TRAJ efficiency benchmark（重跑中，第一个 Worker 提前退出）\n2. `worker_analysis_traj-complementarity_20260517T102958` — seetacloud 上 CLS-CWM-TRAJ 三方互补分析（turn 20，在修正 TRAJ checkpoint 路径后重跑）\n\n**RUNNING 实验** (registry):\n- deepseek-cls-repo-v4 (cuda:0): ~66%, ETA ~7h (from 08:44 check)\n- deepseek-cwm-repo (cuda:1): ~78%, ETA ~7h\n- deepseek-cls-repo-s123 (cuda:2): ~71%, ETA ~6h (最先完成)\n- deepseek-cwm-repo-s123 (cuda:3): ~48%, ETA ~17h (最晚)\n\n### 4. 📋 待办（条件触发式）\n- efficiency benchmark Worker 回调 → 验证 `artifacts/efficiency_benchmark.json`，注册 artifact，汇报 Director\n- TRAJ complementarity Worker 回调 → 验证 `artifacts/traj_complementarity_analysis.json`，注册 artifact，汇报 Director（注意：TRAJ 和 CLS/CWM 可能用不同 test set，Worker 会标注 data_alignment）\n- deepseek-cls-repo-s123 cron 完成（最早约 23:00 CST）→ scp checkpoint → local → home → 立即 `eval_repo_cls.py` eval\n- 其他 3 个 DeepSeek 训练完成 → 同样 relay + eval 流程\n- DeepSeek repo eval 全部完成 → 汇总 repo-level CLS vs CWM accuracy + unparseable rate → 论文 repo-level section 数据\n\n### 5. 🎯 战略上下文\n- **Framing (D116)**: Design space characterization，不是 CLS advocacy。CWM 在 repo-level 失败是 tokenizer-specific（Qwen vocab 151K vs DeepSeek vocab 32K 完全不同）\n- **Re-repair (D120)**: 已 drop。负向结果根因: 8B 模型无法利用 per-test 诊断（Oracle ≈ Random），且诊断信息导致 \"过度修改\"\n- **关键数字**: func-level CLS acc ~87-88%, CWM ~85-87%, 两者 TOST equivalent at ±2pp (Qwen p=0.007)。DeepSeek complementarity 55.1% vs Qwen 31.2%（CWM fail-bias 驱动）\n- **易错点**: (1) Qwen3-8B = Instruct 模型，不存在 Qwen3-8B-Instruct repo (2) DeepSeek tokenizer `apply_chat_template(tokenize=True)` 返回 BatchEncoding 不是 list，len() 返回 2 不是 token count (3) seetacloud ↔ home 不能直接 scp\n- **DeepSeek repo 结果是最后的关键数据**: 如果 DeepSeek repo CLS 也高 accuracy + CWM 也高 unparseable，则 \"CWM repo failure is model-family-general\" 的 claim 成立；如果 DeepSeek CWM repo 反而 work，则 \"tokenizer-specific\" 叙事需要重新审视\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-copy-2.md"
+}

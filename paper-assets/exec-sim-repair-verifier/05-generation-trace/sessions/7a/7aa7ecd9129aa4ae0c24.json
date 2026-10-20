@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7aa7ecd9129aa4ae0c24",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "analysis cls predictions audit",
+  "task_key": "worker_analysis_cls-predictions-audit_20260519T155146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls-predictions-audit_20260519T155146.log",
+    "occurrence": 1,
+    "bytes": 596205,
+    "sha256": "6862f88df9c1441c5cfe88e515a27cf505e0014d042a49d8658ffc2a74f8cbd3"
+  },
+  "statistics": {
+    "messages": 205,
+    "user_turns": 0,
+    "tool_calls": 69,
+    "roles": {
+      "log": 1,
+      "system": 29,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 69,
+      "tool_result": 69,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 205,
+      "chunks": [
+        {
+          "path": "7aa7ecd9129aa4ae0c24-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7aa7ecd9129aa4ae0c24-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-cls-predictions-audit.md"
+}

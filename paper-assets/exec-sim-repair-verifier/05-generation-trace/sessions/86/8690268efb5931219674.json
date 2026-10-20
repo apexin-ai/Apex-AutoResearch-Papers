@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8690268efb5931219674",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code cwm8b shard merge prep",
+  "task_key": "worker_code_cwm8b-shard-merge-prep_20260516T044414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cwm8b-shard-merge-prep_20260516T044414_result.json",
+    "occurrence": 1,
+    "bytes": 1469,
+    "sha256": "3f63f74c4d55c9559f753bb0fec9f846704dde03c29998201d8ff29ec50729cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪，可导入、可运行。汇总如下：\n\n## Shard 文件路径与进度\n\n| Shard | 路径 | 行数 | GPU | 状态 |\n|-------|------|------|-----|------|\n| **v3** (主) | `/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test/results_incremental.jsonl` | 7328 | cuda:0 (PID 443221) | 运行中，已跑 ~240min |\n| **shard2** | `/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard2/results_incremental.jsonl` | 1720 | cuda:1 (PID 448100) | 运行中，idx 7680→9784，需 2104，完成 82% |\n| **shard3** | `/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard3/results_incremental.jsonl` | 1080 | cuda:0 (PID 453335) | 运行中，idx 6200→7679，填补 v3 gap |\n| **shard4** | `/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard4/results_incremental.jsonl` | 688 | — | 已完成（无对应进程） |\n\n总行数 10816，去重后预计覆盖 ~9784 (target)。\n\n## Merge 脚本\n\n`/home/sonny/exec-sim-repair-verifier/merge_cwm8b_shards.py` 已存在且功能完整：\n- 读取 4 个 shard，按 priority 去重（shard4 > shard3 > shard2 > v3）\n- 验证覆盖 n=9784\n- 计算 overall accuracy / unparseable rate / parseable-only accuracy / majority baseline gap\n- 按 mutation_type 分组输出\n- 写 merged JSONL + metrics JSON\n\n已验证：`import` 通过，`--help` 正常。等 shard 全部完成后执行：\n```bash\npython merge_cwm8b_shards.py --eval_root /root/autodl-tmp/eval_results\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cwm8b-shard-merge-prep.md"
+}

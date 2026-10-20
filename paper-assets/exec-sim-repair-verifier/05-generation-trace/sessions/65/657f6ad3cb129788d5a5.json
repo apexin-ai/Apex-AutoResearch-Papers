@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "657f6ad3cb129788d5a5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research re repair code audit",
+  "task_key": "worker_research_re-repair-code-audit_20260517T040024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_re-repair-code-audit_20260517T040024_result.json",
+    "occurrence": 1,
+    "bytes": 6990,
+    "sha256": "eed32a240b3ee59f67702eb2c2b1aa2444c66fd5c4bf5219b3f32356fae7a812"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Re-Repair Phase0 代码审计报告\n\n---\n\n### 文件 1: `re_repair_phase0.py` — 快速可行性测试\n\n#### 1. Prompt Template 结构\n\n**System Prompt（所有 condition 共用）：**\n```python\n\"You are a software engineer. You are given a code patch that was intended \"\n\"to fix an issue but does not fully work. Your task is to produce a corrected \"\n\"patch. Output ONLY the corrected unified diff enclosed in ```diff ... ``` tags.\"\n```\n\n**Control condition（L94）：**\n```\n## Issue Description\n{problem_statement}\n\n## Current (Incorrect) Patch\n```diff\n{mutation_patch}\n```\n\nPlease produce a corrected patch in unified diff format.\nOutput ONLY the diff, enclosed in ```diff ... ``` tags.\n```\n\n**Diagnostic conditions（L96-112）追加内容：**\n```\n## Test Diagnostic\nThe current patch **fails** the following tests:\n- `test_foo`\n- `test_bar`\n\nThe current patch **passes** the following tests:\n- `test_baz`\n```\n\n**信息差异：**\n| Condition | 诊断来源 |\n|-----------|----------|\n| `control` | 无诊断 |\n| `oracle-diag` | `item[\"oracle_per_test\"]` — 真实 per-test pass/fail |\n| `cls-diag` | oracle labels + 16% 随机翻转（模拟 84% accuracy CLS）|\n| `random-diag` | 完全随机 50/50 |\n\n**诊断信息来源：** `swebench_test.jsonl` 中的 oracle labels（L161-169），按 `(instance_id, mutation_type)` 分组，`label` 字段表示测试通过/失败。这是预先跑过 Docker 得到的 ground-truth 测试结果，不是 CLS verifier predictions。\n\n#### 2. 评估方法\n\n**Metric：`difflib.SequenceMatcher.ratio()`（L67-71）**\n- 比较 LLM 输出的 diff 文本与 gold patch 的字符级序列相似度\n- 范围 [0, 1]\n- 额外指标：`diff_nonempty`（长度>20），`has_diff_header`（以 `diff ` 或 `---` 开头）\n\n**评估方式：** Proxy metric（纯文本比较），不跑测试。\n\n**Baseline：** 4 个 condition 之间横向比较 `best_of_k_mean`（每个 instance 取 K=5 samples 中最高 similarity），然后计算 `Δ(oracle-diag - control)` 等。\n\n#### 3. 实验设计\n\n| 维度 | 值 |\n|------|-----|\n| LLM | `Qwen/Qwen3-8B`（L345，**base model，非 instruct**）|\n| 数据源 | `princeton-nlp/SWE-bench_Verified`（HF），筛选 `FAIL_TO_PASS >= 2` |\n| Bug 类型 | **Mutation patches**（来自 `predictions_mutation_*.jsonl`）|\n| Sample size | 10 instances × 4 conditions × K=5 = 200 completions |\n| vLLM 参数 | temp=0.6, top_p=0.95, max_tokens=2048 |\n\n#### 4. 评估方法（`re_repair_eval.py` 补充）\n\n**Metric：** End-to-end Docker 验证（Phase 3），计算 `pass@1` 和 `pass@5`（unbiased estimator, L476-480）\n\n**统计检验：**\n- McNemar's test（paired instances, L501-543）\n- Clustered bootstrap CI（10000 resamples, L546-570）\n\n**Repair LLM：** `Qwen/Qwen3-8B-Instruct`（L703，注意是 Instruct 版本）\n\n**Sample size：** N=10 per (instance, condition)\n\n---\n\n### 文件 2: `re_repair_eval.py` — 完整 4-phase pipeline\n\n与 phase0 核心差异：\n- 使用**真实 incorrect patches**（公开 SWE-bench agent predictions），而非 mutation\n- CLS predictions 来自**实际 CLS LoRA 模型推理**（L149-198），不是模拟\n- 验证通过 **Docker 执行**（Phase 3），非 diff similarity\n- prompt 中 `item['patch']` 是 agent 生成的 incorrect patch，不是 mutation patch\n\n---\n\n### 需要修改的地方（D116 Design Space Characterization）\n\n#### A. Base model → Instruct model\n\n| 文件 | 位置 | 当前 | 应改为 |\n|------|------|------|--------|\n| `re_repair_phase0.py` | L345 `--model` default | `Qwen/Qwen3-8B` (base) | `Qwen/Qwen3-8B-Instruct` |\n| `re_repair_phase0.py` | L244 `tokenizer.apply_chat_template` | 调用存在，但 base model 的 chat template 行为未定义 | 换 instruct model 后 template 自动正确 |\n| `re_repair_eval.py` | L703 | 已经是 `Qwen/Qwen3-8B-Instruct` ✓ | 无需改 |\n\n**结论：** phase0 用 base model 做 chat completion 是设计缺陷——base model 没有 instruction following 能力，生成的 diff 质量会很差，similarity 指标可能主要反映格式噪声而非修复质量。\n\n#### B. Mutation → Real bugs\n\n| 文件 | 位置 | 当前 | 应改为 |\n|------|------|------|--------|\n| `re_repair_phase0.py` | L148 | 读 `predictions_mutation_*.jsonl` | 读公开 agent predictions（如 SWE-bench leaderboard submissions） |\n| `re_repair_phase0.py` | L92 prompt | `item['mutation_patch']` | `item['patch']`（agent 生成的 incorrect patch）|\n| `re_repair_phase0.py` | L161-169 | oracle labels from `swebench_test.jsonl` keyed by mutation_type | Docker ground-truth per-test results for real patches |\n| `re_repair_eval.py` | L117-146 | `collect_incorrect_patches` 已设计为读 agent predictions ✓ | 实际需要配合 Docker 验证确认 patch 确实 incorrect |\n\n**`re_repair_eval.py` 已经设计为 real bugs 流程**，但 Phase 3 verify 是 placeholder（`raise NotImplementedError`）。需要实现 SWE-bench Docker harness 集成。\n\n#### C. Eval metric\n\n| 问题 | 详情 |\n|------|------|\n| Phase0 的 `diff_similarity` | 字符级 SequenceMatcher 是非常弱的 proxy：相同语义修复可能有完全不同的 diff 文本（不同 hunk 边界、不同变量命名重构路径）。会严重低估非 gold-patch-identical 的正确修复。 |\n| 建议 | 用 end-to-end test pass rate（`re_repair_eval.py` Phase 3 已设计但未实现）。如果 Docker infra 不可用，至少用 CodeBLEU 或 AST-level diff 替代字符 similarity。 |\n| `re_repair_eval.py` 的 pass@k | 正确的 end-to-end metric ✓，但需要 Docker harness |\n\n#### D. Control/diagnostic info 在 real bug 场景下的来源\n\n| Condition | Mutation 场景来源 | Real bug 场景应改为 |\n|-----------|------------------|---------------------|\n| `oracle-diag` | `swebench_test.jsonl` 预计算 labels | Docker 执行 incorrect patch 后的真实 per-test 结果（`gt_per_test`）|\n| `cls-diag` | oracle × 84% 随机翻转模拟 | **实际 CLS LoRA 模型推理**（`re_repair_eval.py` L149-198 已实现）|\n| `random-diag` | 随机 50/50 | 不变 |\n| `control` | 无诊断 | 不变 |\n\n**关键依赖：** real bug 流程需要先对每个 (incorrect_patch, instance) pair 跑 Docker 获得 `gt_per_test`，这既是 oracle-diag 的来源，也是验证 CLS accuracy 的 ground truth。`re_repair_eval.py` 的 `run_ground_truth_verification`（L213-221）是 placeholder。\n\n---\n\n### 总结\n\nPhase0（`re_repair_phase0.py`）是一个快速 feasibility check，关键设计选择：base model + mutation patches + text similarity proxy。这三个都需要改。\n\n`re_repair_eval.py` 是完整设计，架构正确（instruct model + real patches + Docker verify + pass@k + McNemar），但 Phase 1 的 ground-truth 收集和 Phase 3 的 Docker verify 是 placeholder。核心 blocker 是 SWE-bench Docker harness 集成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-re-repair-code-audit.md"
+}

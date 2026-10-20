@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4eaa4f96ffd5db8e5a6c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research cwm gen stats unit",
+  "task_key": "worker_research_cwm-gen-stats-unit_20260513T203918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_cwm-gen-stats-unit_20260513T203918_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "8bf84d11613643220afd2f94638dd3547f7b63c0b1bb70f64285f9eff2f25130"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论明确。\n\n```\ngeneration_stats 单位: characters\n\n计算代码: 第215行\n    lengths = [len(r[\"gen_text\"]) for r in results]\n\n理由: len(string) 返回字符数，不是 token 数。\n      max=7582 > max_new_tokens=1024 是完全合理的——\n      1024 tokens 解码后的文本长度可以远超 1024 个字符\n      (英文平均 1 token ≈ 4 chars, 代码/traceback 更长)。\n      7582 chars ÷ ~4 ≈ 1896 tokens，但因为 max_new_tokens=1024，\n      实际上 7582 chars 对应 ≤1024 tokens，即平均每 token ~7.4 chars，\n      这对含代码 traceback 的输出是合理的。\n```\n\ngeneration_stats 没有问题，不存在\"超出 max_new_tokens\"的异常——它统计的就是字符数，不是 token 数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-cwm-gen-stats-unit.md"
+}

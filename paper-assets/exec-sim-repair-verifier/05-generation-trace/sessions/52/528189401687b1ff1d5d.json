@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "528189401687b1ff1d5d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls4b ckpt4600 mutation pr",
+  "task_key": "worker_eval_cls4b-ckpt4600-mutation-pr_20260516T022739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls4b-ckpt4600-mutation-pr_20260516T022739_result.json",
+    "occurrence": 1,
+    "bytes": 1067,
+    "sha256": "d15532616679cf88adcd7b0ef8ad958a2d7b0f3875051c30f6c7938ee31a1919"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CLS 4B ckpt-4600 Test Per-Mutation Breakdown\n\n| mutation_type | N | accuracy | prec_pass | rec_pass | f1_pass | prec_fail | rec_fail | f1_fail |\n|---|---|---|---|---|---|---|---|---|\n| **gold** | 4633 | **98.25%** | 100.00 | 98.25 | 99.12 | - | - | - |\n| **operator_swap** | 3357 | **78.91%** | 71.61 | 96.40 | 82.18 | 94.34 | 61.12 | 74.18 |\n| **return_value** | 562 | **67.97%** | 59.59 | 83.33 | 69.49 | 81.19 | 56.01 | 66.29 |\n| **off_by_one** | 183 | **58.47%** | 66.46 | 82.95 | 73.79 | 0.00 | 0.00 | 0.00 |\n| **boundary_removal** | 1049 | **46.90%** | 43.44 | 90.85 | 58.77 | 70.37 | 15.52 | 25.44 |\n\n关键发现：\n- **boundary_removal 4B = 46.9%**，与 8B s42 的 46.9% 完全一致（8B seed123 = 44.9%）\n- off_by_one 上 4B (58.47%) 模型完全不会预测 fail（recall_fail=0），全部预测 pass\n- 所有 mutation 类型都呈现 pass 偏好（recall_pass >> recall_fail），boundary_removal 最严重\n\nJSON 已保存到 home 服务器 `results/cls4b_ckpt4600_test_mutation_breakdown.json`，artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls4b-ckpt4600-mutation-pr.md"
+}

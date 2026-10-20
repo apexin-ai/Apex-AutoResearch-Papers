@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "672499ecc88e806b12b1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose deepseek cwm repo s456 train",
+  "task_key": "worker_diagnose_deepseek-cwm-repo-s456-train_20260520T051349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_deepseek-cwm-repo-s456-train_20260520T051349_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "f83e4d8db61482e4e225fab310f5aa487cf1888b5b583916261f1910abcfb097"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 `artifacts/deepseek-cwm-repo-s456-train/failure_diagnosis.md`。\n\n**结论：这是误报。** 训练正常运行中。\n\n- **根因**：监控系统跟踪了启动链中的中间 shell PID 917644，而非实际训练进程 PID 917649。中间 shell 退出后监控 5 次检测判定死亡。\n- **实际状态**：PID 917649 在 GPU 2 上运行，step 468/2865 (16%)，GPU 利用率 97%，日志无任何错误。\n- **预计完成时间**：~14:25 UTC（约 70 分钟后）。\n- **无需重试或调参**，但监控框架需要修复 PID 跟踪逻辑——应追踪最内层的 Python 进程而非外层 wrapper。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-deepseek-cwm-repo-s456-train.md"
+}

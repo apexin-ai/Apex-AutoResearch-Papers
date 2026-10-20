@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84186af4e7e63d41161e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh d046 seetacloud cleanup sync",
+  "task_key": "worker_ssh_d046-seetacloud-cleanup-sync_20260513T074628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d046-seetacloud-cleanup-sync_20260513T074628_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "8efeb11a6a66c1aea28f26148680354ccf3f54797c73821684dbc3518645d97b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**1. PID 126190** — 已 kill（SIGTERM 成功）\n\n**2. md5 对比**\n\n| 位置 | md5 |\n|------|-----|\n| home (同步前) | `9799cc4bb8a1c896f792e74178f45aeb` |\n| seetacloud (同步前) | `fd5e4a0d69bc557808d9df6c6d4cea2d` |\n| seetacloud (同步后) | `9799cc4bb8a1c896f792e74178f45aeb` |\n\nmd5 一致，同步成功。\n\n**3. seetacloud 超参确认**（D046）\n\n| 超参 | 值 | 行号 |\n|------|-----|------|\n| `learning_rate` | `args.lr` (default=5e-5) | L263 |\n| `weight_decay` | `0.01` | L264 |\n| `warmup_ratio` | `args.warmup_ratio` (default=0.05) | L265 |\n| `save_total_limit` | `5` | L272 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d046-seetacloud-cleanup-sync.md"
+}

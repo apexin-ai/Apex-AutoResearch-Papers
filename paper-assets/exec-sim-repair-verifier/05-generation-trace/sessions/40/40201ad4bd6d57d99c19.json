@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40201ad4bd6d57d99c19",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra compress transfer swebench",
+  "task_key": "worker_infra_compress-transfer-swebench_20260519T131506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_compress-transfer-swebench_20260519T131506_result.json",
+    "occurrence": 1,
+    "bytes": 183,
+    "sha256": "07028dc788f8d8eb0da6358b4803c9d0511b90c94321adb2d7372dc858bc05d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "传输后台运行中，30 分钟后自动检查进度。当前速率约 12 KB/s，预计 ~4 小时完成。完成后将自动执行备份、解压、验证和清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-compress-transfer-swebench.md"
+}

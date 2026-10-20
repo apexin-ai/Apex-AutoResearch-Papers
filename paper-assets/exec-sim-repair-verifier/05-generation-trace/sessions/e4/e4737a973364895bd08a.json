@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4737a973364895bd08a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check westd eval progress",
+  "task_key": "worker_check_westd-eval-progress_20260514T200451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd-eval-progress_20260514T200451_result.json",
+    "occurrence": 1,
+    "bytes": 2581,
+    "sha256": "a2a1021c1ff71e074590dfe59756e6d9d80b44907217f2bf6c373f8d43d6d367"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Westd 4×5090 状态汇报\n\n### GPU 状态\n\n| GPU | 利用率 | 显存 | 任务 | PID |\n|-----|--------|------|------|-----|\n| cuda:0 | 99% | 19.8/32.6 GB | CLS 8B val@5120 sweep | 276775 |\n| cuda:1 | 100% | 13.6/32.6 GB | CLS v5 4B val@5120 sweep | 277670 |\n| cuda:2 | 97% | 30.7/32.6 GB | CWM 8B 训练 | 266816 |\n| cuda:3 | 90% | 30.9/32.6 GB | CLS 8B seed123 训练 | 266449 |\n\n---\n\n### cuda:0 — CLS 8B val@5120 sweep (PID 276775)\n- 当前: **ckpt-200**, 6000/9335 (64.3%), running_acc=**64.5%**\n- 速度: ~1.7s/10样本\n- 预计 ckpt-200 还剩 ~10min，之后串行跑 ckpt-400 和 ckpt-600（各 ~17min）\n- **ETA 整个 CLS 8B sweep 完成: ~44min**\n\n### cuda:1 — CLS v5 4B val@5120 sweep (PID 277670)\n- 当前: **ckpt-200**, 4640/9335 (49.7%), running_acc=**61.4%**\n- 速度: ~3.7s/20样本\n- 预计 ckpt-200 还剩 ~14min，之后串行跑 ckpt-400 和 ckpt-600\n- **ETA 整个 CLS v5 sweep 完成: ~60min**\n\n### cuda:2 — CWM 8B 训练 (PID 266816)\n- Step: **1984/6633 (29.9%)**, ~12.1s/it\n- 最新 eval (step 1900): **eval_loss=0.3866**, epoch=0.81\n- 最新 train: **loss=0.2261**, lr=3.76e-5, epoch=0.86\n- **ETA: ~15.7hr**\n\n### cuda:3 — CLS 8B seed123 训练 (PID 266449)\n- Step: **3702/6633 (55.8%)**, ~8.0s/it\n- 最新 eval (step 3600): **eval_loss=0.3874**, epoch=1.63, checkpoint已保存\n- 训练指标趋势:\n  - step 3050: loss=0.5255, grad_norm=205.4\n  - step 3650: loss=0.3716, grad_norm=9.59\n  - step 3700: loss=0.3805, grad_norm=0.14\n- loss 明显下降，grad_norm 已稳定\n- **ETA: ~6.5hr**\n\n---\n\n### 训练指标趋势\n- **CWM 8B**: train_loss 0.2261 vs eval_loss 0.3866 — gap 较大，可能有过拟合迹象\n- **CLS 8B seed123**: train_loss ~0.37 vs eval_loss 0.3874 — 很接近，泛化良好\n\n---\n\n### val@5120 sweep 完整计划（val5120_sweep_commands.txt）\n\n**4B 模型 sweep（sweep文件中的 13 个 runs）：**\n1. CLS v5 (4B): 3 ckpts (200/400/600) — **cuda:1 正在跑 ckpt-200**\n2. CWM v12 (4B): 5 ckpts (300/400/500/600/700)\n3. CWM seed123 (4B): 5 ckpts (200/300/400/500/600)\n\n执行策略: 6 phases，cuda:0 + cuda:1 并行，预计 6-12hr\n\n**8B 模型 sweep（单独启动）：**\n- CLS 8B: 3 ckpts (200/400/600) — **cuda:0 正在跑 ckpt-200**\n\n**当前进度**: CLS 8B 和 CLS v5 各自的 ckpt-200 都在跑，ckpt-200 完成后各自还有 ckpt-400 和 ckpt-600。CLS 8B sweep 约 44min 完成，CLS v5 约 60min 完成。之后 cuda:0/1 可以开始跑 CWM v12 和 CWM seed123 的 val@5120 sweep（10 个 CWM runs，预计 5-10hr）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-eval-progress.md"
+}

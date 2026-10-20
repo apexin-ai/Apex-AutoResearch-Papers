@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b6f32aeb3d6b1f5d84f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code prep cwm repo eval",
+  "task_key": "worker_code_prep-cwm-repo-eval_20260516T183630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-cwm-repo-eval_20260516T183630_result.json",
+    "occurrence": 1,
+    "bytes": 3860,
+    "sha256": "a8d31a07dfedcca160baa54092f093d48556fe840b67f63af04feda936890b4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在情况清楚了。以下是完整分析：\n\n---\n\n## 状况纠正：训练远未完成\n\n**训练实际进度：epoch 1/3 完成（33%），当前正在跑 epoch 1 的 val eval（4373/4668 batches, ~1.5分钟后 eval 结束）。**\n\n关键数据：\n- 总训练步数：13,266（4,422 步/epoch × 3 epochs）\n- 已完成：epoch 1（4,422步），耗时 ~10 小时\n- 剩余：epoch 2 + epoch 3 ≈ **20+ 小时**\n- 当前进度条 `4373/4668` 是 val eval（9335 val samples / batch_size=2 = 4668 batches），不是训练\n\n用户说的\"7分钟内完成\"可能看到了 eval 进度条的 94% 误判为整体训练进度。\n\n---\n\n## 1. Eval 脚本\n\n**路径**: `/home/sonny/exec-sim-repair-verifier/eval_repo_cwm.py`\n\n**参数**:\n| 参数 | 默认值 | 说明 |\n|------|--------|------|\n| `--checkpoint_dir` | 无 | LoRA checkpoint 目录 |\n| `--model_name` | `Qwen/Qwen3-4B` | 基座模型路径 |\n| `--split` | `test` | val 或 test |\n| `--batch_size` | 1 | 推理 batch |\n| `--max_new_tokens` | 512 | 生成长度 |\n| `--max_seq_length` | 8192 | 输入截断 |\n| `--device` | `cuda:0` | GPU |\n| `--output_dir` | None | 输出目录 |\n| `--data_dir` | `data/swebench_full` | 数据目录 |\n| `--start_idx` | None | 分片起点 |\n| `--max_samples` | None | 最大样本数 |\n\n---\n\n## 2. Checkpoint 状态\n\n- `/root/autodl-tmp/checkpoints_deepseek_cwm_repo/` — **当前为空**（epoch 1 eval 完成后会保存第一个 checkpoint）\n- 预期结构（参考其他实验）：`best/` 子目录（PEFT adapter 格式）\n\n---\n\n## 3. 准备好的 Eval 命令\n\n### Val split（快速验证，~9335 samples）\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_deepseek_cwm_repo/best/ --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --split val --device cuda:0 --batch_size 8 --max_new_tokens 512 --output_dir /root/autodl-tmp/eval_results/deepseek_cwm_repo_val/\"\n```\n\n### Test split（正式评测，~9784 samples）\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 python3 eval_repo_cwm.py --checkpoint_dir /root/autodl-tmp/checkpoints_deepseek_cwm_repo/best/ --model_name /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct --split test --device cuda:0 --batch_size 8 --max_new_tokens 512 --output_dir /root/autodl-tmp/eval_results/deepseek_cwm_repo_test/\"\n```\n\n---\n\n## 4. 参考：Qwen CWM repo eval 的做法\n\n从 registry 中成功的 `cwm8b-ckpt400-test-eval-shard2`：\n```\nCUDA_VISIBLE_DEVICES=1 python3 eval_repo_cwm.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400 \\\n  --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ \\\n  --split test --device cuda:0 --batch_size 8 --max_new_tokens 1024 \\\n  --output_dir /root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_shard2/\n```\n\n差异：Qwen 用了 `max_new_tokens=1024`，DeepSeek 用默认 512 应该够（DeepSeek 生成通常更简洁）。\n\n---\n\n## 5. 注意事项\n\n1. **训练还需 ~20 小时**，eval 命令暂时无法执行（`best/` 目录不存在）\n2. **~1.5 分钟后** epoch 1 eval 完成 → 会保存 epoch 1 checkpoint。如果想提前跑中间 checkpoint 的 eval，需等目录出现后用 `checkpoint-XXX` 代替 `best/`\n3. `CUDA_VISIBLE_DEVICES=1` 是训练占用的 GPU，eval 时需换到空闲 GPU（cuda:0 或等训练结束后用 cuda:1）\n4. 同时在跑的还有 `deepseek-cwm-repo-s123`（cuda:3）和 `deepseek-cls-repo-s123`（cuda:2），eval 时建议用 **cuda:0**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-cwm-repo-eval.md"
+}

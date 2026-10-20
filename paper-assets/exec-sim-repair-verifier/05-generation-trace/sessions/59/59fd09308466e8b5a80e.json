@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59fd09308466e8b5a80e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cwm s42 ckpt300 reeval",
+  "task_key": "worker_ops_cwm-s42-ckpt300-reeval_20260523T205354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm-s42-ckpt300-reeval_20260523T205354_result.json",
+    "occurrence": 1,
+    "bytes": 408,
+    "sha256": "a21aa48cfe6b2859f3b0c783f0f3eee23f5688a9a67894690cef0303467ba941"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，汇报：\n\n- **PID**: 312221（实际 python3 子进程 312223）\n- **状态**: 从头开始，无已有结果（results_incremental.jsonl 不存在）\n- **GPU 1 显存**: 21124 MiB / 32607 MiB\n- **GPU 1 利用率**: 92%\n- **数据**: 9784 test instances（7138 正 / 2646 负）\n- **推理已开始**: 模型加载完成，thinking 已关闭（`enable_thinking=False`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cwm-s42-ckpt300-reeval.md"
+}

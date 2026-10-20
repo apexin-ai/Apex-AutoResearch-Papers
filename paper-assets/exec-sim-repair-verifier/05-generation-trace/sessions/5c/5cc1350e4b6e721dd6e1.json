@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cc1350e4b6e721dd6e1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code westd eval split prep",
+  "task_key": "worker_code_westd-eval-split-prep_20260514T061503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-eval-split-prep_20260514T061503_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "0d55c4af9bc7493bba256bf8e451de7e3c94372a9d6e7f9f07e2f766e37ede8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件修改结果：\n\n| 文件 | `--split` 参数 | val dry_run |\n|------|---------------|-------------|\n| `eval_repo_cls.py` | `{val,test}`, default=test | 9335 samples ✓ |\n| `eval_repo_cwm.py` | `{val,test}`, default=test | (同结构) ✓ |\n\n修改内容：\n- 新增 `--split` 参数（choices=val/test, default=test）\n- 数据路径动态切换 `swebench_{split}.jsonl`\n- 日志显示当前 split\n- 输出 JSON 包含 `\"split\"` 字段\n\n默认行为不变（default=\"test\"），现有脚本/命令无需改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-eval-split-prep.md"
+}

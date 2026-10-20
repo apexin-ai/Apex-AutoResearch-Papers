@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc82242009cb235f80cc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra swebench progress check",
+  "task_key": "worker_infra_swebench-progress-check_20260512T050730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_swebench-progress-check_20260512T050730_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "42635ea5754144ba4338f9c84346d353fbe9723a6091a4e1e77cc132e297f110"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## SWE-bench 全量数据构建进度\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | Running (PID 2312582, 已运行 44 分钟) |\n| **当前阶段** | `pilot_gold` 评估 |\n| **评估进度** | 96/240 (40%), ✓94 ✖2 error=0 |\n| **速度** | ~24.3s/it |\n| **本阶段剩余** | ~58 分钟 |\n\n### 已生成的 predictions 文件\n\n| 文件 | 行数 |\n|------|------|\n| predictions_gold.jsonl | 250 |\n| predictions_mutation_operator_swap.jsonl | 138 |\n| predictions_mutation_boundary_removal.jsonl | 127 |\n| predictions_mutation_return_value.jsonl | 89 |\n| predictions_mutation_off_by_one.jsonl | 61 |\n| **总计** | **665** |\n\n### 要点\n\n- Predictions 生成已完成（5 个文件共 665 条），当前在执行评估阶段\n- `pilot_gold` 评估完成后还需评估 4 个 mutation 类型（共 415 条），预计还需 **2-3 小时**\n- 有大量 \"WARNING: No Docker image found\" 但不影响运行（fallback 到其他执行方式）\n- 2 个实例评估失败（✖=2），0 个 error，整体健康"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-swebench-progress-check.md"
+}

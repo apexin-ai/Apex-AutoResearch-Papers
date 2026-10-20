@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6058dd37e00b5225ce4a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cwm8b epoch2 repo eval",
+  "task_key": "worker_ssh_cwm8b-epoch2-repo-eval_20260523T101741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cwm8b-epoch2-repo-eval_20260523T101741_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "7ae94e06e6cea5adb03afee156c71482df73c66af96644fb94a5a7945bfa0771"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成的工作：\n\n1. **Function-level CWM 8B 过拟合数据**：epoch 3 比 epoch 2 (best) 下降 0.95pp（87.67% → 86.72%），已注册 artifact。\n\n2. **Repo-level CWM 8B ckpt-6100 eval** 在 cuda:3 后台运行中（PID 子进程，log `/tmp/cwm8b_repo_ckpt6100.log`），预计 ~17 小时完成。对比基线 ckpt-400 accuracy 64.36%。\n\n3. **发现论文 Table 3 的 checkpoint 不一致**：footnote 说 \"CWM uses epoch-3 checkpoint\" 但 s42 实际用 ckpt-400 (best)，只有 s123/s456 用 ckpt-6633 (final)。且 seq_length 不一致（s42: 4096, s123/s456: 8192）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cwm8b-epoch2-repo-eval.md"
+}

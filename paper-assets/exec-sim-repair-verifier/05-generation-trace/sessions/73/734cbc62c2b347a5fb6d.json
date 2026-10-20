@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "734cbc62c2b347a5fb6d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops check ckpt3600 mutation result",
+  "task_key": "worker_ops_check-ckpt3600-mutation-result_20260515T233318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-ckpt3600-mutation-result_20260515T233318_result.json",
+    "occurrence": 1,
+    "bytes": 1325,
+    "sha256": "80f09c5754239efc8111c2942757cb9fd6531ca1e0d617105fe8749e662b5575"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n## ckpt-3600 Mutation Breakdown Eval 结果\n\n**Overall (9784 test samples, unparseable=0)**\n\n| Metric | Value |\n|--------|-------|\n| Accuracy | **84.48%** |\n| F1_macro | **78.17%** |\n| F1_fail / F1_pass | 66.43% / 89.91% |\n| Precision_fail / Precision_pass | 80.06% / 85.53% |\n| Recall_fail / Recall_pass | 56.76% / 94.76% |\n| Majority baseline | 72.96% |\n| Gap vs majority | +11.53pp |\n\n**Per-Mutation-Type Accuracy**\n\n| Mutation Type | Correct | Total | Accuracy |\n|---------------|---------|-------|----------|\n| gold (no mutation) | 4459 | 4633 | **96.24%** |\n| off_by_one | 159 | 183 | **86.89%** |\n| operator_swap | 2732 | 3357 | **81.38%** |\n| return_value | 424 | 562 | **75.44%** |\n| boundary_removal | 492 | 1049 | **46.90%** |\n\n注意：test set 中无 `variable_swap` 类型样本（只有 4 种 mutation + gold）。\n\n**boundary_removal 是明显短板**（46.9%），模型对边界条件移除的判别能力弱；off_by_one 反而最好（86.9%）。\n\n---\n\n**Registry**: `cls8b-s42-resume-ckpt3600-mutation` → DONE/success，metrics 含完整 per-mutation breakdown\n\n**Cron**: 本 session 无活跃 cron，无需删除\n\n**cuda:1 已空闲** — GPU 0/1 均 0 MiB 占用，可用于 CWM 4B seed123 训练。GPU 2/3 仍在占用中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-ckpt3600-mutation-result.md"
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "ef0e9bb4195a885727f9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ops data recovery p0",
+  "task_key": "worker_ops_data-recovery-p0_20260519T130627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_data-recovery-p0_20260519T130627.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/ops-data-recovery-p0.md"
+}

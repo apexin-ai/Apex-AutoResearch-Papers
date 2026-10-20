@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb406b2f3a38beee4343",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check westd status reconcile",
+  "task_key": "worker_check_westd-status-reconcile_20260514T155436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd-status-reconcile_20260514T155436_result.json",
+    "occurrence": 1,
+    "bytes": 3453,
+    "sha256": "1bdae59db640c28c3dbccb9ebfa1eec10638528bc63a57e8361e69822b9f8f43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 输出目录为空——推断 eval 脚本在全部完成后才写出文件。以下是完整报告。\n\n---\n\n## GPU 状态总览\n\n### cuda:0 — CWM seed123 Eval\n\n| 项目 | 值 |\n|------|-----|\n| PID | 195531 |\n| 命令 | `eval_repo_cwm.py --checkpoint_dir .../checkpoints_repo_cwm_seed123_conda/checkpoint-500` |\n| 任务 | Eval（Qwen3-4B CWM, seed123, ckpt-500） |\n| 显存 | 12,999 / 32,607 MiB (40%) |\n| GPU 利用率 | 74% |\n| 进度 | **8376 / 9784 (85.6%)** |\n| Running Acc | 59.0% |\n| 速率 | ~6.5s/sample（batch_size=8, ~52s/8样本） |\n| 剩余 | ~1408 samples → **~2h 33min** |\n| ETA | **May 15 ~02:28** |\n| 异常 | 无。输出目录为空，eval 脚本应在跑完后一次性写出结果文件 |\n\n### cuda:1 — CWM v12 Eval\n\n| 项目 | 值 |\n|------|-----|\n| PID | 195668 |\n| 命令 | `eval_repo_cwm.py --checkpoint_dir .../checkpoints_repo_cwm_conda_v12/checkpoint-500` |\n| 任务 | Eval（Qwen3-4B CWM, v12, ckpt-500） |\n| 显存 | 12,999 / 32,607 MiB (40%) |\n| GPU 利用率 | 88% |\n| 进度 | **8472 / 9784 (86.6%)** |\n| Running Acc | 57.7% |\n| 速率 | ~6.4s/sample |\n| 剩余 | ~1312 samples → **~2h 20min** |\n| ETA | **May 15 ~02:15** |\n| 异常 | 无 |\n\n### cuda:2 — CWM 8B 训练（从 ckpt-1200 恢复）\n\n| 项目 | 值 |\n|------|-----|\n| PID | 245775 |\n| 命令 | `train_repo_cwm.py --model_name .../Qwen3-8B/ --resume_from_checkpoint .../checkpoint-1200` |\n| 任务 | Training（Qwen3-8B CWM, seed42） |\n| 显存 | 21,205 / 32,607 MiB (65%) |\n| GPU 利用率 | 98% |\n| 进度 | **~1408 / 6633 (21.2%)** |\n| 最新 checkpoint | checkpoint-1400（23:53 保存） |\n| 已有 checkpoints | 400, 900, 1000, 1100, 1200, 1300, 1400 |\n| 速率 | ckpt-1300→1400 = 39min/100步，含周期 eval。纯训练 ~12-13s/step |\n| 剩余 | ~5225 steps → **~20-25h**（取决于 eval 频率） |\n| ETA | **May 15 ~20:00 - May 16 01:00** |\n| 异常 | 无。训练正常推进，loss 稳定 |\n\n### cuda:3 — CLS 8B seed123 训练（从 ckpt-2400 恢复）\n\n| 项目 | 值 |\n|------|-----|\n| PID | 248041 |\n| 命令 | `train_repo_verifier.py --model_name .../Qwen3-8B/ --seed 123 --resume_from_checkpoint .../checkpoint-2400` |\n| 任务 | Training（Qwen3-8B CLS verifier, seed123） |\n| 显存 | 26,751 / 32,607 MiB (82%) |\n| GPU 利用率 | 85% |\n| 进度 | **~2764 / 6633 (41.7%)** |\n| 最新 checkpoint | checkpoint-2600（23:32 保存） |\n| 已有 checkpoints | 200, 1800, 2000, 2200, 2400, 2600 |\n| 速率 | ~8.2s/step（tqdm 实时），ckpt-2400→2600 = 80min/200步 |\n| Loss | 0.3559 @step2650, 0.45 @step2700, 0.6429 @step2750（有波动但正常） |\n| 剩余 | ~3869 steps × 8.2s → **~8.8h** |\n| ETA | **May 15 ~08:45** |\n| 异常 | 无 |\n\n---\n\n## 总结表\n\n| GPU | 任务 | PID | 显存 | 进度 | ETA (May 15) | 状态 |\n|-----|------|-----|------|------|-------------|------|\n| cuda:0 | CWM seed123 eval | 195531 | 13.0/32.6G | 85.6% | ~02:28 | 正常 |\n| cuda:1 | CWM v12 eval | 195668 | 13.0/32.6G | 86.6% | ~02:15 | 正常 |\n| cuda:2 | CWM 8B train | 245775 | 21.2/32.6G | 21.2% | ~20:00-次日01:00 | 正常 |\n| cuda:3 | CLS 8B s123 train | 248041 | 26.8/32.6G | 41.7% | ~08:45 | 正常 |\n\n**结论**：4 个进程全部正常运行，无异常。Registry 标记 DONE 是错误的，实际都还在跑。两个 eval 约 2.5h 后完成，CLS 8B 约 9h 后完成，CWM 8B 最慢约 20-25h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-status-reconcile.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f38bda895a730fbde5f5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check cls 8b s123 v2 exit status",
+  "task_key": "worker_check_cls-8b-s123-v2-exit-status_20260514T173747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_cls-8b-s123-v2-exit-status_20260514T173747_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "92b67648210a213be84f77a7acbbada172e48655464e069b9b136fb5b0a091c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n- **退出原因**: 崩溃 — `FileNotFoundError`，`--resume_from_checkpoint` 传了父目录 `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` 而非具体 checkpoint 子目录，Trainer 在父目录找不到 `trainer_state.json`\n- **Exit code**: 1，时间 2026-05-15 01:40:25 UTC\n- **最终训练 step**: 未进入训练（v1 最后 checkpoint 仍为 checkpoint-3000）\n- **最新 checkpoint**: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-3000`\n- **GPU cuda:3**: 已释放（0 MiB）\n\n**修复方法**: 重新提交时改为 `--resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/checkpoint-3000`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cls-8b-s123-v2-exit-status.md"
+}

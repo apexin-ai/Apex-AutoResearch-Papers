@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e571be48aacb08746aa6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra check gpu processes",
+  "task_key": "worker_infra_check-gpu-processes_20260516T183254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-gpu-processes_20260516T183254_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "4daa7366d373abdd0f59fe4f631a5e07f48620b693d6457ae1f13cd5ab0fa930"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进程状态汇总\n\n| 实验 | PID | 状态 | GPU | GPU 利用率 | 显存占用 | 进度 | 预估剩余时间 |\n|------|-----|------|-----|-----------|---------|------|-------------|\n| **deepseek-cwm-repo** | 479953 | ALIVE | cuda:1 | 100% | 19.7/32.6 GB | 3031/4668 (65%) | ~9 min |\n| **deepseek-cls-repo-v2** | 547065 | **DEAD** | cuda:0 | 0% | 0 MB | — | — |\n| **deepseek-cls-repo-s123** | 542509 | ALIVE | cuda:2 | 99% | 17.6/32.6 GB | 303/6633 (5%) | ~19h |\n| **deepseek-cwm-repo-s123** | 542901 | ALIVE | cuda:3 | 100% | 18.1/32.6 GB | 378/13266 (3%) | ~30h |\n\n### 死亡进程诊断：deepseek-cls-repo-v2\n\n启动即失败，原因：**参数错误**\n\n```\ntrain_unified.py: error: unrecognized arguments: --save_steps 500\nEXIT_CODE=2\n```\n\n`train_unified.py` 不支持 `--save_steps` 参数。需要去掉该参数后重新启动。\n\n### 备注\n- deepseek-cwm-repo (seed=42) 即将完成，约 9 分钟后结束\n- deepseek-cls-repo-s123 (seed=123) 刚启动不久，速度 ~11s/it\n- deepseek-cwm-repo-s123 (seed=123) 也在早期阶段，速度 ~8.5s/it，总 steps 较多（13266）因为 cwm task 用了更大 batch 配置"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-gpu-processes.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e448343be8bc7a9b232",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh diagnose gpu1 hung",
+  "task_key": "worker_ssh_diagnose-gpu1-hung_20260520T085412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose-gpu1-hung_20260520T085412_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "dbcfe8ac0bd5162be59ad4b8aae60dc3793d3f6d7eff483affc8fef2085f6f23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 完全恢复，训练进程无影响。\n\n---\n\n### 重置前后状态对比\n\n| GPU | Util (前→后) | Memory (前→后) | Temp (前→后) | 训练进程 |\n|-----|-------------|----------------|-------------|---------|\n| 0 | 98% → 91% | 21255 → 21255 MiB | 75 → 74°C | PID 886278 ✅ |\n| **1** | **100% → 0%** | **0 → 0 MiB** | **43 → 38°C** | 无（已恢复空闲） |\n| 2 | 99% → 100% | 20001 → 20001 MiB | 73 → 72°C | PID 925638 ✅ |\n| 3 | 97% → 98% | 31261 → 31261 MiB | 75 → 75°C | PID 886352 ✅ |\n\n### 修复方法\n\n`nvidia-smi -r` 和 PCI sysfs reset 在 Docker 容器中不可用。通过 CUDA API 创建并释放一个 context（`torch.cuda.set_device(1)` + `torch.zeros` + `torch.cuda.synchronize`）成功清除了 hung 状态。\n\n根因推测：之前某个进程在 GPU 1 上崩溃，CUDA context 未正确释放，驱动持续报告 100% utilization。创建新 context 触发了驱动内部的状态清理。\n\nGPU 1 现在空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-gpu1-hung.md"
+}

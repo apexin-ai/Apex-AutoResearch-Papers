@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cc97af6c036a0ec5f66",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze cls8b s42 ckpt1000 val8192 eval",
+  "task_key": "worker_analyze_cls8b-s42-ckpt1000-val8192-eval_20260515T013711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cls8b-s42-ckpt1000-val8192-eval_20260515T013711_result.json",
+    "occurrence": 1,
+    "bytes": 895,
+    "sha256": "4ada9cddaf62d6205fbecf96a595f20200882f3e7bb5c8b09aa2b2332e62c7fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## ckpt-1000 val@8192 指标\n\n| 指标 | 值 |\n|---|---|\n| **Accuracy** | **88.23%** |\n| F1 macro | 82.72% |\n| F1 pass | 92.5% |\n| F1 fail | 73.0% |\n| Precision pass | 89.8% |\n| Precision fail | 81.8% |\n| Recall pass | 95.3% |\n| Recall fail | 65.8% |\n| Total samples | 9335 |\n| Unparseable | 9 |\n| Majority baseline | 75.9% |\n| Gap vs majority | +12.3pp |\n\n## 趋势对比\n\n| Checkpoint | Accuracy | F1 macro | Δ Acc |\n|---|---|---|---|\n| ckpt-200 | 63.52% | 61.17% | — |\n| ckpt-800 | 84.50% | 79.20% | +20.98pp |\n| **ckpt-1000** | **88.23%** | **82.72%** | **+3.73pp** |\n\n训练趋势：ckpt-200→800 跃升幅度大（+21pp），800→1000 增速放缓但仍在持续提升（+3.73pp acc, +3.52pp f1_macro）。模型尚未饱和。\n\n**88.23% > 85.00% 阈值，标记为 val-best，需补跑 test@8192。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-cls8b-s42-ckpt1000-val8192-eval.md"
+}

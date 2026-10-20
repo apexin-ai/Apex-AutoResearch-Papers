@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "574d7592f0ca69d93e13",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis cls variant level aggregation",
+  "task_key": "worker_analysis_cls-variant-level-aggregation_20260518T183449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cls-variant-level-aggregation_20260518T183449_result.json",
+    "occurrence": 1,
+    "bytes": 1883,
+    "sha256": "4db1f8ac52e895145cc65a56393cf6c7787be7a4dcd9529f6b917a0b176e9662"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果:\n\n## Variant-Level Aggregation (n=48, AND rule)\n\n| Model | Form | Seed | Per-test Acc (n=9784) | Variant Acc (n=48) |\n|---|---|---|---|---|\n| **DeepSeek-6.7B TRAJ s42** | TRAJ | 42 | N/A | **81.25%** |\n| **DeepSeek-6.7B TRAJ s123** | TRAJ | 123 | N/A | **75.00%** |\n| Qwen3-8B CLS s42 | CLS | 42 | 84.48% | 72.92% |\n| Qwen3-8B CLS s123 | CLS | 123 | 85.60% | **81.25%** |\n| Qwen3-4B CLS s42 | CLS | 42 | 76.92% | 68.75% |\n| DeepSeek CLS s123 (8192) | CLS | 123 | 74.93% | 56.25% |\n| DeepSeek CLS s123 (2048) | CLS | 123 | 82.62% | 72.92% |\n| Qwen3-8B CWM s42 | CWM | 42 | 65.17% | 52.08% |\n| DeepSeek CWM s123 | CWM | 123 | N/A | 47.92%* |\n| DeepSeek CWM s42 | CWM | 42 | N/A | 47.92%* |\n\nMajority baseline: 54.17% (variant-level) vs 72.96% (per-test)\n\n*incomplete predictions\n\n## 关键发现\n\n1. **AND 聚合很严格**: CLS per-test 84.48% 降到 variant-level 72.92% (s42)。即使 1161 个 test 中只有 18 个 false negative (xarray gold), 整个 variant 就被判 unresolved。\n\n2. **CLS s123 = TRAJ s42 = 81.25%**: 在 variant level 上 CLS 和 TRAJ 可以达到相同水平, 回应了 reviewer 的比较关切。\n\n3. **CWM variant-level 接近随机**: 52.08% (Qwen3-8B), 接近 majority baseline 54.17%。\n\n4. **错误模式**: CLS 在 variant level 的错误主要是 false negative (gold variant 被判 unresolved), 因为少量 per-test false negative 就足以翻转整个 variant。这与 TRAJ 的错误模式不同, TRAJ 直接在 variant level 做判断。\n\n5. **缺失**: 没找到 Qwen3-4B CLS repo 83.63% (paper Table 4 报告的) 对应的 predictions 文件, `cls_v5` 只有 76.92%。\n\n脚本和结果均已保存到服务器:\n- 脚本: `/home/sonny/exec-sim-repair-verifier/aggregate_variant_level.py`\n- 结果 JSON: `/home/sonny/exec-sim-repair-verifier/artifacts/variant_level_aggregation.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cls-variant-level-aggregation.md"
+}

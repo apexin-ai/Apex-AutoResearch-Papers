@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d65a18153840f118b96",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b s42 ckpt1400 val8192",
+  "task_key": "worker_eval_cls8b-s42-ckpt1400-val8192_20260515T025146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-s42-ckpt1400-val8192_20260515T025146_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "f0090c3634577477eda128f2b0d1c4c116e797ff804a0f5ff512b4bcfd5a9111"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功启动，cuda:0 上 PID 321785 占用 18640 MiB，推理进行中。\n\n当前状态：\n- **ckpt-1400 val@8192 eval 已在 cuda:0 上运行**，180/9335 samples processed\n- running_acc 目前约 84.4%，早期数据，趋势需要跑完才能定论\n- 预计耗时 ~30 分钟（参照 ckpt-1200 约 28 分钟完成）\n- 日志：`~/runs/exec-sim-repair-verifier/cls8b-s42-ckpt1400-val8192-eval.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-s42-ckpt1400-val8192.md"
+}

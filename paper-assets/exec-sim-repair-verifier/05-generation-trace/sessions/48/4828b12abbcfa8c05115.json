@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4828b12abbcfa8c05115",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh sync bootstrap to seetacloud retry",
+  "task_key": "worker_ssh_sync-bootstrap-to-seetacloud-retry_20260513T023649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_sync-bootstrap-to-seetacloud-retry_20260513T023649_result.json",
+    "occurrence": 1,
+    "bytes": 321,
+    "sha256": "7f222a50c94619d34d4cc81e2ca025faecaacf776ed05c582e7b289fdc340bde"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成，两个文件 MD5 完全一致：\n\n| 文件 | 行数 | 字节 | MD5 |\n|------|------|------|-----|\n| `paired_bootstrap_repo.py` | 229 | 9052 | `d9073b9399fe471c5abfaece2a438227` |\n| `eval_repo_bootstrap.py` | 633 | 25846 | `298b4af68a7dbc4fe8a5fdd61a412e77` |\n\n临时文件已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-sync-bootstrap-to-seetacloud-retry.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc9708f69ed7fe8772fd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh 8b 3shot rerun",
+  "task_key": "worker_ssh_8b-3shot-rerun_20260522T215617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_8b-3shot-rerun_20260522T215617_result.json",
+    "occurrence": 1,
+    "bytes": 152,
+    "sha256": "29d41edb403d6ef9a4dd35de17e7c8ea57a50e5ed8020c55e087f9605bc5d9bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已在 GPU 1 上启动（PID 217517）。模型加载正常，3-shot 模式，thinking 已关闭。3 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-8b-3shot-rerun.md"
+}

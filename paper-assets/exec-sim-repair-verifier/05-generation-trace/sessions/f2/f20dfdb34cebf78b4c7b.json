@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f20dfdb34cebf78b4c7b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval home repo 3shot baseline",
+  "task_key": "worker_eval_home-repo-3shot-baseline_20260517T184722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_home-repo-3shot-baseline_20260517T184722_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "330babc20e9ab6b785e85c0c83091611eb5043515e032b818a7cd42c3c4486f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 100% 利用率，20.9GB/32GB 内存，运行正常。进度日志每 200 samples 更新一次。\n\n**当前状态总结：**\n\n| 项目 | 值 |\n|------|-----|\n| 服务器 | home-1x5090 (RTX 5090 32GB) |\n| 模型 | Qwen3-8B (bf16) |\n| 方法 | 3-shot (2 pass + 1 fail) |\n| 测试集 | repo-level (swebench_full), 9784 samples |\n| batch_size | 2 |\n| max_seq_length | 8192 |\n| GPU 利用率 | 100% |\n| 预计耗时 | ~2.5-3.5 小时 |\n| 输出文件 | `few_shot_results_repo_level.json` |\n\n脚本还会保存 `few_shot_results_repo_level_raw.jsonl` 用于逐条分析。需要我过一会儿回来检查进度吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-home-repo-3shot-baseline.md"
+}

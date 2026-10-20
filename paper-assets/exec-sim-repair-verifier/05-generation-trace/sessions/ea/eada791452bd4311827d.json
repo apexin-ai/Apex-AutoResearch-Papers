@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eada791452bd4311827d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper write method section",
+  "task_key": "worker_paper_write-method-section_20260515T174213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_write-method-section_20260515T174213_result.json",
+    "occurrence": 1,
+    "bytes": 1180,
+    "sha256": "b11c738b6598fd39f6913f080956b3e0b1613874ac80474d35ea96af54b1ef9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功。method.tex 已完成，约 870 词，四个小节完整覆盖：\n\n- **§2.1 Problem Setup**: 定义 patch $p$、test suite $T$、F2P/P2P 分区、正确性条件\n- **§2.2 Verification Formulations**: \\cls{}（单 token 二分类）、\\cwm{}（变长生成 + exact match）、TRAJ（trajectory-level 控制组）\n- **§2.3 CWM Failure Modes**: 三种失败模式分段论述——token-budget exhaustion、string-value prediction errors、format compliance collapse（强调后者质性区别）；末段论证 \\cls{} 构造性规避全部三种并提出 complexity-dependent advantage 假说\n- **§2.4 Oracle Framework**: $P_{\\text{detect}}$、$k_{\\text{eff}}$（ICC block-correlation）、$\\mathbb{E}[\\Delta]$ 三个公式；三条可检验预测 + P2P regression rate 分析\n\n主要改进点（相对原 53 行草稿）：全文统一使用 `\\cls{}`/`\\cwm{}` 宏；format compliance collapse 独立成段并标注为 dominant error source；string-value errors 加入 $q^L$ 乘性论证；oracle 部分拆分为 detection probability / block-correlation / testable predictions 三段；增加 ICC 引用 `\\citep{shrout1979icc}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-write-method-section.md"
+}

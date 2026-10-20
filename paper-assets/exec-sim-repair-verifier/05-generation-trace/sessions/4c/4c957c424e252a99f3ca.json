@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c957c424e252a99f3ca",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code fix cls save strategy",
+  "task_key": "worker_code_fix-cls-save-strategy_20260512T191457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-cls-save-strategy_20260512T191457_result.json",
+    "occurrence": 1,
+    "bytes": 233,
+    "sha256": "5dd7db873e65c120e9b3e1352aa9fb51de3ebf431b31e70542b13f3903819bc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，验证通过：\n\n- 第253行：`save_strategy` → `\"steps\"`\n- 第255行：`save_total_limit` → `3`\n- 第256行：新增 `save_steps` → `200`\n\n未触碰任何进程，未修改其他参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-cls-save-strategy.md"
+}

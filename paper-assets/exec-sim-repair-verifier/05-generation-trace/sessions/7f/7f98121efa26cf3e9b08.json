@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f98121efa26cf3e9b08",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh d049 cls seed123 dryrun",
+  "task_key": "worker_ssh_d049-cls-seed123-dryrun_20260513T092842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d049-cls-seed123-dryrun_20260513T092842_result.json",
+    "occurrence": 1,
+    "bytes": 2373,
+    "sha256": "498c57546af154f81771fd0f6f1acc8c7751a0bd3cf4786e0e211b5d07abc30d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "干净了。两个 dry-run 全部通过。\n\n---\n\n## 汇报\n\n### 1. 超参确认 ✅\n\n两个脚本超参一致：\n\n| 参数 | 值 |\n|------|-----|\n| lr | 5e-5 |\n| weight_decay | 0.01 |\n| warmup_ratio | 0.05 |\n| save_total_limit | 5 |\n\n### 2. Dry-run 结果\n\n**CLS (train_repo_verifier.py, cuda:0)** ✅\n\n| Step | Loss | Grad Norm | LR |\n|------|------|-----------|-----|\n| 1 | 131.0 | 774.5 | 0 |\n| 2 | 146.5 | 800.4 | 5e-5 |\n| 3 | 131.2 | 797.2 | 3.75e-5 |\n| 4 | 99.1 | 627.7 | 2.5e-5 |\n| 5 | 64.0 | 394.5 | 1.25e-5 |\n\navg_loss=114.4, ~6.76s/it, trainable 0.29% (11.8M/4.03B)\n\n**CWM (train_repo_cwm.py, cuda:3)** ✅\n\n| Step | Loss | Grad Norm | LR |\n|------|------|-----------|-----|\n| 1 | 33.6 | 40.9 | 0 |\n| 2 | 36.6 | 43.9 | 5e-5 |\n| 3 | 31.8 | 37.7 | 3.75e-5 |\n| 4 | 32.6 | 39.6 | 2.5e-5 |\n| 5 | 25.3 | 31.2 | 1.25e-5 |\n\navg_loss=31.98, ~9.13s/it, trainable 0.29%\n\n### 3. GPU 状态\n\n| GPU | 状态 | 显存占用 |\n|-----|------|---------|\n| 0 | **空闲** | 0/32 GiB |\n| 1 | 占用 (PID 139302) | 16.3/32 GiB |\n| 2 | 占用 (PID 130031) | 13.5/32 GiB |\n| 3 | **空闲** | 0/32 GiB |\n\n### 4. 注意事项\n\n- 服务器无法访问 HuggingFace，CLS 默认 `--model_name Qwen/Qwen3-4B` 会失败，**必须显式传本地路径**\n- CWM 默认已指向本地缓存，无此问题\n- 原计划 CWM 用 cuda:1，但 **cuda:1 被其他进程占用**，改用 cuda:3\n\n### 5. 推荐启动命令\n\n**CLS (cuda:0)**\n```bash\ncd /home/sonny/exec-sim-repair-verifier && \\\nnohup bash -c 'export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0; \\\npython3 train_repo_verifier.py \\\n  --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B \\\n  --output_dir /home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_seed123/ \\\n  --run_name repo-cls-qwen3-4b-lora-seed123 \\\n  --seed 123' \\\n> /home/sonny/exec-sim-repair-verifier/logs/cls_seed123.log 2>&1 &\n```\n\n**CWM (cuda:3)**\n```bash\ncd /home/sonny/exec-sim-repair-verifier && \\\nnohup bash -c 'export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=3; \\\npython3 train_repo_cwm.py \\\n  --output_dir /home/sonny/exec-sim-repair-verifier/checkpoints_repo_cwm_seed123/ \\\n  --run_name repo-cwm-qwen3-4b-lora-seed123 \\\n  --seed 123' \\\n> /home/sonny/exec-sim-repair-verifier/logs/cwm_seed123.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d049-cls-seed123-dryrun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96013c852146415aa3d2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh upload w5 v2 fix",
+  "task_key": "worker_ssh_upload-w5-v2-fix_20260520T072711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_upload-w5-v2-fix_20260520T072711_result.json",
+    "occurrence": 1,
+    "bytes": 234,
+    "sha256": "71d35f125c85ac71a32810f2803a44c20ee92c313762229e4e332a14b8c00824"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "上传验证完成。文件已成功写入服务器 `/home/sonny/exec-sim-repair-verifier/w5_mixed_effects_v2.py`，内容匹配（LPM、pp、probability diff、Linear Probability 关键词均在预期行号出现）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-upload-w5-v2-fix.md"
+}

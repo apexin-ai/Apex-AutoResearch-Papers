@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbd404d1cddccd89501c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "status home val 4096 check",
+  "task_key": "worker_status_home-val-4096-check_20260514T121835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_home-val-4096-check_20260514T121835_result.json",
+    "occurrence": 1,
+    "bytes": 873,
+    "sha256": "bcc5d232de3772d1294a6c327e518141232d33ee6e752dcff859a1ddf6a5282a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## val_4096 ckpt-400 eval 状态报告\n\n### 1. 状态：进行中\n- **PID 3083027** 仍在运行，已运行 **13h55m**\n- 进度：**4795/9335 = 51.4%**（上次检查 28.8%）\n- Running accuracy：**82.0%**\n- batch_size=2（命令行参数与之前记录的 bs=4 不同，实际是 bs=2）\n\n### 2. ETA 估算\n- 速率：~5.74 samples/min\n- 剩余：~4540 samples → ~13h11m\n- 预计完成：**~18:30 UTC / ~11:30 AM PDT（May 14）**\n\n### 3. GPU 使用\n- cuda:0 被 PID 3083027 占用，**10736 MiB**\n\n### 4. checkpoint-600\n- `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_seed123_home/checkpoint-600` **存在**，ckpt-400 完成后可启动 ckpt-600 eval\n\n### 5. 输出路径\n- 预测文件：`val_eval_results_4096/seed123_ckpt400/eval_repo_cls_predictions.jsonl`（4748 行已写入）\n- 日志：`val_4096_ckpt400.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-home-val-4096-check.md"
+}

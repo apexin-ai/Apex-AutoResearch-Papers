@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e508acd4365b5f4d8501",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_19_1778905590.md",
+  "task_key": "loop_19_1778905590",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_19_1778905590.md",
+    "occurrence": 1,
+    "bytes": 4493,
+    "sha256": "e65e3d55abf29bde4665f28523ffda4fc6dc68cca68f9c8a0662886c611ca9d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: idle_timeout\nupdated: '2026-05-16T04:26:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd cuda:0/1/2/3，超范围必须 push back Director\n- CWM 8B eval 必须用 `eval_repo_cwm.py`（不是 eval_repo_cls.py），max_new_tokens=1024\n- test eval 禁止 --max_samples，必须评完整 test set (n=9784)\n- CWM 8B val-best = ckpt-400（eval_loss 单调递增，无歧义），不要做 val sweep\n- seq_length/bs/precision/lr 变更需 Director 审批（D103 教训）\n- 标 FAILED 前必须 `ps -p PID` 确认进程已退出，RUNNING GPU 不得提交新任务\n- CLS 8B s42 val-best = ckpt-3600（resume sweep 发现），不是 ckpt-1000\n- Westd 用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不是 venv\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: seetacloud-westd-4x5090, 工作目录 `/home/sonny/exec-sim-repair-verifier`\n- **Python**: `/root/miniconda3/bin/python`（conda base env）\n- **8B 模型**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- **CWM 8B ckpt**: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400`\n- **CLS 8B s42 resume ckpt**: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`\n- **CLS 8B seed123 ckpt**: `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n- **Home 服务器**: home-1x5090, 用户 `sonny`, 路径 `/home/sonny/exec-sim-repair-verifier`\n- **活跃 cron**: 3 个 — cwm8b-ckpt400-test-eval-v3 (PID 443221), shard2 (PID 448094), shard3 (PID 453335)\n- **cwm8b-ckpt400-test-eval-shard4**: registry RUNNING 但无 cron（reconcile 只返回 3 个），需确认是否有活跃进程\n\n### 3. 📊 当前状态\n**正在做**: CWM 8B ckpt-400 全量 test eval，3-shard 并行（v3/shard2/shard3 有 cron 监控），shard4 状态待确认。这是 **主表最后一个阻塞实验**。\n\n**RUNNING 实验 (4)**:\n- `cwm8b-ckpt400-test-eval-v3` — cuda:3, PID 443221, 主 shard (~57% 进度)\n- `cwm8b-ckpt400-test-eval-shard2` — cuda:1, PID 448094, idx 7680-9784\n- `cwm8b-ckpt400-test-eval-shard3` — cuda:0, PID 453335, gap shard\n- `cwm8b-ckpt400-test-eval-shard4` — cuda:2, 无 cron，需验证\n\n**已完成关键结果**:\n- CLS 8B multi-seed gap = 26.48pp mean (s42: 26.44, seed123: 26.51)\n- CWM 8B interim: unparseable=73.8%, parseable-only acc=38.5%（比 4B 更差，铁证 generation bottleneck）\n- CWM 4B mutation breakdown 完成，CLS 4B/8B per-mutation P/R 完成\n- Mutation 发现: off_by_one 是 4B→8B 最大赢家 (+28pp), boundary_removal scale-invariant (~45%)\n\n**等待中**: 3 个 cron 回调（CWM 8B eval shard 完成）。完成后需 merge v3+shard2+shard3+shard4 去重 → 锁 CWM 8B 最终数字。\n\n### 4. 📋 待办（条件触发式）\n- CWM 8B 任一 shard cron 回调 → 检查 4 个 shard 全部完成了吗？未全完 → 等其他 shard；全完 → spawn Worker merge 去重，算 overall accuracy + unparseable rate + per-mutation breakdown\n- Merge 完成 → update_registry(cwm8b 最终 metrics) + 更新 ROADMAP 主表 + report.md\n- CWM 8B 最终数字锁定 → 汇报 Director（含完整 mutation comparison table: CLS 4B/8B vs CWM 4B/8B）\n- CWM 8B mutation breakdown 完成 → 更新 memory.md 中的 mutation 对比表\n- 所有数据就绪 → Paper Agent 整合 scaling + mutation 发现进论文\n- shard4 无 cron → 第一件事验证 shard4 进程是否存活（ssh_read_only `ps -p PID`），如果死了需重提\n\n### 5. 🎯 战略上下文\n- **核心结论**: CLS formulation 以 26pp 碾压 CWM，且 8B CWM 比 4B 更差（unparseable 73.8% vs 53-67%），证明 generation formulation 本身是瓶颈\n- **DDL**: EMNLP 2026 ARR May 25，剩余 9 天\n- **阶段**: Paper Writing + CWM 8B eval 收尾（最后阻塞项）\n- **关键决策链**: D088(val-selected ckpt) → D093(multi-seed) → D098(rank ablation 修复) → D100(relaxed matching 排除) → D102(bs=8 加速) → D103(seq8192 不可降级) → D104(CWM 4B mutation 确认) → D105(跨模型 mutation 分析) → D107(Oracle ICC)\n- **易错点**: \n  - shard4 可能没有 cron 监控，需要手动检查\n  - CWM 8B 的 58% overall accuracy 是**虚假的**（unparseable 默认 pass，数据集 73% pass），parseable-only 才是真实水平 (38.5%)\n  - 4B seed123 test=75.33% 极差（vs s42 83.63%），4B 不稳定，论文不要 claim 4B multi-seed\n  - boundary_removal ~45% 对 CLS 和 CWM 都难，但 CWM parseable-only 反而 59.2% > CLS 46.9%——论文需要小心措辞这个反转\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-1778905590.md"
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "e669085332b1cd02e1b7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "code exp d constrained decoding prep",
+  "task_key": "worker_code_exp-d-constrained-decoding-prep_20260519T030047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-d-constrained-decoding-prep_20260519T030047.log",
+    "occurrence": 1,
+    "bytes": 893450,
+    "sha256": "0fa75a99d8fa7a3946445c59eda2ca082fdf22a0f9ec015abed9c042b858e42b"
+  },
+  "statistics": {
+    "messages": 356,
+    "user_turns": 2,
+    "tool_calls": 127,
+    "roles": {
+      "log": 1,
+      "system": 61,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 127,
+      "tool_result": 127,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "e669085332b1cd02e1b7-part-0001.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 136,
+      "chunks": [
+        {
+          "path": "e669085332b1cd02e1b7-part-0001.json",
+          "message_count": 136
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "e669085332b1cd02e1b7-part-0001.json",
+          "message_count": 13
+        },
+        {
+          "path": "e669085332b1cd02e1b7-part-0002.json",
+          "message_count": 176
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-d-constrained-decoding-prep.md"
+}

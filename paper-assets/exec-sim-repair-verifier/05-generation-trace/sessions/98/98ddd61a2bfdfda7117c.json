@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98ddd61a2bfdfda7117c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh fix qwen eval seq",
+  "task_key": "worker_ssh_fix-qwen-eval-seq_20260520T104329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-qwen-eval-seq_20260520T104329_result.json",
+    "occurrence": 1,
+    "bytes": 270,
+    "sha256": "e30e8f16d98be89baa17e57e2251c41e6b02c7e46a8408819f3a8e7350371d19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，两个脚本已验证：\n\n| 脚本 | `--max_seq_length` | `--batch_size` | `--max_new_tokens` |\n|---|---|---|---|\n| `eval_qwen_cwm_s123.sh` (GPU 1) | **8192** ✓ | 1 | 512 |\n| `eval_qwen_cwm_s456.sh` (GPU 2) | **8192** ✓ | 1 | 512 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-qwen-eval-seq.md"
+}

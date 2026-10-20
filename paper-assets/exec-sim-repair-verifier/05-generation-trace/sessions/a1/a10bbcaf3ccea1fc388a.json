@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a10bbcaf3ccea1fc388a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops collect all cwm eval results",
+  "task_key": "worker_ops_collect-all-cwm-eval-results_20260519T011844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-all-cwm-eval-results_20260519T011844_result.json",
+    "occurrence": 1,
+    "bytes": 2213,
+    "sha256": "29c504fe8059dcbcc94cc67dd5e408fa2c4364e920ce76158825094db38d3070"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。\n\n```\n=== SEETACLOUD ===\n\nGPU 0 - Qwen3-8B CWM s42 ckpt-400 @4096:\n  Status: running (pid 778334, started 08:11)\n  Progress: 576/9784 (5.9%)\n  Overall Accuracy: 65.10% (375/576)\n  Parseable Accuracy: 38.83% (73/188)\n  Unparseable: 388/576 = 67.4%\n  Log running_acc: 65.0%\n\nGPU 1 - DeepSeek CWM s42 best @4096:\n  Status: running (pid 662946, started May18)\n  Progress: 9451/9784 (96.6%)\n  Overall Accuracy: 56.81% (5369/9451)\n  Parseable Accuracy: 38.77% (1792/4622)\n  Unparseable: 4829/9451 = 51.1%\n  (no tee log, JSONL only)\n\nGPU 2 - DeepSeek CWM s42 e3 @2048 (D131):\n  Status: running (pid 734440, started May18 21:51)\n  Progress: 3772/9784 (38.6%)\n  Overall Accuracy: 65.93% (2487/3772)\n  Parseable Accuracy: 38.86% (408/1050)\n  Unparseable: 2722/3772 = 72.2%\n  Log running_acc: 65.9%\n  Files: eval.log (315KB), results_incremental.jsonl (5.9MB)\n\nGPU 3 - DeepSeek CWM s123 @4096:\n  Status: running (pid 668680, started May18 01:32)\n  Progress: 8950/9784 (91.5%)\n  Overall Accuracy: 61.77% (5528/8950)\n  Parseable Accuracy: 41.19% (1267/3076)\n  Unparseable: 5874/8950 = 65.6%\n  Log running_acc: 61.8%\n\n=== HOME ===\n\nGPU 0 - DeepSeek CWM s42 e2 @2048 (D133):\n  Status: running (pid 15876, started 16:48)\n  Progress: 5044/9784 (51.6%)\n  Overall Accuracy: 67.17% (3388/5044)\n  Parseable Accuracy: 45.79% (642/1402)\n  Unparseable: 3642/5044 = 72.2%\n  Log running_acc: 65.6%\n  Files: eval.log (254KB), eval_resume.log (351KB), results_incremental.jsonl (11.6MB)\n```\n\n**关键发现：**\n\n1. **全部 5 个 eval 都在跑，无一完成。** GPU1 (s42 best @4096) 最接近完成 (96.6%)，GPU3 (s123 @4096) 次之 (91.5%)。\n2. **Unparseable rate 极高 (51-72%)。** Unparseable 默认 pred=1，而数据集 label=1 占 ~73%，所以 overall accuracy 被 unparseable 大幅抬升。\n3. **Parseable accuracy 才是真实信号：38-46%。** 其中 Home 的 s42 e2 @2048 parseable acc 最高 (45.79%)，s42 best @4096 最低 (38.77%)。\n4. **s42 best @4096 的 unparseable rate 明显低于其他 (51% vs 65-72%)，** 反而导致 overall accuracy 最低 (56.8%)，因为少了 unparseable->1 的 \"免费\" 正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-all-cwm-eval-results.md"
+}

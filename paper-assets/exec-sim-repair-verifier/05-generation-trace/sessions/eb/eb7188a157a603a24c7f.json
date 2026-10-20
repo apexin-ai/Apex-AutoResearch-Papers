@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb7188a157a603a24c7f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cwm v11 ckpt600 urgent",
+  "task_key": "worker_eval_cwm-v11-ckpt600-urgent_20260513T170905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cwm-v11-ckpt600-urgent_20260513T170905_result.json",
+    "occurrence": 1,
+    "bytes": 178,
+    "sha256": "fd32d464ac010585b7546077eb0d65d652819ba1a41f9fd42b3cedfcdef2181b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tok1024 eval is running on cuda:2 (PID 164045). GPU 2 at 95% utilization with both training and eval. Waiting for the first progress log to estimate total runtime."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cwm-v11-ckpt600-urgent.md"
+}

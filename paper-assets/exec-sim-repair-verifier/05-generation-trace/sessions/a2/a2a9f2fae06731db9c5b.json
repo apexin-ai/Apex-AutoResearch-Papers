@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2a9f2fae06731db9c5b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code mvp a total sim",
+  "task_key": "worker_code_mvp-a-total-sim_20260511T192502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-a-total-sim_20260511T192502_result.json",
+    "occurrence": 1,
+    "bytes": 1704,
+    "sha256": "9ebc91c19c65a34bc4eb592d760083f3123bc5891f44378751a3c01be9f1a65e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 模拟完成 — 结果汇总\n\n### Total (F2P+P2P) 模拟结果\n\n| Reg.Rate | Noise | 70-85% Mean Adv | Pass(≥5%)? |\n|----------|-------|-----------------|------------|\n| **5%** | i.i.d. | **-1.0%** | **FAIL** |\n| **5%** | block | **-0.5%** | **FAIL** |\n| **10%** | i.i.d. | **+13.2%** | **PASS** |\n| **10%** | block | **+8.3%** | **PASS** |\n| **20%** | i.i.d. | **+35.7%** | **PASS** |\n| **20%** | block | **+27.8%** | **PASS** |\n\n### F2P-only vs Total 对比\n\n| Scenario | Noise | 70-85% Mean Adv | Pass |\n|----------|-------|-----------------|------|\n| F2P-only | i.i.d. | +2.0% | FAIL |\n| F2P-only | block | +10.9% | PASS |\n| Total (reg=5%) | i.i.d. | -1.0% | FAIL |\n| Total (reg=5%) | block | -0.5% | FAIL |\n| Total (reg=10%) | i.i.d. | +13.2% | PASS |\n| Total (reg=10%) | block | +8.3% | PASS |\n| Total (reg=20%) | i.i.d. | +35.7% | PASS |\n| Total (reg=20%) | block | +27.8% | PASS |\n\n### 关键发现\n\n**Per-test 优势 critically depends on P2P regression rate:**\n\n- **reg=5%**: 优势为**负** — P2P 中仅 ~2.5/50 个测试被破坏，正确/错误 patch 在 P2P 上几乎无区别，额外的 P2P 测试反而 **稀释** F2P 信号。甚至 block noise 也无法挽救。\n- **reg=10%**: 优势明确，~5/50 个 P2P 测试被破坏，信号足够强。两种 noise model 均 PASS。\n- **reg=20%**: 优势巨大，~10/50 个 P2P 测试被破坏，per-test verifier 全面碾压 trajectory。\n\n输出文件：\n- 结果 JSON: `/home/sonny/exec-sim-repair-verifier/mvp_a_total_results.json`\n- 可视化 PDF: `/home/sonny/exec-sim-repair-verifier/mvp_a_total_curves.pdf`\n- 脚本: `/home/sonny/exec-sim-repair-verifier/mvp_a_total_sim.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-a-total-sim.md"
+}

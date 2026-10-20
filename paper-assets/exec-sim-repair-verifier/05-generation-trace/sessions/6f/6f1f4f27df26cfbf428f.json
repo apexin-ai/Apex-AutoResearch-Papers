@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f1f4f27df26cfbf428f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cwm8b eval accelerate cuda1",
+  "task_key": "worker_eval_cwm8b-eval-accelerate-cuda1_20260516T012110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cwm8b-eval-accelerate-cuda1_20260516T012110_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "417cca791229c88173e5373d6d2741bf59af80a8dbe2ee7d25d67b6fe0cb6369"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。总结：\n\n**方案 A 成功执行 — CWM 8B ckpt-400 test eval 并行分片**\n\n| | GPU 3 (Process 1, v3) | GPU 1 (Process 2, shard2) |\n|---|---|---|\n| PID | 443221 | 448100 |\n| 范围 | 0→9784 (全量, resume from 5600) | 7680→9784 (start_idx) |\n| 剩余 | ~4184 samples | ~2104 samples |\n| 预计用时 | ~500min (无加速) | ~250min |\n| 输出 | `cwm_8b_ckpt400_test/` | `cwm_8b_ckpt400_test_shard2/` |\n\n**改动**：给 `eval_repo_cwm.py` 加了 `--start_idx` 参数（4 行改动），跳过指定索引前的所有 batches。\n\n**效果**：当 shard2 在 ~250min 后完成 7680→9784，此时 process 1 也大约推进到 ~7680，两者合并后即覆盖完整 test set。Wall time 从 ~8.3h 降到 ~4.2h。\n\n**合并时**：从两个 `results_incremental.jsonl` 中取 union（去重 index），即可生成完整结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cwm8b-eval-accelerate-cuda1.md"
+}

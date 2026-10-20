@@ -1,0 +1,2146 @@
+{
+  "schema_version": "1.0",
+  "id": "c9fbc2a2069290bf2aa8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "analysis error overlap cls cwm",
+  "task_key": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_error-overlap-cls-cwm_20260512T160639.jsonl",
+    "occurrence": 1,
+    "bytes": 108809,
+    "sha256": "066f61aaab39112e3258560981353bafcd53b1471cafab763473f87339ea8fb4"
+  },
+  "statistics": {
+    "messages": 105,
+    "user_turns": 0,
+    "tool_calls": 52,
+    "roles": {
+      "tool_call": 52,
+      "tool_result": 52,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T16:14:27.177562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T16:14:27.178025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T16:14:27.178289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "exec-sim-repair-verifier",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T16:14:27.178934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (64,300 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T16:14:27.179176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "find /home/sonny/exec-sim-repair-verifier -name \"eval_*\" -type f 2>/dev/null"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T16:14:27.179330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T16:14:27.179458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "find /home/sonny/exec-sim-repair-verifier -name \"eval_*\" -type f"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T16:14:27.179594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/eval_seed456.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed0.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed123.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed0.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_precision_recall_results.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_seed456.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_results.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed456.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_cls8b_seed456.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_verifier.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_trace_results.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_verifier.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_results.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_block_correlation.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed789.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_seed789.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_seed42.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_trace_judge.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_seed123.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_results.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_majority_voting.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py\\\\n/home/sonny/exec-sim-repair-verifier/eval_precision_recall.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.95}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T16:14:27.179743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\n# Find CLS and CWM experiments\nfor exp in result:\n    exp_id = exp.get('exp_id', '')\n    if 'cls' in exp_id.lower() or 'cwm' in exp_id.lower():\n        print(f\\\"=== {exp_id} ===\\\")\n        print(f\\\"  status: {exp.get('status')}\\\")\n        print(f\\\"  conclusion: {exp.get('conclusion')}\\\")\n        print(f\\\"  metrics: {json.dumps(exp.get('metrics', {}), indent=2)}\\\")\n        spec = exp.get('spec', {})\n        if spec:\n            print(f\\\"  checkpoint_path: {spec.get('checkpoint_path', 'N/A')}\\\")\n            print(f\\\"  log_path: {spec.get('log_path', 'N/A')}\\\")\n            print(f\\\"  seed: {spec.get('seed', 'N/A')}\\\")\n            print(f\\\"  server: {spec.get('server', 'N/A')}\\\")\n        print()\n\" 2>&1 | head -200",
+              "description": "Extract CLS and CWM experiments from registry"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-12T16:14:27.179920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Traceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    exp_id = exp.get('exp_id', '')\n             ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-12T16:14:27.180047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\nresult = json.loads(result_str)\nprint(type(result))\nif isinstance(result, dict):\n    print(list(result.keys())[:10])\nelif isinstance(result, list):\n    print(len(result))\n    if result:\n        print(type(result[0]))\n        if isinstance(result[0], dict):\n            print(list(result[0].keys()))\n        elif isinstance(result[0], str):\n            r0 = json.loads(result[0])\n            print(type(r0), list(r0.keys())[:10] if isinstance(r0, dict) else '')\n\"",
+              "description": "Probe registry data structure"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-12T16:14:27.180176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<class 'dict'>\n['success', 'data', 'error', 'metadata']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-12T16:14:27.180298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']\n# Find CLS and CWM experiments\nfor exp_id, exp in experiments.items():\n    if 'cls' in exp_id.lower() or 'cwm' in exp_id.lower():\n        print(f'=== {exp_id} ===')\n        print(f'  status: {exp.get(\\\"status\\\")}')\n        print(f'  conclusion: {exp.get(\\\"conclusion\\\")}')\n        metrics = exp.get('metrics', {})\n        print(f'  metrics: {json.dumps(metrics, indent=2) if metrics else \\\"NONE\\\"}')\n        spec = exp.get('spec', {})\n        if spec:\n            print(f'  checkpoint_path: {spec.get(\\\"checkpoint_path\\\", \\\"N/A\\\")}')\n            print(f'  log_path: {spec.get(\\\"log_path\\\", \\\"N/A\\\")}')\n            print(f'  seed: {spec.get(\\\"seed\\\", \\\"N/A\\\")}')\n            print(f'  server: {spec.get(\\\"server\\\", \\\"N/A\\\")}')\n        print()\n\" 2>&1 | head -200",
+              "description": "Extract CLS and CWM experiments from registry"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-12T16:14:27.180455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-12T16:14:27.180604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nif isinstance(result, dict) and 'data' in result:\n    experiments = result['data']\n    if isinstance(experiments, dict):\n        for exp_id, exp in experiments.items():\n            print(exp_id)\n    elif isinstance(experiments, list):\n        for exp in experiments:\n            if isinstance(exp, dict):\n                print(exp.get('exp_id', 'no_id'))\n            else:\n                print(type(exp))\nelse:\n    # Maybe result itself is the list\n    print('result keys:', list(result.keys()) if isinstance(result, dict) else type(result))\n\" 2>&1 | head -50",
+              "description": "List all experiment IDs in registry"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-12T16:14:27.180766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiments\ncount\ntotal\nbaseline"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-12T16:14:27.180927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nif isinstance(exps, list):\n    for exp in exps:\n        eid = exp.get('exp_id','')\n        if 'cls' in eid.lower() or 'cwm' in eid.lower():\n            print(f'=== {eid} ===')\n            print(f'  status: {exp.get(\\\"status\\\")}')\n            print(f'  conclusion: {exp.get(\\\"conclusion\\\")}')\n            metrics = exp.get('metrics', {})\n            print(f'  metrics: {json.dumps(metrics) if metrics else \\\"NONE\\\"}')\n            spec = exp.get('spec', {})\n            if spec:\n                print(f'  checkpoint: {spec.get(\\\"checkpoint_path\\\", \\\"N/A\\\")}')\n                print(f'  log_path: {spec.get(\\\"log_path\\\", \\\"N/A\\\")}')\n                print(f'  seed: {spec.get(\\\"seed\\\", \\\"N/A\\\")}')\n            print()\nelif isinstance(exps, dict):\n    for eid, exp in exps.items():\n        if 'cls' in eid.lower() or 'cwm' in eid.lower():\n            print(f'=== {eid} ===')\n            print(json.dumps(exp, indent=2)[:500])\n            print()\n\" 2>&1 | head -200",
+              "description": "Extract CLS/CWM experiments from registry"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-12T16:14:27.181152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== repo-level-cls-v2 ===\n{\n  \"status\": \"PREPARING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T14:41:27.833Z\",\n  \"updated_at\": \"2026-05-12T15:57:31.074Z\",\n  \"hypothesis\": \"Repo-level classification (SWE-bench per-test data, Qwen3-4B LoRA). \\u4fee\\u590d sample_weight KeyError \\u540e\\u91cd\\u63d0\\u4ea4\\u3002\\u9a8c\\u8bc1 complexity-dependent CLS advantage\\u3002\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_verifier.py --output_dir /root/autodl-tmp/checkpoints_repo\n\n=== repo-level-cwm-v2 ===\n{\n  \"status\": \"PREPARING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T14:41:28.527Z\",\n  \"updated_at\": \"2026-05-12T15:57:03.183Z\",\n  \"hypothesis\": \"Repo-level CWM generation (SWE-bench per-test data, Qwen3-4B LoRA). \\u4fee\\u590d sample_weight KeyError \\u540e\\u91cd\\u63d0\\u4ea4\\u3002\\u4e0e repo-level-cls-v2 \\u5bf9\\u6bd4\\u9a8c\\u8bc1 complexity gap\\u3002\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"cd /home/sonny/exec-sim-repair-verifier && python3 train_repo_cwm.py --output_dir /root/autodl-tmp/chec\n\n=== cls8b-seed456 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T13:55:11.074Z\",\n  \"updated_at\": \"2026-05-12T15:28:45.391Z\",\n  \"hypothesis\": \"8B CLS \\u7b2c 3 \\u4e2a seed\\uff0c\\u4e0e cwm8b-seed456 \\u914d\\u5bf9\\u3002\\u5b8c\\u6210\\u540e\\u6709 3 matched 8B pairs (seed42/123/456)\\uff0c\\u589e\\u5f3a scaling gap \\u8bc1\\u636e\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && cd /home/sonny/exec-sim-repair-verifier && python3 train_verifier.py --data_di\n\n=== cwm8b-seed456 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T13:18:05.040Z\",\n  \"updated_at\": \"2026-05-12T15:00:31.635Z\",\n  \"hypothesis\": \"8B CWM \\u7b2c 3 \\u4e2a seed\\uff0c\\u8865\\u5f3a scaling gap \\u8bc1\\u636e\\u3002\\u5f53\\u524d 8B cls-cwm gap \\u57fa\\u4e8e 2 seeds (seed42=2.81pp, seed123=2.42pp, mean=2.60pp)\\uff0c3 seeds \\u66f4\\u7a33\\u5065\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /r\n…[truncated 6921 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-12T16:14:27.181375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "head -100 /home/sonny/exec-sim-repair-verifier/eval_seed42.json"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-12T16:14:27.181520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "head -100 /home/sonny/exec-sim-repair-verifier/eval_cwm_results.json"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-12T16:14:27.181668+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_set_size\\\\\\\": 1890,\\\\n  \\\\\\\"class_balance\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": 978,\\\\n    \\\\\\\"fail\\\\\\\": 912,\\\\n    \\\\\\\"pass_pct\\\\\\\": 51.7\\\\n  },\\\\n  \\\\\\\"majority_baseline_accuracy\\\\\\\": 51.75,\\\\n  \\\\\\\"overall_accuracy\\\\\\\": 87.83,\\\\n  \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 36.08,\\\\n  \\\\\\\"per_class\\\\\\\": {\\\\n    \\\\\\\"fail\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 86.2,\\\\n      \\\\\\\"recall\\\\\\\": 89.04,\\\\n      \\\\\\\"f1\\\\\\\": 87.59,\\\\n      \\\\\\\"support\\\\\\\": 912\\\\n    },\\\\n    \\\\\\\"pass\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 89.45,\\\\n      \\\\\\\"recall\\\\\\\": 86.71,\\\\n      \\\\\\\"f1\\\\\\\": 88.06,\\\\n      \\\\\\\"support\\\\\\\": 978\\\\n    }\\\\n  },\\\\n  \\\\\\\"confusion_matrix\\\\\\\": {\\\\n    \\\\\\\"tn\\\\\\\": 812,\\\\n    \\\\\\\"fp\\\\\\\": 100,\\\\n    \\\\\\\"fn\\\\\\\": 130,\\\\n    \\\\\\\"tp\\\\\\\": 848\\\\n  },\\\\n  \\\\\\\"unparseable_predictions\\\\\\\": 0\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-12T16:14:27.181879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_set_size\\\\\\\": 1890,\\\\n  \\\\\\\"class_balance\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": 978,\\\\n    \\\\\\\"fail\\\\\\\": 912,\\\\n    \\\\\\\"pass_pct\\\\\\\": 51.7\\\\n  },\\\\n  \\\\\\\"majority_baseline_accuracy\\\\\\\": 51.75,\\\\n  \\\\\\\"overall_accuracy\\\\\\\": 87.51,\\\\n  \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 35.77,\\\\n  \\\\\\\"per_class\\\\\\\": {\\\\n    \\\\\\\"fail\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 83.53,\\\\n      \\\\\\\"recall\\\\\\\": 92.32,\\\\n      \\\\\\\"f1\\\\\\\": 87.71,\\\\n      \\\\\\\"support\\\\\\\": 912\\\\n    },\\\\n    \\\\\\\"pass\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 92.06,\\\\n      \\\\\\\"recall\\\\\\\": 83.03,\\\\n      \\\\\\\"f1\\\\\\\": 87.31,\\\\n      \\\\\\\"support\\\\\\\": 978\\\\n    }\\\\n  },\\\\n  \\\\\\\"confusion_matrix\\\\\\\": {\\\\n    \\\\\\\"tn\\\\\\\": 842,\\\\n    \\\\\\\"fp\\\\\\\": 70,\\\\n    \\\\\\\"fn\\\\\\\": 166,\\\\n    \\\\\\\"tp\\\\\\\": 812\\\\n  },\\\\n  \\\\\\\"cwm_metrics\\\\\\\": {\\\\n    \\\\\\\"exact_match_rate\\\\\\\": 84.02,\\\\n    \\\\\\\"exact_match_count\\\\\\\": 1588,\\\\n    \\\\\\\"by_error_type\\\\\\\": {\\\\n      \\\\\\\"PASS\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 978,\\\\n        \\\\\\\"exact_match\\\\\\\": 812,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 83.03,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 83.03\\\\n      },\\\\n      \\\\\\\"AssertionError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 754,\\\\n        \\\\\\\"exact_match\\\\\\\": 656,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 87.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 92.31\\\\n      },\\\\n      \\\\\\\"SyntaxError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 81,\\\\n        \\\\\\\"exact_match\\\\\\\": 80,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 98.77,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"NameError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 22,\\\\n        \\\\\\\"exact_match\\\\\\\": 17,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 77.27,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"IndexError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 20,\\\\n        \\\\\\\"exact_match\\\\\\\": 5,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 25.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 60.0\\\\n      },\\\\n      \\\\\\\"TypeError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 11,\\\\n        \\\\\\\"exact_match\\\\\\\": 6,\\\\n        \\\\\n…[truncated 1095 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-12T16:14:27.182056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "find /home/sonny/exec-sim-repair-verifier -name \"*cwm*seed789*\" -o -name \"*seed789*cwm*\" -o -name \"*cwm_seed789*\""
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-12T16:14:27.182185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "ls /home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-12T16:14:27.182307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-12T16:14:27.182422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-12T16:14:27.182568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "find /home/sonny/exec-sim-repair-verifier -name \"*predict*\" -o -name \"*pertest*\" -o -name \"*per_instance*\" -o -name \"*diag*\" -o -name \"*detail*\""
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-12T16:14:27.182710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/predictions_traj_seed789.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_return_value.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_boundary_removal.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_operator_swap.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_gold.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_full/predictions_mutation_off_by_one.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_return_value.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_boundary_removal.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_operator_swap.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_gold.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_pilot/predictions_mutation_off_by_one.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_return_value.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_boundary_removal.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_operator_swap.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_gold.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/swebench_fix_test/predictions_mutation_off_by_one.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/extract_predictions_new_seeds.py\\\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed0.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed123.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed456.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/predictions_traj_seed42.jsonl\\\\n/home\n…[truncated 503 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-12T16:14:27.182870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "find /home/sonny/exec-sim-repair-verifier -name \"*seed789*\" -type f"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-12T16:14:27.182997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "find /home/sonny/exec-sim-repair-verifier -name \"checkpoints*\" -type d"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-12T16:14:27.183118+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/predictions_traj_seed789.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/eval_traj_seed789.json\\\\n/home/sonny/exec-sim-repair-verifier/eval_seed789.json\\\\n/home/sonny/exec-sim-repair-verifier/predictions_cls_seed789.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-12T16:14:27.183273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_seed123\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed123\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed0\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_seed789\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed456\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_seed42\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_seed456\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cwm\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_trace\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed789\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed456\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_cls8b_seed456\\\\n/home/sonny/exec-sim-repair-verifier/checkpoints_traj_seed0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-12T16:14:27.183434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "find /home/sonny/exec-sim-repair-verifier -name \"*cwm*\" -type f -name \"*.jsonl\""
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-12T16:14:27.183562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "head -3 /home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-12T16:14:27.183792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/cwm_train.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/cwm_val.jsonl\\\\n/home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-12T16:14:27.183959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "head -100 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed456.json"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-12T16:14:27.184097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"index\\\\\\\": 0, \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\", \\\\\\\"label\\\\\\\": 1, \\\\\\\"pred\\\\\\\": 1, \\\\\\\"gen_text\\\\\\\": \\\\\\\"pass\\\\\\\"}\\\\n{\\\\\\\"index\\\\\\\": 1, \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\", \\\\\\\"label\\\\\\\": 1, \\\\\\\"pred\\\\\\\": 1, \\\\\\\"gen_text\\\\\\\": \\\\\\\"pass\\\\\\\"}\\\\n{\\\\\\\"index\\\\\\\": 2, \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"operator_swap\\\\\\\", \\\\\\\"label\\\\\\\": 0, \\\\\\\"pred\\\\\\\": 0, \\\\\\\"gen_text\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-12T16:14:27.184275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_set_size\\\\\\\": 1890,\\\\n  \\\\\\\"class_balance\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": 978,\\\\n    \\\\\\\"fail\\\\\\\": 912,\\\\n    \\\\\\\"pass_pct\\\\\\\": 51.7\\\\n  },\\\\n  \\\\\\\"majority_baseline_accuracy\\\\\\\": 51.75,\\\\n  \\\\\\\"overall_accuracy\\\\\\\": 86.98,\\\\n  \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 35.24,\\\\n  \\\\\\\"per_class\\\\\\\": {\\\\n    \\\\\\\"fail\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 82.52,\\\\n      \\\\\\\"recall\\\\\\\": 92.65,\\\\n      \\\\\\\"f1\\\\\\\": 87.29,\\\\n      \\\\\\\"support\\\\\\\": 912\\\\n    },\\\\n    \\\\\\\"pass\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 92.26,\\\\n      \\\\\\\"recall\\\\\\\": 81.7,\\\\n      \\\\\\\"f1\\\\\\\": 86.66,\\\\n      \\\\\\\"support\\\\\\\": 978\\\\n    }\\\\n  },\\\\n  \\\\\\\"confusion_matrix\\\\\\\": {\\\\n    \\\\\\\"tn\\\\\\\": 845,\\\\n    \\\\\\\"fp\\\\\\\": 67,\\\\n    \\\\\\\"fn\\\\\\\": 179,\\\\n    \\\\\\\"tp\\\\\\\": 799\\\\n  },\\\\n  \\\\\\\"cwm_metrics\\\\\\\": {\\\\n    \\\\\\\"exact_match_rate\\\\\\\": 84.02,\\\\n    \\\\\\\"exact_match_count\\\\\\\": 1588,\\\\n    \\\\\\\"by_error_type\\\\\\\": {\\\\n      \\\\\\\"PASS\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 978,\\\\n        \\\\\\\"exact_match\\\\\\\": 799,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 81.7,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 81.7\\\\n      },\\\\n      \\\\\\\"AssertionError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 754,\\\\n        \\\\\\\"exact_match\\\\\\\": 678,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 89.92,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 92.57\\\\n      },\\\\n      \\\\\\\"SyntaxError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 81,\\\\n        \\\\\\\"exact_match\\\\\\\": 80,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 98.77,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"NameError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 22,\\\\n        \\\\\\\"exact_match\\\\\\\": 10,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 45.45,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"IndexError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 20,\\\\n        \\\\\\\"exact_match\\\\\\\": 5,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 25.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 60.0\\\\n      },\\\\n      \\\\\\\"TypeError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 11,\\\\n        \\\\\\\"exact_match\\\\\\\": 7,\\\\n        \\\\\\\"\n…[truncated 1091 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-12T16:14:27.184429+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor exp in exps:\n    eid = exp.get('exp_id','')\n    if eid == 'cwm-seed789':\n        print(json.dumps(exp, indent=2, ensure_ascii=False))\n\"",
+              "description": "Get cwm-seed789 full registry entry"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-12T16:14:27.184554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    eid = exp.get('exp_id','')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-12T16:14:27.184688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-16-projects-exec-sim-repair-verifier/fdc89fa9-e66c-4389-8d90-84db1eb36057/tool-results/mcp-agent-ml-research-read_registry-1778602021972.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nif isinstance(exps, dict):\n    for eid in exps:\n        if 'cwm' in eid.lower() and '789' in eid:\n            print(json.dumps(exps[eid], indent=2, ensure_ascii=False))\nelif isinstance(exps, list):\n    for exp in exps:\n        if isinstance(exp, str):\n            exp_data = json.loads(exp)\n        else:\n            exp_data = exp\n        eid = exp_data.get('exp_id','')\n        if eid == 'cwm-seed789':\n            print(json.dumps(exp_data, indent=2, ensure_ascii=False))\n\" 2>&1",
+              "description": "Get cwm-seed789 details from registry"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-12T16:14:27.184852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-12T12:31:34.311Z\",\n  \"updated_at\": \"2026-05-12T14:00:05.340Z\",\n  \"hypothesis\": \"补充 4B CWM seed=789，凑齐 CWM 5-seed 对比（42, 123, 456, 789, 0），与 5-seed CLS 做 paired 统计检验\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output_dir checkpoints_cwm_seed789/ --seed 789 --no_wandb && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed789/best --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output eval_cwm_seed789.json\\\"\",\n    \"server\": \"seetacloud-westd-4x5090\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": 42227,\n    \"log_path\": \"~/runs/exec-sim-repair-verifier/cwm-seed789.log\",\n    \"submitted_at\": \"2026-05-12T12:34:07.017Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"/home/sonny/exec-sim-repair-verifier/data/\",\n    \"data_count\": 15290,\n    \"model_name\": \"Qwen/Qwen3-4B\",\n    \"seed\": 789,\n    \"metrics\": {\n      \"overall_accuracy\": 86.67,\n      \"pass_f1\": 86.74,\n      \"fail_f1\": 86.6,\n      \"exact_match_rate\": 83.97,\n      \"baseline_gap_pp\": 34.92,\n      \"test_set_size\": 1890,\n      \"unparseable_predictions\": 0\n    },\n    \"checkpoint_path\": \"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/best/\",\n    \"wall_clock_seconds\": 5158.3,\n    \"gpu_hours\": 1.43\n  },\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-12T14:00:05.341Z\"\n}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-12T16:14:27.185034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "head -80 /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-12T16:14:27.185210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# eval_cwm_baseline.py — Evaluate CWM generation baseline on pass/fail classification\\\\n# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\\\\n# Output: Formatted report to stdout + JSON to --output\\\\n# Key difference from eval_verifier.py:\\\\n#   - Generates execution output string instead of \\\\\\\"pass\\\\\\\"/\\\\\\\"fail\\\\\\\"\\\\n#   - Extracts pass/fail from generated output via keyword matching\\\\n#   - Additional metrics: exact match rate, per-error-type match, generation length stats\\\\n# Same metrics: class balance, majority baseline, per-class P/R/F1, accuracy, confusion matrix\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport statistics\\\\nfrom collections import Counter, defaultdict\\\\n\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom sklearn.metrics import (\\\\n    accuracy_score,\\\\n    confusion_matrix,\\\\n    f1_score,\\\\n    precision_score,\\\\n    recall_score,\\\\n)\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a code execution simulator. Given a code snippet and a test case, \\\\\\\"\\\\n    \\\\\\\"predict the execution result.\\\\\\\"\\\\n)\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef detect_thinking_support(tokenizer):\\\\n    try:\\\\n        tokenizer.apply_chat_template(\\\\n            [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"hi\\\\\\\"}],\\\\n            tokenize=False,\\\\n            enable_thinking=False,\\\\n        )\\\\n        return {\\\\\\\"enable_thinking\\\\\\\": False}\\\\n    except TypeError:\\\\n        return {}\\\\n\\\\n\\\\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\\\\n    user_msg = f\\\\\\\"## Code\\\\\\\\n{code}\\\\\\\\n\\\\\\\\n## Test\\\\\\\\n{test}\\\\\\\\n\\\\\\\\nWhat is the execution result?\\\\\\\"\\\\n    msgs = [\\\\n   \n…[truncated 866 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-12T16:14:27.185359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "head -80 /home/sonny/exec-sim-repair-verifier/extract_predictions.py"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-12T16:14:27.185480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "account": "root",
+              "command": "ls /home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-12T16:14:27.185702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Extract per-sample predictions from all checkpoint/seed combos.\\\\nRequires GPU. Loads base model once per config, swaps LoRA adapters.\\\\nOutput: predictions_{cls,traj}_seed{N}.jsonl\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse, json, logging, os\\\\nfrom collections import Counter\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nCLS_SYSTEM = (\\\\\\\"You are a code verifier. Given a code snippet and a test case, \\\\\\\"\\\\n              \\\\\\\"predict whether the test will pass or fail.\\\\\\\")\\\\nTRAJ_SYSTEM = (\\\\\\\"You are a code repair verifier. Given the code patch and test summary, \\\\\\\"\\\\n               \\\\\\\"predict whether all tests pass (resolved) or any test fails (unresolved).\\\\\\\")\\\\n\\\\nCONFIGS = [\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"cls_seed42\\\\\\\",  \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_seed42/best\\\\\\\",        \\\\\\\"data\\\\\\\": \\\\\\\"data/test.jsonl\\\\\\\",      \\\\\\\"mode\\\\\\\": \\\\\\\"cls\\\\\\\",  \\\\\\\"out\\\\\\\": \\\\\\\"predictions_cls_seed42.jsonl\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"cls_seed123\\\\\\\", \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_seed123/best\\\\\\\",       \\\\\\\"data\\\\\\\": \\\\\\\"data/test.jsonl\\\\\\\",      \\\\\\\"mode\\\\\\\": \\\\\\\"cls\\\\\\\",  \\\\\\\"out\\\\\\\": \\\\\\\"predictions_cls_seed123.jsonl\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"cls_seed456\\\\\\\", \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_seed456/best\\\\\\\",       \\\\\\\"data\\\\\\\": \\\\\\\"data/test.jsonl\\\\\\\",      \\\\\\\"mode\\\\\\\": \\\\\\\"cls\\\\\\\",  \\\\\\\"out\\\\\\\": \\\\\\\"predictions_cls_seed456.jsonl\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"traj_seed42\\\\\\\",  \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_traj/best\\\\\\\",         \\\\\\\"data\\\\\\\": \\\\\\\"data/traj_test.jsonl\\\\\\\", \\\\\\\"mode\\\\\\\": \\\\\\\"traj\\\\\\\", \\\\\\\"out\\\\\\\": \\\\\\\"predictions_traj_seed42.jsonl\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"traj_seed123\\\\\\\", \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_traj_seed123/best\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"data/traj_test.jsonl\\\\\\\", \n…[truncated 2812 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-12T16:14:27.185887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-12T16:14:27.186043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "account": "root",
+              "command": "cat /home/sonny/exec-sim-repair-verifier/eval_cwm_seed789.json"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-12T16:14:27.186166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "head -80 /home/sonny/exec-sim-repair-verifier/extract_predictions_new_seeds.py"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-12T16:14:27.186285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "ls /home/sonny/exec-sim-repair-verifier/checkpoints_cwm/best/"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-12T16:14:27.186458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_set_size\\\\\\\": 1890,\\\\n  \\\\\\\"class_balance\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": 978,\\\\n    \\\\\\\"fail\\\\\\\": 912,\\\\n    \\\\\\\"pass_pct\\\\\\\": 51.7\\\\n  },\\\\n  \\\\\\\"majority_baseline_accuracy\\\\\\\": 51.75,\\\\n  \\\\\\\"overall_accuracy\\\\\\\": 86.67,\\\\n  \\\\\\\"accuracy_vs_baseline_gap_pp\\\\\\\": 34.92,\\\\n  \\\\\\\"per_class\\\\\\\": {\\\\n    \\\\\\\"fail\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 84.09,\\\\n      \\\\\\\"recall\\\\\\\": 89.25,\\\\n      \\\\\\\"f1\\\\\\\": 86.6,\\\\n      \\\\\\\"support\\\\\\\": 912\\\\n    },\\\\n    \\\\\\\"pass\\\\\\\": {\\\\n      \\\\\\\"precision\\\\\\\": 89.37,\\\\n      \\\\\\\"recall\\\\\\\": 84.25,\\\\n      \\\\\\\"f1\\\\\\\": 86.74,\\\\n      \\\\\\\"support\\\\\\\": 978\\\\n    }\\\\n  },\\\\n  \\\\\\\"confusion_matrix\\\\\\\": {\\\\n    \\\\\\\"tn\\\\\\\": 814,\\\\n    \\\\\\\"fp\\\\\\\": 98,\\\\n    \\\\\\\"fn\\\\\\\": 154,\\\\n    \\\\\\\"tp\\\\\\\": 824\\\\n  },\\\\n  \\\\\\\"cwm_metrics\\\\\\\": {\\\\n    \\\\\\\"exact_match_rate\\\\\\\": 83.97,\\\\n    \\\\\\\"exact_match_count\\\\\\\": 1587,\\\\n    \\\\\\\"by_error_type\\\\\\\": {\\\\n      \\\\\\\"PASS\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 978,\\\\n        \\\\\\\"exact_match\\\\\\\": 824,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 84.25,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 84.25\\\\n      },\\\\n      \\\\\\\"AssertionError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 754,\\\\n        \\\\\\\"exact_match\\\\\\\": 645,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 85.54,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 88.99\\\\n      },\\\\n      \\\\\\\"SyntaxError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 81,\\\\n        \\\\\\\"exact_match\\\\\\\": 80,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 98.77,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 100.0\\\\n      },\\\\n      \\\\\\\"NameError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 22,\\\\n        \\\\\\\"exact_match\\\\\\\": 17,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 77.27,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 86.36\\\\n      },\\\\n      \\\\\\\"IndexError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 20,\\\\n        \\\\\\\"exact_match\\\\\\\": 5,\\\\n        \\\\\\\"exact_match_rate\\\\\\\": 25.0,\\\\n        \\\\\\\"pass_fail_accuracy\\\\\\\": 60.0\\\\n      },\\\\n      \\\\\\\"TypeError\\\\\\\": {\\\\n        \\\\\\\"total\\\\\\\": 11,\\\\n        \\\\\\\"exact_match\\\\\\\": 7,\\\\n        \\\\\n…[truncated 1142 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-12T16:14:27.186704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Extract per-sample predictions for seeds 789, 0.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, logging, os\\\\nfrom collections import Counter\\\\nimport torch\\\\nfrom peft import PeftModel\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nCLS_SYSTEM = (\\\\\\\"You are a code verifier. Given a code snippet and a test case, \\\\\\\"\\\\n              \\\\\\\"predict whether the test will pass or fail.\\\\\\\")\\\\nTRAJ_SYSTEM = (\\\\\\\"You are a code repair verifier. Given the code patch and test summary, \\\\\\\"\\\\n               \\\\\\\"predict whether all tests pass (resolved) or any test fails (unresolved).\\\\\\\")\\\\n\\\\nBASE_DIR = \\\\\\\"/home/sonny/exec-sim-repair-verifier\\\\\\\"\\\\nMODEL_NAME = \\\\\\\"Qwen/Qwen3-4B\\\\\\\"\\\\nBATCH_SIZE = 16\\\\nMAX_LEN = 2048\\\\n\\\\nCONFIGS = [\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"cls_seed789\\\\\\\",  \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_seed789/best\\\\\\\",       \\\\\\\"data\\\\\\\": \\\\\\\"data/test.jsonl\\\\\\\",      \\\\\\\"mode\\\\\\\": \\\\\\\"cls\\\\\\\",  \\\\\\\"out\\\\\\\": \\\\\\\"predictions_cls_seed789.jsonl\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"traj_seed789\\\\\\\", \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_traj_seed789/best\\\\\\\",  \\\\\\\"data\\\\\\\": \\\\\\\"data/traj_test.jsonl\\\\\\\", \\\\\\\"mode\\\\\\\": \\\\\\\"traj\\\\\\\", \\\\\\\"out\\\\\\\": \\\\\\\"predictions_traj_seed789.jsonl\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"traj_seed0\\\\\\\",   \\\\\\\"ckpt\\\\\\\": \\\\\\\"checkpoints_traj_seed0/best\\\\\\\",    \\\\\\\"data\\\\\\\": \\\\\\\"data/traj_test.jsonl\\\\\\\", \\\\\\\"mode\\\\\\\": \\\\\\\"traj\\\\\\\", \\\\\\\"out\\\\\\\": \\\\\\\"predictions_traj_seed0.jsonl\\\\\\\"},\\\\n]\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\ndef detect_thinking_support(tokenizer):\\\\n    try:\\\\n        tokenizer.apply_chat_template(\\\\n            [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"hi\\\\\\\"}], tokenize=False, enable_thinking=False)\\\\n        return {\\\\\\\"enable_thinking\\\\\\\": False}\\\n…[truncated 2098 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-12T16:14:27.186934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"adapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\nmerges.txt\\\\nREADME.md\\\\nspecial_tokens_map.json\\\\ntokenizer_config.json\\\\ntokenizer.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-12T16:14:27.187233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "head -3 /home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-12T16:14:27.187454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"code\\\\\\\": \\\\\\\"from typing import List\\\\\\\\n\\\\\\\\n\\\\\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\\\\\n    given threshold.\\\\\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\\\\\n    False\\\\\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\\\\\n    True\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    for idx, elem in enumerate(numbers):\\\\\\\\n        for idx2, elem2 in enumerate(numbers):\\\\\\\\n            if idx != idx2:\\\\\\\\n                distance = abs(elem - elem2)\\\\\\\\n                if distance < threshold:\\\\\\\\n                    return True\\\\\\\\n\\\\\\\\n    return False\\\\\\\\n\\\\\\\", \\\\\\\"test\\\\\\\": \\\\\\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\\\\\", \\\\\\\"target\\\\\\\": \\\\\\\"PASS: test completed successfully\\\\\\\", \\\\\\\"label\\\\\\\": 1, \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\", \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\"}\\\\n{\\\\\\\"code\\\\\\\": \\\\\\\"from typing import List\\\\\\\\n\\\\\\\\n\\\\\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\\\\\n    given threshold.\\\\\\\\n    >>> has_close_elements([1.0, 2.1, 3.0], 0.5)\\\\\\\\n    False\\\\\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\\\\\n    True\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    for idx, elem in enumerate(numbers):\\\\\\\\n        for idx2, elem2 in enumerate(numbers):\\\\\\\\n            if idx != idx2:\\\\\\\\n                distance = abs(elem - elem2)\\\\\\\\n                if distance < threshold:\\\\\\\\n                    return True\\\\\\\\n\\\\\\\\n    return False\\\\\\\\n\\\\\\\", \\\\\\\"test\\\\\\\": \\\\\\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\\\\\", \\\\\\\"target\\\\\\\": \\\\\\\"PASS: test completed successfully\\\\\\\", \\\\\\\"label\\\\\\\": \n…[truncated 1265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-12T16:14:27.187617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "head -3 /home/sonny/exec-sim-repair-verifier/data/test.jsonl"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-12T16:14:27.187755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "wc -l /home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl /home/sonny/exec-sim-repair-verifier/data/test.jsonl /home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-12T16:14:27.187967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"code\\\\\\\": \\\\\\\"from typing import List\\\\\\\\n\\\\\\\\n\\\\\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\\\\\n    given threshold.\\\\\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\\\\\n    False\\\\\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\\\\\n    True\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    for idx, elem in enumerate(numbers):\\\\\\\\n        for idx2, elem2 in enumerate(numbers):\\\\\\\\n            if idx != idx2:\\\\\\\\n                distance = abs(elem - elem2)\\\\\\\\n                if distance < threshold:\\\\\\\\n                    return True\\\\\\\\n\\\\\\\\n    return False\\\\\\\\n\\\\\\\", \\\\\\\"test\\\\\\\": \\\\\\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\\\\\", \\\\\\\"label\\\\\\\": 1, \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\", \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\"}\\\\n{\\\\\\\"code\\\\\\\": \\\\\\\"from typing import List\\\\\\\\n\\\\\\\\n\\\\\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\\\\\n    given threshold.\\\\\\\\n    >>> has_close_elements([1.0, 2.1, 3.0], 0.5)\\\\\\\\n    False\\\\\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\\\\\n    True\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    for idx, elem in enumerate(numbers):\\\\\\\\n        for idx2, elem2 in enumerate(numbers):\\\\\\\\n            if idx != idx2:\\\\\\\\n                distance = abs(elem - elem2)\\\\\\\\n                if distance < threshold:\\\\\\\\n                    return True\\\\\\\\n\\\\\\\\n    return False\\\\\\\\n\\\\\\\", \\\\\\\"test\\\\\\\": \\\\\\\"assert has_close_elements([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\\\\\", \\\\\\\"label\\\\\\\": 1, \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\", \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\n…[truncated 1090 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-12T16:14:27.188134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   1890 /home/sonny/exec-sim-repair-verifier/data/cwm_test.jsonl\\\\n   1890 /home/sonny/exec-sim-repair-verifier/data/test.jsonl\\\\n   1890 /home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\\\\n   5670 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-12T16:14:27.188294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "tail -50 /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-12T16:14:27.188457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    print(f\\\\\\\"  {'Class':<8} {'Precision':>10} {'Recall':>10} {'F1':>10} {'Support':>10}\\\\\\\")\\\\n    print(f\\\\\\\"  {'---':<8} {'---':>10} {'---':>10} {'---':>10} {'---':>10}\\\\\\\")\\\\n    for name, idx in [(\\\\\\\"fail\\\\\\\", 0), (\\\\\\\"pass\\\\\\\", 1)]:\\\\n        f1_status = \\\\\\\"OK\\\\\\\" if f1[idx] > 0.65 else \\\\\\\"LOW\\\\\\\"\\\\n        support = n_fail if idx == 0 else n_pass\\\\n        print(f\\\\\\\"  {name:<8} {prec[idx]*100:>9.1f}% {rec[idx]*100:>9.1f}% {f1[idx]*100:>9.1f}% [{f1_status}] {support:>5}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nConfusion matrix:\\\\\\\")\\\\n    print(f\\\\\\\"              Predicted\\\\\\\")\\\\n    print(f\\\\\\\"              fail    pass\\\\\\\")\\\\n    print(f\\\\\\\"  Actual fail  {cm[0][0]:>5}   {cm[0][1]:>5}\\\\\\\")\\\\n    print(f\\\\\\\"  Actual pass  {cm[1][0]:>5}   {cm[1][1]:>5}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n--- CWM-Specific Metrics ---\\\\\\\")\\\\n    print(f\\\\\\\"Exact match rate: {exact_match_rate*100:.1f}% ({n_exact}/{total})\\\\\\\")\\\\n    print(f\\\\\\\"Generation length: mean={gen_len_mean:.1f}, median={gen_len_median:.1f}, max={gen_len_max}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\nPer error-type breakdown:\\\\\\\")\\\\n    print(f\\\\\\\"  {'Type':<25} {'Count':>6} {'ExactMatch':>12} {'P/F Acc':>10}\\\\\\\")\\\\n    print(f\\\\\\\"  {'---':<25} {'---':>6} {'---':>12} {'---':>10}\\\\\\\")\\\\n    for etype, st in sorted(error_type_results.items(), key=lambda x: -x[1][\\\\\\\"total\\\\\\\"]):\\\\n        print(f\\\\\\\"  {etype:<25} {st['total']:>6} {st['exact_match_rate']:>11.1f}% {st['pass_fail_accuracy']:>9.1f}%\\\\\\\")\\\\n\\\\n    f1_ok = all(x > 0.65 for x in f1)\\\\n    gap_ok = gap >= 0.10\\\\n    print(f\\\\\\\"\\\\\\\\nMVP-B CRITERIA (same thresholds as classification):\\\\\\\")\\\\n    print(f\\\\\\\"  Per-class F1 >65%: {'PASS' if f1_ok else 'FAIL'}\\\\\\\")\\\\n    print(f\\\\\\\"  Accuracy gap >=10pp: {'PASS' if gap_ok else 'FAIL'} ({gap*100:+.1f}pp)\\\\\\\")\\\\n    print(f\\\\\\\"  Overall: {'PASS' if f1_ok and gap_ok else 'FAIL'}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(res\n…[truncated 809 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-12T16:14:27.188641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "find /home/sonny/exec-sim-repair-verifier -name \"*cwm*predictions*\" -o -name \"*predictions*cwm*\""
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-12T16:14:27.188766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "grep -n \"predictions_list\" /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-12T16:14:27.188933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-12T16:14:27.189057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"162:    predictions_list = []\\\\n202:            predictions_list.append({\\\\n346:            \\\\\\\"predictions\\\\\\\": predictions_list,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-12T16:14:27.189175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "sed -n '195,215p' /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-12T16:14:27.189291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-12T16:14:27.189406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "grep -A 15 \"predictions_list.append\" /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-12T16:14:27.189544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            predictions_list.append({\\\\n                \\\\\\\"idx\\\\\\\": i + j,\\\\n                \\\\\\\"problem_id\\\\\\\": batch[j].get(\\\\\\\"problem_id\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n                \\\\\\\"mutation_type\\\\\\\": batch[j].get(\\\\\\\"mutation_type\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n                \\\\\\\"source\\\\\\\": batch[j].get(\\\\\\\"source\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n                \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\" if batch_labels[j] == 1 else \\\\\\\"FAIL\\\\\\\",\\\\n                \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\" if pred == 1 else \\\\\\\"FAIL\\\\\\\",\\\\n                \\\\\\\"correct\\\\\\\": pred == batch_labels[j],\\\\n                \\\\\\\"raw_output\\\\\\\": gen_text,\\\\n                \\\\\\\"error_type\\\\\\\": extract_error_type(gt_target),\\\\n                \\\\\\\"exact_match\\\\\\\": gen_text.strip() == gt_target.strip(),\\\\n            })\\\\n\\\\n        done = min(i + args.batch_size, total)\\\\n        if done % (args.batch_size * 10) == 0 or done == total:\\\\n            log.info(f\\\\\\\"Progress: {done}/{total}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-12T16:14:27.189689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "grep \"add_argument\" /home/sonny/exec-sim-repair-verifier/eval_cwm_baseline.py"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-12T16:14:27.189838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    p.add_argument(\\\\\\\"--data_dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--checkpoint_dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--model_name\\\\\\\", default=\\\\\\\"Qwen/Qwen3-4B\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"eval_cwm_results.json\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=16)\\\\n    p.add_argument(\\\\\\\"--max_seq_length\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=64)\\\\n    p.add_argument(\\\\\\\"--save_predictions\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Save per-instance predictions to JSON\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-12T16:14:27.189981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "ls /home/sonny/.cache/huggingface/hub/"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-12T16:14:27.190114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CACHEDIR.TAG\\\\ndatasets--AlexCuadron--SWE-Bench-Verified-O1-reasoning-high-results\\\\ndatasets--emotion\\\\ndatasets--google-research-datasets--mbpp\\\\ndatasets--openai--openai_humaneval\\\\ndatasets--princeton-nlp--SWE-bench_Verified\\\\ndatasets--SWE-bench--SWE-smith\\\\ndatasets--SWE-bench--SWE-smith-trajectories\\\\ndatasets--togethercomputer--CoderForge-Preview-32B-SWE-Bench-Verified-Evaluation-trajectories\\\\nmodels--deepseek-ai--DeepSeek-R1-Distill-Qwen-7B\\\\nmodels--distilbert-base-uncased\\\\nmodels--microsoft--Florence-2-large\\\\nmodels--QuanSun--EVA-CLIP\\\\nmodels--Qwen--Qwen3-0.6B\\\\nmodels--Qwen--Qwen3-4B\\\\nmodels--Qwen--Qwen3-8B\\\\nmodels--timm--cait_s24_224.fb_dist_in1k\\\\nmodels--timm--coat_lite_small.in1k\\\\nmodels--timm--convmixer_768_32.in1k\\\\nmodels--timm--convnext_tiny.fb_in1k\\\\nmodels--timm--convnextv2_tiny.fcmae_ft_in1k\\\\nmodels--timm--deit_base_patch16_224.fb_in1k\\\\nmodels--timm--deit_small_patch16_224.fb_in1k\\\\nmodels--timm--focalnet_tiny_srf.ms_in1k\\\\nmodels--timm--mambaout_tiny.in1k\\\\nmodels--timm--poolformer_s24.sail_in1k\\\\nmodels--timm--poolformer_s36.sail_in1k\\\\nmodels--timm--pvt_v2_b2.in1k\\\\nmodels--timm--pvt_v2_b3.in1k\\\\nmodels--timm--resmlp_24_224.fb_in1k\\\\nmodels--timm--resnet101.a1_in1k\\\\nmodels--timm--resnet50.a1_in1k\\\\nmodels--timm--swin_tiny_patch4_window7_224.ms_in1k\\\\nmodels--timm--twins_svt_small.in1k\\\\nversion_diffusers_cache.txt\\\\nversion.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-12T16:14:27.190262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "cd /home/sonny/exec-sim-repair-verifier && nohup python3 eval_cwm_baseline.py \\\n  --data_dir data/ \\\n  --checkpoint_dir checkpoints_cwm/best \\\n  --model_name /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/$(ls /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/) \\\n  --output eval_cwm_seed42_with_preds.json \\\n  --save_predictions \\\n  --batch_size 16 \\\n  > /tmp/cwm_extract_preds.log 2>&1 &\necho \"PID=$!\"",
+              "warn": "True"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-12T16:14:27.190397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /home/sonny/exec-sim-repair-verifier && nohup python3 eval_cwm_baseline.py \\\\\\\\\\\\\\\\\\\\\\\\n  --data_dir data/ \\\\\\\\\\\\\\\\\\\\\\\\n  --checkpoint_dir checkpoints_cwm/best \\\\\\\\\\\\\\\\\\\\\\\\n  --model_name /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/$(ls /home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/) \\\\\\\\\\\\\\\\\\\\\\\\n  --output eval_cwm_seed42_with_preds.json \\\\\\\\\\\\\\\\\\\\\\\\n  --save_predictions \\\\\\\\\\\\\\\\\\\\\\\\n  --batch_size 16 \\\\\\\\\\\\\\\\\\\\\\\\n  > /tmp/cwm_extract_preds.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=2827684\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-12T16:14:27.190635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "cat > /home/sonny/exec-sim-repair-verifier/analyze_error_overlap.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"CLS vs CWM per-instance error overlap analysis.\"\"\"\nimport json\nimport sys\nfrom collections import Counter, defaultdict\n\ndef load_cls_predictions(path):\n    preds = []\n    with open(path) as f:\n        for line in f:\n            preds.append(json.loads(line))\n    return preds\n\ndef load_cwm_predictions(path):\n    with open(path) as f:\n        data = json.load(f)\n    return data[\"predictions\"]\n\ndef cohens_kappa(y1, y2):\n    n = len(y1)\n    assert n == len(y2)\n    cats = sorted(set(y1) | set(y2))\n    confusion = Counter()\n    for a, b in zip(y1, y2):\n        confusion[(a, b)] += 1\n    po = sum(confusion[(c, c)] for c in cats) / n\n    pe = sum(\n        (sum(confusion[(c, c2)] for c2 in cats) / n) *\n        (sum(confusion[(c2, c)] for c2 in cats) / n)\n        for c in cats\n    )\n    if pe == 1.0:\n        return 1.0\n    return (po - pe) / (1.0 - pe)\n\ndef compute_f1_prec_rec(labels, preds, pos_label):\n    tp = sum(1 for l, p in zip(labels, preds) if l == pos_label and p == pos_label)\n    fp = sum(1 for l, p in zip(labels, preds) if l != pos_label and p == pos_label)\n    fn = sum(1 for l, p in zip(labels, preds) if l == pos_label and p != pos_label)\n    prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0\n    rec = tp / (tp + fn) if (tp + fn) > 0 else 0.0\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0\n    return {\"precision\": round(prec * 100, 2), \"recall\": round(rec * 100, 2), \"f1\": round(f1 * 100, 2), \"support\": tp + fn}\n\ndef main():\n    cls_path = \"/home/sonny/exec-sim-repair-verifier/predictions_cls_seed42.jsonl\"\n    cwm_path = \"/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\"\n    out_path = \"/home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json\"\n\n    cls_preds = load_cls_predictions(cls_path)\n    cwm_preds = load_cwm_predictions(cwm_path)\n\n    assert len(cls_preds) == len(cwm_preds), f\"Size mismatch: CLS={len(cls_preds)}, CWM={len(cwm_preds)}\"\n    n = len(cls_preds)\n\n    # Build lookup by index\n    cwm_by_idx = {p[\"idx\"]: p for p in cwm_preds}\n\n    both_correct = []\n    cls_only_correct = []\n    cwm_only_correct = []\n    both_wrong = []\n\n    by_mutation = defaultdict(lambda: {\"both_correct\": 0, \"cls_only\": 0, \"cwm_only\": 0, \"both_wrong\": 0, \"total\": 0})\n    by_problem = defaultdict(lambda: {\"both_correct\": 0, \"cls_only\": 0, \"cwm_only\": 0, \"both_wrong\": 0, \"total\": 0})\n\n    cls_correct_list = []\n    cwm_correct_list = []\n\n    cwm_labels = []\n    cwm_pred_labels = []\n    cwm_mutation_data = defaultdict(lambda: {\"labels\": [], \"preds\": [], \"exact_matches\": []})\n\n    for cls_p in cls_preds:\n        idx = cls_p[\"index\"]\n        cwm_p = cwm_by_idx[idx]\n        \n        cls_correct = (cls_p[\"pred\"] == cls_p[\"label\"])\n        cwm_pred_val = 1 if cwm_p[\"predicted_label\"] == \"PASS\" else 0\n        cwm_label_val = 1 if cwm_p[\"true_label\"] == \"PASS\" else 0\n        cwm_correct_val = (cwm_pred_val == cwm_label_val)\n\n        cls_correct_list.append(1 if cls_correct else 0)\n        cwm_correct_list.append(1 if cwm_correct_val else 0)\n\n        mt = cls_p[\"mutation_type\"]\n        pid = cls_p[\"problem_id\"]\n\n        cwm_labels.append(cwm_label_val)\n        cwm_pred_labels.append(cwm_pred_val)\n        cwm_mutation_data[mt][\"labels\"].append(cwm_label_val)\n        cwm_mutation_data[mt][\"preds\"].append(cwm_pred_val)\n        cwm_mutation_data[mt][\"exact_matches\"].append(1 if cwm_p.get(\"exact_match\", False) else 0)\n\n        item = {\"index\": idx, \"problem_id\": pid, \"mutation_type\": mt}\n\n        if cls_correct and cwm_correct_val:\n            both_correct.append(item)\n            cat = \"both_correct\"\n        elif cls_correct and not cwm_correct_val:\n            cls_only_correct.append(item)\n            cat = \"cls_only\"\n        elif not cls_correct and cwm_correct_val:\n            cwm_only_correct.append(item)\n            cat = \"cwm_only\"\n        else:\n            both_wrong.append(item)\n            cat = \"both_wrong\"\n\n        by_mutation[mt][cat] += 1\n        by_mutation[mt][\"total\"] += 1\n        by_problem[pid][cat] += 1\n        by_problem[pid][\"total\"] += 1\n\n    # Cohen's kappa on correctness\n    kappa_correctness = cohens_kappa(cls_correct_list, cwm_correct_list)\n\n    # Cohen's kappa on predictions (pass/fail)\n    cls_pred_binary = [p[\"pred\"] for p in cls_preds]\n    cwm_pred_binary = [1 if cwm_by_idx[p[\"index\"]][\"predicted_label\"] == \"PASS\" else 0 for p in cls_preds]\n    kappa_predictions = cohens_kappa(cls_pred_binary, cwm_pred_binary)\n\n    # CWM per-class F1 by mutation type\n    cwm_per_mutation_f1 = {}\n    for mt, data in sorted(cwm_mutation_data.items()):\n        labels = data[\"labels\"]\n        preds = data[\"preds\"]\n        em = data[\"exact_matches\"]\n        pass_metrics = compute_f1_prec_rec(labels, preds, 1)\n        fail_metrics = compute_f1_prec_rec(labels, preds, 0)\n        acc = sum(1 for l, p in zip(labels, preds) if l == p) / len(labels) * 100\n        em_rate = sum(em) / len(em) * 100\n        cwm_per_mutation_f1[mt] = {\n            \"total\": len(labels),\n            \"accuracy\": round(acc, 2),\n            \"exact_match_rate\": round(em_rate, 2),\n            \"pass_f1\": pass_metrics,\n            \"fail_f1\": fail_metrics,\n        }\n\n    # Problems where only one method succeeds\n    cls_only_problems = set()\n    cwm_only_problems = set()\n    for pid, counts in by_problem.items():\n        if counts[\"cls_only\"] > 0 and counts[\"cwm_only\"] == 0:\n            cls_only_problems.add(pid)\n        elif counts[\"cwm_only\"] > 0 and counts[\"cls_only\"] == 0:\n            cwm_only_problems.add(pid)\n\n    # Sort mutation breakdown\n    mutation_breakdown = {}\n    for mt in sorted(by_mutation.keys()):\n        d = by_mutation[mt]\n        t = d[\"total\"]\n        mutation_breakdown[mt] = {\n            \"total\": t,\n            \"both_correct\": d[\"both_correct\"],\n            \"both_correct_pct\": round(d[\"both_correct\"] / t * 100, 1),\n            \"cls_only_correct\": d[\"cls_only\"],\n            \"cls_only_correct_pct\": round(d[\"cls_only\"] / t * 100, 1),\n            \"cwm_only_correct\": d[\"cwm_only\"],\n            \"cwm_only_correct_pct\": round(d[\"cwm_only\"] / t * 100, 1),\n            \"both_wrong\": d[\"both_wrong\"],\n            \"both_wrong_pct\": round(d[\"both_wrong\"] / t * 100, 1),\n        }\n\n    # Find CWM weakest mutation types (by accuracy)\n    cwm_weakest = sorted(cwm_per_mutation_f1.items(), key=lambda x: x[1][\"accuracy\"])[:3]\n\n    results = {\n        \"total_samples\": n,\n        \"overlap_summary\": {\n            \"both_correct\": len(both_correct),\n            \"both_correct_pct\": round(len(both_correct) / n * 100, 2),\n            \"cls_only_correct\": len(cls_only_correct),\n            \"cls_only_correct_pct\": round(len(cls_only_correct) / n * 100, 2),\n            \"cwm_only_correct\": len(cwm_only_correct),\n            \"cwm_only_correct_pct\": round(len(cwm_only_correct) / n * 100, 2),\n            \"both_wrong\": len(both_wrong),\n            \"both_wrong_pct\": round(len(both_wrong) / n * 100, 2),\n        },\n        \"complementarity\": {\n            \"cls_unique_correct\": len(cls_only_correct),\n            \"cwm_unique_correct\": len(cwm_only_correct),\n            \"union_correct\": len(both_correct) + len(cls_only_correct) + len(cwm_only_correct),\n            \"union_accuracy_pct\": round((len(both_correct) + len(cls_only_correct) + len(cwm_only_correct)) / n * 100, 2),\n            \"oracle_gain_over_cls_pp\": round(len(cwm_only_correct) / n * 100, 2),\n            \"oracle_gain_over_cwm_pp\": round(len(cls_only_correct) / n * 100, 2),\n        },\n        \"cohens_kappa\": {\n            \"on_correctness\": round(kappa_correctness, 4),\n            \"on_predictions\": round(kappa_predictions, 4),\n        },\n        \"mutation_type_breakdown\": mutation_breakdown,\n        \"cwm_per_mutation_f1\": cwm_per_mutation_f1,\n        \"cwm_weakest_mutation_types\": [{\"mutation_type\": mt, \"accuracy\": d[\"accuracy\"], \"exact_match_rate\": d[\"exact_match_rate\"]} for mt, d in cwm_weakest],\n        \"problems_cls_only_succeeds\": sorted(list(cls_only_problems))[:20],\n        \"problems_cwm_only_succeeds\": sorted(list(cwm_only_problems))[:20],\n        \"n_problems_cls_only\": len(cls_only_problems),\n        \"n_problems_cwm_only\": len(cwm_only_problems),\n    }\n\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(json.dumps(results, indent=2))\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\""
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-12T16:14:27.190893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-12T16:14:27.191048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "tail -10 /tmp/cwm_extract_preds.log"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-12T16:14:27.191199+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  ZeroDivisionError              9        55.6%     100.0%\\\\n  RecursionError                 7        71.4%     100.0%\\\\n  ValueError                     5        40.0%     100.0%\\\\n  OverflowError                  3         0.0%       0.0%\\\\n\\\\nMVP-B CRITERIA (same thresholds as classification):\\\\n  Per-class F1 >65%: PASS\\\\n  Accuracy gap >=10pp: PASS (+35.8pp)\\\\n  Overall: PASS\\\\n============================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-12T16:14:27.191389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "ls -la /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds*"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-12T16:14:27.191533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-rw-r-- 1 sonny sonny   2280 May 12 09:12 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds.json\\\\n-rw-rw-r-- 1 sonny sonny 612849 May 12 09:12 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-12T16:14:27.191664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "python3 -c \"import json; d=json.load(open('/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json')); print(len(d['predictions'])); print(json.dumps(d['predictions'][0], indent=2))\""
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-12T16:14:27.191788+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-12T16:14:27.191946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "python3 -c \"import json; d=json.load(open('/home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json')); print(len(d['predictions'])); print(json.dumps(d['predictions'][0], indent=2))\""
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-12T16:14:27.192074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-12T16:14:27.192188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "head -30 /home/sonny/exec-sim-repair-verifier/eval_cwm_seed42_with_preds_predictions.json"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-12T16:14:27.192327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/home/sonny/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"checkpoints_cwm/best\\\\\\\",\\\\n    \\\\\\\"test_set_size\\\\\\\": 1890\\\\n  },\\\\n  \\\\\\\"predictions\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 0,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"original\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"PASS: test completed successfully\\\\\\\",\\\\n      \\\\\\\"error_type\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"exact_match\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"idx\\\\\\\": 1,\\\\n      \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"mutation_type\\\\\\\": \\\\\\\"off_by_one\\\\\\\",\\\\n      \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\",\\\\n      \\\\\\\"true_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"predicted_label\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"raw_output\\\\\\\": \\\\\\\"PASS: test completed successfully\\\\\\\",\\\\n      \\\\\\\"error_type\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n      \\\\\\\"exact_match\\\\\\\": true\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-12T16:14:27.192468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "cd /home/sonny/exec-sim-repair-verifier && python3 analyze_error_overlap.py"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-12T16:14:27.192708+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_samples\\\\\\\": 1890,\\\\n  \\\\\\\"overlap_summary\\\\\\\": {\\\\n    \\\\\\\"both_correct\\\\\\\": 1601,\\\\n    \\\\\\\"both_correct_pct\\\\\\\": 84.71,\\\\n    \\\\\\\"cls_only_correct\\\\\\\": 59,\\\\n    \\\\\\\"cls_only_correct_pct\\\\\\\": 3.12,\\\\n    \\\\\\\"cwm_only_correct\\\\\\\": 53,\\\\n    \\\\\\\"cwm_only_correct_pct\\\\\\\": 2.8,\\\\n    \\\\\\\"both_wrong\\\\\\\": 177,\\\\n    \\\\\\\"both_wrong_pct\\\\\\\": 9.37\\\\n  },\\\\n  \\\\\\\"complementarity\\\\\\\": {\\\\n    \\\\\\\"cls_unique_correct\\\\\\\": 59,\\\\n    \\\\\\\"cwm_unique_correct\\\\\\\": 53,\\\\n    \\\\\\\"union_correct\\\\\\\": 1713,\\\\n    \\\\\\\"union_accuracy_pct\\\\\\\": 90.63,\\\\n    \\\\\\\"oracle_gain_over_cls_pp\\\\\\\": 2.8,\\\\n    \\\\\\\"oracle_gain_over_cwm_pp\\\\\\\": 3.12\\\\n  },\\\\n  \\\\\\\"cohens_kappa\\\\\\\": {\\\\n    \\\\\\\"on_correctness\\\\\\\": 0.7259,\\\\n    \\\\\\\"on_predictions\\\\\\\": 0.8815\\\\n  },\\\\n  \\\\\\\"mutation_type_breakdown\\\\\\\": {\\\\n    \\\\\\\"boundary_removal\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 36,\\\\n      \\\\\\\"both_correct\\\\\\\": 31,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 86.1,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 2,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 5.6,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 1,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 2.8,\\\\n      \\\\\\\"both_wrong\\\\\\\": 2,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 5.6\\\\n    },\\\\n    \\\\\\\"off_by_one\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 671,\\\\n      \\\\\\\"both_correct\\\\\\\": 517,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 77.0,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 22,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 3.3,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 32,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 4.8,\\\\n      \\\\\\\"both_wrong\\\\\\\": 100,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 14.9\\\\n    },\\\\n    \\\\\\\"operator_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 298,\\\\n      \\\\\\\"both_correct\\\\\\\": 247,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 82.9,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 9,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 3.0,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 17,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 5.7,\\\\n      \\\\\\\"both_wrong\\\\\\\": 25,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 8.4\\\\n    },\\\\n    \\\\\\\"original\\\\\\\": {\\\\n      \\\n…[truncated 5485 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-12T16:14:27.192919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cwm-seed789",
+              "field": "metrics",
+              "value": "{'overall_accuracy': 86.67, 'pass_f1': 86.74, 'fail_f1': 86.6, 'exact_match_rate': 83.97, 'baseline_gap_pp': 34.92, 'test_set_size': 1890, 'unparseable_predictions': 0, 'per_class': {'fail': {'precision': 84.09, 'recall': 89.25, 'f1': 86.6}, 'pass': {'precision': 89.37, 'recall': 84.25, 'f1': 86.74}}}",
+              "project": "exec-sim-repair-verifier"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-12T16:14:27.193110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cwm-seed789\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:31:34.311Z\\\", \\\"updated_at\\\": \\\"2026-05-12T16:13:15.185Z\\\", \\\"hypothesis\\\": \\\"补充 4B CWM seed=789，凑齐 CWM 5-seed 对比（42, 123, 456, 789, 0），与 5-seed CLS 做 paired 统计检验\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output_dir checkpoints_cwm_seed789/ --seed 789 --no_wandb && python3 eval_cwm_baseline.py --data_dir data/ --checkpoint_dir checkpoints_cwm_seed789/best --model_name /root/.cache/huggingface/hub/Qwen/Qwen3-4B --output eval_cwm_seed789.json\\\\\\\"\\\", \\\"server\\\": \\\"seetacloud-westd-4x5090\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": 42227, \\\"log_path\\\": \\\"~/runs/exec-sim-repair-verifier/cwm-seed789.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T12:34:07.017Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/data/\\\", \\\"data_count\\\": 15290, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 789, \\\"metrics\\\": {\\\"overall_accuracy\\\": 86.67, \\\"pass_f1\\\": 86.74, \\\"fail_f1\\\": 86.6, \\\"exact_match_rate\\\": 83.97, \\\"baseline_gap_pp\\\": 34.92, \\\"test_set_size\\\": 1890, \\\"unparseable_predictions\\\": 0}, \\\"checkpoint_path\\\": \\\"/home/sonny/exec-sim-repair-verifier/checkpoints_cwm_seed789/best/\\\", \\\"wall_clock_seconds\\\": 5158.3, \\\"gpu_hours\\\": 1.43}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-12T14:00:05.341Z\\\", \\\"metrics\\\": {\\\"overall_accuracy\\\": 86.67, \\\"pass_f1\\\": 86.74, \\\"fail_f1\\\": 86.6, \\\"exact_match_rate\\\": 83.97, \\\"baseline_gap_pp\\\": 34.92, \\\"test_set_size\\\": 1890, \\\"unparseable_predictions\\\": 0, \\\"per_class\\\": {\\\"fail\\\": {\\\"precision\\\": 84.09, \\\"recall\\\": 89.25, \\\"f1\\\": 86.6}, \n…[truncated 135 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-12T16:14:27.193264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "CLS vs CWM Error Overlap Analysis",
+              "type": "data",
+              "description": "Per-instance error overlap analysis between CLS (seed42) and CWM (seed42) on 1890 test samples. Includes agreement matrix, Cohen's kappa, mutation-type breakdown, CWM per-mutation F1, and complementarity metrics.",
+              "project": "exec-sim-repair-verifier",
+              "source_path": "/home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json",
+              "tags": "['dream5', 'error-overlap', 'cls-vs-cwm', 'paper']"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-12T16:14:27.193424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-12T16:14:27.193584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "home-1x5090",
+              "account": "sonny",
+              "command": "cat /home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-12T16:14:27.193855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"total_samples\\\\\\\": 1890,\\\\n  \\\\\\\"overlap_summary\\\\\\\": {\\\\n    \\\\\\\"both_correct\\\\\\\": 1601,\\\\n    \\\\\\\"both_correct_pct\\\\\\\": 84.71,\\\\n    \\\\\\\"cls_only_correct\\\\\\\": 59,\\\\n    \\\\\\\"cls_only_correct_pct\\\\\\\": 3.12,\\\\n    \\\\\\\"cwm_only_correct\\\\\\\": 53,\\\\n    \\\\\\\"cwm_only_correct_pct\\\\\\\": 2.8,\\\\n    \\\\\\\"both_wrong\\\\\\\": 177,\\\\n    \\\\\\\"both_wrong_pct\\\\\\\": 9.37\\\\n  },\\\\n  \\\\\\\"complementarity\\\\\\\": {\\\\n    \\\\\\\"cls_unique_correct\\\\\\\": 59,\\\\n    \\\\\\\"cwm_unique_correct\\\\\\\": 53,\\\\n    \\\\\\\"union_correct\\\\\\\": 1713,\\\\n    \\\\\\\"union_accuracy_pct\\\\\\\": 90.63,\\\\n    \\\\\\\"oracle_gain_over_cls_pp\\\\\\\": 2.8,\\\\n    \\\\\\\"oracle_gain_over_cwm_pp\\\\\\\": 3.12\\\\n  },\\\\n  \\\\\\\"cohens_kappa\\\\\\\": {\\\\n    \\\\\\\"on_correctness\\\\\\\": 0.7259,\\\\n    \\\\\\\"on_predictions\\\\\\\": 0.8815\\\\n  },\\\\n  \\\\\\\"mutation_type_breakdown\\\\\\\": {\\\\n    \\\\\\\"boundary_removal\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 36,\\\\n      \\\\\\\"both_correct\\\\\\\": 31,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 86.1,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 2,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 5.6,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 1,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 2.8,\\\\n      \\\\\\\"both_wrong\\\\\\\": 2,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 5.6\\\\n    },\\\\n    \\\\\\\"off_by_one\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 671,\\\\n      \\\\\\\"both_correct\\\\\\\": 517,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 77.0,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 22,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 3.3,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 32,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 4.8,\\\\n      \\\\\\\"both_wrong\\\\\\\": 100,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 14.9\\\\n    },\\\\n    \\\\\\\"operator_swap\\\\\\\": {\\\\n      \\\\\\\"total\\\\\\\": 298,\\\\n      \\\\\\\"both_correct\\\\\\\": 247,\\\\n      \\\\\\\"both_correct_pct\\\\\\\": 82.9,\\\\n      \\\\\\\"cls_only_correct\\\\\\\": 9,\\\\n      \\\\\\\"cls_only_correct_pct\\\\\\\": 3.0,\\\\n      \\\\\\\"cwm_only_correct\\\\\\\": 17,\\\\n      \\\\\\\"cwm_only_correct_pct\\\\\\\": 5.7,\\\\n      \\\\\\\"both_wrong\\\\\\\": 25,\\\\n      \\\\\\\"both_wrong_pct\\\\\\\": 8.4\\\\n    },\\\\n    \\\\\\\"original\\\\\\\": {\\\\n      \\\n…[truncated 5482 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-12T16:14:27.194036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "CLS vs CWM Error Overlap Analysis",
+              "type": "data",
+              "description": "Per-instance error overlap analysis between CLS (seed42) and CWM (seed42) on 1890 test samples. Both correct=84.71%, CLS-only=3.12%, CWM-only=2.80%, both wrong=9.37%. Cohen kappa=0.73 (correctness), 0.88 (predictions). Oracle union accuracy=90.63%.",
+              "project": "exec-sim-repair-verifier",
+              "content": "{\"total_samples\":1890,\"overlap_summary\":{\"both_correct\":1601,\"both_correct_pct\":84.71,\"cls_only_correct\":59,\"cls_only_correct_pct\":3.12,\"cwm_only_correct\":53,\"cwm_only_correct_pct\":2.8,\"both_wrong\":177,\"both_wrong_pct\":9.37},\"complementarity\":{\"cls_unique_correct\":59,\"cwm_unique_correct\":53,\"union_correct\":1713,\"union_accuracy_pct\":90.63,\"oracle_gain_over_cls_pp\":2.8,\"oracle_gain_over_cwm_pp\":3.12},\"cohens_kappa\":{\"on_correctness\":0.7259,\"on_predictions\":0.8815},\"cwm_weakest_mutation_types\":[{\"mutation_type\":\"off_by_one\",\"accuracy\":81.82,\"exact_match_rate\":75.71},{\"mutation_type\":\"original\",\"accuracy\":85.18,\"exact_match_rate\":85.18},{\"mutation_type\":\"operator_swap\",\"accuracy\":88.59,\"exact_match_rate\":85.91}],\"n_problems_cls_only\":16,\"n_problems_cwm_only\":17}",
+              "content_filename": "error_overlap_analysis.json",
+              "tags": "['dream5', 'error-overlap', 'cls-vs-cwm', 'paper']"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-12T16:14:27.194177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'total_samples': 1890, '..._problems_cwm_only': 17}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-12T16:14:27.194306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "CLS vs CWM Error Overlap Analysis",
+              "type": "data",
+              "description": "Per-instance error overlap analysis between CLS (seed42) and CWM (seed42) on 1890 test samples. Both correct=84.71%, CLS-only=3.12%, CWM-only=2.80%, both wrong=9.37%. Cohen kappa=0.73 (correctness), 0.88 (predictions). Oracle union accuracy=90.63%.",
+              "project": "exec-sim-repair-verifier",
+              "content": "{\"total_samples\":1890,\"overlap_summary\":{\"both_correct\":1601,\"both_correct_pct\":84.71,\"cls_only_correct\":59,\"cls_only_correct_pct\":3.12,\"cwm_only_correct\":53,\"cwm_only_correct_pct\":2.8,\"both_wrong\":177,\"both_wrong_pct\":9.37},\"complementarity\":{\"cls_unique_correct\":59,\"cwm_unique_correct\":53,\"union_correct\":1713,\"union_accuracy_pct\":90.63,\"oracle_gain_over_cls_pp\":2.8,\"oracle_gain_over_cwm_pp\":3.12},\"cohens_kappa\":{\"on_correctness\":0.7259,\"on_predictions\":0.8815},\"cwm_weakest_mutation_types\":[{\"mutation_type\":\"off_by_one\",\"accuracy\":81.82,\"exact_match_rate\":75.71},{\"mutation_type\":\"original\",\"accuracy\":85.18,\"exact_match_rate\":85.18},{\"mutation_type\":\"operator_swap\",\"accuracy\":88.59,\"exact_match_rate\":85.91}],\"n_problems_cls_only\":16,\"n_problems_cwm_only\":17}",
+              "content_filename": "error_overlap_analysis.json",
+              "tags": "['dream5', 'error-overlap', 'cls-vs-cwm', 'paper']"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-12T16:14:27.194442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'total_samples': 1890, '..._problems_cwm_only': 17}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-12T16:14:27.194567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "CLS vs CWM Error Overlap Analysis",
+              "type": "data",
+              "description": "Per-instance error overlap analysis between CLS (seed42) and CWM (seed42) on 1890 test samples. Both correct=84.71%, CLS-only=3.12%, CWM-only=2.80%, both wrong=9.37%. Cohen kappa=0.73 (correctness), 0.88 (predictions). Oracle union accuracy=90.63%.",
+              "project": "exec-sim-repair-verifier",
+              "content": "{\n  \"total_samples\": 1890,\n  \"overlap_summary\": {\n    \"both_correct\": 1601, \"both_correct_pct\": 84.71,\n    \"cls_only_correct\": 59, \"cls_only_correct_pct\": 3.12,\n    \"cwm_only_correct\": 53, \"cwm_only_correct_pct\": 2.80,\n    \"both_wrong\": 177, \"both_wrong_pct\": 9.37\n  },\n  \"complementarity\": {\n    \"union_correct\": 1713, \"union_accuracy_pct\": 90.63,\n    \"oracle_gain_over_cls_pp\": 2.80, \"oracle_gain_over_cwm_pp\": 3.12\n  },\n  \"cohens_kappa\": {\"on_correctness\": 0.7259, \"on_predictions\": 0.8815},\n  \"cwm_weakest\": [\"off_by_one (81.82%)\", \"original (85.18%)\", \"operator_swap (88.59%)\"]\n}",
+              "content_filename": "error_overlap_analysis.json",
+              "tags": "['dream5', 'error-overlap', 'cls-vs-cwm', 'paper']"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-12T16:14:27.194693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'total_samples': 1890, '...perator_swap (88.59%)']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-12T16:14:27.194851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "CLS vs CWM Error Overlap Analysis",
+              "type": "data",
+              "description": "Per-instance error overlap analysis between CLS (seed42) and CWM (seed42) on 1890 test samples. Both correct=84.71%, CLS-only=3.12%, CWM-only=2.80%, both wrong=9.37%. Cohen kappa=0.73 (correctness), 0.88 (predictions). Oracle union accuracy=90.63%.",
+              "project": "exec-sim-repair-verifier",
+              "content": "total_samples: 1890\noverlap_summary:\n  both_correct: 1601 (84.71%)\n  cls_only_correct: 59 (3.12%)\n  cwm_only_correct: 53 (2.80%)\n  both_wrong: 177 (9.37%)\ncomplementarity:\n  union_correct: 1713\n  union_accuracy: 90.63%\n  oracle_gain_over_cls: +2.80pp\n  oracle_gain_over_cwm: +3.12pp\ncohens_kappa:\n  on_correctness: 0.7259\n  on_predictions: 0.8815\ncwm_weakest_mutation_types:\n  1. off_by_one: 81.82% acc, 75.71% exact_match\n  2. original: 85.18% acc, 85.18% exact_match\n  3. operator_swap: 88.59% acc, 85.91% exact_match\nproblems_cls_only: 16\nproblems_cwm_only: 17\nFull data: /home/sonny/exec-sim-repair-verifier/error_overlap_analysis.json",
+              "content_filename": "error_overlap_analysis.txt",
+              "tags": "['dream5', 'error-overlap', 'cls-vs-cwm', 'paper']"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-12T16:14:27.195010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260512_962380\\\", \\\"name\\\": \\\"CLS vs CWM Error Overlap Analysis\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Per-instance error overlap analysis between CLS (seed42) and CWM (seed42) on 1890 test samples. Both correct=84.71%, CLS-only=3.12%, CWM-only=2.80%, both wrong=9.37%. Cohen kappa=0.73 (correctness), 0.88 (predictions). Oracle union accuracy=90.63%.\\\", \\\"path\\\": \\\"projects/exec-sim-repair-verifier/artifacts/_project/data/error_overlap_analysis.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"exec-sim-repair-verifier\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-12T16:14:09.138733+00:00\\\", \\\"tags\\\": [\\\"dream5\\\", \\\"error-overlap\\\", \\\"cls-vs-cwm\\\", \\\"paper\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-12T16:14:27.195235+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总关键发现：\n\n---\n\n## 结果汇报\n\n### 任务 1: CLS vs CWM Error Overlap (seed42, n=1890)\n\n| 类别 | 数量 | 比例 |\n|------|------|------|\n| Both correct | 1601 | 84.71% |\n| CLS-only correct | 59 | 3.12% |\n| CWM-only correct | 53 | 2.80% |\n| Both wrong | 177 | 9.37% |\n\n**互补性**：Oracle 组合 (任一正确即正确) 准确率 = **90.63%**，比 CLS 单独 (+2.80pp)、CWM 单独 (+3.12pp) 都高。两种方法有约 **5.9%** 的互补空间。\n\n**Cohen's Kappa**：\n- 预测一致性 κ = 0.88 (almost perfect agreement)  \n- 正确性一致性 κ = 0.73 (substantial agreement)\n\n**按 mutation type**：互补性最强的是 **off_by_one** (CWM-only 4.8%, 两者都错 14.9%) 和 **operator_swap** (CWM-only 5.7%)。**return_value** 几乎完全重叠 (96.8% both correct)。\n\n### 任务 2: CWM Per-class F1 Breakdown\n\nCWM 最弱 mutation types:\n1. **off_by_one**: acc 81.82%, exact_match 75.71%, fail_f1 79.87%\n2. **original** (pass samples): acc 85.18%, exact_match 85.18%  \n3. **operator_swap**: acc 88.59%, exact_match 85.91%\n\n最强：**return_value** (97.01% acc, 94.78% exact_match), **variable_swap** (94.12% acc)\n\n### 任务 3: cwm-seed789 Metrics 补录\n\n已更新 registry：\n- overall_accuracy: 86.67%\n- pass_f1: 86.74, fail_f1: 86.60\n- exact_match_rate: 83.97%\n- baseline_gap: +34.92pp"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_error-overlap-cls-cwm_20260512T160639"
+          },
+          "id": "event-000105"
+        }
+      ],
+      "message_count": 105
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-error-overlap-cls-cwm.md"
+}

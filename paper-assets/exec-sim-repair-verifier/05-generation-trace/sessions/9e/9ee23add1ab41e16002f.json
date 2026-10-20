@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ee23add1ab41e16002f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra westd 48478 readiness",
+  "task_key": "worker_infra_westd-48478-readiness_20260512T205406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd-48478-readiness_20260512T205406_result.json",
+    "occurrence": 1,
+    "bytes": 742,
+    "sha256": "241139a70f4fa7f003e54667d112c512601ce4b7cdcba3c3425eeb990a5b890d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/westd_48478_readiness.md`。\n\n## 结论：⚠️ 可以跑，需注意 2 点\n\n**具备条件**：\n- 4x RTX 5090 全空闲，cuda:2/3 显存 32G 无占用\n- PyTorch 2.10+cu128、transformers/peft/accelerate 已装\n- Qwen3-4B 已下载，训练脚本和数据（80k 条）就位\n- RAM 617G 可用（cgroup 360G），单进程训练足够\n\n**需要注意**：\n1. **根分区仅剩 11G**（v3 死因）。训练 checkpoint 已配置写数据盘（143G free），但**必须设 `HF_HOME=/root/autodl-tmp/.hf_cache`** 防止 HF cache 撑爆根分区\n2. **SSH**: `westd-48478` 认证失败，需用 `seetacloud-westd-4x5090` 作为 server name\n\n报告中包含了完整的训练启动命令。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd-48478-readiness.md"
+}

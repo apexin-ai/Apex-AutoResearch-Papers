@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87e5a68bec990ae84277",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix cuda3 conflict",
+  "task_key": "worker_fix_cuda3-conflict_20260517T173612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cuda3-conflict_20260517T173612_result.json",
+    "occurrence": 1,
+    "bytes": 1299,
+    "sha256": "2feb3c66686e0b30d1c15b5cc7510a5bc505847f55062e7d0cb60be0b8025b72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### PID 542906 (cwm-s123 训练): 已死亡，未正常完成\n\n- 最终 step: **8844 / 13266** (epoch 2.0 / 3.0)\n- 只完成了 2/3 的训练，缺失最后一个 epoch\n- Checkpoints: `checkpoint-4422` (epoch 1), `checkpoint-8844` (epoch 2)\n- `best_metric=inf` — 未收敛或未触发 best model 保存\n\n### GPU 3 当前进程: cwm-s123 eval\n\n- **PID 668680** — `eval_repo_cwm.py`，运行 ~5 分钟\n- 正在用 `checkpoint-8844`（训练未完成的最后 checkpoint）做 test eval\n- 占用 17334 MiB，60% utilization\n\n### 无冲突 — 训练已死，eval 独占 GPU 3\n\n不需要 kill 任何进程。\n\n### 全部 4 张 GPU 当前负载\n\n| GPU | PID | 任务 | 运行时间 | 显存 | Util |\n|-----|--------|------|---------|------|------|\n| 0 | 664774 | eval_repo_cls (cls_v4) | 1h08m | 31370 MiB | 92% |\n| 1 | 662946 | eval_repo_cwm (cwm_s42) | 1h15m | 17336 MiB | 60% |\n| 2 | 665019 | eval_repo_cls (cls_s123) | 1h08m | 31370 MiB | 90% |\n| 3 | 668680 | eval_repo_cwm (cwm_s123) | ~5m | 17334 MiB | 60% |\n\n### 需要关注\n\ncwm-s123 训练只跑了 2/3 就死了（step 8844/13266）。当前 eval 用的是不完整训练的 checkpoint。如果需要完整 3 epoch 的结果，训练需要重跑或从 checkpoint-8844 resume。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cuda3-conflict.md"
+}

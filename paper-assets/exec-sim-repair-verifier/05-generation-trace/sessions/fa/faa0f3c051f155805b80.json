@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "faa0f3c051f155805b80",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_15_1778853410.md",
+  "task_key": "loop_15_1778853410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1778853410.md",
+    "occurrence": 1,
+    "bytes": 4949,
+    "sha256": "2a5ab4d4068a9ad0a4f95eea2458518c1fbfde0e74d3fadc66a790caf29f8d13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-15T13:54:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd cuda:0/1/2/3，home cuda:0。**不得用白名单外 GPU，即使 Director 指令也 push back**\n- test eval 禁止 `--max_samples`，必须评完整集（test n=9784, val n=9335）。之前 seed123 ckpt-6200/6400 用了 max_samples=8192 被 Reviewer 抓出重跑\n- 标 FAILED/DONE 前必须 `ps -p PID` 确认进程已退出。之前 v1 误标导致 GPU OOM 事故\n- s42 resume checkpoint 目录从 ckpt-600 开始（200步间隔），ckpt-200/400 不在 resume 目录里，在原始训练目录\n- CWM eval 用 `eval_repo_cwm.py`（不是 eval_repo_cls.py），max_new_tokens=1024，bs=1，耗时极长（~54h）\n- home 版 eval 脚本不支持 `--max_new_tokens` 参数\n- EMNLP ARR **May 25** 截止，剩 10 天，禁止 fallback 思维\n\n### 2. 🖥️ 基础设施快照\n- **westd** (seetacloud-westd-4x5090, root):\n  - 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 代码：`/home/sonny/exec-sim-repair-verifier`（注意 sonny 不是 root）\n  - 8B 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n  - CWM 8B ckpts：`/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`（已有 400, 4000-4300）\n  - s42 resume ckpts：`/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`（从 ckpt-600 起）\n  - seed123 ckpts：`/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` + backup `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n- **home** (home-1x5090, sonny):\n  - 代码/ckpts：`/home/sonny/exec-sim-repair-verifier/`\n  - 4B v5 ckpts：`/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n- **活跃进程**:\n  - repo-level-cwm-8b-conda-v4: PID 266816, cuda:2, CWM 8B 训练 ~57%, ETA May 16 05:30 UTC\n  - repo-level-cls-8b-s42-resume: PID 295794, cuda:1, CLS 8B s42 resume ~55%, ETA ~May 15 23:00 UTC\n  - cwm8b-ckpt400-test-eval: PID 367292, cuda:3, CWM 8B ckpt-400 全量 test eval (~54h)\n  - cwm-rank32-ablation-v2: PID 368823, cuda:0, CWM 4B rank=32 ablation 22% (step 324/1434)\n- **Cron**: 4 个活跃，分别监控上述 4 个进程\n\n### 3. 📊 当前状态\n**阶段**: Paper Writing。Paper Agent 已启动 Full Draft（Step 2 图表 → Step 3 写作 → Step 4 审查）。\n\n**所有 4 张 GPU 都在跑**:\n| GPU | 实验 | 进度 | ETA |\n|-----|------|------|-----|\n| cuda:0 | cwm-rank32-ablation-v2 (4B rank=32) | 22% | ~数小时 |\n| cuda:1 | s42 resume 训练 | 55% | May 15 23:00 UTC |\n| cuda:2 | CWM 8B v4 训练 | 57% | May 16 05:30 UTC |\n| cuda:3 | CWM 8B ckpt-400 test eval | 进行中 | ~54h total |\n\n**Worker 池 = 0**（全部 GPU 阻塞等训练/eval 完成，但 Paper Agent 应在 paper 侧并行推进）。\n\n**PREPARING 但未提交**: cls8b-ckpt3000-test-eval, cls8b-ckpt3000-test-v2, repo-level-cls-8b-s42-ckpt200-val（等 GPU 空闲）。\n\n### 4. 📋 待办（条件触发式）\n- **s42 resume 完成**（ETA ~今晚）→ 用新 checkpoint 跑 extended val sweep（cuda:1 释放）→ 看是否有新 val-best\n- **cwm-rank32-ablation-v2 完成** → eval rank=32 model → 对比 rank=16 baseline → 结果入 ablation table，回应 reviewer concern\n- **CWM 8B v4 训练完成**（ETA May 16 05:30）→ 用 final checkpoint + ckpt-400 的 test eval 结果 → 锁定 8B-8B CLS-CWM gap（ROADMAP 主表里的 \"⏳\"）→ 这是论文 headline number 的最后一块拼图\n- **cwm8b-ckpt400-test-eval 完成** → 记录 CWM 8B ckpt-400 test accuracy → 与 CLS 8B s42 ckpt-1000 test=83.52% 算 gap\n- **CWM 8B final ckpt test eval**（需等训练完 + cuda:3 空闲或另找 GPU）→ 同样算 gap → 确定用 ckpt-400(best eval_loss) 还是 final 作为 CWM 8B 主表数字\n- **任何实验完成且 conclusion=negative** → 必须先产 Framing 提案，禁止默默跑下一个\n\n### 5. 🎯 战略上下文\n- **核心论点**: Task reformulation from execution simulation (generation) → classification。CLS 在简单代码≈CWM，但随复杂度增长 CLS 优势放大。\n- **主表数字已锁定**（D088 val-selected）: CLS 8B multi-seed mean gap = 25.99pp vs CWM 4B。**唯一缺失**：CWM 8B test accuracy（正在训练+eval），用于 8B-8B 同参数量直接对比（D096 决定主表切为 8B-8B）。\n- **D094 seq_length confound 已排除**: CLS@2048 vs CWM gap 仍 24.79pp，不是 seq_length artifact。\n- **D095 审稿 Action Matrix**: 保留 25.59pp primary + rank ablation + relaxed matching 作为 Round 1 防御方案。\n- **易错点**:\n  - CWM 8B eval_loss 持续上升（400=0.286 → 4300=0.482），ckpt-400 很可能是最佳。不要假设 final checkpoint 会更好。\n  - 4B seed123 test=75.33% 极差（vs s42 83.63%），4B 模型 seed 方差大，论文中 4B 结果要谨慎表述。\n  - GC4-par 和 GC4-seq 不可直接对比（如果遇到类似场景）。\n  - Paper Agent 已启动，写 paper 任何文件前必须遵 red-section skill 规范。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1778853410.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe44b7596510a7eed7fe",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix home 4096 timeout rerun",
+  "task_key": "worker_fix_home-4096-timeout-rerun_20260514T115438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_home-4096-timeout-rerun_20260514T115438_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "6825cceb6833b4e481f27666f53fdc4c243147624f88b1bebf3c2f72533e8039"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "稳定运行中，没有 hang。汇报如下：\n\n---\n\n**执行结果**\n\n| 步骤 | 状态 |\n|------|------|\n| Kill PID 3080674 | 成功，GPU 已释放 |\n| 备份原脚本 | `eval_repo_cls.py.bak` |\n| 脚本修改 | 已部署 v2（402行） |\n| 4096 eval 启动 | 成功，tmux session `val_4096` |\n\n**脚本修改内容**：\n1. **看门狗线程 (watchdog)** — 每 batch 启动守护线程，超 180s 调用 `os._exit(1)` 强杀进程（绕过 CUDA GIL 问题）\n2. **`torch.cuda.synchronize()` + 计时** — 每 batch 后同步 GPU 并打印耗时，>60s 输出 SLOW 警告\n3. **增量结果保存** — 每 batch 后 flush 写入 JSONL，crash 不丢已完成数据\n4. **记录截断信息** — 输出每个被截断样本的原始 token 长度，写入结果 JSON\n5. **新增 `--output_dir` / `--checkpoint_path` 参数**\n6. **保留 `signal.alarm(170s)` 作为备用 timeout**\n\n**当前进度**：\n- 已处理 ~478/9335 样本（~5.1%）\n- 速率：短样本 0.1s/batch，满 4096 样本 0.9s/batch\n- running_acc: ~83%\n- 无 hang，无 timeout 触发\n- 预估总耗时：~40-50 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-home-4096-timeout-rerun.md"
+}

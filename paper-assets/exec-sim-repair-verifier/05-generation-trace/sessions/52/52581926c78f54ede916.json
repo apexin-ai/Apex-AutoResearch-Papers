@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52581926c78f54ede916",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra D133 home check completion",
+  "task_key": "worker_infra_D133-home-check-completion_20260518T210812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_D133-home-check-completion_20260518T210812_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "771dbd3cbddebecdc3d66401cdf166cc180643108f87c996639b59b0abf01a5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程仍在运行，未退出。**\n\nPID 4187955 仍然活跃（`Rl+` 状态，CPU 104%），从 13:52 启动至今已运行约 17 分钟。\n\n当前进度：**3157/9784**（resumed=3039，new=118），running_acc=63.6%。\n\n按 ~8 秒/样本估算，剩余 6627 样本约需 **14.7 小时**才能跑完。\n\n不需要更新 registry，继续让它跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-d133-home-check-completion.md"
+}

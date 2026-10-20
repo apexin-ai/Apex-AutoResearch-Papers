@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68f979949bfcdac9a3aa",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code adapt eval deepseek",
+  "task_key": "worker_code_adapt-eval-deepseek_20260516T052154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_adapt-eval-deepseek_20260516T052154_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "89f54fa8371aade5fab3f06072002f3b8649dc52f3ac992080fa351fab3939b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。三个 eval 脚本已适配 DeepSeek-Coder-6.7B-Instruct：\n\n**修改内容：**\n1. 新增 `detect_model_family()` — 根据模型名自动识别 `qwen`/`deepseek`/`auto`\n2. 将 `detect_thinking_support()` 替换为 `get_chat_template_kwargs(family, tokenizer)` — Qwen 传 `enable_thinking=False`，DeepSeek 无特殊参数\n3. 新增 `get_stop_token_ids(family, tokenizer)` — Qwen 用 `<|im_end|>`/`<|endoftext|>`，DeepSeek 用 `<|EOT|>`/`<｜end▁of▁sentence｜>`\n4. 新增 `_apply_chat_template_safe()` — 若 system role 不被支持（部分 DeepSeek 模型），自动合并 system 到 user message\n5. `model.generate()` 加上 `eos_token_id=eos_ids` 确保正确停止\n\n**向后兼容：**\n- `--model_name` 默认仍为 `Qwen/Qwen3-4B`，现有命令行不变\n- DeepSeek 只需传 `--model_name deepseek-ai/deepseek-coder-6.7b-instruct`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-adapt-eval-deepseek.md"
+}

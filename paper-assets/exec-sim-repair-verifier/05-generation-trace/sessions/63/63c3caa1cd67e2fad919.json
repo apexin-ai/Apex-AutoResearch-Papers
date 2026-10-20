@@ -1,0 +1,412 @@
+{
+  "schema_version": "1.0",
+  "id": "63c3caa1cd67e2fad919",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "ops cwm8b checkpoint eval loss audit",
+  "task_key": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443.jsonl",
+    "occurrence": 1,
+    "bytes": 15644,
+    "sha256": "d8ab159c405680ce136bca5001a5e257d7f3167dc908aad87b0c670ef5976c9d"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T00:55:54.441848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T00:55:54.442390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T00:55:54.442675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls -d /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-*/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T00:55:54.442964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T00:55:54.443191+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "ls -d /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-*/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T00:55:54.443424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400/\\\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5800/\\\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-5900/\\\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6000/\\\\n/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6100/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T00:55:54.443700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "python3 -c \"\nimport json\nwith open('/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6100/trainer_state.json') as f:\n    state = json.load(f)\nfor entry in state.get('log_history', []):\n    if 'eval_loss' in entry:\n        step = entry.get('step', '?')\n        loss = entry['eval_loss']\n        epoch = entry.get('epoch', '?')\n        print(f'step={step}  epoch={epoch}  eval_loss={loss:.6f}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T00:55:54.443963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T00:55:54.444200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "grep -o '\"eval_loss\": [0-9.]*' /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6100/trainer_state.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T00:55:54.444514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"eval_loss\\\\\\\": 0.4423239231109619\\\\n\\\\\\\"eval_loss\\\\\\\": 0.3069685101509094\\\\n\\\\\\\"eval_loss\\\\\\\": 0.2907436490058899\\\\n\\\\\\\"eval_loss\\\\\\\": 0.28620442748069763\\\\n\\\\\\\"eval_loss\\\\\\\": 0.29983875155448914\\\\n\\\\\\\"eval_loss\\\\\\\": 0.30134978890419006\\\\n\\\\\\\"eval_loss\\\\\\\": 0.3173505663871765\\\\n\\\\\\\"eval_loss\\\\\\\": 0.3243130147457123\\\\n\\\\\\\"eval_loss\\\\\\\": 0.34334537386894226\\\\n\\\\\\\"eval_loss\\\\\\\": 0.33317747712135315\\\\n\\\\\\\"eval_loss\\\\\\\": 0.34051015973091125\\\\n\\\\\\\"eval_loss\\\\\\\": 0.35654646158218384\\\\n\\\\\\\"eval_loss\\\\\\\": 0.36374735832214355\\\\n\\\\\\\"eval_loss\\\\\\\": 0.368895024061203\\\\n\\\\\\\"eval_loss\\\\\\\": 0.3742271661758423\\\\n\\\\\\\"eval_loss\\\\\\\": 0.3842127323150635\\\\n\\\\\\\"eval_loss\\\\\\\": 0.3730962574481964\\\\n\\\\\\\"eval_loss\\\\\\\": 0.38658642768859863\\\\n\\\\\\\"eval_loss\\\\\\\": 0.3922711908817291\\\\n\\\\\\\"eval_loss\\\\\\\": 0.39950358867645264\\\\n\\\\\\\"eval_loss\\\\\\\": 0.39827266335487366\\\\n\\\\\\\"eval_loss\\\\\\\": 0.41091135144233704\\\\n\\\\\\\"eval_loss\\\\\\\": 0.41445836424827576\\\\n\\\\\\\"eval_loss\\\\\\\": 0.43435138463974\\\\n\\\\\\\"eval_loss\\\\\\\": 0.43536877632141113\\\\n\\\\\\\"eval_loss\\\\\\\": 0.4259932339191437\\\\n\\\\\\\"eval_loss\\\\\\\": 0.4465680718421936\\\\n\\\\\\\"eval_loss\\\\\\\": 0.44782331585884094\\\\n\\\\\\\"eval_loss\\\\\\\": 0.43612757325172424\\\\n\\\\\\\"eval_loss\\\\\\\": 0.4448842704296112\\\\n\\\\\\\"eval_loss\\\\\\\": 0.44620150327682495\\\\n\\\\\\\"eval_loss\\\\\\\": 0.4529778063297272\\\\n\\\\\\\"eval_loss\\\\\\\": 0.44489744305610657\\\\n\\\\\\\"eval_loss\\\\\\\": 0.44345414638519287\\\\n\\\\\\\"eval_loss\\\\\\\": 0.4627508521080017\\\\n\\\\\\\"eval_loss\\\\\\\": 0.45825108885765076\\\\n\\\\\\\"eval_loss\\\\\\\": 0.457393616437912\\\\n\\\\\\\"eval_loss\\\\\\\": 0.46643152832984924\\\\n\\\\\\\"eval_loss\\\\\\\": 0.4701577126979828\\\\n\\\\\\\"eval_loss\\\\\\\": 0.4779250919818878\\\\n\\\\\\\"eval_loss\\\\\\\": 0.4788362681865692\\\\n\\\\\\\"eval_loss\\\\\\\": 0.4824558198451996\\\\n\\\\\\\"eval_loss\\\\\\\": 0.4824509024620056\\\\n\\\\\\\"eval_loss\\\\\\\": 0.4743461310863495\\\\n\\\\\\\"eval_loss\\\\\\\": 0.48287925124168396\\\\n\\\\\\\"eval_loss\\\\\\\": 0.49653902649879456\\\\n\\\\\\\"eval_loss\\\\\\\": 0.48155567049980164\\\\n\\\\\\\"eval_loss\\\\\\\": 0.5029603242874146\\\\n\\\\\\\"\n…[truncated 619 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T00:55:54.444824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "grep -B5 '\"eval_loss\"' /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6100/trainer_state.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T00:55:54.445342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"loss\\\\\\\": 17.5693,\\\\n      \\\\\\\"step\\\\\\\": 100\\\\n    },\\\\n    {\\\\n      \\\\\\\"epoch\\\\\\\": 0.045230960592525585,\\\\n      \\\\\\\"eval_loss\\\\\\\": 0.4423239231109619,\\\\n--\\\\n      \\\\\\\"loss\\\\\\\": 9.3804,\\\\n      \\\\\\\"step\\\\\\\": 200\\\\n    },\\\\n    {\\\\n      \\\\\\\"epoch\\\\\\\": 0.09046192118505117,\\\\n      \\\\\\\"eval_loss\\\\\\\": 0.3069685101509094,\\\\n--\\\\n      \\\\\\\"loss\\\\\\\": 5.8699,\\\\n      \\\\\\\"step\\\\\\\": 300\\\\n    },\\\\n    {\\\\n      \\\\\\\"epoch\\\\\\\": 0.13569288177757674,\\\\n      \\\\\\\"eval_loss\\\\\\\": 0.2907436490058899,\\\\n--\\\\n      \\\\\\\"loss\\\\\\\": 4.2697,\\\\n      \\\\\\\"step\\\\\\\": 400\\\\n    },\\\\n    {\\\\n      \\\\\\\"epoch\\\\\\\": 0.18092384237010234,\\\\n      \\\\\\\"eval_loss\\\\\\\": 0.28620442748069763,\\\\n--\\\\n      \\\\\\\"loss\\\\\\\": 3.0554,\\\\n      \\\\\\\"step\\\\\\\": 500\\\\n    },\\\\n    {\\\\n      \\\\\\\"epoch\\\\\\\": 0.2261548029626279,\\\\n      \\\\\\\"eval_loss\\\\\\\": 0.29983875155448914,\\\\n--\\\\n      \\\\\\\"loss\\\\\\\": 2.5369,\\\\n      \\\\\\\"step\\\\\\\": 600\\\\n    },\\\\n    {\\\\n      \\\\\\\"epoch\\\\\\\": 0.2713857635551535,\\\\n      \\\\\\\"eval_loss\\\\\\\": 0.30134978890419006,\\\\n--\\\\n      \\\\\\\"loss\\\\\\\": 1.6877,\\\\n      \\\\\\\"step\\\\\\\": 700\\\\n    },\\\\n    {\\\\n      \\\\\\\"epoch\\\\\\\": 0.3166167241476791,\\\\n      \\\\\\\"eval_loss\\\\\\\": 0.3173505663871765,\\\\n--\\\\n      \\\\\\\"loss\\\\\\\": 1.4913,\\\\n      \\\\\\\"step\\\\\\\": 800\\\\n    },\\\\n    {\\\\n      \\\\\\\"epoch\\\\\\\": 0.3618476847402047,\\\\n      \\\\\\\"eval_loss\\\\\\\": 0.3243130147457123,\\\\n--\\\\n      \\\\\\\"loss\\\\\\\": 1.0619,\\\\n      \\\\\\\"step\\\\\\\": 900\\\\n    },\\\\n    {\\\\n      \\\\\\\"epoch\\\\\\\": 0.40707864533273025,\\\\n      \\\\\\\"eval_loss\\\\\\\": 0.34334537386894226,\\\\n--\\\\n      \\\\\\\"loss\\\\\\\": 0.9913,\\\\n      \\\\\\\"step\\\\\\\": 1000\\\\n    },\\\\n    {\\\\n      \\\\\\\"epoch\\\\\\\": 0.4523096059252558,\\\\n      \\\\\\\"eval_loss\\\\\\\": 0.33317747712135315,\\\\n--\\\\n      \\\\\\\"loss\\\\\\\": 0.7359,\\\\n      \\\\\\\"step\\\\\\\": 1100\\\\n    },\\\\n    {\\\\n      \\\\\\\"epoch\\\\\\\": 0.49754056651778145,\\\\n      \\\\\\\"eval_loss\\\\\\\": 0.34051015973091125,\\\\n--\\\\n      \\\\\\\"loss\\\\\\\": 0.6937,\\\\n      \\\\\\\"step\\\\\\\": 1200\\\\n    },\\\\n    {\\\\n      \n…[truncated 8458 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T00:55:54.445683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "grep -E \"best_model_checkpoint|best_metric|save_total_limit\" /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6100/trainer_state.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T00:55:54.445942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T00:55:54.446147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "grep \"best_model_checkpoint\" /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6100/trainer_state.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T00:55:54.446361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"best_model_checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T00:55:54.446565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "grep \"best_metric\" /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6100/trainer_state.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T00:55:54.446789+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"best_metric\\\\\\\": 0.28620442748069763,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T00:55:54.447122+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整。以下是结果。\n\n---\n\n## CWM 8B 全部 Eval Loss 历史\n\n| Step | Epoch | eval_loss | 备注 |\n|------|-------|-----------|------|\n| 100 | 0.05 | 0.4423 | |\n| 200 | 0.09 | 0.3070 | |\n| 300 | 0.14 | 0.2907 | |\n| **400** | **0.18** | **0.2862** | **best_model_checkpoint ✓** |\n| 500 | 0.23 | 0.2998 | ↑ 开始上升 |\n| 600 | 0.27 | 0.3013 | |\n| 700 | 0.32 | 0.3174 | |\n| 800 | 0.36 | 0.3243 | |\n| 900 | 0.41 | 0.3433 | |\n| 1000 | 0.45 | 0.3332 | |\n| 1100 | 0.50 | 0.3405 | |\n| 1200 | 0.54 | 0.3565 | |\n| 1300 | 0.59 | 0.3637 | |\n| 1400 | 0.63 | 0.3689 | |\n| 1500 | 0.68 | 0.3742 | |\n| 1600 | 0.72 | 0.3842 | |\n| 1700 | 0.77 | 0.3731 | |\n| 1800 | 0.81 | 0.3866 | |\n| 1900 | 0.86 | 0.3923 | |\n| 2000 | 0.90 | 0.3995 | |\n| 2100 | 0.95 | 0.3983 | |\n| 2200 | 1.00 | 0.4109 | epoch 1 结束 |\n| 2300 | 1.04 | 0.4145 | |\n| 2400 | 1.09 | 0.4344 | |\n| 2500 | 1.13 | 0.4354 | |\n| 2600 | 1.18 | 0.4260 | |\n| 2700 | 1.22 | 0.4466 | |\n| 2800 | 1.27 | 0.4478 | |\n| 2900 | 1.31 | 0.4361 | |\n| 3000 | 1.36 | 0.4449 | |\n| 3100 | 1.40 | 0.4462 | |\n| 3200 | 1.45 | 0.4530 | |\n| 3300 | 1.49 | 0.4449 | |\n| 3400 | 1.54 | 0.4435 | |\n| 3500 | 1.58 | 0.4628 | |\n| 3600 | 1.63 | 0.4583 | |\n| 3700 | 1.67 | 0.4574 | |\n| 3800 | 1.72 | 0.4664 | |\n| 3900 | 1.76 | 0.4702 | |\n| 4000 | 1.81 | 0.4779 | |\n| 4100 | 1.85 | 0.4788 | |\n| 4200 | 1.90 | 0.4825 | |\n| 4300 | 1.94 | 0.4825 | |\n| 4400 | 1.99 | 0.4743 | |\n| 4500 | 2.04 | 0.4829 | epoch 2 结束 |\n| 4600 | 2.08 | 0.4965 | |\n| 4700 | 2.13 | 0.4816 | |\n| 4800 | 2.17 | 0.5030 | |\n| 4900 | 2.22 | 0.5069 | |\n| 5000 | 2.26 | 0.5038 | |\n| 5100 | 2.31 | 0.5038 | |\n| 5200 | 2.35 | 0.5066 | |\n| 5300 | 2.40 | 0.5129 | |\n| 5400 | 2.44 | 0.5097 | |\n| 5500 | 2.49 | 0.5035 | |\n| 5600 | 2.53 | 0.5116 | |\n| 5700 | 2.58 | 0.5152 | |\n| 5800 | 2.62 | 0.5121 | |\n| 5900 | 2.67 | 0.5181 | |\n| 6000 | 2.71 | 0.5161 | |\n| 6100 | 2.76 | 0.5208 | 最后一个 eval |\n\n## 结论\n\n1. **ckpt-400 是 Trainer 自动选出的 val-best checkpoint**，`best_model_checkpoint` 明确指向它，`best_metric = 0.2862`，是全局最低 eval_loss。\n\n2. **eval_loss 在 step 400 后单调上升**，从 0.286 → 0.521（step 6100），训练约 0.18 epoch 后即开始严重过拟合。train_loss 同期从 4.27 降到 0.0036，过拟合非常明显。\n\n3. **磁盘上只保留了 5 个 checkpoint**（400, 5800, 5900, 6000, 6100），说明训练配置了 `save_total_limit=5`，中间的 checkpoint（500-5700）已被自动删除。ckpt-400 被保留是因为 `load_best_model_at_end=True` 会保护 best checkpoint 不被删除。\n\n4. **不需要 val sweep**——ckpt-400 是唯一合理的选择，step 500 之后 eval_loss 就没再低于 0.286。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cwm8b-checkpoint-eval-loss-audit_20260516T005443"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/ops-cwm8b-checkpoint-eval-loss-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44235cf52c2965cc2660",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect deepseek repo eval results",
+  "task_key": "worker_collect_deepseek-repo-eval-results_20260517T173009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_deepseek-repo-eval-results_20260517T173009_result.json",
+    "occurrence": 1,
+    "bytes": 1836,
+    "sha256": "d810f3d4290338b5871ca827837df4501311ede24d0e0364a94735462e484bf9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 GPU 全部在工作了。CWM s123 eval 已成功启动并正在推理。\n\n现在计算速率估算 ETA。\n\n```\n=== GPU Status ===\nGPU 0: 92%, 31379/32607 MiB — CLS v4 s42 eval\nGPU 1: 53%, 17345/32607 MiB — CWM s42 eval\nGPU 2: 91%, 31379/32607 MiB — CLS s123 eval\nGPU 3: 55%, 17343/32607 MiB — CWM s123 eval (刚启动)\n\n=== CLS v4 s42 (GPU 0) ===\nStatus: RUNNING\nProgress: 1000/9784 (~10.2%)\nRunning accuracy: 69.9%\nRate: ~1000 samples/hr (batch=4)\nETA: ~8.8 hours remaining\n\n=== CWM s42 (GPU 1) ===\nStatus: RUNNING\nProgress: 344/9784 (~3.5%)\nRunning accuracy: 61.0%\nRate: ~344 samples/hr (batch=1, ~12s/sample)\nETA: ~27 hours remaining\n\n=== CLS s123 (GPU 2) ===\nStatus: RUNNING\nProgress: 880/9784 (~9.0%)\nRunning accuracy: 74.1%\nRate: ~880 samples/hr (batch=4)\nETA: ~10 hours remaining\n\n=== CWM s123 (GPU 3) ===\nStatus: JUST STARTED (by me)\nProgress: 6/9784\nRunning accuracy: 66.7% (too early)\nCheckpoint used: checkpoint-8844 (last epoch, largest step)\nETA: ~28 hours (same rate as CWM s42)\n```\n\n**关键发现：**\n\n1. **CLS evals 速度合理** — batch_size=4, seq8192, 约 2.5 min/40 samples, 预计 ~9-10h 完成\n2. **CWM evals 很慢** — batch_size=1, 需要生成 max_new_tokens=512, 约 12s/sample, 预计 ~27-28h\n3. **CWM s123 之前未启动** — 已在 GPU 3 上用 checkpoint-8844 (last epoch) 启动\n4. **初步精度趋势**：\n   - CLS v4 s42: ~70% (偏低于 s123)\n   - CLS s123: ~74% (较好)\n   - CWM s42: ~61%\n\n**注意事项：**\n- CWM eval 的 27h ETA 意味着明天这时候还没跑完。如果需要加速，可以考虑增大 batch_size 或减少 max_new_tokens（但会影响准确性）\n- CLS v4 s42 的 70% 对比 s123 的 74% 低了 4 个点，可能因为 v4 用的是 checkpoint-4422 而非 best（s123 用了 best）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-deepseek-repo-eval-results.md"
+}

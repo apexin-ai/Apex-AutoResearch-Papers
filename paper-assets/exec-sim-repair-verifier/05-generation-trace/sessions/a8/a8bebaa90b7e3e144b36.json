@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8bebaa90b7e3e144b36",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze cls4b v5 ckpt600 test5120 eval",
+  "task_key": "worker_analyze_cls4b-v5-ckpt600-test5120-eval_20260515T104457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cls4b-v5-ckpt600-test5120-eval_20260515T104457_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "d716c036e7e2d57107d962259e6685b40aa1b161b35537c75a6b301daa71ab65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nSTATUS: success (EXIT_CODE=0, 日志无 error/exception)\n\nMETRICS:\n  accuracy:       77.74%\n  f1_macro:       74.74%\n  f1_fail:        66.03%\n  f1_pass:        83.44%\n  precision_fail: 56.21%\n  recall_fail:    80.01%\n  unparseable:    0\n  total:          9784\n\nLOG_NOTES:\n  - 模型: Qwen/Qwen3-4B, checkpoint-600, max_seq=5120, batch=16\n  - 类别分布: pass=7138, fail=2646 (majority baseline 73.0%)\n  - accuracy 超 majority baseline +4.78pp\n  - fail 类 recall 高 (80%) 但 precision 低 (56.2%)，1649 个 pass 样本被误判为 fail\n  - 推理耗时 1613.5s (~27min), 0 条截断\n  - predictions 行数 9784，与 total 一致\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-cls4b-v5-ckpt600-test5120-eval.md"
+}

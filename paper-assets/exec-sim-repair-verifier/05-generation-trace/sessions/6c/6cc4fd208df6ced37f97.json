@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cc4fd208df6ced37f97",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval 0shot wait and run all",
+  "task_key": "worker_eval_0shot-wait-and-run-all_20260517T234112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_0shot-wait-and-run-all_20260517T234112_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "e570a7d59e8ce71dbe9d9d69224c4ff8198c1086a26040fdcfbc8e3ff7d96a1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 tasks complete.\n\n```\n=== FINAL RESULTS ===\n\nTask 1 - DeepSeek 0-shot repo-level:\n  accuracy=48.54%, pass_f1=64.70%, fail_f1=5.09%, unparseable=8.70% (851/9784)\n  confusion: TP=4614, FP=2511, TN=135, FN=2524\n  runtime: 1545s\n\nTask 2 - Qwen3-8B 0-shot func-level:\n  accuracy=68.73%, pass_f1=65.50%, fail_f1=71.41%, unparseable=0.32% (6/1890)\n  confusion: TP=561, FP=174, TN=738, FN=417\n  runtime: 96s\n\nTask 3 - DeepSeek 0-shot func-level:\n  accuracy=63.02%, pass_f1=71.96%, fail_f1=45.69%, unparseable=1.06% (20/1890)\n  confusion: TP=897, FP=618, TN=294, FN=81\n  runtime: 113s\n```\n\nKey observations:\n- Func-level is dramatically easier than repo-level (both models jump from ~48% to 63-69% accuracy)\n- Qwen3-8B outperforms DeepSeek on func-level accuracy (68.7% vs 63.0%) with much more balanced F1 scores\n- DeepSeek on repo-level has near-zero fail_f1 (5.09%) indicating it almost always predicts \"pass\" (heavy label bias)\n- DeepSeek on func-level has the opposite pattern: high pass_f1 but low fail_f1 with massive FP (618), still biased toward \"pass\"\n- Qwen3-8B is much better calibrated on func-level with balanced TP/TN"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-0shot-wait-and-run-all.md"
+}

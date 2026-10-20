@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f35f9e8344e24a393474",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra verify gpu after submit",
+  "task_key": "worker_infra_verify-gpu-after-submit_20260512T152349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify-gpu-after-submit_20260512T152349_result.json",
+    "occurrence": 1,
+    "bytes": 1259,
+    "sha256": "f1179faee5d545de63af8a70356ce30b7c3885e5aad400609cc35d08f4a2e8b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### 两个训练都失败了\n\n**错误原因**：脚本路径错误。训练提交时使用了 `/root/exec-sim-repair-verifier/` 作为工作目录，但代码实际在 `/home/sonny/exec-sim-repair-verifier/`。\n\n**日志内容**：\n- `repo-level-cls-v2.log`: `python: can't open file '/root/exec-sim-repair-verifier/train_repo_verifier.py': [Errno 2] No such file or directory`\n- `repo-level-cwm-v2.log`: `python: can't open file '/root/exec-sim-repair-verifier/train_repo_cwm.py': [Errno 2] No such file or directory`\n\n### GPU 状态\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 0 MiB / 32607 MiB | 0% |\n| 1 | 0 MiB / 32607 MiB | 0% |\n| 2 | 0 MiB / 32607 MiB | 0% |\n| 3 | 0 MiB / 32607 MiB | 0% |\n\n4 张 GPU 全部空闲，无训练进程在运行。\n\n### 磁盘状态\n| 分区 | 已用 | 可用 | 使用率 |\n|------|------|------|--------|\n| 根分区 `/` | 27G / 30G | 3.6G | **89%** ⚠️ |\n| 数据盘 `/root/autodl-tmp/` | 100G / 250G | 151G | 40% |\n\n根分区 89% 偏高，需关注。\n\n### 修复方案\n\n重新提交训练时，需要将工作目录从 `/root/exec-sim-repair-verifier/` 改为 `/home/sonny/exec-sim-repair-verifier/`。是否现在重新提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-gpu-after-submit.md"
+}

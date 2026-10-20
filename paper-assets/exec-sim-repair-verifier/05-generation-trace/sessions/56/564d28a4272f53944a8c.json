@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "564d28a4272f53944a8c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra qwen3 4b traj eval launch",
+  "task_key": "worker_infra_qwen3-4b-traj-eval-launch_20260518T222922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_qwen3-4b-traj-eval-launch_20260518T222922_result.json",
+    "occurrence": 1,
+    "bytes": 526,
+    "sha256": "4c4cac482184e990a6a79239a32e01aaf8caa19dfdf7d581d22ac5eea7289e22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已完成。结果：\n\n| 指标 | 值 |\n|------|-----|\n| **脚本** | `eval_traj_verifier.py` |\n| **Overall Accuracy** | **72.9%** |\n| **F1 macro** | 72.62% |\n| **vs Majority baseline** | +18.8pp (54.2% → 72.9%) |\n| **Unresolved** | P=71.4%, R=68.2%, F1=69.8% |\n| **Resolved** | P=74.1%, R=76.9%, F1=75.5% |\n| **Per-test consistency** | 72.9% (35/48) |\n| **耗时** | ~15s (48 test samples) |\n\n输出保存在 `/root/autodl-tmp/eval_results/qwen3_4b_traj_repo_s42_best/eval_test_s42.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-qwen3-4b-traj-eval-launch.md"
+}

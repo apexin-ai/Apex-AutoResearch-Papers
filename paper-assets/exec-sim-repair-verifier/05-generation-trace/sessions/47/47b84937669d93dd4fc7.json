@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47b84937669d93dd4fc7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh kill duplicate qwen processes",
+  "task_key": "worker_ssh_kill-duplicate-qwen-processes_20260521T182007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-duplicate-qwen-processes_20260521T182007_result.json",
+    "occurrence": 1,
+    "bytes": 1063,
+    "sha256": "e4364fa716aee148df1833af9a1175a093b6c9afd0c074898577ce75e4b2b9d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n### Step 1: Kill 重复进程 ✅\n- PID 80555, 80556, 80557, 80558 均已 SIGTERM 正常退出（无需 SIGKILL）\n\n### Step 2: 验证已 kill ✅\n- 4 个进程均已不存在\n\n### Step 3: 原始训练进程 ⚠️\n- **PID 4561 (s456 CWM 训练) 已不在运行**。最新 checkpoint 为 step 6100 / epoch 2.76，max_steps = 6633，还差 533 步未完成。最后 checkpoint 写入时间为 01:52 CST。可能是重复进程抢 GPU 3 导致 OOM 崩溃\n- **PID 4271 (s123 CWM 训练) 仍在运行** ✅，已运行 20h41m\n\n### Step 4: Checkpoint 目录 ✅ 未被污染\n- 目录 `/root/autodl-tmp/checkpoints_repo_cwm_8b_s456/` 只有 5 个 checkpoint（300, 5800, 5900, 6000, 6100），时间线连续，无异常文件。你提到的 `checkpoints_qwen3_8b_cwm_repo_s456_v3` 路径不存在，重复进程未写入此目录\n\n### Step 5: Watch 脚本 ✅\n- PID 80733 仍在运行\n\n### 需要决策\ns456 训练停在 step 6100/6633（~92% 完成），需要从 checkpoint-6100 恢复训练。是否现在重启？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-duplicate-qwen-processes.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4393ce4c7395972dc0a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code fix repo datacollator strict",
+  "task_key": "worker_code_fix-repo-datacollator-strict_20260512T163300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-repo-datacollator-strict_20260512T163300_result.json",
+    "occurrence": 1,
+    "bytes": 2193,
+    "sha256": "067a3e8a5cf727e038eb764d31a54c788d3be3c50cc9f662ba2a7501987f55f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练都在稳定进行。以下是完整诊断报告：\n\n---\n\n## 诊断结果\n\n### Root Cause\n\nv2 的 `WeightedDataCollator.__call__` 使用了 `self.base_collator(features)` 委托给 `DataCollatorForSeq2Seq`，后者调用 `tokenizer.pad(features)`。虽然 collator 先 pop 了 `class_label` 和 `labels`，剩余的 feature dict `{'input_ids': [...], 'attention_mask': [...]}` 被传入 `tokenizer.pad()` 时，tokenizer 无法识别该 dict 格式，抛出：\n\n```\nValueError: type of {'input_ids': [...], 'attention_mask': [...]} unknown: <class 'dict'>\n```\n\n### v2 → v3 修复 (已在当前代码中)\n\nv3 代码完全重写了 `WeightedDataCollator`，**去掉 `self.base_collator`**，改为手动 padding：\n\n```python\n# v2 (崩溃):\nclass WeightedDataCollator:\n    def __init__(self, tokenizer):\n        self.base_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, padding=True)\n    def __call__(self, features):\n        class_labels = ...\n        labels_list = ...\n        batch = self.base_collator(features)  # ← 崩溃点\n        ...\n\n# v3 (修复):\nclass WeightedDataCollator:\n    def __init__(self, tokenizer):\n        self.pad_token_id = tokenizer.pad_token_id\n        self.padding_side = tokenizer.padding_side\n    def __call__(self, features):\n        class_labels = torch.tensor([f.pop(\"class_label\") ...])\n        labels_list = [f.pop(\"labels\") ...]\n        # 手动 padding → 直接返回 tensor dict\n        for f, lab in zip(features, labels_list):\n            pad_len = max_len - len(f[\"input_ids\"])\n            batch_ids.append(f[\"input_ids\"] + [self.pad_token_id] * pad_len)\n            ...\n        return {\"input_ids\": torch.tensor(...), \"attention_mask\": ..., \"labels\": ..., \"class_label\": ...}\n```\n\n### 训练状态\n\n| 实验 | PID | GPU | 状态 | 进度 |\n|------|-----|-----|------|------|\n| repo-level-cls-v3 | 69782 | cuda:2 | 训练中 | step 12/6633, ~7.4s/it |\n| repo-level-cwm-v3 | 69888 | cuda:3 | 训练中 | step 3/6633, ~10.7s/it |\n\n两个 v3 进程均成功通过 v2 的 step 0 崩溃点，bug 已修复，训练正常进行。无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-repo-datacollator-strict.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f98cd9dca384a9e4ab1b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check westd full status",
+  "task_key": "worker_check_westd-full-status_20260514T053250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd-full-status_20260514T053250_result.json",
+    "occurrence": 1,
+    "bytes": 1393,
+    "sha256": "d21d3385f9981098e3632be4c34278a9c37b8d664928718b1b66bf44277cf410"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### westd-48478 (4× RTX 5090)\n\n| GPU | 状态 | 任务 | 进度 | running_acc |\n|-----|------|------|------|-------------|\n| 0 | **占用** 12997MiB, 88% | CWM seed123 ckpt-500 全量eval | 2664/9784 (27.2%) | 57.5% |\n| 1 | **占用** 12997MiB, 84% | CWM v12 ckpt-500 全量eval | 2688/9784 (27.5%) | 58.2% |\n| 2 | **空闲** 0MiB, 0% | 无任务 | — | — |\n| 3 | **空闲** 0MiB, 0% | 无任务 | — | — |\n\n- 两个 eval 均从 09:03 开始，已跑 ~4h45m，速度 ~52s/8样本\n- 预计剩余 ~12-13h（总计约 17h 完成全部 9784 样本）\n- **结果文件：尚无**（output_dir 均为空，eval 仍在进行）\n- **异常：GPU 2/3 空闲**，未发现 D059 的 CWM v12 ckpt-300/400 eval\n\n---\n\n### home-1x5090 (1× RTX 5090)\n\n| GPU | 状态 | 任务 | 说明 |\n|-----|------|------|------|\n| 0 | **占用** 18429MiB, 100% | CLS v5 ckpt-4600 eval | 22:31 启动，运行中 |\n\n**v5 ckpt-4400 已完成**，结果：\n- accuracy: **82.11%**，f1_macro: **73.94%**，f1_fail: **59.34%**\n- precision_fail: 77.02%, recall_fail: 48.26%\n- unparseable: 132/9784\n\n**v5 ckpt-4600 正在跑**，结果目录为空，尚未产出文件。\n\n已完成的 eval 结果汇总（results/ 目录）：\n- `repo_cls_v4_eval` (May 12)\n- `repo_cls_v5_ckpt600/4000/4200/4400` (May 13)\n- `repo_cls_seed123_ckpt400/600/800/1000` (May 13)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-full-status.md"
+}

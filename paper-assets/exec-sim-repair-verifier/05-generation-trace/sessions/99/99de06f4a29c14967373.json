@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99de06f4a29c14967373",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_20_1778933097.md",
+  "task_key": "loop_20_1778933097",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_20_1778933097.md",
+    "occurrence": 1,
+    "bytes": 3664,
+    "sha256": "bdc66567cb0e40e81ee7001ce10414596427d97bc5db0971fdae882bbb62f171"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: idle_timeout\nupdated: '2026-05-16T12:04:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：seetacloud-westd-4x5090 上 cuda:0/1/2/3，共 4 张 5090\n- DeepSeek 模型路径：`/root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct`，HF_HUB_OFFLINE=1（已下载，禁止在线拉取）\n- 训练代码路径：`/home/sonny/exec-sim-repair-verifier`（不是 /root/ 开头）\n- Checkpoint 路径模式：`/root/autodl-tmp/checkpoints_deepseek_{task}_{level}/`\n- 论文 DDL：EMNLP 2026 ARR May 25（剩 9 天）\n- D103 硬约束：seq_length/bs/precision/lr 变更需 Director 审批\n\n### 2. 🖥️ 基础设施快照\n- 服务器：seetacloud-westd-4x5090，工作目录 `/home/sonny/exec-sim-repair-verifier`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 训练脚本：`train_unified.py`，支持 `--task cls/cwm`，`--no_wandb` 禁用 W&B\n- 模型缓存：`/root/autodl-tmp/models/` 下有 deepseek-coder-6.7b-instruct\n- Qwen 模型/checkpoint 也在 `/root/autodl-tmp/` 下（项目主力模型 Qwen3-4B/8B 系列实验已完成）\n- 活跃 cron：deepseek-cls-repo (PID 470263, cuda:0)、deepseek-cls-func (PID 470484, cuda:2)、deepseek-cwm-func-s123 (PID 471780, cuda:3)\n\n### 3. 📊 当前状态\n- **刚发生**：deepseek-cwm-func（DeepSeek 6.7B CWM func-level, cuda:1）训练正常退出，状态 ANALYZING\n- **已派 Worker**：`worker_analysis_deepseek-cwm-func_20260516T075814` 正在 SSH 读日志/checkpoint，**尚未回调**\n- **已通知 Director**：报告了 cuda:1 空闲 + 等待分析结果，**Director 尚未回复**\n- **RUNNING 实验**：\n  - deepseek-cls-repo (cuda:0)：DeepSeek 6.7B CLS repo-level\n  - deepseek-cls-func (cuda:2)：DeepSeek 6.7B CLS func-level\n  - deepseek-cwm-func-s123 (cuda:3)：DeepSeek 6.7B CWM func-level seed123\n- **cuda:1 空闲**，违反 GPU 饱和约束，需尽快安排任务\n\n### 4. 📋 待办\n- Worker `worker_analysis_deepseek-cwm-func_20260516T075814` 回调 → 读 metrics → update_registry(conclusion/metrics/checkpoint_path/log_path) → 刷新 report.md → 向 Director 汇报完整结果\n- deepseek-cwm-func 分析完成 → 如果 success，cuda:1 可安排 deepseek-cwm-func eval 或 deepseek-cls-repo-s123（需确认 Director 意图）\n- deepseek-cls-repo/cls-func/cwm-func-s123 任一 cron 回调 → 同样分析流程\n- 所有 4 个 DeepSeek 训练完成 → 汇总 DeepSeek vs Qwen 对比表 → 支撑 D108 第二模型家族 narrative\n\n### 5. 🎯 战略上下文\n- **核心结论**：CLS（分类）远优于 CWM（生成），Qwen3 系列已充分验证（CLS 8B ~85% vs CWM 8B ~65.17%，gap 26pp+）。CWM 8B unparseable=73.8% 是 generation bottleneck 铁证\n- **D108 扩展**：加 DeepSeek 作为第二模型家族验证 CLS>CWM 结论的 generalizability。当前 4 个 DeepSeek 实验（cls-repo, cls-func, cwm-func, cwm-func-s123）是为此服务\n- **易错点**：DeepSeek 实验用 `--no_wandb`，所以不能用 fetch_wandb_metrics，必须 SSH 读日志。之前 Qwen 实验有 W&B\n- **易错点**：DeepSeek 实验不在 experiment_plan.yaml 中（是 D108 后新增的），不要去 plan 里找对应 plan_id\n- **论文主表**：Qwen 数字已锁定（ROADMAP 有完整表），DeepSeek 行待填。Mutation breakdown 对比表 CWM 列也待填（CWM 4B/8B per-mutation 数据缺失）\n- **关键决策链**：D100（relaxed matching 无效）→ D101（unparseable=majority）→ D104（CWM 4B mutation breakdown 确认 bottleneck）→ D108（加第二模型家族）→ D109（CWM 8B 合并完成 65.17%）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-1778933097.md"
+}

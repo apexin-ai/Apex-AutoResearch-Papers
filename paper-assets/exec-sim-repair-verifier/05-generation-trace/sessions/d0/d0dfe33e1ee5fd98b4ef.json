@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0dfe33e1ee5fd98b4ef",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "exp deepseek traj func v2 s123",
+  "task_key": "worker_exp_deepseek-traj-func-v2-s123_20260516T133725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_deepseek-traj-func-v2-s123_20260516T133725_result.json",
+    "occurrence": 1,
+    "bytes": 785,
+    "sha256": "d3b1faaf5340e74365025f87d57832b7b66ac61f265da7fc5594e941e908e39a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s123 已成功启动，确认 resolved/unresolved 格式（与 s42 一致的 `train_traj_verifier.py`）。\n\n**汇报：**\n\n| 项目 | s42 (cuda:2) | s123 (cuda:3) |\n|------|-------------|---------------|\n| PID | 511676 | 513110 |\n| GPU 显存 | 17347 MiB | 15901 MiB |\n| Total steps | 756 | 756 |\n| 进度 | 260/756 (epoch 2) | 3/756 (epoch 1) |\n\n- **PID**: 513110\n- **Total steps**: 756（3 epochs × 252 steps/epoch）\n- **预估时间**: ~3.9s/it × 756 steps ≈ 49 分钟\n- **配置与 s42 完全一致**：batch_size=2, grad_accumulation=16, lr=2e-4, epochs=3, lora_rank=16, lora_alpha=32，仅 seed/output_dir/run_name 不同\n- **日志**: `/tmp/deepseek_traj_v2_s123.log`\n- **输出目录**: `/root/autodl-tmp/checkpoints_deepseek_traj_v2_s123/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-deepseek-traj-func-v2-s123.md"
+}

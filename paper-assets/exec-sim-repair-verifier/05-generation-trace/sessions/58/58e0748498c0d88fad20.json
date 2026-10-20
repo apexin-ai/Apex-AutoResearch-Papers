@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58e0748498c0d88fad20",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops check shard2 completion and status",
+  "task_key": "worker_ops_check-shard2-completion-and-status_20260516T053030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-shard2-completion-and-status_20260516T053030_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "5d83648cd7bfee5ea5b898ab0734be3215ff71e455c6f72e36e6a3c87aa4dc84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n| 组件 | 状态 | 进度 | 备注 |\n|------|------|------|------|\n| **shard2** (idx 7680-9783) | **DONE** | 2104/2104 (100%) | acc=66.54%, f1_macro=54.2%, unparseable=1568 |\n| **shard3** (idx 6200-7679) | RUNNING (PID 453335) | 1464/1480 (98.9%) | 即将完成 |\n| **v3** (idx 0-?) | 需确认 | 7720 行 | 进程状态未查 |\n| **shard4** | DONE | 688/688 | 已知完成 |\n| **DeepSeek 下载** | **DONE** | — | PID 464106 已退出，模型文件齐全 (safetensors ×2 + config + tokenizer) |\n\n**GPU 利用率：**\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 21133 MiB | 88% |\n| 1 | 0 MiB | 0% |\n| 2 | 0 MiB | 0% |\n| 3 | 21133 MiB | 88% |\n\nGPU 0 和 3 在跑 shard3（及可能的 v3），GPU 1 和 2 空闲。shard3 还差 ~16 条，预计几分钟内完成。DeepSeek 模型已下载完毕可用。Registry 已将 shard2 标记为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-shard2-completion-and-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7089b21011bb46d7c0b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops full gpu progress check",
+  "task_key": "worker_ops_full-gpu-progress-check_20260519T174130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full-gpu-progress-check_20260519T174130_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "f268ce8623ca6e6decac10549a9931b4cfcc003f7e2a22c8c38d12c40405d7d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 4 实验进度总览\n\n| GPU | 实验 | PID | 状态 | Util / VRAM / Temp | 进度 | 关键指标 | ETA |\n|-----|------|-----|------|-------------------|------|---------|-----|\n| 0 | Qwen3-8B CWM eval | 778328 | 运行 17.5h | 92% / 27.7G / 62°C | **8768/9784 (89.6%)** | acc=64.1% | ~2h |\n| 1 | CLS 8B s456 train | 840928 | 运行 3.5h | 96% / 28.1G / 70°C | **9316/9335 (99.8%)** | — | **即将完成（<1min）** |\n| 2 | DeepSeek CWM eval | 833667 | 运行 5h | 84% / 28.8G / 55°C | **3884/9784 (39.7%)** | acc=61.2% | ~8h |\n| 3 | DeepSeek CLS s456 train | 842751 | 运行 3.2h | 100% / 28.5G / 73°C | **996/6489 (15.3%)** | ~11s/it | ~17h |\n\n### 重点\n\n- **GPU 0 D146 eval**：从 ~75% 推进到 89.6%，剩余 1016 样本，预计 **~2 小时完成**，acc 稳定在 64.1%\n- **GPU 1 CLS 训练**：9316/9335，差 19 步，**几秒内完成**——需要关注完成后是否自动启动 eval 或需要手动接续\n- GPU 2 DeepSeek CWM eval 还需约 8 小时，GPU 3 DeepSeek CLS 训练还需约 17 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-gpu-progress-check.md"
+}

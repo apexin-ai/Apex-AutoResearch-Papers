@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c8f54dce11efdbe7792",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops traj repo 8k cuda2 continue",
+  "task_key": "worker_ops_traj-repo-8k-cuda2-continue_20260516T162243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_traj-repo-8k-cuda2-continue_20260516T162243_result.json",
+    "occurrence": 1,
+    "bytes": 706,
+    "sha256": "f9aaafc7ceed7bb6814898c94b67d2f1d6ac40eaca60651889ae5586a038853f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。两个 seed 的 registry 均已推进到 DONE。\n\n## 最终结果汇总\n\n| Metric | Seed 0 | Seed 789 |\n|--------|--------|----------|\n| **Test Accuracy** | **75.00%** | **66.67%** |\n| Resolved F1 | 80.65 | 75.00 |\n| Unresolved F1 | 64.71 | 50.00 |\n| Best Eval Loss | 0.1090 | 0.1295 |\n| Unparseable | 0 | 0 |\n| Majority Baseline | 54.17% | 54.17% |\n| **Δ vs Baseline** | **+20.83pp** | **+12.50pp** |\n\n两个 seed 均显著超越 majority baseline（54.17%）。Seed 0 表现更优，accuracy 高 8.33pp，resolved/unresolved F1 均领先。两个 seed 的 variance 较大（accuracy 差 8.33pp），后续可能需要更多 seed 或更大训练集来稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-traj-repo-8k-cuda2-continue.md"
+}

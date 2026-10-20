@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6895488dc204bdcf75c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops verify cuda2 released",
+  "task_key": "worker_ops_verify-cuda2-released_20260516T011418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-cuda2-released_20260516T011418_result.json",
+    "occurrence": 1,
+    "bytes": 283,
+    "sha256": "924ea97bfd29961d45cd7b594da40272313bf881b8c9c9672edc436fb5ba712f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 2 显存占用 **0 MiB** / 32607 MiB，已完全释放。\n\n不过 GPU utilization 显示 100%，可能有残留计算进程未退出但未分配显存，或是瞬时读数波动。如需确认无进程占用，可进一步查 `nvidia-smi -i 2` 的进程列表。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-cuda2-released.md"
+}

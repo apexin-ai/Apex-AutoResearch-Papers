@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5af6538118c54fc3217e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diag cls8b s42 ckpt1600 val8192 v2 log",
+  "task_key": "worker_diag_cls8b-s42-ckpt1600-val8192-v2-log_20260515T041617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_cls8b-s42-ckpt1600-val8192-v2-log_20260515T041617_result.json",
+    "occurrence": 1,
+    "bytes": 828,
+    "sha256": "2d8948832d5661d49d67b6a2346be81be90dd933a2669731a10cfc79dac16b32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **cls8b-s42-ckpt1600-val8192-v2** 已完成，registry 已更新为 DONE/success。\n\n## 结果\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **86.75%** |\n| F1 macro | 78.94% |\n| F1 fail | 66.12% (P=86.3%, R=53.6%) |\n| F1 pass | 91.76% (P=86.8%, R=97.3%) |\n| Majority baseline | 75.88% |\n| Gap vs majority | +10.87pp |\n| Unparseable | 9 / 9335 |\n\n## Val Sweep 完整趋势 (8B s42)\n\n| Checkpoint | Accuracy | 变化 |\n|-----------|----------|------|\n| ckpt-1000 | 88.23% | — |\n| ckpt-1200 | 87.76% | -0.47 |\n| ckpt-1400 | 85.97% | -1.79 |\n| **ckpt-1600** | **86.75%** | **+0.78** |\n\nckpt-1600 相比 1400 有回升（+0.78pp），但仍低于 ckpt-1000 的峰值（88.23%）。整体趋势：**ckpt-1000 是 val accuracy 最优点**，之后略有下降，1600 处有小幅回弹。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-cls8b-s42-ckpt1600-val8192-v2-log.md"
+}

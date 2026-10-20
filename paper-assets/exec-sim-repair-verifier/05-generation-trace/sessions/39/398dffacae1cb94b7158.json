@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "398dffacae1cb94b7158",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis experiment summary table",
+  "task_key": "worker_analysis_experiment-summary-table_20260514T003543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_experiment-summary-table_20260514T003543_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "ff0dff28ff1aaf74dbca56c877a76b3babfa458811bd083c9955a5a2e9a19d86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总报告已注册为 artifact `art_20260514_515c1c`，核心数字已追加到 memory.md。\n\n**关键结果**:\n\n| 配置 | Accuracy | CLS−CWM Gap |\n|------|----------|-------------|\n| 4B (5-seed) | CLS 88.43±0.78 / CWM 87.19±0.37 | +1.25±1.01pp (p=0.051) |\n| 8B (3-seed) | CLS 89.39±1.09 / CWM 86.96±0.72 | +2.42±0.37pp (p=0.008) |\n| Traj (5-seed) | 86.30±0.97 | TOST≈CLS (p=0.007) |\n| Zero-shot 32B | 71.69 | vs FT 4B: −16.74pp |\n| Repo CLS v5 | 76.92 | CWM eval invalid |\n\nScaling 放大 gap +1.24pp (CLS 吃到 scaling, CWM 不吃)。Repo-level 只有 CLS v5 有效，CWM 因 unparseable 过高不可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-experiment-summary-table.md"
+}

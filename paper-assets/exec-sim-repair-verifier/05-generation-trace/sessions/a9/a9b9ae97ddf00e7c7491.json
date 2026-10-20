@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9b9ae97ddf00e7c7491",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops gpu2 status check",
+  "task_key": "worker_ops_gpu2-status-check_20260519T140905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu2-status-check_20260519T140905_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "dc5654039ffde15256c7735a090529cb04ff2ba91ab179bacd0bb52c22f17c1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### GPU 2：DeepSeek CWM s42 eval 正在跑\n\n- **进程**: `eval_repo_cwm.py` (PID 833672)，DeepSeek-Coder-6.7B-Instruct，checkpoint-13266\n- **进度**: **1156/9784 (11.8%)**，running_acc=**59.9%**\n- 启动时间: 20:39，已跑约 1.5 小时\n- 预估剩余: ~11 小时（每 4 样本约 20 秒）\n\n### 全部 GPU 状态\n\n| GPU | 利用率 | 显存 | 任务 | 进度 |\n|-----|--------|------|------|------|\n| **0** | 91% | 27.7/32.6 GB | Qwen3-8B CWM repo s42 eval (ckpt-400, seq4096) | 6984/9784 (71.4%), acc=63.9% |\n| **1** | 0% | 0/32.6 GB | Qwen3-8B CLS repo s456 train v2（刚启动，加载中） | 刚加载 tokenizer |\n| **2** | 85% | 28.2/32.6 GB | **DeepSeek CWM repo s42 eval** (ckpt-13266, seq4096) | 1156/9784 (11.8%), acc=59.9% |\n| **3** | 0% | 0/32.6 GB | 空闲 | — |\n\nReviewer 之前报的 9.4% 和现在的 11.8% 对得上，同一个 eval 在正常推进。DeepSeek CWM 的 running_acc 约 59.9%，比 GPU 0 上 Qwen3-8B 的 63.9% 低约 4 个点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu2-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81a4ba5670abf96b8597",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code fix truncation logic",
+  "task_key": "worker_code_fix-truncation-logic_20260514T150304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-truncation-logic_20260514T150304_result.json",
+    "occurrence": 1,
+    "bytes": 1355,
+    "sha256": "9c05741bef965ca3a27a775f9341f5d98120a39823fd493feceda8262844ae2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调用方用 `r[0]`/`r[1]` 索引，新增的第三个返回值 `original_length` 会被忽略，不会报错。兼容无问题。\n\n---\n\n## 汇报\n\n### 修改前后对比\n\n**修改前**（两个文件相同）：\n```python\nids = ids[:max_len]  # 从末尾截断 → 丢失 generation prompt + 问题\n```\n\n**修改后**：\n1. 用空 code 构建 shell prompt 测量 overhead（system prompt + test + question + generation prompt）\n2. `budget = max_len - overhead`，只截断 code tokens 到 budget\n3. 用截断后的 code 重建完整 prompt\n4. Safety net: BPE 边界效应导致仍超限时，token 级截断但保留 generation prompt suffix\n\n### 逻辑验证结果（20 个超长 val 样本，CPU）\n\n| 指标 | 结果 |\n|------|------|\n| 所有样本 ≤ 2048 tokens | ✅ |\n| 保留 \"Will this test pass or fail?\" | ✅ 20/20 |\n| 保留 \"## Test\" section | ✅ 20/20 |\n| 保留 generation prompt (`<|im_start|>assistant...`) | ✅ 20/20 |\n\n### 已修改文件\n- `eval_repo_cls.py` — 截断逻辑修复\n- `eval_repo_cwm.py` — 同样修复（同样有 `ids[:max_len]` bug）\n- 备份：`.bak` 文件已保留\n\n### Sanity check（GPU inference）\nGPU 当前被 ckpt-800 eval 占用（PID 3125544，~10.7GB）。需等其完成后再跑带模型推理的 sanity check，验证 unparseable → 0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-truncation-logic.md"
+}

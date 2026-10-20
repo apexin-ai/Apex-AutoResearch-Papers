@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa0d323949ee64354acf",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval seed123 8b ckpt3000 val test",
+  "task_key": "worker_eval_seed123-8b-ckpt3000-val-test_20260514T203536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed123-8b-ckpt3000-val-test_20260514T203536_result.json",
+    "occurrence": 1,
+    "bytes": 291,
+    "sha256": "190260f143651a8e51f5861eb330296e4d7bd4c1b43048c14c4e4468908cb7f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态：**\n- cuda:1 被 PID 281646（4B v5 ckpt-400 val eval）占用，进度 3480/9335 (37%)，running_acc=86.3%\n- 速率 ~290 samples/min，预计 ~20 分钟后完成\n- 已设定 4.5 分钟后自动回来检查，cuda:1 空闲后立即提交 8B seed123 val eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed123-8b-ckpt3000-val-test.md"
+}

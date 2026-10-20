@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2f55d380514a3b635cc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code home prepare mv bc scripts",
+  "task_key": "worker_code_home-prepare-mv-bc-scripts_20260512T082727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_home-prepare-mv-bc-scripts_20260512T082727_result.json",
+    "occurrence": 1,
+    "bytes": 1264,
+    "sha256": "b62810265945acd100dafa95047223465567782da0760767a95ad73dd4b1e3bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本 dry-run 通过。\n\n**环境确认：**\n- Python 3.10.12, torch 2.10.0+cu128, peft 0.19.1\n- Base model: `Qwen/Qwen3-4B`（HF cache 中可用）\n- Checkpoint: `/home/sonny/exec-sim-repair-verifier/checkpoints/best/`（LoRA r=16, alpha=32）\n- 数据: `/home/sonny/exec-sim-repair-verifier/data/test.jsonl`\n\n**Dry-run 结果：** 两个脚本 `--help` 均正常输出，无 import 错误。\n\n**预备提交命令（等 seed456/789/0 完成后执行）：**\n\n```bash\n# majority-voting (~3h)\ncd /home/sonny/exec-sim-repair-verifier\nnohup python3 eval_majority_voting.py \\\n  --base_model_path Qwen/Qwen3-4B \\\n  --checkpoint_path checkpoints/best \\\n  --data_dir data/ \\\n  --output eval_majority_voting.json \\\n  --K 3 --temperature 0.7 --gpu 0 \\\n  > logs/majority_voting.log 2>&1 &\n\n# block-correlation (~1h)\nnohup python3 eval_block_correlation.py \\\n  --base_model_path Qwen/Qwen3-4B \\\n  --checkpoint_path checkpoints/best \\\n  --data_dir data/ \\\n  --output eval_block_correlation.json \\\n  --gpu 0 \\\n  > logs/block_correlation.log 2>&1 &\n```\n\n注意：两个脚本都用 GPU 0，不能同时跑（模型约 8GB 显存）。建议先跑 block-correlation（~1h），再跑 majority-voting（~3h）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-home-prepare-mv-bc-scripts.md"
+}

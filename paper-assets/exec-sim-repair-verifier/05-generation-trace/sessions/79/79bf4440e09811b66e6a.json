@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79bf4440e09811b66e6a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh kill s456 find eval retrain s123",
+  "task_key": "worker_ssh_kill-s456-find-eval-retrain-s123_20260520T054155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-s456-find-eval-retrain-s123_20260520T054155_result.json",
+    "occurrence": 1,
+    "bytes": 2583,
+    "sha256": "3bbb70f067358da25d878a8854d1f0c66aca9c70218d34c1bec4193efc2c4261"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载缓冲中（可能需要数分钟加载 6.7B 量化模型到 GPU）。数据行数已确认正确：**train=70748**（符合预期 ~70748）。\n\n先报告当前状态，total steps 等训练开始后日志自动打印。根据 70748 / (batch_size 2 × grad_accum 8) × epochs 3 = 70748 / 16 × 3 = 13265.25 → **预期 total steps = 13266**，数据匹配，无需 kill。\n\n---\n\n## 产出报告\n\n### 第 1 步：Kill PID 917649\n```\nkill -9 917649 → return_code=0\n确认: DEAD\nnvidia-smi 计算进程:\n  PID 886278, GPU-fc6e3..., 21246 MiB\n  PID 886352, GPU-02eb6..., 31252 MiB\n→ GPU 2 已释放（无进程占用）\n```\n\n### 第 2 步：CWM eval 结果位置\n**没有名为 `results.jsonl` 的文件。** CWM eval 结果以其他文件名存在，主要位置：\n\n| 路径 | head -3 格式 |\n|------|-------------|\n| `/root/autodl-tmp/eval_results/deepseek_cwm_repo_s123_test/results_incremental.jsonl` | `{index, problem_id, label, pred, correct, truncated, gen_text, unparseable}` — 逐条推理结果 |\n| `/root/autodl-tmp/eval_results/deepseek_cwm_repo_s123_test/eval_deepseek_cwm_repo_s123_predictions.jsonl` | 同结构，但 gen_text 更短（仅 PASS/FAIL 行） |\n| `/root/autodl-tmp/eval_results/deepseek_cwm_repo_s123_seq4096/results_incremental.jsonl` | 同结构 |\n| `/root/autodl-tmp/eval_results/deepseek_cwm_repo_s123_seq4096/eval_repo_cwm_predictions.jsonl` | 同结构 |\n| `/root/autodl-tmp/eval_results/deepseek_cwm_repo_s42_test/forced_parse_results.jsonl` | 含额外字段 `forced_pred, forced_strategy, forced_correct, orig_unparseable` |\n| `/root/autodl-tmp/eval_results/cwm_8b_ckpt400_test_merged/results_merged.jsonl` | 含额外字段 `mutation_type` |\n\n其他 CWM eval 目录：`deepseek_cwm_func_test`, `deepseek_cwm_func_s123_test`, `deepseek_cwm_repo_s42_epoch2`, `deepseek_cwm_repo_s42_epoch3_seq2048`, `deepseek_cwm_repo_s42_e3_seq4096`, `qwen3_8b_cwm_repo_s42_ckpt400_seq4096`, `cwm_8b_ckpt400_test_shard{2,3,4}`, 以及 `/root/autodl-tmp/results/repo_cwm_{v10,seed123,v12}_*_eval/`。\n\n### 第 3 步：训练提交 + 日志验证\n```\nsubmit_training_job → 成功\n  PID: 925633\n  tmux session: deepseek-cwm-repo-s123-train-v2\n  log: ~/runs/exec-sim-repair-verifier/deepseek-cwm-repo-s123-train-v2.log\n  GPU: cuda:2\n\n日志验证:\n  train=70748 ✓ (预期 ~70748)\n  val=1896\n  预期 total steps = 70748 / (2×8) × 3 = 13266 ✓\n  模型加载中，尚未打印 trainer 信息（6.7B 量化模型加载到 GPU 需 2-3 分钟）\n  进程 ALIVE，无 DATA_MISMATCH\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-s456-find-eval-retrain-s123.md"
+}

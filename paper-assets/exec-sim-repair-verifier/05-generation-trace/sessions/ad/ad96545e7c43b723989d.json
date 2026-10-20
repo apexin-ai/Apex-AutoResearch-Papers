@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad96545e7c43b723989d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh deepseek cwm s123 diagnosis",
+  "task_key": "worker_ssh_deepseek-cwm-s123-diagnosis_20260520T012557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_deepseek-cwm-s123-diagnosis_20260520T012557_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "2610cc75be723ad0a3ed5563bd6b03028757429049e309c6be0da87d71c1bd89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动。\n\n**死因**: s123 启动命令多了 `--dataloader_num_workers 0` 参数，`train_unified.py` 不接受该 CLI 参数（硬编码为 4），argparse 直接报错退出 (EXIT_CODE=2)。\n\n**修复**: 去掉 `--dataloader_num_workers 0`，其余参数与 s42 一致（seed=123, GPU=2, output_dir 改为 `checkpoints_deepseek_cwm_repo_s123`）。\n\n**当前状态**: 训练正常运行中，GPU 2 占用 7185 MiB，总步数 2865，刚开始第一步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deepseek-cwm-s123-diagnosis.md"
+}

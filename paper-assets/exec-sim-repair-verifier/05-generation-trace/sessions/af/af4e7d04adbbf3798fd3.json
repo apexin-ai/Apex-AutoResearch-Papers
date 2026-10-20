@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af4e7d04adbbf3798fd3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze cls8b seed123 ckpt6200 6400 test eval v2",
+  "task_key": "worker_analyze_cls8b-seed123-ckpt6200-6400-test-eval-v2_20260515T103210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_cls8b-seed123-ckpt6200-6400-test-eval-v2_20260515T103210_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "861665d5d66517df8464a580607e8f5d028398218692eb90f94ad99751de3d80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。结果汇总：\n\n| 指标 | ckpt-3000 (val-best) | ckpt-6200 | ckpt-6400 |\n|------|---------------------|-----------|-----------|\n| **accuracy** | 85.60% | 84.70% (-0.90) | 85.08% (-0.52) |\n| **f1_fail** | — | 63.71 | 65.32 |\n| **precision_fail** | — | 88.84 | 87.92 |\n| **recall_fail** | — | 49.66 | 51.97 |\n| **f1_macro** | — | 77.01 | 77.91 |\n\n两个后段 checkpoint 的 test accuracy 都低于 val-best ckpt-3000 的 85.60%，符合过拟合后性能下降的预期。ckpt-6400 略优于 ckpt-6200（accuracy 85.08 vs 84.70, f1_fail 65.32 vs 63.71），但都不如早停点 ckpt-3000。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-cls8b-seed123-ckpt6200-6400-test-eval-v2.md"
+}

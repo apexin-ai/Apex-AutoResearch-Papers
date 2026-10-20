@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4385f56f4954712b1a5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_18_1778893575.md",
+  "task_key": "loop_18_1778893575",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1778893575.md",
+    "occurrence": 1,
+    "bytes": 5894,
+    "sha256": "693e6f0cb36a7e5bc6859d74f59c9a9b71513f224c632fa686afc96cc17b6fbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-16T01:06:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd cuda:0/1/2/3 + home cuda:0。config 已包含 cuda:0/1，但 ROADMAP 标注 cuda:0/1 为\"待 Director 分配\"——实际已有 mutation-type 实验在跑，说明 Director 已口头分配但 ROADMAP 未更新\n- **CWM 8B val-best = ckpt-400**（eval_loss 单调递增，step 400 最低）。不要对 CWM 8B 做 val sweep，没意义\n- **D103**: seq_length / batch_size / precision / lr 任何改动需 Director 审批，不可 Worker 自行降级\n- **D088**: 主指标用 val-selected checkpoint，不是 test-best\n- **EMNLP ARR May 25 deadline = 剩 9 天**\n- **ckpt-3600 是 s42 新 val-best**（90.28%），主表数字需从 ckpt-1000 更新为 ckpt-3600（test=84.48%）。ROADMAP 主表仍写 ckpt-1000 的 83.52%——**已过时，但改主表需 Director 确认**\n- **test eval 禁用 --max_samples**，必须评完整 test set (n=9784)\n\n### 2. 🖥️ 基础设施快照\n- **Westd**: seetacloud-westd-4x5090, account=root, 工作目录=/home/sonny/exec-sim-repair-verifier\n  - Python: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n  - CLS 8B s42 resume ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/` (ckpt-600 起)\n  - CLS 8B seed123 ckpts: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/` + backup `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n  - CWM 8B ckpts: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`\n  - HF_HOME: `/root/autodl-tmp/.hf_cache`\n- **Home**: home-1x5090, account=sonny, 工作目录=/home/sonny/exec-sim-repair-verifier\n  - 4B v5 ckpts: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n  - 用 python3（非 python）；eval 脚本不支持 --max_new_tokens\n- **活跃进程**:\n  - cuda:0: cls8b-s42-ckpt1000-test-mutation (RUNNING, PID 未知——registry 无 PID)\n  - cuda:1: cls8b-s42-resume-ckpt1000-test-mutation (RUNNING, PID 未知)\n  - cuda:2: CWM 8B v5 训练 (repo-level-cwm-8b-conda-v5, PID 400279 per ROADMAP)\n  - cuda:3: cwm8b-ckpt400-test-eval-v3 (ALLOCATED, PID 443216, tmux session)\n- **Workers**: 0 running（全部已完成或回调处理完毕）\n- **Crons**: reconcile 返回 0（无活跃 cron 待处理）\n\n### 3. 📊 当前状态\n**刚完成**: Session 19 派发了 Paper Writing Workers（intro/related/conclusion + figures），s42 resume val sweep 全部完成（11 unique checkpoints），ckpt-3600 确认为新 val-best（90.28%），ckpt-3600 test eval 也已完成（84.48%）。\n\n**Registry 活跃实验**:\n| exp_id | 状态 | GPU | 说明 |\n|--------|------|-----|------|\n| cls8b-s42-ckpt1000-test-mutation | RUNNING | cuda:0 | 原始训练 ckpt-1000 mutation-type breakdown |\n| cls8b-s42-resume-ckpt1000-test-mutation | RUNNING | cuda:1 | resume ckpt-1000 mutation-type breakdown |\n| repo-level-cwm-8b-conda-v5 | RUNNING(?) | cuda:2 | CWM 8B 训练 ~57% |\n| cwm8b-ckpt400-test-eval-v3 | ALLOCATED | cuda:3 | CWM 8B ckpt-400 test eval (bs=8, submitted) |\n\n**待处理**:\n- `cls8b-s42-resume-ckpt3600-test`: PENDING，conclusion=failed——这条异常，可能是之前提交失败后残留，需要清理或重新提交\n- `cls8b-s42-resume-ckpt3600-mutation`: PREPARING，conclusion=failed——同上，需处理\n- cwm8b-ckpt400-test-eval-v3 状态是 ALLOCATED 但 PID 已有 (443216)——可能 cron 还没推进到 RUNNING\n- **0 个 Worker 在跑，Worker 池 < 2 = 失职状态**——需要立即 spawn Workers 推进论文写作或其他任务\n\n### 4. 📋 待办（条件触发式）\n- **cls8b-s42-ckpt1000-test-mutation 或 cls8b-s42-resume-ckpt1000-test-mutation 完成** → 拿 per-mutation-type accuracy breakdown → 更新 registry + report.md → 汇报 Director（这是 paper ablation 数据）\n- **cwm8b-ckpt400-test-eval-v3 完成** → 拿 CWM 8B test accuracy + unparseable rate → 锁定 8B-8B gap → 更新主表 → 汇报 Director（这是 paper 核心数据 C1 的最后一块拼图）\n- **CWM 8B 训练 (v5) 完成** → 确认 eval_loss 趋势 → 大概率 ckpt-400 仍是 val-best（eval_loss 单调递增），不需要额外 val sweep\n- **cls8b-s42-resume-ckpt3600-test (PENDING/failed)** → 需要判断是否还需要：ckpt-3600 test 已有结果 (84.48%，来自其他实验)，如果是重复的可以直接标 killed\n- **Paper Workers 回调** → 审查草稿质量，整合到 paper 目录\n- **GPU cuda:0/1 空出后** → 优先提交论文需要的剩余 eval（如 ckpt-3600 mutation breakdown）或开始 CWM 8B val eval\n\n### 5. 🎯 战略上下文\n- **项目核心**: Task reformulation (execution simulation → classification)。CLS 在 repo-level 大幅优于 CWM (~26pp gap)，函数级两者等价。论文 story = complexity-dependent advantage\n- **主表数字转换中**: s42 val-best 从 ckpt-1000 (83.52%) 更新为 ckpt-3600 (84.48%)。ROADMAP 主表还是旧数字，memory.md 已更新。Director 是否已批准主表更新需确认\n- **CWM 8B 是最后一个关键数据点**: ckpt-400 test eval 正在跑，running_acc=65.0%（低于 majority 72.96%）。如果最终也低于 majority，CWM 8B 比 CWM 4B 更差，gap 会更大（>26pp），利好 story\n- **易错点**:\n  - 不要混淆\"原始训练 ckpt-1000\"和\"resume ckpt-1000\"——两者共享同一 checkpoint 文件路径但实验 ID 不同\n  - CWM eval 用 `eval_repo_cwm.py`（不是 cls），max_new_tokens=1024\n  - home 服务器的 eval 脚本不支持 --max_new_tokens 参数\n  - cwm8b-ckpt400-test-eval 已经是 v3（v1 被 SIGKILL，v2 被 killed），不要再创建 v4 除非 v3 也失败\n- **9 天倒计时**: Paper 在 writing 阶段，Workers 已派但无回调。最大风险是 CWM 8B eval 太慢（~37s/sample, bs=8 后应快很多）和论文写作质量\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1778893575.md"
+}

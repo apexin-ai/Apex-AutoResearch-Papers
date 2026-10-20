@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c63aa1668bcdf482628",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code 8b eval pipeline",
+  "task_key": "worker_code_8b-eval-pipeline_20260514T152357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_8b-eval-pipeline_20260514T152357_result.json",
+    "occurrence": 1,
+    "bytes": 862,
+    "sha256": "61defe1dcae055a270eafa786810b3c27aeb606962bcf3471f75cb2e8f267dd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并通过语法验证：`/home/sonny/exec-sim-repair-verifier/run_8b_eval_sweep.sh`\n\n功能概要：\n- **参数**：`<checkpoint_dir> <output_dir> <model_name> [gpu_id]`\n- **Phase 1**：自动发现所有 `checkpoint-*` 目录（按 step 排序），逐个跑 `val@5120 batch=8`，结果写入 `<output_dir>/val/<ckpt_name>/`，汇总到 `val_summary.csv`\n- **Phase 2**：按 f1_macro 选最佳 checkpoint，跑 `test@2048 batch=16`，结果写入 `<output_dir>/test/<ckpt_name>/`\n- **断点续跑**：已有 `eval_repo_cls.json` 的 checkpoint 自动跳过\n- 输出格式化汇总表 + 最终 test metrics\n\n用法示例：\n```bash\n./run_8b_eval_sweep.sh \\\n  /home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_8b_s42/ \\\n  /home/sonny/exec-sim-repair-verifier/results/cls_8b_s42_eval/ \\\n  Qwen/Qwen3-8B 0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-8b-eval-pipeline.md"
+}

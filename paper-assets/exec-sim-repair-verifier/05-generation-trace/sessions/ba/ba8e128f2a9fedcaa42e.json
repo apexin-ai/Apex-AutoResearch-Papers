@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba8e128f2a9fedcaa42e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops traj repo 8k s999 eval",
+  "task_key": "worker_ops_traj-repo-8k-s999-eval_20260516T165003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_traj-repo-8k-s999-eval_20260516T165003_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "b49877e5122aada683879058d11a3fac66fbbe4c195d89cec4173c0cffa7dd8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 已更新到 DONE。\n\n**Eval 结果汇总：**\n\n| Metric | Value |\n|--------|-------|\n| test_accuracy | 79.17% |\n| f1_macro | 78.57% |\n| resolved_f1 | 82.14% |\n| unresolved_f1 | 75.0% |\n| unparseable | 0 |\n| best_eval_loss | 0.1565 |\n| train_loss | 0.2184 |\n| per_test_consistency | 79.17% |\n\n对比同系列 s42/s123（accuracy 77.1%, unparseable 16.7%），s999 的 8k seq_length 版本表现更好：accuracy +2pp，unparseable 从 16.7% 降到 0%，resolved_f1 82.1 vs 82.0 持平，unresolved_f1 75.0 vs 68.6 提升明显。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-traj-repo-8k-s999-eval.md"
+}

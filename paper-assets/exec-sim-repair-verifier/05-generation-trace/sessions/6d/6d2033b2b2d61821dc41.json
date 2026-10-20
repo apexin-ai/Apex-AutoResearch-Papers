@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d2033b2b2d61821dc41",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diag repo level cwm v10",
+  "task_key": "worker_diag_repo-level-cwm-v10_20260513T063451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_repo-level-cwm-v10_20260513T063451_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "9af070a54534683a79d29cf54e92a796bb8c8280d0d4063d3754b7251dfb3bf9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，报告已写入 `artifacts/diag_cwm_v10.md`。\n\n**结论**：\n\n- **根因**：进程在 eval 阶段（1281/9335 eval samples）被杀，exit code 1，但日志无任何 traceback——异常输出因缓冲丢失。排除 OOM（cgroup oom_kill=0）、磁盘满（数据盘 43%）、内核 OOM killer（dmesg 空）\n- **训练本身已无意义**：step 400 后严重过拟合，eval_loss 从 0.298 一路涨到 0.370，train_loss 降到 0.09\n- **3 个 checkpoint 存活**：400（BEST）、1600、1700，全部完整\n- **checkpoint-400 正在被评估**：GPU 2 上两个 eval 进程运行中，accuracy ~70.6%（720/9784）\n- **不需要重启训练**，等 eval 完成即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-repo-level-cwm-v10.md"
+}

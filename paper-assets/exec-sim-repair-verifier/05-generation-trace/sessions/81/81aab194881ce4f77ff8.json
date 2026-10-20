@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81aab194881ce4f77ff8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code mvp b oom fix",
+  "task_key": "worker_code_mvp-b-oom-fix_20260511T200459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-b-oom-fix_20260511T200459_result.json",
+    "occurrence": 1,
+    "bytes": 371,
+    "sha256": "0a84167ce6112052334da6303da64689a36d8de6f0284b94437c923c53843826"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改内容：\n\n| 参数 | 原值 | 新值 |\n|------|------|------|\n| `--batch_size` (per_device_train_batch_size) | 8 | **2** |\n| `--grad_accumulation` (gradient_accumulation_steps) | 4 | **16** |\n\nEffective batch size 保持不变：2 × 16 = **32**。峰值显存从 ~9.4GB logits 降至 ~2.4GB，应在 32GB RTX 5090 可用范围内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-b-oom-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a4a690ab0efb566187b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops d056 westd kill and eval",
+  "task_key": "worker_ops_d056-westd-kill-and-eval_20260514T005809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d056-westd-kill-and-eval_20260514T005809_result.json",
+    "occurrence": 1,
+    "bytes": 1194,
+    "sha256": "6ef2dca534c18e748c949ef74b6ff216596fb44f2168d47d03edde4a8bea15d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## Kill 结果\n| GPU | 实验 | PID killed | 显存释放 |\n|-----|------|-----------|---------|\n| 0 | CWM seed123 | 183048 | 16326 MiB → 0 |\n| 1 | CWM v12 | 181202 (+父181201) | 23254 MiB → 0 |\n| 2 | CLS v5-conda | 187002 | 19418 MiB → 0 |\n| 3 | CLS 8B | 185438 | 25742 MiB → 0 |\n\n## Best Checkpoints\n| 实验 | Best Checkpoint | eval_loss |\n|------|----------------|-----------|\n| CWM v12 | checkpoint-500 | 0.3066 |\n| CWM seed123 | checkpoint-500 | 0.3163 |\n| CLS v5-conda | checkpoint-200 | 0.0829 |\n| CLS 8B | checkpoint-200 | 0.0796 |\n\n## Eval 启动\n| GPU | tmux session | 状态 | 进度 |\n|-----|-------------|------|------|\n| 0 | eval_cwm_seed123 | Model loaded, inference started | — |\n| 1 | eval_cwm_v12 | Model loaded, inference started | — |\n| 2 | eval_cls_v5 | running | 800/9784, acc=54.9% |\n| 3 | eval_cls_8b | running | 560/9784, acc=73.2% |\n\nGPU 使用: 0→13GB, 1→13GB, 2→18GB, 3→21GB\n\n**Bug 修复**: `eval_repo_cwm.py` 第 97 行 tokenizer 从 `checkpoint_dir` 加载改为 `base_model_name`（CLS 版本已是正确的），否则 LoRA checkpoint 无 model_type 导致 ValueError。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d056-westd-kill-and-eval.md"
+}

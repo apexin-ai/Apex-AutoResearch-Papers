@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79d1fc3a092212138b22",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_14_1778849154.md",
+  "task_key": "loop_14_1778849154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778849154.md",
+    "occurrence": 1,
+    "bytes": 5459,
+    "sha256": "e2431ef0acc4fc05b5f0c6d38fde51ee3b58108ce6cbf33e59821a54ce412118"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: max_wall_time\nupdated: '2026-05-15T12:10:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd GPU 白名单**：cuda:0, cuda:1, cuda:2, cuda:3（4x5090）。cuda:1=s42 resume 训练, cuda:2=CWM 8B 训练，不可抢占\n- **home GPU 白名单**：cuda:0（1x5090）。home 用户是 sonny，不是 root\n- **home 版 eval_repo_cls.py 不支持 --max_new_tokens 参数**（和 westd 版不同），4B eval 命令不要带此参数\n- **eval 必须用完整 test set n=9784**，禁止 --max_samples（之前 v1 用了 --max_samples 8192 导致结果不可比，全部作废重跑）\n- **CWM 和 CLS 是不同任务**，eval 脚本不同。CWM eval 脚本名待确认（Worker cwm-8b-eval-prep-dryrun 正在探查）\n- **4B 模型参数**：batch_size=16, max_seq_length=5120；**8B 模型参数**：batch_size=1, max_seq_length=8192, max_new_tokens=8\n- **seed123 checkpoints 缺失 ckpt-1000/2000**（save_total_limit=5 删除了中间点），可用：200, 3000(backup), 6200, 6400, 6600, 6633\n\n### 2. 🖥️ 基础设施快照\n**westd (seetacloud-westd-4x5090)**:\n- 用户 root，conda base: `/root/miniconda3/bin/python`\n- 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目: `/home/sonny/exec-sim-repair-verifier`\n- 8B 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- CLS 8B s42 checkpoints: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`\n- CLS 8B seed123 checkpoints: `/root/autodl-tmp/checkpoints_repo_cls_8b_seed123_conda/`\n- CWM 8B checkpoints: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`（待 Worker 确认）\n- 活跃进程:\n  - PID 295789/295794 (cuda:1) — s42 resume 训练, tmux, cron 监控中, step ~4041/6633, ETA May 16 06:00 UTC\n  - PID 266816 (cuda:2) — CWM 8B 训练 v4, tmux, cron 监控中, step ~4013/6633, ETA May 16 11:00 UTC\n  - PID 363037 (cuda:0) — seed123 ckpt-200 test eval, cron 监控中\n\n**home (home-1x5090)**:\n- 用户 sonny\n- 项目: `/home/sonny/exec-sim-repair-verifier`\n- 4B 模型: `Qwen/Qwen3-4B`（HF cache 本地）\n- CLS 4B v5 checkpoints: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`\n- CLS 4B seed123 checkpoints: `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_seed123_home/`\n- cuda:0 当前状态不确定：4B ckpt-4000 eval 被 cron 标记 FAILED(SSH timeout)，Worker 正在调查\n\n### 3. 📊 当前状态\n**刚做完**: CLS 8B@2048 ablation（Reviewer critical）— 结果 82.83%，仅 -0.69pp vs CLS@8192(83.52%)，+24.8pp vs CWM(58.04%)，seq_length confound 彻底排除。已汇报 Director。\n\n**RUNNING 实验** (3):\n- `cls8b-seed123-ckpt200-test-eval` — seed123 test curve 最后一个点，westd cuda:0\n- `repo-level-cls-8b-s42-resume` — 8B CLS s42 全量训练，westd cuda:1，~60% done\n- `repo-level-cwm-8b-conda-v4` — 8B CWM 训练，westd cuda:2，~60% done\n\n**PREPARING** (3): cls8b-ckpt3000-test-eval, cls8b-ckpt3000-test-v2, repo-level-cls-8b-s42-ckpt200-val（历史残留，可忽略）\n\n**等待中的 Worker 回调**:\n- `worker_ssh_check-home-4b-ckpt4000-eval` — 调查 home 4B ckpt-4000 eval 是否实际完成\n- `worker_code_cwm-8b-eval-prep-dryrun` — westd cuda:3 准备 CWM 8B eval 脚本 + dry-run\n\n**等待 Director 决策**: 无新指令待处理（cuda:3 CWM eval prep 已在执行）\n\n### 4. 📋 待办（条件触发式）\n- **home Worker 回调到** → 如 4B ckpt-4000 eval 有结果则收集并更新 registry；如失败则重跑。之后 home cuda:0 提交 4B ckpt-4200 test eval（test curve 第 3 个点）\n- **CWM eval prep Worker 回调到** → 记录完整 CWM 8B eval 命令到 memory.md，确认 dry-run 通过。cuda:3 空闲后报告 Director\n- **cls8b-seed123-ckpt200-test-eval cron 回调** → 收集结果，seed123 test curve 6/6 完成。更新 val_sweep_compilation.md\n- **s42 resume 训练完成（~May 16 06:00 UTC）** → 立即铺 extended val sweep（ckpt-800 起每 200 步），用 cuda:1\n- **CWM 8B 训练完成（~May 16 11:00 UTC）** → 用已准备好的 eval 命令立即提交 test eval（val-best checkpoint TBD，需先跑 val sweep 或用最终 checkpoint）。这是锁定 8B CLS vs CWM gap 的关键实验\n- **4B test curve 全部完成（ckpt-600✓, ckpt-4000 pending, ckpt-4200 pending）** → 汇报 Director，supplementary 4B val+test 双线图数据就绪\n\n### 5. 🎯 战略上下文\n- **DDL: EMNLP 2026 ARR May 25**（10 天）\n- **核心结论 C1 已确认**: CLS >> CWM，4B gap ~20pp，8B gap ~25pp（CLS@2048 ablation 进一步加固）\n- **当前阶段**: Paper Writing + Supplementary 数据收集（test curve 双线图）\n- **s42 test curve 8/8 已完成**: 200(70.07%)→400(84.79%)→600(79.05%)→800(83.53%)→1000(83.52%)→1200(83.84%)→1400(85.47%)→1600(84.99%)\n- **seed123 test curve 5/6**: 200(running)→3000(85.60%)→6200(84.70%)→6400(85.08%)→6600(84.90%)→6633(84.89%)\n- **4B test curve 1/3**: ckpt-600(77.74%)→ckpt-4000(pending)→ckpt-4200(pending)\n- **CWM 8B eval 是下一个 milestone**：训练完成后的 test eval 将锁定论文主表 8B-8B 对比数字\n- **易踩坑**: Worker 轮询模式不可靠（反复 early-exit），长时间 eval 必须用 submit_training_job + cron 监控。home 服务器 SSH 偶尔超时（导致 cron 误报 FAILED），实际任务可能已完成需要手动验证\n- **CWM 训练 seq_length 已确认**: CWM 和 CLS 都用 max_seq_length=2048 训练，但 CWM effective input ~1024 tokens（另一半是 generation target）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778849154.md"
+}

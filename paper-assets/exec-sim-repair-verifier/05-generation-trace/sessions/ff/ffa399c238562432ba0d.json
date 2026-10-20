@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffa399c238562432ba0d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "train cwm seed123 conda westd",
+  "task_key": "worker_train_cwm-seed123-conda-westd_20260513T220515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cwm-seed123-conda-westd_20260513T220515_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "b190ef6bfbf16552da0a6b55fb4f30b0f4d767944406518e98d2f38fcdd755c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动：\n\n- **GPU 0**: 16243 MiB 占用\n- **模型**: Qwen3-4B, trainable 0.2924% (LoRA 11.8M params)\n- **总步数**: 6633 steps (3 epochs)\n- **tmux session**: `cwm_seed123`\n- **log**: `/root/autodl-tmp/checkpoints_repo_cwm_seed123_conda/train.log`\n- **registry**: `repo-level-cwm-seed123-conda` → RUNNING\n\n所有指标与 v12 (seed=42) 完全一致：相同 truncation 比例 (train 4.5%, val 20.2%)、相同参数量、相同 step 数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cwm-seed123-conda-westd.md"
+}

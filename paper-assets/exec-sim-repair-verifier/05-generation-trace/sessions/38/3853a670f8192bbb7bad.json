@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3853a670f8192bbb7bad",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check westd eval status",
+  "task_key": "worker_check_westd-eval-status_20260514T052141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd-eval-status_20260514T052141_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "309ecbd9a3365c185d60f3cb0089e65749a5d335a92290c08490813b8bdfbc73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### GPU 使用\n\n| GPU | 型号 | 显存占用 | 利用率 | 状态 |\n|-----|------|---------|--------|------|\n| 0 | RTX 5090 | 13.0/32.6 GB | 85% | eval_cwm_seed123 |\n| 1 | RTX 5090 | 13.0/32.6 GB | 100% | eval_cwm_v12 |\n| 2 | RTX 5090 | 0/32.6 GB | 0% | **空闲** |\n| 3 | RTX 5090 | 0/32.6 GB | 0% | **空闲** |\n\n### Eval 进度\n\n| 会话 | 进度 | Running Acc | 预计剩余 |\n|------|------|-------------|----------|\n| eval_cwm_seed123 | 2424/9784 (24.8%) | **57.2%** | ~5.2h（~52s/8样本） |\n| eval_cwm_v12 | 2448/9784 (25.0%) | **58.4%** | ~5.1h |\n\n两个 eval 均从 09:03 开始运行，已跑约 4.3 小时，完成约 25%。结果目录已创建但尚无输出文件（predictions 在全部跑完后才写入）。\n\n- Checkpoint: seed123 → `checkpoints_repo_cwm_seed123_conda/checkpoint-500`，v12 → `checkpoints_repo_cwm_conda_v12/checkpoint-500`\n- 输出目录: `/root/autodl-tmp/results/repo_cwm_seed123_conda_eval/` 和 `repo_cwm_v12_conda_eval/`\n- GPU 2、3 空闲可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-eval-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "385ef167b918d31f3a82",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_24_1779051476.md",
+  "task_key": "loop_24_1779051476",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_24_1779051476.md",
+    "occurrence": 1,
+    "bytes": 4375,
+    "sha256": "99e63947c81aaa6e469f93e764c01ab97c7c3a9c39c9b47a6dec5d8597c10955"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-17T20:19:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- seetacloud-westd-4x5090 GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3（需确认 `get_project_status` 的 gpu_ids）\n- DeepSeek 实验 eval_loss=NaN 是已知 tokenizer bug，不代表训练失败，不要因此丢弃 checkpoint\n- CWM 任务 total_steps=13266 (3 epochs)，CLS 任务 total_steps=6633 (3 epochs)，每 epoch CWM=4422 步、CLS=2211 步\n- 训练命令必须 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier`，不能省略\n- HF_HUB_OFFLINE=1 必须设置（服务器无外网）\n- D103: seq_length/bs/precision/lr 变更需 Director 审批\n\n### 2. 🖥️ 基础设施快照\n- 服务器: seetacloud-westd-4x5090, 工作目录 /home/sonny/exec-sim-repair-verifier\n- Python: /root/miniconda3/bin/python (conda base)\n- 模型: /root/autodl-tmp/models/deepseek-ai/deepseek-coder-6.7b-instruct\n- 数据: /home/sonny/exec-sim-repair-verifier/data/swebench_full/swebench_train.jsonl (70748 条)\n- Checkpoint 目录: /root/autodl-tmp/checkpoints_deepseek_*\n- 独立 eval 脚本: /home/sonny/exec-sim-repair-verifier/eval_deepseek_repo.py\n- home-1x5090: Qwen TRAJ 训练用，有 Docker 环境（SWE-bench eval）\n- 磁盘: /root/autodl-tmp 48% used, 436GB 可用\n- 活跃进程: 无（4 GPU 全部空闲）\n\n### 3. 📊 当前状态\n刚处理两个 CRON 失败回调:\n\n**deepseek-cwm-repo-s123** (DONE/failed): 训练在 step 9489/13266 (71%, epoch 3 中途) 静默死亡，无 Traceback。已派诊断 Worker `worker_diagnose_deepseek-cwm-repo-s123_20260517T161452` 检查系统日志和 checkpoint 可用性，**尚未回调**。\n\n**deepseek-cls-repo-v4** (DONE/failed): eval_loss=NaN (已知 bug) + epoch 3 eval 阶段进程被杀。checkpoint-4422 (epoch 2 完成) 可用，train_loss=0.0065 正常。\n\n**deepseek-cls-repo-s123** (ANALYZING): 训练已完成，尚未处理结果。\n\n**等待中的 Worker (4)**:\n1. `worker_diagnose_deepseek-cwm-repo-s123_20260517T161452` — 诊断 CWM s123 失败根因（**最关键，等回调**）\n2. `worker_eval_deepseek-cwm-repo-s42_20260517T154619` — 评估 CWM s42 checkpoint\n3. `worker_eval_deepseek-cls-repo-v4-ckpt4422_20260517T161113` — 评估 CLS v4 epoch 2 checkpoint\n4. `worker_eval_deepseek-cwm-repo-s123_20260517T161324` — 评估 CWM s123 已有 checkpoint\n\nDirector 已收到汇报（含 4 GPU 空闲警告），尚未回复。\n\n### 4. 📋 待办\n- 诊断 Worker 回调 → 根据 root_cause 决定: (a) 可 resume 则创建 resume 实验从 checkpoint 继续; (b) 不可 resume 则从头重训; (c) 报 Director 决策\n- cls-repo-v4 eval Worker 回调 → 如果 epoch 2 checkpoint 精度可接受 (≥83%)，直接用; 否则需重训完整 3 epochs\n- cwm-repo-s42 eval Worker 回调 → 填 Table 4 DeepSeek CWM 格\n- cwm-repo-s123 eval Worker 回调 → 与 s42 对比作 multi-seed evidence\n- cls-repo-s123 ANALYZING → 需要处理（可能之前 session 的 on_complete 回调未被处理）\n- 所有 DeepSeek repo eval 到手 → 确定 Path A (tokenizer-specific) vs Path B (model-agnostic) narrative → 更新 Abstract/Intro/Conclusion\n- **4 GPU 空闲 = 失职**，eval 结果到手后立即安排下一批训练或 resume\n\n### 5. 🎯 战略上下文\n- **DDL**: EMNLP 2026 ARR May 25 (8 天)\n- **核心 framing**: D116 \"设计空间特征化\" — CLS vs CWM vs TRAJ 的选择取决于 tokenizer/复杂度\n- **关键决策链**: D115 放弃 CLS≥CWM≥TRAJ 单调序 → D116 pivot 到 design space → D119 tokenizer-specific 归因已验证 (DeepSeek LlamaTokenizerFast 32K vs Qwen Qwen2TokenizerFast 151K) → D120 re-repair dropped\n- **Round 1 blocking issues**: R1-N1 (multi-seed) 和 R1-N2 (CWM 8B repo) 都等 DeepSeek repo 结果\n- **已解决 13/18 review issues**，剩 5 项 (2 critical blocked on DeepSeek, 1 critical novelty, 2 warning)\n- **易错点**: (1) DeepSeek eval_loss=NaN 不代表模型坏，不要丢弃 checkpoint; (2) CWM 的 unparseable rate 是核心论点之一 (Qwen CWM repo 53-74%)，DeepSeek CWM 的 unparseable rate 决定 tokenizer-specific narrative 是否成立; (3) deepseek-cwm-repo s42 已 success，s123 是第二个 seed，两者对比才能做 multi-seed claim; (4) 两个失败实验可能是同一根因（同一时间段、同一服务器），等诊断 Worker 确认\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24-1779051476.md"
+}

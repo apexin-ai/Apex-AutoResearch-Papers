@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "4058814c5c0f39a299d9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "ops fix plan and artifact data",
+  "task_key": "worker_ops_fix-plan-and-artifact-data_20260514T005608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-plan-and-artifact-data_20260514T005608.log",
+    "occurrence": 1,
+    "bytes": 728790,
+    "sha256": "8b141325c91b0ad92a8ff6fb91beb9065efe6052dc91025d2fd3081dd917d0ce"
+  },
+  "statistics": {
+    "messages": 60,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 12,
+      "tool_call": 22,
+      "tool_result": 22,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 60,
+      "chunks": [
+        {
+          "path": "4058814c5c0f39a299d9-part-0001.json",
+          "message_count": 57
+        },
+        {
+          "path": "4058814c5c0f39a299d9-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-fix-plan-and-artifact-data.md"
+}

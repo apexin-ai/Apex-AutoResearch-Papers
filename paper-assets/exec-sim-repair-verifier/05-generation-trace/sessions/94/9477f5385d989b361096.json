@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9477f5385d989b361096",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "audit data traceability",
+  "task_key": "worker_audit_data-traceability_20260523T191629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-traceability_20260523T191629_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "0a109b91187f864ac2b38b3ad8d9a6f4bf380366693f3df38ba5b577e5bf9f97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果写入 `artifacts/data_audit_results.md`。\n\n**核心结论**：绝大多数数据（~50个数字/统计量）与 registry 和 artifact 完全一致。\n\n**需要处理的 2 个问题**：\n\n1. **⚠️ §4.1 \"CLS-TRAJ gap <1pp on Qwen3\"** — Table 1 per-test gap 是 2.13pp，不是 <1pp。\"<1pp\" 来自 variant-level TOST gap (−0.45pp)，但同一句话里 DeepSeek 的 2.69pp 是 per-test level。比较层级不一致，建议修正。\n\n2. **⚠️ DeepSeek 0-shot 63.00 vs 63.02** — registry 值为 0.6302 → 63.02%，论文写 63.00%。差 0.02pp。\n\n**无法追溯的 4 项**：z=−23.7（LPM 交互项）、p=0.0066（8B scaling bootstrap）、DeepSeek LLM-judge 56.56%、DeepSeek 3-shot 59.95% — 这些可能在未列出的实验中，建议补存 artifact JSON。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-data-traceability.md"
+}

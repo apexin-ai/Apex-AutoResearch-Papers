@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "c4d3ca8a7cc7b61f4b79",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "exp inference efficiency benchmark",
+  "task_key": "worker_exp_inference-efficiency-benchmark_20260516T093627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_inference-efficiency-benchmark_20260516T093627.log",
+    "occurrence": 1,
+    "bytes": 1220683,
+    "sha256": "fe7a07c300b7a136468f9cf9981698b77113522784c24dfaebce943c3ace10b3"
+  },
+  "statistics": {
+    "messages": 1119,
+    "user_turns": 1,
+    "tool_calls": 525,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 525,
+      "tool_result": 525,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1097,
+      "chunks": [
+        {
+          "path": "c4d3ca8a7cc7b61f4b79-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c4d3ca8a7cc7b61f4b79-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c4d3ca8a7cc7b61f4b79-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c4d3ca8a7cc7b61f4b79-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "c4d3ca8a7cc7b61f4b79-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "c4d3ca8a7cc7b61f4b79-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "c4d3ca8a7cc7b61f4b79-part-0007.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "c4d3ca8a7cc7b61f4b79-part-0007.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-inference-efficiency-benchmark.md"
+}

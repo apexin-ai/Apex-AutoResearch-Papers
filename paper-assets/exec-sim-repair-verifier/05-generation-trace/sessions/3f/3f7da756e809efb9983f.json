@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f7da756e809efb9983f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_3_1778618079.md",
+  "task_key": "loop_3_1778618079",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778618079.md",
+    "occurrence": 1,
+    "bytes": 3860,
+    "sha256": "b3b2822d4b8d1d41eff78286b9e8b6935aa32d03e9c31e7f19effc7bb094d56b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-12T20:21:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **seetacloud 禁止并行训练**：cgroup 360GB 限制，两个 4B 训练并行必触发 OOM killer（D028，v3+v4 两次确认）。cuda:0/1/3 空闲但**不能**同时启动第二个训练\n- **CWM 提交必须单 Worker**：v1-v5 连续 7 次失败，根因包括多 Worker 并行提交导致进程泄漏互相干扰（D031）。v6 当前稳定运行中，**不要动它**\n- **GPU 白名单**：cuda:0/1/2/3（config 已确认）。seetacloud 4×5090，home 1×5090\n- **home 服务器 train_repo_cwm.py 未同步**（ROADMAP 已知风险），home 只跑 CLS\n\n### 2. 🖥️ 基础设施快照\n- **seetacloud-westd-4x5090**（root@）：4×RTX 5090，cgroup 360GB RAM\n  - 工作目录：`/home/sonny/exec-sim-repair-verifier`\n  - Python：`/root/miniconda3/bin/python`（aml-train 镜像，conda base）\n  - cuda:2 运行 `repo-level-cwm-v6`，pid=84887，~8.4s/step\n  - cuda:0/1/3 空闲（但禁止并行训练）\n- **home-1x5090**（sonny@）：1×RTX 5090，62GB RAM，非容器\n  - 工作目录：`/home/sonny/exec-sim-repair-verifier`\n  - cuda:0 运行 `repo-level-cls-home`，step ~104/6633，~7s/it\n  - save_steps=50 已生效\n- **活跃 Cron**：`repo-level-cls-home`（进程监控）、`repo-level-cwm-v6`（pid=84887 监控）\n- **Worker 池**：0 running（训练由 cron 监控，无需 Worker 守着）\n\n### 3. 📊 当前状态\n两个 repo-level 训练并行跨机器运行，这是整个项目的**决胜实验**：\n\n| exp_id | 服务器 | GPU | 进度 | 预计剩余 |\n|--------|--------|-----|------|----------|\n| repo-level-cls-home | home | cuda:0 | step ~104/6633 | ~12h |\n| repo-level-cwm-v6 | seetacloud | cuda:2 | 训练中 | ~15-20h（bottleneck） |\n\n其余 43 个实验全部完成（30 success / 3 negative / 8 failed / 2 killed）。Paper Agent Step 2 进行中（图表生成+模板下载）。\n\n### 4. 📋 待办（条件触发式）\n- **repo-level-cls-home cron 回调（DONE）** → spawn Worker 跑 repo-level CLS eval（per-test accuracy/F1）→ 结果写 registry\n- **repo-level-cwm-v6 cron 回调（DONE）** → spawn Worker 跑 repo-level CWM eval → 结果写 registry\n- **两个 eval 都完成** → spawn Worker 跑 paired bootstrap（CLS vs CWM gap + CI + p-value）→ 对标 D008 Go/No-Go：\n  - F1 diff ≥ 3pp → 全力推 EMNLP Main，汇报 Director\n  - F1 diff 1-3pp → 加 seeds/数据量，汇报 Director 决策\n  - F1 diff < 1pp → Kill C1，pivot to Plan B，汇报 Director\n- **Go 决策后** → Paper Agent Step 3-5（patch repo-level 数据到论文 + 终审），deadline ARR May 25\n- **训练等待期间** → 可以派 CPU Worker 做文献联动、论文 skeleton 写作、图表生成等非 GPU 任务（Worker 池=0 目前是因为 GPU 任务由 cron 监控，但 CPU 任务应该铺起来）\n\n### 5. 🎯 战略上下文\n- **核心叙事**：函数级 CLS≈CWM（TOST 等价 p=0.007），但 complexity 增加时 CLS 优势显现（8B scaling gap 1.25→2.43pp）。Repo-level 是最终验证：如果 gap 显著，证明 \"complexity-dependent advantage\"\n- **决策链**：D008（Go/No-Go）是接下来最关键的决策点，依赖两个 repo-level 训练结果\n- **时间线**：ARR May 25（~13天），训练 bottleneck ~20h → eval+stats ~3h → 论文 patch ~1d → 终审 ~1d = 总计 ~4-5d，时间充裕但不能浪费\n- **易错点**：\n  - 不要把函数级 gap（1.25pp/2.43pp）和 repo-level gap 直接对比，数据集/任务不同\n  - seetacloud 的 save_steps 实际值——v6 的 save_steps 是 500 不是 50（D034 撤回了 D033 的修改）\n  - CWM eval 脚本路径：home 上可能没有 `train_repo_cwm.py`，eval 可能需要在 seetacloud 上跑\n  - Val 截断率 20.2% 是已知 limitation，论文必须说明（memory.md 有详细数据）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778618079.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0ec3b07209754e04ec2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix 8b resume path and resubmit",
+  "task_key": "worker_fix_8b-resume-path-and-resubmit_20260514T174003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_8b-resume-path-and-resubmit_20260514T174003_result.json",
+    "occurrence": 1,
+    "bytes": 1247,
+    "sha256": "22b43f01c268819b9a6c2ee753f8ff1ea3ebf03c378351b7c153a80e2e730317"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. Checkpoint 子目录验证\n\n| 实验 | 目标 checkpoint | 存在 | trainer_state.json | adapter_model.safetensors |\n|------|----------------|------|-------------------|--------------------------|\n| CWM 8B | checkpoint-1600 | ✓ | ✓ (9.9KB) | ✓ (58.5MB) |\n| CLS 8B seed123 | checkpoint-3000 | ✓ | ✓ (14.6KB) | ✓ (58.5MB) |\n\n两个 checkpoint 目录完整，包含 optimizer.pt、scheduler.pt、rng_state.pth 等全部 resume 所需文件。\n\n### 2. 所有可用 checkpoint\n\n**CWM 8B**: checkpoint-400, 900, 1000, 1100, 1200, 1300, 1400, 1500, **1600**\n\n**CLS 8B seed123**: checkpoint-200, 1800, 2000, 2200, 2400, 2600, 2800, **3000**\n\n### 3. GPU 状态\n\n| GPU | 显存使用 | 利用率 |\n|-----|---------|--------|\n| 0 | 12999 / 32607 MiB | 85% |\n| 1 | 12999 / 32607 MiB | 86% |\n| **2** | **0 / 32607 MiB** | **0%** |\n| **3** | **0 / 32607 MiB** | **0%** |\n\nGPU 2/3 已清空，无残留进程。GPU 0/1 有其他任务在运行。\n\n### 4. Tmux 清理\n\n- `repo-level-cwm-8b-conda-v2` — 已杀掉\n- `repo-level-cls-8b-seed123-conda-v2` — 不存在（之前已清理）\n- 剩余 sessions: `ckpt_backup`, `eval_cwm_seed123`, `eval_cwm_v12`（非本次实验，保留）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-8b-resume-path-and-resubmit.md"
+}

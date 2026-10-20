@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3fdffaa0cb2a6b98183",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra check v3 training progress",
+  "task_key": "worker_infra_check-v3-training-progress_20260512T171024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-v3-training-progress_20260512T171024_result.json",
+    "occurrence": 1,
+    "bytes": 1070,
+    "sha256": "7dc69f4f435a0aadc88042e1e350848777496c2a96670b811a16e33a515ac357"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇总\n\n**两个实验均已死亡（SIGKILL, EXIT_CODE=137）。**\n\n| 实验 | 实际 PID | 最后 Step | 进度 | 速度 | 训练时长 | 死因 |\n|---|---|---|---|---|---|---|\n| repo-level-cls-v3 | 69781 | **188/6633** | 2.8% | ~6.9s/it | ~22 min | SIGKILL (137) |\n| repo-level-cwm-v3 | 69887 | **119/6633** | 1.8% | ~10.3s/it | ~21 min | SIGKILL (137) |\n\n**GPU 状态**: 4 张 5090 全部空闲（0% 利用率，0 MiB 显存占用）。\n\n**死因分析**: EXIT_CODE=137 = 128+9 (SIGKILL)。容器环境无 `/var/log/syslog` 或 `kern.log`，无法确认是否 OOM。可能原因：\n1. **系统/容器内存上限触发 OOM killer**（两个进程几乎同时被杀，最可能）\n2. 平台资源管控\n3. 人工 kill\n\n**日志时间线**:\n- 训练开始: 2026-05-13 00:35~00:37 UTC\n- 被杀时间: 约 00:58 UTC（日志最后修改时间）\n- 存活约 22 分钟\n\n需要重新启动训练。建议先检查系统内存 (`free -h`) 确认是否为内存不足导致，考虑错开两个实验或减小 batch size。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-v3-training-progress.md"
+}

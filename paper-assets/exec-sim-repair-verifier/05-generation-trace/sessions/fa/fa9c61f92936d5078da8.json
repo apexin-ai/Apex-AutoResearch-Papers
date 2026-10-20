@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa9c61f92936d5078da8",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra eval readiness check",
+  "task_key": "worker_infra_eval-readiness-check_20260512T202335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_eval-readiness-check_20260512T202335_result.json",
+    "occurrence": 1,
+    "bytes": 901,
+    "sha256": "293d43c6d891d0e182701cdbc154320375159ae4d43f98357a329073f2263709"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/eval_readiness_report.md`。\n\n**总结：**\n\n**seetacloud CWM v6** — eval 基本就绪 ✅\n- 训练正常（step 175/6633, ~15h 剩余），eval 回调正常运行\n- `eval_repo_cwm.py` 可用，数据/依赖齐全\n- 首个 checkpoint 预计在 step 500（~1h 后）\n- 启动时需手动传 `--model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`\n\n**home CLS** — ❌ 有 P0 阻塞问题\n- 训练在跑（step 1606/6633），但 **checkpoint 目录完全为空**\n- 日志中零条 \"Saving\"、零条 \"eval_loss\"——Trainer 的 eval/save 回调从未触发\n- eval 脚本和数据都就绪，唯独缺 checkpoint\n- **需要立即排查**：可能训练完成后只能靠末尾 `trainer.save_model()` 拿到一个最终模型，但如果 `load_best_model_at_end=True` 在没有 eval metric 的情况下报错，连最终模型也可能丢失"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-eval-readiness-check.md"
+}

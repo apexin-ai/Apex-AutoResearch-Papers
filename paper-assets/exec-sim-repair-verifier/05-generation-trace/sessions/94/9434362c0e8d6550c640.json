@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9434362c0e8d6550c640",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_19_1778925979.md",
+  "task_key": "loop_19_1778925979",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_19_1778925979.md",
+    "occurrence": 1,
+    "bytes": 4243,
+    "sha256": "bf182f7246a947a6b6695c458b648235228d4a368bd48f5702e727134044e67f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: idle_timeout\nupdated: '2026-05-16T04:57:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd cuda:0/1/2/3 only。home 服务器离线，不可用\n- **CWM 8B eval 必须用 `eval_repo_cwm.py`**，不是 eval_repo_cls.py。max_new_tokens=1024，bs=8\n- **test eval 禁止 --max_samples**：必须跑完整 test set n=9784，否则与主表不可比（D085 事故教训）\n- **CWM 8B val-best = ckpt-400**（eval_loss 单调递增，无歧义），不需要 val sweep\n- **标 FAILED 前必须 `ps -p PID` 确认进程已退出**（v1 误标事故教训，导致 OOM）\n- **shard merge 必须去重**：v3 + shard2 + shard3 的 index 有重叠区间，合并时以 sample index 去重\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: seetacloud-westd-4x5090（4×RTX 5090）\n- **工作目录**: `/home/sonny/exec-sim-repair-verifier`\n- **Python**: `/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **8B 模型**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- **CWM 8B ckpt**: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-400/`\n- **CLS 8B s42 resume ckpt**: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`（从 ckpt-600 起）\n- **CLS 8B seed123 ckpt**: `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`\n- **活跃进程**:\n  - cwm8b-ckpt400-test-eval-v3: PID 443221, cuda:3（~57% 进度，最早启动的 shard）\n  - cwm8b-ckpt400-test-eval-shard2: PID 448094, cuda:1（idx 7680-9784）\n  - cwm8b-ckpt400-test-eval-shard3: PID 453335, cuda:0（gap shard，补漏）\n- **Cron 监控**: 3 个 cron 活跃，对应上述 3 个 shard\n\n### 3. 📊 当前状态\n**刚完成**: CWM 4B per-mutation breakdown (D104)、CLS 8B s42 ckpt-3600 per-mutation P/R (D105/D106)、seq_length confound ablation (ckpt-3600@seq2048)、CLS 4B mutation P/R 对比。所有 CLS 侧数据已收齐。\n\n**正在跑**: CWM 8B ckpt-400 test eval 3-shard 并行（cuda:0/1/3）。这是**主表最后一个阻塞项**。interim unparseable=73.8%, parseable-only acc=38.5%。\n\n**Registry 状态**: 149 experiments total。RUNNING: 3（上述 3 shard）。success: 84, negative: 5, failed: 35。\n\n**等待中**: 无 Worker 回调待处理。3 个 cron 监控 shard 完成回调。无待决 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- **任一 shard cron 回调 → spawn worker 检查该 shard 输出完整性（行数、unparseable count）**\n- **3 shard 全部完成 → spawn worker 做 shard merge（v3 + shard2 + shard3 去重合并）→ 计算 CWM 8B 最终 accuracy + unparseable rate → 锁 8B-8B gap**\n- **CWM 8B 最终数字出来 → spawn worker 做 CWM 8B per-mutation breakdown → 填满 ROADMAP mutation comparison 表**\n- **Mutation comparison 表全 → 更新 paper 主表 + mutation table → 汇报 Director 最终数字**\n- **D108（Director 已批准 scope 扩展：第二模型家族 + re-repair downstream）→ 排期在 CWM 8B 收尾之后，DDL 前可能来不及，需与 Director 确认优先级**\n\n### 5. 🎯 战略上下文\n- **核心结论**: CLS 碾压 CWM ~26pp（multi-seed verified, TOST p=0.007）。CWM bottleneck 是 generation formulation 本身，不是 model capacity——CWM 8B 比 4B 更差是铁证\n- **决策链**: D088(val-selected) → D093(multi-seed) → D100(relaxed matching 无效) → D101(unparseable→majority) → D102(CWM 8B bs=8加速) → D104(CWM 4B mutation) → D105(cross-model mutation) → D108(scope扩展)\n- **易错点 1**: CWM 的 58% accuracy 是虚假的——unparseable 默认 pred=pass，在 pass-dominant (73%) 数据集上白捡。真实 parseable-only acc 仅 42-43%。论文必须报告 parseable-only 数字\n- **易错点 2**: CWM 与 CLS 的 bias 方向相反（CWM parseable 时偏 fail，CLS 偏 pass）。boundary_removal 是唯一 CWM parseable > CLS 的 mutation type，但 parse_rate 仅 30.6%\n- **易错点 3**: DDL May 25 仅剩 9 天。CWM 8B eval 是唯一硬阻塞。eval 完成后论文可直接锁数字。D108 scope 扩展（第二模型家族）可能需要与 Director 确认是否在 DDL 内可行\n- **Paper 进度**: Full Draft 阶段。CLS 侧数字已全部就绪。等 CWM 8B 最终数字后锁主表\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-1778925979.md"
+}

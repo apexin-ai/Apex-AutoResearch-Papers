@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78cbe3cd439edae664b2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research paper status check",
+  "task_key": "worker_research_paper-status-check_20260515T221247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-status-check_20260515T221247_result.json",
+    "occurrence": 1,
+    "bytes": 3662,
+    "sha256": "d81007a73b1d77b7d88419219fa5e3bf8ca0670073f8ebdec659c912e2ecc6c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 论文写作状态报告\n\n### 1. writing_plan.yaml 状态\n\n| 章节 | 预算 | 实际词数 | 状态 |\n|------|------|---------|------|\n| abstract | 200w | ~243w | **完成** |\n| introduction | 1000w | ~551w | **完成** |\n| method | 1000w | ~671w | **完成** |\n| experiments | 2800w | ~1884w | **完成** |\n| related_work | 600w | ~381w | **完成** |\n| conclusion | 400w | ~341w | **完成** |\n| **合计** | **6000w** | **~4071w** | 在 8 页限内 |\n\n所有章节均已完成 full draft，总字数 ~4071（含 LaTeX 命令），实际正文约 3200-3500 词，符合 8 页限制。\n\n### 2. .tex 文件完成度\n\n| 文件 | 内容 |\n|------|------|\n| `main.tex` | 主文件，所有 section 已 include，3 个 figure 已放置 |\n| `abstract.tex` | 完整，覆盖全部 3 个 claims + 关键数字 |\n| `introduction.tex` | 完整，3 个贡献点 itemized，引用充分 |\n| `method.tex` | 完整，4 个 subsection（formulations, failure modes, oracle framework），公式 (1)-(3) |\n| `experiments.tex` | 最充实，7 个 subsection + 5 个 table + 8 段 analysis，含 LoRA rank ablation |\n| `related_work.tex` | 完整，5 段覆盖 execution sim / verification / learned verifiers / APR / NLP reformulation |\n| `conclusion.tex` | 完整，limitations 和 future work 均有 |\n| `references.bib` | 27 条，覆盖所有 citation clusters |\n\n`paper/method.tex` 是早期草稿（更详细，~9KB），`docs/paper/method.tex` 是精简后的正式版本（~4.5KB）。\n\n### 3. 图表产出\n\n**Figures（均已生成 PDF+PNG）:**\n- `fig1_reformulation` — 三种 formulation 概念图 ✅\n- `fig2_gap_amplification` / `fig2_scaling_gap` — CLS vs CWM scaling gap ✅\n- `fig3_oracle_stratified` — Oracle per-test advantage by T ✅\n- `rank_ablation_chart` — LoRA rank 消融图（supplementary）✅\n\n**Tables（在 experiments.tex 内）:**\n- Table 1: Function-level main results (CLS/CWM/TRAJ/ZS) ✅\n- Table 2: Model-size scaling 4B→8B ✅\n- Table 3: Oracle accuracy-utility frontier ✅\n- Table 4: Repo-level results ✅（CWM 8B 行仍为 `---`）\n- Table 5: LoRA rank ablation ✅\n\n### 4. 整体完成度：**~85%**\n\nFull draft 已完成，但有关键 gaps：\n\n**实验缺口（blocking）：**\n- CWM 8B repo-level 训练中（ETA May 16 05:30），完成后需 eval 填入 Table 4，解锁 8B-8B direct comparison\n- D096 已决策切换主表为 8B-8B 对比（双 seed gap 更稳健：25.48/26.51pp），需改写 abstract/intro/experiments 中的 primary claim\n\n**Review Round 1 未解决的 issues（12 项 in_progress）：**\n- **Critical:** R1-N1（单 seed 问题，已有 8B-8B 修复方案）、R1-N2（CWM 8B 缺失）\n- **Warning:** TOST margin justification、scaling argument 弱化措辞、mutation type distribution shift 分析、relaxed matching 写入论文、ecological validity 讨论、per-test diagnostic 贡献降级、first author 核查、NF4 seed 标注\n- **Info:** \"below chance level\" 措辞\n\n### 5. 下一步最紧急任务（按优先级）\n\n1. **等 CWM 8B 训练完成 → eval → 填 Table 4**（blocking，ETA ~14h）\n2. **按 D096 决策改写 primary claim 为 8B-8B**（abstract/intro/experiments 中替换 25.59pp 单 seed → 双 seed 25.48/26.51pp）\n3. **批量处理 Round 1 review issues**：relaxed matching 写入 analysis、TOST margin justification、scaling argument 措辞弱化、limitations 增加 synthetic-to-real 讨论\n4. **LaTeX 编译检查**：确认页数、figure placement、reference 格式\n5. **Final proof**：数字一致性（registry vs tex）、bib first author 核查剩余项"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-status-check.md"
+}

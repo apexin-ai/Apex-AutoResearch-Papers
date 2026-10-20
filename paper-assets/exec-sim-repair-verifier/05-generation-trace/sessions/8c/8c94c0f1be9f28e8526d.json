@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c94c0f1be9f28e8526d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research swebench pipeline design",
+  "task_key": "worker_research_swebench-pipeline-design_20260511T235646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_swebench-pipeline-design_20260511T235646_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "d8a3b7b1a0352eb6fed1e13c77c73594ebd61b964edf61401e569c1388ab9d63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "方案已写入 `artifacts/swebench_pipeline_design.md`。\n\n核心要点：\n- **~75K 样本**：500 instances × 15 patches × 10 tests/instance\n- **推荐方案 C（混合变异）**：gold + 合成变异 + LLM patches + 部分修复，兼顾数据量保底和真实错误分布\n- **执行耗时 32-62h**（4 并行 Docker），纯 CPU，不占 GPU\n- **数据格式与现有 train.jsonl 向后兼容**，code 字段改为 patch diff + modified files，test 字段为单个测试函数\n- **5 个待确认决策点**列在文末（变异策略、context 粒度、split 策略、是否混合函数级数据、Docker 环境确认）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-swebench-pipeline-design.md"
+}

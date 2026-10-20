@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3e1eedd30a23a33e28d0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "gpu2 cls8b s456 retry",
+  "task_key": "worker_gpu2-cls8b-s456-retry_20260519T124913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu2-cls8b-s456-retry_20260519T124913.log",
+    "occurrence": 1,
+    "bytes": 684808,
+    "sha256": "0dd179b6d79a350267625892f798831df0d2cc7fd9f47d3b3e6e1e83672e3fe0"
+  },
+  "statistics": {
+    "messages": 246,
+    "user_turns": 0,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 96,
+      "tool_result": 96,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 246,
+      "chunks": [
+        {
+          "path": "3e1eedd30a23a33e28d0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e1eedd30a23a33e28d0-part-0002.json",
+          "message_count": 66
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/gpu2-cls8b-s456-retry.md"
+}

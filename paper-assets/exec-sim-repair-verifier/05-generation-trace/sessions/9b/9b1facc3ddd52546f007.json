@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b1facc3ddd52546f007",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis exp b complexity bin",
+  "task_key": "worker_analysis_exp-b-complexity-bin_20260519T030027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-b-complexity-bin_20260519T030027_result.json",
+    "occurrence": 1,
+    "bytes": 1478,
+    "sha256": "fb3237182524765b3864618ce635f9259fba2250ac3d0619b7481f9e3115f698"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs saved. Here's the summary:\n\n## Results\n\n**Bin Distribution** (48 variants, 9784 tests total):\n\n| Bin | #Variants | #Tests |\n|-----|-----------|--------|\n| 23-70 | 12 | 538 |\n| 71-150 | 14 | 1,282 |\n| 151-250 | 15 | 2,999 |\n| 251+ | 7 | 4,965 |\n\n**Variant-Level Accuracy by Bin (best CLS vs best CWM):**\n\n| Bin | CLS (Qwen3-8B s123) | CLS (DS v5 ckpt-2105) | CWM (Qwen3-8B s42) | CLS-CWM Gap |\n|-----|-----|-----|-----|-----|\n| 23-70 | 10/12 = 83.3% | 11/12 = 91.7% | 8/12 = 66.7% | +16.7pp |\n| 71-150 | 9/14 = 64.3% | 10/14 = 71.4% | 6/14 = 42.9% | +21.4pp |\n| 151-250 | 14/15 = 93.3% | 12/15 = 80.0% | 8/15 = 53.3% | +40.0pp |\n| 251+ | 6/7 = 85.7% | 6/7 = 85.7% | 3/7 = 42.9% | +42.9pp |\n| **Overall** | **39/48 = 81.2%** | **39/48 = 81.2%** | **25/48 = 52.1%** | **+29.2pp** |\n\n**Key Finding:** The CLS-CWM gap **widens dramatically with complexity**: +16.7pp for simple variants (23-70 tests) to +42.9pp for complex variants (251+ tests). CLS maintains 85%+ variant-level accuracy across all complexity tiers, while CWM degrades to near-random (42.9%) for high-test-count variants.\n\n**TRAJ Status:** Per-variant predictions not saved in eval files. Only aggregate results available (DeepSeek TRAJ s42: 81.25%, Qwen3-8B: 70.83%). Per-bin TRAJ breakdown requires GPU re-inference.\n\n**Outputs:**\n- `artifacts/complexity_bin_analysis.json` (structured results)\n- `artifacts/complexity_bin_analysis.pdf` / `.png` (bar chart)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-b-complexity-bin.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "398b1bb7065cebb1efe1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analyze exp downsample cls func v3 results",
+  "task_key": "worker_analyze_exp-downsample-cls-func-v3-results_20260519T051056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp-downsample-cls-func-v3-results_20260519T051056_result.json",
+    "occurrence": 1,
+    "bytes": 1746,
+    "sha256": "8ff889d6ab3cdc8658b375fba78f65ccce5d515b48ac2b97ce6c07e8b7bb0f30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已注册。汇总如下：\n\n---\n\n## exp-downsample-cls-func-v3：训练成功 ✓\n\n| Metric | Value |\n|---|---|\n| train_loss | 0.2869 |\n| eval_loss (epoch 1) | 0.1061 |\n| eval_loss (epoch 2) | **0.0907** (best) |\n| eval_loss (epoch 3) | 0.1156 |\n| training time | 44.4 min |\n| checkpoint | `/root/autodl-tmp/checkpoints_cls_downsample_qwen3_4b/best` (epoch 2) |\n\nEpoch 3 eval_loss 回升，best model 正确保存在 epoch 2。\n\n**Eval 命令**（CLS repo-level eval，使用 `eval_repo_cls.py`）：\n\n```bash\ncd /home/sonny/exec-sim-repair-verifier && HF_HUB_OFFLINE=1 /root/miniconda3/bin/python eval_repo_cls.py \\\n  --model_name_or_path /root/autodl-tmp/models/Qwen/Qwen3-4B \\\n  --adapter_path /root/autodl-tmp/checkpoints_cls_downsample_qwen3_4b/best \\\n  --data_dir data/swebench_full \\\n  --split test \\\n  --max_seq_length 2048 \\\n  --device cuda:0 \\\n  --output_dir artifacts/eval_cls_downsample_qwen3_4b\n```\n\n（需确认 `eval_repo_cls.py` 的具体参数再提交）\n\n---\n\n## exp-e-qwen3-3shot-baseline：Eval 成功 ✓\n\n| Metric | Qwen3-8B | DeepSeek (ref) |\n|---|---|---|\n| per-test accuracy | **71.61%** | 46.28% |\n| variant accuracy | **45.83%** (22/48) | 45.83% (22/48) |\n| majority baseline | 73.0% | 73.0% |\n| gap vs majority | -1.35pp | -26.7pp |\n| F1 (macro) | 69.48% | — |\n| unparseable | 0 | 0 |\n| runtime | 24.6 min | — |\n\nQwen3-8B 3-shot per-test accuracy (71.61%) 远高于 DeepSeek (46.28%)，但仍低于 majority baseline 1.35pp。Variant accuracy 两者完全相同 (45.83%)。Qwen3 per-test 高是因为它更倾向于预测 pass（precision_pass=91.68%, recall_fail=83.56%），接近 majority voting 行为但略有区分能力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-downsample-cls-func-v3-results.md"
+}

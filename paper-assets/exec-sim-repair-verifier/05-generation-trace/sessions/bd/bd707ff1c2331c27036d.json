@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd707ff1c2331c27036d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "research data count check",
+  "task_key": "worker_research_data-count-check_20260523T181149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_data-count-check_20260523T181149_result.json",
+    "occurrence": 1,
+    "bytes": 1582,
+    "sha256": "82a40381c7b5e971a778cec7548ae9a259243160b0926fac876ff55135cb7659"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n### 1. 文件行数\n\n| 文件 | 行数 |\n|------|------|\n| `data/train.jsonl` | 15,290 |\n| `data/traj_train.jsonl` | 8,052 |\n| `data/test.jsonl` | 1,890 |\n| `data/traj_test.jsonl` | 1,032 |\n| `data/train_downsampled_400.jsonl` | 447 |\n| **总计** | **26,264**（不含 downsampled） |\n\n### 2. CLS train.jsonl\n\n- **Keys**: `code`, `test`, `label`, `source`, `problem_id`, `mutation_type`\n- **Unique problem_ids**: 906\n- **Unique variants** (problem_id + code[:100]): **3,596**\n- **Total samples**: 15,290\n- **Tests per variant**: **4.25**\n\n每行 = 1 个 (variant, single_test) 对，每个 variant 平均展开为 ~4.25 个测试样本。\n\n### 3. TRAJ traj_train.jsonl\n\n- **Keys**: `code`, `test_summary`, `label`, `source`, `problem_id`, `mutation_type`, `num_tests`, `num_pass`, `num_fail`\n- **Total samples**: 8,052\n- 每行是 **variant 级别**，`test_summary` 字段包含该 variant 对应的所有测试摘要（非逐条展开）\n- 没有 `test` / `tests` 字段，测试信息聚合在 `test_summary` 中\n\n### 4. Test set\n\n| 数据集 | 样本数 | Variants | Tests/Variant |\n|--------|--------|----------|---------------|\n| CLS test | 1,890 | 479 | 3.95 |\n| TRAJ test | 1,032 | — (variant 级) | — |\n\n### 5. 下采样数据\n\n- `train_downsampled_400.jsonl`: **447 行**\n\n**关键结论**：CLS 数据是 test-level（每行一个测试），TRAJ 数据是 variant-level（每行一个 variant，测试聚合）。CLS train 共 3,596 个 unique variants，TRAJ train 共 8,052 个 variants。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-data-count-check.md"
+}

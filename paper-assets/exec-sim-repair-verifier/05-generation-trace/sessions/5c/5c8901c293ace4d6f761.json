@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c8901c293ace4d6f761",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh check eval prompt format",
+  "task_key": "worker_ssh_check-eval-prompt-format_20260520T054821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-eval-prompt-format_20260520T054821_result.json",
+    "occurrence": 1,
+    "bytes": 2052,
+    "sha256": "0a0032b9b8c02fe4bae7b0f44965df2e6cba22b03b0325c8a0da5efcef2b174a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "以下是原始结果汇总：\n\n---\n\n### eval_repo_cwm.py prompt 相关代码\n\n**SYSTEM_PROMPT (L31-34):**\n```python\nSYSTEM_PROMPT = (\n    \"You are a code execution simulator. Given a code patch (git diff) and a test name, \"\n    \"predict the execution result when the test is run against the patched code.\"\n)\nUSER_TEMPLATE = \"## Code\\n{code}\\n\\n## Test\\n{test}\\n\\nWhat is the execution result?\"\n```\n\n**build_prompt_ids (L108-124):**\n```python\ndef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\n    user_msg = USER_TEMPLATE.format(code=code, test=test)\n    msgs = [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": user_msg},\n    ]\n    ids = _apply_chat_template_safe(\n        tokenizer, msgs, tmpl_kw, tokenize=True, add_generation_prompt=True,\n    )\n```\n\n---\n\n### train_unified.py prompt 相关代码（对比）\n\n**SYSTEM_PROMPTS (L38-47):**\n```python\nSYSTEM_PROMPTS = {\n    \"cwm\": (\n        \"You are a code execution simulator. Given a code snippet and a test case, \"\n        \"predict the execution result.\"\n    ),\n    \"cls\": (\n        \"You are a code verifier. Given a code patch and a test name, \"\n        \"predict whether the test will pass or fail when run against the patched code.\"\n    ),\n}\n```\n\n**USER_TEMPLATES (L49-52):**\n```python\nUSER_TEMPLATES = {\n    \"cwm\": \"## Code\\n{code}\\n\\n## Test\\n{test}\\n\\nWhat is the execution result?\",\n    \"cls\": \"## Patch (git diff)\\n{code}\\n\\n## Test\\n{test}\\n\\nWill this test pass or fail?\",\n}\n```\n\n**build_messages (L121-129):**\n```python\ndef build_messages(code, test, target=None, task=\"cwm\"):\n    user_msg = USER_TEMPLATES[task].format(code=code, test=test)\n    msgs = [\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPTS[task]},\n        {\"role\": \"user\", \"content\": user_msg},\n    ]\n    if target is not None:\n        msgs.append({\"role\": \"assistant\", \"content\": target})\n    return msgs\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-eval-prompt-format.md"
+}

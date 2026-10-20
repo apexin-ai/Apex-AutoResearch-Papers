@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bde5bf247d99511eae6",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval home 4b val sweep prep",
+  "task_key": "worker_eval_home-4b-val-sweep-prep_20260515T014541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_home-4b-val-sweep-prep_20260515T014541_result.json",
+    "occurrence": 1,
+    "bytes": 806,
+    "sha256": "a918fb1c8288c43c9539b4f4fccc0c2e60eb2c783c8f6d270ba28babcd8b629d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有任务已提交。总结：\n\n**4B CLS v5 Val Sweep 状态：**\n\n| Checkpoint | Val 状态 | Accuracy |\n|---|---|---|\n| ckpt-600 | DONE | 82.82% |\n| ckpt-4000 | DONE | 89.84% |\n| ckpt-4400 | RUNNING (1536/9335, ~60min left) | - |\n| ckpt-4600 | QUEUED (等 4400 完) | - |\n| ckpt-4200 | QUEUED (等 4600 完) | - |\n\n**执行方式：** tmux 会话 `cls4b_val_sweep`，脚本等 ckpt-4400 PID 完成后自动依次跑 ckpt-4600 → ckpt-4200。日志在 `logs/cls4b_val_sweep.log`。\n\n**之前 sweep 失败原因：** `run_v5_val5120_sweep.sh` 用了 `python` 而非 `python3`。\n\n**已确认：** `max_new_tokens=512` 硬编码在 `eval_repo_cls.py:201`，所有 eval 自动满足 D063 约束。\n\n预计全部完成时间：~3 小时（每个 checkpoint ~1 小时）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-home-4b-val-sweep-prep.md"
+}

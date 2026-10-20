@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fe89d175915ddac7bdd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect home 4b ckpt4400 test",
+  "task_key": "worker_collect_home-4b-ckpt4400-test_20260515T075636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_home-4b-ckpt4400-test_20260515T075636_result.json",
+    "occurrence": 1,
+    "bytes": 109,
+    "sha256": "1454b3ce29da2c9966189af40c0989d73fb53b8560ff73e731b74d6304fb0987"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9663/9784 (98.8%)，running_acc=83.3%。约 1 分钟后完成，90 秒后回来收集结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-home-4b-ckpt4400-test.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "72747e587fbb5599c7ba",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "paper experiments draft",
+  "task_key": "worker_paper_experiments-draft_20260515T143453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_experiments-draft_20260515T143453.log",
+    "occurrence": 1,
+    "bytes": 746273,
+    "sha256": "46f74f8637aefc49589d6a3354b03f5f6b640056257444e04759e1e55a6cd474"
+  },
+  "statistics": {
+    "messages": 100,
+    "user_turns": 0,
+    "tool_calls": 36,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 36,
+      "tool_result": 36,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 100,
+      "chunks": [
+        {
+          "path": "72747e587fbb5599c7ba-part-0001.json",
+          "message_count": 74
+        },
+        {
+          "path": "72747e587fbb5599c7ba-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-experiments-draft.md"
+}

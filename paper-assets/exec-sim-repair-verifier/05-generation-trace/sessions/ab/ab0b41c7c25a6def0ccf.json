@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab0b41c7c25a6def0ccf",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect westd eval sweep",
+  "task_key": "worker_collect_westd-eval-sweep_20260515T073916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_westd-eval-sweep_20260515T073916_result.json",
+    "occurrence": 1,
+    "bytes": 197,
+    "sha256": "860bc054751d9e41e8202918031e8e0c470db553f0ebfbe6b381a31a4a4603c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已安排 4.5 分钟后回来检查。当前进度：\n- ckpt-6200 val: 38% (GPU 0)\n- ckpt-6400 val: 53% (GPU 3)\n- ckpt-3000 test: 等待 GPU 3\n- ckpt-6633 val: QUEUED，等 GPU 0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-westd-eval-sweep.md"
+}

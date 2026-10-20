@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3df9d9d14f78bfbbe1f7",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b eval seed42",
+  "task_key": "worker_eval_cls8b-eval-seed42_20260512T172229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-eval-seed42_20260512T172229_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "f689d6d49fe63f75eda5b04842cc26290e208fe555368533fb7ca96ab6e8e477"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**8B CLS seed42 eval 结果**\n- 测试集：1890 条，pass/fail 比例 51.7%/48.3%\n- **Overall accuracy: 90.48%**（baseline 51.7%，gap +38.7pp）\n- fail F1: 90.06%，pass F1: 90.86%\n- Unparseable: 0\n- MVP-B 全部 PASS\n\n**输出文件**（服务器 `/home/sonny/exec-sim-repair-verifier/eval_results/`）：\n- `cls8b_seed42.json` — 聚合指标\n- `cls8b_seed42_predictions.json` — 1890 条 per-instance predictions（含 index, problem_id, label, prediction, correct）\n\nRegistry `cls8b-eval-seed42` 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-eval-seed42.md"
+}

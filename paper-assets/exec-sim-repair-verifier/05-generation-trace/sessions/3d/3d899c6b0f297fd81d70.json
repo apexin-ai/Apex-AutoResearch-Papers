@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d899c6b0f297fd81d70",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "diagnose training metrics anomaly",
+  "task_key": "worker_diagnose_training-metrics-anomaly_20260514T200818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_training-metrics-anomaly_20260514T200818_result.json",
+    "occurrence": 1,
+    "bytes": 1746,
+    "sha256": "2a59b78fa8fff112f440b581941d5cb5ee34caa5da5f184f29c434f756b3880b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "排查完成。以下是报告。\n\n---\n\n## 排查结论：**误报——两个进程完全独立，指标不同**\n\n### 进程验证\n\n| 项目 | CWM 8B (PID 266816) | CLS 8B (PID 266449) |\n|------|---------------------|---------------------|\n| GPU | GPU 2, 30724MiB | GPU 3, 30904MiB |\n| 脚本 | `train_repo_cwm.py` | `train_repo_verifier.py` |\n| 种子 | 42 | 123 |\n| Stdout fd | `→ repo-level-cwm-8b-conda-v2.log` | `→ repo-level-cls-8b-seed123-conda-v3.log` |\n| 当前 step | ~2000 (epoch 0.90) | ~3728 (epoch 1.67) |\n| 最新 loss | 0.1796 | 0.3805 |\n| 最新 checkpoint | checkpoint-1900 (03:48) | checkpoint-3600 (03:51) |\n\n### 脚本差异确认\n- **CWM**: 预测执行输出（generation），目标字段 = `execution_output`\n- **CLS**: 分类 pass/fail，目标字段 = `label` → LABEL_MAP {1:\"pass\", 0:\"fail\"}\n- 不同的 system prompt、不同的 user prompt、不同的 save_steps (100 vs 200)\n\n### 关于 \"loss=0.2144 at step 3576\" 的追溯\n- `loss=0.2144` **仅出现在 CLS v3 日志中**（step ~3550 处，epoch 1.61）\n- CWM 当前只到 step ~2000，**不可能有 step 3576 的指标**\n- 所有历史日志（旧 CWM/CLS）中也未找到这个值\n\n### 根因\n**观察错误**，不是日志混写或配置错误。可能的原因：\n1. 查看时误读了同一个 CLS 的 tmux 输出（CLS tmux session `repo-level-cls-8b-seed123-conda-v3` 当前已不存在）\n2. CWM v3 日志显示曾有人试图用 `train_repo_verifier.py --task cwm` 启动，但参数不识别直接报错退出，未实际运行\n\n### 结论\n**无需干预。** 两个进程在不同 GPU 上独立训练不同任务，指标完全不同，checkpoint 目录独立。训练正常进行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-training-metrics-anomaly.md"
+}

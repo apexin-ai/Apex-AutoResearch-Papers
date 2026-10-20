@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "587862e77296bfb43fdc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code seetacloud submit training 2gpu",
+  "task_key": "worker_code_seetacloud-submit-training-2gpu_20260512T062657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_seetacloud-submit-training-2gpu_20260512T062657_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "33b991e2f86003b3ee04a5fca88ba7b38d0a59e3f11245ba759f44a7cb9b1366"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功启动，正在加载模型：\n\n| 实验 | GPU | tmux session | 状态 |\n|------|-----|-------------|------|\n| model-size-scaling-cls8b | cuda:0 | model-size-scaling-cls8b | tokenizer 已加载，数据 train=15290/val=1896，正在加载 8B 模型 |\n| model-size-scaling-cwm8b | cuda:1 | model-size-scaling-cwm8b | tokenizer 已加载，数据 train=15290/val=1896，正在加载 8B 模型 |\n\n模型路径: `/root/autodl-tmp/models/Qwen/Qwen3-8B`。8B 模型加载到显存需要约 1-2 分钟，之后 `nvidia-smi` 会看到显存占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-seetacloud-submit-training-2gpu.md"
+}

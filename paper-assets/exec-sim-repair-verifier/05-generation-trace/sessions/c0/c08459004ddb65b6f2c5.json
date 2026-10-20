@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c08459004ddb65b6f2c5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh urgent timeout fix",
+  "task_key": "worker_ssh_urgent-timeout-fix_20260520T211041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent-timeout-fix_20260520T211041_result.json",
+    "occurrence": 1,
+    "bytes": 2243,
+    "sha256": "7fe81ce5bf579ebc76b4fbc2180dcfd9f5893af8b2c4f36148b5fce4e523cea6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "参数确认存在。以下是完整排查结果：\n\n---\n\n## 排查结果\n\n### 1. s456 timeout 风险：**安全，无风险**\n\n- 启动脚本 `launch_deepseek_cwm_s456_v2.sh` 无 timeout wrapper\n- 进程树：`bash -c nohup python ...` → PPID=1（orphaned），无外层 timeout\n- 当前进度：**step 5501/12627 (43.6%)**，已跑 12h，预计剩余 ~16h\n- GPU 1 使用率 99%，正常运行\n\n### 2. s123 timeout 根因\n\n- **没有 launch 脚本**（`launch_deepseek_cwm_s123_v2.sh` 不存在）——训练大概率通过 `ssh_execute` 直接启动，被调用方的 `timeout` 命令包裹\n- 训练从 11:05 UTC 开始，15:45 UTC 被杀（**运行 4h40m**），仅完成 epoch 1（step 4209/12627）\n- monitor 脚本 `monitor_deepseek_s123_v2.sh` **不检查退出码**——PID 消失后直接启动 eval，导致在 1-epoch checkpoint 上跑了 eval\n- s123 训练日志不存在（output 未重定向到文件）\n\n### 3. s123 eval 当前状态\n\n- PID 978461 存活，已跑 5h25m\n- **正在 eval checkpoint-4209（仅 1 epoch 模型）**，4208/9784 样本 (43%)，running_acc=75.5%\n- 这个 eval 结果可作为 1-epoch 参考数据，但不是最终 3-epoch 结果\n\n### 4. 已创建的脚本\n\n| 脚本 | 用途 |\n|------|------|\n| `resume_deepseek_s123_v2.sh` | 从 checkpoint-4209 恢复训练，`GPU=<N>` 环境变量指定 GPU |\n| `monitor_with_exitcheck.sh` | 增强版 monitor，检查退出码，非 0 不启动 eval |\n| `launch_with_exitcode.sh` | 训练包装器，将退出码写入 `/tmp/train_exit_code_<PID>` |\n\n### 5. 恢复启动方式（s123 eval 完成后）\n\n```bash\n# 在 GPU 0 或 3 上恢复（先确认哪个空闲）\ncd /home/sonny/exec-sim-repair-verifier\nnohup bash launch_with_exitcode.sh resume_deepseek_s123_v2.sh \\\n    > /root/autodl-tmp/checkpoints_deepseek_cwm_repo_s123_v2/training_resume.log 2>&1 &\nTRAIN_PID=$!\nnohup bash monitor_with_exitcheck.sh $TRAIN_PID \\\n    eval_deepseek_cwm_s123_v2.sh \\\n    monitor_s123_v2_resume.log &\n```\n\n**注意**：当前 s123 eval 正在 GPU 2 上跑，建议让它跑完（还需约 5-6h），1-epoch 结果可作 ablation 参考。恢复训练用 `GPU=0` 或 `GPU=3`（需先确认占用情况）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-timeout-fix.md"
+}

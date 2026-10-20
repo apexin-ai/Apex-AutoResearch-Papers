@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd984ad5e5133b1ea888",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops fetch tost v2 artifact",
+  "task_key": "worker_ops_fetch-tost-v2-artifact_20260519T094902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fetch-tost-v2-artifact_20260519T094902_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "074a6a79a3dc908ecf25fe18442b0482de6a400bc4c0fd9db567475f50edf2d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "最终状态：\n\n| 文件 | 状态 |\n|---|---|\n| `tost_margin_sweep_v2_results.json` | **新增** — v2 正确数据，mean_diff = -0.4505pp，5 seeds，clustered bootstrap |\n| `tost_sensitivity.json` | **保留** — CLS-CWM 数据（Qwen 1.24pp + DeepSeek 0.025pp），标注正确 |\n| `tost_sensitivity_full.json` | **已删除** — mean_diff=1.24pp，CLS-CWM 错标为 CLS-TRAJ |\n| `tost_sensitivity_cls_traj.json` | **已删除** — +1.89pp 无效 3-seed 数据 |\n| `tost_multi_margin.csv` | **已删除** — 旧版 4-pair 数据，被 v2 取代 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fetch-tost-v2-artifact.md"
+}

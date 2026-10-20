@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4907c08cbe96838ce36",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops 14b download check",
+  "task_key": "worker_ops_14b-download-check_20260522T183226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_14b-download-check_20260522T183226_result.json",
+    "occurrence": 1,
+    "bytes": 2183,
+    "sha256": "ea3a06c423d83008c1ce0f4c1e6553893057160e4133d1dcf9ca34c22f19ad0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the full status report:\n\n## 1. Download Progress\n\n**Status: 正常推进中**\n\n- 当前大小: **9.2 GB** (`/dev/shm/Qwen3-14B/._____temp/`)\n- 下载进程: ModelScope `snapshot_download` (PID 200698) 仍在运行，CPU 7.5%\n- 之前在 02:01 时从 6.0G 回退到 16M 后重新下载，此后稳定增长\n\n下载日志（来自 `cls14b-func-s42.log`）：\n```\n02:01 → 16M (重置)\n02:03 → 499M\n02:05 → 1.1G\n...\n02:31 → 8.8G\n02:33 → 9.2G (当前)\n```\n\n- **速率**: ~293 MB/min (~4.9 MB/s)，30分钟内从 16M 增长到 8.8G，非常稳定\n- **预计总大小**: Qwen3-14B BF16 约 28GB\n- **预计剩余时间**: ~(28-9.2)/0.293 ≈ **64 分钟**，约 **03:37** 完成\n\n所有 8 个 shard 文件已在 `._____temp/` 中创建（ModelScope 并行下载），尚未移至最终目录。\n\n## 2. auto_train_14b.sh (GPU 0)\n\n- **GPU 绑定**: `CUDA_VISIBLE_DEVICES=0`\n- **进程状态**: 正在运行 (PID 200355)，当前处于 `sleep 120` 轮询循环中\n- **触发条件**: 等待所有 8 个 shard 都 ≥1GB 且无 `.aria2` 残留文件\n- **训练后自动 eval**: 是，训练完成后会在同一 GPU 上运行 `eval_verifier.py`\n- **任务**: `cls` task, QLoRA 4bit, seed 42, batch 1, grad_accum 32, lr 5e-5, epochs 3\n\n## 3. run_14b_eval.sh (GPU 1)\n\n- **GPU 绑定**: `CUDA_VISIBLE_DEVICES=1`\n- **进程状态**: 正在运行 (PID 202994)，当前处于 `sleep 60` 轮询循环中\n- **触发条件**: 等待 ModelScope 下载进程结束 (`pgrep -f \"snapshot_download.*Qwen3-14B\"`)\n- **eval 任务**: 0-shot 和 3-shot baseline 评估 (`eval_14b_baseline.py`)\n\n## 4. GPU 状态\n\n4x RTX 5090 (32GB each)，**全部空闲**，0% utilization，0 MiB memory used。等待下载完成后 GPU 0 和 GPU 1 将分别启动训练和 eval。\n\n## 5. 执行链完整性\n\n一切正常：\n- 下载进程活跃，速率稳定 (~5 MB/s)\n- `auto_train_14b.sh` 在 GPU 0 上轮询等待下载完成 → 自动启动训练 → 自动 eval\n- `run_14b_eval.sh` 在 GPU 1 上轮询等待下载进程结束 → 自动启动 0-shot + 3-shot baseline eval\n- 预计 ~1 小时后下载完成，两个脚本将同时触发"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-14b-download-check.md"
+}

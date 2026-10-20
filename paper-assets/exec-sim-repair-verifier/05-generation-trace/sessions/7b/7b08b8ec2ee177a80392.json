@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b08b8ec2ee177a80392",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "fix d063 val 6144 verification",
+  "task_key": "worker_fix_d063-val-6144-verification_20260514T090648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d063-val-6144-verification_20260514T090648_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "3883de5d647fd188a14e7aa74917b98a4616175301085aecfca4998235accc91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6144 验证 tmux session 已启动，正在等待当前 2048 sweep 完成。\n\n## 汇报\n\n### 1. eval_repo_cls.py 修改\n**无需修改**。脚本已支持 `--max_seq_length` 参数（L257, default=2048）。\n\n### 2. 2048 val 结果（已确认排序反转）\n\n| Checkpoint | val acc (2048) | val f1_macro (2048) | test acc | test f1_macro |\n|---|---|---|---|---|\n| ckpt-400 | **80.72%** | 67.03 | 75.05% | 67.47 |\n| ckpt-600 | 76.78% | 66.81 | **80.73%** | **77.31** |\n\nval 2048 排序: ckpt-400 > ckpt-600 — **与 test 排序相反**，确认截断导致 metrics 失真。\n\n### 3. 6144 验证状态\n- tmux session `val_6144` 已创建，排队等待 `val_sweep`（2048 sweep）完成\n- 当前 sweep 还剩 ~6 个 checkpoint（v5/4000 在跑 + 5个待跑），预计 ~3.5h 后完成\n- 6144 验证用 batch_size=4（防 OOM），预计每个 checkpoint ~50-60min\n- **ETA**: 6144 验证预计约 5-6 小时后有结果（~08:00 PDT）\n\n### 4. 监控命令\n```bash\n# 查看 6144 进度\ntail -20 /home/sonny/exec-sim-repair-verifier/val_eval_results_6144/run.log\n\n# 查看结果\ncat /home/sonny/exec-sim-repair-verifier/val_eval_results_6144/seed123_ckpt400.json\ncat /home/sonny/exec-sim-repair-verifier/val_eval_results_6144/seed123_ckpt600.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d063-val-6144-verification.md"
+}

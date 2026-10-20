@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "652570ebb03991e7460b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops check all gpu progress",
+  "task_key": "worker_ops_check-all-gpu-progress_20260522T010356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-all-gpu-progress_20260522T010356_result.json",
+    "occurrence": 1,
+    "bytes": 1973,
+    "sha256": "c77c0b5850f2e75da74ad6468c528f37b27f29730a8c1704015af46c5fd16abe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 4 GPU 实验状态总览\n\n| GPU | 实验 | PID | 进度 | 状态 |\n|-----|------|-----|------|------|\n| 0 | Qwen s123 eval | 94100 | 2516/9784 (25.7%) | RUNNING |\n| 1 | **DS s456 eval** | 63490 | **8896/9784 (90.9%)** | RUNNING |\n| 2 | DS s123 v2 eval | 100824 | 1384/9784 (14.1%) | RUNNING (自动接替已完成的 train) |\n| 3 | Qwen s456 eval | 96730 | 2032/9784 (20.8%) | RUNNING |\n\nGPU 利用率：0=82%, 1=85%, 2=85%, 3=76%，全部满载。\n\n---\n\n### DS s456 eval partial analysis (8896 samples, 91% done)\n\n| 指标 | DS s456 | DS s42 baseline | Δ |\n|------|---------|-----------------|---|\n| Overall accuracy | **56.22%** | 61.49% | **-5.3pp** |\n| Unparseable rate | 57.1% | 62.5% | -5.4pp (s456 解析更好) |\n| Parseable-only acc | **32.32%** | 38.7% | **-6.4pp** |\n| F1-macro | 50.67% | — | — |\n| Fail recall | 42.08% | — | — |\n\n### Scenario 判断：**Scenario C（中间偏 B）**\n\ns456 与 s42 差距 5-6pp，方向一致地**更差**。具体表现：\n- s456 的 unparseable rate 反而更低（57.1% vs 62.5%），说明 parse 更好\n- 但 parseable predictions 准确率大幅下降（32.3% vs 38.7%，Δ=-6.4pp）\n- 综合 overall accuracy 下降 5.3pp\n\n这表明 **CWM 在 DeepSeek 上高 variance，seed 间波动显著**。s456 模型学到了更好的格式遵从（fewer unparseable），但判别能力更差。\n\n---\n\n### 其他 eval 的 partial snapshot\n\n| 实验 | Samples | Overall acc | Unparseable | Parseable-only acc |\n|------|---------|-------------|-------------|-------------------|\n| Qwen s456 | 2032 | **67.52%** | 60.2% | **48.95%** |\n| Qwen s123 | 2516 | **67.37%** | 62.9% | **47.16%** |\n| DS s123 v2 | 1384 | 56.86% | 51.1% | 42.39% |\n\nQwen 两个 seed 高度一致（67.4% ± 0.1pp），**远好于 DeepSeek 全系列**。DS s123 v2 early signal 与 s456 接近（~56-57% acc），但 unparseable rate 更低（51.1%）、parseable accuracy 更好（42.4%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-all-gpu-progress.md"
+}

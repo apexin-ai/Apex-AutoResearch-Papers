@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fca90286724f589192c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh d046 cwm eval immediate check",
+  "task_key": "worker_ssh_d046-cwm-eval-immediate-check_20260513T075818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_d046-cwm-eval-immediate-check_20260513T075818_result.json",
+    "occurrence": 1,
+    "bytes": 1623,
+    "sha256": "6de0770bc90bf55ef92b185260ec3cc7b0befa71279f1d9209121e1d339adc8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CWM v10 Eval 状态汇报\n\n### PID 123610: **已结束**（进程不存在）\n\n### 评估已完成，结果文件：\n\n| 文件 | 大小 | 时间 |\n|------|------|------|\n| `eval_repo_cwm.json` | 997B | May 13 15:54 |\n| `eval_repo_cwm_predictions.jsonl` | 3.8MB / 9784 行 | May 13 15:54 |\n| `eval_repo_cwm_summary.json` | **不存在**（结果在 `eval_repo_cwm.json` 里） |\n\n### 核心指标（`eval_repo_cwm.json`）：\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **69.91%** |\n| Majority baseline | 72.96% |\n| **Gap vs majority** | **-3.05 pp** ❌ |\n| F1 (fail) | 11.54 |\n| F1 (pass) | 81.87 |\n| F1 (macro) | 46.71 |\n| Precision fail / pass | 28.15 / 73.04 |\n| Recall fail / pass | 7.26 / 93.14 |\n| **Unparseable** | **9102 / 9784 (93%)** |\n| Truncated | 478 (4.89%), 其中 accuracy 仅 21.76% |\n\n### 混淆矩阵：\n```\n              Pred Fail  Pred Pass\nActual Fail      192       2454\nActual Pass      490       6648\n```\nSupport: fail=2646, pass=7138\n\n### 关键问题：\n1. **93% unparseable** — 模型输出几乎全部无法解析为结构化结果，解析逻辑或 prompt 格式可能有严重问题\n2. **低于 majority baseline 3pp** — 模型表现不如简单多数投票\n3. **Fail 类召回率仅 7.26%** — 几乎无法识别 fail 样本，模型倾向于全部预测为 pass\n4. Checkpoint 路径显示用的是 `checkpoints_repo_cwm_v9/checkpoint-400`，而非 v10\n\n### GPU 状态：\n4x RTX 5090 全部空闲（0% utilization, 0 MiB used）\n\n### 配置：\n- 模型: Qwen3-4B, max_seq_length=2048, max_new_tokens=64, batch_size=8"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-d046-cwm-eval-immediate-check.md"
+}

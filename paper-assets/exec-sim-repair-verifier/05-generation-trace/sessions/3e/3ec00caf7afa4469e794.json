@@ -1,0 +1,451 @@
+{
+  "schema_version": "1.0",
+  "id": "3ec00caf7afa4469e794",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "analysis holm bonferroni w5",
+  "task_key": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_holm-bonferroni-w5_20260519T092929.jsonl",
+    "occurrence": 1,
+    "bytes": 25104,
+    "sha256": "2904a699cbb7c25cb77b7fb0cd9452db7bdb4e3801d202f4fc49c5c9e72f976a"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T09:31:19.037916+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/ 2>/dev/null | head -30",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T09:31:19.038297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4b_8b_cls_cwm_paired_bootstrap_corrected.json\n4b_eval_hang_analysis.md\nD132-cwm-s123-e2-seq2048\nD133_diagnosis.md\nD138_data_investigation.md\n_project\nall_experiments_parsed.json\nanalysis_5paired_bootstrap.py\nbibliography_audit_report.json\nbibliography_candidates.yaml\nblock-corr-empirical\nblock_correlation_analysis.py\nckpt6315_eval_analysis.md\ncls4b-v5-ckpt4400-val5120-eval\ncls8b-block-correlation-empirical\ncls8b-s42-resume-ckpt3600-mutation\ncls8b_s42_ckpt3600_per_mutation_pr.json\ncls8b_s42_ckpt3600_per_test_pr_bucketed.json\ncls8b_seed123_ckpt3000_val_eval_pending.md\ncls_v4_s123_config_comparison.md\ncls_v5_cwm_epoch2_launch_config.md\ncomprehensive_results_summary.md\ncomprehensive_test_results.md\ncwm-rank32-ablation-v2\ncwm-rank32-alpha64-ablation\ncwm4b_mutation_breakdown.json\ncwm8b_seed123_analysis.txt\ncwm8b_shard_progress.md\ncwm_error_mode_analysis.md\ncwm_rank32_eval_command.sh"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T09:31:19.038625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "CWM.*TRAJ|cwm.*traj",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T09:31:19.039113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 114 files\nartifacts/review_reports/round_3.md\nartifacts/review_reports/round_2.md\nartifacts/manifest.yaml\nartifacts/review_reports/round_1.md\nartifacts/dream_reports/dream_20260518T171503/meta.yaml\nartifacts/dream_reports/dream_20260518T171503/logs/review_worst.log\nartifacts/dream_reports/dream_20260518T171503/worst/review_report.md\nartifacts/dream_reports/dream_20260518T171503/worst/review_context.yaml\nartifacts/dream_reports/dream_20260518T171503/logs/review_median.log\nartifacts/dream_reports/dream_20260518T171503/median/review_report.md\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log\nartifacts/dream_reports/dream_20260518T171503/best/review_report.md\nartifacts/dream_reports/dream_20260518T171503/logs/paper_agent_worst.log\nartifacts/dream_reports/dream_20260518T171503/worst/paper.tex\nartifacts/dream_reports/dream_20260518T171503/worst/paper_framing.md\nartifacts/dream_reports/dream_20260518T171503/worst/experiment_data.json\nartifacts/dream_reports/dream_20260518T171503/worst/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260518T171503/logs/paper_agent_median.log\nartifacts/dream_reports/dream_20260518T171503/median/paper.tex\nartifacts/dream_reports/dream_20260518T171503/median/paper_framing.md\nartifacts/dream_reports/dream_20260518T171503/logs/paper_agent_best.log\nartifacts/dream_reports/dream_20260518T171503/best/paper.tex\nartifacts/dream_reports/dream_20260518T171503/best/paper_framing.md\nartifacts/dream_reports/dream_20260518T171503/best/experiment_data.json\nartifacts/dream_reports/dream_20260518T171503/logs/phase2_worst_attempt0.log\nartifacts/dream_reports/dream_20260518T171503/logs/phase2_median_attempt0.log\nartifacts/dream_reports/dream_20260518T171503/logs/phase2_best_attempt0.log\nartifacts/fig1_reformulation.py\nartifacts/dream_reports/dream_20260518T171503/logs/phase1_attempt0.log\nartifacts/_project/data/lr_verification.json\nartifacts/lr_verification.json\nartifacts/_project/data/traj_complementarity_analysis.json\nartifacts\n…[truncated 5672 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T09:31:19.039344+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/traj_complementarity_analysis.json",
+              "limit": "50"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T09:31:19.039934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"pairs\": {\n3\t    \"CLS_vs_CWM\": {\n4\t      \"method_A\": \"CLS\",\n5\t      \"method_B\": \"CWM\",\n6\t      \"n_instances\": 1890,\n7\t      \"accuracy_A\": 86.93,\n8\t      \"accuracy_B\": 85.77,\n9\t      \"both_correct\": 1534,\n10\t      \"A_only_correct\": 109,\n11\t      \"B_only_correct\": 87,\n12\t      \"both_wrong\": 160,\n13\t      \"oracle_ensemble\": 1730,\n14\t      \"oracle_accuracy_pct\": 91.53,\n15\t      \"complementarity_pct\": 10.37,\n16\t      \"error_complementarity_pct\": 55.06,\n17\t      \"error_complementarity_definition\": \"fraction of error-instance union where one model is correct and the other is wrong\",\n18\t      \"verified_55_1_pct\": true\n19\t    }\n20\t  },\n21\t  \"traj_status\": {\n22\t    \"available\": false,\n23\t    \"reason\": \"Cannot reproduce TRAJ per-instance predictions. The LoRA adapter at checkpoints_deepseek_traj_func/best loads correctly (verified: non-zero weights, active adapter, correct scaling=2.0) but does not sufficiently shift the output distribution from the base DeepSeek-coder-6.7b model. Top prediction is 'False' (68.75%) instead of 'resolved' (3.4%). Only 39% of outputs parse as resolved/unresolved, yielding ~67% accuracy on parseable subset vs reported 83.14%. Root cause: the eval_traj_verifier.py script that produced the original 83.14% result was created AFTER the eval results file (script: May 17 00:27, results: May 16 21:02), suggesting a different script or method was used. The original eval method could not be determined from available logs or bash history.\",\n24\t    \"CLS_vs_TRAJ\": \"not_computed\",\n25\t    \"CWM_vs_TRAJ\": \"not_computed\",\n26\t    \"three_way_oracle\": \"not_computed\"\n27\t  },\n28\t  \"metadata\": {\n29\t    \"model_base\": \"deepseek-coder-6.7b-instruct\",\n30\t    \"cls_checkpoint\": \"checkpoints_deepseek_cls_func/best\",\n31\t    \"cwm_checkpoint\": \"checkpoints_deepseek_cwm_func/best\",\n32\t    \"traj_checkpoint\": \"checkpoints_deepseek_traj_func/best\",\n33\t    \"test_set_size_cls_cwm\": 1890,\n34\t    \"test_set_size_traj\": 1032,\n35\t    \"traj_is_subset_of_cls_cwm\": true\n36\t  }\n37\t}\n38\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T09:31:19.040199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "CWM.*TRAJ.*p[_-]?val|tost.*cwm.*traj",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts",
+              "output_mode": "content",
+              "-i": "True",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T09:31:19.040535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260511T214810/logs/phase2_median_attempt0.log:27:[Omitted long matching line]\nartifacts/dream_reports/dream_20260511T214810/logs/phase2_median_attempt0.log:28:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/worst/experiment_data.json:58:[Omitted long matching line]\nartifacts/dream_reports/dream_20260511T214810/logs/phase2_best_attempt0.log:4:[Omitted long matching line]\nartifacts/dream_reports/dream_20260511T214810/logs/phase2_best_attempt0.log:5:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:15:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:20:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:21:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:22:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:38:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:42:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:44:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:50:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:53:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:54:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:55:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:79:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:91:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:94:[Omitted long matching line]\nartifacts/dream_reports/dream_20260518T171503/logs/review_best.log:97:[Omit\n…[truncated 70 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T09:31:19.040742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "CWM.*TRAJ|cwm.*traj.*p.?=",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T09:31:19.040960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4:We systematically compare \\cls{}, \\cwm{}, and \\traj{} across two model families, two complexity levels, and multiple seeds to characterize the formulation design space for neural code verification.\n28:[Omitted long matching line]\n60:[Omitted long matching line]\n90:\\cls{} and \\traj{} both scale positively from 4B to 8B (+1.27\\pp{} and +1.70\\pp{} respectively), while \\cwm{} remains flat ($-$0.03\\pp{}). At 8B, the ranking is \\cls{} (89.94) $>$ \\traj{} (87.70) $>$ \\cwm{} (87.33). The \\cls{}--\\cwm{} gap widens from 1.32\\pp{} at 4B to 2.62\\pp{} at 8B (Figure~\\ref{fig:scaling_gap}); clustered bootstrap on the 3-seed superset (42, 123, 456 for \\cls{}/\\cwm{}) yields $p = 0.0066$ (95\\% CI $[1.80, 2.71]$), which confirms the widening is not a sampling artifact.\n92:\\cwm{} flat scaling ($-$0.03\\pp{}) may reflect suboptimal hyperparameter transfer at 8B rather than a fundamental limitation; we do not claim generation \\emph{cannot} benefit from scale. The interaction between formulation and scale amplifies at repository-level complexity (\\S\\ref{sec:repo}), where \\traj{} also shows no scaling benefit (72.92\\% at both 4B and 8B); only \\cls{} scales positively across both complexity levels.\n111:\\caption{Repo-level cross-formulation comparison on SWE-bench Verified test set ($n{=}9{,}784$). \\cwm{} unparseable outputs default to pass (majority class). Seeds: Qwen3 primary seed 42; DeepSeek \\traj{} 6 seeds.}\n117:\\textbf{Model} & \\textbf{\\cls{} Acc (\\%)} & \\textbf{\\cwm{} Acc (\\%)} & \\textbf{\\cwm{} Unparse (\\%)} & \\textbf{\\traj{} Acc (\\%)\\textsuperscript{$\\ddagger$}} \\\\\n130:[Omitted long matching line]\n177:\\cls{} achieves 217$\\times$ higher throughput than \\cwm{} (853 vs.\\ 3.9 inferences/min; 1 output token vs.\\ avg 477). This efficiency gap is observed consistently across both model families. Extended analysis (error complementarity, variance compression, per-test precision/recall, block correlation, LoRA rank ablation, per-mutation scaling, and \\cls{}--\\traj{} efficiency) appears in A\n…[truncated 171 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T09:31:19.041239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "TOST|tost|equivalen",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T09:31:19.041390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14:[Omitted long matching line]\n17:Confidence intervals use clustered bootstrap~\\cite{davison1997bootstrap} (114 problem clusters, 10K resamples); per-test vs.\\ trajectory-level equivalence uses Two One-Sided Tests (TOST)~\\cite{schuirmann1987tost} with $\\pm$2\\pp{} margin. Intraclass correlation coefficient (ICC)~\\cite{shrout1979icc} quantifies within-problem correlation. Oracle analysis uses SWE-bench Verified (500 instances).\n95:\\subsection{Per-Test vs.\\ Trajectory-Level Equivalence}\n96:\\label{sec:equivalence}\n98:[Omitted long matching line]\n139:[Omitted long matching line]\n194:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T09:31:19.041634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper/experiments.tex",
+              "offset": "95",
+              "limit": "20"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T09:31:19.041854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "95\t\\subsection{Per-Test vs.\\ Trajectory-Level Equivalence}\n96\t\\label{sec:equivalence}\n97\t\n98\tWe compare \\cls{} (aggregated via all-pass rule) against \\traj{} on 523 variant-level instances across five seeds.\\footnote{Seeds 789 and 0 use NF4 quantized inference; the remaining three use bfloat16.} The pooled gap is $-$0.45\\pp{} (95\\% CI [$-$1.71, +0.84]); the TOST equivalence test confirms statistical equivalence at $p = 0.007$ ($\\pm$2\\pp{} margin). Equivalence holds at margins as tight as $\\pm$1.52\\pp{} (Table~\\ref{tab:tost_sensitivity}); our $\\pm$2\\pp{} threshold provides approximately 30\\% headroom above the minimum, chosen to reflect a practically meaningful difference where a 2\\pp{} gap corresponds to ${\\sim}$15 additional errors per 900 predictions. Within-problem predictions are correlated (intraclass correlation ICC $= 0.191$, $p < 0.0001$, design effect (DEFF) $= 3.97$); all statistical tests use clustered bootstrap accordingly. On DeepSeek-Coder, the observed \\cls{}--\\cwm{} gap of 0.02\\pp{} is consistent with equivalence, but with only 2 seeds the comparison is underpowered. Per-test classification provides diagnostic information (which specific tests fail) at no cost to variant-level accuracy, a result that parallels process supervision~\\cite{lightman2023letsverify}, where step-level verification enables error localization without accuracy cost.\n99\t\n100\tOracle analysis on SWE-bench Verified (500 instances) shows that per-test advantage concentrates at $T \\geq 2$ fail-to-pass tests (31.3\\% of instances, contributing 55.3\\% of the total oracle advantage; Appendix~\\ref{app:oracle}).\n101\t\n102\t\n103\t\\subsection{Repo-Level: Complexity-Dependent Divergence}\n104\t\\label{sec:repo}\n105\t\n106\tTable~\\ref{tab:repo_level} compares \\cls{} and \\cwm{} on SWE-bench Verified per-test classification at repository-level complexity. Checkpoints are val-selected where validation loss is computable (see \\S\\ref{sec:setup}); the test set ($n{=}9{,}784$) has zero problem overlap with va\n…[truncated 564 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T09:31:19.042188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Holm-Bonferroni correction for 6 primary comparisons (3 formulations × 2 complexity levels).\"\"\"\n\nimport json\nimport pathlib\nfrom scipy.stats import norm\n\nOUTPUT_DIR = pathlib.Path(__file__).parent\n\ndef approx_tost_p(mean_diff, se, margin=2.0):\n    \"\"\"Approximate TOST p-value using normal distribution.\"\"\"\n    z_upper = (mean_diff - margin) / se\n    z_lower = (mean_diff + margin) / se\n    p_upper = norm.cdf(z_upper)\n    p_lower = norm.cdf(-z_lower)\n    return max(p_upper, p_lower)\n\ndef holm_bonferroni(comparisons, alpha=0.05):\n    k = len(comparisons)\n    sorted_comps = sorted(comparisons, key=lambda x: x[\"raw_p\"])\n\n    for i, comp in enumerate(sorted_comps):\n        rank = i + 1\n        adj_p = comp[\"raw_p\"] * (k - rank + 1)\n        if i > 0 and adj_p < sorted_comps[i - 1][\"adj_p\"]:\n            adj_p = sorted_comps[i - 1][\"adj_p\"]\n        comp[\"adj_p\"] = min(adj_p, 1.0)\n        comp[\"rank\"] = rank\n        comp[\"multiplier\"] = k - rank + 1\n        comp[\"significant\"] = comp[\"adj_p\"] < alpha\n\n    return sorted_comps\n\n# --- CWM vs TRAJ function-level: approximate ---\n# gap=0.89pp, SE borrowed from CLS-TRAJ (0.6517pp), TOST ±2pp margin\ncwm_traj_func_p = approx_tost_p(mean_diff=0.89, se=0.6517, margin=2.0)\n\ncomparisons = [\n    {\"name\": \"Func: CLS vs CWM (TOST ±2pp)\",   \"raw_p\": 0.007,  \"level\": \"function\", \"note\": \"clustered bootstrap, 5 seeds\"},\n    {\"name\": \"Func: CLS vs TRAJ (TOST ±2pp)\",   \"raw_p\": 0.0087, \"level\": \"function\", \"note\": \"analytical, mean=-0.45pp, SE=0.6517pp\"},\n    {\"name\": \"Func: CWM vs TRAJ (TOST ±2pp)\",   \"raw_p\": round(cwm_traj_func_p, 4), \"level\": \"function\", \"note\": f\"APPROXIMATE: gap=0.89pp, SE=0.6517 borrowed from CLS-TRAJ\"},\n    {\"name\": \"Repo: CLS vs CWM (Qwen3-8B)\",     \"raw_p\": 0.003,  \"level\": \"repo\", \"note\": \"paired bootstrap, diff=+29.17pp\"},\n    {\"name\": \"Repo: CLS vs TRAJ (Qwen3-8B)\",    \"raw_p\": 0.385,  \"level\": \"repo\", \"note\": \"unpaired bootstrap, diff=+8.33pp\"},\n    {\"name\": \"Repo: CWM vs TRAJ (Qwen3-8B)\",    \"raw_p\": 0.039,  \"level\": \"repo\", \"note\": \"unpaired bootstrap, diff=-20.83pp\"},\n]\n\nresults = holm_bonferroni(comparisons)\n\nprint(f\"Holm-Bonferroni Correction (k={len(comparisons)}, α=0.05)\")\nprint(\"=\" * 100)\nprint(f\"{'Rank':<5} {'Comparison':<38} {'Raw p':>8} {'×':>3} {'Adj p':>8} {'Sig?':>6}  {'Note'}\")\nprint(\"-\" * 100)\nfor r in results:\n    sig_str = \"YES\" if r[\"significant\"] else \"no\"\n    print(f\"{r['rank']:<5} {r['name']:<38} {r['raw_p']:>8.4f} {r['multiplier']:>3} {r['adj_p']:>8.4f} {sig_str:>6}  {r['note']}\")\nprint(\"-\" * 100)\n\nn_sig = sum(1 for r in results if r[\"significant\"])\nprint(f\"\\n{n_sig}/{len(results)} comparisons remain significant after correction.\")\n\nfor r in results:\n    assert r[\"adj_p\"] >= r[\"raw_p\"], f\"adj_p < raw_p for {r['name']}\"\n\noutput = {\n    \"method\": \"Holm-Bonferroni\",\n    \"k\": len(comparisons),\n    \"alpha\": 0.05,\n    \"results\": [\n        {\n            \"rank\": r[\"rank\"],\n            \"comparison\": r[\"name\"],\n            \"level\": r[\"level\"],\n            \"raw_p\": r[\"raw_p\"],\n            \"multiplier\": r[\"multiplier\"],\n            \"adj_p\": round(r[\"adj_p\"], 4),\n            \"significant\": r[\"significant\"],\n            \"note\": r[\"note\"],\n        }\n        for r in results\n    ],\n}\n\nout_path = OUTPUT_DIR / \"holm_bonferroni_results.json\"\nout_path.write_text(json.dumps(output, indent=2) + \"\\n\")\nprint(f\"\\nSaved to {out_path}\")\n"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T09:31:19.042414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T09:31:19.042753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 artifacts/holm_bonferroni.py",
+              "description": "Run Holm-Bonferroni correction script"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T09:31:19.043120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Holm-Bonferroni Correction (k=6, α=0.05)\n====================================================================================================\nRank  Comparison                                Raw p   ×    Adj p   Sig?  Note\n----------------------------------------------------------------------------------------------------\n1     Repo: CLS vs CWM (Qwen3-8B)              0.0030   6   0.0180    YES  paired bootstrap, diff=+29.17pp\n2     Func: CLS vs CWM (TOST ±2pp)             0.0070   5   0.0350    YES  clustered bootstrap, 5 seeds\n3     Func: CLS vs TRAJ (TOST ±2pp)            0.0087   4   0.0350    YES  analytical, mean=-0.45pp, SE=0.6517pp\n4     Repo: CWM vs TRAJ (Qwen3-8B)             0.0390   3   0.1170     no  unpaired bootstrap, diff=-20.83pp\n5     Func: CWM vs TRAJ (TOST ±2pp)            0.0443   2   0.1170     no  APPROXIMATE: gap=0.89pp, SE=0.6517 borrowed from CLS-TRAJ\n6     Repo: CLS vs TRAJ (Qwen3-8B)             0.3850   1   0.3850     no  unpaired bootstrap, diff=+8.33pp\n----------------------------------------------------------------------------------------------------\n\n3/6 comparisons remain significant after correction.\n\nSaved to /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni_results.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T09:31:19.043291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/holm_bonferroni_results.json"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T09:31:19.043456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"method\": \"Holm-Bonferroni\",\n3\t  \"k\": 6,\n4\t  \"alpha\": 0.05,\n5\t  \"results\": [\n6\t    {\n7\t      \"rank\": 1,\n8\t      \"comparison\": \"Repo: CLS vs CWM (Qwen3-8B)\",\n9\t      \"level\": \"repo\",\n10\t      \"raw_p\": 0.003,\n11\t      \"multiplier\": 6,\n12\t      \"adj_p\": 0.018,\n13\t      \"significant\": true,\n14\t      \"note\": \"paired bootstrap, diff=+29.17pp\"\n15\t    },\n16\t    {\n17\t      \"rank\": 2,\n18\t      \"comparison\": \"Func: CLS vs CWM (TOST \\u00b12pp)\",\n19\t      \"level\": \"function\",\n20\t      \"raw_p\": 0.007,\n21\t      \"multiplier\": 5,\n22\t      \"adj_p\": 0.035,\n23\t      \"significant\": true,\n24\t      \"note\": \"clustered bootstrap, 5 seeds\"\n25\t    },\n26\t    {\n27\t      \"rank\": 3,\n28\t      \"comparison\": \"Func: CLS vs TRAJ (TOST \\u00b12pp)\",\n29\t      \"level\": \"function\",\n30\t      \"raw_p\": 0.0087,\n31\t      \"multiplier\": 4,\n32\t      \"adj_p\": 0.035,\n33\t      \"significant\": true,\n34\t      \"note\": \"analytical, mean=-0.45pp, SE=0.6517pp\"\n35\t    },\n36\t    {\n37\t      \"rank\": 4,\n38\t      \"comparison\": \"Repo: CWM vs TRAJ (Qwen3-8B)\",\n39\t      \"level\": \"repo\",\n40\t      \"raw_p\": 0.039,\n41\t      \"multiplier\": 3,\n42\t      \"adj_p\": 0.117,\n43\t      \"significant\": false,\n44\t      \"note\": \"unpaired bootstrap, diff=-20.83pp\"\n45\t    },\n46\t    {\n47\t      \"rank\": 5,\n48\t      \"comparison\": \"Func: CWM vs TRAJ (TOST \\u00b12pp)\",\n49\t      \"level\": \"function\",\n50\t      \"raw_p\": 0.0443,\n51\t      \"multiplier\": 2,\n52\t      \"adj_p\": 0.117,\n53\t      \"significant\": false,\n54\t      \"note\": \"APPROXIMATE: gap=0.89pp, SE=0.6517 borrowed from CLS-TRAJ\"\n55\t    },\n56\t    {\n57\t      \"rank\": 6,\n58\t      \"comparison\": \"Repo: CLS vs TRAJ (Qwen3-8B)\",\n59\t      \"level\": \"repo\",\n60\t      \"raw_p\": 0.385,\n61\t      \"multiplier\": 1,\n62\t      \"adj_p\": 0.385,\n63\t      \"significant\": false,\n64\t      \"note\": \"unpaired bootstrap, diff=+8.33pp\"\n65\t    }\n66\t  ]\n67\t}\n68\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T09:31:19.043776+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**3/6 comparisons survive Holm-Bonferroni correction (α=0.05):**\n\n| Rank | Comparison | Raw p | ×k | Adj p | Sig? |\n|------|-----------|-------|-----|-------|------|\n| 1 | Repo: CLS vs CWM | 0.003 | 6 | **0.018** | YES |\n| 2 | Func: CLS vs CWM (TOST) | 0.007 | 5 | **0.035** | YES |\n| 3 | Func: CLS vs TRAJ (TOST) | 0.0087 | 4 | **0.035** | YES |\n| 4 | Repo: CWM vs TRAJ | 0.039 | 3 | 0.117 | no |\n| 5 | Func: CWM vs TRAJ (TOST)* | 0.044 | 2 | 0.117 | no |\n| 6 | Repo: CLS vs TRAJ | 0.385 | 1 | 0.385 | no |\n\n\\* Approximate (SE borrowed from CLS-TRAJ).\n\n核心 CLS 优势的两个 claim (CLS vs CWM at both levels, CLS-TRAJ equivalence at function-level) 都 survive 校正。Repo-level 的 CWM vs TRAJ 和 CLS vs TRAJ 不再显著，论文中需要相应弱化措辞。\n\n脚本和 JSON 已保存到 `artifacts/`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_holm-bonferroni-w5_20260519T092929"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-holm-bonferroni-w5.md"
+}

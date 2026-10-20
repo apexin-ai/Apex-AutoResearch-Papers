@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "637ec190aa892a273f76",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_3_1778617221.md",
+  "task_key": "loop_3_1778617221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778617221.md",
+    "occurrence": 1,
+    "bytes": 4432,
+    "sha256": "9ddb00352b312e013152e2b0f33900f58dad5b8860944a770ea8b992bd566971"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-12T19:43:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **seetacloud 禁止并行训练**：cgroup 360GB 限制，v3+v4 两次 OOM kill 确认（D028）。只能单进程跑一个训练\n- **CWM 提交必须单 Worker**：多 Worker 并行提交导致进程泄漏和互干扰（D031，7 次连续失败的根因之一）\n- **禁止杀死正在训练的进程来应用代码修改**（D024，曾杀掉 v4 step 386 损失 ~1h GPU 时间）\n- home-1x5090 只有 1 张 GPU（cuda:0），当前跑 CLS，不能加 CWM\n- seetacloud CWM 必须用绝对路径模型 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`，checkpoint 写 `/root/autodl-tmp/checkpoints_repo_cwm_v6/`\n- `submit_training_job` 命令必须自带 `source /root/miniconda3/bin/activate`（seetacloud 用 conda，不是 venv）\n\n### 2. 🖥️ 基础设施快照\n- **home-1x5090**：account=sonny，工作目录 `/home/sonny/exec-sim-repair-verifier`，Python=系统 python3，1×RTX 5090，62GB RAM\n- **seetacloud-westd-4x5090**：account=root，工作目录 `/home/sonny/exec-sim-repair-verifier`（注意 root 账户但项目在 /home/sonny 下），conda base 环境 `/root/miniconda3/bin/python`，4×RTX 5090，cgroup 360GB RAM 限制\n- **数据**：`/home/sonny/exec-sim-repair-verifier/swebench_pertest_data/`（70748 条，两台服务器同路径）\n- **模型**：seetacloud `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B`；home 用 HF hub 名 `Qwen/Qwen3-4B`\n- **活跃进程**：repo-level-cls-home PID=2840844，tmux session，home cuda:0，cron 监控中\n- **已死进程**：repo-level-cwm-v6 在 seetacloud 上进程已消失（reconcile_crons 确认：process gone, no sentinel, no W&B）\n\n### 3. 📊 当前状态\n**刚发生**：本 session reconcile_crons 发现 `repo-level-cwm-v6` 进程消失——这是 CWM 第 7 次失败/异常，status 仍为 PREPARING，需要诊断原因并重新提交。\n\n**Registry 摘要**：\n- `repo-level-cls-home`：RUNNING，home cuda:0，step ~104/6633（~7s/it，预计还需 ~12h），save_steps=50 已生效\n- `repo-level-cwm-v6`：PREPARING（但进程已死），seetacloud cuda:2，batch_size=1/grad_accum=32 配置（修复 v5 OOM）\n- 其余 42 个实验全部 DONE（30 success / 3 negative / 8 failed / 1 killed）\n\n**Worker 池**：0 个活跃 Worker（全部 done/cancelled）——**违反 L1 第 4 条**，需立即派 Worker\n\n**等待中**：无 Worker 回调；cls-home cron 活跃；cwm-v6 cron 已 escalate\n\n### 4. 📋 待办（条件触发式）\n- **立即**：派 Worker SSH 到 seetacloud 诊断 cwm-v6 死因（查 log `/root/autodl-tmp/checkpoints_repo_cwm_v6/` 和 tmux session），修复后重新 `submit_training_job` 到 cuda:2\n- **cls-home cron 回调（~12h 后）**→ spawn eval Worker：在 home 上跑 repo-level CLS eval，产出 per-instance prediction JSON\n- **cwm-v6 完成回调**→ spawn eval Worker：在 seetacloud 上跑 repo-level CWM eval，产出 per-instance prediction JSON\n- **CLS + CWM eval 均完成**→ paired bootstrap 分析 repo-level gap → 按 D008 Go/No-Go 表决策：≥3pp 全力 EMNLP Main，1-3pp 加 seeds，<1pp kill C1 pivot\n- **论文**：Paper Agent Step 2 进行中（图表+模板），repo-level 结果出来前不动 Pillar 1 相关章节\n\n### 5. 🎯 战略上下文\n**核心论点**：execution simulation 从 generation → classification 的 task reformulation。函数级两者等价（F1 diff <0.5pp），核心假说是 **complexity-dependent advantage**——repo-level 是唯一决胜数据点。\n\n**已确认数据链**：4B 函数级 gap=1.25pp (p=0.025) → 8B gap=2.43pp (p=0.007) → scaling widens gap。Oracle ensemble 90.63%。Majority voting negative（系统性偏差，非随机噪声）。\n\n**最容易判断错的事**：\n- CWM 在 seetacloud 反复失败，容易急躁并行提交或换 GPU——**必须单进程、单 Worker**，不要试图绕过 cgroup 限制\n- cls8b seed123 accuracy 曾有 3 个值（89.52/89.40/89.37），权威值是 **89.37%**（89.52 是 4B CLS seed123，不是 8B）\n- seetacloud `source /etc/network_turbo` 必须在 pip/git 操作前执行\n- train_repo_cwm.py 曾未同步到 home（ROADMAP 标记为已知风险）\n\n**时间线**：ARR May 25（~13 天），CLS ~12h + CWM ~20h 并行跨机器 → bottleneck ~20h → eval+stats ~3h → paper patch ~1d → 终审 ~1d = **总计 ~4-5d**，时间充裕但 CWM 连续失败是最大风险。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778617221.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb375c86ea49cc152120",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b s42 resume ckpt3600 mutation breakdown",
+  "task_key": "worker_eval_cls8b-s42-resume-ckpt3600-mutation-breakdown_20260515T230056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-s42-resume-ckpt3600-mutation-breakdown_20260515T230056_result.json",
+    "occurrence": 1,
+    "bytes": 541,
+    "sha256": "2a602cbb128d9adff7a0df97d2ed0407c916777bc6fd545ad401fa6d2125dbb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功启动：\n\n- **Session**: `cls8b_s42_ckpt3600_test`\n- **GPU**: cuda:1 (via CUDA_VISIBLE_DEVICES=1)\n- **数据**: 9784 test instances 已加载 (label 分布: pass=7138, fail=2646)\n- **模型**: checkpoint-3600 加载完成，正在推理中\n- **流程**: eval 完成后自动运行 `mutation_breakdown.py` 生成 per-mutation-type 统计\n\n预计 ~2-3h 完成。eval 结束后 breakdown 会自动输出到 `/root/autodl-tmp/eval_results/cls8b_s42_resume_test_ckpt3600_mutation/mutation_breakdown.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-s42-resume-ckpt3600-mutation-breakdown.md"
+}

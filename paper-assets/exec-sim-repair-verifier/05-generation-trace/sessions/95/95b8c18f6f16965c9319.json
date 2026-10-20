@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95b8c18f6f16965c9319",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval deepseek traj func s123 eval",
+  "task_key": "worker_eval_deepseek-traj-func-s123-eval_20260516T130058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_deepseek-traj-func-s123-eval_20260516T130058_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "e03f3ef6ab9995f477b66e5ccaf47da0165e5498e5ceab3fdb8321849c4aa6f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## 汇报\n\n**deepseek-traj-func-s123** 训练 + eval 完成：\n\n| 指标 | 值 |\n|------|-----|\n| eval_loss (best) | **0.0760** (epoch 2, step 1008) |\n| test accuracy | **81.4%** |\n| baseline (majority) | 53.6% |\n| gap | **+27.8pp** (PASS, threshold ≥10pp) |\n| unresolved F1 | 83.6% |\n| resolved F1 | 78.5% |\n| unparseable rate | 3.9% (40/1032) |\n| per-test consistency | 77.0% |\n\n训练只完成 2/3 epochs（step 1008/1512）即为 best checkpoint。模型在 traj-level 判别上表现良好，accuracy 显著超过 majority baseline。unparseable 较高（模型输出 \"pass\"/\"fail\" 而非 \"resolved\"/\"unresolved\"），但不影响整体趋势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-deepseek-traj-func-s123-eval.md"
+}

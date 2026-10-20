@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f425c82f7cca0302871d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "infra submit cwm seed0 home",
+  "task_key": "worker_infra_submit-cwm-seed0-home_20260512T125007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_submit-cwm-seed0-home_20260512T125007_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "27a2168364f9b55ea2519e3b8d9b4e455152b829467f8910b840a3bb4d5fe2bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cwm-seed0 已成功启动：\n\n- **PID**: 2764835\n- **tmux session**: cwm-seed0\n- **GPU**: cuda:0 (home-1x5090)\n- **Log**: `~/runs/exec-sim-repair-verifier/cwm-seed0.log`\n- **命令**: `cd /home/sonny/exec-sim-repair-verifier && python3 train_cwm_baseline.py --data_dir data/ --model_name .../Qwen3-4B/...1cfa9a72... --output_dir checkpoints_cwm_seed0/ --batch_size 2 --grad_accumulation 16 --no_wandb --seed 0 && python3 eval_cwm_baseline.py --checkpoint_dir checkpoints_cwm_seed0/best/ --output eval_cwm_seed0.json`\n\nLog 确认正常加载：\n```\nLoading tokenizer: .../Qwen3-4B/snapshots/1cfa9a72...\nChat template kwargs: {'enable_thinking': False}\nLoaded train=15290, val=1896\n```\n\n模型正在加载到 GPU，nvidia-smi 尚未显示占用（CPU 阶段），启动正常。CWM 5-seed 最后一个已提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-submit-cwm-seed0-home.md"
+}

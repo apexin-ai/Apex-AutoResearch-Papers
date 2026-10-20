@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43349a057ceb19129dc9",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code cwm baseline run",
+  "task_key": "worker_code_cwm-baseline-run_20260511T212020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cwm-baseline-run_20260511T212020_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "c4bcebd4678da0a08c1314ad4a716a5acbca24904799f86d171958405d8a6daf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n## 数据构建统计\n\n| Split | 总数 | Pass | Fail |\n|-------|------|------|------|\n| train | 15,290 | 7,957 (52.0%) | 7,333 (48.0%) |\n| val | 1,896 | 983 (51.8%) | 913 (48.2%) |\n| test | 1,890 | 978 (51.7%) | 912 (48.3%) |\n\n主要错误类型：AssertionError 占绝大多数 (~82%)，其次 SyntaxError、IndexError、TypeError。\n\n## 训练状态\n\n- Job `cwm-baseline` 已提交并启动\n- GPU 0: 94% 利用率, 18.3/32.6 GB 显存\n- LoRA trainable params: 11.8M (0.29%)\n- 总 steps: 1,434（3 epochs × 15290 / (2×16)）\n- 预估 ~2.97s/step → ~71 min\n- 日志：`~/runs/exec-sim-repair-verifier/cwm-baseline.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cwm-baseline-run.md"
+}

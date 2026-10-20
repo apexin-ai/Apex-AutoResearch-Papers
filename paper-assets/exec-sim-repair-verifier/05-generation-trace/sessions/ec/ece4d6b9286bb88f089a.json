@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ece4d6b9286bb88f089a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "check qwen s123 eval done",
+  "task_key": "worker_check_qwen-s123-eval-done_20260522T111847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_qwen-s123-eval-done_20260522T111847_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "de128a257690a72b74fc857ec1a5b5de5f61156ea0d94324cf6d40ad37bfc899"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (negative)。无 cron 需要删除。\n\n## 结果汇总\n\n| 指标 | 值 |\n|------|-----|\n| **accuracy** | **67.33%** |\n| majority baseline | 72.96% |\n| gap vs majority | **-5.62pp** |\n| f1_macro | 55.67 |\n| f1_fail / f1_pass | 32.94 / 78.41 |\n| unparseable_count | 6257 / 9784 (**63.95%**) |\n| checkpoint | step-6633 (final) |\n\n**Conclusion: negative.** Qwen3-8B CWM s123 未超过 majority baseline，且 unparseable rate 高达 64%——模型基本没学会生成可解析的 CWM 格式输出。accuracy 67.33% 低于 majority baseline 72.96% 约 5.6pp，说明大量 unparseable 样本被 fallback 为 pass 后仍无法弥补。\n\n对论文 Table 3 的影响：这个 seed 的 Qwen CWM 结果不理想，与 DeepSeek CWM 的 cross-model generalization story 可能需要重新审视。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen-s123-eval-done.md"
+}

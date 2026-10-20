@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b38315579db8b2af0c51",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code pertest precision recall prep",
+  "task_key": "worker_code_pertest-precision-recall-prep_20260512T131752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pertest-precision-recall-prep_20260512T131752_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "12b80a16f1dc14fe43dd50af51bdf40553765e963a34d26bd9d9a1323bc31678"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行成功。结果摘要：\n\n**Overall (cls_seed0, 1890 samples)**\n- Accuracy: 87.78%\n- Fail Precision: 84.02%, Recall: 92.21%, F1: 87.92%\n- Pass Precision: 92.01%, Recall: 83.64%, F1: 87.63%\n\n**Diagnostic Quality**\n- 114 problems, 48 (42.1%) perfect prediction\n- Median problem fail-F1: 94.12%\n- Mean problem accuracy: 88.27%\n\n**By Mutation Type** — `return_value` 最易检测 (F1=98.6%)，`off_by_one` 最难 (F1=80.8%)，`original` 的 fail 指标为 0（因为 original 都是 pass label，无 fail 样本）\n\n**Worst Problems** — MBPP/397 (40%), HumanEval/130 (46%) 等辨别能力最差\n\n脚本写在 `/home/sonny/exec-sim-repair-verifier/eval_pertest_diagnostic.py`，输出保存在 `eval_pertest_diag.json`。支持 `--predictions_file` 加载已有预测或 `--checkpoint_dir` 从头推理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pertest-precision-recall-prep.md"
+}

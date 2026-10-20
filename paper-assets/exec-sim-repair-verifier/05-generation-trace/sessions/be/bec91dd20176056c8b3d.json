@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bec91dd20176056c8b3d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cwm v9 eval steps fix",
+  "task_key": "worker_ssh_cwm-v9-eval-steps-fix_20260512T223907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cwm-v9-eval-steps-fix_20260512T223907_result.json",
+    "occurrence": 1,
+    "bytes": 1282,
+    "sha256": "4df6e646e4054b2fa7c16c7b0ac11301425cec28df1771a15c5ad91aba665238"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中。\n\n## 汇报\n\n| 项目 | 值 |\n|------|-----|\n| 旧 PID | 95806（已 kill） |\n| 新 PID (bash wrapper) | 100512 |\n| 新 PID (python) | **100517** |\n| GPU | cuda:2, 21067 MiB, 89% 利用率 |\n| Resume checkpoint | checkpoint-200 |\n| 当前 step | 206/6633 |\n| 训练速度 | ~8s/step |\n| eval_steps | **500**（已生效） |\n| save_steps | **500**（也改了 — 见下） |\n\n### 变更说明\n\n1. **脚本修改**：`train_repo_cwm.py` 新增 `--eval_steps` CLI 参数（默认为 None，回退到 save_steps）\n2. **save_steps 也改为 500**：原计划只改 eval_steps=500 保留 save_steps=100，但 Transformers 的 `load_best_model_at_end=True` 要求 save_steps 是 eval_steps 的倍数。100 不是 500 的倍数，第一次尝试直接报 ValueError 崩溃。因此 save_steps 也调为 500\n3. **checkpoint-100 和 checkpoint-200 均存在**：位于 `/root/autodl-tmp/checkpoints_repo_cwm_v9/`\n\n### 注意\n- 进程用 `CUDA_VISIBLE_DEVICES=2` 启动（脚本默认 device 是 cuda:3，但原进程实际运行在 GPU 2，保持一致）\n- 原进程在 step ~202 被 kill（eval@step 200 已完成）\n- 有 warning 说 eval_steps/save_steps 与 checkpoint 的 trainer_state.json 不匹配，属正常行为"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cwm-v9-eval-steps-fix.md"
+}

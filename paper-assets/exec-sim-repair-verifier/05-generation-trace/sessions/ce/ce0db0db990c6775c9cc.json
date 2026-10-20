@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce0db0db990c6775c9cc",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh fix traj eval predictions",
+  "task_key": "worker_ssh_fix-traj-eval-predictions_20260523T093947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-traj-eval-predictions_20260523T093947_result.json",
+    "occurrence": 1,
+    "bytes": 277,
+    "sha256": "5ca6b4fc0185dbc339d4fd74bfa890dcc5a26e195a673e0dc12441147301f973"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`results[\"predictions\"] = pred_details` 已插入在 line 282（`json.dump` 之前）。语法验证通过。`pred_details` 每条记录包含 `problem_id`、`mutation_type`、`true_label`、`pred_label`、`gen_text`，TOST 分析所需字段齐全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-traj-eval-predictions.md"
+}

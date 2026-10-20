@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8e19055344a3146c839",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code d063 val sweep home",
+  "task_key": "worker_code_d063-val-sweep-home_20260514T062032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d063-val-sweep-home_20260514T062032_result.json",
+    "occurrence": 1,
+    "bytes": 349,
+    "sha256": "a83fecbbf224e28e6317335b73aeffc52c9470013f7473ff7591926024191943"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sweep 已排队。当前状态：\n\n- **正在跑**: `seed123_home/checkpoint-200` val eval (PID 3046727, 已运行 ~12 min)\n- **排队中**: 剩余 12 个 checkpoint 的 val eval（PID 3048194 等待前一个结束后自动启动）\n- **总计**: 13 个 CLS checkpoint × val set (9335 samples)\n\n3 分钟后我会检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d063-val-sweep-home.md"
+}

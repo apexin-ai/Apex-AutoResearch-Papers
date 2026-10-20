@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77fe130c81013c68f4f1",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_18_1778893649.md",
+  "task_key": "loop_18_1778893649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1778893649.md",
+    "occurrence": 1,
+    "bytes": 4194,
+    "sha256": "298e8d78d99c7e06d26d58bedf339310a3224631d5e27e84d5bd2a185b87e5f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-16T01:06:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须从 `get_project_resource_usage` 确认，当前 ROADMAP 显示 westd cuda:0/1 空闲待 Director 分配，cuda:2/3 在用。**未经 Director 明确分配到本项目的 GPU 不得使用**\n- s42 ckpt-3600 已成为新 val-best（90.28%），**主表数字尚未锁定**——ckpt-3600 test eval (84.48%) 已完成但 mutation breakdown 正在跑，等 mutation 结果后才能更新主表\n- D103: seq_length/bs/precision/lr 参数改动需 Director 审批\n- CWM 8B eval 必须跑完整 test set (n=9784)，禁止 --max_samples\n- eval 脚本在 westd 上有 --max_new_tokens 参数，home 版无此参数\n\n### 2. 🖥️ 基础设施快照\n- **westd 服务器**: seetacloud-westd-4x5090，工作目录 `/home/sonny/exec-sim-repair-verifier`\n- **Python/Env**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: 8B → `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/`\n- **Checkpoints**: s42 resume → `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`, seed123 → backup `/root/autodl-tmp/checkpoints_backup_cls_8b_seed123/checkpoint-3000/`, CWM 8B → `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`\n- **Home 服务器**: `/home/sonny`，python3，4B v5 ckpt → `/home/sonny/exec-sim-repair-verifier/checkpoints_repo_cls_v5/`（状态可能离线）\n- **活跃进程**: cwm8b-ckpt400-test-eval-v3 (PID 443216, cuda:3); cls8b-s42-ckpt1000-test-mutation (cuda:0); CWM 8B v5 训练 (PID 400279, cuda:2)\n- **Cron**: reconcile 返回 0 活跃 cron（可能需要重新注册监控）\n\n### 3. 📊 当前状态\n**刚完成**: s42 resume val sweep (ckpt-3600=90.28% 为新 val-best), s42 ckpt-3600 test eval (84.48%), Paper Workers 已派发 (Session 19)\n\n**Registry 活跃实验**:\n- `cls8b-s42-resume-ckpt1000-test-mutation` — RUNNING, westd, mutation-type breakdown\n- `cls8b-s42-ckpt1000-test-mutation` — RUNNING, cuda:0, 同上\n- `cwm8b-ckpt400-test-eval-v3` — ALLOCATED, cuda:3, PID 443216, CWM 8B 唯一正确 eval（ckpt-400 val-best）\n- `cls8b-s42-resume-ckpt3600-test` — PENDING, 等人工审批\n- `cls8b-s42-resume-ckpt3600-mutation` — PREPARING\n\n**等待中**:\n- CWM 8B v5 训练 (cuda:2, 57% @ Session 19) — 完成后需要做 val sweep 确认 val-best（但 eval_loss 曲线已表明 ckpt-400 最优）\n- cwm8b-ckpt400-test-eval-v3 结果 — 将锁定 8B-8B CLS-CWM gap\n- mutation breakdown 结果 — 锁定 per-mutation-type 粒度指标\n- Paper Workers (intro/related/conclusion/figures) 回调\n\n### 4. 📋 待办（条件触发式）\n- cwm8b-ckpt400-test-eval-v3 完成 → 记录 CWM 8B test acc + unparseable rate → 更新主表 → 锁定 8B-8B gap → 汇报 Director\n- mutation breakdown 完成 → 更新 report.md → 为 paper experiments.tex 提供 per-type 数据\n- CWM 8B v5 训练完成 → 不需要新 eval（ckpt-400 已确认为 val-best，eval_loss 单调递增）→ 标记训练 DONE(negative)\n- cls8b-s42-resume-ckpt3600-test 审批通过 → 提交（但 test 84.48% 已由其他 run 得到，可能冗余）\n- Paper Workers 回调 → 整合各章节草稿 → 推进 full draft 完善\n- Cron 为 0 → 对 RUNNING 实验重新注册 cron 监控（避免回调丢失）\n\n### 5. 🎯 战略上下文\n- **核心结论**: CLS reformulation 在 repo-level 显著优于 CWM，multi-seed mean gap = 26.48pp。8B-8B 对比待 CWM 8B eval 锁定最终数字。\n- **DDL**: EMNLP 2026 ARR May 25，剩 10 天，已进入 Paper Writing 阶段\n- **CWM 8B running_acc ~65%（低于 majority 72.96%）**: 如果最终 < majority，则 CWM 8B 结果更 dramatic（CLS 84.48% vs CWM <73%，gap >11pp even vs majority）。需准备两套 narrative：1) CWM 8B 略高于 majority → gap 仍巨大；2) CWM 8B 低于 majority → CWM 在 repo-level 完全失败\n- **易错点**: \n  - s42 有两套 checkpoint 目录（原始 vs resume），不要混淆\n  - CWM eval 极慢（~37s/sample, bs=1），不要因为\"太慢\"就 kill 或改参数\n  - reconcile_crons 返回 0 说明监控可能断了，RUNNING 实验需要手动检查或重新注册\n  - home 服务器可能离线，不要假设可用\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1778893649.md"
+}

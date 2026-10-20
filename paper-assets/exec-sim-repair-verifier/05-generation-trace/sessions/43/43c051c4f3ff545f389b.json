@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "43c051c4f3ff545f389b",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "infra scp qwen3 4b and train",
+  "task_key": "worker_infra_scp-qwen3-4b-and-train_20260518T215731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_scp-qwen3-4b-and-train_20260518T215731.log",
+    "occurrence": 1,
+    "bytes": 520123,
+    "sha256": "2f40f581b40811df76b83e3bac988e6370980d4748ec0448b72bd641dca2bd90"
+  },
+  "statistics": {
+    "messages": 369,
+    "user_turns": 0,
+    "tool_calls": 147,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 71,
+      "tool_call": 147,
+      "tool_result": 147,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 369,
+      "chunks": [
+        {
+          "path": "43c051c4f3ff545f389b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "43c051c4f3ff545f389b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "43c051c4f3ff545f389b-part-0003.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-scp-qwen3-4b-and-train.md"
+}

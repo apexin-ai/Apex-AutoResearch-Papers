@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "557341ffbd6189402966",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cwm rank32 alpha64 ablation",
+  "task_key": "worker_eval_cwm-rank32-alpha64-ablation_20260515T154433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cwm-rank32-alpha64-ablation_20260515T154433_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "7efe1ab01159e1d7acceba372c9d75af00f52ecfd839c4994cbf360c760b6540"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果报告：\n\n---\n\n## CWM Rank Ablation 结果对比\n\n| 配置 | Rank | Alpha | Alpha/Rank | Accuracy | F1_fail | F1_pass | F1_macro | Exact Match |\n|------|------|-------|------------|----------|---------|---------|----------|-------------|\n| **Baseline (rank16)** | 16 | 32 | 2.0 | **87.51%** | — | — | — | — |\n| Rank32 v2 | 32 | 32 | 1.0 | 87.0% | — | — | — | — |\n| **Rank32 alpha64** | 32 | 64 | 2.0 | **87.04%** | 87.27% | 86.79% | 87.03% | 84.55% |\n\n### 结论：**Negative**\n\n- Rank32 alpha64 (87.04%) vs Baseline rank16 (87.51%)：**-0.47pp**，增大 rank 无收益\n- Rank32 alpha64 (87.04%) vs Rank32 v2 alpha32 (87.0%)：**+0.04pp**，修正 alpha/rank ratio 后几乎无差异\n- 说明之前 rank32 v2 的性能下降主要不是 alpha/rank ratio 的问题，而是 rank=32 本身对这个任务没有帮助\n\nLoRA rank 从 16 增到 32（参数量翻倍）并不能提升 CWM 分类性能，rank=16 已经足够。Registry 已更新为 DONE/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cwm-rank32-alpha64-ablation.md"
+}

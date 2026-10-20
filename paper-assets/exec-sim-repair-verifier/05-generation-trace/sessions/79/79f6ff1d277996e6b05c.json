@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79f6ff1d277996e6b05c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code re repair data filter",
+  "task_key": "worker_code_re-repair-data-filter_20260517T040909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_re-repair-data-filter_20260517T040909_result.json",
+    "occurrence": 1,
+    "bytes": 1215,
+    "sha256": "91b7457364c4f152857c031d038c35690b6b2b5b23efb813c3bc2b4cd30ae226"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "筛选完成。结果汇报：\n\n## 筛选结果\n\n| 阶段 | 数量 |\n|------|------|\n| 有 per-test oracle 的 problems | 25 |\n| Mutation instances (非 gold) | 25 |\n| ≥2 f2p tests 实际失败 | 11 |\n| CLS 非全对 | **9** |\n\n### 复杂度分布\n- simple (2-3 f2p): 7\n- medium (4-6 f2p): 0\n- complex (7+): 2\n\n### 瓶颈\n\n**per-test 执行 oracle 只覆盖 25 个 problem**（`swebench_test.jsonl` 中的 repo-level test set）。`swebench_verified_meta.jsonl` 有 500 个 instance，mutation patches 覆盖约 415 个，但绝大部分没有逐 test 的执行结果。\n\n### 达到 50-80 的路径\n\n需要两步：\n1. **扩展 per-test execution**：对更多 mutation instances 跑 SWE-bench 测试执行，获得 oracle per-test labels（可从 415 个 mutation patches 中选取 FAIL_TO_PASS ≥ 2 的 ~200 个候选）\n2. **跑 CLS inference**：对新的 per-test 数据跑 cls8b ckpt3600 推理\n\n这两步都是 CPU/单 GPU 操作，不会影响训练任务。需要我先统计哪些 instances 有 ≥2 f2p tests（从 metadata）并准备执行脚本吗？\n\n当前已输出 9 个实例到：`/root/autodl-tmp/eval_results/re_repair_v2/re_repair_instances.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-re-repair-data-filter.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e3fb8a50c63a0e680fb",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh release readiness",
+  "task_key": "worker_ssh_release-readiness_20260520T125103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_release-readiness_20260520T125103_result.json",
+    "occurrence": 1,
+    "bytes": 1997,
+    "sha256": "d6f64d37afc187f1bcd0ad4842792d650d2b35467f1b81c8fc936ddf5c48ddce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 检查结果\n\n### 检查 1: Auto-eval 监控进程 — 全部正常\n\n| 进程 | PID | 状态 | 运行时长 |\n|------|-----|------|----------|\n| s123-v2 train | 925638 | ALIVE | 7h08m |\n| s456-v2 train | 949112 | ALIVE | 3h47m |\n| s123-v2 monitor | 957333 | ALIVE | 1h45m |\n| s456-v2 monitor | 957406 | ALIVE | 1h45m |\n\n4× RTX 5090 全部 98-99% 利用率，训练正常进行。Monitor 每 5 分钟检查一次，训练进程结束后自动触发 `eval_deepseek_cwm_s{123,456}_v2.sh`。**无需操作。**\n\n### 检查 2: W5 回归数据路径匹配 — 兼容\n\n`w5_mixed_effects_v2.py` 通过 `--eval_dirs` 接收逗号分隔的目录路径，从目录名推断 metadata：\n- formulation: 包含 `cwm`/`traj`/`cls`\n- model: 包含 `qwen`/`deepseek`\n- seed: `s(\\d+)` 模式\n- complexity: 包含 `func` → function，否则 → repo\n\n查找预测文件优先级：`eval_*_predictions.jsonl` > `predictions_*.jsonl` > `results_incremental.jsonl` > `predictions.jsonl`\n\n现有 eval 目录命名（如 `deepseek_cwm_repo_s123_test`）和文件格式（`eval_repo_cwm_predictions.jsonl`）均能被正确解析。**路径匹配无问题。**\n\n### 检查 3: Figure 2 数据输入 — 硬编码 DATA dict\n\n`plot_figure2_v2.py` 使用硬编码 `DATA` dict，当前填充状态：\n\n| 粒度 | 公式 | Qwen | DeepSeek |\n|------|------|------|----------|\n| func | CLS | **0.0** | **0.0** |\n| func | CWM | **0.0** | **0.0** |\n| func | TRAJ | **0.0** | **0.0** |\n| repo | CLS | 84.83 ✓ | 84.38 ✓ |\n| repo | CWM | **0.0** | **0.0** |\n| repo | TRAJ | 73.61 ✓ | **0.0** |\n\n9/12 个数据点仍为 placeholder。DeepSeek CWM repo 的 s123/s456 eval 完成后可填充 `repo/CWM/deepseek`，其余缺失数据需对应实验完成后手动更新 DATA dict。\n\n**结论**: 3 项检查均无阻塞问题。两组 DeepSeek CWM 训练 + 自动 eval 正常运行中，完成后需手动将结果数字回填 `plot_figure2_v2.py` 的 DATA dict。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-release-readiness.md"
+}

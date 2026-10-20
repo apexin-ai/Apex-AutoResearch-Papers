@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f781ff7dbf4527ef378",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_17_1778882364.md",
+  "task_key": "loop_17_1778882364",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1778882364.md",
+    "occurrence": 1,
+    "bytes": 4703,
+    "sha256": "17ca95c2f51ec7306b8b34c2a1f38c128f3ab7a860387b566681c965d2c2ede3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: max_messages\nupdated: '2026-05-15T21:59:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd cuda:0/1/2/3（seetacloud-westd-4x5090）。home-1x5090 cuda:0 仅做补充 eval\n- Test eval 禁止 `--max_samples`：必须跑全集（test n=9784, val n=9335），seed123 ckpt-6200/6400 因截断已作废\n- CWM 8B val-best 是 ckpt-400（eval_loss 0.286→0.507 严重过拟合），不要用后续 checkpoint\n- s42 resume 的 ckpt-200/400 不存在（原在 conda 目录），sweep 从 ckpt-600 开始\n- Val sweep 统一 seq8192（seq4096 已被 D104 降级为未授权，因 unparseable rate confound）\n- seed123 只有 5 个 checkpoint（200, 3000, 6200-6633），save_total_limit=5 导致早期 ckpt 被覆盖\n- 参数变更（seq_length/bs/precision/lr）需 Director 审批（D103）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: seetacloud-westd-4x5090 (root)，工作目录 `/home/sonny/exec-sim-repair-verifier`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **CWM 8B ckpts**: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`（ckpt-400 = val-best）\n- **CLS 8B s42 resume ckpts**: `/root/autodl-tmp/checkpoints_repo_cls_8b_s42_resume/`（ckpt-600 起）\n- **Home 服务器**: home-1x5090 (user=sonny)，eval 脚本需显式加 `--max_new_tokens`\n- **活跃进程**:\n  - cuda:0 — cls8b-s42-resume-val-sweep-seq8192-v2（ckpt-1800, 1/21 完成）\n  - cuda:1 — cls8b-s42-resume-val-sweep-gpu1（ckpt-4000→5800, 10 ckpts）\n  - cuda:2 — repo-level-cwm-8b-conda-v5（训练 ~57%, ETA May 16 05:30 UTC）\n  - cuda:3 — cwm8b-ckpt400-test-eval（PID 381618, 15.8%, ETA May 16 09:15 UTC）\n- **Paper figures**: `artifacts/fig1_reformulation.pdf`, `fig2_gap_amplification.pdf`, `fig3_oracle_stratified.pdf` 已生成\n- **Paper provenance**: v22, 41 active claims, coverage 40/44 (~91%)\n\n### 3. 📊 当前状态\n4 块 GPU 全满，DDL 2026-05-25（剩 10 天）。Paper writing phase 进行中（正文~7.7 页，Method.tex 3 WARNINGs 已修复，consistency check 0 critical）。\n\n**RUNNING (4)**:\n- cwm8b-ckpt400-test-eval — CWM 8B repo-level test 评估，**主阻塞项**，结果决定 8B-8B gap（Table 4 最后一行）\n- repo-level-cwm-8b-conda-v5 — CWM 8B 训练 resume from ckpt-5200，但 val-best 已锁 ckpt-400，此训练主要为完整性\n- cls8b-s42-resume-val-sweep-seq8192-v2 — 21 个 checkpoint 的 val sweep（cuda:0），确定 CLS 8B s42 val-best\n- cls8b-s42-resume-val-sweep-gpu1 — 并行 val sweep 10 ckpts（cuda:1）\n\n**PENDING (5)**: cls8b-s42-resume-ckpt1000-test-mutation, repo-level-cls-8b-s42-ckpt200-val, cls8b-ckpt3000-test-v2, cls8b-ckpt3000-test-eval, cls8b-s42-extended-val-sweep\n\n**等待中**: 0 active workers（全部实验由 cron 监控），等 4 个 cron 回调。\n\n### 4. 📋 待办（条件触发式）\n- cwm8b-ckpt400-test-eval 完成 → 提取 accuracy + unparseable rate → 计算 8B-8B gap → 更新 Table 4 → 若 gap ≥20pp 则 C1 fully validated，若 <15pp 需 Framing 调整\n- cls8b-s42-resume-val-sweep 两路完成 → 确定 val-best ckpt → 提交 test eval → 锁定 CLS 8B s42 main table 行\n- repo-level-cwm-8b-conda-v5 训练完成 → 仅做 checkpoint 归档（val-best 已是 ckpt-400）\n- 8B-8B gap 确认后 → 解锁 PENDING 实验中的 mutation-type breakdown（cls8b-s42-resume-ckpt1000-test-mutation）\n- 所有 test eval 完成 → 锁 Table 4 → Paper Agent 最终 draft → Reviewer 全文审查 → 提交 ARR\n\n### 5. 🎯 战略上下文\n**核心结论**: Classification 在 function-level 与 CWM 近乎打平（gap 1.24pp, 5 seeds TOST confirmed），但在 repo-level 拉开 25.59pp（4B-4B）。这个 complexity-dependent advantage 是论文的 spine。\n\n**决策链**: D088 确立 val-selected checkpoint 为 primary metric → D096 repo-level 主比较用 4B-4B single seed → D097 multi-seed 8B analysis 确认 CLS scaling gain → D099 val-selected 标准化 → D103 CWM 8B eval bs=8 加速\n\n**最易判断错的事**:\n1. CWM 8B 过拟合严重——不要因为训练还在跑就期待更好的 checkpoint，ckpt-400 就是 peak\n2. 4B-4B 25.59pp 是 single seed (s42) 的结果——paper 必须披露这个 limitation，不能说 \"consistently\"\n3. P2P regression rate ~1% 是 honest negative——per-test 信号在 pass-to-pass 变化上几乎没用，但 fail-to-pass 上 31% 的 instance 有 block-correlated advantage 10.88%，这才是 value\n4. CWM unparseable rate（53.7%-67.2%）是 failure mode 的核心证据——不是 bug，是 generation 在 repo-level 崩溃的直接证明\n5. Review issues R1-N2 (CWM 8B missing) 是仅存的 critical blocker——cwm8b-ckpt400-test-eval 出结果就解\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1778882364.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5b41d2ab3fced15767e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "paper method section",
+  "task_key": "worker_paper_method-section_20260512T203832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_method-section_20260512T203832_result.json",
+    "occurrence": 1,
+    "bytes": 1116,
+    "sha256": "ac6104d4ef08682243b3c968517708680a2672ebdcd157356d8c5aaf0f6a9b81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section 已写入 `paper/method.tex` 并注册为 artifact (`art_20260512_6ec3b7`)。\n\n结构：\n- **§3.1 Problem Setup** — 定义 patch $p$、test suite $T$（$T_{\\textsc{f2p}}$/$T_{\\textsc{p2p}}$ 分区）、patch-level correctness\n- **§3.2 CLS** — 单 token 二分类 $f(\\text{code}, t_i) \\to \\{\\textsc{Pass}, \\textsc{Fail}\\}$，cross-entropy loss\n- **§3.3 CWM** — 生成式输出预测 $g(\\text{code}, t_i) \\to \\hat{o}_i$，exact-match 判定，推理代价 $|\\hat{o}_i|$ tokens\n- **§3.4 TRAJ** — 轨迹级打分 $h(\\text{code}, T) \\to \\{\\textsc{Resolved}, \\textsc{Unresolved}\\}$，作为粒度对照\n- **§3.5 Failure Mode Analysis** — token-budget exhaustion + string-value prediction errors，CLS 天然免疫，预测 complexity-dependent divergence\n- **§3.6 Oracle Framework** — ICC $\\rho$、design effect $\\textsc{Deff} = 1 + (\\bar{n}-1)\\rho$、三条 threshold conditions（$|T_{\\textsc{f2p}}| \\geq 2$, moderate $\\rho$, sufficient accuracy）\n\n符号表严格一致，所有 claim 指向 §5 实验验证，未引用具体数字。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-method-section.md"
+}

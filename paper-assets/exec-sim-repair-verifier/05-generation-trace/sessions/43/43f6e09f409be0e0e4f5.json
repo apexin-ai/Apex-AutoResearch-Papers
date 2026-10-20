@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43f6e09f409be0e0e4f5",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code cwm 8b eval prep dryrun",
+  "task_key": "worker_code_cwm-8b-eval-prep-dryrun_20260515T115025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cwm-8b-eval-prep-dryrun_20260515T115025_result.json",
+    "occurrence": 1,
+    "bytes": 2268,
+    "sha256": "d1ba67c4640e3ec6c8b73958708d9ddc9b9236d3d39e27f5720b5ff6729ab4cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 汇报\n\n### CWM eval 脚本\n- **脚本**: `eval_repo_cwm.py`\n- **vs CLS**: 生成执行 trace（max_new_tokens=1024 vs CLS 的 8），通过关键词匹配提取 pass/fail，system prompt 为 \"code execution simulator\"\n- **支持**: `--max_samples`、`--dry_run`、`--output_dir`、增量 resume（results_incremental.jsonl）\n\n### Dry-run 结果: 成功\n- checkpoint-4300（中间 checkpoint）+ GPU 0 + 5 samples\n- 模型加载 → 推理 → 输出 → 指标计算 → 文件保存，全链路通过\n- 4/5 样本 unparseable（中间 checkpoint 预期内，模型还在训练）\n- 每样本耗时 15-33 秒（平均 ~20s）\n\n### 训练状态\n- 总步数 6633，save_steps=100，当前 step 4300（epoch 1.94/3.0）\n- Checkpoint 目录: `/root/autodl-tmp/checkpoints_repo_cwm_8b_conda/`（checkpoint-400, 4000, 4100, 4200, 4300）\n- 最终 checkpoint 预计为 `checkpoint-6600` 或 `checkpoint-6633`\n- **注意**: eval_loss 从 step 400 的 0.286 持续上升到 step 4300 的 0.482，存在过拟合趋势\n\n### 时间估算\n- 全量 test set: 9784 样本\n- batch_size=1: **~54 小时**（太慢）\n- batch_size=2: **~27 小时**（32GB 5090 应该能跑 bs=2）\n\n### CWM 8B eval 完整命令（训练完成后替换 checkpoint 路径）\n\n```bash\nnohup bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=2 python3 eval_repo_cwm.py \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints_repo_cwm_8b_conda/checkpoint-6600 \\\n  --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/ \\\n  --split test \\\n  --device cuda:0 \\\n  --batch_size 1 \\\n  --max_new_tokens 1024 \\\n  --output_dir /root/autodl-tmp/eval_results/cwm_8b_final/\" > ~/runs/exec-sim-repair-verifier/cwm-8b-eval-final.log 2>&1 &\n```\n\n### 注意事项\n1. 训练完成后确认最终 checkpoint 编号（ls checkpoint 目录找最后一个）\n2. eval_loss 从 step 400 后持续上升，可能需要同时 eval best checkpoint（checkpoint-400）和 final checkpoint 做对比\n3. 全量 eval 耗时长（~27-54h），可考虑先 eval val split（9335 samples）或减少 max_new_tokens\n4. GPU 1 上有另一个进程（27GB），勿用 GPU 1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cwm-8b-eval-prep-dryrun.md"
+}

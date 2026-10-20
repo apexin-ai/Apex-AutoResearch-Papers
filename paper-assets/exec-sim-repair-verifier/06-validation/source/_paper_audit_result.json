@@ -1,0 +1,688 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "placeholder",
+          "message": "Possible PLACEHOLDER text",
+          "location": "main.tex:33"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:holm} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:oracle} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:tost_sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related_work} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:10"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:84"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:111"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:170"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:211"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:332"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:471"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:25"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:126"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:159"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:205"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "1 critical, 18 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "checklist.tex",
+          "role": "other",
+          "num_numbers": 10,
+          "num_cites": 7
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 4,
+          "num_cites": 6
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 206,
+          "num_cites": 18
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 0,
+          "num_cites": 10
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 2
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 50
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'angrist2009mostly' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'cameron2008bootstrap' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'hoenig2001' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kruschke2013bayesian' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kruschke2018rejecting' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'wei2022emergent' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhu2026codescaler' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\leq"
+            ],
+            "checklist": [
+              "\\approx",
+              "\\geq",
+              "\\leq",
+              "\\pm",
+              "\\sim",
+              "\\times"
+            ],
+            "conclusion": [
+              "\\leq",
+              "\\times"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\alpha",
+              "\\approx",
+              "\\bar",
+              "\\beta",
+              "\\dagger",
+              "\\ddagger",
+              "\\diamond",
+              "\\geq",
+              "\\gg",
+              "\\hat",
+              "\\leq",
+              "\\pm",
+              "\\sim",
+              "\\star",
+              "\\times",
+              "\\to"
+            ],
+            "introduction": [
+              "\\leq"
+            ],
+            "method": [
+              "\\Delta",
+              "\\Sigma",
+              "\\bigwedge",
+              "\\cdot",
+              "\\forall",
+              "\\hat",
+              "\\in",
+              "\\ldots",
+              "\\rho",
+              "\\rightarrow",
+              "\\textsc"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 7,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/_audit_compile_vl808x31",
+        "main_tex": "main.tex",
+        "log_tail": "\nUnderfull \\hbox (badness 1184) in paragraph at lines 530--531\n\\OT1/ptm/m/n/10.95 s42 quan-ti-fies this con-found: epoch 1 (ckpt-\n []\n\n\nUnderfull \\hbox (badness 1953) in paragraph at lines 534--535\n\\OT1/ptm/m/n/10.95 (only step-level check-points at steps 300/400\n []\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n\nUnderfull \\hbox (badness 1194) in paragraph at lines 554--555\n []\\OT1/ptm/b/n/10.95 Evaluation se-quence length.[] \\OT1/ptm/m/sc/10.95 Cwm \\O\nT1/ptm/m/n/10.95 ac-cu-racy\n []\n\n\nUnderfull \\hbox (badness 4505) in paragraph at lines 554--555\n\\OT1/ptm/m/n/10.95 varies by $[]$9[] across eval-u-a-tion se-quence\n []\n\n[21]\nUnderfull \\hbox (badness 1028) in paragraph at lines 567--568\n\\OT1/ptm/m/n/10.95 123 (val-best ckpt-800) achieves only 75.33%\n []\n\n\nUnderfull \\hbox (badness 1102) in paragraph at lines 567--568\n\\OT1/ptm/m/n/10.95 level eval-u-a-tion ($\\OML/cmm/m/it/10.95 n[]\\OT1/cmr/m/n/10\n.95 48$ \\OT1/ptm/m/n/10.95 vs. per-test $\\OML/cmm/m/it/10.95 n[]\\OT1/cmr/m/n/10\n.95 9[]784$\\OT1/ptm/m/n/10.95 ).\n []\n\n[22]) [23] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: BE3422D4F45816717A972B23DB2DC689;5118.\n ) \nHere is how much of TeX's memory you used:\n 14104 strings out of 469438\n 220942 string characters out of 5468411\n 674585 words of memory out of 5000000\n 42320 multiletter control sequences out of 15000+600000\n 676050 words of font info for 133 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,15n,93p,2742b,694s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texli\nve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm\n/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf\n-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/f\nonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fon\nts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/\nhelvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (23 pages, 761051 bytes).\nPDF statistics:\n 1310 PDF objects out of 1440 (max. 8388607)\n 929 compressed objects within 10 object streams\n 226 named destinations out of 1000 (max. 500000)\n 279 words of extra memory for PDF output out of 10000 (max. 10000000)\n",
+        "error": "",
+        "pages": 23,
+        "warnings": [
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 23,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 2--2",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 2--2",
+        "Underfull \\hbox (badness 1648) in paragraph at lines 2--3",
+        "Underfull \\hbox (badness 1596) in paragraph at lines 2--3",
+        "Underfull \\hbox (badness 1132) in paragraph at lines 2--3",
+        "Underfull \\hbox (badness 1024) in paragraph at lines 2--3",
+        "Underfull \\hbox (badness 1033) in paragraph at lines 4--5",
+        "Underfull \\hbox (badness 6094) in paragraph at lines 8--9",
+        "Underfull \\hbox (badness 2012) in paragraph at lines 8--9",
+        "Underfull \\hbox (badness 1412) in paragraph at lines 8--9",
+        "Underfull \\hbox (badness 1184) in paragraph at lines 8--9",
+        "Underfull \\vbox (badness 1215) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1360) in paragraph at lines 15--16",
+        "Underfull \\hbox (badness 1394) in paragraph at lines 8--9",
+        "Underfull \\hbox (badness 1377) in paragraph at lines 11--53",
+        "Underfull \\hbox (badness 2922) in paragraph at lines 4--5",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2401) in paragraph at lines 15--16",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 24--25",
+        "Underfull \\hbox (badness 3386) in paragraph at lines 24--25",
+        "Underfull \\hbox (badness 1917) in paragraph at lines 24--25",
+        "Underfull \\hbox (badness 3199) in paragraph at lines 26--27",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 28--29",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 28--29",
+        "Underfull \\hbox (badness 1622) in paragraph at lines 14--15",
+        "Underfull \\hbox (badness 1132) in paragraph at lines 14--15",
+        "Underfull \\hbox (badness 4001) in paragraph at lines 17--18",
+        "Underfull \\hbox (badness 1178) in paragraph at lines 17--18",
+        "Underfull \\hbox (badness 1661) in paragraph at lines 17--18",
+        "Underfull \\hbox (badness 1360) in paragraph at lines 28--28",
+        "Underfull \\hbox (badness 3375) in paragraph at lines 62--63",
+        "Underfull \\hbox (badness 2142) in paragraph at lines 62--63",
+        "Underfull \\hbox (badness 1205) in paragraph at lines 79--80",
+        "Underfull \\hbox (badness 2617) in paragraph at lines 79--80",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1960) in paragraph at lines 89--90",
+        "Underfull \\hbox (badness 1983) in paragraph at lines 91--92",
+        "Underfull \\hbox (badness 1888) in paragraph at lines 118--119",
+        "Underfull \\hbox (badness 1590) in paragraph at lines 118--119",
+        "Underfull \\hbox (badness 1173) in paragraph at lines 124--125",
+        "Underfull \\hbox (badness 1342) in paragraph at lines 151--152",
+        "Underfull \\hbox (badness 1565) in paragraph at lines 151--152",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 153--154",
+        "Underfull \\hbox (badness 1158) in paragraph at lines 153--154",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 155--156",
+        "Underfull \\hbox (badness 4673) in paragraph at lines 155--156",
+        "Underfull \\hbox (badness 1400) in paragraph at lines 155--156",
+        "Underfull \\hbox (badness 1360) in paragraph at lines 157--158",
+        "Underfull \\hbox (badness 7522) in paragraph at lines 178--179",
+        "Underfull \\hbox (badness 7064) in paragraph at lines 178--179",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 178--179",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 182--183",
+        "Underfull \\hbox (badness 2119) in paragraph at lines 182--183",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 182--183",
+        "Underfull \\hbox (badness 3724) in paragraph at lines 182--183",
+        "Underfull \\hbox (badness 3449) in paragraph at lines 182--183",
+        "Underfull \\hbox (badness 6110) in paragraph at lines 182--183",
+        "Underfull \\hbox (badness 1205) in paragraph at lines 182--183",
+        "Underfull \\hbox (badness 4403) in paragraph at lines 182--183",
+        "Underfull \\hbox (badness 1297) in paragraph at lines 182--183",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 182--183",
+        "Underfull \\hbox (badness 1286) in paragraph at lines 192--192",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 196--197",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 196--197",
+        "Underfull \\hbox (badness 2894) in paragraph at lines 196--197",
+        "Underfull \\hbox (badness 1983) in paragraph at lines 196--197",
+        "Underfull \\hbox (badness 1009) in paragraph at lines 196--197",
+        "Underfull \\hbox (badness 1688) in paragraph at lines 196--197",
+        "Underfull \\hbox (badness 1028) in paragraph at lines 196--197",
+        "Underfull \\hbox (badness 1803) in paragraph at lines 196--197",
+        "Underfull \\hbox (badness 1184) in paragraph at lines 196--197",
+        "Underfull \\hbox (badness 2221) in paragraph at lines 196--197",
+        "Underfull \\hbox (badness 1092) in paragraph at lines 198--199",
+        "Underfull \\hbox (badness 1418) in paragraph at lines 198--199",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 203--204",
+        "Underfull \\hbox (badness 3118) in paragraph at lines 203--204",
+        "Underfull \\hbox (badness 1762) in paragraph at lines 4--5",
+        "Underfull \\vbox (badness 4441) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 5331) in paragraph at lines 6--11",
+        "Underfull \\hbox (badness 1515) in paragraph at lines 169--173",
+        "Underfull \\hbox (badness 5741) in paragraph at lines 176--180",
+        "Underfull \\hbox (badness 1005) in paragraph at lines 199--203",
+        "Underfull \\hbox (badness 3364) in paragraph at lines 219--223",
+        "Underfull \\hbox (badness 1184) in paragraph at lines 219--223",
+        "Underfull \\hbox (badness 2744) in paragraph at lines 234--238",
+        "Underfull \\hbox (badness 1845) in paragraph at lines 241--245",
+        "Underfull \\hbox (badness 2809) in paragraph at lines 255--260",
+        "Underfull \\hbox (badness 3612) in paragraph at lines 255--260",
+        "Underfull \\hbox (badness 1194) in paragraph at lines 312--318",
+        "Underfull \\hbox (badness 1163) in paragraph at lines 385--389",
+        "Underfull \\hbox (badness 1590) in paragraph at lines 385--389",
+        "Underfull \\hbox (badness 2970) in paragraph at lines 385--389",
+        "Underfull \\hbox (badness 5133) in paragraph at lines 392--395",
+        "Underfull \\hbox (badness 6927) in paragraph at lines 392--395",
+        "Underfull \\hbox (badness 1509) in paragraph at lines 38--39",
+        "Underfull \\hbox (badness 1005) in paragraph at lines 38--39",
+        "Underfull \\hbox (badness 3009) in paragraph at lines 38--39",
+        "Underfull \\hbox (badness 1354) in paragraph at lines 41--42",
+        "Overfull \\hbox (0.52344pt too wide) in paragraph at lines 55--64",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 69--70",
+        "Underfull \\hbox (badness 3701) in paragraph at lines 69--70",
+        "Underfull \\hbox (badness 1521) in paragraph at lines 69--70",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 72--73",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 72--73",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 72--73",
+        "Underfull \\hbox (badness 1681) in paragraph at lines 72--73",
+        "Underfull \\hbox (badness 1571) in paragraph at lines 72--73",
+        "Underfull \\hbox (badness 3557) in paragraph at lines 72--73",
+        "Underfull \\hbox (badness 1776) in paragraph at lines 72--73",
+        "Underfull \\hbox (badness 1215) in paragraph at lines 78--79",
+        "Underfull \\hbox (badness 1701) in paragraph at lines 82--83",
+        "Underfull \\hbox (badness 1325) in paragraph at lines 87--87",
+        "Underfull \\hbox (badness 4144) in paragraph at lines 104--105",
+        "Underfull \\hbox (badness 2529) in paragraph at lines 104--105",
+        "Underfull \\hbox (badness 2103) in paragraph at lines 104--105",
+        "Underfull \\hbox (badness 2521) in paragraph at lines 136--136",
+        "Underfull \\hbox (badness 2744) in paragraph at lines 257--258",
+        "Underfull \\hbox (badness 5637) in paragraph at lines 257--258",
+        "Underfull \\hbox (badness 2707) in paragraph at lines 257--258",
+        "Underfull \\hbox (badness 3646) in paragraph at lines 261--262",
+        "Underfull \\hbox (badness 1881) in paragraph at lines 261--262",
+        "Underfull \\hbox (badness 2409) in paragraph at lines 261--262",
+        "Underfull \\hbox (badness 1742) in paragraph at lines 261--262",
+        "Underfull \\hbox (badness 1400) in paragraph at lines 352--353",
+        "Underfull \\hbox (badness 2582) in paragraph at lines 360--361",
+        "Underfull \\hbox (badness 1377) in paragraph at lines 360--361",
+        "Underfull \\hbox (badness 1939) in paragraph at lines 360--361",
+        "Underfull \\hbox (badness 1152) in paragraph at lines 360--361",
+        "Underfull \\hbox (badness 1024) in paragraph at lines 360--361",
+        "Underfull \\hbox (badness 1824) in paragraph at lines 360--361",
+        "Underfull \\hbox (badness 1565) in paragraph at lines 360--361",
+        "Underfull \\hbox (badness 2197) in paragraph at lines 363--364",
+        "Underfull \\hbox (badness 1348) in paragraph at lines 363--364",
+        "Underfull \\hbox (badness 1460) in paragraph at lines 372--373",
+        "Underfull \\hbox (badness 1478) in paragraph at lines 378--379",
+        "Underfull \\hbox (badness 1533) in paragraph at lines 378--379",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 381--382",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 381--382",
+        "Underfull \\hbox (badness 2591) in paragraph at lines 381--382",
+        "Underfull \\hbox (badness 3930) in paragraph at lines 384--385",
+        "Underfull \\hbox (badness 1558) in paragraph at lines 391--392",
+        "Underfull \\hbox (badness 4316) in paragraph at lines 394--395",
+        "Underfull \\hbox (badness 1215) in paragraph at lines 398--399",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 399--400",
+        "Underfull \\hbox (badness 5331) in paragraph at lines 400--401",
+        "Underfull \\hbox (badness 1210) in paragraph at lines 403--404",
+        "Underfull \\hbox (badness 1215) in paragraph at lines 403--404",
+        "Underfull \\hbox (badness 4805) in paragraph at lines 406--407",
+        "Underfull \\hbox (badness 1320) in paragraph at lines 409--410",
+        "Underfull \\hbox (badness 1325) in paragraph at lines 417--418",
+        "Underfull \\hbox (badness 1033) in paragraph at lines 454--455",
+        "Underfull \\hbox (badness 1117) in paragraph at lines 461--462",
+        "Underfull \\hbox (badness 1430) in paragraph at lines 463--464",
+        "Underfull \\hbox (badness 2261) in paragraph at lines 463--464",
+        "Underfull \\hbox (badness 1242) in paragraph at lines 463--464",
+        "Underfull \\hbox (badness 1038) in paragraph at lines 463--464",
+        "Underfull \\hbox (badness 3219) in paragraph at lines 463--464",
+        "Underfull \\hbox (badness 1112) in paragraph at lines 463--464",
+        "Underfull \\hbox (badness 1057) in paragraph at lines 463--464",
+        "Underfull \\hbox (badness 7362) in paragraph at lines 504--505",
+        "Underfull \\hbox (badness 3838) in paragraph at lines 509--510",
+        "Underfull \\hbox (badness 1509) in paragraph at lines 509--510",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 511--512",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 511--512",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 511--512",
+        "Underfull \\hbox (badness 4995) in paragraph at lines 511--512",
+        "Underfull \\hbox (badness 7256) in paragraph at lines 511--512",
+        "Underfull \\hbox (badness 1024) in paragraph at lines 511--512",
+        "Underfull \\hbox (badness 2626) in paragraph at lines 511--512",
+        "Underfull \\hbox (badness 3302) in paragraph at lines 511--512",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 513--514",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 513--514",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 513--514",
+        "Underfull \\hbox (badness 3179) in paragraph at lines 513--514",
+        "Underfull \\hbox (badness 1960) in paragraph at lines 513--514",
+        "Underfull \\hbox (badness 1052) in paragraph at lines 515--516",
+        "Underfull \\hbox (badness 2050) in paragraph at lines 530--531",
+        "Underfull \\hbox (badness 1184) in paragraph at lines 530--531",
+        "Underfull \\hbox (badness 1953) in paragraph at lines 534--535",
+        "Underfull \\hbox (badness 1194) in paragraph at lines 554--555",
+        "Underfull \\hbox (badness 4505) in paragraph at lines 554--555",
+        "Underfull \\hbox (badness 1028) in paragraph at lines 567--568",
+        "Underfull \\hbox (badness 1102) in paragraph at lines 567--568"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "critical",
+      "dimension": "叙事一致性",
+      "message": "conclusion.tex:4 — Conclusion 紧接 repo-level 18–26pp 发散后说 \"14B results…narrow all gaps to 1.07pp\"，未限定为 function-level，与 Abstract \"At 14B, function-level gaps narrow\" 不一致。审稿人可能误读为 repo-level gap 也被缩窄到 1.07pp，而实际 14B 未测试 repo-level。需加 \"function-level\" 限定词。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "experiments.tex:155,192,196,198; related_work.tex:8 — 主文多处使用 \", confirming X\" / \", suggesting Y\" / \", ruling out Z\" 尾随分词从句模式（主文约 5 处）。这是 AI 写作典型标志，审稿人敏感。建议改写为独立句或用 \"which confirms\" 从句替代。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "related_work.tex:8 — \"we additionally vary output format\" 中 \"additionally\" 属于 AI filler word 黑名单。可删除或改为 \"we also vary\"。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "introduction.tex — Introduction 仅 3 段 + 贡献列表，缺少独立的 \"问题重要性\" 段落。目前 gap 和 background 混合在前两段中，审稿人可能感觉问题动机铺垫不够充分。建议拆出一段专门阐述 why practitioners urgently need formulation guidance。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "related_work.tex:5 — Related Work 第一段 (Execution Simulation and Verification) 单段引用 ~25 篇论文，虽然是主题式组织，但引用密度极高，接近列举式。建议拆分为 2 个子主题段，或精简部分不直接相关的引用。"
+    },
+    {
+      "severity": "info",
+      "dimension": "术语",
+      "message": "abstract.tex:2 vs method.tex:13 — Abstract 称 CWM 为 \"execution output generation\"，Method 定义为 \"output generation\"。建议统一术语。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "method.tex §3.3 — Oracle Accuracy-Utility Framework 在 Method 中占一整个 subsection，但未出现在 Introduction 的 contribution 列表中。它支撑了 §4.6 分析，但读者可能会疑惑为什么 Method 花篇幅推导一个未列入贡献的框架。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Limitations",
+      "message": "conclusion.tex:6-8 — Limitations 约 80 words，覆盖 4 个限制点（scale scope、Python-only、synthetic mutations、format interventions），符合用户 [EMNLP 2026] \"一小段、覆盖 3 个点\" 规则。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "experiments.tex Table 1 — DeepSeek-Coder 仅 2 seeds，论文已透明标注 \"std reported for descriptive comparison, not inferential\"，处理得当。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "appendix.tex:263-264 — GPU 型号 (RTX 5090)、训练时间、总 GPU-hours (~370) 均已披露。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "— CLS/CWM/TRAJ 通过 LaTeX 宏统一使用，全文一致；pp 通过 \\pp{} 宏统一；TOST、ICC、DEFF 首次使用均有展开定义。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "— 未发现内部实验编号、服务器名、IP 地址等残留。appendix.tex:257 引用脚本名 train_unified.py / train_repo_cwm.py 属于正常实现细节披露。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "main.tex:62 — ARR Checklist 已正确注释掉（% \\input{checklist}），符合 EMNLP 2026 规则（Checklist 在 OpenReview 表单填写，不在 PDF 中）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "— Abstract 约 170 words，符合 ≤200 words 规则。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "— 仅一个 Limitations section 在正文中（conclusion.tex），Appendix 无独立 Limitations section，符合 EMNLP 2026 规则。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim 强度",
+      "message": "— \"significantly\" 仅在 appendix.tex:522 出现一次，有 χ² 检验 p 值支撑；主文无 \"state-of-the-art\" 声明；所有定量 claim 与表格数字吻合。"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 1",
+      "message": "Abstract 篇幅视觉上接近 200 词上限——占据左栏 Title/Author 下方约 2/3 空间（约 15-18 行双栏文本），建议精确计数确认是否超过 EMNLP 2026 的 200-word 限制"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-2",
+      "message": "前两页纯文字（Title/Abstract/Intro + Related Work），第一个 display item（Figure 1 三种 formulation 概念图）在第 3 页出现；虽在 3 页窗口内，但审稿人翻两页纯文字后才看到视觉锚点"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Figure 1 概念图清晰传达核心 message（CLS/CWM/TRAJ 三种 formulation 的输入输出差异），颜色区分度好，caption 自包含，作为第一个 display item 表现良好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Table 1 行数较多（约 20 行，含 fine-tuned + prompting baselines），字号偏小但在 150 dpi 下仍可辨读；最优值已加粗标注 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 2 折线图 y 轴未从 0 开始（起始约 85%），caption 已明确注明 \"y-axis does not start at zero\"——处理得当，但审稿人可能仍会质疑"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "主文最后一页非常密集：Figure 3（左上）+ Table 5（右上）+ Section 5 Conclusion + Limitations + References 起始，全部挤在一页中，视觉上略显拥挤但无内容溢出"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 14",
+      "message": "Figure 5（appendix）Per-Mutation 热力图使用绿-黄-红渐变色板，对红绿色盲用户不友好；每个单元格叠加了数值标注可部分弥补，但建议换用 viridis/cividis 等色盲安全色板"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12",
+      "message": "Figure 4 柱状图清晰，颜色区分度好；Table 6 和 Table 7 在同一页排布紧凑但不拥挤"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 18",
+      "message": "Figure 6（TOST margin-p-value 关系图）和 Table 14 排布合理，图表清晰可读"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 23",
+      "message": "最后一页（appendix 末页）内容约占页面 60%，下方约 40% 空白——作为附录末页可接受"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "主文 8 页共 3 figures + 5 tables = 8 个 display items（1.0/页），对实证为主的论文密度合适"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "所有表格均使用 booktabs 风格（\\toprule/\\midrule/\\bottomrule），无竖线，格式统一 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "最优结果加粗标注，Table 1/2/3 均可确认 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "公式渲染正确，未见 LaTeX 错误残留或乱码 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "未发现 section heading 孤悬页底（widow heading）✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "双栏布局间距均匀，无 margin 溢出 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "Float 位置合理——Figure 1/2/3、Table 1-5 均出现在首次引用的同页或邻页，无 float 漂移到论文末尾"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "参考文献页（pages 9-10）排版正常，未见 [?] 未解析引用，格式统一"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Limitations 章节位于主文 page 8（Section 5 之后、References 之前），为一小段覆盖 4-5 个点（scale/language/synthetic mutations/interventions），长度适当 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "全文仅一个 Limitations section，在主文中，appendix 无重复 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "PDF 中未包含 ARR Responsible NLP Checklist ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "主文内容（Sections 1-5）在 8 页内完成，Limitations 和 References 不计入页数限制，符合 EMNLP 2026 的 8-page limit ✓"
+    }
+  ],
+  "counts": {
+    "critical": 2,
+    "warning": 222,
+    "info": 31
+  },
+  "error": "",
+  "timestamp": "2026-05-25T11:38:36.471436+00:00"
+}

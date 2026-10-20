@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ee13ec4eb80a20dd771",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh cwm v6 restart seetacloud",
+  "task_key": "worker_ssh_cwm-v6-restart-seetacloud_20260512T205203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cwm-v6-restart-seetacloud_20260512T205203_result.json",
+    "occurrence": 1,
+    "bytes": 2331,
+    "sha256": "b2737ba073629b9fc8f58cf96b9f3f31569e79bc308471159d6884e18e13199d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查和准备工作完成。总结：\n\n---\n\n## 调查结果\n\n### 1. SIGTERM 原因分析\n\n历史 EXIT_CODE 模式：\n- **v1 (原始 cwm)**: EXIT_CODE=143 → **SIGTERM** (signal 15)，平台行为（idle kill / 资源回收）\n- **v2**: EXIT_CODE=1 → 代码错误\n- **v3**: EXIT_CODE=137 → **SIGKILL** (signal 9)，OOM killer\n- **v4**: 到 step 386 (~70min) 后死亡，无 EXIT_CODE 记录\n- **v5**: CUDA OOM — 尝试用 GPU 0 而非 GPU 2\n- **v6/v7**: 被杀前无 checkpoint\n\n系统日志无法通过 ssh_read_only 获取（dmesg 被 allowlist 屏蔽）。根据 EXIT_CODE 模式，**主要原因是平台级 SIGTERM/SIGKILL（cgroup 回收或 idle kill），非代码 bug**。\n\n### 2. Checkpoint 恢复情况\n\n**无 checkpoint 可恢复。** `/root/autodl-tmp/checkpoints_repo_cwm_v6/` 目录为空。\n\n**根本原因**：`save_steps=500`，但所有 run 都在 step 500 前被杀（v4 最远只到 step 386）。\n\n### 3. 脚本修改 & 重启命令\n\n已在服务器上修改 `train_repo_cwm.py`：\n- `save_steps`: 500 → **100**（~13 分钟存一次 checkpoint）\n- 新增 `--resume_from_checkpoint` CLI 参数\n- 新增 `--save_steps` CLI 参数\n\n**完整重启命令**（已注册为 `repo-level-cwm-v8`）：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/exec-sim-repair-verifier && CUDA_VISIBLE_DEVICES=2 python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_repo_cwm_v6/ --no_wandb --save_steps 100\n```\n\n如果后续被杀有 checkpoint，resume 命令：\n```bash\n... && python3 train_repo_cwm.py --model_name /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B --output_dir /root/autodl-tmp/checkpoints_repo_cwm_v6/ --no_wandb --save_steps 100 --resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cwm_v6/checkpoint-XXX\n```\n\n### 4. 是否迁移到 westd-48478\n\n**建议继续在 seetacloud 上尝试**。理由：\n- v4 已跑到 step 386（>1 小时），说明平台不是每次都立刻杀\n- 现在 save_steps=100，即使再被杀也能从最近 checkpoint resume\n- 当前 GPU 2 空闲，其他 GPU 无进程竞争\n- 迁移需要重新搭环境 + 传数据，成本高\n\n**请用 `submit_training_job` 提交 `repo-level-cwm-v8`。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cwm-v6-restart-seetacloud.md"
+}

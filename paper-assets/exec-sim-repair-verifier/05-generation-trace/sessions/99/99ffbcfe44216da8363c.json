@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99ffbcfe44216da8363c",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops fix 14b gpu conflict",
+  "task_key": "worker_ops_fix-14b-gpu-conflict_20260522T183120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-14b-gpu-conflict_20260522T183120_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "b585519be3e84de0bcac0bb5177f0b5c9c67e22cddf17d2d3b5ea722955ada60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n### 最终确认报告\n\n| 项目 | 状态 |\n|------|------|\n| 旧 eval 进程 (PID 201294) | 已 kill，确认终止 |\n| eval 脚本 `CUDA_VISIBLE_DEVICES` | `0` → `1`，已修改并验证 |\n| 训练脚本 `CUDA_VISIBLE_DEVICES` | 保持 `0`，未触碰 |\n| 新 eval 进程 (PID 202994) | 已启动，正在等待模型下载完成 |\n| GPU 状态 | 4×RTX 5090 全部空闲 (0MiB)，模型下载中 |\n\n冲突已解决：训练 → GPU0，eval → GPU1，互不干扰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-14b-gpu-conflict.md"
+}

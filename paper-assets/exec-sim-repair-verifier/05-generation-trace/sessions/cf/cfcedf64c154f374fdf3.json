@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfcedf64c154f374fdf3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "code d077 truncation fix",
+  "task_key": "worker_code_d077-truncation-fix_20260514T154149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d077-truncation-fix_20260514T154149_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "591dc1db2c6e0412a472075f4c8ecad96a78559beff4a2fb37e383270333beb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改了 westd 服务器上的两个文件：\n\n**eval_repo_verifier.py** 和 **eval_repo_cwm.py** — `--max_seq_length` 和 `--batch_size` 默认值改为 `None`，根据 `--split` 自动设置：\n- `test`: max_seq_length=2048, batch_size=16/8 (原默认值不变)\n- `val`: max_seq_length=8192, batch_size=2 (truncation 从 20.2% 降到 0.1%)\n\n用户显式指定值时覆盖自动值。所有 dry-run 验证通过。报告写入 `artifacts/d077_fix_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d077-truncation-fix.md"
+}

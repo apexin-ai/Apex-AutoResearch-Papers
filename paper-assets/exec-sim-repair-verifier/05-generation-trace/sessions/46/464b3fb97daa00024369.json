@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "464b3fb97daa00024369",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops traj repo check results",
+  "task_key": "worker_ops_traj-repo-check-results_20260516T151617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_traj-repo-check-results_20260516T151617_result.json",
+    "occurrence": 1,
+    "bytes": 1817,
+    "sha256": "678e34c7ded12f3c68b92e60b9cd7d4fd9cbcdb4ed7573993af3a82dcab0c32f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。汇总报告：\n\n---\n\n## DeepSeek Repo-Level TRAJ 结果\n\n### 训练概况\n- 模型: deepseek-coder-6.7b-instruct + LoRA\n- 数据: 386 train / 43 val / 48 test\n- 3 epochs, 147 steps, best checkpoint @ step 98 (epoch 2)\n- Loss 曲线正常：train_loss 0.42→0.12, eval_loss 0.16→0.11→0.13（epoch 3 轻微过拟合）\n\n### Test Accuracy\n\n| Seed | Accuracy | Eval Loss (best) |\n|------|----------|-----------------|\n| 42   | 77.1%    | 0.1110          |\n| 123  | 77.1%    | 0.1147          |\n| **Mean** | **77.1% ± 0.0%** | |\n\n### 对比\n\n| Method | Accuracy | Gap |\n|--------|----------|-----|\n| Func-level TRAJ (DeepSeek) | 84.16 ± 1.30% | baseline |\n| Repo-level CLS (Qwen 14B) | 84–86% | ~same as func TRAJ |\n| **Repo-level TRAJ (DeepSeek)** | **77.1 ± 0.0%** | **-7.1pp** |\n\n### 问题分析\n\n1. **高 unparseable 率 (8/48 = 16.7%)**：模型生成了非结构化文本而非 \"resolved\"/\"unresolved\"，fallback 到多数类（resolved），严重损害 unresolved recall (54.5%)\n2. **严重的类别偏斜**：resolved recall 96.2% vs unresolved recall 54.5%，模型过度预测 resolved\n3. **两个 seed 结果完全一致**：说明模型行为非常确定性，unparseable 的 8 条样本在两个 seed 下都是相同的（可能是这些输入序列太长被截断，导致生成垃圾）\n4. **数据量太少（386条）不是主因**：loss 曲线正常收敛，eval_loss 低（~0.11），问题出在 inference 端的 seq_length 截断和格式遵从\n\n### 结论\n\nRepo-level TRAJ 用 DeepSeek 6.7B 效果显著不如 func-level TRAJ（-7pp），主要瓶颈是 repo-level diff 更长导致 2048 token 截断后模型无法正确生成格式化输出。需要增加 max_seq_length 或换更长上下文的模型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-traj-repo-check-results.md"
+}

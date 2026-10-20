@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b5da7e076393d14e44c2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "code block corr fix v2",
+  "task_key": "worker_code_block-corr-fix-v2_20260512T090020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_block-corr-fix-v2_20260512T090020.log",
+    "occurrence": 1,
+    "bytes": 682761,
+    "sha256": "cf5a09df509956b45aa109cc448a6304a737a46e68bfd79725f856caa8e3cf29"
+  },
+  "statistics": {
+    "messages": 324,
+    "user_turns": 0,
+    "tool_calls": 117,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 85,
+      "tool_call": 117,
+      "tool_result": 117,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 324,
+      "chunks": [
+        {
+          "path": "b5da7e076393d14e44c2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b5da7e076393d14e44c2-part-0002.json",
+          "message_count": 144
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-block-corr-fix-v2.md"
+}

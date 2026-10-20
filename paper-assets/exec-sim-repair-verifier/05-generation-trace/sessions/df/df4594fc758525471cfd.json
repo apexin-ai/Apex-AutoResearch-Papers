@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df4594fc758525471cfd",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh batch2 test script",
+  "task_key": "worker_ssh_batch2-test-script_20260521T061628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_batch2-test-script_20260521T061628_result.json",
+    "occurrence": 1,
+    "bytes": 1143,
+    "sha256": "3a483be3cd73a225c5f28915538a5dcbd1215571eae8e9b19ac414da7c416a1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### Part A: GPU 2 状态\n\n**GPU 2 正在跑 DeepSeek s123-v2 resume 训练**，占用 20.5 GB VRAM。\n\n- PID 28200: `train_unified.py --task cwm --resume_from_checkpoint checkpoint-4209 --seed 123 --epochs 3 --run_name deepseek-cwm-repo-s123-v2-resume`\n- Watcher 日志 (`watch_s123_resume.log`) 确认：eval PID 978461 于 **04:24 UTC** 退出，watcher 随即启动 resume 训练\n- 一切按预期运行\n\n### Part B: 测试脚本\n\n`/home/sonny/exec-sim-repair-verifier/test_qwen_eval_batch2.sh` 已创建，chmod +x 完成。\n\n**路径修正**：你指定的 `/root/autodl-tmp/checkpoints_repo_cwm_8b_s42/best/` 不存在。Qwen CWM 8B 没有 s42 checkpoint，也没有 `best/` 子目录。脚本改用了 **`checkpoints_repo_cwm_8b_s123/checkpoint-4200/`**（s123 最新 step）。可用的 Qwen CWM 8B checkpoints：\n\n| 目录 | 可用 steps |\n|------|-----------|\n| `checkpoints_repo_cwm_8b_s123` | 300, 3900-4200 |\n| `checkpoints_repo_cwm_8b_s456` | 300, 4000-4300 |\n\n`eval_repo_cwm.py` 已确认支持 `--max_samples`、`--batch_size`、`--output_dir` 参数，脚本无需额外适配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-batch2-test-script.md"
+}

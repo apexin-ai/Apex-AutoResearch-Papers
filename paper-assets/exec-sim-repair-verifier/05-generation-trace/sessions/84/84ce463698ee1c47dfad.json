@@ -1,0 +1,1867 @@
+{
+  "schema_version": "1.0",
+  "id": "84ce463698ee1c47dfad",
+  "project": "exec-sim-repair-verifier",
+  "kind": "conversation",
+  "title": "code w5 regression script",
+  "task_key": "worker_code_w5-regression-script_20260520T070509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_w5-regression-script_20260520T070509.jsonl",
+    "occurrence": 1,
+    "bytes": 121855,
+    "sha256": "2671b4f87d15569455c2caa9b35059013ad23dad0930679a8648159ef13bd3ca"
+  },
+  "statistics": {
+    "messages": 95,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "tool_call": 47,
+      "tool_result": 47,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T07:11:47.196877+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/w5_mixed_effects.py"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T07:11:47.197953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tW5 Mixed-Effects Logistic Regression: formulation x model on repair verification accuracy.\n3\t\n4\tModel 1: correct ~ formulation * model + (1|problem_id)        [repo-level only]\n5\tModel 2: correct ~ formulation * complexity + (1|problem_id)    [deepseek, repo+func]\n6\t\n7\tInput:  per-sample prediction JSONL files from CLS / CWM evals\n8\t        (each line: {\"problem_id\": ..., \"correct\": 0|1, ...})\n9\tOutput: fixed-effect coefficient table, random-effect variance, p-values\n10\t\n11\tDependencies: pandas, statsmodels (>=0.14)\n12\t\"\"\"\n13\t\n14\timport json, sys, os\n15\timport pandas as pd\n16\timport numpy as np\n17\tfrom pathlib import Path\n18\t\n19\t# ---------------------------------------------------------------------------\n20\t# Configuration: eval prediction file paths (on the server)\n21\t# Each entry: (formulation, model, seed, filepath, complexity)\n22\t# ---------------------------------------------------------------------------\n23\t\n24\tEVAL_FILES = [\n25\t    # --- CLS (repo-level) ---\n26\t    (\"CLS\", \"qwen3-8b\", 42,\n27\t     \"/root/autodl-tmp/eval_results/cls8b_s42_ckpt2200_test/predictions.jsonl\",\n28\t     \"repo\"),\n29\t    (\"CLS\", \"qwen3-8b\", 456,\n30\t     \"/root/autodl-tmp/eval_results/cls8b_repo_s456_ckpt2200/predictions.jsonl\",\n31\t     \"repo\"),\n32\t\n33\t    (\"CLS\", \"deepseek-6.7b\", 42,\n34\t     \"/root/autodl-tmp/eval_results/deepseek_cls_repo_v5_ckpt2105_test_seq8192/predictions.jsonl\",\n35\t     \"repo\"),\n36\t    (\"CLS\", \"deepseek-6.7b\", 123,\n37\t     \"/root/autodl-tmp/eval_results/deepseek_cls_repo_s123_test/predictions.jsonl\",\n38\t     \"repo\"),\n39\t    (\"CLS\", \"deepseek-6.7b\", 456,\n40\t     \"/root/autodl-tmp/eval_results/deepseek_cls_repo_s456_ckpt2163/predictions.jsonl\",\n41\t     \"repo\"),\n42\t\n43\t    # --- CWM (repo-level) ---\n44\t    (\"CWM\", \"qwen3-8b\", 42,\n45\t     \"/root/autodl-tmp/eval_results/qwen3_8b_cwm_repo_s42_ckpt400_seq4096/eval_repo_cwm_predictions.jsonl\",\n46\t     \"repo\"),\n47\t\n48\t    (\"CWM\", \"deepseek-6.7b\", 42,\n49\t     \"/root/autodl-tmp/eval_results/deepseek_cwm_repo_s42_seq4\n…[truncated 9213 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 1
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T07:11:47.198306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Find eval result file formats",
+              "prompt": "In /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/, I need to understand the format of eval result files. Look for:\n1. Any files matching `results_incremental.jsonl` or `eval_*_predictions.jsonl` — read a few lines to understand the schema (fields like formulation, correct, problem_id, complexity, mutation_type, model, seed, etc.)\n2. Check the `artifacts/` directory structure for eval result directories\n3. Any existing scripts that parse these eval files (like eval_*.py, re_repair_eval.py) to understand the data format\n\nReport the file schema (field names and types) and directory structure concisely."
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T07:11:47.198585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.jsonl"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T07:11:47.198848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "logs/chats/worker_infra_env-check_20260511T180230.jsonl\nlogs/chats/worker_code_mvp-b-train-script_20260511T190206.jsonl\nlogs/chats/worker_code_mvp-a-total-sim_20260511T192502.jsonl\nlogs/chats/worker_infra_swebench-continue_20260512T025836.jsonl\nlogs/chats/worker_code_traj-level-data-prep_20260512T034232.jsonl\nlogs/chats/worker_infra_mvp-b-pr-fix_20260512T042357.jsonl\nlogs/chats/archive/feishu_group_oc_b2cf3b1eba4db851529b6a1a7a34c4e8_reviewer_20260512T042749_262660.jsonl\nlogs/chats/archive/feishu_group_oc_061c4b1115e483e8fdad01cae91c873a_director_20260512T042750_679017.jsonl\nlogs/chats/worker_code_oracle-f2p-stratified_20260512T050929.jsonl\nlogs/chats/worker_infra_seetacloud-gpu-diag_20260512T052627.jsonl\nlogs/chats/worker_code_per-test-precision-recall_20260512T054931.jsonl\nlogs/chats/worker_code_seetacloud-submit-training-2gpu_20260512T062657.jsonl\nlogs/chats/worker_infra_read-seed123-submit-seed456_20260512T070033.jsonl\nlogs/chats/worker_infra_home-seed123-seed456_20260512T074551.jsonl\nlogs/chats/worker_infra_home-status-check_20260512T075106.jsonl\nlogs/chats/cron_hook_llm-judge-8b-zeroshot.jsonl\nlogs/chats/cron_hook_llm-judge-32b-zeroshot.jsonl\nlogs/chats/cron_hook_traj-level-seed456.jsonl\nlogs/chats/worker_code_block-corr-accuracy-audit_20260512T083934.jsonl\nlogs/chats/worker_analyze_traj-level-seed789_20260512T090511.jsonl\nlogs/chats/cron_hook_traj-level-seed789.jsonl\nlogs/chats/worker_analysis_model-size-scaling-8b_20260512T092221.jsonl\nlogs/chats/worker_analysis_8b-scaling-results_20260512T092218.jsonl\nlogs/chats/worker_analyze_per-test-majority-voting_20260512T092930.jsonl\nlogs/chats/worker_analysis_majority-voting-results_20260512T093118.jsonl\nlogs/chats/cron_hook_model-size-scaling-cls8b.jsonl\nlogs/chats/cron_hook_model-size-scaling-cwm8b.jsonl\nlogs/chats/cron_hook_per-test-majority-voting.jsonl\nlogs/chats/worker_infra_gpu-status-check_20260512T094532.jsonl\nlogs/chats/cron_hook_traj-level-seed0.jsonl\nlogs/chats/archive/cron_hook_traj-level-seed123_2026051\n…[truncated 5075 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T07:11:47.199207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/eval*.py"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T07:11:47.199410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_majority_voting.py\neval_cwm_baseline.py\nartifacts/eval_repo_cls_v2.py\nartifacts/eval_repo_cls.py\neval_re_repair.py\neval_cwm_constrained.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T07:11:47.199614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/re_repair_eval.py"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T07:11:47.199813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "re_repair_eval.py\nartifacts/_project/intermediate/re_repair_eval.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T07:11:47.200041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier -type d -name artifacts | head -20"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T07:11:47.200246+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T07:11:47.200455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts -type d | head -30"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T07:11:47.200669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/qwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/qwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval/report\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cls4b-v5-ckpt4400-val5120-eval\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cls4b-v5-ckpt4400-val5120-eval/data\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/paper\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/intermediate\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/report\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/chart\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/figures\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/figures/paper\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/deepseek-cwm-repo-s123-train\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/deepseek-cwm-repo-s123-train/report\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/deepseek-cwm-repo-s456-train\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/D132-cwm-s123-e2-seq2048\n/home/ubuntu/.agent-ml-rese\n…[truncated 1657 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T07:11:47.200949+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier -name \"*results_incremental.jsonl\" -o -name \"eval_*_predictions.jsonl\" 2>/dev/null"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T07:11:47.201152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T07:11:47.201352+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/re_repair_eval.py"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T07:11:47.201854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tRe-Repair Downstream Experiment: evaluate whether CLS per-test diagnostic\n4\tinformation improves LLM patch repair success rate.\n5\t\n6\tConditions:\n7\t  control     — \"patch is incorrect, please fix\" (no per-test info)\n8\t  cls-diag    — control + CLS-predicted per-test pass/fail\n9\t  oracle-diag — control + ground-truth per-test pass/fail\n10\t  random-diag — control + randomly assigned per-test pass/fail\n11\t\n12\tUsage:\n13\t  # Phase 1: prepare data (collect incorrect patches + CLS predictions)\n14\t  python re_repair_eval.py prepare \\\n15\t      --swebench-predictions predictions_dir/ \\\n16\t      --cls-checkpoint checkpoints/cls8b-s42-ckpt3600 \\\n17\t      --output-dir artifacts/re_repair\n18\t\n19\t  # Phase 2: generate repairs\n20\t  python re_repair_eval.py generate \\\n21\t      --data artifacts/re_repair/repair_dataset.jsonl \\\n22\t      --model Qwen/Qwen3-8B-Instruct \\\n23\t      --conditions control cls-diag oracle-diag random-diag \\\n24\t      --output-dir artifacts/re_repair\n25\t\n26\t  # Phase 3: verify repairs via Docker execution\n27\t  python re_repair_eval.py verify \\\n28\t      --repairs artifacts/re_repair/generated_repairs.jsonl \\\n29\t      --output-dir artifacts/re_repair\n30\t\n31\t  # Phase 4: analyze results\n32\t  python re_repair_eval.py analyze \\\n33\t      --results artifacts/re_repair/verification_results.jsonl \\\n34\t      --output-dir artifacts/re_repair\n35\t\"\"\"\n36\t\n37\timport argparse\n38\timport json\n39\timport logging\n40\timport os\n41\timport re\n42\tfrom collections import defaultdict\n43\tfrom pathlib import Path\n44\t\n45\timport numpy as np\n46\t\n47\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n48\tlog = logging.getLogger(__name__)\n49\t\n50\t# ---------------------------------------------------------------------------\n51\t# Constants\n52\t# ---------------------------------------------------------------------------\n53\t\n54\tMIN_F2P_TESTS = 2\n55\t\n56\tCONDITIONS = [\"control\", \"cls-diag\", \"oracle-diag\", \"random-diag\"]\n57\t\n58\tSYSTEM_PR\n…[truncated 27682 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T07:11:47.202144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/eval_re_repair.py",
+              "limit": "150"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T07:11:47.202398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Re-Repair Docker eval pipeline using SWE-bench harness v4.1.0.\"\"\"\n3\t\n4\timport argparse\n5\timport hashlib\n6\timport json\n7\timport time\n8\tfrom collections import defaultdict\n9\tfrom pathlib import Path\n10\t\n11\tfrom datasets import load_dataset\n12\tfrom swebench.harness.run_evaluation import (\n13\t    RUN_EVALUATION_LOG_DIR,\n14\t    LOG_REPORT,\n15\t    main as swebench_main,\n16\t)\n17\t\n18\t\n19\tdef dedup_predictions(entries):\n20\t    \"\"\"Deduplicate entries by (instance_id, extracted_diff). Returns dedup map and unique list.\"\"\"\n21\t    seen = {}\n22\t    for entry in entries:\n23\t        key = (entry[\"instance_id\"], entry[\"extracted_diff\"])\n24\t        if key not in seen:\n25\t            seen[key] = []\n26\t        seen[key].append(entry)\n27\t    return seen\n28\t\n29\t\n30\tdef make_model_name(diff_text):\n31\t    \"\"\"Generate a deterministic model name from diff content.\"\"\"\n32\t    h = hashlib.md5(diff_text.encode()).hexdigest()[:12]\n33\t    return f\"re_repair_{h}\"\n34\t\n35\t\n36\tdef batch_by_instance_id(unique_pairs):\n37\t    \"\"\"Split unique (instance_id, diff) pairs into batches where each batch has unique instance_ids.\"\"\"\n38\t    instance_to_pairs = defaultdict(list)\n39\t    for key in unique_pairs:\n40\t        instance_id = key[0]\n41\t        instance_to_pairs[instance_id].append(key)\n42\t\n43\t    max_batches = max(len(v) for v in instance_to_pairs.values()) if instance_to_pairs else 1\n44\t    batches = [[] for _ in range(max_batches)]\n45\t    for instance_id, pairs in instance_to_pairs.items():\n46\t        for i, pair in enumerate(pairs):\n47\t            batches[i].append(pair)\n48\t    return batches\n49\t\n50\t\n51\tdef write_predictions_file(batch_keys, dedup_map, output_path):\n52\t    \"\"\"Write a swebench-compatible predictions JSONL for a batch.\"\"\"\n53\t    preds = []\n54\t    for key in batch_keys:\n55\t        instance_id, diff = key\n56\t        model_name = make_model_name(diff)\n57\t        preds.append({\n58\t            \"instance_id\": instance_id,\n59\t            \"model_name_or_path\": model_\n…[truncated 4059 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T07:11:47.202646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/eval_cwm_baseline.py",
+              "limit": "150"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T07:11:47.202927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# eval_cwm_baseline.py — Evaluate CWM generation baseline on pass/fail classification\n2\t# Input: data_dir/cwm_test.jsonl + LoRA checkpoint (generation model)\n3\t# Output: Formatted report to stdout + JSON to --output\n4\t# Key difference from eval_verifier.py:\n5\t#   - Generates execution output string instead of \"pass\"/\"fail\"\n6\t#   - Extracts pass/fail from generated output via keyword matching\n7\t#   - Additional metrics: exact match rate, per-error-type match, generation length stats\n8\t# Same metrics: class balance, majority baseline, per-class P/R/F1, accuracy, confusion matrix\n9\t\n10\timport argparse\n11\timport json\n12\timport logging\n13\timport os\n14\timport re\n15\tfrom collections import Counter, defaultdict\n16\t\n17\timport torch\n18\tfrom peft import PeftModel\n19\tfrom sklearn.metrics import (\n20\t    accuracy_score,\n21\t    confusion_matrix,\n22\t    f1_score,\n23\t    precision_score,\n24\t    recall_score,\n25\t)\n26\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n27\t\n28\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n29\tlog = logging.getLogger(__name__)\n30\t\n31\tSYSTEM_PROMPT = (\n32\t    \"You are a code execution simulator. Given a code snippet and a test case, \"\n33\t    \"predict the execution result.\"\n34\t)\n35\t\n36\t# ---------------------------------------------------------------------------\n37\t# Model family detection & configuration (shared with train_unified.py)\n38\t# ---------------------------------------------------------------------------\n39\t\n40\tdef detect_model_family(model_name: str) -> str:\n41\t    name_lower = model_name.lower()\n42\t    if \"qwen\" in name_lower:\n43\t        return \"qwen\"\n44\t    if \"deepseek\" in name_lower:\n45\t        return \"deepseek\"\n46\t    return \"auto\"\n47\t\n48\t\n49\tdef get_chat_template_kwargs(family: str, tokenizer) -> dict:\n50\t    \"\"\"Return extra kwargs for tokenizer.apply_chat_template(), per model family.\"\"\"\n51\t    if family == \"qwen\":\n52\t        try:\n53\t            tokenizer.apply_chat_template(\n54\t     \n…[truncated 3681 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T07:11:47.203200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/eval_repo_cls.py",
+              "limit": "200"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T07:11:47.203467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t# eval_repo_cls.py — Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\n3\t# Input: LoRA checkpoint dir + data/swebench_full/swebench_{args.split}.jsonl\n4\t# Output: per-instance predictions JSONL + summary JSON (accuracy, F1, confusion matrix)\n5\t# Dependencies: torch, transformers, peft, sklearn, numpy\n6\t# Usage:\n7\t#   python eval_repo_cls.py --checkpoint_dir checkpoints_repo_cls_home/checkpoint-600 --device cuda:1\n8\t#   python eval_repo_cls.py --dry_run  # verify data loading without GPU\n9\t\n10\timport argparse\n11\timport json\n12\timport logging\n13\timport os\n14\timport gc\n15\timport signal\n16\tfrom collections import Counter\n17\t\n18\timport numpy as np\n19\timport torch\n20\tfrom sklearn.metrics import (\n21\t    accuracy_score, confusion_matrix, f1_score,\n22\t    precision_score, recall_score,\n23\t)\n24\t\n25\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n26\tlog = logging.getLogger(__name__)\n27\t\n28\tSYSTEM_PROMPT = (\n29\t    \"You are a code verifier. Given a code patch (git diff) and a test name, \"\n30\t    \"predict whether the test will pass or fail when run against the patched code.\"\n31\t)\n32\tUSER_TEMPLATE = \"## Patch (git diff)\\n{code}\\n\\n## Test\\n{test}\\n\\nWill this test pass or fail?\"\n33\tLABEL_MAP = {1: \"pass\", 0: \"fail\"}\n34\t\n35\t# ---------------------------------------------------------------------------\n36\t# Model family detection & configuration (shared with train_unified.py)\n37\t# ---------------------------------------------------------------------------\n38\t\n39\tdef detect_model_family(model_name: str) -> str:\n40\t    name_lower = model_name.lower()\n41\t    if \"qwen\" in name_lower:\n42\t        return \"qwen\"\n43\t    if \"deepseek\" in name_lower:\n44\t        return \"deepseek\"\n45\t    return \"auto\"\n46\t\n47\t\n48\tdef get_chat_template_kwargs(family: str, tokenizer) -> dict:\n49\t    \"\"\"Return extra kwargs for tokenizer.apply_chat_template(), per model family.\"\"\"\n50\t    if family == \"qwen\":\n51\t        try:\n52\t            \n…[truncated 5755 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T07:11:47.203729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier -name \"*.jsonl\" -type f -not -path \"*/logs/*\" 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T07:11:47.203954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T07:11:47.204166+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts -type f -name \"*.jsonl\" 2>/dev/null | head -20"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T07:11:47.204357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T07:11:47.204558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts -type f \\( -name \"*.json\" -o -name \"*.jsonl\" -o -name \"*predictions*\" -o -name \"*results*\" \\) 2>/dev/null | head -30"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T07:11:47.204762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/f1_macro_summary.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/intermediate/extract_predictions_generic.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/f1_macro_summary.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/traj_accuracy_investigation.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/inference_cost_results_summary.txt\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/oracle_icc_sensitivity.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/cwm4b_mutation_breakdown.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/error_analysis_func_level_deepseek.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/cwm_seed42_predictions_ref.txt\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/qualitative_cls_error_examples.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/4b_8b_cls_cwm_paired_bootstrap_corrected.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/mutation_type_distribution.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/tost_sensitivity.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/cls8b_s42_ckpt3600_per_test_pr_bucketed.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projec\n…[truncated 2139 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T07:11:47.205037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/data/ 2>/dev/null | head -30"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T07:11:47.205252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 252\ndrwxr-xr-x 2 ubuntu ubuntu  4096 May 20 00:52 .\ndrwxr-xr-x 7 ubuntu ubuntu  4096 May 12 18:20 ..\n-rw-r--r-- 1 ubuntu ubuntu   573 May 12 17:11 4b_8b_cls_cwm_paired_bootstrap_corrected.json\n-rw-r--r-- 1 ubuntu ubuntu    87 May 12 16:41 8b_scaling_bootstrap_results.json\n-rw-r--r-- 1 ubuntu ubuntu  3278 May 17 09:50 bibliography_audit_report.json\n-rw-r--r-- 1 ubuntu ubuntu  8621 May 17 09:43 bibliography_candidates.yaml\n-rw-r--r-- 1 ubuntu ubuntu   796 May 16 02:30 cls4b_ckpt4600_test_mutation_breakdown.txt\n-rw-r--r-- 1 ubuntu ubuntu  1727 May 16 02:37 cls8b_s42_ckpt3600_per_mutation_pr.json\n-rw-r--r-- 1 ubuntu ubuntu  4593 May 16 02:39 cls8b_s42_ckpt3600_per_test_pr_bucketed.json\n-rw-r--r-- 1 ubuntu ubuntu   663 May 12 16:33 cls_cwm_error_overlap.md\n-rw-r--r-- 1 ubuntu ubuntu  4681 May 20 00:52 cls_multiseed_summary.json\n-rw-r--r-- 1 ubuntu ubuntu   231 May 12 16:30 cls_seed42_predictions_ref.txt\n-rw-r--r-- 1 ubuntu ubuntu  4658 May 16 02:32 cwm4b_mutation_breakdown.json\n-rw-r--r-- 1 ubuntu ubuntu   275 May 12 16:30 cwm_seed42_predictions_ref.txt\n-rw-r--r-- 1 ubuntu ubuntu  1233 May 17 13:18 deepseek_zero_shot.json\n-rw-r--r-- 1 ubuntu ubuntu  3486 May 17 11:24 efficiency_benchmark.json\n-rw-r--r-- 1 ubuntu ubuntu 10643 May 15 08:20 error_analysis_data.md\n-rw-r--r-- 1 ubuntu ubuntu  1248 May 17 08:19 error_analysis_func_level.json\n-rw-r--r-- 1 ubuntu ubuntu  2154 May 17 08:23 error_analysis_func_level_deepseek.json\n-rw-r--r-- 1 ubuntu ubuntu  2342 May 17 10:29 error_complementarity_deepseek.json\n-rw-r--r-- 1 ubuntu ubuntu   639 May 12 16:14 error_overlap_analysis.txt\n-rw-r--r-- 1 ubuntu ubuntu  1263 May 12 19:08 error_overlap_matched_seed.json\n-rw-r--r-- 1 ubuntu ubuntu  8834 May 16 16:28 f1_macro_summary.json\n-rw-r--r-- 1 ubuntu ubuntu  1342 May 17 12:03 few_shot_baseline.json\n-rw-r--r-- 1 ubuntu ubuntu   408 May 12 00:07 inference_cost_results_summary.txt\n-rw-r--r-- 1 ubuntu ubuntu  2939 May 17 13:25 lr_verification.json\n-rw-r--r-- 1 ubuntu ubuntu  3475 May \n…[truncated 188 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T07:11:47.205492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/eval_repo_cls.py",
+              "limit": "350",
+              "offset": "200"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T07:11:47.205785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "200\t        old_handler = signal.signal(signal.SIGALRM, lambda s, f: (_ for _ in ()).throw(TimeoutError('batch timeout')))\n201\t        signal.alarm(120)\n202\t        try:\n203\t            with torch.no_grad():\n204\t                out = model.generate(\n205\t                    input_ids=input_ids,\n206\t                    attention_mask=attention_mask,\n207\t                    max_new_tokens=8,\n208\t                    do_sample=False,\n209\t                    pad_token_id=tokenizer.pad_token_id,\n210\t                    eos_token_id=eos_ids,\n211\t                )\n212\t            signal.alarm(0)\n213\t        except TimeoutError:\n214\t            signal.alarm(0)\n215\t            log.warning(f'TIMEOUT at batch idx={i}, skipping {len(batch)} samples')\n216\t            for j, ex in enumerate(batch):\n217\t                pid = ex.get('problem_id', ex.get('metadata', {}).get('instance_id', ''))\n218\t                results.append({'index': i+j, 'problem_id': pid, 'label': ex['label'], 'pred': majority_class, 'correct': int(majority_class == ex['label']), 'truncated': False, 'gen_text': 'TIMEOUT', 'unparseable': True})\n219\t                n_unparseable += 1\n220\t            signal.signal(signal.SIGALRM, old_handler)\n221\t            continue\n222\t        signal.signal(signal.SIGALRM, old_handler)\n223\t\n224\t        for j, ex in enumerate(batch):\n225\t            gen_ids = out[j][len(padded[j]):]\n226\t            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\n227\t            pred = parse_prediction(gen_text)\n228\t            was_unparseable = pred == -1\n229\t            if pred == -1:\n230\t                n_unparseable += 1\n231\t                pred = majority_class\n232\t\n233\t            pid = ex.get(\"problem_id\", ex.get(\"metadata\", {}).get(\"instance_id\", \"\"))\n234\t            results.append({\n235\t                \"index\": i + j,\n236\t                \"problem_id\": pid,\n237\t                \"label\": ex[\"label\"],\n238\t                \"pred\": pred,\n239\t                \"correct\": int(pred == e\n…[truncated 7188 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T07:11:47.206075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/eval_cwm_baseline.py",
+              "limit": "300",
+              "offset": "150"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T07:11:47.206370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "150\t\n151\tdef extract_error_type(target):\n152\t    \"\"\"Extract error type from target string like 'FAIL: AssertionError: ...'.\"\"\"\n153\t    if target.startswith(\"PASS\"):\n154\t        return \"PASS\"\n155\t    match = re.match(r\"FAIL:\\s*(\\w+Error|\\w+Exception|Error)\", target)\n156\t    if match:\n157\t        return match.group(1)\n158\t    return \"Other\"\n159\t\n160\t\n161\tdef main():\n162\t    p = argparse.ArgumentParser(description=\"Evaluate CWM generation baseline\")\n163\t    p.add_argument(\"--data_dir\", required=True)\n164\t    p.add_argument(\"--checkpoint_dir\", required=True)\n165\t    p.add_argument(\"--model_name\", default=\"Qwen/Qwen3-4B\",\n166\t                   help=\"Base model name/path (auto-detected family: qwen/deepseek)\")\n167\t    p.add_argument(\"--output\", default=\"eval_cwm_results.json\")\n168\t    p.add_argument(\"--batch_size\", type=int, default=16)\n169\t    p.add_argument(\"--max_seq_length\", type=int, default=2048)\n170\t    p.add_argument(\"--max_new_tokens\", type=int, default=64)\n171\t    args = p.parse_args()\n172\t\n173\t    family = detect_model_family(args.model_name)\n174\t    log.info(f\"Model: {args.model_name} → family={family}\")\n175\t\n176\t    tokenizer = AutoTokenizer.from_pretrained(\n177\t        args.checkpoint_dir, trust_remote_code=True, padding_side=\"left\",\n178\t    )\n179\t    if tokenizer.pad_token is None:\n180\t        tokenizer.pad_token = tokenizer.eos_token\n181\t    tmpl_kw = get_chat_template_kwargs(family, tokenizer)\n182\t\n183\t    log.info(f\"Loading base model: {args.model_name}\")\n184\t    try:\n185\t        import flash_attn  # noqa: F401\n186\t        attn_impl = \"flash_attention_2\"\n187\t    except ImportError:\n188\t        attn_impl = \"sdpa\"\n189\t\n190\t    base_model = AutoModelForCausalLM.from_pretrained(\n191\t        args.model_name,\n192\t        torch_dtype=torch.bfloat16,\n193\t        trust_remote_code=True,\n194\t        attn_implementation=attn_impl,\n195\t    )\n196\t    log.info(f\"Loading adapter: {args.checkpoint_dir}\")\n197\t    model = PeftModel.from_pretrained(base_model, args.checkp\n…[truncated 8821 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T07:11:47.206632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier -type f -name \"*.py\" | xargs grep -l \"results_incremental\\|eval_.*_predictions\" | head -5"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T07:11:47.206872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project/intermediate/merge_cwm8b_shards.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/eval_repo_cls_v2.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/eval_repo_cls.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/merge_cwm8b_shards.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/merge_cwm8b_shards.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T07:11:47.207113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier -type f -name \"*.py\" | xargs grep -l \"jsonl\\|\\.write.*json.dumps\" | head -10"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T07:11:47.207321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/eval_majority_voting.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/build_cwm_data.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/matplotlib/backends/backend_webagg_core.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/matplotlib/backends/backend_webagg.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/pip/_vendor/pygments/lexers/_mapping.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/train_unified.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/eval_cwm_baseline.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/cls_inference_for_rerepair.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/eval_re_repair.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/analyze_cwm_eval.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T07:11:47.207546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/eval_majority_voting.py",
+              "limit": "200"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T07:11:47.207817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Per-test majority voting (K-pass self-consistency) evaluation.\"\"\"\n3\t\n4\timport argparse\n5\timport json\n6\timport logging\n7\timport os\n8\timport time\n9\tfrom collections import Counter\n10\t\n11\timport torch\n12\tfrom peft import PeftModel\n13\tfrom sklearn.metrics import (\n14\t    accuracy_score,\n15\t    confusion_matrix,\n16\t    f1_score,\n17\t    precision_score,\n18\t    recall_score,\n19\t)\n20\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n21\t\n22\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n23\tlog = logging.getLogger(__name__)\n24\t\n25\tSYSTEM_PROMPT = (\n26\t    \"You are a code verifier. Given a code snippet and a test case, \"\n27\t    \"predict whether the test will pass or fail.\"\n28\t)\n29\t\n30\t\n31\tdef load_jsonl(path):\n32\t    with open(path) as f:\n33\t        return [json.loads(line) for line in f]\n34\t\n35\t\n36\tdef detect_thinking_support(tokenizer):\n37\t    try:\n38\t        tokenizer.apply_chat_template(\n39\t            [{\"role\": \"user\", \"content\": \"hi\"}],\n40\t            tokenize=False,\n41\t            enable_thinking=False,\n42\t        )\n43\t        return {\"enable_thinking\": False}\n44\t    except TypeError:\n45\t        return {}\n46\t\n47\t\n48\tdef build_prompt_ids(tokenizer, code, test, tmpl_kw, max_len):\n49\t    user_msg = f\"## Code\\n{code}\\n\\n## Test\\n{test}\\n\\nWill this test pass or fail?\"\n50\t    msgs = [\n51\t        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n52\t        {\"role\": \"user\", \"content\": user_msg},\n53\t    ]\n54\t    ids = tokenizer.apply_chat_template(\n55\t        msgs, tokenize=True, add_generation_prompt=True, **tmpl_kw,\n56\t    )\n57\t    if len(ids) > max_len:\n58\t        ids = ids[:max_len]\n59\t    return ids\n60\t\n61\t\n62\tdef parse_prediction(text):\n63\t    if \"</think>\" in text:\n64\t        text = text.split(\"</think>\")[-1]\n65\t    text = text.strip().lower()\n66\t    if text.startswith(\"pass\"):\n67\t        return 1\n68\t    if text.startswith(\"fail\"):\n69\t        return 0\n70\t    if \"pass\" in text and \"fail\" not in \n…[truncated 5712 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T07:11:47.208087+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/analyze_cwm_eval.py",
+              "limit": "200"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T07:11:47.208363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t# analyze_cwm_eval.py — Post-hoc analysis of CWM repo-level eval predictions\n3\t# Reads predictions JSONL from eval_repo_cwm.py, computes detailed metrics,\n4\t# unparseable breakdown, CLS comparison, and error-mode analysis by input length.\n5\t\n6\timport argparse\n7\timport json\n8\timport math\n9\timport sys\n10\tfrom collections import Counter\n11\t\n12\tfrom sklearn.metrics import (\n13\t    accuracy_score, confusion_matrix, f1_score,\n14\t    precision_score, recall_score,\n15\t)\n16\t\n17\t\n18\tdef load_jsonl(path):\n19\t    records = []\n20\t    with open(path) as f:\n21\t        for i, line in enumerate(f):\n22\t            line = line.strip()\n23\t            if not line:\n24\t                continue\n25\t            try:\n26\t                records.append(json.loads(line))\n27\t            except json.JSONDecodeError as e:\n28\t                print(f\"WARNING: skipping line {i}: {e}\", file=sys.stderr)\n29\t    return records\n30\t\n31\t\n32\tdef compute_metrics(labels, preds):\n33\t    acc = accuracy_score(labels, preds) * 100\n34\t    cm = confusion_matrix(labels, preds, labels=[0, 1])\n35\t    tn, fp, fn, tp = cm.ravel()\n36\t    support_fail = tn + fp\n37\t    support_pass = fn + tp\n38\t    majority_baseline = max(support_fail, support_pass) / len(labels) * 100\n39\t\n40\t    return {\n41\t        \"accuracy\": round(acc, 2),\n42\t        \"majority_baseline\": round(majority_baseline, 2),\n43\t        \"gap_vs_majority_pp\": round(acc - majority_baseline, 2),\n44\t        \"f1_macro\": round(f1_score(labels, preds, average=\"macro\") * 100, 2),\n45\t        \"f1_fail\": round(f1_score(labels, preds, pos_label=0) * 100, 2),\n46\t        \"f1_pass\": round(f1_score(labels, preds, pos_label=1) * 100, 2),\n47\t        \"precision_fail\": round(precision_score(labels, preds, pos_label=0, zero_division=0) * 100, 2),\n48\t        \"precision_pass\": round(precision_score(labels, preds, pos_label=1, zero_division=0) * 100, 2),\n49\t        \"recall_fail\": round(recall_score(labels, preds, pos_label=0, zero_division=0) * 100, 2),\n50\t     \n…[truncated 6662 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T07:11:47.208626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"problem_id\\|complexity\\|mutation_type\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier --include=\"*.py\" -n | head -20"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T07:11:47.208853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/build_cwm_data.py:2:# Input: data/{train,val,test}.jsonl with fields: code, test, label, source, problem_id, mutation_type\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/build_cwm_data.py:118:            \"problem_id\": ex.get(\"problem_id\", \"\"),\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/build_cwm_data.py:119:            \"mutation_type\": ex.get(\"mutation_type\", \"\"),\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/fontTools/cffLib/specializer.py:629:    # There's one more complexity with splines.  If one side of the spline is not horizontal or\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/numpy/_core/tests/test_ufunc.py:2593:        # Last check, test reduction when out and a match (the complexity here\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/numpy/_core/tests/test_scalarmath.py:1038:    scalars work).  Due to its complexity and the fact that subclassing NumPy\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/matplotlib/axes/_axes.py:6579:        depending on the complexity of the input grid (regular rectangular,\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/matplotlib/axes/_axes.py:7572:            complexity of the plot. If *x* contains no duplicate points, this\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/matplotlib/axes/_base.py:379:        # complexity.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/matplotlib/test\n…[truncated 1624 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T07:11:47.209102+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"formulation\\|correct\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier --include=\"*.py\" -n | grep -E \"(dict|json|append)\" | head -20"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T07:11:47.209326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/eval_majority_voting.py:311:    print(f\"\\nFlipped predictions: {flipped_correct} correct, {flipped_wrong} wrong (net: {flipped_correct - flipped_wrong:+d})\")\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/fontTools/ufoLib/validators.py:1106:    The lib data is not in the correct format: expected a dictionary, ...\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/fontTools/otlLib/builder.py:3213:    'italicsCorrections' is a dictionary of italic corrections. The keys are the\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/numpy/tests/test_public_api.py:734:                incorrect_entries.append(\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/numpy/tests/test_public_api.py:798:                incorrect_entries.append(\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/numpy/f2py/crackfortran.py:1000:    At the end of analyzeline, information is filtered into the correct dict\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/numpy/_core/tests/test_regression.py:2320:    def test_correct_hash_dict(self):\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/matplotlib/tests/test_dviread.py:68:        correct = json.load(f)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/.venv/lib/python3.14/site-packages/pip/_vendor/typing_extensions.py:1204:            # Setting correct module is necessary to make typed dict classes pickleable.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/proje\n…[truncated 1831 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T07:11:47.209574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/build_cwm_data.py",
+              "limit": "150"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T07:11:47.209839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# build_cwm_data.py — Convert (code, test, label) data to CWM generation format\n2\t# Input: data/{train,val,test}.jsonl with fields: code, test, label, source, problem_id, mutation_type\n3\t# Output: data/{cwm_train,cwm_val,cwm_test}.jsonl with target = execution output string\n4\t# Key difference from classification: label 0/1 → target string with actual error messages\n5\t# For fail samples, re-executes code+test to capture stderr; pass samples get fixed string.\n6\t\n7\timport argparse\n8\timport json\n9\timport logging\n10\timport os\n11\timport re\n12\timport subprocess\n13\timport sys\n14\tfrom collections import Counter\n15\t\n16\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n17\tlog = logging.getLogger(__name__)\n18\t\n19\tPASS_TARGET = \"PASS: test completed successfully\"\n20\tDEFAULT_TIMEOUT = 5\n21\t\n22\t\n23\tdef load_jsonl(path):\n24\t    with open(path) as f:\n25\t        return [json.loads(line) for line in f]\n26\t\n27\t\n28\tdef save_jsonl(data, path):\n29\t    with open(path, \"w\") as f:\n30\t        for item in data:\n31\t            f.write(json.dumps(item) + \"\\n\")\n32\t\n33\t\n34\tdef execute_and_capture(code: str, test: str, timeout: int) -> str:\n35\t    \"\"\"Execute code + test, return formatted error string for failures.\"\"\"\n36\t    full_code = code + \"\\n\" + test\n37\t    try:\n38\t        result = subprocess.run(\n39\t            [sys.executable, \"-c\", full_code],\n40\t            capture_output=True, text=True, timeout=timeout,\n41\t        )\n42\t        if result.returncode == 0:\n43\t            return PASS_TARGET\n44\t\n45\t        stderr = result.stderr.strip()\n46\t        if not stderr:\n47\t            stdout = result.stdout.strip()\n48\t            if stdout:\n49\t                return f\"FAIL: Error: {stdout.splitlines()[-1]}\"\n50\t            return \"FAIL: Error: non-zero exit code\"\n51\t\n52\t        # Extract the last exception line from traceback\n53\t        lines = stderr.strip().splitlines()\n54\t        # Find the last line that looks like an exception\n55\t        error_line = None\n56\n…[truncated 3807 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T07:11:47.210101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/build_data.py",
+              "limit": "200"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T07:11:47.210361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Build (code, test) -> pass/fail training data from HumanEval + MBPP\n2\t# Mutations on canonical solutions generate fail examples; actual execution verifies labels.\n3\t\n4\timport argparse\n5\timport ast\n6\timport json\n7\timport os\n8\timport random\n9\timport re\n10\timport subprocess\n11\timport sys\n12\timport textwrap\n13\timport time\n14\tfrom collections import Counter, defaultdict\n15\tfrom pathlib import Path\n16\t\n17\tTIMEOUT = 5  # seconds per test execution\n18\tMUTANTS_PER_SOLUTION = 4\n19\tSEED = 42\n20\t\n21\t\n22\t# ── Mutation strategies ──────────────────────────────────────────────\n23\t\n24\tdef mutate_operators(code: str) -> list[str]:\n25\t    \"\"\"Swap arithmetic/comparison operators.\"\"\"\n26\t    swaps = [\n27\t        ('+', '-'), ('-', '+'), ('*', '/'), ('/', '*'),\n28\t        ('==', '!='), ('!=', '=='),\n29\t        ('<=', '<'), ('>=', '>'), ('<', '<='), ('>', '>='),\n30\t        (' and ', ' or '), (' or ', ' and '),\n31\t    ]\n32\t    results = []\n33\t    for old, new in swaps:\n34\t        if old in code:\n35\t            mutated = code.replace(old, new, 1)\n36\t            if mutated != code:\n37\t                results.append(mutated)\n38\t    return results\n39\t\n40\t\n41\tdef mutate_off_by_one(code: str) -> list[str]:\n42\t    \"\"\"Shift integer literals by ±1.\"\"\"\n43\t    results = []\n44\t    # Find integer literals (not inside strings ideally, but good enough)\n45\t    for match in re.finditer(r'(?<![a-zA-Z_\"\\'])(\\d+)(?![a-zA-Z_\"\\'])', code):\n46\t        val = int(match.group(1))\n47\t        for delta in [1, -1]:\n48\t            new_val = val + delta\n49\t            if new_val < 0:\n50\t                continue\n51\t            mutated = code[:match.start(1)] + str(new_val) + code[match.end(1):]\n52\t            if mutated != code:\n53\t                results.append(mutated)\n54\t    return results\n55\t\n56\t\n57\tdef mutate_return_value(code: str) -> list[str]:\n58\t    \"\"\"Modify return statements.\"\"\"\n59\t    results = []\n60\t    lines = code.split('\\n')\n61\t    for i, line in enumerate(lines):\n62\t        stripped = line.lstrip()\n63\n…[truncated 5295 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-20T07:11:47.210617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/build_data.py",
+              "limit": "100",
+              "offset": "230"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T07:11:47.210876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "230\t\n231\t            if result == 'pass':\n232\t                samples.append({\n233\t                    'code': full_solution,\n234\t                    'test': test_str,\n235\t                    'label': 1,\n236\t                    'source': 'humaneval',\n237\t                    'problem_id': task_id,\n238\t                    'mutation_type': 'original',\n239\t                })\n240\t            elif result in ('timeout', 'error'):\n241\t                continue\n242\t            else:\n243\t                # Canonical failed? Skip this test\n244\t                continue\n245\t\n246\t            # Negative: mutants + test\n247\t            mutants = generate_mutants(full_solution)\n248\t            for mutant_code, mtype in mutants:\n249\t                mresult = execute_test(mutant_code, test_str)\n250\t                stats['execution_results'][f'mutant_{mresult}'] += 1\n251\t\n252\t                if mresult == 'fail':\n253\t                    samples.append({\n254\t                        'code': mutant_code,\n255\t                        'test': test_str,\n256\t                        'label': 0,\n257\t                        'source': 'humaneval',\n258\t                        'problem_id': task_id,\n259\t                        'mutation_type': mtype,\n260\t                    })\n261\t                elif mresult == 'pass':\n262\t                    # Mutation didn't break it - still valid pass data\n263\t                    samples.append({\n264\t                        'code': mutant_code,\n265\t                        'test': test_str,\n266\t                        'label': 1,\n267\t                        'source': 'humaneval',\n268\t                        'problem_id': task_id,\n269\t                        'mutation_type': mtype,\n270\t                    })\n271\t                # timeout/error: skip\n272\t\n273\t    return samples, stats\n274\t\n275\t\n276\t# ── MBPP processing ─────────────────────────────────────────────────\n277\t\n278\tdef process_mbpp(dataset, dry_run: bool = False):\n279\t    \"\"\"Process MBPP dataset.\"\"\"\n280\t \n…[truncated 1750 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-20T07:11:47.211151+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 20 \"\\.append({\" /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/build_data.py | head -40"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T07:11:47.211360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "                samples.append({\n                    'code': full_solution,\n                    'test': test_str,\n                    'label': 1,\n                    'source': 'humaneval',\n                    'problem_id': task_id,\n                    'mutation_type': 'original',\n                })\n            elif result in ('timeout', 'error'):\n                continue\n            else:\n                # Canonical failed? Skip this test\n                continue\n\n            # Negative: mutants + test\n            mutants = generate_mutants(full_solution)\n            for mutant_code, mtype in mutants:\n                mresult = execute_test(mutant_code, test_str)\n                stats['execution_results'][f'mutant_{mresult}'] += 1\n\n                if mresult == 'fail':\n                    samples.append({\n                        'code': mutant_code,\n                        'test': test_str,\n                        'label': 0,\n                        'source': 'humaneval',\n                        'problem_id': task_id,\n                        'mutation_type': mtype,\n                    })\n                elif mresult == 'pass':\n                    # Mutation didn't break it - still valid pass data\n                    samples.append({\n                        'code': mutant_code,\n                        'test': test_str,\n                        'label': 1,\n                        'source': 'humaneval',\n                        'problem_id': task_id,\n                        'mutation_type': mtype,\n                    })\n                # timeout/error: skip"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-20T07:11:47.211589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/eval_repo_cls.py",
+              "limit": "50",
+              "offset": "224"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-20T07:11:47.211883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "224\t        for j, ex in enumerate(batch):\n225\t            gen_ids = out[j][len(padded[j]):]\n226\t            gen_text = tokenizer.decode(gen_ids, skip_special_tokens=True)\n227\t            pred = parse_prediction(gen_text)\n228\t            was_unparseable = pred == -1\n229\t            if pred == -1:\n230\t                n_unparseable += 1\n231\t                pred = majority_class\n232\t\n233\t            pid = ex.get(\"problem_id\", ex.get(\"metadata\", {}).get(\"instance_id\", \"\"))\n234\t            results.append({\n235\t                \"index\": i + j,\n236\t                \"problem_id\": pid,\n237\t                \"label\": ex[\"label\"],\n238\t                \"pred\": pred,\n239\t                \"correct\": int(pred == ex[\"label\"]),\n240\t                \"truncated\": batch_truncated[j],\n241\t                \"gen_text\": gen_text.strip(),\n242\t                \"unparseable\": was_unparseable,\n243\t            })\n244\t\n245\t        done = min(i + batch_size, total)\n246\t        if done % (batch_size * 10) == 0 or done == total:\n247\t            acc_so_far = sum(r[\"correct\"] for r in results) / len(results) * 100\n248\t            log.info(f\"[CLS] {done}/{total}  running_acc={acc_so_far:.1f}%\")\n249\t\n250\t    if n_unparseable:\n251\t        log.warning(f\"{n_unparseable} unparseable predictions (majority fallback)\")\n252\t    return results\n253\t\n254\t\n255\tdef compute_metrics(y_true, y_pred):\n256\t    acc = accuracy_score(y_true, y_pred)\n257\t    prec = precision_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\n258\t    rec = recall_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\n259\t    f1 = f1_score(y_true, y_pred, average=None, labels=[0, 1], zero_division=0)\n260\t    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])\n261\t    majority = max(Counter(y_true).values()) / len(y_true) if y_true else 0\n262\t    return {\n263\t        \"accuracy\": round(acc * 100, 2),\n264\t        \"majority_baseline\": round(majority * 100, 2),\n265\t        \"gap_vs_majority_pp\": round((acc - majority) * 100, 2\n…[truncated 440 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-20T07:11:47.212159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/eval_repo_cls_v2.py",
+              "limit": "100"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-20T07:11:47.212397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t# eval_repo_cls.py — Evaluate repo-level CLS (pass/fail verifier) LoRA checkpoint\n3\t# v2: watchdog thread timeout (CUDA-safe), per-batch timing, incremental result saving\n4\t\n5\timport argparse\n6\timport json\n7\timport logging\n8\timport os\n9\timport gc\n10\timport signal\n11\timport threading\n12\timport time\n13\tfrom collections import Counter\n14\t\n15\timport numpy as np\n16\timport torch\n17\tfrom sklearn.metrics import (\n18\t    accuracy_score, confusion_matrix, f1_score,\n19\t    precision_score, recall_score,\n20\t)\n21\t\n22\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n23\tlog = logging.getLogger(__name__)\n24\t\n25\tSYSTEM_PROMPT = (\n26\t    \"You are a code verifier. Given a code patch (git diff) and a test name, \"\n27\t    \"predict whether the test will pass or fail when run against the patched code.\"\n28\t)\n29\tUSER_TEMPLATE = \"## Patch (git diff)\\n{code}\\n\\n## Test\\n{test}\\n\\nWill this test pass or fail?\"\n30\tLABEL_MAP = {1: \"pass\", 0: \"fail\"}\n31\t\n32\tBATCH_TIMEOUT = 180\n33\t\n34\t# ---------------------------------------------------------------------------\n35\t# Model family detection & configuration (shared with train_unified.py)\n36\t# ---------------------------------------------------------------------------\n37\t\n38\tdef detect_model_family(model_name: str) -> str:\n39\t    name_lower = model_name.lower()\n40\t    if \"qwen\" in name_lower:\n41\t        return \"qwen\"\n42\t    if \"deepseek\" in name_lower:\n43\t        return \"deepseek\"\n44\t    return \"auto\"\n45\t\n46\t\n47\tdef get_chat_template_kwargs(family: str, tokenizer) -> dict:\n48\t    \"\"\"Return extra kwargs for tokenizer.apply_chat_template(), per model family.\"\"\"\n49\t    if family == \"qwen\":\n50\t        try:\n51\t            tokenizer.apply_chat_template(\n52\t                [{\"role\": \"user\", \"content\": \"hi\"}],\n53\t                tokenize=False, enable_thinking=False,\n54\t            )\n55\t            return {\"enable_thinking\": False}\n56\t        except TypeError:\n57\t            return {}\n58\t    ret\n…[truncated 1750 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-20T07:11:47.212655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/ | grep -E \"eval|results|predictions\" | head -20"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-20T07:11:47.212886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r--  1 ubuntu ubuntu   5044 May 15 02:06 4b_eval_hang_analysis.md\n-rw-r--r--  1 ubuntu ubuntu   3890 May 18 21:55 ckpt6315_eval_analysis.md\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 15 01:39 cls4b-v5-ckpt4400-val5120-eval\n-rw-r--r--  1 ubuntu ubuntu   1751 May 14 20:52 cls8b_seed123_ckpt3000_val_eval_pending.md\n-rw-r--r--  1 ubuntu ubuntu  16305 May 15 10:14 comprehensive_results_summary.md\n-rw-r--r--  1 ubuntu ubuntu   7117 May 15 14:05 comprehensive_test_results.md\n-rw-r--r--  1 ubuntu ubuntu   1786 May 15 13:31 cwm_rank32_eval_command.sh\n-rw-r--r--  1 ubuntu ubuntu   6490 May 13 15:45 d008_eval_commands.md\n-rw-r--r--  1 ubuntu ubuntu   3727 May 18 21:20 deepseek-cls-repo-v5-ckpt2105-eval-analysis.md\n-rw-r--r--  1 ubuntu ubuntu   1307 May 19 07:10 diagnose_exp-downsample-cls-func-v3-eval.md\n-rw-r--r--  1 ubuntu ubuntu   4928 May 12 20:26 eval_pipeline_prep.md\n-rw-r--r--  1 ubuntu ubuntu   5837 May 12 20:29 eval_readiness_report.md\n-rw-r--r--  1 ubuntu ubuntu  15387 May 16 05:25 eval_repo_cls.py\n-rw-r--r--  1 ubuntu ubuntu  18489 May 16 05:24 eval_repo_cls_v2.py\n-rw-r--r--  1 ubuntu ubuntu   2050 May 14 22:55 eval_status_check_20260514.md\n-rw-r--r--  1 ubuntu ubuntu   6864 May 12 13:25 extract_predictions_generic.py\n-rw-r--r--  1 ubuntu ubuntu    558 May 19 10:25 holm_bonferroni_results.json\n-rw-r--r--  1 ubuntu ubuntu   1170 May 16 10:10 inference_benchmark_results.json\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 19 19:53 qwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval\n-rw-r--r--  1 ubuntu ubuntu    899 May 17 15:16 qwen3_8b_traj_s123_eval.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-20T07:11:47.213120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts -type d -maxdepth 1 | sort"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-20T07:11:47.213328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/D132-cwm-s123-e2-seq2048\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/_project\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/block-corr-empirical\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cls4b-v5-ckpt4400-val5120-eval\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cls8b-block-correlation-empirical\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cls8b-s42-resume-ckpt3600-mutation\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cwm-rank32-ablation-v2\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cwm-rank32-alpha64-ablation\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/deepseek-cwm-repo-s123-train\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/deepseek-cwm-repo-s456-train\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/deepseek-traj-func\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/deepseek-traj-func-v2\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/dream_reports\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/figures\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/mvp-a-oracle-sim\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/mvp-b-data-prep\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/e\n…[truncated 764 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-20T07:11:47.213578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cls4b-v5-ckpt4400-val5120-eval/"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-20T07:11:47.213774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 20\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 15 01:39 .\ndrwxr-xr-x 25 ubuntu ubuntu 12288 May 20 07:05 ..\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 15 01:39 data"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-20T07:11:47.214008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/qwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval/"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-20T07:11:47.214202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 20\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 19 19:53 .\ndrwxr-xr-x 25 ubuntu ubuntu 12288 May 20 07:05 ..\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 19 19:53 report"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-20T07:11:47.214407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/cls4b-v5-ckpt4400-val5120-eval/data/"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-20T07:11:47.214594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 12\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 15 01:39 .\ndrwxr-xr-x 3 ubuntu ubuntu 4096 May 15 01:39 ..\n-rw-r--r-- 1 ubuntu ubuntu  281 May 15 01:39 ckpt4400_val5120_partial_accuracy.txt"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-20T07:11:47.214818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/artifacts/qwen3-8b-cwm-repo-s42-ckpt400-seq4096-eval/report/"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-20T07:11:47.215034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 12\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 19 19:53 .\ndrwxr-xr-x 3 ubuntu ubuntu 4096 May 19 19:53 ..\n-rw-r--r-- 1 ubuntu ubuntu 3277 May 19 19:53 d146_cwm_seq4096_analysis.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-20T07:11:47.215243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier -name \"*.md\" -type f | xargs grep -l \"field\\|schema\\|format\\|jsonl\" 2>/dev/null | head -5"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-20T07:11:47.215438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/docs/IDEA_BRIEF.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/task_context/agent.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/task_context/history/director/loop_13.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/task_context/history/director/loop_15.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/task_context/history/director/loop_7.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-20T07:11:47.215654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/build_cwm_data.py",
+              "limit": "50",
+              "offset": "1"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-20T07:11:47.215879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# build_cwm_data.py — Convert (code, test, label) data to CWM generation format\n2\t# Input: data/{train,val,test}.jsonl with fields: code, test, label, source, problem_id, mutation_type\n3\t# Output: data/{cwm_train,cwm_val,cwm_test}.jsonl with target = execution output string\n4\t# Key difference from classification: label 0/1 → target string with actual error messages\n5\t# For fail samples, re-executes code+test to capture stderr; pass samples get fixed string.\n6\t\n7\timport argparse\n8\timport json\n9\timport logging\n10\timport os\n11\timport re\n12\timport subprocess\n13\timport sys\n14\tfrom collections import Counter\n15\t\n16\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s %(levelname)s %(message)s\")\n17\tlog = logging.getLogger(__name__)\n18\t\n19\tPASS_TARGET = \"PASS: test completed successfully\"\n20\tDEFAULT_TIMEOUT = 5\n21\t\n22\t\n23\tdef load_jsonl(path):\n24\t    with open(path) as f:\n25\t        return [json.loads(line) for line in f]\n26\t\n27\t\n28\tdef save_jsonl(data, path):\n29\t    with open(path, \"w\") as f:\n30\t        for item in data:\n31\t            f.write(json.dumps(item) + \"\\n\")\n32\t\n33\t\n34\tdef execute_and_capture(code: str, test: str, timeout: int) -> str:\n35\t    \"\"\"Execute code + test, return formatted error string for failures.\"\"\"\n36\t    full_code = code + \"\\n\" + test\n37\t    try:\n38\t        result = subprocess.run(\n39\t            [sys.executable, \"-c\", full_code],\n40\t            capture_output=True, text=True, timeout=timeout,\n41\t        )\n42\t        if result.returncode == 0:\n43\t            return PASS_TARGET\n44\t\n45\t        stderr = result.stderr.strip()\n46\t        if not stderr:\n47\t            stdout = result.stdout.strip()\n48\t            if stdout:\n49\t                return f\"FAIL: Error: {stdout.splitlines()[-1]}\"\n50\t            return \"FAIL: Error: non-zero exit code\""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-20T07:11:47.216215+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have all the information I need. Let me compile the comprehensive report:\n\n## Summary: Eval Result File Formats and Directory Structure\n\nBased on my analysis of the codebase, here's the complete breakdown:\n\n### File Schema\n\n#### 1. **Training/Classification Data Format** (input to eval scripts)\n**Files**: `data/{train,val,test}.jsonl`\n\nFields and types:\n- `code` (string): Python function/code snippet\n- `test` (string): Test code/assertion\n- `label` (int): Binary label — 1 = pass, 0 = fail\n- `source` (string): Data source (\"humaneval\", \"mbpp\")\n- `problem_id` (string): Unique problem identifier (e.g., \"HumanEval/1\", \"MBPP/42\")\n- `mutation_type` (string): Type of code mutation (\"original\", \"operator_swap\", \"off_by_one\", \"return_value\", \"boundary_removal\", \"variable_swap\")\n\n#### 2. **CWM Generation Data Format** (execution output data)\n**Files**: `data/{cwm_train,cwm_val,cwm_test}.jsonl`\n\nFields and types:\n- `code` (string): Code snippet\n- `test` (string): Test code\n- `target` (string): Execution output string — either \"PASS: test completed successfully\" or \"FAIL: <ErrorType>: <message>\"\n- `label` (int): 0 = fail, 1 = pass\n- `source` (string): Data source\n- `problem_id` (string): Problem identifier\n- `mutation_type` (string): Mutation type\n\n#### 3. **CLS Evaluation Predictions JSONL** (output from eval_repo_cls.py)\n**Files**: `eval_repo_cls_predictions.jsonl` (per-instance predictions)\n\nFields and types:\n- `index` (int): Row index in batch\n- `problem_id` (string): Problem identifier (fallback to `metadata.instance_id`)\n- `label` (int): Ground truth label (0/1)\n- `pred` (int): Model prediction (0/1)\n- `correct` (int): 1 if pred==label, else 0\n- `truncated` (bool): Whether input sequence was truncated\n- `gen_text` (string): Raw generated text from model\n- `unparseable` (bool): Whether output failed to parse as pass/fail\n\n#### 4. **CWM Evaluation Predictions JSONL** (output from eval_cwm_baseline.py)\nSimilar structure to CLS but may include:\n- `gen_text` (st\n…[truncated 3349 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Agent",
+            "elapsed_ms": 17
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-20T07:11:47.216817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/w5_mixed_effects_v2.py",
+              "content": "\"\"\"\nW5 Mixed-Effects Regression (v2): multi-seed CWM support.\n\nCross-complexity model: correct ~ formulation * complexity + (1|problem_id)\nCross-model model:     correct ~ formulation * model + (1|problem_id)\n\nInput:\n  --eval_dirs   comma-separated eval result directories\n  --data_dir    directory with {test,cwm_test}.jsonl for mutation_type metadata\n  --output_dir  output directory for JSON + LaTeX\n\nOutput:\n  w5_mixed_effects_results.json   combined model results\n  w5_latex_tables.tex             LaTeX table fragments\n\nDependencies: pandas, numpy, statsmodels (>=0.14), scipy\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport re\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\ndef parse_args():\n    p = argparse.ArgumentParser(\n        description=\"W5 Mixed-Effects Regression: formulation × complexity / model\"\n    )\n    p.add_argument(\"--eval_dirs\", required=True,\n                   help=\"Comma-separated eval result directories\")\n    p.add_argument(\"--data_dir\", default=None,\n                   help=\"Directory with test.jsonl / cwm_test.jsonl for \"\n                        \"mutation_type metadata (optional)\")\n    p.add_argument(\"--output_dir\", default=\"artifacts/w5_mixed_effects\",\n                   help=\"Output directory (default: artifacts/w5_mixed_effects)\")\n    p.add_argument(\"--ref_formulation\", default=\"CLS\",\n                   help=\"Reference formulation for odds ratios (default: CLS)\")\n    p.add_argument(\"--bootstrap_n\", type=int, default=2000,\n                   help=\"Bootstrap iterations for OR CIs (default: 2000)\")\n    return p.parse_args()\n\n\n# ---------------------------------------------------------------------------\n# Path → metadata inference\n# ---------------------------------------------------------------------------\n\ndef infer_metadata(dirpath: str) -> dict:\n    \"\"\"Infer formulation, model, seed, complexity from directory name.\"\"\"\n    name = os.path.basename(dirpath).lower()\n\n    if \"cwm\" in name:\n        formulation = \"CWM\"\n    elif \"traj\" in name:\n        formulation = \"TRAJ\"\n    elif \"cls\" in name:\n        formulation = \"CLS\"\n    else:\n        formulation = \"UNKNOWN\"\n\n    if \"qwen\" in name:\n        model = \"Qwen3-8B\"\n    elif \"deepseek\" in name:\n        model = \"DeepSeek-6.7B\"\n    else:\n        model = \"UNKNOWN\"\n\n    m = re.search(r\"s(\\d+)\", name)\n    seed = int(m.group(1)) if m else 42\n\n    complexity = \"function\" if \"func\" in name else \"repo\"\n\n    return dict(formulation=formulation, model=model, seed=seed,\n                complexity=complexity)\n\n\ndef find_prediction_file(dirpath: str) -> str | None:\n    \"\"\"Locate the prediction JSONL inside an eval directory.\"\"\"\n    p = Path(dirpath)\n    for pattern in [\"eval_*_predictions.jsonl\", \"predictions_*.jsonl\"]:\n        hits = sorted(p.glob(pattern))\n        if hits:\n            return str(hits[0])\n    for name in [\"results_incremental.jsonl\", \"predictions.jsonl\"]:\n        fp = p / name\n        if fp.exists():\n            return str(fp)\n    return None\n\n\n# ---------------------------------------------------------------------------\n# Data loading\n# ---------------------------------------------------------------------------\n\ndef load_jsonl(path: str) -> list[dict]:\n    records = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                records.append(json.loads(line))\n    return records\n\n\ndef load_metadata(data_dir: str) -> dict:\n    \"\"\"Load problem metadata (mutation_type, source) from test splits.\"\"\"\n    meta = {}\n    for fname in [\"test.jsonl\", \"cwm_test.jsonl\", \"val.jsonl\"]:\n        fp = os.path.join(data_dir, fname)\n        if not os.path.exists(fp):\n            continue\n        for rec in load_jsonl(fp):\n            pid = rec.get(\"problem_id\")\n            if pid and pid not in meta:\n                meta[pid] = dict(\n                    mutation_type=rec.get(\"mutation_type\", \"unknown\"),\n                    source=rec.get(\"source\", \"unknown\"),\n                )\n    return meta\n\n\ndef build_dataframe(eval_dirs: list[str],\n                    metadata: dict | None = None) -> pd.DataFrame:\n    rows = []\n    for dirpath in eval_dirs:\n        dirpath = dirpath.strip()\n        if not dirpath:\n            continue\n        info = infer_metadata(dirpath)\n        pred_file = find_prediction_file(dirpath)\n        if pred_file is None:\n            print(f\"SKIP (no prediction file): {dirpath}\", file=sys.stderr)\n            continue\n\n        preds = load_jsonl(pred_file)\n        tag = (f\"{info['formulation']}/{info['model']}/s{info['seed']}\"\n               f\"/{info['complexity']}\")\n        print(f\"LOAD {tag}: {len(preds)} samples ← {pred_file}\",\n              file=sys.stderr)\n\n        for rec in preds:\n            pid = (rec.get(\"problem_id\") or rec.get(\"instance_id\")\n                   or rec.get(\"task_id\") or rec.get(\"id\"))\n            correct = rec.get(\"correct\")\n            if pid is None or correct is None:\n                continue\n\n            mut = \"unknown\"\n            if metadata and pid in metadata:\n                mut = metadata[pid][\"mutation_type\"]\n            elif \"mutation_type\" in rec:\n                mut = rec[\"mutation_type\"]\n\n            rows.append(dict(\n                problem_id=pid,\n                formulation=info[\"formulation\"],\n                model=info[\"model\"],\n                seed=info[\"seed\"],\n                correct=int(correct),\n                complexity=info[\"complexity\"],\n                mutation_type=mut,\n            ))\n\n    return pd.DataFrame(rows)\n\n\n# ---------------------------------------------------------------------------\n# Mixed-effects model fitting\n# ---------------------------------------------------------------------------\n\ndef fit_mixed_lm(df: pd.DataFrame, formula: str,\n                 groups_col: str = \"problem_id\",\n                 label: str = \"\") -> tuple[dict, object]:\n    \"\"\"Fit MixedLM (linear probability model) and return (results_dict, model_result).\"\"\"\n    import statsmodels.formula.api as smf\n\n    df = df.copy()\n    for col in [\"formulation\", \"model\", \"complexity\", \"mutation_type\"]:\n        if col in df.columns:\n            df[col] = df[col].astype(str)\n\n    print(f\"\\n{'=' * 60}\", file=sys.stderr)\n    print(f\"{label}\", file=sys.stderr)\n    print(f\"  {formula} + (1|{groups_col})\", file=sys.stderr)\n    print(f\"  N={len(df)}, groups={df[groups_col].nunique()}\", file=sys.stderr)\n\n    md = smf.mixedlm(formula, df, groups=df[groups_col])\n    result = md.fit(reml=True)\n    print(result.summary(), file=sys.stderr)\n\n    # --- fixed effects ---\n    fe = result.fe_params\n    se = result.bse_fe\n    ci = result.conf_int()\n    pvals = result.pvalues\n\n    coefficients = {}\n    for name in fe.index:\n        coefficients[name] = dict(\n            coef=round(float(fe[name]), 4),\n            se=round(float(se[name]), 4),\n            z=round(float(fe[name] / se[name]) if se[name] > 0 else 0, 3),\n            p=round(float(pvals[name]), 4) if name in pvals.index else None,\n            ci_lower=round(float(ci.loc[name, 0]), 4),\n            ci_upper=round(float(ci.loc[name, 1]), 4),\n        )\n\n    # --- random effects ---\n    re_var = (float(result.cov_re.iloc[0, 0])\n              if hasattr(result.cov_re, \"iloc\")\n              else float(result.cov_re))\n\n    # --- joint Wald tests (ANOVA-like) ---\n    anova = _joint_wald_tests(result)\n\n    out = dict(\n        formula=formula,\n        n_obs=len(df),\n        n_groups=int(df[groups_col].nunique()),\n        coefficients=coefficients,\n        random_effects=dict(\n            group=groups_col,\n            variance=round(re_var, 6),\n            sd=round(float(np.sqrt(max(re_var, 0))), 4),\n        ),\n        anova=anova,\n        log_likelihood=round(float(result.llf), 2),\n    )\n    return out, result\n\n\ndef _joint_wald_tests(result) -> dict:\n    \"\"\"Compute joint Wald χ² for each model term (main effects + interaction).\"\"\"\n    from scipy import stats as sp_stats\n\n    param_names = list(result.fe_params.index)\n    terms: dict[str, list[int]] = {}\n\n    for i, name in enumerate(param_names):\n        if name == \"Intercept\":\n            continue\n        if \":\" in name:\n            term = \"interaction\"\n        elif \"formulation\" in name:\n            term = \"formulation\"\n        elif \"model\" in name:\n            term = \"model\"\n        elif \"complexity\" in name or \"mutation_type\" in name:\n            term = \"complexity\"\n        else:\n            term = name\n        terms.setdefault(term, []).append(i)\n\n    anova = {}\n    for term, indices in terms.items():\n        beta = result.fe_params.values[indices]\n        cov = result.cov_params().iloc[indices, :]\n        cov = cov.iloc[:, indices].values\n        try:\n            chi2 = float(beta @ np.linalg.solve(cov, beta))\n            df = len(indices)\n            p = float(1 - sp_stats.chi2.cdf(chi2, df))\n            anova[term] = dict(wald_chi2=round(chi2, 3), df=df,\n                               p=round(p, 4))\n        except np.linalg.LinAlgError:\n            anova[term] = dict(wald_chi2=None, df=len(indices), p=None,\n                               error=\"singular covariance\")\n    return anova\n\n\n# ---------------------------------------------------------------------------\n# Empirical odds ratios with bootstrap CI\n# ---------------------------------------------------------------------------\n\ndef empirical_odds_ratios(df: pd.DataFrame, group_col: str,\n                          ref_level: str, n_boot: int = 2000) -> dict:\n    \"\"\"Odds ratio of each group level vs. ref_level, with bootstrap 95% CI.\"\"\"\n    rng = np.random.default_rng(42)\n    ref = df.loc[df[group_col] == ref_level, \"correct\"].values\n\n    results = {}\n    for level in sorted(df[group_col].unique()):\n        vals = df.loc[df[group_col] == level, \"correct\"].values\n        p = vals.mean()\n        p_ref = ref.mean()\n        odds = p / (1 - p) if 0 < p < 1 else float(\"inf\")\n        odds_ref = p_ref / (1 - p_ref) if 0 < p_ref < 1 else float(\"inf\")\n        or_val = (odds / odds_ref\n                  if odds_ref not in (0, float(\"inf\")) else None)\n\n        boot_ors = []\n        for _ in range(n_boot):\n            br = rng.choice(ref, size=len(ref), replace=True)\n            bs = rng.choice(vals, size=len(vals), replace=True)\n            pr, ps = br.mean(), bs.mean()\n            if 0 < pr < 1 and 0 < ps < 1:\n                boot_ors.append((ps / (1 - ps)) / (pr / (1 - pr)))\n\n        if boot_ors:\n            ci_lo, ci_hi = np.percentile(boot_ors, [2.5, 97.5])\n        else:\n            ci_lo = ci_hi = None\n\n        results[level] = dict(\n            accuracy=round(float(p), 4),\n            n=int(len(vals)),\n            or_vs_ref=(round(float(or_val), 4)\n                       if or_val is not None else None),\n            or_ci_lower=(round(float(ci_lo), 4)\n                         if ci_lo is not None else None),\n            or_ci_upper=(round(float(ci_hi), 4)\n                         if ci_hi is not None else None),\n        )\n    return results\n\n\n# ---------------------------------------------------------------------------\n# LaTeX output\n# ---------------------------------------------------------------------------\n\ndef _clean_param_name(name: str) -> str:\n    \"\"\"Shorten statsmodels-style parameter names for LaTeX.\"\"\"\n    name = name.replace(\"C(formulation)\", \"Form.\")\n    name = name.replace(\"C(model)\", \"Model\")\n    name = name.replace(\"C(complexity)\", \"Compl.\")\n    name = name.replace(\"C(mutation_type)\", \"Mut.\")\n    name = name.replace(\"[T.\", \"[\")\n    return name.replace(\"_\", r\"\\_\")\n\n\ndef _fmt_p(p: float | None) -> str:\n    if p is None:\n        return \"---\"\n    if p < 0.001:\n        return \"$<$.001\"\n    s = f\"{p:.3f}\"\n    if p < 0.01:\n        return s + \"**\"\n    if p < 0.05:\n        return s + \"*\"\n    return s\n\n\ndef format_latex_table(results: dict, caption: str, label: str) -> str:\n    coeffs = results[\"coefficients\"]\n    re = results[\"random_effects\"]\n\n    lines = [\n        r\"\\begin{table}[t]\",\n        r\"\\centering\\small\",\n        rf\"\\caption{{{caption}}}\",\n        rf\"\\label{{{label}}}\",\n        r\"\\begin{tabular}{lrrrr}\",\n        r\"\\toprule\",\n        r\"Effect & Coef. & SE & $z$ & $p$ \\\\\",\n        r\"\\midrule\",\n    ]\n    for name, v in coeffs.items():\n        dn = _clean_param_name(name)\n        lines.append(\n            f\"{dn} & {v['coef']:+.3f} & {v['se']:.3f} \"\n            f\"& {v['z']:.2f} & {_fmt_p(v['p'])} \\\\\\\\\"\n        )\n    lines.append(r\"\\midrule\")\n    lines.append(\n        rf\"$\\sigma^2_{{\\text{{pid}}}}$ & \"\n        rf\"\\multicolumn{{4}}{{c}}{{{re['variance']:.4f} \"\n        rf\"(SD={re['sd']:.3f})}} \\\\\"\n    )\n    lines += [r\"\\bottomrule\", r\"\\end{tabular}\", r\"\\end{table}\"]\n    return \"\\n\".join(lines)\n\n\ndef format_or_latex(or_dict: dict, ref: str, caption: str,\n                    label: str) -> str:\n    \"\"\"LaTeX table for empirical odds ratios.\"\"\"\n    lines = [\n        r\"\\begin{table}[t]\",\n        r\"\\centering\\small\",\n        rf\"\\caption{{{caption}}}\",\n        rf\"\\label{{{label}}}\",\n        r\"\\begin{tabular}{lrrrl}\",\n        r\"\\toprule\",\n        rf\"Formulation & Acc. & OR (vs.\\ {ref}) & 95\\% CI & $n$ \\\\\",\n        r\"\\midrule\",\n    ]\n    for level, v in or_dict.items():\n        or_str = (f\"{v['or_vs_ref']:.2f}\"\n                  if v[\"or_vs_ref\"] is not None else \"ref\")\n        ci_str = (f\"[{v['or_ci_lower']:.2f}, {v['or_ci_upper']:.2f}]\"\n                  if v[\"or_ci_lower\"] is not None else \"---\")\n        if level == ref:\n            or_str, ci_str = \"1.00\", \"ref\"\n        lines.append(\n            f\"{level} & {v['accuracy']:.3f} & {or_str} & {ci_str} \"\n            f\"& {v['n']} \\\\\\\\\"\n        )\n    lines += [r\"\\bottomrule\", r\"\\end{tabular}\", r\"\\end{table}\"]\n    return \"\\n\".join(lines)\n\n\n# ---------------------------------------------------------------------------\n# Main\n# ---------------------------------------------------------------------------\n\ndef main():\n    args = parse_args()\n    eval_dirs = [d.strip() for d in args.eval_dirs.split(\",\") if d.strip()]\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    metadata = None\n    if args.data_dir:\n        metadata = load_metadata(args.data_dir)\n        print(f\"Metadata: {len(metadata)} problems loaded\", file=sys.stderr)\n\n    df = build_dataframe(eval_dirs, metadata)\n    if df.empty:\n        print(\"ERROR: no data loaded — check --eval_dirs\", file=sys.stderr)\n        sys.exit(1)\n\n    print(f\"\\nData: {len(df)} obs, {df['problem_id'].nunique()} problems\",\n          file=sys.stderr)\n    print(f\"  formulations : {sorted(df['formulation'].unique())}\",\n          file=sys.stderr)\n    print(f\"  models       : {sorted(df['model'].unique())}\",\n          file=sys.stderr)\n    print(f\"  seeds        : {sorted(df['seed'].unique())}\",\n          file=sys.stderr)\n    print(f\"  complexity   : {sorted(df['complexity'].unique())}\",\n          file=sys.stderr)\n    mt = df[\"mutation_type\"].unique()\n    if not (len(mt) == 1 and mt[0] == \"unknown\"):\n        print(f\"  mutation_type: {sorted(mt)}\", file=sys.stderr)\n\n    print(\"\\nCell accuracy (formulation × model × complexity):\",\n          file=sys.stderr)\n    grp = df.groupby([\"formulation\", \"model\", \"complexity\"])[\"correct\"]\n    print(grp.agg([\"mean\", \"count\"]).round(4).to_string(), file=sys.stderr)\n\n    all_results: dict = {}\n    latex_parts: list[str] = []\n\n    # ---- choose complexity variable ----\n    has_mutation = (df[\"mutation_type\"].nunique() > 1\n                    and (df[\"mutation_type\"] != \"unknown\").any())\n    cx_col = \"mutation_type\" if has_mutation else \"complexity\"\n\n    # ==== Model 1: cross-complexity ====\n    if df[cx_col].nunique() >= 2:\n        formula1 = f\"correct ~ C(formulation) * C({cx_col})\"\n        res1, _ = fit_mixed_lm(\n            df, formula1,\n            label=f\"Model 1 (cross-complexity): {formula1}\")\n        or1 = empirical_odds_ratios(\n            df, \"formulation\", args.ref_formulation, args.bootstrap_n)\n        res1[\"empirical_or_by_formulation\"] = or1\n        all_results[\"cross_complexity\"] = res1\n\n        latex_parts.append(format_latex_table(\n            res1,\n            caption=(r\"Mixed-effects LPM: formulation $\\times$ \"\n                     \"complexity interaction.\"),\n            label=\"tab:w5-complexity\"))\n        latex_parts.append(format_or_latex(\n            or1, args.ref_formulation,\n            caption=\"Empirical odds ratios by formulation (cross-complexity).\",\n            label=\"tab:w5-or-complexity\"))\n    else:\n        print(f\"\\nSKIP Model 1: {cx_col} has only 1 level\", file=sys.stderr)\n\n    # ==== Model 2: cross-model ====\n    if df[\"model\"].nunique() >= 2:\n        formula2 = \"correct ~ C(formulation) * C(model)\"\n        res2, _ = fit_mixed_lm(\n            df, formula2,\n            label=f\"Model 2 (cross-model): {formula2}\")\n        for m in sorted(df[\"model\"].unique()):\n            sub = df[df[\"model\"] == m]\n            or_m = empirical_odds_ratios(\n                sub, \"formulation\", args.ref_formulation, args.bootstrap_n)\n            res2[f\"empirical_or_{m}\"] = or_m\n        all_results[\"cross_model\"] = res2\n\n        latex_parts.append(format_latex_table(\n            res2,\n            caption=(r\"Mixed-effects LPM: formulation $\\times$ \"\n                     \"model interaction.\"),\n            label=\"tab:w5-model\"))\n    else:\n        print(\"\\nSKIP Model 2: only 1 model in data\", file=sys.stderr)\n\n    # ---- save ----\n    json_path = os.path.join(args.output_dir, \"w5_mixed_effects_results.json\")\n    with open(json_path, \"w\") as f:\n        json.dump(all_results, f, indent=2, default=str)\n\n    latex_path = os.path.join(args.output_dir, \"w5_latex_tables.tex\")\n    with open(latex_path, \"w\") as f:\n        f.write(\"\\n\\n\".join(latex_parts))\n\n    print(f\"\\nSaved: {json_path}\", file=sys.stderr)\n    print(f\"Saved: {latex_path}\", file=sys.stderr)\n\n    # stdout: JSON for piping\n    print(json.dumps(all_results, indent=2, default=str))\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-20T07:11:47.217496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/w5_mixed_effects_v2.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-20T07:11:47.217736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python w5_mixed_effects_v2.py --help",
+              "description": "Test --help output"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-20T07:11:47.217959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 127\n/bin/bash: line 1: python: command not found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-20T07:11:47.218155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 w5_mixed_effects_v2.py --help",
+              "description": "Test --help output"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-20T07:11:47.218345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/w5_mixed_effects_v2.py\", line 27, in <module>\n    import pandas as pd\nModuleNotFoundError: No module named 'pandas'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-20T07:11:47.218539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport ast, sys\ntree = ast.parse(open('w5_mixed_effects_v2.py').read())\nprint('Syntax OK')\n# Check argparse works by extracting just that portion\n\"",
+              "description": "Validate Python syntax"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-20T07:11:47.218728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Syntax OK"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-20T07:11:47.218977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-20T07:11:47.219176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-20T07:11:47.219368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cat /home/sonny/exec-sim-repair-verifier/w5_mixed_effects_v2.py 2>/dev/null && echo \"FILE_EXISTS\" || echo \"FILE_NOT_EXISTS\""
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-20T07:11:47.219569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"FILE_NOT_EXISTS\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-20T07:11:47.219756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_16/projects/exec-sim-repair-verifier/w5_mixed_effects_v2.py"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-20T07:11:47.220250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tW5 Mixed-Effects Regression (v2): multi-seed CWM support.\n3\t\n4\tCross-complexity model: correct ~ formulation * complexity + (1|problem_id)\n5\tCross-model model:     correct ~ formulation * model + (1|problem_id)\n6\t\n7\tInput:\n8\t  --eval_dirs   comma-separated eval result directories\n9\t  --data_dir    directory with {test,cwm_test}.jsonl for mutation_type metadata\n10\t  --output_dir  output directory for JSON + LaTeX\n11\t\n12\tOutput:\n13\t  w5_mixed_effects_results.json   combined model results\n14\t  w5_latex_tables.tex             LaTeX table fragments\n15\t\n16\tDependencies: pandas, numpy, statsmodels (>=0.14), scipy\n17\t\"\"\"\n18\t\n19\timport argparse\n20\timport json\n21\timport os\n22\timport re\n23\timport sys\n24\tfrom pathlib import Path\n25\t\n26\timport numpy as np\n27\timport pandas as pd\n28\t\n29\t\n30\t# ---------------------------------------------------------------------------\n31\t# CLI\n32\t# ---------------------------------------------------------------------------\n33\t\n34\tdef parse_args():\n35\t    p = argparse.ArgumentParser(\n36\t        description=\"W5 Mixed-Effects Regression: formulation × complexity / model\"\n37\t    )\n38\t    p.add_argument(\"--eval_dirs\", required=True,\n39\t                   help=\"Comma-separated eval result directories\")\n40\t    p.add_argument(\"--data_dir\", default=None,\n41\t                   help=\"Directory with test.jsonl / cwm_test.jsonl for \"\n42\t                        \"mutation_type metadata (optional)\")\n43\t    p.add_argument(\"--output_dir\", default=\"artifacts/w5_mixed_effects\",\n44\t                   help=\"Output directory (default: artifacts/w5_mixed_effects)\")\n45\t    p.add_argument(\"--ref_formulation\", default=\"CLS\",\n46\t                   help=\"Reference formulation for odds ratios (default: CLS)\")\n47\t    p.add_argument(\"--bootstrap_n\", type=int, default=2000,\n48\t                   help=\"Bootstrap iterations for OR CIs (default: 2000)\")\n49\t    return p.parse_args()\n50\t\n51\t\n52\t# ---------------------------------------------------------------------------\n53\t# P\n…[truncated 17970 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-20T07:11:47.220668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cat > /home/sonny/exec-sim-repair-verifier/w5_mixed_effects_v2.py << 'SCRIPT_EOF'\n\"\"\"\nW5 Mixed-Effects Regression (v2): multi-seed CWM support.\n\nCross-complexity model: correct ~ formulation * complexity + (1|problem_id)\nCross-model model:     correct ~ formulation * model + (1|problem_id)\n\nInput:\n  --eval_dirs   comma-separated eval result directories\n  --data_dir    directory with {test,cwm_test}.jsonl for mutation_type metadata\n  --output_dir  output directory for JSON + LaTeX\n\nOutput:\n  w5_mixed_effects_results.json   combined model results\n  w5_latex_tables.tex             LaTeX table fragments\n\nDependencies: pandas, numpy, statsmodels (>=0.14), scipy\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport re\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\ndef parse_args():\n    p = argparse.ArgumentParser(\n        description=\"W5 Mixed-Effects Regression: formulation × complexity / model\"\n    )\n    p.add_argument(\"--eval_dirs\", required=True,\n                   help=\"Comma-separated eval result directories\")\n    p.add_argument(\"--data_dir\", default=None,\n                   help=\"Directory with test.jsonl / cwm_test.jsonl for \"\n                        \"mutation_type metadata (optional)\")\n    p.add_argument(\"--output_dir\", default=\"artifacts/w5_mixed_effects\",\n                   help=\"Output directory (default: artifacts/w5_mixed_effects)\")\n    p.add_argument(\"--ref_formulation\", default=\"CLS\",\n                   help=\"Reference formulation for odds ratios (default: CLS)\")\n    p.add_argument(\"--bootstrap_n\", type=int, default=2000,\n                   help=\"Bootstrap iterations for OR CIs (default: 2000)\")\n    return p.parse_args()\n\n\n# ---------------------------------------------------------------------------\n# Path → metadata inference\n# ---------------------------------------------------------------------------\n\ndef infer_metadata(dirpath: str) -> dict:\n    \"\"\"Infer formulation, model, seed, complexity from directory name.\"\"\"\n    name = os.path.basename(dirpath).lower()\n\n    if \"cwm\" in name:\n        formulation = \"CWM\"\n    elif \"traj\" in name:\n        formulation = \"TRAJ\"\n    elif \"cls\" in name:\n        formulation = \"CLS\"\n    else:\n        formulation = \"UNKNOWN\"\n\n    if \"qwen\" in name:\n        model = \"Qwen3-8B\"\n    elif \"deepseek\" in name:\n        model = \"DeepSeek-6.7B\"\n    else:\n        model = \"UNKNOWN\"\n\n    m = re.search(r\"s(\\d+)\", name)\n    seed = int(m.group(1)) if m else 42\n\n    complexity = \"function\" if \"func\" in name else \"repo\"\n\n    return dict(formulation=formulation, model=model, seed=seed,\n                complexity=complexity)\n\n\ndef find_prediction_file(dirpath: str) -> str | None:\n    \"\"\"Locate the prediction JSONL inside an eval directory.\"\"\"\n    p = Path(dirpath)\n    for pattern in [\"eval_*_predictions.jsonl\", \"predictions_*.jsonl\"]:\n        hits = sorted(p.glob(pattern))\n        if hits:\n            return str(hits[0])\n    for name in [\"results_incremental.jsonl\", \"predictions.jsonl\"]:\n        fp = p / name\n        if fp.exists():\n            return str(fp)\n    return None\n\n\n# ---------------------------------------------------------------------------\n# Data loading\n# ---------------------------------------------------------------------------\n\ndef load_jsonl(path: str) -> list[dict]:\n    records = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                records.append(json.loads(line))\n    return records\n\n\ndef load_metadata(data_dir: str) -> dict:\n    \"\"\"Load problem metadata (mutation_type, source) from test splits.\"\"\"\n    meta = {}\n    for fname in [\"test.jsonl\", \"cwm_test.jsonl\", \"val.jsonl\"]:\n        fp = os.path.join(data_dir, fname)\n        if not os.path.exists(fp):\n            continue\n        for rec in load_jsonl(fp):\n            pid = rec.get(\"problem_id\")\n            if pid and pid not in meta:\n                meta[pid] = dict(\n                    mutation_type=rec.get(\"mutation_type\", \"unknown\"),\n                    source=rec.get(\"source\", \"unknown\"),\n                )\n    return meta\n\n\ndef build_dataframe(eval_dirs: list[str],\n                    metadata: dict | None = None) -> pd.DataFrame:\n    rows = []\n    for dirpath in eval_dirs:\n        dirpath = dirpath.strip()\n        if not dirpath:\n            continue\n        info = infer_metadata(dirpath)\n        pred_file = find_prediction_file(dirpath)\n        if pred_file is None:\n            print(f\"SKIP (no prediction file): {dirpath}\", file=sys.stderr)\n            continue\n\n        preds = load_jsonl(pred_file)\n        tag = (f\"{info['formulation']}/{info['model']}/s{info['seed']}\"\n               f\"/{info['complexity']}\")\n        print(f\"LOAD {tag}: {len(preds)} samples <- {pred_file}\",\n              file=sys.stderr)\n\n        for rec in preds:\n            pid = (rec.get(\"problem_id\") or rec.get(\"instance_id\")\n                   or rec.get(\"task_id\") or rec.get(\"id\"))\n            correct = rec.get(\"correct\")\n            if pid is None or correct is None:\n                continue\n\n            mut = \"unknown\"\n            if metadata and pid in metadata:\n                mut = metadata[pid][\"mutation_type\"]\n            elif \"mutation_type\" in rec:\n                mut = rec[\"mutation_type\"]\n\n            rows.append(dict(\n                problem_id=pid,\n                formulation=info[\"formulation\"],\n                model=info[\"model\"],\n                seed=info[\"seed\"],\n                correct=int(correct),\n                complexity=info[\"complexity\"],\n                mutation_type=mut,\n            ))\n\n    return pd.DataFrame(rows)\n\n\n# ---------------------------------------------------------------------------\n# Mixed-effects model fitting\n# ---------------------------------------------------------------------------\n\ndef fit_mixed_lm(df: pd.DataFrame, formula: str,\n                 groups_col: str = \"problem_id\",\n                 label: str = \"\") -> tuple[dict, object]:\n    \"\"\"Fit MixedLM (linear probability model) and return (results_dict, model_result).\"\"\"\n    import statsmodels.formula.api as smf\n\n    df = df.copy()\n    for col in [\"formulation\", \"model\", \"complexity\", \"mutation_type\"]:\n        if col in df.columns:\n            df[col] = df[col].astype(str)\n\n    print(f\"\\n{'=' * 60}\", file=sys.stderr)\n    print(f\"{label}\", file=sys.stderr)\n    print(f\"  {formula} + (1|{groups_col})\", file=sys.stderr)\n    print(f\"  N={len(df)}, groups={df[groups_col].nunique()}\", file=sys.stderr)\n\n    md = smf.mixedlm(formula, df, groups=df[groups_col])\n    result = md.fit(reml=True)\n    print(result.summary(), file=sys.stderr)\n\n    # --- fixed effects ---\n    fe = result.fe_params\n    se = result.bse_fe\n    ci = result.conf_int()\n    pvals = result.pvalues\n\n    coefficients = {}\n    for name in fe.index:\n        coefficients[name] = dict(\n            coef=round(float(fe[name]), 4),\n            se=round(float(se[name]), 4),\n            z=round(float(fe[name] / se[name]) if se[name] > 0 else 0, 3),\n            p=round(float(pvals[name]), 4) if name in pvals.index else None,\n            ci_lower=round(float(ci.loc[name, 0]), 4),\n            ci_upper=round(float(ci.loc[name, 1]), 4),\n        )\n\n    # --- random effects ---\n    re_var = (float(result.cov_re.iloc[0, 0])\n              if hasattr(result.cov_re, \"iloc\")\n              else float(result.cov_re))\n\n    # --- joint Wald tests (ANOVA-like) ---\n    anova = _joint_wald_tests(result)\n\n    out = dict(\n        formula=formula,\n        n_obs=len(df),\n        n_groups=int(df[groups_col].nunique()),\n        coefficients=coefficients,\n        random_effects=dict(\n            group=groups_col,\n            variance=round(re_var, 6),\n            sd=round(float(np.sqrt(max(re_var, 0))), 4),\n        ),\n        anova=anova,\n        log_likelihood=round(float(result.llf), 2),\n    )\n    return out, result\n\n\ndef _joint_wald_tests(result) -> dict:\n    \"\"\"Compute joint Wald chi-sq for each model term (main effects + interaction).\"\"\"\n    from scipy import stats as sp_stats\n\n    param_names = list(result.fe_params.index)\n    terms: dict[str, list[int]] = {}\n\n    for i, name in enumerate(param_names):\n        if name == \"Intercept\":\n            continue\n        if \":\" in name:\n            term = \"interaction\"\n        elif \"formulation\" in name:\n            term = \"formulation\"\n        elif \"model\" in name:\n            term = \"model\"\n        elif \"complexity\" in name or \"mutation_type\" in name:\n            term = \"complexity\"\n        else:\n            term = name\n        terms.setdefault(term, []).append(i)\n\n    anova = {}\n    for term, indices in terms.items():\n        beta = result.fe_params.values[indices]\n        cov = result.cov_params().iloc[indices, :]\n        cov = cov.iloc[:, indices].values\n        try:\n            chi2 = float(beta @ np.linalg.solve(cov, beta))\n            df = len(indices)\n            p = float(1 - sp_stats.chi2.cdf(chi2, df))\n            anova[term] = dict(wald_chi2=round(chi2, 3), df=df,\n                               p=round(p, 4))\n        except np.linalg.LinAlgError:\n            anova[term] = dict(wald_chi2=None, df=len(indices), p=None,\n                               error=\"singular covariance\")\n    return anova\n\n\n# ---------------------------------------------------------------------------\n# Empirical odds ratios with bootstrap CI\n# ---------------------------------------------------------------------------\n\ndef empirical_odds_ratios(df: pd.DataFrame, group_col: str,\n                          ref_level: str, n_boot: int = 2000) -> dict:\n    \"\"\"Odds ratio of each group level vs. ref_level, with bootstrap 95% CI.\"\"\"\n    rng = np.random.default_rng(42)\n    ref = df.loc[df[group_col] == ref_level, \"correct\"].values\n\n    results = {}\n    for level in sorted(df[group_col].unique()):\n        vals = df.loc[df[group_col] == level, \"correct\"].values\n        p = vals.mean()\n        p_ref = ref.mean()\n        odds = p / (1 - p) if 0 < p < 1 else float(\"inf\")\n        odds_ref = p_ref / (1 - p_ref) if 0 < p_ref < 1 else float(\"inf\")\n        or_val = (odds / odds_ref\n                  if odds_ref not in (0, float(\"inf\")) else None)\n\n        boot_ors = []\n        for _ in range(n_boot):\n            br = rng.choice(ref, size=len(ref), replace=True)\n            bs = rng.choice(vals, size=len(vals), replace=True)\n            pr, ps = br.mean(), bs.mean()\n            if 0 < pr < 1 and 0 < ps < 1:\n                boot_ors.append((ps / (1 - ps)) / (pr / (1 - pr)))\n\n        if boot_ors:\n            ci_lo, ci_hi = np.percentile(boot_ors, [2.5, 97.5])\n        else:\n            ci_lo = ci_hi = None\n\n        results[level] = dict(\n            accuracy=round(float(p), 4),\n            n=int(len(vals)),\n            or_vs_ref=(round(float(or_val), 4)\n                       if or_val is not None else None),\n            or_ci_lower=(round(float(ci_lo), 4)\n                         if ci_lo is not None else None),\n            or_ci_upper=(round(float(ci_hi), 4)\n                         if ci_hi is not None else None),\n        )\n    return results\n\n\n# ---------------------------------------------------------------------------\n# LaTeX output\n# ---------------------------------------------------------------------------\n\ndef _clean_param_name(name: str) -> str:\n    \"\"\"Shorten statsmodels-style parameter names for LaTeX.\"\"\"\n    name = name.replace(\"C(formulation)\", \"Form.\")\n    name = name.replace(\"C(model)\", \"Model\")\n    name = name.replace(\"C(complexity)\", \"Compl.\")\n    name = name.replace(\"C(mutation_type)\", \"Mut.\")\n    name = name.replace(\"[T.\", \"[\")\n    return name.replace(\"_\", r\"\\_\")\n\n\ndef _fmt_p(p) -> str:\n    if p is None:\n        return \"---\"\n    if p < 0.001:\n        return \"$<$.001\"\n    s = f\"{p:.3f}\"\n    if p < 0.01:\n        return s + \"**\"\n    if p < 0.05:\n        return s + \"*\"\n    return s\n\n\ndef format_latex_table(results: dict, caption: str, label: str) -> str:\n    coeffs = results[\"coefficients\"]\n    re = results[\"random_effects\"]\n\n    lines = [\n        r\"\\begin{table}[t]\",\n        r\"\\centering\\small\",\n        rf\"\\caption{{{caption}}}\",\n        rf\"\\label{{{label}}}\",\n        r\"\\begin{tabular}{lrrrr}\",\n        r\"\\toprule\",\n        r\"Effect & Coef. & SE & $z$ & $p$ \\\\\",\n        r\"\\midrule\",\n    ]\n    for name, v in coeffs.items():\n        dn = _clean_param_name(name)\n        lines.append(\n            f\"{dn} & {v['coef']:+.3f} & {v['se']:.3f} \"\n            f\"& {v['z']:.2f} & {_fmt_p(v['p'])} \\\\\\\\\"\n        )\n    lines.append(r\"\\midrule\")\n    lines.append(\n        rf\"$\\sigma^2_{{\\text{{pid}}}}$ & \"\n        rf\"\\multicolumn{{4}}{{c}}{{{re['variance']:.4f} \"\n        rf\"(SD={re['sd']:.3f})}} \\\\\"\n    )\n    lines += [r\"\\bottomrule\", r\"\\end{tabular}\", r\"\\end{table}\"]\n    return \"\\n\".join(lines)\n\n\ndef format_or_latex(or_dict: dict, ref: str, caption: str,\n                    label: str) -> str:\n    \"\"\"LaTeX table for empirical odds ratios.\"\"\"\n    lines = [\n        r\"\\begin{table}[t]\",\n        r\"\\centering\\small\",\n        rf\"\\caption{{{caption}}}\",\n        rf\"\\label{{{label}}}\",\n        r\"\\begin{tabular}{lrrrl}\",\n        r\"\\toprule\",\n        rf\"Formulation & Acc. & OR (vs.\\ {ref}) & 95\\% CI & $n$ \\\\\",\n        r\"\\midrule\",\n    ]\n    for level, v in or_dict.items():\n        or_str = (f\"{v['or_vs_ref']:.2f}\"\n                  if v[\"or_vs_ref\"] is not None else \"ref\")\n        ci_str = (f\"[{v['or_ci_lower']:.2f}, {v['or_ci_upper']:.2f}]\"\n                  if v[\"or_ci_lower\"] is not None else \"---\")\n        if level == ref:\n            or_str, ci_str = \"1.00\", \"ref\"\n        lines.append(\n            f\"{level} & {v['accuracy']:.3f} & {or_str} & {ci_str} \"\n            f\"& {v['n']} \\\\\\\\\"\n        )\n    lines += [r\"\\bottomrule\", r\"\\end{tabular}\", r\"\\end{table}\"]\n    return \"\\n\".join(lines)\n\n\n# ---------------------------------------------------------------------------\n# Main\n# ---------------------------------------------------------------------------\n\ndef main():\n    args = parse_args()\n    eval_dirs = [d.strip() for d in args.eval_dirs.split(\",\") if d.strip()]\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    metadata = None\n    if args.data_dir:\n        metadata = load_metadata(args.data_dir)\n        print(f\"Metadata: {len(metadata)} problems loaded\", file=sys.stderr)\n\n    df = build_dataframe(eval_dirs, metadata)\n    if df.empty:\n        print(\"ERROR: no data loaded -- check --eval_dirs\", file=sys.stderr)\n        sys.exit(1)\n\n    print(f\"\\nData: {len(df)} obs, {df['problem_id'].nunique()} problems\",\n          file=sys.stderr)\n    print(f\"  formulations : {sorted(df['formulation'].unique())}\",\n          file=sys.stderr)\n    print(f\"  models       : {sorted(df['model'].unique())}\",\n          file=sys.stderr)\n    print(f\"  seeds        : {sorted(df['seed'].unique())}\",\n          file=sys.stderr)\n    print(f\"  complexity   : {sorted(df['complexity'].unique())}\",\n          file=sys.stderr)\n    mt = df[\"mutation_type\"].unique()\n    if not (len(mt) == 1 and mt[0] == \"unknown\"):\n        print(f\"  mutation_type: {sorted(mt)}\", file=sys.stderr)\n\n    print(\"\\nCell accuracy (formulation x model x complexity):\",\n          file=sys.stderr)\n    grp = df.groupby([\"formulation\", \"model\", \"complexity\"])[\"correct\"]\n    print(grp.agg([\"mean\", \"count\"]).round(4).to_string(), file=sys.stderr)\n\n    all_results: dict = {}\n    latex_parts: list[str] = []\n\n    # ---- choose complexity variable ----\n    has_mutation = (df[\"mutation_type\"].nunique() > 1\n                    and (df[\"mutation_type\"] != \"unknown\").any())\n    cx_col = \"mutation_type\" if has_mutation else \"complexity\"\n\n    # ==== Model 1: cross-complexity ====\n    if df[cx_col].nunique() >= 2:\n        formula1 = f\"correct ~ C(formulation) * C({cx_col})\"\n        res1, _ = fit_mixed_lm(\n            df, formula1,\n            label=f\"Model 1 (cross-complexity): {formula1}\")\n        or1 = empirical_odds_ratios(\n            df, \"formulation\", args.ref_formulation, args.bootstrap_n)\n        res1[\"empirical_or_by_formulation\"] = or1\n        all_results[\"cross_complexity\"] = res1\n\n        latex_parts.append(format_latex_table(\n            res1,\n            caption=(r\"Mixed-effects LPM: formulation $\\times$ \"\n                     \"complexity interaction.\"),\n            label=\"tab:w5-complexity\"))\n        latex_parts.append(format_or_latex(\n            or1, args.ref_formulation,\n            caption=\"Empirical odds ratios by formulation (cross-complexity).\",\n            label=\"tab:w5-or-complexity\"))\n    else:\n        print(f\"\\nSKIP Model 1: {cx_col} has only 1 level\", file=sys.stderr)\n\n    # ==== Model 2: cross-model ====\n    if df[\"model\"].nunique() >= 2:\n        formula2 = \"correct ~ C(formulation) * C(model)\"\n        res2, _ = fit_mixed_lm(\n            df, formula2,\n            label=f\"Model 2 (cross-model): {formula2}\")\n        for m in sorted(df[\"model\"].unique()):\n            sub = df[df[\"model\"] == m]\n            or_m = empirical_odds_ratios(\n                sub, \"formulation\", args.ref_formulation, args.bootstrap_n)\n            res2[f\"empirical_or_{m}\"] = or_m\n        all_results[\"cross_model\"] = res2\n\n        latex_parts.append(format_latex_table(\n            res2,\n            caption=(r\"Mixed-effects LPM: formulation $\\times$ \"\n                     \"model interaction.\"),\n            label=\"tab:w5-model\"))\n    else:\n        print(\"\\nSKIP Model 2: only 1 model in data\", file=sys.stderr)\n\n    # ---- save ----\n    json_path = os.path.join(args.output_dir, \"w5_mixed_effects_results.json\")\n    with open(json_path, \"w\") as f:\n        json.dump(all_results, f, indent=2, default=str)\n\n    latex_path = os.path.join(args.output_dir, \"w5_latex_tables.tex\")\n    with open(latex_path, \"w\") as f:\n        f.write(\"\\n\\n\".join(latex_parts))\n\n    print(f\"\\nSaved: {json_path}\", file=sys.stderr)\n    print(f\"Saved: {latex_path}\", file=sys.stderr)\n\n    # stdout: JSON for piping\n    print(json.dumps(all_results, indent=2, default=str))\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"EXIT_CODE=$?\""
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-20T07:11:47.221240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-20T07:11:47.221477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "seetacloud-westd-4x5090",
+              "command": "cd /home/sonny/exec-sim-repair-verifier && python3 w5_mixed_effects_v2.py --help"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-20T07:11:47.221710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: w5_mixed_effects_v2.py [-h] --eval_dirs EVAL_DIRS [--data_dir DATA_DIR]\\\\n                              [--output_dir OUTPUT_DIR]\\\\n                              [--ref_formulation REF_FORMULATION]\\\\n                              [--bootstrap_n BOOTSTRAP_N]\\\\n\\\\nW5 Mixed-Effects Regression: formulation × complexity / model\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --eval_dirs EVAL_DIRS\\\\n                        Comma-separated eval result directories\\\\n  --data_dir DATA_DIR   Directory with test.jsonl / cwm_test.jsonl for\\\\n                        mutation_type metadata (optional)\\\\n  --output_dir OUTPUT_DIR\\\\n                        Output directory (default: artifacts/w5_mixed_effects)\\\\n  --ref_formulation REF_FORMULATION\\\\n                        Reference formulation for odds ratios (default: CLS)\\\\n  --bootstrap_n BOOTSTRAP_N\\\\n                        Bootstrap iterations for OR CIs (default: 2000)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-20T07:11:47.222009+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`--help` 正常。脚本已写到本地和服务器 `/home/sonny/exec-sim-repair-verifier/w5_mixed_effects_v2.py`。\n\n相比 v1 的改进：\n- **参数化输入**：`--eval_dirs` 逗号分隔目录，`--data_dir` 加载 mutation_type 元数据，`--output_dir` 指定输出\n- **自动推断**：从目录名提取 formulation (cls/cwm/traj)、model (qwen/deepseek)、seed (sNNN)、complexity (repo/func)\n- **两个模型**：cross-complexity (`formulation * complexity/mutation_type`) 和 cross-model (`formulation * model`)，均用 MixedLM + `(1|problem_id)`\n- **统计输出**：fixed effects 系数表 + joint Wald χ² ANOVA + 经验 odds ratio（bootstrap 95% CI）\n- **保存格式**：JSON (`w5_mixed_effects_results.json`) + LaTeX 表格片段 (`w5_latex_tables.tex`)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_w5-regression-script_20260520T070509"
+          },
+          "id": "event-000095"
+        }
+      ],
+      "message_count": 95
+    }
+  ],
+  "readable_path": "readable/conversations/code-w5-regression-script.md"
+}

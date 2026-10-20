@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74b09c279c9b141a842d",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "collect 0shot wait complete",
+  "task_key": "worker_collect_0shot-wait-complete_20260517T231617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_0shot-wait-complete_20260517T231617_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "de97cfcde9962afcbdcc06cc25e17190f62763ceab80fced8975b9f58743acb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 0-shot Repo-Level 评估结果 (Qwen3-8B)\n\n| 指标 | 值 |\n|---|---|\n| **Accuracy** | 49.9% |\n| **Pass F1** | 48.95% |\n| **Fail F1** | 50.81% |\n| **Unparseable rate** | 0.00% (0/9784) |\n| **Truncated** | 0 |\n| **总运行时间** | 1018.2s (~17 分钟) |\n\n**Confusion Matrix:**\n\n|  | Pred Neg | Pred Pos |\n|---|---|---|\n| **Actual Neg** | TN = 2532 | FP = 114 |\n| **Actual Pos** | FN = 4788 | TP = 2350 |\n\n关键观察：模型严重偏向预测 \"fail\"（负类）。FN=4788 远超 FP=114，说明大量真正 pass 的样本被错误判为 fail。总体性能接近随机（~50%），0-shot 在 repo-level 上基本无效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-0shot-wait-complete.md"
+}

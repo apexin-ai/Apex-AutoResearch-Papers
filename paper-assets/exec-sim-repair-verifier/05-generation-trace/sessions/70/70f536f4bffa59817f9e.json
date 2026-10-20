@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70f536f4bffa59817f9e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "history",
+  "title": "agent / loop_11_1778788439.md",
+  "task_key": "loop_11_1778788439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778788439.md",
+    "occurrence": 1,
+    "bytes": 5848,
+    "sha256": "3825bce1de45770595c365305e4a549be57b7ea75e479d15e80a5da293494987"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_messages\nupdated: '2026-05-14T19:37:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd `cuda:0,1,2,3`，home `cuda:0`。不可用其他设备\n- **transformers 版本**：必须用 conda env（transformers==4.57.6）。系统 Python 装了 5.8.0，会导致 ~22pp accuracy 崩塌（D062 教训，repo-level-cls-seed123 从 77% 跌到 55%）\n- **Checkpoint 选择必须在 val set (9335 samples) 上做**（D063）。当前 ROADMAP 里所有 repo-level 数字都是 test set 上的，需要 val set 重跑\n- `eval_repo_cls.py` 的 `max_seq_length` 硬编码 2048，val 评估必须手动传 `--max_seq_length 8192`（verifier/cwm 脚本会自动切换，cls 不会）\n- 8B eval 必须加 `--max_new_tokens 512`（D078，防止 Qwen 无限生成）\n- `submit_training_job` 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&`，不能假设 .venv 存在\n- 训练脚本 `num_workers=0`（D072/D073 教训：平台 SIGTERM 杀 DataLoader 子进程导致崩溃）\n\n### 2. 🖥️ 基础设施快照\n- **westd**: root@seetacloud-westd-4x5090，工作目录 `/home/sonny/exec-sim-repair-verifier`\n  - Python: `/root/miniconda3/bin/python`（conda base，transformers==4.57.6）\n  - 模型 cache: `/root/autodl-tmp/.hf_cache`（HF_HOME）\n  - CLS 8B checkpoints: `checkpoints_repo_cls_8b_conda/` (200,400,600 完成), `checkpoints_repo_cls_8b_seed123_conda/` (200,1800-3000 训练中)\n  - CWM 8B checkpoints: `checkpoints_repo_cwm_8b_conda/` (400,900-1600 训练中)\n  - CWM 4B checkpoints: `checkpoints_repo_cwm_conda_v12/` (300-700), `checkpoints_repo_cwm_seed123_conda/` (200-600)\n  - Eval 输出: `eval_results/` 目录\n  - 分析脚本: `analyze_cwm_errors.py`(17KB), `paired_bootstrap_repo.py` 等\n- **home**: sonny@home-1x5090，同项目路径\n  - CLS 4B checkpoints: `checkpoints_repo_cls_v5/`, `checkpoints_repo_cls_seed123/`\n- **活跃进程（需 SSH 验证，registry 状态可能不准）**:\n  - westd cuda:3: CLS 8B seed123 训练 PID 266444 (tmux: repo-level-cls-8b-seed123-conda, ckpt-3000/6633)\n  - westd cuda:2: CWM 8B 训练（registry v2 RUNNING 但无 PID，ROADMAP 记录 PID 210568——**需验证是否还活着**）\n  - westd cuda:0: CWM seed123 eval PID 195531（registry 标记 killed 但子agent 分析显示 89% done, acc~59.1%——**需验证**）\n  - westd cuda:1: CWM v12 eval PID 195668（registry 标记 killed 但子agent 分析显示 90% done, acc~57.8%——**需验证**）\n- **Crons**: reconcile 返回 0，无活跃 cron\n\n### 3. 📊 当前状态\n**刚完成的关键工作**：\n- D077 修复了 val unparseable 问题（20.2% → 根因是截断，eval 脚本已修复自动按 split 切换 max_seq_length）\n- D078 加了 max_new_tokens 限制防止 8B 无限生成\n- D079 处理了 Home 8B val eval 被 Worker 误杀的问题\n- memory.md 已更新为 eval pipeline 就绪报告（所有脚本支持 --split val）\n\n**Registry 状态**: 65 实验，36 success / 3 negative / 16 failed / 7 killed / 3 RUNNING\n\n**RUNNING (需 SSH 验证)**:\n1. `repo-level-cls-8b-seed123-conda-v3` — 8B CLS seed123 训练，westd cuda:3，PID 266444\n2. `repo-level-cwm-8b-conda-v2` — 8B CWM 训练，westd cuda:2，**PID 未记录，需验证**\n3. `repo-level-cls-8b-seed123-conda-v2` — 可能已被 v3 取代，需清理\n\n**等待中**:\n- CWM v12 全量 eval（westd cuda:1, ~90% done if still alive）→ 完成后解除 D057 论文阻塞\n- CWM seed123 全量 eval（westd cuda:0, ~89% done if still alive）→ 完成后做 paired bootstrap\n- 无活跃 Worker，无活跃 Cron——**Worker 池 = 0，属于失职状态，需立即派 Worker**\n\n### 4. 📋 待办（条件触发式）\n- **立即**: SSH 验证 westd 四块 GPU 上进程是否还活着（PID 266444/210568/195531/195668）→ 根据实际情况更新 registry\n- CWM v12 eval 完成（acc ~58%）→ spawn Worker 做 CWM error analysis (`analyze_cwm_errors.py`) + val set checkpoint sweep + 更新 report.md\n- CWM seed123 eval 完成（acc ~59%）→ paired bootstrap (CLS vs CWM repo-level) + 确认 C1 repo-level gap\n- CLS 8B seed123 训练完成（v3, from ckpt-3000/6633）→ 8B multi-seed eval sweep（val set 选 ckpt → test set 最终数字）\n- CWM 8B 训练完成 → 8B CWM eval → 8B-8B CLS-CWM gap（当前只有 4B-4B ~18pp gap）\n- **D063 val sweep**：所有 CLS 模型需在 val set 上重新选 checkpoint（home cuda:0 空闲时立即开始）\n  - CLS 8B conda: sweep ckpt-200/400/600 on val\n  - CLS 4B v5-conda: sweep ckpt-300~700 on val\n  - CLS 4B seed123: sweep on val\n- Val sweep 完成 → test set 最终 eval → Paper Agent patch 所有数字\n- 所有数字定稿 → 论文写作冲刺（DDL: May 25 ARR）\n\n### 5. 🎯 战略上下文\n**核心论文故事**: CLS（分类）比 CWM（生成）更好作为代码修复验证器，且优势随复杂度增长（function→repo level gap 从 ~2.8pp 扩大到 ~18pp+）。三个 Claims：C1 复杂度依赖优势（核心）、C2 诊断粒度等价（TOST 已证）、C3 准确率-效用前沿。\n\n**最容易判断错的事**:\n1. Registry 里标 \"killed\" 的 CWM v12 和 seed123 eval 可能还在跑——不要盲目重启，先 SSH 验证\n2. `repo-level-cwm-8b-conda-v2` 标记 RUNNING 但无 PID——很可能是僵尸状态，需确认\n3. ROADMAP 里所有 repo-level 准确率数字（84.52% 等）都是 **test set** 上的，D063 要求 val set 重选 checkpoint 后数字**会变**\n4. CWM 4B repo-level acc ~58% 远低于 CLS ~84%，gap 可能 >20pp——这是好消息（支持 C1），但需要排除 CWM eval 本身的问题（unparseable rate 高）\n5. 8B CWM 训练还在早期（ckpt-1600/6633），完整 8B-8B 对比至少还需 1-2 天\n6. **DDL 压力**: May 25 只剩 11 天，val sweep + 数字定稿 + 论文写作 是关键路径，不能等所有 8B 训练完再动笔\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778788439.md"
+}

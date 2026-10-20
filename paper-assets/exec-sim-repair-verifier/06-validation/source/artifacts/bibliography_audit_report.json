@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "date": "2026-05-17",
+    "purpose": "Bibliography reference audit",
+    "method": "WebSearch verification of title + authors + venue + arXiv ID"
+  },
+  "verified": [
+    {"bib_key": "hu2022lora", "status": "pass", "corrections": null, "note": "Already in bib"},
+    {"bib_key": "dettmers2023qlora", "status": "pass", "corrections": null, "note": "Already in bib as dettmers2024qlora"},
+    {"bib_key": "jimenez2024swebench", "status": "pass", "corrections": null, "note": "Already in bib"},
+    {"bib_key": "yang2024sweagent", "status": "pass", "corrections": null, "note": "Already in bib"},
+    {"bib_key": "zhuo2024icescore", "status": "pass", "corrections": null, "note": "Added. Findings of EACL 2024 confirmed via ACL Anthology"},
+    {"bib_key": "dong2024codescore", "status": "pass", "corrections": "Year corrected from 2023 to 2024 (TOSEM publication year)", "note": "Added. ACM TOSEM Vol.33 No.8"},
+    {"bib_key": "zhou2023codebertscore", "status": "pass", "corrections": null, "note": "Added. EMNLP 2023 confirmed via ACL Anthology"},
+    {"bib_key": "wang2023selfconsistency", "status": "pass", "corrections": null, "note": "Added. ICLR 2023 confirmed"},
+    {"bib_key": "lightman2023verify", "status": "pass", "corrections": null, "note": "Already in bib as lightman2023letsverify"},
+    {"bib_key": "shum2025swerm", "status": "pass", "corrections": null, "note": "Already in bib"},
+    {"bib_key": "le2022coderl", "status": "pass", "corrections": null, "note": "Already in bib"},
+    {"bib_key": "ye2025prlcoder", "status": "pass", "corrections": "Venue corrected from 'arXiv 2025' to EMNLP 2025", "note": "Added. Confirmed via ACL Anthology"},
+    {"bib_key": "dreamprm2025code", "status": "pass", "corrections": "Authors corrected from 'DreamPRM Team' to Zhang, Qin, Cao, Xie", "note": "Added. arXiv 2512.15000 confirmed"},
+    {"bib_key": "jain2023contextual", "status": "pass", "corrections": null, "note": "Added. ESEC/FSE 2023 confirmed via ACM DL"},
+    {"bib_key": "kim2022seshat", "status": "pass", "corrections": null, "note": "Already in bib as kim2022predictive"},
+    {"bib_key": "wang2024llmmutation", "status": "pass", "corrections": "Venue corrected from 'arXiv 2024' to ACM TOSEM 2025", "note": "Added"},
+    {"bib_key": "yang2025qwen3", "status": "pass", "corrections": null, "note": "Already in bib as qwen2025qwen3"},
+    {"bib_key": "guo2024deepseekcoder", "status": "pass", "corrections": null, "note": "Already in bib"},
+    {"bib_key": "chen2021humaneval", "status": "pass", "corrections": null, "note": "Already in bib"},
+    {"bib_key": "austin2021mbpp", "status": "pass", "corrections": null, "note": "Already in bib"},
+    {"bib_key": "chen2023codet", "status": "pass", "corrections": null, "note": "Already in bib"},
+    {"bib_key": "li2022alphacode", "status": "pass", "corrections": null, "note": "Already in bib"},
+    {"bib_key": "alphacode2023team", "status": "pass", "corrections": null, "note": "Added. Google DeepMind Tech Report Dec 2023 confirmed"}
+  ],
+  "rejected": [],
+  "replaced": [],
+  "summary": {
+    "total_candidates": 23,
+    "verified": 23,
+    "rejected": 0,
+    "replaced": 0,
+    "already_in_bib": 14,
+    "newly_added": 9,
+    "corrections_applied": 4,
+    "final_bib_count": 45
+  }
+}

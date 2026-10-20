@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4f3f6dc048502c4b3f0",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis traj complementarity",
+  "task_key": "worker_analysis_traj-complementarity_20260517T102958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_traj-complementarity_20260517T102958_result.json",
+    "occurrence": 1,
+    "bytes": 1092,
+    "sha256": "d66548d5257d1791d4bfc3369da864ee8b6c42dbc5ed34fd9eb30ae5bd7f291a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已写入 `artifacts/traj_complementarity_analysis.json`。\n\n**CLS vs CWM (1890 instances, DeepSeek-6.7B)**:\n- CLS 86.93%, CWM 85.77%\n- both_correct: 1534 (81.2%), both_wrong: 160 (8.5%)\n- CLS only correct: 109 (5.8%), CWM only correct: 87 (4.6%)\n- Oracle ensemble: 91.53%\n- **Error complementarity: 55.06% — 已验证匹配此前报告的 55.1%**\n\n**TRAJ 无法计算**。TRAJ 的 per-instance predictions 无法复现：\n- LoRA adapter 加载正常（权重非零、adapter active、scaling=2.0），但推理时 top-1 token 是 \"False\"(68.75%) 而非 \"resolved\"(3.4%)\n- 直接原因：产出原始 83.14% 结果的脚本版本（May 16 21:02）无法确认——当前 `eval_traj_verifier.py` 在结果产出之后才创建（May 17 00:27），且 bash_history 和 run logs 中无对应的 eval 调用记录\n- 4 块 GPU 均被训练任务占满，无法重新训练或用全精度跑完整 eval\n\n若需要 TRAJ 互补性，需要先确认原始 eval 的具体调用方式，或在训练任务完成后释放 GPU 重新跑 `eval_traj_verifier.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-traj-complementarity.md"
+}

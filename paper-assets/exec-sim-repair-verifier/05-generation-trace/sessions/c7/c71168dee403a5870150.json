@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c71168dee403a5870150",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "data prep paper figure data",
+  "task_key": "worker_data-prep_paper-figure-data_20260515T132727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data-prep_paper-figure-data_20260515T132727_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "f64b3125040c8ab00ce5e9b0ebd00e42cc33954aaad0a07bf0afaaa39f52bec7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个文件已生成并注册：\n\n| 文件 | artifact ID | 内容 |\n|------|-------------|------|\n| `relaxed_matching_results.csv` | art_20260515_1557c9 | CLS vs CWM strict/normalized/enhanced matching 对比，含 parse rate 和 upper bound |\n| `tost_multi_margin.csv` | art_20260515_9242c9 | TOST ±1/2/3pp 三档 margin，p=0.0104@±2pp 确认等价 |\n| `mutation_type_accuracy.csv` | art_20260515_e363ac | 5 种 mutation type × 4 个 checkpoint 的 accuracy，含 val/test 分布比例 |\n| `multi_seed_test_curves.json` | art_20260515_693d9b | 8B/4B × s42/seed123 完整 test/val curves + CWM baseline + seq2048 ablation + majority baseline |\n\n数据来源：registry 的 125 个实验 metrics、memory.md 锁定数字、artifacts/ 已有分析报告（relaxed_matching_analysis.txt、tost_multi_margin_results.txt、mutation_type_analysis_w3w8_c1.md）交叉验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-prep-paper-figure-data.md"
+}

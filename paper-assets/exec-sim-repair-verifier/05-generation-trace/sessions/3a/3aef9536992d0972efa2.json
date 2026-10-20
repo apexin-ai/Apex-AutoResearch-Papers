@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3aef9536992d0972efa2",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "d153 gpu1 ablation cwm followup",
+  "task_key": "worker_d153-gpu1-ablation-cwm-followup_20260519T121402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_d153-gpu1-ablation-cwm-followup_20260519T121402_result.json",
+    "occurrence": 1,
+    "bytes": 475,
+    "sha256": "9565406b26b77a37f63283b61bb6e5259ed4e7c7a1b760fac5ebbdc4681a0e9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进度汇总**:\n\n| 任务 | 状态 |\n|------|------|\n| ckpt-2200 eval | **完成** — accuracy=85.34%, f1_macro=79.04% |\n| ckpt-3600 eval | 运行中 (10/9784, ~20min) |\n| ckpt-6633 eval | 排队等 ckpt-3600 完成 |\n| DeepSeek CWM eval | 排队等 CLS chain 完成 (~1h后开始, ~3h) |\n\ntmux sessions: `cls8b-s42-ckpt-ablation`（CLS chain）, `deepseek-cwm-repo-s42-e3-seq4096-eval`（CWM 等待中）。270s 后回来检查 ckpt-3600 进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/d153-gpu1-ablation-cwm-followup.md"
+}

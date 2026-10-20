@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3f7d49fdd72e6579c6e",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh prepare 14b eval commands",
+  "task_key": "worker_ssh_prepare-14b-eval-commands_20260522T220151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prepare-14b-eval-commands_20260522T220151_result.json",
+    "occurrence": 1,
+    "bytes": 3693,
+    "sha256": "7795a6a110e824eb6c0441e8e5bd5d61798c2a66760eabb18a1d558a635b6289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the information. Here's the summary:\n\n---\n\n## 确认结果\n\n### 当前状态\n| 项目 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| CLS 14B v2 | GPU 0 (57%, 16.9GB) | 215642 | 训练中，checkpoint 尚未保存 |\n| CWM 14B | GPU 2 (82%, 14.4GB) | 211098 | 训练中，已有 checkpoint-478 (epoch 1) |\n| GPU 1 | 0%, 空闲 | — | 可用于 eval |\n| GPU 3 | 0%, 空闲 | — | 可用于 eval |\n\n### 关键路径确认\n- Base model: `/dev/shm/Qwen3-14B` — **存在**\n- CLS test data: `data/test.jsonl` — **1890 samples**\n- CWM test data: `data/cwm_test.jsonl` — **1890 samples**\n- CWM checkpoint dir: `/root/autodl-tmp/checkpoints_cwm14b_func_s42/` — 目前有 `checkpoint-478`，总步数 1434\n- CLS checkpoint dir: `/root/autodl-tmp/checkpoints_cls14b_func_s42_v2/` — **空**，等待保存\n\n### 训练参数差异\n| | CWM 14B | CLS 14B v2 |\n|---|---|---|\n| max_seq_length | 2048 | **4096** |\n| 其他参数 | 一致 | 一致 |\n\n### Eval 脚本\n- **CLS**: `eval_verifier.py` — 支持 `--quantize_4bit`，输出 accuracy/F1/confusion matrix\n- **CWM**: `eval_cwm_baseline.py` — **不支持 `--quantize_4bit`**，需要 bf16 加载 (~28GB)，32GB GPU 可行但 batch_size 需设为 1\n\n### 注意事项\n1. CWM eval 脚本无 4-bit 量化支持，14B bf16 约占 28GB，在 32GB 5090 上 batch_size 只能用 1\n2. 训练完成后需先检查 `trainer_state.json` 中的 `best_model_checkpoint` 确定最佳 checkpoint\n\n---\n\n## 完整 Eval 命令\n\n### 步骤 0: 训练完成后查找最佳 checkpoint\n```bash\n# CWM — 找最佳 checkpoint\npython3 -c \"import json; s=json.load(open('/root/autodl-tmp/checkpoints_cwm14b_func_s42/$(ls /root/autodl-tmp/checkpoints_cwm14b_func_s42/ | sort -V | tail -1)/trainer_state.json')); print(s['best_model_checkpoint'])\"\n\n# CLS — 找最佳 checkpoint\npython3 -c \"import json; s=json.load(open('/root/autodl-tmp/checkpoints_cls14b_func_s42_v2/$(ls /root/autodl-tmp/checkpoints_cls14b_func_s42_v2/ | sort -V | tail -1)/trainer_state.json')); print(s['best_model_checkpoint'])\"\n```\n\n### CWM 14B eval (GPU 1):\n```bash\nnohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /home/sonny/exec-sim-repair-verifier && \\\nCUDA_VISIBLE_DEVICES=1 python3 eval_cwm_baseline.py \\\n  --data_dir data/ \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints_cwm14b_func_s42/{BEST_CKPT} \\\n  --model_name /dev/shm/Qwen3-14B \\\n  --output /root/autodl-tmp/eval_results/cwm14b_func_s42/eval_cwm_results.json \\\n  --batch_size 1 \\\n  --max_seq_length 2048 \\\n  --max_new_tokens 64 \\\n  --save_predictions' > /tmp/eval_cwm14b.log 2>&1 &\n```\n\n### CLS 14B eval (GPU 3):\n```bash\nnohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /home/sonny/exec-sim-repair-verifier && \\\nCUDA_VISIBLE_DEVICES=3 python3 eval_verifier.py \\\n  --data_dir data/ \\\n  --checkpoint_dir /root/autodl-tmp/checkpoints_cls14b_func_s42_v2/{BEST_CKPT} \\\n  --model_name /dev/shm/Qwen3-14B \\\n  --output /root/autodl-tmp/eval_results/cls14b_func_s42_v2/eval_results.json \\\n  --batch_size 4 \\\n  --max_seq_length 4096 \\\n  --quantize_4bit \\\n  --save_predictions' > /tmp/eval_cls14b_v2.log 2>&1 &\n```\n\n**`{BEST_CKPT}`** 替换为步骤 0 查到的实际 checkpoint 名（如 `checkpoint-478`）。运行前需要先 `mkdir -p /root/autodl-tmp/eval_results/cwm14b_func_s42/ /root/autodl-tmp/eval_results/cls14b_func_s42_v2/`。\n\nCWM eval 因 batch_size=1 会较慢（约 1890 次推理 × ~64 新 token/次），预计 30-60 分钟。CLS eval 用 4-bit 量化，batch_size=4，预计 15-30 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prepare-14b-eval-commands.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcefe223dd02c4a01a0a",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "eval cls8b s42 resume ckpt3600 test",
+  "task_key": "worker_eval_cls8b-s42-resume-ckpt3600-test_20260515T230033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cls8b-s42-resume-ckpt3600-test_20260515T230033_result.json",
+    "occurrence": 1,
+    "bytes": 379,
+    "sha256": "8f9913832236f677763e2eedc72bcf2d0234c756e14dae852dcba68f1d7c169a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job running successfully.\n\n- **GPU 0**: 72% util, 17181 MiB used — model loaded\n- **Progress**: 30/9784 samples, running_acc ~86.7%\n- **Tmux session**: `cls8b_s42_test`\n- **Log**: `/root/autodl-tmp/eval_results/cls8b_s42_resume_test_ckpt3600/eval.log`\n- **Registry**: `cls8b-s42-resume-ckpt3600-test` → RUNNING\n\n预计 ~2-3h 完成全部 9784 样本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cls8b-s42-resume-ckpt3600-test.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbf7272742c8c1ccc834",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops server health check",
+  "task_key": "worker_ops_server-health-check_20260516T163649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server-health-check_20260516T163649_result.json",
+    "occurrence": 1,
+    "bytes": 2334,
+    "sha256": "fe00c66045da8922ad7f81e621551f4c308ff85b7c2ac0484bd4cfc8048c5516"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇总\n\n### GPU 使用情况\n\n| GPU | 显存占用 | 利用率 | 运行进程 |\n|-----|---------|--------|---------|\n| cuda:0 | 19,557 / 32,607 MiB (60%) | 99% | deepseek-cls-repo |\n| cuda:1 | 19,713 / 32,607 MiB (60%) | 99% | deepseek-cwm-repo |\n| cuda:2 | 0 MiB | 0% | **空闲** |\n| cuda:3 | 0 MiB | 0% | **空闲** |\n\n### 各进程状态\n\n**1. deepseek-cls-repo** — PID 470263 (wrapper) / 470268 (training), cuda:0\n- 状态：**运行中**\n- 进度：step **3156/6633 (48%)**，epoch 2/3，已跑 ~10h\n- 速度：~10.5s/step\n- 已保存 checkpoint-2211\n- ⚠️ **eval_loss = nan**（epoch 1 结束时），需关注\n\n**2. deepseek-cwm-repo** — PID 479953, cuda:1\n- 状态：**运行中**\n- 进度：step **3683/13266 (28%)**，epoch 1/3，已跑 ~8h21m\n- 速度：~8s/step\n- checkpoint 目录为空（尚未保存任何 checkpoint）\n- 尚无 eval_loss（未完成 epoch 1）\n\n**3. deepseek-traj-repo-8k (s0/默认seed)** — ✅ 已完成\n- exit code 0，完成于 2026-05-16 15:33:45Z\n- train_loss: **0.2081**, eval_loss: **0.1447**\n- best model → `/root/autodl-tmp/checkpoints_deepseek_traj_repo_8k/best`\n\n**4. deepseek-traj-repo-8k-s123** — ✅ 已完成\n- exit code 0，完成于 2026-05-16 15:33:40Z\n- train_loss: **0.2125**, eval_loss: **0.1462**\n- best model → `/root/autodl-tmp/checkpoints_deepseek_traj_repo_8k_s123/best`\n\n**5. deepseek-traj-repo-8k-s456** — ✅ 已完成\n- 完成于 2026-05-17 00:30:27（exit 文件缺失但日志确认训练完整结束）\n- train_loss: **0.2176**, eval_loss: **0.1547**\n- best model → `/root/autodl-tmp/checkpoints_deepseek_traj_repo_8k_s456/best`\n\n**6. deepseek-traj-func** (PID 504483) — ✅ 早已完成，进程不存在\n\n### 异常发现\n\n1. **cls-repo eval_loss = nan**：epoch 1 评估时 loss 为 nan，训练仍在继续但这可能意味着评估有问题（分类任务可能使用了不匹配的 loss 函数或标签有问题）\n2. **cwm-repo 无 checkpoint**：已训练 28% 但输出目录为空，可能 save_strategy 设置为按 epoch 保存，需等 epoch 1 完成\n3. **GPU 2-3 完全空闲**：3 个 traj-repo-8k 变体均已完成，可用于新任务\n4. 用户提到的 \"deepseek-traj-repo-8k-s0\" 对应的是无后缀的 `deepseek-traj-repo-8k`（默认 seed）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-server-health-check.md"
+}

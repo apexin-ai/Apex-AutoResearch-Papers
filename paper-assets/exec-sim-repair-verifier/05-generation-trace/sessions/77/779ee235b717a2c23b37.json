@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "779ee235b717a2c23b37",
+  "project": "exec-sim-repair-verifier",
+  "kind": "worker",
+  "title": "code mvp b data prep",
+  "task_key": "worker_code_mvp-b-data-prep_20260511T182409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-b-data-prep_20260511T182409.log",
+    "occurrence": 1,
+    "bytes": 745953,
+    "sha256": "002ffed72fdac78e290d801a094c12b41ed67d4fee7bce8240cfa0bbe39a2b7e"
+  },
+  "statistics": {
+    "messages": 484,
+    "user_turns": 1,
+    "tool_calls": 196,
+    "roles": {
+      "log": 1,
+      "system": 14,
+      "record": 3,
+      "assistant": 71,
+      "tool_call": 196,
+      "tool_result": 196,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 390,
+      "chunks": [
+        {
+          "path": "779ee235b717a2c23b37-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "779ee235b717a2c23b37-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "779ee235b717a2c23b37-part-0003.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 94,
+      "chunks": [
+        {
+          "path": "779ee235b717a2c23b37-part-0003.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-mvp-b-data-prep.md"
+}

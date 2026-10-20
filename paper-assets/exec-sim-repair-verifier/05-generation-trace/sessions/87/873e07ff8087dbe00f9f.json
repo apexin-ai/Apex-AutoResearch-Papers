@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "873e07ff8087dbe00f9f",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ops cwm v11 restart syspython",
+  "task_key": "worker_ops_cwm-v11-restart-syspython_20260513T111450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cwm-v11-restart-syspython_20260513T111450_result.json",
+    "occurrence": 1,
+    "bytes": 729,
+    "sha256": "08e08b0e2b28b8a8e13a15de14df9d05afa5e97bc6ce90a04c9d8aba09802093"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终汇总\n\n| 项目 | 值 |\n|------|-----|\n| **新 PID** | 145692（Python 进程），145691（bash wrapper） |\n| **恢复起始 step** | 从 checkpoint-500 恢复，实际训练从 step 501 开始 |\n| **训练速度** | ~8.9s/step（steps 503-511 平均），符合预期 8-9s/step |\n| **cuda:2 显存** | 16295 MiB（已占用） |\n| **系统 Python** | /usr/bin/python3 Python 3.10.12 |\n| **transformers** | 5.8.0（系统 pip） |\n| **日志文件** | /tmp/cwm_v11_restart.log |\n\n**注意**：首次尝试 `--resume_from_checkpoint /root/autodl-tmp/checkpoints_repo_cwm_v11/` 失败（`trainer_state.json` 不在 output_dir 根目录），改为指定 `checkpoint-500` 子目录后成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cwm-v11-restart-syspython.md"
+}

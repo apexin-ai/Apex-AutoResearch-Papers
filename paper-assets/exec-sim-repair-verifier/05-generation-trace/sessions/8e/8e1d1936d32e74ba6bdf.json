@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e1d1936d32e74ba6bdf",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "analysis traj level seed123",
+  "task_key": "worker_analysis_traj-level-seed123_20260512T075126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_traj-level-seed123_20260512T075126_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "b122ebfe73efd6c5d2739e7a6e2cb1db03ac81d9fd30763a8e681e7f88055ba3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练和评估均正常完成（EXIT_CODE=0），eval_loss=0.1048，train_loss=0.2261。\n\n## 指标\n- accuracy: 85.47%\n- unresolved_f1: 87.00%\n- resolved_f1: 83.52%\n- per_test_consistency: 78.59%\n\n## 对比\n\n**vs traj-level seed=42:**\n\n| 指标 | seed=42 | seed=123 | diff |\n|------|---------|----------|------|\n| accuracy | 85.66% | 85.47% | -0.19pp |\n| unresolved_f1 | 87.50% | 87.00% | -0.50pp |\n| resolved_f1 | 83.18% | 83.52% | +0.34pp |\n| per_test_consistency | 79.94% | 78.59% | -1.35pp |\n\n**vs per-test classification 3-seed mean (88.41%):**\n- accuracy gap = -2.94pp（seed=42 gap 为 -2.75pp）\n\n## 结论\n- **[success]** Seed=123 结果与 seed=42 高度一致（accuracy 差仅 0.19pp），确认 traj-level 方法的 ~3pp gap（vs per-test classification）在不同 seed 下稳定存在，非随机波动。两个 seed 的 gap 分别为 2.75pp 和 2.94pp，均在 per-test 的 1σ 范围内（std=0.96）但方向一致偏低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-traj-level-seed123.md"
+}

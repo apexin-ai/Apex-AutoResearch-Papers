@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8b257a1f513f94b56c3",
+  "project": "exec-sim-repair-verifier",
+  "kind": "result",
+  "title": "ssh diagnose deepseek cwm s123 eval",
+  "task_key": "worker_ssh_diagnose-deepseek-cwm-s123-eval_20260520T045524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose-deepseek-cwm-s123-eval_20260520T045524_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "6dce99e77d9df7d553762f3de901e793863afdc2d55d6510a2b693ad22444e26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能之前已清除），无影响。\n\n## 结果汇总\n\n**deepseek-cwm-repo-s123-eval** — DONE (success)\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **86.05%** |\n| F1 macro | 80.93 |\n| F1 pass / fail | 90.81 / 71.05 |\n| Unparseable | 0 (0%) |\n| Majority baseline | 72.96% |\n| Gap vs majority | +13.09pp |\n| Instances | 9784 / 9784 |\n\n**注意**：s123 accuracy (86.05%) 与 s42 (61.49%) 差距达 24.56pp，远超正常 seed 方差。需要排查 s42 eval 是否有 bug（truncation、数据泄漏、checkpoint 选择等），或者确认两次 eval 使用的数据/代码版本是否一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-deepseek-cwm-s123-eval.md"
+}
